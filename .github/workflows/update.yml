@@ -19,14 +19,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.12"
 
       - name: Update Last.fm history
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: python update_lastfm.py
+        run: |
+          python update_lastfm.py
 
-      - name: Commit updated history
+      - name: Build statistics
+        run: |
+          python build_stats.py
+
+      - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -34,8 +39,8 @@ jobs:
           git add data/
 
           if git diff --cached --quiet; then
-            echo "No new scrobbles."
+            echo "No data changes to commit."
           else
-            git commit -m "Update Last.fm listening history"
+            git commit -m "Update Last.fm history and statistics"
             git push
           fi
