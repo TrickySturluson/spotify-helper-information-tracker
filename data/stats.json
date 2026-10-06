@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-10-05T06:39:04.853604+00:00",
+  "generated_at": "2026-10-06T06:33:45.260780+00:00",
   "username": "TrickySturluson",
   "overview": {
-    "total_scrobbles": 149035,
+    "total_scrobbles": 149047,
     "unique_artists": 5166,
-    "unique_albums": 6333,
-    "unique_tracks": 10969,
+    "unique_albums": 6334,
+    "unique_tracks": 10970,
     "first_scrobble": "2023-02-13T23:01:00+00:00",
-    "last_scrobble": "2026-10-05T06:19:19+00:00",
-    "history_days": 1329.3,
-    "average_scrobbles_per_day": 112.12,
-    "estimated_listening_hours": 8693.7,
-    "estimated_listening_days": 362.24
+    "last_scrobble": "2026-10-05T20:14:29+00:00",
+    "history_days": 1329.88,
+    "average_scrobbles_per_day": 112.08,
+    "estimated_listening_hours": 8694.4,
+    "estimated_listening_days": 362.27
   },
   "replay": {
     "top_artist": "Candy Claws",
-    "top_artist_plays": 11181,
+    "top_artist_plays": 11182,
     "top_track": {
       "artist": "Omori",
       "track": "Trees..."
@@ -34,7 +34,7 @@
       "2023": 32915,
       "2024": 43367,
       "2025": 49751,
-      "2026": 23002
+      "2026": 23014
     },
     "by_month": {
       "2023-02": 2060,
@@ -79,10 +79,10 @@
       "2026-05": 3990,
       "2026-06": 2990,
       "2026-07": 2996,
-      "2026-10": 649
+      "2026-10": 661
     },
     "by_weekday": {
-      "Monday": 23926,
+      "Monday": 23938,
       "Tuesday": 18286,
       "Wednesday": 20436,
       "Thursday": 21617,
@@ -99,18 +99,18 @@
       "5": 7650,
       "16": 6014,
       "17": 5775,
-      "20": 6478,
+      "20": 6483,
       "21": 7130,
       "22": 7267,
-      "6": 7100,
+      "6": 7101,
       "7": 6402,
       "3": 8282,
       "8": 5524,
       "9": 4954,
       "10": 4439,
       "11": 3863,
-      "18": 6040,
-      "19": 6397,
+      "18": 6043,
+      "19": 6400,
       "12": 3757,
       "13": 3547,
       "15": 5298,
@@ -120,7 +120,7 @@
   "top_artists": [
     {
       "artist": "Candy Claws",
-      "plays": 11181,
+      "plays": 11182,
       "unique_tracks": 23,
       "unique_albums": 4,
       "share": 0.075023
@@ -130,28 +130,28 @@
       "plays": 3069,
       "unique_tracks": 38,
       "unique_albums": 4,
-      "share": 0.020592
+      "share": 0.020591
     },
     {
       "artist": "Messer Chups",
       "plays": 2196,
       "unique_tracks": 266,
       "unique_albums": 31,
-      "share": 0.014735
+      "share": 0.014734
     },
     {
       "artist": "Rubblebucket",
       "plays": 1925,
       "unique_tracks": 88,
       "unique_albums": 21,
-      "share": 0.012916
+      "share": 0.012915
     },
     {
       "artist": "Otoboke Beaver",
       "plays": 1118,
       "unique_tracks": 26,
       "unique_albums": 10,
-      "share": 0.007502
+      "share": 0.007501
     },
     {
       "artist": "Katzenjammer",
@@ -165,7 +165,7 @@
       "plays": 914,
       "unique_tracks": 14,
       "unique_albums": 1,
-      "share": 0.006133
+      "share": 0.006132
     },
     {
       "artist": "The Dreadnoughts",
@@ -179,21 +179,21 @@
       "plays": 859,
       "unique_tracks": 49,
       "unique_albums": 19,
-      "share": 0.005764
+      "share": 0.005763
     },
     {
       "artist": "Tino Drima",
       "plays": 731,
       "unique_tracks": 14,
       "unique_albums": 7,
-      "share": 0.004905
+      "share": 0.004904
     },
     {
       "artist": "Ashnikko",
       "plays": 725,
       "unique_tracks": 11,
       "unique_albums": 10,
-      "share": 0.004865
+      "share": 0.004864
     },
     {
       "artist": "(K)NoW_NAME",
@@ -221,14 +221,14 @@
       "plays": 570,
       "unique_tracks": 4,
       "unique_albums": 2,
-      "share": 0.003825
+      "share": 0.003824
     },
     {
       "artist": "アトラスサウンドチーム",
       "plays": 560,
       "unique_tracks": 98,
       "unique_albums": 1,
-      "share": 0.003758
+      "share": 0.003757
     },
     {
       "artist": "Horsey",
@@ -256,7 +256,7 @@
       "plays": 494,
       "unique_tracks": 11,
       "unique_albums": 1,
-      "share": 0.003315
+      "share": 0.003314
     },
     {
       "artist": "Lil Mariko",
@@ -284,7 +284,7 @@
       "plays": 446,
       "unique_tracks": 43,
       "unique_albums": 5,
-      "share": 0.002993
+      "share": 0.002992
     },
     {
       "artist": "yeule",
@@ -312,7 +312,7 @@
       "plays": 408,
       "unique_tracks": 10,
       "unique_albums": 7,
-      "share": 0.002738
+      "share": 0.002737
     },
     {
       "artist": "The Happy Fits",
@@ -368,7 +368,7 @@
       "plays": 377,
       "unique_tracks": 51,
       "unique_albums": 9,
-      "share": 0.00253
+      "share": 0.002529
     },
     {
       "artist": "Jack Conte",
@@ -382,7 +382,7 @@
       "plays": 363,
       "unique_tracks": 12,
       "unique_albums": 1,
-      "share": 0.002436
+      "share": 0.002435
     },
     {
       "artist": "The Caretaker",
@@ -431,7 +431,7 @@
       "plays": 332,
       "unique_tracks": 36,
       "unique_albums": 13,
-      "share": 0.002228
+      "share": 0.002227
     },
     {
       "artist": "小島麻由美",
@@ -529,7 +529,7 @@
       "plays": 260,
       "unique_tracks": 8,
       "unique_albums": 7,
-      "share": 0.001745
+      "share": 0.001744
     },
     {
       "artist": "Forrest Day",
@@ -690,14 +690,14 @@
       "plays": 215,
       "unique_tracks": 5,
       "unique_albums": 4,
-      "share": 0.001443
+      "share": 0.001442
     },
     {
       "artist": "Imagine Dragons",
       "plays": 215,
       "unique_tracks": 6,
       "unique_albums": 6,
-      "share": 0.001443
+      "share": 0.001442
     },
     {
       "artist": "Creepy Nuts",
@@ -746,7 +746,7 @@
       "plays": 205,
       "unique_tracks": 4,
       "unique_albums": 3,
-      "share": 0.001376
+      "share": 0.001375
     },
     {
       "artist": "Tub Ring",
@@ -788,7 +788,7 @@
       "plays": 198,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001329
+      "share": 0.001328
     },
     {
       "artist": "Aphrodite's Child",
@@ -824,7 +824,7 @@
       "artist": "Omori",
       "track": "Trees...",
       "plays": 2510,
-      "share": 0.016842
+      "share": 0.01684
     },
     {
       "artist": "Candy Claws",
@@ -842,13 +842,13 @@
       "artist": "Candy Claws",
       "track": "Fallen Tree Bridge (Brave Rainbow Rider)",
       "plays": 924,
-      "share": 0.0062
+      "share": 0.006199
     },
     {
       "artist": "Candy Claws",
       "track": "Into the Deep Time (One Sun)",
       "plays": 924,
-      "share": 0.0062
+      "share": 0.006199
     },
     {
       "artist": "Candy Claws",
@@ -859,8 +859,8 @@
     {
       "artist": "Candy Claws",
       "track": "Fell in Love (At the Water)",
-      "plays": 920,
-      "share": 0.006173
+      "plays": 921,
+      "share": 0.006179
     },
     {
       "artist": "Candy Claws",
@@ -878,7 +878,7 @@
       "artist": "Candy Claws",
       "track": "White Seal (Shell & Spine)",
       "plays": 917,
-      "share": 0.006153
+      "share": 0.006152
     },
     {
       "artist": "Candy Claws",
@@ -908,7 +908,7 @@
       "artist": "Mort Garson",
       "track": "Music To Soothe The Savage Snake Plant",
       "plays": 446,
-      "share": 0.002993
+      "share": 0.002992
     },
     {
       "artist": "The Death Set",
@@ -926,7 +926,7 @@
       "artist": "The Heavy",
       "track": "How You Like Me Now",
       "plays": 339,
-      "share": 0.002275
+      "share": 0.002274
     },
     {
       "artist": "Ergo, Bria",
@@ -956,13 +956,13 @@
       "artist": "Katzenjammer",
       "track": "Soviet Trumpeter",
       "plays": 298,
-      "share": 0.002
+      "share": 0.001999
     },
     {
       "artist": "Death Grips",
       "track": "Bottomless Pit",
       "plays": 284,
-      "share": 0.001906
+      "share": 0.001905
     },
     {
       "artist": "Dazey and the Scouts",
@@ -1058,13 +1058,13 @@
       "artist": "Talking Heads",
       "track": "Once in a Lifetime",
       "plays": 229,
-      "share": 0.001537
+      "share": 0.001536
     },
     {
       "artist": "Omori",
       "track": "DUET",
       "plays": 229,
-      "share": 0.001537
+      "share": 0.001536
     },
     {
       "artist": "シユイ",
@@ -1136,7 +1136,7 @@
       "artist": "Sigur Rós",
       "track": "Untitled #9 - Smáskífa 1",
       "plays": 198,
-      "share": 0.001329
+      "share": 0.001328
     },
     {
       "artist": "Hot Sugar",
@@ -1268,19 +1268,19 @@
       "artist": "Himalayas",
       "track": "Thank God I'm Not You",
       "plays": 167,
-      "share": 0.001121
+      "share": 0.00112
     },
     {
       "artist": "Alex G",
       "track": "Waiting For You",
       "plays": 167,
-      "share": 0.001121
+      "share": 0.00112
     },
     {
       "artist": "Medusa",
       "track": "Kinda Outta Luck",
       "plays": 167,
-      "share": 0.001121
+      "share": 0.00112
     },
     {
       "artist": "Crywank",
@@ -1425,7 +1425,7 @@
     {
       "artist": "Candy Claws",
       "album": "Ceres & Calypso in the Deep Time",
-      "plays": 11151
+      "plays": 11152
     },
     {
       "artist": "Omori",
@@ -2233,7 +2233,7 @@
     "2026": [
       {
         "artist": "Candy Claws",
-        "plays": 1966
+        "plays": 1967
       },
       {
         "artist": "Schoolyard Heroes",
@@ -2724,7 +2724,7 @@
       {
         "artist": "Candy Claws",
         "track": "Fell in Love (At the Water)",
-        "plays": 164
+        "plays": 165
       },
       {
         "artist": "Candy Claws",
@@ -2779,7 +2779,7 @@
       {
         "artist": "Princess Nokia",
         "track": "Blue Velvet",
-        "plays": 51
+        "plays": 52
       },
       {
         "artist": "La Femme",
