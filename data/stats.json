@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-22T06:50:18.101153+00:00",
+  "generated_at": "2026-10-23T06:49:21.579991+00:00",
   "username": "TrickySturluson",
   "overview": {
-    "total_scrobbles": 150975,
+    "total_scrobbles": 151100,
     "unique_artists": 5186,
     "unique_albums": 6371,
     "unique_tracks": 11036,
     "first_scrobble": "2023-02-13T23:01:00+00:00",
-    "last_scrobble": "2026-10-21T23:20:40+00:00",
-    "history_days": 1346.01,
-    "average_scrobbles_per_day": 112.16,
-    "estimated_listening_hours": 8806.9,
-    "estimated_listening_days": 366.95
+    "last_scrobble": "2026-10-23T06:42:52+00:00",
+    "history_days": 1347.32,
+    "average_scrobbles_per_day": 112.15,
+    "estimated_listening_hours": 8814.2,
+    "estimated_listening_days": 367.26
   },
   "replay": {
     "top_artist": "Candy Claws",
@@ -21,20 +21,20 @@
       "track": "Trees..."
     },
     "top_track_plays": 2515,
-    "top_10_artist_share": 0.1595,
-    "top_10_track_share": 0.0729,
+    "top_10_artist_share": 0.1593,
+    "top_10_track_share": 0.0728,
     "tracks_per_artist": 2.13,
     "albums_per_artist": 1.23,
     "one_play_artists": 1727,
     "one_play_artist_percentage": 0.333,
-    "artists_with_100_plus_plays": 503
+    "artists_with_100_plus_plays": 504
   },
   "time": {
     "by_year": {
       "2023": 32915,
       "2024": 43367,
       "2025": 49751,
-      "2026": 24942
+      "2026": 25067
     },
     "by_month": {
       "2023-02": 2060,
@@ -79,38 +79,38 @@
       "2026-05": 3990,
       "2026-06": 2990,
       "2026-07": 2996,
-      "2026-10": 2589
+      "2026-10": 2714
     },
     "by_weekday": {
       "Monday": 24115,
       "Tuesday": 18545,
-      "Wednesday": 20807,
-      "Thursday": 21873,
-      "Friday": 22794,
+      "Wednesday": 20808,
+      "Thursday": 21907,
+      "Friday": 22884,
       "Saturday": 20648,
       "Sunday": 22193
     },
     "by_hour_utc": {
-      "23": 7136,
-      "0": 7745,
-      "1": 8443,
-      "2": 8675,
-      "4": 8017,
-      "5": 7714,
+      "23": 7137,
+      "0": 7753,
+      "1": 8458,
+      "2": 8690,
+      "4": 8032,
+      "5": 7724,
       "16": 6106,
       "17": 5854,
-      "20": 6611,
-      "21": 7270,
+      "20": 6625,
+      "21": 7279,
       "22": 7429,
-      "6": 7127,
+      "6": 7139,
       "7": 6434,
-      "3": 8388,
+      "3": 8403,
       "8": 5542,
       "9": 4970,
       "10": 4456,
       "11": 3878,
-      "18": 6115,
-      "19": 6529,
+      "18": 6117,
+      "19": 6538,
       "12": 3783,
       "13": 3567,
       "15": 5365,
@@ -123,700 +123,700 @@
       "plays": 11284,
       "unique_tracks": 23,
       "unique_albums": 4,
-      "share": 0.074741
+      "share": 0.074679
     },
     {
       "artist": "Omori",
       "plays": 3082,
       "unique_tracks": 38,
       "unique_albums": 4,
-      "share": 0.020414
+      "share": 0.020397
     },
     {
       "artist": "Messer Chups",
       "plays": 2242,
       "unique_tracks": 268,
       "unique_albums": 32,
-      "share": 0.01485
+      "share": 0.014838
     },
     {
       "artist": "Rubblebucket",
       "plays": 1932,
       "unique_tracks": 88,
       "unique_albums": 21,
-      "share": 0.012797
+      "share": 0.012786
     },
     {
       "artist": "Otoboke Beaver",
       "plays": 1119,
       "unique_tracks": 26,
       "unique_albums": 10,
-      "share": 0.007412
+      "share": 0.007406
     },
     {
       "artist": "Katzenjammer",
       "plays": 990,
       "unique_tracks": 35,
       "unique_albums": 5,
-      "share": 0.006557
+      "share": 0.006552
     },
     {
       "artist": "Sibylle Baier",
       "plays": 914,
       "unique_tracks": 14,
       "unique_albums": 1,
-      "share": 0.006054
+      "share": 0.006049
     },
     {
       "artist": "The Heavy",
       "plays": 889,
       "unique_tracks": 49,
       "unique_albums": 19,
-      "share": 0.005888
+      "share": 0.005884
     },
     {
       "artist": "The Dreadnoughts",
       "plays": 888,
       "unique_tracks": 13,
       "unique_albums": 1,
-      "share": 0.005882
+      "share": 0.005877
     },
     {
       "artist": "Tino Drima",
       "plays": 733,
       "unique_tracks": 14,
       "unique_albums": 7,
-      "share": 0.004855
+      "share": 0.004851
     },
     {
       "artist": "Ashnikko",
       "plays": 728,
       "unique_tracks": 12,
       "unique_albums": 10,
-      "share": 0.004822
+      "share": 0.004818
     },
     {
       "artist": "Haley Heynderickx",
       "plays": 666,
       "unique_tracks": 38,
       "unique_albums": 10,
-      "share": 0.004411
+      "share": 0.004408
     },
     {
       "artist": "(K)NoW_NAME",
       "plays": 663,
       "unique_tracks": 7,
       "unique_albums": 3,
-      "share": 0.004391
+      "share": 0.004388
     },
     {
       "artist": "Mitski",
       "plays": 575,
       "unique_tracks": 54,
       "unique_albums": 11,
-      "share": 0.003809
+      "share": 0.003805
     },
     {
       "artist": "Maximum the Hormone",
       "plays": 572,
       "unique_tracks": 4,
       "unique_albums": 2,
-      "share": 0.003789
+      "share": 0.003786
     },
     {
       "artist": "アトラスサウンドチーム",
       "plays": 560,
       "unique_tracks": 98,
       "unique_albums": 1,
-      "share": 0.003709
+      "share": 0.003706
     },
     {
       "artist": "Horsey",
       "plays": 559,
       "unique_tracks": 12,
       "unique_albums": 2,
-      "share": 0.003703
+      "share": 0.0037
     },
     {
       "artist": "Adventure Time",
       "plays": 531,
       "unique_tracks": 3,
       "unique_albums": 4,
-      "share": 0.003517
+      "share": 0.003514
     },
     {
       "artist": "Mother Mother",
       "plays": 527,
       "unique_tracks": 14,
       "unique_albums": 7,
-      "share": 0.003491
+      "share": 0.003488
     },
     {
       "artist": "Schoolyard Heroes",
       "plays": 503,
       "unique_tracks": 11,
       "unique_albums": 1,
-      "share": 0.003332
+      "share": 0.003329
     },
     {
       "artist": "Jaybooty",
       "plays": 487,
       "unique_tracks": 24,
       "unique_albums": 1,
-      "share": 0.003226
+      "share": 0.003223
     },
     {
       "artist": "Lil Mariko",
       "plays": 463,
       "unique_tracks": 5,
       "unique_albums": 2,
-      "share": 0.003067
+      "share": 0.003064
     },
     {
       "artist": "Mort Garson",
       "plays": 454,
       "unique_tracks": 3,
       "unique_albums": 2,
-      "share": 0.003007
+      "share": 0.003005
     },
     {
       "artist": "Eleisha Eagle",
       "plays": 447,
       "unique_tracks": 43,
       "unique_albums": 5,
-      "share": 0.002961
+      "share": 0.002958
     },
     {
       "artist": "yeule",
       "plays": 444,
       "unique_tracks": 65,
       "unique_albums": 20,
-      "share": 0.002941
+      "share": 0.002938
     },
     {
       "artist": "GRLwood",
       "plays": 416,
       "unique_tracks": 8,
       "unique_albums": 5,
-      "share": 0.002755
+      "share": 0.002753
     },
     {
       "artist": "The Death Set",
       "plays": 413,
       "unique_tracks": 12,
       "unique_albums": 4,
-      "share": 0.002736
+      "share": 0.002733
     },
     {
       "artist": "That Handsome Devil",
       "plays": 410,
       "unique_tracks": 10,
       "unique_albums": 7,
-      "share": 0.002716
+      "share": 0.002713
     },
     {
       "artist": "The Happy Fits",
       "plays": 400,
       "unique_tracks": 12,
       "unique_albums": 4,
-      "share": 0.002649
+      "share": 0.002647
     },
     {
       "artist": "Nico Vega",
       "plays": 397,
       "unique_tracks": 3,
       "unique_albums": 4,
-      "share": 0.00263
+      "share": 0.002627
     },
     {
       "artist": "Death Grips",
       "plays": 395,
       "unique_tracks": 5,
       "unique_albums": 4,
-      "share": 0.002616
+      "share": 0.002614
     },
     {
       "artist": "Dazey and the Scouts",
       "plays": 390,
       "unique_tracks": 5,
       "unique_albums": 1,
-      "share": 0.002583
+      "share": 0.002581
     },
     {
       "artist": "The Bridge City Sinners",
       "plays": 390,
       "unique_tracks": 3,
       "unique_albums": 3,
-      "share": 0.002583
+      "share": 0.002581
     },
     {
       "artist": "The Dresden Dolls",
       "plays": 383,
       "unique_tracks": 7,
       "unique_albums": 3,
-      "share": 0.002537
+      "share": 0.002535
     },
     {
       "artist": "the buttress",
       "plays": 381,
       "unique_tracks": 13,
       "unique_albums": 9,
-      "share": 0.002524
+      "share": 0.002522
     },
     {
       "artist": "Thao",
       "plays": 377,
       "unique_tracks": 51,
       "unique_albums": 9,
-      "share": 0.002497
+      "share": 0.002495
     },
     {
       "artist": "Jack Conte",
       "plays": 373,
       "unique_tracks": 18,
       "unique_albums": 4,
-      "share": 0.002471
+      "share": 0.002469
     },
     {
       "artist": "öOoOoOoOoOo",
       "plays": 365,
       "unique_tracks": 12,
       "unique_albums": 1,
-      "share": 0.002418
+      "share": 0.002416
     },
     {
       "artist": "Limp Bizkit",
       "plays": 365,
       "unique_tracks": 43,
       "unique_albums": 11,
-      "share": 0.002418
+      "share": 0.002416
     },
     {
       "artist": "The Caretaker",
       "plays": 356,
       "unique_tracks": 13,
       "unique_albums": 2,
-      "share": 0.002358
+      "share": 0.002356
     },
     {
       "artist": "Ergo, Bria",
       "plays": 338,
       "unique_tracks": 1,
       "unique_albums": 2,
-      "share": 0.002239
+      "share": 0.002237
     },
     {
       "artist": "Bad Waitress",
       "plays": 335,
       "unique_tracks": 3,
       "unique_albums": 3,
-      "share": 0.002219
+      "share": 0.002217
     },
     {
       "artist": "Laufey",
       "plays": 335,
       "unique_tracks": 36,
       "unique_albums": 13,
-      "share": 0.002219
+      "share": 0.002217
     },
     {
       "artist": "Momo Games",
       "plays": 335,
       "unique_tracks": 1,
       "unique_albums": 2,
-      "share": 0.002219
+      "share": 0.002217
     },
     {
       "artist": "Sugs",
       "plays": 333,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.002206
+      "share": 0.002204
     },
     {
       "artist": "小島麻由美",
       "plays": 330,
       "unique_tracks": 3,
       "unique_albums": 2,
-      "share": 0.002186
+      "share": 0.002184
     },
     {
       "artist": "Gorillaz",
       "plays": 321,
       "unique_tracks": 16,
       "unique_albums": 10,
-      "share": 0.002126
+      "share": 0.002124
     },
     {
       "artist": "ミドリ",
       "plays": 318,
       "unique_tracks": 11,
       "unique_albums": 2,
-      "share": 0.002106
+      "share": 0.002105
     },
     {
       "artist": "Felix Hagan & The Family",
       "plays": 317,
       "unique_tracks": 7,
       "unique_albums": 3,
-      "share": 0.0021
+      "share": 0.002098
     },
     {
       "artist": "MoxiFloxi",
       "plays": 296,
       "unique_tracks": 11,
       "unique_albums": 11,
-      "share": 0.001961
+      "share": 0.001959
     },
     {
       "artist": "Crywank",
       "plays": 282,
       "unique_tracks": 3,
       "unique_albums": 3,
-      "share": 0.001868
+      "share": 0.001866
     },
     {
       "artist": "Talking Heads",
       "plays": 280,
       "unique_tracks": 4,
       "unique_albums": 4,
-      "share": 0.001855
+      "share": 0.001853
     },
     {
       "artist": "Cake Bake Betty",
       "plays": 276,
       "unique_tracks": 3,
       "unique_albums": 1,
-      "share": 0.001828
+      "share": 0.001827
     },
     {
       "artist": "Goth Von Core",
       "plays": 275,
       "unique_tracks": 1,
       "unique_albums": 2,
-      "share": 0.001821
+      "share": 0.00182
     },
     {
       "artist": "Rage Against the Machine",
       "plays": 275,
       "unique_tracks": 35,
       "unique_albums": 6,
-      "share": 0.001821
+      "share": 0.00182
     },
     {
       "artist": "a_hisa",
       "plays": 273,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001808
+      "share": 0.001807
     },
     {
       "artist": "illuminati hotties",
       "plays": 266,
       "unique_tracks": 6,
       "unique_albums": 5,
-      "share": 0.001762
+      "share": 0.00176
     },
     {
       "artist": "Raney Shockne",
       "plays": 265,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001755
+      "share": 0.001754
     },
     {
       "artist": "Frank Sinatra",
       "plays": 263,
       "unique_tracks": 8,
       "unique_albums": 7,
-      "share": 0.001742
+      "share": 0.001741
     },
     {
       "artist": "MASS OF THE FERMENTING DREGS",
       "plays": 262,
       "unique_tracks": 2,
       "unique_albums": 3,
-      "share": 0.001735
+      "share": 0.001734
     },
     {
       "artist": "Forrest Day",
       "plays": 260,
       "unique_tracks": 7,
       "unique_albums": 3,
-      "share": 0.001722
+      "share": 0.001721
     },
     {
       "artist": "Stolen Babies",
       "plays": 255,
       "unique_tracks": 2,
       "unique_albums": 1,
-      "share": 0.001689
+      "share": 0.001688
     },
     {
       "artist": "Johnny Hollow",
       "plays": 252,
       "unique_tracks": 2,
       "unique_albums": 2,
-      "share": 0.001669
+      "share": 0.001668
     },
     {
       "artist": "Concorde",
       "plays": 251,
       "unique_tracks": 2,
       "unique_albums": 1,
-      "share": 0.001663
+      "share": 0.001661
     },
     {
       "artist": "Tally Hall",
       "plays": 249,
       "unique_tracks": 9,
       "unique_albums": 2,
-      "share": 0.001649
+      "share": 0.001648
     },
     {
       "artist": "Jazmin Bean",
       "plays": 248,
       "unique_tracks": 3,
       "unique_albums": 2,
-      "share": 0.001643
+      "share": 0.001641
+    },
+    {
+      "artist": "Scattle",
+      "plays": 248,
+      "unique_tracks": 9,
+      "unique_albums": 4,
+      "share": 0.001641
     },
     {
       "artist": "Mr. Gnome",
       "plays": 246,
       "unique_tracks": 2,
       "unique_albums": 2,
-      "share": 0.001629
+      "share": 0.001628
     },
     {
       "artist": "Changeline",
       "plays": 245,
       "unique_tracks": 3,
       "unique_albums": 3,
-      "share": 0.001623
+      "share": 0.001621
     },
     {
       "artist": "Radiohead",
       "plays": 243,
       "unique_tracks": 15,
       "unique_albums": 6,
-      "share": 0.00161
+      "share": 0.001608
     },
     {
       "artist": "Kiltro",
       "plays": 239,
       "unique_tracks": 8,
       "unique_albums": 5,
-      "share": 0.001583
+      "share": 0.001582
     },
     {
       "artist": "Billie Holiday",
       "plays": 236,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001563
-    },
-    {
-      "artist": "Scattle",
-      "plays": 235,
-      "unique_tracks": 9,
-      "unique_albums": 4,
-      "share": 0.001557
+      "share": 0.001562
     },
     {
       "artist": "Heaven Pierce Her",
       "plays": 234,
       "unique_tracks": 33,
       "unique_albums": 3,
-      "share": 0.00155
+      "share": 0.001549
     },
     {
       "artist": "the scary jokes",
       "plays": 229,
       "unique_tracks": 6,
       "unique_albums": 5,
-      "share": 0.001517
+      "share": 0.001516
     },
     {
       "artist": "Cloudfodder",
       "plays": 229,
       "unique_tracks": 6,
       "unique_albums": 6,
-      "share": 0.001517
+      "share": 0.001516
+    },
+    {
+      "artist": "El Huervo",
+      "plays": 228,
+      "unique_tracks": 5,
+      "unique_albums": 4,
+      "share": 0.001509
     },
     {
       "artist": "Project Soul",
       "plays": 227,
       "unique_tracks": 35,
       "unique_albums": 1,
-      "share": 0.001504
+      "share": 0.001502
     },
     {
       "artist": "シユイ",
       "plays": 225,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.00149
+      "share": 0.001489
     },
     {
       "artist": "Alice Longyu Gao",
       "plays": 225,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.00149
+      "share": 0.001489
     },
     {
       "artist": "Royal Blood",
       "plays": 222,
       "unique_tracks": 4,
       "unique_albums": 2,
-      "share": 0.00147
-    },
-    {
-      "artist": "El Huervo",
-      "plays": 221,
-      "unique_tracks": 5,
-      "unique_albums": 4,
-      "share": 0.001464
+      "share": 0.001469
     },
     {
       "artist": "girl in red",
       "plays": 220,
       "unique_tracks": 3,
       "unique_albums": 4,
-      "share": 0.001457
+      "share": 0.001456
     },
     {
       "artist": "Vashti Bunyan",
       "plays": 220,
       "unique_tracks": 3,
       "unique_albums": 4,
-      "share": 0.001457
+      "share": 0.001456
     },
     {
       "artist": "Snowblood",
       "plays": 220,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001457
+      "share": 0.001456
     },
     {
       "artist": "Drive45",
       "plays": 218,
       "unique_tracks": 5,
       "unique_albums": 4,
-      "share": 0.001444
+      "share": 0.001443
     },
     {
       "artist": "RAT BOY",
       "plays": 216,
       "unique_tracks": 2,
       "unique_albums": 2,
-      "share": 0.001431
+      "share": 0.00143
     },
     {
       "artist": "Imagine Dragons",
       "plays": 216,
       "unique_tracks": 6,
       "unique_albums": 6,
-      "share": 0.001431
+      "share": 0.00143
     },
     {
       "artist": "Varsity",
       "plays": 215,
       "unique_tracks": 1,
       "unique_albums": 2,
-      "share": 0.001424
+      "share": 0.001423
     },
     {
       "artist": "Creepy Nuts",
       "plays": 215,
       "unique_tracks": 5,
       "unique_albums": 5,
-      "share": 0.001424
+      "share": 0.001423
     },
     {
       "artist": "forrest flowers",
       "plays": 214,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001417
+      "share": 0.001416
     },
     {
       "artist": "Stoop Kids",
       "plays": 213,
       "unique_tracks": 3,
       "unique_albums": 2,
-      "share": 0.001411
+      "share": 0.00141
     },
     {
       "artist": "Margo Guryan",
       "plays": 212,
       "unique_tracks": 2,
       "unique_albums": 1,
-      "share": 0.001404
+      "share": 0.001403
     },
     {
       "artist": "La Femme",
       "plays": 210,
       "unique_tracks": 1,
       "unique_albums": 2,
-      "share": 0.001391
+      "share": 0.00139
     },
     {
       "artist": "VIAL",
       "plays": 206,
       "unique_tracks": 4,
       "unique_albums": 3,
-      "share": 0.001364
+      "share": 0.001363
     },
     {
       "artist": "Bo En",
       "plays": 204,
       "unique_tracks": 8,
       "unique_albums": 3,
-      "share": 0.001351
+      "share": 0.00135
     },
     {
       "artist": "Nikita Kryukov",
       "plays": 204,
       "unique_tracks": 11,
       "unique_albums": 2,
-      "share": 0.001351
+      "share": 0.00135
     },
     {
       "artist": "Tub Ring",
       "plays": 202,
       "unique_tracks": 13,
       "unique_albums": 5,
-      "share": 0.001338
+      "share": 0.001337
     },
     {
       "artist": "Caro Emerald",
       "plays": 200,
       "unique_tracks": 46,
       "unique_albums": 13,
-      "share": 0.001325
+      "share": 0.001324
     },
     {
       "artist": "The Claypool Lennon Delirium",
       "plays": 199,
       "unique_tracks": 2,
       "unique_albums": 2,
-      "share": 0.001318
+      "share": 0.001317
     },
     {
       "artist": "Sigur Rós",
       "plays": 199,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001318
+      "share": 0.001317
     },
     {
       "artist": "Aphrodite's Child",
       "plays": 197,
       "unique_tracks": 9,
       "unique_albums": 1,
-      "share": 0.001305
+      "share": 0.001304
     }
   ],
   "top_tracks": [
@@ -824,601 +824,601 @@
       "artist": "Omori",
       "track": "Trees...",
       "plays": 2515,
-      "share": 0.016658
+      "share": 0.016645
     },
     {
       "artist": "Candy Claws",
       "track": "Pangaea Girls (Magic Feeling)",
       "plays": 1050,
-      "share": 0.006955
+      "share": 0.006949
     },
     {
       "artist": "Candy Claws",
       "track": "Transitional Bird (Clever Girl)",
       "plays": 935,
-      "share": 0.006193
+      "share": 0.006188
     },
     {
       "artist": "Candy Claws",
       "track": "Fallen Tree Bridge (Brave Rainbow Rider)",
       "plays": 932,
-      "share": 0.006173
+      "share": 0.006168
     },
     {
       "artist": "Candy Claws",
       "track": "Night Ela (Mystic Thing)",
       "plays": 932,
-      "share": 0.006173
+      "share": 0.006168
     },
     {
       "artist": "Candy Claws",
       "track": "Into the Deep Time (One Sun)",
       "plays": 932,
-      "share": 0.006173
+      "share": 0.006168
     },
     {
       "artist": "Candy Claws",
       "track": "Fell in Love (At the Water)",
       "plays": 930,
-      "share": 0.00616
+      "share": 0.006155
     },
     {
       "artist": "Candy Claws",
       "track": "Where I Found You (One Star)",
       "plays": 928,
-      "share": 0.006147
+      "share": 0.006142
     },
     {
       "artist": "Candy Claws",
       "track": "Illusion (Fern Lake)",
       "plays": 927,
-      "share": 0.00614
+      "share": 0.006135
     },
     {
       "artist": "Candy Claws",
       "track": "White Seal (Shell & Spine)",
       "plays": 925,
-      "share": 0.006127
+      "share": 0.006122
     },
     {
       "artist": "Candy Claws",
       "track": "Birth of the Flower (Seagreen)",
       "plays": 924,
-      "share": 0.00612
+      "share": 0.006115
     },
     {
       "artist": "Candy Claws",
       "track": "Charade (Fern Prairie)",
       "plays": 920,
-      "share": 0.006094
+      "share": 0.006089
     },
     {
       "artist": "Candy Claws",
       "track": "New Forest (Five Heads of the Sun)",
       "plays": 918,
-      "share": 0.00608
+      "share": 0.006075
     },
     {
       "artist": "Ashnikko",
       "track": "Paint The Town Blue (from the series Arcane League of Legends)",
       "plays": 509,
-      "share": 0.003371
+      "share": 0.003369
     },
     {
       "artist": "Mort Garson",
       "track": "Music To Soothe The Savage Snake Plant",
       "plays": 446,
-      "share": 0.002954
+      "share": 0.002952
     },
     {
       "artist": "The Death Set",
       "track": "They Come To Get Us - Original Death Set Punk Version",
       "plays": 386,
-      "share": 0.002557
+      "share": 0.002555
     },
     {
       "artist": "Maximum the Hormone",
       "track": "HAWATARI NIOKU CENTI [2-hundred-million-centimeter-long blades] - TV edit",
       "plays": 360,
-      "share": 0.002385
+      "share": 0.002383
     },
     {
       "artist": "The Heavy",
       "track": "How You Like Me Now",
       "plays": 352,
-      "share": 0.002332
+      "share": 0.00233
     },
     {
       "artist": "Ergo, Bria",
       "track": "Dogs",
       "plays": 338,
-      "share": 0.002239
+      "share": 0.002237
     },
     {
       "artist": "Momo Games",
       "track": "Phantasmal Phunk",
       "plays": 335,
-      "share": 0.002219
+      "share": 0.002217
     },
     {
       "artist": "Sugs",
       "track": "Stim Sludge",
       "plays": 333,
-      "share": 0.002206
+      "share": 0.002204
     },
     {
       "artist": "Adventure Time",
       "track": "Part of the Madness (feat. Rebecca Sugar)",
       "plays": 314,
-      "share": 0.00208
+      "share": 0.002078
     },
     {
       "artist": "Katzenjammer",
       "track": "Soviet Trumpeter",
       "plays": 300,
-      "share": 0.001987
+      "share": 0.001985
     },
     {
       "artist": "Death Grips",
       "track": "Bottomless Pit",
       "plays": 284,
-      "share": 0.001881
+      "share": 0.00188
     },
     {
       "artist": "Dazey and the Scouts",
       "track": "Groan",
       "plays": 283,
-      "share": 0.001874
+      "share": 0.001873
     },
     {
       "artist": "Goth Von Core",
       "track": "Kay-LynnX10",
       "plays": 275,
-      "share": 0.001821
+      "share": 0.00182
     },
     {
       "artist": "Cake Bake Betty",
       "track": "64 Little White Things",
       "plays": 274,
-      "share": 0.001815
+      "share": 0.001813
     },
     {
       "artist": "a_hisa",
       "track": "Cheshire's dance",
       "plays": 273,
-      "share": 0.001808
+      "share": 0.001807
     },
     {
       "artist": "Mother Mother",
       "track": "Hayloft II",
       "plays": 271,
-      "share": 0.001795
+      "share": 0.001794
     },
     {
       "artist": "Bad Waitress",
       "track": "Racket Stimulator",
       "plays": 266,
-      "share": 0.001762
+      "share": 0.00176
     },
     {
       "artist": "ミドリ",
       "track": "ゆきこさん",
       "plays": 266,
-      "share": 0.001762
+      "share": 0.00176
     },
     {
       "artist": "Raney Shockne",
       "track": "Hole in the Sun (feat. COS & Conway)",
       "plays": 265,
-      "share": 0.001755
+      "share": 0.001754
     },
     {
       "artist": "Rubblebucket",
       "track": "Earth Worship",
       "plays": 254,
-      "share": 0.001682
+      "share": 0.001681
     },
     {
       "artist": "The Caretaker",
       "track": "A2 - We don't have many days",
       "plays": 243,
-      "share": 0.00161
+      "share": 0.001608
     },
     {
       "artist": "Felix Hagan & The Family",
       "track": "Delirium Tremendous",
       "plays": 238,
-      "share": 0.001576
+      "share": 0.001575
     },
     {
       "artist": "Schoolyard Heroes",
       "track": "Dude, Where's My Skin?",
       "plays": 236,
-      "share": 0.001563
+      "share": 0.001562
     },
     {
       "artist": "Billie Holiday",
       "track": "Solitude",
       "plays": 236,
-      "share": 0.001563
+      "share": 0.001562
     },
     {
       "artist": "The Bridge City Sinners",
       "track": "The Crawl",
       "plays": 232,
-      "share": 0.001537
+      "share": 0.001535
     },
     {
       "artist": "Nico Vega",
       "track": "Bang Bang (My Baby Shot Me Down)",
       "plays": 231,
-      "share": 0.00153
+      "share": 0.001529
     },
     {
       "artist": "Talking Heads",
       "track": "Once in a Lifetime",
       "plays": 230,
-      "share": 0.001523
+      "share": 0.001522
     },
     {
       "artist": "Omori",
       "track": "DUET",
       "plays": 230,
-      "share": 0.001523
+      "share": 0.001522
     },
     {
       "artist": "シユイ",
       "track": "ラブコール",
       "plays": 225,
-      "share": 0.00149
+      "share": 0.001489
     },
     {
       "artist": "Alice Longyu Gao",
       "track": "Hëłlœ Kįttÿ",
       "plays": 225,
-      "share": 0.00149
+      "share": 0.001489
     },
     {
       "artist": "Tino Drima",
       "track": "The Actress",
       "plays": 221,
-      "share": 0.001464
+      "share": 0.001463
     },
     {
       "artist": "Snowblood",
       "track": "Crazy Fuckin' Robot Body",
       "plays": 220,
-      "share": 0.001457
+      "share": 0.001456
     },
     {
       "artist": "Varsity",
       "track": "So Sad, So Sad",
       "plays": 215,
-      "share": 0.001424
+      "share": 0.001423
     },
     {
       "artist": "RAT BOY",
       "track": "Who's Ready for Tomorrow",
       "plays": 214,
-      "share": 0.001417
+      "share": 0.001416
     },
     {
       "artist": "forrest flowers",
       "track": "Chickens",
       "plays": 214,
-      "share": 0.001417
+      "share": 0.001416
     },
     {
       "artist": "Adventure Time",
       "track": "I'm Just Your Problem (feat. Olivia Olson)",
       "plays": 212,
-      "share": 0.001404
+      "share": 0.001403
     },
     {
       "artist": "the scary jokes",
       "track": "Catabolic Seed",
       "plays": 211,
-      "share": 0.001398
+      "share": 0.001396
     },
     {
       "artist": "La Femme",
       "track": "La femme ressort",
       "plays": 210,
-      "share": 0.001391
+      "share": 0.00139
     },
     {
       "artist": "Imagine Dragons",
       "track": "Enemy (with JID) - from the series Arcane League of Legends",
       "plays": 209,
-      "share": 0.001384
+      "share": 0.001383
     },
     {
       "artist": "Sigur Rós",
       "track": "Untitled #9 - Smáskífa 1",
       "plays": 199,
-      "share": 0.001318
+      "share": 0.001317
     },
     {
       "artist": "Hot Sugar",
       "track": "The kid who drowned at summer camp",
       "plays": 197,
-      "share": 0.001305
+      "share": 0.001304
     },
     {
       "artist": "Nafets",
       "track": "SALTWATER SKY",
       "plays": 193,
-      "share": 0.001278
+      "share": 0.001277
     },
     {
       "artist": "Maximum the Hormone",
       "track": "What's Up, People?!",
       "plays": 193,
-      "share": 0.001278
+      "share": 0.001277
     },
     {
       "artist": "Courtney Barnett",
       "track": "Pedestrian at Best",
       "plays": 190,
-      "share": 0.001258
+      "share": 0.001257
     },
     {
       "artist": "Nathan Hanover Synthonic Orchestra",
       "track": "Spirit of the Slime",
       "plays": 188,
-      "share": 0.001245
+      "share": 0.001244
     },
     {
       "artist": "Otoboke Beaver",
       "track": "Don't light my fire",
       "plays": 187,
-      "share": 0.001239
+      "share": 0.001238
     },
     {
       "artist": "Otoboke Beaver",
       "track": "I'm tired of your repeating story",
       "plays": 187,
-      "share": 0.001239
+      "share": 0.001238
     },
     {
       "artist": "Ron Gallo",
       "track": "Please Yourself",
       "plays": 185,
-      "share": 0.001225
+      "share": 0.001224
     },
     {
       "artist": "the buttress",
       "track": "Brutus",
       "plays": 181,
-      "share": 0.001199
+      "share": 0.001198
     },
     {
       "artist": "Limp Bizkit",
       "track": "Break Stuff",
       "plays": 180,
-      "share": 0.001192
+      "share": 0.001191
     },
     {
       "artist": "Rubblebucket",
       "track": "Lemonade",
       "plays": 178,
-      "share": 0.001179
+      "share": 0.001178
     },
     {
       "artist": "Slothrust",
       "track": "Happy Together",
       "plays": 178,
-      "share": 0.001179
+      "share": 0.001178
     },
     {
       "artist": "the buttress",
       "track": "Inferno, Pt. 2",
       "plays": 175,
-      "share": 0.001159
+      "share": 0.001158
     },
     {
       "artist": "League of Legends",
       "track": "Get Jinxed",
       "plays": 174,
-      "share": 0.001153
+      "share": 0.001152
     },
     {
       "artist": "Royal Blood",
       "track": "Out of the Black",
       "plays": 172,
-      "share": 0.001139
+      "share": 0.001138
     },
     {
       "artist": "Alden Derck",
       "track": "Killers Walk",
       "plays": 172,
-      "share": 0.001139
+      "share": 0.001138
     },
     {
       "artist": "Kalandra",
       "track": "Naive",
       "plays": 171,
-      "share": 0.001133
+      "share": 0.001132
     },
     {
       "artist": "Flobots",
       "track": "Handlebars",
       "plays": 171,
-      "share": 0.001133
+      "share": 0.001132
     },
     {
       "artist": "Concorde",
       "track": "Made for Love",
       "plays": 169,
-      "share": 0.001119
+      "share": 0.001118
     },
     {
       "artist": "Rubblebucket",
       "track": "Fruity",
       "plays": 169,
-      "share": 0.001119
+      "share": 0.001118
     },
     {
       "artist": "MoxiFloxi",
       "track": "Brat",
       "plays": 168,
-      "share": 0.001113
+      "share": 0.001112
     },
     {
       "artist": "Medusa",
       "track": "Kinda Outta Luck",
       "plays": 168,
-      "share": 0.001113
+      "share": 0.001112
     },
     {
       "artist": "Vana",
       "track": "BEG!",
       "plays": 168,
-      "share": 0.001113
+      "share": 0.001112
     },
     {
       "artist": "Himalayas",
       "track": "Thank God I'm Not You",
       "plays": 167,
-      "share": 0.001106
+      "share": 0.001105
     },
     {
       "artist": "Alex G",
       "track": "Waiting For You",
       "plays": 167,
-      "share": 0.001106
+      "share": 0.001105
     },
     {
       "artist": "Jill Barber",
       "track": "Entre nous",
       "plays": 166,
-      "share": 0.0011
+      "share": 0.001099
     },
     {
       "artist": "Michiru Yamane",
       "track": "In a Moment's Time (Off Vocal)",
       "plays": 166,
-      "share": 0.0011
+      "share": 0.001099
     },
     {
       "artist": "Crywank",
       "track": "JK",
       "plays": 165,
-      "share": 0.001093
+      "share": 0.001092
     },
     {
       "artist": "Haley Heynderickx",
       "track": "The Bug Collector",
       "plays": 165,
-      "share": 0.001093
+      "share": 0.001092
     },
     {
       "artist": "Vernon Jane",
       "track": "Fuck Me",
       "plays": 162,
-      "share": 0.001073
+      "share": 0.001072
     },
     {
       "artist": "Lincoln",
       "track": "Saint Bernard",
       "plays": 160,
-      "share": 0.00106
+      "share": 0.001059
     },
     {
       "artist": "VIAL",
       "track": "Piss Punk",
       "plays": 159,
-      "share": 0.001053
+      "share": 0.001052
     },
     {
       "artist": "Messer Chups",
       "track": "Twin Peaks Twist",
       "plays": 158,
-      "share": 0.001047
+      "share": 0.001046
     },
     {
       "artist": "Kensuke Ushio",
       "track": "Smells Blood",
       "plays": 158,
-      "share": 0.001047
+      "share": 0.001046
     },
     {
       "artist": "서태지",
       "track": "Ultramania",
       "plays": 158,
-      "share": 0.001047
+      "share": 0.001046
     },
     {
       "artist": "Lola Blanc",
       "track": "Real Boy",
       "plays": 158,
-      "share": 0.001047
+      "share": 0.001046
     },
     {
       "artist": "babuchan",
       "track": "0人ぼっちのワルツ",
       "plays": 157,
-      "share": 0.00104
+      "share": 0.001039
     },
     {
       "artist": "The Bridge City Sinners",
       "track": "Kreacher",
       "plays": 157,
-      "share": 0.00104
+      "share": 0.001039
+    },
+    {
+      "artist": "El Huervo",
+      "track": "Daisuke",
+      "plays": 157,
+      "share": 0.001039
     },
     {
       "artist": "Liam Lynch",
       "track": "United States of Whatever",
       "plays": 157,
-      "share": 0.00104
-    },
-    {
-      "artist": "El Huervo",
-      "track": "Daisuke",
-      "plays": 155,
-      "share": 0.001027
+      "share": 0.001039
     },
     {
       "artist": "oddscure",
       "track": "Murder You",
       "plays": 155,
-      "share": 0.001027
+      "share": 0.001026
     },
     {
       "artist": "c4ff31n3",
       "track": "lain",
       "plays": 155,
-      "share": 0.001027
+      "share": 0.001026
     },
     {
       "artist": "Early Eyes",
       "track": "Waste of Time",
       "plays": 152,
-      "share": 0.001007
+      "share": 0.001006
     },
     {
       "artist": "FEELRS",
       "track": "Going Nowhere",
       "plays": 152,
-      "share": 0.001007
+      "share": 0.001006
     },
     {
       "artist": "Doechii",
       "track": "DENIAL IS A RIVER",
       "plays": 151,
-      "share": 0.001
+      "share": 0.000999
     },
     {
       "artist": "Jet Horns",
       "track": "I Was Once A Glass Of Tang",
       "plays": 150,
-      "share": 0.000994
+      "share": 0.000993
     },
     {
       "artist": "Pinkshift",
       "track": "I'm Gonna Tell My Therapist On You",
       "plays": 150,
-      "share": 0.000994
+      "share": 0.000993
     }
   ],
   "top_albums": [
@@ -1773,6 +1773,11 @@
       "plays": 206
     },
     {
+      "artist": "Scattle",
+      "album": "Hotline Miami: The Takedown EP",
+      "plays": 204
+    },
+    {
       "artist": "Imagine Dragons",
       "album": "Enemy (with JID) [from the series Arcane League of Legends]",
       "plays": 203
@@ -1796,11 +1801,6 @@
       "artist": "Hot Sugar",
       "album": "Moon Money",
       "plays": 197
-    },
-    {
-      "artist": "Scattle",
-      "album": "Hotline Miami: The Takedown EP",
-      "plays": 194
     },
     {
       "artist": "Nafets",
@@ -1913,13 +1913,13 @@
       "plays": 171
     },
     {
-      "artist": "MoxiFloxi",
-      "album": "Brat",
+      "artist": "El Huervo",
+      "album": "Do Not Lay Waste To Homes...",
       "plays": 168
     },
     {
-      "artist": "Medusa",
-      "album": "Kinda Outta Luck",
+      "artist": "MoxiFloxi",
+      "album": "Brat",
       "plays": 168
     }
   ],
@@ -2288,6 +2288,10 @@
         "plays": 103
       },
       {
+        "artist": "Scattle",
+        "plays": 102
+      },
+      {
         "artist": "Slipknot",
         "plays": 101
       },
@@ -2300,6 +2304,10 @@
         "plays": 95
       },
       {
+        "artist": "M|O|O|N",
+        "plays": 95
+      },
+      {
         "artist": "(K)NoW_NAME",
         "plays": 93
       },
@@ -2308,28 +2316,20 @@
         "plays": 89
       },
       {
-        "artist": "Scattle",
-        "plays": 89
+        "artist": "Com Truise",
+        "plays": 81
       },
       {
         "artist": "Mitski",
         "plays": 80
       },
       {
-        "artist": "M|O|O|N",
-        "plays": 79
+        "artist": "El Huervo",
+        "plays": 80
       },
       {
         "artist": "The Make Believes",
         "plays": 79
-      },
-      {
-        "artist": "House of Pain",
-        "plays": 77
-      },
-      {
-        "artist": "Gorillaz",
-        "plays": 73
       }
     ]
   },
@@ -4615,39 +4615,39 @@
       },
       {
         "artist": "M|O|O|N",
-        "plays": 78
+        "plays": 94
+      },
+      {
+        "artist": "Scattle",
+        "plays": 83
+      },
+      {
+        "artist": "Com Truise",
+        "plays": 81
       },
       {
         "artist": "Rage Against the Machine",
         "plays": 77
       },
       {
-        "artist": "Com Truise",
-        "plays": 71
-      },
-      {
-        "artist": "Scattle",
+        "artist": "Perturbator",
         "plays": 70
       },
       {
-        "artist": "Perturbator",
-        "plays": 63
-      },
-      {
         "artist": "Lazerhawk",
-        "plays": 57
+        "plays": 69
       },
       {
         "artist": "El Huervo",
-        "plays": 52
+        "plays": 59
       },
       {
         "artist": "The Heavy",
         "plays": 50
       },
       {
-        "artist": "Royal Blood",
-        "plays": 47
+        "artist": "Carpenter Brut",
+        "plays": 50
       }
     ]
   }
