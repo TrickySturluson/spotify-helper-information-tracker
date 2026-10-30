@@ -34,7 +34,18 @@ def audit(**event):
     except OSError: pass
 def token_post(data):
     req=urllib.request.Request("https://accounts.spotify.com/api/token",data=urllib.parse.urlencode(data).encode(),headers={"Content-Type":"application/x-www-form-urlencoded"})
-    with urllib.request.urlopen(req,timeout=30) as r: return json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req,timeout=30) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        try:
+            detail=json.loads(e.read().decode(errors="replace"))
+        except (ValueError, UnicodeDecodeError):
+            detail={}
+        if data.get("grant_type")=="refresh_token" and detail.get("error")=="invalid_grant":
+            raise ManagerError("Spotify refresh token is expired, revoked, or invalid. Reauthorize the playlist manager locally, then update the SPOTIFY_REFRESH_TOKEN GitHub Actions secret. Spotify refresh tokens expire after six months; refreshing an access token does not extend that lifetime.") from e
+        reason=detail.get("error_description") or detail.get("error") or "unknown token error"
+        raise ManagerError(f"Spotify token request failed (HTTP {e.code}): {reason}") from e
 def authorize():
     if not CID: raise ManagerError("Set SPOTIFY_CLIENT_ID to your Spotify app Client ID.")
     verifier=secrets.token_urlsafe(64)[:96]
