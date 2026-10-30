@@ -124,6 +124,9 @@ class DailyCuratorTests(unittest.TestCase):
             counts[row["tier"]] = counts.get(row["tier"], 0) + 1
         self.assertEqual(len(resolved), 10)
         self.assertEqual(counts, {"favorite": 4, "rediscovery": 4, "deep_cut": 2})
+        self.assertEqual([row["tier"] for row in resolved[:5]], [
+            "favorite", "rediscovery", "favorite", "rediscovery", "deep_cut"
+        ])
         self.assertEqual(skipped, [])
 
     def test_existing_playlist_uri_is_not_added_again(self):
