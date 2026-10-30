@@ -197,4 +197,16 @@ Undo the most recent completed change with:
 {"command":"undo"}
 ```
 
-Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its current snapshot ID to match the post-change state recorded by the manager. Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
+Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its ordered item URIs to match the post-change state recorded by the manager (legacy records fall back to the Spotify snapshot ID). Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
+
+### Tricky Daily curator
+
+The cloud control panel supports a preview-first daily recommendation command for the playlist named exactly Tricky Daily:
+
+```json
+{"command":"daily_preview","playlist_id":"YOUR_TRICKY_DAILY_PLAYLIST_ID"}
+```
+
+The curator ranks tracks already present in assistant_data/recommendations/track_features.json. It favors tracks not scrobbled recently, gives familiarity a modest anchor role, and caps artist concentration to encourage variety. It resolves Spotify URIs only when both track title and primary artist match exactly; ambiguous or unavailable matches are skipped. Tracks already in the playlist are excluded. At least 20 exact matches (or the requested target size if lower) are required before a preview is created.
+
+The preview lists the proposed tracks and returns a one-time confirmation code. It does not modify Spotify. Confirming uses the existing backup-first replace operation and normal lock, ownership, state-revalidation, and undo protections. Tricky Daily must be explicitly unlocked before previewing or confirming. The initial curator uses previously scrobbled tracks only; external discovery is intentionally a later enhancement. The score is a transparent heuristic, not a claim that every scrobble represents a positive preference.
