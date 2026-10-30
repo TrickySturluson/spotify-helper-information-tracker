@@ -1,4 +1,10 @@
 {
   "version": 1,
-  "playlists": {}
+  "playlists": {
+    "4yUVHSMQySfWeEowfIMcx7": {
+      "name": "Tricky Daily",
+      "state": "unlocked",
+      "updated_at": "2026-10-30T07:45:36.031174+00:00"
+    }
+  }
 }
