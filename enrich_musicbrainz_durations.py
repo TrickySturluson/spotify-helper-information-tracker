@@ -81,6 +81,8 @@ def main():
                     obj = json.loads(res.read().decode("utf-8"))
                 if obj.get("length"):
                     candidates = [obj]
+                else:
+                    time.sleep(1.05)
             if not candidates:
                 query = 'recording:"' + item["track"].replace('"', '\\"') + '" AND artist:"' + item["artist"].replace('"', '\\"') + '"'
                 url = API + "?" + urlencode({"query":query,"fmt":"json","limit":5})
