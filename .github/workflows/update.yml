@@ -50,6 +50,9 @@ jobs:
       - name: Build advanced listening analytics
         run: python build_advanced_analytics.py
 
+      - name: Publish complete-history and verified listening-time estimates
+        run: python build_listening_time_summary.py
+
       - name: Build measured Spotify playback analytics
         run: python build_playback_analytics.py
 
