@@ -32,6 +32,21 @@ def owned_playlist(sp, pid, me):
     return p
 
 
+def snapshot_uris(snapshot):
+    return [item.get("uri") for item in snapshot.get("items", [])]
+
+
+def pending_state_matches(playlist, pending, current_snapshot=None):
+    # Undo restores the ordered item list, so compare that exact content rather
+    # than Spotify's snapshot_id, which has proved unreliable across runner calls.
+    if pending.get("kind") == "undo":
+        return (
+            current_snapshot is not None
+            and snapshot_uris(current_snapshot) == pending.get("expected_uris")
+        )
+    return playlist.get("snapshot_id") == pending.get("snapshot_id")
+
+
 def replace_playlist(sp, pid, uris):
     # Replace the first page, then append in order; duplicate URIs are preserved.
     if not manager.unlocked(pid):
@@ -193,6 +208,7 @@ def main():
         if not isinstance(backup_data, dict) or (backup_data.get("playlist") or {}).get("id") != pid:
             fail("Recovery snapshot is invalid or belongs to another playlist.")
         restore_uris = [item.get("uri") for item in backup_data.get("items", [])]
+        current_snapshot = manager.snapshot(sp, p)
         if any(not isinstance(uri, str) or not uri.startswith(("spotify:track:", "spotify:episode:")) for uri in restore_uris):
             fail("Undo refused: the snapshot contains unavailable or unsupported playlist items.")
         confirmation = secrets.token_urlsafe(12)
@@ -200,12 +216,13 @@ def main():
             "kind": "undo", "playlist_id": pid, "snapshot_id": p.get("snapshot_id"),
             "backup": str(backup_path), "confirmation": confirmation,
             "restore_count": len(restore_uris),
+            "expected_uris": snapshot_uris(current_snapshot),
         }
         manager.write(STATE, config)
         manager.audit(event="undo_previewed", playlist_id=pid, restore_count=len(restore_uris), backup=str(backup_path))
         result = (
             f'UNDO PREVIEW — {p.get("name")} [{pid}]\n'
-            f'Current items: {(p.get("items") or p.get("tracks") or {}).get("total", "?")}\n'
+            f'Current items: {len(current_snapshot["items"])}\n'
             f'Restore previous snapshot: {len(restore_uris)} item(s), in original order.\n'
             "No changes have been made.\n\n"
             f'To restore this snapshot, submit confirm with this one-time code: {confirmation}'
@@ -220,13 +237,20 @@ def main():
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED; preview cancelled.")
         p = owned_playlist(sp, pid, me)
-        if p.get("snapshot_id") != pending.get("snapshot_id"):
+        kind = pending.get("kind", "edit")
+        before = manager.snapshot(sp, p) if kind == "undo" else None
+        if not pending_state_matches(p, pending, before):
             config.pop("pending", None)
             manager.write(STATE, config)
-            fail("Playlist changed after preview. Preview it again before confirming.")
-        before = manager.snapshot(sp, p)
+            message = (
+                "Playlist contents changed after undo preview. Run undo again to review the latest state."
+                if kind == "undo"
+                else "Playlist changed after preview. Preview it again before confirming."
+            )
+            fail(message)
+        if before is None:
+            before = manager.snapshot(sp, p)
         backup = manager.save_snapshot(before)
-        kind = pending.get("kind", "edit")
         if kind == "undo":
             manager.audit(event="undo_started", playlist_id=pid, redo_snapshot=backup, recovery_snapshot=pending["backup"])
         else:
