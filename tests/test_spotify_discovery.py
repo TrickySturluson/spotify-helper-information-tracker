@@ -2,12 +2,30 @@ import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import spotify_discovery as discovery
 
 
 class DiscoveryScoringTests(unittest.TestCase):
+    def test_similar_artists_rank_consensus_above_alphabetical_ties(self):
+        profiles = {
+            "a": {"artist": "Seed A", "plays": 100, "status": "matched", "genres": ["rock"]},
+            "b": {"artist": "Seed B", "plays": 80, "status": "matched", "genres": ["pop"]},
+            "c": {"artist": "Seed C", "plays": 60, "status": "matched", "genres": ["indie"]},
+        }
+        responses = {
+            "Seed A": [{"name": "Zulu Artist", "match": "1.0"}, {"name": "Alpha Artist", "match": "1.0"}],
+            "Seed B": [{"name": "Zulu Artist", "match": "1.0"}],
+            "Seed C": [{"name": "Zulu Artist", "match": "1.0"}],
+        }
+        with patch.object(discovery, "_lastfm_similar", side_effect=lambda seed, key: responses[seed["artist"]]):
+            with patch.object(discovery.time, "sleep"):
+                rows = discovery.discover_similar_artists(profiles, "test-key", today=date(2026, 10, 30), seed_limit=3)
+        self.assertEqual(rows[0]["artist"], "Zulu Artist")
+        self.assertEqual(rows[0]["supporting_seeds"], 3)
+        self.assertGreater(rows[0]["similarity"], rows[1]["similarity"])
+
     def test_normalization_collapses_whitespace(self):
         self.assertEqual(discovery.norm("  Two   Words  "), "two words")
 
