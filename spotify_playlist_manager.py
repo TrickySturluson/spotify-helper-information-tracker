@@ -164,10 +164,19 @@ def apply(sp,path):
     me,p=owned(sp,pid); before=snapshot(sp,p)
     print(f'\nPREVIEW — {p.get("name")} [{pid}]')
     print(f'Current items: {len(before["items"])}')
+    present=Counter(x["uri"] for x in before["items"] if x and x.get("uri"))
     for op in ops:
         if op["action"] in ("add","remove","replace"):
             print(f'  {op["action"].upper()} {len(op["uris"])} track(s)')
             for u in op["uris"]: print("    "+u)
+            repeated=[u for u,n in Counter(op["uris"]).items() if n>1]
+            if op["action"]=="add":
+                already=[u for u in op["uris"] if present[u]]
+                if already: print(f"    NOTE: {len(already)} requested item(s) already occur in this playlist.")
+            if repeated: print(f"    NOTE: {len(repeated)} URI(s) repeat within this operation.")
+            if op["action"]=="remove":
+                missing=[u for u in op["uris"] if not present[u]]
+                if missing: print(f"    NOTE: {len(missing)} requested removal(s) are not currently present.")
         else: print(f'  REORDER start={op["range_start"]}, insert_before={op["insert_before"]}, length={op["range_length"]}')
     print("No changes have been made.")
     phrase="REPLACE" if any(o["action"]=="replace" for o in ops) else "APPLY"
