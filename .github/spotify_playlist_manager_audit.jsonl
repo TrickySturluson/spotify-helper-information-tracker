@@ -27,3 +27,4 @@
 {"at": "2026-10-30T08:03:23.321312+00:00", "event": "confirmation_consumed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T080323320562Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
 {"at": "2026-10-30T08:03:23.676629+00:00", "event": "change_completed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T080323320562Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
 {"at": "2026-10-30T08:04:03.569165+00:00", "event": "permission_changed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "name": "Tricky Daily", "state": "locked"}
+{"at": "2026-10-30T08:06:50.561331+00:00", "event": "status_requested"}
