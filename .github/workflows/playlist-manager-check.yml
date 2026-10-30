@@ -6,10 +6,11 @@ on:
     paths:
       - "spotify_playlist_manager.py"
       - "spotify_playlist_cloud.py"
+      - "README.md"
       - ".github/workflows/spotify-playlist-manager.yml"
       - "tests/test_spotify_playlist_manager.py"
+      - "tests/test_spotify_playlist_cloud.py"
       - ".github/workflows/playlist-manager-check.yml"
-      - ".github/workflows/spotify-playlist-manager.yml"
   workflow_dispatch:
 
 permissions:
