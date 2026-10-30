@@ -1,4 +1,5 @@
 import unittest
+import urllib.parse
 from datetime import date
 from unittest.mock import Mock
 
@@ -108,10 +109,9 @@ class DailyCuratorTests(unittest.TestCase):
                     "_score": 0.5, "last_scrobble": "2025-01-01T00:00:00+00:00"
                 })
         sp = Mock()
-        calls = {"count": 0}
-        def exact_match(method, query):
-            candidate = candidates[calls["count"]]
-            calls["count"] += 1
+        def exact_match(method, endpoint):
+            query = urllib.parse.parse_qs(urllib.parse.urlparse(endpoint).query)["q"][0]
+            candidate = next(row for row in candidates if query == f'track:"{row["track"]}" artist:"{row["artist"]}"')
             return {"tracks": {"items": [{
                 "name": candidate["track"],
                 "artists": [{"name": candidate["artist"]}],
