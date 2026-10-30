@@ -211,7 +211,7 @@ def main():
         for index, item in enumerate(current["items"], 1):
             artists = ", ".join(item.get("artists") or [])
             lines.append(f'{index:02d}. {artists} — {item.get("name")} [{item.get("uri")}]')
-        result = "\\n".join(lines)
+        result = "\n".join(lines)
     elif action == "preview":
         pid, operations = manager.validate({
             "playlist_id": command["playlist_id"], "operations": command["operations"]
@@ -489,7 +489,7 @@ def main():
             else:
                 resolved.append({"artist": artist, "track": metadata.get("name"), "uri": uri})
         if not resolved:
-            result = f'URI BATCH CHECKED — {p.get("name")} [{pid}]\\nAll verified tracks are already present; no changes were staged.'
+            result = f'URI BATCH CHECKED — {p.get("name")} [{pid}]\nAll verified tracks are already present; no changes were staged.'
         else:
             operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
             confirmation = secrets.token_urlsafe(12)
