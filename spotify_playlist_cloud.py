@@ -323,11 +323,11 @@ def main():
                 skipped.append(f"{artist} — {title} (already in playlist or duplicate)")
                 continue
             resolved.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
-        if len(resolved) != 46:
+        if len(resolved) != len(candidates):
             lines = [
                 f'HORROR EXPANSION NOT STAGED — {p.get("name")} [{pid}]',
-                f'Exact Spotify matches: {len(resolved)}/46; existing/duplicate/unmatched: {len(skipped)}.',
-                "No playlist changes have been made. The expansion requires all 46 tracks to resolve cleanly.",
+                f'Exact Spotify matches: {len(resolved)}/{len(candidates)}; existing/duplicate/unmatched: {len(skipped)}.',
+                "No playlist changes have been made. The expansion requires all requested tracks to resolve cleanly.",
                 "",
             ]
             lines.extend(f"FOUND: {row['artist']} — {row['track']}" for row in resolved)
