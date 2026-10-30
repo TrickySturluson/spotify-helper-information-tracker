@@ -31,6 +31,10 @@ DAILY_DESCRIPTIONS = [
     "I don't make the rules. I just fix the queue.",
     "If looks could kill, this would still have better taste.",
     "The playlist's doing the heavy lifting... again.",
+    "I've made a few adjustments. You're welcome.",
+    "Today's queue has considerably better judgment.",
+    "A little less filler... maybe..",
+    "Good music doesn't find itself, try not to miss it.",
     "Not saying I'm the main event. But look at the lineup.",
     "Your taste is showing. Keep it that way.",
 
