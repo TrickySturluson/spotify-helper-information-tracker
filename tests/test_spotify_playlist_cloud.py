@@ -118,6 +118,42 @@ class CloudExecutorTests(unittest.TestCase):
             self.assertNotIn("pending", saved)
 
 
+class UndoSnapshotValidationTests(unittest.TestCase):
+    def test_undo_accepts_same_ordered_items_even_if_snapshot_id_differs(self):
+        pending = {
+            "kind": "undo",
+            "snapshot_id": "snapshot-from-preview",
+            "expected_uris": ["spotify:track:a", "spotify:track:b"],
+        }
+        current = {
+            "playlist": {"id": "playlist123", "snapshot_id": "different-snapshot"},
+            "items": [{"uri": "spotify:track:a"}, {"uri": "spotify:track:b"}],
+        }
+        self.assertTrue(
+            cloud.pending_state_matches(
+                {"snapshot_id": "different-snapshot"}, pending, current
+            )
+        )
+
+    def test_undo_rejects_changed_order_or_content(self):
+        pending = {
+            "kind": "undo",
+            "expected_uris": ["spotify:track:a", "spotify:track:b"],
+        }
+        changed = {
+            "playlist": {"id": "playlist123"},
+            "items": [{"uri": "spotify:track:b"}, {"uri": "spotify:track:a"}],
+        }
+        self.assertFalse(
+            cloud.pending_state_matches({"snapshot_id": "anything"}, pending, changed)
+        )
+
+    def test_regular_edit_still_requires_exact_snapshot_id(self):
+        pending = {"kind": "edit", "snapshot_id": "expected"}
+        self.assertTrue(cloud.pending_state_matches({"snapshot_id": "expected"}, pending))
+        self.assertFalse(cloud.pending_state_matches({"snapshot_id": "other"}, pending))
+
+
 class OwnedPlaylistTests(unittest.TestCase):
     def test_uses_direct_playlist_resource_for_fresh_snapshot(self):
         spotify = Mock()
