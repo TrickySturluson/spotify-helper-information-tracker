@@ -120,12 +120,13 @@ def main():
         "lock": {"command", "playlist_id"},
         "unlock": {"command", "playlist_id"},
         "preview": {"command", "playlist_id", "operations"},
+        "daily_preview": {"command", "playlist_id"},
         "confirm": {"command", "confirmation"},
         "undo": {"command"},
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -203,6 +204,37 @@ def main():
             "The playlist must remain unlocked and unchanged until confirmation.",
         ])
         result = "\n".join(lines)
+    elif action == "daily_preview":
+        import spotify_daily_playlist as daily
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        if p.get("name", "").strip().casefold() != "tricky daily":
+            fail("Blocked: daily_preview is restricted to the playlist named Tricky Daily.")
+        if not manager.unlocked(pid):
+            fail("Blocked: Tricky Daily is LOCKED. Unlock it explicitly before requesting a daily preview.")
+        current = manager.snapshot(sp, p)
+        recommendations, skipped = daily.build_daily_recommendations(sp, current["items"])
+        uris = [row["uri"] for row in recommendations]
+        operations = [{"action": "replace", "uris": uris}]
+        confirmation = secrets.token_urlsafe(12)
+        config["pending"] = {
+            "playlist_id": pid, "operations": operations,
+            "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
+            "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "edit",
+        }
+        manager.write(STATE, config)
+        manager.audit(event="daily_recommendations_previewed", playlist_id=pid, recommendation_count=len(recommendations), skipped_count=len(skipped))
+        lines = [
+            f'DAILY CURATOR PREVIEW — {p.get("name")} [{pid}]',
+            f'Recommended tracks: {len(recommendations)}; current items: {len(current["items"])}',
+            "Older listens are favored; familiarity is a light anchor and artist concentration is capped.",
+            "Spotify matches require exact track title + primary artist. No playlist changes have been made.",
+            "",
+        ]
+        for index, row in enumerate(recommendations, 1):
+            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} (archive plays: {row.get("plays", 0)}; last scrobbled: {row.get("last_scrobble") or "unknown"})')
+        lines.extend(["", f'Skipped {len(skipped)} candidates with no exact Spotify match or already present in the playlist.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
+        result = "\\n".join(lines)
     elif action == "undo":
         last = config.get("last_completed") or {}
         if not last:
