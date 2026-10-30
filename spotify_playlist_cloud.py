@@ -37,6 +37,7 @@ DAILY_DESCRIPTIONS = [
     "Nothing groundbreaking. Just breaking the silence.",
     "No encore necessary. I'll be here all day.",
     "Your daily dose of questionable taste.",
+    "Today's queue. Don't say I never do anything for you.",
     "I've made a few adjustments. You're welcome.",
     "Today's queue has considerably better judgment.",
     "A little less filler... maybe..",
@@ -279,15 +280,18 @@ def main():
         }
         manager.write(STATE, config)
         manager.audit(event="daily_recommendations_previewed", playlist_id=pid, recommendation_count=len(recommendations), skipped_count=len(skipped))
+        tier_counts = {tier: sum(1 for row in recommendations if row.get("tier") == tier) for tier in ("favorite", "rediscovery", "deep_cut")}
         lines = [
             f'DAILY CURATOR PREVIEW — {p.get("name")} [{pid}]',
             f'Recommended tracks: {len(recommendations)}; current items: {len(current["items"])}',
-            "Older listens are favored; familiarity is a light anchor and artist concentration is capped.",
+            f'Mix: {tier_counts["favorite"]} repeat-listening favorites, {tier_counts["rediscovery"]} rediscoveries, {tier_counts["deep_cut"]} deep cuts.',
+            "The mix balances repeated listening, time away, and less-explored tracks; max two tracks per artist.",
             "Spotify matches require exact track title + primary artist. No playlist changes have been made.",
             "",
         ]
         for index, row in enumerate(recommendations, 1):
-            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} (archive plays: {row.get("plays", 0)}; last scrobbled: {row.get("last_scrobble") or "unknown"})')
+            tier_label = {"favorite": "FAVORITE", "rediscovery": "REDISCOVERY", "deep_cut": "DEEP CUT"}.get(row.get("tier"), "ARCHIVE")
+            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{tier_label}; archive plays: {row.get("plays", 0)}; last scrobbled: {row.get("last_scrobble") or "unknown"}]')
         lines.extend(["", f'Skipped {len(skipped)} candidates with no exact Spotify match or already present in the playlist.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
         result = "\n".join(lines)
     elif action == "undo":
