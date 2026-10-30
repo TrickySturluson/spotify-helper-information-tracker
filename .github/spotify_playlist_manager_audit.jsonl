@@ -74,3 +74,4 @@
 {"at": "2026-10-30T08:47:14.772865+00:00", "event": "change_completed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T084713579668Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
 {"at": "2026-10-30T09:09:45.964000+00:00", "event": "status_requested"}
 {"at": "2026-10-30T09:48:55.116259+00:00", "event": "status_requested"}
+{"at": "2026-10-30T09:49:25.073082+00:00", "event": "daily_recommendations_previewed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "recommendation_count": 30, "skipped_count": 6}
