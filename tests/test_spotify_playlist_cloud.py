@@ -148,10 +148,27 @@ class UndoSnapshotValidationTests(unittest.TestCase):
             cloud.pending_state_matches({"snapshot_id": "anything"}, pending, changed)
         )
 
-    def test_regular_edit_still_requires_exact_snapshot_id(self):
-        pending = {"kind": "edit", "snapshot_id": "expected"}
-        self.assertTrue(cloud.pending_state_matches({"snapshot_id": "expected"}, pending))
-        self.assertFalse(cloud.pending_state_matches({"snapshot_id": "other"}, pending))
+    def test_regular_edit_uses_ordered_contents_not_snapshot_id(self):
+        pending = {
+            "kind": "edit",
+            "snapshot_id": "stale-snapshot",
+            "expected_uris": ["spotify:track:a", "spotify:track:b"],
+        }
+        current = {
+            "items": [{"uri": "spotify:track:a"}, {"uri": "spotify:track:b"}],
+        }
+        self.assertTrue(
+            cloud.pending_state_matches(
+                {"snapshot_id": "different-live-snapshot"}, pending, current
+            )
+        )
+
+    def test_regular_edit_rejects_changed_playlist_contents(self):
+        pending = {"kind": "edit", "expected_uris": ["spotify:track:a"]}
+        current = {"items": [{"uri": "spotify:track:changed"}]}
+        self.assertFalse(
+            cloud.pending_state_matches({"snapshot_id": "anything"}, pending, current)
+        )
 
 
     def test_completed_undo_validation_uses_saved_ordered_contents(self):
