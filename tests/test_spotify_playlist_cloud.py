@@ -154,6 +154,46 @@ class UndoSnapshotValidationTests(unittest.TestCase):
         self.assertFalse(cloud.pending_state_matches({"snapshot_id": "other"}, pending))
 
 
+    def test_completed_undo_validation_uses_saved_ordered_contents(self):
+        completed = {
+            "after_snapshot_id": "stale-snapshot",
+            "after_uris": ["spotify:track:a", "spotify:track:b"],
+        }
+        current = {
+            "items": [{"uri": "spotify:track:a"}, {"uri": "spotify:track:b"}],
+        }
+        self.assertTrue(
+            cloud.completed_state_matches(
+                {"snapshot_id": "new-live-snapshot"}, completed, current
+            )
+        )
+
+    def test_completed_undo_validation_rejects_changed_contents(self):
+        completed = {"after_uris": ["spotify:track:a", "spotify:track:b"]}
+        current = {
+            "items": [{"uri": "spotify:track:a"}, {"uri": "spotify:track:c"}],
+        }
+        self.assertFalse(
+            cloud.completed_state_matches(
+                {"snapshot_id": "same-snapshot"}, completed, current
+            )
+        )
+
+    def test_legacy_undo_pointer_falls_back_to_snapshot_id(self):
+        completed = {"after_snapshot_id": "expected"}
+        current = {"items": []}
+        self.assertTrue(
+            cloud.completed_state_matches(
+                {"snapshot_id": "expected"}, completed, current
+            )
+        )
+        self.assertFalse(
+            cloud.completed_state_matches(
+                {"snapshot_id": "different"}, completed, current
+            )
+        )
+
+
 class OwnedPlaylistTests(unittest.TestCase):
     def test_uses_direct_playlist_resource_for_fresh_snapshot(self):
         spotify = Mock()
