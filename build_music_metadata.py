@@ -317,6 +317,7 @@ def main():
             "artist_index": "indexes/artists.json",
             "track_index": "indexes/tracks.json",
             "artist_duration_totals": "artist_duration_totals.json",
+            "artist_profiles": "artist_profiles.json",
             "artist_shards": [f"artists/shard-{i:02d}.json" for i in range(SHARD_COUNT)],
         },
     }
