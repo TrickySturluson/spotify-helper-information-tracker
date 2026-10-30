@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: read
 
 concurrency:
   group: spotify-playlist-control
@@ -27,6 +28,28 @@ jobs:
           python-version: '3.11'
       - name: Install no third-party dependencies
         run: python -m py_compile spotify_playlist_manager.py spotify_playlist_cloud.py
+      - name: Read command type
+        id: parse-command
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())
+          command = json.loads(event["issue"].get("body") or "{}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write("command=" + str(command.get("command", "")) + "\\n")
+          PY
+      - name: Download prior recovery snapshot for undo
+        if: steps.parse-command.outputs.command == 'undo'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BACKUP_RUN_ID=$(python -c 'import json; print(json.load(open(".github/spotify_playlist_manager_state.json")).get("last_completed", {}).get("backup_run_id", ""))')
+          if [ -z "$BACKUP_RUN_ID" ]; then
+            echo "No previous backup workflow run is recorded." >&2
+            exit 1
+          fi
+          gh run download "$BACKUP_RUN_ID" --name "spotify-playlist-backups-$BACKUP_RUN_ID" --dir playlist_backups --repo "${{ github.repository }}"
       - name: Execute owner command
         id: command
         env:
