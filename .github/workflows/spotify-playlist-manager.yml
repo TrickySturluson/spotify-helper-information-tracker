@@ -30,7 +30,7 @@ jobs:
       - name: Execute owner command
         id: command
         env:
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python spotify_playlist_cloud.py
