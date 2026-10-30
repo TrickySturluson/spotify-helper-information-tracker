@@ -261,7 +261,7 @@ def main():
         ])
         result = "\n".join(lines)
     elif action == "daily_preview":
-        import spotify_daily_playlist as daily
+        import spotify_discovery as daily
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
         if p.get("name", "").strip().casefold() != "tricky daily":
@@ -269,7 +269,7 @@ def main():
         if not manager.unlocked(pid):
             fail("Blocked: Tricky Daily is LOCKED. Unlock it explicitly before requesting a daily preview.")
         current = manager.snapshot(sp, p)
-        recommendations, skipped = daily.build_daily_recommendations(sp, current["items"])
+        recommendations, skipped = daily.build_discovery_recommendations(sp, current["items"])
         uris = [row["uri"] for row in recommendations]
         operations = [{"action": "replace", "uris": uris}]
         confirmation = secrets.token_urlsafe(12)
@@ -280,19 +280,21 @@ def main():
         }
         manager.write(STATE, config)
         manager.audit(event="daily_recommendations_previewed", playlist_id=pid, recommendation_count=len(recommendations), skipped_count=len(skipped))
-        tier_counts = {tier: sum(1 for row in recommendations if row.get("tier") == tier) for tier in ("favorite", "rediscovery", "deep_cut")}
+        tier_counts = {tier: sum(1 for row in recommendations if row.get("tier") == tier) for tier in ("discovery", "rediscovery", "familiar")}
+        liked_count = sum(1 for row in recommendations if row.get("liked"))
         lines = [
-            f'DAILY CURATOR PREVIEW — {p.get("name")} [{pid}]',
+            f'DAILY DISCOVERY PREVIEW — {p.get("name")} [{pid}]',
             f'Recommended tracks: {len(recommendations)}; current items: {len(current["items"])}',
-            f'Mix: {tier_counts["favorite"]} repeat-listening favorites, {tier_counts["rediscovery"]} rediscoveries, {tier_counts["deep_cut"]} deep cuts.',
-            "The mix balances repeated listening, time away, and less-explored tracks; max two tracks per artist.",
-            "Spotify matches require exact track title + primary artist. No playlist changes have been made.",
+            f'Mix: {tier_counts["discovery"]} unheard tracks, {tier_counts["rediscovery"]} lightly heard tracks, {tier_counts["familiar"]} familiar tracks.',
+            f'{liked_count} already-Liked track(s) survived a strong ranking penalty; prior scrobbles were penalized by frequency and recency, never hard-excluded.',
+            "Candidates come from similar artists outside the scrobble archive, resolved against Spotify; max two tracks per artist.",
+            "No playlist changes have been made.",
             "",
         ]
         for index, row in enumerate(recommendations, 1):
-            tier_label = {"favorite": "FAVORITE", "rediscovery": "REDISCOVERY", "deep_cut": "DEEP CUT"}.get(row.get("tier"), "ARCHIVE")
-            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{tier_label}; archive plays: {row.get("plays", 0)}; last scrobbled: {row.get("last_scrobble") or "unknown"}]')
-        lines.extend(["", f'Skipped {len(skipped)} candidates with no exact Spotify match or already present in the playlist.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
+            familiarity = "already Liked" if row.get("liked") else ("unheard" if not row.get("plays") else f'{row.get("plays")} archive plays')
+            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{row.get("tier", "discovery").upper()}; {familiarity}; similarity {row.get("similarity", 0):.2f}; Spotify popularity {row.get("popularity", 0)}]')
+        lines.extend(["", f'Skipped {len(skipped)} candidates already present in Tricky Daily or without a usable Spotify match.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
         result = "\n".join(lines)
     elif action == "undo":
         last = config.get("last_completed") or {}

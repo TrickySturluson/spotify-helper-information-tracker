@@ -1,0 +1,49 @@
+import tempfile
+import unittest
+from datetime import date
+from pathlib import Path
+from unittest.mock import Mock
+
+import spotify_discovery as discovery
+
+
+class DiscoveryScoringTests(unittest.TestCase):
+    def test_normalization_collapses_whitespace(self):
+        self.assertEqual(discovery.norm("  Two   Words  "), "two words")
+
+    def test_unheard_tracks_have_no_familiarity_penalty(self):
+        self.assertEqual(discovery.familiarity_penalty(0, None, date(2026, 10, 30)), 0)
+
+    def test_repeated_and_recent_plays_are_penalized_more(self):
+        today = date(2026, 10, 30)
+        one_play = discovery.familiarity_penalty(1, "2024-01-01", today)
+        many_recent = discovery.familiarity_penalty(30, "2026-10-20", today)
+        self.assertGreater(many_recent, one_play)
+
+    def test_one_or_two_plays_remain_eligible(self):
+        today = date(2026, 10, 30)
+        penalty = discovery.familiarity_penalty(2, "2026-10-25", today)
+        self.assertLess(penalty, 0.9)
+
+    def test_liked_tracks_are_deprioritized_not_excluded(self):
+        track = {"name": "Known", "artists": [{"name": "Artist"}], "uri": "spotify:track:1", "popularity": 50}
+        normal, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 10, 30))
+        liked, *_ = discovery.candidate_score(track, 0.8, {}, {"artist|known"}, date(2026, 10, 30))
+        self.assertLess(liked, normal)
+
+    def test_liked_library_paginates(self):
+        sp = Mock()
+        sp.call.side_effect = [
+            {"items": [{"track": {"name": "A", "artists": [{"name": "X"}], "uri": "spotify:track:a"}}],
+             "next": "https://api.spotify.com/v1/me/tracks?limit=50&offset=50"},
+            {"items": [{"track": {"name": "B", "artists": [{"name": "Y"}], "uri": "spotify:track:b"}}],
+             "next": None},
+        ]
+        liked = discovery.liked_track_keys(sp)
+        self.assertIn("x|a", liked)
+        self.assertIn("spotify:track:b", liked)
+        self.assertEqual(sp.call.call_count, 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
