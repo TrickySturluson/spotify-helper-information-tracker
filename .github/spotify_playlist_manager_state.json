@@ -13,55 +13,11 @@
     }
   },
   "last_completed": {
-    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "backup": "playlist_backups/20261030T105403275455Z_4yUVHSMQySfWeEowfIMcx7.json",
-    "backup_run_id": "41044096155",
-    "after_snapshot_id": "AAAAEdbW7jDiYsrlZGZBfCnelrW8xrIy",
-    "after_uris": [
-      "spotify:track:0axOUdjZIEUomNyfByKXUu",
-      "spotify:track:6ndqRUbFU5qLV3I34ahRAF",
-      "spotify:track:4LSlJ0uuMIMXxvlno645eW",
-      "spotify:track:4QFPI4qCR0vmaND38fU9EJ",
-      "spotify:track:1kZg1WMDj8VJiAGk8dB9bv",
-      "spotify:track:2dmWmHjnRwkoaSCVJqmltE",
-      "spotify:track:6NecZZnHsb51khBONZj4Pt",
-      "spotify:track:4BFnBPveibUAplefLJAYxL",
-      "spotify:track:557lM1DeqevRyI3PQm1rI2",
-      "spotify:track:4GYdKBuHZNRByw8bFES0EL",
-      "spotify:track:0ee4Ic7uGzK1IoTLjTpEe4",
-      "spotify:track:0VVJ8oBXp5jlr9qQkpMrR7",
-      "spotify:track:6aQkq3A5YDLaMAB6gDe40H",
-      "spotify:track:4IvdqcnYM1NdGMnoWMWZ2U",
-      "spotify:track:3Wq9n38WyCVw7ebg5RtBN6",
-      "spotify:track:1gTGhCizR1liaZu45tWxUF",
-      "spotify:track:3SyzUB8LeQxplnbWTVYTVj",
-      "spotify:track:0yzjqS9Ya9tE0QAYizgpNe",
-      "spotify:track:7tBX9jPeim8V36Ktipwte2",
-      "spotify:track:7Aj0Lumtnl7WmMTuqXw3NZ",
-      "spotify:track:5XEJvWsXaKstECcbrDmFDC",
-      "spotify:track:6g471JGgVYl3VBrqiXkSL5",
-      "spotify:track:6ijz1J35cpWQCGuFeNoEMx",
-      "spotify:track:6HnZisE8m1J4QRcFndPZBT",
-      "spotify:track:5TP7SajMPHbKb7vG2erAFl",
-      "spotify:track:51Fjme0JiitpyXKuyQiCDo",
-      "spotify:track:2R1Yk6vm11P3pLIrtBR4eM",
-      "spotify:track:4j1DcIvHKlwfEtUDbogiW5",
-      "spotify:track:29KwH2LEjfWEtiC2jCrLVw",
-      "spotify:track:4u307txePIagFC4K67AdBA"
-    ],
-    "kind": "daily"
-  },
-  "pending": {
     "playlist_id": "4diIlnF8BlgoJrwUfejf49",
-    "operations": [
-      {
-        "action": "details",
-        "name": "Booze or Boos!",
-        "description": "Killer tracks, monster grooves, and tunes to die for."
-      }
-    ],
-    "snapshot_id": "AAAACEIUO+ouXk3LL+Oy+WYOFgdVEJaw",
-    "expected_uris": [
+    "backup": "playlist_backups/20261030T190713424191Z_4diIlnF8BlgoJrwUfejf49.json",
+    "backup_run_id": "41112546985",
+    "after_snapshot_id": "AAAACSrt/IWVJWms+Ayp4uYHTlH821SX",
+    "after_uris": [
       "spotify:track:1bPgyV3er2BP0ON7EEEMYf",
       "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
       "spotify:track:6QjHD0Sc1oW29NqWs9x7nJ",
@@ -109,6 +65,6 @@
       "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
       "spotify:track:7F6B0eGSuPpDin9yCK6Zh7"
     ],
-    "confirmation": "0s9JOlpvmkbeYhzI"
+    "kind": "edit"
   }
 }
