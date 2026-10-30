@@ -171,9 +171,12 @@ def main():
             event="change_started", playlist_id=pid, name=p.get("name"),
             operations=pending["operations"], backup=backup, user_id=me.get("id")
         )
-        execute(sp, pid, pending["operations"])
+        # Consume the one-time confirmation before the first write. The workflow
+        # persists this state even if a later Spotify API call fails mid-plan.
         config.pop("pending", None)
         manager.write(STATE, config)
+        manager.audit(event="confirmation_consumed", playlist_id=pid, backup=backup)
+        execute(sp, pid, pending["operations"])
         manager.audit(event="change_completed", playlist_id=pid, backup=backup)
         result = (
             f'Completed the confirmed changes to "{p.get("name")}". '
