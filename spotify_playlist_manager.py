@@ -124,13 +124,13 @@ def save_snapshot(s):
 def list_playlists(sp):
     for p in sp.playlists():
         state="UNLOCKED" if unlocked(p["id"]) else "LOCKED"
-        print(f'[{state:8}] {p.get("name")} | {(p.get("tracks") or {}).get("total","?")} tracks | {p["id"]}')
+        print(f'[{state:8}] {p.get("name")} | {(p.get("items") or p.get("tracks") or {}).get("total","?")} tracks | {p["id"]}')
 def inspect(sp,pid):
     p=find(sp,pid); rows=tracks(sp,p)
     print(f'{p.get("name")} [{pid}] — {"UNLOCKED" if unlocked(pid) else "LOCKED"} — {len(rows)} items')
     for i,t in enumerate(rows,1): print(f'{i:3}. {", ".join(t["artists"] or [])} — {t["name"] or "[unavailable item]"}')
 def create(sp,name,description,public):
-    me=sp.me(); p=sp.call("POST",f'/users/{me["id"]}/playlists',{"name":name,"description":description,"public":public})
+    me=sp.me(); p=sp.call("POST","/me/playlists",{"name":name,"description":description,"public":public})
     c=config(); c["playlists"][p["id"]]={"name":p["name"],"state":"locked","updated_at":stamp()}; write(CONFIG,c)
     audit(event="created_locked",playlist_id=p["id"],name=p["name"])
     print(f'Created "{p["name"]}" ({p["id"]}); it is LOCKED by default.')
@@ -182,7 +182,7 @@ def apply(sp,path):
             current=[x["uri"] for x in tracks(sp,find(sp,pid)) if x.get("uri")]
             if current: remove(sp,pid,current)
             add(sp,pid,op["uris"])
-        else: sp.call("PUT",f"/playlists/{pid}/items",{k:op[k] for k in ("range_start","insert_before","range_length")})
+        else: sp.call("PUT",f"/playlists/{pid}/items",{**{k:op[k] for k in ("range_start","insert_before","range_length")},"snapshot_id":find(sp,pid).get("snapshot_id")})
     audit(event="change_completed",playlist_id=pid,backup=backup,operations=ops)
     print("Done. Pre-change snapshot:",backup)
 
