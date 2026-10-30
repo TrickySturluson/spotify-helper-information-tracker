@@ -178,8 +178,11 @@ def main():
         manager.audit(event="confirmation_consumed", playlist_id=pid, backup=backup)
         execute(sp, pid, pending["operations"])
         manager.audit(event="change_completed", playlist_id=pid, backup=backup)
+        updated = owned_playlist(sp, pid, me)
+        count = (updated.get("items") or updated.get("tracks") or {}).get("total", "?")
         result = (
-            f'Completed the confirmed changes to "{p.get("name")}". '
+            f'Completed the confirmed changes to "{updated.get("name")}". '
+            f"Current status: {count} items; UNLOCKED. "
             "A pre-change recovery snapshot was saved as a workflow artifact."
         )
     else:
