@@ -54,3 +54,4 @@
 {"at": "2026-10-30T08:19:28.733828+00:00", "event": "confirmation_consumed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081928732797Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "undo"}
 {"at": "2026-10-30T08:19:28.998643+00:00", "event": "change_interrupted", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081928732797Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "undo", "error_type": "TypeError"}
 {"at": "2026-10-30T08:20:53.002337+00:00", "event": "status_requested"}
+{"at": "2026-10-30T08:21:26.325805+00:00", "event": "change_previewed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "operations": [{"action": "remove", "uris": ["spotify:track:4PTG3Z6ehGkBFwjybzWkR8"]}]}

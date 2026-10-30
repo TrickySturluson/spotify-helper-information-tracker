@@ -16,5 +16,21 @@
       "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
     ],
     "kind": "partial"
+  },
+  "pending": {
+    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+    "operations": [
+      {
+        "action": "remove",
+        "uris": [
+          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
+        ]
+      }
+    ],
+    "snapshot_id": "AAAACvegwJ4cff0cPLJEPmZZ7RRJJt9C",
+    "expected_uris": [
+      "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
+    ],
+    "confirmation": "8_mdDur97DoXiRT2"
   }
 }
