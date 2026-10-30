@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Local Spotify playlist manager. Playlists are locked unless explicitly unlocked."""
 import argparse, base64, hashlib, json, os, secrets, sys, time, urllib.error
+from collections import Counter
 import urllib.parse, urllib.request, webbrowser
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -150,9 +151,13 @@ def validate(plan):
         else: raise ManagerError(f"Unsupported action: {a}")
     return plan["playlist_id"],ops
 def remove(sp,pid,uris):
-    for i in range(0,len(uris),100): sp.call("DELETE",f"/playlists/{pid}/items",{"items":[{"uri":u} for u in uris[i:i+100]]})
+    for i in range(0,len(uris),100):
+        if not unlocked(pid): raise ManagerError("Playlist is LOCKED; remaining removals stopped.")
+        sp.call("DELETE",f"/playlists/{pid}/items",{"items":[{"uri":u} for u in uris[i:i+100]]})
 def add(sp,pid,uris):
-    for i in range(0,len(uris),100): sp.call("POST",f"/playlists/{pid}/items",{"uris":uris[i:i+100]})
+    for i in range(0,len(uris),100):
+        if not unlocked(pid): raise ManagerError("Playlist is LOCKED; remaining additions stopped.")
+        sp.call("POST",f"/playlists/{pid}/items",{"uris":uris[i:i+100]})
 def apply(sp,path):
     pid,ops=validate(read(path,None))
     if not unlocked(pid): raise ManagerError("BLOCKED: playlist is LOCKED. Unlock it explicitly first.")
