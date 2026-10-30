@@ -108,6 +108,7 @@ The manager uses its own \`.spotify_playlist_token.json\`; it does not overwrite
 
 \`\`\`bash
 python spotify_playlist_manager.py list
+python spotify_playlist_manager.py export-refresh-token
 python spotify_playlist_manager.py inspect YOUR_PLAYLIST_ID
 python spotify_playlist_manager.py unlock YOUR_PLAYLIST_ID
 python spotify_playlist_manager.py lock YOUR_PLAYLIST_ID
