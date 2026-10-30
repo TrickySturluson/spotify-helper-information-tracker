@@ -43,15 +43,18 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
       - name: Persist lock state and audit
+        if: always() && steps.command.outcome != 'skipped'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/spotify_playlist_manager_state.json .github/spotify_playlist_manager_audit.jsonl
+          if [ -f .github/spotify_playlist_manager_state.json ]; then git add .github/spotify_playlist_manager_state.json; fi
+          if [ -f .github/spotify_playlist_manager_audit.jsonl ]; then git add .github/spotify_playlist_manager_audit.jsonl; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update Spotify playlist manager state"
             git push
           fi
       - name: Report result
+        if: steps.command.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           RESULT: ${{ steps.command.outputs.result }}
