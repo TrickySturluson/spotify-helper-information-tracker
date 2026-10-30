@@ -32,6 +32,7 @@ DAILY_DESCRIPTIONS = [
     "If looks could kill, this would still have better taste.",
     "The playlist's doing the heavy lifting... again.",
     "Trust the queue. It's got a better track record.",
+    "Some things are better left on repeat.",
     "I've made a few adjustments. You're welcome.",
     "Today's queue has considerably better judgment.",
     "A little less filler... maybe..",
