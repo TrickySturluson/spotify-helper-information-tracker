@@ -149,12 +149,26 @@ def spotify_search_query(track):
 
 
 def resolve_exact_tracks(sp, candidates, existing_uris=None, limit=TARGET_SIZE):
-    """Resolve only exact title + primary artist matches; skip ambiguous misses."""
+    """Resolve exact Spotify matches while preserving the intended tier mix."""
     existing = set(existing_uris or [])
-    resolved, skipped = [], []
-    for candidate in candidates:
-        if len(resolved) >= limit:
-            break
+    resolved, skipped, attempted = [], [], set()
+    quotas = {
+        "favorite": int(limit * 0.40),
+        "rediscovery": int(limit * 0.40),
+    }
+    quotas["deep_cut"] = limit - sum(quotas.values())
+    tier_counts = {tier: 0 for tier in ("favorite", "rediscovery", "deep_cut")}
+
+    def candidate_key(candidate):
+        return candidate.get("track_id") or (
+            norm(candidate.get("artist")) + "|" + norm(candidate.get("track"))
+        )
+
+    def try_candidate(candidate):
+        key = candidate_key(candidate)
+        if key in attempted:
+            return
+        attempted.add(key)
         try:
             response = sp.call("GET", spotify_search_query(candidate))
         except Exception as error:
@@ -168,21 +182,41 @@ def resolve_exact_tracks(sp, candidates, existing_uris=None, limit=TARGET_SIZE):
             and isinstance(item.get("uri"), str)
             and item["uri"].startswith("spotify:track:")
         ), None)
+        tier = candidate.get("_tier", track_tier(candidate))
         if not match:
             skipped.append({"artist": candidate["artist"], "track": candidate["track"], "reason": "no exact Spotify match"})
-            continue
+            return
         if match["uri"] in existing:
             skipped.append({"artist": candidate["artist"], "track": candidate["track"], "reason": "already in Tricky Daily"})
-            continue
+            return
         existing.add(match["uri"])
         resolved.append({
             "uri": match["uri"], "artist": candidate["artist"], "track": candidate["track"],
             "plays": candidate.get("plays", 0), "last_scrobble": candidate.get("last_scrobble"),
-            "score": candidate.get("_score", score_track(candidate)),
-            "tier": candidate.get("_tier", track_tier(candidate)),
+            "score": candidate.get("_score", score_track(candidate)), "tier": tier,
         })
-    return resolved, skipped
+        tier_counts[tier] = tier_counts.get(tier, 0) + 1
 
+    # Resolve each tier to its quota before allowing another tier to fill gaps.
+    for tier in ("favorite", "rediscovery", "deep_cut"):
+        for candidate in candidates:
+            if len(resolved) >= limit:
+                break
+            if candidate.get("_tier", track_tier(candidate)) != tier:
+                continue
+            if tier_counts[tier] >= quotas[tier]:
+                break
+            try_candidate(candidate)
+
+    # If exact Spotify matches are scarce in a tier, fill remaining slots with
+    # the best exact matches from any tier rather than lowering match quality.
+    if len(resolved) < limit:
+        for candidate in candidates:
+            if len(resolved) >= limit:
+                break
+            try_candidate(candidate)
+
+    return resolved, skipped
 
 def build_daily_recommendations(sp, playlist_items, today=None, feature_path=FEATURES, target_size=TARGET_SIZE):
     if not feature_path.is_file():
@@ -190,7 +224,7 @@ def build_daily_recommendations(sp, playlist_items, today=None, feature_path=FEA
     tracks = json.loads(feature_path.read_text(encoding="utf-8"))
     if not isinstance(tracks, list) or not tracks:
         raise RuntimeError("Recommendation feature file is empty or invalid.")
-    candidates = rank_candidates(tracks, today=today, limit=max(target_size * 5, target_size))
+    candidates = rank_candidates(tracks, today=today, limit=max(target_size * 10, target_size))
     existing = {item.get("uri") for item in playlist_items if item.get("uri")}
     resolved, skipped = resolve_exact_tracks(sp, candidates, existing, target_size)
     if len(resolved) < min(MIN_MATCHES, target_size):
