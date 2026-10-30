@@ -216,7 +216,19 @@ def resolve_exact_tracks(sp, candidates, existing_uris=None, limit=TARGET_SIZE):
                 break
             try_candidate(candidate)
 
-    return resolved, skipped
+    # Keep the listening sequence varied instead of clustering the three
+    # recommendation types into separate blocks.
+    resolved_buckets = {
+        tier: [row for row in resolved if row.get("tier") == tier]
+        for tier in ("favorite", "rediscovery", "deep_cut")
+    }
+    sequence = ("favorite", "rediscovery", "favorite", "rediscovery", "deep_cut")
+    mixed = []
+    while any(resolved_buckets.values()):
+        for tier in sequence:
+            if resolved_buckets[tier]:
+                mixed.append(resolved_buckets[tier].pop(0))
+    return mixed, skipped
 
 def build_daily_recommendations(sp, playlist_items, today=None, feature_path=FEATURES, target_size=TARGET_SIZE):
     if not feature_path.is_file():
