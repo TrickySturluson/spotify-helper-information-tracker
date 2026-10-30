@@ -120,7 +120,7 @@ def tracks(sp,p):
 def snapshot(sp,p):
     return {"created_at":stamp(),"playlist":{"id":p["id"],"name":p.get("name"),"snapshot_id":p.get("snapshot_id")},"items":tracks(sp,p)}
 def save_snapshot(s):
-    BACKUPS.mkdir(exist_ok=True); path=BACKUPS/(datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"_"+s["playlist"]["id"]+".json")
+    BACKUPS.mkdir(exist_ok=True); path=BACKUPS/(datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")+"_"+s["playlist"]["id"]+".json")
     write(path,s); return str(path)
 def list_playlists(sp):
     for p in sp.playlists():
