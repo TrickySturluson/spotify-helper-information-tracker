@@ -38,16 +38,16 @@ LASTFM_API_KEY=your-key python build_music_metadata.py
 python build_playback_analytics.py
 ```
 
-The scheduled GitHub Actions workflow imports new scrobbles, incrementally enriches missing track metadata, runs the analytics builders, validates generated data, and commits updates. It requires the repository secret `LASTFM_API_KEY`. Metadata enrichment is capped at 120 lookups per run by default (`MUSIC_METADATA_LOOKUPS_PER_RUN` can change this); successful results are cached and unmatched tracks are retried after 30 days.
+The scheduled GitHub Actions workflow imports new scrobbles, incrementally enriches missing track metadata, runs the analytics builders, validates generated data, and commits updates. It requires the repository secret `LASTFM_API_KEY`. Daily metadata enrichment is capped at 120 lookups per run; the separate manual backfill workflow can process up to 12,000 tracks in one run.
 
 
 ## Cached music metadata and duration estimates
 
 `build_music_metadata.py` builds `assistant_data/music/` from the canonical scrobble archive. It uses Last.fm `track.getInfo` to retrieve track duration in milliseconds, preferring a track MBID when present and otherwise querying artist + title without autocorrection. It verifies returned artist/title labels before accepting a duration. Exact MBID matches are marked high confidence; exact artist/title matches without an ID are medium confidence. Missing or ambiguous results remain unknown and are retried after 30 days.
 
-The catalogue is split into 32 fixed artist-hash shards to avoid thousands of tiny files. `indexes/artists.json` maps artist IDs to shard files; `indexes/tracks.json` maps track IDs to their artist/shard. Each artist entry contains its albums and track records. `overview.json` reports metadata coverage and full-track-equivalent hours; `artist_duration_totals.json` provides artist-level estimates. These estimates multiply full track duration by scrobble count and are not actual playback time. Skips, partial plays and incorrect source metadata remain possible. The original scrobble archive is never modified.
+The catalogue is split into 32 fixed artist-hash shards to avoid thousands of tiny files. `indexes/artists.json` maps artist IDs to shard files; `indexes/tracks.json` maps track IDs to their artist/shard. Each artist entry contains its albums and track records. `overview.json` reports metadata coverage, known-duration full-track-equivalent hours, and a known-duration minimum qualifying-time estimate. Last.fm's documented scrobble rule requires at least half the track or four minutes, whichever comes first (for tracks longer than 30 seconds); the scrobble may be submitted as soon as that threshold is met. The minimum is a theoretical lower bound for the matched subset, not proof of actual playback. Full-track-equivalent assumes every scrobble played the whole track. Unknown-duration scrobbles are excluded from both duration totals. The original scrobble archive is never modified.
 
-The first run fills the cache gradually (120 unique-track lookups per daily workflow by default); subsequent runs only query missing/unmatched entries. This avoids repeatedly spending API requests on known tracks and avoids making one large initial run fragile. To change the per-run cap, set `MUSIC_METADATA_LOOKUPS_PER_RUN` in the workflow environment.
+The daily workflow fills the cache gradually (120 unique-track lookups per run by default); subsequent runs query only missing/unmatched entries. To backfill the entire catalogue on demand, use **Actions → Backfill Music Durations → Run workflow**. It processes up to 12,000 unique tracks in one run, commits the resulting cache, and can be run again if Last.fm rate limits interrupt it. Successfully resolved tracks are cached, so reruns resume rather than repeat completed lookups. Unmatched records are retained and retried after 30 days. The backfill uses Last.fm's `track.getInfo` endpoint and waits between requests to reduce rate-limit pressure.
 
 ## Measured Spotify playback time
 
@@ -83,6 +83,6 @@ The tracker samples every 10 seconds by default; use `python spotify_playback_tr
 
 ## Important limitations
 
-- Last.fm's recent-track archive does not supply actual listening duration. The duration estimate uses 3.5 minutes per scrobble and is labelled as an estimate.
+- Last.fm's recent-track archive does not supply actual listening duration. Duration-based estimates exclude scrobbles whose track duration is unknown; the metadata backfill action can improve coverage. Last.fm scrobble thresholds provide a theoretical minimum only, not exact played time.
 - Genre, release dates, biographies, similar artists and other descriptive metadata are not inferred from scrobbles. They require a separate metadata-enrichment stage and may be incomplete or inconsistent.
 - The canonical archive is preserved; assistant analytics are derived outputs and can be regenerated at any time.
