@@ -34,6 +34,14 @@ jobs:
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python spotify_playlist_cloud.py
+      - name: Preserve pre-change snapshot
+        if: always() && hashFiles('playlist_backups/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: spotify-playlist-backups-${{ github.run_id }}
+          path: playlist_backups/
+          retention-days: 30
+          if-no-files-found: ignore
       - name: Persist lock state and audit
         run: |
           git config user.name "github-actions[bot]"
