@@ -37,7 +37,7 @@ class PlaylistManagerTests(unittest.TestCase):
             return {"items": [], "next": None}
         spotify.call = fake_call
         self.assertEqual(spotify.items("playlist123"), [])
-        self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50")])
+        self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50&additional_types=track,episode")])
 
     def test_valid_add_plan(self):
         playlist_id, operations = manager.validate({
