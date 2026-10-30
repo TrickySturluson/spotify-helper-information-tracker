@@ -104,8 +104,16 @@ def discover_similar_artists(profiles, api_key, today=None, seed_limit=SEED_ARTI
     if len(seeds) > seed_limit:
         stride = max(1, len(seeds) // seed_limit)
         seeds = seeds[::stride][:seed_limit]
+    # A single high Last.fm match is weak evidence on its own. Aggregate
+    # independent seed matches so artists related to several parts of the
+    # user's taste outrank one-off results. This also prevents a large pile of
+    # identical 1.00 scores from silently becoming an alphabetical artist list.
     found = {}
+    max_seed_strength = max((math.log1p(int(row.get("plays") or 0)) for row in seeds), default=1.0) or 1.0
     for seed in seeds:
+        seed_name = norm(seed["artist"])
+        seed_plays = max(0, int(seed.get("plays") or 0))
+        seed_strength = math.log1p(seed_plays) / max_seed_strength
         for similar in _lastfm_similar(seed, api_key):
             name = str(similar.get("name") or "").strip()
             if not name:
@@ -114,19 +122,47 @@ def discover_similar_artists(profiles, api_key, today=None, seed_limit=SEED_ARTI
                 match = float(similar.get("match") or 0)
             except (TypeError, ValueError):
                 match = 0.0
+            match = max(0.0, min(1.0, match))
             key = norm(name)
             if not key:
                 continue
-            old = found.get(key)
-            evidence = {
-                "artist": name, "similarity": max(0.0, min(1.0, match)),
-                "seed_artist": seed["artist"],
-                "seed_plays": int(seed.get("plays") or 0),
-            }
-            if old is None or evidence["similarity"] > old["similarity"]:
-                found[key] = evidence
+            evidence = found.setdefault(key, {
+                "artist": name, "matches": {}, "seed_strength": 0.0,
+            })
+            # Count each seed once per similar artist, even if an API payload
+            # contains duplicates. Keep the strongest match for that seed.
+            previous = evidence["matches"].get(seed_name)
+            if previous is None or match > previous:
+                evidence["matches"][seed_name] = match
+            evidence["seed_strength"] = max(evidence["seed_strength"], seed_strength)
         time.sleep(0.18)
-    return sorted(found.values(), key=lambda row: (-row["similarity"], norm(row["artist"])))[:DISCOVERY_ARTISTS]
+
+    ranked = []
+    for evidence in found.values():
+        matches = list(evidence["matches"].values())
+        if not matches:
+            continue
+        best = max(matches)
+        mean = sum(matches) / len(matches)
+        consensus = min(1.0, math.log1p(len(matches)) / math.log1p(5))
+        # Keep this normalized score as the downstream taste-fit signal.
+        # Raw best/mean scores remain visible for diagnostics in the preview.
+        rank_score = 0.55 * best + 0.20 * mean + 0.15 * consensus + 0.10 * evidence["seed_strength"]
+        ranked.append({
+            "artist": evidence["artist"],
+            "similarity": max(0.0, min(1.0, rank_score)),
+            "raw_similarity": best,
+            "mean_similarity": mean,
+            "supporting_seeds": len(matches),
+            "seed_strength": evidence["seed_strength"],
+        })
+    return sorted(
+        ranked,
+        key=lambda row: (
+            -row["similarity"], -row["supporting_seeds"],
+            -row["raw_similarity"], norm(row["artist"]),
+        ),
+    )[:DISCOVERY_ARTISTS]
 
 
 def liked_track_keys(sp):
