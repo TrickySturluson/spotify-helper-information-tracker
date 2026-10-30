@@ -142,6 +142,7 @@ def main():
     action = command.get("command")
     allowed = {
         "status": {"command"},
+        "inspect": {"command", "playlist_id"},
         "lock_all": {"command"},
         "lock": {"command", "playlist_id"},
         "unlock": {"command", "playlist_id"},
@@ -152,7 +153,7 @@ def main():
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "inspect"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -195,6 +196,15 @@ def main():
         manager.write(STATE, config)
         manager.audit(event="permission_changed", playlist_id=p["id"], name=p.get("name"), state=state)
         result = f'{p.get("name")} is now {state.upper()}.'
+    elif action == "inspect":
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        current = manager.snapshot(sp, p)
+        lines = [f'PLAYLIST INSPECTION — {p.get("name")} [{pid}]', f'Items: {len(current["items"])}', "Read-only; no playlist changes have been made.", ""]
+        for index, item in enumerate(current["items"], 1):
+            artists = ", ".join(item.get("artists") or [])
+            lines.append(f'{index:02d}. {artists} — {item.get("name")} [{item.get("uri")}]')
+        result = "\\n".join(lines)
     elif action == "preview":
         pid, operations = manager.validate({
             "playlist_id": command["playlist_id"], "operations": command["operations"]
