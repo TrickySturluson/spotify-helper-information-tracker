@@ -13,5 +13,18 @@
     "backup_run_id": "41023872762",
     "after_snapshot_id": "AAAABhXDG6UJL3tsXVO1fsJaa9T7p/Nu",
     "kind": "edit"
+  },
+  "pending": {
+    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+    "operations": [
+      {
+        "action": "add",
+        "uris": [
+          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
+        ]
+      }
+    ],
+    "snapshot_id": "AAAAB7vYY5Ew7Ekuz0n2LaatMQfHieWS",
+    "confirmation": "DVEhVHpKB_T8nKRP"
   }
 }
