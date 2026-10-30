@@ -98,6 +98,34 @@ class DailyCuratorTests(unittest.TestCase):
     def test_matching_normalizes_internal_whitespace(self):
         self.assertEqual(daily.norm("  Artist   Name  "), "artist name")
 
+    def test_spotify_resolution_preserves_tier_quotas(self):
+        candidates = []
+        for tier, plays, prefix in (("favorite", 8, "f"), ("rediscovery", 3, "r"), ("deep_cut", 1, "d")):
+            for i in range(8):
+                candidates.append({
+                    "track_id": f"{prefix}{i}", "artist": f"{prefix} artist {i}",
+                    "track": f"{prefix} track {i}", "plays": plays, "_tier": tier,
+                    "_score": 0.5, "last_scrobble": "2025-01-01T00:00:00+00:00"
+                })
+        sp = Mock()
+        calls = {"count": 0}
+        def exact_match(method, query):
+            candidate = candidates[calls["count"]]
+            calls["count"] += 1
+            return {"tracks": {"items": [{
+                "name": candidate["track"],
+                "artists": [{"name": candidate["artist"]}],
+                "uri": f"spotify:track:{candidate['track_id']}"
+            }]}}
+        sp.call.side_effect = exact_match
+        resolved, skipped = daily.resolve_exact_tracks(sp, candidates, limit=10)
+        counts = {}
+        for row in resolved:
+            counts[row["tier"]] = counts.get(row["tier"], 0) + 1
+        self.assertEqual(len(resolved), 10)
+        self.assertEqual(counts, {"favorite": 4, "rediscovery": 4, "deep_cut": 2})
+        self.assertEqual(skipped, [])
+
     def test_existing_playlist_uri_is_not_added_again(self):
         sp = Mock()
         sp.call.return_value = {"tracks": {"items": [
