@@ -43,6 +43,15 @@ class DiscoveryScoringTests(unittest.TestCase):
         penalty = discovery.familiarity_penalty(2, "2026-10-25", today)
         self.assertLess(penalty, 0.9)
 
+    def test_missing_spotify_popularity_does_not_change_score(self):
+        today = date(2026, 10, 30)
+        base = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:1"}
+        without_field, *_ = discovery.candidate_score(base, 0.8, {}, set(), today)
+        with_zero, *_ = discovery.candidate_score({**base, "popularity": 0}, 0.8, {}, set(), today)
+        with_hundred, *_ = discovery.candidate_score({**base, "popularity": 100}, 0.8, {}, set(), today)
+        self.assertEqual(without_field, with_zero)
+        self.assertEqual(without_field, with_hundred)
+
     def test_liked_tracks_are_deprioritized_not_excluded(self):
         track = {"name": "Known", "artists": [{"name": "Artist"}], "uri": "spotify:track:1", "popularity": 50}
         normal, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 10, 30))
