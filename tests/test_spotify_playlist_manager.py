@@ -1,4 +1,6 @@
 import tempfile
+import io
+import urllib.error
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -44,6 +46,21 @@ class PlaylistManagerTests(unittest.TestCase):
                     "uris": ["https://open.spotify.com/track/track123"]
                 }]
             })
+
+    def test_expired_refresh_token_has_reauthorization_guidance(self):
+        error = urllib.error.HTTPError(
+            "https://accounts.spotify.com/api/token",
+            400,
+            "Bad Request",
+            {},
+            io.BytesIO(b'{"error":"invalid_grant"}'),
+        )
+        with patch("urllib.request.urlopen", side_effect=error):
+            with self.assertRaisesRegex(manager.ManagerError, "six months"):
+                manager.token_post({
+                    "grant_type": "refresh_token",
+                    "refresh_token": "not-a-real-token",
+                })
 
     def test_rejects_empty_plan(self):
         with self.assertRaises(manager.ManagerError):
