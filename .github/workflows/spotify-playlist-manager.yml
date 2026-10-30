@@ -1,0 +1,51 @@
+name: Spotify playlist manager control
+
+on:
+  issues:
+    types: [edited]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: spotify-playlist-control
+  cancel-in-progress: false
+
+jobs:
+  control:
+    if: >-
+      github.event.issue.title == 'Spotify Playlist Manager Control' &&
+      github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install no third-party dependencies
+        run: python -m py_compile spotify_playlist_manager.py spotify_playlist_cloud.py
+      - name: Execute owner command
+        id: command
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: python spotify_playlist_cloud.py
+      - name: Persist lock state and audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/spotify_playlist_manager_state.json .github/spotify_playlist_manager_audit.jsonl
+          if ! git diff --cached --quiet; then
+            git commit -m "Update Spotify playlist manager state"
+            git push
+          fi
+      - name: Report result
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESULT: ${{ steps.command.outputs.result }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: gh issue comment "$ISSUE_NUMBER" --body "$RESULT"
