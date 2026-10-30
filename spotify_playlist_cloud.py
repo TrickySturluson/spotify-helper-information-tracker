@@ -273,7 +273,7 @@ def main():
         manager.audit(event="confirmation_consumed", playlist_id=pid, backup=backup, kind=kind)
         try:
             if kind == "undo":
-                restore_data = manager.read(pending["backup"], None)
+                restore_data = manager.read(Path(pending["backup"]), None)
                 replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
             else:
                 execute(sp, pid, pending["operations"])
