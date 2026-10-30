@@ -150,6 +150,7 @@ def main():
         "preview": {"command", "playlist_id", "operations"},
         "daily_preview": {"command", "playlist_id"},
         "horror_preview": {"command", "playlist_id"},
+        "booze20_preview": {"command", "playlist_id"},
         "confirm": {"command", "confirmation"},
         "undo": {"command"},
     }
@@ -244,6 +245,91 @@ def main():
             "The playlist must remain unlocked and unchanged until confirmation.",
         ])
         result = "\n".join(lines)
+    elif action == "booze20_preview":
+        # Resolve the user's 20-track dark/playful/chaotic party batch through Spotify's catalogue.
+        candidates = [
+            ("DJ Jazzy Jeff & The Fresh Prince", "A Nightmare on My Street"),
+            ("OutKast", "Dracula's Wedding"),
+            ("Whodini", "Freaks Come Out at Night"),
+            ("Geto Boys", "Mind Playing Tricks on Me"),
+            ("Gnarls Barkley", "The Boogie Monster"),
+            ("Nas", "Black Magic"),
+            ("The Prodigy", "Voodoo People"),
+            ("Yeah Yeah Yeahs", "Heads Will Roll - A-Trak Remix"),
+            ("PinkPantheress", "Another Life"),
+            ("Strafe", "Set It Off"),
+            ("Rihanna", "Disturbia"),
+            ("Billie Eilish", "Bury a Friend"),
+            ("Lana Del Rey", "Season of the Witch"),
+            ("Scissor Sisters", "I Can't Decide"),
+            ("Kesha", "Cannibal"),
+            ("Shakira", "She Wolf"),
+            ("Oingo Boingo", "Dead Man's Party"),
+            ("The Specials", "Ghost Town"),
+            ("Siouxsie and the Banshees", "Spellbound"),
+            ("Godsmack", "Voodoo"),
+        ]
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        if not manager.unlocked(pid):
+            fail("Blocked: playlist is LOCKED. Unlock it explicitly before resolving the 20-track batch.")
+        current = manager.snapshot(sp, p)
+        existing = {item.get("uri") for item in current["items"] if item.get("uri")}
+        def music_key(value):
+            return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
+        resolved, skipped = [], []
+        for artist, title in candidates:
+            query = urllib.parse.urlencode({
+                "type": "track", "limit": 10,
+                "q": f'artist:"{artist}" track:"{title}"',
+            })
+            page = sp.call("GET", "/search?" + query)
+            matches = ((page or {}).get("tracks") or {}).get("items") or []
+            target_artist, target_title = music_key(artist), music_key(title)
+            match = next((
+                track for track in matches
+                if music_key(track.get("name")) == target_title
+                and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
+                and isinstance(track.get("uri"), str)
+                and track["uri"].startswith("spotify:track:")
+            ), None)
+            if not match:
+                skipped.append(f"{artist} — {title} (no exact Spotify match)")
+                continue
+            if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
+                skipped.append(f"{artist} — {title} (already in playlist or duplicate)")
+                continue
+            resolved.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
+        if skipped:
+            lines = [
+                f'20-TRACK BATCH NOT STAGED — {p.get("name")} [{pid}]',
+                f'Exact new Spotify matches: {len(resolved)}/20; existing/duplicate/unmatched: {len(skipped)}.',
+                "No playlist changes have been made. Review the exceptions before staging.",
+                "",
+            ]
+            lines.extend(f"FOUND: {row['artist']} — {row['track']}" for row in resolved)
+            lines.extend(f"SKIPPED: {row}" for row in skipped)
+            result = "\\n".join(lines)
+        else:
+            operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
+            confirmation = secrets.token_urlsafe(12)
+            config["pending"] = {
+                "playlist_id": pid, "operations": operations,
+                "snapshot_id": p.get("snapshot_id"),
+                "expected_uris": snapshot_uris(current),
+                "confirmation": confirmation, "kind": "booze20",
+            }
+            manager.write(STATE, config)
+            manager.audit(event="booze20_previewed", playlist_id=pid, added_count=len(resolved))
+            lines = [
+                f'20-TRACK BATCH PREVIEW — {p.get("name")} [{pid}]',
+                f'Current items: {len(current["items"])}; additions: {len(resolved)}; after confirmation: {len(current["items"]) + len(resolved)}.',
+                "No playlist changes have been made.",
+                "",
+            ]
+            lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
+            lines.extend(["", "To add these exact tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
+            result = "\\n".join(lines)
     elif action == "horror_preview":
         # Resolve a hand-curated 46-track Halloween expansion through Spotify's
         # own catalogue, then stage it for the existing one-time confirmation flow.
