@@ -143,7 +143,7 @@ For a reorder operation, provide zero-based \`range_start\`, \`insert_before\`, 
 Before applying a plan, the manager saves a complete pre-change playlist snapshot under \`playlist_backups/\`. It records lock changes, cancelled plans, and completed changes in \`playlist_manager_audit.jsonl\`. These files and the local OAuth token are private runtime data and should not be committed. Snapshots are recovery references; they are not automatically restored by the tool.
 
 
-**Spotify content boundary:** playlist item metadata and snapshots stay in local runtime files for playlist operations and recovery. Do not upload those snapshots, tracklists, or Spotify-derived metadata to ChatGPT or another AI model, and do not feed them into `assistant_data/`.
+**Spotify content boundary:** complete playlist tracklists and snapshots stay outside `assistant_data/` and are never included in control issue comments. For user-requested management, the control panel surfaces only minimal operational metadata (playlist name, ID, item count, lock state) and the explicit track URIs in a proposed plan. Full pre-change snapshots are stored as GitHub Actions artifacts for recovery, not in issue comments or assistant-facing analytics.
 
 The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use \`/items\` (not the older \`/tracks\` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app.
 
