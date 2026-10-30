@@ -211,10 +211,11 @@ def candidate_score(track, similarity, familiarity, liked, today=None):
     penalty = familiarity_penalty(plays, known.get("last_scrobble"), today)
     uri = track.get("uri")
     is_liked = track_key(artist, name) in liked or (uri and uri in liked)
-    popularity = max(0, min(100, int(track.get("popularity") or 0))) / 100.0
-    # Similarity is the taste-fit signal; popularity is a small quality prior,
-    # not a popularity contest. Novelty dominates the ranking.
-    score = 0.58 * similarity + 0.12 * popularity + 0.30 * (1.0 - penalty)
+    # Spotify removed the popularity field from some Development Mode API
+    # responses in 2026. Do not interpret a missing field as popularity zero
+    # or let it distort the score; taste-fit and graduated familiarity remain
+    # the ranking signals.
+    score = 0.58 * similarity + 0.30 * (1.0 - penalty)
     if is_liked:
         score -= 0.62
     return score, plays, known.get("last_scrobble"), is_liked
@@ -268,7 +269,7 @@ def build_discovery_recommendations(
                 "similarity": artist_row["similarity"],
                 "liked": is_liked,
                 "tier": "discovery" if plays == 0 else ("rediscovery" if plays <= 2 else "familiar"),
-                "popularity": track.get("popularity", 0),
+                "popularity": track.get("popularity"),
             }
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
