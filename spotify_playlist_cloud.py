@@ -37,9 +37,11 @@ def snapshot_uris(snapshot):
 
 
 def pending_state_matches(playlist, pending, current_snapshot=None):
-    # Undo restores the ordered item list, so compare that exact content rather
-    # than Spotify's snapshot_id, which has proved unreliable across runner calls.
-    if pending.get("kind") == "undo":
+    # Playlist edits and undo both operate on ordered items. Compare the exact
+    # ordered URI list captured at preview instead of Spotify's unreliable
+    # snapshot_id across separate workflow runners. Legacy pending previews
+    # without expected_uris retain their original snapshot check.
+    if "expected_uris" in pending:
         return (
             current_snapshot is not None
             and snapshot_uris(current_snapshot) == pending.get("expected_uris")
@@ -173,11 +175,13 @@ def main():
         p = owned_playlist(sp, pid, me)
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing edits.")
+        preview_snapshot = manager.snapshot(sp, p)
         confirmation = secrets.token_urlsafe(12)
         config["pending"] = {
             "playlist_id": pid,
             "operations": operations,
             "snapshot_id": p.get("snapshot_id"),
+            "expected_uris": snapshot_uris(preview_snapshot),
             "confirmation": confirmation,
         }
         manager.write(STATE, config)
@@ -247,7 +251,7 @@ def main():
             fail("Blocked: playlist is LOCKED; preview cancelled.")
         p = owned_playlist(sp, pid, me)
         kind = pending.get("kind", "edit")
-        before = manager.snapshot(sp, p) if kind == "undo" else None
+        before = manager.snapshot(sp, p)
         if not pending_state_matches(p, pending, before):
             config.pop("pending", None)
             manager.write(STATE, config)
@@ -257,8 +261,6 @@ def main():
                 else "Playlist changed after preview. Preview it again before confirming."
             )
             fail(message)
-        if before is None:
-            before = manager.snapshot(sp, p)
         backup = manager.save_snapshot(before)
         if kind == "undo":
             manager.audit(event="undo_started", playlist_id=pid, redo_snapshot=backup, recovery_snapshot=pending["backup"])
