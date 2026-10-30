@@ -26,6 +26,19 @@ class PlaylistManagerTests(unittest.TestCase):
                 self.assertTrue(manager.unlocked("allowed"))
                 self.assertFalse(manager.unlocked("other"))
 
+    def test_playlist_items_use_current_api_page_limit(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.call = lambda method, path: {"items": [], "next": None, "requested": path}
+        spotify.t = {}
+        spotify.refresh_token_rotated = False
+        seen = []
+        def fake_call(method, path):
+            seen.append((method, path))
+            return {"items": [], "next": None}
+        spotify.call = fake_call
+        self.assertEqual(spotify.items("playlist123"), [])
+        self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50")])
+
     def test_valid_add_plan(self):
         playlist_id, operations = manager.validate({
             "playlist_id": "playlist123",
