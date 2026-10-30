@@ -14,23 +14,17 @@ OWNER = "TrickySturluson"
 CONTROL_ISSUE_TITLE = "Spotify Playlist Manager Control"
 
 DAILY_DESCRIPTIONS = [
-    # Daily archive / discovery
-    "Familiar names. Unexpected detours.",
-
-    # Dry, cheeky, slightly dangerous
     "Could be worse. Could be quiet.",
     "At least the music's good.",
     "Well, something here has decent taste.",
+    "Familiar names. Unexpected detours",
     "Not too many hits yesterday, that was then this is an improvement.",
-    "A deep cut. Try to act surprised.",
     "The skip button is there for a reason. Hope you don't need it.",
-    "One good track can excuse a lot.",
-    "I'm sure this seemed like a good idea at the time.",
-    "You wanted background music. I took that personally.",
-    "I've got a reputation to maintain. And apparently, a playlist.",
-    "I don't make the rules. I just fix the queue.",
-    "If looks could kill, this would still have better taste.",
     "The playlist's doing the heavy lifting... again.",
+    "I've made a few adjustments. You're welcome.",
+    "Today's queue has considerably better judgment.",
+    "A little less filler... maybe..",
+    "Good music doesn't find itself, try not to miss it.",
     "Trust the queue. It's got a better track record.",
     "Some things are better left on repeat.",
     "A little distortion never hurt anybody.",
@@ -38,35 +32,6 @@ DAILY_DESCRIPTIONS = [
     "No encore necessary. I'll be here all day.",
     "Your daily dose of questionable taste.",
     "Today's queue. Don't say I never do anything for you.",
-    "I've made a few adjustments. You're welcome.",
-    "Today's queue has considerably better judgment.",
-    "A little less filler... maybe..",
-    "Good music doesn't find itself, try not to miss it.",
-    "Not saying I'm the main event. But look at the lineup.",
-    "Your taste is showing. Keep it that way.",
-
-    # Dante energy
-    "Jackpot. Another round with the deep cuts.",
-    "Let's make some noise. The dead can wait.",
-    "Style points count double after midnight.",
-    "If the bass drops, so do the demons.",
-    "A little reckless, a little legendary.",
-    "The night called. I brought the soundtrack.",
-
-    # Trevor-style dry wit
-    "I've had worse nights. Not many, mind you.",
-    "Try not to look so pleased with yourself.",
-    "I'm not brooding. I'm considering my options.",
-
-    # Hotline Miami
-    "Do you know what time it is?",
-    "Do you like hurting people?",
-    "The mask is on. The playlist is loaded.",
-    "No answers. Just a suspiciously good soundtrack.",
-    "Pick a mask. Pick a track. Make it count.",
-    "Midnight is a state of mind.",
-    "This party's got teeth.",
-    "No mercy for the skip button.",
 ]
 
 
