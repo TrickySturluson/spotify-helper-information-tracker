@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import spotify_discovery as discovery
 
@@ -19,9 +19,9 @@ class DiscoveryScoringTests(unittest.TestCase):
             "Seed B": [{"name": "Zulu Artist", "match": "1.0"}],
             "Seed C": [{"name": "Zulu Artist", "match": "1.0"}],
         }
-        with unittest.mock.patch.object(discovery, "_lastfm_similar", side_effect=lambda seed, key: responses[seed["artist"]]), \\
-             unittest.mock.patch.object(discovery.time, "sleep"):
-            rows = discovery.discover_similar_artists(profiles, "test-key", today=date(2026, 10, 30), seed_limit=3)
+        with patch.object(discovery, "_lastfm_similar", side_effect=lambda seed, key: responses[seed["artist"]]):
+            with patch.object(discovery.time, "sleep"):
+                rows = discovery.discover_similar_artists(profiles, "test-key", today=date(2026, 10, 30), seed_limit=3)
         self.assertEqual(rows[0]["artist"], "Zulu Artist")
         self.assertEqual(rows[0]["supporting_seeds"], 3)
         self.assertGreater(rows[0]["similarity"], rows[1]["similarity"])
