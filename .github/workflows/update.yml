@@ -32,6 +32,12 @@ jobs:
           MUSIC_METADATA_LOOKUPS_PER_RUN: 120
         run: python build_music_metadata.py
 
+      - name: Enrich artist genre, mood and theme profiles
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_PROFILE_LOOKUPS_PER_RUN: 120
+        run: python build_music_profiles.py
+
       - name: Build existing statistics
         run: python build_stats.py
 
