@@ -188,3 +188,11 @@ The preview returns a one-time confirmation code. Submit only that code to execu
 Confirmation is rejected if the playlist was locked or its snapshot changed after preview. Only the repository owner can issue commands, and only playlists owned by the connected Spotify account can be edited. New and unknown playlists remain locked by default. A lock or lock-all command cancels a pending preview. Pre-change snapshots are uploaded as GitHub Actions artifacts (30-day retention); the lock state and audit log are stored in the repository under `.github/`.
 
 The control issue reports playlist names, IDs, item counts and lock states. Preview comments include only the URIs explicitly supplied in the proposed plan; complete playlist tracklists are not sent to the control issue. Recovery snapshots remain separate Actions artifacts and are not included in assistant-facing analytics.
+
+
+Undo the most recent completed change with:
+```json
+{"command":"undo"}
+```
+
+Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its current snapshot ID to match the post-change state recorded by the manager. Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
