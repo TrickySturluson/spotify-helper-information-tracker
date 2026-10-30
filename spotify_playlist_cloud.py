@@ -36,6 +36,7 @@ DAILY_DESCRIPTIONS = [
     "A little distortion never hurt anybody.",
     "Nothing groundbreaking. Just breaking the silence.",
     "No encore necessary. I'll be here all day.",
+    "Your daily dose of questionable taste.",
     "I've made a few adjustments. You're welcome.",
     "Today's queue has considerably better judgment.",
     "A little less filler... maybe..",
