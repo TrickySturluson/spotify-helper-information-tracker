@@ -3,8 +3,8 @@
   "playlists": {
     "4yUVHSMQySfWeEowfIMcx7": {
       "name": "Tricky Daily",
-      "state": "unlocked",
-      "updated_at": "2026-10-30T07:54:20.173818+00:00"
+      "state": "locked",
+      "updated_at": "2026-10-30T07:55:20.933304+00:00"
     }
   },
   "last_completed": {
@@ -13,18 +13,5 @@
     "backup_run_id": "41022460939",
     "after_snapshot_id": "AAAABLcQt4ffq3s+hvp6H6htrm/ev4fL",
     "kind": "edit"
-  },
-  "pending": {
-    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "operations": [
-      {
-        "action": "remove",
-        "uris": [
-          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
-        ]
-      }
-    ],
-    "snapshot_id": "AAAABU7gFMOtajeviSa8PIx+/zaJG5rX",
-    "confirmation": "jNgQsc3hmP9uQOSu"
   }
 }
