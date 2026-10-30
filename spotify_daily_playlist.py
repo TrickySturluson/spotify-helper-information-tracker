@@ -22,7 +22,7 @@ KNOWN_MIN_PLAYS = 2
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
 def parse_date(value):
