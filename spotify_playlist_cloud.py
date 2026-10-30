@@ -278,12 +278,22 @@ def main():
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
         resolved, skipped, already_present = [], [], []
+        def catalog_search(query):
+            for attempt in range(4):
+                try:
+                    return sp.call("GET", "/search?" + query)
+                except manager.ManagerError as error:
+                    if "HTTP 429" not in str(error) or attempt == 3:
+                        raise
+                    time.sleep(3 * (attempt + 1))
+            raise manager.ManagerError("Spotify catalogue search retry limit reached.")
         for artist, title in candidates:
+            time.sleep(1.0)
             query = urllib.parse.urlencode({
                 "type": "track", "limit": 10,
                 "q": f'artist:"{artist}" track:"{title}"',
             })
-            page = sp.call("GET", "/search?" + query)
+            page = catalog_search(query)
             matches = ((page or {}).get("tracks") or {}).get("items") or []
             target_artist, target_title = music_key(artist), music_key(title)
             match = next((
@@ -297,7 +307,7 @@ def main():
                 fallback_query = urllib.parse.urlencode({
                     "type": "track", "limit": 10, "q": f'track:"{title}"',
                 })
-                fallback_page = sp.call("GET", "/search?" + fallback_query)
+                fallback_page = catalog_search(fallback_query)
                 fallback_matches = ((fallback_page or {}).get("tracks") or {}).get("items") or []
                 match = next((
                     track for track in fallback_matches
