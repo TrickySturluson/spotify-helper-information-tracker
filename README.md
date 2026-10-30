@@ -88,3 +88,57 @@ The tracker samples every 10 seconds by default; use `python spotify_playback_tr
 - Last.fm's recent-track archive does not supply actual listening duration. Duration-based estimates exclude scrobbles whose track duration is unknown; the metadata backfill action can improve coverage. Last.fm scrobble thresholds provide a theoretical minimum only, not exact played time.
 - Genre, release dates, biographies, similar artists and other descriptive metadata are not inferred from scrobbles. They require a separate metadata-enrichment stage and may be incomplete or inconsistent.
 - The canonical archive is preserved; assistant analytics are derived outputs and can be regenerated at any time.
+
+
+## Spotify playlist manager
+
+\`spotify_playlist_manager.py\` is a separate local tool for inspecting and managing your Spotify playlists. It does not feed Spotify playlist content into \`assistant_data/\` or the Last.fm analytics pipeline.
+
+### Setup
+
+1. Use the same Spotify Developer app and Client ID as the playback tracker.
+2. Ensure the app's Redirect URI includes \`http://127.0.0.1:8888/callback\`.
+3. Stop \`spotify_playback_tracker.py\` before first playlist-manager authorization if it is using port 8888.
+4. Set \`SPOTIFY_CLIENT_ID\` as shown in the playback tracker setup.
+5. Run \`python spotify_playlist_manager.py list\` and approve the additional playlist permissions in Spotify.
+
+The manager uses its own \`.spotify_playlist_token.json\`; it does not overwrite the playback tracker's token. It uses Authorization Code with PKCE and requires no client secret.
+
+### Commands
+
+\`\`\`bash
+python spotify_playlist_manager.py list
+python spotify_playlist_manager.py inspect YOUR_PLAYLIST_ID
+python spotify_playlist_manager.py unlock YOUR_PLAYLIST_ID
+python spotify_playlist_manager.py lock YOUR_PLAYLIST_ID
+python spotify_playlist_manager.py create "New playlist name" --description "Description"
+python spotify_playlist_manager.py apply change-plan.json
+\`\`\`
+
+All playlists are **LOCKED by default**, including newly created playlists. Only explicitly unlocked playlists can be modified. A change plan is previewed before any write, then requires typing \`APPLY\`; plans containing a replacement require typing \`REPLACE\`. The manager checks the lock again immediately before each operation and stops if it has become locked. It also checks playlist ownership and detects changes made after the preview.
+
+### Change-plan format
+
+Track URIs must be Spotify track URIs (for example, \`spotify:track:...\`). Supported operations are \`add\`, \`remove\`, \`replace\`, and \`reorder\`.
+
+\`\`\`json
+{
+  "playlist_id": "YOUR_PLAYLIST_ID",
+  "operations": [
+    {
+      "action": "add",
+      "uris": ["spotify:track:TRACK_ID"]
+    },
+    {
+      "action": "remove",
+      "uris": ["spotify:track:ANOTHER_TRACK_ID"]
+    }
+  ]
+}
+\`\`\`
+
+For a reorder operation, provide zero-based \`range_start\`, \`insert_before\`, and \`range_length\`. A replace operation replaces the full contents and requires the separate \`REPLACE\` confirmation.
+
+Before applying a plan, the manager saves a complete pre-change playlist snapshot under \`playlist_backups/\`. It records lock changes, cancelled plans, and completed changes in \`playlist_manager_audit.jsonl\`. These files and the local OAuth token are private runtime data and should not be committed. Snapshots are recovery references; they are not automatically restored by the tool.
+
+The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use \`/items\` (not the older \`/tracks\` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app.
