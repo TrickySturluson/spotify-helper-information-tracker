@@ -63,8 +63,9 @@ def rank_candidates(tracks, today=None, limit=TARGET_SIZE):
 
     valid.sort(key=lambda x: (-x["_score"], x["_tie"], norm(x["artist"]), norm(x["track"])))
     selected, artist_counts = [], {}
-    # Two passes: first enforce a strict artist cap, then relax only if needed.
-    for cap in (2, 3):
+    # Keep a strict two-track-per-artist cap; a shorter, more varied list is
+    # preferable to filling the target by over-weighting a single artist.
+    for cap in (2,):
         for row in valid:
             artist = norm(row["artist"])
             if row in selected or artist_counts.get(artist, 0) >= cap:
