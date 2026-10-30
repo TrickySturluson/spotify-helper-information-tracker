@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-30T01:03:34.034701+00:00",
+  "generated_at": "2026-10-30T01:25:55.940507+00:00",
   "username": "TrickySturluson",
   "overview": {
-    "total_scrobbles": 151821,
+    "total_scrobbles": 151828,
     "unique_artists": 5187,
     "unique_albums": 6372,
     "unique_tracks": 11037,
     "first_scrobble": "2023-02-13T23:01:00+00:00",
-    "last_scrobble": "2026-10-30T00:58:25+00:00",
-    "history_days": 1354.08,
+    "last_scrobble": "2026-10-30T01:21:18+00:00",
+    "history_days": 1354.1,
     "average_scrobbles_per_day": 112.12,
-    "estimated_listening_hours": 8856.2,
-    "estimated_listening_days": 369.01
+    "estimated_listening_hours": 8856.6,
+    "estimated_listening_days": 369.03
   },
   "replay": {
     "top_artist": "Candy Claws",
@@ -34,7 +34,7 @@
       "2023": 32915,
       "2024": 43367,
       "2025": 49751,
-      "2026": 25788
+      "2026": 25795
     },
     "by_month": {
       "2023-02": 2060,
@@ -79,21 +79,21 @@
       "2026-05": 3990,
       "2026-06": 2990,
       "2026-07": 2996,
-      "2026-10": 3435
+      "2026-10": 3442
     },
     "by_weekday": {
       "Monday": 24139,
       "Tuesday": 18546,
       "Wednesday": 20808,
       "Thursday": 22096,
-      "Friday": 22990,
+      "Friday": 22997,
       "Saturday": 20735,
       "Sunday": 22507
     },
     "by_hour_utc": {
       "23": 7161,
       "0": 7807,
-      "1": 8501,
+      "1": 8508,
       "2": 8717,
       "4": 8078,
       "5": 7764,
@@ -123,35 +123,35 @@
       "plays": 11284,
       "unique_tracks": 23,
       "unique_albums": 4,
-      "share": 0.074324
+      "share": 0.074321
     },
     {
       "artist": "Omori",
       "plays": 3082,
       "unique_tracks": 38,
       "unique_albums": 4,
-      "share": 0.0203
+      "share": 0.020299
     },
     {
       "artist": "Messer Chups",
       "plays": 2243,
       "unique_tracks": 268,
       "unique_albums": 32,
-      "share": 0.014774
+      "share": 0.014773
     },
     {
       "artist": "Rubblebucket",
       "plays": 1932,
       "unique_tracks": 88,
       "unique_albums": 21,
-      "share": 0.012726
+      "share": 0.012725
     },
     {
       "artist": "Otoboke Beaver",
       "plays": 1119,
       "unique_tracks": 26,
       "unique_albums": 10,
-      "share": 0.007371
+      "share": 0.00737
     },
     {
       "artist": "Katzenjammer",
@@ -172,21 +172,21 @@
       "plays": 889,
       "unique_tracks": 13,
       "unique_albums": 1,
-      "share": 0.005856
+      "share": 0.005855
     },
     {
       "artist": "The Heavy",
       "plays": 889,
       "unique_tracks": 49,
       "unique_albums": 19,
-      "share": 0.005856
+      "share": 0.005855
     },
     {
       "artist": "Tino Drima",
-      "plays": 734,
+      "plays": 735,
       "unique_tracks": 14,
       "unique_albums": 7,
-      "share": 0.004835
+      "share": 0.004841
     },
     {
       "artist": "Ashnikko",
@@ -207,7 +207,7 @@
       "plays": 664,
       "unique_tracks": 7,
       "unique_albums": 3,
-      "share": 0.004374
+      "share": 0.004373
     },
     {
       "artist": "Mitski",
@@ -235,14 +235,14 @@
       "plays": 560,
       "unique_tracks": 98,
       "unique_albums": 1,
-      "share": 0.003689
+      "share": 0.003688
     },
     {
       "artist": "Adventure Time",
       "plays": 531,
       "unique_tracks": 3,
       "unique_albums": 4,
-      "share": 0.003498
+      "share": 0.003497
     },
     {
       "artist": "Mother Mother",
@@ -312,7 +312,7 @@
       "plays": 410,
       "unique_tracks": 10,
       "unique_albums": 7,
-      "share": 0.002701
+      "share": 0.0027
     },
     {
       "artist": "The Happy Fits",
@@ -361,7 +361,7 @@
       "plays": 381,
       "unique_tracks": 13,
       "unique_albums": 9,
-      "share": 0.00251
+      "share": 0.002509
     },
     {
       "artist": "Thao",
@@ -372,10 +372,10 @@
     },
     {
       "artist": "Jack Conte",
-      "plays": 373,
+      "plays": 374,
       "unique_tracks": 18,
       "unique_albums": 4,
-      "share": 0.002457
+      "share": 0.002463
     },
     {
       "artist": "öOoOoOoOoOo",
@@ -410,21 +410,21 @@
       "plays": 335,
       "unique_tracks": 3,
       "unique_albums": 3,
-      "share": 0.002207
+      "share": 0.002206
     },
     {
       "artist": "Laufey",
       "plays": 335,
       "unique_tracks": 36,
       "unique_albums": 13,
-      "share": 0.002207
+      "share": 0.002206
     },
     {
       "artist": "Momo Games",
       "plays": 335,
       "unique_tracks": 1,
       "unique_albums": 2,
-      "share": 0.002207
+      "share": 0.002206
     },
     {
       "artist": "Sugs",
@@ -452,7 +452,7 @@
       "plays": 318,
       "unique_tracks": 11,
       "unique_albums": 2,
-      "share": 0.002095
+      "share": 0.002094
     },
     {
       "artist": "Felix Hagan & The Family",
@@ -557,7 +557,7 @@
       "plays": 260,
       "unique_tracks": 7,
       "unique_albums": 3,
-      "share": 0.001713
+      "share": 0.001712
     },
     {
       "artist": "Stolen Babies",
@@ -592,7 +592,7 @@
       "plays": 248,
       "unique_tracks": 3,
       "unique_albums": 2,
-      "share": 0.001634
+      "share": 0.001633
     },
     {
       "artist": "Mr. Gnome",
@@ -613,7 +613,7 @@
       "plays": 243,
       "unique_tracks": 15,
       "unique_albums": 6,
-      "share": 0.001601
+      "share": 0.0016
     },
     {
       "artist": "Kiltro",
@@ -739,7 +739,7 @@
       "plays": 214,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.00141
+      "share": 0.001409
     },
     {
       "artist": "Stoop Kids",
@@ -788,7 +788,7 @@
       "plays": 202,
       "unique_tracks": 13,
       "unique_albums": 5,
-      "share": 0.001331
+      "share": 0.00133
     },
     {
       "artist": "Caro Emerald",
@@ -824,7 +824,7 @@
       "artist": "Omori",
       "track": "Trees...",
       "plays": 2515,
-      "share": 0.016566
+      "share": 0.016565
     },
     {
       "artist": "Candy Claws",
@@ -836,7 +836,7 @@
       "artist": "Candy Claws",
       "track": "Transitional Bird (Clever Girl)",
       "plays": 935,
-      "share": 0.006159
+      "share": 0.006158
     },
     {
       "artist": "Candy Claws",
@@ -860,7 +860,7 @@
       "artist": "Candy Claws",
       "track": "Fell in Love (At the Water)",
       "plays": 930,
-      "share": 0.006126
+      "share": 0.006125
     },
     {
       "artist": "Candy Claws",
@@ -878,7 +878,7 @@
       "artist": "Candy Claws",
       "track": "White Seal (Shell & Spine)",
       "plays": 925,
-      "share": 0.006093
+      "share": 0.006092
     },
     {
       "artist": "Candy Claws",
@@ -890,19 +890,19 @@
       "artist": "Candy Claws",
       "track": "Charade (Fern Prairie)",
       "plays": 920,
-      "share": 0.00606
+      "share": 0.006059
     },
     {
       "artist": "Candy Claws",
       "track": "New Forest (Five Heads of the Sun)",
       "plays": 918,
-      "share": 0.006047
+      "share": 0.006046
     },
     {
       "artist": "Ashnikko",
       "track": "Paint The Town Blue (from the series Arcane League of Legends)",
       "plays": 509,
-      "share": 0.003353
+      "share": 0.003352
     },
     {
       "artist": "Mort Garson",
@@ -926,7 +926,7 @@
       "artist": "The Heavy",
       "track": "How You Like Me Now",
       "plays": 352,
-      "share": 0.002319
+      "share": 0.002318
     },
     {
       "artist": "Ergo, Bria",
@@ -938,7 +938,7 @@
       "artist": "Momo Games",
       "track": "Phantasmal Phunk",
       "plays": 335,
-      "share": 0.002207
+      "share": 0.002206
     },
     {
       "artist": "Sugs",
@@ -1022,7 +1022,7 @@
       "artist": "The Caretaker",
       "track": "A2 - We don't have many days",
       "plays": 243,
-      "share": 0.001601
+      "share": 0.0016
     },
     {
       "artist": "Felix Hagan & The Family",
@@ -1052,7 +1052,7 @@
       "artist": "Nico Vega",
       "track": "Bang Bang (My Baby Shot Me Down)",
       "plays": 231,
-      "share": 0.001522
+      "share": 0.001521
     },
     {
       "artist": "Talking Heads",
@@ -1100,13 +1100,13 @@
       "artist": "RAT BOY",
       "track": "Who's Ready for Tomorrow",
       "plays": 214,
-      "share": 0.00141
+      "share": 0.001409
     },
     {
       "artist": "forrest flowers",
       "track": "Chickens",
       "plays": 214,
-      "share": 0.00141
+      "share": 0.001409
     },
     {
       "artist": "Adventure Time",
@@ -1184,7 +1184,7 @@
       "artist": "Ron Gallo",
       "track": "Please Yourself",
       "plays": 185,
-      "share": 0.001219
+      "share": 0.001218
     },
     {
       "artist": "the buttress",
@@ -1465,7 +1465,7 @@
     {
       "artist": "Tino Drima",
       "album": "Suitin' Up",
-      "plays": 511
+      "plays": 512
     },
     {
       "artist": "Ashnikko",
@@ -2289,7 +2289,7 @@
       },
       {
         "artist": "Tino Drima",
-        "plays": 116
+        "plays": 117
       },
       {
         "artist": "Lazerhawk",
