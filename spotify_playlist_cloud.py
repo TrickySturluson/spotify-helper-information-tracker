@@ -232,12 +232,41 @@ def main():
         config.pop("pending", None)
         manager.write(STATE, config)
         manager.audit(event="confirmation_consumed", playlist_id=pid, backup=backup, kind=kind)
-        if kind == "undo":
-            restore_data = manager.read(pending["backup"], None)
-            replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
-        else:
-            execute(sp, pid, pending["operations"])
-        updated = owned_playlist(sp, pid, me)
+        try:
+            if kind == "undo":
+                restore_data = manager.read(pending["backup"], None)
+                replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
+            else:
+                execute(sp, pid, pending["operations"])
+            updated = owned_playlist(sp, pid, me)
+        except Exception as operation_error:
+            # A multi-request edit can fail after Spotify has accepted some writes.
+            # Preserve an undo pointer to the pre-change snapshot even on partial failure.
+            try:
+                interrupted = owned_playlist(sp, pid, me)
+                config["last_completed"] = {
+                    "playlist_id": pid,
+                    "backup": backup,
+                    "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+                    "after_snapshot_id": interrupted.get("snapshot_id"),
+                    "kind": "partial",
+                }
+                manager.write(STATE, config)
+                manager.audit(
+                    event="change_interrupted",
+                    playlist_id=pid,
+                    backup=backup,
+                    kind=kind,
+                    error_type=type(operation_error).__name__,
+                )
+            except Exception as recovery_error:
+                manager.audit(
+                    event="recovery_state_capture_failed",
+                    playlist_id=pid,
+                    backup=backup,
+                    error_type=type(recovery_error).__name__,
+                )
+            raise
         config["last_completed"] = {
             "playlist_id": pid, "backup": backup,
             "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
