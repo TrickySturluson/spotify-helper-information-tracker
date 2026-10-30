@@ -13,13 +13,5 @@
     "backup_run_id": "41023560166",
     "after_snapshot_id": "AAAABU7gFMOtajeviSa8PIx+/zaJG5rX",
     "kind": "edit"
-  },
-  "pending": {
-    "kind": "undo",
-    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "snapshot_id": "AAAABU7gFMOtajeviSa8PIx+/zaJG5rX",
-    "backup": "playlist_backups/20261030T080036440496Z_4yUVHSMQySfWeEowfIMcx7.json",
-    "confirmation": "rh4Np1BGqvq0JN44",
-    "restore_count": 0
   }
 }
