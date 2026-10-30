@@ -277,7 +277,7 @@ def main():
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
-        resolved, skipped = [], []
+        resolved, skipped, already_present = [], [], []
         for artist, title in candidates:
             query = urllib.parse.urlencode({
                 "type": "track", "limit": 10,
@@ -309,18 +309,22 @@ def main():
             if not match:
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
                 continue
-            if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
-                skipped.append(f"{artist} — {title} (already in playlist or duplicate)")
+            if match["uri"] in existing:
+                already_present.append(f"{artist} — {match['name']}")
+                continue
+            if any(row["uri"] == match["uri"] for row in resolved):
+                skipped.append(f"{artist} — {title} (duplicate in requested batch)")
                 continue
             resolved.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
         if skipped:
             lines = [
                 f'20-TRACK BATCH NOT STAGED — {p.get("name")} [{pid}]',
-                f'Exact new Spotify matches: {len(resolved)}/20; existing/duplicate/unmatched: {len(skipped)}.',
+                f'New Spotify matches: {len(resolved)}/20; already present: {len(already_present)}; unmatched/duplicate: {len(skipped)}.',
                 "No playlist changes have been made. Review the exceptions before staging.",
                 "",
             ]
             lines.extend(f"FOUND: {row['artist']} — {row['track']}" for row in resolved)
+            lines.extend(f"ALREADY PRESENT: {row}" for row in already_present)
             lines.extend(f"SKIPPED: {row}" for row in skipped)
             result = "\\n".join(lines)
         else:
@@ -336,12 +340,13 @@ def main():
             manager.audit(event="booze20_previewed", playlist_id=pid, added_count=len(resolved))
             lines = [
                 f'20-TRACK BATCH PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; additions: {len(resolved)}; after confirmation: {len(current["items"]) + len(resolved)}.',
+                f'Current items: {len(current["items"])}; additions: {len(resolved)}; already present: {len(already_present)}; after confirmation: {len(current["items"]) + len(resolved)}.',
                 "No playlist changes have been made.",
                 "",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
-            lines.extend(["", "To add these exact tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
+            lines.extend(f"Already present: {row}" for row in already_present)
+            lines.extend(["", "To add these exact new tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
             result = "\\n".join(lines)
     elif action == "horror_preview":
         # Resolve a hand-curated 46-track Halloween expansion through Spotify's
