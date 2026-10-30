@@ -9,7 +9,7 @@ from pathlib import Path
 
 CID=os.environ.get("SPOTIFY_CLIENT_ID","").strip()
 REDIRECT="http://127.0.0.1:8888/callback"
-SCOPES="user-read-private playlist-read-private playlist-modify-private playlist-modify-public"
+SCOPES="user-read-private playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public"
 TOKEN=Path(".spotify_playlist_token.json")
 CONFIG=Path(".spotify_playlist_manager.json")
 BACKUPS=Path("playlist_backups")
@@ -203,6 +203,7 @@ def apply(sp,path):
 def main():
     ap=argparse.ArgumentParser(description=__doc__); sub=ap.add_subparsers(dest="cmd",required=True)
     sub.add_parser("list")
+    sub.add_parser("export-refresh-token", help="Print the playlist manager refresh token for copying into GitHub Actions Secrets.")
     x=sub.add_parser("inspect"); x.add_argument("playlist_id")
     for name in ("lock","unlock"):
         x=sub.add_parser(name); x.add_argument("playlist_id")
@@ -212,6 +213,10 @@ def main():
     try:
         sp=Spotify()
         if a.cmd=="list": list_playlists(sp)
+        elif a.cmd=="export-refresh-token":
+            token=sp.t.get("refresh_token")
+            if not token: raise ManagerError("No refresh token is available; authorize again.")
+            print(token)
         elif a.cmd=="inspect": inspect(sp,a.playlist_id)
         elif a.cmd=="lock": set_lock(sp,a.playlist_id,"locked")
         elif a.cmd=="unlock": set_lock(sp,a.playlist_id,"unlocked")
