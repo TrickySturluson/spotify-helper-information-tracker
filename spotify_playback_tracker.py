@@ -131,6 +131,8 @@ def get_playback(token):
     req = urllib.request.Request(API, headers={"Authorization": "Bearer " + bearer})
     try:
         with urllib.request.urlopen(req, timeout=20) as response:
+            if response.status == 204:
+                return token, None
             return token, json.loads(response.read().decode())
     except urllib.error.HTTPError as exc:
         if exc.code == 204:
