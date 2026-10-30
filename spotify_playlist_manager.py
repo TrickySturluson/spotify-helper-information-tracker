@@ -71,12 +71,17 @@ def authorize():
     t["obtained_at"]=time.time(); write(TOKEN,t); return t
 
 class Spotify:
-    def __init__(self): self.t=read(TOKEN,None) or authorize()
+    def __init__(self):
+        self.t=read(TOKEN,None) or authorize()
+        self.refresh_token_rotated=False
     def bearer(self):
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
             self.t=token_post({"client_id":CID,"grant_type":"refresh_token","refresh_token":old["refresh_token"]})
-            self.t["refresh_token"]=self.t.get("refresh_token",old["refresh_token"]); self.t["obtained_at"]=time.time(); write(TOKEN,self.t)
+            replacement=self.t.get("refresh_token")
+            self.refresh_token_rotated=bool(replacement and replacement!=old["refresh_token"])
+            self.t["refresh_token"]=replacement or old["refresh_token"]
+            self.t["obtained_at"]=time.time(); write(TOKEN,self.t)
         return self.t["access_token"]
     def call(self,method,path,body=None,retry=True):
         h={"Authorization":"Bearer "+self.bearer()}; data=None
