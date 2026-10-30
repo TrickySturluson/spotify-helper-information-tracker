@@ -1,1 +1,70 @@
-{"username":"TrickySturluson","total_scrobbles":151828,"unique_artists":5187,"unique_tracks":11037,"unique_albums":7419,"first_scrobble":"2023-02-13T23:01:00+00:00","last_scrobble":"2026-10-30T01:21:18+00:00","history_days":1354.1,"average_scrobbles_per_day":112.12,"estimated_listening_hours":8856.6,"legacy_3_5_minute_baseline_hours":8856.6,"listening_time_note":"Legacy baseline only: 3.5 minutes per scrobble. Prefer duration_estimates when present; Last.fm scrobbles do not reveal actual played duration.","duration_estimates":{"duration_coverage":0.878916,"scrobbles_with_duration":133444,"unknown_duration_scrobbles":18384,"known_duration_minimum_qualifying_hours":3698.75,"known_duration_full_track_equivalent_hours":7466.45,"note":"Duration-based figures cover only scrobbles whose track duration is known; they are not actual playback measurements."},"top_artist":{"artist":"Candy Claws","plays":11284,"unique_tracks":23,"unique_albums":4,"first_scrobble":"2023-02-15T06:03:21+00:00","last_scrobble":"2026-10-13T23:37:16+00:00","active_months":42,"share":0.07432094},"top_track":{"artist":"Omori","track":"Trees...","plays":2515,"first_scrobble":"2024-05-25T10:00:02+00:00","last_scrobble":"2026-10-10T08:00:24+00:00","share":0.0165648},"top_10_artist_share":0.158587,"top_10_track_share":0.07249}
+{
+  "username": "TrickySturluson",
+  "total_scrobbles": 151850,
+  "unique_artists": 5188,
+  "unique_tracks": 11038,
+  "unique_albums": 7420,
+  "first_scrobble": "2023-02-13T23:01:00+00:00",
+  "last_scrobble": "2026-10-30T06:55:28+00:00",
+  "history_days": 1354.33,
+  "average_scrobbles_per_day": 112.12,
+  "estimated_listening_hours": 8857.9,
+  "legacy_3_5_minute_baseline_hours": 8857.9,
+  "listening_time_note": "Includes every archived scrobble, including tracks with unknown duration. An archive-wide estimate, not measured playback.",
+  "duration_estimates": {
+    "duration_coverage": 0.878927,
+    "scrobbles_with_duration": 133465,
+    "unknown_duration_scrobbles": 18385,
+    "known_duration_minimum_qualifying_hours": 3699.31,
+    "known_duration_full_track_equivalent_hours": 7467.58,
+    "note": "Duration-based figures cover only scrobbles whose track duration is known; they are not actual playback measurements."
+  },
+  "top_artist": {
+    "artist": "Candy Claws",
+    "plays": 11284,
+    "unique_tracks": 23,
+    "unique_albums": 4,
+    "first_scrobble": "2023-02-15T06:03:21+00:00",
+    "last_scrobble": "2026-10-13T23:37:16+00:00",
+    "active_months": 42,
+    "share": 0.07431017
+  },
+  "top_track": {
+    "artist": "Omori",
+    "track": "Trees...",
+    "plays": 2515,
+    "first_scrobble": "2024-05-25T10:00:02+00:00",
+    "last_scrobble": "2026-10-10T08:00:24+00:00",
+    "share": 0.0165624
+  },
+  "top_10_artist_share": 0.158571,
+  "top_10_track_share": 0.072479,
+  "listening_time": {
+    "schema_version": 1,
+    "generated_at": "2026-10-30T07:02:50.800591+00:00",
+    "source_scrobbles": 151850,
+    "primary_estimate": {
+      "method": "legacy_average_duration",
+      "average_minutes_per_scrobble": 3.5,
+      "estimated_hours": 8857.9,
+      "estimated_days": 369.08,
+      "coverage_scrobbles": 151850,
+      "coverage_percent": 100.0,
+      "label": "Estimated listening time (legacy 3.5-minute average)",
+      "note": "Includes every archived scrobble, including tracks with unknown duration. An archive-wide estimate, not measured playback."
+    },
+    "verified_duration_subset": {
+      "scrobbles_with_duration": 133465,
+      "unknown_duration_scrobbles": 18385,
+      "coverage_fraction": 0.878927,
+      "coverage_percent": 87.89,
+      "full_track_equivalent_hours": 7467.58,
+      "minimum_qualifying_hours": 3699.31,
+      "note": "Subset only: calculated from matched track durations. It is not actual playback measurement."
+    },
+    "measured_spotify_playback": {
+      "status": "prospective_local_tracker",
+      "note": "Measured progress intervals are reported separately and cover only periods captured by the local Spotify tracker."
+    }
+  }
+}

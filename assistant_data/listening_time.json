@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-30T07:02:50.800591+00:00",
+  "source_scrobbles": 151850,
+  "primary_estimate": {
+    "method": "legacy_average_duration",
+    "average_minutes_per_scrobble": 3.5,
+    "estimated_hours": 8857.9,
+    "estimated_days": 369.08,
+    "coverage_scrobbles": 151850,
+    "coverage_percent": 100.0,
+    "label": "Estimated listening time (legacy 3.5-minute average)",
+    "note": "Includes every archived scrobble, including tracks with unknown duration. An archive-wide estimate, not measured playback."
+  },
+  "verified_duration_subset": {
+    "scrobbles_with_duration": 133465,
+    "unknown_duration_scrobbles": 18385,
+    "coverage_fraction": 0.878927,
+    "coverage_percent": 87.89,
+    "full_track_equivalent_hours": 7467.58,
+    "minimum_qualifying_hours": 3699.31,
+    "note": "Subset only: calculated from matched track durations. It is not actual playback measurement."
+  },
+  "measured_spotify_playback": {
+    "status": "prospective_local_tracker",
+    "note": "Measured progress intervals are reported separately and cover only periods captured by the local Spotify tracker."
+  }
+}
