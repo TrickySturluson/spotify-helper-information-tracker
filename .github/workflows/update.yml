@@ -24,23 +24,42 @@ jobs:
       - name: Update Last.fm history
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: |
-          python update_lastfm.py
+        run: python update_lastfm.py
 
-      - name: Build statistics
+      - name: Build existing statistics
+        run: python build_stats.py
+
+      - name: Build assistant-friendly analytics
+        run: python build_assistant_data.py
+
+      - name: Validate generated data
         run: |
-          python build_stats.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(Path("assistant_data/manifest.json").read_text(encoding="utf-8"))
+          metadata = json.loads(Path("data/metadata.json").read_text(encoding="utf-8"))
+          stats = json.loads(Path("data/stats.json").read_text(encoding="utf-8"))
+          expected = int(metadata["total_scrobbles"])
+          assert manifest["source_scrobbles"] == expected, (manifest["source_scrobbles"], expected)
+          assert stats["overview"]["total_scrobbles"] == expected
+          assert manifest["validation"]["year_total"] == expected
+          assert manifest["validation"]["month_total"] == expected
+          assert manifest["validation"]["day_total"] == expected
+          print(f"Validated {expected:,} scrobbles across assistant datasets.")
+          PY
 
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+users.noreply.github.com"
 
-          git add data/
+          git add data/ assistant_data/
 
           if git diff --cached --quiet; then
             echo "No data changes to commit."
           else
-            git commit -m "Update Last.fm history and statistics"
+            git commit -m "Update Last.fm history and assistant analytics"
             git push
           fi
