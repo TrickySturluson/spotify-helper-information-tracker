@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-30T00:51:58.469768+00:00",
+  "generated_at": "2026-10-30T01:03:34.034701+00:00",
   "username": "TrickySturluson",
   "overview": {
-    "total_scrobbles": 151817,
+    "total_scrobbles": 151821,
     "unique_artists": 5187,
     "unique_albums": 6372,
     "unique_tracks": 11037,
     "first_scrobble": "2023-02-13T23:01:00+00:00",
-    "last_scrobble": "2026-10-30T00:47:32+00:00",
-    "history_days": 1354.07,
+    "last_scrobble": "2026-10-30T00:58:25+00:00",
+    "history_days": 1354.08,
     "average_scrobbles_per_day": 112.12,
-    "estimated_listening_hours": 8856.0,
-    "estimated_listening_days": 369.0
+    "estimated_listening_hours": 8856.2,
+    "estimated_listening_days": 369.01
   },
   "replay": {
     "top_artist": "Candy Claws",
@@ -34,7 +34,7 @@
       "2023": 32915,
       "2024": 43367,
       "2025": 49751,
-      "2026": 25784
+      "2026": 25788
     },
     "by_month": {
       "2023-02": 2060,
@@ -79,20 +79,20 @@
       "2026-05": 3990,
       "2026-06": 2990,
       "2026-07": 2996,
-      "2026-10": 3431
+      "2026-10": 3435
     },
     "by_weekday": {
       "Monday": 24139,
       "Tuesday": 18546,
       "Wednesday": 20808,
       "Thursday": 22096,
-      "Friday": 22986,
+      "Friday": 22990,
       "Saturday": 20735,
       "Sunday": 22507
     },
     "by_hour_utc": {
       "23": 7161,
-      "0": 7803,
+      "0": 7807,
       "1": 8501,
       "2": 8717,
       "4": 8078,
@@ -123,14 +123,14 @@
       "plays": 11284,
       "unique_tracks": 23,
       "unique_albums": 4,
-      "share": 0.074326
+      "share": 0.074324
     },
     {
       "artist": "Omori",
       "plays": 3082,
       "unique_tracks": 38,
       "unique_albums": 4,
-      "share": 0.020301
+      "share": 0.0203
     },
     {
       "artist": "Messer Chups",
@@ -158,7 +158,7 @@
       "plays": 991,
       "unique_tracks": 35,
       "unique_albums": 5,
-      "share": 0.006528
+      "share": 0.006527
     },
     {
       "artist": "Sibylle Baier",
@@ -263,7 +263,7 @@
       "plays": 495,
       "unique_tracks": 24,
       "unique_albums": 1,
-      "share": 0.003261
+      "share": 0.00326
     },
     {
       "artist": "Lil Mariko",
@@ -291,7 +291,7 @@
       "plays": 444,
       "unique_tracks": 65,
       "unique_albums": 20,
-      "share": 0.002925
+      "share": 0.002924
     },
     {
       "artist": "GRLwood",
@@ -396,7 +396,7 @@
       "plays": 357,
       "unique_tracks": 13,
       "unique_albums": 2,
-      "share": 0.002352
+      "share": 0.002351
     },
     {
       "artist": "Ergo, Bria",
@@ -536,7 +536,7 @@
       "plays": 265,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001746
+      "share": 0.001745
     },
     {
       "artist": "Frank Sinatra",
@@ -627,7 +627,7 @@
       "plays": 236,
       "unique_tracks": 1,
       "unique_albums": 1,
-      "share": 0.001555
+      "share": 0.001554
     },
     {
       "artist": "Heaven Pierce Her",
@@ -866,7 +866,7 @@
       "artist": "Candy Claws",
       "track": "Where I Found You (One Star)",
       "plays": 928,
-      "share": 0.006113
+      "share": 0.006112
     },
     {
       "artist": "Candy Claws",
@@ -914,7 +914,7 @@
       "artist": "The Death Set",
       "track": "They Come To Get Us - Original Death Set Punk Version",
       "plays": 386,
-      "share": 0.002543
+      "share": 0.002542
     },
     {
       "artist": "Maximum the Hormone",
@@ -1010,7 +1010,7 @@
       "artist": "Raney Shockne",
       "track": "Hole in the Sun (feat. COS & Conway)",
       "plays": 265,
-      "share": 0.001746
+      "share": 0.001745
     },
     {
       "artist": "Rubblebucket",
@@ -1034,13 +1034,13 @@
       "artist": "Schoolyard Heroes",
       "track": "Dude, Where's My Skin?",
       "plays": 236,
-      "share": 0.001555
+      "share": 0.001554
     },
     {
       "artist": "Billie Holiday",
       "track": "Solitude",
       "plays": 236,
-      "share": 0.001555
+      "share": 0.001554
     },
     {
       "artist": "The Bridge City Sinners",
@@ -1160,7 +1160,7 @@
       "artist": "Courtney Barnett",
       "track": "Pedestrian at Best",
       "plays": 190,
-      "share": 0.001252
+      "share": 0.001251
     },
     {
       "artist": "Nathan Hanover Synthonic Orchestra",
