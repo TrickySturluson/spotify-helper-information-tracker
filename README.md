@@ -21,7 +21,8 @@ This repository maintains a personal Last.fm scrobble archive and derived analyt
 | `assistant_data/indexes/artists.json` | Compact artist lookup index |
 | `assistant_data/listening_patterns.json` | Daily, monthly, yearly, weekday and UTC-hour counts |
 | `assistant_data/years/YYYY.json` | Full annual summary and rankings |
-| `assistant_data/months/YYYY-MM.json` | Full monthly summary, daily counts, new artists and rankings |\n| `assistant_data/advanced/` | MBID-aware artist timelines, discovery/rediscovery, rolling rankings, inferred sessions and monthly diversity |
+| `assistant_data/months/YYYY-MM.json` | Full monthly summary, daily counts, new artists and rankings |
+| `assistant_data/advanced/` | MBID-aware artist timelines, discovery/rediscovery, rolling rankings, inferred sessions and monthly diversity |
 
 All generated timestamps and calendar buckets use UTC. Track identity is the artist/track pair; album identity is the artist/album pair, preventing identical titles by different artists from being collapsed. Advanced analytics prefer MusicBrainz IDs (MBIDs) when present and fall back to case-folded names. They include monthly artist timelines, first-time discovery and 90-day rediscovery events, trailing 30/90-day rankings, inferred listening sessions (30-minute gap threshold), and monthly artist-concentration metrics. Rolling windows end at the newest archived scrobble. Session spans are timestamp-based estimates, not actual playback durations.
 
@@ -29,7 +30,8 @@ All generated timestamps and calendar buckets use UTC. Track identity is the art
 
 ```bash
 python build_stats.py
-python build_assistant_data.py\npython build_advanced_analytics.py
+python build_assistant_data.py
+python build_advanced_analytics.py
 ```
 
 The scheduled GitHub Actions workflow runs the importer and both builders, validates the generated data, then commits updates. It requires the repository secret `LASTFM_API_KEY`.
