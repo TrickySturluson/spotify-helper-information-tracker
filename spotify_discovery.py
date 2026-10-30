@@ -27,7 +27,7 @@ TRACKS_PER_ARTIST = 10
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
 def track_key(artist, track):
