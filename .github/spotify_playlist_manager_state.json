@@ -9,22 +9,9 @@
   },
   "last_completed": {
     "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "backup": "playlist_backups/20261030T074701463203Z_4yUVHSMQySfWeEowfIMcx7.json",
-    "backup_run_id": "41022179831",
-    "after_snapshot_id": "AAAAA2RdszVkOYqKCEO47m6XUy2D0Gea",
+    "backup": "playlist_backups/20261030T074950882494Z_4yUVHSMQySfWeEowfIMcx7.json",
+    "backup_run_id": "41022460939",
+    "after_snapshot_id": "AAAABLcQt4ffq3s+hvp6H6htrm/ev4fL",
     "kind": "edit"
-  },
-  "pending": {
-    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "operations": [
-      {
-        "action": "remove",
-        "uris": [
-          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
-        ]
-      }
-    ],
-    "snapshot_id": "AAAABLcQt4ffq3s+hvp6H6htrm/ev4fL",
-    "confirmation": "V_SBhjFaH5ZX9nsL"
   }
 }
