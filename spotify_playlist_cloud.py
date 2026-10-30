@@ -47,6 +47,14 @@ def pending_state_matches(playlist, pending, current_snapshot=None):
     return playlist.get("snapshot_id") == pending.get("snapshot_id")
 
 
+def completed_state_matches(playlist, completed, current_snapshot):
+    # Validate the live playlist against the exact ordered contents recorded
+    # immediately after the completed edit. Keep snapshot_id as a legacy fallback.
+    if "after_uris" in completed:
+        return snapshot_uris(current_snapshot) == completed.get("after_uris")
+    return playlist.get("snapshot_id") == completed.get("after_snapshot_id")
+
+
 def replace_playlist(sp, pid, uris):
     # Replace the first page, then append in order; duplicate URIs are preserved.
     if not manager.unlocked(pid):
@@ -199,8 +207,9 @@ def main():
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED. Unlock it explicitly before undo.")
         p = owned_playlist(sp, pid, me)
-        if p.get("snapshot_id") != last.get("after_snapshot_id"):
-            fail("Undo refused: the playlist changed after the saved operation.")
+        current_snapshot = manager.snapshot(sp, p)
+        if not completed_state_matches(p, last, current_snapshot):
+            fail("Undo refused: playlist contents changed after the saved operation.")
         backup_path = Path(last.get("backup", ""))
         if not backup_path.is_file():
             fail("Recovery snapshot is unavailable. Check the original workflow artifact.")
@@ -274,11 +283,13 @@ def main():
             # Preserve an undo pointer to the pre-change snapshot even on partial failure.
             try:
                 interrupted = owned_playlist(sp, pid, me)
+                interrupted_snapshot = manager.snapshot(sp, interrupted)
                 config["last_completed"] = {
                     "playlist_id": pid,
                     "backup": backup,
                     "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
                     "after_snapshot_id": interrupted.get("snapshot_id"),
+                    "after_uris": snapshot_uris(interrupted_snapshot),
                     "kind": "partial",
                 }
                 manager.write(STATE, config)
@@ -297,10 +308,12 @@ def main():
                     error_type=type(recovery_error).__name__,
                 )
             raise
+        updated_snapshot = manager.snapshot(sp, updated)
         config["last_completed"] = {
             "playlist_id": pid, "backup": backup,
             "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
             "after_snapshot_id": updated.get("snapshot_id"),
+            "after_uris": snapshot_uris(updated_snapshot),
             "kind": "undo" if kind == "undo" else "edit",
         }
         manager.write(STATE, config)
