@@ -278,7 +278,7 @@ def main():
     write_json(ROOT / "indexes" / "artists.json", artist_index)
     write_json(ROOT / "indexes" / "tracks.json", track_index)
     write_json(ROOT / "artist_duration_totals.json", sorted(
-        artist_totals.values(), key=lambda x: (-x["estimated_full_track_hours"], x["artist"].casefold())
+        artist_totals.values(), key=lambda x: (-x["known_duration_full_track_equivalent_hours"], x["artist"].casefold())
     ))
 
     total_plays = len(scrobbles)
