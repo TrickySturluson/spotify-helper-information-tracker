@@ -6,5 +6,18 @@
       "state": "unlocked",
       "updated_at": "2026-10-30T07:45:36.031174+00:00"
     }
+  },
+  "pending": {
+    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+    "operations": [
+      {
+        "action": "add",
+        "uris": [
+          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
+        ]
+      }
+    ],
+    "snapshot_id": "AAAAA2RdszVkOYqKCEO47m6XUy2D0Gea",
+    "confirmation": "9qjVJr8ISNVfOTlt"
   }
 }
