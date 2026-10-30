@@ -8,6 +8,9 @@ import spotify_discovery as discovery
 
 
 class DiscoveryScoringTests(unittest.TestCase):
+    def test_normalization_collapses_whitespace(self):
+        self.assertEqual(discovery.norm("  Two   Words  "), "two words")
+
     def test_unheard_tracks_have_no_familiarity_penalty(self):
         self.assertEqual(discovery.familiarity_penalty(0, None, date(2026, 10, 30)), 0)
 
