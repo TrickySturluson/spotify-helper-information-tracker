@@ -103,7 +103,7 @@ class Spotify:
             if url: url=url.replace("https://api.spotify.com/v1","")
         return out
     def items(self,pid):
-        out=[]; url=f"/playlists/{pid}/items?limit=50"
+        out=[]; url=f"/playlists/{pid}/items?limit=50&additional_types=track,episode"
         while url:
             p=self.call("GET",url); out+=p.get("items",[]); url=p.get("next","")
             if url: url=url.replace(API,"")
