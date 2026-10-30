@@ -1,0 +1,4 @@
+# Spotify OAuth credentials and local runtime state
+.spotify_token.json
+__pycache__/
+*.py[cod]
