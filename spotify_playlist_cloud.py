@@ -295,7 +295,7 @@ def main():
             ), None)
             if not match:
                 fallback_query = urllib.parse.urlencode({
-                    "type": "track", "limit": 50, "q": f'track:"{title}"',
+                    "type": "track", "limit": 10, "q": f'track:"{title}"',
                 })
                 fallback_page = sp.call("GET", "/search?" + fallback_query)
                 fallback_matches = ((fallback_page or {}).get("tracks") or {}).get("items") or []
