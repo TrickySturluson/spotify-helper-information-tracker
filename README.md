@@ -155,6 +155,8 @@ After this branch is merged into `main`, add these repository Actions settings:
 - Variable: `SPOTIFY_CLIENT_ID` (the Spotify app Client ID)
 - Secret: `SPOTIFY_REFRESH_TOKEN` (the playlist-manager refresh token; never commit or paste it into an issue)
 
+Spotify refresh tokens expire six months after authorization; refreshing an access token does not extend that deadline. If the cloud workflow reports an expired or invalid refresh token, reauthorize the playlist manager locally and replace this GitHub Actions secret with the newly issued refresh token.
+
 Create one open issue titled exactly **Spotify Playlist Manager Control**. Its body is a JSON command. Editing the body runs the control workflow; results are posted as issue comments.
 
 Status:
