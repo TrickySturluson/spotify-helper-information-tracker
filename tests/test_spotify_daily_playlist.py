@@ -54,6 +54,17 @@ class DailyCuratorTests(unittest.TestCase):
             counts[row["_tier"]] = counts.get(row["_tier"], 0) + 1
         self.assertEqual(counts, {"favorite": 4, "rediscovery": 4, "deep_cut": 2})
 
+    def test_candidate_order_interleaves_tiers_before_resolution(self):
+        tracks = []
+        for i in range(10):
+            tracks.append({"track_id": f"f{i}", "artist": f"Favorite {i}", "track": f"F{i}", "plays": 8, "last_scrobble": "2025-01-01T00:00:00+00:00"})
+            tracks.append({"track_id": f"r{i}", "artist": f"Rediscovery {i}", "track": f"R{i}", "plays": 3, "last_scrobble": "2025-01-01T00:00:00+00:00"})
+            tracks.append({"track_id": f"d{i}", "artist": f"Deep {i}", "track": f"D{i}", "plays": 1, "last_scrobble": "2025-01-01T00:00:00+00:00"})
+        ranked = daily.rank_candidates(tracks, today=date(2026, 10, 30), limit=10)
+        self.assertEqual([row["_tier"] for row in ranked[:5]], [
+            "favorite", "rediscovery", "favorite", "rediscovery", "deep_cut"
+        ])
+
     def test_tier_shortage_is_filled_from_remaining_candidates(self):
         tracks = [
             {"track_id": str(i), "artist": f"Artist {i}", "track": f"Track {i}", "plays": 8, "last_scrobble": "2025-01-01T00:00:00+00:00"}
