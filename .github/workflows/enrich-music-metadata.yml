@@ -1,0 +1,78 @@
+name: Enrich Music Metadata
+
+on:
+  workflow_dispatch:
+    inputs:
+      musicbrainz_lookups:
+        description: "Maximum MusicBrainz duration lookups"
+        required: true
+        type: choice
+        options:
+          - "1000"
+          - "3000"
+          - "6000"
+        default: "3000"
+      artist_profile_lookups:
+        description: "Maximum artist genre/theme profile lookups"
+        required: true
+        type: choice
+        options:
+          - "120"
+          - "500"
+          - "1000"
+        default: "500"
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fill missing durations from MusicBrainz
+        env:
+          MUSICBRAINZ_LOOKUPS_PER_RUN: ${{ inputs.musicbrainz_lookups }}
+        run: python enrich_musicbrainz_durations.py
+      - name: Enrich artist genres, moods and themes
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_PROFILE_LOOKUPS_PER_RUN: ${{ inputs.artist_profile_lookups }}
+        run: python build_music_profiles.py
+      - name: Rebuild metadata summaries
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_METADATA_LOOKUPS_PER_RUN: "0"
+        run: python build_music_metadata.py
+      - name: Refresh main assistant summary
+        run: python build_assistant_data.py
+      - name: Validate generated music metadata
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          overview = json.loads(Path("assistant_data/music/overview.json").read_text(encoding="utf-8"))
+          manifest = json.loads(Path("assistant_data/music/manifest.json").read_text(encoding="utf-8"))
+          assert overview["total_scrobbles"] == manifest["source_scrobbles"]
+          assert overview["unique_tracks"] == manifest["unique_tracks"]
+          assert overview["tracks_with_duration"] <= overview["unique_tracks"]
+          profiles = json.loads(Path("assistant_data/music/artist_profiles.json").read_text(encoding="utf-8"))
+          print(f"Duration coverage: {overview['tracks_with_duration']:,}/{overview['unique_tracks']:,} tracks; artist profiles: {sum(1 for p in profiles.values() if p.get('status') == 'matched'):,}")
+          PY
+      - name: Commit enriched music data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assistant_data/
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Enrich music durations and artist profiles"
+            git push
+          fi
