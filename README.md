@@ -102,6 +102,12 @@ The tracker samples every 10 seconds by default; use `python spotify_playback_tr
 4. Set \`SPOTIFY_CLIENT_ID\` as shown in the playback tracker setup.
 5. Run \`python spotify_playlist_manager.py list\` and approve the additional playlist permissions in Spotify.
 
+The manager now also requests \`user-library-read\` so the discovery curator can check Liked Songs. If you authorized the manager before this permission was added, reauthorize it once:
+- Stop any other local tool using port 8888.
+- Delete the existing \`.spotify_playlist_token.json\` so the manager starts a fresh authorization.
+- Run \`python spotify_playlist_manager.py list\` again and approve the expanded permissions.
+- Run \`python spotify_playlist_manager.py export-refresh-token\` and replace the repository's GitHub Actions secret \`SPOTIFY_REFRESH_TOKEN\` with the newly printed token. Do not commit or share the token.
+
 The manager uses its own \`.spotify_playlist_token.json\`; it does not overwrite the playback tracker's token. It uses Authorization Code with PKCE and requires no client secret.
 
 ### Commands
