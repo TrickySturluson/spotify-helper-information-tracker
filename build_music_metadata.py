@@ -207,6 +207,8 @@ def main():
     high_conf_plays = 0
     medium_conf_plays = 0
     unknown_plays = 0
+    known_minimum_ms_total = 0
+    invalid_short_track_plays = 0
 
     for aid, artist in artist_names.items():
         shard = shard_for(aid)
@@ -246,6 +248,11 @@ def main():
         if duration:
             duration_plays += item["plays"]
             duration_ms_total += duration * item["plays"]
+            # Last.fm threshold: half the track or four minutes, whichever comes first.
+            if duration > 30000:
+                known_minimum_ms_total += min(duration // 2, 240000) * item["plays"]
+            else:
+                invalid_short_track_plays += item["plays"]
             artist_known_plays[aid] += item["plays"]
             artist_known_ms[aid] += duration * item["plays"]
             if confidence == "high":
@@ -264,7 +271,7 @@ def main():
             "artist": artist, "plays": plays, "tracks": artist_index[aid]["track_count"],
             "duration_covered_plays": known,
             "duration_coverage": round(known / plays, 6) if plays else 0,
-            "estimated_full_track_hours": round(artist_known_ms[aid] / 3600000, 3),
+            "known_duration_full_track_equivalent_hours": round(artist_known_ms[aid] / 3600000, 3),
             "high_confidence_plays": artist_high_plays[aid],
             "medium_confidence_plays": artist_medium_plays[aid],
         }
@@ -295,8 +302,10 @@ def main():
         "high_confidence_scrobbles": high_conf_plays,
         "medium_confidence_scrobbles": medium_conf_plays,
         "unknown_duration_scrobbles": unknown_plays,
-        "estimated_full_track_hours": round(duration_ms_total / 3600000, 2),
-        "estimate_note": "Duration multiplied by scrobble count; estimates full-track-equivalent time, not actual playback time. Skips and partial plays are unknown.",
+        "known_duration_full_track_equivalent_hours": round(duration_ms_total / 3600000, 2),
+        "known_duration_minimum_qualifying_hours": round(known_minimum_ms_total / 3600000, 2),
+        "scrobbles_on_tracks_30_seconds_or_shorter": invalid_short_track_plays,
+        "duration_estimate_note": "Known-duration totals only. Minimum qualifying time applies Last.fm's documented rule for tracks longer than 30 seconds: half the track or four minutes, whichever comes first. Full-track-equivalent assumes every scrobble played the whole track. Neither is actual playback time; unknown-duration scrobbles are excluded.",
         "lookup": {
             "provider": "Last.fm track.getInfo",
             "lookups_this_run": looked_up, "matches_this_run": found,
@@ -317,12 +326,13 @@ def main():
         "unique_tracks": len(catalogue), "unique_artists": len(artist_names),
         "shard_count": SHARD_COUNT, "duration_coverage": round(coverage, 6),
         "lookup_provider": "Last.fm track.getInfo",
-        "lookup_policy": "Incremental; successful durations are cached; unmatched tracks retry after 30 days; max 120 lookups per workflow run.",
+        "lookup_policy": f"Incremental; successful durations are cached; unmatched tracks retry after {RETRY_DAYS} days; max {MAX_LOOKUPS_PER_RUN} lookups per run.",
         "files": overview["files"],
         "lookup_hint": "Read overview.json, then indexes/artists.json to find an artist shard; artist shard contains all that artist's track metadata.",
     }
     write_json(ROOT / "manifest.json", manifest)
     print(f"Music metadata: {len(catalogue):,} tracks, {duration_plays:,}/{total_plays:,} scrobbles duration-covered ({coverage:.1%}); {looked_up} lookups, {found} matches this run.")
+    print(f"Known-duration qualifying minimum: {known_minimum_ms_total / 3600000:.2f}h; full-track equivalent: {duration_ms_total / 3600000:.2f}h.")
 
 
 if __name__ == "__main__":
