@@ -47,6 +47,25 @@ class PlaylistManagerTests(unittest.TestCase):
                 }]
             })
 
+    def test_refresh_token_rotation_is_flagged_for_cloud_runner(self):
+        initial = {
+            "refresh_token": "old-refresh-token",
+            "obtained_at": 0,
+            "expires_in": 0,
+        }
+        replacement = {
+            "access_token": "access-token",
+            "refresh_token": "new-refresh-token",
+            "expires_in": 3600,
+        }
+        with patch.object(manager, "read", return_value=initial.copy()), patch.object(
+            manager, "token_post", return_value=replacement.copy()
+        ), patch.object(manager, "write"), patch.object(manager.time, "time", return_value=1000):
+            spotify = manager.Spotify()
+            self.assertEqual(spotify.bearer(), "access-token")
+            self.assertTrue(spotify.refresh_token_rotated)
+            self.assertEqual(spotify.t["refresh_token"], "new-refresh-token")
+
     def test_expired_refresh_token_has_reauthorization_guidance(self):
         error = urllib.error.HTTPError(
             "https://accounts.spotify.com/api/token",
