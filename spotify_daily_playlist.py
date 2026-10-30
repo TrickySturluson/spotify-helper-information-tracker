@@ -123,6 +123,21 @@ def rank_candidates(tracks, today=None, limit=TARGET_SIZE):
     # the strongest remaining candidates from any tier to complete the pool.
     take(ranked)
 
+    # Interleave tiers before Spotify resolution. Otherwise the resolver would
+    # consume the leading favorite bucket first and the final playlist would
+    # lose its intended mix whenever it stopped after 30 successful matches.
+    buckets = {
+        tier: [row for row in selected if row["_tier"] == tier]
+        for tier in ("favorite", "rediscovery", "deep_cut")
+    }
+    order = ("favorite", "rediscovery", "favorite", "rediscovery", "deep_cut")
+    interleaved = []
+    while any(buckets.values()):
+        for tier in order:
+            if buckets[tier]:
+                interleaved.append(buckets[tier].pop(0))
+    selected = interleaved
+
     for row in selected:
         row.pop("_tie", None)
     return selected
