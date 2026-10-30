@@ -55,7 +55,7 @@ def main():
     }
     manager.write(manager.TOKEN, token)
     sp = manager.Spotify()
-    config = manager.config()
+    config = manager.config()\n    manager.write(STATE, config)
     playlists = sp.playlists()
     me = sp.me()
     owned = [p for p in playlists if (p.get("owner") or {}).get("id") == me.get("id")]
