@@ -76,17 +76,24 @@ def api_track_info(track):
         "format": "json",
         "autocorrect": 0,
     }
+    def request_info(query):
+        request = Request(API_URL + "?" + urlencode(query), headers={"User-Agent": USER_AGENT})
+        with urlopen(request, timeout=25) as response:
+            return json.loads(response.read().decode("utf-8"))
+
     if track.get("track_mbid"):
-        params["mbid"] = track["track_mbid"]
+        payload = request_info({**params, "mbid": track["track_mbid"]})
+        # An absent/stale MBID should not prevent a safe exact-label fallback.
+        if "error" not in payload or str(payload.get("error")) != "6":
+            pass
+        else:
+            payload = request_info({**params, "artist": track["artist"], "track": track["track"]})
     else:
-        params["artist"] = track["artist"]
-        params["track"] = track["track"]
-    request = Request(API_URL + "?" + urlencode(params), headers={"User-Agent": USER_AGENT})
-    with urlopen(request, timeout=25) as response:
-        payload = json.loads(response.read().decode("utf-8"))
+        payload = request_info({**params, "artist": track["artist"], "track": track["track"]})
+
     if "error" in payload:
         code = str(payload.get("error"))
-        if code in {"6"}:
+        if code == "6":
             return None, "not_found"
         if code in {"11", "16", "29"}:
             raise RuntimeError("Temporary Last.fm API error " + code)
