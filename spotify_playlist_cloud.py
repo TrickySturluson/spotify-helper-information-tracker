@@ -154,6 +154,7 @@ def main():
         "horror_preview": {"command", "playlist_id"},
         "booze20_preview": {"command", "playlist_id"},
         "booze20_uri_preview": {"command", "playlist_id", "tracks"},
+        "booze20_resolve_sources": {"command", "sources"},
         "confirm": {"command", "confirmation"},
         "undo": {"command"},
     }
@@ -395,6 +396,57 @@ def main():
             lines.extend(f"Already present: {row}" for row in already_present)
             lines.extend(["", "To add these exact new tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
             result = "\\n".join(lines)
+    elif action == "booze20_resolve_sources":
+        # Read exact track URIs from known Spotify albums/playlists; no catalogue search.
+        sources = command["sources"]
+        if not isinstance(sources, list) or not sources or len(sources) > 20:
+            fail("Rejected: sources must be a non-empty list of at most 20 records.")
+        lines = ["SOURCE TRACK URI LOOKUP — read-only; no playlist changes."]
+        def music_key(value):
+            return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
+        for source in sources:
+            if not isinstance(source, dict) or set(source) != {"kind", "id", "artist", "title"}:
+                fail("Rejected: each source must contain exactly kind, id, artist, and title.")
+            kind, source_id, artist, title = (
+                source["kind"], source["id"], source["artist"], source["title"]
+            )
+            if kind not in {"album", "playlist"} or not all(
+                isinstance(value, str) and value.strip()
+                for value in (source_id, artist, title)
+            ):
+                fail("Rejected: source kind, ID, artist, or title is invalid.")
+            if not source_id.isalnum():
+                fail("Rejected: source ID must be an alphanumeric Spotify ID.")
+            if kind == "album":
+                page = sp.call("GET", f"/albums/{source_id}/tracks?limit=50")
+            else:
+                page = sp.call(
+                    "GET",
+                    f"/playlists/{source_id}/items?limit=100&additional_types=track",
+                )
+            entries = page.get("items") or []
+            matches = []
+            for entry in entries:
+                track = entry.get("item") or entry.get("track") or entry
+                if (
+                    music_key(track.get("name")) == music_key(title)
+                    and any(
+                        music_key(a.get("name")) == music_key(artist)
+                        for a in (track.get("artists") or [])
+                    )
+                    and isinstance(track.get("uri"), str)
+                    and track["uri"].startswith("spotify:track:")
+                ):
+                    matches.append(track)
+            if len(matches) == 1:
+                lines.append(
+                    f"FOUND: {artist} — {matches[0].get('name')} [{matches[0]['uri']}]"
+                )
+            elif len(matches) > 1:
+                lines.append(f"AMBIGUOUS: {artist} — {title} ({len(matches)} exact entries)")
+            else:
+                lines.append(f"NOT FOUND: {artist} — {title} in {kind} {source_id}")
+        result = "\\n".join(lines)
     elif action == "booze20_uri_preview":
         # Stage a pre-resolved batch without calling the catalogue search endpoint.
         tracks = command["tracks"]
