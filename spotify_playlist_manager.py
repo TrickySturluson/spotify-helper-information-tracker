@@ -164,6 +164,12 @@ def validate(plan):
             vals=[op.get(k) for k in ("range_start","insert_before","range_length")]
             if any(not isinstance(n,int) or n<0 for n in vals) or vals[2]<1: raise ManagerError("Invalid reorder range.")
             ops.append({"action":a,"range_start":vals[0],"insert_before":vals[1],"range_length":vals[2]})
+        elif a=="details":
+            name=op.get("name")
+            description=op.get("description")
+            if not isinstance(name,str) or not name.strip() or len(name)>100: raise ManagerError("Playlist name must be 1–100 characters.")
+            if not isinstance(description,str) or len(description)>300: raise ManagerError("Playlist description must be 300 characters or fewer.")
+            ops.append({"action":a,"name":name,"description":description})
         else: raise ManagerError(f"Unsupported action: {a}")
     return plan["playlist_id"],ops
 def remove(sp,pid,uris):
