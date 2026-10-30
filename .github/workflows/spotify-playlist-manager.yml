@@ -39,11 +39,17 @@ jobs:
           from pathlib import Path
           event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())
           command = json.loads(event["issue"].get("body") or "{}")
+          state = json.loads(Path(".github/spotify_playlist_manager_state.json").read_text())
+          pending_kind = (state.get("pending") or {}).get("kind", "edit")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
               output.write("command=" + str(command.get("command", "")) + "\n")
+              output.write("pending_kind=" + str(pending_kind) + "\n")
           PY
       - name: Download prior recovery snapshot for undo
-        if: steps.parse-command.outputs.command == 'undo'
+        if: >-
+          steps.parse-command.outputs.command == 'undo' ||
+          (steps.parse-command.outputs.command == 'confirm' &&
+          steps.parse-command.outputs.pending_kind == 'undo')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
