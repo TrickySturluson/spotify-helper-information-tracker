@@ -37,6 +37,35 @@ class DailyCuratorTests(unittest.TestCase):
         self.assertEqual(sum(x["artist"] == "Same Artist" for x in ranked), 2)
         self.assertIn("Other Artist", [x["artist"] for x in ranked])
 
+    def test_repeat_listening_is_a_stronger_signal_than_a_single_scrobble(self):
+        favorite = {"plays": 12, "last_scrobble": "2026-01-01T00:00:00+00:00"}
+        one_off = {"plays": 1, "last_scrobble": "2026-01-01T00:00:00+00:00"}
+        self.assertGreater(daily.score_track(favorite, date(2026, 10, 30)), daily.score_track(one_off, date(2026, 10, 30)))
+
+    def test_daily_mix_balances_favorites_rediscoveries_and_deep_cuts(self):
+        tracks = []
+        for i in range(10):
+            tracks.append({"track_id": f"f{i}", "artist": f"Favorite Artist {i}", "track": f"Favorite {i}", "plays": 8, "last_scrobble": "2025-01-01T00:00:00+00:00"})
+            tracks.append({"track_id": f"r{i}", "artist": f"Rediscovery Artist {i}", "track": f"Rediscovery {i}", "plays": 3, "last_scrobble": "2025-01-01T00:00:00+00:00"})
+            tracks.append({"track_id": f"d{i}", "artist": f"Deep Cut Artist {i}", "track": f"Deep Cut {i}", "plays": 1, "last_scrobble": "2025-01-01T00:00:00+00:00"})
+        ranked = daily.rank_candidates(tracks, today=date(2026, 10, 30), limit=10)
+        counts = {}
+        for row in ranked:
+            counts[row["_tier"]] = counts.get(row["_tier"], 0) + 1
+        self.assertEqual(counts, {"favorite": 4, "rediscovery": 4, "deep_cut": 2})
+
+    def test_tier_shortage_is_filled_from_remaining_candidates(self):
+        tracks = [
+            {"track_id": str(i), "artist": f"Artist {i}", "track": f"Track {i}", "plays": 8, "last_scrobble": "2025-01-01T00:00:00+00:00"}
+            for i in range(3)
+        ]
+        tracks += [
+            {"track_id": f"d{i}", "artist": f"Deep {i}", "track": f"Cut {i}", "plays": 1, "last_scrobble": "2025-01-01T00:00:00+00:00"}
+            for i in range(5)
+        ]
+        ranked = daily.rank_candidates(tracks, today=date(2026, 10, 30), limit=6)
+        self.assertEqual(len(ranked), 6)
+
     def test_scoring_rewards_a_longer_gap(self):
         recent = {"plays": 20, "last_scrobble": "2026-10-01T00:00:00+00:00"}
         old = {"plays": 20, "last_scrobble": "2025-01-01T00:00:00+00:00"}
