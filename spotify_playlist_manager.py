@@ -9,7 +9,7 @@ from pathlib import Path
 
 CID=os.environ.get("SPOTIFY_CLIENT_ID","").strip()
 REDIRECT="http://127.0.0.1:8888/callback"
-SCOPES="user-read-private playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public"
+SCOPES="user-read-private user-library-read playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public"
 TOKEN=Path(".spotify_playlist_token.json")
 CONFIG=Path(".spotify_playlist_manager.json")
 BACKUPS=Path("playlist_backups")
