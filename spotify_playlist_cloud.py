@@ -27,6 +27,8 @@ def owned_playlist(sp, pid, me):
 
 def replace_playlist(sp, pid, uris):
     # Replace the first page, then append in order; duplicate URIs are preserved.
+    if not manager.unlocked(pid):
+        raise manager.ManagerError("Playlist is LOCKED; undo was stopped before restoration.")
     first = uris[:100]
     if first:
         sp.call("PUT", f"/playlists/{pid}/items", {"uris": first})
