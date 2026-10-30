@@ -15,11 +15,7 @@ CONTROL_ISSUE_TITLE = "Spotify Playlist Manager Control"
 
 DAILY_DESCRIPTIONS = [
     # Daily archive / discovery
-    "Today's rotation: old favorites, fresh turns.",
-    "Deep cuts from the long way around.",
     "Familiar names. Unexpected detours.",
-    "Less obvious picks from your own history.",
-    "Not the hits. Not quite forgotten.",
 
     # Dry, cheeky, slightly dangerous
     "Could be worse. Could be quiet.",
