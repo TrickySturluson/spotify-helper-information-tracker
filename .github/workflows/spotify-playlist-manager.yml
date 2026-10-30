@@ -37,7 +37,7 @@ jobs:
           event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())
           command = json.loads(event["issue"].get("body") or "{}")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
-              output.write("command=" + str(command.get("command", "")) + "\\n")
+              output.write("command=" + str(command.get("command", "")) + "\n")
           PY
       - name: Download prior recovery snapshot for undo
         if: steps.parse-command.outputs.command == 'undo'
