@@ -44,6 +44,9 @@ jobs:
       - name: Build assistant-friendly analytics
         run: python build_assistant_data.py
 
+      - name: Build music duration trends and recommendation features
+        run: python build_music_analytics.py
+
       - name: Build advanced listening analytics
         run: python build_advanced_analytics.py
 
@@ -60,6 +63,7 @@ jobs:
           advanced = json.loads(Path("assistant_data/advanced/manifest.json").read_text(encoding="utf-8"))
           playback = json.loads(Path("assistant_data/playback/manifest.json").read_text(encoding="utf-8"))
           music = json.loads(Path("assistant_data/music/manifest.json").read_text(encoding="utf-8"))
+          music_analytics = json.loads(Path("assistant_data/recommendations/manifest.json").read_text(encoding="utf-8"))
           metadata = json.loads(Path("data/metadata.json").read_text(encoding="utf-8"))
           stats = json.loads(Path("data/stats.json").read_text(encoding="utf-8"))
           expected = int(metadata["total_scrobbles"])
@@ -68,6 +72,8 @@ jobs:
           assert playback["recorded_intervals"] >= 0
           assert music["source_scrobbles"] == expected, (music["source_scrobbles"], expected)
           assert music["unique_tracks"] > 0
+          assert music_analytics["source_scrobbles"] == expected
+          assert music_analytics["unique_tracks"] > 0
           assert stats["overview"]["total_scrobbles"] == expected
           assert manifest["validation"]["year_total"] == expected
           assert manifest["validation"]["month_total"] == expected
