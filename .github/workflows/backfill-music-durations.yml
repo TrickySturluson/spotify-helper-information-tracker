@@ -37,6 +37,9 @@ jobs:
           MUSIC_METADATA_LOOKUPS_PER_RUN: ${{ inputs.max_lookups }}
         run: python build_music_metadata.py
 
+      - name: Refresh main assistant summary
+        run: python build_assistant_data.py
+
       - name: Validate metadata output
         run: |
           python - <<'PY'
@@ -64,7 +67,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assistant_data/music/
+          git add assistant_data/
           if git diff --cached --quiet; then
             echo "No music metadata changes to commit."
           else
