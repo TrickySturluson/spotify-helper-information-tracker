@@ -100,6 +100,8 @@ def main():
         records.append((ts, aid, tid, alid))
 
     total = len(records)
+    if sum(artist_counts.values()) != total or sum(track_counts.values()) != total or sum(album_counts.values()) != total or sum(month_counts.values()) != total:
+        raise RuntimeError("Advanced analytics reconciliation failed.")
     first_ts, last_ts = records[0][0], records[-1][0]
 
     # Monthly artist timelines and artist lifecycle metrics.
@@ -173,6 +175,8 @@ def main():
         current.append(record)
     if current:
         sessions.append(current)
+    if sum(len(s) for s in sessions) != total:
+        raise RuntimeError("Session segmentation lost scrobbles.")
     durations = [max(0, s[-1][0] - s[0][0]) for s in sessions]
     per_day = Counter(datetime.fromtimestamp(r[0], timezone.utc).strftime("%Y-%m-%d") for r in records)
     active_dates = sorted(per_day)
