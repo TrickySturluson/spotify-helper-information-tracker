@@ -83,10 +83,9 @@ def api_track_info(track):
 
     if track.get("track_mbid"):
         payload = request_info({**params, "mbid": track["track_mbid"]})
-        # An absent/stale MBID should not prevent a safe exact-label fallback.
-        if "error" not in payload or str(payload.get("error")) != "6":
-            pass
-        else:
+        # An absent, stale, or duration-less MBID result should not prevent
+        # a safe exact artist/title fallback.
+        if "error" in payload or not (payload.get("track") or {}).get("duration"):
             payload = request_info({**params, "artist": track["artist"], "track": track["track"]})
     else:
         payload = request_info({**params, "artist": track["artist"], "track": track["track"]})
