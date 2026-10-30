@@ -286,7 +286,7 @@ def main():
                 except manager.ManagerError as error:
                     if "HTTP 429" not in str(error) or attempt == 3:
                         raise
-                    time.sleep(3 * (attempt + 1))
+                    time.sleep(30 * (attempt + 1))
             raise manager.ManagerError("Spotify catalogue search retry limit reached.")
         for artist, title in candidates:
             time.sleep(1.0)
