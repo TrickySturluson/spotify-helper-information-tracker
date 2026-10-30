@@ -118,5 +118,51 @@ class CloudExecutorTests(unittest.TestCase):
             self.assertNotIn("pending", saved)
 
 
+class OwnedPlaylistTests(unittest.TestCase):
+    def test_uses_direct_playlist_resource_for_fresh_snapshot(self):
+        spotify = Mock()
+        live = {
+            "id": "playlist123",
+            "name": "Tricky Daily",
+            "owner": {"id": "user123"},
+            "snapshot_id": "fresh-snapshot",
+        }
+        spotify.call.return_value = live
+        spotify.playlists.side_effect = AssertionError(
+            "Do not use the potentially stale /me/playlists collection"
+        )
+
+        result = cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+
+        self.assertIs(result, live)
+        spotify.call.assert_called_once_with("GET", "/playlists/playlist123")
+        spotify.playlists.assert_not_called()
+        self.assertEqual(result["snapshot_id"], "fresh-snapshot")
+
+    def test_rejects_playlist_not_owned_by_current_account(self):
+        spotify = Mock()
+        spotify.call.return_value = {
+            "id": "playlist123",
+            "owner": {"id": "another-user"},
+        }
+        with self.assertRaises(SystemExit):
+            cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+
+    def test_rejects_mismatched_playlist_id(self):
+        spotify = Mock()
+        spotify.call.return_value = {
+            "id": "different-id",
+            "owner": {"id": "user123"},
+        }
+        with self.assertRaises(SystemExit):
+            cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+
+    def test_rejects_inaccessible_playlist(self):
+        spotify = Mock()
+        spotify.call.side_effect = manager.ManagerError("not found")
+        with self.assertRaises(SystemExit):
+            cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+
+
 if __name__ == "__main__":
     unittest.main()
