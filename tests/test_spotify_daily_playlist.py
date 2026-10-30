@@ -41,6 +41,9 @@ class DailyCuratorTests(unittest.TestCase):
         self.assertEqual([x["uri"] for x in resolved], ["spotify:track:exact"])
         self.assertEqual(skipped, [])
 
+    def test_matching_normalizes_internal_whitespace(self):
+        self.assertEqual(daily.norm("  Artist   Name  "), "artist name")
+
     def test_existing_playlist_uri_is_not_added_again(self):
         sp = Mock()
         sp.call.return_value = {"tracks": {"items": [
