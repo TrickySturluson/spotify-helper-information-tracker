@@ -14,37 +14,44 @@ OWNER = "TrickySturluson"
 CONTROL_ISSUE_TITLE = "Spotify Playlist Manager Control"
 
 DAILY_DESCRIPTIONS = [
+    # Daily archive / discovery
     "Today's rotation: old favorites, fresh turns.",
-    "Thirty tracks, one new rabbit hole.",
-    "Your archive, shuffled into tomorrow.",
     "Deep cuts from the long way around.",
     "Familiar names. Unexpected detours.",
-    "Today's crate dig starts here.",
-    "Old scrobbles, new combinations.",
-    "An excuse to hear something again.",
-    "One playlist, thirty little detours.",
-    "Pulled from the vault; sent to repeat.",
     "Less obvious picks from your own history.",
-    "Yesterday's listening, today's detour.",
-    "Another spin through the archive.",
-    "Back catalog, front and center.",
-    "Your listening history has plans.",
-    "Fresh rotation, familiar fingerprints.",
-    "Thirty tracks outside the usual loop.",
-    "Digging deeper than the top tracks.",
-    "New day, new corners of the collection.",
-    "An ever-moving stack of rediscoveries.",
-    "Today's soundtrack, sourced from your past.",
-    "Past plays, present tense.",
-    "Your history with a change of scenery.",
     "Not the hits. Not quite forgotten.",
+
+    # Dry, cheeky, slightly dangerous
+    "Could be worse. Could be quiet.",
+    "At least the music's good.",
+    "Well, something here has decent taste.",
+    "I make questionable decisions sound excellent.",
+    "No need to thank me. Actually, go ahead.",
+    "A terrible influence with impeccable timing.",
+    "Try to keep up. The playlist certainly can.",
+    "I'm sure this seemed like a good idea at the time.",
+    "You bring the bad decisions. I'll bring the soundtrack.",
+    "I've got a reputation to maintain. And apparently, a playlist.",
+    "Don't mistake the smirk for an apology.",
+    "If looks could kill, this would still have better taste.",
+    "Relax. I've only made this considerably cooler.",
+    "Not saying I'm the main event. But look at the lineup.",
+    "Some people have a type. I have excellent taste.",
+
+    # Dante energy
     "Jackpot. Another round with the deep cuts.",
     "Let's make some noise. The dead can wait.",
     "Style points count double after midnight.",
     "If the bass drops, so do the demons.",
     "A little reckless, a little legendary.",
     "The night called. I brought the soundtrack.",
-    "Well, something here has decent taste.",
+
+    # Trevor-style dry wit
+    "I've had worse nights. Not many, mind you.",
+    "Try not to look so pleased with yourself.",
+    "I'm not brooding. I'm considering my options.",
+
+    # Hotline Miami
     "Do you know what time it is?",
     "Do you like hurting people?",
     "The mask is on. The playlist is loaded.",
