@@ -13,3 +13,4 @@
 {"at": "2026-10-30T07:50:58.841577+00:00", "event": "permission_changed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "name": "Tricky Daily", "state": "locked"}
 {"at": "2026-10-30T07:52:56.535065+00:00", "event": "status_requested"}
 {"at": "2026-10-30T07:54:20.174317+00:00", "event": "permission_changed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "name": "Tricky Daily", "state": "unlocked"}
+{"at": "2026-10-30T07:54:54.449735+00:00", "event": "change_previewed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "operations": [{"action": "remove", "uris": ["spotify:track:4PTG3Z6ehGkBFwjybzWkR8"]}]}
