@@ -93,8 +93,10 @@ class Spotify:
         except urllib.error.HTTPError as e:
             if e.code==401 and retry:
                 self.t["obtained_at"]=0; return self.call(method,path,body,False)
+            retry_after = e.headers.get("Retry-After")
             detail=e.read().decode(errors="replace")
-            raise ManagerError(f"Spotify API {method} {path}: HTTP {e.code}: {detail}")
+            retry_note = f" Retry-After: {retry_after}" if retry_after else ""
+            raise ManagerError(f"Spotify API {method} {path}: HTTP {e.code}:{retry_note} {detail}")
     def me(self): return self.call("GET","/me")
     def playlists(self):
         out=[]; url="/me/playlists?limit=50"
