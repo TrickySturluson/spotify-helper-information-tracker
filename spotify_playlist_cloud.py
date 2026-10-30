@@ -82,10 +82,16 @@ def main():
         manager.audit(event="permission_changed", playlist_id=pid, name=p.get("name"), state=state)
         result = f'{p.get("name")} is now {state.upper()}.'
     else:
+        manager.audit(event="status_requested")
         result = "Playlist status:"
     lines = [result, "", "| Playlist | Items | Lock | ID |", "|---|---:|---|---|"]
-    for p in owned:
+    for p in playlists:
         pid = p["id"]
+        is_owned = (p.get("owner") or {}).get("id") == me.get("id")
+        state = config["playlists"].get(pid, {}).get("state", "locked") if is_owned else "locked (not owned)"
+        count = (p.get("items") or p.get("tracks") or {}).get("total", "?")
+        safe_name = str(p.get("name", "")).replace("|", "\\|").replace("\n", " ")
+        lines.append("| " + safe_name + " | " + str(count) + " | " + state.upper() + " | `" + pid + "` |")
         state = config["playlists"].get(pid, {}).get("state", "locked")
         count = (p.get("items") or p.get("tracks") or {}).get("total", "?")
         lines.append(f'| {str(p.get("name", "")).replace("|", "\\|")} | {count} | {state.upper()} | `{pid}` |')
