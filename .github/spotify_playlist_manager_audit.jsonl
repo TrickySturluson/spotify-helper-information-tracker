@@ -40,3 +40,6 @@
 {"at": "2026-10-30T08:12:12.800368+00:00", "event": "change_interrupted", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081212542563Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "undo", "error_type": "AttributeError"}
 {"at": "2026-10-30T08:13:01.541096+00:00", "event": "status_requested"}
 {"at": "2026-10-30T08:13:40.595018+00:00", "event": "change_previewed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "operations": [{"action": "remove", "uris": ["spotify:track:4PTG3Z6ehGkBFwjybzWkR8"]}]}
+{"at": "2026-10-30T08:14:24.697568+00:00", "event": "change_started", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "name": "Tricky Daily", "operations": [{"action": "remove", "uris": ["spotify:track:4PTG3Z6ehGkBFwjybzWkR8"]}], "backup": "playlist_backups/20261030T081424697305Z_4yUVHSMQySfWeEowfIMcx7.json", "user_id": "a_thought"}
+{"at": "2026-10-30T08:14:24.698089+00:00", "event": "confirmation_consumed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081424697305Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
+{"at": "2026-10-30T08:14:25.230543+00:00", "event": "change_completed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081424697305Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
