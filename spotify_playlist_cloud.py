@@ -307,35 +307,52 @@ def main():
                         ) from error
                     time.sleep(delay)
             raise manager.ManagerError("Spotify catalogue retry limit reached.")
+        track_cache = config.setdefault("track_uri_cache", {})
         for artist, title in candidates:
-            time.sleep(1.0)
-            query = urllib.parse.urlencode({
-                "type": "track", "limit": 10,
-                "q": f'artist:"{artist}" track:"{title}"',
-            })
-            page = catalog_search(query)
-            matches = ((page or {}).get("tracks") or {}).get("items") or []
             target_artist, target_title = music_key(artist), music_key(title)
-            match = next((
-                track for track in matches
-                if music_key(track.get("name")) == target_title
-                and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
-                and isinstance(track.get("uri"), str)
-                and track["uri"].startswith("spotify:track:")
-            ), None)
-            if not match:
-                fallback_query = urllib.parse.urlencode({
-                    "type": "track", "limit": 10, "q": f'track:"{title}"',
+            cache_key = target_artist + "|" + target_title
+            cached = track_cache.get(cache_key)
+            if (
+                isinstance(cached, dict)
+                and isinstance(cached.get("uri"), str)
+                and cached["uri"].startswith("spotify:track:")
+                and isinstance(cached.get("name"), str)
+            ):
+                match = {
+                    "name": cached["name"], "uri": cached["uri"],
+                    "artists": [{"name": artist}],
+                }
+            else:
+                time.sleep(1.0)
+                query = urllib.parse.urlencode({
+                    "type": "track", "limit": 10,
+                    "q": f'artist:"{artist}" track:"{title}"',
                 })
-                fallback_page = catalog_search(fallback_query)
-                fallback_matches = ((fallback_page or {}).get("tracks") or {}).get("items") or []
+                page = catalog_search(query)
+                matches = ((page or {}).get("tracks") or {}).get("items") or []
                 match = next((
-                    track for track in fallback_matches
-                    if music_key(track.get("name")).startswith(target_title)
+                    track for track in matches
+                    if music_key(track.get("name")) == target_title
                     and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
                     and isinstance(track.get("uri"), str)
                     and track["uri"].startswith("spotify:track:")
                 ), None)
+                if not match:
+                    fallback_query = urllib.parse.urlencode({
+                        "type": "track", "limit": 10, "q": f'track:"{title}"',
+                    })
+                    fallback_page = catalog_search(fallback_query)
+                    fallback_matches = ((fallback_page or {}).get("tracks") or {}).get("items") or []
+                    match = next((
+                        track for track in fallback_matches
+                        if music_key(track.get("name")).startswith(target_title)
+                        and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
+                        and isinstance(track.get("uri"), str)
+                        and track["uri"].startswith("spotify:track:")
+                    ), None)
+                if match:
+                    track_cache[cache_key] = {"name": match["name"], "uri": match["uri"]}
+                    manager.write(STATE, config)
             if not match:
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
                 continue
