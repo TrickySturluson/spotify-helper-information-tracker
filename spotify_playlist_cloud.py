@@ -276,6 +276,13 @@ def main():
         try:
             if kind == "undo":
                 restore_data = manager.read(Path(pending["backup"]), None)
+                if (
+                    not isinstance(restore_data, dict)
+                    or not isinstance(restore_data.get("items"), list)
+                ):
+                    raise manager.ManagerError(
+                        "Recovery snapshot is unavailable in this workflow run; undo was stopped before restoration."
+                    )
                 replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
             else:
                 execute(sp, pid, pending["operations"])
