@@ -14,18 +14,5 @@
     "after_snapshot_id": "AAAACC9m2hBdxyJCSth/DnGFqo2M1tu6",
     "after_uris": [],
     "kind": "edit"
-  },
-  "pending": {
-    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "operations": [
-      {
-        "action": "add",
-        "uris": [
-          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
-        ]
-      }
-    ],
-    "snapshot_id": "AAAACC9m2hBdxyJCSth/DnGFqo2M1tu6",
-    "confirmation": "USAETH3tsmLbr0P3"
   }
 }
