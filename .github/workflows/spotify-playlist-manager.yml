@@ -3,6 +3,8 @@ name: Spotify playlist manager control
 on:
   issues:
     types: [opened, edited]
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: write
