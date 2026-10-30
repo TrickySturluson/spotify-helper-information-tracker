@@ -34,7 +34,7 @@ python build_assistant_data.py
 python build_advanced_analytics.py
 ```
 
-The scheduled GitHub Actions workflow runs the importer and both builders, validates the generated data, then commits updates. It requires the repository secret `LASTFM_API_KEY`.
+The scheduled GitHub Actions workflow runs the importer and all analytics builders, validates the generated data, then commits updates. It requires the repository secret `LASTFM_API_KEY`.
 
 ## Important limitations
 
