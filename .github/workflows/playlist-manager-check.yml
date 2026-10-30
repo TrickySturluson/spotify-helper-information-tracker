@@ -9,6 +9,7 @@ on:
       - ".github/workflows/spotify-playlist-manager.yml"
       - "tests/test_spotify_playlist_manager.py"
       - ".github/workflows/playlist-manager-check.yml"
+      - ".github/workflows/spotify-playlist-manager.yml"
   workflow_dispatch:
 
 permissions:
