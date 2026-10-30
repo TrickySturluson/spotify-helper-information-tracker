@@ -55,7 +55,8 @@ def main():
     }
     manager.write(manager.TOKEN, token)
     sp = manager.Spotify()
-    config = manager.config()\n    manager.write(STATE, config)
+    config = manager.config()
+    manager.write(STATE, config)
     playlists = sp.playlists()
     me = sp.me()
     owned = [p for p in playlists if (p.get("owner") or {}).get("id") == me.get("id")]
@@ -92,8 +93,10 @@ def main():
     print(output)
     # The workflow posts this as an issue comment; GITHUB_TOKEN comments do not
     # trigger another issues-edited workflow run.
+    import uuid
+    delimiter = "RESULT_" + uuid.uuid4().hex
     Path(os.environ["GITHUB_OUTPUT"]).write_text(
-        "result<<EOF\n" + output + "\nEOF\n", encoding="utf-8"
+        f"result<<{delimiter}\n{output}\n{delimiter}\n", encoding="utf-8"
     )
 
 
