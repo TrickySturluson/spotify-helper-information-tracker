@@ -129,6 +129,18 @@ def main():
 
     top_artist = artist_rows[0]
     top_track = track_rows[0]
+    music_duration = {}
+    music_overview_path = OUTPUT / "music" / "overview.json"
+    if music_overview_path.exists():
+        music_overview = read_json(music_overview_path)
+        music_duration = {
+            "duration_coverage": music_overview.get("scrobble_duration_coverage"),
+            "scrobbles_with_duration": music_overview.get("scrobbles_with_duration"),
+            "unknown_duration_scrobbles": music_overview.get("unknown_duration_scrobbles"),
+            "known_duration_minimum_qualifying_hours": music_overview.get("known_duration_minimum_qualifying_hours"),
+            "known_duration_full_track_equivalent_hours": music_overview.get("known_duration_full_track_equivalent_hours"),
+            "note": "Duration-based figures cover only scrobbles whose track duration is known; they are not actual playback measurements."
+        }
     overview = {
         "username": USERNAME, "total_scrobbles": total,
         "unique_artists": len(artists), "unique_tracks": len(tracks), "unique_albums": len(albums),
@@ -136,7 +148,9 @@ def main():
         "history_days": round((last_ts - first_ts) / 86400, 2),
         "average_scrobbles_per_day": round(total / max((last_ts - first_ts) / 86400, 1), 2),
         "estimated_listening_hours": round(total * 3.5 / 60, 1),
-        "listening_time_note": "Estimate only: 3.5 minutes per scrobble; Last.fm recent-track history does not provide actual played duration.",
+        "legacy_3_5_minute_baseline_hours": round(total * 3.5 / 60, 1),
+        "listening_time_note": "Legacy baseline only: 3.5 minutes per scrobble. Prefer duration_estimates when present; Last.fm scrobbles do not reveal actual played duration.",
+        "duration_estimates": music_duration,
         "top_artist": top_artist, "top_track": top_track,
         "top_10_artist_share": round(sum(x["plays"] for x in artist_rows[:10]) / total, 6),
         "top_10_track_share": round(sum(x["plays"] for x in track_rows[:10]) / total, 6)
