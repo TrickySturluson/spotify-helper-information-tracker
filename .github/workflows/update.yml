@@ -35,6 +35,9 @@ jobs:
       - name: Build advanced listening analytics
         run: python build_advanced_analytics.py
 
+      - name: Build measured Spotify playback analytics
+        run: python build_playback_analytics.py
+
       - name: Validate generated data
         run: |
           python - <<'PY'
@@ -43,11 +46,13 @@ jobs:
 
           manifest = json.loads(Path("assistant_data/manifest.json").read_text(encoding="utf-8"))
           advanced = json.loads(Path("assistant_data/advanced/manifest.json").read_text(encoding="utf-8"))
+          playback = json.loads(Path("assistant_data/playback/manifest.json").read_text(encoding="utf-8"))
           metadata = json.loads(Path("data/metadata.json").read_text(encoding="utf-8"))
           stats = json.loads(Path("data/stats.json").read_text(encoding="utf-8"))
           expected = int(metadata["total_scrobbles"])
           assert manifest["source_scrobbles"] == expected, (manifest["source_scrobbles"], expected)
           assert advanced["source_scrobbles"] == expected, (advanced["source_scrobbles"], expected)
+          assert playback["recorded_intervals"] >= 0
           assert stats["overview"]["total_scrobbles"] == expected
           assert manifest["validation"]["year_total"] == expected
           assert manifest["validation"]["month_total"] == expected
@@ -60,7 +65,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/ assistant_data/
+          git add data/ assistant_data/ playback_data/
 
           if git diff --cached --quiet; then
             echo "No data changes to commit."
