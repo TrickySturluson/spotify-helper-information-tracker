@@ -20,8 +20,14 @@ def fail(message):
 
 
 def owned_playlist(sp, pid, me):
-    p = next((x for x in sp.playlists() if x.get("id") == pid), None)
-    if p is None or (p.get("owner") or {}).get("id") != me.get("id"):
+    # Do not use /me/playlists for mutation checks: Spotify may return a stale
+    # snapshot_id in that collection response after a playlist write. Fetch the
+    # playlist resource directly so preview/confirm/undo compare the live version.
+    try:
+        p = sp.call("GET", f"/playlists/{pid}")
+    except manager.ManagerError:
+        fail("Rejected: playlist not found or not accessible by this account.")
+    if not isinstance(p, dict) or p.get("id") != pid or (p.get("owner") or {}).get("id") != me.get("id"):
         fail("Rejected: playlist not found or not owned by this account.")
     return p
 
