@@ -92,3 +92,4 @@
 {"at": "2026-10-30T10:54:03.276419+00:00", "event": "confirmation_consumed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T105403275455Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "daily"}
 {"at": "2026-10-30T10:54:04.280784+00:00", "event": "daily_description_updated", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "description": "Familiar names. Unexpected detours"}
 {"at": "2026-10-30T10:54:04.680249+00:00", "event": "change_completed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T105403275455Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "daily"}
+{"at": "2026-10-30T18:37:50.938995+00:00", "event": "permission_changed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "name": "Booze, Boos & Bad Decisions", "state": "unlocked"}
