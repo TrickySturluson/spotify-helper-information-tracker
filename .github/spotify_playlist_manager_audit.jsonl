@@ -38,3 +38,4 @@
 {"at": "2026-10-30T08:12:12.542820+00:00", "event": "undo_started", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "redo_snapshot": "playlist_backups/20261030T081212542563Z_4yUVHSMQySfWeEowfIMcx7.json", "recovery_snapshot": "playlist_backups/20261030T081105816507Z_4yUVHSMQySfWeEowfIMcx7.json"}
 {"at": "2026-10-30T08:12:12.543322+00:00", "event": "confirmation_consumed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081212542563Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "undo"}
 {"at": "2026-10-30T08:12:12.800368+00:00", "event": "change_interrupted", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T081212542563Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "undo", "error_type": "AttributeError"}
+{"at": "2026-10-30T08:13:01.541096+00:00", "event": "status_requested"}
