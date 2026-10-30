@@ -294,6 +294,19 @@ def main():
                 and track["uri"].startswith("spotify:track:")
             ), None)
             if not match:
+                fallback_query = urllib.parse.urlencode({
+                    "type": "track", "limit": 50, "q": f'track:"{title}"',
+                })
+                fallback_page = sp.call("GET", "/search?" + fallback_query)
+                fallback_matches = ((fallback_page or {}).get("tracks") or {}).get("items") or []
+                match = next((
+                    track for track in fallback_matches
+                    if music_key(track.get("name")).startswith(target_title)
+                    and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
+                    and isinstance(track.get("uri"), str)
+                    and track["uri"].startswith("spotify:track:")
+                ), None)
+            if not match:
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
                 continue
             if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
