@@ -24,6 +24,7 @@ This repository maintains a personal Last.fm scrobble archive and derived analyt
 | `assistant_data/months/YYYY-MM.json` | Full monthly summary, daily counts, new artists and rankings |
 | `assistant_data/advanced/` | MBID-aware artist timelines, discovery/rediscovery, rolling rankings, inferred sessions and monthly diversity |
 | `assistant_data/playback/` | Measured Spotify playback hours, artist/track totals and daily/monthly listening time (only for intervals captured by the local tracker) |
+| `assistant_data/music/` | Cached track metadata, durations, confidence/provenance, artist-sharded dictionaries and duration coverage/estimates |
 
 All generated timestamps and calendar buckets use UTC. Track identity is the artist/track pair; album identity is the artist/album pair, preventing identical titles by different artists from being collapsed. Advanced analytics prefer MusicBrainz IDs (MBIDs) when present and fall back to case-folded names. They include monthly artist timelines, first-time discovery and 90-day rediscovery events, trailing 30/90-day rankings, inferred listening sessions (30-minute gap threshold), and monthly artist-concentration metrics. Rolling windows end at the newest archived scrobble. Session spans are timestamp-based estimates, not actual playback durations.
 
@@ -33,11 +34,20 @@ All generated timestamps and calendar buckets use UTC. Track identity is the art
 python build_stats.py
 python build_assistant_data.py
 python build_advanced_analytics.py
+LASTFM_API_KEY=your-key python build_music_metadata.py
 python build_playback_analytics.py
 ```
 
-The scheduled GitHub Actions workflow runs the importer and all analytics builders, validates the generated data, then commits updates. It requires the repository secret `LASTFM_API_KEY`.
+The scheduled GitHub Actions workflow imports new scrobbles, incrementally enriches missing track metadata, runs the analytics builders, validates generated data, and commits updates. It requires the repository secret `LASTFM_API_KEY`. Metadata enrichment is capped at 120 lookups per run by default (`MUSIC_METADATA_LOOKUPS_PER_RUN` can change this); successful results are cached and unmatched tracks are retried after 30 days.
 
+
+## Cached music metadata and duration estimates
+
+`build_music_metadata.py` builds `assistant_data/music/` from the canonical scrobble archive. It uses Last.fm `track.getInfo` to retrieve track duration in milliseconds, preferring a track MBID when present and otherwise querying artist + title without autocorrection. It verifies returned artist/title labels before accepting a duration. Exact MBID matches are marked high confidence; exact artist/title matches without an ID are medium confidence. Missing or ambiguous results remain unknown and are retried after 30 days.
+
+The catalogue is split into 32 fixed artist-hash shards to avoid thousands of tiny files. `indexes/artists.json` maps artist IDs to shard files; `indexes/tracks.json` maps track IDs to their artist/shard. Each artist entry contains its albums and track records. `overview.json` reports metadata coverage and full-track-equivalent hours; `artist_duration_totals.json` provides artist-level estimates. These estimates multiply full track duration by scrobble count and are not actual playback time. Skips, partial plays and incorrect source metadata remain possible. The original scrobble archive is never modified.
+
+The first run fills the cache gradually (120 unique-track lookups per daily workflow by default); subsequent runs only query missing/unmatched entries. This avoids repeatedly spending API requests on known tracks and avoids making one large initial run fragile. To change the per-run cap, set `MUSIC_METADATA_LOOKUPS_PER_RUN` in the workflow environment.
 
 ## Measured Spotify playback time
 
