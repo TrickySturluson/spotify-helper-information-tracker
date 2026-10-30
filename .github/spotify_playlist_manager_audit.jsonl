@@ -21,3 +21,4 @@
 {"at": "2026-10-30T08:00:36.440795+00:00", "event": "change_started", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "name": "Tricky Daily", "operations": [{"action": "add", "uris": ["spotify:track:4PTG3Z6ehGkBFwjybzWkR8"]}], "backup": "playlist_backups/20261030T080036440496Z_4yUVHSMQySfWeEowfIMcx7.json", "user_id": "a_thought"}
 {"at": "2026-10-30T08:00:36.441169+00:00", "event": "confirmation_consumed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T080036440496Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
 {"at": "2026-10-30T08:00:36.819276+00:00", "event": "change_completed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "backup": "playlist_backups/20261030T080036440496Z_4yUVHSMQySfWeEowfIMcx7.json", "kind": "edit"}
+{"at": "2026-10-30T08:01:09.764713+00:00", "event": "undo_previewed", "playlist_id": "4yUVHSMQySfWeEowfIMcx7", "restore_count": 0, "backup": "playlist_backups/20261030T080036440496Z_4yUVHSMQySfWeEowfIMcx7.json"}
