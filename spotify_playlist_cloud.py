@@ -13,6 +13,33 @@ STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
 CONTROL_ISSUE_TITLE = "Spotify Playlist Manager Control"
 
+DAILY_DESCRIPTIONS = [
+    "Today's rotation: old favorites, fresh turns.",
+    "Thirty tracks, one new rabbit hole.",
+    "Your archive, shuffled into tomorrow.",
+    "Deep cuts from the long way around.",
+    "Familiar names. Unexpected detours.",
+    "Today's crate dig starts here.",
+    "Old scrobbles, new combinations.",
+    "An excuse to hear something again.",
+    "One playlist, thirty little detours.",
+    "Pulled from the vault; sent to repeat.",
+    "Less obvious picks from your own history.",
+    "Yesterday's listening, today's detour.",
+    "Another spin through the archive.",
+    "Back catalog, front and center.",
+    "Your listening history has plans.",
+    "Fresh rotation, familiar fingerprints.",
+    "Thirty tracks outside the usual loop.",
+    "Digging deeper than the top tracks.",
+    "New day, new corners of the collection.",
+    "An ever-moving stack of rediscoveries.",
+    "Today's soundtrack, sourced from your past.",
+    "Past plays, present tense.",
+    "Your history with a change of scenery.",
+    "Not the hits. Not quite forgotten.",
+]
+
 
 def fail(message):
     print(message, file=sys.stderr)
@@ -220,7 +247,7 @@ def main():
         config["pending"] = {
             "playlist_id": pid, "operations": operations,
             "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
-            "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "edit",
+            "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "daily",
         }
         manager.write(STATE, config)
         manager.audit(event="daily_recommendations_previewed", playlist_id=pid, recommendation_count=len(recommendations), skipped_count=len(skipped))
@@ -318,6 +345,18 @@ def main():
                 replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
             else:
                 execute(sp, pid, pending["operations"])
+                if kind == "daily":
+                    current_description = p.get("description") or ""
+                    choices = [line for line in DAILY_DESCRIPTIONS if line != current_description]
+                    if not choices:
+                        raise manager.ManagerError("No alternate Tricky Daily description is available.")
+                    new_description = secrets.choice(choices)
+                    sp.call("PUT", f"/playlists/{pid}", {"description": new_description})
+                    manager.audit(
+                        event="daily_description_updated",
+                        playlist_id=pid,
+                        description=new_description,
+                    )
             updated = owned_playlist(sp, pid, me)
         except Exception as operation_error:
             # A multi-request edit can fail after Spotify has accepted some writes.
@@ -355,7 +394,7 @@ def main():
             "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
             "after_snapshot_id": updated.get("snapshot_id"),
             "after_uris": snapshot_uris(updated_snapshot),
-            "kind": "undo" if kind == "undo" else "edit",
+            "kind": kind,
         }
         manager.write(STATE, config)
         manager.audit(event="change_completed", playlist_id=pid, backup=backup, kind=kind)
