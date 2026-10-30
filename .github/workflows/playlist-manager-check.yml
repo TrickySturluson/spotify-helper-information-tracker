@@ -1,0 +1,30 @@
+name: Spotify playlist manager checks
+
+on:
+  push:
+    branches: [spotify-playlist-manager]
+    paths:
+      - "spotify_playlist_manager.py"
+      - "spotify_playlist_cloud.py"
+      - "README.md"
+      - ".github/workflows/spotify-playlist-manager.yml"
+      - "tests/test_spotify_playlist_manager.py"
+      - "tests/test_spotify_playlist_cloud.py"
+      - ".github/workflows/playlist-manager-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile manager
+        run: python -m py_compile spotify_playlist_manager.py spotify_playlist_cloud.py
+      - name: Run safety tests
+        run: python -m unittest discover -s tests -v

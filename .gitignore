@@ -2,3 +2,9 @@
 .spotify_token.json
 __pycache__/
 *.py[cod]
+
+# Local Spotify playlist manager credentials, permissions, backups and audit log
+.spotify_playlist_token.json
+.spotify_playlist_manager.json
+playlist_backups/
+playlist_manager_audit.jsonl

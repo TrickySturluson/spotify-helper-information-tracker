@@ -88,3 +88,113 @@ The tracker samples every 10 seconds by default; use `python spotify_playback_tr
 - Last.fm's recent-track archive does not supply actual listening duration. Duration-based estimates exclude scrobbles whose track duration is unknown; the metadata backfill action can improve coverage. Last.fm scrobble thresholds provide a theoretical minimum only, not exact played time.
 - Genre, release dates, biographies, similar artists and other descriptive metadata are not inferred from scrobbles. They require a separate metadata-enrichment stage and may be incomplete or inconsistent.
 - The canonical archive is preserved; assistant analytics are derived outputs and can be regenerated at any time.
+
+
+## Spotify playlist manager
+
+\`spotify_playlist_manager.py\` is a separate local tool for inspecting and managing your Spotify playlists. It does not feed Spotify playlist content into \`assistant_data/\` or the Last.fm analytics pipeline.
+
+### Setup
+
+1. Use the same Spotify Developer app and Client ID as the playback tracker.
+2. Ensure the app's Redirect URI includes \`http://127.0.0.1:8888/callback\`.
+3. Stop \`spotify_playback_tracker.py\` before first playlist-manager authorization if it is using port 8888.
+4. Set \`SPOTIFY_CLIENT_ID\` as shown in the playback tracker setup.
+5. Run \`python spotify_playlist_manager.py list\` and approve the additional playlist permissions in Spotify.
+
+The manager uses its own \`.spotify_playlist_token.json\`; it does not overwrite the playback tracker's token. It uses Authorization Code with PKCE and requires no client secret.
+
+### Commands
+
+\`\`\`bash
+python spotify_playlist_manager.py list
+python spotify_playlist_manager.py export-refresh-token
+python spotify_playlist_manager.py inspect YOUR_PLAYLIST_ID
+python spotify_playlist_manager.py unlock YOUR_PLAYLIST_ID
+python spotify_playlist_manager.py lock YOUR_PLAYLIST_ID
+python spotify_playlist_manager.py create "New playlist name" --description "Description"
+python spotify_playlist_manager.py apply change-plan.json
+\`\`\`
+
+All playlists are **LOCKED by default**, including newly created playlists. Only explicitly unlocked playlists can be modified. A change plan is previewed before any write, then requires typing \`APPLY\`; plans containing a replacement require typing \`REPLACE\`. The manager checks the lock again immediately before each operation and stops if it has become locked. It also checks playlist ownership and detects changes made after the preview.
+
+### Change-plan format
+
+Track URIs must be Spotify track URIs (for example, \`spotify:track:...\`). Supported operations are \`add\`, \`remove\`, \`replace\`, and \`reorder\`.
+
+\`\`\`json
+{
+  "playlist_id": "YOUR_PLAYLIST_ID",
+  "operations": [
+    {
+      "action": "add",
+      "uris": ["spotify:track:TRACK_ID"]
+    },
+    {
+      "action": "remove",
+      "uris": ["spotify:track:ANOTHER_TRACK_ID"]
+    }
+  ]
+}
+\`\`\`
+
+For a reorder operation, provide zero-based \`range_start\`, \`insert_before\`, and \`range_length\`. A replace operation replaces the full contents and requires the separate \`REPLACE\` confirmation.
+
+Before applying a plan, the manager saves a complete pre-change playlist snapshot under \`playlist_backups/\`. It records lock changes, cancelled plans, and completed changes in \`playlist_manager_audit.jsonl\`. These files and the local OAuth token are private runtime data and should not be committed. Snapshots are recovery references; they are not automatically restored by the tool.
+
+
+**Spotify content boundary:** complete playlist tracklists and snapshots stay outside `assistant_data/` and are never included in control issue comments. For user-requested management, the control panel surfaces only minimal operational metadata (playlist name, ID, item count, lock state) and the explicit track URIs in a proposed plan. Full pre-change snapshots are stored as GitHub Actions artifacts for recovery, not in issue comments or assistant-facing analytics.
+
+The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use \`/items\` (not the older \`/tracks\` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app.
+
+
+### GitHub Actions control panel
+
+After this branch is merged into `main`, add these repository Actions settings:
+
+- Variable: `SPOTIFY_CLIENT_ID` (the Spotify app Client ID)
+- Secret: `SPOTIFY_REFRESH_TOKEN` (the playlist-manager refresh token; never commit or paste it into an issue)
+
+Spotify refresh tokens expire six months after authorization; refreshing an access token does not extend that deadline. If the cloud workflow reports an expired or invalid refresh token, reauthorize the playlist manager locally and replace this GitHub Actions secret with the newly issued refresh token. Spotify may also return a replacement refresh token during a refresh; the workflow warns if that happens because a temporary runner cannot update repository secrets. If warned, reauthorize locally and replace the secret before the next command.
+
+Create one open issue titled exactly **Spotify Playlist Manager Control**. Its body is a JSON command. Editing the body runs the control workflow; results are posted as issue comments.
+
+Status:
+```json
+{"command":"status"}
+```
+
+Lock/unlock one owned playlist or lock all owned playlists:
+```json
+{"command":"lock","playlist_id":"PLAYLIST_ID"}
+{"command":"unlock","playlist_id":"PLAYLIST_ID"}
+{"command":"lock_all"}
+```
+
+To change a playlist, unlock it first, then submit a preview command. The preview lists the exact requested Spotify track URIs and does not modify the playlist:
+```json
+{
+  "command": "preview",
+  "playlist_id": "PLAYLIST_ID",
+  "operations": [
+    {"action": "add", "uris": ["spotify:track:TRACK_ID"]}
+  ]
+}
+```
+
+The preview returns a one-time confirmation code. Submit only that code to execute the exact pending plan:
+```json
+{"command":"confirm","confirmation":"CODE_FROM_PREVIEW"}
+```
+
+Confirmation is rejected if the playlist was locked or its snapshot changed after preview. Only the repository owner can issue commands, and only playlists owned by the connected Spotify account can be edited. New and unknown playlists remain locked by default. A lock or lock-all command cancels a pending preview. Pre-change snapshots are uploaded as GitHub Actions artifacts (30-day retention); the lock state and audit log are stored in the repository under `.github/`.
+
+The control issue reports playlist names, IDs, item counts and lock states. Preview comments include only the URIs explicitly supplied in the proposed plan; complete playlist tracklists are not sent to the control issue. Recovery snapshots remain separate Actions artifacts and are not included in assistant-facing analytics.
+
+
+Undo the most recent completed change with:
+```json
+{"command":"undo"}
+```
+
+Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its current snapshot ID to match the post-change state recorded by the manager. Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
