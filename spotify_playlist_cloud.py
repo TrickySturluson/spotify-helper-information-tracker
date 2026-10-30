@@ -92,9 +92,6 @@ def main():
         count = (p.get("items") or p.get("tracks") or {}).get("total", "?")
         safe_name = str(p.get("name", "")).replace("|", "\\|").replace("\n", " ")
         lines.append("| " + safe_name + " | " + str(count) + " | " + state.upper() + " | `" + pid + "` |")
-        state = config["playlists"].get(pid, {}).get("state", "locked")
-        count = (p.get("items") or p.get("tracks") or {}).get("total", "?")
-        lines.append(f'| {str(p.get("name", "")).replace("|", "\\|")} | {count} | {state.upper()} | `{pid}` |')
     output = "\n".join(lines)
     print(output)
     # The workflow posts this as an issue comment; GITHUB_TOKEN comments do not
