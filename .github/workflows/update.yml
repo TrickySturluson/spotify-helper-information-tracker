@@ -26,6 +26,12 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: python update_lastfm.py
 
+      - name: Enrich cached track metadata
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_METADATA_LOOKUPS_PER_RUN: 120
+        run: python build_music_metadata.py
+
       - name: Build existing statistics
         run: python build_stats.py
 
@@ -47,12 +53,15 @@ jobs:
           manifest = json.loads(Path("assistant_data/manifest.json").read_text(encoding="utf-8"))
           advanced = json.loads(Path("assistant_data/advanced/manifest.json").read_text(encoding="utf-8"))
           playback = json.loads(Path("assistant_data/playback/manifest.json").read_text(encoding="utf-8"))
+          music = json.loads(Path("assistant_data/music/manifest.json").read_text(encoding="utf-8"))
           metadata = json.loads(Path("data/metadata.json").read_text(encoding="utf-8"))
           stats = json.loads(Path("data/stats.json").read_text(encoding="utf-8"))
           expected = int(metadata["total_scrobbles"])
           assert manifest["source_scrobbles"] == expected, (manifest["source_scrobbles"], expected)
           assert advanced["source_scrobbles"] == expected, (advanced["source_scrobbles"], expected)
           assert playback["recorded_intervals"] >= 0
+          assert music["source_scrobbles"] == expected, (music["source_scrobbles"], expected)
+          assert music["unique_tracks"] > 0
           assert stats["overview"]["total_scrobbles"] == expected
           assert manifest["validation"]["year_total"] == expected
           assert manifest["validation"]["month_total"] == expected
