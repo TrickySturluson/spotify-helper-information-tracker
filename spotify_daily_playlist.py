@@ -21,7 +21,7 @@ RECENT_EXCLUSION_DAYS = 14
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
 def parse_date(value):
