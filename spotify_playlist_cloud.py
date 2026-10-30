@@ -117,6 +117,11 @@ def execute(sp, pid, operations):
                 "range_length": op["range_length"],
                 "snapshot_id": current.get("snapshot_id"),
             })
+        elif action == "details":
+            sp.call("PUT", f"/playlists/{pid}", {
+                "name": op["name"],
+                "description": op["description"],
+            })
 
 
 def main():
@@ -213,6 +218,8 @@ def main():
             if op["action"] in {"add", "remove", "replace"}:
                 lines.append(f'{op["action"].upper()}: {len(op["uris"])} track URI(s)')
                 lines.extend("  " + uri for uri in op["uris"])
+            elif op["action"] == "details":
+                lines.append(f'UPDATE DETAILS: name={op["name"]!r}; description={op["description"]!r}')
             else:
                 lines.append(
                     f'REORDER: start {op["range_start"]}, before {op["insert_before"]}, '
