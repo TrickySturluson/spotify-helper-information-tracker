@@ -64,10 +64,12 @@ def main():
         tid = track_id(row, aid)
         rec = catalogue.setdefault(tid, {"track_id":tid,"artist_id":aid,"artist":clean(row.get("artist")),"track":clean(row.get("track")),"track_mbid":row.get("track_mbid"),"plays":0})
         rec["plays"] += 1
-    due = [r for tid, r in catalogue.items() if not (tracks.get(tid) or {}).get("duration_ms")]
+    now_epoch = int(time.time())
+    due = [r for tid, r in catalogue.items() if not (tracks.get(tid) or {}).get("duration_ms") and int((tracks.get(tid) or {}).get("musicbrainz_retry_after", 0) or 0) <= now_epoch]
     due.sort(key=lambda r:(-r["plays"],r["artist"].casefold(),r["track"].casefold()))
     found = looked = 0
     now = datetime.now(timezone.utc).isoformat()
+    now_epoch = int(time.time())
     for item in due[:LIMIT]:
         # Prefer direct recording MBID lookup, then fall back to strict text search.
         candidates = []
@@ -95,11 +97,14 @@ def main():
             print(f"MusicBrainz lookup interrupted at {item['artist']} — {item['track']}: {exc}")
             break
         looked += 1
+        existing = tracks.get(item["track_id"])
+        if existing is not None:
+            existing["musicbrainz_checked_at"] = now
+            existing["musicbrainz_retry_after"] = now_epoch + 30 * 86400
         if candidates:
             candidate = candidates[0]
             duration = int(candidate.get("length") or 0)
             # Find the existing artist shard/track record and update only metadata.
-            existing = tracks.get(item["track_id"])
             if existing is not None and duration > 0:
                 existing.update({
                     "duration_ms":duration,
@@ -108,7 +113,8 @@ def main():
                     "match_type":"exact_mbid" if item.get("track_mbid") and str(candidate.get("id","")).casefold() == str(item["track_mbid"]).casefold() else "exact_artist_title",
                     "metadata_checked_at":now,
                     "metadata_status":"matched",
-                    "retry_after":0
+                    "retry_after":0,
+                    "musicbrainz_retry_after":0
                 })
                 found += 1
         time.sleep(1.05)  # MusicBrainz requires no more than one request per second.
