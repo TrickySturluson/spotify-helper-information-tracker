@@ -67,6 +67,7 @@ def main():
     artist_gaps = defaultdict(list)
     track_first, track_last = {}, {}
     month_counts = Counter()
+    monthly_artist_counts = defaultdict(Counter)
     discoveries = []
     records = []
 
@@ -85,6 +86,7 @@ def main():
         album_counts[alid] += 1
         artist_months[aid][month] += 1
         month_counts[month] += 1
+        monthly_artist_counts[month][aid] += 1
         if aid in artist_last:
             gap = ts - artist_last[aid]
             if gap >= REDISCOVERY_GAP_SECONDS:
@@ -196,11 +198,7 @@ def main():
 
     # Monthly concentration/diversity indicators.
     monthly_diversity = {}
-    for month in sorted(set(datetime.fromtimestamp(r[0], timezone.utc).strftime("%Y-%m") for r in records)):
-        ac = Counter()
-        for ts, aid, _, _ in records:
-            if datetime.fromtimestamp(ts, timezone.utc).strftime("%Y-%m") == month:
-                ac[aid] += 1
+    for month, ac in sorted(monthly_artist_counts.items()):
         n = sum(ac.values())
         hhi = sum((v / n) ** 2 for v in ac.values()) if n else 0
         monthly_diversity[month] = {
