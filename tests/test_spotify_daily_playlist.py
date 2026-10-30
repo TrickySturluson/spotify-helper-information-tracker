@@ -6,6 +6,20 @@ import spotify_daily_playlist as daily
 
 
 class DailyCuratorTests(unittest.TestCase):
+    def test_repository_archive_produces_a_diverse_daily_set(self):
+        from pathlib import Path
+        features = Path("assistant_data/recommendations/track_features.json")
+        if not features.is_file():
+            self.skipTest("generated recommendation archive is not present")
+        import json
+        tracks = json.loads(features.read_text(encoding="utf-8"))
+        ranked = daily.rank_candidates(tracks, today=date(2026, 10, 30), limit=30)
+        self.assertEqual(len(ranked), 30)
+        counts = {}
+        for row in ranked:
+            counts[row["artist"]] = counts.get(row["artist"], 0) + 1
+        self.assertLessEqual(max(counts.values()), 2)
+
     def test_recent_tracks_are_excluded(self):
         tracks = [
             {"track_id": "a", "artist": "A", "track": "Fresh", "plays": 100, "last_scrobble": "2026-10-25T00:00:00+00:00"},
