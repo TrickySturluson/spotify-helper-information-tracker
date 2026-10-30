@@ -149,6 +149,13 @@ def main():
     artist_index = {row["artist"]: {k: row[k] for k in ("plays", "unique_tracks", "unique_albums", "first_scrobble", "last_scrobble", "active_months")} for row in artist_rows}
     write_json(OUTPUT / "indexes" / "artists.json", artist_index)
 
+    weekday_days = Counter()
+    weekday_plays = Counter()
+    for day, plays in by_day.items():
+        weekday = datetime.strptime(day, "%Y-%m-%d").strftime("%A")
+        weekday_days[weekday] += 1
+        weekday_plays[weekday] += plays
+
     pattern = {
         "timezone": "UTC",
         "daily_scrobbles": dict(sorted(by_day.items())),
@@ -156,7 +163,7 @@ def main():
         "yearly_scrobbles": dict(sorted(by_year.items())),
         "weekday_scrobbles": dict(by_weekday),
         "hour_utc_scrobbles": {str(h): by_hour.get(str(h), 0) for h in range(24)},
-        "daily_average_by_weekday": {d: round(sum(1 for r in records if datetime.fromtimestamp(r[0], timezone.utc).strftime("%A") == d) / max(1, len(set(r[5] for r in records))), 2) for d in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")}
+        "average_scrobbles_per_occurrence_of_weekday": {d: round(weekday_plays[d] / weekday_days[d], 2) if weekday_days[d] else 0 for d in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")}
     }
     write_json(OUTPUT / "listening_patterns.json", pattern)
 
