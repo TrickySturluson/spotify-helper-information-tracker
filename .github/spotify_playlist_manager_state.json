@@ -7,17 +7,11 @@
       "updated_at": "2026-10-30T07:45:36.031174+00:00"
     }
   },
-  "pending": {
+  "last_completed": {
     "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "operations": [
-      {
-        "action": "add",
-        "uris": [
-          "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
-        ]
-      }
-    ],
-    "snapshot_id": "AAAAA2RdszVkOYqKCEO47m6XUy2D0Gea",
-    "confirmation": "9qjVJr8ISNVfOTlt"
+    "backup": "playlist_backups/20261030T074701463203Z_4yUVHSMQySfWeEowfIMcx7.json",
+    "backup_run_id": "41022179831",
+    "after_snapshot_id": "AAAAA2RdszVkOYqKCEO47m6XUy2D0Gea",
+    "kind": "edit"
   }
 }
