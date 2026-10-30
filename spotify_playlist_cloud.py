@@ -258,7 +258,9 @@ def main():
         ]
         for index, row in enumerate(recommendations, 1):
             familiarity = "already Liked" if row.get("liked") else ("unheard" if not row.get("plays") else f'{row.get("plays")} archive plays')
-            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{row.get("tier", "discovery").upper()}; {familiarity}; similarity {row.get("similarity", 0):.2f}; Spotify popularity {row.get("popularity", 0)}]')
+            popularity = row.get("popularity")
+            popularity_label = f"Spotify popularity {popularity}" if isinstance(popularity, (int, float)) else "Spotify popularity unavailable from API"
+            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{row.get("tier", "discovery").upper()}; {familiarity}; similarity {row.get("similarity", 0):.2f}; {popularity_label}]')
         lines.extend(["", f'Skipped {len(skipped)} candidates already present in Tricky Daily or without a usable Spotify match.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
         result = "\n".join(lines)
     elif action == "undo":
