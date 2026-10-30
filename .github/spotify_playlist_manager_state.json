@@ -16,5 +16,16 @@
       "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
     ],
     "kind": "edit"
+  },
+  "pending": {
+    "kind": "undo",
+    "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+    "snapshot_id": "AAAACVYtRfIoII770E6S6bEsC403ZD93",
+    "backup": "playlist_backups/20261030T081802868407Z_4yUVHSMQySfWeEowfIMcx7.json",
+    "confirmation": "X7sJQ2UucAcWzluK",
+    "restore_count": 0,
+    "expected_uris": [
+      "spotify:track:4PTG3Z6ehGkBFwjybzWkR8"
+    ]
   }
 }
