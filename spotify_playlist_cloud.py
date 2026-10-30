@@ -4,6 +4,7 @@ import json
 import os
 import secrets
 import sys
+import urllib.error
 from pathlib import Path
 
 import spotify_playlist_manager as manager
@@ -276,4 +277,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (manager.ManagerError, OSError, KeyError, ValueError, urllib.error.URLError) as error:
+        print("ERROR:", error, file=sys.stderr)
+        raise SystemExit(1)
