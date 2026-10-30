@@ -234,7 +234,7 @@ def main():
         for index, row in enumerate(recommendations, 1):
             lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} (archive plays: {row.get("plays", 0)}; last scrobbled: {row.get("last_scrobble") or "unknown"})')
         lines.extend(["", f'Skipped {len(skipped)} candidates with no exact Spotify match or already present in the playlist.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
-        result = "\\n".join(lines)
+        result = "\n".join(lines)
     elif action == "undo":
         last = config.get("last_completed") or {}
         if not last:
