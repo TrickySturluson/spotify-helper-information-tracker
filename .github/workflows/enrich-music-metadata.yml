@@ -52,6 +52,8 @@ jobs:
         run: python build_music_metadata.py
       - name: Refresh main assistant summary
         run: python build_assistant_data.py
+      - name: Build music duration trends and recommendation features
+        run: python build_music_analytics.py
       - name: Validate generated music metadata
         run: |
           python - <<'PY'
