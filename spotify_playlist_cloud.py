@@ -297,6 +297,14 @@ def main():
             lines.append("| " + safe_name + " | " + str(count) + " | " + state.upper() + " | `" + pid + "` |")
         result = "\n".join(lines)
 
+    if getattr(sp, "refresh_token_rotated", False):
+        result += (
+            "\\n\\nWARNING: Spotify issued a replacement refresh token during this run. "
+            "The temporary runner cannot update the repository secret. Before the next command, "
+            "reauthorize the playlist manager locally and replace SPOTIFY_REFRESH_TOKEN in "
+            "GitHub Actions Secrets."
+        )
+
     print(result)
     import uuid
     delimiter = "RESULT_" + uuid.uuid4().hex
