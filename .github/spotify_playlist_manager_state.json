@@ -14,8 +14,8 @@
   },
   "last_completed": {
     "playlist_id": "4diIlnF8BlgoJrwUfejf49",
-    "backup": "playlist_backups/20261030T190713424191Z_4diIlnF8BlgoJrwUfejf49.json",
-    "backup_run_id": "41112546985",
+    "backup": "playlist_backups/20261030T191109340359Z_4diIlnF8BlgoJrwUfejf49.json",
+    "backup_run_id": "41113114565",
     "after_snapshot_id": "AAAACSrt/IWVJWms+Ayp4uYHTlH821SX",
     "after_uris": [
       "spotify:track:1bPgyV3er2BP0ON7EEEMYf",
@@ -42,8 +42,6 @@
       "spotify:track:4AYUejlbusnbZY7s2z2C9G",
       "spotify:track:3lM9UdOYvDIs5PSY8aBEl2",
       "spotify:track:2LlQb7Uoj1kKyGhlkBf9aC",
-      "spotify:track:0xxZY5C9xxij3D1HkzbnfC",
-      "spotify:track:3m0y8qLoznUYi73SUBP8GI",
       "spotify:track:01YROQCnF1AQm7SCWJmD2o",
       "spotify:track:3SLRpaxbk4b4cXPvX7xsRJ",
       "spotify:track:7jwQlYGpOml9ETGre1HqGA",
@@ -63,77 +61,10 @@
       "spotify:track:6Nm8h73ycDG2saCnZV8poF",
       "spotify:track:10V8XpuyMoEcSMfM79WDET",
       "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
-      "spotify:track:7F6B0eGSuPpDin9yCK6Zh7"
+      "spotify:track:7F6B0eGSuPpDin9yCK6Zh7",
+      "spotify:track:2qRDhbW3M6BpPLmE9wguEs",
+      "spotify:track:1EK6EP11eJfvaPDHmfFEGJ"
     ],
     "kind": "edit"
-  },
-  "pending": {
-    "playlist_id": "4diIlnF8BlgoJrwUfejf49",
-    "operations": [
-      {
-        "action": "remove",
-        "uris": [
-          "spotify:track:0xxZY5C9xxij3D1HkzbnfC",
-          "spotify:track:3m0y8qLoznUYi73SUBP8GI"
-        ]
-      },
-      {
-        "action": "add",
-        "uris": [
-          "spotify:track:2qRDhbW3M6BpPLmE9wguEs",
-          "spotify:track:1EK6EP11eJfvaPDHmfFEGJ"
-        ]
-      }
-    ],
-    "snapshot_id": "AAAACSrt/IWVJWms+Ayp4uYHTlH821SX",
-    "expected_uris": [
-      "spotify:track:1bPgyV3er2BP0ON7EEEMYf",
-      "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
-      "spotify:track:6QjHD0Sc1oW29NqWs9x7nJ",
-      "spotify:track:2zMltFX7IerjrXLSt1P0WG",
-      "spotify:track:1mmsMMDhZARJuzBsZ9NDrh",
-      "spotify:track:6dkAXLDKALkULFcWcJUlba",
-      "spotify:track:0wHwJLCxCCO4BORXEPGCRZ",
-      "spotify:track:1E5lJ3PRYAmOwv2Zlqj8FT",
-      "spotify:track:1BE4EFEuVLLPbwyzJWDmdO",
-      "spotify:track:5mguQw289MoZ8Jm75yhRr2",
-      "spotify:track:1aLa8Bb1QdK39uDB8R0XN8",
-      "spotify:track:1XWSE59E3X8T2AHE4v11Hu",
-      "spotify:track:18Cs5wC3kOk7k79myWe1Hw",
-      "spotify:track:1ipGbUPMdwmO7Ajk6iMDQu",
-      "spotify:track:22rVn6AqjJJCBzMXaRfhfU",
-      "spotify:track:5x48N9IiNNnbZ7J4IFoccq",
-      "spotify:track:51T9xt361Nm8IyUPoAlCPt",
-      "spotify:track:17ACjeq2sv2AHMjWX7hXM4",
-      "spotify:track:7KEGIroxrVnh40lYTfOVYY",
-      "spotify:track:1Am0XWDLxOEs9rtv6mxv3c",
-      "spotify:track:5h5reMGNpL19vdn5wMkbNn",
-      "spotify:track:4AYUejlbusnbZY7s2z2C9G",
-      "spotify:track:3lM9UdOYvDIs5PSY8aBEl2",
-      "spotify:track:2LlQb7Uoj1kKyGhlkBf9aC",
-      "spotify:track:0xxZY5C9xxij3D1HkzbnfC",
-      "spotify:track:3m0y8qLoznUYi73SUBP8GI",
-      "spotify:track:01YROQCnF1AQm7SCWJmD2o",
-      "spotify:track:3SLRpaxbk4b4cXPvX7xsRJ",
-      "spotify:track:7jwQlYGpOml9ETGre1HqGA",
-      "spotify:track:2PN0JeaGtkHrlcmwZFWzBM",
-      "spotify:track:3sLhMSePzxSrmxluIqeoAZ",
-      "spotify:track:6kotXaSQaGYxE62hVpdHWu",
-      "spotify:track:2h47SG8bNphmicAll4H9RV",
-      "spotify:track:7BOED8Z0Mu9tsivXSPGGk1",
-      "spotify:track:3n75gL3WU5tAwwAgssRI9j",
-      "spotify:track:7dWyBjRr6F6Ap2N6xNNXf2",
-      "spotify:track:710B9xFjNOisQtKtppZE9p",
-      "spotify:track:18k49mXvNPtKlcT6Ky39pe",
-      "spotify:track:2l0Z9fY1E8Bep8opmhmDhq",
-      "spotify:track:0WkZQPNC0c7yrsMX1arVAd",
-      "spotify:track:6ByMNNbIhjFCjhVDOLgTXg",
-      "spotify:track:5EuQzakrNyaOLsVS4pi1Az",
-      "spotify:track:6Nm8h73ycDG2saCnZV8poF",
-      "spotify:track:10V8XpuyMoEcSMfM79WDET",
-      "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
-      "spotify:track:7F6B0eGSuPpDin9yCK6Zh7"
-    ],
-    "confirmation": "-X634Yi1MM2PG-xk"
   }
 }
