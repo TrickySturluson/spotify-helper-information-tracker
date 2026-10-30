@@ -3,6 +3,7 @@ import time
 """Owner-verified GitHub issue command handler for Spotify playlist control."""
 import json
 import os
+import re
 import secrets
 import sys
 import urllib.error
@@ -152,12 +153,13 @@ def main():
         "daily_preview": {"command", "playlist_id"},
         "horror_preview": {"command", "playlist_id"},
         "booze20_preview": {"command", "playlist_id"},
+        "booze20_uri_preview": {"command", "playlist_id", "tracks"},
         "confirm": {"command", "confirmation"},
         "undo": {"command"},
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -280,14 +282,31 @@ def main():
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
         resolved, skipped, already_present = [], [], []
         def catalog_search(query):
-            for attempt in range(4):
+            for attempt in range(3):
                 try:
                     return sp.call("GET", "/search?" + query)
                 except manager.ManagerError as error:
-                    if "HTTP 429" not in str(error) or attempt == 3:
+                    message = str(error)
+                    if "QUOTA_EXCEEDED" in message:
+                        raise manager.ManagerError(
+                            "Spotify catalogue quota is exhausted (QUOTA_EXCEEDED). "
+                            "Stopped immediately without retrying; use booze20_uri_preview "
+                            "with verified Spotify track URIs instead."
+                        ) from error
+                    if "HTTP 429" not in message or attempt == 2:
                         raise
-                    time.sleep(30 * (attempt + 1))
-            raise manager.ManagerError("Spotify catalogue search retry limit reached.")
+                    match = re.search(r"Retry-After:\s*([0-9]+(?:\.[0-9]+)?)", message)
+                    if not match:
+                        raise manager.ManagerError(
+                            "Spotify returned HTTP 429 without Retry-After; stopped rather than guessing."
+                        ) from error
+                    delay = float(match.group(1))
+                    if delay > 120:
+                        raise manager.ManagerError(
+                            f"Spotify rate limit requires waiting {delay:g}s; stopped this run safely."
+                        ) from error
+                    time.sleep(delay)
+            raise manager.ManagerError("Spotify catalogue retry limit reached.")
         for artist, title in candidates:
             time.sleep(1.0)
             query = urllib.parse.urlencode({
@@ -358,6 +377,78 @@ def main():
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
             lines.extend(f"Already present: {row}" for row in already_present)
             lines.extend(["", "To add these exact new tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
+            result = "\\n".join(lines)
+    elif action == "booze20_uri_preview":
+        # Stage a pre-resolved batch without calling the catalogue search endpoint.
+        tracks = command["tracks"]
+        if not isinstance(tracks, list) or not tracks or len(tracks) > 50:
+            fail("Rejected: tracks must be a non-empty list of at most 50 track records.")
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        if not manager.unlocked(pid):
+            fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing edits.")
+        current = manager.snapshot(sp, p)
+        existing = {item.get("uri") for item in current["items"] if item.get("uri")}
+        def music_key(value):
+            return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
+        resolved, already_present, seen = [], [], set()
+        for row in tracks:
+            if not isinstance(row, dict) or set(row) != {"artist", "title", "uri"}:
+                fail("Rejected: each track must contain exactly artist, title, and uri.")
+            artist, title, uri = row["artist"], row["title"], row["uri"]
+            if not all(isinstance(value, str) and value.strip() for value in (artist, title, uri)):
+                fail("Rejected: track artist, title, and URI must be non-empty strings.")
+            if not uri.startswith("spotify:track:"):
+                fail(f"Rejected: invalid Spotify track URI for {artist} — {title}.")
+            if uri in seen:
+                fail(f"Rejected: duplicate URI in requested batch: {uri}")
+            seen.add(uri)
+            track_id = uri.rsplit(":", 1)[-1]
+            metadata = sp.call("GET", f"/tracks/{urllib.parse.quote(track_id)}")
+            actual_artist = any(
+                music_key(a.get("name")) == music_key(artist)
+                for a in (metadata.get("artists") or [])
+            )
+            if music_key(metadata.get("name")) != music_key(title) or not actual_artist:
+                fail(
+                    f"Rejected URI mismatch: requested {artist} — {title}, "
+                    f"Spotify returned {', '.join(a.get('name', '') for a in metadata.get('artists', []))} "
+                    f"— {metadata.get('name')}."
+                )
+            if uri in existing:
+                already_present.append(f"{artist} — {metadata.get('name')}")
+            else:
+                resolved.append({"artist": artist, "track": metadata.get("name"), "uri": uri})
+        if not resolved:
+            result = f'URI BATCH CHECKED — {p.get("name")} [{pid}]\\nAll verified tracks are already present; no changes were staged.'
+        else:
+            operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
+            confirmation = secrets.token_urlsafe(12)
+            config["pending"] = {
+                "playlist_id": pid, "operations": operations,
+                "snapshot_id": p.get("snapshot_id"),
+                "expected_uris": snapshot_uris(current),
+                "confirmation": confirmation, "kind": "booze20",
+            }
+            manager.write(STATE, config)
+            manager.audit(event="booze20_uri_previewed", playlist_id=pid, added_count=len(resolved))
+            lines = [
+                f'URI BATCH PREVIEW — {p.get("name")} [{pid}]',
+                f'Current items: {len(current["items"])}; verified additions: {len(resolved)}; already present: {len(already_present)}; after confirmation: {len(current["items"]) + len(resolved)}.',
+                "No playlist changes have been made.",
+                "",
+            ]
+            lines.extend(
+                f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]'
+                for index, row in enumerate(resolved, 1)
+            )
+            lines.extend(f"Already present: {row}" for row in already_present)
+            lines.extend([
+                "",
+                "To add these exact verified tracks, submit confirm with this one-time code:",
+                confirmation,
+                "The playlist must remain unlocked and unchanged until confirmation.",
+            ])
             result = "\\n".join(lines)
     elif action == "horror_preview":
         # Resolve a hand-curated 46-track Halloween expansion through Spotify's
