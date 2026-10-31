@@ -47,7 +47,7 @@ def record_additions(items, added_at=None, liked_at_add=None):
         row = data["tracks"].setdefault(uri, {
             "uri": uri, "artist": item.get("artist"), "track": item.get("track"),
             "first_added_at": added_at, "additions": [], "liked_observations": [],
-            "playback_observations": [], "removal_events": [],
+            "playback_observations": [], "removal_events": [], "liked_at_add": None,
         })
         row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})\n        if liked_at_add and uri in liked_at_add:\n            row["liked_at_add"] = bool(liked_at_add[uri])
         row["last_added_at"] = added_at
@@ -148,6 +148,8 @@ def feedback_for(uri):
     return {
         "status": "observed" if latest_liked is not None or measured_plays is not None else "unknown",
         "liked": latest_liked,
+        "liked_before_or_at_add": row.get("liked_at_add"),
+        "liked_after_add": (latest_liked is True and row.get("liked_at_add") is False) if latest_liked is not None and row.get("liked_at_add") is not None else None,
         "liked_at": liked[-1].get("at") if liked else None,
         "post_add_measured_plays": measured_plays,
         "post_add_playback_ms": measured_ms,
