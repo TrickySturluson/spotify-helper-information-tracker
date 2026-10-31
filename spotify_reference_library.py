@@ -178,12 +178,46 @@ def retention_signal(liked, measured_plays, lastfm_plays, tracker_known=True):
     }
 
 
+def lookup(query):
+    needle = query.casefold().strip()
+    catalog = manager.read(CATALOG, {"playlists": []})
+    matches = []
+    for playlist in catalog.get("playlists", []):
+        path = Path(playlist.get("record_path") or PLAYLIST_DIR / (playlist["id"] + ".json"))
+        record = manager.read(path, {})
+        playlist_match = needle in str(record.get("name") or "").casefold()
+        matched_items = []
+        for item in record.get("items", []):
+            text = " ".join([item.get("name") or "", item.get("album") or ""] + item.get("artists", []))
+            if needle in text.casefold():
+                matched_items.append(item)
+        if playlist_match or matched_items:
+            matches.append((record, matched_items))
+    for record, items in matches:
+        print(f'{record.get("name")} [{record.get("id")}] — {record.get("item_count_fetched", 0)} items')
+        if not record.get("items_accessible", True):
+            print("  Item contents unavailable through this Spotify API authorization.")
+        for item in items[:25]:
+            print(f'  {item.get("position", 0) + 1:3}. {", ".join(item.get("artists") or [])} — {item.get("name")}')
+    print(f"Matched {len(matches)} playlist(s).")
+    return matches
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["sync"])
+    sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("sync", help="Read Spotify and refresh the reference library")
+    sub.add_parser("list", help="List saved reference playlists")
+    search = sub.add_parser("lookup", help="Search saved playlists, tracks, artists and albums")
+    search.add_argument("query")
     args = parser.parse_args()
     if args.command == "sync":
         sync(manager.Spotify())
+    elif args.command == "list":
+        for row in manager.read(CATALOG, {"playlists": []}).get("playlists", []):
+            print(f'{row.get("name")} | {row.get("item_count")} items | {row.get("id")}')
+    elif args.command == "lookup":
+        lookup(args.query)
 
 
 if __name__ == "__main__":
