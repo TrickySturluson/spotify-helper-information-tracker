@@ -269,6 +269,7 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
                     "liked_at_add": record.get("liked_at_add"),
                     "removal_count": len(record.get("removal_events") or []),
                     "measured_plays": measured_plays,
+                    "lastfm_plays": record.get("lastfm_post_add_scrobbles"),
                 }
         except (OSError, ValueError, TypeError):
             daily_evidence = {}
@@ -312,7 +313,10 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     removed_uri = uri in feedback.get("negative_uris", set())
     # A Daily removal is not negative evidence unless meaningful listening exposure was observed.
     if daily and daily.get("removal_count"):
-        if daily.get("measured_plays") is None or daily.get("measured_plays") == 0:
+        observed_exposure = daily.get("measured_plays")
+        if observed_exposure is None:
+            observed_exposure = daily.get("lastfm_plays")
+        if observed_exposure is None or observed_exposure == 0:
             removed_exact = False
             removed_uri = False
     removed_artist_count = feedback.get("negative_artists", {}).get(norm(artist), 0)
@@ -328,6 +332,8 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
         feedback_bonus += 0.06
     if daily.get("measured_plays") is not None and daily.get("measured_plays") > 0:
         feedback_bonus += min(0.08, 0.025 * math.log1p(daily["measured_plays"]))
+    if daily.get("lastfm_plays") is not None and daily.get("lastfm_plays") > 0:
+        feedback_bonus += min(0.025, 0.008 * math.log1p(daily["lastfm_plays"]))
     # Spotify removed the popularity field from some Development Mode API
     # responses in 2026. Do not interpret a missing field as popularity zero.
     score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty + feedback_bonus
