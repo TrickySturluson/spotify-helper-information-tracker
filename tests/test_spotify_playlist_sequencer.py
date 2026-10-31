@@ -29,6 +29,23 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(result["confidence"], "unknown")
         self.assertEqual(result["score"], 50.0)
 
+
+    def test_theme_grouping_is_available_without_replacing_energy_scores(self):
+        rows = [
+            {"uri": "spotify:track:b", "name": "B", "artists": ["Artist B"],
+             "audio_features": {"energy": 0.51}},
+            {"uri": "spotify:track:a", "name": "A", "artists": ["Artist A"],
+             "audio_features": {"energy": 0.52}},
+        ]
+        artists = {
+            "artist a": {"themes": ["dreamlike"]},
+            "artist b": {"themes": ["nocturnal"]},
+        }
+        result = sequencer.sequence_tracks(rows, artist_profiles=artists, group_by="theme")
+        self.assertEqual(result[0]["sequence_group"], "dreamlike")
+        self.assertEqual(result[1]["sequence_group"], "nocturnal")
+        self.assertLessEqual(abs(result[1]["score"] - result[0]["score"]), 10)
+
     def test_reorder_plan_preserves_duplicates_and_transforms_order(self):
         current = ["a", "b", "a", "c"]
         desired = ["a", "a", "c", "b"]
