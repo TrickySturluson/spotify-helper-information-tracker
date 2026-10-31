@@ -1,6 +1,10 @@
 name: Enrich Music Metadata
 
 on:
+  # Spread small enrichment batches across the week instead of relying on
+  # occasional large manual backfills. UTC Monday morning.
+  schedule:
+    - cron: "17 8 * * 1"
   workflow_dispatch:
     inputs:
       musicbrainz_lookups:
@@ -34,6 +38,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: music-metadata-enrichment
+  cancel-in-progress: false
+
 jobs:
   enrich:
     runs-on: ubuntu-latest
@@ -49,17 +57,17 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Fill missing durations from MusicBrainz
         env:
-          MUSICBRAINZ_LOOKUPS_PER_RUN: ${{ inputs.musicbrainz_lookups }}
+          MUSICBRAINZ_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.musicbrainz_lookups || '300' }}
         run: python enrich_musicbrainz_durations.py
       - name: Enrich artist genres, moods and themes
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-          MUSIC_PROFILE_LOOKUPS_PER_RUN: ${{ inputs.artist_profile_lookups }}
+          MUSIC_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.artist_profile_lookups || '100' }}
         run: python build_music_profiles.py
       - name: Enrich individual track tags from Last.fm and MusicBrainz
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-          TRACK_PROFILE_LOOKUPS_PER_RUN: ${{ inputs.track_profile_lookups }}
+          TRACK_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.track_profile_lookups || '120' }}
         run: python build_track_profiles.py
       - name: Rebuild metadata summaries
         env:
