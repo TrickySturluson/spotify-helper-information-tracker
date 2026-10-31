@@ -91,13 +91,13 @@ def observe_liked_songs(sp, uris, observed_at=None):
 
 
 def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
-    """Accumulate measured tracker intervals after each track's most recent add."""
+    """Aggregate measured tracker intervals into distinct post-add listening sessions."""
     data = read()
     if not path.is_file():
         data["coverage"]["playback_tracker"] = "unknown"
         write(data)
         return
-    totals = {}
+    events = {}
     for line in path.read_text(encoding="utf-8").splitlines():
         try:
             row = json.loads(line)
@@ -106,20 +106,31 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
         uri = row.get("spotify_uri") or row.get("uri")
         if uri not in data["tracks"]:
             continue
-        played_at = row.get("started_at") or row.get("timestamp") or row.get("at")
+        played_at = row.get("sampled_at") or row.get("started_at") or row.get("timestamp") or row.get("at")
         if not played_at:
             continue
         last_added = data["tracks"][uri].get("last_added_at") or data["tracks"][uri]["first_added_at"]
         try:
-            if datetime.fromisoformat(played_at.replace("Z", "+00:00")) < datetime.fromisoformat(last_added.replace("Z", "+00:00")):
+            when = datetime.fromisoformat(played_at.replace("Z", "+00:00"))
+            if when < datetime.fromisoformat(last_added.replace("Z", "+00:00")):
                 continue
         except (TypeError, ValueError):
             continue
-        bucket = totals.setdefault(uri, {"plays": 0, "played_ms": 0})
-        bucket["plays"] += 1
-        bucket["played_ms"] += int(row.get("played_ms") or 0)
-    for uri, total in totals.items():
-        data["tracks"][uri]["playback_observations"] = [{"at": now(), **total}]
+        events.setdefault(uri, []).append((when, int(row.get("played_ms") or 0)))
+    for uri, rows in events.items():
+        rows.sort(key=lambda item: item[0])
+        sessions = 0
+        previous = None
+        played_ms = 0
+        for when, duration in rows:
+            if previous is None or (when - previous).total_seconds() > 90:
+                sessions += 1
+            previous = when
+            played_ms += duration
+        data["tracks"][uri]["playback_observations"] = [{
+            "at": now(), "plays": sessions, "played_ms": played_ms,
+            "source": "spotify_playback_tracker_sessions",
+        }]
     data["coverage"]["playback_tracker"] = "available"
     data["updated_at"] = now()
     write(data)
