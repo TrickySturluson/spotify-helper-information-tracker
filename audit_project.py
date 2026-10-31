@@ -17,6 +17,10 @@ def load(path):
 def check(ok, message):
     (CHECKS if ok else ERRORS).append(message)
 
+
+def is_nonnegative_int(value):
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 0
+
 def referenced_paths(value):
     found = set()
     if isinstance(value, dict):
@@ -178,7 +182,7 @@ def main():
         ERRORS.append("data/metadata.json must contain a JSON object.")
         metadata = {}
     total = metadata.get("total_scrobbles", metadata.get("scrobbles"))
-    check(isinstance(total, int) and total >= 0, "Canonical scrobble count is valid.")
+    check(is_nonnegative_int(total), "Canonical scrobble count is valid.")
     manifests = (
         "assistant_data/manifest.json",
         "assistant_data/advanced/manifest.json",
@@ -193,8 +197,13 @@ def main():
         for relative in referenced_paths(manifest):
             check((ROOT / relative).exists(), f"{path} references existing file {relative}.")
         for key in ("total_scrobbles", "source_scrobbles", "scrobbles"):
-            if isinstance(manifest.get(key), int) and isinstance(total, int):
-                check(manifest[key] == total, f"{path}: {key} agrees with canonical archive.")
+            if key not in manifest:
+                continue
+            value = manifest[key]
+            if not is_nonnegative_int(value):
+                check(False, f"{path}: {key} must be a non-negative integer.")
+            elif is_nonnegative_int(total):
+                check(value == total, f"{path}: {key} agrees with canonical archive.")
     overview = load("assistant_data/music/overview.json")
     if overview is None:
         overview = {}
@@ -202,7 +211,7 @@ def main():
         ERRORS.append("assistant_data/music/overview.json must contain a JSON object.")
         overview = {}
     unique, covered = overview.get("unique_tracks"), overview.get("tracks_with_duration")
-    check(isinstance(unique, int) and isinstance(covered, int) and 0 <= covered <= unique,
+    check(is_nonnegative_int(unique) and is_nonnegative_int(covered) and covered <= unique,
           "Music duration coverage counts are valid.")
     profiles = load("assistant_data/music/track_profiles.json")
     if profiles is None:
