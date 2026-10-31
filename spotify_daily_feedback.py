@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""Exposure-aware Tricky Daily feedback: saves, post-add plays and removals.
+
+This module records observed outcomes only. Lack of Daily listening is neutral;
+missing tracker coverage is unknown rather than zero.
+"""
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+DATA = Path("assistant_data/spotify/daily_feedback.json")
+DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
+
+
+def now():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def read():
+    if not DATA.exists():
+        return {"version": 1, "tracks": {}, "coverage": {"playback_tracker": "unknown", "lastfm": "unknown"}}
+    value = json.loads(DATA.read_text(encoding="utf-8"))
+    if not isinstance(value, dict) or not isinstance(value.get("tracks"), dict):
+        raise ValueError("Daily feedback data is malformed; refusing to overwrite it.")
+    return value
+
+
+def write(data):
+    DATA.parent.mkdir(parents=True, exist_ok=True)
+    temp = DATA.with_suffix(".json.tmp")
+    temp.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    try:
+        temp.chmod(0o600)
+    except OSError:
+        pass
+    temp.replace(DATA)
+
+
+def record_additions(items, added_at=None):
+    """Record first and subsequent Daily additions without resetting history."""
+    added_at = added_at or now()
+    data = read()
+    for item in items:
+        uri = item.get("uri")
+        if not isinstance(uri, str) or not uri.startswith("spotify:track:"):
+            continue
+        row = data["tracks"].setdefault(uri, {
+            "uri": uri, "artist": item.get("artist"), "track": item.get("track"),
+            "first_added_at": added_at, "additions": [], "liked_observations": [],
+            "playback_observations": [], "removal_events": [],
+        })
+        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})
+        row["last_added_at"] = added_at
+    data["updated_at"] = now()
+    write(data)
+    return data
+
+
+def record_removal(uri, removed_at=None, reason="curator_rotation"):
+    data = read()
+    if uri in data["tracks"]:
+        data["tracks"][uri]["removal_events"].append({
+            "at": removed_at or now(), "reason": reason,
+        })
+        data["updated_at"] = now()
+        write(data)
+
+
+def observe_liked_songs(sp, uris, observed_at=None):
+    """Check Spotify Liked Songs status for up to 50 tracks per request."""
+    observed_at = observed_at or now()
+    data = read()
+    ids = [uri.rsplit(":", 1)[-1] for uri in uris if isinstance(uri, str) and uri.startswith("spotify:track:")]
+    liked = {}
+    for offset in range(0, len(ids), 50):
+        batch = ids[offset:offset + 50]
+        if not batch:
+            continue
+        result = sp.call("GET", "/me/tracks/contains?ids=" + ",".join(batch))
+        for track_id, is_liked in zip(batch, result or []):
+            liked["spotify:track:" + track_id] = bool(is_liked)
+    for uri, value in liked.items():
+        if uri in data["tracks"]:
+            observations = data["tracks"][uri]["liked_observations"]
+            if not observations or observations[-1].get("liked") != value:
+                observations.append({"at": observed_at, "liked": value})
+    data["updated_at"] = now()
+    data["coverage"]["liked_songs"] = "observed"
+    write(data)
+    return liked
+
+
+def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
+    """Accumulate measured tracker intervals after each track's most recent add."""
+    data = read()
+    if not path.is_file():
+        data["coverage"]["playback_tracker"] = "unknown"
+        write(data)
+        return
+    totals = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            row = json.loads(line)
+        except ValueError:
+            continue
+        uri = row.get("spotify_uri") or row.get("uri")
+        if uri not in data["tracks"]:
+            continue
+        played_at = row.get("started_at") or row.get("timestamp") or row.get("at")
+        if not played_at:
+            continue
+        last_added = data["tracks"][uri].get("last_added_at") or data["tracks"][uri]["first_added_at"]
+        try:
+            if datetime.fromisoformat(played_at.replace("Z", "+00:00")) < datetime.fromisoformat(last_added.replace("Z", "+00:00")):
+                continue
+        except (TypeError, ValueError):
+            continue
+        bucket = totals.setdefault(uri, {"plays": 0, "played_ms": 0})
+        bucket["plays"] += 1
+        bucket["played_ms"] += int(row.get("played_ms") or 0)
+    for uri, total in totals.items():
+        data["tracks"][uri]["playback_observations"].append({"at": now(), **total})
+    data["coverage"]["playback_tracker"] = "available"
+    data["updated_at"] = now()
+    write(data)
+
+
+def feedback_for(uri):
+    row = read()["tracks"].get(uri)
+    if not row:
+        return {"status": "unknown"}
+    liked = row.get("liked_observations") or []
+    latest_liked = liked[-1]["liked"] if liked else None
+    playback = row.get("playback_observations") or []
+    measured_plays = sum(int(x.get("plays") or 0) for x in playback) if playback else None
+    measured_ms = sum(int(x.get("played_ms") or 0) for x in playback) if playback else None
+    return {
+        "status": "observed" if latest_liked is not None or measured_plays is not None else "unknown",
+        "liked": latest_liked,
+        "liked_at": liked[-1].get("at") if liked else None,
+        "post_add_measured_plays": measured_plays,
+        "post_add_playback_ms": measured_ms,
+        "removal_count": len(row.get("removal_events") or []),
+        "additions": len(row.get("additions") or []),
+        "no_listening_is_neutral": True,
+    }
+
+
+if __name__ == "__main__":
+    raise SystemExit("Import this module from the protected Daily curator workflow.")
