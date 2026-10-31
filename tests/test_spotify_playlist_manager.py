@@ -48,6 +48,16 @@ class PlaylistManagerTests(unittest.TestCase):
                     manager.apply(object(), plan)
                 guard.assert_called_once_with("personal-playlist")
 
+    def test_create_registers_managed_provenance(self):
+        spotify = __import__("unittest").mock.Mock()
+        spotify.me.return_value = {"id": "user123"}
+        spotify.call.return_value = {"id": "new-playlist", "name": "SHIT Test"}
+        with patch.object(manager, "register_created") as register, patch.object(
+            manager, "CONFIG", Path(tempfile.gettempdir()) / "shit-manager-test-config.json"
+        ), patch.object(manager, "audit"), patch.object(manager, "write"):
+            manager.create(spotify, "SHIT Test", "", False)
+        register.assert_called_once_with("new-playlist", "SHIT Test")
+
     def test_playlist_items_use_current_api_page_limit(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.call = lambda method, path: {"items": [], "next": None, "requested": path}
