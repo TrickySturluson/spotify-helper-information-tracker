@@ -7,11 +7,11 @@ def _norm(value):
 
 # Explicit mood/affect descriptors only; genre and scene labels are intentionally excluded.
 MOOD_LEXICON = {
-    'dark': {'dark','darkwave','gloomy','bleak','ominous','brooding','sinister','macabre','noir','dystopian','occult','witch house'},
+    'dark': {'dark','gloomy','bleak','ominous','brooding','sinister','macabre','noir','dystopian','occult'},
     'eerie': {'eerie','haunting','spooky','creepy','ghostly','horror','halloween','unsettling','uncanny','surreal','creepypasta'},
     'aggressive': {'aggressive','angry','rage','abrasive','violent','brutal','ferocious','hostile','intense','confrontational'},
     'energetic': {'energetic','high energy','danceable','uptempo','fast paced','driving','powerful','exhilarating','adrenaline'},
-    'dreamy': {'dreamy','ethereal','hazy','floaty','atmospheric','ambient','hypnotic','ethereal wave','shoegaze'},
+    'dreamy': {'dreamy','ethereal','hazy','floaty','atmospheric','hypnotic','ethereal wave'},
     'melancholic': {'melancholic','melancholy','sad','depressing','depressed','lonely','heartbroken','mournful','bittersweet','wistful'},
     'calm': {'calm','peaceful','relaxing','relaxed','chill','soothing','meditative','serene','tranquil','laid back'},
     'upbeat': {'happy','cheerful','joyful','uplifting','optimistic','feel good','fun','playful','bouncy','carefree'},
