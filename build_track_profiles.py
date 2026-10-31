@@ -87,8 +87,11 @@ def lastfm_tags(item):
     # Last.fm returns the requested identity even when the tag list is empty.
     returned_artist = clean(top.get("@attr", {}).get("artist"))
     returned_track = clean(top.get("@attr", {}).get("track"))
-    if returned_artist != "[Unknown]" and (norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"])):
-        return [], "identity_mismatch"
+    if item.get("track_mbid"):
+        if returned_artist != "[Unknown]" and (norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"])):
+            return [], "identity_mismatch"
+    elif returned_artist == "[Unknown]" or returned_track == "[Unknown]" or norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"]):
+        return [], "identity_unverified"
     rows = top.get("tag") or []
     if isinstance(rows, dict):
         rows = [rows]
