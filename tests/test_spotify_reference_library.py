@@ -105,6 +105,30 @@ class ReferenceLibraryIntegrityTests(unittest.TestCase):
                 self.assertEqual(report["daily_feedback"]["playback_tracker_status"], "unknown")
                 self.assertFalse(report["daily_feedback"]["segments_file_in_sync_environment"])
 
+    def test_first_inaccessible_fetch_does_not_create_empty_history_snapshot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "assistant_data" / "spotify"
+            playlists = root / "playlists"
+            sp = Mock()
+            sp.playlists.return_value = [{
+                "id": "restricted-first-sync", "name": "Restricted",
+                "owner": {"id": "owner"}, "snapshot_id": "snapshot-1",
+                "items": {"total": 4}, "public": False, "collaborative": False,
+            }]
+            sp.items.side_effect = manager.ManagerError(
+                "Spotify API GET /playlists/restricted-first-sync/items: HTTP 403"
+            )
+            with patch.object(library, "ROOT", root), \
+                 patch.object(library, "CATALOG", root / "playlists.json"), \
+                 patch.object(library, "PLAYLIST_DIR", playlists), \
+                 patch.object(library, "HISTORY_DIR", root / "history"), \
+                 patch.object(library, "INDEX", root / "reference_index.json"):
+                library.sync(sp)
+            saved = json.loads((playlists / "restricted-first-sync.json").read_text())
+            self.assertFalse(saved["items_accessible"])
+            self.assertEqual(saved["items"], [])
+            self.assertFalse(list((root / "history" / "restricted-first-sync").glob("*.json")))
+
     def test_duplicate_playlist_ids_are_processed_once(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "assistant_data" / "spotify"

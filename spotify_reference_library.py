@@ -117,7 +117,7 @@ def sync(sp):
             not old or old.get("items_snapshot_id", old.get("snapshot_id")) != record["snapshot_id"]
             or content_signature != old_signature
         ))
-        if changed_now or not old:
+        if changed_now or (not old and record["items_accessible"]):
             history = HISTORY_DIR / pid
             history.mkdir(parents=True, exist_ok=True)
             manager.write(history / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + ".json"), record)
