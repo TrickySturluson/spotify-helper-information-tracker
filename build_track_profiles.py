@@ -80,6 +80,7 @@ def lastfm_tags(item):
     else:
         params.update({"artist": item["artist"], "track": item["track"]})
 
+    used_name_fallback = False
     try:
         payload = request_json(LASTFM_URL, params)
     except HTTPError as exc:
@@ -90,12 +91,13 @@ def lastfm_tags(item):
             raise
         detail = ""
         try:
-            detail = exc.read(300).decode("utf-8", errors="replace").replace("\\n", " ").strip()
+            detail = exc.read(300).decode("utf-8", errors="replace").replace(chr(10), " ").strip()
         except Exception:
             pass
         print(f"Last.fm MBID lookup HTTP {exc.code} for {item['artist']} — {item['track']}; retrying exact artist/title ({detail[:120]})")
         fallback = dict(base, artist=item["artist"], track=item["track"])
         payload = request_json(LASTFM_URL, fallback)
+        used_name_fallback = True
     if "error" in payload:
         code = str(payload.get("error"))
         if code in {"11", "16", "29"}:
@@ -104,6 +106,7 @@ def lastfm_tags(item):
         # artist/title fallback as HTTP 400/404 responses.
         if has_mbid and code == "6":
             payload = request_json(LASTFM_URL, dict(base, artist=item["artist"], track=item["track"]))
+            used_name_fallback = True
             if "error" in payload:
                 code = str(payload.get("error"))
                 if code in {"11", "16", "29"}:
@@ -117,9 +120,14 @@ def lastfm_tags(item):
     # including responses obtained through the MBID route.
     returned_artist = clean(top.get("@attr", {}).get("artist"))
     returned_track = clean(top.get("@attr", {}).get("track"))
-    if returned_artist == "[Unknown]" or returned_track == "[Unknown]":
-        return [], "identity_unverified"
-    if norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"]):
+    if used_name_fallback or not has_mbid:
+        if returned_artist == "[Unknown]" or returned_track == "[Unknown]":
+            return [], "identity_unverified"
+        if norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"]):
+            return [], "identity_mismatch"
+    elif returned_artist != "[Unknown]" and (
+        norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"])
+    ):
         return [], "identity_mismatch"
     rows = top.get("tag") or []
     if isinstance(rows, dict):
