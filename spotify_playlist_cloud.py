@@ -12,6 +12,7 @@ from pathlib import Path
 
 import spotify_playlist_manager as manager
 import playlist_intelligence as intelligence
+import playlist_metadata
 
 STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
@@ -182,6 +183,7 @@ def main():
         "cleanup_check": {"command", "playlist_id"},
         "cleanup_run": {"command", "playlist_id"},
         "health": {"command", "playlist_id"},
+        "enrich": {"command", "playlist_id"},
         "lock_all": {"command"},
         "lock": {"command", "playlist_id"},
         "unlock": {"command", "playlist_id"},
@@ -196,7 +198,7 @@ def main():
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -261,6 +263,20 @@ def main():
             f'{"No duplicates were found. " if not removed else ""}'
             "A recovery snapshot was saved. Playlist remains UNLOCKED."
         )
+    elif action == "enrich":
+        p = owned_playlist(sp, command["playlist_id"], me)
+        api_key = os.environ.get("LASTFM_API_KEY")
+        if not api_key:
+            fail("LASTFM_API_KEY is missing; no metadata was changed.")
+        current = manager.snapshot(sp, p)
+        artists = list(dict.fromkeys((row.get("artists") or [""])[0] for row in current["items"] if (row.get("artists") or [""])[0]))
+        outcome = playlist_metadata.enrich_artists(artists, api_key)
+        manager.audit(event="playlist_metadata_enriched", playlist_id=p["id"], playlist_name=p.get("name"), artists_requested=outcome["requested"], artists_enriched=len(outcome["enriched"]), unavailable=outcome["unavailable"])
+        result = (f'METADATA ENRICHMENT — {p.get("name")}\\n'
+            f'Artists already covered: {outcome["known_before"]}/{len(artists)}. Newly enriched: {len(outcome["enriched"])}. Unavailable: {len(outcome["unavailable"])}.\\n'
+            + ("New profiles: " + ", ".join(outcome["enriched"][:30]) + "\\n" if outcome["enriched"] else "")
+            + ("Unavailable: " + ", ".join(outcome["unavailable"][:30]) + "\\n" if outcome["unavailable"] else "")
+            + "Cached Last.fm tags are stored for future health reports and recommendation previews.")
     elif action == "health":
         p = owned_playlist(sp, command["playlist_id"], me)
         current = manager.snapshot(sp, p)
