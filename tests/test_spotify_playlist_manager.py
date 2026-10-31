@@ -26,6 +26,28 @@ class PlaylistManagerTests(unittest.TestCase):
                 self.assertTrue(manager.unlocked("allowed"))
                 self.assertFalse(manager.unlocked("other"))
 
+    def test_direct_add_and_remove_require_managed_permission(self):
+        for operation in (manager.add, manager.remove):
+            with patch.object(manager, "assert_managed", side_effect=manager.ManagerError("protected")) as guard:
+                with self.assertRaisesRegex(manager.ManagerError, "protected"):
+                    operation(object(), "personal-playlist", ["spotify:track:a"])
+                guard.assert_called_once_with("personal-playlist")
+
+    def test_unlock_cannot_grant_managed_permission(self):
+        with patch.object(manager, "assert_managed", side_effect=manager.ManagerError("protected")) as guard:
+            with self.assertRaisesRegex(manager.ManagerError, "protected"):
+                manager.set_lock(object(), "personal-playlist", "unlocked")
+            guard.assert_called_once_with("personal-playlist")
+
+    def test_apply_checks_managed_permission_before_lock_or_spotify_access(self):
+        with tempfile.TemporaryDirectory() as directory:
+            plan = Path(directory) / "plan.json"
+            plan.write_text('{"playlist_id":"personal-playlist","operations":[{"action":"add","uris":["spotify:track:a"]}]}')
+            with patch.object(manager, "assert_managed", side_effect=manager.ManagerError("protected")) as guard:
+                with self.assertRaisesRegex(manager.ManagerError, "protected"):
+                    manager.apply(object(), plan)
+                guard.assert_called_once_with("personal-playlist")
+
     def test_playlist_items_use_current_api_page_limit(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.call = lambda method, path: {"items": [], "next": None, "requested": path}
