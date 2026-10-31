@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 from contextlib import redirect_stdout
+from unittest.mock import patch
 from pathlib import Path
 
 import audit_project
