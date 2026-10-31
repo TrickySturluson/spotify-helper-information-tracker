@@ -280,6 +280,21 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
     return best
 
 
+def _narrative_phase(row):
+    moods = set(row.get("vibe_groups") or [])
+    phases = (
+        {"calm", "dreamy", "warm", "romantic", "nostalgic", "wistful"},
+        {"introspective", "melancholic", "mysterious", "psychedelic"},
+        {"nocturnal", "dark", "eerie", "desolate", "tense"},
+        {"aggressive", "chaotic", "rebellious", "energetic", "cathartic"},
+        {"hopeful", "uplifting", "upbeat", "playful"},
+    )
+    for index, phase in enumerate(phases):
+        if moods & phase:
+            return index
+    return 2
+
+
 def sequence_tracks(items, artist_profiles=None, track_profiles=None,
                     direction="ascending", group_by="none", mode="smooth",
                     journey="rising", peak_position=85, peak_shape="gradual",
