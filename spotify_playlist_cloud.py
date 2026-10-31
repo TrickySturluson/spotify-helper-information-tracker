@@ -199,7 +199,7 @@ def main():
         "confirm": {"command", "confirmation"},
         "undo": {"command"},
     }
-    if action not in allowed or set(command) != allowed[action]:
+    if not isinstance(action, str) or action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
     if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
