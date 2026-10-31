@@ -54,6 +54,27 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertIn("dreamy", moods)
         self.assertNotIn("rock", moods)
 
+    def test_expanded_moods_and_sound_tags_are_separate(self):
+        self.assertIn("nocturnal", mood_inference._tag_moods("nocturnal"))
+        self.assertIn("chaotic", mood_inference._tag_moods("chaotic"))
+        self.assertIn("groovy", mood_inference._tag_moods("groovy"))
+        self.assertNotIn("shoegaze", mood_inference._tag_moods("shoegaze"))
+        items = [{"artists": ["One"]}, {"artists": ["Two"]}]
+        profiles = {
+            "one": {"genres": ["dream pop", "shoegaze"], "themes": ["surreal"],
+                    "tags": [{"tag": "dreamy"}, {"tag": "shoegaze"}]},
+            "two": {"genres": ["punk", "surf rock"], "themes": ["horror"],
+                    "tags": [{"tag": "chaotic"}, {"tag": "surf rock"}]},
+        }
+        tags = mood_inference.infer_sound_tag_profile(items, profiles)
+        families = {row["tag"] for row in tags["families"]}
+        self.assertIn("dream pop & shoegaze", families)
+        self.assertIn("punk & noise", families)
+        self.assertIn("surf & rockabilly", families)
+        profile = intelligence.build_playlist_profile(items, artist_profiles=profiles)
+        self.assertIn("sound_tags", profile)
+        self.assertTrue(profile["sound_tags"]["genres"])
+
     def test_playlist_profile_exposes_mood_evidence(self):
         items = [{"artists": ["One"]}, {"artists": ["Two"]}]
         profiles = {
