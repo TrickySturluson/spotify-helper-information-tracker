@@ -51,7 +51,16 @@ def item_record(entry, position):
 
 
 def playlist_record(sp, playlist):
-    entries = sp.items(playlist["id"])
+    items_accessible = True
+    items_error = None
+    try:
+        entries = sp.items(playlist["id"])
+    except manager.ManagerError as error:
+        if "HTTP 403" not in str(error):
+            raise
+        entries = []
+        items_accessible = False
+        items_error = "Spotify API does not expose item contents for this playlist to the current account/app."
     rows = [item_record(entry, i) for i, entry in enumerate(entries)]
     owner = playlist.get("owner") or {}
     return {
@@ -66,6 +75,8 @@ def playlist_record(sp, playlist):
         "snapshot_id": playlist.get("snapshot_id"),
         "total_items_reported": (playlist.get("items") or playlist.get("tracks") or {}).get("total"),
         "item_count_fetched": len(rows),
+        "items_accessible": items_accessible,
+        "items_error": items_error,
         "items": rows,
     }
 
