@@ -15,6 +15,8 @@ from collections import defaultdict
 from datetime import date, datetime
 from pathlib import Path
 
+import playlist_intelligence as intelligence
+
 PROFILES = Path("assistant_data/music/artist_profiles.json")
 FEATURES = Path("assistant_data/recommendations/track_features.json")
 LASTFM_URL = "https://ws.audioscrobbler.com/2.0/"
@@ -289,13 +291,18 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     removed_uri = uri in feedback.get("negative_uris", set())
     removed_artist_count = feedback.get("negative_artists", {}).get(norm(artist), 0)
     positive_artist_count = feedback.get("positive_artists", {}).get(norm(artist), 0)
-    feedback_penalty = min(0.32, (0.18 if removed_exact or removed_uri else 0.0) + min(removed_artist_count, 4) * 0.035)
-    feedback_bonus = min(0.12, positive_artist_count * 0.015)
+    weights = intelligence.scoring_config()["weights"]
+    feedback_penalty = min(
+        weights["negative_cap"],
+        (weights["exact_removal"] if removed_exact or removed_uri else 0.0)
+        + min(removed_artist_count, weights["artist_removal_cap"]) * weights["artist_removal"],
+    )
+    feedback_bonus = min(weights["positive_cap"], positive_artist_count * weights["positive_artist"])
     # Spotify removed the popularity field from some Development Mode API
     # responses in 2026. Do not interpret a missing field as popularity zero.
-    score = 0.58 * similarity + 0.30 * (1.0 - penalty) - feedback_penalty + feedback_bonus
+    score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty + feedback_bonus
     if is_liked:
-        score -= 0.62
+        score -= weights["liked_penalty"]
     return score, plays, known.get("last_scrobble"), is_liked
 
 
@@ -346,10 +353,18 @@ def build_discovery_recommendations(
                 "uri": uri, "artist": artist, "track": track["name"],
                 "plays": plays, "last_scrobble": last, "score": round(score, 6),
                 "similarity": artist_row["similarity"],
+                "supporting_seeds": artist_row.get("supporting_seeds", 0),
                 "liked": is_liked,
                 "tier": "discovery" if plays == 0 else ("rediscovery" if plays <= 2 else "familiar"),
                 "popularity": track.get("popularity"),
+                "positive_artist_count": feedback.get("positive_artists", {}).get(norm(artist), 0),
+                "removed_artist_count": feedback.get("negative_artists", {}).get(norm(artist), 0),
+                "removed_exact": key in feedback.get("negative_keys", set()) or uri in feedback.get("negative_uris", set()),
             }
+            row["confidence"] = intelligence.recommendation_confidence(
+                row["similarity"], row["supporting_seeds"]
+            )
+            row["why"] = intelligence.recommendation_reasons(row)
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
         time.sleep(0.08)
