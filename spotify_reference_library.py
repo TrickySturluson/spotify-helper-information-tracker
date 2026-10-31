@@ -92,7 +92,14 @@ def sync(sp):
     catalog = []
     index_tracks, index_artists = defaultdict(list), defaultdict(list)
     changed = 0
+    seen_ids = set()
     for playlist in sp.playlists():
+        # Spotify pagination can occasionally repeat a playlist across pages.
+        # Process each stable playlist ID once so catalog/index counts stay canonical.
+        pid = playlist.get("id")
+        if not pid or pid in seen_ids:
+            continue
+        seen_ids.add(pid)
         record = playlist_record(sp, playlist)
         pid = record["id"]
         path = PLAYLIST_DIR / f"{pid}.json"
@@ -137,7 +144,7 @@ def sync(sp):
     manager.write(CATALOG, {"version": 1, "captured_at": stamp(), "playlist_count": len(catalog), "playlists": catalog})
     manager.write(INDEX, {
         "version": 1, "generated_at": stamp(),
-        "track_playlists": dict(index_tracks), "artist_playlists": dict(index_artists),
+        "track_playlists": dict((key, list(dict.fromkeys(value))) for key, value in index_tracks.items()), "artist_playlists": dict((key, list(dict.fromkeys(value))) for key, value in index_artists.items()),
     })
     report = build_health_report(catalog, index_tracks, index_artists)
     manager.write(ROOT / "health.json", report)
