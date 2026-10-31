@@ -138,6 +138,44 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
     write(data)
 
 
+def observe_lastfm_scrobbles(path=Path("data/scrobbles.json")):
+    """Count canonical Last.fm scrobbles after each Daily addition, separately from measured playback."""
+    data = read()
+    if not path.is_file():
+        data["coverage"]["lastfm"] = "unknown"
+        write(data)
+        return
+    targets = {}
+    for uri, row in data["tracks"].items():
+        artist, track = row.get("artist"), row.get("track")
+        if artist and track:
+            targets.setdefault((str(artist).casefold(), str(track).casefold()), []).append(uri)
+    counts = {uri: 0 for uri in data["tracks"]}
+    for row in json.loads(path.read_text(encoding="utf-8")):
+        artist = str(row.get("artist") or "").casefold()
+        track = str(row.get("track") or "").casefold()
+        uris = targets.get((artist, track), [])
+        if not uris:
+            continue
+        try:
+            played_at = datetime.fromtimestamp(int(row["timestamp"]), timezone.utc)
+        except (KeyError, TypeError, ValueError, OSError):
+            continue
+        for uri in uris:
+            added_at = data["tracks"][uri].get("last_added_at") or data["tracks"][uri]["first_added_at"]
+            try:
+                if played_at >= datetime.fromisoformat(added_at.replace("Z", "+00:00")):
+                    counts[uri] += 1
+            except (TypeError, ValueError):
+                continue
+    for uri, count in counts.items():
+        data["tracks"][uri]["lastfm_post_add_scrobbles"] = count
+        data["tracks"][uri]["lastfm_observed_at"] = now()
+    data["coverage"]["lastfm"] = "available"
+    data["updated_at"] = now()
+    write(data)
+
+
 def feedback_for(uri):
     row = read()["tracks"].get(uri)
     if not row:
@@ -154,7 +192,7 @@ def feedback_for(uri):
         "liked_after_add": (latest_liked is True and row.get("liked_at_add") is False) if latest_liked is not None and row.get("liked_at_add") is not None else None,
         "liked_at": liked[-1].get("at") if liked else None,
         "post_add_measured_plays": measured_plays,
-        "post_add_playback_ms": measured_ms,
+        "post_add_playback_ms": measured_ms,\n        "post_add_lastfm_scrobbles": row.get("lastfm_post_add_scrobbles"),
         "removal_count": len(row.get("removal_events") or []),
         "additions": len(row.get("additions") or []),
         "no_listening_is_neutral": True,
