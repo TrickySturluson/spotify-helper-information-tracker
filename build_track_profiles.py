@@ -41,7 +41,7 @@ def write(path, value):
     tmp = path.with_suffix(path.suffix + ".tmp")
     with tmp.open("w", encoding="utf-8") as handle:
         json.dump(value, handle, ensure_ascii=False, separators=(",", ":"))
-        handle.write("\\n")
+        handle.write("\n")
     tmp.replace(path)
 
 
@@ -50,7 +50,7 @@ def clean(value):
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", clean(value)).casefold()
+    return re.sub(r"\s+", " ", clean(value)).casefold()
 
 
 def artist_id(row):
@@ -60,7 +60,7 @@ def artist_id(row):
 
 def track_id(row, aid):
     mbid = str(row.get("track_mbid") or "").strip().casefold()
-    return "mbid:" + mbid if mbid else "track:" + hashlib.sha1((aid + "\\0" + norm(row.get("track"))).encode()).hexdigest()[:16]
+    return "mbid:" + mbid if mbid else "track:" + hashlib.sha1((aid + "\0" + norm(row.get("track"))).encode()).hexdigest()[:16]
 
 
 def request_json(url, params=None, user_agent=UA):
