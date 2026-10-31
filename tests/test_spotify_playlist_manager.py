@@ -126,6 +126,29 @@ class PlaylistManagerTests(unittest.TestCase):
                     "refresh_token": "not-a-real-token",
                 })
 
+    def test_rejects_non_object_plan_operations(self):
+        with self.assertRaisesRegex(manager.ManagerError, "operation must be an object"):
+            manager.validate({"playlist_id": "playlist123", "operations": ["add"]})
+
+    def test_rejects_empty_track_uri_identifier(self):
+        with self.assertRaises(manager.ManagerError):
+            manager.validate({
+                "playlist_id": "playlist123",
+                "operations": [{"action": "add", "uris": ["spotify:track:"]}],
+            })
+
+    def test_rejects_boolean_reorder_positions(self):
+        with self.assertRaisesRegex(manager.ManagerError, "Invalid reorder range"):
+            manager.validate({
+                "playlist_id": "playlist123",
+                "operations": [{
+                    "action": "reorder",
+                    "range_start": True,
+                    "insert_before": 0,
+                    "range_length": 1,
+                }],
+            })
+
     def test_rejects_empty_plan(self):
         with self.assertRaises(manager.ManagerError):
             manager.validate({"playlist_id": "playlist123", "operations": []})
