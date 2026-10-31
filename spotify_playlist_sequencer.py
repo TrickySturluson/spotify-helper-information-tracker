@@ -20,7 +20,7 @@ TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
 def read_json(path, fallback):
@@ -111,9 +111,13 @@ def score_track(item, artist_profiles=None, track_profiles=None):
         components.append(mood_score); weights.append(0.06)
         evidence.append("artist-level mood fallback: " + ", ".join(sorted(artist_moods)))
 
-    genres = [norm(x) for x in (track_profile.get("musicbrainz_genres") or [])]
-    genres += [norm(x) for x in (artist_profile.get("genres") or [])]
-    genre_text = " ".join(g.get("tag", "") if isinstance(g, dict) else g for g in genres)
+    genre_values = []
+    for row in track_profile.get("musicbrainz_genres") or []:
+        value = row.get("tag", "") if isinstance(row, dict) else row
+        if value:
+            genre_values.append(norm(value))
+    genre_values.extend(norm(value) for value in artist_profile.get("genres") or [] if value)
+    genre_text = " ".join(genre_values)
     high_genre = ("metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle")
     low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient")
     genre_score = 0.7 if any(x in genre_text for x in high_genre) else 0.3 if any(x in genre_text for x in low_genre) else None
