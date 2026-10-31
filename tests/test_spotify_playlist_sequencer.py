@@ -181,5 +181,11 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual([row["item"]["uri"] for row in result], ["start", "end"])
 
 
+    def test_unknown_anchor_uri_is_rejected(self):
+        rows = [{"uri": "present", "name": "Present", "artists": ["A"]}]
+        with self.assertRaisesRegex(ValueError, "not in this playlist"):
+            sequencer.sequence_tracks(rows, opener_uri="missing")
+
+
 if __name__ == "__main__":
     unittest.main()
