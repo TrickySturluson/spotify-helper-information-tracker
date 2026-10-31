@@ -309,8 +309,7 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
         profile["artist_play_count"] = artist_profile.get("play_count")
         profile["narrative_phase"] = _narrative_phase(profile)
         profile["section_index"], profile["section_name"] = section
-        if section[0] is not None:
-            profile["theme_groups"] = list(profile.get("theme_groups") or []) + [f"section:{section[0]}"]
+        profile["section_groups"] = [f"section:{section[0]}"] if section[0] is not None else []
         scored.append({"original_index": index, "item": item, **profile})
     if mode in {"smooth", "hybrid"}:
         fixed = {}
