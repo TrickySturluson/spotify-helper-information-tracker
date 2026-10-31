@@ -130,6 +130,7 @@ def cleanup_duplicates(sp, pid):
 
 
 def execute(sp, pid, operations):
+    for op in operations:
         if not manager.unlocked(pid):
             raise manager.ManagerError("Playlist locked during execution; remaining changes stopped.")
         action = op["action"]
