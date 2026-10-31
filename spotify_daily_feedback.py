@@ -232,5 +232,37 @@ def feedback_for(uri):
     }
 
 
+def observe_all(sp=None, playback_path=Path("playback_data/segments.jsonl"), scrobbles_path=Path("data/scrobbles.json")):
+    """Refresh all available Daily outcomes without modifying any Spotify playlist."""
+    import spotify_playlist_manager as manager
+    sp = sp or manager.Spotify()
+    uris = list(read()["tracks"])
+    liked = observe_liked_songs(sp, uris) if uris else {}
+    observe_playback_segments(playback_path)
+    observe_lastfm_scrobbles(scrobbles_path)
+    data = read()
+    return {
+        "tracks": len(data["tracks"]),
+        "liked_tracks_checked": len(liked),
+        "playback_tracker_status": data.get("coverage", {}).get("playback_tracker", "unknown"),
+        "lastfm_status": data.get("coverage", {}).get("lastfm", "unknown"),
+        "updated_at": data.get("updated_at"),
+    }
+
+
+def main():
+    import argparse
+    import spotify_playlist_manager as manager
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=["observe"])
+    parser.add_argument("--playback-path", type=Path, default=Path("playback_data/segments.jsonl"))
+    parser.add_argument("--scrobbles-path", type=Path, default=Path("data/scrobbles.json"))
+    args = parser.parse_args()
+    report = observe_all(manager.Spotify(), args.playback_path, args.scrobbles_path)
+    print("Daily feedback observation complete (read-only).")
+    print(f"Tracks: {report['tracks']}; Liked Songs checked: {report['liked_tracks_checked']}")
+    print(f"Playback tracker: {report['playback_tracker_status']}; Last.fm: {report['lastfm_status']}")
+
+
 if __name__ == "__main__":
-    raise SystemExit("Import this module from the protected Daily curator workflow.")
+    main()

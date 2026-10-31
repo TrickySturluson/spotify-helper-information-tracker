@@ -36,6 +36,22 @@ class PlaylistPermissionTests(unittest.TestCase):
                     os.chdir(old)
 
 
+class DailyFeedbackObservationTests(unittest.TestCase):
+    def test_observe_all_refreshes_likes_playback_and_lastfm_without_playlist_edits(self):
+        with tempfile.TemporaryDirectory() as directory:
+            data_path = Path(directory) / "daily.json"
+            with patch.object(feedback, "DATA", data_path):
+                feedback.record_additions([{"uri": "spotify:track:a"}], "2026-10-30T10:00:00+00:00")
+                sp = Mock()
+                with patch.object(feedback, "observe_liked_songs", return_value={"spotify:track:a": True}) as liked, patch.object(feedback, "observe_playback_segments") as playback, patch.object(feedback, "observe_lastfm_scrobbles") as lastfm:
+                    result = feedback.observe_all(sp, Path(directory) / "segments.jsonl", Path(directory) / "scrobbles.json")
+                liked.assert_called_once_with(sp, ["spotify:track:a"])
+                playback.assert_called_once()
+                lastfm.assert_called_once()
+                self.assertEqual(result["tracks"], 1)
+                self.assertEqual(result["liked_tracks_checked"], 1)
+
+
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
     def test_inaccessible_playlist_preserves_last_known_tracklist(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -346,6 +346,9 @@ python spotify_reference_library.py lookup "artist or track name"
 
 ### Tricky Daily retention feedback
 
+A scheduled read-only observation workflow refreshes Liked Songs status and Last.fm post-add counts daily, even when Tricky Daily itself is not edited. It can be run manually from **Actions → SHIT Daily Feedback Observation**. The GitHub runner does not have the local playback segment file, so measured Spotify playback remains unknown there unless a separate local observation is performed; missing tracker data is never interpreted as zero listening.
+
+
 `spotify_daily_feedback.py` records when tracks enter and leave Tricky Daily, checks whether newly added tracks are in Liked Songs, and records measured post-add playback intervals from `playback_data/segments.jsonl`. The feedback record distinguishes:
 - Whether a track was already in Liked Songs at preview time, and whether it was saved afterward.
 - Distinct measured Spotify listening sessions and playback milliseconds after the first Daily addition.
