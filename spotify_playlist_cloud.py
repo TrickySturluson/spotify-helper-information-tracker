@@ -792,8 +792,13 @@ def main():
         except Exception as liked_error:
             manager.audit(event="daily_liked_baseline_unavailable", error=str(liked_error))
         confirmation = secrets.token_urlsafe(12)
+        daily_track_metadata = {
+            row["uri"]: {"artist": row.get("artist"), "track": row.get("track")}
+            for row in recommendations if row.get("uri")
+        }
         config["pending"] = {
             "playlist_id": pid, "operations": operations, "liked_at_add": liked_baseline,
+            "daily_track_metadata": daily_track_metadata,
             "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
             "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "daily",
         }
@@ -931,8 +936,10 @@ def main():
                     import spotify_daily_feedback as daily_feedback
                     new_uris = [uri for op in pending["operations"] if op.get("action") in {"add", "replace"} for uri in op.get("uris", [])]
                     old_uris = set(snapshot_uris(before))
+                    track_metadata = pending.get("daily_track_metadata") or {}
                     daily_feedback.record_additions([
-                        {"uri": uri} for uri in new_uris if uri not in old_uris
+                        {"uri": uri, **track_metadata.get(uri, {})}
+                        for uri in new_uris if uri not in old_uris
                     ], added_at=manager.stamp(), liked_at_add=pending.get("liked_at_add") or {})
                     new_uri_set = set(new_uris)
                     for old_uri in old_uris - new_uri_set:
@@ -945,6 +952,10 @@ def main():
                         daily_feedback.observe_playback_segments()
                     except Exception as feedback_error:
                         manager.audit(event="daily_playback_observation_failed", error=str(feedback_error))
+                    try:
+                        daily_feedback.observe_lastfm_scrobbles()
+                    except Exception as feedback_error:
+                        manager.audit(event="daily_lastfm_observation_failed", error=str(feedback_error))
                 cleanup_count = 0
                 if config.get("playlists", {}).get(pid, {}).get("cleanup") is True:
                     cleanup_count = cleanup_duplicates(sp, pid)
