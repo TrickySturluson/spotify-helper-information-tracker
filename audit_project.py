@@ -61,6 +61,9 @@ def audit_spotify_reference(root=ROOT):
             continue
         pid = row.get("id")
         accessible = row.get("items_accessible", True)
+        if not isinstance(accessible, bool):
+            errors.append(f"Spotify catalog record {pid} has a malformed items_accessible flag.")
+            accessible = bool(accessible)
         inaccessible += int(not accessible)
         relative = row.get("record_path") or f"assistant_data/spotify/playlists/{pid}.json"
         path = root / relative
@@ -83,11 +86,18 @@ def audit_spotify_reference(root=ROOT):
         if row.get("item_count") is not None and record.get("item_count_fetched") is not None and row.get("item_count") != record.get("item_count_fetched"):
             errors.append(f"Spotify catalog/record fetched-item count mismatch for {pid}.")
         # Unavailable item contents are an access limitation, not evidence of an empty playlist.
-        if accessible and not isinstance(record.get("items"), list):
+        items = record.get("items")
+        if isinstance(items, list):
+            malformed_items = sum(not isinstance(item, dict) for item in items)
+            if malformed_items:
+                errors.append(f"Spotify playlist {pid} contains {malformed_items} malformed item record(s).")
+        if accessible and not isinstance(items, list):
             errors.append(f"Accessible Spotify playlist {pid} has no items list.")
-        elif accessible and isinstance(record.get("items"), list):
+        elif accessible and isinstance(items, list):
             fetched = record.get("item_count_fetched")
-            if isinstance(fetched, int) and fetched != len(record["items"]):
+            if not isinstance(fetched, int) or isinstance(fetched, bool) or fetched < 0:
+                errors.append(f"Accessible Spotify playlist {pid} has an invalid item_count_fetched value.")
+            elif fetched != len(items):
                 errors.append(f"Accessible Spotify playlist {pid} item_count_fetched does not match its items list.")
         # Reconstruct expected memberships from saved records. Inaccessible records
         # may contain stale-but-preserved items; those remain the index's source data.
