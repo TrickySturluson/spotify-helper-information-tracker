@@ -252,6 +252,26 @@ class DailyFeedbackTests(unittest.TestCase):
                 self.assertEqual(result["coverage"]["playback_tracker_detail"]["segment_count"], 0)
                 self.assertIsNone(result["coverage"]["playback_tracker_detail"]["latest_segment_at"])
 
+    def test_malformed_jsonl_rows_and_durations_do_not_crash_observation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "daily.json"
+            segments = root / "segments.jsonl"
+            with patch.object(feedback, "DATA", data):
+                feedback.record_additions([{"uri": "spotify:track:abc"}], "2026-10-31T00:00:00+00:00")
+                segments.write_text(
+                    json.dumps(["not", "an", "object"]) + "\n" +
+                    json.dumps({"spotify_uri": ["not", "a", "uri"], "started_at": "2026-10-31T01:00:00+00:00"}) + "\n" +
+                    json.dumps({"spotify_uri": "spotify:track:abc", "started_at": "2026-10-31T01:00:00+00:00", "played_ms": "bad"}) + "\n" +
+                    json.dumps({"spotify_uri": "spotify:track:abc", "started_at": "2026-10-31T01:00:10+00:00", "played_ms": -100}) + "\n",
+                    encoding="utf-8",
+                )
+                feedback.observe_playback_segments(segments)
+                result = feedback.feedback_for("spotify:track:abc")
+                self.assertEqual(result["post_add_measured_plays"], 1)
+                self.assertEqual(result["post_add_playback_ms"], 0)
+                self.assertEqual(feedback.read()["coverage"]["playback_tracker_detail"]["segment_count"], 2)
+
     def test_latest_playback_timestamp_is_normalized_to_utc(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

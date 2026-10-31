@@ -113,8 +113,10 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
             row = json.loads(line)
         except ValueError:
             continue
+        if not isinstance(row, dict):
+            continue
         uri = row.get("spotify_uri") or row.get("uri")
-        if uri not in data["tracks"]:
+        if not isinstance(uri, str) or uri not in data["tracks"]:
             continue
         played_at = row.get("sampled_at") or row.get("started_at") or row.get("timestamp") or row.get("at")
         if not isinstance(played_at, str) or not played_at:
@@ -137,7 +139,11 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
                 continue
         except (AttributeError, TypeError, ValueError):
             continue
-        events.setdefault(uri, []).append((when, int(row.get("played_ms") or 0)))
+        try:
+            played_ms = max(0, int(row.get("played_ms") or 0))
+        except (TypeError, ValueError, OverflowError):
+            played_ms = 0
+        events.setdefault(uri, []).append((when, played_ms))
     for uri, rows in events.items():
         rows.sort(key=lambda item: item[0])
         sessions = 0
