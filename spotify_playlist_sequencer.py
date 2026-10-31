@@ -337,6 +337,13 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
         profile["section_groups"] = [f"section:{section[0]}"] if section[0] is not None else []
         scored.append({"original_index": index, "item": item, **profile})
     if mode in {"smooth", "hybrid"}:
+        available_uris = {row["item"]["uri"] for row in scored}
+        requested = set(pinned_uris or []) | {uri for uri in (opener_uri, closer_uri) if uri}
+        missing = sorted(requested - available_uris)
+        if missing:
+            raise ValueError("Requested anchor URI is not in this playlist: " + ", ".join(missing))
+        if group_by == "genre": genre_strength = max(genre_strength, 0.35)
+        if group_by == "theme": theme_strength = max(theme_strength, 0.35)
         fixed = {}
         uri_counts = Counter(row["item"]["uri"] for row in scored)
         requested = set(pinned_uris or []) | {uri for uri in (opener_uri, closer_uri) if uri}
