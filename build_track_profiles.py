@@ -166,7 +166,27 @@ def main():
         old = profiles.get(tid, {})
         try:
             tags, status = lastfm_tags(item)
-        except (HTTPError, URLError, TimeoutError, ValueError, RuntimeError) as exc:
+        except HTTPError as exc:
+            # Isolate bad individual records; transient failures still stop the batch.
+            detail = ""
+            try:
+                detail = exc.read(500).decode("utf-8", errors="replace").replace("\n", " ").strip()
+            except Exception:
+                pass
+            if exc.code in {400, 404}:
+                status = "http_" + str(exc.code)
+                old.update({"track_id": tid, "artist_id": item["artist_id"], "artist": item["artist"],
+                    "track": item["track"], "track_mbid": item.get("track_mbid"),
+                    "lastfm_tags": [], "lastfm_status": status, "lastfm_error": detail[:300],
+                    "lastfm_checked_at": datetime.now(timezone.utc).isoformat(),
+                    "retry_after": now + RETRY_DAYS * 86400})
+                profiles[tid] = old
+                looked += 1
+                print(f"Skipping Last.fm HTTP {exc.code} for {item['artist']} — {item['track']}: {detail[:180]}")
+                continue
+            print(f"Last.fm transient HTTP {exc.code} at {item['artist']} — {item['track']}: {detail[:180]}")
+            break
+        except (URLError, TimeoutError, ValueError, RuntimeError) as exc:
             print(f"Last.fm track-tag lookup interrupted at {item['artist']} — {item['track']}: {exc}")
             break
         looked += 1
@@ -182,8 +202,15 @@ def main():
         if item.get("track_mbid") and not old.get("musicbrainz_checked_at"):
             try:
                 mb_tags, mb_genres, mb_status = musicbrainz_tags(item)
-            except (HTTPError, URLError, TimeoutError, ValueError) as exc:
-                print(f"MusicBrainz tag lookup interrupted at {item['artist']} — {item['track']}: {exc}")
+            except HTTPError as exc:
+                if exc.code == 404:
+                    mb_tags, mb_genres, mb_status = [], [], "not_found"
+                else:
+                    print(f"MusicBrainz transient HTTP {exc.code} at {item['artist']} — {item['track']}: {exc}")
+                    profiles[tid] = old
+                    break
+            except (URLError, TimeoutError, ValueError) as exc:
+                print(f"MusicBrainz track-tag lookup interrupted at {item['artist']} — {item['track']}: {exc}")
                 profiles[tid] = old
                 break
             mb_looked += 1
