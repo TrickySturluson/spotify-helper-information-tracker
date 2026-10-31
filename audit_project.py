@@ -87,8 +87,21 @@ def audit_spotify_reference(root=ROOT):
                 errors.append("Spotify reference index maps must be JSON objects.")
             else:
                 known = set(ids)
-                dangling = sorted({pid for values in list(track_map.values()) + list(artist_map.values())
-                                   if isinstance(values, list) for pid in values if pid not in known})
+                dangling = set()
+                malformed_values = []
+                duplicate_references = []
+                for map_name, mapping in (("track_playlists", track_map), ("artist_playlists", artist_map)):
+                    for key, values in mapping.items():
+                        if not isinstance(values, list) or any(not isinstance(pid, str) or not pid for pid in values):
+                            malformed_values.append(f"{map_name}:{key}")
+                            continue
+                        if len(values) != len(set(values)):
+                            duplicate_references.append(f"{map_name}:{key}")
+                        dangling.update(pid for pid in values if pid not in known)
+                if malformed_values:
+                    errors.append(f"Spotify reference index contains {len(malformed_values)} malformed playlist-reference list(s).")
+                if duplicate_references:
+                    errors.append(f"Spotify reference index contains duplicate playlist references in {len(duplicate_references)} entr(y/ies).")
                 if dangling:
                     errors.append(f"Spotify reference index contains {len(dangling)} unknown playlist ID(s).")
         except (OSError, ValueError, AttributeError) as exc:
