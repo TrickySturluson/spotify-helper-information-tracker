@@ -56,6 +56,22 @@ class DailyFeedbackTests(unittest.TestCase):
                 feedback.observe_liked_songs(sp, ["spotify:track:abc"])
                 self.assertTrue(feedback.feedback_for("spotify:track:abc")["liked"])
 
+    def test_lastfm_scrobbles_are_counted_after_addition(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.object(feedback, "DATA", root / "daily.json"):
+                feedback.record_additions([{
+                    "uri": "spotify:track:abc", "artist": "Artist", "track": "Song"
+                }], "2026-10-31T10:00:00+00:00")
+                archive = root / "scrobbles.json"
+                archive.write_text(json.dumps([
+                    {"artist": "Artist", "track": "Song", "timestamp": 1793440000},
+                    {"artist": "Artist", "track": "Song", "timestamp": 1793443600},
+                ]))
+                feedback.observe_lastfm_scrobbles(archive)
+                result = feedback.feedback_for("spotify:track:abc")
+                self.assertEqual(result["post_add_lastfm_scrobbles"], 2)
+
     def test_post_add_playback_ignores_pre_add_intervals(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
