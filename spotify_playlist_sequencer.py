@@ -79,17 +79,17 @@ def score_track(item, artist_profiles=None, track_profiles=None):
     direct_energy = _signal(audio.get("energy"), 0, 1)
     if direct_energy is not None:
         components.append(direct_energy); weights.append(0.42)
-        evidence.append("Spotify energy")
+        evidence.append(f"Spotify energy={direct_energy:.2f} (42% base weight)")
 
     tempo = _signal(audio.get("tempo"), 60, 180)
     if tempo is not None:
         components.append(tempo); weights.append(0.23)
-        evidence.append("tempo")
+        evidence.append(f"tempo={float(audio.get('tempo')):.1f} BPM (23% base weight)")
 
     loudness = _signal(audio.get("loudness"), -35, -5)
     if loudness is not None:
         components.append(loudness); weights.append(0.15)
-        evidence.append("loudness")
+        evidence.append(f"loudness={float(audio.get('loudness')):.1f} dB (15% base weight)")
 
     track_tags = _tag_rows(track_profile)
     artist_tags = _tag_rows(artist_profile)
@@ -104,11 +104,11 @@ def score_track(item, artist_profiles=None, track_profiles=None):
     if tag_moods:
         mood_score = 0.72 if tag_moods & energetic else 0.28 if tag_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.15)
-        evidence.append("track tags: " + ", ".join(sorted(tag_moods)))
+        evidence.append(f"track-tag mood={mood_score:.2f} (15% base weight): " + ", ".join(sorted(tag_moods)))
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.06)
-        evidence.append("artist-level mood fallback: " + ", ".join(sorted(artist_moods)))
+        evidence.append(f"artist-level mood fallback={mood_score:.2f} (6% base weight): " + ", ".join(sorted(artist_moods)))
 
     genre_values = []
     for row in track_profile.get("musicbrainz_genres") or []:
@@ -122,7 +122,7 @@ def score_track(item, artist_profiles=None, track_profiles=None):
     genre_score = 0.7 if any(x in genre_text for x in high_genre) else 0.3 if any(x in genre_text for x in low_genre) else None
     if genre_score is not None:
         components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
-        evidence.append("genre family")
+        evidence.append(f"genre-family signal={genre_score:.2f} ({(0.05 if track_tags else 0.08):.0%} base weight)")
 
     genre_groups = []
     for row in track_profile.get("musicbrainz_genres") or []:
