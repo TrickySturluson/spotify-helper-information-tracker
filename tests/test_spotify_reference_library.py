@@ -221,6 +221,39 @@ class DailyFeedbackTests(unittest.TestCase):
                 feedback.observe_lastfm_scrobbles(archive)
                 self.assertEqual(feedback.feedback_for("spotify:track:abc")["post_add_lastfm_scrobbles"], 2)
 
+    def test_malformed_playback_timestamps_do_not_count_as_coverage(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "daily.json"
+            segments = root / "segments.jsonl"
+            with patch.object(feedback, "DATA", data):
+                feedback.record_additions([{"uri": "spotify:track:abc"}], "2026-10-31T10:00:00+00:00")
+                segments.write_text(
+                    json.dumps({"spotify_uri": "spotify:track:abc", "started_at": "not-a-timestamp", "played_ms": 30000}) + "\n" +
+                    json.dumps({"spotify_uri": "spotify:track:abc", "started_at": 12345, "played_ms": 30000}) + "\n"
+                )
+                feedback.observe_playback_segments(segments)
+                result = feedback.read()
+                self.assertEqual(result["coverage"]["playback_tracker"], "unknown")
+                self.assertEqual(result["coverage"]["playback_tracker_detail"]["segment_count"], 0)
+                self.assertIsNone(result["coverage"]["playback_tracker_detail"]["latest_segment_at"])
+
+    def test_latest_playback_timestamp_is_normalized_to_utc(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "daily.json"
+            segments = root / "segments.jsonl"
+            with patch.object(feedback, "DATA", data):
+                feedback.record_additions([{"uri": "spotify:track:abc"}], "2026-10-31T00:00:00+00:00")
+                segments.write_text(
+                    json.dumps({"spotify_uri": "spotify:track:abc", "started_at": "2026-10-31T01:00:00+02:00", "played_ms": 30000}) + "\n" +
+                    json.dumps({"spotify_uri": "spotify:track:abc", "started_at": "2026-10-31T00:30:00+00:00", "played_ms": 30000}) + "\n"
+                )
+                feedback.observe_playback_segments(segments)
+                detail = feedback.read()["coverage"]["playback_tracker_detail"]
+                self.assertEqual(detail["latest_segment_at"], "2026-10-31T00:30:00+00:00")
+                self.assertEqual(detail["segment_count"], 2)
+
     def test_post_add_playback_ignores_pre_add_intervals(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
