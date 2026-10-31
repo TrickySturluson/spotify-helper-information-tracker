@@ -129,6 +129,19 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
             errors, _ = audit_project.audit_spotify_reference(root)
             self.assertTrue(any("malformed playlist-reference list" in error for error in errors))
 
+    def test_unhashable_playlist_id_is_reported_without_crashing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            catalog_path = base / "playlists.json"
+            catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+            catalog["playlists"][0]["id"] = {"malformed": "id"}
+            catalog["playlists"][0]["record_path"] = "assistant_data/spotify/playlists/p1.json"
+            catalog_path.write_text(json.dumps(catalog), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("malformed playlist records" in error for error in errors))
+            self.assertTrue(any("identity mismatch" in error for error in errors))
+
     def test_missing_catalog_is_reported_as_not_synced_yet(self):
         with tempfile.TemporaryDirectory() as directory:
             errors, warnings = audit_project.audit_spotify_reference(Path(directory))
