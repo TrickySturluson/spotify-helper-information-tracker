@@ -351,6 +351,8 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
         result = sorted(scored, key=lambda row: (row["sequence_group"], row["score"], row["original_index"]), reverse=direction == "descending")
     elif mode == "narrative":
         result = sorted(scored, key=lambda row: (row["narrative_phase"], row["score"], row["original_index"]), reverse=direction == "descending")
+        for row in result:
+            row["sequence_group"] = f"act-{row['narrative_phase'] + 1}"
     else:
         result = sorted(scored, key=lambda row: (row["artist_play_count"] is None,
             row["artist_play_count"] if row["artist_play_count"] is not None else float("inf"),
