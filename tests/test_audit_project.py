@@ -211,6 +211,21 @@ class ProjectAuditMainTests(unittest.TestCase):
                 self.assertEqual(result, 1)
                 self.assertIn("must contain a JSON object", output.getvalue())
 
+    def test_boolean_values_are_not_accepted_as_numeric_counts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_minimal_project(root)
+            metadata = root / "data/metadata.json"
+            metadata.write_text(json.dumps({"total_scrobbles": True}), encoding="utf-8")
+            overview = root / "assistant_data/music/overview.json"
+            overview.write_text(json.dumps({"unique_tracks": True, "tracks_with_duration": 0}), encoding="utf-8")
+            output = io.StringIO()
+            with patch.object(audit_project, "ROOT", root), redirect_stdout(output):
+                result = audit_project.main()
+            self.assertEqual(result, 1)
+            self.assertIn("ERROR: Canonical scrobble count is valid.", output.getvalue())
+            self.assertIn("ERROR: Music duration coverage counts are valid.", output.getvalue())
+
     def test_main_clears_previous_results_between_runs(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
