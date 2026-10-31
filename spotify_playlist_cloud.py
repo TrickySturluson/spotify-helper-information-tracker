@@ -760,7 +760,21 @@ def main():
             "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "daily",
         }
         manager.write(STATE, config)
-        manager.audit(event="daily_recommendations_previewed", playlist_id=pid, recommendation_count=len(recommendations), skipped_count=len(skipped))
+        manager.audit(
+            event="daily_recommendations_previewed",
+            playlist_id=pid,
+            recommendation_count=len(recommendations),
+            skipped_count=len(skipped),
+            scoring_version=intelligence.scoring_config()["version"],
+            recommendations=[
+                {
+                    "uri": row["uri"], "artist": row["artist"], "track": row["track"],
+                    "score": row.get("score"), "similarity": row.get("similarity"),
+                    "confidence": row.get("confidence"), "why": row.get("why", []),
+                }
+                for row in recommendations
+            ],
+        )
         tier_counts = {tier: sum(1 for row in recommendations if row.get("tier") == tier) for tier in ("discovery", "rediscovery", "familiar")}
         liked_count = sum(1 for row in recommendations if row.get("liked"))
         profile = intelligence.build_playlist_profile(current["items"], feedback)
