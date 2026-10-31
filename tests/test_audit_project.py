@@ -54,6 +54,29 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
             self.assertTrue(any("snapshot mismatch" in error for error in errors))
             self.assertTrue(any("accessibility mismatch" in error for error in errors))
 
+    def test_malformed_item_record_is_an_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            record_path = base / "playlists" / "p1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["items"].append("not-an-item-object")
+            record["item_count_fetched"] = 2
+            record_path.write_text(json.dumps(record), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("malformed item record" in error for error in errors))
+
+    def test_non_numeric_fetched_count_is_an_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            record_path = base / "playlists" / "p1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["item_count_fetched"] = "1"
+            record_path.write_text(json.dumps(record), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("invalid item_count_fetched" in error for error in errors))
+
     def test_record_fetched_count_must_match_accessible_items(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
