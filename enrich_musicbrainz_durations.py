@@ -77,11 +77,18 @@ def main():
             if item.get("track_mbid"):
                 url = API + item["track_mbid"] + "?fmt=json"
                 req = Request(url, headers={"User-Agent":UA})
-                with urlopen(req, timeout=25) as res:
-                    obj = json.loads(res.read().decode("utf-8"))
-                if obj.get("length"):
-                    candidates = [obj]
-                else:
+                try:
+                    with urlopen(req, timeout=25) as res:
+                        obj = json.loads(res.read().decode("utf-8"))
+                    if obj.get("length"):
+                        candidates = [obj]
+                    else:
+                        time.sleep(1.05)
+                except HTTPError as exc:
+                    if exc.code not in {400, 404}:
+                        raise
+                    # A stale/invalid MBID should not prevent exact text fallback.
+                    print(f"Recording MBID lookup returned HTTP {exc.code}; trying exact artist/title search for {item['artist']} — {item['track']}")
                     time.sleep(1.05)
             if not candidates:
                 query = 'recording:"' + item["track"].replace('"', '\\"') + '" AND artist:"' + item["artist"].replace('"', '\\"') + '"'
