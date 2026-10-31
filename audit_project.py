@@ -54,6 +54,8 @@ def audit_spotify_reference(root=ROOT):
         errors.append("Spotify reference catalog playlist_count does not match its records.")
     inaccessible = 0
     for row in rows:
+        if not isinstance(row, dict):
+            continue
         pid = row.get("id")
         accessible = row.get("items_accessible", True)
         inaccessible += int(not accessible)
