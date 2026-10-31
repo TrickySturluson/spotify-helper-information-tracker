@@ -36,7 +36,7 @@ def write(data):
     temp.replace(DATA)
 
 
-def record_additions(items, added_at=None):
+def record_additions(items, added_at=None, liked_at_add=None):
     """Record first and subsequent Daily additions without resetting history."""
     added_at = added_at or now()
     data = read()
@@ -49,7 +49,7 @@ def record_additions(items, added_at=None):
             "first_added_at": added_at, "additions": [], "liked_observations": [],
             "playback_observations": [], "removal_events": [],
         })
-        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})
+        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})\n        if liked_at_add and uri in liked_at_add:\n            row["liked_at_add"] = bool(liked_at_add[uri])
         row["last_added_at"] = added_at
     data["updated_at"] = now()
     write(data)
@@ -76,7 +76,7 @@ def observe_liked_songs(sp, uris, observed_at=None):
         batch = ids[offset:offset + 50]
         if not batch:
             continue
-        result = sp.call("GET", "/me/tracks/contains?ids=" + ",".join(batch))
+        result = sp.call("GET", "/me/library/contains?uris=" + ",".join("spotify:track:" + track_id for track_id in batch))
         for track_id, is_liked in zip(batch, result or []):
             liked["spotify:track:" + track_id] = bool(is_liked)
     for uri, value in liked.items():
