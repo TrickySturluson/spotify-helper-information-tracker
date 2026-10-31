@@ -98,9 +98,16 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
     data = read()
     if not path.is_file():
         data["coverage"]["playback_tracker"] = "unknown"
+        data["coverage"]["playback_tracker_detail"] = {
+            "status": "unknown", "reason": "segment_file_missing",
+            "segment_count": 0, "latest_segment_at": None,
+            "observed_at": now(), "file_present": False,
+        }
         write(data)
         return
     events = {}
+    valid_segments = 0
+    latest_segment_at = None
     for line in path.read_text(encoding="utf-8").splitlines():
         try:
             row = json.loads(line)
@@ -112,6 +119,8 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
         played_at = row.get("sampled_at") or row.get("started_at") or row.get("timestamp") or row.get("at")
         if not played_at:
             continue
+        valid_segments += 1
+        latest_segment_at = max(latest_segment_at or played_at, played_at)
         last_added = data["tracks"][uri]["first_added_at"]
         try:
             when = datetime.fromisoformat(played_at.replace("Z", "+00:00"))
@@ -134,7 +143,15 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
             "at": now(), "plays": sessions, "played_ms": played_ms,
             "source": "spotify_playback_tracker_sessions",
         }]
-    data["coverage"]["playback_tracker"] = "available"
+    data["coverage"]["playback_tracker"] = "available" if valid_segments else "unknown"
+    data["coverage"]["playback_tracker_detail"] = {
+        "status": "available" if valid_segments else "unknown",
+        "reason": None if valid_segments else "no_valid_segments_recorded",
+        "segment_count": valid_segments,
+        "latest_segment_at": latest_segment_at,
+        "observed_at": now(),
+        "file_present": True,
+    }
     data["updated_at"] = now()
     write(data)
 
@@ -206,6 +223,7 @@ def feedback_for(uri):
         "liked_at": liked[-1].get("at") if liked else None,
         "post_add_measured_plays": measured_plays,
         "post_add_playback_ms": measured_ms,
+        "playback_tracker_coverage": read().get("coverage", {}).get("playback_tracker", "unknown"),
         "post_add_lastfm_scrobbles": row.get("lastfm_post_add_scrobbles"),
         "removal_count": len(row.get("removal_events") or []),
         "additions": len(additions),
