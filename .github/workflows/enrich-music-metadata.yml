@@ -96,6 +96,8 @@ jobs:
           tagged_tracks = sum(1 for p in track_profiles.values() if p.get("lastfm_tags") or p.get("musicbrainz_tags") or p.get("musicbrainz_genres"))
           print(f"Duration coverage: {overview['tracks_with_duration']:,}/{overview['unique_tracks']:,} tracks; artist profiles: {sum(1 for p in profiles.values() if p.get('status') == 'matched'):,}; track profiles: {tagged_tracks:,}")
           PY
+      - name: Run umbrella project integrity audit
+        run: python audit_project.py
       - name: Commit enriched music data
         run: |
           git config user.name "github-actions[bot]"

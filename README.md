@@ -87,40 +87,83 @@ The tracker samples every 10 seconds by default; use `python spotify_playback_tr
 
 ## Playlist sorting and sequencing engine
 
-`spotify_playlist_sequencer.py` is a preview-only multi-mode sorter. It combines available audio-feature payloads, exact track-level community tags/genres, and lower-confidence artist-level mood/genre/theme metadata. Track-level evidence takes precedence; artist metadata is explicitly labelled as a fallback. Missing evidence is marked unknown rather than presented as a confident audio judgment.
+spotify_playlist_sequencer.py is a preview-only playlist arrangement engine. **Smooth Flow** is the default: it optimizes the complete chain of song-to-song handoffs, then uses the requested energy journey as a soft structural guide. It does not divide the playlist into rigid energy bands. Genre and theme affinity are optional soft preferences; cross-genre transitions remain welcome when they flow naturally.
 
-Modes:
+### Shape the listening journey
 
-- `hybrid` (default): preserve a broad energy arc, then favor compatible neighboring tracks inside each 10-point energy band using energy distance, mood/genre overlap, and artist-repeat penalties.
-- `energy`: sort by inferred energy, ascending or descending.
-- `atmosphere`: cluster by inferred mood/vibe.
-- `style`: cluster by genre.
-- `narrative`: arrange broad emotional phases (gentler/opening moods, reflective moods, darker/tenser moods, intensity, then release/hope).
-- `discovery`: surface lower-play-count artists before more familiar artists when artist play-count data is available; unknown familiarity is shown separately.
+- **rising** (default): gradual build toward a configurable peak, then a cooldown.
+- **falling**: start intense and ease toward a quieter finish.
+- **wave**: create a broad rise-and-release arc.
+- **steady**: favor a relatively consistent energy level.
+
+The peak-position control defaults to **85%** of playlist length. It is a soft target, not a forced maximum: the actual peak depends on the available tracks and transition quality. The peak-shape setting (gradual, sharp, sustained) controls the character of the crest and cooldown.
 
 Examples:
 
-```bash
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode hybrid
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode energy --direction descending
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode atmosphere
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode style
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode narrative
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode discovery
-python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --mode hybrid --group-by theme
-```
+    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID
+    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey rising --peak-position 85 --peak-shape gradual
+    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey falling
+    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey wave
+    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey steady
+    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --genre-strength 0.4 --theme-strength 0.6
 
-The optional `--group-by vibe|genre|theme` parameter adds a soft grouping preference to hybrid sequencing. The hybrid transition score is a local greedy heuristic, not a full musical transition model: it does not currently know key, true BPM, timbre, or waveform similarity. Scores and emotional phases are descriptive heuristics, not Spotify audio-analysis measurements. The preview prints evidence signals and playlist-wide high/medium/low/unknown confidence counts. Base weights are re-normalized over signals available for each track.
+### Anchors, sections and alternatives
 
-The current playlist manager does not fetch Spotify audio features. Spotify restricted the Audio Features and Audio Analysis endpoints for new Web API use cases and development-mode apps without a pending extension request; existing extended-mode apps that relied on them were grandfathered. The sequencer accepts an audio-feature payload if a future supported source supplies one, but current live-playlist scoring relies on cached community tags plus artist-level genre, mood, theme, and play-count metadata. See [Spotify's API changes](https://developer.spotify.com/blog/2024-11-27-changes-to-the-web-api).
+- --opener-uri URI and --closer-uri URI reserve the first and last positions.
+- Repeat --pin-uri URI to keep tracks at their current positions.
+- --sections sections.json accepts an ordered JSON object mapping section names to URI lists. Section affinity is soft; transitions across section boundaries are still optimized.
+- --compare creates alternative 70%, 85%, and 95% peak previews (skipping the selected peak), each as a separate manager-compatible plan.
+- --genre-strength and --theme-strength accept soft preference values from 0 to 1.
 
-The command writes `playlist-sequence-plan.json` by default. It never modifies Spotify directly. Review the plan, then pass it to the existing locked-by-default manager:
+Example sections file:
 
-```bash
-python spotify_playlist_manager.py apply playlist-sequence-plan.json
-```
+    {
+      "Opening": ["spotify:track:TRACK_A", "spotify:track:TRACK_B"],
+      "Climax": ["spotify:track:TRACK_C"],
+      "Cooldown": ["spotify:track:TRACK_D"]
+    }
 
-The manager produces its normal preview, checks playlist lock/ownership and snapshot state, saves a pre-change backup, and requires typing `APPLY` before making changes. The sequencer refuses to create a partial plan if playlist items are unavailable or lack track URIs.
+### Other sorting modes
+
+- energy: sort by inferred energy, ascending or descending.
+- atmosphere: cluster by inferred mood/vibe.
+- style: cluster by genre.
+- narrative: arrange broad emotional phases.
+- discovery: surface lower-play-count artists before more familiar artists when play-count data exists.
+- hybrid: backwards-compatible alias for Smooth Flow.
+
+### Transition explanations and evidence limits
+
+The preview reports each adjacent handoff as gentle, moderate, or a potential jump, with shared track moods, genres, themes, energy differences, artist repetition, and an evidence-confidence label. These are metadata heuristics, not acoustic measurements. Missing track evidence remains explicitly unknown; artist-level tags are not presented as track-level facts.
+
+The current playlist manager does not fetch Spotify audio features. Spotify restricted Audio Features and Audio Analysis endpoints for new Web API use cases and development-mode apps without a pending extension request; existing extended-mode apps that relied on them were grandfathered. The sequencer can consume such features if a supported source supplies them, but current live-playlist scoring primarily uses cached Last.fm/MusicBrainz community metadata. It does not know musical key, waveform, timbre, or reliable BPM unless supplied by a supported source. See Spotify's API changes: https://developer.spotify.com/blog/2024-11-27-changes-to-the-web-api.
+
+The command writes playlist-sequence-plan.json by default. It never modifies Spotify directly. Review the plan, then pass it to the existing locked-by-default manager:
+
+    python spotify_playlist_manager.py apply playlist-sequence-plan.json
+
+The manager produces its normal preview, checks playlist lock/ownership and snapshot state, saves a pre-change backup, and requires typing APPLY before making changes. The sequencer refuses to create a partial plan if playlist items are unavailable or lack track URIs.
+
+
+
+## Project feature map
+
+| Area | Important features and subfeatures |
+|---|---|
+| Last.fm archive | Incremental scrobble imports, chronological canonical history, MBID retention, duplicate-safe updates |
+| Historical analytics | Artist/album/track rankings, daily/monthly/yearly trends, weekday and UTC-hour patterns, discovery/rediscovery, rolling rankings, inferred sessions, diversity and concentration |
+| Music metadata | Track durations, MusicBrainz fallback, artist community tags, genre/mood/theme profiles, independent track tags, provenance, identity checks, retry cooldowns and coverage reports |
+| Listening-time analytics | Scrobble-based estimates, known-duration equivalents, theoretical minimum qualifying time, prospective measured Spotify playback, daily/monthly playback aggregates |
+| Recommendations | Artist/track feature datasets, familiarity and recency, duration trends, source-aware metadata, versioned scoring |
+| Playlist intelligence | Playlist identity profiles, genre/mood/theme summaries, metadata coverage, duplicate/missing-item checks, artist concentration, removal/whitelist feedback, read-only health reports |
+| Daily curation | Tricky Daily candidate ranking, favorites/rediscovery/deep cuts, recency filters, artist caps, exact Spotify matching, preview and confirmation |
+| Discovery curation | Similar-artist consensus, Spotify catalogue search, familiarity penalties, Liked Songs awareness, confidence tiers and reasons |
+| Playlist sequencing | Smooth Flow global transition optimization, configurable energy journey and peak position/shape, section affinity, pinned/opening/closing tracks, A/B peak previews, transition explanations and confidence |
+| Playlist management | Inspect/create, lock/unlock, add/remove/replace/reorder, ownership and snapshot checks, backups, undo and audit history |
+| Cloud control | Owner-verified GitHub issue commands, preview-first confirmations, persistent lock state, recovery artifacts and health commands |
+| Project integrity | Unit tests, full-module compilation, generated-data manifest checks, cross-dataset consistency audit and scheduled workflows |
+
+Main entry points include update_lastfm.py, build_stats.py, build_assistant_data.py, build_advanced_analytics.py, build_music_metadata.py, build_track_profiles.py, build_music_analytics.py, spotify_playback_tracker.py, playlist_intelligence.py, spotify_daily_playlist.py, spotify_discovery.py, spotify_playlist_sequencer.py, spotify_playlist_manager.py, spotify_playlist_cloud.py, and audit_project.py.
 
 ## Important limitations
 

@@ -42,8 +42,7 @@ class PlaylistSequencerTests(unittest.TestCase):
             "artist b": {"themes": ["nocturnal"]},
         }
         result = sequencer.sequence_tracks(rows, artist_profiles=artists, group_by="theme")
-        self.assertEqual(result[0]["sequence_group"], "dreamlike")
-        self.assertEqual(result[1]["sequence_group"], "nocturnal")
+        self.assertEqual({row["sequence_group"] for row in result}, {"dreamlike", "nocturnal"})
         self.assertLessEqual(abs(result[1]["score"] - result[0]["score"]), 10)
 
     def test_confidence_summary_counts_unknown_metadata(self):
@@ -101,6 +100,91 @@ class PlaylistSequencerTests(unittest.TestCase):
     def test_reorder_rejects_changed_playlist_membership(self):
         with self.assertRaises(ValueError):
             sequencer.build_reorder_operations(["a", "b"], ["a", "c"])
+
+
+    def test_smooth_is_default_and_hybrid_is_compatibility_alias(self):
+        rows = [
+            {"uri": "a", "name": "A", "artists": ["A"], "audio_features": {"energy": .1}},
+            {"uri": "b", "name": "B", "artists": ["B"], "audio_features": {"energy": .5}},
+            {"uri": "c", "name": "C", "artists": ["C"], "audio_features": {"energy": .2}},
+            {"uri": "d", "name": "D", "artists": ["D"], "audio_features": {"energy": .9}},
+        ]
+        self.assertEqual(sequencer.sequence_tracks(rows), sequencer.sequence_tracks(rows, mode="hybrid"))
+        self.assertEqual({r["item"]["uri"] for r in sequencer.sequence_tracks(rows)}, set("abcd"))
+
+    def test_peak_position_and_shape(self):
+        curve = [sequencer.target_energy(i, 100, peak_position=85) for i in range(100)]
+        self.assertGreater(curve[84], curve[98])
+        self.assertNotEqual(
+            sequencer.target_energy(70, 100, peak_shape="sharp"),
+            sequencer.target_energy(70, 100, peak_shape="gradual"),
+        )
+        self.assertNotEqual(
+            sequencer.target_energy(70, 100, peak_shape="sustained"),
+            sequencer.target_energy(70, 100, peak_shape="gradual"),
+        )
+
+    def test_journey_shapes(self):
+        self.assertGreater(sequencer.target_energy(0, 20, "falling"), sequencer.target_energy(19, 20, "falling"))
+        self.assertLess(sequencer.target_energy(0, 20, "rising"), sequencer.target_energy(19, 20, "rising"))
+        self.assertAlmostEqual(sequencer.target_energy(0, 20, "steady"), sequencer.target_energy(19, 20, "steady"))
+        self.assertLess(sequencer.target_energy(0, 100, "wave"), sequencer.target_energy(50, 100, "wave"))
+
+    def test_opener_closer_and_pinned_track(self):
+        rows = [
+            {"uri": x, "name": x, "artists": [x], "audio_features": {"energy": energy}}
+            for x, energy in [("a", .1), ("b", .9), ("c", .3), ("d", .8), ("e", .2)]
+        ]
+        result = sequencer.sequence_tracks(rows, opener_uri="b", closer_uri="a", pinned_uris={"c"})
+        uris = [r["item"]["uri"] for r in result]
+        self.assertEqual(uris[0], "b")
+        self.assertEqual(uris[-1], "a")
+        self.assertEqual(uris[2], "c")
+
+    def test_sections_keep_all_tracks_and_add_soft_affinity(self):
+        rows = [{"uri": x, "name": x, "artists": [x]} for x in "abcd"]
+        result = sequencer.sequence_tracks(rows, sections={"Opening": ["a", "b"], "Finish": ["c", "d"]})
+        self.assertEqual({r["item"]["uri"] for r in result}, set("abcd"))
+        self.assertTrue(all("section_groups" in row for row in result))
+
+    def test_transition_report_explains_handoff_and_uncertainty(self):
+        a = {"score": 40, "confidence": "medium", "artist": "A", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
+        b = {"score": 45, "confidence": "medium", "artist": "B", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
+        report = sequencer.transition_report(a, b)
+        self.assertEqual(report["label"], "gentle")
+        self.assertIn("dreamy", report["shared_moods"])
+        self.assertEqual(sequencer.transition_report(dict(a, confidence="unknown"), b)["confidence"], "limited")
+
+    def test_transition_summary_flags_potential_jump(self):
+        rows = [
+            {"score": 5, "confidence": "low", "artist": "a", "vibe_groups": [], "genre_groups": [], "theme_groups": []},
+            {"score": 98, "confidence": "unknown", "artist": "b", "vibe_groups": [], "genre_groups": [], "theme_groups": []},
+        ]
+        self.assertEqual(sequencer.transition_summary(rows)["potential_jumps"], 1)
+
+
+    def test_ordered_sections_are_softly_preferred(self):
+        first = {"score": 50, "confidence": "medium", "artist": "A", "vibe_groups": [],
+                 "genre_groups": [], "theme_groups": [], "section_groups": ["section:0"], "section_index": 0}
+        second = {"score": 50, "confidence": "medium", "artist": "B", "vibe_groups": [],
+                  "genre_groups": [], "theme_groups": [], "section_groups": ["section:1"], "section_index": 1}
+        forward = sequencer._sequence_objective([first, second], "steady", 85, "gradual", 0, 0)
+        backward = sequencer._sequence_objective([second, first], "steady", 85, "gradual", 0, 0)
+        self.assertLess(forward, backward)
+
+    def test_all_tracks_can_be_fixed_by_opening_and_closing_anchors(self):
+        rows = [
+            {"uri": "start", "name": "Start", "artists": ["A"]},
+            {"uri": "end", "name": "End", "artists": ["B"]},
+        ]
+        result = sequencer.sequence_tracks(rows, opener_uri="start", closer_uri="end")
+        self.assertEqual([row["item"]["uri"] for row in result], ["start", "end"])
+
+
+    def test_unknown_anchor_uri_is_rejected(self):
+        rows = [{"uri": "present", "name": "Present", "artists": ["A"]}]
+        with self.assertRaisesRegex(ValueError, "not in this playlist"):
+            sequencer.sequence_tracks(rows, opener_uri="missing")
 
 
 if __name__ == "__main__":
