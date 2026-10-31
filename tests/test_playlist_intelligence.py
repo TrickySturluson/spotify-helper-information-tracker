@@ -24,6 +24,9 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertEqual(profile["negative_track_evidence"], 1)
         self.assertEqual(profile["whitelisted_tracks"], 1)
 
+    def test_normalization_collapses_whitespace_for_track_identity(self):
+        self.assertEqual(intelligence.norm("  Same   Artist  "), "same artist")
+
     def test_metadata_coverage_distinguishes_tagged_partial_and_missing(self):
         items = [
             {"artists": ["Tagged"]},
