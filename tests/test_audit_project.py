@@ -12,13 +12,16 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
         (base / "playlists").mkdir(parents=True)
         (base / "playlists" / "p1.json").write_text(json.dumps({
             "id": "p1",
+            "snapshot_id": "snapshot-p1",
             "items_accessible": accessible,
+            "item_count_fetched": 1 if accessible else 0,
             "items": [{"uri": "spotify:track:a"}] if accessible else [],
         }), encoding="utf-8")
         (base / "playlists.json").write_text(json.dumps({
             "playlist_count": 1,
             "playlists": [{
                 "id": "p1", "items_accessible": accessible,
+                "snapshot_id": "snapshot-p1", "item_count": 1 if accessible else 0,
                 "record_path": "assistant_data/spotify/playlists/p1.json",
             }],
         }), encoding="utf-8")
