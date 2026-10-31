@@ -36927,5 +36927,902 @@
     "source": "Last.fm artist.getTopTags (playlist enrichment)",
     "checked_at": "2026-10-31T04:59:51.796213+00:00",
     "retry_after": 0
+  },
+  "name:7d64516514a36f70": {
+    "artist_id": "name:7d64516514a36f70",
+    "artist": "Sound of Ceres",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "dream pop",
+        "count": 100
+      },
+      {
+        "tag": "shoegaze",
+        "count": 40
+      },
+      {
+        "tag": "psychedelic",
+        "count": 15
+      },
+      {
+        "tag": "Neo-Psychedelia",
+        "count": 10
+      },
+      {
+        "tag": "ambient pop",
+        "count": 2
+      },
+      {
+        "tag": "experimental",
+        "count": 2
+      },
+      {
+        "tag": "electronic",
+        "count": 1
+      },
+      {
+        "tag": "psychedelic pop",
+        "count": 1
+      },
+      {
+        "tag": "american",
+        "count": 1
+      },
+      {
+        "tag": "indie",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "dream pop",
+      "shoegaze",
+      "psychedelic",
+      "Neo-Psychedelia"
+    ],
+    "moods": [],
+    "themes": [
+      "ambient pop",
+      "experimental",
+      "electronic",
+      "psychedelic pop",
+      "american",
+      "indie"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:21.672079+00:00",
+    "retry_after": 0
+  },
+  "name:8ce9893de0f06bdc": {
+    "artist_id": "name:8ce9893de0f06bdc",
+    "artist": "Raymond Scott",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "electronic",
+        "count": 100
+      },
+      {
+        "tag": "experimental",
+        "count": 100
+      },
+      {
+        "tag": "jazz",
+        "count": 52
+      },
+      {
+        "tag": "Avant-Garde",
+        "count": 46
+      },
+      {
+        "tag": "Cartoon Music",
+        "count": 15
+      },
+      {
+        "tag": "early electronic",
+        "count": 6
+      },
+      {
+        "tag": "american",
+        "count": 5
+      },
+      {
+        "tag": "All",
+        "count": 1
+      },
+      {
+        "tag": "space age pop",
+        "count": 1
+      },
+      {
+        "tag": "swing",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "electronic",
+      "experimental",
+      "jazz",
+      "Avant-Garde",
+      "Cartoon Music"
+    ],
+    "moods": [],
+    "themes": [
+      "early electronic",
+      "american",
+      "All",
+      "space age pop",
+      "swing"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:21.989293+00:00",
+    "retry_after": 0
+  },
+  "name:855679730970f8a0": {
+    "artist_id": "name:855679730970f8a0",
+    "artist": "385",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "noise rock",
+        "count": 100
+      },
+      {
+        "tag": "japanese",
+        "count": 81
+      },
+      {
+        "tag": "punk",
+        "count": 52
+      },
+      {
+        "tag": "jazz",
+        "count": 34
+      },
+      {
+        "tag": "noise",
+        "count": 16
+      },
+      {
+        "tag": "jazz punk",
+        "count": 9
+      },
+      {
+        "tag": "jazzcore",
+        "count": 7
+      },
+      {
+        "tag": "jazz fusion",
+        "count": 1
+      },
+      {
+        "tag": "art punk",
+        "count": 1
+      },
+      {
+        "tag": "Japanoise",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "noise rock",
+      "punk",
+      "jazz",
+      "noise"
+    ],
+    "moods": [],
+    "themes": [
+      "japanese",
+      "jazz punk",
+      "jazzcore",
+      "jazz fusion",
+      "art punk",
+      "Japanoise"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:22.310857+00:00",
+    "retry_after": 0
+  },
+  "name:66ca3950168155a3": {
+    "artist_id": "name:66ca3950168155a3",
+    "artist": "Green-House",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "ambient",
+        "count": 100
+      },
+      {
+        "tag": "new age",
+        "count": 38
+      },
+      {
+        "tag": "electronic",
+        "count": 13
+      },
+      {
+        "tag": "experimental",
+        "count": 5
+      },
+      {
+        "tag": "instrumental",
+        "count": 1
+      },
+      {
+        "tag": "composer",
+        "count": 1
+      },
+      {
+        "tag": "USA",
+        "count": 1
+      },
+      {
+        "tag": "los angeles",
+        "count": 1
+      },
+      {
+        "tag": "California",
+        "count": 1
+      },
+      {
+        "tag": "american",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "ambient",
+      "new age",
+      "electronic"
+    ],
+    "moods": [],
+    "themes": [
+      "experimental",
+      "instrumental",
+      "composer",
+      "USA",
+      "los angeles",
+      "California",
+      "american"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:22.781198+00:00",
+    "retry_after": 0
+  },
+  "name:beda08b5515dbb83": {
+    "artist_id": "name:beda08b5515dbb83",
+    "artist": "平田志穂子",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "Soundtrack",
+        "count": 100
+      },
+      {
+        "tag": "japanese",
+        "count": 62
+      },
+      {
+        "tag": "j-pop",
+        "count": 32
+      },
+      {
+        "tag": "game",
+        "count": 18
+      },
+      {
+        "tag": "video game music",
+        "count": 6
+      },
+      {
+        "tag": "JPop",
+        "count": 4
+      },
+      {
+        "tag": "female vocalists",
+        "count": 2
+      },
+      {
+        "tag": "vgm",
+        "count": 1
+      },
+      {
+        "tag": "japan",
+        "count": 1
+      },
+      {
+        "tag": "arranger",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "Soundtrack",
+      "j-pop",
+      "game"
+    ],
+    "moods": [],
+    "themes": [
+      "japanese",
+      "video game music",
+      "JPop",
+      "female vocalists",
+      "vgm",
+      "japan",
+      "arranger"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:23.141417+00:00",
+    "retry_after": 0
+  },
+  "name:6326fe95da726f13": {
+    "artist_id": "name:6326fe95da726f13",
+    "artist": "DAMAG3",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "queer",
+        "count": 100
+      },
+      {
+        "tag": "rap",
+        "count": 25
+      },
+      {
+        "tag": "pride",
+        "count": 17
+      },
+      {
+        "tag": "trap",
+        "count": 17
+      },
+      {
+        "tag": "homophobia is so gay",
+        "count": 8
+      },
+      {
+        "tag": "trans",
+        "count": 8
+      },
+      {
+        "tag": "lgbt",
+        "count": 8
+      },
+      {
+        "tag": "Trap Metal",
+        "count": 3
+      },
+      {
+        "tag": "pride month",
+        "count": 3
+      },
+      {
+        "tag": "lgbtq",
+        "count": 3
+      }
+    ],
+    "genres": [
+      "queer",
+      "rap",
+      "pride",
+      "trap"
+    ],
+    "moods": [],
+    "themes": [
+      "homophobia is so gay",
+      "trans",
+      "lgbt",
+      "Trap Metal",
+      "pride month",
+      "lgbtq"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:23.475878+00:00",
+    "retry_after": 0
+  },
+  "name:1f07259dec96e413": {
+    "artist_id": "name:1f07259dec96e413",
+    "artist": "The Electric Swing Circus",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "electro swing",
+        "count": 100
+      },
+      {
+        "tag": "electro-swing",
+        "count": 64
+      },
+      {
+        "tag": "swing",
+        "count": 32
+      },
+      {
+        "tag": "electronic",
+        "count": 11
+      },
+      {
+        "tag": "dance",
+        "count": 1
+      },
+      {
+        "tag": "english",
+        "count": 1
+      },
+      {
+        "tag": "indie",
+        "count": 1
+      },
+      {
+        "tag": "indietronica",
+        "count": 1
+      },
+      {
+        "tag": "electro",
+        "count": 1
+      },
+      {
+        "tag": "female vocalists",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "electro swing",
+      "electro-swing",
+      "swing",
+      "electronic"
+    ],
+    "moods": [],
+    "themes": [
+      "dance",
+      "english",
+      "indie",
+      "indietronica",
+      "electro",
+      "female vocalists"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:23.812914+00:00",
+    "retry_after": 0
+  },
+  "name:eb8fcfdf53422ba0": {
+    "artist_id": "name:eb8fcfdf53422ba0",
+    "artist": "Team Sleep",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "alternative",
+        "count": 100
+      },
+      {
+        "tag": "electronic",
+        "count": 99
+      },
+      {
+        "tag": "ambient",
+        "count": 65
+      },
+      {
+        "tag": "alternative rock",
+        "count": 55
+      },
+      {
+        "tag": "rock",
+        "count": 16
+      },
+      {
+        "tag": "trip-hop",
+        "count": 13
+      },
+      {
+        "tag": "experimental",
+        "count": 10
+      },
+      {
+        "tag": "post-rock",
+        "count": 2
+      },
+      {
+        "tag": "shoegaze",
+        "count": 2
+      },
+      {
+        "tag": "dream pop",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "alternative",
+      "electronic",
+      "ambient",
+      "alternative rock",
+      "rock",
+      "trip-hop"
+    ],
+    "moods": [],
+    "themes": [
+      "experimental",
+      "post-rock",
+      "shoegaze",
+      "dream pop"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:24.131922+00:00",
+    "retry_after": 0
+  },
+  "name:5f424cae9f2dedf9": {
+    "artist_id": "name:5f424cae9f2dedf9",
+    "artist": "Nataly Dawn",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "acoustic",
+        "count": 100
+      },
+      {
+        "tag": "folk",
+        "count": 68
+      },
+      {
+        "tag": "indie",
+        "count": 42
+      },
+      {
+        "tag": "female vocalists",
+        "count": 38
+      },
+      {
+        "tag": "singer-songwriter",
+        "count": 17
+      },
+      {
+        "tag": "indie pop",
+        "count": 2
+      },
+      {
+        "tag": "jazz",
+        "count": 2
+      },
+      {
+        "tag": "Lo-Fi",
+        "count": 1
+      },
+      {
+        "tag": "smooth",
+        "count": 1
+      },
+      {
+        "tag": "USA",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "acoustic",
+      "folk",
+      "indie",
+      "singer-songwriter"
+    ],
+    "moods": [],
+    "themes": [
+      "female vocalists",
+      "indie pop",
+      "jazz",
+      "Lo-Fi",
+      "smooth",
+      "USA"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:24.568943+00:00",
+    "retry_after": 0
+  },
+  "name:fe04197a69517d67": {
+    "artist_id": "name:fe04197a69517d67",
+    "artist": "Cyndago",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "comedy",
+        "count": 100
+      },
+      {
+        "tag": "supermega",
+        "count": 25
+      }
+    ],
+    "genres": [
+      "comedy",
+      "supermega"
+    ],
+    "moods": [],
+    "themes": [],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:24.900625+00:00",
+    "retry_after": 0
+  },
+  "name:60751b65f896fe9e": {
+    "artist_id": "name:60751b65f896fe9e",
+    "artist": "Computerwife",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "indie rock",
+        "count": 100
+      },
+      {
+        "tag": "shoegaze",
+        "count": 51
+      },
+      {
+        "tag": "dream pop",
+        "count": 34
+      },
+      {
+        "tag": "indie",
+        "count": 12
+      },
+      {
+        "tag": "bedroom pop",
+        "count": 6
+      },
+      {
+        "tag": "indietronica",
+        "count": 3
+      },
+      {
+        "tag": "post-punk",
+        "count": 3
+      },
+      {
+        "tag": "Lo-Fi",
+        "count": 1
+      },
+      {
+        "tag": "new york",
+        "count": 1
+      },
+      {
+        "tag": "slacker rock",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "indie rock",
+      "shoegaze",
+      "dream pop",
+      "indie"
+    ],
+    "moods": [],
+    "themes": [
+      "bedroom pop",
+      "indietronica",
+      "post-punk",
+      "Lo-Fi",
+      "new york",
+      "slacker rock"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:25.226959+00:00",
+    "retry_after": 0
+  },
+  "name:865ba064eb0a605d": {
+    "artist_id": "name:865ba064eb0a605d",
+    "artist": "Y2K",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "electronic",
+        "count": 100
+      },
+      {
+        "tag": "rap",
+        "count": 56
+      },
+      {
+        "tag": "Hip-Hop",
+        "count": 37
+      },
+      {
+        "tag": "hip hop",
+        "count": 16
+      },
+      {
+        "tag": "y2k",
+        "count": 8
+      },
+      {
+        "tag": "dance",
+        "count": 2
+      },
+      {
+        "tag": "punk rock",
+        "count": 2
+      },
+      {
+        "tag": "pop punk",
+        "count": 1
+      },
+      {
+        "tag": "beats",
+        "count": 1
+      },
+      {
+        "tag": "american",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "electronic",
+      "rap",
+      "Hip-Hop",
+      "hip hop"
+    ],
+    "moods": [],
+    "themes": [
+      "y2k",
+      "dance",
+      "punk rock",
+      "pop punk",
+      "beats",
+      "american"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:25.561704+00:00",
+    "retry_after": 0
+  },
+  "name:d7f24918a5e0f45a": {
+    "artist_id": "name:d7f24918a5e0f45a",
+    "artist": "Nürnberg",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "post-punk",
+        "count": 100
+      },
+      {
+        "tag": "coldwave",
+        "count": 67
+      },
+      {
+        "tag": "Belarusian",
+        "count": 11
+      },
+      {
+        "tag": "belarus",
+        "count": 5
+      },
+      {
+        "tag": "darkwave",
+        "count": 1
+      },
+      {
+        "tag": "Post punk",
+        "count": 1
+      },
+      {
+        "tag": "cold wave",
+        "count": 1
+      },
+      {
+        "tag": "neo-post-punk",
+        "count": 1
+      },
+      {
+        "tag": "Minsk",
+        "count": 1
+      },
+      {
+        "tag": "rock",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "post-punk",
+      "coldwave",
+      "Belarusian"
+    ],
+    "moods": [],
+    "themes": [
+      "belarus",
+      "darkwave",
+      "Post punk",
+      "cold wave",
+      "neo-post-punk",
+      "Minsk",
+      "rock"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:25.887533+00:00",
+    "retry_after": 0
+  },
+  "name:dfa088d193d366fd": {
+    "artist_id": "name:dfa088d193d366fd",
+    "artist": "Piero Piccioni",
+    "artist_mbid": null,
+    "plays": 0,
+    "status": "matched",
+    "tags": [
+      {
+        "tag": "Soundtrack",
+        "count": 100
+      },
+      {
+        "tag": "lounge",
+        "count": 95
+      },
+      {
+        "tag": "jazz",
+        "count": 54
+      },
+      {
+        "tag": "italian",
+        "count": 45
+      },
+      {
+        "tag": "instrumental",
+        "count": 13
+      },
+      {
+        "tag": "easy listening",
+        "count": 6
+      },
+      {
+        "tag": "Italy",
+        "count": 4
+      },
+      {
+        "tag": "composer",
+        "count": 1
+      },
+      {
+        "tag": "funk",
+        "count": 1
+      },
+      {
+        "tag": "Bossa Nova",
+        "count": 1
+      }
+    ],
+    "genres": [
+      "Soundtrack",
+      "lounge",
+      "jazz",
+      "italian",
+      "instrumental"
+    ],
+    "moods": [],
+    "themes": [
+      "easy listening",
+      "Italy",
+      "composer",
+      "funk",
+      "Bossa Nova"
+    ],
+    "source": "Last.fm artist.getTopTags (playlist enrichment)",
+    "checked_at": "2026-10-31T05:00:26.205037+00:00",
+    "retry_after": 0
   }
 }
