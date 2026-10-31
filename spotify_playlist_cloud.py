@@ -178,6 +178,7 @@ def main():
         "cleanup_on": {"command", "playlist_id"},
         "cleanup_off": {"command", "playlist_id"},
         "cleanup_check": {"command", "playlist_id"},
+        "cleanup_run": {"command", "playlist_id"},
         "lock_all": {"command"},
         "lock": {"command", "playlist_id"},
         "unlock": {"command", "playlist_id"},
@@ -192,7 +193,7 @@ def main():
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -233,6 +234,30 @@ def main():
         manager.write(STATE, config)
         manager.audit(event="cleanup_enabled" if action == "cleanup_on" else "cleanup_disabled", playlist_id=p["id"], name=p.get("name"))
         result = f'Duplicate auto-cleanup is {"ON" if action == "cleanup_on" else "OFF"} for "{p.get("name")}".'
+    elif action == "cleanup_run":
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        if not manager.unlocked(pid):
+            fail("Blocked: playlist is LOCKED. Unlock it explicitly before duplicate cleanup.")
+        before = manager.snapshot(sp, p)
+        backup = manager.save_snapshot(before)
+        removed = cleanup_duplicates(sp, pid)
+        updated = owned_playlist(sp, pid, me)
+        after = manager.snapshot(sp, updated)
+        config["last_completed"] = {
+            "playlist_id": pid, "backup": backup,
+            "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+            "after_snapshot_id": updated.get("snapshot_id"),
+            "after_uris": snapshot_uris(after), "kind": "cleanup",
+        }
+        manager.write(STATE, config)
+        manager.audit(event="cleanup_completed", playlist_id=pid, removed_count=removed, backup=backup)
+        result = (
+            f'Duplicate cleanup complete for "{updated.get("name")}". '
+            f'Removed {removed} surplus copy/copies; kept the first occurrence of each track. '
+            f'{"No duplicates were found. " if not removed else ""}'
+            "A recovery snapshot was saved. Playlist remains UNLOCKED."
+        )
     elif action == "cleanup_check":
         p = owned_playlist(sp, command["playlist_id"], me)
         current = manager.snapshot(sp, p)
