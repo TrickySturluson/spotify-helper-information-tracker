@@ -124,31 +124,50 @@ def score_track(item, artist_profiles=None, track_profiles=None):
         components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
         evidence.append("genre family")
 
+    genre_groups = []
+    for row in track_profile.get("musicbrainz_genres") or []:
+        value = row.get("tag", "") if isinstance(row, dict) else row
+        if value and str(value).strip():
+            genre_groups.append(str(value).strip())
+    genre_groups.extend(str(value).strip() for value in artist_profile.get("genres") or [] if str(value).strip())
+    theme_groups = [str(value).strip() for value in artist_profile.get("themes") or [] if str(value).strip()]
     if not components:
         return {"score": 50.0, "confidence": "unknown", "evidence": [],
-                "artist": artist, "track": title, "vibe_group": "unclassified"}
+                "artist": artist, "track": title, "vibe_group": "unclassified",
+                "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
     score = sum(v * w for v, w in zip(components, weights)) / sum(weights) * 100
     confidence = "high" if direct_energy is not None and (tempo is not None or loudness is not None) else "medium" if len(components) >= 2 else "low"
     group = next(iter(sorted(tag_moods)), "unclassified") if tag_moods else (
         next(iter(sorted(artist_moods)), "artist-level") if artist_moods else "unclassified")
     return {"score": round(score, 2), "confidence": confidence,
             "evidence": evidence, "artist": artist, "track": title,
-            "vibe_group": group}
+            "vibe_group": group, "vibe_groups": sorted(tag_moods or artist_moods),
+            "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
 
 
-def sequence_tracks(items, artist_profiles=None, track_profiles=None, direction="ascending"):
+def sequence_tracks(items, artist_profiles=None, track_profiles=None, direction="ascending", group_by="none"):
     if direction not in {"ascending", "descending"}:
         raise ValueError("direction must be ascending or descending")
+    if group_by not in {"none", "vibe", "genre", "theme"}:
+        raise ValueError("group_by must be none, vibe, genre, or theme")
     scored = []
     for index, item in enumerate(items):
         if not isinstance(item, dict) or not item.get("uri"):
             continue
         profile = score_track(item, artist_profiles, track_profiles)
+        group_field = {"vibe": "vibe_groups", "genre": "genre_groups", "theme": "theme_groups"}.get(group_by)
+        groups = profile.get(group_field, []) if group_field else []
+        profile["sequence_group"] = groups[0] if groups else "unclassified"
         scored.append({"original_index": index, "item": item, **profile})
     reverse = direction == "descending"
-    scored.sort(key=lambda row: ((-row["score"] if reverse else row["score"]), row["original_index"]))
+    def order_key(row):
+        band = int(row["score"] // 10)
+        if reverse:
+            band = -band
+        # Grouping is a soft tie-breaker inside 10-point energy bands.
+        return (band, row["sequence_group"], (-row["score"] if reverse else row["score"]), row["original_index"])
+    scored.sort(key=order_key)
     return scored
-
 
 def build_reorder_operations(current_uris, ordered_uris):
     """Create Spotify single-item moves that transform current order exactly."""
@@ -181,6 +200,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("playlist_id")
     parser.add_argument("--direction", choices=("ascending", "descending"), default="ascending")
+    parser.add_argument("--group-by", choices=("none", "vibe", "genre", "theme"), default="none", help="Softly cluster groups within 10-point energy bands.")
     parser.add_argument("--output", type=Path, default=Path("playlist-sequence-plan.json"))
     args = parser.parse_args()
     try:
@@ -189,7 +209,7 @@ def main():
         snap = manager.snapshot(sp, playlist)
         artists = index_artists(read_json(ARTIST_PROFILES, {}))
         tracks = index_tracks(read_json(TRACK_PROFILES, {}))
-        scored = sequence_tracks(snap["items"], artists, tracks, args.direction)
+        scored = sequence_tracks(snap["items"], artists, tracks, args.direction, args.group_by)
         plan = make_plan(snap, scored)
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f'Preview generated for "{playlist.get("name")}" — {len(scored)} tracks.')
