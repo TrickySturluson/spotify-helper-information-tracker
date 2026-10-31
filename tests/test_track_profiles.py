@@ -64,12 +64,14 @@ class TrackProfileTests(unittest.TestCase):
         self.assertEqual(tags, [])
         self.assertEqual(status, "identity_mismatch")
 
-    def test_previous_mbid_http_errors_are_retried_without_waiting_30_days(self):
+    def test_http_errors_respect_retry_cooldown(self):
         now = 1_800_000_000
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_400",
+                                                       "retry_after": now + 30 * 86400}, now))
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_404",
+                                                       "retry_after": now + 30 * 86400}, now))
         self.assertTrue(profiles.should_retry_lastfm({"lastfm_status": "http_400",
-                                                      "retry_after": now + 30 * 86400}, now))
-        self.assertTrue(profiles.should_retry_lastfm({"lastfm_status": "http_404",
-                                                      "retry_after": now + 30 * 86400}, now))
+                                                      "retry_after": now - 1}, now))
         self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "matched",
                                                        "retry_after": 0}, now))
         self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_500",
