@@ -30,6 +30,73 @@ def referenced_paths(value):
             found.update(referenced_paths(item))
     return found
 
+
+def audit_spotify_reference(root=ROOT):
+    """Validate the optional Spotify reference catalog/index without treating 403s as empty data."""
+    catalog_path = root / "assistant_data/spotify/playlists.json"
+    index_path = root / "assistant_data/spotify/reference_index.json"
+    if not catalog_path.exists():
+        return [], ["Spotify reference library has not been synced yet; reference audit skipped."]
+    errors, warnings = [], []
+    try:
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return [f"Spotify reference catalog is invalid: {exc}"], []
+    rows = catalog.get("playlists") if isinstance(catalog, dict) else None
+    if not isinstance(rows, list):
+        return ["Spotify reference catalog must contain a playlists list."], []
+    ids = [row.get("id") for row in rows if isinstance(row, dict)]
+    if len(ids) != len(rows) or any(not isinstance(pid, str) or not pid for pid in ids):
+        errors.append("Spotify reference catalog contains malformed playlist records.")
+    if len(set(ids)) != len(ids):
+        errors.append("Spotify reference catalog contains duplicate playlist IDs.")
+    if catalog.get("playlist_count") != len(rows):
+        errors.append("Spotify reference catalog playlist_count does not match its records.")
+    inaccessible = 0
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        pid = row.get("id")
+        accessible = row.get("items_accessible", True)
+        inaccessible += int(not accessible)
+        relative = row.get("record_path") or f"assistant_data/spotify/playlists/{pid}.json"
+        path = root / relative
+        if not path.exists():
+            errors.append(f"Spotify catalog record {pid} references missing file {relative}.")
+            continue
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            errors.append(f"Spotify playlist record {pid} is invalid JSON: {exc}")
+            continue
+        if record.get("id") != pid:
+            errors.append(f"Spotify playlist record identity mismatch for {pid}.")
+        # Unavailable item contents are an access limitation, not evidence of an empty playlist.
+        if accessible and not isinstance(record.get("items"), list):
+            errors.append(f"Accessible Spotify playlist {pid} has no items list.")
+        if not accessible:
+            warnings.append(f"Spotify playlist item contents inaccessible for {pid}; preserved data may be stale.")
+    if not index_path.exists():
+        errors.append("Spotify reference index is missing.")
+    else:
+        try:
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            track_map = index.get("track_playlists", {})
+            artist_map = index.get("artist_playlists", {})
+            if not isinstance(track_map, dict) or not isinstance(artist_map, dict):
+                errors.append("Spotify reference index maps must be JSON objects.")
+            else:
+                known = set(ids)
+                dangling = sorted({pid for values in list(track_map.values()) + list(artist_map.values())
+                                   if isinstance(values, list) for pid in values if pid not in known})
+                if dangling:
+                    errors.append(f"Spotify reference index contains {len(dangling)} unknown playlist ID(s).")
+        except (OSError, ValueError, AttributeError) as exc:
+            errors.append(f"Spotify reference index is invalid: {exc}")
+    if inaccessible:
+        warnings.append(f"{inaccessible} Spotify playlist(s) have inaccessible item contents; this is not counted as an empty-list success.")
+    return errors, warnings
+
 def main():
     metadata = load("data/metadata.json") or {}
     total = metadata.get("total_scrobbles", metadata.get("scrobbles"))
@@ -60,6 +127,11 @@ def main():
     playback = load("assistant_data/playback/manifest.json") or {}
     if playback.get("source_exists") is False and playback.get("recorded_intervals", 0) == 0:
         WARNINGS.append("No captured playback intervals yet; this is a coverage gap, not corruption.")
+    spotify_errors, spotify_warnings = audit_spotify_reference()
+    ERRORS.extend(spotify_errors)
+    WARNINGS.extend(spotify_warnings)
+    if not spotify_errors and not any("not been synced" in warning for warning in spotify_warnings):
+        CHECKS.append("Spotify reference catalog, playlist records, and cross-playlist index are structurally consistent.")
     CHECKS.append("Legacy display-name and MBID-aware identity models may differ; this is intentional.")
     for label, messages in (("PASS", CHECKS), ("WARNING", WARNINGS), ("ERROR", ERRORS)):
         for message in messages:
