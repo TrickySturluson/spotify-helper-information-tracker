@@ -459,13 +459,17 @@ def main():
             print(f'  {position:3}. {row["score"]:5.1f} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
             signals = row.get("evidence") or []
             print("       Signals: " + ("; ".join(signals) if signals else "no sourced metadata; neutral placeholder score"))
+            if position < len(scored):
+                pair = summary["pairs"][position - 1]
+                print("       Next transition: " + pair["label"] + " (" + pair["confidence"] + " evidence): " + "; ".join(pair["reasons"]))
         if args.compare and args.mode in ("smooth", "hybrid"):
             for peak in (70, 85, 95):
                 if peak == args.peak_position: continue
                 variant = arrange(peak)
                 variant_path = args.output.with_name(f"{args.output.stem}-peak{peak}{args.output.suffix}")
                 variant_path.write_text(json.dumps(make_plan(snap, variant), indent=2) + "\n", encoding="utf-8")
-                print("Alternative preview:", variant_path)
+                alt_summary = transition_summary(variant)
+                print("Alternative preview:", variant_path) + " | gentle: " + str(alt_summary["gentle"]) + " | moderate: " + str(alt_summary["moderate"]) + " | potential jumps: " + str(alt_summary["potential_jumps"])
         print("Plan written to", args.output)
         print("Review the plan, then run: python spotify_playlist_manager.py apply", args.output)
         print("The manager will show its normal preview and require explicit APPLY confirmation.")
