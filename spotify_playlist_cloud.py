@@ -98,8 +98,37 @@ def replace_playlist(sp, pid, uris):
             manager.remove(sp, pid, current)
 
 
+def cleanup_duplicates(sp, pid):
+    """Remove surplus exact track-URI occurrences, preserving the first copy and order."""
+    if not manager.unlocked(pid):
+        raise manager.ManagerError("Playlist is LOCKED; duplicate cleanup was stopped.")
+    playlist = owned_playlist(sp, pid, sp.me())
+    current = manager.snapshot(sp, playlist)
+    positions = {}
+    for index, item in enumerate(current.get("items", [])):
+        uri = item.get("uri")
+        if isinstance(uri, str) and uri.startswith("spotify:track:"):
+            positions.setdefault(uri, []).append(index)
+    duplicates = {uri: indexes[1:] for uri, indexes in positions.items() if len(indexes) > 1}
+    surplus = sum(len(indexes) for indexes in duplicates.values())
+    if not surplus:
+        return 0
+    # The caller has already saved the pre-edit recovery snapshot. Use Spotify's
+    # positional removal API so only surplus copies are removed.
+    if not manager.unlocked(pid):
+        raise manager.ManagerError("Playlist locked before duplicate removal; cleanup stopped.")
+    items = [{"uri": uri, "positions": indexes} for uri, indexes in duplicates.items()]
+    sp.call("DELETE", f"/playlists/{pid}/items", {
+        "items": items, "snapshot_id": playlist.get("snapshot_id")
+    })
+    manager.audit(
+        event="duplicate_cleanup", playlist_id=pid,
+        duplicate_uri_count=len(duplicates), surplus_count=surplus,
+    )
+    return surplus
+
+
 def execute(sp, pid, operations):
-    for op in operations:
         if not manager.unlocked(pid):
             raise manager.ManagerError("Playlist locked during execution; remaining changes stopped.")
         action = op["action"]
@@ -146,6 +175,9 @@ def main():
     allowed = {
         "status": {"command"},
         "inspect": {"command", "playlist_id"},
+        "cleanup_on": {"command", "playlist_id"},
+        "cleanup_off": {"command", "playlist_id"},
+        "cleanup_check": {"command", "playlist_id"},
         "lock_all": {"command"},
         "lock": {"command", "playlist_id"},
         "unlock": {"command", "playlist_id"},
@@ -160,7 +192,7 @@ def main():
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -185,18 +217,43 @@ def main():
 
     if action == "lock_all":
         for p in owned:
+            prior = config["playlists"].get(p["id"], {})
             config["playlists"][p["id"]] = {
-                "name": p.get("name", ""), "state": "locked", "updated_at": manager.stamp()
+                **prior, "name": p.get("name", ""),
+                "state": "locked", "updated_at": manager.stamp()
             }
         config.pop("pending", None)
         manager.write(STATE, config)
         manager.audit(event="lock_all", count=len(owned))
         result = f"Locked all {len(owned)} playlists owned by this account."
+    elif action in {"cleanup_on", "cleanup_off"}:
+        p = owned_playlist(sp, command["playlist_id"], me)
+        entry = config["playlists"].setdefault(p["id"], {})
+        entry.update({"name": p.get("name", ""), "cleanup": action == "cleanup_on", "updated_at": manager.stamp()})
+        manager.write(STATE, config)
+        manager.audit(event="cleanup_enabled" if action == "cleanup_on" else "cleanup_disabled", playlist_id=p["id"], name=p.get("name"))
+        result = f'Duplicate auto-cleanup is {"ON" if action == "cleanup_on" else "OFF"} for "{p.get("name")}".'
+    elif action == "cleanup_check":
+        p = owned_playlist(sp, command["playlist_id"], me)
+        current = manager.snapshot(sp, p)
+        positions = {}
+        for index, item in enumerate(current.get("items", [])):
+            uri = item.get("uri")
+            if isinstance(uri, str) and uri.startswith("spotify:track:"):
+                positions.setdefault(uri, []).append(index)
+        duplicates = [(uri, indexes) for uri, indexes in positions.items() if len(indexes) > 1]
+        surplus = sum(len(indexes) - 1 for _, indexes in duplicates)
+        lines = [f'DUPLICATE CHECK — {p.get("name")} [{p["id"]}]', f'Duplicate tracks: {len(duplicates)}; surplus copies: {surplus}.']
+        for uri, indexes in duplicates:
+            lines.append(f'KEEP position {indexes[0] + 1}; remove {len(indexes) - 1} extra copy/copies: {uri}')
+        lines.append("Read-only check; no changes made.")
+        result = "\n".join(lines)
     elif action in {"lock", "unlock"}:
         p = owned_playlist(sp, command["playlist_id"], me)
         state = "locked" if action == "lock" else "unlocked"
+        prior = config["playlists"].get(p["id"], {})
         config["playlists"][p["id"]] = {
-            "name": p.get("name", ""), "state": state, "updated_at": manager.stamp()
+            **prior, "name": p.get("name", ""), "state": state, "updated_at": manager.stamp()
         }
         if state == "locked" and (config.get("pending") or {}).get("playlist_id") == p["id"]:
             config.pop("pending", None)
@@ -749,6 +806,9 @@ def main():
                 replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
             else:
                 execute(sp, pid, pending["operations"])
+                cleanup_count = 0
+                if config.get("playlists", {}).get(pid, {}).get("cleanup") is True:
+                    cleanup_count = cleanup_duplicates(sp, pid)
                 if kind == "daily":
                     current_description = p.get("description") or ""
                     choices = [line for line in DAILY_DESCRIPTIONS if line != current_description]
@@ -804,9 +864,18 @@ def main():
         manager.audit(event="change_completed", playlist_id=pid, backup=backup, kind=kind)
         count = (updated.get("items") or updated.get("tracks") or {}).get("total", "?")
         verb = "Restored the previous snapshot of" if kind == "undo" else "Completed the confirmed changes to"
+        cleanup_note = (
+            f" Automatic duplicate cleanup removed {cleanup_count} surplus copy/copies."
+            if kind != "undo" and "cleanup_count" in locals() and cleanup_count
+            else (
+                " Automatic duplicate cleanup found nothing to remove."
+                if kind != "undo" and config.get("playlists", {}).get(pid, {}).get("cleanup") is True
+                else ""
+            )
+        )
         result = (
             f'{verb} "{updated.get("name")}". '
-            f"Current status: {count} items; UNLOCKED. "
+            f"Current status: {count} items; UNLOCKED.{cleanup_note} "
             "A pre-change recovery snapshot was saved as a workflow artifact."
         )
     else:
@@ -814,14 +883,15 @@ def main():
         result = "Playlist status:"
 
     if action in {"status", "lock_all", "lock", "unlock"}:
-        lines = [result, "", "| Playlist | Items | Lock | ID |", "|---|---:|---|---|"]
+        lines = [result, "", "| Playlist | Items | Lock | Auto-cleanup | ID |", "|---|---:|---|---|---|"]
         for p in playlists:
             pid = p["id"]
             is_owned = (p.get("owner") or {}).get("id") == me.get("id")
             state = config["playlists"].get(pid, {}).get("state", "locked") if is_owned else "locked (not owned)"
             count = (p.get("items") or p.get("tracks") or {}).get("total", "?")
             safe_name = str(p.get("name", "")).replace("|", "\\|").replace("\n", " ")
-            lines.append("| " + safe_name + " | " + str(count) + " | " + state.upper() + " | `" + pid + "` |")
+            cleanup_state = "ON" if config["playlists"].get(pid, {}).get("cleanup") is True else "OFF"
+            lines.append("| " + safe_name + " | " + str(count) + " | " + state.upper() + " | " + cleanup_state + " | `" + pid + "` |")
         result = "\n".join(lines)
 
     if getattr(sp, "refresh_token_rotated", False):
