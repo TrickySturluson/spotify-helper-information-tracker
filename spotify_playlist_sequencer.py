@@ -229,7 +229,7 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
                   genre_strength=0.0, theme_strength=0.0, fixed_positions=None):
     """Multi-start nearest-neighbor followed by whole-sequence swap/relocation refinement."""
     rows = list(rows)
-    if len(rows) < 3: return rows
+    if len(rows) < 2: return rows
     fixed_positions = fixed_positions or {}
     fixed = {}
     for row in rows:
@@ -338,8 +338,14 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
     elif mode == "energy":
         result = sorted(scored, key=lambda row: (row["score"], row["original_index"]), reverse=direction == "descending")
     elif mode == "atmosphere":
+        if group_by == "none":
+            for row in scored:
+                row["sequence_group"] = (row.get("vibe_groups") or ["unclassified"])[0]
         result = sorted(scored, key=lambda row: (row["narrative_phase"], row["score"], row["original_index"]), reverse=direction == "descending")
     elif mode == "style":
+        if group_by == "none":
+            for row in scored:
+                row["sequence_group"] = (row.get("genre_groups") or ["unclassified"])[0]
         result = sorted(scored, key=lambda row: (row["sequence_group"], row["score"], row["original_index"]), reverse=direction == "descending")
     elif mode == "narrative":
         result = sorted(scored, key=lambda row: (row["narrative_phase"], row["score"], row["original_index"]), reverse=direction == "descending")
