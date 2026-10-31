@@ -296,7 +296,10 @@ def main():
             f'Playlist-specific feedback: {health["removal_feedback_count"]} removals; {health["whitelisted_count"]} whitelisted re-additions.',
             "Top artists: " + (", ".join(f'{row["artist"]} ({row["tracks"]})' for row in profile["top_artists"][:5]) or "none"),
             "Genre signals: " + (", ".join(row["tag"] for row in profile["genres"][:8]) or "not enough metadata"),
-            "Mood signals: " + (", ".join(row["tag"] for row in profile["moods"][:6]) or "not enough metadata"),
+            "Mood signals: " + (", ".join(
+                "{} ({} artists; {:.0%} support)".format(row["tag"], row["count"], row.get("confidence", 0))
+                for row in profile["moods"][:6]
+            ) or "not enough mood-tag evidence"),
             "Read-only report; no playlist changes were made.",
         ]
         for row in health["duplicate_uri_groups"]:
