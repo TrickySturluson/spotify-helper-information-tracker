@@ -8,7 +8,7 @@ def _norm(value):
 # Explicit mood/affect descriptors only; genre and scene labels are intentionally excluded.
 MOOD_LEXICON = {
     "dark": {"dark", "gloomy", "bleak", "ominous", "brooding", "sinister", "macabre", "noir", "dystopian", "occult"},
-    "eerie": {"eerie", "haunting", "spooky", "creepy", "ghostly", "horror", "halloween", "unsettling", "uncanny", "creepypasta"},
+    "eerie": {"eerie", "haunting", "spooky", "creepy", "ghostly", "unsettling", "uncanny", "creepypasta"},
     "aggressive": {"aggressive", "angry", "rage", "abrasive", "violent", "brutal", "ferocious", "hostile", "intense", "confrontational"},
     "energetic": {"energetic", "high energy", "danceable", "uptempo", "fast paced", "driving", "powerful", "exhilarating", "adrenaline"},
     "dreamy": {"dreamy", "ethereal", "hazy", "floaty", "atmospheric", "hypnotic", "dreamlike"},
@@ -24,9 +24,9 @@ MOOD_LEXICON = {
     "hopeful": {"hopeful", "optimistic", "encouraging", "resilient", "reassuring", "aspirational"},
     "tense": {"tense", "anxious", "uneasy", "suspenseful", "urgent", "nervous", "foreboding"},
     "chaotic": {"chaotic", "frantic", "wild", "unhinged", "unpredictable", "frenetic", "manic"},
-    "groovy": {"groovy", "funky", "swaggering", "rhythmic", "syncopated", "bouncy", "strutting"},
+    "groovy": {"groovy", "swaggering", "rhythmic", "syncopated", "bouncy", "strutting"},
     "playful": {"playful", "whimsical", "quirky", "mischievous", "silly", "absurd", "impish"},
-    "theatrical": {"theatrical", "dramatic", "cabaret", "vaudeville", "grandiose", "showtunes"},
+    "theatrical": {"theatrical", "dramatic", "grandiose", },
     "cinematic": {"cinematic", "epic", "soundtrack like", "dramatic score", "sweeping", "adventurous"},
     "desolate": {"desolate", "empty", "isolated", "despairing", "bleak", "hollow"},
     "uplifting": {"uplifting", "inspiring", "triumphant", "euphoric", "exultant", "empowering"},
@@ -38,7 +38,7 @@ MOOD_LEXICON = {
 }
 
 SOUND_TAG_FAMILIES = {
-    "dream pop & shoegaze": {"dream pop", "shoegaze", "noise pop", "ethereal wave", "dream pop"},
+    "dream pop & shoegaze": {"dream pop", "shoegaze", "noise pop", "ethereal wave"},
     "psychedelia & experimental": {"psychedelic", "psychedelia", "experimental", "avant-garde", "freak folk", "neo-psychedelia"},
     "punk & noise": {"punk", "post-punk", "noise rock", "hardcore", "riot grrrl", "egg punk", "garage punk", "art punk"},
     "alternative & indie rock": {"indie rock", "alternative rock", "indie pop", "garage rock", "post-rock", "college rock"},
@@ -73,12 +73,16 @@ def infer_sound_tag_profile(items, artist_profiles):
             tag = row.get("tag", "") if isinstance(row, dict) else row
             if tag:
                 tags.add(_norm(tag))
-        for genre in genres | tags:
+        for genre in genres:
+            if genre:
+                genre_support.setdefault(genre, set()).add(artist)
             for family, terms in SOUND_TAG_FAMILIES.items():
                 if genre in terms:
                     family_support[family].add(artist)
-            if genre:
-                genre_support.setdefault(genre, set()).add(artist)
+        for tag in tags:
+            for family, terms in SOUND_TAG_FAMILIES.items():
+                if tag in terms:
+                    family_support[family].add(artist)
         for theme in profile.get("themes", []) or []:
             if theme:
                 theme_support.setdefault(_norm(theme), set()).add(artist)
