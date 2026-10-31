@@ -722,6 +722,7 @@ def main():
         recommendations, skipped = daily.build_discovery_recommendations(
             sp, current["items"], playlist_id=pid
         )
+        feedback = daily.load_playlist_feedback(current["items"], pid)
         uris = [row["uri"] for row in recommendations]
         operations = [{"action": "replace", "uris": uris}]
         confirmation = secrets.token_urlsafe(12)
@@ -739,6 +740,8 @@ def main():
             f'Recommended tracks: {len(recommendations)}; current items: {len(current["items"])}',
             f'Mix: {tier_counts["discovery"]} unheard tracks, {tier_counts["rediscovery"]} lightly heard tracks, {tier_counts["familiar"]} familiar tracks.',
             f'{liked_count} already-Liked track(s) survived a strong ranking penalty; prior scrobbles were penalized by frequency and recency, never hard-excluded.',
+            f'Playlist feedback: {feedback["removed_count"]} prior removals currently count as negative evidence; {feedback["whitelisted_count"]} re-added track(s) are whitelisted by current membership.',
+            "Current playlist artists provide positive evidence; removals from this playlist only provide soft negative evidence here.",
             "Candidates come from similar artists outside the scrobble archive, resolved against Spotify; max two tracks per artist.",
             "No playlist changes have been made.",
             "",
