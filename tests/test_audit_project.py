@@ -1,6 +1,8 @@
+import io
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
 import audit_project
@@ -170,6 +172,53 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
             errors, warnings = audit_project.audit_spotify_reference(Path(directory))
             self.assertEqual(errors, [])
             self.assertTrue(any("not been synced yet" in warning for warning in warnings))
+
+
+
+class ProjectAuditMainTests(unittest.TestCase):
+    def write_minimal_project(self, root):
+        files = {
+            "data/metadata.json": {"total_scrobbles": 0},
+            "assistant_data/manifest.json": {},
+            "assistant_data/advanced/manifest.json": {},
+            "assistant_data/music/manifest.json": {},
+            "assistant_data/recommendations/manifest.json": {},
+            "assistant_data/playback/manifest.json": {"source_exists": True, "recorded_intervals": 0},
+            "assistant_data/music/overview.json": {"unique_tracks": 0, "tracks_with_duration": 0},
+            "assistant_data/music/track_profiles.json": {},
+        }
+        for relative, payload in files.items():
+            path = root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(payload), encoding="utf-8")
+
+    def test_malformed_top_level_json_objects_report_errors_without_crashing(self):
+        targets = (
+            ("data/metadata.json", ["not", "an", "object"]),
+            ("assistant_data/music/overview.json", ["not", "an", "object"]),
+            ("assistant_data/music/track_profiles.json", ["not", "an", "object"]),
+            ("assistant_data/playback/manifest.json", ["not", "an", "object"]),
+        )
+        for relative, malformed in targets:
+            with self.subTest(path=relative), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.write_minimal_project(root)
+                (root / relative).write_text(json.dumps(malformed), encoding="utf-8")
+                output = io.StringIO()
+                with patch.object(audit_project, "ROOT", root), redirect_stdout(output):
+                    result = audit_project.main()
+                self.assertEqual(result, 1)
+                self.assertIn("must contain a JSON object", output.getvalue())
+
+    def test_main_clears_previous_results_between_runs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_minimal_project(root)
+            with patch.object(audit_project, "ROOT", root), redirect_stdout(io.StringIO()):
+                first = audit_project.main()
+                second = audit_project.main()
+            self.assertEqual(first, 0)
+            self.assertEqual(second, 0)
 
 
 if __name__ == "__main__":
