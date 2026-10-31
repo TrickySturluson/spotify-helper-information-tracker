@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:50.614147+00:00",
+  "id": "4lwoL79floIi7Yptos6Xt8",
+  "name": "|",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAEBJxBTpWLupeCm9l6iNuHGBGSkzx",
+  "total_items_reported": 4,
+  "item_count_fetched": 4,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:50.614166+00:00",
+  "items_snapshot_id": "AAAAEBJxBTpWLupeCm9l6iNuHGBGSkzx",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2022-04-30T02:51:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "29UYDhUc1u9D3hWZEScQkl",
+      "uri": "spotify:track:29UYDhUc1u9D3hWZEScQkl",
+      "name": "0人ぼっちのワルツ",
+      "artists": [
+        "Babuchan"
+      ],
+      "artist_ids": [
+        "5padwROp67kEIr6RKczjKH"
+      ],
+      "album": "死後日記",
+      "album_id": "34qhKk1aUc4UzWk1InTdfr",
+      "duration_ms": 228000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPE561804926"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2022-05-02T05:44:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7xzoolT85yNpv7xrSdn35E",
+      "uri": "spotify:track:7xzoolT85yNpv7xrSdn35E",
+      "name": "Elegant Aliens",
+      "artists": [
+        "Blood Cultures"
+      ],
+      "artist_ids": [
+        "1kDqy7SpqyJ7aZi7cqSBis"
+      ],
+      "album": "Oh Uncertainty! A Universe Despairs",
+      "album_id": "3HN0QjWQJSzQPRXiJRxhzX",
+      "duration_ms": 115026,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FR59R1903131"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2022-05-27T08:28:36Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4qUOwG0s0Wg38PtQksw21q",
+      "uri": "spotify:track:4qUOwG0s0Wg38PtQksw21q",
+      "name": "Taxonomies",
+      "artists": [
+        "Larry Gus"
+      ],
+      "artist_ids": [
+        "4HDe0w9aBa7w89KYMY43OK"
+      ],
+      "album": "Years Not Living",
+      "album_id": "6RtjadFHVB1ziNpqwjb2TP",
+      "duration_ms": 138013,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US4GE1300027"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2022-06-29T19:50:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2E7q0iiVelL4CR2UCoy8aS",
+      "uri": "spotify:track:2E7q0iiVelL4CR2UCoy8aS",
+      "name": "Disclaim",
+      "artists": [
+        "THAO",
+        "Thao & The Get Down Stay Down"
+      ],
+      "artist_ids": [
+        "4PfWwzCyXuXAjuaisibSKG",
+        "2dn0CGCWvtrwZ66bOeLNb2"
+      ],
+      "album": "Temple",
+      "album_id": "3SYjUBg5uOq779VJh3jRb5",
+      "duration_ms": 192792,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCEL1900738"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

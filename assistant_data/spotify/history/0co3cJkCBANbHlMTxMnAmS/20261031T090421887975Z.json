@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:21.887768+00:00",
+  "id": "0co3cJkCBANbHlMTxMnAmS",
+  "name": "Vibing",
+  "description": "",
+  "owner": {
+    "id": "logandevgames",
+    "display_name": "logandevgames"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAV9mIsqgoYyrr8ZhqILdzicuWVI0S",
+  "total_items_reported": 79,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API does not expose item contents for this playlist to the current account/app.",
+  "last_items_accessible_at": null,
+  "items_snapshot_id": null,
+  "items": []
+}

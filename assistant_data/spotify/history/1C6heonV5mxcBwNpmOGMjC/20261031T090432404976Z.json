@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:32.404668+00:00",
+  "id": "1C6heonV5mxcBwNpmOGMjC",
+  "name": "uh",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAABLJPLnfJi5oISDPuUAWcqpzy2eMt",
+  "total_items_reported": 2,
+  "item_count_fetched": 2,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:32.404686+00:00",
+  "items_snapshot_id": "AAAABLJPLnfJi5oISDPuUAWcqpzy2eMt",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2024-05-07T18:23:39Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "70LcF31zb1H0PyJoS1Sx1r",
+      "uri": "spotify:track:70LcF31zb1H0PyJoS1Sx1r",
+      "name": "Creep",
+      "artists": [
+        "Radiohead"
+      ],
+      "artist_ids": [
+        "4Z8W4fKeB5YxbusRsdQVPb"
+      ],
+      "album": "Pablo Honey",
+      "album_id": "3gBVdu4a1MMJVMy6vwPEb8",
+      "duration_ms": 238640,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBAYE9200070"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2024-05-07T18:24:10Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "42qNWdLKCI41S4uzfamhFM",
+      "uri": "spotify:track:42qNWdLKCI41S4uzfamhFM",
+      "name": "Duvet",
+      "artists": [
+        "bôa"
+      ],
+      "artist_ids": [
+        "5jTtGLk1mGFMY5lQOvJYUj"
+      ],
+      "album": "Twilight",
+      "album_id": "7sGYAV0xv7ZfAMzIpMl8m1",
+      "duration_ms": 203600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USCGJ0659337"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

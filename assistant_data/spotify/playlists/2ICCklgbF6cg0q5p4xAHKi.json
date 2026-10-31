@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:50.371588+00:00",
+  "id": "2ICCklgbF6cg0q5p4xAHKi",
+  "name": "Smooth",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAD+Es7l8Z/n54n3sSPgglv9epvstS",
+  "total_items_reported": 11,
+  "item_count_fetched": 11,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:50.371610+00:00",
+  "items_snapshot_id": "AAAAD+Es7l8Z/n54n3sSPgglv9epvstS",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2022-08-31T06:04:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4e6tEXni2K0cZYFmku6Htf",
+      "uri": "spotify:track:4e6tEXni2K0cZYFmku6Htf",
+      "name": "Flatline",
+      "artists": [
+        "Scattle"
+      ],
+      "artist_ids": [
+        "31tVXduq7FmEznjanEBQJA"
+      ],
+      "album": "Hotline Miami: The Takedown EP",
+      "album_id": "4ynYSjDmlRH6tc7hNWuv7J",
+      "duration_ms": 134400,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SEYOK1405015"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2022-09-20T12:01:59Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1hGRe4d3LJCg1VszAU8Cy1",
+      "uri": "spotify:track:1hGRe4d3LJCg1VszAU8Cy1",
+      "name": "Daisuke",
+      "artists": [
+        "El Huervo"
+      ],
+      "artist_ids": [
+        "2gG1LfmQPkHZNptgVpYlpr"
+      ],
+      "album": "Do Not Lay Waste To Homes...",
+      "album_id": "1eESiSc0bEFLSmavuwc9aN",
+      "duration_ms": 161932,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSEV1200005"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2022-09-20T14:22:05Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5dV2mUBoEAQFXhgiptE9pq",
+      "uri": "spotify:track:5dV2mUBoEAQFXhgiptE9pq",
+      "name": "BoJack's Theme (Full Length)",
+      "artists": [
+        "Patrick Carney",
+        "Ralph Carney"
+      ],
+      "artist_ids": [
+        "6yPEOdG1RrtchjBRdnu8tu",
+        "0pa2mkOjPCweXAyOK38OIl"
+      ],
+      "album": "BoJack Horseman (Music from the Netflix Original Series)",
+      "album_id": "1TCONwUgvvjqSYJFPUCUTW",
+      "duration_ms": 263672,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLS51705310"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2022-09-22T07:36:06Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2uA9EGy7KifPvk2F342IvR",
+      "uri": "spotify:track:2uA9EGy7KifPvk2F342IvR",
+      "name": "Rust",
+      "artists": [
+        "El Huervo"
+      ],
+      "artist_ids": [
+        "2gG1LfmQPkHZNptgVpYlpr"
+      ],
+      "album": "Rust B/W Ghost",
+      "album_id": "10sWEyUUMMS1i26Iaw94lk",
+      "duration_ms": 297473,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6P41552908"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2022-09-25T09:25:00Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7rBnqxzTBvzbvDEEGvEzKF",
+      "uri": "spotify:track:7rBnqxzTBvzbvDEEGvEzKF",
+      "name": "Kept Crystal Castles",
+      "artists": [
+        "Super Secret Lo-Fi Beat Collective",
+        "Japannabis"
+      ],
+      "artist_ids": [
+        "7p3lg3hZ6KIHfIvUvelU1g",
+        "4pf0k0h3YmDBk6TsD2DHMI"
+      ],
+      "album": "Mellowave, Vol. 7",
+      "album_id": "7cd3pup4S6XbMEMPsVK1rH",
+      "duration_ms": 75314,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM24S1925078"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2022-11-04T04:07:01Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6zEGOVxDlKdv7kauGS20X8",
+      "uri": "spotify:track:6zEGOVxDlKdv7kauGS20X8",
+      "name": "Miami - Original Mix",
+      "artists": [
+        "Jasper Byrne"
+      ],
+      "artist_ids": [
+        "17Wd82KjqIlUxj3LZZ1U0C"
+      ],
+      "album": "Hotline Miami EP",
+      "album_id": "0Cqdcsm1RNSme7uDYfKssS",
+      "duration_ms": 271384,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKQU1680487"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2022-11-04T04:44:52Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6rne7RR7YOkAuRYeNP9GQT",
+      "uri": "spotify:track:6rne7RR7YOkAuRYeNP9GQT",
+      "name": "Deep Cover",
+      "artists": [
+        "Sun Araw"
+      ],
+      "artist_ids": [
+        "0A8iR5hxyyISL6XMkMhpRn"
+      ],
+      "album": "On Patrol",
+      "album_id": "0H5hKfayOXuRJQYwg97vyf",
+      "duration_ms": 482933,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2Z1010521"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2022-11-04T07:11:09Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "63AYMkPl6rRn9m9NuUMrxI",
+      "uri": "spotify:track:63AYMkPl6rRn9m9NuUMrxI",
+      "name": "Run",
+      "artists": [
+        "IAMTHEKIDYOUKNOWWHATIMEAN"
+      ],
+      "artist_ids": [
+        "0H7Yagyg2p919OieNU4vQQ"
+      ],
+      "album": "S/T EP",
+      "album_id": "6hs2kdye4SZpAUbPmUcUmA",
+      "duration_ms": 457741,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SEYOK1508974"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2022-11-04T07:17:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2rYZETHlA6JTDbbkAWj9jD",
+      "uri": "spotify:track:2rYZETHlA6JTDbbkAWj9jD",
+      "name": "Horse Steppin’",
+      "artists": [
+        "Sun Araw"
+      ],
+      "artist_ids": [
+        "0A8iR5hxyyISL6XMkMhpRn"
+      ],
+      "album": "Beach Head",
+      "album_id": "4gkcImOIeoquQdOchohzhL",
+      "duration_ms": 628146,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBGCA1000823"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2022-11-04T08:45:31Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3hqvKNnZZtGuSddXhLEaKJ",
+      "uri": "spotify:track:3hqvKNnZZtGuSddXhLEaKJ",
+      "name": "Silver Lights",
+      "artists": [
+        "Coconuts"
+      ],
+      "artist_ids": [
+        "1fSuPQfpipLCKDfNkdp5JQ"
+      ],
+      "album": "Coconuts",
+      "album_id": "5SL0NwgT5TEH2lsl14DCV2",
+      "duration_ms": 394066,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLKU1023002"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2023-01-28T08:17:15Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2HsgJD03dwYszo0G1NcEgD",
+      "uri": "spotify:track:2HsgJD03dwYszo0G1NcEgD",
+      "name": "Fantasy Trash Wave",
+      "artists": [
+        "TOBACCO"
+      ],
+      "artist_ids": [
+        "3ikKyCOrsMeANi0d5u8BCR"
+      ],
+      "album": "Sweatbox Dynasty",
+      "album_id": "3EHGnNCyJDcOU1X9ca9aOr",
+      "duration_ms": 167146,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US2J71607410"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

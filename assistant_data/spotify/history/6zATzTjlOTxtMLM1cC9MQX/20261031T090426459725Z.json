@@ -1,0 +1,2554 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:26.459365+00:00",
+  "id": "6zATzTjlOTxtMLM1cC9MQX",
+  "name": "Wrapped 2024",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAA9Bc78kqVDGz/BrjGbN0k/tUw7DX",
+  "total_items_reported": 100,
+  "item_count_fetched": 100,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:26.459384+00:00",
+  "items_snapshot_id": "AAAAA9Bc78kqVDGz/BrjGbN0k/tUw7DX",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2Ow8YPaRkaHd5Cr9zGpoHC",
+      "uri": "spotify:track:2Ow8YPaRkaHd5Cr9zGpoHC",
+      "name": "Trees...",
+      "artists": [
+        "Omori"
+      ],
+      "artist_ids": [
+        "6V5j8RQJOFYiD6Pp1SFx85"
+      ],
+      "album": "Omori (Original Game Soundtrack), Pt.1",
+      "album_id": "3SDU0tsnoMO841qeOHlP8B",
+      "duration_ms": 118937,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCAFJ2138610"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7n6EdtbndNawCoGJgP7D0L",
+      "uri": "spotify:track:7n6EdtbndNawCoGJgP7D0L",
+      "name": "Music to Soothe the Savage Snake Plant",
+      "artists": [
+        "Mort Garson"
+      ],
+      "artist_ids": [
+        "0WmzT6tMLhdST5BfYagbha"
+      ],
+      "album": "Mother Earth's Plantasia",
+      "album_id": "0NJRPgK15C8qoLuQv1hChv",
+      "duration_ms": 203229,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US5NR1903010"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1lySGuhlcZUJxLA5W5Bo7k",
+      "uri": "spotify:track:1lySGuhlcZUJxLA5W5Bo7k",
+      "name": "HAWATARI NIOKU CENTI [2-hundred-million-centimeter-long blades] - TV edit",
+      "artists": [
+        "MAXIMUM THE HORMONE"
+      ],
+      "artist_ids": [
+        "3AMut7lAb1JjINkn8Fmkhu"
+      ],
+      "album": "HAWATARI NIOKU CENTI [2-hundred-million-centimeter-long blades] (TV edit)",
+      "album_id": "22bkV1gcP9weQRmRktdCM4",
+      "duration_ms": 89563,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPWP02201874"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "23sYAElTDGJ2OaEd5ux19r",
+      "uri": "spotify:track:23sYAElTDGJ2OaEd5ux19r",
+      "name": "Part of the Madness (feat. Rebecca Sugar)",
+      "artists": [
+        "Adventure Time",
+        "Rebecca Sugar"
+      ],
+      "artist_ids": [
+        "3Op7D6tFVJCOHW6EAV0ck1",
+        "6Pd7FRVtwNxFsQIkDMpLGz"
+      ],
+      "album": "Adventure Time: Fionna and Cake - Season 1 (Soundtrack from the Animated Series)",
+      "album_id": "2fZMP21OWl0gqKXYEseoEb",
+      "duration_ms": 134572,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USNLR2301405"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6D3VUXF4ClDUmsoNGRIB8z",
+      "uri": "spotify:track:6D3VUXF4ClDUmsoNGRIB8z",
+      "name": "Dogs",
+      "artists": [
+        "Ergo, Bria"
+      ],
+      "artist_ids": [
+        "0AF9HrL08aOaZPsIiO8GmA"
+      ],
+      "album": "Dogs",
+      "album_id": "40d7Jww6oN3BnVj8gKfmlA",
+      "duration_ms": 142249,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWY2278140"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7hDwyZJ9GA6Ogza1O9TBX7",
+      "uri": "spotify:track:7hDwyZJ9GA6Ogza1O9TBX7",
+      "name": "ラブコール",
+      "artists": [
+        "シユイ"
+      ],
+      "artist_ids": [
+        "3EKiz61ZCQs4LK3O96mt5O"
+      ],
+      "album": "ラブコール",
+      "album_id": "2vt8bccloZZ7eaNsZk5eR2",
+      "duration_ms": 180254,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPU902304413"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5V7zDcTwHZ38kbSeooLe0K",
+      "uri": "spotify:track:5V7zDcTwHZ38kbSeooLe0K",
+      "name": "A2 - We don't have many days",
+      "artists": [
+        "The Caretaker"
+      ],
+      "artist_ids": [
+        "2uQn9OFibYuvEMqMuH1zaP"
+      ],
+      "album": "Everywhere at the End of Time (Stage 1)",
+      "album_id": "0BE7TLLZoUhr9M8RlmFY3T",
+      "duration_ms": 210210,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DEXO42336487"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "49DmTlbizOa1VTQRqVAuWJ",
+      "uri": "spotify:track:49DmTlbizOa1VTQRqVAuWJ",
+      "name": "Pangaea Girls (Magic Feeling)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 191491,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203117"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5hnktvtMR96jGKA54FEi7U",
+      "uri": "spotify:track:5hnktvtMR96jGKA54FEi7U",
+      "name": "Chickens",
+      "artists": [
+        "Forrest Flowers"
+      ],
+      "artist_ids": [
+        "6dpJaK0AIrYLSHi4UFeeA8"
+      ],
+      "album": "Chickens",
+      "album_id": "1aDGrlOO5aCxtArveJH8fI",
+      "duration_ms": 260000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFZ42094479"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1RoJwK5sJMzygW5OSO8v9X",
+      "uri": "spotify:track:1RoJwK5sJMzygW5OSO8v9X",
+      "name": "Untitled #9 - Smáskífa 1",
+      "artists": [
+        "Sigur Rós"
+      ],
+      "artist_ids": [
+        "6UUrUCIZtQeOf8tC0WuzRy"
+      ],
+      "album": "Untitled #1 (Vaka)",
+      "album_id": "7oQu7p20ccvRfLiG6wPXOs",
+      "duration_ms": 278040,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBDCA0300251"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7ii0G8eCY3L2yeDxZwEwtV",
+      "uri": "spotify:track:7ii0G8eCY3L2yeDxZwEwtV",
+      "name": "Hëłlœ Kįttÿ",
+      "artists": [
+        "Alice Longyu Gao"
+      ],
+      "artist_ids": [
+        "5HvKzBgj4yphQfBJjBJrhL"
+      ],
+      "album": "Let's Hope Heteros Fail, Learn and Retire",
+      "album_id": "5YjuPPmMZy5VGjlesAPbHG",
+      "duration_ms": 166727,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMFMF2215229"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2w2WdQb59ERxKh25nFjyAx",
+      "uri": "spotify:track:2w2WdQb59ERxKh25nFjyAx",
+      "name": "Night Ela (Mystic Thing)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 304400,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203124"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1Tr4K5MU5XYE44umXGDndd",
+      "uri": "spotify:track:1Tr4K5MU5XYE44umXGDndd",
+      "name": "Once in a Lifetime",
+      "artists": [
+        "Talking Heads"
+      ],
+      "artist_ids": [
+        "2x9SpqnPi8rlE9pjHBwmSC"
+      ],
+      "album": "Remain in Light",
+      "album_id": "1JvXxLsm0PxlGH4LXzqMGq",
+      "duration_ms": 259600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USWB19900867"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6anCRrgCX42ipxrv00DqW9",
+      "uri": "spotify:track:6anCRrgCX42ipxrv00DqW9",
+      "name": "Waiting For You",
+      "artists": [
+        "Alex G"
+      ],
+      "artist_ids": [
+        "6lcwlkAjBPSKnFBZjjZFJs"
+      ],
+      "album": "Revive #2",
+      "album_id": "2rJuOiQIEPUtgLcGi0PcfF",
+      "duration_ms": 210332,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBJET1400035"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0miB2Y7zYt8DMx8biwooN2",
+      "uri": "spotify:track:0miB2Y7zYt8DMx8biwooN2",
+      "name": "lain",
+      "artists": [
+        "C4FF31N3"
+      ],
+      "artist_ids": [
+        "2nfx8RFGKqdv3gFCYrODVy"
+      ],
+      "album": "lain",
+      "album_id": "46hmpGRHhtVWAlc5HmvfCC",
+      "duration_ms": 226234,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZMEM2106399"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "74ctB0ufdAY69TDN9J18V9",
+      "uri": "spotify:track:74ctB0ufdAY69TDN9J18V9",
+      "name": "Illusion (Fern Lake)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 214851,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203123"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6Jub05dvpbF4Im83NqMCUg",
+      "uri": "spotify:track:6Jub05dvpbF4Im83NqMCUg",
+      "name": "United States Of Whatever",
+      "artists": [
+        "Liam Lynch"
+      ],
+      "artist_ids": [
+        "4NlzjQkGReI7SiSeMNHbWP"
+      ],
+      "album": "Fake Songs",
+      "album_id": "6LGx2GBdjcJb4naTlvyPMw",
+      "duration_ms": 91226,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USESC0300018"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1iUBNLLmZnBAjgkHysEv37",
+      "uri": "spotify:track:1iUBNLLmZnBAjgkHysEv37",
+      "name": "i'm gonna tell my therapist on you",
+      "artists": [
+        "Pinkshift"
+      ],
+      "artist_ids": [
+        "3bfSaJqEYosPcdoCN06G3P"
+      ],
+      "album": "i'm gonna tell my therapist on you",
+      "album_id": "7mbrZNnHyQhzlKSwzP8Ojz",
+      "duration_ms": 161062,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHNA2023263"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0tEl16TyFa35KkgWJNDKLY",
+      "uri": "spotify:track:0tEl16TyFa35KkgWJNDKLY",
+      "name": "suffering",
+      "artists": [
+        "Amélie Farren"
+      ],
+      "artist_ids": [
+        "6xRbdqe7I2llmjw533rYnG"
+      ],
+      "album": "suffering",
+      "album_id": "1t7EVoUfBkaXnHFmAo17LZ",
+      "duration_ms": 167560,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTAW2251148"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "42UEtDZUSpcCOWtmdBPccJ",
+      "uri": "spotify:track:42UEtDZUSpcCOWtmdBPccJ",
+      "name": "Transitional Bird (Clever Girl)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 265611,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203119"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4egMbH26sM0znTbYUagtCV",
+      "uri": "spotify:track:4egMbH26sM0znTbYUagtCV",
+      "name": "Please Tell Me How to Breathe",
+      "artists": [
+        "I Hate Myself Because"
+      ],
+      "artist_ids": [
+        "5ERw1G2b8kceV2YuK2MPSe"
+      ],
+      "album": "I Feel Bad",
+      "album_id": "1W61roPNOzR5uYxxXNdTwa",
+      "duration_ms": 112050,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFZ22031942"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "18ThXUp9jiQg26iD1w8reE",
+      "uri": "spotify:track:18ThXUp9jiQg26iD1w8reE",
+      "name": "Don't light my fire",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 136760,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0g9GhfqFotNeAt2TuggiEh",
+      "uri": "spotify:track:0g9GhfqFotNeAt2TuggiEh",
+      "name": "BEG!",
+      "artists": [
+        "Vana"
+      ],
+      "artist_ids": [
+        "6o2D1YBpFJDDaMwZYGyW3T"
+      ],
+      "album": "BEG!",
+      "album_id": "2J0StL6VInyddAmQvM7bRC",
+      "duration_ms": 162531,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZZ662450904"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6XlfaXvDM55hr5wctH2mNd",
+      "uri": "spotify:track:6XlfaXvDM55hr5wctH2mNd",
+      "name": "White Seal (Shell & Spine)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 224244,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203115"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3JkwzHI9Oe3TVl2sYhOHQP",
+      "uri": "spotify:track:3JkwzHI9Oe3TVl2sYhOHQP",
+      "name": "ME!ME!ME! feat. daoko_pt.1",
+      "artists": [
+        "日本アニメ(ーター)見本市",
+        "TeddyLoid",
+        "Daoko"
+      ],
+      "artist_ids": [
+        "0mho9gMrDyd87shef9oAxS",
+        "3GfNJrDTZY7voXPDx8gH9I",
+        "5Qeyh2XKoITt1mlEVtzazC"
+      ],
+      "album": "日本アニメ(ーター)見本市 「ME!ME!ME!」",
+      "album_id": "2TboSnWtC64ZjesPzuoWqP",
+      "duration_ms": 96000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPKI01419501"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 25,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0o15du2j41QoYBJd7MoNhc",
+      "uri": "spotify:track:0o15du2j41QoYBJd7MoNhc",
+      "name": "I'm tired of your repeating story",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 103680,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908012"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 26,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0J1CMFbB9QETfjaL1cfNDQ",
+      "uri": "spotify:track:0J1CMFbB9QETfjaL1cfNDQ",
+      "name": "Fucking Freaking Futile Freddy",
+      "artists": [
+        "öOoOoOoOoOo"
+      ],
+      "artist_ids": [
+        "6ZoJKjLxwRHlReRww0uao4"
+      ],
+      "album": "Samen",
+      "album_id": "3BcgkcQgkbo5nEvHfakSQG",
+      "duration_ms": 215213,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FR26V1641472"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 27,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0lw2mLzNcwftfTvDojdySG",
+      "uri": "spotify:track:0lw2mLzNcwftfTvDojdySG",
+      "name": "Into the Deep Time (One Sun)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 181965,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203114"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 28,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6JH9yWhgbm0y9iAJhCslNc",
+      "uri": "spotify:track:6JH9yWhgbm0y9iAJhCslNc",
+      "name": "Handlebars",
+      "artists": [
+        "Flobots"
+      ],
+      "artist_ids": [
+        "0rHiOzaAbw3cCp8D7yjyig"
+      ],
+      "album": "Fight With Tools",
+      "album_id": "0Q7dUE51rPBQwszngVlqPG",
+      "duration_ms": 206813,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70810498"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1gIr9DkmXW46AkgT3oJuci",
+      "uri": "spotify:track:1gIr9DkmXW46AkgT3oJuci",
+      "name": "Brat",
+      "artists": [
+        "MoxiFloxi"
+      ],
+      "artist_ids": [
+        "5D3fvICIoElbyhNqbClhPT"
+      ],
+      "album": "Brat",
+      "album_id": "4NaisXZpmupUCyzIV1SzoB",
+      "duration_ms": 143622,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCAFB2036001"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 30,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2xKLzKhm2AEGyZapAL5NjH",
+      "uri": "spotify:track:2xKLzKhm2AEGyZapAL5NjH",
+      "name": "Piss Punk",
+      "artists": [
+        "VIAL"
+      ],
+      "artist_ids": [
+        "7soK35m8BosPkMQ67t7bqf"
+      ],
+      "album": "LOUDMOUTH",
+      "album_id": "6c59AK2EBIAHeCMUOGAIuS",
+      "duration_ms": 121076,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2B2100991"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 31,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4TZCgYaoOkM4lJf26BVK8D",
+      "uri": "spotify:track:4TZCgYaoOkM4lJf26BVK8D",
+      "name": "Charade (Fern Prairie)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 199797,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203120"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 32,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4lhahYDTfQhfqtA6gzNCy5",
+      "uri": "spotify:track:4lhahYDTfQhfqtA6gzNCy5",
+      "name": "Earth Worship",
+      "artists": [
+        "Rubblebucket"
+      ],
+      "artist_ids": [
+        "6xriZDSK3wPXhOoZXr9fzF"
+      ],
+      "album": "Earth Worship",
+      "album_id": "2y5dQYzr7Q4me0JhXU2RcD",
+      "duration_ms": 217530,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM5BK1900528"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 33,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4kG8ckeo4wKsHx4Xk988GE",
+      "uri": "spotify:track:4kG8ckeo4wKsHx4Xk988GE",
+      "name": "Happy Together",
+      "artists": [
+        "Slothrust"
+      ],
+      "artist_ids": [
+        "6Nwhmo3adbTqPMCsgBgkf4"
+      ],
+      "album": "Show Me How You Want It to Be",
+      "album_id": "42E4rUIvdTGBB8GAkFVELr",
+      "duration_ms": 184000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US3R21715405"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 34,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0QqKwogBhBEouLNmOuCsDw",
+      "uri": "spotify:track:0QqKwogBhBEouLNmOuCsDw",
+      "name": "Late (Lioness)",
+      "artists": [
+        "Babe & The Crystals"
+      ],
+      "artist_ids": [
+        "6mSIzBGA1eDQwBg3cHHvmh"
+      ],
+      "album": "American Boy",
+      "album_id": "2pjHXXOT180GGhi5pzeiGF",
+      "duration_ms": 411000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM9AA1630461"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 35,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0MjmarACqIH451S26Wfpuw",
+      "uri": "spotify:track:0MjmarACqIH451S26Wfpuw",
+      "name": "Birth of the Flower (Seagreen)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 227097,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203122"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 36,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "34ahWzcm4aBx6sVp2mlCTN",
+      "uri": "spotify:track:34ahWzcm4aBx6sVp2mlCTN",
+      "name": "Kinda Outta Luck",
+      "artists": [
+        "Medusa",
+        "Boy Jr."
+      ],
+      "artist_ids": [
+        "0TC9HQq2I2GIIkK3zLD493",
+        "7CuIkxF7VfHwKecQzUEGgv"
+      ],
+      "album": "Kinda Outta Luck",
+      "album_id": "4ETjYuNkicEn9gCfAvkTNA",
+      "duration_ms": 187684,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFZ62114054"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 37,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3uutc2ohVQMnThNidsOCA7",
+      "uri": "spotify:track:3uutc2ohVQMnThNidsOCA7",
+      "name": "When I Wake",
+      "artists": [
+        "Justin Hurwitz"
+      ],
+      "artist_ids": [
+        "2snm3HmsnDUDxbIChdl2Oj"
+      ],
+      "album": "Whiplash (Original Motion Picture Soundtrack)",
+      "album_id": "1rwMhGTCp0D6CN2XKQjyQt",
+      "duration_ms": 232200,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US3M51428621"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 38,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7ipat3o2SDErreSCLivwxW",
+      "uri": "spotify:track:7ipat3o2SDErreSCLivwxW",
+      "name": "They Come To Get Us - Original Death Set Punk Version",
+      "artists": [
+        "The Death Set"
+      ],
+      "artist_ids": [
+        "1e7ePqINXwh9BthP2XQOox"
+      ],
+      "album": "Can You Seen Straight?",
+      "album_id": "3LZwZLMuISp8WgZl6u4VtF",
+      "duration_ms": 112760,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCFB1100605"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 39,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3GSfVEFVJCTvtxF0UUzdIr",
+      "uri": "spotify:track:3GSfVEFVJCTvtxF0UUzdIr",
+      "name": "Fallen Tree Bridge (Brave Rainbow Rider)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 209571,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203121"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 40,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4fHDlIntTsRGSyTg5UYZYC",
+      "uri": "spotify:track:4fHDlIntTsRGSyTg5UYZYC",
+      "name": "Banana Boat (Day-O)",
+      "artists": [
+        "Harry Belafonte"
+      ],
+      "artist_ids": [
+        "6Tw1ktF4xMmzaLLbe98I2z"
+      ],
+      "album": "Calypso",
+      "album_id": "5cBYisZzEb84qxMwXVfcT3",
+      "duration_ms": 189468,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC19205526"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 41,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4kMDtiUf4xrnw1dIC7be6d",
+      "uri": "spotify:track:4kMDtiUf4xrnw1dIC7be6d",
+      "name": "Please Yourself",
+      "artists": [
+        "Ron Gallo"
+      ],
+      "artist_ids": [
+        "4rfE3kN2zKNC9L9tt3iVOg"
+      ],
+      "album": "HEAVY META",
+      "album_id": "6w5N3oL83KiitLdFcCrzTj",
+      "duration_ms": 83313,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US27Q1763736"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 42,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0iWAFHzXmJ0D86dDlB1V38",
+      "uri": "spotify:track:0iWAFHzXmJ0D86dDlB1V38",
+      "name": "Seventeen",
+      "artists": [
+        "Exit 18"
+      ],
+      "artist_ids": [
+        "5bbb0QB3cVunYc0v4sEMpX"
+      ],
+      "album": "Seventeen",
+      "album_id": "1knrODnRHbRElPCMUFxSwF",
+      "duration_ms": 242332,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "ushm21900170"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 43,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1igCqwHc4LMwLh7JI53Zx8",
+      "uri": "spotify:track:1igCqwHc4LMwLh7JI53Zx8",
+      "name": "New Forest (Five Heads of the Sun)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 203709,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203118"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 44,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "65cQN8pUC0dkKryUhEqJPh",
+      "uri": "spotify:track:65cQN8pUC0dkKryUhEqJPh",
+      "name": "Thank God I'm Not You",
+      "artists": [
+        "HIMALAYAS"
+      ],
+      "artist_ids": [
+        "71NBOcJ9lMeXqnbnya1z0x"
+      ],
+      "album": "Thank God I'm Not You",
+      "album_id": "0AnzrEVccYHdrlJd1G5Qpy",
+      "duration_ms": 194625,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USCGJ1798848"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 45,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7n45fP0NPCf15AR76SN9jE",
+      "uri": "spotify:track:7n45fP0NPCf15AR76SN9jE",
+      "name": "Prime",
+      "artists": [
+        "Roan Zen Martin"
+      ],
+      "artist_ids": [
+        "6dKA6U1Cf5Bc5GYLAXVbQO"
+      ],
+      "album": "Prime",
+      "album_id": "1blEHDdWPqcuks994oV2hZ",
+      "duration_ms": 329157,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFZ42182204"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 46,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0kdqcbwei4MDWFEX5f33yG",
+      "uri": "spotify:track:0kdqcbwei4MDWFEX5f33yG",
+      "name": "Bling-Bang-Bang-Born",
+      "artists": [
+        "Creepy Nuts"
+      ],
+      "artist_ids": [
+        "0pWR7TsFhvSCnbmHDjWgrE"
+      ],
+      "album": "Bling-Bang-Bang-Born",
+      "album_id": "6M2PMiBa5zM37GQChwBHA6",
+      "duration_ms": 168135,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPU902305042"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 47,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7qgVP1RmTu8Kg3MGsIl87D",
+      "uri": "spotify:track:7qgVP1RmTu8Kg3MGsIl87D",
+      "name": "Fell in Love (At the Water)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 241280,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203116"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 48,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "093N3AMhUnOeE4wgNRsBOO",
+      "uri": "spotify:track:093N3AMhUnOeE4wgNRsBOO",
+      "name": "Drunk Walk Home",
+      "artists": [
+        "Mitski"
+      ],
+      "artist_ids": [
+        "2uYWxilOVlUdk4oV9DvwqK"
+      ],
+      "album": "Bury Me At Makeout Creek",
+      "album_id": "3I2KkX13lHXuYqfBjSOopo",
+      "duration_ms": 155506,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2B1511608"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 49,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "77MNRSLVkQIljruZonzcbz",
+      "uri": "spotify:track:77MNRSLVkQIljruZonzcbz",
+      "name": "Out of Her Head",
+      "artists": [
+        "Rarezen"
+      ],
+      "artist_ids": [
+        "0swGJIMMQ1l6SPSIVLqWLp"
+      ],
+      "album": "Out of Her Head",
+      "album_id": "7ryAY8IjSCjje58rQ9sfkU",
+      "duration_ms": 94707,
+      "is_local": false,
+      "is_playable": false,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZDA52090710"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 50,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "54zjAmM6zJoW8X0t8brP7u",
+      "uri": "spotify:track:54zjAmM6zJoW8X0t8brP7u",
+      "name": "Puppet Loosely Strung",
+      "artists": [
+        "The Correspondents"
+      ],
+      "artist_ids": [
+        "3VvmUsYPzFheK2wJGKcXxp"
+      ],
+      "album": "Puppet Loosely Strung",
+      "album_id": "7BxQVuQpjIgdJj8pkzq2ix",
+      "duration_ms": 314813,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBFEK1300331"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 51,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1o3amYz7RPk7OpVLbarVcQ",
+      "uri": "spotify:track:1o3amYz7RPk7OpVLbarVcQ",
+      "name": "Where I Found You (One Star)",
+      "artists": [
+        "Candy Claws"
+      ],
+      "artist_ids": [
+        "34Xay0uKsALHCrn5LkrYeh"
+      ],
+      "album": "Ceres & Calypso in the Deep Time",
+      "album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "duration_ms": 187143,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USME31203125"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 52,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2WIKd9DTkZpACmlsD4u49V",
+      "uri": "spotify:track:2WIKd9DTkZpACmlsD4u49V",
+      "name": "Derealization",
+      "artists": [
+        "Bambi Baker"
+      ],
+      "artist_ids": [
+        "0Q1HzT18LIxRVdM0d4zQoP"
+      ],
+      "album": "Diary of Dolls & Death",
+      "album_id": "7ni5BHUuR3Nqa7RtjTyH7V",
+      "duration_ms": 240000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCAGN2205381"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 53,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "40uL71ny4orfVKWHX3OtXy",
+      "uri": "spotify:track:40uL71ny4orfVKWHX3OtXy",
+      "name": "Acab for Cutie",
+      "artists": [
+        "B. Fraser",
+        "Newgrounds Death Rugby"
+      ],
+      "artist_ids": [
+        "5HaQ1iUrxbeCxePD242aHL",
+        "6GrYDArZDdBidjtNBBKpoa"
+      ],
+      "album": "Weezer 2 (Getting Left Behind by Fred Durst)",
+      "album_id": "5QdKfCkUnq8KmCnU4z3n6K",
+      "duration_ms": 156055,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFYW1903126"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 54,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2N3QIIQVaRgS9viCmUpZwk",
+      "uri": "spotify:track:2N3QIIQVaRgS9viCmUpZwk",
+      "name": "Inferno, Pt. 2",
+      "artists": [
+        "The Buttress"
+      ],
+      "artist_ids": [
+        "61pcWUzNqpHNWc21SuHP1J"
+      ],
+      "album": "Behind Every Great Man",
+      "album_id": "1NePP1VNt4SAOijwiHYXom",
+      "duration_ms": 155000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACC1472286"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 55,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0J5ptP0cpYGD8s48aVshH8",
+      "uri": "spotify:track:0J5ptP0cpYGD8s48aVshH8",
+      "name": "Preacher",
+      "artists": [
+        "Roe Kapara"
+      ],
+      "artist_ids": [
+        "2he5ORo9A5pwwRKEa1u0jw"
+      ],
+      "album": "I Hope Hell Isn't Real",
+      "album_id": "3DMrlbRSB4rYDwsL1yNw8H",
+      "duration_ms": 105000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USEP42301002"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 56,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1bbzp2T4DQSOoAaUpAkl02",
+      "uri": "spotify:track:1bbzp2T4DQSOoAaUpAkl02",
+      "name": "Sinking Ships",
+      "artists": [
+        "Petrojvic Blasting Company"
+      ],
+      "artist_ids": [
+        "2FKPlu338CcKivEi2biEZd"
+      ],
+      "album": "A History of Public Relations Dilemmae",
+      "album_id": "1afYJmLmloy46XaptWFez9",
+      "duration_ms": 174186,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgj1058124"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 57,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1INfhBjuHFTkxRVIB2NMSC",
+      "uri": "spotify:track:1INfhBjuHFTkxRVIB2NMSC",
+      "name": "SALTWATER SKY",
+      "artists": [
+        "FISHLORD",
+        "Nafets"
+      ],
+      "artist_ids": [
+        "1Hv9p9zMYy3gc2VWQfK5gg",
+        "0PALShJ4yMcson9zvQaqlM"
+      ],
+      "album": "SALTWATER SKY",
+      "album_id": "3FkuX79QDbX1Zkt2kMsIO7",
+      "duration_ms": 136374,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM24S2203739"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 58,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2tTnlY1ImsNM0AKNxRiYkz",
+      "uri": "spotify:track:2tTnlY1ImsNM0AKNxRiYkz",
+      "name": "Racket Stimulator",
+      "artists": [
+        "Bad Waitress"
+      ],
+      "artist_ids": [
+        "5h5YgUkm7vI0bdbQTyBGmb"
+      ],
+      "album": "Racket Stimulator",
+      "album_id": "36ZnMBCUyXRwLvGt42cdck",
+      "duration_ms": 141760,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CAUM82200411"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 59,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5vZ8xvP4q68ZDiAhdOSPJC",
+      "uri": "spotify:track:5vZ8xvP4q68ZDiAhdOSPJC",
+      "name": "Pure As A Lamb",
+      "artists": [
+        "Baby Bugs"
+      ],
+      "artist_ids": [
+        "3TBTcHpZ3aV1g8rk8i1zb5"
+      ],
+      "album": "Heavenly",
+      "album_id": "5YcEX5Ba2iuOr0DfwYZK1J",
+      "duration_ms": 194046,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN92357412"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 60,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4k7Lvf8lJxOOsMXRg2ONn0",
+      "uri": "spotify:track:4k7Lvf8lJxOOsMXRg2ONn0",
+      "name": "Catabolic Seed",
+      "artists": [
+        "The Scary Jokes"
+      ],
+      "artist_ids": [
+        "33NScerSaBJ9Y1YndrE5sL"
+      ],
+      "album": "April Fools",
+      "album_id": "0e9cgjgCvrmr9HVu8zAH7L",
+      "duration_ms": 154016,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZB4J1840976"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 61,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7JOizhmt3HlBgQyJEa0AgK",
+      "uri": "spotify:track:7JOizhmt3HlBgQyJEa0AgK",
+      "name": "Short Change Hero",
+      "artists": [
+        "The Heavy"
+      ],
+      "artist_ids": [
+        "0bZCak2tcRMY1dzEIuwF42"
+      ],
+      "album": "The House That Dirt Built",
+      "album_id": "0sKcuounq52lm9hmFwEZN5",
+      "duration_ms": 322266,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCFB0901504"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 62,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0xB4UELrs8LwLjSrOLjhog",
+      "uri": "spotify:track:0xB4UELrs8LwLjSrOLjhog",
+      "name": "Hole in the Sun (feat. COS & Conway)",
+      "artists": [
+        "Raney Shockne",
+        "Point Break Candy",
+        "COS",
+        "Conway"
+      ],
+      "artist_ids": [
+        "1pWehbtV6KJ3G77M3G3Hed",
+        "0EO6OPP5FqAXOkfSHyXeuf",
+        "1Ips0toRaVf0FvpJSaiMqq",
+        "4EJu8ygjpi1ewLzrkiFWGX"
+      ],
+      "album": "Cyberpunk 2077: Radio, Vol. 2 (Original Soundtrack)",
+      "album_id": "1VGVJdmvOSRK2w9RKXk18A",
+      "duration_ms": 207184,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLS52077201"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 63,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7bINjFKpbYkjUR7VJDjMkD",
+      "uri": "spotify:track:7bINjFKpbYkjUR7VJDjMkD",
+      "name": "Bottomless Pit",
+      "artists": [
+        "Death Grips"
+      ],
+      "artist_ids": [
+        "5RADpgYLOuS2ZxDq7ggYYH"
+      ],
+      "album": "Bottomless Pit",
+      "album_id": "4dIPUQHheyH9e6ioplvNT2",
+      "duration_ms": 174484,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG11600230"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 64,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3XQTLJqFPaTKWdsaA4lJw1",
+      "uri": "spotify:track:3XQTLJqFPaTKWdsaA4lJw1",
+      "name": "Ultramania",
+      "artists": [
+        "Seotaiji"
+      ],
+      "artist_ids": [
+        "3yj6KT6cRFojlL37psQ1dV"
+      ],
+      "album": "Seotaiji VI",
+      "album_id": "0rKaZNQtWKT3AiFBBSKWkG",
+      "duration_ms": 206746,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "KRA341218728"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 65,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1r9xUipOqoNwggBpENDsvJ",
+      "uri": "spotify:track:1r9xUipOqoNwggBpENDsvJ",
+      "name": "Enemy (with JID) - from the series Arcane League of Legends",
+      "artists": [
+        "Imagine Dragons",
+        "JID",
+        "Arcane",
+        "League of Legends"
+      ],
+      "artist_ids": [
+        "53XhwfbYqKCa1cC15pYq2q",
+        "6U3ybJ9UHNKEdsH7ktGBZ7",
+        "57nPqD7z62gDdq37US9XJR",
+        "47mIJdHORyRerp4os813jD"
+      ],
+      "album": "Enemy (with JID) [from the series Arcane League of Legends]",
+      "album_id": "1bTgKomQYSkKYPD9UI9W4b",
+      "duration_ms": 173381,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72119916"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 66,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0OIf0ja2Hpwkxi6p4Zlkdy",
+      "uri": "spotify:track:0OIf0ja2Hpwkxi6p4Zlkdy",
+      "name": "Take",
+      "artists": [
+        "Homestyle Dinner Rolls"
+      ],
+      "artist_ids": [
+        "6prUBceJWA7Pd4AAuUgGKQ"
+      ],
+      "album": "Take",
+      "album_id": "1JtaFOYj70cTlCVjd9F2sG",
+      "duration_ms": 263344,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTB82393070"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 67,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "04pktsRGucPz8jOgUSx9jp",
+      "uri": "spotify:track:04pktsRGucPz8jOgUSx9jp",
+      "name": "Groan",
+      "artists": [
+        "Dazey and the Scouts"
+      ],
+      "artist_ids": [
+        "3J8YGHzxEZzHRYVxGmQCvJ"
+      ],
+      "album": "Maggot",
+      "album_id": "1qyq3sPzif79oiw9nPN99S",
+      "duration_ms": 179833,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMPKX1723028"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 68,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5q5yufcqLsMGvaxLDbrTo3",
+      "uri": "spotify:track:5q5yufcqLsMGvaxLDbrTo3",
+      "name": "64 Little White Things",
+      "artists": [
+        "Cake Bake Betty"
+      ],
+      "artist_ids": [
+        "6lWGIMto7wlqxojyyrWZWy"
+      ],
+      "album": "Songs About Teeth",
+      "album_id": "5Jx4Jjh6Cd7KOVzD5RPCXN",
+      "duration_ms": 125546,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US4NP0500069"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 69,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3nIzTo6573cidx01xJtmWt",
+      "uri": "spotify:track:3nIzTo6573cidx01xJtmWt",
+      "name": "The Actress",
+      "artists": [
+        "Tino Drima"
+      ],
+      "artist_ids": [
+        "5n4DcEOWdeY9kuOVCoffDi"
+      ],
+      "album": "Suitin' Up",
+      "album_id": "6Y8LFasFnqkyiIQFVTA7dU",
+      "duration_ms": 264119,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FR96X1919299"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 70,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2pAfh0XxN7gKQmMSeWexyn",
+      "uri": "spotify:track:2pAfh0XxN7gKQmMSeWexyn",
+      "name": "Jk",
+      "artists": [
+        "Crywank"
+      ],
+      "artist_ids": [
+        "7gzXeFUDWz0aqhikdkOJxQ"
+      ],
+      "album": "Wearing Beige on a Grey Day",
+      "album_id": "2nzRNxCnLaOrP6nZd1hTh1",
+      "duration_ms": 109600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgj1964426"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 71,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5QjoIwD2oUBUUlrHpZa1nZ",
+      "uri": "spotify:track:5QjoIwD2oUBUUlrHpZa1nZ",
+      "name": "Bust Your Kneecaps",
+      "artists": [
+        "Pomplamoose"
+      ],
+      "artist_ids": [
+        "5dHfLBNU8zoypgKefzEB1c"
+      ],
+      "album": "Pomplamoose Live",
+      "album_id": "3dA0Ge9uyMIyGrUV2qQg50",
+      "duration_ms": 196500,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USY281608866"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 72,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7Egvz9sjRzaLskWpLQGdaZ",
+      "uri": "spotify:track:7Egvz9sjRzaLskWpLQGdaZ",
+      "name": "In a Moment's Time (Off Vocal)",
+      "artists": [
+        "Michiru Yamane"
+      ],
+      "artist_ids": [
+        "6yHzqH70UbRHmoTOcEBmRz"
+      ],
+      "album": "Skullgirls: The Complete Soundtrack",
+      "album_id": "5CbGbwmzvcwD7egc5EJ8oP",
+      "duration_ms": 268315,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US3DF1712360"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 73,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5kqtv1or4Qwg2QSzerLZmu",
+      "uri": "spotify:track:5kqtv1or4Qwg2QSzerLZmu",
+      "name": "Bang Bang (My Baby Shot Me Down)",
+      "artists": [
+        "Nico Vega"
+      ],
+      "artist_ids": [
+        "1gUch6pcj8OKOw6kKlWAPE"
+      ],
+      "album": "Lead to Light",
+      "album_id": "4y4XhC315mVoQCaP9iYhrH",
+      "duration_ms": 199040,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USDPK1303549"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 74,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ZvUHbsxWZc38ZZ9eQAVBM",
+      "uri": "spotify:track:6ZvUHbsxWZc38ZZ9eQAVBM",
+      "name": "All Hail the Fishmen",
+      "artists": [
+        "Widdly 2 Diddly",
+        "Marina Hova"
+      ],
+      "artist_ids": [
+        "74dNu5nytnMQDghI69WLdA",
+        "05r8qVleB1STvba4Rgk1VV"
+      ],
+      "album": "LISA: THE PAINFUL Chapter 1 (Game Soundtrack)",
+      "album_id": "3RPPvrvv7BeY7Qz9azlYhL",
+      "duration_ms": 128026,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZDA62183901"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 75,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "37HGV2J6nrBYk4lNTMB0ho",
+      "uri": "spotify:track:37HGV2J6nrBYk4lNTMB0ho",
+      "name": "They're Cheap (I'm Free)",
+      "artists": [
+        "Skating Polly"
+      ],
+      "artist_ids": [
+        "1ST6hERy8rGdwUaNAZxfG9"
+      ],
+      "album": "The Make It All Show",
+      "album_id": "0PaV2cQZJLbjYjnZRoYq2f",
+      "duration_ms": 223109,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMJ6F1808405"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 76,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6C1zkRgm0KGpcRz3c6YEqI",
+      "uri": "spotify:track:6C1zkRgm0KGpcRz3c6YEqI",
+      "name": "Kay-LynnX10",
+      "artists": [
+        "Goth Von Core"
+      ],
+      "artist_ids": [
+        "6wSN57SIAGvevose6E8chU"
+      ],
+      "album": "Morbid Fascination",
+      "album_id": "04Xwa19gWmb0awPktPFrm7",
+      "duration_ms": 235258,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZES82096184"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 77,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6UiE1i71nrsmHalZFQ2Zpj",
+      "uri": "spotify:track:6UiE1i71nrsmHalZFQ2Zpj",
+      "name": "So Sad, So Sad",
+      "artists": [
+        "Varsity"
+      ],
+      "artist_ids": [
+        "339XMxg3AyRbEfeIAlxB2c"
+      ],
+      "album": "The Basement Takes (2015 - 2016)",
+      "album_id": "6wV7jUTffUupoDBx5hpu1M",
+      "duration_ms": 232566,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM4DW1587324"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 78,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0hI3mrKZlryQWyVB8NfbHy",
+      "uri": "spotify:track:0hI3mrKZlryQWyVB8NfbHy",
+      "name": "Introduce me to your family",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 148840,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908006"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 79,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6gK3DKtxeHzDArzMuFRNnm",
+      "uri": "spotify:track:6gK3DKtxeHzDArzMuFRNnm",
+      "name": "Power",
+      "artists": [
+        "SIIICKBRAIN",
+        "Pussy Riot"
+      ],
+      "artist_ids": [
+        "1oPEr1Ci8sWOYj8SSh2VPE",
+        "2hThsqaVEAWhWPBXnaOfB9"
+      ],
+      "album": "Power",
+      "album_id": "2DBxSM1qKT5tVacflHcrkj",
+      "duration_ms": 176000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US7VG2199851"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 80,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3lWU0u5AZTmr0vm3m8VV2R",
+      "uri": "spotify:track:3lWU0u5AZTmr0vm3m8VV2R",
+      "name": "Goodnight Socialite",
+      "artists": [
+        "The Brobecks"
+      ],
+      "artist_ids": [
+        "29TCgxO6qzQx4O3pjUIMzn"
+      ],
+      "album": "Violent Things",
+      "album_id": "1KLBdhphdiK82hYpAiw8DR",
+      "duration_ms": 199720,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USTC90933542"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 81,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2wLfzb2mlZfCzQpyGS6Yk4",
+      "uri": "spotify:track:2wLfzb2mlZfCzQpyGS6Yk4",
+      "name": "When You Dream",
+      "artists": [
+        "Don Luxe"
+      ],
+      "artist_ids": [
+        "59HdeHwDEdpkReLU5nNg3V"
+      ],
+      "album": "Don Luxe",
+      "album_id": "1X5vXKuwubkp2mYKpchYbh",
+      "duration_ms": 228186,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6P2088977"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 82,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6NeSiZokIiQwJaqAID41Vy",
+      "uri": "spotify:track:6NeSiZokIiQwJaqAID41Vy",
+      "name": "S'il vous plait",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 135333,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908003"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 83,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4NO1GRHwSCBST411UZ7ydy",
+      "uri": "spotify:track:4NO1GRHwSCBST411UZ7ydy",
+      "name": "THINGS WILL GET MUCH WORSE FROM HERE - Single Version",
+      "artists": [
+        "Kill Bill: The Rapper",
+        "Rav",
+        "Hatsune Miku"
+      ],
+      "artist_ids": [
+        "1t9KewtUvFMq6q7FRX1nHC",
+        "6oeSQ4qmDQ7n89Rdt6tLLn",
+        "6pNgnvzBa6Bthsv8SrZJYl"
+      ],
+      "album": "THINGS WILL GET MUCH WORSE FROM HERE",
+      "album_id": "6zMW8NWMPGKCquI0m2ZPiw",
+      "duration_ms": 198678,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZPLR2430246"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 84,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7EzsrJjJQBXRPiAPijADtG",
+      "uri": "spotify:track:7EzsrJjJQBXRPiAPijADtG",
+      "name": "ゆきこさん",
+      "artists": [
+        "ミドリ"
+      ],
+      "artist_ids": [
+        "1Qjrx8NtccILLfR3wh1u3o"
+      ],
+      "album": "あらためまして、はじめまして、ミドリです。",
+      "album_id": "5q8Hkakvwmb5Zyk4nUZKyD",
+      "duration_ms": 188493,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPN300800362"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 85,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "46Cec5dxngueMCy0IBO3YJ",
+      "uri": "spotify:track:46Cec5dxngueMCy0IBO3YJ",
+      "name": "Soviet Trumpeter",
+      "artists": [
+        "Katzenjammer"
+      ],
+      "artist_ids": [
+        "7K4k5g1ie2qHIH42UMNO7n"
+      ],
+      "album": "A Kiss Before You Go",
+      "album_id": "69GpC0pO9n7gY0DVgQhvOQ",
+      "duration_ms": 251946,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NOPRR1102080"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 86,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2jE1o5TKervwpdJFk91VlD",
+      "uri": "spotify:track:2jE1o5TKervwpdJFk91VlD",
+      "name": "anata watashi daita ato yome no meshi",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 117973,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908013"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 87,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0jbj6nxqS6qwJPkIWiRPV1",
+      "uri": "spotify:track:0jbj6nxqS6qwJPkIWiRPV1",
+      "name": "Destroyer of Worlds",
+      "artists": [
+        "Coyote Kid"
+      ],
+      "artist_ids": [
+        "0MW6kFfsIdCMs4IF9WDAzb"
+      ],
+      "album": "The Skeleton Man",
+      "album_id": "7cvYADvKxMh1lU1OgXw5Z4",
+      "duration_ms": 167946,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCAEL1940836"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 88,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6EqCxnulMcawu0qN8B8Y5W",
+      "uri": "spotify:track:6EqCxnulMcawu0qN8B8Y5W",
+      "name": "Apple Tree",
+      "artists": [
+        "Marika Hackman"
+      ],
+      "artist_ids": [
+        "5DGJC3n9DS0Y9eY5ul9y0O"
+      ],
+      "album": "I'm Not Your Man",
+      "album_id": "6cDRHxpDNgEMgmkCIVdlP2",
+      "duration_ms": 175320,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSUB1720209"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 89,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6CYJRzPYdFqvWokv31th05",
+      "uri": "spotify:track:6CYJRzPYdFqvWokv31th05",
+      "name": "Tongue Tied",
+      "artists": [
+        "Tomtsu"
+      ],
+      "artist_ids": [
+        "0aZYs7rKdkndMKw1AoOxtH"
+      ],
+      "album": "The Only Members That Show Up",
+      "album_id": "17MleAjixdJPoNRqV6eflA",
+      "duration_ms": 108150,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5VF1801072"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 90,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6lwbOrPwUFynQK2dnvZrOa",
+      "uri": "spotify:track:6lwbOrPwUFynQK2dnvZrOa",
+      "name": "6 day working week is a pain",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 167880,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908010"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 91,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0kYMwaQWABTkFff8AZjmYI",
+      "uri": "spotify:track:0kYMwaQWABTkFff8AZjmYI",
+      "name": "Hayloft II",
+      "artists": [
+        "Mother Mother"
+      ],
+      "artist_ids": [
+        "0e86yPdC41PGRkLp2Q1Bph"
+      ],
+      "album": "Inside (Deluxe)",
+      "album_id": "03EqExvZuxLK86huLxGIa2",
+      "duration_ms": 215040,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CAW112100716"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 92,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0zF9nvv9fCRA4FycwyZLbU",
+      "uri": "spotify:track:0zF9nvv9fCRA4FycwyZLbU",
+      "name": "Fuck Me Up",
+      "artists": [
+        "GRLwood"
+      ],
+      "artist_ids": [
+        "0yrzVTuk6PgF51NYgfgKXe"
+      ],
+      "album": "I Sold My Soul to the Devil When I Was 12",
+      "album_id": "7h0jldis2wj4JUTNWG8gIq",
+      "duration_ms": 125933,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USGAC1900079"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 93,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0zz5JI0LPSqXpxAq91tOcq",
+      "uri": "spotify:track:0zz5JI0LPSqXpxAq91tOcq",
+      "name": "Arikui waltz",
+      "artists": [
+        "COLTEMONIKHA"
+      ],
+      "artist_ids": [
+        "3qjEIUunPdxoNlFTW9DoJ0"
+      ],
+      "album": "COLTEMONIKHA",
+      "album_id": "3xisAnUPxLAJ5npYRQEXFf",
+      "duration_ms": 190800,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPI800600091"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 94,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3WAxzrILe3WyStOePF61w6",
+      "uri": "spotify:track:3WAxzrILe3WyStOePF61w6",
+      "name": "Bad luck",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 126906,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908008"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 95,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1AXtXQ0xkru612uLjma2iP",
+      "uri": "spotify:track:1AXtXQ0xkru612uLjma2iP",
+      "name": "Ragtime Gal",
+      "artists": [
+        "Wild Ire"
+      ],
+      "artist_ids": [
+        "5EMQXaDvnX8SfzmEds9U3u"
+      ],
+      "album": "Antisocial Butterfly",
+      "album_id": "2GHg3W7QS0Dr9epJ4S8nIR",
+      "duration_ms": 271528,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACZ1793871"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 96,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2Co0IjcLTSHMtodwD4gzfg",
+      "uri": "spotify:track:2Co0IjcLTSHMtodwD4gzfg",
+      "name": "I Bet on Losing Dogs",
+      "artists": [
+        "Mitski"
+      ],
+      "artist_ids": [
+        "2uYWxilOVlUdk4oV9DvwqK"
+      ],
+      "album": "Puberty 2",
+      "album_id": "4Coa8Eb9SzjrkwWEom963Q",
+      "duration_ms": 170240,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJ5G1612306"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 97,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "78UlZqdtIkCrENCzhYyjqd",
+      "uri": "spotify:track:78UlZqdtIkCrENCzhYyjqd",
+      "name": "Terrible Things",
+      "artists": [
+        "April Smith and the Great Picture Show"
+      ],
+      "artist_ids": [
+        "7lbhhSi1lCIINpxTkVIBLN"
+      ],
+      "album": "Songs For A Sinking Ship",
+      "album_id": "3xteZ3s08Mbhc7nXm4oOmV",
+      "duration_ms": 141426,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USTCC0925804"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 98,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5nuGaTAKjCcVSEdo4lx3Bb",
+      "uri": "spotify:track:5nuGaTAKjCcVSEdo4lx3Bb",
+      "name": "datsu . hikage no onna",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 124853,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908001"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 99,
+      "added_at": "2024-12-04T17:47:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "42qNWdLKCI41S4uzfamhFM",
+      "uri": "spotify:track:42qNWdLKCI41S4uzfamhFM",
+      "name": "Duvet",
+      "artists": [
+        "bôa"
+      ],
+      "artist_ids": [
+        "5jTtGLk1mGFMY5lQOvJYUj"
+      ],
+      "album": "Twilight",
+      "album_id": "7sGYAV0xv7ZfAMzIpMl8m1",
+      "duration_ms": 203600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USCGJ0659337"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

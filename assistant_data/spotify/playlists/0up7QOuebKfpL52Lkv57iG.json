@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:51.088644+00:00",
+  "id": "0up7QOuebKfpL52Lkv57iG",
+  "name": "beach tunes ",
+  "description": "pog beach music  💪😎👊",
+  "owner": {
+    "id": "holyonyx",
+    "display_name": "holyonyx"
+  },
+  "public": true,
+  "collaborative": true,
+  "snapshot_id": "AAAAFppFQAM6FFg6M4wmcaXWiBrRXuBV",
+  "total_items_reported": 17,
+  "item_count_fetched": 17,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:51.088662+00:00",
+  "items_snapshot_id": "AAAAFppFQAM6FFg6M4wmcaXWiBrRXuBV",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2021-03-04T22:07:45Z",
+      "added_by": "holyonyx",
+      "type": "track",
+      "id": "3x3lq0IUkLEv4apfJxwgwd",
+      "uri": "spotify:track:3x3lq0IUkLEv4apfJxwgwd",
+      "name": "Fiona Coyne",
+      "artists": [
+        "Skylar Spence"
+      ],
+      "artist_ids": [
+        "0x0u0jCVf5Jf4DNh45XPXL"
+      ],
+      "album": "Fiona Coyne/Fall Harder",
+      "album_id": "1s8FyMpHFOLhzKa58kgGmH",
+      "duration_ms": 244291,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US22N1409901"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2021-03-04T22:09:26Z",
+      "added_by": "holyonyx",
+      "type": "track",
+      "id": "4zFDDTSInTkLg0d0KzxqJj",
+      "uri": "spotify:track:4zFDDTSInTkLg0d0KzxqJj",
+      "name": "Selfish High Heels (feat. Macross 82-99 & Harrison)",
+      "artists": [
+        "Yung Bae",
+        "Macross 82-99",
+        "Harrison"
+      ],
+      "artist_ids": [
+        "30FDJPN3RtwJZ20g5YGCRX",
+        "5C8KyBfvAz9PSaOd30eIow",
+        "0IbD9X6mgxyaIKT3aqzioT"
+      ],
+      "album": "Selfish High Heels (feat. Macross 82-99 & Harrison)",
+      "album_id": "7L5rEfs6SmsH8LCiHuNzhT",
+      "duration_ms": 226500,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCADJ1765045"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2021-03-04T22:09:55Z",
+      "added_by": "holyonyx",
+      "type": "track",
+      "id": "6aKEtd7dEepK0II3qqarDb",
+      "uri": "spotify:track:6aKEtd7dEepK0II3qqarDb",
+      "name": "Finesse (Hey Baby)",
+      "artists": [
+        "Flamingosis"
+      ],
+      "artist_ids": [
+        "75cW8FFekyCjj0mfZM1Gfb"
+      ],
+      "album": "Pleasure Palette",
+      "album_id": "6bQTJBifteaLOuon70AS6n",
+      "duration_ms": 162613,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DEQ121640612"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2021-03-04T22:10:44Z",
+      "added_by": "holyonyx",
+      "type": "track",
+      "id": "2iCPjExHWYrQdC3NZPxvIc",
+      "uri": "spotify:track:2iCPjExHWYrQdC3NZPxvIc",
+      "name": "Telephone Number",
+      "artists": [
+        "Junko Ohashi"
+      ],
+      "artist_ids": [
+        "7rGbODPTIVjzn3CTR6RCzE"
+      ],
+      "album": "TOKYO - CITY POP -",
+      "album_id": "3KP7mra4jnQ8PS7YF3h2t6",
+      "duration_ms": 239013,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPPH08100305"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2021-03-04T22:11:28Z",
+      "added_by": "holyonyx",
+      "type": "track",
+      "id": "3NeiYiBn3rQBgurfVk92Zm",
+      "uri": "spotify:track:3NeiYiBn3rQBgurfVk92Zm",
+      "name": "Humility (feat. George Benson)",
+      "artists": [
+        "Gorillaz",
+        "George Benson"
+      ],
+      "artist_ids": [
+        "3AA28KZvwAUcZuOKwyblJQ",
+        "4N8BwYTEC6XqykGvXXlmfv"
+      ],
+      "album": "The Now Now",
+      "album_id": "1amYhlukNF8WdaQC3gKkgL",
+      "duration_ms": 197933,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBAYE1800407"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2021-03-04T22:39:53Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "5IMtdHjJ1OtkxbGe4zfUxQ",
+      "uri": "spotify:track:5IMtdHjJ1OtkxbGe4zfUxQ",
+      "name": "Escape (The Pina Colada Song)",
+      "artists": [
+        "Rupert Holmes"
+      ],
+      "artist_ids": [
+        "0TqIPD4IS1w4e30R38B3vj"
+      ],
+      "album": "Partners In Crime",
+      "album_id": "163iYwl7Kdm9ayTnD4VyfN",
+      "duration_ms": 276493,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USMC17948997"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2021-03-04T23:21:20Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "0qdQUeKVyevrbKhAo0ibxS",
+      "uri": "spotify:track:0qdQUeKVyevrbKhAo0ibxS",
+      "name": "My Sweet Lord - Remastered 2014",
+      "artists": [
+        "George Harrison"
+      ],
+      "artist_ids": [
+        "7FIoB5PHdrMZVC3q2HE5MS"
+      ],
+      "album": "All Things Must Pass (Remastered 2014)",
+      "album_id": "4I4xtHaIFOzhZfp1NIHkY6",
+      "duration_ms": 281226,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GB77R1400026"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2021-03-04T23:22:28Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "46MX86XQqYCZRvwPpeq4Gi",
+      "uri": "spotify:track:46MX86XQqYCZRvwPpeq4Gi",
+      "name": "Lake Shore Drive",
+      "artists": [
+        "Aliotta Haynes Jeremiah"
+      ],
+      "artist_ids": [
+        "4VmWYQQ5M9N9AiAx14v2yg"
+      ],
+      "album": "Lake Shore Drive",
+      "album_id": "24NY6n4z0tDzpt8QCiWEGV",
+      "duration_ms": 235173,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgh0554198"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2021-03-04T23:23:49Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "5e0vgBWfwToyphURwynSXa",
+      "uri": "spotify:track:5e0vgBWfwToyphURwynSXa",
+      "name": "Run Away With Me",
+      "artists": [
+        "Carly Rae Jepsen"
+      ],
+      "artist_ids": [
+        "6sFIWsNpZYqfjUpaCgueju"
+      ],
+      "album": "Emotion",
+      "album_id": "6UjZgFbK6CQptu8aOobzPV",
+      "duration_ms": 251320,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM71507009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2021-03-04T23:24:01Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "2374M0fQpWi3dLnB54qaLX",
+      "uri": "spotify:track:2374M0fQpWi3dLnB54qaLX",
+      "name": "Africa",
+      "artists": [
+        "TOTO"
+      ],
+      "artist_ids": [
+        "0PFtn5NtBbbUNbU9EAmIWF"
+      ],
+      "album": "Toto IV",
+      "album_id": "62U7xIHcID94o20Of5ea4D",
+      "duration_ms": 295282,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM19801941"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2021-03-04T23:25:32Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "69kOkLUCkxIZYexIgSG8rq",
+      "uri": "spotify:track:69kOkLUCkxIZYexIgSG8rq",
+      "name": "Get Lucky (feat. Pharrell Williams and Nile Rodgers)",
+      "artists": [
+        "Daft Punk",
+        "Pharrell Williams",
+        "Nile Rodgers"
+      ],
+      "artist_ids": [
+        "4tZwfgrHOc3mvqYlEYSvVi",
+        "2RdwBSPQiwcmiDo9kixcl8",
+        "3yDIp0kaq9EFKe07X1X2rz"
+      ],
+      "album": "Random Access Memories",
+      "album_id": "4m2880jivSbbyEGAKfITCa",
+      "duration_ms": 369626,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USQX91300108"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2021-03-04T23:27:00Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "2BY7ALEWdloFHgQZG6VMLA",
+      "uri": "spotify:track:2BY7ALEWdloFHgQZG6VMLA",
+      "name": "Brandy (You're a Fine Girl)",
+      "artists": [
+        "Looking Glass"
+      ],
+      "artist_ids": [
+        "5jJN1nmKXzRjodMl1THQeI"
+      ],
+      "album": "Looking Glass",
+      "album_id": "5ThwnbpYrk9R1xXkAGCLIs",
+      "duration_ms": 189044,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM10903222"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2021-03-04T23:28:07Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "6M14BiCN00nOsba4JaYsHW",
+      "uri": "spotify:track:6M14BiCN00nOsba4JaYsHW",
+      "name": "Ocean Man",
+      "artists": [
+        "Ween"
+      ],
+      "artist_ids": [
+        "3u1ulLq00Y3bfmq9FfjsPu"
+      ],
+      "album": "The Mollusk",
+      "album_id": "1yfJqxKKXG320vhqLfUEeC",
+      "duration_ms": 126946,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USEE19701313"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2021-03-10T17:45:20Z",
+      "added_by": "bvzx0mbqv6mcesm70m3tkgq6d",
+      "type": "track",
+      "id": "7p4vHnYXkxlzvfePJVpcTr",
+      "uri": "spotify:track:7p4vHnYXkxlzvfePJVpcTr",
+      "name": "Feels Like Summer",
+      "artists": [
+        "Childish Gambino"
+      ],
+      "artist_ids": [
+        "73sIBHcqh3Z3NyqHKZ7FOL"
+      ],
+      "album": "Summer Pack",
+      "album_id": "15k99o4mZJ9mfpQGIOrZ45",
+      "duration_ms": 297404,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC11802773"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2021-03-10T17:53:32Z",
+      "added_by": "bvzx0mbqv6mcesm70m3tkgq6d",
+      "type": "track",
+      "id": "6QgjcU0zLnzq5OrUoSZ3OK",
+      "uri": "spotify:track:6QgjcU0zLnzq5OrUoSZ3OK",
+      "name": "Feel It Still",
+      "artists": [
+        "Portugal. The Man"
+      ],
+      "artist_ids": [
+        "4kI8Ie27vjvonwaB2ePh8T"
+      ],
+      "album": "Woodstock",
+      "album_id": "4VzzEviJGYUtAeSsJlI9QB",
+      "duration_ms": 163253,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21700437"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2021-04-11T04:26:40Z",
+      "added_by": "49qchze54e6nstbnwk1swv1u9",
+      "type": "track",
+      "id": "2EPr9Wx7e1cpGEbNAtuN7x",
+      "uri": "spotify:track:2EPr9Wx7e1cpGEbNAtuN7x",
+      "name": "Surfin' U.S.A.",
+      "artists": [
+        "The Beach Boys"
+      ],
+      "artist_ids": [
+        "3oDbviiivRWhXwIE8hxkVV"
+      ],
+      "album": "50 Big Ones: Greatest Hits",
+      "album_id": "6cSZPNsr3tMEHo5QrMjk1F",
+      "duration_ms": 150160,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USCA21201955"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2021-06-19T19:02:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2Yc8UkrVV1v16sZFaGOQEI",
+      "uri": "spotify:track:2Yc8UkrVV1v16sZFaGOQEI",
+      "name": "Turning Into Video",
+      "artists": [
+        "Stello"
+      ],
+      "artist_ids": [
+        "439Dw5xIEnUHlgIu1QS2uF"
+      ],
+      "album": "Turning Into Video",
+      "album_id": "0ryuK30blTyb9HTfFAeYWg",
+      "duration_ms": 228109,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2116617"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

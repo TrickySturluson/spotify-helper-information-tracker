@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-31T09:04:53.976021+00:00",
+  "playlists": {
+    "total": 58,
+    "accessible": 41,
+    "inaccessible": 17,
+    "incomplete": 0,
+    "item_count_mismatches": []
+  },
+  "index": {
+    "unique_tracks": 1887,
+    "unique_artists": 1316
+  },
+  "daily_feedback": {
+    "tracks_observed": 0,
+    "playback_tracker_status": "unknown",
+    "playback_tracker_detail": {},
+    "lastfm_status": "unknown",
+    "liked_songs_status": "unknown",
+    "updated_at": null,
+    "segments_file_in_sync_environment": false
+  },
+  "overall_status": "warning"
+}

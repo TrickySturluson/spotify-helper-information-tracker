@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:26.939892+00:00",
+  "id": "2VV3P1FkFgPloylv3FVN75",
+  "name": "Girly Pop ✨",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAFZEAyOnwCpCt3SBWk3xpecPDW28+",
+  "total_items_reported": 17,
+  "item_count_fetched": 17,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:26.939913+00:00",
+  "items_snapshot_id": "AAAAFZEAyOnwCpCt3SBWk3xpecPDW28+",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2024-06-29T21:54:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "37HGV2J6nrBYk4lNTMB0ho",
+      "uri": "spotify:track:37HGV2J6nrBYk4lNTMB0ho",
+      "name": "They're Cheap (I'm Free)",
+      "artists": [
+        "Skating Polly"
+      ],
+      "artist_ids": [
+        "1ST6hERy8rGdwUaNAZxfG9"
+      ],
+      "album": "The Make It All Show",
+      "album_id": "0PaV2cQZJLbjYjnZRoYq2f",
+      "duration_ms": 223109,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMJ6F1808405"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2024-06-29T21:55:06Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "34ahWzcm4aBx6sVp2mlCTN",
+      "uri": "spotify:track:34ahWzcm4aBx6sVp2mlCTN",
+      "name": "Kinda Outta Luck",
+      "artists": [
+        "Medusa",
+        "Boy Jr."
+      ],
+      "artist_ids": [
+        "0TC9HQq2I2GIIkK3zLD493",
+        "7CuIkxF7VfHwKecQzUEGgv"
+      ],
+      "album": "Kinda Outta Luck",
+      "album_id": "4ETjYuNkicEn9gCfAvkTNA",
+      "duration_ms": 187684,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFZ62114054"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2024-06-29T21:55:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2no9gQFqQc0SwelSEJ2SQI",
+      "uri": "spotify:track:2no9gQFqQc0SwelSEJ2SQI",
+      "name": "Power (feat. Pussy Riot)",
+      "artists": [
+        "SIIICKBRAIN",
+        "Pussy Riot"
+      ],
+      "artist_ids": [
+        "1oPEr1Ci8sWOYj8SSh2VPE",
+        "2hThsqaVEAWhWPBXnaOfB9"
+      ],
+      "album": "Power (feat. Pussy Riot)",
+      "album_id": "2vkWHYySwW3SW2613HOZyc",
+      "duration_ms": 176000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US7VG2199851"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2024-06-29T21:55:54Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6nzXkCBOhb2mxctNihOqbb",
+      "uri": "spotify:track:6nzXkCBOhb2mxctNihOqbb",
+      "name": "Bad Girls",
+      "artists": [
+        "M.I.A."
+      ],
+      "artist_ids": [
+        "0QJIPDAEDILuo8AIq3pMuU"
+      ],
+      "album": "Matangi",
+      "album_id": "3dAxXNscIj0p53lBMEziYR",
+      "duration_ms": 227520,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG11200143"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2024-06-29T21:58:06Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2gGwnLDwSxsi0zbkwEKSI6",
+      "uri": "spotify:track:2gGwnLDwSxsi0zbkwEKSI6",
+      "name": "Girl God Gun",
+      "artists": [
+        "Gen and the Degenerates"
+      ],
+      "artist_ids": [
+        "7oEVPoHXaj73ddUCTNlO9E"
+      ],
+      "album": "Girl God Gun",
+      "album_id": "2S0R1ILxzniCXfykA0A9BL",
+      "duration_ms": 205854,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "UKGV82200023"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2024-07-01T14:34:24Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6qNB2ChCVPepl5ZjVJJTUW",
+      "uri": "spotify:track:6qNB2ChCVPepl5ZjVJJTUW",
+      "name": "STUPID (feat. Yung Baby Tate)",
+      "artists": [
+        "Ashnikko",
+        "Baby Tate"
+      ],
+      "artist_ids": [
+        "3PyJHH2wyfQK3WZrk9rpmP",
+        "3IJ21966TwNZI24MwZHMu4"
+      ],
+      "album": "Hi, It's Me",
+      "album_id": "5eKuModdAdZRmc51241r4D",
+      "duration_ms": 167317,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBAYE1900593"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2024-07-01T15:08:56Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2gFMgqvKcygf8CavNyR131",
+      "uri": "spotify:track:2gFMgqvKcygf8CavNyR131",
+      "name": "Hi, I'm a Slut",
+      "artists": [
+        "Lil Mariko"
+      ],
+      "artist_ids": [
+        "1ZRRl4S2B4xZBzHtIf65Jx"
+      ],
+      "album": "Lil Mariko",
+      "album_id": "4FA6S8h3E3bCiLApDDPZzb",
+      "duration_ms": 170823,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZDA72174049"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2024-07-01T15:09:01Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4lbiIzTsYUT1Kz3KOtQn1b",
+      "uri": "spotify:track:4lbiIzTsYUT1Kz3KOtQn1b",
+      "name": "Don't Touch",
+      "artists": [
+        "Lil Mariko",
+        "Full Tac"
+      ],
+      "artist_ids": [
+        "1ZRRl4S2B4xZBzHtIf65Jx",
+        "5ZXkHp732tYHIzqctoZP0E"
+      ],
+      "album": "Lil Mariko",
+      "album_id": "4FA6S8h3E3bCiLApDDPZzb",
+      "duration_ms": 148000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZDA82099048"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2024-07-01T15:12:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5nx6QpqgF43ixubckwac3C",
+      "uri": "spotify:track:5nx6QpqgF43ixubckwac3C",
+      "name": "Shiny",
+      "artists": [
+        "Lil Mariko",
+        "Full Tac"
+      ],
+      "artist_ids": [
+        "1ZRRl4S2B4xZBzHtIf65Jx",
+        "5ZXkHp732tYHIzqctoZP0E"
+      ],
+      "album": "Lil Mariko",
+      "album_id": "4FA6S8h3E3bCiLApDDPZzb",
+      "duration_ms": 127500,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6L2086473"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2024-07-02T21:51:57Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2xKLzKhm2AEGyZapAL5NjH",
+      "uri": "spotify:track:2xKLzKhm2AEGyZapAL5NjH",
+      "name": "Piss Punk",
+      "artists": [
+        "VIAL"
+      ],
+      "artist_ids": [
+        "7soK35m8BosPkMQ67t7bqf"
+      ],
+      "album": "LOUDMOUTH",
+      "album_id": "6c59AK2EBIAHeCMUOGAIuS",
+      "duration_ms": 121076,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2B2100991"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2024-08-01T19:48:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "00P1RGdQvHcyuW1ililPdI",
+      "uri": "spotify:track:00P1RGdQvHcyuW1ililPdI",
+      "name": "SNOWCONE",
+      "artists": [
+        "REI AMI"
+      ],
+      "artist_ids": [
+        "6U1dV7aL68N7Gb0Naq34V5"
+      ],
+      "album": "SNOWCONE",
+      "album_id": "3Del8qWfHR6uzAng6of9Mn",
+      "duration_ms": 155649,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FR59R1981126"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2024-08-01T18:24:22Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "785w7ixnkUZCOKy1l4kcHT",
+      "uri": "spotify:track:785w7ixnkUZCOKy1l4kcHT",
+      "name": "Boring",
+      "artists": [
+        "Lil Mariko",
+        "Full Tac"
+      ],
+      "artist_ids": [
+        "1ZRRl4S2B4xZBzHtIf65Jx",
+        "5ZXkHp732tYHIzqctoZP0E"
+      ],
+      "album": "Boring",
+      "album_id": "6A45un1GRwZwh8RpeiAhF8",
+      "duration_ms": 135463,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM4TX2108841"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2024-08-01T18:26:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0lUSIaEhUApWIbru6IX21z",
+      "uri": "spotify:track:0lUSIaEhUApWIbru6IX21z",
+      "name": "Worldwide Torture",
+      "artists": [
+        "Jazmin Bean"
+      ],
+      "artist_ids": [
+        "6blEmsLU25ewy8hHtgZaSL"
+      ],
+      "album": "Worldwide Torture",
+      "album_id": "2SVRzumTLUTdoHgYNQ4Rh9",
+      "duration_ms": 213280,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN81940757"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2024-08-01T18:33:45Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4mIP0KkPQfZ8QNqmzff8S2",
+      "uri": "spotify:track:4mIP0KkPQfZ8QNqmzff8S2",
+      "name": "Guitar Pick",
+      "artists": [
+        "MEMI"
+      ],
+      "artist_ids": [
+        "2IJQZNh2eIR9a21uq494UA"
+      ],
+      "album": "Guitar Pick",
+      "album_id": "4hobdoVXOvndNd66XMpGgd",
+      "duration_ms": 148356,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "KRNAR2238501"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2024-08-01T18:37:58Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2tTnlY1ImsNM0AKNxRiYkz",
+      "uri": "spotify:track:2tTnlY1ImsNM0AKNxRiYkz",
+      "name": "Racket Stimulator",
+      "artists": [
+        "Bad Waitress"
+      ],
+      "artist_ids": [
+        "5h5YgUkm7vI0bdbQTyBGmb"
+      ],
+      "album": "Racket Stimulator",
+      "album_id": "36ZnMBCUyXRwLvGt42cdck",
+      "duration_ms": 141760,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CAUM82200411"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2024-08-01T18:39:19Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3KrofSVYKenWPyXsCfx7Yh",
+      "uri": "spotify:track:3KrofSVYKenWPyXsCfx7Yh",
+      "name": "Butts Tits Money",
+      "artists": [
+        "KNOWER"
+      ],
+      "artist_ids": [
+        "7fVp0A6oCMfiQJihMnY0SZ"
+      ],
+      "album": "Life",
+      "album_id": "4jPWKA2znwCMQMfeYCk13p",
+      "duration_ms": 208253,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACL1630237"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2024-08-01T18:45:00Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6QPOr9B8aEquK1nGwG9Yj6",
+      "uri": "spotify:track:6QPOr9B8aEquK1nGwG9Yj6",
+      "name": "BLOODMONEY",
+      "artists": [
+        "Poppy"
+      ],
+      "artist_ids": [
+        "5mlbvTfWUOfDrUIK6dkNzv"
+      ],
+      "album": "I Disagree",
+      "album_id": "4LgpVx8efQT7SRXGRq5Tze",
+      "duration_ms": 182598,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USYFZ1924103"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:49.399053+00:00",
+  "id": "3tyyzePtZplN4Ezifl9Zyc",
+  "name": "I am the",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": false,
+  "collaborative": false,
+  "snapshot_id": "AAAAB1SlO482luvWW/Fkkm1mhod9mf5x",
+  "total_items_reported": 3,
+  "item_count_fetched": 3,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:49.399069+00:00",
+  "items_snapshot_id": "AAAAB1SlO482luvWW/Fkkm1mhod9mf5x",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2022-10-14T08:45:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6Q01GbTQ2jU8PiVUxQsl5c",
+      "uri": "spotify:track:6Q01GbTQ2jU8PiVUxQsl5c",
+      "name": "History",
+      "artists": [
+        "Gazelle Twin",
+        "Trash Generation"
+      ],
+      "artist_ids": [
+        "0O9n1swkbCd1KqV2QrSVHl",
+        "3rLqvrPVQU3Pmr9XyLGl2N"
+      ],
+      "album": "Cyberpunk 2077: Radio, Vol. 2 (Original Soundtrack)",
+      "album_id": "1VGVJdmvOSRK2w9RKXk18A",
+      "duration_ms": 201118,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLS52081708"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2022-10-14T08:56:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2QriXzI1vNbV0dXEJkO8x1",
+      "uri": "spotify:track:2QriXzI1vNbV0dXEJkO8x1",
+      "name": "The Things They Did for Me Out of Love",
+      "artists": [
+        "yeule"
+      ],
+      "artist_ids": [
+        "1WZarnZpWEv7dDtjAETt4X"
+      ],
+      "album": "Glitch Princess",
+      "album_id": "6jBRjtrgSlOvQvrSdtQa8Q",
+      "duration_ms": 17040000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6YT2103913"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2022-10-14T08:59:53Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4qUOwG0s0Wg38PtQksw21q",
+      "uri": "spotify:track:4qUOwG0s0Wg38PtQksw21q",
+      "name": "Taxonomies",
+      "artists": [
+        "Larry Gus"
+      ],
+      "artist_ids": [
+        "4HDe0w9aBa7w89KYMY43OK"
+      ],
+      "album": "Years Not Living",
+      "album_id": "6RtjadFHVB1ziNpqwjb2TP",
+      "duration_ms": 138013,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US4GE1300027"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

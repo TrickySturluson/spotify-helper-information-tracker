@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:33.875770+00:00",
+  "id": "43OGTiXjftiA4Rfjpd4WKz",
+  "name": "calcifer? you’re being so obedient",
+  "description": "not on purpose! she bullied me!",
+  "owner": {
+    "id": "39m3jcexad7382euzzgk1t6ny",
+    "display_name": "saraya ⋆˚࿔"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAQ0cYoNboJauVdR3bwYzC9c99VPEm",
+  "total_items_reported": 52,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API does not expose item contents for this playlist to the current account/app.",
+  "last_items_accessible_at": null,
+  "items_snapshot_id": null,
+  "items": []
+}

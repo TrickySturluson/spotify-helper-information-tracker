@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:21.182098+00:00",
+  "id": "4b8bnocxVCRuPNFKIfffCU",
+  "name": "Hear Me",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAABxB/fUCw8eE+HvD1mN82Fak1MKah",
+  "total_items_reported": 1,
+  "item_count_fetched": 1,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:21.182124+00:00",
+  "items_snapshot_id": "AAAABxB/fUCw8eE+HvD1mN82Fak1MKah",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-09-25T12:00:34Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3NaH9aP8PTPj3uvaKM3jLC",
+      "uri": "spotify:track:3NaH9aP8PTPj3uvaKM3jLC",
+      "name": "Folie à Deux",
+      "artists": [
+        "STOMACH BOOK"
+      ],
+      "artist_ids": [
+        "079cEjjSpv5dOLH5xsGdvN"
+      ],
+      "album": "Stomach Book",
+      "album_id": "6Vbtpo67ePu1IS9hZf2xOY",
+      "duration_ms": 176519,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWS2194027"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

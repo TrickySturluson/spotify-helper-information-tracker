@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:26.683943+00:00",
+  "id": "5STPnvDqoU9Uc0qtlQsBRE",
+  "name": "Headache Headspace",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAF3fIZhpbdPLWjVH3hL0oh+upK30+",
+  "total_items_reported": 11,
+  "item_count_fetched": 11,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:26.683961+00:00",
+  "items_snapshot_id": "AAAAF3fIZhpbdPLWjVH3hL0oh+upK30+",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2024-08-15T18:45:54Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7ii0G8eCY3L2yeDxZwEwtV",
+      "uri": "spotify:track:7ii0G8eCY3L2yeDxZwEwtV",
+      "name": "Hëłlœ Kįttÿ",
+      "artists": [
+        "Alice Longyu Gao"
+      ],
+      "artist_ids": [
+        "5HvKzBgj4yphQfBJjBJrhL"
+      ],
+      "album": "Let's Hope Heteros Fail, Learn and Retire",
+      "album_id": "5YjuPPmMZy5VGjlesAPbHG",
+      "duration_ms": 166727,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMFMF2215229"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2024-08-15T18:49:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0iWAFHzXmJ0D86dDlB1V38",
+      "uri": "spotify:track:0iWAFHzXmJ0D86dDlB1V38",
+      "name": "Seventeen",
+      "artists": [
+        "Exit 18"
+      ],
+      "artist_ids": [
+        "5bbb0QB3cVunYc0v4sEMpX"
+      ],
+      "album": "Seventeen",
+      "album_id": "1knrODnRHbRElPCMUFxSwF",
+      "duration_ms": 242332,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "ushm21900170"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2024-08-15T18:43:03Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2pAfh0XxN7gKQmMSeWexyn",
+      "uri": "spotify:track:2pAfh0XxN7gKQmMSeWexyn",
+      "name": "Jk",
+      "artists": [
+        "Crywank"
+      ],
+      "artist_ids": [
+        "7gzXeFUDWz0aqhikdkOJxQ"
+      ],
+      "album": "Wearing Beige on a Grey Day",
+      "album_id": "2nzRNxCnLaOrP6nZd1hTh1",
+      "duration_ms": 109600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgj1964426"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2024-08-15T19:01:05Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2wLfzb2mlZfCzQpyGS6Yk4",
+      "uri": "spotify:track:2wLfzb2mlZfCzQpyGS6Yk4",
+      "name": "When You Dream",
+      "artists": [
+        "Don Luxe"
+      ],
+      "artist_ids": [
+        "59HdeHwDEdpkReLU5nNg3V"
+      ],
+      "album": "Don Luxe",
+      "album_id": "1X5vXKuwubkp2mYKpchYbh",
+      "duration_ms": 228186,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6P2088977"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2024-08-15T19:20:11Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6D3VUXF4ClDUmsoNGRIB8z",
+      "uri": "spotify:track:6D3VUXF4ClDUmsoNGRIB8z",
+      "name": "Dogs",
+      "artists": [
+        "Ergo, Bria"
+      ],
+      "artist_ids": [
+        "0AF9HrL08aOaZPsIiO8GmA"
+      ],
+      "album": "Dogs",
+      "album_id": "40d7Jww6oN3BnVj8gKfmlA",
+      "duration_ms": 142249,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWY2278140"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2024-08-15T19:27:03Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1iUBNLLmZnBAjgkHysEv37",
+      "uri": "spotify:track:1iUBNLLmZnBAjgkHysEv37",
+      "name": "i'm gonna tell my therapist on you",
+      "artists": [
+        "Pinkshift"
+      ],
+      "artist_ids": [
+        "3bfSaJqEYosPcdoCN06G3P"
+      ],
+      "album": "i'm gonna tell my therapist on you",
+      "album_id": "7mbrZNnHyQhzlKSwzP8Ojz",
+      "duration_ms": 161062,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHNA2023263"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2024-08-15T19:27:22Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2xKLzKhm2AEGyZapAL5NjH",
+      "uri": "spotify:track:2xKLzKhm2AEGyZapAL5NjH",
+      "name": "Piss Punk",
+      "artists": [
+        "VIAL"
+      ],
+      "artist_ids": [
+        "7soK35m8BosPkMQ67t7bqf"
+      ],
+      "album": "LOUDMOUTH",
+      "album_id": "6c59AK2EBIAHeCMUOGAIuS",
+      "duration_ms": 121076,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2B2100991"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2024-08-15T19:28:53Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "093N3AMhUnOeE4wgNRsBOO",
+      "uri": "spotify:track:093N3AMhUnOeE4wgNRsBOO",
+      "name": "Drunk Walk Home",
+      "artists": [
+        "Mitski"
+      ],
+      "artist_ids": [
+        "2uYWxilOVlUdk4oV9DvwqK"
+      ],
+      "album": "Bury Me At Makeout Creek",
+      "album_id": "3I2KkX13lHXuYqfBjSOopo",
+      "duration_ms": 155506,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2B1511608"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2024-08-15T19:29:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0OIf0ja2Hpwkxi6p4Zlkdy",
+      "uri": "spotify:track:0OIf0ja2Hpwkxi6p4Zlkdy",
+      "name": "Take",
+      "artists": [
+        "Homestyle Dinner Rolls"
+      ],
+      "artist_ids": [
+        "6prUBceJWA7Pd4AAuUgGKQ"
+      ],
+      "album": "Take",
+      "album_id": "1JtaFOYj70cTlCVjd9F2sG",
+      "duration_ms": 263344,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTB82393070"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2024-08-15T19:51:19Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4kMDtiUf4xrnw1dIC7be6d",
+      "uri": "spotify:track:4kMDtiUf4xrnw1dIC7be6d",
+      "name": "Please Yourself",
+      "artists": [
+        "Ron Gallo"
+      ],
+      "artist_ids": [
+        "4rfE3kN2zKNC9L9tt3iVOg"
+      ],
+      "album": "HEAVY META",
+      "album_id": "6w5N3oL83KiitLdFcCrzTj",
+      "duration_ms": 83313,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US27Q1763736"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2024-08-15T19:51:36Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4YZVtRbdGOhHdGNi4JpCL5",
+      "uri": "spotify:track:4YZVtRbdGOhHdGNi4JpCL5",
+      "name": "Thank God I'm Not You",
+      "artists": [
+        "HIMALAYAS"
+      ],
+      "artist_ids": [
+        "71NBOcJ9lMeXqnbnya1z0x"
+      ],
+      "album": "Thank God I'm Not You",
+      "album_id": "78vmVv9bN0amzSiE1Fvzav",
+      "duration_ms": 194625,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgj1798848"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

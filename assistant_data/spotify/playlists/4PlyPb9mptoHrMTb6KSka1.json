@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:23.935320+00:00",
+  "id": "4PlyPb9mptoHrMTb6KSka1",
+  "name": "IDON'TWANTTODIEYET",
+  "description": "you can&#x27;t sleep not yet",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAH/mccakLhR1mNRisV0V/gfHh1bIy",
+  "total_items_reported": 21,
+  "item_count_fetched": 21,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:23.935339+00:00",
+  "items_snapshot_id": "AAAAH/mccakLhR1mNRisV0V/gfHh1bIy",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2025-10-27T19:34:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5Pw0eXZWDVl3eWZ5R9jfAN",
+      "uri": "spotify:track:5Pw0eXZWDVl3eWZ5R9jfAN",
+      "name": "Hello to Hyde",
+      "artists": [
+        "Scarlet Room"
+      ],
+      "artist_ids": [
+        "4LyzJWaqaP0rrAnRDk7iVw"
+      ],
+      "album": "Scarlet Room - EP",
+      "album_id": "5qcqALejTqHIfsuy2scu9l",
+      "duration_ms": 205786,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "ushm90898604"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2025-10-27T19:36:19Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2XzHlidrCo9YjXcFovtFQ5",
+      "uri": "spotify:track:2XzHlidrCo9YjXcFovtFQ5",
+      "name": "666 on the Crucifix - Be My Enemy Mix",
+      "artists": [
+        "Caustic"
+      ],
+      "artist_ids": [
+        "1q8pqceN1XqkdsJ93YxCUr"
+      ],
+      "album": "666 On The Crucifix",
+      "album_id": "1zw2kxj6lXSdlQxiAJ4rZy",
+      "duration_ms": 239579,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZDA82170396"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2025-10-27T19:37:34Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3wILopdjm5k4sObfNmfeYt",
+      "uri": "spotify:track:3wILopdjm5k4sObfNmfeYt",
+      "name": "Dude, Where's My Skin?",
+      "artists": [
+        "Schoolyard Heroes"
+      ],
+      "artist_ids": [
+        "2umvffrPSrINnWYTrrJFAx"
+      ],
+      "album": "Abominations",
+      "album_id": "2o0pDDkycDELBilKgYhzFr",
+      "duration_ms": 157746,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70740109"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2025-10-27T19:39:18Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5piInbSmGpQeePc4px8Fcy",
+      "uri": "spotify:track:5piInbSmGpQeePc4px8Fcy",
+      "name": "Daymare",
+      "artists": [
+        "Portrayal of Guilt"
+      ],
+      "artist_ids": [
+        "1Uwe1MbiKnPHAFh3qMWuNp"
+      ],
+      "album": "Let Pain Be Your Guide",
+      "album_id": "6rI4QJC5BLDTJ6ViehvaF6",
+      "duration_ms": 280746,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6N21846332"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2025-10-27T19:43:41Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2N3QIIQVaRgS9viCmUpZwk",
+      "uri": "spotify:track:2N3QIIQVaRgS9viCmUpZwk",
+      "name": "Inferno, Pt. 2",
+      "artists": [
+        "The Buttress"
+      ],
+      "artist_ids": [
+        "61pcWUzNqpHNWc21SuHP1J"
+      ],
+      "album": "Behind Every Great Man",
+      "album_id": "1NePP1VNt4SAOijwiHYXom",
+      "duration_ms": 155000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACC1472286"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2025-10-27T19:45:43Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0PyPWP9A3nXNg0LLU5yWp7",
+      "uri": "spotify:track:0PyPWP9A3nXNg0LLU5yWp7",
+      "name": "Cheshire's dance",
+      "artists": [
+        "a_hisa"
+      ],
+      "artist_ids": [
+        "1Z0wvI3WTpFLvbVrIBoDr7"
+      ],
+      "album": "Single Collection",
+      "album_id": "6f65FikAEPVi8TZ5dTNc41",
+      "duration_ms": 181650,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPK1913951"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2025-10-27T19:46:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6C1zkRgm0KGpcRz3c6YEqI",
+      "uri": "spotify:track:6C1zkRgm0KGpcRz3c6YEqI",
+      "name": "Kay-LynnX10",
+      "artists": [
+        "Goth Von Core"
+      ],
+      "artist_ids": [
+        "6wSN57SIAGvevose6E8chU"
+      ],
+      "album": "Morbid Fascination",
+      "album_id": "04Xwa19gWmb0awPktPFrm7",
+      "duration_ms": 235258,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZES82096184"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2025-10-27T19:47:03Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3tkXg3freIdvTxN58YUPaG",
+      "uri": "spotify:track:3tkXg3freIdvTxN58YUPaG",
+      "name": "Sleep Is for the Weak",
+      "artists": [
+        "The Dreadnoughts"
+      ],
+      "artist_ids": [
+        "0tfnDOJ5a2ib3mHAI4qGyD"
+      ],
+      "album": "Polka's Not Dead",
+      "album_id": "5V7rg6LPNl4TgqiGzA4kZH",
+      "duration_ms": 189560,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CASE11000107"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2025-10-27T19:47:41Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7r1vMKvaKeR5hxRGFEujaH",
+      "uri": "spotify:track:7r1vMKvaKeR5hxRGFEujaH",
+      "name": "Spitting Glass",
+      "artists": [
+        "YOU LOVE HER"
+      ],
+      "artist_ids": [
+        "0Z7dYQpd2WCyp6UEXFWZ2c"
+      ],
+      "album": "New Superheroes & Demos",
+      "album_id": "4l05RiHtISiDMIjocKKRX1",
+      "duration_ms": 252444,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACF1569749"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2025-10-27T19:49:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7bINjFKpbYkjUR7VJDjMkD",
+      "uri": "spotify:track:7bINjFKpbYkjUR7VJDjMkD",
+      "name": "Bottomless Pit",
+      "artists": [
+        "Death Grips"
+      ],
+      "artist_ids": [
+        "5RADpgYLOuS2ZxDq7ggYYH"
+      ],
+      "album": "Bottomless Pit",
+      "album_id": "4dIPUQHheyH9e6ioplvNT2",
+      "duration_ms": 174484,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG11600230"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2026-02-03T19:08:20Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7HWNRsfg2fOcEq3M8cAydE",
+      "uri": "spotify:track:7HWNRsfg2fOcEq3M8cAydE",
+      "name": "LIL BIT OF HOT",
+      "artists": [
+        "WHO SHOT SCOTT"
+      ],
+      "artist_ids": [
+        "4INpCNtJho77CQ6ZOfk5lP"
+      ],
+      "album": "LIL BIT OF HOT",
+      "album_id": "5FXPbFrm9ACHyqKKBg8jLG",
+      "duration_ms": 193942,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMBZ92410276"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-02-03T19:10:22Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7rJvpMh670VnXu7Uvrx9PU",
+      "uri": "spotify:track:7rJvpMh670VnXu7Uvrx9PU",
+      "name": "Million Years",
+      "artists": [
+        "Nico Vega"
+      ],
+      "artist_ids": [
+        "1gUch6pcj8OKOw6kKlWAPE"
+      ],
+      "album": "Nico Vega",
+      "album_id": "68Dki9KmH1C0SfrcBBbUhb",
+      "duration_ms": 161746,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USHWN0800601"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2026-02-03T19:40:07Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1lySGuhlcZUJxLA5W5Bo7k",
+      "uri": "spotify:track:1lySGuhlcZUJxLA5W5Bo7k",
+      "name": "HAWATARI NIOKU CENTI [2-hundred-million-centimeter-long blades] - TV edit",
+      "artists": [
+        "MAXIMUM THE HORMONE"
+      ],
+      "artist_ids": [
+        "3AMut7lAb1JjINkn8Fmkhu"
+      ],
+      "album": "HAWATARI NIOKU CENTI [2-hundred-million-centimeter-long blades] (TV edit)",
+      "album_id": "22bkV1gcP9weQRmRktdCM4",
+      "duration_ms": 89563,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPWP02201874"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-02-03T19:40:21Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0jJsh1MJI4pJbZuoaboK5g",
+      "uri": "spotify:track:0jJsh1MJI4pJbZuoaboK5g",
+      "name": "Monstarrr",
+      "artists": [
+        "Ennaria"
+      ],
+      "artist_ids": [
+        "0vKadOdp1SPc45oHfkZd4U"
+      ],
+      "album": "Monstarrr",
+      "album_id": "1GU7PcE1JSjAOMvGvAhQz4",
+      "duration_ms": 217206,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTB42366419"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2026-02-23T16:55:25Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1nU7jUfUP0ZxIm6t5CkJME",
+      "uri": "spotify:track:1nU7jUfUP0ZxIm6t5CkJME",
+      "name": "My Goblin",
+      "artists": [
+        "AILIFDOPA"
+      ],
+      "artist_ids": [
+        "26MXGRtGUZF1lhlnGFwdxc"
+      ],
+      "album": "Exormantis",
+      "album_id": "0z7dEWZAorqatvPKXehTUy",
+      "duration_ms": 237250,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPZ922013767"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2026-02-23T16:55:52Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1SHjzdTqlUYKOeQ6gMXqFr",
+      "uri": "spotify:track:1SHjzdTqlUYKOeQ6gMXqFr",
+      "name": "I Would Never Wanna Be Young Again",
+      "artists": [
+        "Gogol Bordello"
+      ],
+      "artist_ids": [
+        "2SVw939fwuqSobLjF8u78b"
+      ],
+      "album": "Gypsy Punks: Underdog World Strike",
+      "album_id": "13wK6cU29pZjFs0zz2Ajbh",
+      "duration_ms": 226240,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA6G0527102"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2026-03-07T09:01:17Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7pMJJTDWG5h2lUrA1NgS8z",
+      "uri": "spotify:track:7pMJJTDWG5h2lUrA1NgS8z",
+      "name": "six",
+      "artists": [
+        "BLIND GRAPH"
+      ],
+      "artist_ids": [
+        "6xOIJ3N7nlMOWc4WCPV6vu"
+      ],
+      "album": "SIx..",
+      "album_id": "3W5akORg0xBCv41bGF6eWb",
+      "duration_ms": 231360,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPO2185417"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2026-03-26T15:12:27Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2qQo80yWg7Mu6tKAakPcJG",
+      "uri": "spotify:track:2qQo80yWg7Mu6tKAakPcJG",
+      "name": "Calamity",
+      "artists": [
+        "King Shelter"
+      ],
+      "artist_ids": [
+        "2wzc9c6rclNEtMBAkg3FEN"
+      ],
+      "album": "Sellout",
+      "album_id": "7Gy45ZhEMGLYhL81yveDtV",
+      "duration_ms": 226764,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZEDY1800104"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2026-03-26T15:23:19Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3he3wNUgMH3M4A1P23ZPQQ",
+      "uri": "spotify:track:3he3wNUgMH3M4A1P23ZPQQ",
+      "name": "Heavy",
+      "artists": [
+        "Street Play"
+      ],
+      "artist_ids": [
+        "4GyWG2WfX8vwPGIrJuWkiO"
+      ],
+      "album": "Sirens",
+      "album_id": "0JQDpnZkoS4IDcAaIwYJtX",
+      "duration_ms": 175272,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCAED1942790"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2026-04-26T16:46:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6zUKktATXaNbZi37yvoEvo",
+      "uri": "spotify:track:6zUKktATXaNbZi37yvoEvo",
+      "name": "Merry Mephisto",
+      "artists": [
+        "Waitress"
+      ],
+      "artist_ids": [
+        "3PMNpDimllMfwohuWNoCSs"
+      ],
+      "album": "Merry Mephisto",
+      "album_id": "4MnGuQo1CRhmhf6iK8ECBb",
+      "duration_ms": 152000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWS2572654"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2026-04-28T22:17:17Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4qrBAShPdBpxCe0Yl2DXYT",
+      "uri": "spotify:track:4qrBAShPdBpxCe0Yl2DXYT",
+      "name": "Europaträume",
+      "artists": [
+        "Brutalismus 3000"
+      ],
+      "artist_ids": [
+        "6LtXxYMIiKSy2EGHnz1f5j"
+      ],
+      "album": "GOODBYE SALÒ",
+      "album_id": "4kiB2fjPSRxYhqfFA1dSV1",
+      "duration_ms": 216726,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DEE862400033"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

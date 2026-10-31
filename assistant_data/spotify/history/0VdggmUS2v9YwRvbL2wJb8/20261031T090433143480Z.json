@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:33.143296+00:00",
+  "id": "0VdggmUS2v9YwRvbL2wJb8",
+  "name": "Serving Cunt",
+  "description": "",
+  "owner": {
+    "id": "zxorxr8z18w9pa2lawmpwacod",
+    "display_name": "Grass"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAeypkJ36cTXxGgEePgpE7teMYbY3y",
+  "total_items_reported": 106,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API does not expose item contents for this playlist to the current account/app.",
+  "last_items_accessible_at": null,
+  "items_snapshot_id": null,
+  "items": []
+}

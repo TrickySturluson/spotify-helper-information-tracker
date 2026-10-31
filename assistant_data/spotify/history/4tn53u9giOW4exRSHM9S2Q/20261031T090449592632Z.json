@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:49.592446+00:00",
+  "id": "4tn53u9giOW4exRSHM9S2Q",
+  "name": "Begining",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": false,
+  "collaborative": false,
+  "snapshot_id": "AAAAGVvUCaEt8cIpu+GUiW/+ocTS8rbn",
+  "total_items_reported": 9,
+  "item_count_fetched": 9,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:49.592464+00:00",
+  "items_snapshot_id": "AAAAGVvUCaEt8cIpu+GUiW/+ocTS8rbn",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2022-08-31T05:51:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0PQdBK1LCyXJWPQvUCjcEe",
+      "uri": "spotify:track:0PQdBK1LCyXJWPQvUCjcEe",
+      "name": "Post Void Single",
+      "artists": [
+        "Karl Flodin",
+        "Ycjy"
+      ],
+      "artist_ids": [
+        "7F3cxAaoUhMH3Pwey7i0l4",
+        "020XF5hhrJuEgbwfT1ZkUR"
+      ],
+      "album": "Post Void Single",
+      "album_id": "36LUDj3ZN8MlFEDyGdMpeG",
+      "duration_ms": 229000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6N2051251"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2022-08-31T05:54:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3tEAo2aqwaGGKe6cREj2wT",
+      "uri": "spotify:track:3tEAo2aqwaGGKe6cREj2wT",
+      "name": "SkullHacker",
+      "artists": [
+        "Mick Gordon"
+      ],
+      "artist_ids": [
+        "13ab1LgQZ3tQOhkDRRYB8Y"
+      ],
+      "album": "Doom (Original Game Soundtrack)",
+      "album_id": "0KQyC28P9808r0oKKNgHvp",
+      "duration_ms": 435852,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMTH31600041"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2022-08-31T05:56:52Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0xIQeA41E6VRrwAsIX6jar",
+      "uri": "spotify:track:0xIQeA41E6VRrwAsIX6jar",
+      "name": "Mastermind",
+      "artists": [
+        "Mick Gordon"
+      ],
+      "artist_ids": [
+        "13ab1LgQZ3tQOhkDRRYB8Y"
+      ],
+      "album": "Doom (Original Game Soundtrack)",
+      "album_id": "0KQyC28P9808r0oKKNgHvp",
+      "duration_ms": 397500,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMTH31600045"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2022-08-31T06:12:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1i5uaqmAkETSaIfZkcVYkx",
+      "uri": "spotify:track:1i5uaqmAkETSaIfZkcVYkx",
+      "name": "Behemoth (Remix)",
+      "artists": [
+        "Perturbator",
+        "Gost"
+      ],
+      "artist_ids": [
+        "244uLu9lkdw39BJwlul3k8",
+        "46HcJG62ky3Tj7yJpB2Qqg"
+      ],
+      "album": "B-Sides and Remixes, Vol. 1",
+      "album_id": "3cAgLxu6csd2WuWtiNU3s1",
+      "duration_ms": 262335,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCADQ1878919"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2022-08-31T06:14:09Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2yOhhpMB3f8lU19bhV6a6C",
+      "uri": "spotify:track:2yOhhpMB3f8lU19bhV6a6C",
+      "name": "Neo Tokyo",
+      "artists": [
+        "Perturbator"
+      ],
+      "artist_ids": [
+        "244uLu9lkdw39BJwlul3k8"
+      ],
+      "album": "The Uncanny Valley",
+      "album_id": "1P0XIILJzTc9SzkZe4QutA",
+      "duration_ms": 253145,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACK1577656"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2022-08-31T06:15:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ZRxnIHvjN0qTVRwz3PLtO",
+      "uri": "spotify:track:6ZRxnIHvjN0qTVRwz3PLtO",
+      "name": "Smells Blood",
+      "artists": [
+        "kensuke ushio"
+      ],
+      "artist_ids": [
+        "4L0gz16xuM1as1OgYzh1SR"
+      ],
+      "album": "DEVILMAN crybaby (Original Soundtrack)",
+      "album_id": "05xPgo0O1tujgg6eDzIfxV",
+      "duration_ms": 109280,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPE301701466"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2022-08-31T06:20:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7bhl3pKnehTJmKfVicqMy8",
+      "uri": "spotify:track:7bhl3pKnehTJmKfVicqMy8",
+      "name": "Maleficarum",
+      "artists": [
+        "Gost"
+      ],
+      "artist_ids": [
+        "46HcJG62ky3Tj7yJpB2Qqg"
+      ],
+      "album": "Non Paradisi",
+      "album_id": "22w3kMjHKkmG44BEgE4Bxc",
+      "duration_ms": 215660,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACO1608853"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2022-08-31T06:24:23Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6C1zkRgm0KGpcRz3c6YEqI",
+      "uri": "spotify:track:6C1zkRgm0KGpcRz3c6YEqI",
+      "name": "Kay-LynnX10",
+      "artists": [
+        "Goth Von Core"
+      ],
+      "artist_ids": [
+        "6wSN57SIAGvevose6E8chU"
+      ],
+      "album": "Morbid Fascination",
+      "album_id": "04Xwa19gWmb0awPktPFrm7",
+      "duration_ms": 235258,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZES82096184"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2022-08-31T06:35:21Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3sRSpnXTVOLjjcDse6P6a0",
+      "uri": "spotify:track:3sRSpnXTVOLjjcDse6P6a0",
+      "name": "Hydrogen",
+      "artists": [
+        "A. Yarmak"
+      ],
+      "artist_ids": [
+        "2fN0s9StYLKSznf8YNt9rK"
+      ],
+      "album": "Hotline Miami Goes Metal",
+      "album_id": "3DhKoCsCF0dwQL7JcwoM0l",
+      "duration_ms": 238758,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZFZ21944703"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}
