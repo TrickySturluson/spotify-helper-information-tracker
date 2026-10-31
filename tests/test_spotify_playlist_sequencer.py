@@ -65,9 +65,9 @@ class PlaylistSequencerTests(unittest.TestCase):
             {"uri": "spotify:track:3", "name": "Dark", "artists": ["Dark Artist"]},
         ]
         artists = {
-            "rare": {"play_count": 12, "moods": ["dreamy"], "genres": ["dream pop"], "themes": ["dreamlike"]},
-            "popular": {"play_count": 900, "moods": ["energetic"], "genres": ["punk"], "themes": ["rebellious"]},
-            "dark artist": {"play_count": 80, "moods": ["dark"], "genres": ["darkwave"], "themes": ["nocturnal"]},
+            "rare": {"play_count": 12, "lastfm_tags": [{"tag": "dreamy"}], "genres": ["dream pop"], "themes": ["dreamlike"]},
+            "popular": {"play_count": 900, "lastfm_tags": [{"tag": "energetic"}], "genres": ["punk"], "themes": ["rebellious"]},
+            "dark artist": {"play_count": 80, "lastfm_tags": [{"tag": "dark"}], "genres": ["darkwave"], "themes": ["nocturnal"]},
         }
         atmosphere = sequencer.sequence_tracks(rows, artists, mode="atmosphere")
         self.assertEqual(atmosphere[0]["sequence_group"], "dreamy")
