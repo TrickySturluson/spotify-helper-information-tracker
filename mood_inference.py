@@ -37,6 +37,66 @@ MOOD_LEXICON = {
     "wistful": {"wistful", "longing", "yearning", "pensive", "aching"},
 }
 
+SOUND_TAG_FAMILIES = {
+    "dream pop & shoegaze": {"dream pop", "shoegaze", "noise pop", "ethereal wave", "dream pop"},
+    "psychedelia & experimental": {"psychedelic", "psychedelia", "experimental", "avant-garde", "freak folk", "neo-psychedelia"},
+    "punk & noise": {"punk", "post-punk", "noise rock", "hardcore", "riot grrrl", "egg punk", "garage punk", "art punk"},
+    "alternative & indie rock": {"indie rock", "alternative rock", "indie pop", "garage rock", "post-rock", "college rock"},
+    "metal & industrial": {"metal", "industrial", "industrial rock", "nu metal", "sludge", "doom metal"},
+    "electronic & synth": {"electronic", "synthwave", "darkwave", "synthpop", "electropop", "idm", "glitch", "breakbeat"},
+    "ambient & atmospheric": {"ambient", "dark ambient", "drone", "minimalism", "soundscape"},
+    "surf & rockabilly": {"surf rock", "surf", "rockabilly", "psychobilly", "instrumental rock"},
+    "funk, soul & groove": {"funk", "soul", "neo-soul", "disco", "funk rock", "dance-punk"},
+    "folk & roots": {"folk", "indie folk", "dark folk", "folk punk", "americana", "country", "bluegrass"},
+    "cabaret & theatrical": {"cabaret", "dark cabaret", "vaudeville", "musical", "circus"},
+    "hip-hop & rap": {"hip-hop", "hip hop", "rap", "experimental hip-hop", "alternative hip-hop"},
+    "jazz & improvisation": {"jazz", "jazz fusion", "swing", "bebop", "free jazz"},
+    "soundtrack & game music": {"soundtrack", "video game music", "game music", "score", "film score"},
+}
+
+def infer_sound_tag_profile(items, artist_profiles):
+    """Summarize recurring sound families and descriptive tags without treating them as moods."""
+    artists = {}
+    for item in items or []:
+        if not isinstance(item, dict):
+            continue
+        names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+        if names and names[0]:
+            artists[_norm(names[0])] = artists.get(_norm(names[0]), 0) + 1
+    family_support = {name: set() for name in SOUND_TAG_FAMILIES}
+    genre_support, theme_support = {}, {}
+    for artist in artists:
+        profile = artist_profiles.get(artist, {}) or {}
+        genres = {_norm(value) for value in profile.get("genres", []) if value}
+        tags = set()
+        for row in profile.get("tags") or []:
+            tag = row.get("tag", "") if isinstance(row, dict) else row
+            if tag:
+                tags.add(_norm(tag))
+        for genre in genres | tags:
+            for family, terms in SOUND_TAG_FAMILIES.items():
+                if genre in terms:
+                    family_support[family].add(artist)
+            if genre:
+                genre_support.setdefault(genre, set()).add(artist)
+        for theme in profile.get("themes", []) or []:
+            if theme:
+                theme_support.setdefault(_norm(theme), set()).add(artist)
+    families = [{"tag": name, "artist_support": len(supporters),
+                 "artist_share": round(len(supporters) / max(1, len(artists)), 3)}
+                for name, supporters in family_support.items() if supporters]
+    families.sort(key=lambda row: (-row["artist_support"], row["tag"]))
+    genres = [{"tag": tag, "artist_support": len(supporters)}
+              for tag, supporters in genre_support.items()]
+    genres.sort(key=lambda row: (-row["artist_support"], row["tag"]))
+    themes = [{"tag": tag, "artist_support": len(supporters)}
+              for tag, supporters in theme_support.items()]
+    themes.sort(key=lambda row: (-row["artist_support"], row["tag"]))
+    return {"method": "artist-level Last.fm genres, themes, and community tags",
+            "artist_count": len(artists), "families": families[:10],
+            "genres": genres[:15], "themes": themes[:12]}
+
+
 def _tag_moods(tag):
     value = _norm(tag)
     matches = []
