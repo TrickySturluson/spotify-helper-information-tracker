@@ -36,6 +36,32 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
             self.assertEqual(errors, [])
             self.assertEqual(warnings, [])
 
+    def test_catalog_record_summary_drift_is_an_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            catalog_path = base / "playlists.json"
+            catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+            catalog["playlists"][0]["item_count"] = 9
+            catalog["playlists"][0]["snapshot_id"] = "newer-snapshot"
+            catalog["playlists"][0]["items_accessible"] = False
+            catalog_path.write_text(json.dumps(catalog), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("fetched-item count mismatch" in error for error in errors))
+            self.assertTrue(any("snapshot mismatch" in error for error in errors))
+            self.assertTrue(any("accessibility mismatch" in error for error in errors))
+
+    def test_record_fetched_count_must_match_accessible_items(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            record_path = base / "playlists" / "p1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["item_count_fetched"] = 2
+            record_path.write_text(json.dumps(record), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("item_count_fetched does not match its items list" in error for error in errors))
+
     def test_inaccessible_items_are_warning_not_empty_library_error(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
