@@ -16,7 +16,7 @@ import playlist_metadata
 
 STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
-CONTROL_ISSUE_TITLE = "Spotify Playlist Manager Control"
+CONTROL_ISSUE_TITLE = "SHIT — Playlist Control"
 
 DAILY_DESCRIPTIONS = [
     "Could be worse. Could be quiet.",
