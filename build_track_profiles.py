@@ -90,8 +90,11 @@ def lastfm_tags(item):
     if item.get("track_mbid"):
         if returned_artist != "[Unknown]" and (norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"])):
             return [], "identity_mismatch"
-    elif returned_artist == "[Unknown]" or returned_track == "[Unknown]" or norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"]):
-        return [], "identity_unverified"
+    else:
+        if returned_artist == "[Unknown]" or returned_track == "[Unknown]":
+            return [], "identity_unverified"
+        if norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"]):
+            return [], "identity_mismatch"
     rows = top.get("tag") or []
     if isinstance(rows, dict):
         rows = [rows]
