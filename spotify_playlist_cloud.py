@@ -762,11 +762,15 @@ def main():
         manager.audit(event="daily_recommendations_previewed", playlist_id=pid, recommendation_count=len(recommendations), skipped_count=len(skipped))
         tier_counts = {tier: sum(1 for row in recommendations if row.get("tier") == tier) for tier in ("discovery", "rediscovery", "familiar")}
         liked_count = sum(1 for row in recommendations if row.get("liked"))
+        profile = intelligence.build_playlist_profile(current["items"], feedback)
+        confidence_counts = {level: sum(1 for row in recommendations if row.get("confidence") == level) for level in ("strong fit", "promising", "wildcard")}
         lines = [
             f'DAILY DISCOVERY PREVIEW — {p.get("name")} [{pid}]',
             f'Recommended tracks: {len(recommendations)}; current items: {len(current["items"])}',
             f'Mix: {tier_counts["discovery"]} unheard tracks, {tier_counts["rediscovery"]} lightly heard tracks, {tier_counts["familiar"]} familiar tracks.',
             f'{liked_count} already-Liked track(s) survived a strong ranking penalty; prior scrobbles were penalized by frequency and recency, never hard-excluded.',
+            f'Confidence: {confidence_counts["strong fit"]} strong fit, {confidence_counts["promising"]} promising, {confidence_counts["wildcard"]} wildcard.',
+            f'Playlist identity: {profile["artist_count"]} primary artists; metadata coverage {profile["metadata_coverage"]:.0%}; top genre signals: {", ".join(row["tag"] for row in profile["genres"][:5]) or "unavailable"}.',
             f'Playlist feedback: {feedback["removed_count"]} prior removals currently count as negative evidence; {feedback["whitelisted_count"]} re-added track(s) are whitelisted by current membership.',
             "Current playlist artists provide positive evidence; removals from this playlist only provide soft negative evidence here.",
             "Candidates come from similar artists outside the scrobble archive, resolved against Spotify; max two tracks per artist.",
@@ -777,7 +781,10 @@ def main():
             familiarity = "already Liked" if row.get("liked") else ("unheard" if not row.get("plays") else f'{row.get("plays")} archive plays')
             popularity = row.get("popularity")
             popularity_label = f"Spotify popularity {popularity}" if isinstance(popularity, (int, float)) else "Spotify popularity unavailable from API"
-            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{row.get("tier", "discovery").upper()}; {familiarity}; similarity {row.get("similarity", 0):.2f}; {popularity_label}]')
+            lines.append(f'{index:02d}. {row["artist"]} — {row["track"]} [{row.get("confidence", "promising").upper()}; {row.get("tier", "discovery").upper()}; {familiarity}; similarity {row.get("similarity", 0):.2f}; {popularity_label}]')
+            reasons = "; ".join(row.get("why") or [])
+            if reasons:
+                lines.append(f'    WHY: {reasons}')
         lines.extend(["", f'Skipped {len(skipped)} candidates already present in Tricky Daily or without a usable Spotify match.', "To replace Tricky Daily with this exact set, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
         result = "\n".join(lines)
     elif action == "undo":
