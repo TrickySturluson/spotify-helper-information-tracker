@@ -219,12 +219,15 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
 
     reverse = direction == "descending"
     if mode == "atmosphere":
-        key = lambda row: (row["sequence_group"] if group_by != "none" else (row.get("vibe_groups") or ["unclassified"])[0],
-                           -row["score"] if reverse else row["score"], row["original_index"])
         if group_by == "none":
             for row in scored:
                 row["sequence_group"] = (row.get("vibe_groups") or ["unclassified"])[0]
-        scored.sort(key=key)
+        # Give atmosphere clusters an interpretable emotional progression,
+        # rather than arbitrary alphabetical ordering of mood labels.
+        scored.sort(key=lambda row: (
+            -row["narrative_phase"] if reverse else row["narrative_phase"],
+            row["sequence_group"], -row["score"] if reverse else row["score"],
+            row["original_index"]))
     elif mode == "style":
         for row in scored:
             if group_by == "none":
