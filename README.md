@@ -1,6 +1,8 @@
-# Tricky Last.fm Archive
+# Spotify Helper & Information Tracker (SHIT)
 
-This repository maintains a personal Last.fm scrobble archive and derived analytics for **TrickySturluson**.
+**Spotify Helper & Information Tracker (SHIT)** is the home for Spotify playlist intelligence, playlist curation and safety tooling, personal listening analytics, and the canonical Last.fm scrobble archive for **TrickySturluson**.
+
+The project combines Spotify's live playlist and playback interfaces with Last.fm's long-term scrobble history. Spotify playlist operations are handled separately from the historical analytics archive, with read-only inspection and preview-first safeguards for changes.
 
 ## Source of truth
 
