@@ -95,6 +95,7 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None):
             counter.update(norm(value) for value in metadata.get(field, []) if value)
     total = sum(artists.values())
     inferred_moods = mood_inference.infer_mood_profile(items, artist_profiles)
+    sound_tags = mood_inference.infer_sound_tag_profile(items, artist_profiles)
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -109,6 +110,7 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None):
             for row in inferred_moods["moods"]
         ],
         "mood_inference": inferred_moods,
+        "sound_tags": sound_tags,
         "themes": [{"tag": key, "count": count} for key, count in themes.most_common(10)],
         "positive_artist_evidence": sum((feedback.get("positive_artists") or {}).values()),
         "negative_track_evidence": feedback.get("removed_count", 0),
