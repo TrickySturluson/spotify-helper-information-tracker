@@ -56,11 +56,16 @@ def playlist_record(sp, playlist):
     try:
         entries = sp.items(playlist["id"])
     except manager.ManagerError as error:
-        if "HTTP 403" not in str(error):
+        message = str(error)
+        status = next((code for code in ("HTTP 403", "HTTP 404") if code in message), None)
+        if status is None:
             raise
         entries = []
         items_accessible = False
-        items_error = "Spotify API does not expose item contents for this playlist to the current account/app."
+        items_error = (
+            f"Spotify API returned {status} while fetching playlist items; "
+            "contents are unavailable and are not treated as an empty playlist."
+        )
     rows = [item_record(entry, i) for i, entry in enumerate(entries)]
     owner = playlist.get("owner") or {}
     return {

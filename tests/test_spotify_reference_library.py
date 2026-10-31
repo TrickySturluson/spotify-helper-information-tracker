@@ -53,6 +53,20 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_item_endpoint_404_is_recorded_as_inaccessible(self):
+        sp = Mock()
+        sp.items.side_effect = manager.ManagerError(
+            "Spotify API GET /playlists/restricted/items: HTTP 404"
+        )
+        record = library.playlist_record(sp, {
+            "id": "restricted", "name": "Restricted",
+            "snapshot_id": "snapshot-1", "items": {"total": 3},
+        })
+        self.assertFalse(record["items_accessible"])
+        self.assertEqual(record["items"], [])
+        self.assertIn("HTTP 404", record["items_error"])
+        self.assertIsNone(record["items_snapshot_id"])
+
     def test_inaccessible_playlist_preserves_last_known_tracklist(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "assistant_data" / "spotify"
