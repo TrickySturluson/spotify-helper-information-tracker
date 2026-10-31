@@ -58,6 +58,36 @@ class PlaylistSequencerTests(unittest.TestCase):
             {"high": 1, "medium": 0, "low": 1, "unknown": 2},
         )
 
+    def test_sort_modes_include_atmosphere_style_narrative_and_discovery(self):
+        rows = [
+            {"uri": "spotify:track:1", "name": "Soft", "artists": ["Rare"]},
+            {"uri": "spotify:track:2", "name": "Loud", "artists": ["Popular"]},
+            {"uri": "spotify:track:3", "name": "Dark", "artists": ["Dark Artist"]},
+        ]
+        artists = {
+            "rare": {"play_count": 12, "moods": ["dreamy"], "genres": ["dream pop"], "themes": ["dreamlike"]},
+            "popular": {"play_count": 900, "moods": ["energetic"], "genres": ["punk"], "themes": ["rebellious"]},
+            "dark artist": {"play_count": 80, "moods": ["dark"], "genres": ["darkwave"], "themes": ["nocturnal"]},
+        }
+        atmosphere = sequencer.sequence_tracks(rows, artists, mode="atmosphere")
+        self.assertEqual(atmosphere[0]["sequence_group"], "dreamy")
+        style = sequencer.sequence_tracks(rows, artists, mode="style")
+        self.assertEqual({row["sequence_group"] for row in style}, {"dream pop", "punk", "darkwave"})
+        narrative = sequencer.sequence_tracks(rows, artists, mode="narrative")
+        self.assertEqual(narrative[0]["sequence_group"], "act-1")
+        discovery = sequencer.sequence_tracks(rows, artists, mode="discovery")
+        self.assertEqual(discovery[0]["artist"], "Rare")
+
+    def test_hybrid_keeps_broad_energy_bands_in_order(self):
+        rows = [
+            {"uri": "spotify:track:high", "name": "High", "artists": ["A"],
+             "audio_features": {"energy": 0.91}},
+            {"uri": "spotify:track:low", "name": "Low", "artists": ["B"],
+             "audio_features": {"energy": 0.12}},
+        ]
+        result = sequencer.sequence_tracks(rows, mode="hybrid")
+        self.assertEqual([row["item"]["name"] for row in result], ["Low", "High"])
+
     def test_reorder_plan_preserves_duplicates_and_transforms_order(self):
         current = ["a", "b", "a", "c"]
         desired = ["a", "a", "c", "b"]
