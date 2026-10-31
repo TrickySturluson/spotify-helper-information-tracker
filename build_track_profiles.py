@@ -72,29 +72,63 @@ def request_json(url, params=None, user_agent=UA):
 
 
 def lastfm_tags(item):
-    params = {"method": "track.getTopTags", "api_key": API_KEY, "format": "json", "autocorrect": 0}
-    if item.get("track_mbid"):
+    base = {"method": "track.getTopTags", "api_key": API_KEY, "format": "json", "autocorrect": 0}
+    has_mbid = bool(item.get("track_mbid"))
+    params = dict(base)
+    if has_mbid:
         params["mbid"] = item["track_mbid"]
     else:
         params.update({"artist": item["artist"], "track": item["track"]})
-    payload = request_json(LASTFM_URL, params)
+
+    used_name_fallback = False
+    try:
+        payload = request_json(LASTFM_URL, params)
+    except HTTPError as exc:
+        # Last.fm documents MBID and artist/title as alternative identifiers.
+        # Some valid recording MBIDs nevertheless produce HTTP 400/404, so
+        # retry once using the exact scrobble identity before classifying it.
+        if not has_mbid or exc.code not in {400, 404}:
+            raise
+        detail = ""
+        try:
+            detail = exc.read(300).decode("utf-8", errors="replace").replace(chr(10), " ").strip()
+        except Exception:
+            pass
+        print(f"Last.fm MBID lookup HTTP {exc.code} for {item['artist']} — {item['track']}; retrying exact artist/title ({detail[:120]})")
+        fallback = dict(base, artist=item["artist"], track=item["track"])
+        payload = request_json(LASTFM_URL, fallback)
+        used_name_fallback = True
     if "error" in payload:
         code = str(payload.get("error"))
         if code in {"11", "16", "29"}:
             raise RuntimeError("Temporary Last.fm API error " + code)
-        return [], "not_found" if code == "6" else "api_error_" + code
+        # Invalid-parameter responses on an MBID lookup get the same exact
+        # artist/title fallback as HTTP 400/404 responses.
+        if has_mbid and code == "6":
+            payload = request_json(LASTFM_URL, dict(base, artist=item["artist"], track=item["track"]))
+            used_name_fallback = True
+            if "error" in payload:
+                code = str(payload.get("error"))
+                if code in {"11", "16", "29"}:
+                    raise RuntimeError("Temporary Last.fm API error " + code)
+                return [], "not_found" if code == "6" else "api_error_" + code
+        else:
+            return [], "not_found" if code == "6" else "api_error_" + code
+
     top = payload.get("toptags") or {}
-    # Last.fm returns the requested identity even when the tag list is empty.
+    # Always verify the response against the exact artist/title from the archive,
+    # including responses obtained through the MBID route.
     returned_artist = clean(top.get("@attr", {}).get("artist"))
     returned_track = clean(top.get("@attr", {}).get("track"))
-    if item.get("track_mbid"):
-        if returned_artist != "[Unknown]" and (norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"])):
-            return [], "identity_mismatch"
-    else:
+    if used_name_fallback or not has_mbid:
         if returned_artist == "[Unknown]" or returned_track == "[Unknown]":
             return [], "identity_unverified"
         if norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"]):
             return [], "identity_mismatch"
+    elif returned_artist != "[Unknown]" and (
+        norm(returned_artist) != norm(item["artist"]) or norm(returned_track) != norm(item["track"])
+    ):
+        return [], "identity_mismatch"
     rows = top.get("tag") or []
     if isinstance(rows, dict):
         rows = [rows]
@@ -110,6 +144,15 @@ def lastfm_tags(item):
         tags.append({"tag": label, "count": count, "source": "Last.fm track.getTopTags"})
     tags.sort(key=lambda row: (-row["count"], row["tag"].casefold()))
     return tags, "matched" if tags else "no_tags"
+
+
+def should_retry_lastfm(old, now):
+    """Retry previously failed MBID HTTP lookups immediately after fallback is added."""
+    if old.get("lastfm_status") in {"matched", "no_tags", "not_found"}:
+        return False
+    if old.get("lastfm_status") in {"http_400", "http_404"}:
+        return True
+    return int(old.get("retry_after", 0) or 0) <= now
 
 
 def musicbrainz_tags(item):
@@ -152,10 +195,7 @@ def main():
     due = []
     for tid, item in catalogue.items():
         old = profiles.get(tid, {})
-        lastfm_done = old.get("lastfm_status") in {"matched", "no_tags", "not_found"}
-        if lastfm_done and (old.get("retry_after", 0) == 0 or int(old.get("retry_after", 0) or 0) > now):
-            continue
-        if int(old.get("retry_after", 0) or 0) > now:
+        if not should_retry_lastfm(old, now):
             continue
         due.append(item)
     due.sort(key=lambda row: (-row["plays"], row["artist"].casefold(), row["track"].casefold()))

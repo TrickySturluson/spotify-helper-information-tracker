@@ -30,6 +30,51 @@ class TrackProfileTests(unittest.TestCase):
         self.assertEqual(tags, [])
         self.assertEqual(status, "identity_mismatch")
 
+
+    def test_mbid_http_400_falls_back_to_exact_artist_and_track(self):
+        from urllib.error import HTTPError
+        from io import BytesIO
+
+        mbid = "12345678-1234-1234-1234-123456789abc"
+        item = {"artist": "Example Artist", "track": "Example Song", "track_mbid": mbid}
+        payload = {"toptags": {"@attr": {"artist": "Example Artist", "track": "Example Song"},
+                               "tag": [{"name": "dream pop", "count": "12"}]}}
+        error = HTTPError("https://ws.audioscrobbler.com/2.0/", 400, "Bad Request", {}, BytesIO(b"{}"))
+        with patch.object(profiles, "request_json", side_effect=[error, payload]) as request:
+            tags, status = profiles.lastfm_tags(item)
+        self.assertEqual(status, "matched")
+        self.assertEqual(tags[0]["tag"], "dream pop")
+        first_params = request.call_args_list[0].args[1]
+        second_params = request.call_args_list[1].args[1]
+        self.assertEqual(first_params["mbid"], mbid)
+        self.assertNotIn("mbid", second_params)
+        self.assertEqual((second_params["artist"], second_params["track"]), ("Example Artist", "Example Song"))
+
+    def test_mbid_http_404_falls_back_but_still_checks_identity(self):
+        from urllib.error import HTTPError
+        from io import BytesIO
+
+        item = {"artist": "Example Artist", "track": "Example Song",
+                "track_mbid": "12345678-1234-1234-1234-123456789abc"}
+        wrong_identity = {"toptags": {"@attr": {"artist": "Other Artist", "track": "Example Song"},
+                                      "tag": [{"name": "pop", "count": "99"}]}}
+        error = HTTPError("https://ws.audioscrobbler.com/2.0/", 404, "Not Found", {}, BytesIO(b"{}"))
+        with patch.object(profiles, "request_json", side_effect=[error, wrong_identity]):
+            tags, status = profiles.lastfm_tags(item)
+        self.assertEqual(tags, [])
+        self.assertEqual(status, "identity_mismatch")
+
+    def test_previous_mbid_http_errors_are_retried_without_waiting_30_days(self):
+        now = 1_800_000_000
+        self.assertTrue(profiles.should_retry_lastfm({"lastfm_status": "http_400",
+                                                      "retry_after": now + 30 * 86400}, now))
+        self.assertTrue(profiles.should_retry_lastfm({"lastfm_status": "http_404",
+                                                      "retry_after": now + 30 * 86400}, now))
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "matched",
+                                                       "retry_after": 0}, now))
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_500",
+                                                       "retry_after": now + 3600}, now))
+
     def test_musicbrainz_requires_existing_exact_recording_mbid(self):
         with patch.object(profiles, "request_json") as request:
             tags, genres, status = profiles.musicbrainz_tags({"track": "Song"})
