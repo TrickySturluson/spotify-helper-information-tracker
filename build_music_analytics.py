@@ -7,6 +7,8 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+import mood_inference
+
 SOURCE = Path("data/scrobbles.json")
 MUSIC = Path("assistant_data/music")
 OUT = Path("assistant_data/recommendations")
@@ -69,6 +71,7 @@ def main():
                     durations[tid] = track
 
     profiles = read(MUSIC / "artist_profiles.json", {})
+    track_profiles = read(MUSIC / "track_profiles.json", {})
     tracks, artists = {}, {}
     monthly = defaultdict(lambda: {"scrobbles": 0, "known_duration_scrobbles": 0, "full_track_equivalent_ms": 0, "minimum_qualifying_ms": 0, "unique_tracks": set(), "unique_artists": set()})
     yearly = defaultdict(lambda: {"scrobbles": 0, "known_duration_scrobbles": 0, "full_track_equivalent_ms": 0, "minimum_qualifying_ms": 0, "unique_tracks": set(), "unique_artists": set()})
@@ -138,13 +141,27 @@ def main():
     for tid, t in tracks.items():
         meta = durations.get(tid, {})
         profile = profiles.get(t["artist_id"], {})
+        track_profile = track_profiles.get(tid, {})
+        lastfm_tags = track_profile.get("lastfm_tags", [])
+        musicbrainz_tags = track_profile.get("musicbrainz_tags", [])
+        musicbrainz_genres = track_profile.get("musicbrainz_genres", [])
+        sourced_tags = lastfm_tags + musicbrainz_tags + musicbrainz_genres
+        tag_names = list(dict.fromkeys(row.get("tag", "") for row in sourced_tags if row.get("tag")))
+        track_moods = sorted({mood for tag in tag_names for mood in mood_inference._tag_moods(tag)})
         track_output.append({
             "track_id": tid, "artist_id": t["artist_id"], "artist": t["artist"], "track": t["track"],
             "albums": [name for name, _ in t["albums"].most_common(5)], "plays": t["plays"],
             "first_scrobble": iso(t["first_scrobble_ts"]), "last_scrobble": iso(t["last_scrobble_ts"]),
             "duration_ms": meta.get("duration_ms"), "duration_source": meta.get("duration_source"),
             "duration_confidence": meta.get("confidence"),
-            "genres": profile.get("genres", []), "moods": profile.get("moods", []), "themes": profile.get("themes", []),
+            "genres": [row.get("tag") for row in musicbrainz_genres if row.get("tag")],
+            "moods": track_moods, "themes": [],
+            "track_tags": tag_names,
+            "track_tag_sources": sorted({row.get("source", "unknown") for row in sourced_tags}),
+            "track_metadata_status": track_profile.get("lastfm_status", "not_enriched"),
+            "artist_genres": profile.get("genres", []),
+            "artist_moods": profile.get("moods", []),
+            "artist_themes": profile.get("themes", []),
             "familiarity": "frequent" if t["plays"] >= 25 else "known" if t["plays"] >= 2 else "single_scrobble"
         })
     track_output.sort(key=lambda t: (-t["plays"], t["artist"].casefold(), t["track"].casefold()))
@@ -158,6 +175,8 @@ def main():
         "source_scrobbles": len(scrobbles), "unique_artists": len(artists), "unique_tracks": len(tracks),
         "tracks_with_duration": sum(1 for t in tracks if t in durations),
         "tracks_with_artist_profiles": sum(1 for aid in artists if profiles.get(aid, {}).get("status") == "matched"),
+        "tracks_with_track_tags": sum(1 for tid in tracks if track_profiles.get(tid, {}).get("lastfm_tags") or track_profiles.get(tid, {}).get("musicbrainz_tags") or track_profiles.get(tid, {}).get("musicbrainz_genres")),
+        "tracks_with_track_moods": sum(1 for tid in tracks if any(mood_inference._tag_moods(row.get("tag", "")) for row in (track_profiles.get(tid, {}).get("lastfm_tags", []) + track_profiles.get(tid, {}).get("musicbrainz_tags", [])))),
         "files": {
             "monthly_duration_trends": "monthly_duration_trends.json",
             "yearly_duration_trends": "yearly_duration_trends.json",
@@ -167,7 +186,8 @@ def main():
         "recommendation_notes": [
             "Familiarity is based on scrobble counts, not a claim that the user likes every track.",
             "Tracks with one scrobble are still previously heard in the archive; external discovery requires a separate catalogue/search step.",
-            "Genre, mood and theme labels are artist-level Last.fm community signals, not track-specific ground truth.",
+            "Artist genres, moods and themes remain separate from track-level tags; track moods are conservative mappings from track-sourced tags only.",
+            "Track-level community tags are descriptive evidence, not objective audio analysis; source and identity provenance are retained.",
             "Duration trends include only scrobbles whose track duration is known."
         ]
     }
