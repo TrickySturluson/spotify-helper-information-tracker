@@ -105,6 +105,37 @@ class ReferenceLibraryIntegrityTests(unittest.TestCase):
                 self.assertEqual(report["daily_feedback"]["playback_tracker_status"], "unknown")
                 self.assertFalse(report["daily_feedback"]["segments_file_in_sync_environment"])
 
+    def test_duplicate_playlist_ids_are_processed_once(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "assistant_data" / "spotify"
+            playlists = root / "playlists"
+            sp = Mock()
+            duplicate = {
+                "id": "same-id", "name": "Repeated page result",
+                "owner": {"id": "owner", "display_name": "Owner"},
+                "snapshot_id": "snapshot-1", "items": {"total": 1},
+                "public": True, "collaborative": False,
+            }
+            sp.playlists.return_value = [duplicate, dict(duplicate)]
+            sp.items.return_value = [{
+                "item": {"id": "track-1", "uri": "spotify:track:track-1",
+                         "name": "Track", "artists": [{"name": "Artist", "id": "artist-1"}]},
+                "added_at": None,
+            }]
+            with patch.object(library, "ROOT", root), \
+                 patch.object(library, "CATALOG", root / "playlists.json"), \
+                 patch.object(library, "PLAYLIST_DIR", playlists), \
+                 patch.object(library, "HISTORY_DIR", root / "history"), \
+                 patch.object(library, "INDEX", root / "reference_index.json"):
+                library.sync(sp)
+            catalog = json.loads((root / "playlists.json").read_text())
+            index = json.loads((root / "reference_index.json").read_text())
+            self.assertEqual(catalog["playlist_count"], 1)
+            self.assertEqual([row["id"] for row in catalog["playlists"]], ["same-id"])
+            self.assertEqual(sp.items.call_count, 1)
+            self.assertEqual(index["track_playlists"]["spotify:track:track-1"], ["same-id"])
+            self.assertEqual(index["artist_playlists"]["artist"], ["same-id"])
+
 
 class DailyFeedbackTests(unittest.TestCase):
     def test_no_observation_is_unknown_not_negative(self):
