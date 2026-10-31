@@ -53,7 +53,11 @@ The catalogue is split into 32 fixed artist-hash shards to avoid thousands of ti
 
 The daily workflow fills the Last.fm duration cache gradually (120 unique-track lookups per run by default); subsequent runs query only missing/unmatched entries. The **Enrich Music Metadata** workflow now runs automatically once a week (Monday 08:17 UTC) in small batches, in addition to remaining manually dispatchable with larger lookup limits. Scheduled runs use conservative limits (300 MusicBrainz duration lookups, 100 artist profiles, and 120 track profiles); manual runs retain their selectable larger limits. A concurrency group prevents overlapping enrichment runs from racing to commit generated data. It uses MusicBrainz as a secondary source for unresolved durations, builds artist genre/mood/theme profiles from Last.fm community tags, and independently enriches individual tracks with Last.fm and MusicBrainz tags. MusicBrainz requests are limited to roughly one per second. Artist profiles preserve the original community tags and separately expose conservative genre/mood/theme subsets; tags are community-sourced and should be treated as descriptive signals, not definitive classifications. To backfill the entire catalogue on demand, use **Actions → Backfill Music Durations → Run workflow**. It processes up to 12,000 unique tracks in one run, commits the resulting cache, and can be run again if Last.fm rate limits interrupt it. Successfully resolved tracks are cached, so reruns resume rather than repeat completed lookups. Unmatched records are retained and retried after 30 days. The backfill uses Last.fm's `track.getInfo` endpoint and waits between requests to reduce rate-limit pressure.
 
-### Artist profiles for recommendations\n\n`assistant_data/music/artist_profiles.json` stores each artist's play count, source, check status, raw community tags and derived `genres`, `moods`, and `themes` lists. The raw tags are preserved because genre boundaries are fuzzy and community tagging can be inconsistent. The manual **Enrich Music Metadata** action fills profiles incrementally, prioritizing artists with the most scrobbles. These are artist-level signals and are never treated as track-level ground truth. The same workflow now builds `assistant_data/music/track_profiles.json` with Last.fm `track.getTopTags` and, when a recording MBID is already present, MusicBrainz recording tags and genres. Track tags retain source attribution and lookup status. MusicBrainz enrichment deliberately does not guess recording identity through fuzzy search; recordings without a trusted MBID remain Last.fm-only or unresolved. `build_music_analytics.py` exposes track-sourced `genres`, `moods`, and raw `track_tags` separately from `artist_genres`, `artist_moods`, and `artist_themes`. Track moods are mapped conservatively from track-sourced tags only; artist-level mood labels are not copied onto every track.\n\n## Measured Spotify playback time
+### Artist profiles for recommendations
+
+`assistant_data/music/artist_profiles.json` stores each artist's play count, source, check status, raw community tags and derived `genres`, `moods`, and `themes` lists. The raw tags are preserved because genre boundaries are fuzzy and community tagging can be inconsistent. The manual **Enrich Music Metadata** action fills profiles incrementally, prioritizing artists with the most scrobbles. These are artist-level signals and are never treated as track-level ground truth. The same workflow now builds `assistant_data/music/track_profiles.json` with Last.fm `track.getTopTags` and, when a recording MBID is already present, MusicBrainz recording tags and genres. Track tags retain source attribution and lookup status. MusicBrainz enrichment deliberately does not guess recording identity through fuzzy search; recordings without a trusted MBID remain Last.fm-only or unresolved. `build_music_analytics.py` exposes track-sourced `genres`, `moods`, and raw `track_tags` separately from `artist_genres`, `artist_moods`, and `artist_themes`. Track moods are mapped conservatively from track-sourced tags only; artist-level mood labels are not copied onto every track.
+
+## Measured Spotify playback time
 
 The Last.fm archive cannot provide exact played duration. For prospective measurement, `spotify_playback_tracker.py` polls Spotify's playback-state API locally and records progress deltas in `playback_data/segments.jsonl`. `build_playback_analytics.py` aggregates those intervals into `assistant_data/playback/`; the scheduled workflow rebuilds and publishes those aggregates whenever the segment log is present in the repository.
 
@@ -174,27 +178,27 @@ Main entry points include update_lastfm.py, build_stats.py, build_assistant_data
 
 ## Spotify playlist manager
 
-\`spotify_playlist_manager.py\` is a separate local tool for inspecting and managing your Spotify playlists. It does not feed Spotify playlist content into \`assistant_data/\` or the Last.fm analytics pipeline.
+`spotify_playlist_manager.py` is a separate local tool for inspecting and managing your Spotify playlists. It does not feed Spotify playlist content into `assistant_data/` or the Last.fm analytics pipeline.
 
 ### Setup
 
 1. Use the same Spotify Developer app and Client ID as the playback tracker.
-2. Ensure the app's Redirect URI includes \`http://127.0.0.1:8888/callback\`.
-3. Stop \`spotify_playback_tracker.py\` before first playlist-manager authorization if it is using port 8888.
-4. Set \`SPOTIFY_CLIENT_ID\` as shown in the playback tracker setup.
-5. Run \`python spotify_playlist_manager.py list\` and approve the additional playlist permissions in Spotify.
+2. Ensure the app's Redirect URI includes `http://127.0.0.1:8888/callback`.
+3. Stop `spotify_playback_tracker.py` before first playlist-manager authorization if it is using port 8888.
+4. Set `SPOTIFY_CLIENT_ID` as shown in the playback tracker setup.
+5. Run `python spotify_playlist_manager.py list` and approve the additional playlist permissions in Spotify.
 
-The manager now also requests \`user-library-read\` so the discovery curator can check Liked Songs. If you authorized the manager before this permission was added, reauthorize it once:
+The manager now also requests `user-library-read` so the discovery curator can check Liked Songs. If you authorized the manager before this permission was added, reauthorize it once:
 - Stop any other local tool using port 8888.
-- Delete the existing \`.spotify_playlist_token.json\` so the manager starts a fresh authorization.
-- Run \`python spotify_playlist_manager.py list\` again and approve the expanded permissions.
-- Run \`python spotify_playlist_manager.py export-refresh-token\` and replace the repository's GitHub Actions secret \`SPOTIFY_REFRESH_TOKEN\` with the newly printed token. Do not commit or share the token.
+- Delete the existing `.spotify_playlist_token.json` so the manager starts a fresh authorization.
+- Run `python spotify_playlist_manager.py list` again and approve the expanded permissions.
+- Run `python spotify_playlist_manager.py export-refresh-token` and replace the repository's GitHub Actions secret `SPOTIFY_REFRESH_TOKEN` with the newly printed token. Do not commit or share the token.
 
-The manager uses its own \`.spotify_playlist_token.json\`; it does not overwrite the playback tracker's token. It uses Authorization Code with PKCE and requires no client secret.
+The manager uses its own `.spotify_playlist_token.json`; it does not overwrite the playback tracker's token. It uses Authorization Code with PKCE and requires no client secret.
 
 ### Commands
 
-\`\`\`bash
+```bash
 python spotify_playlist_manager.py list
 python spotify_playlist_manager.py export-refresh-token
 python spotify_playlist_manager.py inspect YOUR_PLAYLIST_ID
@@ -202,15 +206,15 @@ python spotify_playlist_manager.py unlock YOUR_PLAYLIST_ID
 python spotify_playlist_manager.py lock YOUR_PLAYLIST_ID
 python spotify_playlist_manager.py create "New playlist name" --description "Description"
 python spotify_playlist_manager.py apply change-plan.json
-\`\`\`
+```
 
-All playlists are **LOCKED by default**, including newly created playlists. Only explicitly unlocked playlists can be modified. A change plan is previewed before any write, then requires typing \`APPLY\`; plans containing a replacement require typing \`REPLACE\`. The manager checks the lock again immediately before each operation and stops if it has become locked. It also checks playlist ownership and detects changes made after the preview.
+All playlists are **LOCKED by default**, including newly created playlists. Only explicitly unlocked playlists can be modified. A change plan is previewed before any write, then requires typing `APPLY`; plans containing a replacement require typing `REPLACE`. The manager checks the lock again immediately before each operation and stops if it has become locked. It also checks playlist ownership and detects changes made after the preview.
 
 ### Change-plan format
 
-Track URIs must be Spotify track URIs (for example, \`spotify:track:...\`). Supported operations are \`add\`, \`remove\`, \`replace\`, and \`reorder\`.
+Track URIs must be Spotify track URIs (for example, `spotify:track:...`). Supported operations are `add`, `remove`, `replace`, and `reorder`.
 
-\`\`\`json
+```json
 {
   "playlist_id": "YOUR_PLAYLIST_ID",
   "operations": [
@@ -224,16 +228,16 @@ Track URIs must be Spotify track URIs (for example, \`spotify:track:...\`). Supp
     }
   ]
 }
-\`\`\`
+```
 
-For a reorder operation, provide zero-based \`range_start\`, \`insert_before\`, and \`range_length\`. A replace operation replaces the full contents and requires the separate \`REPLACE\` confirmation.
+For a reorder operation, provide zero-based `range_start`, `insert_before`, and `range_length`. A replace operation replaces the full contents and requires the separate `REPLACE` confirmation.
 
-Before applying a plan, the manager saves a complete pre-change playlist snapshot under \`playlist_backups/\`. It records lock changes, cancelled plans, and completed changes in \`playlist_manager_audit.jsonl\`. These files and the local OAuth token are private runtime data and should not be committed. Snapshots are recovery references; they are not automatically restored by the tool.
+Before applying a plan, the manager saves a complete pre-change playlist snapshot under `playlist_backups/`. It records lock changes, cancelled plans, and completed changes in `playlist_manager_audit.jsonl`. These files and the local OAuth token are private runtime data and should not be committed. Snapshots are recovery references; they are not automatically restored by the tool.
 
 
 **Spotify content boundary:** complete playlist tracklists and snapshots stay outside `assistant_data/` and are never included in control issue comments. For user-requested management, the control panel surfaces only minimal operational metadata (playlist name, ID, item count, lock state) and the explicit track URIs in a proposed plan. Full pre-change snapshots are stored as GitHub Actions artifacts for recovery, not in issue comments or assistant-facing analytics.
 
-The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use \`/items\` (not the older \`/tracks\` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app.
+The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use `/items` (not the older `/tracks` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app.
 
 
 ### GitHub Actions control panel
