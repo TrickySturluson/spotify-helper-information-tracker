@@ -65,8 +65,8 @@ class DailyFeedbackTests(unittest.TestCase):
                 }], "2026-10-31T10:00:00+00:00")
                 archive = root / "scrobbles.json"
                 archive.write_text(json.dumps([
-                    {"artist": "Artist", "track": "Song", "timestamp": 1793440000},
-                    {"artist": "Artist", "track": "Song", "timestamp": 1793443600},
+                    {"artist": "Artist", "track": "Song", "timestamp": 1793441000},
+                    {"artist": "Artist", "track": "Song", "timestamp": 1793444600},
                 ]))
                 feedback.observe_lastfm_scrobbles(archive)
                 result = feedback.feedback_for("spotify:track:abc")
