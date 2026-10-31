@@ -11,6 +11,7 @@ import urllib.parse
 from pathlib import Path
 
 import spotify_playlist_manager as manager
+import playlist_intelligence as intelligence
 
 STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
@@ -179,6 +180,7 @@ def main():
         "cleanup_off": {"command", "playlist_id"},
         "cleanup_check": {"command", "playlist_id"},
         "cleanup_run": {"command", "playlist_id"},
+        "health": {"command", "playlist_id"},
         "lock_all": {"command"},
         "lock": {"command", "playlist_id"},
         "unlock": {"command", "playlist_id"},
@@ -193,7 +195,7 @@ def main():
     }
     if action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -258,6 +260,31 @@ def main():
             f'{"No duplicates were found. " if not removed else ""}'
             "A recovery snapshot was saved. Playlist remains UNLOCKED."
         )
+    elif action == "health":
+        p = owned_playlist(sp, command["playlist_id"], me)
+        current = manager.snapshot(sp, p)
+        try:
+            import spotify_discovery as daily
+            feedback = daily.load_playlist_feedback(current["items"], p["id"])
+        except Exception:
+            feedback = {}
+        health = intelligence.playlist_health(current["items"], feedback)
+        profile = intelligence.build_playlist_profile(current["items"], feedback)
+        lines = [
+            f'PLAYLIST HEALTH — {p.get("name")} [{p["id"]}]',
+            f'Items: {health["track_count"]}; primary artists: {health["unique_primary_artists"]}; unique track URIs: {health["unique_track_uris"]}.',
+            f'Duplicate URI groups: {len(health["duplicate_uri_groups"])}; surplus copies: {health["surplus_duplicates"]}.',
+            f'Missing URIs: {health["missing_uri_items"]}; non-track items: {health["non_track_items"]}.',
+            f'Top artist share: {health["top_artist_share"]:.0%}; artist metadata coverage: {health["artist_metadata_coverage"]:.0%}.',
+            f'Playlist-specific feedback: {health["removal_feedback_count"]} removals; {health["whitelisted_count"]} whitelisted re-additions.',
+            "Top artists: " + (", ".join(f'{row["artist"]} ({row["tracks"]})' for row in profile["top_artists"][:5]) or "none"),
+            "Genre signals: " + (", ".join(row["tag"] for row in profile["genres"][:8]) or "not enough metadata"),
+            "Mood signals: " + (", ".join(row["tag"] for row in profile["moods"][:6]) or "not enough metadata"),
+            "Read-only report; no playlist changes were made.",
+        ]
+        for row in health["duplicate_uri_groups"]:
+            lines.append(f'DUPLICATE: {row["uri"]} appears {row["count"]} times ({row["surplus"]} surplus).' )
+        result = "\\n".join(lines)
     elif action == "cleanup_check":
         p = owned_playlist(sp, command["playlist_id"], me)
         current = manager.snapshot(sp, p)
