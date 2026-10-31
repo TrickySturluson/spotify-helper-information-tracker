@@ -49,7 +49,9 @@ def record_additions(items, added_at=None, liked_at_add=None):
             "first_added_at": added_at, "additions": [], "liked_observations": [],
             "playback_observations": [], "removal_events": [], "liked_at_add": None,
         })
-        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})\n        if liked_at_add and uri in liked_at_add:\n            row["liked_at_add"] = bool(liked_at_add[uri])
+        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})
+        if liked_at_add and uri in liked_at_add:
+            row["liked_at_add"] = bool(liked_at_add[uri])
         row["last_added_at"] = added_at
     data["updated_at"] = now()
     write(data)
