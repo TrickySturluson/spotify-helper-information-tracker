@@ -48,7 +48,8 @@ def audit_spotify_reference(root=ROOT):
     ids = [row.get("id") for row in rows if isinstance(row, dict)]
     if len(ids) != len(rows) or any(not isinstance(pid, str) or not pid for pid in ids):
         errors.append("Spotify reference catalog contains malformed playlist records.")
-    if len(set(ids)) != len(ids):
+    valid_ids = [pid for pid in ids if isinstance(pid, str) and pid]
+    if len(set(valid_ids)) != len(valid_ids):
         errors.append("Spotify reference catalog contains duplicate playlist IDs.")
     if catalog.get("playlist_count") != len(rows):
         errors.append("Spotify reference catalog playlist_count does not match its records.")
@@ -114,7 +115,7 @@ def audit_spotify_reference(root=ROOT):
             if not isinstance(track_map, dict) or not isinstance(artist_map, dict):
                 errors.append("Spotify reference index maps must be JSON objects.")
             else:
-                known = set(ids)
+                known = set(valid_ids)
                 dangling = set()
                 malformed_values = []
                 duplicate_references = []
