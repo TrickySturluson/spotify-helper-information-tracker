@@ -3,7 +3,7 @@ import math
 import re
 
 def _norm(value):
-    return re.sub(r'\\s+', ' ', str(value or '').strip()).casefold()
+    return re.sub(r'\s+', ' ', str(value or '').strip()).casefold()
 
 # Explicit mood/affect descriptors only; genre and scene labels are intentionally excluded.
 MOOD_LEXICON = {
