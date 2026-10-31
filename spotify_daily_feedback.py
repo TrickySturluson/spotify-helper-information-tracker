@@ -119,7 +119,7 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
         bucket["plays"] += 1
         bucket["played_ms"] += int(row.get("played_ms") or 0)
     for uri, total in totals.items():
-        data["tracks"][uri]["playback_observations"].append({"at": now(), **total})
+        data["tracks"][uri]["playback_observations"] = [{"at": now(), **total}]
     data["coverage"]["playback_tracker"] = "available"
     data["updated_at"] = now()
     write(data)
