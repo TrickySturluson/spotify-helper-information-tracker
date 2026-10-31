@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "weights": {
+    "similarity": 0.58,
+    "familiarity": 0.3,
+    "exact_removal": 0.18,
+    "artist_removal": 0.035,
+    "artist_removal_cap": 4,
+    "negative_cap": 0.32,
+    "positive_artist": 0.015,
+    "positive_cap": 0.12,
+    "liked_penalty": 0.62
+  },
+  "confidence": {
+    "strong_similarity": 0.78,
+    "strong_seed_support": 3,
+    "promising_similarity": 0.62,
+    "promising_seed_support": 2
+  }
+}
