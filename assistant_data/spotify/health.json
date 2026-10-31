@@ -2,9 +2,9 @@
   "schema_version": 1,
   "generated_at": "2026-10-31T09:04:53.976021+00:00",
   "playlists": {
-    "total": 58,
+    "total": 57,
     "accessible": 41,
-    "inaccessible": 17,
+    "inaccessible": 16,
     "incomplete": 0,
     "item_count_mismatches": []
   },
