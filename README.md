@@ -205,6 +205,22 @@ Undo the most recent completed change with:
 
 Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its ordered item URIs to match the post-change state recorded by the manager (legacy records fall back to the Spotify snapshot ID). Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
 
+### Playlist intelligence and health reports
+
+`playlist_intelligence.py` builds a read-only identity profile from a playlist's current membership and the cached Last.fm artist metadata. It summarizes represented artists and their genre, mood, and theme tags, reports metadata coverage, and keeps removal/whitelist counts scoped to that playlist. Profiles are calculated from the live snapshot when requested; they do not overwrite the canonical listening archive or playlist contents.
+
+Recommendation weights and confidence thresholds live in the versioned `assistant_data/recommendations/playlist_scoring.json` file. The discovery curator reads this configuration rather than scattering scoring constants through the code. Each recommendation now includes a confidence tier (strong fit, promising, or wildcard) and concise reasons describing its supporting similarity seeds, playlist-local positive/negative feedback, familiarity, and Liked Songs status. Confidence is a diagnostic heuristic, not a guarantee of quality.
+
+Use the cloud control issue for a read-only playlist health report:
+
+```json
+{"command":"health","playlist_id":"YOUR_PLAYLIST_ID"}
+```
+
+The report checks exact duplicate track URIs, surplus copies, missing URIs, non-track items, primary-artist concentration, metadata coverage, and playlist-specific removal/whitelist feedback. It never modifies Spotify. The Tricky Daily preview includes confidence counts, a playlist identity summary, and a short explanation for each recommendation.
+
+The existing playlist manager audit log already records previews, confirmations, completed edits, cleanup, and undo events. Removal history supplies negative feedback; current membership supplies positive/whitelist evidence. A/B scoring experiments and automated weight calibration are intentionally not enabled yet: the current weights are versioned and observable first, so we can establish a reliable baseline before letting user decisions tune them automatically.
+
 ### Tricky Daily curator
 
 The cloud control panel supports a preview-first daily recommendation command for the playlist named exactly Tricky Daily:
