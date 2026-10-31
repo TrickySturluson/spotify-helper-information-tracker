@@ -71,9 +71,21 @@ def audit_spotify_reference(root=ROOT):
             continue
         if record.get("id") != pid:
             errors.append(f"Spotify playlist record identity mismatch for {pid}.")
+        # The catalog is a summary of this record; catch drift rather than silently
+        # trusting whichever copy happens to be read by a downstream consumer.
+        if "items_accessible" in record and record.get("items_accessible") != accessible:
+            errors.append(f"Spotify catalog/record accessibility mismatch for {pid}.")
+        if row.get("snapshot_id") is not None and record.get("snapshot_id") is not None and row.get("snapshot_id") != record.get("snapshot_id"):
+            errors.append(f"Spotify catalog/record snapshot mismatch for {pid}.")
+        if row.get("item_count") is not None and record.get("item_count_fetched") is not None and row.get("item_count") != record.get("item_count_fetched"):
+            errors.append(f"Spotify catalog/record fetched-item count mismatch for {pid}.")
         # Unavailable item contents are an access limitation, not evidence of an empty playlist.
         if accessible and not isinstance(record.get("items"), list):
             errors.append(f"Accessible Spotify playlist {pid} has no items list.")
+        elif accessible and isinstance(record.get("items"), list):
+            fetched = record.get("item_count_fetched")
+            if isinstance(fetched, int) and fetched != len(record["items"]):
+                errors.append(f"Accessible Spotify playlist {pid} item_count_fetched does not match its items list.")
         if not accessible:
             warnings.append(f"Spotify playlist item contents inaccessible for {pid}; preserved data may be stale.")
     if not index_path.exists():
