@@ -111,7 +111,7 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
         played_at = row.get("sampled_at") or row.get("started_at") or row.get("timestamp") or row.get("at")
         if not played_at:
             continue
-        last_added = data["tracks"][uri].get("last_added_at") or data["tracks"][uri]["first_added_at"]
+        last_added = data["tracks"][uri]["first_added_at"]
         try:
             when = datetime.fromisoformat(played_at.replace("Z", "+00:00"))
             if when < datetime.fromisoformat(last_added.replace("Z", "+00:00")):
