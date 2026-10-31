@@ -235,7 +235,10 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
     for row in rows:
         uri = row["item"]["uri"]
         if uri in fixed_positions:
-            fixed[max(0, min(len(rows) - 1, int(fixed_positions[uri])))] = row
+            position = max(0, min(len(rows) - 1, int(fixed_positions[uri])))
+            if position in fixed and fixed[position] is not row:
+                raise ValueError("Conflicting opener, closer, or pinned-track anchors at position " + str(position))
+            fixed[position] = row
     locked = {id(row) for row in fixed.values()}
     movable = [row for row in rows if id(row) not in locked]
     if not movable:
@@ -330,6 +333,11 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
         scored.append({"original_index": index, "item": item, **profile})
     if mode in {"smooth", "hybrid"}:
         fixed = {}
+        uri_counts = Counter(row["item"]["uri"] for row in scored)
+        requested = set(pinned_uris or []) | {uri for uri in (opener_uri, closer_uri) if uri}
+        ambiguous = [uri for uri in requested if uri_counts[uri] > 1]
+        if ambiguous:
+            raise ValueError("Anchor URI occurs more than once; pinning is ambiguous: " + ", ".join(ambiguous))
         if opener_uri: fixed[opener_uri] = 0
         if closer_uri: fixed[closer_uri] = len(scored) - 1
         for row in scored:
@@ -444,7 +452,7 @@ def main():
                 if peak == args.peak_position: continue
                 variant = arrange(peak)
                 variant_path = args.output.with_name(f"{args.output.stem}-peak{peak}{args.output.suffix}")
-                variant_path.write_text(json.dumps(make_plan(snap, variant), indent=2) + "\\n", encoding="utf-8")
+                variant_path.write_text(json.dumps(make_plan(snap, variant), indent=2) + "\n", encoding="utf-8")
                 print("Alternative preview:", variant_path)
         print("Plan written to", args.output)
         print("Review the plan, then run: python spotify_playlist_manager.py apply", args.output)
