@@ -15,6 +15,7 @@ from pathlib import Path
 
 SCORING_CONFIG = Path("assistant_data/recommendations/playlist_scoring.json")
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
+TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 SCHEMA_VERSION = 1
 
 DEFAULT_SCORING = {
@@ -73,6 +74,56 @@ def artist_metadata_index(path=ARTIST_PROFILES):
     return result
 
 
+def track_metadata_index(path=TRACK_PROFILES):
+    """Index sourced track profiles by exact normalized primary-artist/title pair."""
+    rows = read_json(path, {})
+    result = {}
+    if isinstance(rows, dict):
+        for row in rows.values():
+            if isinstance(row, dict) and row.get("artist") and row.get("track"):
+                result[(norm(row["artist"]), norm(row["track"]))] = row
+    return result
+
+
+def playlist_track_metadata(items, track_profiles):
+    """Aggregate only exact track-level metadata; never substitute artist tags."""
+    moods, genres, tags = Counter(), Counter(), Counter()
+    matched = 0
+    for item in items or []:
+        if not isinstance(item, dict):
+            continue
+        names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+        title = item.get("name") or item.get("track")
+        if not names or not names[0] or not title:
+            continue
+        profile = track_profiles.get((norm(names[0]), norm(title)))
+        if not profile:
+            continue
+        matched += 1
+        names_seen = set()
+        for row in (profile.get("lastfm_tags", []) + profile.get("musicbrainz_tags", []) + profile.get("musicbrainz_genres", [])):
+            tag = row.get("tag", "") if isinstance(row, dict) else str(row)
+            if tag:
+                tags[tag] += 1
+                for mood in mood_inference._tag_moods(tag):
+                    names_seen.add(mood)
+        for mood in names_seen:
+            moods[mood] += 1
+        for row in profile.get("musicbrainz_genres", []):
+            if row.get("tag"):
+                genres[norm(row["tag"])] += 1
+    total = len(items or [])
+    return {
+        "matched_tracks": matched,
+        "total_tracks": total,
+        "coverage": round(matched / max(1, total), 4),
+        "moods": [{"tag": key, "track_count": count} for key, count in moods.most_common(12)],
+        "genres": [{"tag": key, "track_count": count} for key, count in genres.most_common(12)],
+        "tags": [{"tag": key, "track_count": count} for key, count in tags.most_common(20)],
+        "method": "exact normalized primary-artist + track-title match; track-sourced tags only",
+    }
+
+
 def artist_metadata_coverage(items, artist_profiles):
     """Track-weighted artist-profile coverage with explicit missing/empty distinctions."""
     counts = {"tagged": 0, "profile_without_tags": 0, "missing_profile": 0}
@@ -100,10 +151,12 @@ def artist_metadata_coverage(items, artist_profiles):
     }
 
 
-def build_playlist_profile(items, feedback=None, artist_profiles=None):
+def build_playlist_profile(items, feedback=None, artist_profiles=None, track_profiles=None):
     """Summarize a playlist's identity using current membership, not global taste."""
     feedback = feedback or {}
     artist_profiles = artist_profiles if artist_profiles is not None else artist_metadata_index()
+    track_profiles = track_profiles if track_profiles is not None else track_metadata_index()
+    track_metadata = playlist_track_metadata(items, track_profiles)
     artists = Counter()
     artist_labels = {}
     genres, moods, themes = Counter(), Counter(), Counter()
@@ -137,6 +190,9 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None):
             for row in inferred_moods["moods"]
         ],
         "mood_inference": inferred_moods,
+        "artist_moods": [{"tag": row["mood"], "artist_count": row["artist_support"], "confidence": row["confidence"]} for row in inferred_moods["moods"]],
+        "track_metadata": track_metadata,
+        "track_moods": track_metadata["moods"],
         "sound_tags": sound_tags,
         "themes": [{"tag": key, "count": count} for key, count in themes.most_common(10)],
         "positive_artist_evidence": sum((feedback.get("positive_artists") or {}).values()),
@@ -179,9 +235,11 @@ def recommendation_reasons(row):
     return reasons[:4]
 
 
-def playlist_health(items, feedback=None, artist_profiles=None):
+def playlist_health(items, feedback=None, artist_profiles=None, track_profiles=None):
     feedback = feedback or {}
     artist_profiles = artist_profiles if artist_profiles is not None else artist_metadata_index()
+    track_profiles = track_profiles if track_profiles is not None else track_metadata_index()
+    track_metadata = playlist_track_metadata(items, track_profiles)
     uris, artist_counts = Counter(), Counter()
     missing_uri, non_track = 0, 0
     for item in items or []:
@@ -214,6 +272,8 @@ def playlist_health(items, feedback=None, artist_profiles=None):
         "top_artist_share": round(top[0][1] / max(1, total), 4) if top else 0,
         "artist_metadata_coverage": artist_metadata_coverage(items, artist_profiles)["tagged_item_coverage"],
         "artist_metadata_coverage_detail": artist_metadata_coverage(items, artist_profiles),
+        "track_metadata_coverage": track_metadata["coverage"],
+        "track_metadata_matched": track_metadata["matched_tracks"],
         "removal_feedback_count": feedback.get("removed_count", 0),
         "whitelisted_count": feedback.get("whitelisted_count", 0),
     }
