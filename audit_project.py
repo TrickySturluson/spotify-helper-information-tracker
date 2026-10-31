@@ -36,7 +36,7 @@ def audit_spotify_reference(root=ROOT):
     catalog_path = root / "assistant_data/spotify/playlists.json"
     index_path = root / "assistant_data/spotify/reference_index.json"
     if not catalog_path.exists():
-        return ["Spotify reference library has not been synced yet; reference audit skipped."], []
+        return [], ["Spotify reference library has not been synced yet; reference audit skipped."]
     errors, warnings = [], []
     try:
         catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
