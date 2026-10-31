@@ -7,7 +7,6 @@ to preview and apply. It never edits Spotify directly.
 """
 import argparse
 import json
-import math
 import re
 from collections import Counter
 from pathlib import Path
@@ -147,9 +146,7 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None, direction=
         profile = score_track(item, artist_profiles, track_profiles)
         scored.append({"original_index": index, "item": item, **profile})
     reverse = direction == "descending"
-    scored.sort(key=lambda row: ((-row["score"] if reverse else row["score"]),
-                                 row["vibe_group"], row["artist"].casefold(),
-                                 row["track"].casefold(), row["original_index"]))
+    scored.sort(key=lambda row: ((-row["score"] if reverse else row["score"]), row["original_index"]))
     return scored
 
 
