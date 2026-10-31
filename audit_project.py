@@ -167,7 +167,16 @@ def audit_spotify_reference(root=ROOT):
     return errors, warnings
 
 def main():
-    metadata = load("data/metadata.json") or {}
+    ERRORS.clear()
+    WARNINGS.clear()
+    CHECKS.clear()
+
+    metadata = load("data/metadata.json")
+    if metadata is None:
+        metadata = {}
+    elif not isinstance(metadata, dict):
+        ERRORS.append("data/metadata.json must contain a JSON object.")
+        metadata = {}
     total = metadata.get("total_scrobbles", metadata.get("scrobbles"))
     check(isinstance(total, int) and total >= 0, "Canonical scrobble count is valid.")
     manifests = (
@@ -186,14 +195,29 @@ def main():
         for key in ("total_scrobbles", "source_scrobbles", "scrobbles"):
             if isinstance(manifest.get(key), int) and isinstance(total, int):
                 check(manifest[key] == total, f"{path}: {key} agrees with canonical archive.")
-    overview = load("assistant_data/music/overview.json") or {}
+    overview = load("assistant_data/music/overview.json")
+    if overview is None:
+        overview = {}
+    elif not isinstance(overview, dict):
+        ERRORS.append("assistant_data/music/overview.json must contain a JSON object.")
+        overview = {}
     unique, covered = overview.get("unique_tracks"), overview.get("tracks_with_duration")
     check(isinstance(unique, int) and isinstance(covered, int) and 0 <= covered <= unique,
           "Music duration coverage counts are valid.")
-    profiles = load("assistant_data/music/track_profiles.json") or {}
+    profiles = load("assistant_data/music/track_profiles.json")
+    if profiles is None:
+        profiles = {}
+    elif not isinstance(profiles, dict):
+        ERRORS.append("assistant_data/music/track_profiles.json must contain a JSON object.")
+        profiles = {}
     invalid = [key for key, row in profiles.items() if not isinstance(row, dict) or not key]
     check(not invalid, f"Track profile structure valid ({len(profiles)} records).")
-    playback = load("assistant_data/playback/manifest.json") or {}
+    playback = load("assistant_data/playback/manifest.json")
+    if playback is None:
+        playback = {}
+    elif not isinstance(playback, dict):
+        ERRORS.append("assistant_data/playback/manifest.json must contain a JSON object.")
+        playback = {}
     if playback.get("source_exists") is False and playback.get("recorded_intervals", 0) == 0:
         WARNINGS.append("No captured playback intervals yet; this is a coverage gap, not corruption.")
     spotify_errors, spotify_warnings = audit_spotify_reference()
