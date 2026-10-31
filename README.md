@@ -335,13 +335,21 @@ Refresh the reference library locally with:
 python spotify_reference_library.py sync
 ```
 
-This is a read-only Spotify operation. It does not modify playlists. The import is limited to playlists the authorized Spotify API account exposes; it cannot guarantee visibility into every public playlist on Spotify.
+This is a read-only Spotify operation. It does not modify playlists. A scheduled GitHub Actions workflow refreshes the catalog every Sunday and can also be run manually from **Actions → SHIT — Spotify Reference Library**. The import is limited to playlists the authorized Spotify API account exposes; it cannot guarantee visibility into every public playlist on Spotify. Playlists whose item contents are restricted by Spotify are still cataloged, with the visibility limitation recorded.
+
+Browse and search the saved dataset locally:
+
+```bash
+python spotify_reference_library.py list
+python spotify_reference_library.py lookup "artist or track name"
+```
 
 ### Tricky Daily retention feedback
 
 `spotify_daily_feedback.py` records when tracks enter and leave Tricky Daily, checks whether newly added tracks are in Liked Songs, and records measured post-add playback intervals from `playback_data/segments.jsonl`. The feedback record distinguishes:
-- Liked Songs saves and the time they were first observed.
-- Measured post-add play events and playback milliseconds.
+- Whether a track was already in Liked Songs at preview time, and whether it was saved afterward.
+- Distinct measured Spotify listening sessions and playback milliseconds after the first Daily addition.
+- Post-add Last.fm scrobbles from the canonical timestamped archive, kept separate from measured Spotify playback.
 - Playlist removals and repeat additions.
 - Unknown coverage from a confirmed zero-play observation.
 
