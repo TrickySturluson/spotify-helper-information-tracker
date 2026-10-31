@@ -186,6 +186,12 @@ def build_reorder_operations(current_uris, ordered_uris):
     return operations
 
 
+def confidence_summary(scored):
+    """Count confidence tiers in a sequence preview, including unknown metadata."""
+    return {label: sum(1 for row in scored if row.get("confidence") == label)
+            for label in ("high", "medium", "low", "unknown")}
+
+
 def make_plan(snapshot, scored):
     items = snapshot["items"]
     current = [row.get("uri") for row in items]
@@ -214,8 +220,7 @@ def main():
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f'Preview generated for "{playlist.get("name")}" — {len(scored)} tracks.')
         print(f'Direction: {args.direction}; {len(plan["operations"])} reorder operation(s).')
-        confidence_counts = {label: sum(1 for row in scored if row["confidence"] == label)
-                             for label in ("high", "medium", "low", "unknown")}
+        confidence_counts = confidence_summary(scored)
         print("Proposed sequence (position | energy | confidence | group | track):")
         print("Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         for position, row in enumerate(scored, 1):
