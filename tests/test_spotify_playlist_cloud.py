@@ -61,7 +61,7 @@ class CloudExecutorTests(unittest.TestCase):
             event_path.write_text(json.dumps({
                 "sender": {"login": "TrickySturluson"},
                 "issue": {
-                    "title": "Spotify Playlist Manager Control",
+                    "title": "SHIT — Playlist Control",
                     "state": "open",
                     "body": json.dumps({
                         "command": "confirm",
