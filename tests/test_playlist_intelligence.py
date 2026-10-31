@@ -3,6 +3,7 @@ import unittest
 from pathlib import Path
 
 import playlist_intelligence as intelligence
+import mood_inference
 
 
 class PlaylistIntelligenceTests(unittest.TestCase):
@@ -36,6 +37,32 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertEqual(health["unique_primary_artists"], 2)
         self.assertEqual(health["top_artist_share"], 0.75)
 
+    def test_mood_inference_uses_independent_artist_evidence(self):
+        items = [
+            {"artists": ["One"]}, {"artists": ["One"]},
+            {"artists": ["Two"]}, {"artists": ["Three"]},
+        ]
+        profiles = {
+            "one": {"tags": [{"tag": "haunting", "count": 100}, {"tag": "surf rock", "count": 90}]},
+            "two": {"tags": [{"tag": "eerie", "count": 60}]},
+            "three": {"tags": [{"tag": "dreamy", "count": 80}]},
+        }
+        result = mood_inference.infer_mood_profile(items, profiles)
+        moods = {row["mood"]: row for row in result["moods"]}
+        self.assertEqual(moods["eerie"]["artist_support"], 2)
+        self.assertGreater(moods["eerie"]["confidence"], 0.4)
+        self.assertIn("dreamy", moods)
+        self.assertNotIn("rock", moods)
+
+    def test_playlist_profile_exposes_mood_evidence(self):
+        items = [{"artists": ["One"]}, {"artists": ["Two"]}]
+        profiles = {
+            "one": {"genres": ["rock"], "tags": [{"tag": "dark", "count": 100}]},
+            "two": {"genres": ["pop"], "tags": [{"tag": "gloomy", "count": 80}]},
+        }
+        profile = intelligence.build_playlist_profile(items, artist_profiles=profiles)
+        self.assertEqual(profile["moods"][0]["tag"], "dark")
+        self.assertEqual(profile["mood_inference"]["artists_with_tag_evidence"], 2)
     def test_confidence_tiers_are_distinct(self):
         self.assertEqual(intelligence.recommendation_confidence(0.9, 4), "strong fit")
         self.assertEqual(intelligence.recommendation_confidence(0.7, 2), "promising")
