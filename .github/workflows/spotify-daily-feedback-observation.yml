@@ -50,6 +50,8 @@ jobs:
           })
           PY
           python spotify_daily_feedback.py observe
+      - name: Audit refreshed project data
+        run: python audit_project.py
       - name: Persist feedback observations
         run: |
           git config user.name "github-actions[bot]"

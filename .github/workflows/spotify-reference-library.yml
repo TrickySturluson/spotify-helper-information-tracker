@@ -43,6 +43,8 @@ jobs:
           })
           PY
           python spotify_reference_library.py sync
+      - name: Audit refreshed project data
+        run: python audit_project.py
       - name: Commit reference snapshots
         run: |
           git config user.name "github-actions[bot]"
