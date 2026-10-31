@@ -214,10 +214,15 @@ def main():
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f'Preview generated for "{playlist.get("name")}" — {len(scored)} tracks.')
         print(f'Direction: {args.direction}; {len(plan["operations"])} reorder operation(s).')
+        confidence_counts = {label: sum(1 for row in scored if row["confidence"] == label)
+                             for label in ("high", "medium", "low", "unknown")}
         print("Proposed sequence (position | energy | confidence | group | track):")
+        print("Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         for position, row in enumerate(scored, 1):
             group = row.get("sequence_group") or row.get("vibe_group") or "unclassified"
             print(f'  {position:3}. {row["score"]:5.1f} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
+            signals = row.get("evidence") or []
+            print("       Signals: " + ("; ".join(signals) if signals else "no sourced metadata; neutral placeholder score"))
         print("Plan written to", args.output)
         print("Review the plan, then run: python spotify_playlist_manager.py apply", args.output)
         print("The manager will show its normal preview and require explicit APPLY confirmation.")
