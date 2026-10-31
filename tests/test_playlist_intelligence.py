@@ -37,7 +37,7 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertEqual(coverage["tagged"], 1)
         self.assertEqual(coverage["profile_without_tags"], 1)
         self.assertEqual(coverage["missing_profile"], 1)
-        self.assertEqual(coverage["tagged_item_coverage"], 1 / 3)
+        self.assertEqual(coverage["tagged_item_coverage"], 0.3333)
 
     def test_health_report_detects_surplus_duplicates_and_artist_concentration(self):
         items = [
