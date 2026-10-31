@@ -929,8 +929,14 @@ def main():
                     new_uri_set = set(new_uris)
                     for old_uri in old_uris - new_uri_set:
                         daily_feedback.record_removal(old_uri, removed_at=manager.stamp())
-                    daily_feedback.observe_liked_songs(sp, new_uris)
-                    daily_feedback.observe_playback_segments()
+                    try:
+                        daily_feedback.observe_liked_songs(sp, new_uris)
+                    except Exception as feedback_error:
+                        manager.audit(event="daily_liked_song_observation_failed", error=str(feedback_error))
+                    try:
+                        daily_feedback.observe_playback_segments()
+                    except Exception as feedback_error:
+                        manager.audit(event="daily_playback_observation_failed", error=str(feedback_error))
                 cleanup_count = 0
                 if config.get("playlists", {}).get(pid, {}).get("cleanup") is True:
                     cleanup_count = cleanup_duplicates(sp, pid)
