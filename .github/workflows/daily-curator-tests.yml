@@ -17,7 +17,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Compile curator and playlist manager
-        run: python -m py_compile spotify_daily_playlist.py spotify_discovery.py playlist_intelligence.py spotify_playlist_manager.py spotify_playlist_cloud.py
+      - name: Compile every Python module
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import py_compile
+          excluded = {".git", ".venv", "venv", "__pycache__"}
+          files = [p for p in Path(".").rglob("*.py") if not any(part in excluded for part in p.parts)]
+          for path in files:
+              py_compile.compile(str(path), doraise=True)
+          print(f"Compiled {len(files)} Python modules.")
+          PY
+      - name: Audit generated project data
+        run: python audit_project.py
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
