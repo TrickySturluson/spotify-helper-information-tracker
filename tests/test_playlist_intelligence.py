@@ -24,6 +24,45 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertEqual(profile["negative_track_evidence"], 1)
         self.assertEqual(profile["whitelisted_tracks"], 1)
 
+    def test_normalization_collapses_whitespace_for_track_identity(self):
+        self.assertEqual(intelligence.norm("  Same   Artist  "), "same artist")
+
+    def test_metadata_coverage_distinguishes_tagged_partial_and_missing(self):
+        items = [
+            {"artists": ["Tagged"]},
+            {"artists": ["Empty"]},
+            {"artists": ["Absent"]},
+        ]
+        coverage = intelligence.artist_metadata_coverage(items, {
+            "tagged": {"status": "matched", "tags": [{"tag": "punk"}]},
+            "empty": {"status": "no_tags", "tags": []},
+        })
+        self.assertEqual(coverage["tagged"], 1)
+        self.assertEqual(coverage["profile_without_tags"], 1)
+        self.assertEqual(coverage["missing_profile"], 1)
+        self.assertEqual(coverage["tagged_item_coverage"], 0.3333)
+
+    def test_playlist_track_moods_use_track_tags_not_artist_moods(self):
+        items = [
+            {"name": "Dream Song", "artists": ["Same Artist"]},
+            {"name": "Aggressive Song", "artists": ["Same Artist"]},
+        ]
+        track_profiles = {
+            ("same artist", "dream song"): {
+                "lastfm_tags": [{"tag": "dreamy", "count": 10}],
+                "musicbrainz_tags": [],
+                "musicbrainz_genres": [],
+            }
+        }
+        profile = intelligence.build_playlist_profile(
+            items,
+            artist_profiles={"same artist": {"tags": [{"tag": "aggressive"}], "moods": ["aggressive"]}},
+            track_profiles=track_profiles,
+        )
+        self.assertEqual(profile["track_metadata"]["matched_tracks"], 1)
+        self.assertEqual(profile["track_moods"], [{"tag": "dreamy", "track_count": 1}])
+        self.assertEqual(profile["artist_moods"][0]["tag"], "aggressive")
+
     def test_health_report_detects_surplus_duplicates_and_artist_concentration(self):
         items = [
             {"uri": "spotify:track:a", "artists": ["A"]},
