@@ -214,12 +214,10 @@ def main():
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f'Preview generated for "{playlist.get("name")}" — {len(scored)} tracks.')
         print(f'Direction: {args.direction}; {len(plan["operations"])} reorder operation(s).')
-        print("Lowest-energy opening:")
-        for row in scored[:5]:
-            print(f'  {row["score"]:5.1f} [{row["confidence"]}] {row["artist"]} — {row["track"]}')
-        print("Highest-energy ending:")
-        for row in scored[-5:]:
-            print(f'  {row["score"]:5.1f} [{row["confidence"]}] {row["artist"]} — {row["track"]}')
+        print("Proposed sequence (position | energy | confidence | group | track):")
+        for position, row in enumerate(scored, 1):
+            group = row.get("sequence_group") or row.get("vibe_group") or "unclassified"
+            print(f'  {position:3}. {row["score"]:5.1f} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
         print("Plan written to", args.output)
         print("Review the plan, then run: python spotify_playlist_manager.py apply", args.output)
         print("The manager will show its normal preview and require explicit APPLY confirmation.")
