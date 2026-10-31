@@ -36,6 +36,60 @@ class PlaylistPermissionTests(unittest.TestCase):
                     os.chdir(old)
 
 
+class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_inaccessible_playlist_preserves_last_known_tracklist(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "assistant_data" / "spotify"
+            playlists = root / "playlists"
+            playlists.mkdir(parents=True)
+            old = {
+                "id": "restricted", "name": "Previously Indexed",
+                "owner": {"id": "owner"}, "snapshot_id": "old-snapshot",
+                "items_snapshot_id": "old-snapshot", "items_accessible": True,
+                "item_count_fetched": 1, "total_items_reported": 1,
+                "captured_at": "2026-10-01T00:00:00+00:00",
+                "items": [{"uri": "spotify:track:known", "name": "Known Track", "artists": ["Artist"]}],
+            }
+            (playlists / "restricted.json").write_text(json.dumps(old))
+            (root / "playlists.json").write_text(json.dumps({"version": 1, "playlists": [{"id": "restricted"}]}))
+            sp = Mock()
+            sp.playlists.return_value = [{
+                "id": "restricted", "name": "Previously Indexed",
+                "owner": {"id": "owner"}, "snapshot_id": "new-snapshot",
+                "items": {"total": 1},
+            }]
+            sp.items.side_effect = manager.ManagerError("Spotify API GET /playlists/restricted/items: HTTP 403")
+            with patch.object(library, "ROOT", root), patch.object(library, "CATALOG", root / "playlists.json"), patch.object(library, "PLAYLIST_DIR", playlists), patch.object(library, "HISTORY_DIR", root / "history"), patch.object(library, "INDEX", root / "reference_index.json"):
+                library.sync(sp)
+                saved = json.loads((playlists / "restricted.json").read_text())
+                catalog = json.loads((root / "playlists.json").read_text())
+                self.assertFalse(saved["items_accessible"])
+                self.assertEqual(saved["items"][0]["uri"], "spotify:track:known")
+                self.assertEqual(saved["item_count_fetched"], 1)
+                self.assertEqual(catalog["playlists"][0]["item_count"], 1)
+                self.assertFalse(catalog["playlists"][0]["changed"])
+                report = json.loads((root / "health.json").read_text())
+                self.assertEqual(report["playlists"]["inaccessible"], 1)
+                self.assertEqual(report["index"]["unique_tracks"], 1)
+
+    def test_health_report_flags_item_count_mismatch_and_missing_tracker(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "assistant_data" / "spotify"
+            root.mkdir(parents=True)
+            (root / "daily_feedback.json").write_text(json.dumps({
+                "tracks": {"spotify:track:a": {}},
+                "coverage": {"playback_tracker": "unknown", "lastfm": "available"},
+            }))
+            row = {"id": "p1", "name": "Playlist", "record_path": str(root / "p1.json"), "items_accessible": True, "item_count": 2}
+            Path(row["record_path"]).write_text(json.dumps({"total_items_reported": 3, "item_count_fetched": 2}))
+            with patch.object(library, "ROOT", root), patch.object(library, "CATALOG", root / "playlists.json"), patch.object(library, "PLAYLIST_DIR", root / "playlists"), patch.object(library, "INDEX", root / "reference_index.json"):
+                report = library.build_health_report([row], {"a": ["p1"]}, {"artist": ["p1"]})
+                self.assertEqual(report["overall_status"], "warning")
+                self.assertEqual(report["playlists"]["incomplete"], 1)
+                self.assertEqual(report["daily_feedback"]["playback_tracker_status"], "unknown")
+                self.assertFalse(report["daily_feedback"]["segments_file_in_sync_environment"])
+
+
 class DailyFeedbackTests(unittest.TestCase):
     def test_no_observation_is_unknown_not_negative(self):
         with tempfile.TemporaryDirectory() as directory:

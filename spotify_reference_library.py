@@ -77,6 +77,8 @@ def playlist_record(sp, playlist):
         "item_count_fetched": len(rows),
         "items_accessible": items_accessible,
         "items_error": items_error,
+        "last_items_accessible_at": stamp() if items_accessible else None,
+        "items_snapshot_id": playlist.get("snapshot_id") if items_accessible else None,
         "items": rows,
     }
 
@@ -95,22 +97,35 @@ def sync(sp):
         pid = record["id"]
         path = PLAYLIST_DIR / f"{pid}.json"
         old = manager.read(path, {})
-        # Snapshot only when Spotify's snapshot ID or ordered item data changes.
+        # A 403 is not an empty playlist. Preserve the last known ordered contents,
+        # mark them stale/inaccessible, and never snapshot the failed empty response.
+        if not record["items_accessible"] and old:
+            record["items"] = old.get("items", [])
+            record["item_count_fetched"] = old.get("item_count_fetched", len(record["items"]))
+            record["last_items_accessible_at"] = old.get("last_items_accessible_at") or old.get("captured_at")
+            record["items_snapshot_id"] = old.get("items_snapshot_id") or old.get("snapshot_id")
         content_signature = [(x.get("uri"), x.get("name"), x.get("artists")) for x in record["items"]]
         old_signature = [(x.get("uri"), x.get("name"), x.get("artists")) for x in old.get("items", [])]
-        if not old or old.get("snapshot_id") != record["snapshot_id"] or content_signature != old_signature:
+        changed_now = bool(record["items_accessible"] and (
+            not old or old.get("items_snapshot_id", old.get("snapshot_id")) != record["snapshot_id"]
+            or content_signature != old_signature
+        ))
+        if changed_now or not old:
             history = HISTORY_DIR / pid
             history.mkdir(parents=True, exist_ok=True)
             manager.write(history / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + ".json"), record)
-            manager.write(path, record)
-            changed += 1
+        # Always persist access status, even when retaining an older content snapshot.
+        manager.write(path, record)
+        changed += int(changed_now)
         owner = record["owner"]
         catalog.append({
             "id": pid, "name": record["name"], "owner": owner,
             "public": record["public"], "collaborative": record["collaborative"],
-            "snapshot_id": record["snapshot_id"], "item_count": len(record["items"]),
+            "snapshot_id": record["snapshot_id"], "item_count": record["item_count_fetched"],
+            "items_accessible": record["items_accessible"],
+            "last_items_accessible_at": record.get("last_items_accessible_at"),
             "captured_at": record["captured_at"], "record_path": str(path),
-            "changed": bool(not old or old.get("snapshot_id") != record["snapshot_id"] or content_signature != old_signature),
+            "changed": changed_now,
         })
         for item in record["items"]:
             uri = item.get("uri")
@@ -124,8 +139,72 @@ def sync(sp):
         "version": 1, "generated_at": stamp(),
         "track_playlists": dict(index_tracks), "artist_playlists": dict(index_artists),
     })
+    report = build_health_report(catalog, index_tracks, index_artists)
+    manager.write(ROOT / "health.json", report)
     print(f"Reference library synced: {len(catalog)} playlists; {changed} new/changed snapshots.")
+    print(f"Accessible item lists: {report['playlists']['accessible']}; inaccessible: {report['playlists']['inaccessible']}; incomplete: {report['playlists']['incomplete']}.")
     print(f"Catalog: {CATALOG}; history: {HISTORY_DIR}")
+
+
+def build_health_report(catalog=None, index_tracks=None, index_artists=None):
+    """Summarize reference-library completeness and observed feedback coverage."""
+    catalog = catalog if catalog is not None else manager.read(CATALOG, {"playlists": []}).get("playlists", [])
+    index_tracks = index_tracks if index_tracks is not None else manager.read(INDEX, {}).get("track_playlists", {})
+    index_artists = index_artists if index_artists is not None else manager.read(INDEX, {}).get("artist_playlists", {})
+    accessible = sum(1 for row in catalog if row.get("items_accessible", True))
+    inaccessible = len(catalog) - accessible
+    incomplete = 0
+    mismatches = []
+    for row in catalog:
+        path = Path(row.get("record_path") or PLAYLIST_DIR / (row["id"] + ".json"))
+        record = manager.read(path, {})
+        total = record.get("total_items_reported")
+        fetched = record.get("item_count_fetched", row.get("item_count", 0))
+        if row.get("items_accessible", True) and isinstance(total, int) and total != fetched:
+            incomplete += 1
+            mismatches.append({"playlist_id": row["id"], "name": row.get("name"), "reported": total, "fetched": fetched})
+    feedback_path = ROOT / "daily_feedback.json"
+    feedback = manager.read(feedback_path, {})
+    coverage = feedback.get("coverage", {})
+    playback_detail = coverage.get("playback_tracker_detail", {})
+    return {
+        "schema_version": 1,
+        "generated_at": stamp(),
+        "playlists": {
+            "total": len(catalog), "accessible": accessible,
+            "inaccessible": inaccessible, "incomplete": incomplete,
+            "item_count_mismatches": mismatches,
+        },
+        "index": {
+            "unique_tracks": len(index_tracks), "unique_artists": len(index_artists),
+        },
+        "daily_feedback": {
+            "tracks_observed": len(feedback.get("tracks", {})),
+            "playback_tracker_status": coverage.get("playback_tracker", "unknown"),
+            "playback_tracker_detail": playback_detail,
+            "lastfm_status": coverage.get("lastfm", "unknown"),
+            "liked_songs_status": coverage.get("liked_songs", "unknown"),
+            "updated_at": feedback.get("updated_at"),
+            "segments_file_in_sync_environment": Path("playback_data/segments.jsonl").is_file(),
+        },
+        "overall_status": "warning" if inaccessible or incomplete else "ok",
+    }
+
+
+def print_health_report():
+    report = manager.read(ROOT / "health.json", None)
+    if report is None:
+        report = build_health_report()
+    playlists = report["playlists"]
+    print("SHIT Spotify reference-library health")
+    print(f"Status: {report['overall_status']}")
+    print(f"Playlists: {playlists['total']} total; {playlists['accessible']} accessible; {playlists['inaccessible']} inaccessible; {playlists['incomplete']} incomplete")
+    print(f"Index: {report['index']['unique_tracks']} unique tracks; {report['index']['unique_artists']} unique artists")
+    daily = report["daily_feedback"]
+    print(f"Daily feedback: {daily['tracks_observed']} tracks; playback tracker {daily['playback_tracker_status']}; Last.fm {daily['lastfm_status']}; Liked Songs {daily['liked_songs_status']}")
+    if not daily["segments_file_in_sync_environment"]:
+        print("Playback segment file is not present in this environment; this does not mean zero listening.")
+    return report
 
 
 def exposure_summary(added_at, playback_segments, scrobbles=None, removed_at=None):
@@ -208,11 +287,14 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("sync", help="Read Spotify and refresh the reference library")
     sub.add_parser("list", help="List saved reference playlists")
+    sub.add_parser("health", help="Show reference-library and feedback coverage health")
     search = sub.add_parser("lookup", help="Search saved playlists, tracks, artists and albums")
     search.add_argument("query")
     args = parser.parse_args()
     if args.command == "sync":
         sync(manager.Spotify())
+    elif args.command == "health":
+        print_health_report()
     elif args.command == "list":
         for row in manager.read(CATALOG, {"playlists": []}).get("playlists", []):
             print(f'{row.get("name")} | {row.get("item_count")} items | {row.get("id")}')
