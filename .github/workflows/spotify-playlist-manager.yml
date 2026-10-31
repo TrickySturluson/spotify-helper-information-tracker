@@ -1,4 +1,4 @@
-name: Spotify playlist manager control
+name: SHIT — Spotify Helper & Information Tracker
 
 on:
   issues:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   control:
     if: >-
-      github.event.issue.title == 'Spotify Playlist Manager Control' &&
+      github.event.issue.title == 'SHIT — Playlist Control' &&
       github.event.issue.state == 'open' &&
       github.event.sender.login == 'TrickySturluson'
     runs-on: ubuntu-latest
