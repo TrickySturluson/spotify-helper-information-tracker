@@ -11,7 +11,7 @@ class TrackProfileTests(unittest.TestCase):
         self.assertEqual(aid, "name:" + __import__("hashlib").sha1(b"example artist").hexdigest()[:16])
         self.assertEqual(
             profiles.track_id(row, aid),
-            "track:" + __import__("hashlib").sha1((aid + "\\0example song").encode()).hexdigest()[:16],
+            "track:" + __import__("hashlib").sha1((aid + "\0example song").encode()).hexdigest()[:16],
         )
 
     def test_lastfm_tags_preserve_counts_and_source(self):
