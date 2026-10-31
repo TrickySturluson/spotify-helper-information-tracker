@@ -163,5 +163,23 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(sequencer.transition_summary(rows)["potential_jumps"], 1)
 
 
+    def test_ordered_sections_are_softly_preferred(self):
+        first = {"score": 50, "confidence": "medium", "artist": "A", "vibe_groups": [],
+                 "genre_groups": [], "theme_groups": [], "section_groups": ["section:0"], "section_index": 0}
+        second = {"score": 50, "confidence": "medium", "artist": "B", "vibe_groups": [],
+                  "genre_groups": [], "theme_groups": [], "section_groups": ["section:1"], "section_index": 1}
+        forward = sequencer._sequence_objective([first, second], "steady", 85, "gradual", 0, 0)
+        backward = sequencer._sequence_objective([second, first], "steady", 85, "gradual", 0, 0)
+        self.assertLess(forward, backward)
+
+    def test_all_tracks_can_be_fixed_by_opening_and_closing_anchors(self):
+        rows = [
+            {"uri": "start", "name": "Start", "artists": ["A"]},
+            {"uri": "end", "name": "End", "artists": ["B"]},
+        ]
+        result = sequencer.sequence_tracks(rows, opener_uri="start", closer_uri="end")
+        self.assertEqual([row["item"]["uri"] for row in result], ["start", "end"])
+
+
 if __name__ == "__main__":
     unittest.main()
