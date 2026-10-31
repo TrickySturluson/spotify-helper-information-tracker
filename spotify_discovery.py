@@ -292,6 +292,7 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
         "negative_uris": negative_uris,
         "whitelisted_count": whitelisted_count,
         "removed_count": len(removed),
+        "daily_evidence": daily_evidence,
     }
 
 def candidate_score(track, similarity, familiarity, liked, today=None, feedback=None):
