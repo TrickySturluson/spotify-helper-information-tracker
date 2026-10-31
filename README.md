@@ -85,6 +85,28 @@ The tracker samples every 10 seconds by default; use `python spotify_playback_tr
 
 **Important:** this is prospective, local-device sampling, not Spotify's complete listening history. It cannot backfill past listening time, and it may miss short intervals or playback on devices/states the API does not report. Treat it as a measured lower-bound estimate. Keep `.spotify_token.json` private; never commit it. The JSONL playback log contains listening activity and is also personal data.
 
+## Playlist sequencing
+
+`spotify_playlist_sequencer.py` creates a preview-only energy sequence for an existing Spotify playlist. It combines optional Spotify audio features in a playlist export (energy, tempo and loudness), exact track-level community tags/genres, and lower-confidence artist-level mood/genre/theme metadata. Track-level evidence takes precedence; artist metadata is explicitly labelled as a fallback. Missing evidence is marked unknown rather than presented as a confident audio judgment.
+
+Example:
+
+```bash
+python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --direction ascending
+python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --direction ascending --group-by vibe
+python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --direction ascending --group-by theme
+```
+
+The default ascending sequence moves from lower inferred energy toward higher inferred energy; use `--direction descending` for the reverse. Optional grouping (`vibe`, `genre`, or `theme`) is a soft tie-breaker within 10-point energy bands, preserving the broad energy arc while clustering related material. Theme and genre groups are currently mostly artist-derived; vibe groups prefer track tags where available. Scores are heuristic, not Spotify audio-analysis measurements.
+
+The command writes `playlist-sequence-plan.json` by default. It does not modify Spotify. Review the plan, then pass it to the existing locked-by-default manager:
+
+```bash
+python spotify_playlist_manager.py apply playlist-sequence-plan.json
+```
+
+The manager produces its normal preview, checks playlist lock/ownership and snapshot state, saves a pre-change backup, and requires typing `APPLY` before making changes. The sequencer refuses to create a partial plan if playlist items are unavailable or lack track URIs.
+
 ## Important limitations
 
 - Last.fm's recent-track archive does not supply actual listening duration. Duration-based estimates exclude scrobbles whose track duration is unknown; the metadata backfill action can improve coverage. Last.fm scrobble thresholds provide a theoretical minimum only, not exact played time.
