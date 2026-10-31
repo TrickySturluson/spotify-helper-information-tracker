@@ -156,11 +156,12 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
     mood = _set_similarity(left.get("vibe_groups"), right.get("vibe_groups"))
     genre = _set_similarity(left.get("genre_groups"), right.get("genre_groups"))
     theme = _set_similarity(left.get("theme_groups"), right.get("theme_groups"))
+    section = _set_similarity(left.get("section_groups"), right.get("section_groups"))
     same_artist = bool(norm(left.get("artist")) and norm(left.get("artist")) == norm(right.get("artist")))
     return (0.34 * energy_gap + 0.25 * (1.0 - mood) + 0.08 * (1.0 - genre)
             + 0.08 * (1.0 - theme) + 0.10 * same_artist
             - 0.12 * max(0.0, min(1.0, genre_strength)) * genre
-            - 0.12 * max(0.0, min(1.0, theme_strength)) * theme)
+            - 0.12 * max(0.0, min(1.0, theme_strength)) * theme - 0.08 * section)
 
 
 def transition_report(left, right):
@@ -221,7 +222,11 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
         total += 0.10 * abs(float(row["score"]) / 100 - target_energy(
             index, len(rows), journey, peak_position, peak_shape))
         if index:
-            total += _transition_cost(rows[index - 1], row, genre_strength, theme_strength)
+            previous = rows[index - 1]
+            total += _transition_cost(previous, row, genre_strength, theme_strength)
+            left_section, right_section = previous.get("section_index"), row.get("section_index")
+            if left_section is not None and right_section is not None and right_section < left_section:
+                total += 0.10
     return total
 
 
