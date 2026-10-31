@@ -117,16 +117,25 @@ def observe_playback_segments(path=Path("playback_data/segments.jsonl")):
         if uri not in data["tracks"]:
             continue
         played_at = row.get("sampled_at") or row.get("started_at") or row.get("timestamp") or row.get("at")
-        if not played_at:
+        if not isinstance(played_at, str) or not played_at:
             continue
-        valid_segments += 1
-        latest_segment_at = max(latest_segment_at or played_at, played_at)
-        last_added = data["tracks"][uri]["first_added_at"]
         try:
             when = datetime.fromisoformat(played_at.replace("Z", "+00:00"))
-            if when < datetime.fromisoformat(last_added.replace("Z", "+00:00")):
+            # Tracker timestamps should identify an absolute instant. Normalize offsets
+            # before comparing or reporting the newest observation.
+            if when.tzinfo is None:
                 continue
-        except (TypeError, ValueError):
+            when = when.astimezone(timezone.utc)
+        except (AttributeError, TypeError, ValueError):
+            continue
+        valid_segments += 1
+        latest_segment_at = max(latest_segment_at or when.isoformat(), when.isoformat())
+        last_added = data["tracks"][uri]["first_added_at"]
+        try:
+            added_when = datetime.fromisoformat(last_added.replace("Z", "+00:00"))
+            if when < added_when:
+                continue
+        except (AttributeError, TypeError, ValueError):
             continue
         events.setdefault(uri, []).append((when, int(row.get("played_ms") or 0)))
     for uri, rows in events.items():
