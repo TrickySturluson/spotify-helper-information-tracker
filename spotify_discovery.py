@@ -254,6 +254,25 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
             removed = []
             whitelisted_count = 0
 
+    daily_evidence = {}
+    daily_path = Path("assistant_data/spotify/daily_feedback.json")
+    if daily_path.is_file():
+        try:
+            daily_payload = json.loads(daily_path.read_text(encoding="utf-8"))
+            for uri, record in (daily_payload.get("tracks") or {}).items():
+                liked_rows = record.get("liked_observations") or []
+                playback_rows = record.get("playback_observations") or []
+                latest_liked = liked_rows[-1].get("liked") if liked_rows else None
+                measured_plays = sum(int(row.get("plays") or 0) for row in playback_rows) if playback_rows else None
+                daily_evidence[uri] = {
+                    "liked": latest_liked,
+                    "liked_at_add": record.get("liked_at_add"),
+                    "removal_count": len(record.get("removal_events") or []),
+                    "measured_plays": measured_plays,
+                }
+        except (OSError, ValueError, TypeError):
+            daily_evidence = {}
+
     negative_artists = defaultdict(int)
     negative_keys = set()
     negative_uris = set()
@@ -287,8 +306,14 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     # Playlist-local feedback is deliberately separate from global Last.fm taste.
     # A removed track/artist is a soft negative, never a global blacklist.
     feedback = feedback or {}
+    daily = feedback.get("daily_evidence", {}).get(uri, {})
     removed_exact = track_key(artist, name) in feedback.get("negative_keys", set())
     removed_uri = uri in feedback.get("negative_uris", set())
+    # A Daily removal is not negative evidence unless meaningful listening exposure was observed.
+    if daily and daily.get("removal_count"):
+        if daily.get("measured_plays") is None or daily.get("measured_plays") == 0:
+            removed_exact = False
+            removed_uri = False
     removed_artist_count = feedback.get("negative_artists", {}).get(norm(artist), 0)
     positive_artist_count = feedback.get("positive_artists", {}).get(norm(artist), 0)
     weights = intelligence.scoring_config()["weights"]
@@ -298,6 +323,10 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
         + min(removed_artist_count, weights["artist_removal_cap"]) * weights["artist_removal"],
     )
     feedback_bonus = min(weights["positive_cap"], positive_artist_count * weights["positive_artist"])
+    if daily.get("liked") is True:
+        feedback_bonus += 0.06
+    if daily.get("measured_plays") is not None and daily.get("measured_plays") > 0:
+        feedback_bonus += min(0.08, 0.025 * math.log1p(daily["measured_plays"]))
     # Spotify removed the popularity field from some Development Mode API
     # responses in 2026. Do not interpret a missing field as popularity zero.
     score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty + feedback_bonus
