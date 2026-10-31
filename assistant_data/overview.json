@@ -12,11 +12,11 @@
   "legacy_3_5_minute_baseline_hours": 8867.0,
   "listening_time_note": "Includes every archived scrobble, including tracks with unknown duration. An archive-wide estimate, not measured playback.",
   "duration_estimates": {
-    "duration_coverage": 0.88628,
-    "scrobbles_with_duration": 134719,
-    "unknown_duration_scrobbles": 17286,
-    "known_duration_minimum_qualifying_hours": 3732.47,
-    "known_duration_full_track_equivalent_hours": 7533.9,
+    "duration_coverage": 0.888898,
+    "scrobbles_with_duration": 135117,
+    "unknown_duration_scrobbles": 16888,
+    "known_duration_minimum_qualifying_hours": 3744.03,
+    "known_duration_full_track_equivalent_hours": 7557.03,
     "note": "Duration-based figures cover only scrobbles whose track duration is known; they are not actual playback measurements."
   },
   "top_artist": {
@@ -41,7 +41,7 @@
   "top_10_track_share": 0.072406,
   "listening_time": {
     "schema_version": 1,
-    "generated_at": "2026-10-31T07:04:06.294961+00:00",
+    "generated_at": "2026-10-31T07:34:24.528357+00:00",
     "source_scrobbles": 152005,
     "primary_estimate": {
       "method": "legacy_average_duration",
@@ -54,12 +54,12 @@
       "note": "Includes every archived scrobble, including tracks with unknown duration. An archive-wide estimate, not measured playback."
     },
     "verified_duration_subset": {
-      "scrobbles_with_duration": 134719,
-      "unknown_duration_scrobbles": 17286,
-      "coverage_fraction": 0.88628,
-      "coverage_percent": 88.63,
-      "full_track_equivalent_hours": 7533.9,
-      "minimum_qualifying_hours": 3732.47,
+      "scrobbles_with_duration": 135117,
+      "unknown_duration_scrobbles": 16888,
+      "coverage_fraction": 0.888898,
+      "coverage_percent": 88.89,
+      "full_track_equivalent_hours": 7557.03,
+      "minimum_qualifying_hours": 3744.03,
       "note": "Subset only: calculated from matched track durations. It is not actual playback measurement."
     },
     "measured_spotify_playback": {
