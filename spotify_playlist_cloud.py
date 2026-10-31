@@ -919,6 +919,18 @@ def main():
                 replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
             else:
                 execute(sp, pid, pending["operations"])
+                if kind == "daily":
+                    import spotify_daily_feedback as daily_feedback
+                    new_uris = [uri for op in pending["operations"] if op.get("action") in {"add", "replace"} for uri in op.get("uris", [])]
+                    old_uris = set(snapshot_uris(before))
+                    daily_feedback.record_additions([
+                        {"uri": uri} for uri in new_uris if uri not in old_uris
+                    ], added_at=manager.stamp())
+                    new_uri_set = set(new_uris)
+                    for old_uri in old_uris - new_uri_set:
+                        daily_feedback.record_removal(old_uri, removed_at=manager.stamp())
+                    daily_feedback.observe_liked_songs(sp, new_uris)
+                    daily_feedback.observe_playback_segments()
                 cleanup_count = 0
                 if config.get("playlists", {}).get(pid, {}).get("cleanup") is True:
                     cleanup_count = cleanup_duplicates(sp, pid)
