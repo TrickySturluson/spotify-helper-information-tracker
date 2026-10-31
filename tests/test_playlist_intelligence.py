@@ -24,6 +24,21 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertEqual(profile["negative_track_evidence"], 1)
         self.assertEqual(profile["whitelisted_tracks"], 1)
 
+    def test_metadata_coverage_distinguishes_tagged_partial_and_missing(self):
+        items = [
+            {"artists": ["Tagged"]},
+            {"artists": ["Empty"]},
+            {"artists": ["Absent"]},
+        ]
+        coverage = intelligence.artist_metadata_coverage(items, {
+            "tagged": {"status": "matched", "tags": [{"tag": "punk"}]},
+            "empty": {"status": "no_tags", "tags": []},
+        })
+        self.assertEqual(coverage["tagged"], 1)
+        self.assertEqual(coverage["profile_without_tags"], 1)
+        self.assertEqual(coverage["missing_profile"], 1)
+        self.assertEqual(coverage["tagged_item_coverage"], 1 / 3)
+
     def test_health_report_detects_surplus_duplicates_and_artist_concentration(self):
         items = [
             {"uri": "spotify:track:a", "artists": ["A"]},
