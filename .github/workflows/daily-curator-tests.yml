@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [feature/tricky-daily-curator]
+    branches: [main, feature/tricky-daily-curator]
 
 permissions:
   contents: read
@@ -18,6 +18,6 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile curator and playlist manager
-        run: python -m py_compile spotify_daily_playlist.py spotify_discovery.py spotify_playlist_manager.py spotify_playlist_cloud.py
+        run: python -m py_compile spotify_daily_playlist.py spotify_discovery.py playlist_intelligence.py spotify_playlist_manager.py spotify_playlist_cloud.py
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
