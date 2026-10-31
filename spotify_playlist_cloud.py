@@ -353,7 +353,7 @@ def main():
     elif action == "preview":
         try: manager.assert_managed(command["playlist_id"])
         except manager.ManagerError as error: fail(str(error))
-        pid, operations/ = manager.validate({
+        pid, operations = manager.validate({
             "playlist_id": command["playlist_id"], "operations": command["operations"]
         })
         p = owned_playlist(sp, pid, me)
