@@ -41,7 +41,7 @@ DEFAULT_SCORING = {
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
 def read_json(path, fallback):
