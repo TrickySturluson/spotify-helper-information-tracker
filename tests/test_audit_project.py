@@ -55,6 +55,28 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
             errors, _ = audit_project.audit_spotify_reference(root)
             self.assertTrue(any("unknown playlist ID" in error for error in errors))
 
+    def test_duplicate_playlist_reference_in_index_is_an_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            (base / "reference_index.json").write_text(json.dumps({
+                "track_playlists": {"spotify:track:a": ["p1", "p1"]},
+                "artist_playlists": {},
+            }), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("duplicate playlist references" in error for error in errors))
+
+    def test_malformed_index_reference_list_is_an_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            (base / "reference_index.json").write_text(json.dumps({
+                "track_playlists": {"spotify:track:a": "p1"},
+                "artist_playlists": {},
+            }), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("malformed playlist-reference list" in error for error in errors))
+
     def test_missing_catalog_is_reported_as_not_synced_yet(self):
         with tempfile.TemporaryDirectory() as directory:
             errors, warnings = audit_project.audit_spotify_reference(Path(directory))
