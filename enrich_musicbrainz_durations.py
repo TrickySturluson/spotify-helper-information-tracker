@@ -95,7 +95,22 @@ def main():
                     )
                     if norm(result.get("title")) == norm(item["track"]) and norm(credit) == norm(item["artist"]) and int(result.get("length") or 0) > 0:
                         candidates.append(result)
-        except (HTTPError, URLError, TimeoutError, ValueError) as exc:
+        except HTTPError as exc:
+            # Missing recordings and invalid individual queries are isolated.
+            if exc.code in {400, 404}:
+                looked += 1
+                existing = tracks.get(item["track_id"])
+                if existing is not None:
+                    existing["musicbrainz_checked_at"] = now
+                    existing["musicbrainz_status"] = "not_found" if exc.code == 404 else "invalid_query"
+                    existing["musicbrainz_error"] = f"HTTP {exc.code}"
+                    existing["musicbrainz_retry_after"] = now_epoch + 30 * 86400
+                print(f"Skipping MusicBrainz HTTP {exc.code} for {item['artist']} — {item['track']}")
+                time.sleep(1.05)
+                continue
+            print(f"MusicBrainz transient HTTP {exc.code} at {item['artist']} — {item['track']}: {exc}")
+            break
+        except (URLError, TimeoutError, ValueError) as exc:
             print(f"MusicBrainz lookup interrupted at {item['artist']} — {item['track']}: {exc}")
             break
         looked += 1
