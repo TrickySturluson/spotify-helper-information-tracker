@@ -182,14 +182,22 @@ def validate(plan):
     if not isinstance(plan,dict) or not isinstance(plan.get("playlist_id"),str) or not isinstance(plan.get("operations"),list) or not plan["operations"]: raise ManagerError("Plan needs playlist_id and a non-empty operations list.")
     ops=[]
     for op in plan["operations"]:
+        if not isinstance(op, dict):
+            raise ManagerError("Each plan operation must be an object.")
         a=op.get("action")
         if a in ("add","remove","replace"):
             uris=op.get("uris")
-            if not isinstance(uris,list) or not uris or any(not isinstance(u,str) or not u.startswith("spotify:track:") for u in uris): raise ManagerError("Use a non-empty list of spotify:track: URIs.")
+            if not isinstance(uris,list) or not uris or any(
+                not isinstance(u,str) or not u.startswith("spotify:track:")
+                or not u[len("spotify:track:"):].strip()
+                or any(ch.isspace() for ch in u)
+                for u in uris
+            ):
+                raise ManagerError("Use a non-empty list of valid spotify:track: URIs.")
             ops.append({"action":a,"uris":uris})
         elif a=="reorder":
             vals=[op.get(k) for k in ("range_start","insert_before","range_length")]
-            if any(not isinstance(n,int) or n<0 for n in vals) or vals[2]<1: raise ManagerError("Invalid reorder range.")
+            if any(not isinstance(n,int) or isinstance(n,bool) or n<0 for n in vals) or vals[2]<1: raise ManagerError("Invalid reorder range.")
             ops.append({"action":a,"range_start":vals[0],"insert_before":vals[1],"range_length":vals[2]})
         elif a=="details":
             name=op.get("name")
