@@ -7,6 +7,7 @@ metadata. This module is intentionally read-only: it never edits Spotify.
 import json
 from functools import lru_cache
 import math
+import mood_inference
 import re
 from collections import Counter
 from datetime import datetime, timezone
@@ -93,6 +94,7 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None):
         for field, counter in (("genres", genres), ("moods", moods), ("themes", themes)):
             counter.update(norm(value) for value in metadata.get(field, []) if value)
     total = sum(artists.values())
+    inferred_moods = mood_inference.infer_mood_profile(items, artist_profiles)
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -101,7 +103,12 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None):
         "top_artists": [{"artist": artist_labels[key], "tracks": count, "share": round(count / total, 4) if total else 0}
                         for key, count in artists.most_common(10)],
         "genres": [{"tag": key, "count": count} for key, count in genres.most_common(12)],
-        "moods": [{"tag": key, "count": count} for key, count in moods.most_common(8)],
+        "moods": [
+            {"tag": row["mood"], "count": row["artist_support"],
+             "confidence": row["confidence"], "evidence": row["evidence"]}
+            for row in inferred_moods["moods"]
+        ],
+        "mood_inference": inferred_moods,
         "themes": [{"tag": key, "count": count} for key, count in themes.most_common(10)],
         "positive_artist_evidence": sum((feedback.get("positive_artists") or {}).values()),
         "negative_track_evidence": feedback.get("removed_count", 0),
