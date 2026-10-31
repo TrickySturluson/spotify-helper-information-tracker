@@ -238,6 +238,8 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
             fixed[max(0, min(len(rows) - 1, int(fixed_positions[uri])))] = row
     locked = {id(row) for row in fixed.values()}
     movable = [row for row in rows if id(row) not in locked]
+    if not movable:
+        return [fixed.get(i, rows[i]) for i in range(len(rows))]
     seeds = sorted(movable, key=lambda row: row["original_index"])[:min(8, len(movable))]
     candidates = []
     for seed in seeds or movable[:1]:
@@ -403,7 +405,7 @@ def main():
     parser.add_argument("--sections", type=Path, help="JSON object mapping ordered section names to URI lists.")
     parser.add_argument("--compare", action="store_true", help="Generate alternative 70/85/95 percent peak plans.")
     parser.add_argument("--direction", choices=("ascending", "descending"), default="ascending")
-    parser.add_argument("--group-by", choices=("none", "vibe", "genre", "theme"), default="none", help="Softly cluster groups within 10-point energy bands.")
+    parser.add_argument("--group-by", choices=("none", "vibe", "genre", "theme"), default="none", help="Soft grouping preference; does not create rigid genre blocks.")
     parser.add_argument("--output", type=Path, default=Path("playlist-sequence-plan.json"))
     args = parser.parse_args()
     try:
@@ -424,6 +426,9 @@ def main():
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f'Preview generated for "{playlist.get("name")}" — {len(scored)} tracks.')
         print(f'Direction: {args.direction}; {len(plan["operations"])} reorder operation(s).')
+        summary = transition_summary(scored)
+        print("Journey: " + args.journey + "; peak target: " + str(args.peak_position) + "% (" + args.peak_shape + ").")
+        print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " potential jumps; limited evidence=" + str(summary["limited_evidence"]) + ".")
         confidence_counts = confidence_summary(scored)
         print("Proposed sequence (position | energy | confidence | group | track):")
         print("Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
