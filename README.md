@@ -348,6 +348,14 @@ python spotify_reference_library.py list
 python spotify_reference_library.py lookup "artist or track name"
 ```
 
+Validate generated manifests and Spotify reference data with the read-only project audit:
+
+```bash
+python audit_project.py
+```
+
+The audit checks generated-data manifests, catalog-to-record consistency, and whether the track/artist index matches saved playlist contents. It exits nonzero for integrity errors. A missing initial Spotify sync and inaccessible playlist contents are reported as warnings rather than being mistaken for successful empty playlists.
+
 ### Tricky Daily retention feedback
 
 A scheduled read-only observation workflow refreshes Liked Songs status and Last.fm post-add counts daily, even when Tricky Daily itself is not edited. It can be run manually from **Actions → SHIT Daily Feedback Observation**. The GitHub runner does not have the local playback segment file, so measured Spotify playback remains unknown there unless a separate local observation is performed; missing tracker data is never interpreted as zero listening.
