@@ -67,7 +67,7 @@ def infer_sound_tag_profile(items, artist_profiles):
     genre_support, theme_support = {}, {}
     for artist in artists:
         profile = artist_profiles.get(artist, {}) or {}
-        genres = {_norm(value) for value in profile.get("genres", []) if value}
+        genres = {_norm(value) for value in profile.get("genres") or [] if value}
         tags = set()
         for row in profile.get("tags") or []:
             tag = row.get("tag", "") if isinstance(row, dict) else row
