@@ -49,9 +49,10 @@ def record_additions(items, added_at=None, liked_at_add=None):
             "first_added_at": added_at, "additions": [], "liked_observations": [],
             "playback_observations": [], "removal_events": [], "liked_at_add": None,
         })
-        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID})
-        if liked_at_add and uri in liked_at_add:
-            row["liked_at_add"] = bool(liked_at_add[uri])
+        baseline = bool(liked_at_add[uri]) if liked_at_add and uri in liked_at_add else None
+        row["additions"].append({"at": added_at, "daily_playlist_id": DAILY_ID, "liked_at_add": baseline})
+        if baseline is not None:
+            row["liked_at_add"] = baseline
         row["last_added_at"] = added_at
     data["updated_at"] = now()
     write(data)
@@ -162,7 +163,10 @@ def observe_lastfm_scrobbles(path=Path("data/scrobbles.json")):
         except (KeyError, TypeError, ValueError, OSError):
             continue
         for uri in uris:
-            added_at = data["tracks"][uri].get("last_added_at") or data["tracks"][uri]["first_added_at"]
+            # Lifetime post-exposure scrobbles align with measured playback, which
+            # is also accumulated from first_added_at. Individual additions remain
+            # available in the event history for campaign-level analysis.
+            added_at = data["tracks"][uri]["first_added_at"]
             try:
                 if played_at >= datetime.fromisoformat(added_at.replace("Z", "+00:00")):
                     counts[uri] += 1
@@ -182,20 +186,30 @@ def feedback_for(uri):
         return {"status": "unknown"}
     liked = row.get("liked_observations") or []
     latest_liked = liked[-1]["liked"] if liked else None
+    additions = row.get("additions") or []
+    latest_addition = additions[-1] if additions else {"at": row.get("first_added_at"), "liked_at_add": row.get("liked_at_add")}
+    baseline = latest_addition.get("liked_at_add", row.get("liked_at_add"))
+    liked_after_latest_add = None
+    if latest_liked is not None and baseline is not None and liked:
+        try:
+            liked_after_latest_add = latest_liked is True and datetime.fromisoformat(liked[-1]["at"].replace("Z", "+00:00")) >= datetime.fromisoformat(latest_addition["at"].replace("Z", "+00:00")) and baseline is False
+        except (KeyError, TypeError, ValueError):
+            liked_after_latest_add = None
     playback = row.get("playback_observations") or []
     measured_plays = sum(int(x.get("plays") or 0) for x in playback) if playback else None
     measured_ms = sum(int(x.get("played_ms") or 0) for x in playback) if playback else None
     return {
         "status": "observed" if latest_liked is not None or measured_plays is not None or row.get("lastfm_post_add_scrobbles") is not None else "unknown",
         "liked": latest_liked,
-        "liked_before_or_at_add": row.get("liked_at_add"),
-        "liked_after_add": (latest_liked is True and row.get("liked_at_add") is False) if latest_liked is not None and row.get("liked_at_add") is not None else None,
+        "liked_before_or_at_add": baseline,
+        "liked_after_add": liked_after_latest_add,
         "liked_at": liked[-1].get("at") if liked else None,
         "post_add_measured_plays": measured_plays,
         "post_add_playback_ms": measured_ms,
         "post_add_lastfm_scrobbles": row.get("lastfm_post_add_scrobbles"),
         "removal_count": len(row.get("removal_events") or []),
-        "additions": len(row.get("additions") or []),
+        "additions": len(additions),
+        "addition_history": additions,
         "no_listening_is_neutral": True,
     }
 
