@@ -205,18 +205,18 @@ def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST):
 def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_removed_tracks.json")):
     """Build playlist-scoped positive/negative taste evidence.
 
-    A removed track that is currently present is explicitly whitelisted: its
-    historical removal is ignored and it contributes positive artist evidence.
+    A removed track currently present in this same playlist is whitelisted:
+    its old removal is ignored and its artist contributes positive evidence.
     """
-    current_uris = {
-        row.get("uri") for row in playlist_items
-        if isinstance(row, dict) and isinstance(row.get("uri"), str)
-    }
+    current_uris = set()
     current_keys = set()
     positive_artists = defaultdict(int)
     for row in playlist_items:
         if not isinstance(row, dict):
             continue
+        uri = row.get("uri")
+        if isinstance(uri, str):
+            current_uris.add(uri)
         artists = row.get("artists") or []
         artist = artists[0] if artists else row.get("artist", "")
         name = row.get("name") or row.get("track", "")
@@ -226,6 +226,7 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
             positive_artists[norm(artist)] += 1
 
     removed = []
+    whitelisted_count = 0
     if path.is_file() and playlist_id:
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
@@ -238,8 +239,8 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
                 artist = artists[0] if artists else row.get("artist", "")
                 name = row.get("name") or row.get("track", "")
                 key = track_key(artist, name) if artist and name else ""
-                # Presence in THIS playlist overrides the old removal record.
                 if (uri and uri in current_uris) or (key and key in current_keys):
+                    whitelisted_count += 1
                     continue
                 if artist or name or uri:
                     removed.append({
@@ -249,6 +250,7 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
         except (OSError, ValueError, TypeError):
             # Feedback is optional; malformed history must not break discovery.
             removed = []
+            whitelisted_count = 0
 
     negative_artists = defaultdict(int)
     negative_keys = set()
@@ -267,18 +269,9 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
         "negative_artists": negative_artists,
         "negative_keys": negative_keys,
         "negative_uris": negative_uris,
-        "whitelisted_count": sum(
-            1 for row in ((json.loads(path.read_text(encoding="utf-8")).get("playlists") or {}).get(playlist_id, {}).get("removed") or [])
-            if isinstance(row, dict) and (
-                (row.get("uri") and row.get("uri") in current_uris)
-                or (
-                    (row.get("artists") or [row.get("artist", "")])[0]
-                    and track_key((row.get("artists") or [row.get("artist", "")])[0], row.get("name") or row.get("track", "")) in current_keys
-                )
-            )
-        ) if path.is_file() and playlist_id else 0,
+        "whitelisted_count": whitelisted_count,
+        "removed_count": len(removed),
     }
-
 
 def candidate_score(track, similarity, familiarity, liked, today=None, feedback=None):
     today = today or date.today()
