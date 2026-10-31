@@ -46,6 +46,18 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(result[1]["sequence_group"], "nocturnal")
         self.assertLessEqual(abs(result[1]["score"] - result[0]["score"]), 10)
 
+    def test_confidence_summary_counts_unknown_metadata(self):
+        rows = [
+            {"confidence": "high"},
+            {"confidence": "low"},
+            {"confidence": "unknown"},
+            {"confidence": "unknown"},
+        ]
+        self.assertEqual(
+            sequencer.confidence_summary(rows),
+            {"high": 1, "medium": 0, "low": 1, "unknown": 2},
+        )
+
     def test_reorder_plan_preserves_duplicates_and_transforms_order(self):
         current = ["a", "b", "a", "c"]
         desired = ["a", "a", "c", "b"]
