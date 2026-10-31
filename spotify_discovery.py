@@ -328,7 +328,8 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
         + min(removed_artist_count, weights["artist_removal_cap"]) * weights["artist_removal"],
     )
     feedback_bonus = min(weights["positive_cap"], positive_artist_count * weights["positive_artist"])
-    if daily.get("liked") is True:
+    post_add_saved = daily.get("liked") is True and daily.get("liked_at_add") is False
+    if post_add_saved:
         feedback_bonus += 0.06
     if daily.get("measured_plays") is not None and daily.get("measured_plays") > 0:
         feedback_bonus += min(0.08, 0.025 * math.log1p(daily["measured_plays"]))
@@ -337,7 +338,7 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     # Spotify removed the popularity field from some Development Mode API
     # responses in 2026. Do not interpret a missing field as popularity zero.
     score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty + feedback_bonus
-    if is_liked:
+    if is_liked and not post_add_saved:
         score -= weights["liked_penalty"]
     return score, plays, known.get("last_scrobble"), is_liked
 
