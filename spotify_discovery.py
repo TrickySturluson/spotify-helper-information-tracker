@@ -202,7 +202,85 @@ def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST):
     return ((response or {}).get("tracks") or {}).get("items") or []
 
 
-def candidate_score(track, similarity, familiarity, liked, today=None):
+def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_removed_tracks.json")):
+    """Build playlist-scoped positive/negative taste evidence.
+
+    A removed track that is currently present is explicitly whitelisted: its
+    historical removal is ignored and it contributes positive artist evidence.
+    """
+    current_uris = {
+        row.get("uri") for row in playlist_items
+        if isinstance(row, dict) and isinstance(row.get("uri"), str)
+    }
+    current_keys = set()
+    positive_artists = defaultdict(int)
+    for row in playlist_items:
+        if not isinstance(row, dict):
+            continue
+        artists = row.get("artists") or []
+        artist = artists[0] if artists else row.get("artist", "")
+        name = row.get("name") or row.get("track", "")
+        if artist and name:
+            current_keys.add(track_key(artist, name))
+        if artist:
+            positive_artists[norm(artist)] += 1
+
+    removed = []
+    if path.is_file() and playlist_id:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            records = (payload.get("playlists") or {}).get(playlist_id, {}).get("removed") or []
+            for row in records:
+                if not isinstance(row, dict):
+                    continue
+                uri = row.get("uri")
+                artists = row.get("artists") or []
+                artist = artists[0] if artists else row.get("artist", "")
+                name = row.get("name") or row.get("track", "")
+                key = track_key(artist, name) if artist and name else ""
+                # Presence in THIS playlist overrides the old removal record.
+                if (uri and uri in current_uris) or (key and key in current_keys):
+                    continue
+                if artist or name or uri:
+                    removed.append({
+                        "uri": uri, "key": key, "artist": norm(artist),
+                        "name": norm(name),
+                    })
+        except (OSError, ValueError, TypeError):
+            # Feedback is optional; malformed history must not break discovery.
+            removed = []
+
+    negative_artists = defaultdict(int)
+    negative_keys = set()
+    negative_uris = set()
+    for row in removed:
+        if row["artist"]:
+            negative_artists[row["artist"]] += 1
+        if row["key"]:
+            negative_keys.add(row["key"])
+        if row["uri"]:
+            negative_uris.add(row["uri"])
+    return {
+        "current_uris": current_uris,
+        "current_keys": current_keys,
+        "positive_artists": positive_artists,
+        "negative_artists": negative_artists,
+        "negative_keys": negative_keys,
+        "negative_uris": negative_uris,
+        "whitelisted_count": sum(
+            1 for row in ((json.loads(path.read_text(encoding="utf-8")).get("playlists") or {}).get(playlist_id, {}).get("removed") or [])
+            if isinstance(row, dict) and (
+                (row.get("uri") and row.get("uri") in current_uris)
+                or (
+                    (row.get("artists") or [row.get("artist", "")])[0]
+                    and track_key((row.get("artists") or [row.get("artist", "")])[0], row.get("name") or row.get("track", "")) in current_keys
+                )
+            )
+        ) if path.is_file() and playlist_id else 0,
+    }
+
+
+def candidate_score(track, similarity, familiarity, liked, today=None, feedback=None):
     today = today or date.today()
     artist = (track.get("artists") or [{}])[0].get("name", "")
     name = track.get("name", "")
@@ -211,11 +289,18 @@ def candidate_score(track, similarity, familiarity, liked, today=None):
     penalty = familiarity_penalty(plays, known.get("last_scrobble"), today)
     uri = track.get("uri")
     is_liked = track_key(artist, name) in liked or (uri and uri in liked)
+    # Playlist-local feedback is deliberately separate from global Last.fm taste.
+    # A removed track/artist is a soft negative, never a global blacklist.
+    feedback = feedback or {}
+    removed_exact = track_key(artist, name) in feedback.get("negative_keys", set())
+    removed_uri = uri in feedback.get("negative_uris", set())
+    removed_artist_count = feedback.get("negative_artists", {}).get(norm(artist), 0)
+    positive_artist_count = feedback.get("positive_artists", {}).get(norm(artist), 0)
+    feedback_penalty = min(0.32, (0.18 if removed_exact or removed_uri else 0.0) + min(removed_artist_count, 4) * 0.035)
+    feedback_bonus = min(0.12, positive_artist_count * 0.015)
     # Spotify removed the popularity field from some Development Mode API
-    # responses in 2026. Do not interpret a missing field as popularity zero
-    # or let it distort the score; taste-fit and graduated familiarity remain
-    # the ranking signals.
-    score = 0.58 * similarity + 0.30 * (1.0 - penalty)
+    # responses in 2026. Do not interpret a missing field as popularity zero.
+    score = 0.58 * similarity + 0.30 * (1.0 - penalty) - feedback_penalty + feedback_bonus
     if is_liked:
         score -= 0.62
     return score, plays, known.get("last_scrobble"), is_liked
@@ -224,7 +309,7 @@ def candidate_score(track, similarity, familiarity, liked, today=None):
 def build_discovery_recommendations(
     sp, playlist_items, today=None, profiles_path=PROFILES,
     features_path=FEATURES, api_key=None, target_size=TARGET_SIZE,
-    similar_artist_rows=None, liked_keys=None,
+    similar_artist_rows=None, liked_keys=None, playlist_id=None,
 ):
     today = today or date.today()
     api_key = api_key or __import__("os").environ.get("LASTFM_API_KEY")
@@ -237,6 +322,7 @@ def build_discovery_recommendations(
     if not isinstance(profiles, dict) or not profiles or not isinstance(archive, list):
         raise RuntimeError("Music taste/familiarity data is empty or invalid.")
     familiarity = build_familiarity_index(archive)
+    feedback = load_playlist_feedback(playlist_items, playlist_id)
     existing_uris = {row.get("uri") for row in playlist_items if row.get("uri")}
     if liked_keys is None:
         liked_keys = liked_track_keys(sp)
@@ -261,7 +347,7 @@ def build_discovery_recommendations(
                 continue
             key = track_key(artist, track["name"])
             score, plays, last, is_liked = candidate_score(
-                track, artist_row["similarity"], familiarity, liked_keys, today
+                track, artist_row["similarity"], familiarity, liked_keys, today, feedback
             )
             row = {
                 "uri": uri, "artist": artist, "track": track["name"],
