@@ -72,6 +72,30 @@ class DailyFeedbackTests(unittest.TestCase):
                 result = feedback.feedback_for("spotify:track:abc")
                 self.assertEqual(result["post_add_lastfm_scrobbles"], 2)
 
+    def test_repeated_additions_keep_each_liked_baseline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with patch.object(feedback, "DATA", Path(directory) / "daily.json"):
+                feedback.record_additions([{"uri": "spotify:track:abc"}], "2026-10-30T10:00:00+00:00", {"spotify:track:abc": False})
+                feedback.record_additions([{"uri": "spotify:track:abc"}], "2026-10-31T10:00:00+00:00", {"spotify:track:abc": True})
+                result = feedback.feedback_for("spotify:track:abc")
+                self.assertEqual(result["additions"], 2)
+                self.assertEqual([x["liked_at_add"] for x in result["addition_history"]], [False, True])
+                self.assertTrue(result["liked_before_or_at_add"])
+
+    def test_lastfm_counts_are_cumulative_from_first_daily_addition(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.object(feedback, "DATA", root / "daily.json"):
+                feedback.record_additions([{"uri": "spotify:track:abc", "artist": "Artist", "track": "Song"}], "2026-10-30T10:00:00+00:00")
+                feedback.record_additions([{"uri": "spotify:track:abc", "artist": "Artist", "track": "Song"}], "2026-10-31T10:00:00+00:00")
+                archive = root / "scrobbles.json"
+                archive.write_text(json.dumps([
+                    {"artist": "Artist", "track": "Song", "timestamp": 1793358000},
+                    {"artist": "Artist", "track": "Song", "timestamp": 1793444600},
+                ]))
+                feedback.observe_lastfm_scrobbles(archive)
+                self.assertEqual(feedback.feedback_for("spotify:track:abc")["post_add_lastfm_scrobbles"], 2)
+
     def test_post_add_playback_ignores_pre_add_intervals(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

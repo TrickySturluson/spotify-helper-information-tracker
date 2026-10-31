@@ -146,6 +146,8 @@ def owned(sp,pid):
     if (p.get("owner") or {}).get("id")!=me.get("id"): raise ManagerError("Only playlists owned by this account can be edited.")
     return me,p
 def set_lock(sp,pid,state):
+    if state == "unlocked":
+        assert_managed(pid)
     p=find(sp,pid); c=config()
     c["playlists"][pid]={"name":p.get("name",""),"state":state,"updated_at":stamp()}
     write(CONFIG,c); audit(event="permission_changed",playlist_id=pid,name=p.get("name"),state=state)
@@ -171,6 +173,8 @@ def inspect(sp,pid):
     for i,t in enumerate(rows,1): print(f'{i:3}. {", ".join(t["artists"] or [])} — {t["name"] or "[unavailable item]"}')
 def create(sp,name,description,public):
     me=sp.me(); p=sp.call("POST","/me/playlists",{"name":name,"description":description,"public":public})
+    # Register provenance immediately: only SHIT-created playlists may be edited.
+    register_created(p["id"], p["name"])
     c=config(); c["playlists"][p["id"]]={"name":p["name"],"state":"locked","updated_at":stamp()}; write(CONFIG,c)
     audit(event="created_locked",playlist_id=p["id"],name=p["name"])
     print(f'Created "{p["name"]}" ({p["id"]}); it is LOCKED by default.')
@@ -196,15 +200,18 @@ def validate(plan):
         else: raise ManagerError(f"Unsupported action: {a}")
     return plan["playlist_id"],ops
 def remove(sp,pid,uris):
+    assert_managed(pid)
     for i in range(0,len(uris),100):
         if not unlocked(pid): raise ManagerError("Playlist is LOCKED; remaining removals stopped.")
         sp.call("DELETE",f"/playlists/{pid}/items",{"items":[{"uri":u} for u in uris[i:i+100]]})
 def add(sp,pid,uris):
+    assert_managed(pid)
     for i in range(0,len(uris),100):
         if not unlocked(pid): raise ManagerError("Playlist is LOCKED; remaining additions stopped.")
         sp.call("POST",f"/playlists/{pid}/items",{"uris":uris[i:i+100]})
 def apply(sp,path):
     pid,ops=validate(read(path,None))
+    assert_managed(pid)
     if not unlocked(pid): raise ManagerError("BLOCKED: playlist is LOCKED. Unlock it explicitly first.")
     me,p=owned(sp,pid); before=snapshot(sp,p)
     print(f'\nPREVIEW — {p.get("name")} [{pid}]')
@@ -227,6 +234,7 @@ def apply(sp,path):
     phrase="REPLACE" if any(o["action"]=="replace" for o in ops) else "APPLY"
     if input(f'Type {phrase} exactly to confirm (anything else cancels): ').strip()!=phrase:
         audit(event="cancelled",playlist_id=pid); print("Cancelled."); return
+    assert_managed(pid)
     if not unlocked(pid): raise ManagerError("Blocked: playlist was locked after preview.")
     me,p2=owned(sp,pid)
     if p2.get("snapshot_id")!=p.get("snapshot_id"): raise ManagerError("Playlist changed after preview. Re-run to review the latest state.")
