@@ -73,6 +73,33 @@ def artist_metadata_index(path=ARTIST_PROFILES):
     return result
 
 
+def artist_metadata_coverage(items, artist_profiles):
+    """Track-weighted artist-profile coverage with explicit missing/empty distinctions."""
+    counts = {"tagged": 0, "profile_without_tags": 0, "missing_profile": 0}
+    for item in items or []:
+        if not isinstance(item, dict):
+            counts["missing_profile"] += 1
+            continue
+        names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+        if not names or not names[0]:
+            counts["missing_profile"] += 1
+            continue
+        profile = artist_profiles.get(norm(names[0]))
+        if not profile:
+            counts["missing_profile"] += 1
+        elif profile.get("tags"):
+            counts["tagged"] += 1
+        else:
+            counts["profile_without_tags"] += 1
+    total = sum(counts.values())
+    return {
+        **counts,
+        "total_items": total,
+        "tagged_item_coverage": round(counts["tagged"] / max(1, total), 4),
+        "any_profile_item_coverage": round((counts["tagged"] + counts["profile_without_tags"]) / max(1, total), 4),
+    }
+
+
 def build_playlist_profile(items, feedback=None, artist_profiles=None):
     """Summarize a playlist's identity using current membership, not global taste."""
     feedback = feedback or {}
@@ -115,10 +142,8 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None):
         "positive_artist_evidence": sum((feedback.get("positive_artists") or {}).values()),
         "negative_track_evidence": feedback.get("removed_count", 0),
         "whitelisted_tracks": feedback.get("whitelisted_count", 0),
-        "metadata_coverage": round(sum(1 for item in items or []
-            if (item.get("artists") or [item.get("artist")])[0]
-            and norm((item.get("artists") or [item.get("artist")])[0]) in artist_profiles)
-            / max(1, len(items or [])), 4)
+        "metadata_coverage": artist_metadata_coverage(items, artist_profiles)["tagged_item_coverage"],
+        "metadata_coverage_detail": artist_metadata_coverage(items, artist_profiles)
     }
 
 
@@ -187,8 +212,8 @@ def playlist_health(items, feedback=None, artist_profiles=None):
         "top_artists": [{"artist": artist, "tracks": count,
                          "share": round(count / max(1, total), 4)} for artist, count in top],
         "top_artist_share": round(top[0][1] / max(1, total), 4) if top else 0,
-        "artist_metadata_coverage": round(sum(count for artist, count in artist_counts.items()
-            if artist in artist_profiles) / max(1, total), 4),
+        "artist_metadata_coverage": artist_metadata_coverage(items, artist_profiles)["tagged_item_coverage"],
+        "artist_metadata_coverage_detail": artist_metadata_coverage(items, artist_profiles),
         "removal_feedback_count": feedback.get("removed_count", 0),
         "whitelisted_count": feedback.get("whitelisted_count", 0),
     }
