@@ -186,7 +186,7 @@ def feedback_for(uri):
     measured_plays = sum(int(x.get("plays") or 0) for x in playback) if playback else None
     measured_ms = sum(int(x.get("played_ms") or 0) for x in playback) if playback else None
     return {
-        "status": "observed" if latest_liked is not None or measured_plays is not None else "unknown",
+        "status": "observed" if latest_liked is not None or measured_plays is not None or row.get("lastfm_post_add_scrobbles") is not None else "unknown",
         "liked": latest_liked,
         "liked_before_or_at_add": row.get("liked_at_add"),
         "liked_after_add": (latest_liked is True and row.get("liked_at_add") is False) if latest_liked is not None and row.get("liked_at_add") is not None else None,
