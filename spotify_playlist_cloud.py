@@ -783,9 +783,17 @@ def main():
         feedback = daily.load_playlist_feedback(current["items"], pid)
         uris = [row["uri"] for row in recommendations]
         operations = [{"action": "replace", "uris": uris}]
+        liked_baseline = {}
+        try:
+            for offset in range(0, len(uris), 50):
+                batch = uris[offset:offset + 50]
+                saved = sp.call("GET", "/me/library/contains?uris=" + ",".join(batch))
+                liked_baseline.update(dict(zip(batch, [bool(value) for value in (saved or [])])))
+        except Exception as liked_error:
+            manager.audit(event="daily_liked_baseline_unavailable", error=str(liked_error))
         confirmation = secrets.token_urlsafe(12)
         config["pending"] = {
-            "playlist_id": pid, "operations": operations,
+            "playlist_id": pid, "operations": operations, "liked_at_add": liked_baseline,
             "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
             "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "daily",
         }
@@ -925,7 +933,7 @@ def main():
                     old_uris = set(snapshot_uris(before))
                     daily_feedback.record_additions([
                         {"uri": uri} for uri in new_uris if uri not in old_uris
-                    ], added_at=manager.stamp())
+                    ], added_at=manager.stamp(), liked_at_add=pending.get("liked_at_add") or {})
                     new_uri_set = set(new_uris)
                     for old_uri in old_uris - new_uri_set:
                         daily_feedback.record_removal(old_uri, removed_at=manager.stamp())
