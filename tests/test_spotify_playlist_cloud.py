@@ -9,6 +9,24 @@ import spotify_playlist_manager as manager
 
 
 class CloudExecutorTests(unittest.TestCase):
+    def test_non_string_cloud_command_is_rejected_before_spotify_access(self):
+        with tempfile.TemporaryDirectory() as directory:
+            event_path = Path(directory) / "event.json"
+            event_path.write_text(json.dumps({
+                "sender": {"login": "TrickySturluson"},
+                "issue": {
+                    "title": "SHIT — Playlist Control",
+                    "state": "open",
+                    "body": json.dumps({"command": []}),
+                },
+            }), encoding="utf-8")
+            with patch.dict(os.environ, {"GITHUB_EVENT_PATH": str(event_path)}), patch.object(
+                manager, "Spotify"
+            ) as spotify:
+                with self.assertRaises(SystemExit):
+                    cloud.main()
+            spotify.assert_not_called()
+
     def test_locked_playlist_blocks_cloud_execution(self):
         operation = [{"action": "add", "uris": ["spotify:track:abc"]}]
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=False):
