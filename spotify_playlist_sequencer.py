@@ -145,28 +145,125 @@ def score_track(item, artist_profiles=None, track_profiles=None):
             "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
 
 
-def sequence_tracks(items, artist_profiles=None, track_profiles=None, direction="ascending", group_by="none"):
+def _set_similarity(left, right):
+    a, b = set(left or []), set(right or [])
+    return len(a & b) / len(a | b) if a and b else 0.0
+
+
+def _transition_cost(left, right):
+    """Lower is a gentler transition; all inputs are metadata heuristics."""
+    energy_gap = abs(float(left["score"]) - float(right["score"])) / 100.0
+    mood_similarity = _set_similarity(left.get("vibe_groups"), right.get("vibe_groups"))
+    genre_similarity = _set_similarity(left.get("genre_groups"), right.get("genre_groups"))
+    same_artist = norm(left.get("artist")) == norm(right.get("artist"))
+    return (0.48 * energy_gap + 0.27 * (1.0 - mood_similarity)
+            + 0.15 * (1.0 - genre_similarity) + 0.10 * same_artist)
+
+
+def _transition_order(rows):
+    """Greedy local sequencing that favors compatible neighboring tracks."""
+    remaining = list(rows)
+    if len(remaining) < 3:
+        return remaining
+    ordered = [remaining.pop(0)]
+    while remaining:
+        previous = ordered[-1]
+        next_row = min(remaining, key=lambda row: (
+            _transition_cost(previous, row), row["original_index"]))
+        remaining.remove(next_row)
+        ordered.append(next_row)
+    return ordered
+
+
+def _narrative_phase(row):
+    moods = set(row.get("vibe_groups") or [])
+    phases = (
+        {"calm", "dreamy", "warm", "romantic", "nostalgic", "wistful"},
+        {"introspective", "melancholic", "mysterious", "psychedelic"},
+        {"nocturnal", "dark", "eerie", "desolate", "tense"},
+        {"aggressive", "chaotic", "rebellious", "energetic", "cathartic"},
+        {"hopeful", "uplifting", "upbeat", "playful"},
+    )
+    for index, phase in enumerate(phases):
+        if moods & phase:
+            return index
+    return 2
+
+
+def sequence_tracks(items, artist_profiles=None, track_profiles=None,
+                    direction="ascending", group_by="none", mode="hybrid"):
+    """Sequence tracks by energy, atmosphere, style, narrative or discovery.
+
+    Hybrid mode preserves a broad energy arc and improves local transitions
+    within each 10-point band. All non-audio signals remain metadata heuristics.
+    """
     if direction not in {"ascending", "descending"}:
         raise ValueError("direction must be ascending or descending")
     if group_by not in {"none", "vibe", "genre", "theme"}:
         raise ValueError("group_by must be none, vibe, genre, or theme")
+    if mode not in {"hybrid", "energy", "atmosphere", "style", "narrative", "discovery"}:
+        raise ValueError("mode must be hybrid, energy, atmosphere, style, narrative, or discovery")
+    artists = artist_profiles or {}
     scored = []
     for index, item in enumerate(items):
         if not isinstance(item, dict) or not item.get("uri"):
             continue
-        profile = score_track(item, artist_profiles, track_profiles)
+        profile = score_track(item, artists, track_profiles)
         group_field = {"vibe": "vibe_groups", "genre": "genre_groups", "theme": "theme_groups"}.get(group_by)
         groups = profile.get(group_field, []) if group_field else []
         profile["sequence_group"] = groups[0] if groups else "unclassified"
+        artist_profile = artists.get(norm(profile["artist"]), {})
+        profile["artist_play_count"] = artist_profile.get("play_count")
+        profile["narrative_phase"] = _narrative_phase(profile)
         scored.append({"original_index": index, "item": item, **profile})
+
     reverse = direction == "descending"
-    def order_key(row):
-        band = int(row["score"] // 10)
-        if reverse:
-            band = -band
-        # Grouping is a soft tie-breaker inside 10-point energy bands.
-        return (band, row["sequence_group"], (-row["score"] if reverse else row["score"]), row["original_index"])
-    scored.sort(key=order_key)
+    if mode == "atmosphere":
+        key = lambda row: (row["sequence_group"] if group_by != "none" else (row.get("vibe_groups") or ["unclassified"])[0],
+                           -row["score"] if reverse else row["score"], row["original_index"])
+        if group_by == "none":
+            for row in scored:
+                row["sequence_group"] = (row.get("vibe_groups") or ["unclassified"])[0]
+        scored.sort(key=key)
+    elif mode == "style":
+        for row in scored:
+            if group_by == "none":
+                row["sequence_group"] = (row.get("genre_groups") or ["unclassified"])[0]
+        scored.sort(key=lambda row: (row["sequence_group"], -row["score"] if reverse else row["score"], row["original_index"]))
+    elif mode == "narrative":
+        scored.sort(key=lambda row: ((-row["narrative_phase"] if reverse else row["narrative_phase"]),
+                                     -row["score"] if reverse else row["score"], row["original_index"]))
+        for row in scored:
+            row["sequence_group"] = f"act-{row['narrative_phase'] + 1}"
+    elif mode == "discovery":
+        # Lower-play-count artists surface first; unknown familiarity remains last.
+        scored.sort(key=lambda row: (
+            row["artist_play_count"] is None,
+            row["artist_play_count"] if row["artist_play_count"] is not None else float("inf"),
+            -row["score"] if reverse else row["score"], row["original_index"]))
+        for row in scored:
+            row["sequence_group"] = "less familiar" if row["artist_play_count"] is not None else "familiarity unknown"
+    else:
+        bands = {}
+        for row in scored:
+            band = int(row["score"] // 10)
+            bands.setdefault(band, []).append(row)
+        ordered_bands = sorted(bands, reverse=reverse)
+        result = []
+        for band in ordered_bands:
+            rows = bands[band]
+            if mode == "hybrid":
+                # Use requested grouping as a soft preference before transition cost.
+                if group_by != "none":
+                    field = {"vibe": "vibe_groups", "genre": "genre_groups", "theme": "theme_groups"}[group_by]
+                    for row in rows:
+                        row["sequence_group"] = (row.get(field) or ["unclassified"])[0]
+                    rows.sort(key=lambda row: (row["sequence_group"], row["original_index"]))
+                rows = _transition_order(rows)
+            else:
+                rows.sort(key=lambda row: (-row["score"] if reverse else row["score"], row["original_index"]))
+            result.extend(rows)
+        scored = result
     return scored
 
 def build_reorder_operations(current_uris, ordered_uris):
@@ -205,6 +302,7 @@ def make_plan(snapshot, scored):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("playlist_id")
+    parser.add_argument("--mode", choices=("hybrid", "energy", "atmosphere", "style", "narrative", "discovery"), default="hybrid")
     parser.add_argument("--direction", choices=("ascending", "descending"), default="ascending")
     parser.add_argument("--group-by", choices=("none", "vibe", "genre", "theme"), default="none", help="Softly cluster groups within 10-point energy bands.")
     parser.add_argument("--output", type=Path, default=Path("playlist-sequence-plan.json"))
@@ -215,7 +313,7 @@ def main():
         snap = manager.snapshot(sp, playlist)
         artists = index_artists(read_json(ARTIST_PROFILES, {}))
         tracks = index_tracks(read_json(TRACK_PROFILES, {}))
-        scored = sequence_tracks(snap["items"], artists, tracks, args.direction, args.group_by)
+        scored = sequence_tracks(snap["items"], artists, tracks, args.direction, args.group_by, args.mode)
         plan = make_plan(snap, scored)
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f'Preview generated for "{playlist.get("name")}" — {len(scored)} tracks.')
