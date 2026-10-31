@@ -172,6 +172,10 @@ def inspect(sp,pid):
     print(f'{p.get("name")} [{pid}] — {"UNLOCKED" if unlocked(pid) else "LOCKED"} — {len(rows)} items')
     for i,t in enumerate(rows,1): print(f'{i:3}. {", ".join(t["artists"] or [])} — {t["name"] or "[unavailable item]"}')
 def create(sp,name,description,public):
+    if not isinstance(name,str) or not name.strip() or len(name)>100:
+        raise ManagerError("Playlist name must be 1–100 characters.")
+    if not isinstance(description,str) or len(description)>300:
+        raise ManagerError("Playlist description must be 300 characters or fewer.")
     me=sp.me(); p=sp.call("POST","/me/playlists",{"name":name,"description":description,"public":public})
     # Register provenance immediately: only SHIT-created playlists may be edited.
     register_created(p["id"], p["name"])

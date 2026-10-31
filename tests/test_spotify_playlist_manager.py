@@ -48,6 +48,22 @@ class PlaylistManagerTests(unittest.TestCase):
                     manager.apply(object(), plan)
                 guard.assert_called_once_with("personal-playlist")
 
+    def test_create_rejects_invalid_name_before_spotify_call(self):
+        spotify = __import__("unittest").mock.Mock()
+        for name in ("", "   ", "x" * 101):
+            with self.subTest(name_length=len(name)):
+                with self.assertRaises(manager.ManagerError):
+                    manager.create(spotify, name, "", False)
+        spotify.me.assert_not_called()
+        spotify.call.assert_not_called()
+
+    def test_create_rejects_oversized_description_before_spotify_call(self):
+        spotify = __import__("unittest").mock.Mock()
+        with self.assertRaisesRegex(manager.ManagerError, "description"):
+            manager.create(spotify, "Valid name", "x" * 301, False)
+        spotify.me.assert_not_called()
+        spotify.call.assert_not_called()
+
     def test_create_registers_managed_provenance(self):
         spotify = __import__("unittest").mock.Mock()
         spotify.me.return_value = {"id": "user123"}
