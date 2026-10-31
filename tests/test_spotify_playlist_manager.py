@@ -131,5 +131,30 @@ class PlaylistManagerTests(unittest.TestCase):
             manager.validate({"playlist_id": "playlist123", "operations": []})
 
 
+    def test_backup_roundtrip_preserves_playlist_identity_and_ordered_items(self):
+        snapshot = {
+            "created_at": "2026-10-31T00:00:00+00:00",
+            "playlist": {
+                "id": "safe-test-playlist",
+                "name": "Round-trip test",
+                "snapshot_id": "snapshot-before-edit",
+            },
+            "items": [
+                {"uri": "spotify:track:first", "name": "First", "artists": ["Artist A"], "album": "Album 1"},
+                {"uri": None, "name": "[unavailable item]", "artists": [], "album": None},
+                {"uri": "spotify:track:last", "name": "Last", "artists": ["Artist B"], "album": "Album 2"},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            with patch.object(manager, "BACKUPS", Path(directory)):
+                backup_path = Path(manager.save_snapshot(snapshot))
+                restored = manager.read(backup_path, None)
+        self.assertIsNotNone(restored)
+        self.assertEqual(restored["playlist"], snapshot["playlist"])
+        self.assertEqual(restored["created_at"], snapshot["created_at"])
+        self.assertEqual(restored["items"], snapshot["items"])
+        self.assertEqual([row["name"] for row in restored["items"]], ["First", "[unavailable item]", "Last"])
+
+
 if __name__ == "__main__":
     unittest.main()
