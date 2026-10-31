@@ -719,7 +719,9 @@ def main():
         if not manager.unlocked(pid):
             fail("Blocked: Tricky Daily is LOCKED. Unlock it explicitly before requesting a daily preview.")
         current = manager.snapshot(sp, p)
-        recommendations, skipped = daily.build_discovery_recommendations(sp, current["items"])
+        recommendations, skipped = daily.build_discovery_recommendations(
+            sp, current["items"], playlist_id=pid
+        )
         uris = [row["uri"] for row in recommendations]
         operations = [{"action": "replace", "uris": uris}]
         confirmation = secrets.token_urlsafe(12)
