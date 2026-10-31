@@ -3,8 +3,35 @@
   "playlists": {
     "4diIlnF8BlgoJrwUfejf49": {
       "name": "Booze or Boos!",
-      "removed": [],
-      "notes": "Track URIs removed from this playlist are kept here to avoid re-adding them in future recommendations."
+      "removed": [
+        {
+          "name": "She Wolf",
+          "artists": [
+            "Shakira"
+          ],
+          "album": "",
+          "source": "user-confirmed manual removal"
+        },
+        {
+          "name": "Voodoo People - Pendulum Mix",
+          "artists": [
+            "The Prodigy",
+            "Pendulum"
+          ],
+          "album": "",
+          "source": "user-confirmed manual removal"
+        },
+        {
+          "name": "Heads Will Roll - A-Trak Remix",
+          "artists": [
+            "Yeah Yeah Yeahs",
+            "A-Trak"
+          ],
+          "album": "",
+          "source": "user-confirmed manual removal"
+        }
+      ],
+      "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback."
     }
   }
 }
