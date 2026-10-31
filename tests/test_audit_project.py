@@ -84,6 +84,29 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
             errors, _ = audit_project.audit_spotify_reference(root)
             self.assertTrue(any("unknown playlist ID" in error for error in errors))
 
+    def test_index_membership_must_match_saved_playlist_records(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            index_path = base / "reference_index.json"
+            index_path.write_text(json.dumps({
+                "track_playlists": {"spotify:track:wrong": ["p1"]},
+                "artist_playlists": {},
+            }), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("track_playlists disagrees with saved playlist records" in error for error in errors))
+
+    def test_index_detects_missing_artist_membership(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            record_path = base / "playlists" / "p1.json"
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            record["items"][0]["artists"] = ["Example Artist"]
+            record_path.write_text(json.dumps(record), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("artist_playlists disagrees with saved playlist records" in error for error in errors))
+
     def test_duplicate_playlist_reference_in_index_is_an_error(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

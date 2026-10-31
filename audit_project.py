@@ -53,6 +53,8 @@ def audit_spotify_reference(root=ROOT):
     if catalog.get("playlist_count") != len(rows):
         errors.append("Spotify reference catalog playlist_count does not match its records.")
     inaccessible = 0
+    expected_tracks = {}
+    expected_artists = {}
     for row in rows:
         if not isinstance(row, dict):
             continue
@@ -86,6 +88,20 @@ def audit_spotify_reference(root=ROOT):
             fetched = record.get("item_count_fetched")
             if isinstance(fetched, int) and fetched != len(record["items"]):
                 errors.append(f"Accessible Spotify playlist {pid} item_count_fetched does not match its items list.")
+        # Reconstruct expected memberships from saved records. Inaccessible records
+        # may contain stale-but-preserved items; those remain the index's source data.
+        if record.get("id") == pid and isinstance(record.get("items"), list):
+            for item in record["items"]:
+                if not isinstance(item, dict):
+                    continue
+                uri = item.get("uri")
+                if isinstance(uri, str) and uri:
+                    expected_tracks.setdefault(uri, []).append(pid)
+                artists = item.get("artists", [])
+                if isinstance(artists, list):
+                    for artist in artists:
+                        if isinstance(artist, str) and artist:
+                            expected_artists.setdefault(artist.casefold(), []).append(pid)
         if not accessible:
             warnings.append(f"Spotify playlist item contents inaccessible for {pid}; preserved data may be stale.")
     if not index_path.exists():
@@ -116,6 +132,23 @@ def audit_spotify_reference(root=ROOT):
                     errors.append(f"Spotify reference index contains duplicate playlist references in {len(duplicate_references)} entr(y/ies).")
                 if dangling:
                     errors.append(f"Spotify reference index contains {len(dangling)} unknown playlist ID(s).")
+                if not malformed_values:
+                    def canonical(mapping):
+                        return {key: set(values) for key, values in mapping.items() if isinstance(values, list)}
+                    for map_name, actual, expected in (
+                        ("track_playlists", track_map, expected_tracks),
+                        ("artist_playlists", artist_map, expected_artists),
+                    ):
+                        actual_canonical = canonical(actual)
+                        expected_canonical = {key: set(values) for key, values in expected.items()}
+                        drift = {
+                            key for key in set(actual_canonical) | set(expected_canonical)
+                            if actual_canonical.get(key, set()) != expected_canonical.get(key, set())
+                        }
+                        if drift:
+                            errors.append(
+                                f"Spotify reference index {map_name} disagrees with saved playlist records for {len(drift)} key(s)."
+                            )
         except (OSError, ValueError, AttributeError) as exc:
             errors.append(f"Spotify reference index is invalid: {exc}")
     if inaccessible:
