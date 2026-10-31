@@ -209,6 +209,9 @@ Undo is a preview-first restore from the exact pre-change snapshot. It requires 
 
 ### Playlist intelligence and health reports
 
+Mood inference uses a broader, explicitly curated affect vocabulary (including dreamlike, eerie, nocturnal, introspective, chaotic, groovy, theatrical, cinematic, cathartic, and wistful). Sound/style signals are kept separate from moods: playlist profiles expose genre tags, recurring sound families, and artist-level themes independently. These are conservative artist-level Last.fm community-tag signals, not track-level audio analysis; genre labels are never treated as moods simply because their names sound evocative.
+
+
 `playlist_intelligence.py` builds a read-only identity profile from a playlist's current membership and the cached Last.fm artist metadata. It summarizes represented artists and their genre, mood, and theme tags, reports metadata coverage, and keeps removal/whitelist counts scoped to that playlist. Profiles are calculated from the live snapshot when requested; they do not overwrite the canonical listening archive or playlist contents.
 
 Recommendation weights and confidence thresholds live in the versioned `assistant_data/recommendations/playlist_scoring.json` file. The discovery curator reads this configuration rather than scattering scoring constants through the code. Each recommendation now includes a confidence tier (strong fit, promising, or wildcard) and concise reasons describing its supporting similarity seeds, playlist-local positive/negative feedback, familiarity, and Liked Songs status. Confidence is a diagnostic heuristic, not a guarantee of quality.
