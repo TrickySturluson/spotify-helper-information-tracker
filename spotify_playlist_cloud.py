@@ -84,6 +84,7 @@ def completed_state_matches(playlist, completed, current_snapshot):
 
 
 def replace_playlist(sp, pid, uris):
+    manager.assert_managed(pid)
     # Replace the first page, then append in order; duplicate URIs are preserved.
     if not manager.unlocked(pid):
         raise manager.ManagerError("Playlist is LOCKED; undo was stopped before restoration.")
@@ -101,6 +102,7 @@ def replace_playlist(sp, pid, uris):
 
 
 def cleanup_duplicates(sp, pid):
+    manager.assert_managed(pid)
     """Remove surplus exact track-URI occurrences, preserving the first copy and order."""
     if not manager.unlocked(pid):
         raise manager.ManagerError("Playlist is LOCKED; duplicate cleanup was stopped.")
@@ -131,6 +133,7 @@ def cleanup_duplicates(sp, pid):
 
 
 def execute(sp, pid, operations):
+    manager.assert_managed(pid)
     for op in operations:
         if not manager.unlocked(pid):
             raise manager.ManagerError("Playlist locked during execution; remaining changes stopped.")
@@ -233,6 +236,7 @@ def main():
         manager.audit(event="lock_all", count=len(owned))
         result = f"Locked all {len(owned)} playlists owned by this account."
     elif action in {"cleanup_on", "cleanup_off"}:
+        manager.assert_managed(command["playlist_id"])
         p = owned_playlist(sp, command["playlist_id"], me)
         entry = config["playlists"].setdefault(p["id"], {})
         entry.update({"name": p.get("name", ""), "cleanup": action == "cleanup_on", "updated_at": manager.stamp()})
@@ -241,6 +245,7 @@ def main():
         result = f'Duplicate auto-cleanup is {"ON" if action == "cleanup_on" else "OFF"} for "{p.get("name")}".'
     elif action == "cleanup_run":
         pid = command["playlist_id"]
+        manager.assert_managed(pid)
         p = owned_playlist(sp, pid, me)
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED. Unlock it explicitly before duplicate cleanup.")
@@ -322,7 +327,10 @@ def main():
         lines.append("Read-only check; no changes made.")
         result = "\n".join(lines)
     elif action in {"lock", "unlock"}:
-        p = owned_playlist(sp, command["playlist_id"], me)
+        if action == "unlock":
+            try: manager.assert_managed(command["playlist_id"])
+            except manager.ManagerError as error: fail(str(error))
+        p = owned_playlist/(sp, command["playlist_id"], me)
         state = "locked" if action == "lock" else "unlocked"
         prior = config["playlists"].get(p["id"], {})
         config["playlists"][p["id"]] = {
@@ -343,6 +351,8 @@ def main():
             lines.append(f'{index:02d}. {artists} — {item.get("name")} [{item.get("uri")}]')
         result = "\n".join(lines)
     elif action == "preview":
+        try: manager.assert_managed(command["playlist_id"])
+        except manager.ManagerError as error: fail(str(error))
         pid, operations = manager.validate({
             "playlist_id": command["playlist_id"], "operations": command["operations"]
         })
@@ -773,9 +783,22 @@ def main():
         feedback = daily.load_playlist_feedback(current["items"], pid)
         uris = [row["uri"] for row in recommendations]
         operations = [{"action": "replace", "uris": uris}]
+        liked_baseline = {}
+        try:
+            for offset in range(0, len(uris), 50):
+                batch = uris[offset:offset + 50]
+                saved = sp.call("GET", "/me/library/contains?uris=" + ",".join(batch))
+                liked_baseline.update(dict(zip(batch, [bool(value) for value in (saved or [])])))
+        except Exception as liked_error:
+            manager.audit(event="daily_liked_baseline_unavailable", error=str(liked_error))
         confirmation = secrets.token_urlsafe(12)
+        daily_track_metadata = {
+            row["uri"]: {"artist": row.get("artist"), "track": row.get("track")}
+            for row in recommendations if row.get("uri")
+        }
         config["pending"] = {
-            "playlist_id": pid, "operations": operations,
+            "playlist_id": pid, "operations": operations, "liked_at_add": liked_baseline,
+            "daily_track_metadata": daily_track_metadata,
             "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
             "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "daily",
         }
@@ -827,6 +850,8 @@ def main():
         if not last:
             fail("Nothing to undo: no completed change has a recovery snapshot.")
         pid = last.get("playlist_id")
+        try: manager.assert_managed(pid)
+        except manager.ManagerError as error: fail(str(error))
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED. Unlock it explicitly before undo.")
         p = owned_playlist(sp, pid, me)
@@ -866,6 +891,8 @@ def main():
         ):
             fail("Rejected: no matching pending preview. Run preview again.")
         pid = pending["playlist_id"]
+        try: manager.assert_managed(pid)
+        except manager.ManagerError as error: fail(str(error))
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED; preview cancelled.")
         p = owned_playlist(sp, pid, me)
@@ -905,6 +932,30 @@ def main():
                 replace_playlist(sp, pid, [item["uri"] for item in restore_data["items"]])
             else:
                 execute(sp, pid, pending["operations"])
+                if kind == "daily":
+                    import spotify_daily_feedback as daily_feedback
+                    new_uris = [uri for op in pending["operations"] if op.get("action") in {"add", "replace"} for uri in op.get("uris", [])]
+                    old_uris = set(snapshot_uris(before))
+                    track_metadata = pending.get("daily_track_metadata") or {}
+                    daily_feedback.record_additions([
+                        {"uri": uri, **track_metadata.get(uri, {})}
+                        for uri in new_uris if uri not in old_uris
+                    ], added_at=manager.stamp(), liked_at_add=pending.get("liked_at_add") or {})
+                    new_uri_set = set(new_uris)
+                    for old_uri in old_uris - new_uri_set:
+                        daily_feedback.record_removal(old_uri, removed_at=manager.stamp())
+                    try:
+                        daily_feedback.observe_liked_songs(sp, new_uris)
+                    except Exception as feedback_error:
+                        manager.audit(event="daily_liked_song_observation_failed", error=str(feedback_error))
+                    try:
+                        daily_feedback.observe_playback_segments()
+                    except Exception as feedback_error:
+                        manager.audit(event="daily_playback_observation_failed", error=str(feedback_error))
+                    try:
+                        daily_feedback.observe_lastfm_scrobbles()
+                    except Exception as feedback_error:
+                        manager.audit(event="daily_lastfm_observation_failed", error=str(feedback_error))
                 cleanup_count = 0
                 if config.get("playlists", {}).get(pid, {}).get("cleanup") is True:
                     cleanup_count = cleanup_duplicates(sp, pid)

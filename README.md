@@ -317,3 +317,42 @@ The cloud control panel supports a preview-first daily recommendation command fo
 The curator ranks tracks already present in assistant_data/recommendations/track_features.json. It favors tracks not scrobbled recently, gives familiarity a modest anchor role, and caps artist concentration to encourage variety. It resolves Spotify URIs only when both track title and primary artist match exactly; ambiguous or unavailable matches are skipped. Tracks already in the playlist are excluded. At least 20 exact matches (or the requested target size if lower) are required before a preview is created.
 
 The preview lists the proposed tracks and returns a one-time confirmation code. It does not modify Spotify. Confirming uses the existing backup-first replace operation and normal lock, ownership, state-revalidation, and undo protections. Tricky Daily must be explicitly unlocked before previewing or confirming. The initial curator uses previously scrobbled tracks only; external discovery is intentionally a later enhancement. The score is a transparent heuristic, not a claim that every scrobble represents a positive preference.
+
+
+## Spotify reference library and playlist safety
+
+The canonical Spotify reference library lives under `assistant_data/spotify/`:
+
+- `playlists.json` catalogs every playlist returned by the authorized Spotify account, including owner, visibility, collaboration state, snapshot ID and item count.
+- `playlists/{playlist_id}.json` stores each playlist's ordered item records, including Spotify IDs/URIs, artists, album, duration, availability hints and added-at metadata.
+- `history/{playlist_id}/` stores dated snapshots when playlist contents or Spotify's snapshot ID change.
+- `reference_index.json` maps track URIs and artist names back to playlists.
+- `managed_playlists.json` is the deny-by-default mutation registry. Only playlists created by SHIT and explicit user-approved exceptions may be edited. Account ownership, an unlocked state, or an `APPLY` confirmation is not permission. Tricky Daily (`4yUVHSMQySfWeEowfIMcx7`) is an explicit approved exception; unknown and personal playlists remain read-only.
+
+Refresh the reference library locally with:
+
+```bash
+python spotify_reference_library.py sync
+```
+
+This is a read-only Spotify operation. It does not modify playlists. A scheduled GitHub Actions workflow refreshes the catalog every Sunday and can also be run manually from **Actions → SHIT — Spotify Reference Library**. The import is limited to playlists the authorized Spotify API account exposes; it cannot guarantee visibility into every public playlist on Spotify. Playlists whose item contents are restricted by Spotify are still cataloged, with the visibility limitation recorded.
+
+Browse and search the saved dataset locally:
+
+```bash
+python spotify_reference_library.py list
+python spotify_reference_library.py lookup "artist or track name"
+```
+
+### Tricky Daily retention feedback
+
+`spotify_daily_feedback.py` records when tracks enter and leave Tricky Daily, checks whether newly added tracks are in Liked Songs, and records measured post-add playback intervals from `playback_data/segments.jsonl`. The feedback record distinguishes:
+- Whether a track was already in Liked Songs at preview time, and whether it was saved afterward.
+- Distinct measured Spotify listening sessions and playback milliseconds after the first Daily addition.
+- Post-add Last.fm scrobbles from the canonical timestamped archive, kept separate from measured Spotify playback.
+- Playlist removals and repeat additions.
+- Unknown coverage from a confirmed zero-play observation.
+
+A day without listening is neutral. Missing tracker data is unknown, not zero. Spotify save checks or playback tracking can fail independently without interrupting an already-confirmed playlist edit. Last.fm scrobbles remain a separate secondary signal and are not mislabeled as measured Spotify playback.
+
+The reference library and feedback files are personal listening data. Keep the repository private and never commit OAuth tokens or local playback credentials.
