@@ -115,6 +115,27 @@ def config():
     c=read(CONFIG,{"version":1,"playlists":{}})
     if not isinstance(c,dict) or not isinstance(c.get("playlists"),dict): raise ManagerError("Invalid permission config; refusing edits.")
     return c
+def permission_registry():
+    path = Path("assistant_data/spotify/managed_playlists.json")
+    data = read(path, {"version": 1, "managed": {}, "approved_exceptions": {
+        "4yUVHSMQySfWeEowfIMcx7": {"name": "Tricky Daily", "reason": "Explicitly approved by the user"}
+    }})
+    if not isinstance(data, dict) or not isinstance(data.get("managed"), dict) or not isinstance(data.get("approved_exceptions"), dict):
+        raise ManagerError("Invalid managed-playlist registry; refusing edits.")
+    return data
+
+def assert_managed(pid):
+    registry = permission_registry()
+    if pid in registry["managed"] or pid in registry["approved_exceptions"]:
+        return
+    raise ManagerError("BLOCKED: this playlist is protected. Only assistant-created playlists and explicitly approved exceptions may be modified; an unlock or APPLY confirmation cannot override this policy.")
+
+def register_created(pid, name):
+    path = Path("assistant_data/spotify/managed_playlists.json")
+    registry = permission_registry()
+    registry["managed"][pid] = {"name": name, "provenance": "created_by_shit", "created_at": stamp()}
+    write(path, registry)
+
 def unlocked(pid): return config()["playlists"].get(pid,{}).get("state")=="unlocked"
 def find(sp,pid):
     p=next((x for x in sp.playlists() if x.get("id")==pid),None)
