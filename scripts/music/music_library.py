@@ -298,6 +298,15 @@ class MusicLibrary:
                 if norm(entry.get("artist")) == norm(artist) and norm(entry.get("album")) == norm(album)]
             if len(matches) == 1:
                 key = matches[0]
+            elif len(matches) > 1:
+                # Prefer the unique album attached to a verified artist MBID
+                # over a duplicate name-fallback artist record.
+                verified = [
+                    album_id for album_id in matches
+                    if str((albums.get(album_id) or {}).get("artist_id") or "").startswith("mbid:")
+                ]
+                if len(verified) == 1:
+                    key = verified[0]
         if key:
             indexed_path = (albums.get(key) or {}).get("path")
             indexed_record = read_json(self.root / indexed_path) if indexed_path else None
@@ -315,16 +324,14 @@ class MusicLibrary:
             record_album = record.get("album") or (record.get("identity") or {}).get("album")
             if artist and album and norm(record_artist) == norm(artist) and norm(record_album) == norm(album):
                 matches.append((path, record))
+        if len(matches) > 1:
+            verified = [
+                (path, record) for path, record in matches
+                if str(record.get("artist_id") or (record.get("identity") or {}).get("artist_id") or "").startswith("mbid:")
+            ]
+            if len(verified) == 1:
+                matches = verified
         if len(matches) != 1:
-            print(
-                "Library album lookup diagnostic:",
-                {"root": str(self.root), "artist": artist, "album": album,
-                 "indexed_albums": len(albums), "indexed_match_count": len([
-                     entry for entry in albums.values()
-                     if norm(entry.get("artist")) == norm(artist) and norm(entry.get("album")) == norm(album)
-                 ]), "album_dir_exists": (self.root / "albums").exists(),
-                 "album_files": len(list((self.root / "albums").glob("**/album.json")))},
-            )
             return None
         path, record = matches[0]
         key = record.get("id")
