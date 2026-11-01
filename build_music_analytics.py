@@ -39,7 +39,6 @@ def clean(v):
 def norm(v):
     return " ".join(re.findall(r"[a-z0-9]+", clean(v).casefold()))
 
-
 def stable_id(prefix, value):
     return prefix + ":" + hashlib.sha1(value.encode("utf-8")).hexdigest()[:16]
 
