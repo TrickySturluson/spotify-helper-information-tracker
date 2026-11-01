@@ -69,7 +69,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--execute", action="store_true", help="perform migration and bounded provider enrichment; without this flag only preflight runs")
     parser.add_argument("--yes", action="store_true", help="skip the final confirmation (requires --execute)")
-    parser.add_argument("--skip-discogs", action="store_true", help="skip optional Discogs lookups")
+    parser.add_argument("--skip-spotify-refresh", action="store_true", help="use the already-saved playlist snapshots instead of refreshing Spotify")\n    parser.add_argument("--skip-discogs", action="store_true", help="skip optional Discogs lookups")
     parser.add_argument("--skip-getsongbpm", action="store_true", help="skip optional GetSongBPM lookups")
     args = parser.parse_args(argv)
     if args.yes and not args.execute:
