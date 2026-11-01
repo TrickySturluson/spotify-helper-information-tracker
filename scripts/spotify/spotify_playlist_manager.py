@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local Spotify playlist manager. Playlists are locked unless explicitly unlocked."""
 import argparse, base64, hashlib, json, os, re, secrets, sys, time, urllib.error
-from collections import Counter, defaultdict
+from collections import Counter
 import urllib.parse, urllib.request, webbrowser
 from datetime import datetime, timezone, timedelta
 from http.server import BaseHTTPRequestHandler, HTTPServer
