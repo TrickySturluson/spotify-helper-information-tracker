@@ -1,6 +1,14 @@
 name: Enrich Music Metadata
 
 on:
+  # Pushes to the enrichment implementation/config trigger an immediate,
+  # auditable refresh; generated-data commits do not match these paths.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/enrich-music-metadata.yml"
+      - "scripts/music/build_track_profiles.py"
+      - "compat/build_track_profiles.py"
   # Small daily batches keep metadata coverage moving without a large backfill.
   # UTC 08:17; manual dispatch remains available for larger runs.
   schedule:
@@ -67,7 +75,9 @@ jobs:
       - name: Enrich individual track tags from Last.fm and MusicBrainz
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-          TRACK_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.track_profile_lookups || '120' }}
+          TRACK_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.track_profile_lookups || '200' }}
+          TRACK_PROFILE_RECENT_WINDOW_DAYS: "90"
+          TRACK_PROFILE_RECENT_TOP_N: "200"
           TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
         run: python compat/build_track_profiles.py
       - name: Rebuild metadata summaries
