@@ -16,7 +16,13 @@ from datetime import date, datetime
 from pathlib import Path
 
 import playlist_intelligence as intelligence
-# Prefer the maintained source module over its same-named compat launcher.\nimport sys\nfrom pathlib import Path as _Path\n_SOURCE_DIR = str(_Path.cwd() / "scripts" / "spotify")\nif _SOURCE_DIR not in sys.path:\n    sys.path.insert(0, _SOURCE_DIR)\nimport spotify_listening_trends as listening_trends
+# Prefer the maintained source module over its same-named compat launcher.
+import sys
+from pathlib import Path as _Path
+_SOURCE_DIR = str(_Path.cwd() / "scripts" / "spotify")
+if _SOURCE_DIR not in sys.path:
+    sys.path.insert(0, _SOURCE_DIR)
+import spotify_listening_trends as listening_trends
 
 PROFILES = Path("assistant_data/music/artist_profiles.json")
 FEATURES = Path("assistant_data/recommendations/track_features.json")
