@@ -129,9 +129,31 @@ def score_track(item, artist_profiles=None, track_profiles=None):
             genre_values.append(norm(value))
     genre_values.extend(norm(value) for value in artist_profile.get("genres") or [] if value)
     genre_text = " ".join(genre_values)
-    high_genre = ("metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle")
-    low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient")
-    genre_score = 0.7 if any(x in genre_text for x in high_genre) else 0.3 if any(x in genre_text for x in low_genre) else None
+    high_genre = (
+        "metal", "hardcore", "punk", "industrial", "drum and bass", "breakbreak",
+        "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal",
+        "heavy metal", "metalcore", "horror punk",
+    )
+    dance_genre = (
+        "electronic", "synthwave", "synthpop", "electropop", "electroclash",
+        "techno", "house", "rave", "ebm", "dark electro", "industrial dance",
+    )
+    mid_genre = (
+        "rockabilly", "surf rock", "horror surf", "garage rock", "rock and roll",
+        "post-punk", "gothic rock", "deathrock", "darkwave", "alternative rock",
+        "indie rock", "rock",
+    )
+    low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient", "shoegaze")
+    if any(x in genre_text for x in high_genre):
+        genre_score = 0.78
+    elif any(x in genre_text for x in dance_genre):
+        genre_score = 0.72
+    elif any(x in genre_text for x in mid_genre):
+        genre_score = 0.62
+    elif any(x in genre_text for x in low_genre):
+        genre_score = 0.30
+    else:
+        genre_score = None
     if genre_score is not None:
         components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
         evidence.append(f"genre-family signal={genre_score:.2f} ({(0.05 if track_tags else 0.08):.0%} base weight)")
