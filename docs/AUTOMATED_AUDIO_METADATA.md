@@ -12,6 +12,12 @@ python compat/enrich_acousticbrainz.py
 
 The API accepts up to 25 recording MBIDs per request. The script reads verified IDs from the 32 artist shards, batches requests, checkpoints each batch to `assistant_data/music/audio_profiles.json`, and stores negative lookup results in `assistant_data/music/acousticbrainz_lookup_state.json`. Missing recordings are not queried on every run; the default negative-cache interval is 180 days. Existing one-submission cache entries are eligible for one refresh so all returned submissions can be aggregated. A server reset longer than 15 seconds causes a clean checkpoint-and-stop rather than an early retry. Set `ACOUSTICBRAINZ_MAX_BATCHES` to cap a run.
 
+## Recording identity corroboration
+
+The recording-ID resolver now reads ISRCs from already-saved, complete Spotify playlist snapshots before making any new Spotify request. It asks MusicBrainz for the recording associated with a unique ISRC, then still requires exact artist-credit and recording-title agreement before accepting the MBID. This is stronger identity evidence than title matching alone because ISRCs identify sound recordings rather than the underlying composition. If a track has multiple conflicting snapshot ISRCs, or MusicBrainz returns multiple exact recordings, the resolver leaves the ID unresolved. When no unique ISRC result exists, it falls back to the existing exact artist/title MusicBrainz search. ISRC-confirmed matches are marked high identity confidence; exact name-only matches are medium. MusicBrainz requests remain spaced at least one second apart.
+
+Run locally with `python compat/enrich_musicbrainz_recording_ids.py`; the scheduled metadata workflow runs a small 200-lookup batch. The ISRC index is built entirely from local snapshots, so this step does not consume Spotify API quota.
+
 ## Recent-listening priority
 
 The scheduled and manual refresh pipeline builds a deterministic rolling 90-day
