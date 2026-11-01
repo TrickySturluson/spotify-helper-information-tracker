@@ -1,0 +1,187 @@
+name: SHIT — Great Migration
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      command:
+        description: SHIT Library operation
+        required: true
+        type: choice
+        options:
+          - status
+          - preview
+          - migrate
+          - prepare
+          - audit
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: shit-great-migration
+  cancel-in-progress: false
+
+jobs:
+  library:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.user.login == github.repository_owner &&
+       startsWith(github.event.issue.title, '[SHIT LIBRARY] '))
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Validate requested operation
+        id: request
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_COMMAND: ${{ inputs.command }}
+        run: |
+          python - <<'PY'
+          import json, os
+          allowed = {"status", "preview", "migrate", "prepare", "audit"}
+          if os.environ["EVENT_NAME"] == "workflow_dispatch":
+              command = os.environ.get("DISPATCH_COMMAND", "").strip().lower()
+          else:
+              with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as handle:
+                  event = json.load(handle)
+              title = event["issue"]["title"].strip()
+              prefix = "[SHIT LIBRARY] "
+              if not title.startswith(prefix):
+                  raise SystemExit("Not a SHIT Library request.")
+              command = title[len(prefix):].strip().lower()
+          if command not in allowed:
+              raise SystemExit("Unsupported SHIT Library operation.")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+              handle.write("command=" + command + "\n")
+          print("Validated SHIT Library operation:", command)
+          PY
+
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Compile and run regression tests
+        run: |
+          python -m compileall -q scripts compat shit.py
+          python -m unittest discover -s tests -t . -v
+
+      - name: Configure read-only Spotify refresh
+        if: steps.request.outputs.command == 'prepare'
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || (echo "Missing repository variable SPOTIFY_CLIENT_ID"; exit 1)
+          test -n "$SPOTIFY_REFRESH_TOKEN" || (echo "Missing repository secret SPOTIFY_REFRESH_TOKEN"; exit 1)
+          python - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, "compat")
+          import spotify_playlist_manager as manager
+          manager.TOKEN = Path(".spotify_playlist_token.json")
+          manager.write(manager.TOKEN, {
+              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+              "obtained_at": 0,
+              "expires_in": 0,
+          })
+          PY
+
+      - name: Run requested SHIT Library operation
+        env:
+          COMMAND: ${{ steps.request.outputs.command }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
+          GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+        run: |
+          set -o pipefail
+          case "$COMMAND" in
+            status)  python shit.py library status ;;
+            preview) python shit.py library preview ;;
+            migrate) python shit.py library migrate --yes ;;
+            prepare) python shit.py library prepare --execute --yes ;;
+            audit)   python shit.py library audit ;;
+          esac 2>&1 | tee shit-library-run.log
+          {
+            echo "## SHIT Library operation"
+            echo
+            echo "- Operation: `$COMMAND`"
+            echo "- Result: completed"
+            echo
+            echo "```text"
+            tail -n 160 shit-library-run.log
+            echo "```"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish canonical Library and enrichment data
+        if: steps.request.outputs.command == 'migrate' || steps.request.outputs.command == 'prepare'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assistant_data/
+          if git diff --cached --quiet; then
+            echo "No generated Library or metadata changes to commit."
+          else
+            git commit -m "Run SHIT Great Migration and library enrichment"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload rollback backup and run log
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: shit-library-run-${{ github.run_id }}
+          path: |
+            assistant_data/music/library.backup-*/
+            shit-library-run.log
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Report result on the requesting issue
+        if: always() && github.event_name == 'issues'
+        uses: actions/github-script@v7
+        env:
+          COMMAND: ${{ steps.request.outputs.command }}
+          JOB_STATUS: ${{ job.status }}
+        with:
+          script: |
+            const fs = require('fs');
+            let report = 'No run log was produced. Check the workflow logs.';
+            if (fs.existsSync('shit-library-run.log')) {
+              report = fs.readFileSync('shit-library-run.log', 'utf8').slice(-50000);
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                '## SHIT Library operation',
+                '',
+                '- Operation: ' + (process.env.COMMAND || 'validation failed'),
+                '- Workflow result: ' + process.env.JOB_STATUS,
+                '',
+                '```text',
+                report,
+                '```',
+                '',
+                'The complete logs and any pre-migration backup are attached to this workflow run.'
+              ].join('\n')
+            });
+
+# FILE OVERVIEW
+# Purpose: ChatGPT-triggerable and manually dispatchable SHIT Library operations.
+# Trigger: Owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare|audit>.
+# Commands: status/preview are read-only; migrate is offline; prepare runs migration
+#           followed by bounded, checkpointed metadata enrichment and final audit.
+# Safety: owner validation, allow-listed operations, serialized runs, tests first,
+#         rollback backup artifact, no Spotify playlist writes, generated-data-only commits.
+# Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py.
