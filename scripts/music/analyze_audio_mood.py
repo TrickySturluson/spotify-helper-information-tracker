@@ -76,7 +76,7 @@ def validate_model_files(model_dir: Path) -> tuple[Path, Path, dict]:
     return embedding_path, mood_path, metadata
 
 
-def analyze_file(path: Path, embedding_path: Path, mood_path: Path, metadata: dict) -> dict:
+def analyze_file(path: Path, embedding_path: Path, mood_path: Path, metadata: dict, source_hash: str | None = None) -> dict:
     try:
         import numpy as np
         import essentia.standard as es
@@ -110,7 +110,7 @@ def analyze_file(path: Path, embedding_path: Path, mood_path: Path, metadata: di
         "artist": artist,
         "track": track,
         "source_file": path.name,
-        "source_audio_sha256": sha256_file(path),
+        "source_audio_sha256": source_hash or sha256_file(path),
         "source_sample_rate": 16000,
         "source_family": "essentia_deam_audio_model",
         "evidence_scope": "recording_audio",
@@ -124,7 +124,7 @@ def analyze_file(path: Path, embedding_path: Path, mood_path: Path, metadata: di
         ),
         "embedding_model_sha256": sha256_file(embedding_path),
         "mood_model_sha256": sha256_file(mood_path),
-        "model_metadata_sha256": sha256_file(MODEL_DIR / MODEL_METADATA),
+        "model_metadata_sha256": sha256_file(mood_path.parent / MODEL_METADATA),
         "analyzed_at": datetime.now(timezone.utc).isoformat(),
         **aggregate,
     }
@@ -166,7 +166,7 @@ def main() -> None:
     for path in files[:args.max_files]:
         try:
             artist, track = parse_filename(path)
-            key = normalize(artist) + "\\0" + normalize(track)
+            key = normalize(artist) + "\0" + normalize(track)
             digest = sha256_file(path)
             prior = results.get(key, {})
             if (
@@ -176,7 +176,7 @@ def main() -> None:
             ):
                 print(f"SKIP unchanged: {path.name}")
                 continue
-            row = analyze_file(path, embedding_path, mood_path, metadata)
+            row = analyze_file(path, embedding_path, mood_path, metadata, digest)
             results[key] = row
             print(
                 f"OK {artist} — {track}: valence={row['valence_mean']:.2f}, "
@@ -200,7 +200,7 @@ def main() -> None:
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = args.output.with_suffix(args.output.suffix + ".tmp")
-    temporary.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
+    temporary.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     temporary.replace(args.output)
     print(f"Wrote {len(results)} audio mood profiles to {args.output}; failures: {len(failures)}")
     if failures:
