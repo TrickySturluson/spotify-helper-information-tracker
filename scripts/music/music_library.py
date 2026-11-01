@@ -47,17 +47,22 @@ def album_key(row, aid):
 
 def recording_key(row, aid, bid):
     candidate = str(row.get("track_mbid") or row.get("recording_mbid") or "").strip().casefold()
-    if not candidate:
-        source_id = str(row.get("track_id") or "").strip().casefold()
-        if source_id.startswith("mbid:"):
-            candidate = source_id[5:]
+    source_id = str(row.get("track_id") or "").strip().casefold()
+    if not candidate and source_id.startswith("mbid:"):
+        candidate = source_id[5:]
     if candidate:
         return "mbid:" + candidate if not candidate.startswith("mbid:") else candidate
     sid = str(row.get("spotify_id") or row.get("spotify_track_id") or "").strip()
+    if not sid and source_id.startswith("spotify:track:"):
+        sid = source_id
     if sid.startswith("spotify:track:"):
         sid = sid.rsplit(":", 1)[-1]
     if sid:
         return "spotify:" + sid.casefold()
+    # A stable source-profile key is not a verified recording ID, but it keeps
+    # same-title releases distinct when the source contains no release/duration.
+    if source_id.startswith("track:"):
+        return "source:" + source_id[6:]
     duration = row.get("duration_ms") or row.get("duration") or ""
     return "fallback:" + digest((aid or "") + "\0" + (bid or "") + "\0" + norm(row.get("track") or row.get("name")) + "\0" + str(duration))
 
@@ -201,6 +206,7 @@ class MusicLibrary:
                     "source_track_id": row.get("track_id"),
                     "identity_quality": "verified_recording" if sid.startswith("mbid:")
                         else "spotify_track" if sid.startswith("spotify:")
+                        else "source_track_id" if sid.startswith("source:")
                         else "fallback_release_context" if bid else "fallback_artist_title",
                 },
                 "evidence": {"track_metadata": {}, "audio": {}, "lyrics": None},
