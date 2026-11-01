@@ -396,8 +396,30 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
         for row in scored:
             if row["item"]["uri"] in set(pinned_uris or []):
                 fixed[row["item"]["uri"]] = row["original_index"]
-        # hybrid remains a backwards-compatible alias; it no longer partitions energy bands.
-        result = _smooth_order(scored, journey, peak_position, peak_shape, genre_strength, theme_strength, fixed)
+        # When explicit narrative sections are supplied, preserve their declared
+        # order and optimize transitions/artist variety inside each act. This
+        # prevents a smooth local handoff from moving the dance-floor or finale
+        # ahead of the requested opening. Anchored generic sorts retain the
+        # global optimizer so absolute pin positions remain meaningful.
+        if sections and not (opener_uri or closer_uri or pinned_uris):
+            grouped = {}
+            for row in scored:
+                grouped.setdefault(row.get("section_index"), []).append(row)
+            result = []
+            ordered_sections = sorted(index for index in grouped if index is not None)
+            for section_index in ordered_sections:
+                result.extend(_smooth_order(
+                    grouped[section_index], "steady", peak_position, peak_shape,
+                    genre_strength, theme_strength,
+                ))
+            if None in grouped:
+                result.extend(_smooth_order(
+                    grouped[None], "steady", peak_position, peak_shape,
+                    genre_strength, theme_strength,
+                ))
+        else:
+            # hybrid remains a backwards-compatible alias; it no longer partitions energy bands.
+            result = _smooth_order(scored, journey, peak_position, peak_shape, genre_strength, theme_strength, fixed)
     elif mode == "energy":
         result = sorted(scored, key=lambda row: (row["score"], row["original_index"]), reverse=direction == "descending")
     elif mode == "atmosphere":
