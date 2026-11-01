@@ -120,6 +120,53 @@ class TrackProfileTests(unittest.TestCase):
         self.assertEqual(genres[0]["source"], "MusicBrainz recording genre")
 
 
+
+    def test_catalogue_reuses_only_unique_exact_shard_recording_ids(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        mbid = "12345678-1234-1234-1234-123456789abc"
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            artists = root / "artists"
+            artists.mkdir()
+            (artists / "shard-00.json").write_text(json.dumps({"artists": {
+                "artist-key": {"artist": "Example Artist", "tracks": {
+                    "track-key": {"track": "Example Song", "track_mbid": mbid}
+                }}
+            }}), encoding="utf-8")
+            catalogue = profiles.build_catalogue(
+                [{"artist": "Example Artist", "track": "Example Song", "timestamp": 100}],
+                metadata_root=root,
+            )
+        item = next(iter(catalogue.values()))
+        self.assertEqual(item["track_mbid"], mbid)
+        self.assertNotEqual(item["track_id"], "mbid:" + mbid)
+
+    def test_catalogue_does_not_guess_between_multiple_shard_recording_ids(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            artists = root / "artists"
+            artists.mkdir()
+            tracks = {
+                "one": {"track": "Example Song", "track_mbid": "11111111-1111-1111-1111-111111111111"},
+                "two": {"track": "Example Song", "track_mbid": "22222222-2222-2222-2222-222222222222"},
+            }
+            (artists / "shard-00.json").write_text(json.dumps({"artists": {
+                "artist-key": {"artist": "Example Artist", "tracks": tracks}
+            }}), encoding="utf-8")
+            catalogue = profiles.build_catalogue(
+                [{"artist": "Example Artist", "track": "Example Song", "timestamp": 100}],
+                metadata_root=root,
+            )
+        item = next(iter(catalogue.values()))
+        self.assertIsNone(item["track_mbid"])
+
     def test_priority_playlist_tracks_are_added_even_without_scrobbles(self):
         import json
         import tempfile
