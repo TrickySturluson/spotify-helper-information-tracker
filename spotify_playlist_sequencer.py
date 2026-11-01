@@ -17,6 +17,7 @@ import spotify_playlist_manager as manager
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 LYRIC_FEATURES = Path("assistant_data/recommendations/lyric_features.json")
+AUDIO_PROFILES = Path("assistant_data/music/audio_profiles.json")
 
 
 def norm(value):
@@ -68,7 +69,7 @@ def _signal(value, low, high):
         return None
 
 
-def score_track(item, artist_profiles=None, track_profiles=None):
+def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=None):
     """Return a conservative 0..100 perceived-energy score and its evidence.
 
     Spotify audio features, when already present in a playlist export, are the
@@ -82,7 +83,8 @@ def score_track(item, artist_profiles=None, track_profiles=None):
     title = str(item.get("name") or item.get("track") or "")
     artist_profile = artist_profiles.get(norm(artist), {})
     track_profile = track_profiles.get((norm(artist), norm(title)), {})
-    audio = item.get("audio_features") or {}
+    measured_audio = (audio_profiles or {}).get((norm(artist), norm(title)), {})
+    audio = {**measured_audio, **(item.get("audio_features") or {})}
     components = []
     evidence = []
     weights = []
@@ -93,15 +95,17 @@ def score_track(item, artist_profiles=None, track_profiles=None):
         components.append(direct_energy); weights.append(0.42)
         evidence.append(f"Spotify energy={direct_energy:.2f} (42% base weight)")
 
-    tempo = _signal(audio.get("tempo"), 60, 180)
+    tempo_value = audio.get("tempo_bpm", audio.get("tempo"))
+    tempo = _signal(tempo_value, 60, 180)
     if tempo is not None:
         components.append(tempo); weights.append(0.23)
-        evidence.append(f"tempo={float(audio.get('tempo')):.1f} BPM (23% base weight)")
+        evidence.append(f"tempo={float(tempo_value):.1f} BPM (23% base weight)")
 
-    loudness = _signal(audio.get("loudness"), -35, -5)
+    loudness_value = audio.get("integrated_lufs", audio.get("loudness"))
+    loudness = _signal(loudness_value, -35, -5)
     if loudness is not None:
         components.append(loudness); weights.append(0.15)
-        evidence.append(f"loudness={float(audio.get('loudness')):.1f} dB (15% base weight)")
+        evidence.append(f"integrated loudness={float(loudness_value):.1f} LUFS (15% base weight)")
 
     track_tags = _tag_rows(track_profile)
     artist_tags = _tag_rows(artist_profile)
@@ -170,6 +174,10 @@ def score_track(item, artist_profiles=None, track_profiles=None):
     theme_groups.extend(str(value).strip() for value in lyric_themes if str(value).strip())
     if lyric_themes:
         evidence.append("lyric-theme evidence: " + ", ".join(sorted(lyric_themes)))
+    if measured_audio.get("loudness_range_lu") is not None:
+        evidence.append(f"loudness range={float(measured_audio['loudness_range_lu']):.1f} LU (track dynamics)")
+    if measured_audio.get("dynamic_complexity") is not None:
+        evidence.append(f"dynamic complexity={float(measured_audio['dynamic_complexity']):.2f}")
     if not components:
         return {"score": 50.0, "confidence": "unknown", "evidence": evidence,
                 "artist": artist, "track": title, "vibe_group": "unclassified",
@@ -372,7 +380,7 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
     scored = []
     for index, item in enumerate(items):
         if not isinstance(item, dict) or not item.get("uri"): continue
-        profile = score_track(item, artists, track_profiles)
+        profile = score_track(item, artists, track_profiles, audio_profiles)
         group_field = {"vibe": "vibe_groups", "genre": "genre_groups", "theme": "theme_groups"}.get(group_by)
         artist_profile = artists.get(norm(profile["artist"]), {})
         section = section_lookup.get(item["uri"], (None, "unassigned"))
@@ -510,13 +518,15 @@ def main():
         artists = index_artists(read_json(ARTIST_PROFILES, {}))
         tracks = index_tracks(read_json(TRACK_PROFILES, {}))
         tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
+        audio_rows = read_json(AUDIO_PROFILES, {})
+        audio_profiles = index_tracks(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
         sections = read_json(args.sections, {}) if args.sections else {}
         if not isinstance(sections, dict):
             raise ValueError("--sections must be a JSON object mapping section names to URI lists.")
         def arrange(peak):
             return sequence_tracks(snap["items"], artists, tracks, args.direction, args.group_by, args.mode,
                 args.journey, peak, args.peak_shape, args.genre_strength, args.theme_strength,
-                args.opener_uri, args.closer_uri, args.pin_uri, sections)
+                args.opener_uri, args.closer_uri, args.pin_uri, sections, audio_profiles)
         scored = arrange(args.peak_position)
         plan = make_plan(snap, scored)
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -526,6 +536,7 @@ def main():
         print("Journey: " + args.journey + "; peak target: " + str(args.peak_position) + "% (" + args.peak_shape + ").")
         print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " potential jumps; limited evidence=" + str(summary["limited_evidence"]) + ".")
         confidence_counts = confidence_summary(scored)
+        print("Audio analysis profiles loaded: " + str(len(audio_profiles)))
         print("Proposed sequence (position | energy | confidence | group | track):")
         print("Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         for position, row in enumerate(scored, 1):
