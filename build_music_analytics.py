@@ -62,10 +62,28 @@ def iso(ts):
 
 
 def load_lyric_analyses():
-    """Load private local lyric metadata without making cloud builds depend on it."""
+    """Load exported and private lyric metadata without requiring a cloud DB."""
+    index = {}
+    exported = read(OUT / "lyric_features.json", [])
+    for row in exported if isinstance(exported, list) else []:
+        if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
+            continue
+        index[(track_norm(row["track"]), track_norm(row["artist"]))] = {
+            "schema_version": row.get("schema_version", 1),
+            "themes": row.get("themes", {}),
+            "source_count": row.get("source_count", 1),
+            "sources": row.get("sources", []),
+            "method": row.get("method", "legacy_lexical_analysis"),
+            "horror_relevance": row.get("horror_relevance", 0.0),
+            "assessment": row.get("assessment", "unavailable"),
+            "word_count": row.get("word_count", 0),
+            "analyzed_at": row.get("analyzed_at"),
+            "evidence_type": "lyrics_keyword_analysis",
+            "full_lyrics_stored": False,
+        }
     db = Path("data/lyrics/library.sqlite3")
     if not db.exists():
-        return {}
+        return index
     connection = sqlite3.connect(db)
     connection.row_factory = sqlite3.Row
     try:
@@ -76,7 +94,6 @@ def load_lyric_analyses():
         """).fetchall()
     finally:
         connection.close()
-    index = {}
     for row in rows:
         analysis = json.loads(row["themes_json"] or "{}")
         index[(track_norm(row["normalized_title"]), track_norm(row["normalized_artist"]))] = {
@@ -93,7 +110,6 @@ def load_lyric_analyses():
             "full_lyrics_stored": False,
         }
     return index
-
 
 def main():
     scrobbles = read(SOURCE, [])
