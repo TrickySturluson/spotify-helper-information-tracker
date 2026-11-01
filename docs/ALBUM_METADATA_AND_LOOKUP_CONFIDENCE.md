@@ -11,8 +11,12 @@ copied. The exact returned artist and album must match the requested identity.
 The Library stores album information under the album record's `evidence` field.
 A release tracklist describes a release, not every version of a recording.
 A song is not assigned to a release solely because its title appears in a
-tracklist; release MBID and track position relationships must be verified.
-Discogs tracklist validation remains a separate release evidence source.
+tracklist; release MBID and track position relationships must be verified. When
+an existing verified song record is cross-linked, the tracklist entry stores
+`linked_song_id` and `linked_recording_mbid` separately from the provider's
+`mbid` field. That preserves provenance when the provider tracklist did not
+supply a recording MBID. Discogs tracklist validation remains a separate release
+evidence source.
 
 ## Lookup hierarchy
 
