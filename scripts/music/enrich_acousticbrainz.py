@@ -212,7 +212,9 @@ def main():
             wait = 0
         if wait > 0:
             if wait > 15:
-                print(f"Server reset is {wait:.0f}s away; checkpointed and stopping rather than retrying early.")
+                state["provider_retry_after"] = now + int(wait)
+                write(STATE, state)
+                print(f"Server reset is {wait:.0f}s away; checkpointed cooldown and stopping rather than retrying early.")
                 break
             time.sleep(max(wait, SLEEP_SECONDS))
         elif batch_no < len(batches):
