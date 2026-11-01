@@ -52,6 +52,18 @@ class PlaylistSequencerTests(unittest.TestCase):
             ["lastfm_track", "musicbrainz_recording"],
         )
 
+    def test_same_mood_from_two_sources_is_corroborated_but_not_high(self):
+        result = sequencer.score_track(
+            {"name": "One Descriptor", "artists": ["Artist"]},
+            track_profiles={("artist", "one descriptor"): {
+                "lastfm_tags": [{"tag": "dark", "count": 1000}],
+                "musicbrainz_tags": [{"tag": "dark", "count": 1}],
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "medium")
+        self.assertEqual(result["mood_tag_count"], 1)
+        self.assertEqual(len(result["mood_source_families"]), 2)
+
     def test_conflicting_track_moods_lower_confidence_and_neutralize_energy_blend(self):
         result = sequencer.score_track(
             {"name": "Mixed Signals", "artists": ["Artist"]},
