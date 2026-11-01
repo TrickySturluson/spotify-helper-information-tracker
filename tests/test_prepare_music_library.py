@@ -13,7 +13,7 @@ def test_lyric_rows_accepts_list_and_track_mapping():
 def test_enrichment_plan_migrates_first_then_runs_bounded_sources():
     plan = build_plan()
     labels = [row[0] for row in plan]
-    assert labels[0] == "Resolve exact MusicBrainz recording IDs"
+    assert labels[0] == "Refresh read-only Spotify playlist snapshots"\n    assert labels[1] == "Resolve exact MusicBrainz recording IDs"
     assert labels.index("Fill unresolved durations from MusicBrainz") < labels.index(
         "Enrich scrobbled track durations and rebuild catalogue"
     )
