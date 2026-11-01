@@ -245,7 +245,7 @@ def main():
             "Tracks with one scrobble are still previously heard in the archive; external discovery requires a separate catalogue/search step.",
             "Artist genres, moods and themes remain separate from track-level tags; track moods are conservative mappings from track-sourced tags only.",
             "Track-level community tags are descriptive evidence, not objective audio analysis; source and identity provenance are retained.",
-            "Lyric themes are local optional enrichment; the database stores derived metadata and phrase hashes, not full lyric text.",
+            "Lyric themes come from the compact committed export and optional local database; neither stores full lyric text in recommendation features.",
             "Duration trends include only scrobbles whose track duration is known."
         ]
     }
