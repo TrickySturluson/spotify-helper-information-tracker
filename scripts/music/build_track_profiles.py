@@ -273,6 +273,7 @@ def main():
     if not rows:
         raise RuntimeError("Refusing to enrich an empty archive.")
 
+    now = int(time.time())
     recent_since = now - RECENT_WINDOW_DAYS * 86400
     catalogue = build_catalogue(rows, PRIORITY_PLAYLIST_IDS, recent_since=recent_since)
     recent_ranking = recent_top_tracks(catalogue)
@@ -284,7 +285,6 @@ def main():
         print(f"Priority playlist coverage: {prioritized:,} exact tracks across {len(PRIORITY_PLAYLIST_IDS)} configured playlist(s).")
 
     profiles = read(OUT, {})
-    now = int(time.time())
     due = []
     for tid, item in catalogue.items():
         old = profiles.get(tid, {})
