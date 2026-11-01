@@ -414,6 +414,8 @@ def build_discovery_recommendations(
                 "plays": plays, "last_scrobble": last, "score": round(score, 6),
                 "lyric_theme_affinity": theme_affinity,
                 "lyric_themes": sorted((lyric_analysis.get("themes") or {}).keys()),
+                "lyric_horror_relevance": lyric_analysis.get("horror_relevance"),
+                "lyric_assessment": lyric_analysis.get("assessment"),
                 "lyric_source_count": lyric_analysis.get("source_count", 0),
                 "similarity": artist_row["similarity"],
                 "supporting_seeds": artist_row.get("supporting_seeds", 0),
