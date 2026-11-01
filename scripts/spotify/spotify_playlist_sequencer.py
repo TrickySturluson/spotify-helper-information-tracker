@@ -252,6 +252,11 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         evidence.append(f"loudness range={float(essentia['loudness_range_lu']):.1f} LU")
     if acousticbrainz.get("dynamic_complexity") is not None:
         evidence.append(f"AcousticBrainz dynamic complexity={float(acousticbrainz['dynamic_complexity']):.2f}")
+    if acousticbrainz.get("tempo_spread_bpm") is not None:
+        evidence.append(
+            f"AcousticBrainz submission tempo spread={float(acousticbrainz['tempo_spread_bpm']):.1f} BPM "
+            f"across {int(acousticbrainz.get('tempo_submission_count') or acousticbrainz.get('submission_count') or 0)} submission(s)"
+        )
 
     if not components:
         score = 50.0
@@ -792,14 +797,15 @@ def main():
         print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " supported potential jumps, " + str(summary["provisional"]) + " provisional (limited evidence), " + str(summary["uncertain"]) + " uncertain (no evidence).")
         confidence_counts = confidence_summary(scored)
         print("Merged audio profiles loaded: " + str(len(audio_profiles)))
-        print("Proposed sequence (position | energy | confidence | group | track):")
+        print("Proposed sequence (position | perceived energy | acoustic energy | confidence | group | track):")
         print("Acoustic confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         coverage = evidence_coverage_summary(scored)
         print("Semantic confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["semantic_confidence"].items()))
         print("Tempo sources: " + (", ".join(f"{name}={count}" for name, count in coverage["tempo_sources"].items()) or "none") + f"; agreement={coverage['tempo_agreements']}; disagreement={coverage['tempo_disagreements']}")
         for position, row in enumerate(scored, 1):
             group = row.get("sequence_group") or row.get("vibe_group") or "unclassified"
-            print(f'  {position:3}. {row["score"]:5.1f} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
+            acoustic_display = f"{row['acoustic_score']:.1f}" if row.get("acoustic_score") is not None else "n/a"
+            print(f'  {position:3}. {row["score"]:5.1f} / {acoustic_display:>5} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
             signals = row.get("evidence") or []
             print("       Signals: " + ("; ".join(signals) if signals else "no sourced metadata; neutral placeholder score"))
             if position < len(scored):
