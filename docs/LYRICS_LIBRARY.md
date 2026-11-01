@@ -61,7 +61,7 @@ The database supports searching by title, artist, remembered phrase, and recent 
 
 ## Recommendation feature integration
 
-`python build_music_analytics.py` rebuilds recommendation features and automatically merges any matching lyric analyses from the local SQLite database into each track's `lyric_analysis` field. It also reports the number of enriched tracks in the recommendation manifest. The standalone `enrich_recommendation_lyrics.py` remains available for rebuilding the join after the feature file has already been generated.
+`python build_music_analytics.py` rebuilds recommendation features and automatically merges matching analyses from the committed `lyric_features.json` export and, when present, the local SQLite database into each track's `lyric_analysis` field. Local records take precedence. It also reports the number of enriched tracks in the recommendation manifest. The standalone `enrich_recommendation_lyrics.py` remains available for rebuilding the join after the feature file has already been generated.
 
 The SQLite database is intentionally local and git-ignored. The compact `assistant_data/recommendations/lyric_features.json` export contains only track identity and derived theme metadata; it contains no full lyric text or phrase fingerprints. Commit that export when you want the same analyzed themes available to GitHub Actions and other SHIT environments. Both `build_music_analytics.py` and playlist discovery read the export, and local SQLite records take precedence on the machine where they exist. The canonical Last.fm archive and Spotify reference data are not modified.
 
