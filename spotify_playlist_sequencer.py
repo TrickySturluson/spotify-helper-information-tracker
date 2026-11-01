@@ -16,6 +16,7 @@ import spotify_playlist_manager as manager
 
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
+LYRIC_FEATURES = Path("assistant_data/recommendations/lyric_features.json")
 
 
 def norm(value):
@@ -37,6 +38,17 @@ def index_artists(rows):
 def index_tracks(rows):
     return {(norm(row["artist"]), norm(row["track"])): row for row in rows.values()
             if isinstance(row, dict) and row.get("artist") and row.get("track")} if isinstance(rows, dict) else {}
+
+
+def merge_lyric_features(track_profiles, rows):
+    """Attach exported lyric themes to track metadata for transition matching."""
+    for row in rows if isinstance(rows, list) else []:
+        if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
+            continue
+        key = (norm(row["artist"]), norm(row["track"]))
+        profile = track_profiles.setdefault(key, {"artist": row["artist"], "track": row["track"]})
+        profile["lyric_analysis"] = row
+    return track_profiles
 
 
 def _tag_rows(profile):
@@ -131,8 +143,14 @@ def score_track(item, artist_profiles=None, track_profiles=None):
             genre_groups.append(str(value).strip())
     genre_groups.extend(str(value).strip() for value in artist_profile.get("genres") or [] if str(value).strip())
     theme_groups = [str(value).strip() for value in artist_profile.get("themes") or [] if str(value).strip()]
+    theme_groups.extend(str(value).strip() for value in track_profile.get("theme_groups") or [] if str(value).strip())
+    lyric_analysis = track_profile.get("lyric_analysis") or {}
+    lyric_themes = lyric_analysis.get("themes") or {}
+    theme_groups.extend(str(value).strip() for value in lyric_themes if str(value).strip())
+    if lyric_themes:
+        evidence.append("lyric-theme evidence: " + ", ".join(sorted(lyric_themes)))
     if not components:
-        return {"score": 50.0, "confidence": "unknown", "evidence": [],
+        return {"score": 50.0, "confidence": "unknown", "evidence": evidence,
                 "artist": artist, "track": title, "vibe_group": "unclassified",
                 "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
     score = sum(v * w for v, w in zip(components, weights)) / sum(weights) * 100
@@ -436,6 +454,7 @@ def main():
         snap = manager.snapshot(sp, playlist)
         artists = index_artists(read_json(ARTIST_PROFILES, {}))
         tracks = index_tracks(read_json(TRACK_PROFILES, {}))
+        tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
         sections = read_json(args.sections, {}) if args.sections else {}
         if not isinstance(sections, dict):
             raise ValueError("--sections must be a JSON object mapping section names to URI lists.")
