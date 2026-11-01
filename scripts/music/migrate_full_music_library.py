@@ -108,10 +108,13 @@ def main():
     if not isinstance(profiles, dict):
         raise SystemExit("Refusing: track_profiles.json is not an object")
     playlist_rows, snapshot_stats = collect_playlist_rows()
-    if snapshot_stats["incomplete"]:
+    if snapshot_stats["incomplete"] or snapshot_stats["invalid"]:
         raise SystemExit(
-            "Refusing to migrate: accessible playlist snapshots are incomplete. "
-            + json.dumps(snapshot_stats["incomplete_details"][:10], ensure_ascii=False)
+            "Refusing to migrate: one or more playlist snapshots are invalid or incomplete. "
+            + json.dumps({
+                "invalid_snapshots": snapshot_stats["invalid"],
+                "incomplete_snapshots": snapshot_stats["incomplete_details"][:10],
+            }, ensure_ascii=False)
         )
     # Preserve every profile row and add one deduplicated row per Spotify ID.
     # The snapshot stats separately retain total playlist occurrences.
@@ -139,7 +142,7 @@ def main():
         return
     backup_path = None
     if args.root.exists() and (args.root / "library_index.json").exists() and not args.no_backup:
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f")
         backup_path = args.root.with_name(args.root.name + ".backup-" + stamp)
         shutil.copytree(args.root, backup_path)
         report["backup_path"] = str(backup_path)
