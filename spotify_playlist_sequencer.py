@@ -363,7 +363,7 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
                     direction="ascending", group_by="none", mode="smooth",
                     journey="rising", peak_position=85, peak_shape="gradual",
                     genre_strength=0.0, theme_strength=0.0, opener_uri=None,
-                    closer_uri=None, pinned_uris=None, sections=None):
+                    closer_uri=None, pinned_uris=None, sections=None, audio_profiles=None):
     """Smooth Flow is the default; journey and section preferences are soft."""
     if direction not in {"ascending", "descending"}: raise ValueError("direction must be ascending or descending")
     if group_by not in {"none", "vibe", "genre", "theme"}: raise ValueError("invalid group_by")
