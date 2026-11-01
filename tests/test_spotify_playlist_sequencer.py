@@ -87,6 +87,24 @@ class PlaylistSequencerTests(unittest.TestCase):
         }))
 
 
+
+    def test_getsongbpm_fallback_is_not_mislabelled_as_acousticbrainz(self):
+        indexed = sequencer.index_audio_profiles({
+            "profile": {
+                "artist": "Artist", "track": "Song",
+                "source": "AcousticBrainz low-level",
+                "tempo_bpm": 128, "tempo_source": "GetSongBPM API",
+                "getsongbpm": {"tempo_bpm": 128, "source": "GetSongBPM API"},
+            }
+        })
+        merged = indexed[("artist", "song")]
+        self.assertIsNone(merged["source_profiles"]["acousticbrainz"]["tempo_bpm"])
+        result = sequencer.score_track(
+            {"name": "Song", "artists": ["Artist"]}, audio_profiles=indexed
+        )
+        self.assertEqual(result["tempo_source"], "GetSongBPM catalog")
+        self.assertEqual(result["acoustic_confidence"], "low")
+
     def test_evidence_coverage_summary_reports_sources_and_disagreement(self):
         rows = [
             {"confidence": "high", "acoustic_confidence": "high",
