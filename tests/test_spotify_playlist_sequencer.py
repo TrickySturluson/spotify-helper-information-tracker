@@ -237,6 +237,27 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(score("Club Artist", "synthwave"), 72.0)
         self.assertEqual(score("Heavy Artist", "industrial metal"), 78.0)
 
+    def test_same_artist_transition_has_a_diversity_penalty(self):
+        base = {"score": 60, "vibe_groups": ["energetic"], "genre_groups": ["punk"],
+                "theme_groups": ["horror"], "artist": "A"}
+        same = dict(base, artist="A")
+        different = dict(base, artist="B")
+        self.assertGreater(
+            sequencer._transition_cost(base, same),
+            sequencer._transition_cost(base, different),
+        )
+
+    def test_smooth_sort_respects_the_three_act_section_order(self):
+        rows = []
+        for uri, section in [("c", 2), ("b", 1), ("a", 0)]:
+            rows.append({
+                "item": {"uri": uri}, "score": 60, "original_index": len(rows),
+                "vibe_groups": [], "genre_groups": [], "theme_groups": [],
+                "section_index": section, "section_name": str(section),
+            })
+        ordered = sequencer._smooth_order(rows, journey="rising")
+        self.assertEqual([row["item"]["uri"] for row in ordered], ["a", "b", "c"])
+
 
 if __name__ == "__main__":
     unittest.main()
