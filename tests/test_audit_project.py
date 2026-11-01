@@ -239,3 +239,12 @@ class ProjectAuditMainTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression tests for the cross-project generated-data integrity audit.
+# Coverage: Spotify reference catalog/index consistency, malformed records,
+#           manifest/count validation, and repeatable audit execution.
+# Run: python -m unittest tests.test_audit_project -v (from the repository root).
+# Related: scripts/analytics/audit_project.py and compat/audit_project.py.
+# -----------------------------------------------------------------------------
