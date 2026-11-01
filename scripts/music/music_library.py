@@ -88,7 +88,7 @@ class MusicLibrary:
         relations = record.get("relations", {})
         artist_record = read_json(self.root / relations.get("artist_path", ""))
         album_record = read_json(self.root / relations.get("album_path", ""))
-        return {"recording": record, "artist": artist_record or {}, "album": album_record or {}}
+        return {"song": record, "artist": artist_record or {}, "album": album_record or {}}
 
     # Compatibility alias for callers using the earlier API name.
     get_recording = get_song
@@ -114,8 +114,8 @@ class MusicLibrary:
             album_source = album_by_name.get((norm(row["artist"]), norm(row.get("album") or row.get("album_name"))), {})
             artist_records.setdefault(aid, {"schema_version": 1, "id": aid, "artist": row["artist"], "identity": {"artist_mbid": row.get("artist_mbid"), "identity_quality": "verified" if aid.startswith("mbid:") else "name_fallback"}, "evidence": artist_source, "album_ids": []})
             artist_records[aid]["album_ids"] = sorted(set(artist_records[aid]["album_ids"] + [bid]))
-            album_records.setdefault(bid, {"schema_version": 1, "id": bid, "artist_id": aid, "artist": row["artist"], "album": row.get("album") or row.get("album_name") or "", "identity": {"album_mbid": row.get("album_mbid") or row.get("release_mbid"), "identity_quality": "verified" if bid.startswith("mbid:") else "contextual_fallback"}, "evidence": album_source if isinstance(album_source, dict) else {}, "recording_ids": []})
-            album_records[bid]["recording_ids"] = sorted(set(album_records[bid]["recording_ids"] + [rid]))
+            album_records.setdefault(bid, {"schema_version": 1, "id": bid, "artist_id": aid, "artist": row["artist"], "album": row.get("album") or row.get("album_name") or "", "identity": {"album_mbid": row.get("album_mbid") or row.get("release_mbid"), "identity_quality": "verified" if bid.startswith("mbid:") else "contextual_fallback"}, "evidence": album_source if isinstance(album_source, dict) else {}, "song_ids": []})
+            album_records[bid]["song_ids"] = sorted(set(album_records[bid]["song_ids"] + [rid]))
             rec = recordings.setdefault(rid, {"schema_version": 1, "id": rid, "identity": {"artist": row["artist"], "title": row["track"], "album": row.get("album") or row.get("album_name") or "", "artist_id": aid, "album_id": bid, "recording_mbid": row.get("track_mbid") or row.get("recording_mbid"), "spotify_id": row.get("spotify_id") or row.get("spotify_track_id"), "identity_quality": "verified_recording" if rid.startswith("mbid:") else "spotify_track" if rid.startswith("spotify:") else "fallback_release_context"}, "evidence": {"track_metadata": {}, "audio": {}, "lyrics": None}, "derived": row.get("derived") or {}, "coverage": row.get("coverage") or {}, "sources": {}, "relations": {}})
             for field, value in row.items():
                 if field not in {"artist", "track", "album", "album_name", "derived", "coverage"}:
