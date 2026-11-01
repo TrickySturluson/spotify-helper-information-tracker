@@ -83,7 +83,7 @@ def index_audio_profiles(rows):
             merged["source_profiles"]["getsongbpm"] = row["getsongbpm"]
     return indexed
 
-def load_library_profiles(items, root=Path("assistant_data/music/music_library")):
+def load_library_profiles(items, root=Path("assistant_data/music/library")):
     """Load only profiles referenced by this playlist; fall back per missing record."""
     if MusicLibrary is None or not (Path(root) / "library_index.json").exists():
         return None
