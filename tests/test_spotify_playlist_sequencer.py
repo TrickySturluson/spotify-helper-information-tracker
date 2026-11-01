@@ -1,4 +1,6 @@
+import json
 import unittest
+from pathlib import Path
 
 import spotify_playlist_sequencer as sequencer
 
@@ -367,6 +369,67 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertLess(sequencer._transition_cost(left, right),
                         sequencer._transition_cost(left, sparse))
 
+
+
+class SavedPlaylistIntegrationTests(unittest.TestCase):
+    def test_saved_booze_or_boos_snapshot_sequence_preview(self):
+        """Exercise the real saved playlist snapshot without Spotify writes."""
+        root = Path(__file__).resolve().parents[1]
+        snapshot_path = root / "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json"
+        self.assertTrue(snapshot_path.is_file(), "saved Booze or Boos snapshot is missing")
+        snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        self.assertIsInstance(snapshot.get("items"), list)
+        self.assertTrue(snapshot.get("items_accessible"))
+        self.assertEqual(snapshot.get("item_count_fetched"), len(snapshot["items"]))
+
+        def load_object(path):
+            try:
+                value = json.loads(path.read_text(encoding="utf-8"))
+                return value if isinstance(value, dict) else {}
+            except (OSError, ValueError):
+                return {}
+
+        artists = load_object(root / "assistant_data/music/artist_profiles.json")
+        tracks = load_object(root / "assistant_data/music/track_profiles.json")
+        audio_path = root / "assistant_data/music/audio_profiles.json"
+        audio_data = load_object(audio_path) if audio_path.exists() else {}
+        artist_index = sequencer.index_artists(artists)
+        track_index = sequencer.index_tracks(tracks)
+        audio_index = sequencer.index_tracks(audio_data.get("tracks", audio_data))
+
+        ordered = sequencer.sequence_tracks(
+            snapshot["items"], artist_index, track_index,
+            mode="smooth", journey="rising", peak_position=85,
+            peak_shape="gradual", audio_profiles=audio_index,
+        )
+        original_uris = [item["uri"] for item in snapshot["items"]]
+        ordered_uris = [row["item"]["uri"] for row in ordered]
+        operations = sequencer.build_reorder_operations(original_uris, ordered_uris)
+        summary = sequencer.transition_summary(ordered)
+        confidence = sequencer.confidence_summary(ordered)
+        changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
+
+        self.assertEqual(len(ordered), len(snapshot["items"]))
+        self.assertCountEqual(ordered_uris, original_uris)
+        self.assertEqual(sum(confidence.values()), len(ordered))
+        print(
+            "SEQUENCER REAL-DATA EVALUATION: "
+            f"playlist={snapshot.get('name')!r}; captured_at={snapshot.get('captured_at')}; "
+            f"tracks={len(ordered)}; moved_positions={changed_positions}; "
+            f"reorder_operations={len(operations)}; confidence={confidence}; "
+            f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
+            f"potential_jumps:{summary['potential_jumps']}, uncertain:{summary['uncertain']}, "
+            f"limited_evidence:{summary['limited_evidence']}}}; "
+            f"artist_profiles={len(artist_index)}; track_profiles={len(track_index)}; "
+            f"audio_profiles={len(audio_index)}"
+        )
+        print(
+            "SEQUENCER PREVIEW SAMPLE: "
+            + " -> ".join(
+                f"{row['artist']} — {row['track']} [{row['confidence']}]"
+                for row in ordered[:12]
+            )
+        )
 
 if __name__ == "__main__":
     unittest.main()
