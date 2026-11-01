@@ -18,6 +18,7 @@ ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 LYRIC_FEATURES = Path("assistant_data/recommendations/lyric_features.json")
 AUDIO_PROFILES = Path("assistant_data/music/audio_profiles.json")
+ALBUM_PROFILES = Path("assistant_data/music/album_profiles.json")
 
 
 def norm(value):
@@ -168,7 +169,7 @@ def _tempo_compatible(a, b, tolerance=0.08):
     return min(abs(ratio - 1.0), abs(ratio - 2.0)) <= tolerance
 
 
-def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=None):
+def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=None, album_profiles=None):
     """Score perceived energy while keeping acoustic and semantic confidence separate.
 
     Genre, mood, lyrics, and artist tags can influence the display score, but
@@ -176,10 +177,13 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     """
     artist_profiles = artist_profiles or {}
     track_profiles = track_profiles or {}
+    album_profiles = album_profiles or {}
     names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
     artist = str(names[0]) if names else ""
     title = str(item.get("name") or item.get("track") or "")
     artist_profile = artist_profiles.get(norm(artist), {})
+    album_name = str(item.get("album") or item.get("album_name") or "")
+    album_profile = album_profiles.get((norm(artist), norm(album_name)), {})
     track_profile = track_profiles.get((norm(artist), norm(title)), {})
     measured_audio = (audio_profiles or {}).get((norm(artist), norm(title)), {})
     sources = measured_audio.get("source_profiles") or {}
@@ -264,12 +268,14 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     tag_moods = set(track_mood["moods"])
     artist_tags = _tag_rows(artist_profile)
     artist_moods = set()
-    # The profile builder already separates curated mood hints from raw tags.
-    # Consume that explicit field as well; it remains artist-level fallback only.
+    # Artist and album tags are context, never recording-level mood evidence.
     for tag in artist_profile.get("moods") or []:
         artist_moods.update(mood_inference._tag_moods(tag))
     for tag in artist_tags:
         artist_moods.update(mood_inference._tag_moods(tag))
+    album_moods = set()
+    for row in _tag_rows(album_profile):
+        album_moods.update(mood_inference._tag_moods(row))
     energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
     gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
     if tag_moods:
@@ -286,6 +292,13 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         evidence.append(f"track mood contribution weight={mood_weight:.2f}")
         if track_mood["conflict"]:
             evidence.append("conflicting track mood directions; neutral energy contribution")
+    elif album_moods:
+        mood_score = 0.68 if album_moods & energetic else 0.32 if album_moods & gentle else 0.5
+        mood_weight = 0.04
+        components.append(mood_score); weights.append(mood_weight)
+        semantic_components.append(mood_score); semantic_weights.append(mood_weight)
+        evidence.append("album-level mood context (not track-specific)=" + ", ".join(sorted(album_moods)))
+        evidence.append(f"album mood contribution weight={mood_weight:.2f}")
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
         mood_weight = 0.03
@@ -369,7 +382,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         acoustic_confidence = "unknown" if not components else "low"
 
     semantic_source_families = set()
-    if track_profile.get("lastfm_tags") or track_profile.get("tags") or artist_tags or artist_profile.get("genres"):
+    if track_profile.get("lastfm_tags") or track_profile.get("tags") or artist_tags or artist_profile.get("genres") or album_profile.get("lastfm_tags"):
         semantic_source_families.add("lastfm_community")
     if track_profile.get("musicbrainz_tags") or track_profile.get("musicbrainz_genres"):
         semantic_source_families.add("musicbrainz")
@@ -381,8 +394,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     semantic_confidence = ("high" if semantic_sources >= 3 else
                            "medium" if semantic_sources == 2 else
                            "low" if semantic_sources == 1 else "unknown")
-    group = next(iter(sorted(tag_moods)), "unclassified") if tag_moods else (
-        next(iter(sorted(artist_moods)), "artist-level") if artist_moods else "unclassified")
+    group_moods = tag_moods or album_moods or artist_moods
+    group = next(iter(sorted(group_moods)), "unclassified") if group_moods else "unclassified"
     return {
         "score": round(score, 2),
         "acoustic_score": round(acoustic_score, 2) if acoustic_score is not None else None,
@@ -390,9 +403,10 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
         "acoustic_confidence": acoustic_confidence,
         "semantic_confidence": semantic_confidence,
-        "mood_confidence": track_mood["confidence"] if tag_moods else ("low" if artist_moods else "unknown"),
-        "mood_weight": mood_weight if tag_moods or artist_moods else 0.0,
-        "mood_source_families": track_mood["source_families"] if tag_moods else (["lastfm_artist"] if artist_moods else []),
+        "mood_confidence": track_mood["confidence"] if tag_moods else ("low" if album_moods or artist_moods else "unknown"),
+        "mood_weight": mood_weight if tag_moods or album_moods or artist_moods else 0.0,
+        "mood_evidence_scope": "track" if tag_moods else ("album" if album_moods else ("artist" if artist_moods else "unknown")),
+        "mood_source_families": track_mood["source_families"] if tag_moods else (["lastfm_album"] if album_moods else (["lastfm_artist"] if artist_moods else [])),
         "mood_tag_count": track_mood["tag_count"],
         "mood_conflict": track_mood["conflict"],
         "semantic_source_families": sorted(semantic_source_families),
@@ -402,7 +416,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         "tempo_sources": [{"source": name, "bpm": value} for name, value in tempo_candidates],
         "evidence_sources": sorted(set(evidence_sources)),
         "evidence": evidence, "artist": artist, "track": title,
-        "vibe_group": group, "vibe_groups": sorted(tag_moods or artist_moods),
+        "vibe_group": group, "vibe_groups": sorted(tag_moods or album_moods or artist_moods),
         "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups)),
     }
 
@@ -698,7 +712,7 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
                     direction="ascending", group_by="none", mode="smooth",
                     journey="rising", peak_position=85, peak_shape="gradual",
                     genre_strength=0.0, theme_strength=0.0, opener_uri=None,
-                    closer_uri=None, pinned_uris=None, sections=None, audio_profiles=None):
+                    closer_uri=None, pinned_uris=None, sections=None, audio_profiles=None, album_profiles=None):
     """Smooth Flow is the default; journey and section preferences are soft."""
     if direction not in {"ascending", "descending"}: raise ValueError("direction must be ascending or descending")
     if group_by not in {"none", "vibe", "genre", "theme"}: raise ValueError("invalid group_by")
@@ -715,7 +729,7 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
     scored = []
     for index, item in enumerate(items):
         if not isinstance(item, dict) or not item.get("uri"): continue
-        profile = score_track(item, artists, track_profiles, audio_profiles)
+        profile = score_track(item, artists, track_profiles, audio_profiles, album_profiles)
         group_field = {"vibe": "vibe_groups", "genre": "genre_groups", "theme": "theme_groups"}.get(group_by)
         artist_profile = artists.get(norm(profile["artist"]), {})
         section = section_lookup.get(item["uri"], (None, "unassigned"))
@@ -903,13 +917,16 @@ def main():
         tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
         audio_rows = read_json(AUDIO_PROFILES, {})
         audio_profiles = index_audio_profiles(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
+        album_rows = read_json(ALBUM_PROFILES, {})
+        album_profiles = {(norm(row.get("artist")), norm(row.get("album"))): row
+                          for row in album_rows.values() if isinstance(row, dict) and row.get("artist") and row.get("album")}
         sections = read_json(args.sections, {}) if args.sections else {}
         if not isinstance(sections, dict):
             raise ValueError("--sections must be a JSON object mapping section names to URI lists.")
         def arrange(peak):
             return sequence_tracks(snap["items"], artists, tracks, args.direction, args.group_by, args.mode,
                 args.journey, peak, args.peak_shape, args.genre_strength, args.theme_strength,
-                args.opener_uri, args.closer_uri, args.pin_uri, sections, audio_profiles)
+                args.opener_uri, args.closer_uri, args.pin_uri, sections, audio_profiles, album_profiles)
         scored = arrange(args.peak_position)
         plan = make_plan(snap, scored)
         args.output.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -920,6 +937,7 @@ def main():
         print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " supported potential jumps, " + str(summary["provisional"]) + " provisional (limited evidence), " + str(summary["uncertain"]) + " uncertain (no evidence).")
         confidence_counts = confidence_summary(scored)
         print("Merged audio profiles loaded: " + str(len(audio_profiles)))
+        print("Album profiles loaded: " + str(len(album_profiles)))
         print("Proposed sequence (position | perceived energy | acoustic energy | confidence | group | track):")
         print("Acoustic confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         coverage = evidence_coverage_summary(scored)

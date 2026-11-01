@@ -73,6 +73,12 @@ analysis (Essentia) or a source that publishes segment-level data. Spotify
 stream audio is not downloaded or extracted by this pipeline.
 
 
+## Album-level community metadata
+
+The daily **Enrich Music Metadata** workflow also builds `assistant_data/music/album_profiles.json` using Last.fm's `album.getTopTags` endpoint. It deduplicates by normalized artist + album, prioritizes configured playlist snapshots and recent listening, and performs one lookup per album rather than one request per track. Responses must include an exact artist and album identity match before tags are accepted.
+
+The album-profile cache stores raw tag labels/counts, provider, identity-verification status, check time, result status, and retry-after. Empty results are cached for 30 days; provider-wide cooldowns stop a run cleanly. Requests are sequential with a 0.4-second minimum delay and a 100-album daily batch. This is release-level context: album tags are never treated as track-specific evidence or acoustic measurements. The sequencer may use them only as a low-confidence fallback (after track tags, before artist tags), and reports the source as `lastfm_album`.
+
 ## Evidence confidence and redundancy
 
 The sequencer reports acoustic and semantic confidence independently:

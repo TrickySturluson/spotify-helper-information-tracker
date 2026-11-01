@@ -122,6 +122,21 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIn("dreamy", result["vibe_groups"])
         self.assertIn("eerie", result["vibe_groups"])
 
+    def test_album_mood_is_low_confidence_context_not_track_evidence(self):
+        result = sequencer.score_track(
+            {"name": "Album Cut", "artists": ["Artist"], "album": "Record"},
+            album_profiles={("artist", "record"): {
+                "lastfm_tags": [{"tag": "dark", "count": 80}],
+                "status": "matched",
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_evidence_scope"], "album")
+        self.assertEqual(result["mood_source_families"], ["lastfm_album"])
+        self.assertEqual(result["mood_tag_count"], 0)
+        self.assertIn("dark", result["vibe_groups"])
+        self.assertIn("album-level mood context", " ".join(result["evidence"]))
+
     def test_missing_metadata_is_explicitly_unknown(self):
         result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
         self.assertEqual(result["confidence"], "unknown")
