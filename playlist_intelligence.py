@@ -197,7 +197,7 @@ def playlist_track_metadata(items, track_profiles):
         "moods": [{"tag": key, "track_count": count} for key, count in moods.most_common(12)],
         "genres": [{"tag": key, "track_count": count} for key, count in genres.most_common(12)],
         "tags": [{"tag": key, "track_count": count} for key, count in tags.most_common(20)],
-        "method": "exact normalized primary-artist + track-title match; track-sourced tags only",
+        "method": "exact normalized primary-artist + track-title match; sourced tags and optional lyric themes",
     }
 
 
