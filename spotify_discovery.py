@@ -69,6 +69,17 @@ def build_familiarity_index(tracks):
     }
 
 
+def lyric_theme_affinity(analysis, playlist_theme_counts):
+    """Measure overlap with this playlist's observed lyric themes (0..1)."""
+    candidate_themes = set((analysis or {}).get("themes") or {})
+    total = sum(max(0, int(count or 0)) for count in (playlist_theme_counts or {}).values())
+    if not candidate_themes or total <= 0:
+        return 0.0
+    shared = sum(max(0, int(count or 0)) for theme, count in playlist_theme_counts.items()
+                 if theme in candidate_themes)
+    return round(shared / total, 4)
+
+
 def _lastfm_similar(seed, api_key, limit=SIMILAR_PER_SEED):
     params = {
         "method": "artist.getSimilar", "artist": seed["artist"],
@@ -360,6 +371,13 @@ def build_discovery_recommendations(
         raise RuntimeError("Music taste/familiarity data is empty or invalid.")
     familiarity = build_familiarity_index(archive)
     feedback = load_playlist_feedback(playlist_items, playlist_id)
+    # Include manually analyzed songs from the private lyrics DB, even when
+    # they are not part of the Last.fm archive or generated feature export.
+    track_metadata = intelligence.track_metadata_index()
+    playlist_lyric_profile = intelligence.playlist_track_metadata(playlist_items, track_metadata)
+    playlist_theme_counts = {
+        row["tag"]: row["track_count"] for row in playlist_lyric_profile.get("lyric_themes", [])
+    }
     existing_uris = {row.get("uri") for row in playlist_items if row.get("uri")}
     if liked_keys is None:
         liked_keys = liked_track_keys(sp)
@@ -386,9 +404,17 @@ def build_discovery_recommendations(
             score, plays, last, is_liked = candidate_score(
                 track, artist_row["similarity"], familiarity, liked_keys, today, feedback
             )
+            lyric_analysis = (track_metadata.get((norm(artist), norm(track["name"])), {}) or {}).get("lyric_analysis") or {}
+            theme_affinity = lyric_theme_affinity(lyric_analysis, playlist_theme_counts)
+            # Small, explainable tie-break/boost: Last.fm similarity remains the
+            # dominant signal, while lyrical fit helps distinguish candidates.
+            score += 0.06 * theme_affinity
             row = {
                 "uri": uri, "artist": artist, "track": track["name"],
                 "plays": plays, "last_scrobble": last, "score": round(score, 6),
+                "lyric_theme_affinity": theme_affinity,
+                "lyric_themes": sorted((lyric_analysis.get("themes") or {}).keys()),
+                "lyric_source_count": lyric_analysis.get("source_count", 0),
                 "similarity": artist_row["similarity"],
                 "supporting_seeds": artist_row.get("supporting_seeds", 0),
                 "liked": is_liked,
@@ -402,6 +428,9 @@ def build_discovery_recommendations(
                 row["similarity"], row["supporting_seeds"]
             )
             row["why"] = intelligence.recommendation_reasons(row)
+            if theme_affinity >= 0.2:
+                row["why"].insert(0, "lyrics share themes with this playlist")
+                row["why"] = row["why"][:4]
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
         time.sleep(0.08)
