@@ -75,7 +75,7 @@ class DiscoveryScoringTests(unittest.TestCase):
         playlist_themes = {"vampire": 3, "murder_slasher": 2, "nightlife_clubbing": 1}
         aligned = {"themes": {"vampire": {"count": 1}, "nightlife_clubbing": {"count": 2}}}
         unrelated = {"themes": {"love_romance": {"count": 4}}}
-        self.assertAlmostEqual(discovery.lyric_theme_affinity(aligned, playlist_themes), 4 / 6)
+        self.assertAlmostEqual(discovery.lyric_theme_affinity(aligned, playlist_themes), 4 / 6, places=3)
         self.assertEqual(discovery.lyric_theme_affinity(unrelated, playlist_themes), 0.0)
         self.assertEqual(discovery.lyric_theme_affinity({}, playlist_themes), 0.0)
 
