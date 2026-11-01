@@ -16,7 +16,7 @@ from urllib.error import HTTPError, URLError
 
 SHARDS = Path("assistant_data/music/artists")
 API = "https://musicbrainz.org/ws/2/recording/"
-UA = "SHIT-MusicBrainz-ID-Enrichment/1.0 (https://github.com/TrickySturluson/tricky-lastfm)"
+UA = "SHIT-MusicBrainz-ID-Enrichment/1.0 (https://github.com/TrickySturluson/spotify-helper-information-tracker)"
 LIMIT = int(os.environ.get("MUSICBRAINZ_ID_LOOKUPS_PER_RUN", "1000"))
 DELAY = 1.05
 
