@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Canonical per-recording music library with lazy reads and stable identity aliases."""
+"""Canonical song library with lazy reads and stable identity aliases."""
 import hashlib
 import json
 import re
@@ -55,18 +55,18 @@ def read_json(path):
         return None
 
 class MusicLibrary:
-    """Index-backed lazy resolver; recording JSON remains the canonical evidence."""
+    """Index-backed lazy resolver; song JSON remains the canonical evidence."""
     def __init__(self, root=DEFAULT_ROOT):
         self.root = Path(root)
         self.index_path = self.root / INDEX_NAME
-        self.index = read_json(self.index_path) or {"schema_version": 1, "recordings": {}, "spotify_ids": {}, "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {}}
+        self.index = read_json(self.index_path) or {"schema_version": 1, "songs": {}, "spotify_ids": {}, "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {}}
 
     def path_for(self, kind, key):
         safe = safe_id(key)
-        filename = {"artists": "artist.json", "albums": "album.json", "recordings": "recording.json"}[kind]
+        filename = {"artists": "artist.json", "albums": "album.json", "songs": "song.json", "recordings": "recording.json"}[kind]
         return self.root / kind / safe[:2] / safe / filename
 
-    def get_recording(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None):
+    def get_song(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None):
         key = None
         if spotify_id:
             key = self.index.get("spotify_ids", {}).get(str(spotify_id).rsplit(":", 1)[-1].casefold())
@@ -77,18 +77,21 @@ class MusicLibrary:
             if len(candidates) == 1:
                 key = candidates[0]
             elif album:
-                matches = [x for x in candidates if norm(self.index["recordings"].get(x, {}).get("album")) == norm(album)]
+                matches = [x for x in candidates if norm(self.index.get("songs", self.index.get("recordings", {})).get(x, {}).get("album")) == norm(album)]
                 if len(matches) == 1:
                     key = matches[0]
-        if key is None or key not in self.index.get("recordings", {}):
+        if key is None or key not in self.index.get("songs", self.index.get("recordings", {})):
             return None
-        record = read_json(self.root / self.index["recordings"][key]["path"])
+        record = read_json(self.root / self.index.get("songs", self.index.get("recordings", {}))[key]["path"])
         if not isinstance(record, dict):
             return None
         relations = record.get("relations", {})
         artist_record = read_json(self.root / relations.get("artist_path", ""))
         album_record = read_json(self.root / relations.get("album_path", ""))
         return {"recording": record, "artist": artist_record or {}, "album": album_record or {}}
+
+    # Compatibility alias for callers using the earlier API name.
+    get_recording = get_song
 
     def put_catalogue(self, track_rows, artist_rows=None, album_rows=None, audio_rows=None, lyric_rows=None):
         artists = artist_rows if isinstance(artist_rows, dict) else {}
@@ -121,7 +124,7 @@ class MusicLibrary:
             rec["evidence"]["lyrics"] = lyrics.get((norm(row["artist"]), norm(row["track"])))
             rec["sources"] = {k: {"status": v} for k, v in row.items() if k.endswith("_status") and isinstance(v, str)}
             rec["relations"] = {"artist_path": str(self.path_for("artists", aid).relative_to(self.root)), "album_path": str(self.path_for("albums", bid).relative_to(self.root))}
-        index = {"schema_version": 1, "recordings": {}, "spotify_ids": {}, "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {}}
+        index = {"schema_version": 1, "songs": {}, "spotify_ids": {}, "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {}}
         for aid, rec in artist_records.items():
             path = self.path_for("artists", aid); write_json(path, rec)
             index["artists"][aid] = {"path": str(path.relative_to(self.root)), "name": rec["artist"]}
@@ -129,9 +132,9 @@ class MusicLibrary:
             path = self.path_for("albums", bid); write_json(path, rec)
             index["albums"][bid] = {"path": str(path.relative_to(self.root)), "artist_id": rec["artist_id"], "album": rec["album"]}
         for rid, rec in recordings.items():
-            path = self.path_for("recordings", rid); write_json(path, rec)
+            path = self.path_for("songs", rid); write_json(path, rec)
             ident = rec["identity"]
-            index["recordings"][rid] = {"path": str(path.relative_to(self.root)), "artist": ident["artist"], "track": ident["title"], "album": ident["album"]}
+            index["songs"][rid] = {"path": str(path.relative_to(self.root)), "artist": ident["artist"], "track": ident["title"], "album": ident["album"]}
             sid = ident.get("spotify_id")
             if sid: index["spotify_ids"][str(sid).rsplit(":", 1)[-1].casefold()] = rid
             mbid = ident.get("recording_mbid")
@@ -139,10 +142,10 @@ class MusicLibrary:
             index["name_candidates"].setdefault(norm(ident["artist"]) + "\\0" + norm(ident["title"]), []).append(rid)
         write_json(self.index_path, index)
         self.index = index
-        return {"artists": len(artist_records), "albums": len(album_records), "recordings": len(recordings), "ambiguous_name_aliases": sum(len(v) > 1 for v in index["name_candidates"].values())}
+        return {"artists": len(artist_records), "albums": len(album_records), "songs": len(recordings), "ambiguous_name_aliases": sum(len(v) > 1 for v in index["name_candidates"].values())}
 
 # FILE OVERVIEW
-# - Stores one JSON record per artist, album, and recording in ID-sharded paths.
+# - Stores one JSON record per artist, album, and song in ID-sharded paths.
 # - Resolves Spotify track IDs and verified recording MBIDs before safe name aliases.
 # - Preserves provider evidence, derived fields, coverage, source statuses, and relations.
-# - Keeps ambiguous artist/title aliases as candidate lists; never guesses a version.
+# - Keeps ambiguous artist/title aliases as candidate lists; never guesses a song version.
