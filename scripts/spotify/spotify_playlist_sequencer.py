@@ -7,7 +7,6 @@ to preview and apply. It never edits Spotify directly.
 """
 import argparse
 import json
-import math
 import re
 from collections import Counter
 from pathlib import Path
@@ -94,14 +93,15 @@ def _tag_rows(profile):
 def _track_mood_evidence(profile):
     """Return track-level mood tags, polarity, and calibrated descriptive confidence.
 
-    Counts strengthen a tag only within its source; duplicate labels across
-    fields are deduplicated. Artist-level tags are intentionally excluded.
+    Distinct descriptors and independent track-tag source families determine
+    confidence; raw tag counts are not treated as independent confirmations.
+    Artist-level tags are intentionally excluded.
     """
     source_fields = {
         "lastfm_track": ("lastfm_tags", "tags"),
         "musicbrainz_recording": ("musicbrainz_tags",),
     }
-    by_mood = {}
+    moods = set()
     descriptors = set()
     source_families = set()
     for family, fields in source_fields.items():
@@ -119,17 +119,10 @@ def _track_mood_evidence(profile):
                 if not matches:
                     continue
                 family_moods.update(matches)
-                try:
-                    count = max(0.0, float(row.get("count", 0) or 0)) if isinstance(row, dict) else 0.0
-                    strength = min(1.0, max(0.15, math.log1p(count) / math.log(101))) if count else 0.25
-                except (TypeError, ValueError):
-                    strength = 0.25
                 descriptors.add(key)
-                for mood in matches:
-                    by_mood[mood] = max(by_mood.get(mood, 0.0), strength)
+                moods.update(matches)
         if family_moods:
             source_families.add(family)
-    moods = set(by_mood)
     energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
     gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
     has_energetic = bool(moods & energetic)
@@ -151,7 +144,6 @@ def _track_mood_evidence(profile):
         "source_families": sorted(source_families),
         "tag_count": len(descriptors),
         "conflict": conflict,
-        "strengths": by_mood,
     }
 
 
