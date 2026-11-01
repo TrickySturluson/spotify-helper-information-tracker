@@ -99,7 +99,7 @@ def main(argv=None):
     run("Read-only migration preview", command("shit.py", "library", "preview"))
     if not args.execute:
         print("\nPreflight complete. No provider requests or library writes were made.")
-        print("Tomorrow, run: python scripts/music/prepare_music_library.py --execute")
+        print("To execute through SHIT: python shit.py library prepare --execute")
         return 0
 
     if not args.yes:
