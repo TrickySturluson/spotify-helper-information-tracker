@@ -72,8 +72,13 @@ jobs:
 
       - name: Compile and run regression tests
         run: |
-          python -m compileall -q scripts compat shit.py
-          python -m unittest discover -s tests -t . -v
+          set -o pipefail
+          {
+            echo "=== Compile Python modules ==="
+            python -m compileall -q scripts compat shit.py
+            echo "=== Full regression suite ==="
+            python -m unittest discover -s tests -t . -v
+          } 2>&1 | tee shit-library-run.log
 
       - name: Verify provider credentials (read-only)
         if: steps.request.outputs.command == 'verify'
