@@ -252,7 +252,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     local_tempo_conf = essentia.get("tempo_confidence")
     try: local_tempo_conf = float(local_tempo_conf) if local_tempo_conf is not None else None
     except (TypeError, ValueError): local_tempo_conf = None
-    if direct_energy is not None and (tempo_source != "GetSongBPM catalog" and tempo is not None or loudness is not None):
+    if direct_energy is not None and (tempo_source in {"Essentia", "Spotify audio features"} and tempo is not None or loudness is not None):
         acoustic_confidence = "high"
     elif local_lufs is not None or (tempo_source == "Essentia" and (local_tempo_conf or 0) >= 0.55) or direct_energy is not None:
         acoustic_confidence = "medium"
@@ -263,10 +263,16 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     else:
         acoustic_confidence = "unknown" if not components else "low"
 
-    semantic_sources = sum(bool(track_profile.get(field)) for field in
-                           ("lastfm_tags", "tags", "musicbrainz_tags", "musicbrainz_genres", "discogs_styles", "discogs_genres"))
-    semantic_sources += int(bool(lyric_themes))
-    semantic_sources += int(bool(artist_tags or artist_profile.get("genres")))
+    semantic_source_families = set()
+    if track_profile.get("lastfm_tags") or track_profile.get("tags") or artist_tags or artist_profile.get("genres"):
+        semantic_source_families.add("lastfm_community")
+    if track_profile.get("musicbrainz_tags") or track_profile.get("musicbrainz_genres"):
+        semantic_source_families.add("musicbrainz")
+    if track_profile.get("discogs_styles") or track_profile.get("discogs_genres"):
+        semantic_source_families.add("discogs_release_context")
+    if lyric_themes:
+        semantic_source_families.add("lyric_analysis")
+    semantic_sources = len(semantic_source_families)
     semantic_confidence = ("high" if semantic_sources >= 3 else
                            "medium" if semantic_sources == 2 else
                            "low" if semantic_sources == 1 else "unknown")
