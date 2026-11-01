@@ -101,6 +101,8 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
             artists = item.get("artists") or []
             add(artists[0] if artists else "", item.get("album"), item.get("name"), playlist_id=playlist_id)
 
+    for row in catalogue.values():
+        row["track_count"] = len(row.pop("track_keys", set()))
     return catalogue
 
 
