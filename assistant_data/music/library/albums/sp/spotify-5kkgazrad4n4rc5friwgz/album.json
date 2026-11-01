@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "spotify:album:5KkGAZrad4N4rc5FriwgzU",
+  "artist_id": "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48",
+  "artist": "Candy Claws",
+  "album": "Ceres & Calypso in the Deep Time",
+  "identity": {
+    "spotify_album_id": "5KkGAZrad4N4rc5FriwgzU",
+    "release_mbid": null,
+    "identity_quality": "spotify_album_id",
+    "release_scope": "standard 12-track album; distinct from 10th-anniversary expanded reissue"
+  },
+  "evidence": {
+    "album_metadata": {
+      "source_family": "Last.fm",
+      "provider_url": "https://www.last.fm/music/Candy%20Claws/Ceres%20%26%20Calypso%20in%20the%20Deep%20Time",
+      "identity_verified": true,
+      "release_date": "2013-06-25",
+      "track_count": 12,
+      "total_duration_seconds": 2651,
+      "tags": [
+        {
+          "tag": "shoegaze",
+          "source": "Last.fm community tags"
+        },
+        {
+          "tag": "dream pop",
+          "source": "Last.fm community tags"
+        },
+        {
+          "tag": "neo-psychedelia",
+          "source": "Last.fm community tags"
+        },
+        {
+          "tag": "psychedelic pop",
+          "source": "Last.fm community tags"
+        }
+      ],
+      "summary": {
+        "text": "A 2013 Candy Claws concept album framed around Ceres, a seal-like creature, and Calypso travelling through deep time; lyrics are credited to poet Jenn Morea.",
+        "attribution": "Paraphrased from the Last.fm album description; not a verbatim wiki copy.",
+        "source_url": "https://www.last.fm/music/Candy%20Claws/Ceres%20%26%20Calypso%20in%20the%20Deep%20Time"
+      },
+      "artwork_reference": {
+        "provider": "Spotify",
+        "album_id": "5KkGAZrad4N4rc5FriwgzU",
+        "note": "Reference only; artwork binary is not duplicated in the library."
+      },
+      "tracklist_source": "Last.fm album tracklist, cross-checked against official Candy Claws Bandcamp album page",
+      "tracklist_source_url": "https://candyclaws.bandcamp.com/album/ceres-calypso-in-the-deep-time",
+      "tracklist": [
+        {
+          "position": 1,
+          "disc_number": 1,
+          "title": "Into the Deep Time (One Sun)",
+          "duration_ms": 182000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 2,
+          "disc_number": 1,
+          "title": "White Seal (Shell & Spine)",
+          "duration_ms": 224000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 3,
+          "disc_number": 1,
+          "title": "Fell in Love (At the Water)",
+          "duration_ms": 241000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 4,
+          "disc_number": 1,
+          "title": "Pangaea Girls (Magic Feeling)",
+          "duration_ms": 191000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 5,
+          "disc_number": 1,
+          "title": "New Forest (Five Heads of the Sun)",
+          "duration_ms": 204000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 6,
+          "disc_number": 1,
+          "title": "Transitional Bird (Clever Girl)",
+          "duration_ms": 266000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 7,
+          "disc_number": 1,
+          "title": "Charade (Fern Prairie)",
+          "duration_ms": 200000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 8,
+          "disc_number": 1,
+          "title": "Fallen Tree Bridge (Brave Rainbow Rider)",
+          "duration_ms": 210000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 9,
+          "disc_number": 1,
+          "title": "Birth of the Flower (Seagreen)",
+          "duration_ms": 227000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 10,
+          "disc_number": 1,
+          "title": "Illusion (Fern Lake)",
+          "duration_ms": 215000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 11,
+          "disc_number": 1,
+          "title": "Night Ela (Mystic Thing)",
+          "duration_ms": 304000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        },
+        {
+          "position": 12,
+          "disc_number": 1,
+          "title": "Where I Found You (One Star)",
+          "duration_ms": 187000,
+          "duration_source": "Last.fm album tracklist (rounded seconds converted to ms; release display durations vary by source)",
+          "recording_identity_verified": false
+        }
+      ]
+    }
+  },
+  "confidence": {
+    "identity": {
+      "tier": "high",
+      "basis": [
+        "exact Spotify album ID in saved Spotify playlist snapshots"
+      ]
+    },
+    "metadata": {
+      "release_date": {
+        "tier": "high",
+        "sources": [
+          "Last.fm"
+        ]
+      },
+      "tracklist": {
+        "tier": "high",
+        "sources": [
+          "Last.fm",
+          "artist Bandcamp"
+        ]
+      },
+      "tags": {
+        "tier": "medium",
+        "sources": [
+          "Last.fm community tags"
+        ]
+      },
+      "summary": {
+        "tier": "medium",
+        "sources": [
+          "Last.fm album description"
+        ]
+      }
+    }
+  },
+  "song_ids": [
+    "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+    "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
+    "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+    "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573"
+  ],
+  "sources": {
+    "spotify_playlist_snapshots": [
+      "6ZsqAs5OnRMVudhfB2QzTx",
+      "3Py0bGiIJQHtirIbhwLpdG",
+      "7ktZCiqIBwsOPWShhqLzRi",
+      "6zATzTjlOTxtMLM1cC9MQX"
+    ],
+    "lastfm_album_info": "https://www.last.fm/music/Candy%20Claws/Ceres%20%26%20Calypso%20in%20the%20Deep%20Time",
+    "bandcamp": "https://candyclaws.bandcamp.com/album/ceres-calypso-in-the-deep-time"
+  },
+  "notes": [
+    "Album-level tags and description are contextual evidence, not track-level acoustic evidence.",
+    "Tracklist membership does not by itself prove recording identity. Only song records already matched by recording MBID are linked here.",
+    "Durations are approximate display values; provider/release editions can differ by seconds."
+  ]
+}
