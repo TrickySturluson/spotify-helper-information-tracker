@@ -68,7 +68,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(
             message,
             "Alternative preview: plan-peak70.json | gentle: 3 | moderate: 2 "
-            "| potential jumps: 1 | uncertain: 4",
+            "| potential jumps: 1 | provisional: 0 | uncertain: 4",
         )
 
     def test_sort_modes_include_atmosphere_style_narrative_and_discovery(self):
@@ -362,6 +362,16 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIsNone(report["energy_gap"])
         self.assertNotIn("estimated energy", " ".join(report["reasons"]))
 
+
+
+    def test_low_confidence_mismatch_is_provisional_not_a_confirmed_jump(self):
+        left = {"score": 20, "confidence": "low", "artist": "One",
+                "vibe_groups": ["calm"], "genre_groups": ["ambient"], "theme_groups": []}
+        right = {"score": 95, "confidence": "low", "artist": "Two",
+                 "vibe_groups": ["aggressive"], "genre_groups": ["metal"], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["label"], "provisional")
 
     def test_low_confidence_energy_is_not_used_as_transition_fact(self):
         left = {"score": 5, "confidence": "low", "artist": "One",
