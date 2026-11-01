@@ -1,4 +1,6 @@
 import json
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -43,6 +45,19 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         self.assertIsInstance(context.get("recent_plays"), int)
         self.assertIsInstance(context.get("all_time_plays"), int)
 
+
+
+    def test_compat_recent_batch_dry_run_is_local_and_selects_50(self):
+        result = subprocess.run(
+            [sys.executable, "compat/migrate_music_library.py", "--recent-limit", "50", "--dry-run"],
+            cwd=ROOT.parents[2],
+            check=True, capture_output=True, text=True,
+        )
+        summary = json.loads(result.stdout)
+        self.assertEqual(summary["track_profiles_selected"], 50)
+        self.assertEqual(summary["selection"]["selected"], 50)
+        self.assertEqual(summary["provider_requests"], 0)
+        self.assertEqual(summary["writes"], 0)
 
 if __name__ == "__main__":
     unittest.main()
