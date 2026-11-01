@@ -278,17 +278,21 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         mood_score = (0.5 if track_mood["conflict"] else
                       0.72 if tag_moods & energetic else
                       0.28 if tag_moods & gentle else 0.5)
-        components.append(mood_score); weights.append(0.15)
-        semantic_components.append(mood_score); semantic_weights.append(0.15)
+        mood_weight = {"high": 0.15, "medium": 0.10, "low": 0.05}.get(track_mood["confidence"], 0.0)
+        components.append(mood_score); weights.append(mood_weight)
+        semantic_components.append(mood_score); semantic_weights.append(mood_weight)
         evidence.append("track-tag mood=" + ", ".join(sorted(tag_moods)))
         evidence.append("track mood confidence=" + track_mood["confidence"])
+        evidence.append(f"track mood contribution weight={mood_weight:.2f}")
         if track_mood["conflict"]:
             evidence.append("conflicting track mood directions; neutral energy contribution")
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
-        components.append(mood_score); weights.append(0.06)
-        semantic_components.append(mood_score); semantic_weights.append(0.06)
+        mood_weight = 0.03
+        components.append(mood_score); weights.append(mood_weight)
+        semantic_components.append(mood_score); semantic_weights.append(mood_weight)
         evidence.append("artist-level mood fallback=" + ", ".join(sorted(artist_moods)))
+        evidence.append(f"artist mood contribution weight={mood_weight:.2f}")
 
     genre_values = []
     for row in track_profile.get("musicbrainz_genres") or []:
@@ -387,6 +391,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         "acoustic_confidence": acoustic_confidence,
         "semantic_confidence": semantic_confidence,
         "mood_confidence": track_mood["confidence"] if tag_moods else ("low" if artist_moods else "unknown"),
+        "mood_weight": mood_weight if tag_moods or artist_moods else 0.0,
         "mood_source_families": track_mood["source_families"] if tag_moods else (["lastfm_artist"] if artist_moods else []),
         "mood_tag_count": track_mood["tag_count"],
         "mood_conflict": track_mood["conflict"],
