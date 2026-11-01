@@ -371,8 +371,8 @@ def build_discovery_recommendations(
         raise RuntimeError("Music taste/familiarity data is empty or invalid.")
     familiarity = build_familiarity_index(archive)
     feedback = load_playlist_feedback(playlist_items, playlist_id)
-    # Include manually analyzed songs from the private lyrics DB, even when
-    # they are not part of the Last.fm archive or generated feature export.
+    # Include manually analyzed songs from the committed theme export and the
+    # private local DB, even when they are not part of the Last.fm archive.
     track_metadata = intelligence.track_metadata_index()
     playlist_lyric_profile = intelligence.playlist_track_metadata(playlist_items, track_metadata)
     playlist_theme_counts = {
