@@ -63,8 +63,14 @@ def append_candidates(rows, *, source="shit_discovery", context=None, observed_a
             "observed_at": stamp,
             "context": context or {},
         }
-        # Avoid adding the same workflow event twice on a retry.
-        if event not in evidence:
+        # Retry-safe dedupe ignores observation timestamp but retains distinct
+        # contexts (for example, different daily cycles or source surfaces).
+        event_key = (str(source), json.dumps(context or {}, sort_keys=True, ensure_ascii=False))
+        seen = {
+            (str(item.get("source", "")), json.dumps(item.get("context") or {}, sort_keys=True, ensure_ascii=False))
+            for item in evidence if isinstance(item, dict)
+        }
+        if event_key not in seen:
             evidence.append(event)
         # Fill blanks only; do not overwrite richer/verified identity metadata.
         for field, value in (
