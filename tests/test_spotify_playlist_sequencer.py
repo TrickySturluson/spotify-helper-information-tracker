@@ -725,12 +725,19 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         artist_index = sequencer.index_artists(artists)
         track_index = sequencer.index_tracks(tracks)
         audio_index = sequencer.index_audio_profiles(audio_data.get("tracks", audio_data))
+        album_data = load_object(root / "assistant_data/music/album_profiles.json")
+        album_index = {
+            (sequencer.norm(row.get("artist")), sequencer.norm(row.get("album"))): row
+            for row in album_data.values()
+            if isinstance(row, dict) and row.get("artist") and row.get("album")
+        }
 
         started = perf_counter()
         ordered = sequencer.sequence_tracks(
             snapshot["items"], artist_index, track_index,
             mode="smooth", journey="rising", peak_position=85,
             peak_shape="gradual", audio_profiles=audio_index,
+            album_profiles=album_index,
         )
         original_uris = [item["uri"] for item in snapshot["items"]]
         ordered_uris = [row["item"]["uri"] for row in ordered]
@@ -773,6 +780,18 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             "lastfm_no_tags": sum(row.get("lastfm_status") == "no_tags" for row in playlist_track_rows),
             "lastfm_unmatched": sum(not row for row in playlist_track_rows),
         }
+        playlist_album_rows = [
+            album_index.get((sequencer.norm((item.get("artists") or [""])[0]),
+                             sequencer.norm(item.get("album"))), {})
+            for item in snapshot["items"]
+        ]
+        album_tag_coverage = {
+            "tagged_albums": len({(row.get("artist"), row.get("album")) for row in playlist_album_rows
+                                  if row.get("lastfm_tags")}),
+            "no_tags": len({(row.get("artist"), row.get("album")) for row in playlist_album_rows
+                            if row.get("status") == "no_tags"}),
+            "unmatched_tracks": sum(not row for row in playlist_album_rows),
+        }
         changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
         elapsed_seconds = perf_counter() - started
         previous_artist = None
@@ -799,6 +818,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             f"artist_profiles_with_tags={artist_profiles_with_tags}; "
             f"curated_artist_moods_mapped={curated_artist_moods_mapped}; artist_raw_moods_mapped={artist_raw_moods_mapped}; artist_mood_examples={artist_mood_examples}; "
             f"artist_tag_examples={artist_tag_examples}; track_tag_coverage={track_tag_coverage}; "
+            f"album_tag_coverage={album_tag_coverage}; album_profiles_loaded={len(album_index)}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, provisional:{summary['provisional']}, "
             f"uncertain:{summary['uncertain']}, "
