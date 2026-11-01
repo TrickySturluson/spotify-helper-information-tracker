@@ -27,6 +27,63 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIn("aggressive", " ".join(result["evidence"]))
         self.assertNotIn("artist-level mood fallback", " ".join(result["evidence"]))
 
+    def test_single_track_mood_tag_is_low_confidence(self):
+        result = sequencer.score_track(
+            {"name": "One Tag", "artists": ["Artist"]},
+            track_profiles={("artist", "one tag"): {
+                "lastfm_tags": [{"tag": "aggressive", "count": 3}]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_tag_count"], 1)
+        self.assertFalse(result["mood_conflict"])
+
+    def test_independent_track_tag_sources_can_support_high_mood_confidence(self):
+        result = sequencer.score_track(
+            {"name": "Corroborated", "artists": ["Artist"]},
+            track_profiles={("artist", "corroborated"): {
+                "lastfm_tags": [{"tag": "aggressive", "count": 40}],
+                "musicbrainz_tags": [{"tag": "chaotic", "count": 5}],
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "high")
+        self.assertEqual(
+            result["mood_source_families"],
+            ["lastfm_track", "musicbrainz_recording"],
+        )
+
+    def test_conflicting_track_moods_lower_confidence_and_neutralize_energy_blend(self):
+        result = sequencer.score_track(
+            {"name": "Mixed Signals", "artists": ["Artist"]},
+            track_profiles={("artist", "mixed signals"): {
+                "lastfm_tags": [
+                    {"tag": "aggressive", "count": 30},
+                    {"tag": "calm", "count": 30},
+                ]
+            }},
+        )
+        self.assertTrue(result["mood_conflict"])
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertAlmostEqual(result["semantic_score"], 50.0)
+
+    def test_genre_labels_do_not_count_as_track_mood_evidence(self):
+        result = sequencer.score_track(
+            {"name": "Genre Only", "artists": ["Artist"]},
+            track_profiles={("artist", "genre only"): {
+                "musicbrainz_genres": [{"tag": "aggressive"}]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "unknown")
+        self.assertEqual(result["mood_tag_count"], 0)
+
+    def test_artist_mood_fallback_is_explicitly_low_confidence(self):
+        result = sequencer.score_track(
+            {"name": "Artist Proxy", "artists": ["Artist"]},
+            artist_profiles={"artist": {"tags": [{"tag": "dreamy"}]}},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
+
     def test_missing_metadata_is_explicitly_unknown(self):
         result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
         self.assertEqual(result["confidence"], "unknown")
