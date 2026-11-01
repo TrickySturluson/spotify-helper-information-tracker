@@ -198,6 +198,24 @@ class PlaylistManagerTests(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+    def test_spotify_429_reports_quota_cooldown_and_no_retry(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.bearer = lambda: "test-token"
+        error = urllib.error.HTTPError(
+            url="https://api.spotify.com/v1/me/playlists",
+            code=429,
+            msg="Too Many Requests",
+            hdrs={"Retry-After": "13060"},
+            fp=io.BytesIO(b'{"error":{"status":429,"message":"Too many requests","reason":"QUOTA_EXCEEDED"}}'),
+        )
+        with patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
+            with self.assertRaisesRegex(
+                manager.ManagerError,
+                r"quota/rate limit reached.*QUOTA_EXCEEDED.*3h 38m.*No playlist changes were attempted",
+            ):
+                spotify.call("GET", "/me/playlists?limit=50")
+        request.assert_called_once()
+
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
