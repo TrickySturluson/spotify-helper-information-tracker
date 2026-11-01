@@ -2,6 +2,20 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-01 — Recover run #17 evidence and repair publication scope
+
+- **Purpose:** determine whether the Great Migration itself completed and remove the publication failure that prevented its data from reaching `main`.
+- **Evidence:** run #17 https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889; artifact #13104699873; job #125005910236.
+- **Verified execution:** compile/regression step passed; `prepare` command exited successfully; incremental syncs and final audit passed with 13,005 songs, 6,382 artists, 7,861 albums and zero audit errors. Final status reported 1,856 Spotify-ID aliases, 11,338 recording-MBID aliases, 1,816 ISRC aliases and 13,003 source-track-ID aliases.
+- **Verified enrichment snapshot:** 1,580 track profiles; 3,898 artist profiles; 300 album profiles; 93 acoustic profiles. Duration coverage was 138,473 / 152,005 scrobbles (91.1%). Discogs and GetSongBPM were skipped because optional credentials were absent. AcousticBrainz queried 500 batch slots and stored 36 additional profiles; 907 negative-cache entries were recorded. Track/album profile backlog remained large.
+- **Publication failure:** Git rebase failed with conflicts in dozens of `assistant_data/spotify/playlists/*.json` files and `assistant_data/spotify/reference_index.json`. The run had refreshed read-only Spotify snapshots, then staged all of `assistant_data/`. This was the conflict source; it did not mean the migration or final audit failed.
+- **Artifact inspection:** downloaded and inspected artifact #13104699873 (23,946,780 bytes). It contains the pre-migration backup and `shit-library-run.log`; it does **not** contain the generated Library output. Therefore the successful runner state was not recoverable from that artifact.
+- **Workflow fix:** commit `bdf75f74d7fd156e9d5e54ae8a66c814e5667dc8` removes the Spotify refresh-token setup from prepare, invokes `prepare --skip-spotify-refresh`, stages only `assistant_data/music/`, and uploads the complete music data directory plus log so generated output/checkpoints survive even if publication fails. This intentionally leaves all Spotify playlist snapshots and live playlists untouched.
+- **Safety:** no Spotify playlist writes were performed. No force-push or blind conflict resolution was used.
+- **Outcome:** run #17's migration/enrichment/audit are verified on its ephemeral runner; publication remains unverified. Workflow fix and goal status are committed to `main`.
+- **Next action:** start a fresh `[SHIT LIBRARY] prepare` run on the fixed workflow; verify successful publication; then run a separate audit/status against `main` and continue enrichment from the newly durable checkpoints.
+- **Lessons:** successful pre-publish audit is not proof of published data; failure artifacts must include generated output/checkpoints as well as rollback backup; migration publication must not include unrelated Spotify reference snapshots.
+
 ## 2026-11-01 — Goal workspace initialized
 
 - **Action:** established this goal's dedicated documentation and action-history location.
