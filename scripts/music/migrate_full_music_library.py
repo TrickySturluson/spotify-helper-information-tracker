@@ -62,7 +62,15 @@ def main():
     # Preserve each profile row; the library resolver deduplicates only on
     # explicit recording IDs or exact stable Spotify IDs, never name alone.
     rows = list(profiles.values()) + playlist_rows
+    existing_index = load(args.root / "library_index.json", {})
+    existing_index = existing_index if isinstance(existing_index, dict) else {}
     report = {
+        "existing_library_records": {
+            "songs": len(existing_index.get("songs") or {}),
+            "artists": len(existing_index.get("artists") or {}),
+            "albums": len(existing_index.get("albums") or {}),
+            "preservation": "existing indexed records and accumulated evidence are merged, not replaced",
+        },
         "track_profile_rows": len(profiles), "playlist_snapshot_stats": snapshot_stats,
         "playlist_track_occurrences": len(playlist_rows),
         "unique_playlist_spotify_ids": len({r["spotify_id"] for r in playlist_rows}),
@@ -77,7 +85,11 @@ def main():
         return
     result = MusicLibrary(args.root).put_catalogue(rows, artists, albums, audio, lyrics)
     report["migration_result"] = result
-    report["status"] = "migrated stored profiles and accessible playlist snapshots"
+    report["library_audit"] = MusicLibrary(args.root).audit()
+    if not report["library_audit"].get("ok"):
+        report["status"] = "migration completed with library audit errors; inspect library_audit.errors"
+    else:
+        report["status"] = "migrated stored profiles and accessible playlist snapshots; library audit passed"
     report["limitations"] = [
         "Raw Last.fm scrobbles absent from track_profiles.json are not included.",
         "Inaccessible playlist snapshots are skipped and counted.",
