@@ -1,6 +1,6 @@
 # The Library — catalogue navigation
 
-> **Branch note:** The Library is currently being developed on [PR #49](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/49). These files are on the feature branch and will not appear when browsing `main` until the pull request is merged. Open the PR or switch the GitHub branch selector to `feature/per-recording-music-library`.
+The per-recording Library structure was merged into `main` in [PR #49](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/49). The committed records are currently a **staged sample**, not the full historical catalogue. The Great Migration must populate the canonical structure from the legacy listening and metadata datasets before downstream analytics or the sorter can rely on it.
 
 ## Start here
 
@@ -32,5 +32,6 @@ Open the folder-level README files first; each describes the records below it an
 - Every descriptive claim should retain its source and field-level confidence where available.
 - Album tags and descriptions are contextual evidence, not track-level acoustic measurements.
 - Tracklist membership alone does not prove that a song record or specific recording identity exists.
-- The staged sample is partial, not a full catalogue migration. Legacy aggregate files remain unchanged.
-- Migration is local-only and does not call providers or edit Spotify playlists. Run `python compat/migrate_music_library.py --dry-run` before a full local migration.
+- The staged sample is partial, not a full catalogue migration. Legacy aggregate files remain unchanged until the migration is executed and published.
+- The offline `migrate` operation imports existing data without provider calls or Spotify playlist edits. The `prepare` operation orchestrates migration plus bounded provider enrichment; its workflow skips Spotify snapshot refresh and does not write to playlists.
+- For local inspection, run `python shit.py library status`, then `python shit.py library preview`. Use `python shit.py library prepare --execute --yes` only when credentials, backups, checkpoints, and publication safeguards are configured.
