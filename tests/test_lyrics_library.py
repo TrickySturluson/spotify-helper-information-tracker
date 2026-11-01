@@ -10,6 +10,7 @@ class LyricsLibraryTests(unittest.TestCase):
         result = analyze_lyrics("The vampire stalks the graveyard, the zombie wants blood.")
         self.assertIn("vampire", result["themes"])
         self.assertIn("zombie_undead", result["themes"])
+        self.assertEqual(result["schema_version"], 2)
 
     def test_lyrics_are_not_stored_but_phrase_fingerprint_is_searchable(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -22,6 +23,11 @@ class LyricsLibraryTests(unittest.TestCase):
             matches = library.lookup(phrase="vampire stalks the graveyard while the midnight")
             self.assertEqual(len(matches), 1)
             self.assertEqual(matches[0]["title"], "Night Song")
+            import json
+            analysis = library.db.execute("SELECT themes_json FROM analyses").fetchone()
+            decoded = json.loads(analysis["themes_json"])
+            self.assertIn("vampire", decoded["themes"])
+            self.assertEqual(decoded["source_count"], 1)
             stored = " ".join(str(row[0]) for row in library.db.execute(
                 "SELECT name FROM sqlite_master WHERE type='table'"))
             self.assertNotIn("lyrics_text", stored)
@@ -29,6 +35,22 @@ class LyricsLibraryTests(unittest.TestCase):
 
     def test_short_phrase_is_not_indexed(self):
         self.assertEqual(phrase_fingerprints("blood and thunder"), [])
+
+
+    def test_multiple_sources_are_merged(self):
+        with tempfile.TemporaryDirectory() as temp:
+            library = LyricsLibrary(Path(temp) / "lyrics.sqlite3")
+            library.save("Monster Song", "Example Artist", results=[
+                {"provider": "source_a", "lyrics": "The vampire rises from the coffin."},
+                {"provider": "source_b", "lyrics": "A zombie crawls from the graveyard."},
+            ])
+            import json
+            row = library.db.execute("SELECT themes_json FROM analyses").fetchone()
+            data = json.loads(row["themes_json"])
+            self.assertIn("vampire", data["themes"])
+            self.assertIn("zombie_undead", data["themes"])
+            self.assertEqual(data["source_count"], 2)
+            library.close()
 
 
 if __name__ == "__main__":
