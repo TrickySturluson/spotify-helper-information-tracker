@@ -7,12 +7,13 @@ This is the cross-project register of known unfinished work discovered from the 
 
 ## Critical path
 
-### 1. Great Migration run #17 recovery — BLOCKED
+### 1. Great Migration run #17 recovery — RERUN REQUIRED
 - Run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
-- Known: Git rebase/publication failed due conflicts between generated Library records and indexes. An artifact and backup were produced.
-- Unknown: which prepare/migration/enrichment/audit stages completed, whether the artifact passed a final audit, and which generated records actually reached `main`.
-- Next: inspect logs, artifact and backup; compare with current main; preserve newer valid records; fix concurrent generated-data publication; run a fresh audit; publish only after passing.
-- Safety: no force-push, blind conflict resolution, competing write-heavy run, or Spotify playlist writes during recovery.
+- Verified: migration, enrichment pipeline and final runner-side audit completed (13,005 songs; 6,382 artists; 7,861 albums; zero audit errors). Duration coverage 91.1%; 93 acoustic profiles. Publication failed on conflicts in refreshed Spotify playlist snapshots/reference index.
+- Artifact #13104699873 was inspected: rollback backup and run log only; generated Library output was not retained.
+- Fix committed to `main` (`bdf75f7`): prepare skips Spotify snapshot refresh, stages only `assistant_data/music/`, and uploads generated music data/checkpoints with backup and log.
+- Next: trigger a fresh `[SHIT LIBRARY] prepare`; verify publication to `main`; run post-publish audit/status; continue bounded enrichment from durable checkpoints.
+- Safety: no Spotify playlist writes, force-push, or blind conflict resolution.
 
 ### 2. Read-only coverage planner — PR #65, tests failing
 - PR: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65 (open draft).
