@@ -85,7 +85,15 @@ def verify_spotify():
         account = "authenticated account " + str(profile.get("id") or "(ID unavailable)")
     except (ValueError, AttributeError):
         account = "authenticated account"
-    rotated = bool(token_data.get("refresh_token"))\n    detail = "Refresh-token exchange and read-only GET /me succeeded; " + account + "."\n    status = "passed"\n    if rotated:\n        status = "failed"\n        detail += " Spotify returned a replacement refresh token; update the GitHub SPOTIFY_REFRESH_TOKEN secret before migration."\n    return [result(\n        "Spotify", status, detail, True, refresh_token_rotation_returned=rotated,\n    )]
+    rotated = bool(token_data.get("refresh_token"))
+    detail = "Refresh-token exchange and read-only GET /me succeeded; " + account + "."
+    status = "passed"
+    if rotated:
+        status = "failed"
+        detail += " Spotify returned a replacement refresh token; update the GitHub SPOTIFY_REFRESH_TOKEN secret before migration."
+    return [result(
+        "Spotify", status, detail, True, refresh_token_rotation_returned=rotated,
+    )]
 
 
 def verify_lastfm():
