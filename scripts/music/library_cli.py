@@ -100,7 +100,7 @@ def build_parser():
         ("resume", "Resume the idempotent Great Migration"),
         ("audit", "Validate canonical records, relations and lookup aliases"),
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
-        ("sync", "Merge existing enrichment exports into the canonical library"),
+        ("sync", "Merge existing enrichment exports into the canonical library"),\n        ("verify", "Verify configured provider credentials without changing data"),
     ):
         sub = actions.add_parser(name, help=help_text)
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
@@ -130,7 +130,7 @@ def main(argv=None):
         if args.yes and not args.execute:
             raise SystemExit("--yes requires --execute")
         return run_preparation(args)
-    if args.action == "sync":
+    if args.action == "verify":\n        verifier = REPO_ROOT / "scripts" / "music" / "verify_provider_credentials.py"\n        return subprocess.run([sys.executable, str(verifier)], cwd=REPO_ROOT, check=False).returncode\n    if args.action == "sync":
         if args.root != DEFAULT_ROOT:
             print("Custom --root is not supported for sync; use the default canonical library root.")
             return 2
