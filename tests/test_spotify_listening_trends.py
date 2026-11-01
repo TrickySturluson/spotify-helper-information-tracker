@@ -54,6 +54,15 @@ class ListeningTrendTests(unittest.TestCase):
         self.assertGreater(affinity,0.5)
         self.assertEqual(confidence,"high")
         self.assertTrue(reasons)
+    def test_candidate_can_match_rising_genres_without_artist_history(self):
+        rows=[self.event("Dream Pop Artist",3) for _ in range(12)]
+        rows += [self.event("Dream Pop Artist",45) for _ in range(12)]
+        result=trends.build_trends(rows,{"a":{"artist":"Dream Pop Artist","tags":["dream pop"]}},self.now)
+        affinity,confidence,reasons=trends.candidate_affinity("Unheard Candidate",result,["dream pop"])
+        self.assertGreater(affinity,0.5)
+        self.assertEqual(confidence,"medium")
+        self.assertIn("candidate tags overlap with rising listening trends",reasons)
+
     def test_generate_writes_report_atomically(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp); src=root/"scrobbles.json"; prof=root/"profiles.json"; out=root/"nested"/"trends.json"
