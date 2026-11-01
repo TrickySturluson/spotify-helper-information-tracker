@@ -714,7 +714,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         ]
         artist_profiles_with_moods = sum(bool(row.get("moods")) for row in playlist_artist_rows)
         artist_moods_mapped = sum(
-            any(mood_inference._tag_moods(tag) for tag in (row.get("moods") or []))
+            any(sequencer.mood_inference._tag_moods(tag) for tag in (row.get("moods") or []))
             for row in playlist_artist_rows
         )
         artist_mood_examples = sorted({
