@@ -9,6 +9,7 @@ from functools import lru_cache
 import math
 import mood_inference
 import re
+import sqlite3
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,6 +18,7 @@ SCORING_CONFIG = Path("assistant_data/recommendations/playlist_scoring.json")
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 RECOMMENDATION_TRACKS = Path("assistant_data/recommendations/track_features.json")
+LYRICS_DB = Path("data/lyrics/library.sqlite3")
 SCHEMA_VERSION = 1
 
 DEFAULT_SCORING = {
@@ -91,6 +93,36 @@ def track_metadata_index(path=TRACK_PROFILES, recommendation_path=RECOMMENDATION
         if row.get("lyric_analysis"):
             result.setdefault(key, {"artist": row["artist"], "track": row["track"]})
             result[key]["lyric_analysis"] = row["lyric_analysis"]
+    # The local SQLite library also contains manually analyzed songs that may
+    # not exist in the Last.fm archive or generated recommendation feature file.
+    if LYRICS_DB.is_file():
+        connection = sqlite3.connect(LYRICS_DB)
+        connection.row_factory = sqlite3.Row
+        try:
+            lyric_rows = connection.execute("""
+                SELECT s.title, s.artist, a.themes_json, a.relevance, a.assessment,
+                       a.word_count, a.analyzed_at
+                FROM songs s JOIN analyses a ON a.song_id=s.id
+            """).fetchall()
+        finally:
+            connection.close()
+        for row in lyric_rows:
+            key = (norm(row["artist"]), norm(row["title"]))
+            analysis = json.loads(row["themes_json"] or "{}")
+            result.setdefault(key, {"artist": row["artist"], "track": row["title"]})
+            result[key]["lyric_analysis"] = {
+                "schema_version": analysis.get("schema_version", 1),
+                "themes": analysis.get("themes", {}),
+                "source_count": analysis.get("source_count", 1),
+                "sources": analysis.get("sources", []),
+                "method": analysis.get("method", "legacy_lexical_analysis"),
+                "horror_relevance": row["relevance"],
+                "assessment": row["assessment"],
+                "word_count": row["word_count"],
+                "analyzed_at": row["analyzed_at"],
+                "evidence_type": "lyrics_keyword_analysis",
+                "full_lyrics_stored": False,
+            }
     return result
 
 
