@@ -336,6 +336,27 @@ Undo the most recent completed change with:
 
 Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its ordered item URIs to match the post-change state recorded by the manager (legacy records fall back to the Spotify snapshot ID). Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
 
+## Per-recording music library
+
+SHIT can store music metadata as individual artist, album, and recording JSON
+records rather than requiring every consumer to load large aggregate profiles.
+The canonical layout, identity rules, migration procedure, and lazy lookup
+behavior are documented in [the per-recording library guide](docs/PER_RECORDING_MUSIC_LIBRARY.md).
+
+Preview and run the local-only migration:
+
+```bash
+python compat/migrate_music_library.py --dry-run
+python compat/migrate_music_library.py
+```
+
+The migration makes no provider requests and leaves aggregate JSON intact.
+The playlist sequencer prefers per-recording lookup when the library exists,
+loading only records referenced by the playlist; missing records can still use
+the legacy track cache during the transition. Spotify track IDs and verified
+recording MBIDs take precedence over names. Ambiguous artist/title matches are
+not guessed.
+
 ### Playlist intelligence and health reports
 
 Mood inference uses a broader, explicitly curated affect vocabulary (including dreamlike, eerie, nocturnal, introspective, chaotic, groovy, theatrical, cinematic, cathartic, and wistful). Sound/style signals are kept separate from moods: playlist profiles expose genre tags, recurring sound families, and artist-level themes independently. These are conservative artist-level Last.fm community-tag signals, not track-level audio analysis; genre labels are never treated as moods simply because their names sound evocative.
