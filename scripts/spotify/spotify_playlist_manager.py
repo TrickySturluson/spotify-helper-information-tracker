@@ -17,7 +17,30 @@ AUDIT=Path("playlist_manager_audit.jsonl")
 API="https://api.spotify.com/v1"
 class ManagerError(RuntimeError): pass
 
+SPOTIFY_COOLDOWN = Path(".github/spotify_api_cooldown.json")
+
 def stamp(): return datetime.now(timezone.utc).isoformat()
+
+def check_spotify_cooldown():
+    """Fail closed while a previously reported Spotify Retry-After is active."""
+    state = read(SPOTIFY_COOLDOWN, {})
+    if not isinstance(state, dict):
+        raise ManagerError("Spotify cooldown state is invalid; refusing API requests.")
+    until = state.get("cooldown_until")
+    if not until:
+        return
+    try:
+        deadline = datetime.fromisoformat(until.replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        raise ManagerError("Spotify cooldown timestamp is invalid; refusing API requests.")
+    remaining = (deadline - datetime.now(timezone.utc)).total_seconds()
+    if remaining > 0:
+        hours, remainder = divmod(int(remaining), 3600)
+        minutes = remainder // 60
+        raise ManagerError(
+            f"Spotify API cooldown is active until {deadline.astimezone(timezone.utc).isoformat()} "
+            f"(about {hours}h {minutes}m remaining). No Spotify request was sent."
+        )
 def read(path, default):
     if not path.exists(): return default
     try: return json.loads(path.read_text(encoding="utf-8"))
@@ -72,6 +95,7 @@ def authorize():
 
 class Spotify:
     def __init__(self):
+        check_spotify_cooldown()
         self.t=read(TOKEN,None) or authorize()
         self.refresh_token_rotated=False
     def bearer(self):
@@ -109,6 +133,14 @@ class Spotify:
                     hours, remainder = divmod(seconds, 3600)
                     minutes = remainder // 60
                     wait = f"{hours}h {minutes}m" if hours else f"{minutes}m"
+                    deadline = datetime.now(timezone.utc) + __import__("datetime").timedelta(seconds=seconds)
+                    write(SPOTIFY_COOLDOWN, {
+                        "cooldown_until": deadline.isoformat(),
+                        "recorded_at": stamp(),
+                        "retry_after_seconds": seconds,
+                        "reason": reason,
+                        "endpoint": f"{method} {path}",
+                    })
                 else:
                     wait = "the interval specified by Spotify"
                 raise ManagerError(
