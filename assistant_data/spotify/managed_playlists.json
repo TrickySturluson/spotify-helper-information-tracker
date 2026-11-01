@@ -6,15 +6,12 @@
     "4yUVHSMQySfWeEowfIMcx7": {
       "name": "Tricky Daily",
       "reason": "Explicitly approved by the user for edits and curator feedback",
-      "permissions": [
-        "add",
-        "remove",
-        "replace",
-        "reorder",
-        "details",
-        "cleanup",
-        "undo"
-      ]
+      "permissions": ["add", "remove", "replace", "reorder", "details", "cleanup", "undo"]
+    },
+    "4diIlnF8BlgoJrwUfejf49": {
+      "name": "Booze or Boos!",
+      "reason": "Explicitly approved by the user for this mood-based 8-track addition",
+      "permissions": ["add"]
     }
   },
   "note": "Account ownership and unlock state do not establish permission. Unknown playlists remain read-only. New playlists created by SHIT are registered automatically."
