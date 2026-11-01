@@ -1,10 +1,10 @@
 name: Enrich Music Metadata
 
 on:
-  # Spread small enrichment batches across the week instead of relying on
-  # occasional large manual backfills. UTC Monday morning.
+  # Small daily batches keep metadata coverage moving without a large backfill.
+  # UTC 08:17; manual dispatch remains available for larger runs.
   schedule:
-    - cron: "17 8 * * 1"
+    - cron: "17 8 * * *"
   workflow_dispatch:
     inputs:
       musicbrainz_lookups:
