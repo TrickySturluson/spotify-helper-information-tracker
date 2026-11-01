@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
 SHARDS = Path("assistant_data/music/artists")
+RECENT_TOP = Path("assistant_data/music/recent_top_tracks.json")
 API = "https://musicbrainz.org/ws/2/recording/"
 UA = "SHIT-MusicBrainz-ID-Enrichment/1.0 (https://github.com/TrickySturluson/spotify-helper-information-tracker)"
 LIMIT = int(os.environ.get("MUSICBRAINZ_ID_LOOKUPS_PER_RUN", "1000"))
@@ -36,7 +37,21 @@ def norm(value):
     return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
+def recent_priority(path=RECENT_TOP):
+    """Map exact normalized artist/title labels to their recent-listening rank."""
+    try:
+        rows = read(path).get("tracks", [])
+    except (OSError, ValueError, AttributeError):
+        rows = []
+    return {
+        (norm(row.get("artist")), norm(row.get("track"))): rank
+        for rank, row in enumerate(rows)
+        if row.get("artist") and row.get("track")
+    }
+
+
 def main():
+    priority = recent_priority()
     due = []
     shard_data = {}
     now = int(time.time())
@@ -52,10 +67,14 @@ def main():
                     continue
                 if not track.get("track") or not artist.get("artist"):
                     continue
-                due.append((i, artist_key, track_key, artist["artist"], track["track"], track))
-    due.sort(key=lambda row: -int(row[5].get("plays", 0) or 0))
+                rank = priority.get((norm(artist["artist"]), norm(track["track"])), 10**9)
+                due.append((i, artist_key, track_key, artist["artist"], track["track"], track, rank))
+    due.sort(key=lambda row: (row[6], -int(row[5].get("plays", 0) or 0),
+                              norm(row[3]), norm(row[4])))
+    recent_due = sum(1 for row in due if row[6] < 10**9)
+    print(f"Recent top-200 priority: {min(200, recent_due):,} exact tracks represented in due MusicBrainz ID candidates.")
     looked = matched = ambiguous = 0
-    for shard_no, artist_key, track_key, artist, title, track in due[:LIMIT]:
+    for shard_no, artist_key, track_key, artist, title, track, _rank in due[:LIMIT]:
         query = 'recording:"' + title.replace('"', '\\"') + '" AND artist:"' + artist.replace('"', '\\"') + '"'
         url = API + "?" + urlencode({"query": query, "fmt": "json", "limit": 5})
         request = Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
