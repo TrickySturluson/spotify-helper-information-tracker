@@ -586,7 +586,7 @@ def main():
         print(f'Direction: {args.direction}; {len(plan["operations"])} reorder operation(s).')
         summary = transition_summary(scored)
         print("Journey: " + args.journey + "; peak target: " + str(args.peak_position) + "% (" + args.peak_shape + ").")
-        print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " potential jumps; limited evidence=" + str(summary["limited_evidence"]) + ".")
+        print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " potential jumps, " + str(summary["uncertain"]) + " uncertain (no evidence); limited evidence=" + str(summary["limited_evidence"]) + ".")
         confidence_counts = confidence_summary(scored)
         print("Audio analysis profiles loaded: " + str(len(audio_profiles)))
         print("Proposed sequence (position | energy | confidence | group | track):")
