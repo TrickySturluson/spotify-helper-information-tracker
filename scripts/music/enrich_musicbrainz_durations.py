@@ -15,7 +15,7 @@ SOURCE = Path("data/scrobbles.json")
 ROOT = Path("assistant_data/music")
 SHARDS = ROOT / "artists"
 LIMIT = int(os.environ.get("MUSICBRAINZ_LOOKUPS_PER_RUN", "1000"))
-UA = "TrickyLastFM/1.1 (personal listening analytics; https://github.com/TrickySturluson/tricky-lastfm)"
+UA = "TrickyLastFM/1.1 (personal listening analytics; https://github.com/TrickySturluson/spotify-helper-information-tracker)"
 API = "https://musicbrainz.org/ws/2/recording/"
 
 def clean(v):
