@@ -84,7 +84,7 @@ def append_candidates(rows, *, source="shit_discovery", context=None, observed_a
                 current[field] = value
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(sorted(by_key.values(), key=lambda x: (x.get("artist", "").casefold(), x.get("track", "").casefold(), x.get("spotify_id", "")), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.write_text(json.dumps(sorted(by_key.values(), key=lambda x: (x.get("artist", "").casefold(), x.get("track", "").casefold(), x.get("spotify_id", ""))), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     tmp.replace(path)
     return {"input_rows": len(rows or []), "unique_candidates": len(by_key), "new_candidates": added, "path": str(path)}
 
