@@ -78,6 +78,10 @@ This is the authoritative session handoff. Read this file first when resuming wo
 - Do not write to Spotify playlists without the relevant explicit authorization/unlock.
 - Never commit credentials, tokens, private account data, or full copyrighted lyrics.
 
+## Goal-based documentation workflow
+
+Every major project objective has a dedicated folder under [`goals/`](goals/README.md). When starting work, open only the relevant goal's `README.md` and `ACTIONS.md` alongside this handoff. After meaningful work, append a dated action entry recording purpose, files/workflows changed, execution, exact tests/audits, outcome, blockers, and next action. Update the goal README when its scope/design/current status changes. Update this central handoff only when cross-project priority, blockers, or resume order changes. Do not make the central log a duplicate of detailed goal histories.
+
 ## Session completion checklist
 
 Before handing off, update this file and the project log with:

@@ -1,5 +1,15 @@
 # SHIT Project Log
 
+## 2026-11-01 — Per-goal workspaces established
+
+- **Goal:** make individual project objectives independently recallable without loading unrelated history.
+- **Work:** added `project/goals/` index and seven goal workspaces: Great Migration, Library Enrichment, Metadata Coverage & Retries, Discovery & Recommendations, Listening Analytics, Playlist Intelligence, and Maintainability & Documentation. Each contains a `README.md` for scope/design/status/resume instructions and an `ACTIONS.md` for dated work, verification, and next actions.
+- **Central workflow:** updated project control-centre guidance and session handoff to direct new sessions to the relevant goal folder and require action-log updates after meaningful work.
+- **Verification:** files created on branch `codex/goal-workspaces`; links and completeness must be checked before merge. Documentation-only change; no Library records, provider state, listening history, or playlists modified.
+- **Outcome:** pending PR/merge and link verification.
+- **Next action:** verify all 15 goal files and links, then merge documentation change.
+
+
 Chronological handoff record for substantial project work. New entries go at the top, newest first. Record verified outcomes, not intentions as completed work.
 
 ## 2026-11-01 — Continuity system and consolidated project goals
