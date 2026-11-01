@@ -52,6 +52,64 @@ class MusicLibraryTests(unittest.TestCase):
             key = next(iter(index["songs"]))
             self.assertTrue((Path(temp) / index["songs"][key]["path"]).exists())
 
+
+    def test_albumless_source_song_does_not_create_placeholder_album(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            mbid = "b8b46357-3cb3-4ed8-bcb0-2501a164c90d"
+            artist_mbid = "303abdee-ffca-4685-a582-6aaaefd81b01"
+            result = lib.put_catalogue({
+                "mbid:" + mbid: {
+                    "track_id": "mbid:" + mbid, "track_mbid": mbid,
+                    "artist_id": "mbid:" + artist_mbid,
+                    "artist": "Carpenter Brut", "track": "Le Perv",
+                    "lastfm_tags": [{"tag": "dark synth"}],
+                }
+            })
+            self.assertEqual(result["songs"], 1)
+            self.assertEqual(result["albums"], 0)
+            found = lib.get_song(recording_mbid=mbid)
+            self.assertEqual(found["song"]["identity"]["identity_quality"], "verified_recording")
+            self.assertEqual(found["artist"]["identity"]["artist_mbid"], "mbid:" + artist_mbid)
+            self.assertEqual(found["album"], {})
+            self.assertEqual(lib.index["albums"], {})
+
+    def test_duplicate_mbid_rows_do_not_erase_successful_evidence(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            mbid = "caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b"
+            rows = {
+                "mbid:" + mbid: {
+                    "track_id": "mbid:" + mbid, "track_mbid": mbid,
+                    "artist_id": "mbid:aa62b28e-b6d4-4086-91d4-e5fac1ed56f3",
+                    "artist": "Royal Blood", "track": "Figure It Out",
+                    "lastfm_tags": [{"tag": "indie rock"}], "lastfm_status": "matched",
+                },
+                "track:duplicate": {
+                    "track_id": "track:duplicate", "track_mbid": mbid,
+                    "artist": "Royal Blood", "track": "Figure It Out",
+                    "lastfm_tags": [], "lastfm_status": "no_tags",
+                },
+            }
+            result = lib.put_catalogue(rows)
+            self.assertEqual(result["songs"], 1)
+            found = lib.get_song(recording_mbid=mbid)["song"]
+            self.assertEqual(found["evidence"]["track_metadata"]["lastfm_tags"][0]["tag"], "indie rock")
+            self.assertEqual(found["sources"]["lastfm_status"]["status"], "matched")
+            self.assertEqual(result["artists"], 1)
+
+    def test_unknown_release_source_ids_keep_same_title_versions_distinct(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            rows = {
+                "track:version-one": {"track_id": "track:version-one", "artist": "Artist", "track": "Song"},
+                "track:version-two": {"track_id": "track:version-two", "artist": "Artist", "track": "Song"},
+            }
+            result = lib.put_catalogue(rows)
+            self.assertEqual(result["songs"], 2)
+            self.assertEqual(result["ambiguous_name_aliases"], 1)
+            self.assertIsNone(lib.get_song(artist="Artist", track="Song"))
+
 if __name__ == "__main__": unittest.main()
 
 # FILE OVERVIEW
