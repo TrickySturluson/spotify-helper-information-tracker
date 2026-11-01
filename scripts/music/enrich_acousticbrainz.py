@@ -169,11 +169,24 @@ def main():
                     wait = max(60, int(float(header))) if header else 3600
                 except (TypeError, ValueError):
                     wait = 3600
-                state["provider_retry_after"] = now + wait
+                state["provider_retry_after"] = int(time.time()) + wait
                 write(STATE, state)
                 print(f"AcousticBrainz returned HTTP {exc.code}; provider cooldown saved for {wait}s. Stop and resume later.")
                 break
             raise
+        except (TimeoutError, URLError, OSError) as exc:
+            # A transient transport failure is not a negative result for any MBID.
+            # Keep prior batch checkpoints, leave this batch eligible, and stop
+            # this provider politely instead of aborting the entire migration.
+            wait = 300
+            state["provider_retry_after"] = int(time.time()) + wait
+            state["last_transport_error"] = type(exc).__name__
+            write(STATE, state)
+            print(
+                f"AcousticBrainz transport {type(exc).__name__}; saved a {wait}s "
+                "provider cooldown. Current batch remains unmarked and can resume later."
+            )
+            break
         state["provider_retry_after"] = 0
         for mbid in batch:
             docs = data.get(mbid) or data.get(mbid.upper()) or {}
