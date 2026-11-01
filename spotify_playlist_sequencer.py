@@ -130,8 +130,7 @@ def score_track(item, artist_profiles=None, track_profiles=None):
     genre_values.extend(norm(value) for value in artist_profile.get("genres") or [] if value)
     genre_text = " ".join(genre_values)
     high_genre = (
-        "metal", "hardcore", "punk", "industrial", "drum and bass", "breakbreak",
-        "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal",
+        "metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal",
         "heavy metal", "metalcore", "horror punk",
     )
     dance_genre = (
