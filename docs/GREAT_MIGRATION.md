@@ -55,7 +55,7 @@ Successful `migrate` and `prepare` runs commit generated Library/enrichment
 data; read-only operations do not commit anything. Repository maintainers can
 also use the workflow's manual Actions dispatch.
 
-The `verify` operation checks Spotify refresh-token exchange plus read-only account access, Last.fm API access, and optional Discogs/GetSongBPM credentials. It never prints or persists credentials and makes no playlist or Library changes.\n\nThe `prepare` operation requires the existing `LASTFM_API_KEY` secret and
+The `verify` operation checks Spotify refresh-token exchange plus read-only account access, Last.fm API access, and optional Discogs/GetSongBPM credentials. It never prints or persists credentials and makes no playlist or Library changes. The same verification runs automatically every day at 09:17 UTC. Results appear in the Actions run summary; failures create or update a single `[SHIT ALERT] Daily credential verification failed` issue, avoiding a flood of duplicate alerts.\n\nThe `prepare` operation requires the existing `LASTFM_API_KEY` secret and
 Spotify refresh credentials (`SPOTIFY_CLIENT_ID` repository variable and
 `SPOTIFY_REFRESH_TOKEN` secret). Discogs and GetSongBPM remain optional.
 Never put credentials or tokens in an issue title or body.
