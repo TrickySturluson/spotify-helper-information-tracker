@@ -29,7 +29,8 @@ The raw listening archive is intentionally retained as the canonical source for 
 - Repository visibility was confirmed as public.
 - The current tracked-file inventory contained no obvious .env, OAuth-token, credential, or private-key filenames.
 - The inspected .gitignore, Spotify automation workflows, playlist-manager state/audit, and data manifests showed credentials passed through GitHub Actions secrets/variables rather than literal values.
-- No obvious embedded credential was identified in those inspected files. GitHub code-search queries for common token/secret terms returned no matches, but this is not a complete secret scan.
+- No obvious embedded credential was identified in those inspected files. GitHub code-search queries for common token/secret terms returned no matches, but this was not a complete scan of historical blob contents.
+- A full-history Gitleaks workflow has now been added at `.github/workflows/public-repository-security.yml`. Its first run is pending at the time this guide was updated; findings must be reviewed before calling the repository clean.
 - The repository history contains hundreds of commits and exposes the personal author email in commit metadata. This review did not inspect every historical blob for leaked credentials; therefore it cannot certify that no secret was ever committed.
 - The public dataset includes precise listening timestamps and identifiable playlist history. This is personal behavioral data, even though it is not an authentication secret.
 
@@ -44,7 +45,7 @@ The raw listening archive is intentionally retained as the canonical source for 
 
 ## Scope and limitations
 
-This guide records the state of the repository at the review date above. It is not a formal security audit, does not inspect GitHub account settings or repository secret values, and does not certify every historical Git object. Revisit it when new data sources, workflows, or credential types are introduced.
+This guide records the state of the repository at the review date above. It is not a formal security audit, does not inspect GitHub account settings or repository secret values, and does not certify every historical Git object until the full-history scanner has completed and findings have been triaged. Revisit it when new data sources, workflows, or credential types are introduced.
 
 ## File overview
 
