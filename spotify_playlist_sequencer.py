@@ -328,7 +328,7 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
                 moved = trial.pop(i)
                 trial.insert(j, moved)
                 if any(trial[pos] is not row for pos, row in fixed.items()): continue
-                cost = _sequence_objective(trial, journey, peak_position, peak_shape, genre_strength, theme_strength)
+                cost = _sequence_objective(trial, journey, peak_position, peak_shape, genre_strength, theme_strength,\n                    position_offset, total_count)
                 if cost + 1e-9 < best_cost:
                     best, best_cost, changed = trial, cost, True
         if not changed: break
