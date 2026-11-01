@@ -123,8 +123,8 @@ def _track_mood_evidence(profile):
                 moods.update(matches)
         if family_moods:
             source_families.add(family)
-    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
-    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
+    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic"}
+    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic"}
     has_energetic = bool(moods & energetic)
     has_gentle = bool(moods & gentle)
     conflict = has_energetic and has_gentle
