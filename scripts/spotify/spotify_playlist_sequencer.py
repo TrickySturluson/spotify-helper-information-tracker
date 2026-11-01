@@ -308,7 +308,7 @@ def _tempo_relationship(left, right):
 
 def _has_reliable_energy(row):
     """Only medium/high estimates are reliable enough to drive transition scoring."""
-    return row.get("acoustic_confidence", row.get("confidence")) in {"medium", "high"}
+    return row.get("acoustic_confidence") in {"medium", "high"}
 
 
 def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist_penalty=True):
