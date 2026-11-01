@@ -340,6 +340,13 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
         if index:
             previous = rows[index - 1]
             total += _transition_cost(previous, row, genre_strength, theme_strength)
+            if index >= 2:
+                artist = norm(row.get("artist"))
+                previous_artist = norm(previous.get("artist"))
+                before_previous_artist = norm(rows[index - 2].get("artist"))
+                if artist and artist == previous_artist == before_previous_artist:
+                    # Strongly discourage a third consecutive track by the same artist.
+                    total += 1.25
             left_section, right_section = previous.get("section_index"), row.get("section_index")
             if left_section is not None and right_section is not None and right_section < left_section:
                 total += 2.0
@@ -376,7 +383,17 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
         remaining = [row for row in movable if row is not seed]
         order = [seed]
         while remaining:
-            nxt = min(remaining, key=lambda row: (
+            # Avoid creating runs of three or more by the same primary artist
+            # whenever another artist is still available.
+            last_artist = norm(order[-1].get("artist"))
+            previous_artist = norm(order[-2].get("artist")) if len(order) > 1 else ""
+            pool = remaining
+            if last_artist and last_artist == previous_artist:
+                alternatives = [row for row in remaining
+                                if norm(row.get("artist")) != last_artist]
+                if alternatives:
+                    pool = alternatives
+            nxt = min(pool, key=lambda row: (
                 _transition_cost(order[-1], row, genre_strength, theme_strength),
                 (abs(row["score"] - order[-1]["score"]) * 0.001
                  if _has_reliable_energy(row) and _has_reliable_energy(order[-1]) else 0.0),
