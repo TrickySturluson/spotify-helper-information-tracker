@@ -449,8 +449,12 @@ class MusicLibrary:
                 current["album_ids"] = list(dict.fromkeys(
                     list(old_record.get("album_ids") or []) + list(current.get("album_ids") or [])
                 ))
-                if old_record.get("identity") and not current.get("identity", {}).get("artist_mbid"):
-                    current["identity"] = {**old_record["identity"], **current.get("identity", {})}
+                if old_record.get("identity"):
+                    current["identity"] = {
+                        **old_record["identity"],
+                        **{key: value for key, value in (current.get("identity") or {}).items()
+                           if value not in (None, "", [], {})},
+                    }
         for bid, old_record in previous_albums.items():
             if bid not in album_records:
                 album_records[bid] = old_record
@@ -461,6 +465,12 @@ class MusicLibrary:
                     list(old_record.get("song_ids") or []) + list(current.get("song_ids") or [])
                 ))
                 current["confidence"] = {**(old_record.get("confidence") or {}), **(current.get("confidence") or {})}
+                if old_record.get("identity"):
+                    current["identity"] = {
+                        **old_record["identity"],
+                        **{key: value for key, value in (current.get("identity") or {}).items()
+                           if value not in (None, "", [], {})},
+                    }
 
         # Preserve old songs absent from the incoming rows, and retain their
         # accumulated evidence/mood state when the same stable ID is refreshed.
