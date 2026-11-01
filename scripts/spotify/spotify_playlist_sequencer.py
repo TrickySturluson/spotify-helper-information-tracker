@@ -382,7 +382,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         acoustic_confidence = "unknown" if not components else "low"
 
     semantic_source_families = set()
-    if track_profile.get("lastfm_tags") or track_profile.get("tags") or artist_tags or artist_profile.get("genres"):
+    if track_profile.get("lastfm_tags") or track_profile.get("tags") or artist_tags or artist_profile.get("genres") or album_profile.get("lastfm_tags"):
         semantic_source_families.add("lastfm_community")
     if track_profile.get("musicbrainz_tags") or track_profile.get("musicbrainz_genres"):
         semantic_source_families.add("musicbrainz")
@@ -394,8 +394,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     semantic_confidence = ("high" if semantic_sources >= 3 else
                            "medium" if semantic_sources == 2 else
                            "low" if semantic_sources == 1 else "unknown")
-    group = next(iter(sorted(tag_moods)), "unclassified") if tag_moods else (
-        next(iter(sorted(artist_moods)), "artist-level") if artist_moods else "unclassified")
+    group_moods = tag_moods or album_moods or artist_moods
+    group = next(iter(sorted(group_moods)), "unclassified") if group_moods else "unclassified"
     return {
         "score": round(score, 2),
         "acoustic_score": round(acoustic_score, 2) if acoustic_score is not None else None,
