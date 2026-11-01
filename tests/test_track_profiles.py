@@ -94,6 +94,53 @@ class TrackProfileTests(unittest.TestCase):
         self.assertEqual(genres[0]["source"], "MusicBrainz recording genre")
 
 
+    def test_priority_playlist_tracks_are_added_even_without_scrobbles(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            playlist_id = "4diIlnF8BlgoJrwUfejf49"
+            (root / f"{playlist_id}.json").write_text(json.dumps({
+                "id": playlist_id,
+                "items_accessible": True,
+                "items": [
+                    {"type": "track", "name": "Unscrobbled Song", "artists": ["Priority Artist"]},
+                    {"type": "episode", "name": "Not a track", "artists": ["Podcast"]},
+                ],
+            }), encoding="utf-8")
+            catalogue = profiles.build_catalogue([], [playlist_id], root)
+
+        self.assertEqual(len(catalogue), 1)
+        item = next(iter(catalogue.values()))
+        self.assertEqual((item["artist"], item["track"]), ("Priority Artist", "Unscrobbled Song"))
+        self.assertEqual(item["plays"], 0)
+        self.assertEqual(item["priority_playlist_ids"], [playlist_id])
+
+    def test_priority_playlist_reuses_unambiguous_archive_identity(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        row = {"artist": "Example Artist", "track": "Example Song", "track_mbid": None}
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            playlist_id = "4diIlnF8BlgoJrwUfejf49"
+            (root / f"{playlist_id}.json").write_text(json.dumps({
+                "id": playlist_id,
+                "items_accessible": True,
+                "items": [{"type": "track", "name": "Example Song", "artists": ["Example Artist"]}],
+            }), encoding="utf-8")
+            catalogue = profiles.build_catalogue([row], [playlist_id], root)
+
+        self.assertEqual(len(catalogue), 1)
+        item = next(iter(catalogue.values()))
+        self.assertEqual(item["plays"], 1)
+        self.assertEqual(item["priority_playlist_ids"], [playlist_id])
+
+
+
 if __name__ == "__main__":
     unittest.main()
 
