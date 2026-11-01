@@ -370,6 +370,13 @@ class MusicLibrary:
                         else "fallback_release_context" if bid else "fallback_artist_title",
                 },
                 "evidence": {"track_metadata": {}, "audio": {}, "lyrics": None},
+                "mood": {
+                    "status": "not_assessed",
+                    "recording_level": {"moods": [], "confidence": "none", "evidence_refs": [], "method": None},
+                    "album_context": {"moods": [], "confidence": "none", "evidence_refs": []},
+                    "artist_context": {"moods": [], "confidence": "none", "evidence_refs": []},
+                    "last_assessed_at": None,
+                },
                 "confidence": {"identity": identity_confidence(
                     "musicbrainz_recording_mbid" if sid.startswith("mbid:") else
                     "spotify_track_id" if sid.startswith("spotify:") else
