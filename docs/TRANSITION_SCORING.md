@@ -25,7 +25,7 @@ The sequencer now uses evidence-aware transition scoring:
 
 ## Reading evaluation output
 
-`gentle`, `moderate`, and `potential jump` are evidence-backed transition assessments. `uncertain` means there is not enough shared metadata to judge the transition. It is not a negative score.
+`gentle`, `moderate`, and `potential jump` are evidence-backed transition assessments. `provisional` means some metadata suggests a handoff quality, but the underlying evidence is too weak to call it a confirmed jump or smooth transition. `uncertain` means there is not enough shared metadata to judge the transition. It is not a negative score.
 
 Track energy confidence remains separate from transition confidence. The sequence preview prints track confidence counts, loaded acoustic-profile count, and transition counts so users can distinguish missing coverage from poor compatibility. With --compare, it also writes alternative plans at 70%, 85%, and 95% peak positions (skipping the selected target) and prints each alternative's transition counts. These are preview files only; apply remains a separate, confirmation-gated manager operation.
 
