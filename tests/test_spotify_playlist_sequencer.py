@@ -373,6 +373,16 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(report["confidence"], "limited")
         self.assertEqual(report["label"], "provisional")
 
+
+    def test_low_confidence_mismatch_is_provisional_not_a_confirmed_jump(self):
+        left = {"score": 20, "confidence": "low", "artist": "One",
+                "vibe_groups": ["calm"], "genre_groups": ["ambient"], "theme_groups": []}
+        right = {"score": 95, "confidence": "low", "artist": "Two",
+                 "vibe_groups": ["aggressive"], "genre_groups": ["metal"], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["label"], "provisional")
+
     def test_low_confidence_energy_is_not_used_as_transition_fact(self):
         left = {"score": 5, "confidence": "low", "artist": "One",
                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
