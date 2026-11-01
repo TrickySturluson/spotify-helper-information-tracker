@@ -3,7 +3,7 @@
 import argparse, base64, hashlib, json, os, secrets, sys, time, urllib.error
 from collections import Counter
 import urllib.parse, urllib.request, webbrowser
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
@@ -133,7 +133,7 @@ class Spotify:
                     hours, remainder = divmod(seconds, 3600)
                     minutes = remainder // 60
                     wait = f"{hours}h {minutes}m" if hours else f"{minutes}m"
-                    deadline = datetime.now(timezone.utc) + __import__("datetime").timedelta(seconds=seconds)
+                    deadline = datetime.now(timezone.utc) + timedelta(seconds=seconds)
                     write(SPOTIFY_COOLDOWN, {
                         "cooldown_until": deadline.isoformat(),
                         "recorded_at": stamp(),
