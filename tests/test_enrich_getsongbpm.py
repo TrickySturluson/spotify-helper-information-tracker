@@ -29,3 +29,12 @@ class GetSongBPMTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Verify conservative exact-match handling for GetSongBPM metadata.
+# Coverage: Artist/title identity, duplicate rejection, normalization, and stable
+#           cache keys; ambiguous matches must not be accepted as exact evidence.
+# Run: python -m unittest tests.test_enrich_getsongbpm -v (from the repository root).
+# Related: scripts/music/enrich_getsongbpm.py and docs/AUTOMATED_AUDIO_METADATA.md.
+# -----------------------------------------------------------------------------
