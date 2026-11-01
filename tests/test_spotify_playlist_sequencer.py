@@ -196,6 +196,30 @@ class PlaylistSequencerTests(unittest.TestCase):
         )
         self.assertAlmostEqual(result["semantic_score"], 30.0)
 
+    def test_real_ceres_album_tracks_have_full_album_affinity(self):
+        root = Path(__file__).resolve().parents[1]
+        album_path = root / "assistant_data/music/library/albums/al/album-01632cb9b68c6acda89d/album.json"
+        track_path = root / "assistant_data/music/track_profiles.json"
+        album_record = json.loads(album_path.read_text(encoding="utf-8"))
+        track_rows = json.loads(track_path.read_text(encoding="utf-8"))
+        album_evidence = album_record["evidence"]
+        track_index = sequencer.index_tracks(track_rows)
+        album_key = (sequencer.norm(album_record["artist"]), sequencer.norm(album_record["album"]))
+        results = []
+        for entry in album_evidence["lastfm_tracklist"]:
+            title = entry["title"]
+            item = {"name": title, "artists": [entry["artist"]], "album": album_record["album"]}
+            profile = track_index.get((sequencer.norm(entry["artist"]), sequencer.norm(title)), {})
+            results.append(sequencer.score_track(
+                item, track_profiles={(sequencer.norm(entry["artist"]), sequencer.norm(title)): profile},
+                album_profiles={album_key: album_evidence},
+            ))
+        self.assertEqual(len(results), 12)
+        self.assertTrue(all(row["album_affinity"] == 100.0 for row in results))
+        self.assertTrue(all(row["album_membership_verified"] for row in results))
+        self.assertEqual(sum(row["sound_similarity"] is not None for row in results), 11)
+        self.assertTrue(all(row["sound_similarity"] == 100.0 for row in results if row["sound_similarity"] is not None))
+
     def test_missing_metadata_is_explicitly_unknown(self):
         result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
         self.assertEqual(result["confidence"], "unknown")
