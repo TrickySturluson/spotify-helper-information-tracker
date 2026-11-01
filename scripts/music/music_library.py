@@ -93,7 +93,7 @@ class MusicLibrary:
     def put_catalogue(self, track_rows, artist_rows=None, album_rows=None, audio_rows=None, lyric_rows=None):
         artists = artist_rows if isinstance(artist_rows, dict) else {}
         albums = album_rows if isinstance(album_rows, dict) else {}
-        audio = audio_rows if isinstance(audio_rows, dict) else {}
+        audio_container = audio_rows if isinstance(audio_rows, dict) else {}\n        audio = audio_container.get("tracks", audio_container) if isinstance(audio_container.get("tracks", audio_container), dict) else {}
         lyrics = {(norm(r.get("artist")), norm(r.get("track"))): r for r in (lyric_rows or []) if isinstance(r, dict)}
         artist_by_name = {norm(v.get("artist")): v for v in artists.values() if isinstance(v, dict) and v.get("artist")}
         album_by_name = {(norm(v.get("artist")), norm(v.get("album"))): v for v in albums.values() if isinstance(v, dict) and v.get("artist") and v.get("album")}
