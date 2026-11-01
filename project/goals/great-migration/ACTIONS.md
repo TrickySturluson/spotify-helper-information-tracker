@@ -1,3 +1,13 @@
+## 2026-11-01 — Queued migration publication, independent audit, and continuation pass
+
+- **Action:** opened issue #69 `[SHIT LIBRARY] prepare` against the repaired workflow, then queued issue #70 `[SHIT LIBRARY] audit` for a fresh audit/status against the published default branch, followed by issue #71 `[SHIT LIBRARY] prepare` for another checkpoint-resuming enrichment pass.
+- **Requests:** #69 reuses saved Spotify snapshots and publishes only `assistant_data/music/`; #70 is read-only and explicitly verifies the published branch rather than trusting a runner-side audit; #71 resumes provider checkpoints, avoids completed/definitive-negative lookups, and reports remaining realistically unfillable gaps if no work remains.
+- **Safety:** no Spotify playlist refresh or playlist writes requested; no force-push or blind conflict resolution.
+- **References:** https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/69 ; https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/70 ; https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/71
+- **Execution status at documentation time:** all three issues were created successfully; no workflow result comments had appeared yet. This is queued work, not evidence that any run has started or completed.
+- **Next:** inspect #69 result/artifact; verify publication; then inspect #70 audit; then inspect #71 enrichment and repeat bounded passes only while there is eligible, useful provider work.
+- **Coverage goal:** maximize reliable, provenance-backed track/artist/album/duration/acoustic/theme data, not manufacture 100% coverage. Keep unknowns unknown and explain provider/API/catalogue limitations.
+
 # Great Migration — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
