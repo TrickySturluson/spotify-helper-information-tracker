@@ -305,8 +305,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     elif any(x in genre_text for x in low_genre): genre_score = 0.30
     else: genre_score = None
     if genre_score is not None:
-        components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
-        semantic_components.append(genre_score); semantic_weights.append(0.05 if track_tags else 0.08)
+        components.append(genre_score); weights.append(0.05 if tag_moods else 0.08)
+        semantic_components.append(genre_score); semantic_weights.append(0.05 if tag_moods else 0.08)
         evidence.append(f"genre-family signal={genre_score:.2f}")
 
     genre_groups = []
