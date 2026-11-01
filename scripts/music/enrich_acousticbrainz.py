@@ -17,6 +17,8 @@ from urllib.error import HTTPError, URLError
 ROOT = Path("assistant_data/music")
 SHARDS = ROOT / "artists"
 OUTPUT = ROOT / "audio_profiles.json"
+STATE = ROOT / "acousticbrainz_lookup_state.json"
+MISS_RETRY_DAYS = int(os.environ.get("ACOUSTICBRAINZ_MISS_RETRY_DAYS", "180"))
 RECENT_TOP = ROOT / "recent_top_tracks.json"
 API = "https://acousticbrainz.org/api/v1/low-level"
 UA = "SHIT-AudioMetadata/1.0 (https://github.com/TrickySturluson/spotify-helper-information-tracker)"
@@ -68,6 +70,38 @@ def extract(doc, artist, track, mbid):
     }
 
 
+
+def aggregate_submissions(docs, artist, track, mbid):
+    """Collapse all archived submissions robustly and retain disagreement data."""
+    rows = [extract(doc, artist, track, mbid) for doc in docs
+            if isinstance(doc, dict) and doc]
+    if not rows:
+        return None
+    numeric = ("tempo_bpm", "average_loudness", "dynamic_complexity",
+               "danceability", "onset_rate", "replay_gain_db")
+    result = dict(rows[0])
+    for field in numeric:
+        values = sorted(float(row[field]) for row in rows if row.get(field) is not None)
+        if not values:
+            result[field] = None
+            continue
+        middle = len(values) // 2
+        result[field] = (values[middle] if len(values) % 2
+                         else (values[middle - 1] + values[middle]) / 2)
+        if field == "tempo_bpm":
+            result["tempo_submission_values_bpm"] = values
+            result["tempo_spread_bpm"] = round(max(values) - min(values), 2)
+            result["tempo_submission_count"] = len(values)
+            result["tempo_confidence"] = (
+                "medium" if len(values) >= 2 and max(values) - min(values) <= 4
+                else "low"
+            )
+    result["submission_count"] = len(rows)
+    result["submission_policy"] = "median of all returned submissions; spread retained"
+    result["source"] = "AcousticBrainz low-level"
+    result["measurement_note"] += " Multiple submissions are summarized by median; disagreement is retained."
+    return result
+
 def norm(value):
     import re
     return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
@@ -95,9 +129,15 @@ def main():
                 if len(mbid) == 36 and artist and track.get("track"):
                     tracks[mbid] = (artist, track["track"])
 
-    payload = read(OUTPUT, {"schema_version": 1, "analysis_engine": "AcousticBrainz", "tracks": {}})
+    payload = read(OUTPUT, {"schema_version": 2, "analysis_engine": "AcousticBrainz", "tracks": {}})
     results = payload.setdefault("tracks", {})
-    todo = [mbid for mbid in tracks if mbid not in results or results[mbid].get("source") != "AcousticBrainz low-level"]
+    state = read(STATE, {"checked": {}})
+    checked = state.setdefault("checked", {})
+    now = int(time.time())
+    todo = [mbid for mbid in tracks
+            if (mbid not in results or results[mbid].get("source") != "AcousticBrainz low-level"
+                or not results[mbid].get("submission_count"))
+            and int((checked.get(mbid) or {}).get("retry_after", 0) or 0) <= now]
     todo.sort(key=lambda mbid: (
         priority.get((norm(tracks[mbid][0]), norm(tracks[mbid][1])), 10**9),
         norm(tracks[mbid][0]), norm(tracks[mbid][1]), mbid,
@@ -108,6 +148,8 @@ def main():
     batches = [todo[i:i+BATCH_SIZE] for i in range(0, len(todo), BATCH_SIZE)]
     batches = batches[:MAX_BATCHES]
     found = 0
+    misses = 0
+    batch_no = 0
     for batch_no, batch in enumerate(batches, 1):
         query = urlencode({"recording_ids": ";".join(batch)})
         req = Request(API + "?" + query, headers={"User-Agent": UA, "Accept": "application/json"})
@@ -123,29 +165,44 @@ def main():
             raise
         for mbid in batch:
             docs = data.get(mbid) or data.get(mbid.upper()) or {}
-            if not docs:
-                continue
-            # Most recordings have one submission; use the first available offset.
-            doc = docs.get("0") or next(iter(docs.values()), {})
-            if not isinstance(doc, dict) or not doc:
-                continue
+            if isinstance(docs, list):
+                submissions = docs
+            elif isinstance(docs, dict):
+                submissions = [docs[key] for key in sorted(docs, key=lambda value: str(value))
+                               if isinstance(docs[key], dict)]
+            else:
+                submissions = []
             artist, title = tracks[mbid]
-            results[mbid] = extract(doc, artist, title, mbid)
-            found += 1
+            profile = aggregate_submissions(submissions, artist, title, mbid)
+            checked[mbid] = {
+                "checked_at": datetime.now(timezone.utc).isoformat(),
+                "retry_after": now + MISS_RETRY_DAYS * 86400,
+                "status": "found" if profile else "no_archived_submission",
+            }
+            if profile:
+                results[mbid] = profile
+                found += 1
+            else:
+                misses += 1
         payload.update({
-            "schema_version": 1, "analysis_engine": "AcousticBrainz",
+            "schema_version": 2, "analysis_engine": "AcousticBrainz",
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "recording_ids_considered": len(tracks),
             "recordings_with_acousticbrainz_data": sum(1 for x in results.values() if x.get("source") == "AcousticBrainz low-level"),
             "tracks": results
         })
         write(OUTPUT, payload)
-        print(f"Batch {batch_no}/{len(batches)}: checked {len(batch)} IDs; found this batch {found}; total profiles {payload['recordings_with_acousticbrainz_data']}")
+        write(STATE, state)
+        print(f"Batch {batch_no}/{len(batches)}: checked {len(batch)} IDs; found cumulative {found}; misses this run {misses}; total profiles {payload['recordings_with_acousticbrainz_data']}")
         if reset and float(reset) > 0:
-            time.sleep(min(max(float(reset), SLEEP_SECONDS), 15))
-        else:
+            wait = float(reset)
+            if wait > 15:
+                print(f"Server reset is {wait:.0f}s away; checkpointed and stopping rather than retrying early.")
+                break
+            time.sleep(max(wait, SLEEP_SECONDS))
+        elif batch_no < len(batches):
             time.sleep(SLEEP_SECONDS)
-    print(f"AcousticBrainz enrichment complete for this run. Candidate MBIDs: {len(tracks)}; total stored profiles: {len(results)}; batches run: {min(len(batches), batch_no if batches else 0)}")
+    print(f"AcousticBrainz enrichment complete for this run. Candidate MBIDs: {len(tracks)}; total stored profiles: {len(results)}; negative-cache entries: {sum(1 for row in checked.values() if row.get('status') == 'no_archived_submission')}; batches run: {batch_no}")
 
 
 if __name__ == "__main__":
@@ -154,7 +211,7 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Bulk-enrich SHIT track profiles from the public AcousticBrainz archive/API. Uses existing MusicBrainz recording IDs in the 32 artist shards. No audio files, Spotify streams, or per-track manual work are required. The API is queried in batches of 25 MBIDs; results are checkpointed after each batch.
+# Purpose: Enrich SHIT track profiles from historical AcousticBrainz submissions using verified MusicBrainz recording IDs. Aggregates submissions, preserves disagreement, caches misses, and checkpoints each batch.
 # Location: Maintained implementation in scripts/music/enrich_acousticbrainz.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
