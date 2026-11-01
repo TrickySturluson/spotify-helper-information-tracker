@@ -1,16 +1,30 @@
 # Album records
 
-This directory contains ID-sharded release/album records.
+## About this folder
 
-- `<shard>/<stable-id>/album.json` — release identity, related song IDs, album-scoped evidence, source links, and field-level metadata confidence.
-- Album evidence may include a verified Last.fm tracklist, short attributed summary, artwork reference, provider URL, community tags, and Discogs release context.
-- `../library_index.json` maps release IDs to album record paths.
-- `../songs/` contains individual songs with explicit album relationships when verified.
+This folder stores one JSON record per album/release identity. Album records should have a concise **About** overview alongside release metadata, an ordered tracklist, source provenance, field-level confidence, and links to song records only when the relationship is supported.
+
+## How to navigate
+
+- Album record format: `<shard>/<stable-id>/album.json`
+- [Library index](../library_index.json) maps album IDs and artist/title pairs to record paths.
+- [Artist records](../artists/README.md) hold artist-level identity and context.
+- [Song records](../songs/README.md) hold recording-specific identity and evidence.
+
+## About section schema
+
+Album records may contain an `about` object with:
+
+- `summary` — short paraphrased overview of the album.
+- `summary_attribution` and `source_url` — who/what the summary is based on.
+- `source_family` — provider or source family.
+- `confidence` — confidence in the description, kept separate from recording identity confidence.
+- `note` — important limits on interpretation.
+
+The About text must be concise and attributed; do not copy long provider biographies or wiki text. Album descriptions and tags are context only and must never increase track-level acoustic confidence.
 
 ## First worked example
 
-`al/album-01632cb9b68c6acda89d/album.json` represents Candy Claws' *Ceres & Calypso in the Deep Time* (standard 12-track album, not the expanded anniversary reissue). Its Spotify album ID is grounded in existing playlist snapshots; descriptive metadata and the ordered tracklist are attributed to Last.fm and the artist's Bandcamp page.
+[**Candy Claws — Ceres & Calypso in the Deep Time**](al/album-01632cb9b68c6acda89d/album.json) is the standard 12-track album, distinct from the expanded anniversary reissue. Its Spotify album ID is corroborated by existing playlist snapshots; the ordered tracklist is attributed to Last.fm and cross-checked against the artist's Bandcamp page.
 
-Four already-staged song records are linked to this album by exact title/artist plus their existing recording MBIDs. The other eight tracklist entries remain album-level tracklist entries only; no song records or recording identities are invented for them.
-
-A release tracklist describes a release, not every version of a recording. Keep track position, disc number, release MBID, and source provenance. Album tags/descriptions provide contextual evidence only and must never increase track-level acoustic confidence.
+Four existing song records are linked by their current recording MBIDs and matching artist/title. The remaining eight tracklist entries are not treated as verified song identities. Release tracklists describe a release; they do not, by themselves, identify every recording/version.
