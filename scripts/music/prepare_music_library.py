@@ -52,6 +52,7 @@ def build_plan():
     # Resolve exact recording IDs before AcousticBrainz; run track/album/artist
     # lookups only after the offline migration has captured the full catalogue.
     return [
+        ("Refresh read-only Spotify playlist snapshots", command("compat/spotify_reference_library.py", "sync"), {}),
         ("Resolve exact MusicBrainz recording IDs", command("compat/enrich_musicbrainz_recording_ids.py"), {"MUSICBRAINZ_ID_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSICBRAINZ_ID_LOOKUPS_PER_RUN"]}),
         ("Fill unresolved durations from MusicBrainz", command("compat/enrich_musicbrainz_durations.py"), {"MUSICBRAINZ_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSICBRAINZ_LOOKUPS_PER_RUN"]}),
         ("Enrich scrobbled track durations and rebuild catalogue", command("compat/build_music_metadata.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "MUSIC_METADATA_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSIC_METADATA_LOOKUPS_PER_RUN"]}),
