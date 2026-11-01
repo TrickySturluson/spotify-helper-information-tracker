@@ -20,7 +20,7 @@ The sequencer now uses evidence-aware transition scoring:
 - Available dimensions are normalized over their actual weights, so missing fields do not create automatic penalties.
 - BPM compatibility is included when both tracks have valid tempo values.
 - Half-time and double-time relationships are treated as rhythmically compatible (for example, 80 and 160 BPM).
-- Repeating the same primary artist receives a strong sequencing-only diversity penalty, enough to break long runs when alternatives exist; the transition report keeps musical compatibility separate from that preference.
+- Repeating the same primary artist receives a strong sequencing-only diversity penalty; the greedy builder avoids a third consecutive track by the same artist when alternatives exist, and the sequence objective penalizes any remaining run of three or more. The transition report keeps musical compatibility separate from that preference.
 - Genre and theme preferences remain soft bonuses, not hard grouping requirements.
 
 ## Reading evaluation output
