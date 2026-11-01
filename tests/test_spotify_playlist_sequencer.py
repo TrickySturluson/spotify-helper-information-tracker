@@ -304,6 +304,36 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertLess(low_first, high_first)
 
 
+    def test_missing_metadata_is_not_scored_as_disagreement(self):
+        left = {"score": 50, "confidence": "unknown", "artist": "One",
+                "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 50, "confidence": "unknown", "artist": "Two",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["label"], "uncertain")
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["evidence_count"], 0)
+
+    def test_half_time_tempo_relationship_is_compatible(self):
+        left = {"score": 60, "confidence": "medium", "artist": "One",
+                "tempo_bpm": 80, "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 60, "confidence": "medium", "artist": "Two",
+                 "tempo_bpm": 160, "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["tempo_relationship"], 0.0)
+        self.assertIn("half/double-time", " ".join(report["reasons"]))
+
+    def test_shared_metadata_reduces_transition_cost(self):
+        left = {"score": 60, "confidence": "medium", "artist": "One",
+                "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
+        right = {"score": 62, "confidence": "medium", "artist": "Two",
+                 "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
+        sparse = {"score": 60, "confidence": "medium", "artist": "Three",
+                  "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        self.assertLess(sequencer._transition_cost(left, right),
+                        sequencer._transition_cost(left, sparse))
+
+
 if __name__ == "__main__":
     unittest.main()
 
