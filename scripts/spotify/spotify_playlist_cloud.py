@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import time
 """Owner-verified GitHub issue command handler for Spotify playlist control."""
 import json
 import os
@@ -46,41 +45,25 @@ def fail(message):
 
 
 def owned_playlist(sp, pid, me):
-    # Prefer the canonical playlist resource for its freshest snapshot_id.
-    # Spotify API access restrictions can make this endpoint fail while the
-    # playlist still appears in /me/playlists. Fall back only to an exact ID
-    # match from the authenticated account's own playlist collection; never
-    # accept a merely public/followed playlist or a different owner.
-    direct_error = None
+    # Use one exact-ID lookup. If Spotify denies it, stop rather than falling
+    # back to a paginated account-wide /me/playlists scan.
     try:
-        p = sp.call("GET", f"/playlists/{pid}")
+        playlist = sp.call("GET", f"/playlists/{pid}")
     except manager.ManagerError as error:
-        direct_error = str(error)
-        p = None
-
-    if not isinstance(p, dict) or p.get("id") != pid:
-        try:
-            p = next((item for item in sp.playlists() if item.get("id") == pid), None)
-        except manager.ManagerError as error:
-            fail(
-                "Rejected: direct playlist lookup failed and the authenticated "
-                f"account's playlist list could not be checked ({error})."
-            )
-        if p is None:
-            detail = f" Spotify response: {direct_error}" if direct_error else ""
-            fail(
-                "Rejected: playlist is not present in this account's playlist "
-                "collection and direct lookup failed." + detail
-            )
-
-    owner_id = (p.get("owner") or {}).get("id")
+        fail(
+            "Rejected: exact playlist lookup failed; no account-wide playlist "
+            f"scan was attempted ({error})."
+        )
+    if not isinstance(playlist, dict) or playlist.get("id") != pid:
+        fail("Rejected: Spotify did not return the exact requested playlist ID.")
+    owner_id = (playlist.get("owner") or {}).get("id")
     if owner_id != me.get("id"):
         fail(
             "Rejected: playlist is accessible but is not owned by the authenticated "
             f"Spotify account (playlist owner={owner_id or 'unknown'}, "
             f"authenticated user={me.get('id') or 'unknown'})."
         )
-    return p
+    return playlist
 
 
 def snapshot_uris(snapshot):
@@ -540,31 +523,9 @@ def main():
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
         resolved, skipped, already_present = [], [], []
         def catalog_search(query):
-            for attempt in range(3):
-                try:
-                    return sp.call("GET", "/search?" + query)
-                except manager.ManagerError as error:
-                    message = str(error)
-                    if "QUOTA_EXCEEDED" in message:
-                        raise manager.ManagerError(
-                            "Spotify catalogue quota is exhausted (QUOTA_EXCEEDED). "
-                            "Stopped immediately without retrying; use booze20_uri_preview "
-                            "with verified Spotify track URIs instead."
-                        ) from error
-                    if "HTTP 429" not in message or attempt == 2:
-                        raise
-                    match = re.search(r"Retry-After:\s*([0-9]+(?:\.[0-9]+)?)", message)
-                    if not match:
-                        raise manager.ManagerError(
-                            "Spotify returned HTTP 429 without Retry-After; stopped rather than guessing."
-                        ) from error
-                    delay = float(match.group(1))
-                    if delay > 120:
-                        raise manager.ManagerError(
-                            f"Spotify rate limit requires waiting {delay:g}s; stopped this run safely."
-                        ) from error
-                    time.sleep(delay)
-            raise manager.ManagerError("Spotify catalogue retry limit reached.")
+            # The central client persists Retry-After and stops on every 429.
+            # Never retry a rate-limited search from inside this command.
+            return sp.call("GET", "/search?" + query)
         track_cache = config.setdefault("track_uri_cache", {})
         for artist, title in candidates:
             target_artist, target_title = music_key(artist), music_key(title)
