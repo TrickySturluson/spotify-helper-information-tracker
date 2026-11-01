@@ -109,14 +109,26 @@ def build_trends(scrobbles,artist_profiles=None,now=None):
             "sparse_history_is_unknown":True,"daily_rotation_is_not_negative":True}
     }
 
-def candidate_affinity(artist,report):
-    row=(report or {}).get("artists",{}).get(norm(artist))
-    if not row or row.get("trend_confidence")=="low" or row.get("momentum_30d") is None:
+def candidate_affinity(artist,report,candidate_tags=None):
+    report=report or {}
+    row=report.get("artists",{}).get(norm(artist),{})
+    artist_score=row.get("momentum_30d") if row.get("trend_confidence") in ("medium","high") else None
+    genre_rows={item.get("tag"):item for item in report.get("genres",[]) if isinstance(item,dict)}
+    matched=[genre_rows[tag] for tag in (candidate_tags or []) if tag in genre_rows
+             and genre_rows[tag].get("momentum_30d") is not None
+             and (genre_rows[tag].get("plays_30d",0)>=8 or genre_rows[tag].get("plays_previous_60d",0)>=8)]
+    genre_score=sum(item["momentum_30d"] for item in matched)/len(matched) if matched else None
+    signals=[value for value in (artist_score,genre_score) if value is not None]
+    if not signals:
         return 0.0,"low",[]
-    reasons=["artist is present in recent listening"]
-    if row.get("momentum_7d") is not None and row.get("momentum_7d")>=.65:
+    score=sum(signals)/len(signals)
+    confidence="high" if (artist_score is not None and row.get("trend_confidence")=="high") or len(matched)>=2 else "medium"
+    reasons=[]
+    if artist_score is not None: reasons.append("artist is present in recent listening")
+    if genre_score is not None: reasons.append("candidate tags overlap with rising listening trends")
+    if row.get("momentum_7d") is not None and row["momentum_7d"]>=.65:
         reasons.append("artist is gaining short-term momentum")
-    return max(0,min(1,row["momentum_30d"])),row["trend_confidence"],reasons
+    return max(0,min(1,score)),confidence,reasons
 
 def generate(scrobbles_path=SCROBBLES,profiles_path=PROFILES,output_path=OUTPUT,now=None):
     scrobbles=json.loads(scrobbles_path.read_text(encoding="utf-8"))

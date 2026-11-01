@@ -425,7 +425,12 @@ def build_discovery_recommendations(
             # Themed playlists retain lyric-theme affinity. Daily ignores
             # playlist themes and gets only a small, confidence-gated trend nudge.
             trend_affinity, trend_confidence, trend_reasons = (
-                listening_trends.candidate_affinity(artist, trends_report)
+                listening_trends.candidate_affinity(
+                    artist, trends_report,
+                    next((listening_trends.tags_of(profile) for profile in profiles.values()
+                          if isinstance(profile, dict)
+                          and norm(profile.get("artist") or profile.get("name")) == norm(artist)), []),
+                )
                 if is_daily and trends_report.get("coverage", {}).get("status") == "available"
                 else (0.0, "low", [])
             )
