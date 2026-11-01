@@ -15,6 +15,17 @@ def test_library_cli_parses_safe_and_write_commands(tmp_path):
     prepare = parser.parse_args(["library", "prepare", "--execute", "--skip-discogs"])
     assert prepare.action == "prepare" and prepare.execute and prepare.skip_discogs
     assert parser.parse_args(["library", "sync"]).action == "sync"
+    assert parser.parse_args(["migration", "status"]).action == "status"
+    assert parser.parse_args(["migration", "run", "--yes"]).action == "run"
+    assert parser.parse_args(["migration", "resume", "--yes"]).action == "resume"
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression tests for the native SHIT library command interface.
+# Scope: Safe command parsing, aliases, status reporting, and audit behavior.
+# Run: python -m unittest tests.test_library_cli -v
+# Related: scripts/music/library_cli.py and shit.py.
+# -----------------------------------------------------------------------------
 
 
 def test_library_cli_status_reports_empty_library(tmp_path, capsys):
