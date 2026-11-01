@@ -9,9 +9,14 @@ It is deliberately separate from `assistant_data/music/library/`: project plans 
 1. Read [NEXT_WORK.md](NEXT_WORK.md) first. It is the authoritative current handoff: active blocker, priorities, constraints, open work, and the next concrete action.
 2. Read [PROJECT_LOG.md](PROJECT_LOG.md) for chronological context and verified outcomes.
 3. Read [RETRY_QUEUE_SPEC.md](RETRY_QUEUE_SPEC.md) before changing retry planning/execution.
-4. Read the repository [README](../README.md) for architecture, canonical data locations, and commands.
+4. Read the relevant [goal workspace index](goals/README.md) and that goal's `README.md` + `ACTIONS.md`.
+5. Read the repository [README](../README.md) for architecture, canonical data locations, and commands.
 
 A new assistant session should inspect these files and current GitHub branches, pull requests, and workflow runs before claiming a task is complete or starting a potentially destructive operation.
+
+## Goal workspaces
+
+Each major objective has its own folder under [`goals/`](goals/README.md). Read that goal's `README.md` for scope, decisions and current status, then `ACTIONS.md` for the dated implementation and verification history. This is the preferred way to recall a specific workstream without loading unrelated project history.
 
 ## Files
 
