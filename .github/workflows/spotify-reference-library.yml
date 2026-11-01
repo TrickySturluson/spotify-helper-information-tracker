@@ -1,6 +1,12 @@
 name: SHIT — Spotify Reference Library
 
 on:
+  # A commit to this workflow file is also the safe, auditable manual-sync
+  # trigger when the connected GitHub integration cannot dispatch workflows.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/spotify-reference-library.yml"
   workflow_dispatch:
   schedule:
     - cron: "13 */6 * * *"
@@ -26,6 +32,13 @@ jobs:
         run: |
           python -m py_compile compat/spotify_playlist_manager.py compat/spotify_reference_library.py compat/spotify_daily_feedback.py
           python -m unittest discover -s tests -t . -v
+      - name: Verify Spotify credentials are configured
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || (echo "Missing repository variable SPOTIFY_CLIENT_ID"; exit 1)
+          test -n "$SPOTIFY_REFRESH_TOKEN" || (echo "Missing repository secret SPOTIFY_REFRESH_TOKEN"; exit 1)
       - name: Refresh Spotify reference library
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
