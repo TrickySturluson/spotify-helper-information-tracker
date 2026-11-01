@@ -24,6 +24,13 @@ VALID_FEEDBACK_SOURCES = {
     "explicit_whitelist", "explicit_blacklist", "manual_removal",
     "manual_addition", "retained_after_review",
 }
+SOURCE_OUTCOMES = {
+    "explicit_whitelist": {"accepted"},
+    "explicit_blacklist": {"rejected"},
+    "manual_removal": {"rejected"},
+    "manual_addition": {"accepted"},
+    "retained_after_review": {"accepted", "rejected", "uncertain"},
+}
 
 
 def _now() -> str:
@@ -118,6 +125,8 @@ def record_feedback(
         raise ValueError(f"outcome must be one of {sorted(VALID_OUTCOMES)}")
     if source not in VALID_FEEDBACK_SOURCES:
         raise ValueError(f"source must be one of {sorted(VALID_FEEDBACK_SOURCES)}")
+    if outcome not in SOURCE_OUTCOMES[source]:
+        raise ValueError(f"{source} cannot produce outcome {outcome}")
     payload = _read(path)
     prediction = payload["predictions"].get(prediction_id)
     if prediction is None:
@@ -142,8 +151,13 @@ def record_feedback(
         "weight": effective_weight,
         "observed_at": observed_at or _now(),
     }
-    if event not in payload["feedback_events"]:
-        payload["feedback_events"].append(event)
+    duplicate = next((row for row in payload["feedback_events"]
+                      if row["prediction_id"] == prediction_id
+                      and row["outcome"] == outcome and row["source"] == source
+                      and row.get("reason", "") == str(reason)), None)
+    if duplicate:
+        return duplicate
+    payload["feedback_events"].append(event)
     prediction["outcome"] = outcome
     _write(path, payload)
     return event

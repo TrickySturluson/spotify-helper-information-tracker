@@ -59,6 +59,21 @@ class PlaylistFeedbackCalibrationTests(unittest.TestCase):
         report = calibration.calibration_report(self.path)
         self.assertEqual(report["labelled_predictions"], 1)
 
+    def test_feedback_source_cannot_create_opposite_outcome(self):
+        row = self.prediction()
+        with self.assertRaises(ValueError):
+            calibration.record_feedback(row["prediction_id"], "accepted", "explicit_blacklist", path=self.path)
+
+    def test_duplicate_manual_feedback_is_idempotent(self):
+        row = self.prediction()
+        first = calibration.record_feedback(row["prediction_id"], "rejected", "manual_removal",
+                                            reason="Imported removal", path=self.path)
+        second = calibration.record_feedback(row["prediction_id"], "rejected", "manual_removal",
+                                             reason="Imported removal", path=self.path)
+        self.assertEqual(first, second)
+        payload = json.loads(self.path.read_text())
+        self.assertEqual(len(payload["feedback_events"]), 1)
+
     def test_daily_like_is_not_implicitly_imported_as_a_playlist_outcome(self):
         row = self.prediction()
         calibration.record_liked_observation(row["prediction_id"], True, path=self.path)
