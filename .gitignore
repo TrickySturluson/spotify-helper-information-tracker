@@ -8,3 +8,8 @@ __pycache__/
 .spotify_playlist_manager.json
 playlist_backups/
 playlist_manager_audit.jsonl
+
+# Local lyrics cache and phrase index (personal runtime data)
+data/lyrics/*.sqlite3
+data/lyrics/*.sqlite3-wal
+data/lyrics/*.sqlite3-shm
