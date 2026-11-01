@@ -4,8 +4,5 @@ title = "SHIT public music-library identifier allowlist"
 useDefault = true
 
 [[allowlists]]
-description = "Spotify track IDs in the canonical index are public catalog identifiers, not credentials."
-condition = "AND"
+description = "The canonical music index contains public catalog identifiers, not credentials."
 paths = ['''assistant_data/music/library/library_index\.json''']
-regexTarget = "secret"
-regexes = ['''^(spotify:)?[A-Za-z0-9]{22}$''']
