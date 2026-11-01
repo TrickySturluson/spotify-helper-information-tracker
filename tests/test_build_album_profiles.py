@@ -54,3 +54,13 @@ class AlbumProfileTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression tests for incremental Last.fm album profile enrichment.
+# Coverage: Album lookup deduplication, priority-playlist selection, inaccessible
+#           snapshot handling, exact provider identity verification and parsing.
+# Run: python -m unittest tests.test_build_album_profiles -v
+# Related: scripts/music/build_album_profiles.py; docs/AUTOMATED_AUDIO_METADATA.md.
+# -----------------------------------------------------------------------------
