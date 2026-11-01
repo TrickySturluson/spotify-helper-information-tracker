@@ -51,6 +51,11 @@ class MusicLibraryTests(unittest.TestCase):
             index = json.loads((Path(temp) / "library_index.json").read_text())
             key = next(iter(index["songs"]))
             self.assertTrue((Path(temp) / index["songs"][key]["path"]).exists())
+            song = json.loads((Path(temp) / index["songs"][key]["path"]).read_text())
+            self.assertEqual(song["mood"]["status"], "not_assessed")
+            self.assertEqual(song["mood"]["recording_level"]["confidence"], "none")
+            self.assertEqual(song["mood"]["album_context"]["moods"], [])
+            self.assertEqual(song["mood"]["artist_context"]["moods"], [])
 
 
     def test_albumless_source_song_does_not_create_placeholder_album(self):
