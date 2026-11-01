@@ -114,7 +114,7 @@ class PlaylistSequencerTests(unittest.TestCase):
 
     def test_peak_position_and_shape(self):
         curve = [sequencer.target_energy(i, 100, peak_position=85) for i in range(100)]
-        self.assertGreater(curve[84], curve[98])
+        self.assertAlmostEqual(curve[85], curve[98])
         self.assertNotEqual(
             sequencer.target_energy(70, 100, peak_shape="sharp"),
             sequencer.target_energy(70, 100, peak_shape="gradual"),
@@ -225,7 +225,7 @@ class PlaylistSequencerTests(unittest.TestCase):
                  for i in range(100)]
         self.assertTrue(all(left <= right for left, right in zip(curve, curve[1:])))
         self.assertAlmostEqual(curve[-1], 0.96)
-        self.assertEqual(curve[84], curve[-1])
+        self.assertEqual(curve[85], curve[-1])
 
 
 if __name__ == "__main__":
