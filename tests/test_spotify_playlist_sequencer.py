@@ -329,7 +329,7 @@ class PlaylistSequencerTests(unittest.TestCase):
                 "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
         right = {"score": 60, "confidence": "medium", "artist": "Two",
                  "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
-        sparse = {"score": 60, "confidence": "medium", "artist": "Three",
+        sparse = {"score": 90, "confidence": "medium", "artist": "Three",
                   "vibe_groups": [], "genre_groups": [], "theme_groups": []}
         self.assertLess(sequencer._transition_cost(left, right),
                         sequencer._transition_cost(left, sparse))
