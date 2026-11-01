@@ -90,6 +90,72 @@ def _tag_rows(profile):
             for row in rows if (row.get("tag") if isinstance(row, dict) else row)]
 
 
+def _track_mood_evidence(profile):
+    """Return track-level mood tags, polarity, and calibrated descriptive confidence.
+
+    Counts strengthen a tag only within its source; duplicate labels across
+    fields are deduplicated. Artist-level tags are intentionally excluded.
+    """
+    source_fields = {
+        "lastfm_track": ("lastfm_tags", "tags"),
+        "musicbrainz_recording": ("musicbrainz_tags",),
+    }
+    by_mood = {}
+    descriptors = set()
+    source_families = set()
+    raw_tags = set()
+    for family, fields in source_fields.items():
+        family_moods = set()
+        for field in fields:
+            for row in profile.get(field) or []:
+                tag = row.get("tag", "") if isinstance(row, dict) else row
+                if not tag:
+                    continue
+                label = str(tag).strip()
+                key = norm(label)
+                if not key or key in raw_tags:
+                    continue
+                raw_tags.add(key)
+                try:
+                    count = max(0.0, float(row.get("count", 0) or 0)) if isinstance(row, dict) else 0.0
+                    strength = min(1.0, max(0.15, __import__("math").log1p(count) / __import__("math").log(101))) if count else 0.25
+                except (TypeError, ValueError):
+                    strength = 0.25
+                matches = mood_inference._tag_moods(label)
+                if not matches:
+                    continue
+                descriptors.add(key)
+                family_moods.update(matches)
+                for mood in matches:
+                    by_mood[mood] = max(by_mood.get(mood, 0.0), strength)
+        if family_moods:
+            source_families.add(family)
+    moods = set(by_mood)
+    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
+    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
+    has_energetic = bool(moods & energetic)
+    has_gentle = bool(moods & gentle)
+    conflict = has_energetic and has_gentle
+    if not moods:
+        confidence = "unknown"
+    elif len(source_families) >= 2 and len(descriptors) >= 2 and not conflict:
+        confidence = "high"
+    elif (len(descriptors) >= 2 or len(source_families) >= 2) and not conflict:
+        confidence = "medium"
+    else:
+        confidence = "low"
+    if conflict:
+        confidence = "low"
+    return {
+        "moods": sorted(moods),
+        "confidence": confidence,
+        "source_families": sorted(source_families),
+        "tag_count": len(descriptors),
+        "conflict": conflict,
+        "strengths": by_mood,
+    }
+
+
 def _signal(value, low, high):
     if value is None:
         return None
@@ -203,21 +269,26 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
             evidence.append(f"Spotify loudness={float(spotify['loudness']):.1f} dB (not LUFS)")
             evidence_sources.append("spotify_loudness")
 
-    track_tags = _tag_rows(track_profile)
+    track_mood = _track_mood_evidence(track_profile)
+    tag_moods = set(track_mood["moods"])
     artist_tags = _tag_rows(artist_profile)
-    tag_moods = set()
-    for tag in track_tags:
-        tag_moods.update(mood_inference._tag_moods(tag))
     artist_moods = set()
     for tag in artist_tags:
         artist_moods.update(mood_inference._tag_moods(tag))
-    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic"}
-    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic"}
+    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
+    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
     if tag_moods:
-        mood_score = 0.72 if tag_moods & energetic else 0.28 if tag_moods & gentle else 0.5
+        # Conflicting affect directions are retained as evidence but neutralized
+        # for energy blending rather than arbitrarily choosing the first mood.
+        mood_score = (0.5 if track_mood["conflict"] else
+                      0.72 if tag_moods & energetic else
+                      0.28 if tag_moods & gentle else 0.5)
         components.append(mood_score); weights.append(0.15)
         semantic_components.append(mood_score); semantic_weights.append(0.15)
         evidence.append("track-tag mood=" + ", ".join(sorted(tag_moods)))
+        evidence.append("track mood confidence=" + track_mood["confidence"])
+        if track_mood["conflict"]:
+            evidence.append("conflicting track mood directions; neutral energy contribution")
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.06)
@@ -320,6 +391,10 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
         "acoustic_confidence": acoustic_confidence,
         "semantic_confidence": semantic_confidence,
+        "mood_confidence": track_mood["confidence"] if tag_moods else ("low" if artist_moods else "unknown"),
+        "mood_source_families": track_mood["source_families"] if tag_moods else (["lastfm_artist"] if artist_moods else []),
+        "mood_tag_count": track_mood["tag_count"],
+        "mood_conflict": track_mood["conflict"],
         "semantic_source_families": sorted(semantic_source_families),
         "tempo_bpm": tempo_value,
         "tempo_source": tempo_source,
