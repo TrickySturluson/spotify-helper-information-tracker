@@ -9,7 +9,7 @@ This directory contains ID-sharded release/album records.
 
 ## First worked example
 
-`sp/spotify-5kkgazrad4n4rc5friwgz/album.json` represents Candy Claws' *Ceres & Calypso in the Deep Time* (standard 12-track album, not the expanded anniversary reissue). Its Spotify album ID is grounded in existing playlist snapshots; descriptive metadata and the ordered tracklist are attributed to Last.fm and the artist's Bandcamp page.
+`al/album-3858c5d33d8c2159eb3d/album.json` represents Candy Claws' *Ceres & Calypso in the Deep Time* (standard 12-track album, not the expanded anniversary reissue). Its Spotify album ID is grounded in existing playlist snapshots; descriptive metadata and the ordered tracklist are attributed to Last.fm and the artist's Bandcamp page.
 
 Four already-staged song records are linked to this album by exact title/artist plus their existing recording MBIDs. The other eight tracklist entries remain album-level tracklist entries only; no song records or recording identities are invented for them.
 
