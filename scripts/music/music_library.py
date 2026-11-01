@@ -146,12 +146,20 @@ class MusicLibrary:
         }
 
         artist_records, album_records, songs = {}, {}, {}
-        rows = track_rows.values() if isinstance(track_rows, dict) else track_rows if isinstance(track_rows, list) else []
+        rows = list(track_rows.values()) if isinstance(track_rows, dict) else list(track_rows) if isinstance(track_rows, list) else []
+        preferred_artist_ids = {}
+        for source_row in rows:
+            if isinstance(source_row, dict) and source_row.get("artist"):
+                candidate = artist_key(source_row)
+                name_key = norm(source_row["artist"])
+                current = preferred_artist_ids.get(name_key)
+                if current is None or (candidate.startswith("mbid:") and not current.startswith("mbid:")):
+                    preferred_artist_ids[name_key] = candidate
         for row in rows:
             if not isinstance(row, dict) or not row.get("artist") or not (row.get("track") or row.get("name")):
                 continue
             title = row.get("track") or row.get("name")
-            aid = artist_key(row)
+            aid = preferred_artist_ids.get(norm(row["artist"])) or artist_key(row)
             bid = album_key(row, aid)
             sid = recording_key(row, aid, bid)
             alias = norm(row["artist"]) + "\0" + norm(title)
@@ -227,11 +235,12 @@ class MusicLibrary:
             lyric = lyrics.get((norm(row["artist"]), norm(title)))
             if lyric:
                 song["evidence"]["lyrics"] = lyric
-            song["sources"].update({
-                key: {"status": value}
-                for key, value in row.items()
-                if key.endswith("_status") and isinstance(value, str)
-            })
+            for source_key, status in row.items():
+                if not source_key.endswith("_status") or not isinstance(status, str):
+                    continue
+                old_status = song["sources"].get(source_key, {}).get("status")
+                if old_status != "matched" or status == "matched":
+                    song["sources"][source_key] = {"status": status}
 
         index = {
             "schema_version": 1, "songs": {}, "spotify_ids": {},
