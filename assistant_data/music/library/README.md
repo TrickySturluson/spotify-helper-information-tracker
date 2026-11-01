@@ -1,7 +1,5 @@
 # The Library — catalogue navigation
 
-> **Branch note:** The Library is currently being developed on [PR #49](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/49). These files are on the feature branch and will not appear when browsing `main` until the pull request is merged. Open the PR or switch the GitHub branch selector to `feature/per-recording-music-library`.
-
 ## Start here
 
 - [Artist records](artists/README.md) — artist identity, sourced artist-level context, and related albums/songs.

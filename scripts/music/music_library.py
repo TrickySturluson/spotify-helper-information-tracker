@@ -426,12 +426,27 @@ class MusicLibrary:
                 if variant not in aliases:
                     aliases.append(variant)
             for field, value in row.items():
-                if field in {"artist", "track", "name", "album", "album_name", "derived", "coverage", "listening_context"}:
+                if field in {"artist", "track", "name", "album", "album_name", "derived", "coverage", "listening_context", "discovery_context"}:
                     continue
                 if value not in (None, "", [], {}):
                     song["evidence"]["track_metadata"][field] = value
             if row.get("listening_context"):
                 song.setdefault("listening_context", {}).update(row["listening_context"])
+            # Recommendation/discovery provenance is its own evidence stream. It
+            # must never be merged into scrobble counts or inferred listening facts.
+            if row.get("discovery_context"):
+                current_discovery = song.get("discovery_context") or {}
+                incoming_discovery = row["discovery_context"]
+                sources = list(current_discovery.get("discovery_sources") or [])
+                for source in incoming_discovery.get("discovery_sources") or []:
+                    if source not in sources:
+                        sources.append(source)
+                song["discovery_context"] = {
+                    **current_discovery,
+                    **incoming_discovery,
+                    "discovery_sources": sources,
+                    "listening_evidence": "not_inferred_from_discovery",
+                }
             if row.get("derived"):
                 song["derived"].update(row["derived"])
             if row.get("coverage"):
