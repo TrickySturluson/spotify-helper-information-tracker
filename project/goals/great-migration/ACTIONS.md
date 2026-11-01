@@ -1,3 +1,14 @@
+## 2026-11-01 — Reconcile Library branch status and migration trigger evidence
+
+- **Action:** checked PR #49 and the current Library navigation file on `main`; rechecked issues #69, #70 and #71 and their comment threads.
+- **PR #49:** confirmed merged into `main` at merge commit `b2df17b9b7c73267c523c15ceab92e69b1672080`. The README's claim that the Library was still only on the feature branch was stale.
+- **Actual remaining scope:** PR #49 explicitly describes the committed Library as a staged sample (100 songs, 47 artist records, one album example), not the complete historical migration. Legacy aggregate data remains to be imported and published.
+- **Documentation fix:** updated `assistant_data/music/library/README.md` to remove the stale branch warning, state that the catalogue structure is merged but the sample is partial, and distinguish offline `migrate` from provider-enriched `prepare`. Commit: `1f2d799a17e31dd42c4aceb299e35a5d22698f3c`.
+- **Trigger evidence:** issues #69/#70/#71 exist and are owner-authored with valid command titles, but all remain open with no workflow result comments at the time of inspection. This connector does not expose a repository-wide Actions-run listing/dispatch action, and the PR-triggered commit-run helper cannot enumerate issue-triggered runs. Therefore no run start, completion, artifact, or publication is claimed.
+- **Safety:** no provider requests, migration writes, or Spotify playlist writes were performed during this inspection/documentation correction.
+- **Next:** obtain issue-triggered run evidence or a manually dispatched run; verify that the workflow checks out the merged Library implementation and that the full legacy migration is published to `main`; then perform a separate post-publication audit/status. Do not repeat provider enrichment until durable checkpoint state is confirmed.
+- **References:** [PR #49](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/49), [issue #69](https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/69), [issue #70](https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/70), [issue #71](https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/71).
+
 ## 2026-11-01 — Queued migration publication, independent audit, and continuation pass
 
 - **Action:** opened issue #69 `[SHIT LIBRARY] prepare` against the repaired workflow, then queued issue #70 `[SHIT LIBRARY] audit` for a fresh audit/status against the published default branch, followed by issue #71 `[SHIT LIBRARY] prepare` for another checkpoint-resuming enrichment pass.
