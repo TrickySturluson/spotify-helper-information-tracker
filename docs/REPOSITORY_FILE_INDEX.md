@@ -305,15 +305,19 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `data/scrobbles.json` — Canonical raw Last.fm scrobble archive; historical listening source records.
 - `data/stats.json` — Archive-wide statistics snapshot, including explicitly estimated listening-time measures.
 
-## docs (7 files)
+## docs (11 files)
 
-- `docs/AUDIO_ANALYSIS.md` — Feature or operating guide: AUDIO ANALYSIS.
-- `docs/AUTOMATED_AUDIO_METADATA.md` — Feature or operating guide: AUTOMATED AUDIO METADATA.
-- `docs/BOOZE_OR_BOOS_SORT.md` — Feature or operating guide: BOOZE OR BOOS SORT.
-- `docs/CODE_DOCUMENTATION.md` — Feature or operating guide: CODE DOCUMENTATION.
-- `docs/GETSONGBPM.md` — Feature or operating guide: GETSONGBPM.
-- `docs/LYRICS_LIBRARY.md` — Feature or operating guide: LYRICS LIBRARY.
-- `docs/REPOSITORY_FILE_INDEX.md` — Feature or operating guide: REPOSITORY FILE INDEX.
+- `docs/AUDIO_ANALYSIS.md` — Guide to measured/local audio analysis and its evidence limits.
+- `docs/AUTOMATED_AUDIO_METADATA.md` — Guide to automated metadata enrichment and provenance.
+- `docs/BOOZE_OR_BOOS_SORT.md` — Operating guide for the Booze or Boos! playlist sorter.
+- `docs/CODE_DOCUMENTATION.md` — Conventions for maintained-file overviews and project documentation.
+- `docs/GETSONGBPM.md` — Guide to tempo lookup sources and confidence.
+- `docs/LYRICS_LIBRARY.md` — Guide to lyric/theme metadata and source handling.
+- `docs/PUBLIC_REPOSITORY_PRIVACY.md` — Public-repository privacy and secret-handling safeguards.
+- `docs/RECENT_TRACK_ENRICHMENT.md` — Workflow for prioritizing recent listening metadata.
+- `docs/REPOSITORY_FILE_INDEX.md` — Catalogue of tracked files and their roles.
+- `docs/SPOTIFY_API_OPERATIONS.md` — Spotify API restrictions, quota cooldowns, safe diagnostics, and recovery.
+- `docs/TRANSITION_SCORING.md` — Explanation of playlist transition scoring and evidence tiers.
 
 ## playback_data (2 files)
 
