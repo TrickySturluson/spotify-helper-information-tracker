@@ -258,7 +258,7 @@ class LyricsLibrary:
             assessment = "strong" if relevance >= .45 else "clear" if relevance >= .2 else "possible" if relevance >= .08 else "weak"
             word_count = max(a["word_count"] for _, a in analyses)
             stored = {"schema_version": 3, "themes": merged, "horror_relevance": relevance,
-                      "assessment": assessment, "source_count": len(analyses),
+                      "assessment": assessment, "word_count": word_count, "source_count": len(analyses),
                       "sources": sorted(p for p, _ in analyses), "analyzed_at": stamp,
                       "method": "multi_source_lexical_theme_extraction_v3"}
             self.db.execute("""INSERT INTO analyses(song_id,themes_json,relevance,assessment,word_count,analyzed_at)
