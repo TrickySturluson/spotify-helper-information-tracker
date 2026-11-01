@@ -9,9 +9,14 @@ import urllib.error
 import urllib.parse
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 import spotify_playlist_manager as manager
 import playlist_intelligence as intelligence
 import playlist_metadata
+from scripts.music.discovery_ingestion import append_candidates
 
 STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
@@ -857,6 +862,18 @@ def main():
         current = manager.snapshot(sp, p)
         recommendations, skipped = daily.build_discovery_recommendations(
             sp, current["items"], playlist_id=pid
+        )
+        intake = append_candidates(
+            recommendations,
+            source="tricky_daily_preview",
+            context={"playlist_id": pid, "preview_date": manager.stamp()[:10]},
+        )
+        manager.audit(
+            event="daily_preview_candidates_persisted",
+            playlist_id=pid,
+            input_rows=intake["input_rows"],
+            new_candidates=intake["new_candidates"],
+            unique_candidates=intake["unique_candidates"],
         )
         feedback = daily.load_playlist_feedback(current["items"], pid)
         uris = [row["uri"] for row in recommendations]
