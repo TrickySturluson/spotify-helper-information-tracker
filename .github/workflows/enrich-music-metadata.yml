@@ -68,6 +68,7 @@ jobs:
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           TRACK_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.track_profile_lookups || '120' }}
+          TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
         run: python compat/build_track_profiles.py
       - name: Rebuild metadata summaries
         env:
