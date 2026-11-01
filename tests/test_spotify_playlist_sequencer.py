@@ -1,6 +1,7 @@
 import json
 import unittest
 from pathlib import Path
+from time import perf_counter
 
 import spotify_playlist_sequencer as sequencer
 
@@ -340,6 +341,21 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIsNone(report["energy_gap"])
         self.assertNotIn("estimated energy", " ".join(report["reasons"]))
 
+
+    def test_low_confidence_energy_is_not_used_as_transition_fact(self):
+        left = {"score": 5, "confidence": "low", "artist": "One",
+                "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 98, "confidence": "low", "artist": "Two",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertIsNone(report["energy_gap"])
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["label"], "uncertain")
+        self.assertEqual(
+            sequencer._transition_cost(left, right),
+            sequencer._transition_cost(dict(left, score=98), right),
+        )
+
     def test_missing_metadata_is_not_scored_as_disagreement(self):
         left = {"score": 50, "confidence": "unknown", "artist": "One",
                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
@@ -397,6 +413,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         track_index = sequencer.index_tracks(tracks)
         audio_index = sequencer.index_tracks(audio_data.get("tracks", audio_data))
 
+        started = perf_counter()
         ordered = sequencer.sequence_tracks(
             snapshot["items"], artist_index, track_index,
             mode="smooth", journey="rising", peak_position=85,
@@ -408,6 +425,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         summary = sequencer.transition_summary(ordered)
         confidence = sequencer.confidence_summary(ordered)
         changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
+        elapsed_seconds = perf_counter() - started
 
         self.assertEqual(len(ordered), len(snapshot["items"]))
         self.assertCountEqual(ordered_uris, original_uris)
@@ -415,7 +433,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         print(
             "SEQUENCER REAL-DATA EVALUATION: "
             f"playlist={snapshot.get('name')!r}; captured_at={snapshot.get('captured_at')}; "
-            f"tracks={len(ordered)}; moved_positions={changed_positions}; "
+            f"tracks={len(ordered)}; elapsed_seconds={elapsed_seconds:.3f}; moved_positions={changed_positions}; "
             f"reorder_operations={len(operations)}; confidence={confidence}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, uncertain:{summary['uncertain']}, "
