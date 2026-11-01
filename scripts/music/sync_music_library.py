@@ -12,6 +12,7 @@ from scripts.music.music_library import MusicLibrary
 
 MUSIC = ROOT / "assistant_data" / "music"
 LYRICS = ROOT / "assistant_data" / "recommendations" / "lyric_features.json"
+DISCOVERY = ROOT / "assistant_data" / "recommendations" / "discovery_candidates.json"
 
 
 def read(path, fallback):
@@ -38,6 +39,7 @@ def main():
     albums = read(MUSIC / "album_profiles.json", {})
     audio = read(MUSIC / "audio_profiles.json", {})
     lyrics = lyric_rows(read(LYRICS, []))
+    candidates = lyric_rows(read(DISCOVERY, []))
     if not isinstance(profiles, dict):
         raise SystemExit("Refusing to sync: track_profiles.json must be an object.")
     result = MusicLibrary().put_catalogue(
