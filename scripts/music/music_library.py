@@ -5,7 +5,7 @@ import json
 import re
 from pathlib import Path
 
-DEFAULT_ROOT = Path("assistant_data/music/music_library")
+DEFAULT_ROOT = Path("assistant_data/music/library")
 INDEX_NAME = "library_index.json"
 
 def norm(value):
