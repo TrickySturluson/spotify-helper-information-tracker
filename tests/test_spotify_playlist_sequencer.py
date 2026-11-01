@@ -290,6 +290,19 @@ class PlaylistSequencerTests(unittest.TestCase):
         actual = [ranks[row["item"]["uri"]] for row in result]
         self.assertEqual(actual, sorted(actual))
 
+    def test_section_sorting_uses_the_global_rising_energy_curve(self):
+        high = {"score": 95, "artist": "High", "vibe_groups": [],
+                "genre_groups": [], "theme_groups": [], "section_index": 2}
+        low = {"score": 50, "artist": "Low", "vibe_groups": [],
+               "genre_groups": [], "theme_groups": [], "section_index": 2}
+        high_first = sequencer._sequence_objective(
+            [high, low], "rising", 85, "gradual", 0, 0, position_offset=80, total_count=100
+        )
+        low_first = sequencer._sequence_objective(
+            [low, high], "rising", 85, "gradual", 0, 0, position_offset=80, total_count=100
+        )
+        self.assertLess(high_first, low_first)
+
 
 if __name__ == "__main__":
     unittest.main()
