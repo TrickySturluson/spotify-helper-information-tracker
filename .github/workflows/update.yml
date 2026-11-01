@@ -1,6 +1,11 @@
 name: Update Last.fm History
 
 on:
+  # Editing this workflow on main is an auditable one-time full refresh trigger.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update.yml"
   workflow_dispatch:
   schedule:
     - cron: "17 6 * * *"
@@ -24,22 +29,79 @@ jobs:
       - name: Run unit tests
         run: python -m unittest discover -s tests -t . -v
 
+      - name: Validate Spotify credentials
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing repository variable SPOTIFY_CLIENT_ID" >&2; exit 1; }
+          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing repository secret SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
+
+      - name: Refresh Spotify reference library (read-only)
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, "compat")
+          import spotify_playlist_manager as manager
+          manager.TOKEN = Path(".spotify_playlist_token.json")
+          manager.write(manager.TOKEN, {
+              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+              "obtained_at": 0,
+              "expires_in": 0,
+          })
+          PY
+          python compat/spotify_reference_library.py sync
+          python compat/spotify_reference_library.py health
+
       - name: Update Last.fm history
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: python compat/update_lastfm.py
-
-      - name: Enrich cached track metadata
-        env:
-          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-          MUSIC_METADATA_LOOKUPS_PER_RUN: 120
-        run: python compat/build_music_metadata.py
 
       - name: Enrich artist genre, mood and theme profiles
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_PROFILE_LOOKUPS_PER_RUN: 120
         run: python compat/build_music_profiles.py
+
+      - name: Rank recent top 200 tracks and enrich their sourced tags
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          TRACK_PROFILE_LOOKUPS_PER_RUN: "200"
+          TRACK_PROFILE_RECENT_WINDOW_DAYS: "90"
+          TRACK_PROFILE_RECENT_TOP_N: "200"
+          TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
+        run: python compat/build_track_profiles.py
+
+      - name: Prioritize recent top 200 for cached durations
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_METADATA_LOOKUPS_PER_RUN: "300"
+        run: python compat/build_music_metadata.py
+
+      - name: Resolve exact MusicBrainz recording IDs for recent leaders
+        env:
+          MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "250"
+        run: python compat/enrich_musicbrainz_recording_ids.py
+
+      - name: Fetch available AcousticBrainz descriptors (recent leaders first)
+        env:
+          ACOUSTICBRAINZ_MAX_BATCHES: "20"
+        run: python compat/enrich_acousticbrainz.py
+
+      - name: Attach newly resolved MusicBrainz tags to recent track profiles
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          TRACK_PROFILE_LOOKUPS_PER_RUN: "200"
+          TRACK_PROFILE_RECENT_WINDOW_DAYS: "90"
+          TRACK_PROFILE_RECENT_TOP_N: "200"
+          TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
+        run: python compat/build_track_profiles.py
 
       - name: Build existing statistics
         run: python compat/build_stats.py
