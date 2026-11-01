@@ -140,7 +140,7 @@ class MusicLibrary:
         self.index = index
         return {"artists": len(artist_records), "albums": len(album_records), "recordings": len(recordings), "ambiguous_name_aliases": sum(len(v) > 1 for v in index["name_candidates"].values())}
 
-# File overview
+# FILE OVERVIEW
 # - Stores one JSON record per artist, album, and recording in ID-sharded paths.
 # - Resolves Spotify track IDs and verified recording MBIDs before safe name aliases.
 # - Preserves provider evidence, derived fields, coverage, source statuses, and relations.
