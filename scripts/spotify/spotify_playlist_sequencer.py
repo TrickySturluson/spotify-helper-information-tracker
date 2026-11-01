@@ -217,11 +217,17 @@ def _tempo_relationship(left, right):
     return max(0.0, min(1.0, distance / 0.5))
 
 
+def _has_reliable_energy(row):
+    """Only medium/high estimates are reliable enough to drive transition scoring."""
+    return row.get("confidence") in {"medium", "high"}
+
+
 def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
-    """Evidence-aware edge cost: absent metadata is omitted, never scored as disagreement."""
+    """Evidence-aware edge cost: absent or weak metadata is omitted, not treated as fact."""
     terms = []
-    # Unknown energy is not a neutral 50/100 measurement. Do not compare it.
-    if left.get("confidence") != "unknown" and right.get("confidence") != "unknown":
+    # Low-confidence genre/artist estimates can guide discovery, but should not
+    # dominate handoff quality as if they were measured track energy.
+    if _has_reliable_energy(left) and _has_reliable_energy(right):
         terms.append((0.34, abs(float(left["score"]) - float(right["score"])) / 100.0))
     for field, weight in (("vibe_groups", 0.25), ("genre_groups", 0.08), ("theme_groups", 0.08)):
         affinity = _set_similarity(left.get(field), right.get(field))
@@ -251,7 +257,7 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
 
 
 def transition_report(left, right):
-    energy_known = left.get("confidence") != "unknown" and right.get("confidence") != "unknown"
+    energy_known = _has_reliable_energy(left) and _has_reliable_energy(right)
     gap = abs(float(left["score"]) - float(right["score"])) / 100.0 if energy_known else None
     moods = sorted(set(left.get("vibe_groups") or []) & set(right.get("vibe_groups") or []))
     genres = sorted(set(left.get("genre_groups") or []) & set(right.get("genre_groups") or []))
@@ -274,7 +280,7 @@ def transition_report(left, right):
                          for field in ("vibe_groups", "genre_groups", "theme_groups"))
     evidence_count += int(tempo_gap is not None)
     evidence_count += int(left.get("confidence") != "unknown" and right.get("confidence") != "unknown")
-    confidence = "supported" if evidence_count >= 2 and left.get("confidence") != "unknown" and right.get("confidence") != "unknown" else "limited"
+    confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
     label = ("uncertain" if evidence_count == 0 else
              "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
     return {"cost": round(cost, 4), "label": label,
@@ -324,7 +330,8 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
         # Unknown scores use 50 only as a display placeholder. They must not be
         # pulled toward or away from a journey curve as if 50 were measured data.
         if row.get("confidence") != "unknown":
-            total += 0.10 * abs(float(row["score"]) / 100 - target_energy(
+            curve_weight = 0.10 if row.get("confidence") in {"high", "medium"} else 0.04
+            total += curve_weight * abs(float(row["score"]) / 100 - target_energy(
                 index + position_offset, total_count or len(rows), journey, peak_position, peak_shape))
         if index:
             previous = rows[index - 1]
@@ -354,7 +361,12 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
     movable = [row for row in rows if id(row) not in locked]
     if not movable:
         return [fixed.get(i, rows[i]) for i in range(len(rows))]
-    seeds = sorted(movable, key=lambda row: row["original_index"])[:min(8, len(movable))]
+    ordered_movable = sorted(movable, key=lambda row: row["original_index"])
+    seed_count = min(4, len(ordered_movable))
+    seed_indices = ([0] if seed_count == 1 else
+                    [round(i * (len(ordered_movable) - 1) / (seed_count - 1))
+                     for i in range(seed_count)])
+    seeds = [ordered_movable[index] for index in seed_indices]
     candidates = []
     for seed in seeds or movable[:1]:
         remaining = [row for row in movable if row is not seed]
@@ -362,7 +374,9 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
         while remaining:
             nxt = min(remaining, key=lambda row: (
                 _transition_cost(order[-1], row, genre_strength, theme_strength),
-                abs(row["score"] - order[-1]["score"]) * 0.001, row["original_index"]))
+                (abs(row["score"] - order[-1]["score"]) * 0.001
+                 if _has_reliable_energy(row) and _has_reliable_energy(order[-1]) else 0.0),
+                row["original_index"]))
             order.append(nxt)
             remaining.remove(nxt)
         iterator = iter(order)
@@ -372,11 +386,15 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
         position_offset, total_count))
     best_cost = _sequence_objective(best, journey, peak_position, peak_shape, genre_strength, theme_strength,
         position_offset, total_count)
-    for _ in range(4):
+    # Local refinement avoids the cubic full-objective scan across every possible
+    # swap/relocation. Diverse seeds plus a 12-track neighborhood keep previews
+    # responsive on ordinary playlists while preserving exact anchor positions.
+    neighborhood = 12
+    for _ in range(2):
         changed = False
         for i in range(len(best)):
             if i in fixed: continue
-            for j in range(i + 1, len(best)):
+            for j in range(i + 1, min(len(best), i + neighborhood + 1)):
                 if j in fixed: continue
                 trial = list(best)
                 trial[i], trial[j] = trial[j], trial[i]
@@ -386,7 +404,7 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
                     best, best_cost, changed = trial, cost, True
         for i in range(len(best)):
             if i in fixed: continue
-            for j in range(len(best)):
+            for j in range(max(0, i - neighborhood), min(len(best), i + neighborhood + 1)):
                 if j in fixed or i == j: continue
                 trial = list(best)
                 moved = trial.pop(i)
