@@ -5,5 +5,5 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.music.music_library import *  # noqa: F401,F403
 
-# File overview
+# FILE OVERVIEW
 # - Exposes the canonical music-library API to legacy compat/ entrypoints and tests.
