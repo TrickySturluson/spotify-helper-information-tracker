@@ -245,12 +245,18 @@ def main():
     sp = manager.Spotify()
     config = manager.config()
     manager.write(STATE, config)
-    playlists = sp.playlists()
-    me = sp.me()
-    owned = [p for p in playlists if (p.get("owner") or {}).get("id") == me.get("id")]
+
+    # Avoid an unconditional /me/playlists scan on every command. The old
+    # eager preflight consumed an extra paginated Spotify request even for
+    # status and single-playlist inspections, accelerating app-wide quota
+    # exhaustion. Fetch the profile only when the selected command needs it;
+    # enumerate the full collection only for lock_all.
+    me = sp.me() if action not in {"status", "booze20_resolve_sources"} else None
     result = ""
 
     if action == "lock_all":
+        playlists = sp.playlists()
+        owned = [p for p in playlists if (p.get("owner") or {}).get("id") == me.get("id")]
         for p in owned:
             prior = config["playlists"].get(p["id"], {})
             config["playlists"][p["id"]] = {
