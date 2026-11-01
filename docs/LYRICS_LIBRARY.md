@@ -45,3 +45,15 @@ The database supports searching by title, artist, remembered phrase, and recent 
 - Genius is metadata/link-only in this implementation.
 - The first analyzer is keyword-based and intentionally conservative; nuanced interpretation and audio-energy analysis remain separate.
 - A phrase lookup needs at least five words and works only for songs previously analyzed into this local database.
+
+
+## Recommendation feature integration
+
+After rebuilding recommendation features, merge any locally analyzed lyric evidence into the generated track feature file:
+
+```bash
+python build_music_analytics.py
+python enrich_recommendation_lyrics.py
+```
+
+The enrichment is local-only and additive. It joins on normalized artist + track title, writes a compact `lyric_analysis` object into `assistant_data/recommendations/track_features.json`, and leaves tracks without a local lyric record explicitly marked `null`. A clean cloud runner without the local SQLite database skips this step rather than fabricating empty evidence. The canonical Last.fm archive and Spotify reference data are not modified.
