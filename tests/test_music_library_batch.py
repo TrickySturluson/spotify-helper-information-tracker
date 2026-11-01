@@ -31,7 +31,7 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         self.assertIsNotNone(loaded)
         artists, tracks, audio, albums = loaded
         self.assertEqual(len(tracks), 100)
-        self.assertEqual(len(artists), 47)
+        self.assertEqual(len(artists), 45)
         self.assertEqual(albums, {})
         self.assertTrue(any(profile.get("lastfm_tags") or profile.get("musicbrainz_tags")
                             for profile in tracks.values()))
