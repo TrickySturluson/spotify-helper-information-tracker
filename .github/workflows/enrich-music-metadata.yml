@@ -9,6 +9,7 @@ on:
       - ".github/workflows/enrich-music-metadata.yml"
       - "scripts/music/build_track_profiles.py"
       - "compat/build_track_profiles.py"
+      - "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json"
   # Small daily batches keep metadata coverage moving without a large backfill.
   # UTC 08:17; manual dispatch remains available for larger runs.
   schedule:
