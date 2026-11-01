@@ -12,6 +12,9 @@ def test_library_cli_parses_safe_and_write_commands(tmp_path):
     assert migrate.action == "migrate"
     assert migrate.yes is True
     assert parser.parse_args(["library", "audit", "--root", str(tmp_path)]).action == "audit"
+    prepare = parser.parse_args(["library", "prepare", "--execute", "--skip-discogs"])
+    assert prepare.action == "prepare" and prepare.execute and prepare.skip_discogs
+    assert parser.parse_args(["library", "sync"]).action == "sync"
 
 
 def test_library_cli_status_reports_empty_library(tmp_path, capsys):
