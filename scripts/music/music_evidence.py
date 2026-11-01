@@ -37,14 +37,6 @@ def metadata_confidence(evidence, conflicts=None):
         return {"confidence": "high", "source_families": families, "reason": "corroborated by independent source families"}
     return {"confidence": "low", "source_families": families, "reason": "single source family; corroboration unavailable"}
 
-# FILE OVERVIEW
-# Purpose: Shared confidence rules for identity resolution and individual metadata fields.
-# Inputs: Exact lookup method or per-field source-family/value evidence.
-# Outputs: Categorical confidence and explicit corroboration/conflict reasons.
-# Safety: Community tag counts and contextual album/artist evidence never manufacture track identity or acoustic evidence.
-# Related: scripts/music/music_library.py; tests/test_music_evidence.py; docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md.
-
-
 def _tag_label(value):
     if isinstance(value, dict):
         return str(value.get("tag") or value.get("name") or "").strip()
@@ -109,3 +101,11 @@ def album_metadata_confidence(profile):
         if value not in (None, "", [], {}):
             result[field] = metadata_confidence([{"source_family": "lastfm_catalog", "value": value}])
     return result
+
+# FILE OVERVIEW
+# Purpose: Shared confidence rules for identity resolution and individual metadata fields.
+# Inputs: Exact lookup method or per-field source-family/value evidence.
+# Outputs: Categorical confidence and explicit corroboration/conflict reasons.
+# Safety: Community tag counts and contextual album/artist evidence never manufacture track identity or acoustic evidence.
+# Related: scripts/music/music_library.py; tests/test_music_evidence.py; docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md.
+
