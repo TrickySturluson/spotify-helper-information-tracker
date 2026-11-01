@@ -274,8 +274,11 @@ def transition_report(left, right):
     evidence_count += int(tempo_gap is not None)
     evidence_count += int(left.get("confidence") != "unknown" and right.get("confidence") != "unknown")
     confidence = "supported" if evidence_count >= 2 else "limited"
-    return {"cost": round(cost, 4), "label": "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump",
-            "confidence": confidence, "energy_gap": round(gap, 3),
+    label = ("uncertain" if evidence_count == 0 else
+             "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
+    return {"cost": round(cost, 4), "label": label,
+            "confidence": confidence, "evidence_count": evidence_count,
+            "energy_gap": round(gap, 3),
             "tempo_relationship": round(tempo_gap, 3) if tempo_gap is not None else None,
             "shared_moods": moods, "shared_genres": genres,
             "shared_themes": themes, "same_artist": same, "reasons": reasons}
@@ -309,7 +312,7 @@ def transition_summary(scored):
     pairs = [transition_report(a, b) for a, b in zip(scored, scored[1:])]
     counts = Counter(row["label"] for row in pairs)
     return {"pairs": pairs, "gentle": counts["gentle"], "moderate": counts["moderate"],
-            "potential_jumps": counts["potential jump"],
+            "potential_jumps": counts["potential jump"], "uncertain": counts["uncertain"],
             "limited_evidence": sum(row["confidence"] == "limited" for row in pairs)}
 
 
