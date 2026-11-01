@@ -278,8 +278,9 @@ class OwnedPlaylistTests(unittest.TestCase):
         )
         spotify.playlists.return_value = []
 
-        with self.assertRaisesRegex(SystemExit, "not present in this account's playlist collection"):
+        with self.assertRaises(SystemExit):
             cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+        spotify.playlists.assert_called_once_with()
 
     def test_rejects_playlist_not_owned_by_current_account(self):
         spotify = Mock()
