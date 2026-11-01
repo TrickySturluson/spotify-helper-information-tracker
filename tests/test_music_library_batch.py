@@ -60,6 +60,37 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         self.assertIsNotNone(mbid_song)
         self.assertEqual(mbid_song["song"]["id"], mbid_entry[0])
 
+    def test_ceres_album_tracklist_crosslinks_only_verified_recordings(self):
+        index = json.loads((ROOT / "library_index.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(index["albums"]), 1)
+        album_id, album_entry = next(iter(index["albums"].items()))
+        album = json.loads((ROOT / album_entry["path"]).read_text(encoding="utf-8"))
+        self.assertEqual(album["album"], "Ceres & Calypso in the Deep Time")
+
+        tracklist = album["evidence"]["lastfm_tracklist"]
+        self.assertEqual([track["position"] for track in tracklist], list(range(1, 13)))
+        linked = [track for track in tracklist if track.get("linked_song_id")]
+        self.assertEqual(len(linked), 4)
+        self.assertEqual({track["linked_song_id"] for track in linked}, set(album["song_ids"]))
+
+        library = MusicLibrary(ROOT)
+        for track in linked:
+            song_id = track["linked_song_id"]
+            self.assertEqual(track["linked_recording_mbid"], song_id.removeprefix("mbid:"))
+            self.assertEqual(track["link_verification"]["confidence"], "high")
+            entry = index["songs"][song_id]
+            self.assertEqual(entry["album_id"], album_id)
+            self.assertEqual(entry["track_number"], track["position"])
+            self.assertTrue((ROOT / entry["path"]).exists())
+            result = library.get_song(recording_mbid=song_id)
+            self.assertIsNotNone(result)
+            self.assertEqual(result["album"]["album"], album["album"])
+
+        # The source tracklist did not provide MBIDs; cross-links are recorded
+        # separately so they do not falsely appear to originate from Last.fm.
+        self.assertTrue(all(track.get("mbid") is None for track in tracklist))
+        self.assertEqual(sum(bool(track.get("linked_song_id")) for track in tracklist), 4)
+
     def test_committed_batch_preserves_recent_listening_context(self):
         index = json.loads((ROOT / "library_index.json").read_text(encoding="utf-8"))
         entry = next(iter(index["songs"].values()))
