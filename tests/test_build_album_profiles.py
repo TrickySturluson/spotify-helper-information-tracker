@@ -89,6 +89,35 @@ class AlbumProfileTests(unittest.TestCase):
         self.assertFalse(albums.album_info_due(old, now=1000))
         self.assertTrue(albums.album_info_due(old, now=2000))
 
+
+    def test_album_info_merge_preserves_existing_top_tag_counts(self):
+        previous = {"status": "matched", "identity_verified": True,
+                    "lastfm_tags": [{"tag": "rock", "count": 42}]}
+        info = {"lastfm_tracklist": [{"position": 1, "title": "Song"}],
+                "lastfm_info_tags": [{"tag": "rock"}]}
+        merged = albums.merge_album_info_profile(previous, {"artist": "Artist", "album": "Record"},
+                                                 info, "matched", "checked", now=100)
+        self.assertEqual(merged["lastfm_tags"][0]["count"], 42)
+        self.assertEqual(merged["lastfm_tracklist"][0]["title"], "Song")
+        self.assertEqual(merged["status"], "matched")
+        self.assertEqual(merged["lastfm_info_status"], "matched")
+
+    def test_album_info_merge_upgrades_old_no_tags_profile(self):
+        previous = {"status": "no_tags", "lastfm_tags": [], "retry_after": 0}
+        info = {"lastfm_info_tags": [{"tag": "dark"}]}
+        merged = albums.merge_album_info_profile(previous, {}, info, "matched", "checked", now=100)
+        self.assertEqual(merged["status"], "matched")
+        self.assertEqual(merged["lastfm_tags"][0]["tag"], "dark")
+
+    def test_album_info_merge_preserves_old_evidence_on_mismatch(self):
+        previous = {"status": "matched", "identity_verified": True,
+                    "lastfm_tags": [{"tag": "rock", "count": 42}]}
+        merged = albums.merge_album_info_profile(previous, {}, {}, "identity_mismatch", "checked", now=100)
+        self.assertEqual(merged["lastfm_tags"][0]["count"], 42)
+        self.assertTrue(merged["identity_verified"])
+        self.assertEqual(merged["lastfm_info_status"], "identity_mismatch")
+        self.assertGreater(merged["lastfm_info_retry_after"], 100)
+
 if __name__ == "__main__":
     unittest.main()
 

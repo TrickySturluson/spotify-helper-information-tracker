@@ -228,6 +228,24 @@ def album_info_due(profile, now=None):
     return int(profile.get("lastfm_info_retry_after", 0) or 0) <= now
 
 
+def merge_album_info_profile(previous, item, info, status, checked_at, now=None):
+    """Merge new album.getInfo evidence without erasing legacy tag evidence."""
+    previous = previous if isinstance(previous, dict) else {}
+    info = info if isinstance(info, dict) else {}
+    now = int(time.time()) if now is None else int(now)
+    merged = {**previous, **item, **info}
+    merged["lastfm_tags"] = previous.get("lastfm_tags") or info.get("lastfm_info_tags", [])
+    merged["status"] = "matched" if status == "matched" else (previous.get("status") or status)
+    merged["lastfm_info_status"] = status
+    merged["lastfm_info_checked_at"] = checked_at
+    merged["lastfm_info_retry_after"] = 0 if status == "matched" else now + RETRY_DAYS * 86400
+    merged["source"] = previous.get("source") or "Last.fm album.getInfo"
+    merged["checked_at"] = checked_at
+    merged["retry_after"] = previous.get("retry_after", 0)
+    merged["identity_verified"] = bool(previous.get("identity_verified") or status == "matched")
+    return merged
+
+
 def main():
     if not API_KEY:
         raise RuntimeError("LASTFM_API_KEY is required.")
@@ -286,19 +304,7 @@ def main():
             break
         checked = datetime.now(timezone.utc).isoformat()
         previous = profiles.get(key, {})
-        info_retry = 0 if status == "matched" else int(time.time()) + RETRY_DAYS * 86400
-        profiles[key] = {
-            **previous, **item, **info,
-            "lastfm_tags": previous.get("lastfm_tags") or info.get("lastfm_info_tags", []),
-            "status": previous.get("status") or status,
-            "lastfm_info_status": status,
-            "lastfm_info_checked_at": checked,
-            "lastfm_info_retry_after": info_retry,
-            "source": previous.get("source") or "Last.fm album.getInfo",
-            "checked_at": checked,
-            "retry_after": previous.get("retry_after", 0),
-            "identity_verified": bool(previous.get("identity_verified") or status == "matched"),
-        }
+        profiles[key] = merge_album_info_profile(previous, item, info, status, checked)
         looked += 1
         found += int(bool(info.get("lastfm_info_tags")))
         write(OUT, profiles)
