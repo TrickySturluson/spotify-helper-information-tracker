@@ -212,6 +212,14 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(scored["confidence"], "unknown")
         self.assertIn("vampire", scored["theme_groups"])
 
+    def test_lastfm_artist_tags_are_used_as_low_confidence_mood_fallback(self):
+        item = {"uri": "spotify:track:1", "name": "Track", "artists": ["Artist"]}
+        artists = {"artist": {"tags": [{"tag": "energetic"}, {"tag": "punk"}], "genres": ["punk"]}}
+        result = sequencer.score_track(item, artist_profiles=artists)
+        self.assertIn("artist-level mood fallback", " ".join(result["evidence"]))
+        self.assertIn("energetic", result["vibe_groups"])
+        self.assertEqual(result["confidence"], "medium")
+
 
 if __name__ == "__main__":
     unittest.main()
