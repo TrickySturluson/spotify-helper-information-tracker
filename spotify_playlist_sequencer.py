@@ -256,12 +256,12 @@ def transition_summary(scored):
             "limited_evidence": sum(row["confidence"] == "limited" for row in pairs)}
 
 
-def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength, theme_strength):
+def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength, theme_strength, position_offset=0, total_count=None):
     total = 0.0
     for index, row in enumerate(rows):
         # Curve fit is intentionally low-weight: continuity beats a mathematically perfect arc.
         total += 0.10 * abs(float(row["score"]) / 100 - target_energy(
-            index, len(rows), journey, peak_position, peak_shape))
+            index + position_offset, total_count or len(rows), journey, peak_position, peak_shape))
         if index:
             previous = rows[index - 1]
             total += _transition_cost(previous, row, genre_strength, theme_strength)
@@ -272,7 +272,8 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
 
 
 def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual",
-                  genre_strength=0.0, theme_strength=0.0, fixed_positions=None):
+                  genre_strength=0.0, theme_strength=0.0, fixed_positions=None,
+                  position_offset=0, total_count=None):
     """Multi-start nearest-neighbor followed by whole-sequence swap/relocation refinement."""
     rows = list(rows)
     if len(rows) < 2: return rows
@@ -303,8 +304,10 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
         iterator = iter(order)
         candidates.append([fixed[i] if i in fixed else next(iterator) for i in range(len(rows))])
     best = min(candidates, key=lambda seq: _sequence_objective(
-        seq, journey, peak_position, peak_shape, genre_strength, theme_strength))
-    best_cost = _sequence_objective(best, journey, peak_position, peak_shape, genre_strength, theme_strength)
+        seq, journey, peak_position, peak_shape, genre_strength, theme_strength,
+        position_offset, total_count))
+    best_cost = _sequence_objective(best, journey, peak_position, peak_shape, genre_strength, theme_strength,
+        position_offset, total_count)
     for _ in range(4):
         changed = False
         for i in range(len(best)):
@@ -313,7 +316,8 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
                 if j in fixed: continue
                 trial = list(best)
                 trial[i], trial[j] = trial[j], trial[i]
-                cost = _sequence_objective(trial, journey, peak_position, peak_shape, genre_strength, theme_strength)
+                cost = _sequence_objective(trial, journey, peak_position, peak_shape, genre_strength, theme_strength,
+                    position_offset, total_count)
                 if cost + 1e-9 < best_cost:
                     best, best_cost, changed = trial, cost, True
         for i in range(len(best)):
@@ -406,16 +410,21 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
             for row in scored:
                 grouped.setdefault(row.get("section_index"), []).append(row)
             result = []
+            position_offset = 0
             ordered_sections = sorted(index for index in grouped if index is not None)
             for section_index in ordered_sections:
-                result.extend(_smooth_order(
-                    grouped[section_index], "steady", peak_position, peak_shape,
+                ordered_group = _smooth_order(
+                    grouped[section_index], journey, peak_position, peak_shape,
                     genre_strength, theme_strength,
-                ))
+                    position_offset=position_offset, total_count=len(scored),
+                )
+                result.extend(ordered_group)
+                position_offset += len(ordered_group)
             if None in grouped:
                 result.extend(_smooth_order(
-                    grouped[None], "steady", peak_position, peak_shape,
+                    grouped[None], journey, peak_position, peak_shape,
                     genre_strength, theme_strength,
+                    position_offset=position_offset, total_count=len(scored),
                 ))
         else:
             # hybrid remains a backwards-compatible alias; it no longer partitions energy bands.
