@@ -1,8 +1,0 @@
-{
-  "cooldown_until": "2026-11-01T09:04:19+00:00",
-  "recorded_at": "2026-11-01T05:26:39+00:00",
-  "retry_after_seconds": 13060,
-  "reason": "QUOTA_EXCEEDED",
-  "endpoint": "GET /me/playlists?limit=50",
-  "source": "Observed Spotify HTTP 429 response in GitHub Actions run 41276951724"
-}
