@@ -13,3 +13,14 @@ playlist_manager_audit.jsonl
 data/lyrics/*.sqlite3
 data/lyrics/*.sqlite3-wal
 data/lyrics/*.sqlite3-shm
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Keep credentials, local runtime state, caches, and private/generated
+#          artifacts out of version control.
+# Scope: Rules above cover Spotify OAuth tokens, playlist-manager state/backups,
+#        Python bytecode, and the local lyrics database plus SQLite sidecars.
+# Maintenance: Add new local secrets, caches, and machine-specific runtime files
+#              here; do not ignore canonical source archives or intentional outputs.
+# Related: See .github/README.md, data/README.md, and assistant_data/README.md.
+# -----------------------------------------------------------------------------

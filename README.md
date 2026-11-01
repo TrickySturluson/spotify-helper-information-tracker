@@ -398,3 +398,8 @@ The reference library and feedback files are personal listening data. Keep the r
 
 ## File overview
 This document explains the project's purpose, setup, and navigation. Use the individual file overviews in the implementation tree for module-specific details.
+
+
+## Repository-wide file documentation
+
+For a complete map of tracked source, configuration, generated data, and machine-readable state, see [the repository file index](docs/REPOSITORY_FILE_INDEX.md). Directory-level guides in `data/`, `assistant_data/`, `.github/`, and `playback_data/` document data families without corrupting JSON or archive formats. Maintained Python modules, compatibility launchers, tests, and workflows include a file overview at the bottom.
