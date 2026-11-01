@@ -148,7 +148,11 @@ jobs:
             echo "No data changes to commit."
           else
             git commit -m "Enrich music durations and artist profiles"
-            git push
+            # Another reviewed PR may merge while this long metadata job runs.
+            # Rebase the generated-data commit onto the latest main without force-pushing.
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
 
 
