@@ -5,6 +5,12 @@ import json
 import re
 from pathlib import Path
 
+# Make package imports work when launched from a script or compatibility entry point.
+import sys
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
 DEFAULT_ROOT = Path("assistant_data/music/library")
 INDEX_NAME = "library_index.json"
 
