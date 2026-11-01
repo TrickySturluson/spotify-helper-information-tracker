@@ -41,7 +41,7 @@ def command(*parts):
 def run(label, args, env=None):
     print(f"\n=== {label} ===", flush=True)
     merged = os.environ.copy()
-    merged.update(env or {})
+    for key, value in (env or {}).items():\n        merged.setdefault(key, value)
     completed = subprocess.run(args, cwd=ROOT, env=merged, check=False)
     if completed.returncode:
         raise SystemExit(f"{label} stopped with exit code {completed.returncode}; fix the issue and rerun (checkpoints are retained).")
