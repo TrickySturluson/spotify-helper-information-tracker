@@ -338,7 +338,7 @@ Undo is a preview-first restore from the exact pre-change snapshot. It requires 
 
 ## The Library
 
-SHIT can store music metadata as individual artist, album, and recording JSON
+SHIT can store music metadata as individual artist, album, and song JSON
 records rather than requiring every consumer to load large aggregate profiles.
 The canonical layout, identity rules, migration procedure, and lazy lookup
 behavior are documented in [the Library guide](docs/PER_RECORDING_MUSIC_LIBRARY.md).
@@ -351,7 +351,7 @@ python compat/migrate_music_library.py
 ```
 
 The migration makes no provider requests and leaves aggregate JSON intact.
-The playlist sequencer prefers per-recording lookup when the library exists,
+The playlist sequencer prefers per-song lookup when the library exists,
 loading only records referenced by the playlist; missing records can still use
 the legacy track cache during the transition. Spotify track IDs and verified
 recording MBIDs take precedence over names. Ambiguous artist/title matches are
