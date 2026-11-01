@@ -54,6 +54,25 @@ class ScriptLayoutTests(unittest.TestCase):
         self.assertIn(str(ROOT / "compat"), sys.path)
 
 
+    def test_maintained_python_and_workflow_files_have_bottom_overviews(self):
+        candidates = []
+        for directory in ("scripts", "compat", "tests", ".github/workflows"):
+            base = ROOT / directory
+            if base.exists():
+                suffixes = {".py"} if directory != ".github/workflows" else {".yml", ".yaml"}
+                candidates.extend(path for path in base.rglob("*") if path.is_file() and path.suffix in suffixes)
+        for path in sorted(candidates):
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                source = path.read_text(encoding="utf-8")
+                self.assertIn("FILE OVERVIEW", source)
+                self.assertGreater(source.rfind("FILE OVERVIEW"), source.find("FILE OVERVIEW"))
+
+    def test_repository_gitignore_has_a_file_overview(self):
+        source = (ROOT / ".gitignore").read_text(encoding="utf-8")
+        self.assertIn("FILE OVERVIEW", source)
+        self.assertGreater(source.rfind("FILE OVERVIEW"), source.find("FILE OVERVIEW"))
+
+
 if __name__ == "__main__":
     unittest.main()
 
