@@ -251,7 +251,8 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
 
 
 def transition_report(left, right):
-    gap = abs(float(left["score"]) - float(right["score"])) / 100.0
+    energy_known = left.get("confidence") != "unknown" and right.get("confidence") != "unknown"
+    gap = abs(float(left["score"]) - float(right["score"])) / 100.0 if energy_known else None
     moods = sorted(set(left.get("vibe_groups") or []) & set(right.get("vibe_groups") or []))
     genres = sorted(set(left.get("genre_groups") or []) & set(right.get("genre_groups") or []))
     themes = sorted(set(left.get("theme_groups") or []) & set(right.get("theme_groups") or []))
@@ -264,7 +265,7 @@ def transition_report(left, right):
     if themes: reasons.append("shared theme: " + ", ".join(themes))
     if tempo_gap is not None:
         reasons.append("compatible tempo relationship (including half/double-time)")
-    if left.get("confidence") != "unknown" and right.get("confidence") != "unknown":
+    if energy_known:
         if gap <= 0.12: reasons.append("similar estimated energy")
         elif gap >= 0.35: reasons.append("large estimated energy change")
     if same: reasons.append("same primary artist")
@@ -278,7 +279,7 @@ def transition_report(left, right):
              "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
     return {"cost": round(cost, 4), "label": label,
             "confidence": confidence, "evidence_count": evidence_count,
-            "energy_gap": round(gap, 3),
+            "energy_gap": round(gap, 3) if gap is not None else None,
             "tempo_relationship": round(tempo_gap, 3) if tempo_gap is not None else None,
             "shared_moods": moods, "shared_genres": genres,
             "shared_themes": themes, "same_artist": same, "reasons": reasons}
@@ -320,8 +321,11 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
     total = 0.0
     for index, row in enumerate(rows):
         # Curve fit is intentionally low-weight: continuity beats a mathematically perfect arc.
-        total += 0.10 * abs(float(row["score"]) / 100 - target_energy(
-            index + position_offset, total_count or len(rows), journey, peak_position, peak_shape))
+        # Unknown scores use 50 only as a display placeholder. They must not be
+        # pulled toward or away from a journey curve as if 50 were measured data.
+        if row.get("confidence") != "unknown":
+            total += 0.10 * abs(float(row["score"]) / 100 - target_energy(
+                index + position_offset, total_count or len(rows), journey, peak_position, peak_shape))
         if index:
             previous = rows[index - 1]
             total += _transition_cost(previous, row, genre_strength, theme_strength)
