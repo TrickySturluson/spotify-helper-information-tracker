@@ -74,6 +74,27 @@ class PlaylistManagerTests(unittest.TestCase):
             manager.create(spotify, "SHIT Test", "", False)
         register.assert_called_once_with("new-playlist", "SHIT Test")
 
+    def test_request_metrics_count_endpoint_status_and_latency(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.request_metrics = {
+            "total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0
+        }
+        spotify.record_request("GET", "/playlists/ABCDEFGHIJKLMNOPQRSTUVWX/items?limit=50", 200, 12.5)
+        spotify.record_request("GET", "/playlists/ABCDEFGHIJKLMNOPQRSTUVWX/items?offset=50", 429, 8.0)
+        metrics = spotify.request_metrics
+        self.assertEqual(metrics["total_requests"], 2)
+        self.assertEqual(metrics["by_endpoint"]["GET /playlists/{id}/items"]["count"], 2)
+        self.assertEqual(metrics["by_status"], {"200": 1, "429": 1})
+        self.assertEqual(metrics["elapsed_ms"], 20.5)
+        self.assertNotIn("ABCDEFGHIJKLMNOPQRSTUVWX", str(metrics))
+        self.assertNotIn("limit=50", str(metrics))
+
+    def test_metric_endpoint_removes_query_and_redacts_spotify_ids(self):
+        endpoint = manager.Spotify.metric_endpoint(
+            "/playlists/ABCDEFGHIJKLMNOPQRSTUVWX/items?limit=50&additional_types=track"
+        )
+        self.assertEqual(endpoint, "/playlists/{id}/items")
+
     def test_playlist_items_use_current_api_page_limit(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.call = lambda method, path: {"items": [], "next": None, "requested": path}
