@@ -535,6 +535,16 @@ def confidence_summary(scored):
             for label in ("high", "medium", "low", "unknown")}
 
 
+def alternative_preview_message(path, summary):
+    """Format the comparison-plan summary without mixing output and string building."""
+    return (
+        f"Alternative preview: {path} | gentle: {summary['gentle']} "
+        f"| moderate: {summary['moderate']} "
+        f"| potential jumps: {summary['potential_jumps']} "
+        f"| uncertain: {summary.get('uncertain', 0)}"
+    )
+
+
 def make_plan(snapshot, scored):
     items = snapshot["items"]
     current = [row.get("uri") for row in items]
@@ -606,7 +616,7 @@ def main():
                 variant_path = args.output.with_name(f"{args.output.stem}-peak{peak}{args.output.suffix}")
                 variant_path.write_text(json.dumps(make_plan(snap, variant), indent=2) + "\n", encoding="utf-8")
                 alt_summary = transition_summary(variant)
-                print("Alternative preview:", variant_path) + " | gentle: " + str(alt_summary["gentle"]) + " | moderate: " + str(alt_summary["moderate"]) + " | potential jumps: " + str(alt_summary["potential_jumps"])
+                print(alternative_preview_message(variant_path, alt_summary))
         print("Plan written to", args.output)
         print("Review the plan, then run: python spotify_playlist_manager.py apply", args.output)
         print("The manager will show its normal preview and require explicit APPLY confirmation.")
@@ -620,10 +630,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Preview energy-aware sequencing plans for Spotify playlists. This tool is deliberately preview-only. It reads a playlist through the existing locked-by-default manager and writes a change plan for spotify_playlist_manager.py to preview and apply. It never edits Spotify directly.
-# Location: Maintained implementation in scripts/spotify/spotify_playlist_sequencer.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_playlist_sequencer.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Preview energy-aware Spotify playlist sequences and write reorder plans for review. The sequencer never edits Spotify directly; the locked-by-default playlist manager performs the separate preview and confirmation-gated apply.
+# Inputs: Reads the selected Spotify playlist plus artist, track-tag, lyric-theme, and acoustic-profile caches under assistant_data/. Missing metadata remains unknown rather than being treated as a measured neutral value.
+# Outputs: Writes a JSON reorder plan; --compare also writes alternative peak-position plans and prints their transition summaries.
+# Run: python compat/spotify_playlist_sequencer.py PLAYLIST_ID [--journey rising|falling|wave|steady] [--peak-position 85] [--compare].
+# Safety: Refuses incomplete playlist membership and invalid or ambiguous anchors. Apply plans only through spotify_playlist_manager.py after reviewing its preview.
+# Related: tests/test_spotify_playlist_sequencer.py; docs/TRANSITION_SCORING.md; scripts/spotify/spotify_playlist_manager.py.
 # -----------------------------------------------------------------------------
