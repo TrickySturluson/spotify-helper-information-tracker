@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "id": "album:01632cb9b68c6acda89d",
+  "artist_id": "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48",
+  "artist": "Candy Claws",
+  "album": "Ceres & Calypso in the Deep Time",
+  "identity": {
+    "spotify_album_id": "5KkGAZrad4N4rc5FriwgzU",
+    "release_mbid": null,
+    "identity_quality": "contextual_album_id_with_spotify_corroboration",
+    "release_scope": "standard 12-track album; distinct from 10th-anniversary expanded reissue"
+  },
+  "evidence": {
+    "identity_verified": true,
+    "lastfm_tracklist": [
+      {
+        "position": 1,
+        "title": "Into the Deep Time (One Sun)",
+        "artist": "Candy Claws",
+        "duration_seconds": 182,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 2,
+        "title": "White Seal (Shell & Spine)",
+        "artist": "Candy Claws",
+        "duration_seconds": 224,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 3,
+        "title": "Fell in Love (At the Water)",
+        "artist": "Candy Claws",
+        "duration_seconds": 241,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 4,
+        "title": "Pangaea Girls (Magic Feeling)",
+        "artist": "Candy Claws",
+        "duration_seconds": 191,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 5,
+        "title": "New Forest (Five Heads of the Sun)",
+        "artist": "Candy Claws",
+        "duration_seconds": 204,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 6,
+        "title": "Transitional Bird (Clever Girl)",
+        "artist": "Candy Claws",
+        "duration_seconds": 266,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 7,
+        "title": "Charade (Fern Prairie)",
+        "artist": "Candy Claws",
+        "duration_seconds": 200,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 8,
+        "title": "Fallen Tree Bridge (Brave Rainbow Rider)",
+        "artist": "Candy Claws",
+        "duration_seconds": 210,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 9,
+        "title": "Birth of the Flower (Seagreen)",
+        "artist": "Candy Claws",
+        "duration_seconds": 227,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 10,
+        "title": "Illusion (Fern Lake)",
+        "artist": "Candy Claws",
+        "duration_seconds": 215,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 11,
+        "title": "Night Ela (Mystic Thing)",
+        "artist": "Candy Claws",
+        "duration_seconds": 304,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      },
+      {
+        "position": 12,
+        "title": "Where I Found You (One Star)",
+        "artist": "Candy Claws",
+        "duration_seconds": 187,
+        "mbid": null,
+        "source": "Last.fm album tracklist",
+        "disc_number": 1,
+        "recording_identity_verified": false
+      }
+    ],
+    "lastfm_tracklist_count": 12,
+    "lastfm_summary": "A 2013 Candy Claws concept album framed around Ceres, a seal-like creature, and Calypso travelling through deep time; lyrics are credited to poet Jenn Morea.",
+    "lastfm_summary_published": null,
+    "lastfm_url": "https://www.last.fm/music/Candy%20Claws/Ceres%20%26%20Calypso%20in%20the%20Deep%20Time",
+    "lastfm_album_mbid": null,
+    "lastfm_artwork_url": null,
+    "lastfm_tags": [
+      {
+        "tag": "shoegaze",
+        "source": "Last.fm community tags"
+      },
+      {
+        "tag": "dream pop",
+        "source": "Last.fm community tags"
+      },
+      {
+        "tag": "neo-psychedelia",
+        "source": "Last.fm community tags"
+      },
+      {
+        "tag": "psychedelic pop",
+        "source": "Last.fm community tags"
+      }
+    ],
+    "lastfm_info_tags": [
+      {
+        "tag": "shoegaze",
+        "source": "Last.fm community tags"
+      },
+      {
+        "tag": "dream pop",
+        "source": "Last.fm community tags"
+      },
+      {
+        "tag": "neo-psychedelia",
+        "source": "Last.fm community tags"
+      },
+      {
+        "tag": "psychedelic pop",
+        "source": "Last.fm community tags"
+      }
+    ],
+    "lastfm_info_source": "Last.fm album page / tracklist cross-checked against artist Bandcamp",
+    "lastfm_info_identity_verified": true,
+    "release_metadata": {
+      "release_date": "2013-06-25",
+      "track_count": 12,
+      "total_duration_seconds": 2651,
+      "spotify_album_id": "5KkGAZrad4N4rc5FriwgzU",
+      "artwork_reference": "Spotify album ID in saved playlist snapshots",
+      "source_url": "https://candyclaws.bandcamp.com/album/ceres-calypso-in-the-deep-time"
+    }
+  },
+  "confidence": {
+    "metadata": {
+      "tracklist": {
+        "confidence": "medium",
+        "source_families": [
+          "Last.fm",
+          "artist Bandcamp"
+        ],
+        "reason": "Ordered tracklist cross-checked; recording IDs not inferred from title alone."
+      },
+      "summary": {
+        "confidence": "low",
+        "source_families": [
+          "Last.fm"
+        ],
+        "reason": "Single attributed descriptive source."
+      },
+      "tags": {
+        "confidence": "low",
+        "source_families": [
+          "Last.fm"
+        ],
+        "reason": "Community tags are descriptive, not acoustic measurements."
+      },
+      "release_date": {
+        "confidence": "medium",
+        "source_families": [
+          "Last.fm",
+          "artist Bandcamp"
+        ]
+      }
+    },
+    "identity": {
+      "confidence": "high",
+      "source_families": [
+        "Spotify playlist snapshots",
+        "Last.fm"
+      ],
+      "reason": "Exact artist/title match and Spotify album ID corroboration; no release MBID asserted."
+    }
+  },
+  "song_ids": [
+    "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+    "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
+    "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+    "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573"
+  ],
+  "sources": {
+    "spotify_playlist_snapshots": [
+      "6ZsqAs5OnRMVudhfB2QzTx",
+      "3Py0bGiIJQHtirIbhwLpdG",
+      "7ktZCiqIBwsOPWShhqLzRi",
+      "6zATzTjlOTxtMLM1cC9MQX"
+    ],
+    "lastfm_album_info": "https://www.last.fm/music/Candy%20Claws/Ceres%20%26%20Calypso%20in%20the%20Deep%20Time",
+    "bandcamp": "https://candyclaws.bandcamp.com/album/ceres-calypso-in-the-deep-time"
+  },
+  "notes": [
+    "Album-level tags and description are contextual evidence, not track-level acoustic evidence.",
+    "Tracklist membership does not by itself prove recording identity. Only song records already matched by recording MBID are linked here.",
+    "Durations are approximate display values; provider/release editions can differ by seconds.",
+    "The album key follows MusicLibrary.album_key() (normalized artist + album); Spotify album ID is retained as corroborating source metadata."
+  ]
+}
