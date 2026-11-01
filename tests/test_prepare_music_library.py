@@ -22,3 +22,19 @@ def test_enrichment_plan_migrates_first_then_runs_bounded_sources():
     assert SAFE_LIMITS["ACOUSTICBRAINZ_MAX_BATCHES"] == "20"
     assert SAFE_LIMITS["MUSIC_PROFILE_LOOKUPS_PER_RUN"] == "100"
     assert SAFE_LIMITS["TRACK_PROFILE_LOOKUPS_PER_RUN"] == "200"
+
+
+def test_spotify_refresh_can_be_skipped_without_changing_enrichment_order():
+    labels = [row[0] for row in build_plan(skip_spotify_refresh=True)]
+    assert "Refresh read-only Spotify playlist snapshots" not in labels
+    assert labels[0] == "Resolve exact MusicBrainz recording IDs"
+    assert labels[-1] == "Merge every enrichment export and validate the library"
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression tests for canonical-library sync and staged enrichment.
+# Scope: Source ordering, safe provider limits, and optional Spotify refresh.
+# Run: python -m unittest tests.test_prepare_music_library -v
+# Related: scripts/music/prepare_music_library.py and sync_music_library.py.
+# -----------------------------------------------------------------------------
