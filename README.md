@@ -160,6 +160,19 @@ The manager produces its normal preview, checks playlist lock/ownership and snap
 
 
 
+## Implementation layout
+
+The executable implementation is grouped under `scripts/` by responsibility:
+
+- `scripts/analytics/` — archive analytics, listening-time builders, and integrity auditing.
+- `scripts/music/` — audio analysis, music metadata enrichment, lyric metadata, and mood inference.
+- `scripts/spotify/` — playlist intelligence, discovery, sequencing, management, playback tracking, and reference-library tooling.
+- `scripts/lastfm/` — Last.fm archive importing.
+
+Root-level Python files are deliberately retained as thin compatibility entry points. Existing commands, test imports, and GitHub Actions paths therefore continue to work unchanged while the maintained implementation lives in the organized packages. Add new implementation code under `scripts/`; do not duplicate logic in the root shims.
+
+See [scripts/README.md](scripts/README.md) for the layout and migration notes.
+
 ## Project feature map
 
 | Area | Important features and subfeatures |
