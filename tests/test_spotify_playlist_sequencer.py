@@ -53,6 +53,24 @@ class PlaylistSequencerTests(unittest.TestCase):
             "confidence": "medium", "acoustic_confidence": "medium", "score": 80
         }))
 
+
+    def test_evidence_coverage_summary_reports_sources_and_disagreement(self):
+        rows = [
+            {"confidence": "high", "acoustic_confidence": "high",
+             "semantic_confidence": "medium", "tempo_bpm": 120,
+             "tempo_source": "Essentia", "tempo_agreement": True},
+            {"confidence": "low", "acoustic_confidence": "low",
+             "semantic_confidence": "high", "tempo_bpm": 80,
+             "tempo_source": "AcousticBrainz", "tempo_agreement": False},
+            {"confidence": "unknown", "acoustic_confidence": "unknown",
+             "semantic_confidence": "unknown"},
+        ]
+        summary = sequencer.evidence_coverage_summary(rows)
+        self.assertEqual(summary["tempo_sources"], {"AcousticBrainz": 1, "Essentia": 1})
+        self.assertEqual(summary["tempo_agreements"], 1)
+        self.assertEqual(summary["tempo_disagreements"], 1)
+        self.assertEqual(summary["semantic_confidence"]["high"], 1)
+
     def test_audio_profile_index_preserves_multiple_provider_records(self):
         rows = {
             "ab": {"artist": "A", "track": "T", "source": "AcousticBrainz low-level", "tempo_bpm": 120},
@@ -489,7 +507,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         audio_data = load_object(audio_path) if audio_path.exists() else {}
         artist_index = sequencer.index_artists(artists)
         track_index = sequencer.index_tracks(tracks)
-        audio_index = sequencer.index_tracks(audio_data.get("tracks", audio_data))
+        audio_index = sequencer.index_audio_profiles(audio_data.get("tracks", audio_data))
 
         started = perf_counter()
         ordered = sequencer.sequence_tracks(
