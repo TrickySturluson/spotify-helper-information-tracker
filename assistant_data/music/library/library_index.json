@@ -583,7 +583,7 @@
       "artist": "Candy Claws",
       "track": "Pangaea Girls (Magic Feeling)",
       "album": "Ceres & Calypso in the Deep Time",
-      "album_id": "album:3858c5d33d8c2159eb3d",
+      "album_id": "album:01632cb9b68c6acda89d",
       "track_number": 4,
       "disc_number": 1
     },
@@ -592,7 +592,7 @@
       "artist": "Candy Claws",
       "track": "Night Ela (Mystic Thing)",
       "album": "Ceres & Calypso in the Deep Time",
-      "album_id": "album:3858c5d33d8c2159eb3d",
+      "album_id": "album:01632cb9b68c6acda89d",
       "track_number": 11,
       "disc_number": 1
     },
@@ -601,7 +601,7 @@
       "artist": "Candy Claws",
       "track": "Fell in Love (At the Water)",
       "album": "Ceres & Calypso in the Deep Time",
-      "album_id": "album:3858c5d33d8c2159eb3d",
+      "album_id": "album:01632cb9b68c6acda89d",
       "track_number": 3,
       "disc_number": 1
     },
@@ -610,7 +610,7 @@
       "artist": "Candy Claws",
       "track": "New Forest (Five Heads of the Sun)",
       "album": "Ceres & Calypso in the Deep Time",
-      "album_id": "album:3858c5d33d8c2159eb3d",
+      "album_id": "album:01632cb9b68c6acda89d",
       "track_number": 5,
       "disc_number": 1
     }
@@ -1215,12 +1215,8 @@
     }
   },
   "albums": {
-    "album:3858c5d33d8c2159eb3d": {
-      "path": "albums/al/album-3858c5d33d8c2159eb3d/album.json",
-      "artist_id": "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48",
-      "artist": "Candy Claws",
-      "album": "Ceres & Calypso in the Deep Time",
-      "spotify_album_id": "5KkGAZrad4N4rc5FriwgzU"
+    "album:01632cb9b68c6acda89d": {
+      "path": "albums/al/album-01632cb9b68c6acda89d/album.json"
     }
   },
   "migration": {
