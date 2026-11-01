@@ -10,7 +10,7 @@ INDEX_NAME = "library_index.json"
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
 def digest(value, length=20):
@@ -42,7 +42,7 @@ def album_key(row, aid):
     album = row.get("album") or row.get("album_name")
     if not album:
         return None
-    return "album:" + digest(aid + "\\0" + norm(album))
+    return "album:" + digest(aid + "\0" + norm(album))
 
 
 def recording_key(row, aid, bid):
@@ -59,13 +59,13 @@ def recording_key(row, aid, bid):
     if sid:
         return "spotify:" + sid.casefold()
     duration = row.get("duration_ms") or row.get("duration") or ""
-    return "fallback:" + digest((aid or "") + "\\0" + (bid or "") + "\\0" + norm(row.get("track") or row.get("name")) + "\\0" + str(duration))
+    return "fallback:" + digest((aid or "") + "\0" + (bid or "") + "\0" + norm(row.get("track") or row.get("name")) + "\0" + str(duration))
 
 
 def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\\n", encoding="utf-8")
+    tmp.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
     tmp.replace(path)
 
 
@@ -99,10 +99,10 @@ class MusicLibrary:
         if key is None and recording_mbid:
             key = self.index.get("recording_mbids", {}).get(str(recording_mbid).casefold())
         if key is None and artist and track:
-            alias = norm(artist) + "\\0" + norm(track)
+            alias = norm(artist) + "\0" + norm(track)
             candidates = self.index.get("name_candidates", {}).get(alias)
             if candidates is None:  # Read indexes written by the early prototype.
-                candidates = self.index.get("name_candidates", {}).get(norm(artist) + "\\\\0" + norm(track), [])
+                candidates = self.index.get("name_candidates", {}).get(norm(artist) + "\\0" + norm(track), [])
             if len(candidates) == 1:
                 key = candidates[0]
             elif album:
@@ -154,7 +154,7 @@ class MusicLibrary:
             aid = artist_key(row)
             bid = album_key(row, aid)
             sid = recording_key(row, aid, bid)
-            alias = norm(row["artist"]) + "\\0" + norm(title)
+            alias = norm(row["artist"]) + "\0" + norm(title)
 
             artist_source = artists.get(aid) or artists.get(norm(row["artist"])) or {}
             artist_records.setdefault(aid, {
@@ -260,7 +260,7 @@ class MusicLibrary:
             if mbid:
                 index["recording_mbids"][str(mbid).casefold()] = sid
             index["name_candidates"].setdefault(
-                norm(identity["artist"]) + "\\0" + norm(identity["title"]), []
+                norm(identity["artist"]) + "\0" + norm(identity["title"]), []
             ).append(sid)
         write_json(self.index_path, index)
         self.index = index
