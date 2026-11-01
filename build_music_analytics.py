@@ -79,7 +79,7 @@ def load_lyric_analyses():
     index = {}
     for row in rows:
         analysis = json.loads(row["themes_json"] or "{}")
-        index[(row["normalized_title"], row["normalized_artist"])] = {
+        index[(track_norm(row["normalized_title"]), track_norm(row["normalized_artist"]))] = {
             "schema_version": analysis.get("schema_version", 1),
             "themes": analysis.get("themes", {}),
             "source_count": analysis.get("source_count", 1),
