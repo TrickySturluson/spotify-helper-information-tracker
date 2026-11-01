@@ -713,6 +713,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             for item in snapshot["items"]
         ]
         artist_profiles_with_moods = sum(bool(row.get("moods")) for row in playlist_artist_rows)
+        artist_profiles_with_tags = sum(bool(row.get("tags")) for row in playlist_artist_rows)
         artist_moods_mapped = sum(
             any(sequencer.mood_inference._tag_moods(tag) for tag in (row.get("moods") or []))
             for row in playlist_artist_rows
@@ -720,6 +721,11 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         artist_mood_examples = sorted({
             str(tag) for row in playlist_artist_rows for tag in (row.get("moods") or [])
         }, key=str.casefold)[:12]
+        artist_tag_examples = sorted({
+            str(tag.get("tag", "") if isinstance(tag, dict) else tag)
+            for row in playlist_artist_rows for tag in (row.get("tags") or [])
+            if tag
+        }, key=str.casefold)[:24]
         playlist_track_rows = [
             track_index.get((sequencer.norm((item.get("artists") or [""])[0]), sequencer.norm(item.get("name"))), {})
             for item in snapshot["items"]
@@ -753,8 +759,9 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             f"reorder_operations={len(operations)}; confidence={confidence}; "
             f"mood_confidence={mood_confidence}; mood_sources={coverage['mood_source_coverage']}; "
             f"artist_profiles_with_moods={artist_profiles_with_moods}; "
+            f"artist_profiles_with_tags={artist_profiles_with_tags}; "
             f"artist_moods_mapped={artist_moods_mapped}; artist_mood_examples={artist_mood_examples}; "
-            f"track_tag_coverage={track_tag_coverage}; "
+            f"artist_tag_examples={artist_tag_examples}; track_tag_coverage={track_tag_coverage}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, provisional:{summary['provisional']}, "
             f"uncertain:{summary['uncertain']}, "
