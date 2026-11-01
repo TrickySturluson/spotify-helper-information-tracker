@@ -107,7 +107,7 @@ class MusicLibrary:
             rid = recording_key(row, aid, bid)
             name_key = norm(row["artist"]) + "\\0" + norm(row["track"])
             artist_source = artists.get(aid) or artists.get(norm(row["artist"])) or {}
-            album_source = albums.get((norm(row["artist"]), norm(row.get("album") or row.get("album_name"))), {})
+            album_source = album_by_name.get((norm(row["artist"]), norm(row.get("album") or row.get("album_name"))), {})
             artist_records.setdefault(aid, {"schema_version": 1, "id": aid, "artist": row["artist"], "identity": {"artist_mbid": row.get("artist_mbid"), "identity_quality": "verified" if aid.startswith("mbid:") else "name_fallback"}, "evidence": artist_source, "album_ids": []})
             artist_records[aid]["album_ids"] = sorted(set(artist_records[aid]["album_ids"] + [bid]))
             album_records.setdefault(bid, {"schema_version": 1, "id": bid, "artist_id": aid, "artist": row["artist"], "album": row.get("album") or row.get("album_name") or "", "identity": {"album_mbid": row.get("album_mbid") or row.get("release_mbid"), "identity_quality": "verified" if bid.startswith("mbid:") else "contextual_fallback"}, "evidence": album_source if isinstance(album_source, dict) else {}, "recording_ids": []})
