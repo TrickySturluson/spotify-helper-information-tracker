@@ -137,6 +137,27 @@ class PlaylistIntelligenceTests(unittest.TestCase):
             self.assertEqual(config["weights"]["similarity"], 0.7)
             self.assertEqual(config["weights"]["familiarity"], 0.30)
 
+    def test_playlist_profile_includes_local_lyric_theme_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            track_path = Path(directory) / "track_profiles.json"
+            recommendation_path = Path(directory) / "track_features.json"
+            track_path.write_text("{}", encoding="utf-8")
+            recommendation_path.write_text(
+                '[{"artist":"The Example","track":"Night Song","lyric_analysis":'
+                '{"themes":{"vampire":{"count":2},"nightlife_clubbing":{"count":3}}}}]',
+                encoding="utf-8",
+            )
+            tracks = intelligence.track_metadata_index(track_path, recommendation_path)
+            profile = intelligence.build_playlist_profile(
+                [{"name": "Night Song", "artists": ["The Example"]}],
+                artist_profiles={}, track_profiles=tracks,
+            )
+            self.assertEqual(profile["lyric_themes"], [
+                {"tag": "nightlife_clubbing", "track_count": 1},
+                {"tag": "vampire", "track_count": 1},
+            ])
+            self.assertEqual(profile["track_metadata"]["lyric_analyzed_tracks"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
