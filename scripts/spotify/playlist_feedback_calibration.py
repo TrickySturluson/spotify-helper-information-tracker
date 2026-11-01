@@ -272,6 +272,28 @@ def calibration_report(path: Path = DEFAULT_PATH, *, min_bin_samples: int = 8) -
                 "status": ("eligible_for_review" if len(group) >= min_bin_samples
                            else "provisional_insufficient_samples"),
             })
+    def summarize_groups(field: str) -> list[dict]:
+        output = []
+        keys = sorted({str(row[field]) for row in rows})
+        for key in keys:
+            group = [row for row in rows if str(row[field]) == key]
+            weight_sum = sum(row["weight"] for row in group)
+            accepted = (sum(row["accepted"] * row["weight"] for row in group) / weight_sum
+                        if weight_sum else None)
+            predicted = (sum((row["score"] / 100) * row["weight"] for row in group) / weight_sum
+                         if weight_sum else None)
+            output.append({
+                field: key,
+                "sample_count": len(group),
+                "weighted_acceptance": round(accepted, 4) if accepted is not None else None,
+                "weighted_mean_prediction": round(predicted, 4) if predicted is not None else None,
+                "weighted_absolute_error": round(
+                    sum(abs((row["score"] / 100) - row["accepted"]) * row["weight"]
+                            for row in group) / weight_sum, 4
+                ) if weight_sum else None,
+            })
+        return output
+
     scored = [r for r in rows if not r["holdout"]]
     total_weight = sum(r["weight"] for r in scored)
     mae = (sum(abs(r["score"] / 100 - r["accepted"]) * r["weight"] for r in scored) / total_weight
@@ -284,6 +306,9 @@ def calibration_report(path: Path = DEFAULT_PATH, *, min_bin_samples: int = 8) -
         "training_mean_absolute_error": round(mae, 4) if mae is not None else None,
         "minimum_bin_samples": min_bin_samples,
         "bins": bins,
+        "by_playlist": summarize_groups("playlist_id"),
+        "by_model_version": summarize_groups("model_version"),
+        "by_confidence": summarize_groups("confidence"),
         "calibration_status": (
             "provisional" if len(scored) < min_bin_samples * 2
             else "reviewable_not_automatically_applied"

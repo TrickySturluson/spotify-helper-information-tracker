@@ -105,6 +105,18 @@ class PlaylistFeedbackCalibrationTests(unittest.TestCase):
         prediction["exposure_observations"] = [{"spotify_plays": 5, "lastfm_scrobbles": None}]
         self.assertEqual(calibration._removal_feedback_weight(prediction), 0.90)
 
+    def test_report_keeps_playlist_and_model_summaries_separate(self):
+        first = self.prediction(version="fit-v1")
+        calibration.record_feedback(first["prediction_id"], "accepted", "explicit_whitelist", path=self.path)
+        second = calibration.record_prediction(
+            "playlist-2", "spotify:track:def", 25, "low", model_version="fit-v2",
+            path=self.path, predicted_at="2026-11-01T00:00:01Z",
+        )
+        calibration.record_feedback(second["prediction_id"], "rejected", "explicit_blacklist", path=self.path)
+        report = calibration.calibration_report(self.path)
+        self.assertEqual({row["playlist_id"] for row in report["by_playlist"]}, {"playlist-1", "playlist-2"})
+        self.assertEqual({row["model_version"] for row in report["by_model_version"]}, {"fit-v1", "fit-v2"})
+
     def test_report_has_independent_holdout_and_no_automatic_weight_updates(self):
         row = self.prediction()
         calibration.record_feedback(row["prediction_id"], "accepted", "explicit_whitelist", path=self.path)
