@@ -696,6 +696,8 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         operations = sequencer.build_reorder_operations(original_uris, ordered_uris)
         summary = sequencer.transition_summary(ordered)
         confidence = sequencer.confidence_summary(ordered)
+        coverage = sequencer.evidence_coverage_summary(ordered)
+        mood_confidence = coverage["mood_confidence"]
         changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
         elapsed_seconds = perf_counter() - started
         previous_artist = None
@@ -709,6 +711,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         self.assertEqual(len(ordered), len(snapshot["items"]))
         self.assertCountEqual(ordered_uris, original_uris)
         self.assertEqual(sum(confidence.values()), len(ordered))
+        self.assertEqual(sum(mood_confidence.values()), len(ordered))
         self.assertLessEqual(longest_run, 2, "real playlist preview should avoid long artist runs")
         print(
             "SEQUENCER REAL-DATA EVALUATION: "
@@ -716,6 +719,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             f"tracks={len(ordered)}; elapsed_seconds={elapsed_seconds:.3f}; moved_positions={changed_positions}; "
             f"longest_artist_run={longest_run}; "
             f"reorder_operations={len(operations)}; confidence={confidence}; "
+            f"mood_confidence={mood_confidence}; mood_sources={coverage['mood_source_coverage']}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, provisional:{summary['provisional']}, "
             f"uncertain:{summary['uncertain']}, "
