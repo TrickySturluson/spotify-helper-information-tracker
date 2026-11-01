@@ -345,7 +345,8 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/build_music_profiles.py` — Maintained implementation module for build music profiles. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_track_profiles.py` — Maintained implementation module for build track profiles. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/enrich_acousticbrainz.py` — Maintained implementation module for multi-submission AcousticBrainz enrichment.
-- `scripts/music/enrich_discogs.py` — Optional exact-match Discogs release-context enrichment. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/enrich_discogs.py` — Optional exact-match Discogs release-context enrichment.
+- `scripts/music/enrich_musicbrainz_recording_ids.py` — ISRC-first, exact-match MusicBrainz recording identity resolver. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/enrich_getsongbpm.py` — Maintained implementation module for enrich getsongbpm. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/enrich_musicbrainz_durations.py` — Maintained implementation module for enrich musicbrainz durations. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/enrich_musicbrainz_recording_ids.py` — Maintained implementation module for enrich musicbrainz recording ids. See its bottom FILE OVERVIEW for detailed behavior.
