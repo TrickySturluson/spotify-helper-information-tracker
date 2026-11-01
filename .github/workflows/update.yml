@@ -22,42 +22,42 @@ jobs:
           python-version: "3.12"
 
       - name: Run unit tests
-        run: python -m unittest discover -s tests -v
+        run: python -m unittest discover -s tests -t . -v
 
       - name: Update Last.fm history
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: python update_lastfm.py
+        run: python compat/update_lastfm.py
 
       - name: Enrich cached track metadata
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_METADATA_LOOKUPS_PER_RUN: 120
-        run: python build_music_metadata.py
+        run: python compat/build_music_metadata.py
 
       - name: Enrich artist genre, mood and theme profiles
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_PROFILE_LOOKUPS_PER_RUN: 120
-        run: python build_music_profiles.py
+        run: python compat/build_music_profiles.py
 
       - name: Build existing statistics
-        run: python build_stats.py
+        run: python compat/build_stats.py
 
       - name: Build assistant-friendly analytics
-        run: python build_assistant_data.py
+        run: python compat/build_assistant_data.py
 
       - name: Build music duration trends and recommendation features
-        run: python build_music_analytics.py
+        run: python compat/build_music_analytics.py
 
       - name: Build advanced listening analytics
-        run: python build_advanced_analytics.py
+        run: python compat/build_advanced_analytics.py
 
       - name: Publish complete-history and verified listening-time estimates
-        run: python build_listening_time_summary.py
+        run: python compat/build_listening_time_summary.py
 
       - name: Build measured Spotify playback analytics
-        run: python build_playback_analytics.py
+        run: python compat/build_playback_analytics.py
 
       - name: Validate generated data
         run: |

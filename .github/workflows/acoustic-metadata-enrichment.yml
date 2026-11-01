@@ -4,8 +4,8 @@ on:
   push:
     paths:
       - ".github/workflows/acoustic-metadata-enrichment.yml"
-      - "enrich_acousticbrainz.py"
-      - "enrich_musicbrainz_recording_ids.py"
+      - "compat/enrich_acousticbrainz.py"
+      - "compat/enrich_musicbrainz_recording_ids.py"
   workflow_dispatch:
     inputs:
       max_batches:
@@ -34,16 +34,16 @@ jobs:
       - name: Resolve missing recording IDs (strict exact matches)
         env:
           MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "1000"
-        run: python enrich_musicbrainz_recording_ids.py
+        run: python compat/enrich_musicbrainz_recording_ids.py
       - name: Fetch AcousticBrainz metadata
         env:
           ACOUSTICBRAINZ_MAX_BATCHES: ${{ github.event.inputs.max_batches || '100' }}
-        run: python enrich_acousticbrainz.py
+        run: python compat/enrich_acousticbrainz.py
       - name: Fetch GetSongBPM fallback metadata (optional)
         env:
           GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
           GETSONGBPM_LOOKUPS_PER_RUN: "300"
-        run: python enrich_getsongbpm.py
+        run: python compat/enrich_getsongbpm.py
       - name: Commit updated audio profiles
         run: |
           if git diff --quiet -- assistant_data/music/audio_profiles.json assistant_data/music/artists/ assistant_data/music/getsongbpm_lookup_state.json; then

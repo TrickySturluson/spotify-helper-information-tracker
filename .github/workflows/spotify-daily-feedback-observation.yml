@@ -24,8 +24,8 @@ jobs:
           python-version: "3.11"
       - name: Compile and test
         run: |
-          python -m py_compile spotify_playlist_manager.py spotify_daily_feedback.py
-          python -m unittest discover -s tests -v
+          python -m py_compile compat/spotify_playlist_manager.py compat/spotify_daily_feedback.py
+          python -m unittest discover -s tests -t . -v
       - name: Validate Spotify credentials
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
@@ -49,9 +49,9 @@ jobs:
               "expires_in": 0,
           })
           PY
-          python spotify_daily_feedback.py observe
+          python compat/spotify_daily_feedback.py observe
       - name: Audit refreshed project data
-        run: python audit_project.py
+        run: python compat/audit_project.py
       - name: Persist feedback observations
         run: |
           git config user.name "github-actions[bot]"

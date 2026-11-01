@@ -27,13 +27,13 @@ python -m pip install -r requirements-audio-analysis.txt
 Name files `Artist - Track.ext`, then run:
 
 ```bash
-python audio_analysis.py ./audio_inbox
+python compat/audio_analysis.py ./audio_inbox
 ```
 
 Or analyze one file:
 
 ```bash
-python audio_analysis.py "./audio_inbox/Messer Chups - Zombie Twist.flac"
+python compat/audio_analysis.py "./audio_inbox/Messer Chups - Zombie Twist.flac"
 ```
 
 Output defaults to `assistant_data/music/audio_profiles.json`. Existing profiles are
@@ -43,7 +43,7 @@ or `--output path/to/file.json` to select another destination.
 
 ## Playlist sorter integration
 
-`spotify_playlist_sequencer.py` loads this profile file automatically. Measured BPM
+`compat/spotify_playlist_sequencer.py` loads this profile file automatically. Measured BPM
 and integrated LUFS can contribute to the energy estimate; loudness range and
 dynamic complexity are reported as additional evidence. Spotify-provided features,
 when present in an item export, take precedence over locally measured values.

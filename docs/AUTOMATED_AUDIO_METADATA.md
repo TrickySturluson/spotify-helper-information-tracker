@@ -8,7 +8,7 @@ metadata shards.
 ## Run
 
 ```bash
-python enrich_acousticbrainz.py
+python compat/enrich_acousticbrainz.py
 ```
 
 The API accepts up to 25 recording MBIDs per request. The script reads all

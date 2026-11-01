@@ -3,11 +3,11 @@
 SHIT's lyrics subsystem is an opt-in research aid for song discovery and recommendation quality. Run it locally:
 
 ```bash
-python lyrics_library.py analyze "Song Title" "Artist Name" --album "Album" --duration 210
-python lyrics_library.py lookup --title "Song Title"
-python lyrics_library.py lookup --phrase "a remembered phrase of five or more words"
-python lyrics_library.py recent
-python lyrics_library.py export
+python compat/lyrics_library.py analyze "Song Title" "Artist Name" --album "Album" --duration 210
+python compat/lyrics_library.py lookup --title "Song Title"
+python compat/lyrics_library.py lookup --phrase "a remembered phrase of five or more words"
+python compat/lyrics_library.py recent
+python compat/lyrics_library.py export
 ```
 
 The default database is `data/lyrics/library.sqlite3`. It is local runtime data and should not be committed. Each successful `analyze` command also refreshes `assistant_data/recommendations/lyric_features.json`, a compact export of derived theme metadata that can be committed for use by cloud workflows. The export deliberately excludes full lyric text and phrase fingerprints. The database contains track identity, provider links/check status, theme evidence, analysis confidence, and one-way five-word phrase fingerprints. It deliberately does **not** retain full copyrighted lyrics. Phrase fingerprints support approximate local phrase-to-song matching without storing a copy of the lyrics; exact short fragments under five words are not indexed.
@@ -61,8 +61,8 @@ The database supports searching by title, artist, remembered phrase, and recent 
 
 ## Recommendation feature integration
 
-`python build_music_analytics.py` rebuilds recommendation features and automatically merges matching analyses from the committed `lyric_features.json` export and, when present, the local SQLite database into each track's `lyric_analysis` field. Local records take precedence. It also reports the number of enriched tracks in the recommendation manifest. The standalone `enrich_recommendation_lyrics.py` remains available for rebuilding the join after the feature file has already been generated.
+`python compat/build_music_analytics.py` rebuilds recommendation features and automatically merges matching analyses from the committed `lyric_features.json` export and, when present, the local SQLite database into each track's `lyric_analysis` field. Local records take precedence. It also reports the number of enriched tracks in the recommendation manifest. The standalone `compat/enrich_recommendation_lyrics.py` remains available for rebuilding the join after the feature file has already been generated.
 
-The SQLite database is intentionally local and git-ignored. The compact `assistant_data/recommendations/lyric_features.json` export contains only track identity and derived theme metadata; it contains no full lyric text or phrase fingerprints. Commit that export when you want the same analyzed themes available to GitHub Actions and other SHIT environments. Both `build_music_analytics.py` and playlist discovery read the export, and local SQLite records take precedence on the machine where they exist. The canonical Last.fm archive and Spotify reference data are not modified.
+The SQLite database is intentionally local and git-ignored. The compact `assistant_data/recommendations/lyric_features.json` export contains only track identity and derived theme metadata; it contains no full lyric text or phrase fingerprints. Commit that export when you want the same analyzed themes available to GitHub Actions and other SHIT environments. Both `compat/build_music_analytics.py` and playlist discovery read the export, and local SQLite records take precedence on the machine where they exist. The canonical Last.fm archive and Spotify reference data are not modified.
 
 Playlist discovery also consults the lyric index. When a candidate and the current playlist both have lyric analyses, shared themes provide a small capped ranking bonus (up to 0.06) and an explicit explanation in the recommendation. Last.fm artist similarity remains the dominant signal; unindexed candidates receive no lyric bonus, and missing lyric coverage is never treated as negative evidence. Playlist profiles expose their analyzed lyric themes and coverage so the fit can be inspected.

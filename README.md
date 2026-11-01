@@ -42,12 +42,12 @@ All generated timestamps and calendar buckets use UTC. Track identity is the art
 ## Rebuild locally
 
 ```bash
-python build_stats.py
-python build_assistant_data.py
-python build_advanced_analytics.py
-python build_music_analytics.py
-LASTFM_API_KEY=your-key python build_music_metadata.py
-python build_playback_analytics.py
+python compat/build_stats.py
+python compat/build_assistant_data.py
+python compat/build_advanced_analytics.py
+python compat/build_music_analytics.py
+LASTFM_API_KEY=your-key python compat/build_music_metadata.py
+python compat/build_playback_analytics.py
 ```
 
 The scheduled GitHub Actions workflow imports new scrobbles, incrementally enriches missing track metadata, runs the analytics builders, validates generated data, and commits updates. It requires the repository secret `LASTFM_API_KEY`. Daily metadata enrichment is capped at 120 lookups per run; the separate manual backfill workflow can process up to 12,000 tracks in one run.
@@ -55,7 +55,7 @@ The scheduled GitHub Actions workflow imports new scrobbles, incrementally enric
 
 ## Cached music metadata and duration estimates
 
-`build_music_metadata.py` builds `assistant_data/music/` from the canonical scrobble archive. It uses Last.fm `track.getInfo` to retrieve track duration in milliseconds, preferring a track MBID when present and otherwise querying artist + title without autocorrection. It verifies returned artist/title labels before accepting a duration. Exact MBID matches are marked high confidence; exact artist/title matches without an ID are medium confidence. Missing or ambiguous results remain unknown and are retried after 30 days.
+`compat/build_music_metadata.py` builds `assistant_data/music/` from the canonical scrobble archive. It uses Last.fm `track.getInfo` to retrieve track duration in milliseconds, preferring a track MBID when present and otherwise querying artist + title without autocorrection. It verifies returned artist/title labels before accepting a duration. Exact MBID matches are marked high confidence; exact artist/title matches without an ID are medium confidence. Missing or ambiguous results remain unknown and are retried after 30 days.
 
 The catalogue is split into 32 fixed artist-hash shards to avoid thousands of tiny files. `indexes/artists.json` maps artist IDs to shard files; `indexes/tracks.json` maps track IDs to their artist/shard. Each artist entry contains its albums and track records. `overview.json` reports metadata coverage, known-duration full-track-equivalent hours, and a known-duration minimum qualifying-time estimate. Last.fm's documented scrobble rule requires at least half the track or four minutes, whichever comes first (for tracks longer than 30 seconds); the scrobble may be submitted as soon as that threshold is met. The minimum is a theoretical lower bound for the matched subset, not proof of actual playback. Full-track-equivalent assumes every scrobble played the whole track. Unknown-duration scrobbles are excluded from both duration totals. The original scrobble archive is never modified.
 
@@ -65,11 +65,11 @@ The daily workflow fills the Last.fm duration cache gradually (120 unique-track 
 
 ### Artist profiles for recommendations
 
-`assistant_data/music/artist_profiles.json` stores each artist's play count, source, check status, raw community tags and derived `genres`, `moods`, and `themes` lists. The raw tags are preserved because genre boundaries are fuzzy and community tagging can be inconsistent. The manual **Enrich Music Metadata** action fills profiles incrementally, prioritizing artists with the most scrobbles. These are artist-level signals and are never treated as track-level ground truth. The same workflow now builds `assistant_data/music/track_profiles.json` with Last.fm `track.getTopTags` and, when a recording MBID is already present, MusicBrainz recording tags and genres. Track tags retain source attribution and lookup status. MusicBrainz enrichment deliberately does not guess recording identity through fuzzy search; recordings without a trusted MBID remain Last.fm-only or unresolved. `build_music_analytics.py` exposes track-sourced `genres`, `moods`, and raw `track_tags` separately from `artist_genres`, `artist_moods`, and `artist_themes`. Track moods are mapped conservatively from track-sourced tags only; artist-level mood labels are not copied onto every track.
+`assistant_data/music/artist_profiles.json` stores each artist's play count, source, check status, raw community tags and derived `genres`, `moods`, and `themes` lists. The raw tags are preserved because genre boundaries are fuzzy and community tagging can be inconsistent. The manual **Enrich Music Metadata** action fills profiles incrementally, prioritizing artists with the most scrobbles. These are artist-level signals and are never treated as track-level ground truth. The same workflow now builds `assistant_data/music/track_profiles.json` with Last.fm `track.getTopTags` and, when a recording MBID is already present, MusicBrainz recording tags and genres. Track tags retain source attribution and lookup status. MusicBrainz enrichment deliberately does not guess recording identity through fuzzy search; recordings without a trusted MBID remain Last.fm-only or unresolved. `compat/build_music_analytics.py` exposes track-sourced `genres`, `moods`, and raw `track_tags` separately from `artist_genres`, `artist_moods`, and `artist_themes`. Track moods are mapped conservatively from track-sourced tags only; artist-level mood labels are not copied onto every track.
 
 ## Measured Spotify playback time
 
-The Last.fm archive cannot provide exact played duration. For prospective measurement, `spotify_playback_tracker.py` polls Spotify's playback-state API locally and records progress deltas in `playback_data/segments.jsonl`. `build_playback_analytics.py` aggregates those intervals into `assistant_data/playback/`; the scheduled workflow rebuilds and publishes those aggregates whenever the segment log is present in the repository.
+The Last.fm archive cannot provide exact played duration. For prospective measurement, `compat/spotify_playback_tracker.py` polls Spotify's playback-state API locally and records progress deltas in `playback_data/segments.jsonl`. `compat/build_playback_analytics.py` aggregates those intervals into `assistant_data/playback/`; the scheduled workflow rebuilds and publishes those aggregates whenever the segment log is present in the repository.
 
 ### One-time setup
 
@@ -82,26 +82,26 @@ The Last.fm archive cannot provide exact played duration. For prospective measur
    **Windows PowerShell**
    ```powershell
 $env:SPOTIFY_CLIENT_ID="your-client-id"
-python spotify_playback_tracker.py
+python compat/spotify_playback_tracker.py
 ```
 
    **macOS/Linux**
    ```bash
 export SPOTIFY_CLIENT_ID="your-client-id"
-python3 spotify_playback_tracker.py
+python3 compat/spotify_playback_tracker.py
 ```
 
 6. Approve the requested `user-read-playback-state` permission in Spotify. The local callback stores a refresh token in `.spotify_token.json`, which is excluded by `.gitignore`.
 7. Leave the tracker running while listening. Stop with Ctrl+C. It appends measured intervals to `playback_data/segments.jsonl`.
 8. To publish the totals to this repository, commit and push the generated `playback_data/segments.jsonl` file. The next Actions run will rebuild `assistant_data/playback/`.
 
-The tracker samples every 10 seconds by default; use `python spotify_playback_tracker.py --interval 15` to reduce API polling. It only counts forward playback progress for the same track across consecutive samples, rejects seeks/resets and pauses, and conservatively caps counted progress to elapsed wall time. Track transitions and time when the tracker is closed are not reconstructed. It currently measures tracks, not podcast episodes or ads.
+The tracker samples every 10 seconds by default; use `python compat/spotify_playback_tracker.py --interval 15` to reduce API polling. It only counts forward playback progress for the same track across consecutive samples, rejects seeks/resets and pauses, and conservatively caps counted progress to elapsed wall time. Track transitions and time when the tracker is closed are not reconstructed. It currently measures tracks, not podcast episodes or ads.
 
 **Important:** this is prospective, local-device sampling, not Spotify's complete listening history. It cannot backfill past listening time, and it may miss short intervals or playback on devices/states the API does not report. Treat it as a measured lower-bound estimate. Keep `.spotify_token.json` private; never commit it. The JSONL playback log contains listening activity and is also personal data.
 
 ## Playlist sorting and sequencing engine
 
-spotify_playlist_sequencer.py is a preview-only playlist arrangement engine. **Smooth Flow** is the default: it optimizes the complete chain of song-to-song handoffs, then uses the requested energy journey as a soft structural guide. It does not divide the playlist into rigid energy bands. Genre and theme affinity are optional soft preferences; cross-genre transitions remain welcome when they flow naturally.
+compat/spotify_playlist_sequencer.py is a preview-only playlist arrangement engine. **Smooth Flow** is the default: it optimizes the complete chain of song-to-song handoffs, then uses the requested energy journey as a soft structural guide. It does not divide the playlist into rigid energy bands. Genre and theme affinity are optional soft preferences; cross-genre transitions remain welcome when they flow naturally.
 
 ### Shape the listening journey
 
@@ -114,12 +114,12 @@ The peak-position control defaults to **85%** of playlist length. It is a soft t
 
 Examples:
 
-    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID
-    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey rising --peak-position 85 --peak-shape gradual
-    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey falling
-    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey wave
-    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey steady
-    python spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --genre-strength 0.4 --theme-strength 0.6
+    python compat/spotify_playlist_sequencer.py YOUR_PLAYLIST_ID
+    python compat/spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey rising --peak-position 85 --peak-shape gradual
+    python compat/spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey falling
+    python compat/spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey wave
+    python compat/spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --journey steady
+    python compat/spotify_playlist_sequencer.py YOUR_PLAYLIST_ID --genre-strength 0.4 --theme-strength 0.6
 
 ### Anchors, sections and alternatives
 
@@ -154,7 +154,7 @@ The current playlist manager does not fetch Spotify audio features. Spotify rest
 
 The command writes playlist-sequence-plan.json by default. It never modifies Spotify directly. Review the plan, then pass it to the existing locked-by-default manager:
 
-    python spotify_playlist_manager.py apply playlist-sequence-plan.json
+    python compat/spotify_playlist_manager.py apply playlist-sequence-plan.json
 
 The manager produces its normal preview, checks playlist lock/ownership and snapshot state, saves a pre-change backup, and requires typing APPLY before making changes. The sequencer refuses to create a partial plan if playlist items are unavailable or lack track URIs.
 
@@ -169,7 +169,7 @@ The executable implementation is grouped under `scripts/` by responsibility:
 - `scripts/spotify/` — playlist intelligence, discovery, sequencing, management, playback tracking, and reference-library tooling.
 - `scripts/lastfm/` — Last.fm archive importing.
 
-Root-level Python files are deliberately retained as thin compatibility entry points. Existing commands, test imports, and GitHub Actions paths therefore continue to work unchanged while the maintained implementation lives in the organized packages. Add new implementation code under `scripts/`; do not duplicate logic in the root shims.
+Legacy command-line entry points live in `compat/`, while the maintained implementation lives under `scripts/`. A small root-level `sitecustomize.py` adds `compat/` to Python's import path so existing module imports and tests continue to work. Run tools with `python compat/TOOL_NAME.py`; add new implementation code under `scripts/`, not `compat/`.
 
 See [scripts/README.md](scripts/README.md) for the layout and migration notes.
 
@@ -190,7 +190,7 @@ See [scripts/README.md](scripts/README.md) for the layout and migration notes.
 | Cloud control | Owner-verified GitHub issue commands, preview-first confirmations, persistent lock state, recovery artifacts and health commands |
 | Project integrity | Unit tests, full-module compilation, generated-data manifest checks, cross-dataset consistency audit and scheduled workflows |
 
-Main entry points include update_lastfm.py, build_stats.py, build_assistant_data.py, build_advanced_analytics.py, build_music_metadata.py, build_track_profiles.py, build_music_analytics.py, spotify_playback_tracker.py, playlist_intelligence.py, spotify_daily_playlist.py, spotify_discovery.py, spotify_playlist_sequencer.py, spotify_playlist_manager.py, spotify_playlist_cloud.py, and audit_project.py.
+Main entry points include compat/update_lastfm.py, compat/build_stats.py, compat/build_assistant_data.py, compat/build_advanced_analytics.py, compat/build_music_metadata.py, compat/build_track_profiles.py, compat/build_music_analytics.py, compat/spotify_playback_tracker.py, compat/playlist_intelligence.py, compat/spotify_daily_playlist.py, compat/spotify_discovery.py, compat/spotify_playlist_sequencer.py, compat/spotify_playlist_manager.py, compat/spotify_playlist_cloud.py, and compat/audit_project.py.
 
 ## Important limitations
 
@@ -201,34 +201,34 @@ Main entry points include update_lastfm.py, build_stats.py, build_assistant_data
 
 ## Spotify playlist manager
 
-`spotify_playlist_manager.py` is a separate local tool for inspecting and managing your Spotify playlists. It does not feed Spotify playlist content into `assistant_data/` or the Last.fm analytics pipeline.
+`compat/spotify_playlist_manager.py` is a separate local tool for inspecting and managing your Spotify playlists. It does not feed Spotify playlist content into `assistant_data/` or the Last.fm analytics pipeline.
 
 ### Setup
 
 1. Use the same Spotify Developer app and Client ID as the playback tracker.
 2. Ensure the app's Redirect URI includes `http://127.0.0.1:8888/callback`.
-3. Stop `spotify_playback_tracker.py` before first playlist-manager authorization if it is using port 8888.
+3. Stop `compat/spotify_playback_tracker.py` before first playlist-manager authorization if it is using port 8888.
 4. Set `SPOTIFY_CLIENT_ID` as shown in the playback tracker setup.
-5. Run `python spotify_playlist_manager.py list` and approve the additional playlist permissions in Spotify.
+5. Run `python compat/spotify_playlist_manager.py list` and approve the additional playlist permissions in Spotify.
 
 The manager now also requests `user-library-read` so the discovery curator can check Liked Songs. If you authorized the manager before this permission was added, reauthorize it once:
 - Stop any other local tool using port 8888.
 - Delete the existing `.spotify_playlist_token.json` so the manager starts a fresh authorization.
-- Run `python spotify_playlist_manager.py list` again and approve the expanded permissions.
-- Run `python spotify_playlist_manager.py export-refresh-token` and replace the repository's GitHub Actions secret `SPOTIFY_REFRESH_TOKEN` with the newly printed token. Do not commit or share the token.
+- Run `python compat/spotify_playlist_manager.py list` again and approve the expanded permissions.
+- Run `python compat/spotify_playlist_manager.py export-refresh-token` and replace the repository's GitHub Actions secret `SPOTIFY_REFRESH_TOKEN` with the newly printed token. Do not commit or share the token.
 
 The manager uses its own `.spotify_playlist_token.json`; it does not overwrite the playback tracker's token. It uses Authorization Code with PKCE and requires no client secret.
 
 ### Commands
 
 ```bash
-python spotify_playlist_manager.py list
-python spotify_playlist_manager.py export-refresh-token
-python spotify_playlist_manager.py inspect YOUR_PLAYLIST_ID
-python spotify_playlist_manager.py unlock YOUR_PLAYLIST_ID
-python spotify_playlist_manager.py lock YOUR_PLAYLIST_ID
-python spotify_playlist_manager.py create "New playlist name" --description "Description"
-python spotify_playlist_manager.py apply change-plan.json
+python compat/spotify_playlist_manager.py list
+python compat/spotify_playlist_manager.py export-refresh-token
+python compat/spotify_playlist_manager.py inspect YOUR_PLAYLIST_ID
+python compat/spotify_playlist_manager.py unlock YOUR_PLAYLIST_ID
+python compat/spotify_playlist_manager.py lock YOUR_PLAYLIST_ID
+python compat/spotify_playlist_manager.py create "New playlist name" --description "Description"
+python compat/spotify_playlist_manager.py apply change-plan.json
 ```
 
 All playlists are **LOCKED by default**, including newly created playlists. Only explicitly unlocked playlists can be modified. A change plan is previewed before any write, then requires typing `APPLY`; plans containing a replacement require typing `REPLACE`. The manager checks the lock again immediately before each operation and stops if it has become locked. It also checks playlist ownership and detects changes made after the preview.
@@ -319,7 +319,7 @@ Undo is a preview-first restore from the exact pre-change snapshot. It requires 
 Mood inference uses a broader, explicitly curated affect vocabulary (including dreamlike, eerie, nocturnal, introspective, chaotic, groovy, theatrical, cinematic, cathartic, and wistful). Sound/style signals are kept separate from moods: playlist profiles expose genre tags, recurring sound families, and artist-level themes independently. These are conservative artist-level Last.fm community-tag signals, not track-level audio analysis; genre labels are never treated as moods simply because their names sound evocative.
 
 
-`playlist_intelligence.py` builds a read-only identity profile from a playlist's current membership and the cached Last.fm artist metadata. It summarizes represented artists and their genre, mood, and theme tags, reports metadata coverage, and keeps removal/whitelist counts scoped to that playlist. Profiles are calculated from the live snapshot when requested; they do not overwrite the canonical listening archive or playlist contents.
+`compat/playlist_intelligence.py` builds a read-only identity profile from a playlist's current membership and the cached Last.fm artist metadata. It summarizes represented artists and their genre, mood, and theme tags, reports metadata coverage, and keeps removal/whitelist counts scoped to that playlist. Profiles are calculated from the live snapshot when requested; they do not overwrite the canonical listening archive or playlist contents.
 
 Recommendation weights and confidence thresholds live in the versioned `assistant_data/recommendations/playlist_scoring.json` file. The discovery curator reads this configuration rather than scattering scoring constants through the code. Each recommendation now includes a confidence tier (strong fit, promising, or wildcard) and concise reasons describing its supporting similarity seeds, playlist-local positive/negative feedback, familiarity, and Liked Songs status. Confidence is a diagnostic heuristic, not a guarantee of quality.
 
@@ -359,7 +359,7 @@ The canonical Spotify reference library lives under `assistant_data/spotify/`:
 Refresh the reference library locally with:
 
 ```bash
-python spotify_reference_library.py sync
+python compat/spotify_reference_library.py sync
 ```
 
 This is a read-only Spotify operation. It does not modify playlists. A scheduled GitHub Actions workflow refreshes the catalog every Sunday and can also be run manually from **Actions → SHIT — Spotify Reference Library**. The import is limited to playlists the authorized Spotify API account exposes; it cannot guarantee visibility into every public playlist on Spotify. Playlists whose item contents are restricted by Spotify are still cataloged, with the visibility limitation recorded.
@@ -367,14 +367,14 @@ This is a read-only Spotify operation. It does not modify playlists. A scheduled
 Browse and search the saved dataset locally:
 
 ```bash
-python spotify_reference_library.py list
-python spotify_reference_library.py lookup "artist or track name"
+python compat/spotify_reference_library.py list
+python compat/spotify_reference_library.py lookup "artist or track name"
 ```
 
 Validate generated manifests and Spotify reference data with the read-only project audit:
 
 ```bash
-python audit_project.py
+python compat/audit_project.py
 ```
 
 The audit checks generated-data manifests, catalog-to-record consistency, and whether the track/artist index matches saved playlist contents. It exits nonzero for integrity errors. A missing initial Spotify sync and inaccessible playlist contents are reported as warnings rather than being mistaken for successful empty playlists.
@@ -384,7 +384,7 @@ The audit checks generated-data manifests, catalog-to-record consistency, and wh
 A scheduled read-only observation workflow refreshes Liked Songs status and Last.fm post-add counts daily, even when Tricky Daily itself is not edited. It can be run manually from **Actions → SHIT Daily Feedback Observation**. The GitHub runner does not have the local playback segment file, so measured Spotify playback remains unknown there unless a separate local observation is performed; missing tracker data is never interpreted as zero listening.
 
 
-`spotify_daily_feedback.py` records when tracks enter and leave Tricky Daily, checks whether newly added tracks are in Liked Songs, and records measured post-add playback intervals from `playback_data/segments.jsonl`. The feedback record distinguishes:
+`compat/spotify_daily_feedback.py` records when tracks enter and leave Tricky Daily, checks whether newly added tracks are in Liked Songs, and records measured post-add playback intervals from `playback_data/segments.jsonl`. The feedback record distinguishes:
 - Whether a track was already in Liked Songs at preview time, and whether it was saved afterward.
 - Distinct measured Spotify listening sessions and playback milliseconds after the first Daily addition.
 - Post-add Last.fm scrobbles from the canonical timestamped archive, kept separate from measured Spotify playback.
