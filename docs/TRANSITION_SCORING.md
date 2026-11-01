@@ -16,6 +16,8 @@ The sequencer now uses evidence-aware transition scoring:
 - Last.fm track tags and MusicBrainz recording tags may corroborate track mood. Genre fields, Discogs release styles, lyric themes, and artist-level tags do not count as track-level mood confirmations.
 - Opposing energetic/gentle mood evidence is retained and surfaced as a conflict. It lowers mood confidence and contributes a neutral mood-energy value rather than arbitrarily selecting one direction.
 - Artist-level mood is an explicitly low-confidence fallback when track-level mood tags are absent. It remains useful as context but is not presented as a track-specific assessment.
+- Mood affinity is confidence-weighted during sequencing: high-confidence moods receive the strongest continuity weight, medium moods a reduced weight, low moods a small hint, and unknown moods no weight.
+- Low-confidence mood matches do not count as independent evidence when a transition is labeled supported. Preview diagnostics report track mood confidence counts and source-family coverage separately from overall semantic coverage.
 - The displayed perceived-energy score may blend acoustic and descriptive cues, but transition energy gaps and the journey curve use the separate acoustic-only score. Semantic-only tracks have no acoustic score and are not pulled toward a fictitious journey-curve target.
 - Low-confidence estimates retain a reduced journey-curve weight, while unknown placeholders remain display-only.
 - Transition confidence is marked supported only when at least two comparable dimensions exist and both tracks have medium/high energy evidence.
