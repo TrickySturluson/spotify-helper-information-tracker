@@ -13,7 +13,8 @@ This document defines how SHIT gathers, stores, and interprets mood-related meta
 | Last.fm artist tags | Artist | Fallback context | Low-confidence artist context; never promoted to track mood evidence |
 | Lyrics analysis | Lyric text | Narrative / subject themes | Separate lyrical evidence; not evidence of how the recording sounds |
 | AcousticBrainz / Essentia / GetSongBPM | Recording audio or catalog | Tempo, dynamics, loudness and other audio features | Acoustic confidence is independent from semantic mood confidence |
-| Essentia MTG mood/theme models | Local audio | Potential audio-derived mood predictions | Not yet integrated into sorter confidence; requires local audio, optional TensorFlow support, model-license review and calibration |
+| Essentia DEAM valence/arousal model | Local audio | Continuous valence and arousal regression estimates | Optional local analysis only; uncalibrated for this library, excluded from sorter confidence pending validation and license review |
+| Essentia MTG-Jamendo mood/theme model | Local audio | Potential 56-label mood/theme predictions | Not integrated; requires local audio, optional TensorFlow support, model-license review and calibration |
 
 ## Stored data and provenance
 
@@ -52,7 +53,9 @@ The saved-playlist integration test also reports track-tag and album-tag coverag
 
 ## Future audio-model path
 
-The Music Technology Group publishes Essentia classifiers for the MTG-Jamendo mood/theme taxonomy (56 labels). The model metadata reports test ROC-AUC 0.76 and PR-AUC 0.14, so its raw scores must not be treated as calibrated probabilities. Essentia's documentation also identifies non-commercial model licensing; the model page and general licensing page differ on the exact Creative Commons suffix. Before integration, confirm the applicable license, require legally obtained local audio, retain model/version provenance, and calibrate against a human-reviewed sample. These predictions must remain a separate audio-model evidence family until validation demonstrates how much weight they deserve.
+The first optional implementation is Essentia's DEAM valence/arousal regression model. Its published metadata reports a 1–9 scale, trained on 1,802 songs, with valence CCC 0.778 / Pearson 0.738 and arousal CCC 0.647 / Pearson 0.773. The local-only script stores mean and variability across model frames, audio/model hashes and model version, but deliberately does not feed the sorter yet. It requires legally obtained local audio and Essentia TensorFlow support.
+
+Essentia also publishes a 56-label MTG-Jamendo mood/theme classifier. Its metadata reports test ROC-AUC 0.76 and PR-AUC 0.14, so raw scores must not be treated as calibrated probabilities. Essentia's documentation identifies non-commercial model licensing; the model catalogue and general licensing page differ on the exact Creative Commons suffix. Before wider use, confirm the applicable license, retain model/version provenance, and calibrate against a human-reviewed sample. These predictions must remain a separate audio-model evidence family until validation demonstrates how much weight they deserve. See [AUDIO_MOOD_MODELS.md](AUDIO_MOOD_MODELS.md).
 
 ## References
 
@@ -60,6 +63,7 @@ The Music Technology Group publishes Essentia classifiers for the MTG-Jamendo mo
 - MusicBrainz API and rate limiting: https://musicbrainz.org/doc/MusicBrainz_API
 - MTG-Jamendo dataset: https://github.com/MTG/mtg-jamendo-dataset
 - Essentia pretrained models: https://essentia.upf.edu/models.html
+- DEAM model metadata: https://essentia.upf.edu/models/classification-heads/deam/deam-msd-musicnn-2.json
 - Essentia model licensing: https://essentia.upf.edu/licensing_information.html
 - DEAM valence/arousal dataset: https://cvml.unige.ch/databases/DEAM/
 
