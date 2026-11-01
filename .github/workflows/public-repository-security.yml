@@ -27,7 +27,7 @@ jobs:
           tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
           /tmp/gitleaks version
       - name: Scan all commits (redacted output)
-        run: /tmp/gitleaks git --log-opts=--all --redact --verbose --exit-code 1 .
+        run: /tmp/gitleaks --config .gitleaks.toml git --log-opts=--all --redact --verbose --exit-code 1 .
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
