@@ -42,9 +42,47 @@ def main():
     candidates = lyric_rows(read(DISCOVERY, []))
     if not isinstance(profiles, dict):
         raise SystemExit("Refusing to sync: track_profiles.json must be an object.")
-    result = MusicLibrary().put_catalogue(
-        list(profiles.values()), artists, albums, audio, lyrics
-    )
+    # Discovery candidates are metadata intake, not listening events. Merge by
+    # exact Spotify ID where possible; otherwise preserve a distinct candidate row.
+    rows = list(profiles.values())
+    by_spotify_id = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        sid = str(row.get("spotify_id") or row.get("spotify_track_id") or "").strip()
+        if not sid and str(row.get("track_id") or "").startswith("spotify:track:"):
+            sid = row["track_id"].rsplit(":", 1)[-1]
+        if sid:
+            by_spotify_id[sid] = row
+    valid_candidates = 0
+    for candidate in candidates:
+        uri = str(candidate.get("spotify_uri") or candidate.get("uri") or "").strip()
+        sid = str(candidate.get("spotify_id") or (uri.rsplit(":", 1)[-1] if uri.startswith("spotify:track:") else "")).strip()
+        if not sid or not candidate.get("artist") or not candidate.get("track"):
+            continue
+        valid_candidates += 1
+        evidence = candidate.get("discovery_evidence") or []
+        existing = by_spotify_id.get(sid)
+        if existing is not None:
+            prior = existing.get("discovery_evidence") or []
+            merged = {json.dumps(item, sort_keys=True): item for item in prior + evidence}
+            existing["discovery_evidence"] = list(merged.values())
+            continue
+        row = {
+            "track_id": "spotify:track:" + sid,
+            "spotify_id": sid,
+            "artist": candidate["artist"],
+            "track": candidate["track"],
+            "album": candidate.get("album"),
+            "duration_ms": candidate.get("duration_ms"),
+            "isrc": candidate.get("isrc"),
+            "track_mbid": candidate.get("track_mbid"),
+            "discovery_evidence": evidence,
+            "discovery_only": True,
+        }
+        rows.append(row)
+        by_spotify_id[sid] = row
+    result = MusicLibrary().put_catalogue(rows, artists, albums, audio, lyrics)
     audit = MusicLibrary().audit()
     print(json.dumps({
         "sync_result": result,
@@ -55,6 +93,8 @@ def main():
             "album_profiles": len(albums) if isinstance(albums, dict) else 0,
             "audio_profiles": len(audio.get("tracks", audio)) if isinstance(audio, dict) else 0,
             "lyric_features": len(lyrics),
+            "discovery_candidates": len(candidates),
+            "valid_discovery_candidates": valid_candidates,
         },
     }, indent=2))
     return 0 if audit.get("ok") else 2
