@@ -9,5 +9,12 @@
   "evidence": {},
   "album_ids": [
     "album:01632cb9b68c6acda89d"
-  ]
+  ],
+  "about": {
+    "summary": null,
+    "status": "not_yet_sourced",
+    "note": "Artist-level biography/overview is intentionally blank until an identity-checked, attributable source is collected. Do not infer an artist biography from album tags or song-level metadata.",
+    "sources": [],
+    "confidence": "none"
+  }
 }
