@@ -73,13 +73,13 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
         row = catalogue.setdefault(key, {
             "album_id": key, "artist": artist, "album": album,
             "plays": 0, "recent_plays": 0, "priority_playlist_ids": [],
-            "track_count": 0,
+            "track_keys": set(),
         })
         row["plays"] += int(plays or 0)
         row["recent_plays"] += int(recent or 0)
         if playlist_id and playlist_id not in row["priority_playlist_ids"]:
             row["priority_playlist_ids"].append(playlist_id)
-        row["track_count"] += 1
+        track_key = norm(album) + "\\0" + norm(plays if False else "")\n        row["track_keys"].add(track_key) if track_key else None
 
     for row in scrobbles:
         album = clean(row.get("album") or row.get("album_name"))
