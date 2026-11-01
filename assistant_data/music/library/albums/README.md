@@ -2,12 +2,15 @@
 
 This directory contains ID-sharded release/album records.
 
-- `<shard>/<stable-id>/album.json` — release identity, related song IDs, and album-scoped evidence.
-- Album evidence may include a verified Last.fm tracklist, short attributed summary, artwork reference, provider URL, tags, and Discogs release context.
-- `../library_index.json` — maps release IDs to album record paths.
-- `../songs/` — individual songs with explicit album relationships when verified.
+- `<shard>/<stable-id>/album.json` — release identity, related song IDs, album-scoped evidence, source links, and field-level metadata confidence.
+- Album evidence may include a verified Last.fm tracklist, short attributed summary, artwork reference, provider URL, community tags, and Discogs release context.
+- `../library_index.json` maps release IDs to album record paths.
+- `../songs/` contains individual songs with explicit album relationships when verified.
 
-A release tracklist does not automatically prove that a song is the same
-recording or release. Keep track position, disc number, release MBID, and source
-provenance. The directory may be empty until source rows establish release
-membership.
+## First worked example
+
+`sp/spotify-5kkgazrad4n4rc5friwgz/album.json` represents Candy Claws' *Ceres & Calypso in the Deep Time* (standard 12-track album, not the expanded anniversary reissue). Its Spotify album ID is grounded in existing playlist snapshots; descriptive metadata and the ordered tracklist are attributed to Last.fm and the artist's Bandcamp page.
+
+Four already-staged song records are linked to this album by exact title/artist plus their existing recording MBIDs. The other eight tracklist entries remain album-level tracklist entries only; no song records or recording identities are invented for them.
+
+A release tracklist describes a release, not every version of a recording. Keep track position, disc number, release MBID, and source provenance. Album tags/descriptions provide contextual evidence only and must never increase track-level acoustic confidence.
