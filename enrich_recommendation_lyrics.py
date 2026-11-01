@@ -14,7 +14,7 @@ FEATURES = Path("assistant_data/recommendations/track_features.json")
 
 
 def norm(value):
-    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
+    return " ".join(re.findall(r"[a-z0-9']+", str(value or "").casefold()))
 
 
 def main():
