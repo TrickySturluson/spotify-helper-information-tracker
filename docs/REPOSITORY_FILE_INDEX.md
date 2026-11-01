@@ -19,15 +19,16 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `.github/workflows/spotify-reference-library.yml` — GitHub Actions automation for spotify reference library.
 - `.github/workflows/update.yml` — GitHub Actions automation for update.
 
-## Root (5 files)
+## Root (6 files)
 
+- `.gitleaks.toml` — Narrow allowlist for public Spotify catalog IDs in the canonical Library index; credentials remain scanned.
 - `.gitignore` — Version-control exclusions for secrets, local state, caches, and machine-specific files.
 - `README.md` — Project overview, setup, and navigation entry point.
 - `playlist_removed_tracks.json` — User-confirmed playlist removal feedback used to avoid re-recommending removed tracks.
 - `requirements-audio-analysis.txt` — Optional dependency list for local Essentia audio analysis.
 - `sitecustomize.py` — Python startup hook that adds compat/ to the import path for legacy compatibility.
 
-## assistant_data (238 files)
+## assistant_data (239 files)
 
 - `assistant_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `assistant_data/advanced/artist_lifecycle.json` — Advanced historical listening analytics output for artist discovery, lifecycle, diversity, ranking, or session analysis.
@@ -139,6 +140,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `assistant_data/rankings/artists.json` — Generated ranking dataset for the named artist, album, or track entity.
 - `assistant_data/rankings/tracks.json` — Generated ranking dataset for the named artist, album, or track entity.
 - `assistant_data/recommendations/artist_features.json` — Derived recommendation feature/scoring dataset; generated from source listening and available track metadata.
+- `assistant_data/recommendations/discovery_candidates.json` — Durable intake for tracks surfaced by recommendation workflows; discovery exposure is kept separate from listening evidence.
 - `assistant_data/recommendations/lyric_features.json` — Derived recommendation feature/scoring dataset; generated from source listening and available track metadata.
 - `assistant_data/recommendations/manifest.json` — Derived recommendation feature/scoring dataset; generated from source listening and available track metadata.
 - `assistant_data/recommendations/monthly_duration_trends.json` — Derived recommendation feature/scoring dataset; generated from source listening and available track metadata.
@@ -342,7 +344,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `playback_data/.gitkeep` — Placeholder preserving the measured Spotify playback archive directory before records exist.
 - `playback_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 
-## scripts (42 files)
+## scripts (44 files)
 
 - `scripts/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `scripts/__init__.py` — Python package initializer for scripts.
@@ -365,6 +367,8 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/build_track_profiles.py` — Maintained implementation module for build track profiles. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/migrate_music_library.py` — Local-only, bounded or full migration from aggregate metadata to artist, album, and song records.
 - `scripts/music/music_library.py` — Canonical The Library song JSON storage, stable-ID index, ISRC/release-position lookup audit, and lazy lookup API.
+- `scripts/music/discovery_ingestion.py` — Idempotent intake for recommended/discovered tracks, with discovery provenance separate from listening evidence.
+- `scripts/music/sync_music_library.py` — Reconciles source profiles, lyric features, and discovery candidates into the canonical per-recording Library.
 - `scripts/music/music_evidence.py` — Shared identity and field-level metadata confidence rules with source-family corroboration and conflict handling.
 - `scripts/music/enrich_acousticbrainz.py` — Maintained implementation module for multi-submission AcousticBrainz enrichment.
 - `scripts/music/enrich_discogs.py` — Optional exact-match Discogs release-context enrichment.
@@ -390,7 +394,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/spotify/spotify_reference_library.py` — Maintained implementation module for spotify reference library. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/track_playlist_removals.py` — Maintained implementation module for track playlist removals. See its bottom FILE OVERVIEW for detailed behavior.
 
-## tests (22 files)
+## tests (23 files)
 
 - `tests/__init__.py` — Automated regression tests for   init  .
 - `tests/test_audio_analysis.py` — Automated regression tests for audio analysis.
@@ -402,6 +406,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `tests/test_enrich_getsongbpm.py` — Automated regression tests for enrich getsongbpm.
 - `tests/test_lyrics_library.py` — Automated regression tests for lyrics library.
 - `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.
+- `tests/test_discovery_ingestion.py` — Regression tests for candidate deduplication, provenance, and the boundary between discovery and listening evidence.
 - `tests/test_library_album_example.py` — Regression tests for Ceres & Calypso album lookup, linked song context, and release-tracklist identity boundaries.
 - `tests/test_music_library.py` — Automated regression tests for song identity, lookup, staged migration selection, and evidence preservation.
 - `tests/test_music_library_batch.py` — Integration tests against the committed 100-song Library batch and playlist-sequencer loading.
