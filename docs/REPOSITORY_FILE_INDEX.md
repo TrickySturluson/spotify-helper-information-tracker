@@ -2,9 +2,10 @@
 
 This catalogue was generated from the pull request's actual Git tree. It names every tracked file at this revision and states its role. It complements, rather than replaces, the more detailed bottom-of-file overviews and directory guides. Machine-readable files are documented here and in adjacent READMEs; their formats are intentionally not modified with comments.
 
-## .github (12 files)
+## .github (13 files)
 
 - `.github/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
+- `.github/spotify_api_cooldown.json` — Persisted Spotify Retry-After cooldown; prevents cloud commands from retrying during a quota restriction.
 - `.github/spotify_playlist_manager_audit.jsonl` — Append-only event history for playlist manager requests, previews, confirmations, backups, and results.
 - `.github/spotify_playlist_manager_state.json` — Persisted playlist manager state, lock status, last completed operation, and backup reference.
 - `.github/workflows/acoustic-metadata-enrichment.yml` — GitHub Actions automation for acoustic metadata enrichment.
