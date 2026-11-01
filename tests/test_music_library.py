@@ -54,5 +54,5 @@ class MusicLibraryTests(unittest.TestCase):
 
 if __name__ == "__main__": unittest.main()
 
-# File overview
+# FILE OVERVIEW
 # - Covers lazy ID resolution, release collisions, evidence separation, and on-disk layout.
