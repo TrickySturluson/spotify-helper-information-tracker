@@ -249,5 +249,13 @@
     "Tracklist membership does not by itself prove recording identity. Only song records already matched by recording MBID are linked here.",
     "Durations are approximate display values; provider/release editions can differ by seconds.",
     "The album key follows MusicLibrary.album_key() (normalized artist + album); Spotify album ID is retained as corroborating source metadata."
-  ]
+  ],
+  "about": {
+    "summary": "A 2013 Candy Claws concept album framed around Ceres, a seal-like creature, and Calypso travelling through deep time; lyrics are credited to poet Jenn Morea.",
+    "summary_attribution": "Paraphrased from the Last.fm album page; not a verbatim wiki copy.",
+    "source_url": "https://www.last.fm/music/Candy%20Claws/Ceres%20%26%20Calypso%20in%20the%20Deep%20Time",
+    "source_family": "Last.fm",
+    "confidence": "low",
+    "note": "Album-level overview only. Tags and narrative context are not track-level acoustic evidence."
+  }
 }
