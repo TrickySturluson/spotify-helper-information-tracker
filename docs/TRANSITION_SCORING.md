@@ -12,6 +12,10 @@ The sequencer now uses evidence-aware transition scoring:
 - Unknown energy is not compared as though a measured score of 50 were real.
 - Only explicit `acoustic_confidence=medium|high` can support an energy comparison. A legacy generic `confidence=medium` without an acoustic basis is not trusted.
 - Acoustic and semantic confidence are separate. Multiple genre, mood, lyric, or artist tags cannot promote acoustic confidence.
+- Track-level mood confidence is reported separately from broad semantic coverage: one descriptive tag is low confidence; multiple distinct tags or independent track-tag sources can support medium confidence; high confidence requires at least two independent track-tag source families, at least two distinct mood descriptors, and no opposing affect-direction conflict.
+- Last.fm track tags and MusicBrainz recording tags may corroborate track mood. Genre fields, Discogs release styles, lyric themes, and artist-level tags do not count as track-level mood confirmations.
+- Opposing energetic/gentle mood evidence is retained and surfaced as a conflict. It lowers mood confidence and contributes a neutral mood-energy value rather than arbitrarily selecting one direction.
+- Artist-level mood is an explicitly low-confidence fallback when track-level mood tags are absent. It remains useful as context but is not presented as a track-specific assessment.
 - The displayed perceived-energy score may blend acoustic and descriptive cues, but transition energy gaps and the journey curve use the separate acoustic-only score. Semantic-only tracks have no acoustic score and are not pulled toward a fictitious journey-curve target.
 - Low-confidence estimates retain a reduced journey-curve weight, while unknown placeholders remain display-only.
 - Transition confidence is marked supported only when at least two comparable dimensions exist and both tracks have medium/high energy evidence.
