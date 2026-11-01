@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Incrementally enrich album context with Last.fm's album.getTopTags.
+"""Incrementally enrich album context with Last.fm album.getInfo: tracklists, summaries, tags and artwork.
 
 Album tags are release-level context, never recording-level proof. The output is
 kept separate from track_profiles.json so the sequencer can use it only as a
@@ -52,7 +52,7 @@ def clean(value):
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", clean(value)).casefold()
+    return re.sub(r"\s+", " ", clean(value)).casefold()
 
 
 def album_id(artist, album):
@@ -104,6 +104,81 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
     for row in catalogue.values():
         row["track_count"] = len(row.pop("track_keys", set()))
     return catalogue
+
+
+def parse_album_info(payload, artist, album):
+    """Parse Last.fm album.getInfo after exact artist and album identity verification."""
+    info = payload.get("album") if isinstance(payload, dict) else None
+    if not isinstance(info, dict):
+        return {}, "not_found"
+    returned_artist, returned_album = clean(info.get("artist")), clean(info.get("name"))
+    if not returned_artist or not returned_album:
+        return {}, "identity_unverified"
+    if norm(returned_artist) != norm(artist) or norm(returned_album) != norm(album):
+        return {}, "identity_mismatch"
+    container = info.get("tracks") or {}
+    rows = container.get("track") or [] if isinstance(container, dict) else []
+    if isinstance(rows, dict):
+        rows = [rows]
+    tracklist = []
+    for ordinal, row in enumerate(rows, 1):
+        if not isinstance(row, dict) or not clean(row.get("name")):
+            continue
+        try:
+            position = int((row.get("@attr") or {}).get("rank") or ordinal)
+        except (TypeError, ValueError):
+            position = ordinal
+        try:
+            duration = int(row.get("duration") or 0) or None
+        except (TypeError, ValueError):
+            duration = None
+        credit = row.get("artist")
+        track_artist = clean(credit.get("name")) if isinstance(credit, dict) else clean(credit)
+        tracklist.append({
+            "position": position, "title": clean(row.get("name")),
+            "artist": track_artist or returned_artist, "duration_seconds": duration,
+            "mbid": clean(row.get("mbid")) or None, "source": "Last.fm album.getInfo",
+        })
+    wiki = info.get("wiki") or {}
+    summary = re.sub(r"<[^>]+>", " ", clean(wiki.get("summary")))
+    summary = re.sub(r"\s+", " ", summary).strip()[:600].rstrip() or None
+    images = info.get("image") or []
+    if isinstance(images, dict):
+        images = [images]
+    artwork = next((clean(row.get("#text")) for row in reversed(images)
+                    if isinstance(row, dict) and clean(row.get("#text"))), None)
+    tag_container = info.get("tags") or {}
+    tags = tag_container.get("tag") or [] if isinstance(tag_container, dict) else []
+    if isinstance(tags, dict):
+        tags = [tags]
+    info_tags = [{"tag": clean(row.get("name")), "source": "Last.fm album.getInfo"}
+                 for row in tags if isinstance(row, dict) and clean(row.get("name"))]
+    return {
+        "lastfm_tracklist": tracklist, "lastfm_tracklist_count": len(tracklist),
+        "lastfm_summary": summary, "lastfm_summary_published": clean(wiki.get("published")) or None,
+        "lastfm_url": clean(info.get("url")) or None, "lastfm_album_mbid": clean(info.get("mbid")) or None,
+        "lastfm_artwork_url": artwork, "lastfm_info_tags": info_tags,
+        "lastfm_info_source": "Last.fm album.getInfo", "lastfm_info_identity_verified": True,
+    }, "matched"
+
+
+def fetch_album_info(artist, album):
+    """Fetch tracklist, short summary, community tags and artwork in one request."""
+    params = {
+        "method": "album.getInfo", "artist": artist, "album": album,
+        "api_key": API_KEY, "format": "json", "autocorrect": 0,
+    }
+    request = Request(API_URL + "?" + urlencode(params), headers={
+        "User-Agent": UA, "Accept": "application/json",
+    })
+    with urlopen(request, timeout=25) as response:
+        payload = json.loads(response.read().decode("utf-8"))
+    if "error" in payload:
+        code = str(payload.get("error"))
+        if code in {"11", "16", "29"}:
+            raise RuntimeError("temporary_lastfm_" + code)
+        return {}, "not_found" if code == "6" else "api_error_" + code
+    return parse_album_info(payload, artist, album)
 
 
 def fetch_album_tags(artist, album):
@@ -181,7 +256,8 @@ def main():
     for item in due[:LIMIT]:
         key = item["album_id"]
         try:
-            tags, status = fetch_album_tags(item["artist"], item["album"])
+            info, status = fetch_album_info(item["artist"], item["album"])
+            tags = info.pop("lastfm_info_tags", []) if info else []
         except HTTPError as exc:
             if exc.code == 429:
                 try:
@@ -206,11 +282,11 @@ def main():
             break
         checked = datetime.now(timezone.utc).isoformat()
         profiles[key] = {
-            **item, "lastfm_tags": tags, "status": status,
-            "source": "Last.fm album.getTopTags",
+            **item, **info, "lastfm_tags": tags, "status": status,
+            "source": "Last.fm album.getInfo",
             "checked_at": checked,
             "retry_after": 0 if status == "matched" else int(time.time()) + RETRY_DAYS * 86400,
-            "identity_verified": status in {"matched", "no_tags"},
+            "identity_verified": status == "matched",
         }
         looked += 1
         found += int(bool(tags))
@@ -230,10 +306,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally fetch exact Last.fm album-level community tags for
+# Purpose: Incrementally fetch exact Last.fm album metadata, ordered tracklists, summaries, tags and artwork for
 #          unique albums in the scrobble archive and configured priority playlists.
 # Inputs: data/scrobbles.json and accessible Spotify playlist snapshots.
-# Outputs: assistant_data/music/album_profiles.json and album_profile_state.json.
+# Outputs: assistant_data/music/album_profiles.json and album_profile_state.json, including verified tracklists and short attributed summaries.
 # Data flow: One lookup per normalized artist/album pair; playlist-priority and
 #            recent-listening ordering; exact response identity validation.
 # Tracking: Stores provider status, check timestamp, retry-after, source and

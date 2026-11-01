@@ -52,6 +52,31 @@ class AlbumProfileTests(unittest.TestCase):
         self.assertEqual(status, "identity_mismatch")
 
 
+
+    def test_album_info_parses_ordered_tracklist_and_short_summary(self):
+        payload = {"album": {"name": "Record", "artist": "Artist", "mbid": "release-id",
+            "url": "https://www.last.fm/music/Artist/Record",
+            "tracks": {"track": [
+                {"name": "Opening", "duration": "91", "mbid": "rec-one", "@attr": {"rank": "1"}},
+                {"name": "Finale", "duration": "122", "@attr": {"rank": "2"}},
+            ]},
+            "wiki": {"summary": "A <a href=x>short</a> album summary.", "content": "long content"},
+            "image": [{"size": "large", "#text": "https://example.invalid/cover.jpg"}],
+            "tags": {"tag": [{"name": "dark"}]}}}
+        info, status = albums.parse_album_info(payload, "Artist", "Record")
+        self.assertEqual(status, "matched")
+        self.assertEqual([row["position"] for row in info["lastfm_tracklist"]], [1, 2])
+        self.assertEqual(info["lastfm_tracklist"][0]["duration_seconds"], 91)
+        self.assertIn("short", info["lastfm_summary"])
+        self.assertNotIn("long content", str(info))
+        self.assertTrue(info["lastfm_info_identity_verified"])
+
+    def test_album_info_rejects_wrong_release_identity(self):
+        info, status = albums.parse_album_info(
+            {"album": {"name": "Different", "artist": "Artist"}}, "Artist", "Record")
+        self.assertEqual(info, {})
+        self.assertEqual(status, "identity_mismatch")
+
 if __name__ == "__main__":
     unittest.main()
 

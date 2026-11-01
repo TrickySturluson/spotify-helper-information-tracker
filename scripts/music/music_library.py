@@ -137,7 +137,7 @@ class MusicLibrary:
         self.index_path = self.root / INDEX_NAME
         self.index = read_json(self.index_path) or {
             "schema_version": 1, "songs": {}, "spotify_ids": {},
-            "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {},
+            "recording_mbids": {}, "isrcs": {}, "source_track_ids": {}, "name_candidates": {}, "artists": {}, "albums": {},
         }
 
     def path_for(self, kind, key):
@@ -145,37 +145,88 @@ class MusicLibrary:
         filename = {"artists": "artist.json", "albums": "album.json", "songs": "song.json"}[kind]
         return self.root / kind / safe[:2] / safe / filename
 
-    def get_song(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None):
-        key = None
+    def lookup_song(self, spotify_id=None, recording_mbid=None, isrc=None, source_track_id=None,
+                    release_mbid=None, track_number=None, disc_number=None, artist=None, track=None, album=None):
+        """Resolve a song and explain the exact identity evidence used."""
+        entries = self.index.get("songs", self.index.get("recordings", {}))
+        key, matched_by, candidates = None, None, []
         if spotify_id:
             key = self.index.get("spotify_ids", {}).get(str(spotify_id).rsplit(":", 1)[-1].casefold())
+            if key: matched_by = "spotify_track_id"
         if key is None and recording_mbid:
-            mbid_alias = str(recording_mbid).casefold()
+            value = str(recording_mbid).casefold()
             aliases = self.index.get("recording_mbids", {})
-            key = aliases.get(mbid_alias) or aliases.get(mbid_alias[5:] if mbid_alias.startswith("mbid:") else "mbid:" + mbid_alias)
+            key = aliases.get(value) or aliases.get(value[5:] if value.startswith("mbid:") else "mbid:" + value)
+            if key: matched_by = "musicbrainz_recording_mbid"
+        if key is None and isrc:
+            key = self.index.get("isrcs", {}).get(re.sub(r"[^A-Z0-9]", "", str(isrc).upper()))
+            if key: matched_by = "isrc"
+        if key is None and source_track_id:
+            key = self.index.get("source_track_ids", {}).get(str(source_track_id).casefold())
+            if key: matched_by = "source_track_id"
+        if key is None and release_mbid and track_number is not None:
+            release_key = str(release_mbid).casefold()
+            if not release_key.startswith("mbid:"): release_key = "mbid:" + release_key
+            try:
+                wanted_track, wanted_disc = int(track_number), int(disc_number or 1)
+                candidates = [song_id for song_id, entry in entries.items()
+                    if str((entry or {}).get("album_id") or "").casefold() == release_key
+                    and int((entry or {}).get("disc_number") or 1) == wanted_disc
+                    and int((entry or {}).get("track_number") or 0) == wanted_track]
+            except (TypeError, ValueError):
+                candidates = []
+            if len(candidates) == 1: key, matched_by = candidates[0], "verified_release_track_position"
         if key is None and artist and track:
             alias = norm(artist) + "\0" + norm(track)
             candidates = self.index.get("name_candidates", {}).get(alias)
-            if candidates is None:  # Read indexes written by the early prototype.
-                candidates = self.index.get("name_candidates", {}).get(norm(artist) + "\\0" + norm(track), [])
-            if len(candidates) == 1:
-                key = candidates[0]
+            if candidates is None:
+                candidates = self.index.get("name_candidates", {}).get(norm(artist) + "\\\\0" + norm(track), [])
+            if len(candidates) == 1: key, matched_by = candidates[0], "unique_exact_artist_title"
             elif album:
-                entries = self.index.get("songs", self.index.get("recordings", {}))
                 matches = [x for x in candidates if norm(entries.get(x, {}).get("album")) == norm(album)]
-                if len(matches) == 1:
-                    key = matches[0]
-        entries = self.index.get("songs", self.index.get("recordings", {}))
-        if key is None or key not in entries:
-            return None
+                if len(matches) == 1: key, matched_by, candidates = matches[0], "exact_artist_title_album", matches
+        if key is None:
+            ambiguous = bool(candidates and len(candidates) > 1)
+            return {"status": "ambiguous" if ambiguous else "not_found", "song_id": None,
+                "matched_by": None, "confidence": "unknown", "candidate_ids": list(candidates or []),
+                "reason": "multiple exact-name candidates remain" if ambiguous else "no exact indexed identity matched"}
         record = read_json(self.root / entries[key]["path"])
         if not isinstance(record, dict):
-            return None
+            return {"status": "record_missing", "song_id": key, "matched_by": matched_by,
+                "confidence": "unknown", "candidate_ids": [key], "reason": "index matched but canonical song file is missing or invalid"}
+        from scripts.music.music_evidence import identity_confidence
+        confidence = identity_confidence(matched_by, record.get("identity") or {})
+        return {"status": "matched", "song_id": key, "matched_by": matched_by,
+            "confidence": confidence, "candidate_ids": [key],
+            "reason": "resolved by " + matched_by.replace("_", " "), "record": record}
+
+    def get_song(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None,
+                 isrc=None, source_track_id=None, release_mbid=None, track_number=None, disc_number=None):
+        """Return a song bundle with an inspectable lookup explanation."""
+        audit = self.lookup_song(spotify_id=spotify_id, recording_mbid=recording_mbid,
+            isrc=isrc, source_track_id=source_track_id, release_mbid=release_mbid,
+            track_number=track_number, disc_number=disc_number, artist=artist, track=track, album=album)
+        if audit["status"] != "matched": return None
+        record = audit["record"]
         relations = record.get("relations", {})
         artist_record = read_json(self.root / relations["artist_path"]) if relations.get("artist_path") else None
         album_record = read_json(self.root / relations["album_path"]) if relations.get("album_path") else None
-        return {"song": record, "artist": artist_record or {}, "album": album_record or {}}
+        return {"song": record, "artist": artist_record or {}, "album": album_record or {},
+            "lookup_audit": {key: value for key, value in audit.items() if key != "record"}}
 
+    def get_album(self, album_mbid=None, artist=None, album=None):
+        """Resolve an album by release MBID or a unique exact artist/title pair."""
+        albums = self.index.get("albums", {})
+        key = None
+        if album_mbid:
+            value = str(album_mbid).casefold()
+            key = value if value.startswith("mbid:") else "mbid:" + value
+            if key not in albums: key = None
+        if key is None and artist and album:
+            matches = [album_id for album_id, entry in albums.items()
+                if norm(entry.get("artist")) == norm(artist) and norm(entry.get("album")) == norm(album)]
+            if len(matches) == 1: key = matches[0]
+        return read_json(self.root / albums[key]["path"]) if key else None
     # Backward-compatible method name for existing callers.
     get_recording = get_song
 
@@ -221,7 +272,7 @@ class MusicLibrary:
                 continue
             if any(candidate not in songs for candidate in candidates):
                 errors.append(f"name alias references missing song: {alias!r}")
-        for alias_map_name in ("spotify_ids", "recording_mbids"):
+        for alias_map_name in ("spotify_ids", "recording_mbids", "isrcs", "source_track_ids"):
             for alias, song_id in self.index.get(alias_map_name, {}).items():
                 if song_id not in songs:
                     errors.append(f"{alias_map_name} alias references missing song: {alias}")
@@ -283,6 +334,8 @@ class MusicLibrary:
             album_name = row.get("album") or row.get("album_name") or ""
             if bid:
                 album_source = album_by_name.get((norm(row["artist"]), norm(album_name)), {})
+                if not album_source.get("identity_verified"):
+                    album_source = {}
                 album_records.setdefault(bid, {
                     "schema_version": 1, "id": bid, "artist_id": aid,
                     "artist": row["artist"], "album": album_name,
@@ -305,6 +358,9 @@ class MusicLibrary:
                     "recording_mbid": row.get("track_mbid") or row.get("recording_mbid"),
                     "spotify_id": row.get("spotify_id") or row.get("spotify_track_id"),
                     "source_track_id": row.get("track_id"),
+                    "isrc": row.get("isrc") or row.get("isrc_code"),
+                    "track_number": row.get("track_number") or row.get("position"),
+                    "disc_number": row.get("disc_number") or row.get("disc"),
                     "identity_quality": "verified_recording" if sid.startswith("mbid:")
                         else "spotify_track" if sid.startswith("spotify:")
                         else "source_track_id" if sid.startswith("source:")
@@ -351,7 +407,7 @@ class MusicLibrary:
 
         index = {
             "schema_version": 1, "songs": {}, "spotify_ids": {},
-            "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {},
+            "recording_mbids": {}, "isrcs": {}, "source_track_ids": {}, "name_candidates": {}, "artists": {}, "albums": {},
         }
         for aid, record in artist_records.items():
             path = self.path_for("artists", aid)
@@ -367,7 +423,8 @@ class MusicLibrary:
             identity = song["identity"]
             index["songs"][sid] = {
                 "path": str(path.relative_to(self.root)), "artist": identity["artist"],
-                "track": identity["title"], "album": identity["album"],
+                "track": identity["title"], "album": identity["album"], "album_id": identity.get("album_id"),
+                "track_number": identity.get("track_number"), "disc_number": identity.get("disc_number"),
             }
             spotify_id = identity.get("spotify_id")
             if spotify_id:
@@ -377,6 +434,12 @@ class MusicLibrary:
                 mbid_alias = str(mbid).casefold()
                 index["recording_mbids"][mbid_alias] = sid
                 index["recording_mbids"][mbid_alias[5:] if mbid_alias.startswith("mbid:") else "mbid:" + mbid_alias] = sid
+            isrc = re.sub(r"[^A-Z0-9]", "", str(identity.get("isrc") or "").upper())
+            if isrc:
+                index["isrcs"][isrc] = sid
+            source_id = str(identity.get("source_track_id") or "").casefold()
+            if source_id:
+                index["source_track_ids"][source_id] = sid
             index["name_candidates"].setdefault(
                 norm(identity["artist"]) + "\0" + norm(identity["title"]), []
             ).append(sid)
@@ -391,7 +454,7 @@ class MusicLibrary:
 
 # FILE OVERVIEW
 # - Stores one JSON record per artist, album, and song in ID-sharded paths.
-# - Uses verified artist/release/recording MBIDs or Spotify IDs before safe aliases.
+# - Uses MusicBrainz/Spotify IDs, ISRCs and verified release positions before safe name aliases.
+# - Explains lookup paths and confidence; ambiguous artist/title candidates are never guessed.
 # - Does not invent album records when the source has no release context.
 # - Preserves metadata, listening context, audio, lyrics, derived fields, and provenance.
-# - Keeps ambiguous artist/title aliases as candidate lists; never guesses a song version.

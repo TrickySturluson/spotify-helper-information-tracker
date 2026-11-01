@@ -342,6 +342,10 @@ SHIT can store music metadata as individual artist, album, and song JSON
 records rather than requiring every consumer to load large aggregate profiles.
 The canonical layout, identity rules, migration procedure, and lazy lookup
 behavior are documented in [the Library guide](docs/PER_RECORDING_MUSIC_LIBRARY.md).
+Album tracklists and short descriptions are enriched separately from Last.fm
+and retained only after exact artist/album identity checks. Lookup explanations,
+ISRC/release-position matching, and field-level confidence rules are described
+in [Album metadata and lookup confidence](docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md).
 
 Preview and run the local-only migration:
 
