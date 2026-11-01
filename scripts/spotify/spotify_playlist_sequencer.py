@@ -90,6 +90,63 @@ def _tag_rows(profile):
             for row in rows if (row.get("tag") if isinstance(row, dict) else row)]
 
 
+def _track_mood_evidence(profile):
+    """Return track-level mood tags, polarity, and calibrated descriptive confidence.
+
+    Distinct descriptors and independent track-tag source families determine
+    confidence; raw tag counts are not treated as independent confirmations.
+    Artist-level tags are intentionally excluded.
+    """
+    source_fields = {
+        "lastfm_track": ("lastfm_tags", "tags"),
+        "musicbrainz_recording": ("musicbrainz_tags",),
+    }
+    moods = set()
+    descriptors = set()
+    source_families = set()
+    for family, fields in source_fields.items():
+        family_moods = set()
+        for field in fields:
+            for row in profile.get(field) or []:
+                tag = row.get("tag", "") if isinstance(row, dict) else row
+                if not tag:
+                    continue
+                label = str(tag).strip()
+                key = norm(label)
+                if not key:
+                    continue
+                matches = mood_inference._tag_moods(label)
+                if not matches:
+                    continue
+                family_moods.update(matches)
+                descriptors.add(key)
+                moods.update(matches)
+        if family_moods:
+            source_families.add(family)
+    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic"}
+    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic"}
+    has_energetic = bool(moods & energetic)
+    has_gentle = bool(moods & gentle)
+    conflict = has_energetic and has_gentle
+    if not moods:
+        confidence = "unknown"
+    elif len(source_families) >= 2 and len(descriptors) >= 2 and not conflict:
+        confidence = "high"
+    elif (len(descriptors) >= 2 or len(source_families) >= 2) and not conflict:
+        confidence = "medium"
+    else:
+        confidence = "low"
+    if conflict:
+        confidence = "low"
+    return {
+        "moods": sorted(moods),
+        "confidence": confidence,
+        "source_families": sorted(source_families),
+        "tag_count": len(descriptors),
+        "conflict": conflict,
+    }
+
+
 def _signal(value, low, high):
     if value is None:
         return None
@@ -203,26 +260,39 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
             evidence.append(f"Spotify loudness={float(spotify['loudness']):.1f} dB (not LUFS)")
             evidence_sources.append("spotify_loudness")
 
-    track_tags = _tag_rows(track_profile)
+    track_mood = _track_mood_evidence(track_profile)
+    tag_moods = set(track_mood["moods"])
     artist_tags = _tag_rows(artist_profile)
-    tag_moods = set()
-    for tag in track_tags:
-        tag_moods.update(mood_inference._tag_moods(tag))
     artist_moods = set()
+    # The profile builder already separates curated mood hints from raw tags.
+    # Consume that explicit field as well; it remains artist-level fallback only.
+    for tag in artist_profile.get("moods") or []:
+        artist_moods.update(mood_inference._tag_moods(tag))
     for tag in artist_tags:
         artist_moods.update(mood_inference._tag_moods(tag))
-    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic"}
-    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic"}
+    energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
+    gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
     if tag_moods:
-        mood_score = 0.72 if tag_moods & energetic else 0.28 if tag_moods & gentle else 0.5
-        components.append(mood_score); weights.append(0.15)
-        semantic_components.append(mood_score); semantic_weights.append(0.15)
+        # Conflicting affect directions are retained as evidence but neutralized
+        # for energy blending rather than arbitrarily choosing the first mood.
+        mood_score = (0.5 if track_mood["conflict"] else
+                      0.72 if tag_moods & energetic else
+                      0.28 if tag_moods & gentle else 0.5)
+        mood_weight = {"high": 0.15, "medium": 0.10, "low": 0.05}.get(track_mood["confidence"], 0.0)
+        components.append(mood_score); weights.append(mood_weight)
+        semantic_components.append(mood_score); semantic_weights.append(mood_weight)
         evidence.append("track-tag mood=" + ", ".join(sorted(tag_moods)))
+        evidence.append("track mood confidence=" + track_mood["confidence"])
+        evidence.append(f"track mood contribution weight={mood_weight:.2f}")
+        if track_mood["conflict"]:
+            evidence.append("conflicting track mood directions; neutral energy contribution")
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
-        components.append(mood_score); weights.append(0.06)
-        semantic_components.append(mood_score); semantic_weights.append(0.06)
+        mood_weight = 0.03
+        components.append(mood_score); weights.append(mood_weight)
+        semantic_components.append(mood_score); semantic_weights.append(mood_weight)
         evidence.append("artist-level mood fallback=" + ", ".join(sorted(artist_moods)))
+        evidence.append(f"artist mood contribution weight={mood_weight:.2f}")
 
     genre_values = []
     for row in track_profile.get("musicbrainz_genres") or []:
@@ -243,8 +313,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     elif any(x in genre_text for x in low_genre): genre_score = 0.30
     else: genre_score = None
     if genre_score is not None:
-        components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
-        semantic_components.append(genre_score); semantic_weights.append(0.05 if track_tags else 0.08)
+        components.append(genre_score); weights.append(0.05 if tag_moods else 0.08)
+        semantic_components.append(genre_score); semantic_weights.append(0.05 if tag_moods else 0.08)
         evidence.append(f"genre-family signal={genre_score:.2f}")
 
     genre_groups = []
@@ -320,6 +390,11 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
         "acoustic_confidence": acoustic_confidence,
         "semantic_confidence": semantic_confidence,
+        "mood_confidence": track_mood["confidence"] if tag_moods else ("low" if artist_moods else "unknown"),
+        "mood_weight": mood_weight if tag_moods or artist_moods else 0.0,
+        "mood_source_families": track_mood["source_families"] if tag_moods else (["lastfm_artist"] if artist_moods else []),
+        "mood_tag_count": track_mood["tag_count"],
+        "mood_conflict": track_mood["conflict"],
         "semantic_source_families": sorted(semantic_source_families),
         "tempo_bpm": tempo_value,
         "tempo_source": tempo_source,
@@ -376,9 +451,15 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
         left_energy, right_energy = _energy_score(left), _energy_score(right)
         if left_energy is not None and right_energy is not None:
             terms.append((0.34, abs(float(left_energy) - float(right_energy)) / 100.0))
-    for field, weight in (("vibe_groups", 0.25), ("genre_groups", 0.08), ("theme_groups", 0.08)):
+    mood_tiers = {"high": 0.25, "medium": 0.17, "low": 0.08, "unknown": 0.0}
+    left_mood_conf = left.get("mood_confidence", "low")
+    right_mood_conf = right.get("mood_confidence", "low")
+    mood_weight = min(mood_tiers.get(left_mood_conf, 0.0),
+                      mood_tiers.get(right_mood_conf, 0.0))
+    for field, weight in (("vibe_groups", mood_weight),
+                          ("genre_groups", 0.08), ("theme_groups", 0.08)):
         affinity = _set_similarity(left.get(field), right.get(field))
-        if affinity is not None:
+        if affinity is not None and weight > 0:
             terms.append((weight, 1.0 - affinity))
     tempo_gap = _tempo_relationship(left, right)
     if tempo_gap is not None:
@@ -430,8 +511,14 @@ def transition_report(left, right):
         elif gap >= 0.35: reasons.append("large estimated energy change")
     if same: reasons.append("same primary artist")
     if not reasons: reasons.append("insufficient shared metadata; transition remains uncertain")
-    evidence_count = sum(bool(left.get(field)) and bool(right.get(field))
-                         for field in ("vibe_groups", "genre_groups", "theme_groups"))
+    mood_supported = (
+        left.get("mood_confidence") in {"medium", "high"}
+        and right.get("mood_confidence") in {"medium", "high"}
+        and bool(left.get("vibe_groups")) and bool(right.get("vibe_groups"))
+    )
+    evidence_count = int(mood_supported)
+    evidence_count += sum(bool(left.get(field)) and bool(right.get(field))
+                          for field in ("genre_groups", "theme_groups"))
     evidence_count += int(tempo_gap is not None)
     evidence_count += int(energy_known)
     confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
@@ -743,6 +830,10 @@ def evidence_coverage_summary(scored):
     acoustic = Counter(row.get("acoustic_confidence", row.get("confidence", "unknown"))
                        for row in scored)
     semantic = Counter(row.get("semantic_confidence", "unknown") for row in scored)
+    mood = Counter(row.get("mood_confidence", "unknown") for row in scored)
+    mood_source_coverage = Counter(
+        source for row in scored for source in row.get("mood_source_families", [])
+    )
     semantic_source_coverage = Counter(
         source for row in scored for source in row.get("semantic_source_families", [])
     )
@@ -754,6 +845,8 @@ def evidence_coverage_summary(scored):
     return {
         "acoustic_confidence": {key: acoustic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
         "semantic_confidence": {key: semantic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "mood_confidence": {key: mood.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "mood_source_coverage": dict(sorted(mood_source_coverage.items())),
         "tempo_sources": dict(sorted(tempo_sources.items())),
         "acoustic_source_coverage": dict(sorted(acoustic_source_coverage.items())),
         "semantic_source_coverage": dict(sorted(semantic_source_coverage.items())),
@@ -831,6 +924,8 @@ def main():
         print("Acoustic confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         coverage = evidence_coverage_summary(scored)
         print("Semantic confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["semantic_confidence"].items()))
+        print("Track mood confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["mood_confidence"].items()))
+        print("Track mood sources: " + (", ".join(f"{name}={count}" for name, count in coverage["mood_source_coverage"].items()) or "none"))
         print("Acoustic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["acoustic_source_coverage"].items()) or "none"))
         print("Semantic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["semantic_source_coverage"].items()) or "none"))
         print("Tempo sources: " + (", ".join(f"{name}={count}" for name, count in coverage["tempo_sources"].items()) or "none") + f"; agreement={coverage['tempo_agreements']}; disagreement={coverage['tempo_disagreements']}")

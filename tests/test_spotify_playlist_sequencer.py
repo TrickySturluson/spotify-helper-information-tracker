@@ -27,6 +27,101 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIn("aggressive", " ".join(result["evidence"]))
         self.assertNotIn("artist-level mood fallback", " ".join(result["evidence"]))
 
+    def test_single_track_mood_tag_is_low_confidence(self):
+        result = sequencer.score_track(
+            {"name": "One Tag", "artists": ["Artist"]},
+            track_profiles={("artist", "one tag"): {
+                "lastfm_tags": [{"tag": "aggressive", "count": 3}]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_tag_count"], 1)
+        self.assertEqual(result["mood_weight"], 0.05)
+        self.assertFalse(result["mood_conflict"])
+
+    def test_independent_track_tag_sources_can_support_high_mood_confidence(self):
+        result = sequencer.score_track(
+            {"name": "Corroborated", "artists": ["Artist"]},
+            track_profiles={("artist", "corroborated"): {
+                "lastfm_tags": [{"tag": "aggressive", "count": 40}],
+                "musicbrainz_tags": [{"tag": "chaotic", "count": 5}],
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "high")
+        self.assertEqual(result["mood_weight"], 0.15)
+        self.assertEqual(
+            result["mood_source_families"],
+            ["lastfm_track", "musicbrainz_recording"],
+        )
+
+    def test_multiple_track_mood_descriptors_from_one_source_are_medium(self):
+        result = sequencer.score_track(
+            {"name": "Two Descriptors", "artists": ["Artist"]},
+            track_profiles={("artist", "two descriptors"): {
+                "lastfm_tags": [
+                    {"tag": "dreamy", "count": 10},
+                    {"tag": "ethereal", "count": 8},
+                ]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "medium")
+        self.assertEqual(result["mood_weight"], 0.10)
+
+    def test_same_mood_from_two_sources_is_corroborated_but_not_high(self):
+        result = sequencer.score_track(
+            {"name": "One Descriptor", "artists": ["Artist"]},
+            track_profiles={("artist", "one descriptor"): {
+                "lastfm_tags": [{"tag": "dark", "count": 1000}],
+                "musicbrainz_tags": [{"tag": "dark", "count": 1}],
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "medium")
+        self.assertEqual(result["mood_tag_count"], 1)
+        self.assertEqual(len(result["mood_source_families"]), 2)
+
+    def test_conflicting_track_moods_lower_confidence_and_neutralize_energy_blend(self):
+        result = sequencer.score_track(
+            {"name": "Mixed Signals", "artists": ["Artist"]},
+            track_profiles={("artist", "mixed signals"): {
+                "lastfm_tags": [
+                    {"tag": "aggressive", "count": 30},
+                    {"tag": "calm", "count": 30},
+                ]
+            }},
+        )
+        self.assertTrue(result["mood_conflict"])
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertAlmostEqual(result["semantic_score"], 50.0)
+
+    def test_genre_labels_do_not_count_as_track_mood_evidence(self):
+        result = sequencer.score_track(
+            {"name": "Genre Only", "artists": ["Artist"]},
+            track_profiles={("artist", "genre only"): {
+                "musicbrainz_genres": [{"tag": "aggressive"}]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "unknown")
+        self.assertEqual(result["mood_tag_count"], 0)
+
+    def test_artist_mood_fallback_is_explicitly_low_confidence(self):
+        result = sequencer.score_track(
+            {"name": "Artist Proxy", "artists": ["Artist"]},
+            artist_profiles={"artist": {"tags": [{"tag": "dreamy"}]}},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_weight"], 0.03)
+        self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
+
+    def test_derived_artist_moods_are_used_as_low_confidence_fallback(self):
+        result = sequencer.score_track(
+            {"name": "Curated Artist Mood", "artists": ["Artist"]},
+            artist_profiles={"artist": {"moods": ["dreamy", "haunting"]}},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
+        self.assertIn("dreamy", result["vibe_groups"])
+        self.assertIn("eerie", result["vibe_groups"])
+
     def test_missing_metadata_is_explicitly_unknown(self):
         result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
         self.assertEqual(result["confidence"], "unknown")
@@ -120,12 +215,12 @@ class PlaylistSequencerTests(unittest.TestCase):
     def test_evidence_coverage_summary_reports_sources_and_disagreement(self):
         rows = [
             {"confidence": "high", "acoustic_confidence": "high",
-             "semantic_confidence": "medium", "tempo_bpm": 120,
+             "semantic_confidence": "medium", "mood_confidence": "high", "tempo_bpm": 120,
              "tempo_source": "Essentia", "tempo_agreement": True,
              "evidence_sources": ["essentia_lufs", "spotify_audio_features"],
              "semantic_source_families": ["lastfm_community", "musicbrainz"]},
             {"confidence": "low", "acoustic_confidence": "low",
-             "semantic_confidence": "high", "tempo_bpm": 80,
+             "semantic_confidence": "high", "mood_confidence": "low", "tempo_bpm": 80,
              "tempo_source": "AcousticBrainz", "tempo_agreement": False,
              "evidence_sources": ["acousticbrainz"],
              "semantic_source_families": ["discogs_release_context"]},
@@ -137,6 +232,8 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(summary["tempo_agreements"], 1)
         self.assertEqual(summary["tempo_disagreements"], 1)
         self.assertEqual(summary["semantic_confidence"]["high"], 1)
+        self.assertEqual(summary["mood_confidence"]["high"], 1)
+        self.assertEqual(summary["mood_confidence"]["low"], 1)
         self.assertEqual(summary["acoustic_source_coverage"]["acousticbrainz"], 1)
         self.assertEqual(summary["semantic_source_coverage"]["discogs_release_context"], 1)
 
@@ -292,6 +389,40 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(report["label"], "gentle")
         self.assertIn("dreamy", report["shared_moods"])
         self.assertEqual(sequencer.transition_report(dict(a, confidence="unknown", acoustic_confidence="unknown"), b)["confidence"], "limited")
+
+    def test_mood_affinity_weight_scales_with_confidence(self):
+        left = {
+            "artist": "A", "vibe_groups": ["dreamy"],
+            "genre_groups": ["industrial"], "theme_groups": [],
+            "mood_confidence": "high",
+        }
+        right = {
+            "artist": "B", "vibe_groups": ["dreamy"],
+            "genre_groups": ["punk"], "theme_groups": [],
+            "mood_confidence": "high",
+        }
+        high_confidence_cost = sequencer._transition_cost(left, right)
+        low_confidence_cost = sequencer._transition_cost(
+            dict(left, mood_confidence="low"),
+            dict(right, mood_confidence="low"),
+        )
+        unknown_confidence_cost = sequencer._transition_cost(
+            dict(left, mood_confidence="unknown"),
+            dict(right, mood_confidence="unknown"),
+        )
+        self.assertLess(high_confidence_cost, low_confidence_cost)
+        self.assertLess(low_confidence_cost, unknown_confidence_cost)
+
+    def test_low_confidence_mood_cannot_support_transition_confidence(self):
+        left = {
+            "score": 40, "acoustic_score": 40, "acoustic_confidence": "high",
+            "artist": "A", "vibe_groups": ["dreamy"], "mood_confidence": "low",
+            "genre_groups": [], "theme_groups": [],
+        }
+        right = dict(left, artist="B", score=42, acoustic_score=42)
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["evidence_count"], 1)
 
     def test_transition_summary_flags_potential_jump(self):
         rows = [
@@ -591,6 +722,42 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         operations = sequencer.build_reorder_operations(original_uris, ordered_uris)
         summary = sequencer.transition_summary(ordered)
         confidence = sequencer.confidence_summary(ordered)
+        coverage = sequencer.evidence_coverage_summary(ordered)
+        mood_confidence = coverage["mood_confidence"]
+        playlist_artist_rows = [
+            artist_index.get(sequencer.norm((item.get("artists") or [""])[0]), {})
+            for item in snapshot["items"]
+        ]
+        artist_profiles_with_moods = sum(bool(row.get("moods")) for row in playlist_artist_rows)
+        artist_profiles_with_tags = sum(bool(row.get("tags")) for row in playlist_artist_rows)
+        curated_artist_moods_mapped = sum(
+            any(sequencer.mood_inference._tag_moods(tag) for tag in (row.get("moods") or []))
+            for row in playlist_artist_rows
+        )
+        artist_raw_moods_mapped = sum(
+            any(sequencer.mood_inference._tag_moods(
+                tag.get("tag", "") if isinstance(tag, dict) else tag
+            ) for tag in (row.get("tags") or []))
+            for row in playlist_artist_rows
+        )
+        artist_mood_examples = sorted({
+            str(tag) for row in playlist_artist_rows for tag in (row.get("moods") or [])
+        }, key=str.casefold)[:12]
+        artist_tag_examples = sorted({
+            str(tag.get("tag", "") if isinstance(tag, dict) else tag)
+            for row in playlist_artist_rows for tag in (row.get("tags") or [])
+            if tag
+        }, key=str.casefold)[:24]
+        playlist_track_rows = [
+            track_index.get((sequencer.norm((item.get("artists") or [""])[0]), sequencer.norm(item.get("name"))), {})
+            for item in snapshot["items"]
+        ]
+        track_tag_coverage = {
+            "lastfm_tagged": sum(bool(row.get("lastfm_tags")) for row in playlist_track_rows),
+            "musicbrainz_tagged": sum(bool(row.get("musicbrainz_tags")) for row in playlist_track_rows),
+            "lastfm_no_tags": sum(row.get("lastfm_status") == "no_tags" for row in playlist_track_rows),
+            "lastfm_unmatched": sum(not row for row in playlist_track_rows),
+        }
         changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
         elapsed_seconds = perf_counter() - started
         previous_artist = None
@@ -604,6 +771,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         self.assertEqual(len(ordered), len(snapshot["items"]))
         self.assertCountEqual(ordered_uris, original_uris)
         self.assertEqual(sum(confidence.values()), len(ordered))
+        self.assertEqual(sum(mood_confidence.values()), len(ordered))
         self.assertLessEqual(longest_run, 2, "real playlist preview should avoid long artist runs")
         print(
             "SEQUENCER REAL-DATA EVALUATION: "
@@ -611,6 +779,11 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             f"tracks={len(ordered)}; elapsed_seconds={elapsed_seconds:.3f}; moved_positions={changed_positions}; "
             f"longest_artist_run={longest_run}; "
             f"reorder_operations={len(operations)}; confidence={confidence}; "
+            f"mood_confidence={mood_confidence}; mood_sources={coverage['mood_source_coverage']}; "
+            f"artist_profiles_with_moods={artist_profiles_with_moods}; "
+            f"artist_profiles_with_tags={artist_profiles_with_tags}; "
+            f"curated_artist_moods_mapped={curated_artist_moods_mapped}; artist_raw_moods_mapped={artist_raw_moods_mapped}; artist_mood_examples={artist_mood_examples}; "
+            f"artist_tag_examples={artist_tag_examples}; track_tag_coverage={track_tag_coverage}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, provisional:{summary['provisional']}, "
             f"uncertain:{summary['uncertain']}, "
