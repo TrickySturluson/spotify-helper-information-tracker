@@ -264,17 +264,19 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `assistant_data/years/2025.json` — Year-scoped historical listening aggregate for 2025.
 - `assistant_data/years/2026.json` — Year-scoped historical listening aggregate for 2026.
 
-## compat (32 files)
+## compat (34 files)
 
 - `compat/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `compat/__init__.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/audio_analysis.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/analyze_audio_mood.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/audit_project.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_advanced_analytics.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_assistant_data.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_listening_time_summary.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_music_analytics.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_music_metadata.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/build_album_profiles.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_music_profiles.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_playback_analytics.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_stats.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -306,9 +308,10 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `data/scrobbles.json` — Canonical raw Last.fm scrobble archive; historical listening source records.
 - `data/stats.json` — Archive-wide statistics snapshot, including explicitly estimated listening-time measures.
 
-## docs (12 files)
+## docs (13 files)
 
 - `docs/AUDIO_ANALYSIS.md` — Guide to measured/local audio analysis and its evidence limits.
+- `docs/AUDIO_MOOD_MODELS.md` — Optional local DEAM valence/arousal inference, provenance and model licensing.
 - `docs/AUTOMATED_AUDIO_METADATA.md` — Guide to automated metadata enrichment and provenance.
 - `docs/BOOZE_OR_BOOS_SORT.md` — Operating guide for the Booze or Boos! playlist sorter.
 - `docs/CODE_DOCUMENTATION.md` — Conventions for maintained-file overviews and project documentation.
@@ -326,13 +329,15 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `playback_data/.gitkeep` — Placeholder preserving the measured Spotify playback archive directory before records exist.
 - `playback_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 
-## scripts (36 files)
+## scripts (38 files)
 
 - `scripts/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `scripts/__init__.py` — Python package initializer for scripts.
 - `scripts/analytics/__init__.py` — Python package initializer for scripts/analytics.
 - `scripts/analytics/audit_project.py` — Maintained implementation module for audit project. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_advanced_analytics.py` — Maintained implementation module for build advanced analytics. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/analyze_audio_mood.py` — Optional local DEAM valence/arousal inference with model/source provenance. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/build_album_profiles.py` — Incremental Last.fm album-tag enrichment with identity validation and cooldowns. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_assistant_data.py` — Maintained implementation module for build assistant data. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_listening_time_summary.py` — Maintained implementation module for build listening time summary. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_music_analytics.py` — Maintained implementation module for build music analytics. See its bottom FILE OVERVIEW for detailed behavior.
@@ -366,10 +371,12 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/spotify/spotify_reference_library.py` — Maintained implementation module for spotify reference library. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/track_playlist_removals.py` — Maintained implementation module for track playlist removals. See its bottom FILE OVERVIEW for detailed behavior.
 
-## tests (17 files)
+## tests (19 files)
 
 - `tests/__init__.py` — Automated regression tests for   init  .
 - `tests/test_audio_analysis.py` — Automated regression tests for audio analysis.
+- `tests/test_analyze_audio_mood.py` — Automated regression tests for DEAM model output aggregation and validation.
+- `tests/test_build_album_profiles.py` — Automated regression tests for album profile enrichment.
 - `tests/test_audit_project.py` — Automated regression tests for audit project.
 - `tests/test_enrich_acousticbrainz.py` — Automated regression tests for AcousticBrainz aggregation.
 - `tests/test_enrich_discogs.py` — Automated regression tests for Discogs identity matching.

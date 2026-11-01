@@ -59,3 +59,8 @@ profile output. Only measurements, source filename, and timestamps are saved.
 Essentia is AGPL-3.0-only (with separate commercial licensing available from its
 maintainers); review the license before redistributing or embedding it in a
 closed-source product.
+
+
+## Optional mood analysis
+
+For local DEAM valence/arousal regression, see [AUDIO_MOOD_MODELS.md](AUDIO_MOOD_MODELS.md). It is a separate opt-in analysis and does not yet affect sorter confidence.
