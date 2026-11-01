@@ -299,7 +299,11 @@ class MusicLibrary:
             if len(matches) == 1:
                 key = matches[0]
         if key:
-            return read_json(self.root / albums[key]["path"])
+            indexed_path = (albums.get(key) or {}).get("path")
+            indexed_record = read_json(self.root / indexed_path) if indexed_path else None
+            if isinstance(indexed_record, dict):
+                return indexed_record
+            # A stale index path is treated as a miss and repaired below.
         # Stale/partial indexes must not hide canonical album records. This
         # fallback is used only on a miss, and repairs the index for next lookup.
         matches = []
