@@ -36,6 +36,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         )
         self.assertEqual(result["mood_confidence"], "low")
         self.assertEqual(result["mood_tag_count"], 1)
+        self.assertEqual(result["mood_weight"], 0.05)
         self.assertFalse(result["mood_conflict"])
 
     def test_independent_track_tag_sources_can_support_high_mood_confidence(self):
@@ -47,10 +48,24 @@ class PlaylistSequencerTests(unittest.TestCase):
             }},
         )
         self.assertEqual(result["mood_confidence"], "high")
+        self.assertEqual(result["mood_weight"], 0.15)
         self.assertEqual(
             result["mood_source_families"],
             ["lastfm_track", "musicbrainz_recording"],
         )
+
+    def test_multiple_track_mood_descriptors_from_one_source_are_medium(self):
+        result = sequencer.score_track(
+            {"name": "Two Descriptors", "artists": ["Artist"]},
+            track_profiles={("artist", "two descriptors"): {
+                "lastfm_tags": [
+                    {"tag": "dreamy", "count": 10},
+                    {"tag": "ethereal", "count": 8},
+                ]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "medium")
+        self.assertEqual(result["mood_weight"], 0.10)
 
     def test_same_mood_from_two_sources_is_corroborated_but_not_high(self):
         result = sequencer.score_track(
@@ -94,6 +109,7 @@ class PlaylistSequencerTests(unittest.TestCase):
             artist_profiles={"artist": {"tags": [{"tag": "dreamy"}]}},
         )
         self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_weight"], 0.03)
         self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
 
     def test_derived_artist_moods_are_used_as_low_confidence_fallback(self):
