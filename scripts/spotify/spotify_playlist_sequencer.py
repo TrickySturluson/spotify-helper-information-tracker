@@ -180,7 +180,9 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         evidence.append(f"dynamic complexity={float(measured_audio['dynamic_complexity']):.2f}")
     if not components:
         return {"score": 50.0, "confidence": "unknown", "evidence": evidence,
-                "artist": artist, "track": title, "vibe_group": "unclassified",
+                "artist": artist, "track": title,
+                "tempo_bpm": float(tempo_value) if tempo_value is not None else None,
+                "vibe_group": "unclassified",
                 "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
     score = sum(v * w for v, w in zip(components, weights)) / sum(weights) * 100
     confidence = "high" if direct_energy is not None and (tempo is not None or loudness is not None) else "medium" if len(components) >= 2 else "low"
