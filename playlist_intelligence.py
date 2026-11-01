@@ -192,7 +192,7 @@ def playlist_track_metadata(items, track_profiles):
         "total_tracks": total,
         "lyric_analyzed_tracks": lyric_matched,
         "lyric_theme_coverage": round(lyric_matched / max(1, total), 4),
-        "lyric_themes": [{"tag": key, "track_count": count} for key, count in lyric_themes.most_common(20)],
+        "lyric_themes": [{"tag": key, "track_count": count} for key, count in sorted(lyric_themes.items(), key=lambda pair: (-pair[1], pair[0]))[:20]],
         "coverage": round(matched / max(1, total), 4),
         "moods": [{"tag": key, "track_count": count} for key, count in moods.most_common(12)],
         "genres": [{"tag": key, "track_count": count} for key, count in genres.most_common(12)],
