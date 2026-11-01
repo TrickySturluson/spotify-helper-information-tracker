@@ -82,7 +82,7 @@ def verify_spotify():
         return [result("Spotify", "failed", detail, True)]
     try:
         profile = json.loads(body.decode("utf-8"))
-        account = "authenticated account " + str(profile.get("id") or "(ID unavailable)")
+        account = "authenticated Spotify account"
     except (ValueError, AttributeError):
         account = "authenticated account"
     rotated = bool(token_data.get("refresh_token"))
