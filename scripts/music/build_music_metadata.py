@@ -338,3 +338,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Incrementally enrich unique scrobbled tracks with cached Last.fm metadata. Generated files are optimized for lookup: a compact manifest/index plus 32 artist-hash shards. The canonical scrobble archive is never modified.
+# Location: Maintained implementation in scripts/music/build_music_metadata.py.
+# Data flow: Uses the canonical archives and/or generated project data; see the
+#            module's paths and command options for exact inputs and outputs.
+# Run: python compat/build_music_metadata.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

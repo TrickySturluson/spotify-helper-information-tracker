@@ -10,3 +10,14 @@ if str(_ROOT / "compat") not in sys.path:
 _source = _ROOT / "scripts" / "spotify" / "spotify_discovery.py"
 __file__ = str(_ROOT / "spotify_discovery.py")
 exec(compile(_source.read_text(encoding="utf-8"), __file__, "exec"), globals())
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Compatibility entry point for scripts/spotify/spotify_discovery.py.
+# Role: Compatibility layer only; this file is not the source of business logic.
+# Delegation: scripts/spotify/spotify_discovery.py
+# Use: Run this legacy entry point to preserve older commands/import names.
+# Maintenance: Put all new behavior in the delegated scripts/ implementation.
+# Related: See scripts/README.md for package layout and docs/ for feature guides.
+# -----------------------------------------------------------------------------

@@ -239,3 +239,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Build compact, queryable analytics from the canonical Last.fm archive. The raw data/scrobbles.json remains the source of truth. This script creates assistant_data/ JSON files that can be fetched individually without loading the full archive.
+# Location: Maintained implementation in scripts/analytics/build_assistant_data.py.
+# Data flow: Reads canonical project inputs and/or existing generated artifacts;
+#            writes only the outputs described by this module's implementation.
+# Run: python compat/build_assistant_data.py (legacy CLI entry point, when this tool has one).
+# Related: tests/ (regression coverage for build_assistant_data). See docs/ for longer operational and data-contract guides.
+# -----------------------------------------------------------------------------

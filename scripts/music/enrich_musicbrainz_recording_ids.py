@@ -108,3 +108,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Resolve missing MusicBrainz recording IDs in SHIT's artist shards. Uses strict exact artist + recording-title matching and the MusicBrainz one-request-per-second policy. Results are checkpointed to the original shard and can be resumed on the next run. Ambiguous/unmatched titles are not guessed.
+# Location: Maintained implementation in scripts/music/enrich_musicbrainz_recording_ids.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/enrich_musicbrainz_recording_ids.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

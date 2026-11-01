@@ -197,3 +197,12 @@ class PlaylistManagerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_spotify_playlist_manager -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

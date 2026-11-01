@@ -355,3 +355,14 @@ def playlist_health(items, feedback=None, artist_profiles=None, track_profiles=N
         "removal_feedback_count": feedback.get("removed_count", 0),
         "whitelisted_count": feedback.get("whitelisted_count", 0),
     }
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Playlist-specific taste profiles, recommendation diagnostics, and health checks. All outputs are derived from a single playlist snapshot plus public/local music metadata. This module is intentionally read-only: it never edits Spotify.
+# Location: Maintained implementation in scripts/spotify/playlist_intelligence.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/playlist_intelligence.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

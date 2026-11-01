@@ -102,3 +102,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Publish complete-history listening-time estimates alongside verified duration data. The legacy baseline deliberately includes every scrobble. Verified-duration metrics remain a separate subset and are never filled with guessed durations.
+# Location: Maintained implementation in scripts/analytics/build_listening_time_summary.py.
+# Data flow: Reads canonical project inputs and/or existing generated artifacts;
+#            writes only the outputs described by this module's implementation.
+# Run: python compat/build_listening_time_summary.py (legacy CLI entry point, when this tool has one).
+# Related: tests/ (regression coverage for build_listening_time_summary). See docs/ for longer operational and data-contract guides.
+# -----------------------------------------------------------------------------

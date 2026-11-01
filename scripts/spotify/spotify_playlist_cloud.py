@@ -1152,3 +1152,14 @@ if __name__ == "__main__":
     except (manager.ManagerError, OSError, KeyError, ValueError, urllib.error.URLError) as error:
         print("ERROR:", error, file=sys.stderr)
         raise SystemExit(1)
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Owner-verified GitHub issue command handler for Spotify playlist control.
+# Location: Maintained implementation in scripts/spotify/spotify_playlist_cloud.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_playlist_cloud.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

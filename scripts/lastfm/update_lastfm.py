@@ -474,3 +474,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Call the Last.fm API with automatic retries for temporary server/network errors.
+# Location: Maintained implementation in scripts/lastfm/update_lastfm.py.
+# Data flow: Uses the canonical archives and/or generated project data; see the
+#            module's paths and command options for exact inputs and outputs.
+# Run: python compat/update_lastfm.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

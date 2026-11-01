@@ -56,3 +56,12 @@ class ScriptLayoutTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Guard the responsibility-based implementation and compatibility layout.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_script_layout -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

@@ -126,3 +126,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Bulk-enrich SHIT track profiles from the public AcousticBrainz archive/API. Uses existing MusicBrainz recording IDs in the 32 artist shards. No audio files, Spotify streams, or per-track manual work are required. The API is queried in batches of 25 MBIDs; results are checkpointed after each batch.
+# Location: Maintained implementation in scripts/music/enrich_acousticbrainz.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/enrich_acousticbrainz.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

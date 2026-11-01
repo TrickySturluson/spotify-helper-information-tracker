@@ -170,3 +170,14 @@ def infer_mood_profile(items, artist_profiles):
         'artists_with_tag_evidence': len({artist for rows in evidence.values() for artist, _ in rows}),
         'moods': ranked[:8],
     }
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Conservative mood inference from artist-level Last.fm tags.
+# Location: Maintained implementation in scripts/music/mood_inference.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/mood_inference.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

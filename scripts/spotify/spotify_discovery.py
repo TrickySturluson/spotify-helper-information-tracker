@@ -457,3 +457,14 @@ def build_discovery_recommendations(
 
 if __name__ == "__main__":
     raise SystemExit("Run through spotify_playlist_cloud.py using the protected daily_preview command.")
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Discovery-first Spotify curator using Last.fm similarity + Spotify catalogue search. The scrobble archive is a taste/familiarity model, never the candidate catalogue. No archive track is hard-excluded: prior plays and recency progressively reduce its rank. Liked tracks receive a strong penalty but remain eligible.
+# Location: Maintained implementation in scripts/spotify/spotify_discovery.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_discovery.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

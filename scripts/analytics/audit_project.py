@@ -243,3 +243,14 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Cross-check canonical SHIT data and generated manifests.
+# Location: Maintained implementation in scripts/analytics/audit_project.py.
+# Data flow: Reads canonical project inputs and/or existing generated artifacts;
+#            writes only the outputs described by this module's implementation.
+# Run: python compat/audit_project.py (legacy CLI entry point, when this tool has one).
+# Related: tests/ (regression coverage for audit_project). See docs/ for longer operational and data-contract guides.
+# -----------------------------------------------------------------------------

@@ -249,3 +249,14 @@ def build_daily_recommendations(sp, playlist_items, today=None, feature_path=FEA
 
 if __name__ == "__main__":
     raise SystemExit("Run through spotify_playlist_cloud.py using the protected daily_preview command.")
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Build a balanced daily mix of proven favorites, rediscoveries and deep cuts. Last.fm scrobbles are evidence of repeated listening, not a guarantee of liking. The curator uses that history as a useful signal, while preserving room for less-played tracks and enforcing artist diversity.
+# Location: Maintained implementation in scripts/spotify/spotify_daily_playlist.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_daily_playlist.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

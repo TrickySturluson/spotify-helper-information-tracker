@@ -564,3 +564,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Preview energy-aware sequencing plans for Spotify playlists. This tool is deliberately preview-only. It reads a playlist through the existing locked-by-default manager and writes a change plan for spotify_playlist_manager.py to preview and apply. It never edits Spotify directly.
+# Location: Maintained implementation in scripts/spotify/spotify_playlist_sequencer.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_playlist_sequencer.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

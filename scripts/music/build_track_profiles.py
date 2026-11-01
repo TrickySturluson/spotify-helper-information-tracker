@@ -292,3 +292,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Incrementally enrich individual scrobbled tracks with sourced community tags. Last.fm supplies crowd-ranked track tags. MusicBrainz supplies recording tags and genres when a verified recording MBID is already present. No fuzzy MBID search is used here: uncertain identity matches are left unresolved.
+# Location: Maintained implementation in scripts/music/build_track_profiles.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/build_track_profiles.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

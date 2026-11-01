@@ -161,3 +161,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Optional GetSongBPM tempo/key fallback for SHIT's track catalogue. Requires GETSONGBPM_API_KEY. Searches artist + title, accepts only one exact artist/title match, and never overwrites an existing primary BPM measurement.
+# Location: Maintained implementation in scripts/music/enrich_getsongbpm.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/enrich_getsongbpm.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------
