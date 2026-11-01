@@ -126,7 +126,13 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     track_profile = track_profiles.get((norm(artist), norm(title)), {})
     measured_audio = (audio_profiles or {}).get((norm(artist), norm(title)), {})
     sources = measured_audio.get("source_profiles") or {}
-    essentia = sources.get("essentia") or (measured_audio if "essentia" in str(measured_audio.get("analysis_engine", "")).casefold() else {})
+    essentia = sources.get("essentia") or (
+        measured_audio if (
+            "essentia" in str(measured_audio.get("analysis_engine", "")).casefold()
+            or any(measured_audio.get(field) is not None
+                   for field in ("integrated_lufs", "loudness_range_lu", "tempo_confidence"))
+        ) else {}
+    )
     acousticbrainz = sources.get("acousticbrainz") or (measured_audio if "acousticbrainz" in str(measured_audio.get("source", "")).casefold() else {})
     getsongbpm = sources.get("getsongbpm") or measured_audio.get("getsongbpm") or {}
     spotify = item.get("audio_features") or {}
