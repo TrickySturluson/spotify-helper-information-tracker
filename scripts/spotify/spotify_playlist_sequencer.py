@@ -587,7 +587,6 @@ def alternative_preview_message(path, summary):
         f"| moderate: {summary['moderate']} "
         f"| potential jumps: {summary['potential_jumps']} "
         f"| provisional: {summary.get('provisional', 0)} "
-        f"| provisional: {summary.get('provisional', 0)} "
         f"| uncertain: {summary.get('uncertain', 0)}"
     )
 
