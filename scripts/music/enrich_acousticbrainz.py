@@ -18,7 +18,7 @@ ROOT = Path("assistant_data/music")
 SHARDS = ROOT / "artists"
 OUTPUT = ROOT / "audio_profiles.json"
 STATE = ROOT / "acousticbrainz_lookup_state.json"
-MISS_RETRY_DAYS = int(os.environ.get("ACOUSTICBRAINZ_MISS_RETRY_DAYS", "180"))
+MISS_RETRY_DAYS = max(30, int(os.environ.get("ACOUSTICBRAINZ_MISS_RETRY_DAYS", "180")))
 RECENT_TOP = ROOT / "recent_top_tracks.json"
 API = "https://acousticbrainz.org/api/v1/low-level"
 UA = "SHIT-AudioMetadata/1.0 (https://github.com/TrickySturluson/spotify-helper-information-tracker)"
@@ -74,11 +74,12 @@ def extract(doc, artist, track, mbid):
 def aggregate_submissions(docs, artist, track, mbid):
     """Collapse all archived submissions robustly and retain disagreement data."""
     rows = [extract(doc, artist, track, mbid) for doc in docs
-            if isinstance(doc, dict) and doc]
+            if isinstance(doc, dict) and isinstance(doc.get("lowlevel"), dict)]
     if not rows:
         return None
-    numeric = ("tempo_bpm", "average_loudness", "dynamic_complexity",
-               "danceability", "onset_rate", "replay_gain_db")
+    numeric = ("tempo_bpm", "bpm_first_peak", "bpm_second_peak", "average_loudness",
+               "dynamic_complexity", "danceability", "onset_rate",
+               "beats_count", "replay_gain_db")
     result = dict(rows[0])
     for field in numeric:
         values = sorted(float(row[field]) for row in rows if row.get(field) is not None)
@@ -194,8 +195,11 @@ def main():
         write(OUTPUT, payload)
         write(STATE, state)
         print(f"Batch {batch_no}/{len(batches)}: checked {len(batch)} IDs; found cumulative {found}; misses this run {misses}; total profiles {payload['recordings_with_acousticbrainz_data']}")
-        if reset and float(reset) > 0:
-            wait = float(reset)
+        try:
+            wait = float(reset or 0)
+        except (TypeError, ValueError):
+            wait = 0
+        if wait > 0:
             if wait > 15:
                 print(f"Server reset is {wait:.0f}s away; checkpointed and stopping rather than retrying early.")
                 break
