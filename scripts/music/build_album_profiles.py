@@ -300,7 +300,7 @@ def main():
             "identity_verified": bool(previous.get("identity_verified") or status == "matched"),
         }
         looked += 1
-        found += int(bool(tags))
+        found += int(bool(info.get("lastfm_info_tags")))
         write(OUT, profiles)
         time.sleep(DELAY)
     if not provider_cooldown:
