@@ -65,7 +65,7 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
     now = int(time.time())
     recent_since = now - 90 * 86400
 
-    def add(artist, album, plays=0, recent=0, playlist_id=None):
+    def add(artist, album, track="", plays=0, recent=0, playlist_id=None):
         artist, album = clean(artist), clean(album)
         if artist in {"", "[Unknown]"} or album in {"", "[Unknown]"}:
             return
@@ -79,7 +79,7 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
         row["recent_plays"] += int(recent or 0)
         if playlist_id and playlist_id not in row["priority_playlist_ids"]:
             row["priority_playlist_ids"].append(playlist_id)
-        track_key = norm(album) + "\\0" + norm(plays if False else "")\n        row["track_keys"].add(track_key) if track_key else None
+        track_key = norm(track)\n        if track_key:\n            row["track_keys"].add(track_key)
 
     for row in scrobbles:
         album = clean(row.get("album") or row.get("album_name"))
@@ -87,7 +87,7 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
             stamp = int(row.get("timestamp") or row.get("uts") or 0)
         except (TypeError, ValueError):
             stamp = 0
-        add(row.get("artist"), album, 1, int(stamp >= recent_since))
+        add(row.get("artist"), album, row.get("track") or row.get("name"), 1, int(stamp >= recent_since))
 
     for playlist_id in playlist_ids:
         snap = read(Path(playlist_root) / (playlist_id + ".json"), {})
@@ -97,7 +97,7 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
             if not isinstance(item, dict) or item.get("type", "track") != "track":
                 continue
             artists = item.get("artists") or []
-            add(artists[0] if artists else "", item.get("album"), playlist_id=playlist_id)
+            add(artists[0] if artists else "", item.get("album"), item.get("name"), playlist_id=playlist_id)
 
     return catalogue
 
