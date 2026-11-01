@@ -176,7 +176,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         ]}
         wrong_album = sequencer.score_track(
             {"name": "Known Song", "artists": ["Artist"], "album": "Different Album"},
-            album_profiles={("artist", "different album"): album},
+            album_profiles={},
         )
         wrong_artist = sequencer.score_track(
             {"name": "Known Song", "artists": ["Other Artist"], "album": "Record"},
@@ -184,7 +184,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         )
         self.assertFalse(wrong_album["album_membership_verified"])
         self.assertFalse(wrong_artist["album_membership_verified"])
-        self.assertEqual(wrong_album["album_affinity"], 0.0)
+        self.assertIsNone(wrong_album["album_affinity"])
         self.assertEqual(wrong_artist["album_affinity"], 0.0)
 
     def test_specific_shoegaze_genre_is_not_swallowed_by_broad_rock_label(self):
