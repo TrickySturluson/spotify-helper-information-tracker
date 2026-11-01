@@ -214,7 +214,9 @@ def main():
         found += int(bool(tags))
         write(OUT, profiles)
         time.sleep(DELAY)
-    if not provider_cooldown:\n        state["provider_retry_after"] = 0\n    state["last_run_at"] = datetime.now(timezone.utc).isoformat()
+    if not provider_cooldown:
+        state["provider_retry_after"] = 0
+    state["last_run_at"] = datetime.now(timezone.utc).isoformat()
     write(STATE, state)
     matched = sum(row.get("status") == "matched" for row in profiles.values())
     print(f"Album profiles: {matched:,} matched; {looked:,} lookups this run; {found:,} tagged; {len(due)-looked:,} due/pending; {len(catalogue):,} catalogue albums.")
