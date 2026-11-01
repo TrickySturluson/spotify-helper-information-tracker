@@ -95,6 +95,9 @@ class MusicLibrary:
         albums = album_rows if isinstance(album_rows, dict) else {}
         audio = audio_rows if isinstance(audio_rows, dict) else {}
         lyrics = {(norm(r.get("artist")), norm(r.get("track"))): r for r in (lyric_rows or []) if isinstance(r, dict)}
+        artist_by_name = {norm(v.get("artist")): v for v in artists.values() if isinstance(v, dict) and v.get("artist")}
+        album_by_name = {(norm(v.get("artist")), norm(v.get("album"))): v for v in albums.values() if isinstance(v, dict) and v.get("artist") and v.get("album")}
+        audio_by_name = {(norm(v.get("artist")), norm(v.get("track"))): v for v in audio.values() if isinstance(v, dict) and v.get("artist") and v.get("track")}
         artist_records, album_records, recordings = {}, {}, {}
         for row in track_rows.values() if isinstance(track_rows, dict) else []:
             if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
@@ -113,7 +116,7 @@ class MusicLibrary:
             for field, value in row.items():
                 if field not in {"artist", "track", "album", "album_name", "derived", "coverage"}:
                     rec["evidence"]["track_metadata"][field] = value
-            rec["evidence"]["audio"] = audio.get(rid) or audio.get(name_key) or {}
+            rec["evidence"]["audio"] = audio.get(rid) or audio_by_name.get(name_key) or {}
             rec["evidence"]["lyrics"] = lyrics.get((norm(row["artist"]), norm(row["track"])))
             rec["sources"] = {k: {"status": v} for k, v in row.items() if k.endswith("_status") and isinstance(v, str)}
             rec["relations"] = {"artist_path": str(self.path_for("artists", aid).relative_to(self.root)), "album_path": str(self.path_for("albums", bid).relative_to(self.root))}
