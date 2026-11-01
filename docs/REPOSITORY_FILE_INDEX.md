@@ -388,7 +388,10 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `tests/test_enrich_discogs.py` — Automated regression tests for Discogs identity matching.
 - `tests/test_enrich_getsongbpm.py` — Automated regression tests for enrich getsongbpm.
 - `tests/test_lyrics_library.py` — Automated regression tests for lyrics library.
-- `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.\n- `tests/test_music_library.py` — Automated regression tests for song identity, lookup, staged migration selection, and evidence preservation.\n- `tests/test_music_library_batch.py` — Integration tests against the committed 100-song Library batch and playlist-sequencer loading.
+- `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.
+- `tests/test_library_album_example.py` — Regression tests for Ceres & Calypso album lookup, linked song context, and release-tracklist identity boundaries.
+- `tests/test_music_library.py` — Automated regression tests for song identity, lookup, staged migration selection, and evidence preservation.
+- `tests/test_music_library_batch.py` — Integration tests against the committed 100-song Library batch and playlist-sequencer loading.
 - `tests/test_music_evidence.py` — Regression tests for confidence categories and independent source-family corroboration.
 - `tests/test_music_evidence_integration.py` — Integration tests for ISRC/release-position lookup explanations and verified album evidence.
 - `tests/test_playlist_intelligence.py` — Automated regression tests for playlist intelligence.
