@@ -296,12 +296,14 @@ class OwnedPlaylistTests(unittest.TestCase):
             "id": "different-id",
             "owner": {"id": "user123"},
         }
+        spotify.playlists.return_value = []
         with self.assertRaises(SystemExit):
             cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
 
     def test_rejects_inaccessible_playlist(self):
         spotify = Mock()
         spotify.call.side_effect = manager.ManagerError("not found")
+        spotify.playlists.return_value = []
         with self.assertRaises(SystemExit):
             cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
 
