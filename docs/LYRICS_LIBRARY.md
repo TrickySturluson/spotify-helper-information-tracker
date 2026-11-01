@@ -31,7 +31,7 @@ LRCLIB and Lyrics.ovh are queried even when no API credentials are configured. M
 
 ## What is analyzed
 
-The first-pass analyzer conservatively looks for explicit semantic evidence for horror, slasher/murder, monsters, vampires, zombies/undead, ghosts/supernatural, Halloween-party imagery, and occult themes. It records matched terms, word count, a relevance score, and a coarse assessment. This is a transparent lexical baseline, not an AI interpretation of metaphor, narrative, irony, or musical sound. A low score means "not enough explicit evidence found", not proof that the song is unrelated.
+The versioned analyzer extracts explicit song-level themes, with an initial emphasis on horror, slasher/murder, blood/gore, monsters, vampires, zombies/undead, ghosts/supernatural, witchcraft/occult, dark fantasy, Halloween-party imagery, and death/afterlife. It records matched evidence terms, counts, source agreement, word count, a relevance score, and a coarse assessment. When multiple providers return lyrics, their theme evidence is merged rather than overwritten. This is a transparent lexical baseline, not an AI interpretation of metaphor, narrative, irony, or musical sound. A low score means "not enough explicit evidence found", not proof that the song is unrelated.
 
 For Booze or Boos!, the lyric result should be combined with track/artist metadata and listening judgment. Halloween/horror relevance is a gate; energy and sonic fit determine sequencing only after that gate is satisfied.
 
@@ -44,7 +44,8 @@ The database supports searching by title, artist, remembered phrase, and recent 
 - Lyrics coverage varies, especially for obscure and instrumental tracks.
 - Musixmatch and Genius require credentials; LRCLIB is the only provider that works without setup.
 - Genius is metadata/link-only in this implementation.
-- The first analyzer is keyword-based and intentionally conservative; nuanced interpretation and audio-energy analysis remain separate.
+- Theme extraction is keyword-based and intentionally conservative; nuanced interpretation, narrative understanding, and audio-energy analysis remain separate.
+- Source agreement is recorded, but providers may return excerpts or variant lyric text; agreement is supporting evidence, not a guarantee of correctness.
 - A phrase lookup needs at least five words and works only for songs previously analyzed into this local database.
 
 
