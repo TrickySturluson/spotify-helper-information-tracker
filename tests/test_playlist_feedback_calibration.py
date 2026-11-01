@@ -74,6 +74,10 @@ class PlaylistFeedbackCalibrationTests(unittest.TestCase):
         payload = json.loads(self.path.read_text())
         self.assertEqual(len(payload["feedback_events"]), 1)
 
+    def test_tricky_daily_is_excluded_from_fit_calibration(self):
+        with self.assertRaises(ValueError):
+            calibration.record_prediction("4yUVHSMQySfWeEowfIMcx7", "spotify:track:daily", 80, "high", path=self.path)
+
     def test_daily_like_is_not_implicitly_imported_as_a_playlist_outcome(self):
         row = self.prediction()
         calibration.record_liked_observation(row["prediction_id"], True, path=self.path)

@@ -1,0 +1,105 @@
+name: SHIT — Tricky Daily Midnight Cycle
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run immediately instead of waiting for midnight Eastern"
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+  schedule:
+    # Midnight Eastern is 04:00 UTC during EDT and 05:00 UTC during EST.
+    # The script's America/New_York gate makes exactly one of these runs active.
+    - cron: "0 4,5 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tricky-daily-midnight-cycle
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile and test
+        run: |
+          python -m py_compile compat/spotify_daily_cycle.py compat/spotify_playlist_manager.py compat/spotify_discovery.py compat/spotify_daily_feedback.py
+          python -m unittest discover -s tests -t . -v
+      - name: Validate Spotify credentials
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
+          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
+          test -n "$LASTFM_API_KEY" || { echo "Missing LASTFM_API_KEY" >&2; exit 1; }
+      - name: Prepare Spotify token
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, "compat")
+          import spotify_playlist_manager as manager
+          manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
+          manager.TOKEN = Path(".spotify_playlist_token.json")
+          manager.write(manager.TOKEN, {
+              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+              "obtained_at": 0,
+              "expires_in": 0,
+          })
+          PY
+      - name: Cycle Tricky Daily
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          FORCE_CYCLE: ${{ inputs.force }}
+        run: |
+          if [ "$FORCE_CYCLE" = "true" ]; then
+            python compat/spotify_daily_cycle.py --force
+          else
+            python compat/spotify_daily_cycle.py
+          fi
+      - name: Preserve recovery snapshot
+        if: always() && hashFiles('playlist_backups/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: tricky-daily-backup-${{ github.run_id }}
+          path: playlist_backups/
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: Persist cycle state and feedback
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/spotify_playlist_manager_state.json .github/spotify_playlist_manager_audit.jsonl assistant_data/spotify/daily_feedback.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Cycle Tricky Daily playlist"
+            git push
+          fi
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Automatically rotate Tricky Daily at midnight America/New_York.
+# Schedule: Dual UTC cron entries plus an IANA timezone gate handle EST/EDT.
+# Safety: Requires configured Spotify credentials, existing playlist ownership,
+#         explicit unlocked state, a minimum recommendation count, and a
+#         pre-change recovery artifact before any playlist mutation.
+# -----------------------------------------------------------------------------

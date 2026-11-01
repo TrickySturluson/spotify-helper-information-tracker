@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_PATH = Path("assistant_data/spotify/playlist_fit_feedback.json")
+DAILY_PLAYLIST_ID = "4yUVHSMQySfWeEowfIMcx7"
 SCHEMA_VERSION = 1
 VALID_OUTCOMES = {"accepted", "rejected", "uncertain"}
 VALID_FEEDBACK_SOURCES = {
@@ -77,6 +78,8 @@ def record_prediction(
     """Persist an immutable prediction snapshot; repeated calls are idempotent."""
     if not playlist_id or not track_uri:
         raise ValueError("playlist_id and track_uri are required")
+    if str(playlist_id) == DAILY_PLAYLIST_ID:
+        raise ValueError("Tricky Daily uses its own discovery feedback system, not playlist-fit calibration.")
     score = float(fit_score)
     if not math.isfinite(score) or not 0 <= score <= 100:
         raise ValueError("fit_score must be finite and between 0 and 100")
@@ -131,6 +134,8 @@ def record_feedback(
     prediction = payload["predictions"].get(prediction_id)
     if prediction is None:
         raise KeyError(f"Unknown prediction_id: {prediction_id}")
+    if prediction.get("playlist_id") == DAILY_PLAYLIST_ID:
+        raise ValueError("Tricky Daily outcomes are excluded from playlist-fit calibration.")
     default_weight = {
         "explicit_whitelist": 1.0, "explicit_blacklist": 1.0,
         "manual_removal": 0.85, "manual_addition": 0.65,
