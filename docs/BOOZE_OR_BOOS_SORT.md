@@ -1,15 +1,14 @@
 # Booze or Boos! — sequence preset
 
-This preset implements the user's intended party arc:
+This preset follows the intended party arc:
 
-1. Campy surf, monster-party novelty and Messer Chups.
-2. Horror punk and psychobilly as the energy climbs.
-3. Dark club, synth and rave-leaning Halloween tracks.
-4. Heavy horror-rock and industrial-metal finale.
+1. Campy surf, monster-party novelty, lyrical crowd-pleasers and Messer Chups.
+2. Dark club, synth and rave-leaning Halloween tracks.
+3. Horror punk, psychobilly and heavier horror-rock finale.
 
-The section assignments are soft ordering preferences, not hard blocks. The sequencer still optimizes neighboring transitions, artist repetition, mood/genre/theme affinity and a rising energy curve. The rising curve now holds at high energy through the final section instead of falling away after its peak.
+The sections are ordered preferences for the three-act progression. The sorter optimizes transitions and artist variety within those acts, and the rising-energy curve holds at a high level through the finale. Genre-family energy estimates are conservative; they are not measured Spotify audio features. The preview reports confidence so uncertain estimates are visible.
 
-The live sequence_preview command refreshes the playlist directly from Spotify, reads artist and track profiles plus the compact lyric-theme export, and creates a one-time confirmation preview. It does not change Spotify. The preview reports energy confidence and warns about unassigned tracks and uncertain transitions. Confirmation is a separate command and is rejected if the playlist changed after preview.
+The live sequence_preview command refreshes the playlist directly from Spotify, reads artist and track profiles plus the compact lyric-theme export, and creates a one-time confirmation preview. It does not change Spotify. Confirmation is a separate command and is rejected if the playlist changed after preview.
 
 ## Run from the SHIT control issue
 
