@@ -1,42 +1,42 @@
 {
   "existing_library_records": {
-    "songs": 11149,
-    "artists": 5230,
-    "albums": 6439,
+    "songs": 13005,
+    "artists": 6382,
+    "albums": 7861,
     "preservation": "existing indexed records and accumulated evidence are merged, not replaced"
   },
-  "track_profile_rows": 1207,
+  "track_profile_rows": 1391,
   "playlist_snapshot_stats": {
     "snapshots": 57,
     "inaccessible": 16,
     "invalid": 0,
     "incomplete": 0,
     "incomplete_details": [],
-    "playlist_track_occurrences": 3307,
-    "unique_playlist_spotify_ids": 1857
+    "playlist_track_occurrences": 3306,
+    "unique_playlist_spotify_ids": 1856
   },
-  "playlist_track_occurrences": 3307,
-  "unique_playlist_spotify_ids": 1857,
-  "combined_input_rows": 3064,
-  "artist_profiles": 3698,
+  "playlist_track_occurrences": 3306,
+  "unique_playlist_spotify_ids": 1856,
+  "combined_input_rows": 3247,
+  "artist_profiles": 3798,
   "album_profiles": 200,
-  "audio_profiles": 0,
+  "audio_profiles": 57,
   "lyric_features": 0,
   "provider_requests": 0,
   "spotify_playlist_writes": 0,
-  "backup_path": "/home/runner/work/spotify-helper-information-tracker/spotify-helper-information-tracker/assistant_data/music/library.backup-20261101-145751-217220",
+  "backup_path": "/home/runner/work/spotify-helper-information-tracker/spotify-helper-information-tracker/assistant_data/music/library.backup-20261101-223249-418960",
   "migration_result": {
-    "artists": 5238,
-    "albums": 6439,
-    "songs": 11149,
-    "ambiguous_name_aliases": 14
+    "artists": 6382,
+    "albums": 7861,
+    "songs": 13005,
+    "ambiguous_name_aliases": 1428
   },
   "library_audit": {
     "ok": true,
     "errors": [],
-    "songs": 11149,
-    "artists": 5238,
-    "albums": 6439
+    "songs": 13005,
+    "artists": 6382,
+    "albums": 7861
   },
   "status": "migrated stored profiles and accessible playlist snapshots; library audit passed",
   "limitations": [
