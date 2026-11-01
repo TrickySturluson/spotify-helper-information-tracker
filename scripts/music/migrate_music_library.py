@@ -233,10 +233,47 @@ def main():
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT)
     parser.add_argument("--recent-limit", type=int, default=0,
                         help="legacy compatibility: limit profile rows to a recent batch")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="report selected source rows without writing")
     args = parser.parse_args()
     root = args.root if args.root.is_absolute() else REPO_ROOT / args.root
     if args.recent_limit < 0:
         parser.error("--recent-limit must be zero or greater")
+
+    # Preserve the earlier bounded-batch compatibility command used by tests
+    # and staged local rollouts. It remains offline and does not replace the
+    # full Great Migration entry point (migrate_full_music_library.py).
+    if args.recent_limit:
+        tracks = load(MUSIC_ROOT / "track_profiles.json", {})
+        recent = load(MUSIC_ROOT / "recent_top_tracks.json", {})
+        recent_rows = recent.get("tracks", []) if isinstance(recent, dict) else []
+        selected, selection = select_recent_track_rows(
+            tracks, recent_rows, args.recent_limit,
+            window_days=recent.get("window_days") if isinstance(recent, dict) else None,
+        )
+        if args.dry_run:
+            print(json.dumps({
+                "track_profiles_selected": len(selected),
+                "selection": selection,
+                "provider_requests": 0,
+                "writes": 0,
+            }, indent=2))
+            return
+        artists = load(MUSIC_ROOT / "artist_profiles.json", {})
+        albums = load(MUSIC_ROOT / "album_profiles.json", {})
+        audio = load(MUSIC_ROOT / "audio_profiles.json", {})
+        lyrics = load(LYRICS, [])
+        result = MusicLibrary(root).put_catalogue(selected, artists, albums, audio, lyrics)
+        print(json.dumps({
+            "migration_result": result, "selection": selection,
+            "provider_requests": 0, "writes": 1,
+        }, indent=2))
+        return
+    if args.dry_run and args.action in {"run", "resume"}:
+        result = preview(root)
+        result["writes"] = 0
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
 
     if args.action == "status":
         result = status(root)
