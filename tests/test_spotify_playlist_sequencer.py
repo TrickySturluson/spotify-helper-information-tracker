@@ -160,7 +160,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(first["album_affinity"], 100.0)
         self.assertEqual(first["album_affinity_confidence"], "medium")
         self.assertTrue(first["album_membership_verified"])
-        self.assertEqual(first["mood_confidence"], "unknown")
+        self.assertEqual(first["mood_confidence"], "low")
         self.assertEqual(first["sound_similarity"], 100.0)
         self.assertEqual(first["sound_similarity_shared_labels"], ["shoegaze"])
         linked = sequencer.score_track(
