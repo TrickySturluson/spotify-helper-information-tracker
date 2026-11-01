@@ -25,15 +25,20 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_DB = ROOT / "data" / "lyrics" / "library.sqlite3"
 APP_UA = "SHIT-Lyrics-Library/1.0 (https://github.com/TrickySturluson/tricky-lastfm)"
 THEMES = {
-    "horror": {"horror", "terror", "nightmare", "fear", "scream", "haunt", "haunted", "spooky"},
-    "murder_slasher": {"murder", "killer", "kill", "slaughter", "stab", "knife", "chainsaw", "blood"},
-    "monster": {"monster", "creature", "beast", "demon", "devil", "werewolf", "frankenstein"},
-    "vampire": {"vampire", "dracula", "fang", "bloodsucker", "undead"},
-    "zombie_undead": {"zombie", "undead", "grave", "cemetery", "corpse", "resurrection", "dead"},
-    "ghost_supernatural": {"ghost", "spirit", "witch", "witches", "curse", "voodoo", "possess"},
-    "halloween_party": {"halloween", "costume", "trick", "treat", "pumpkin", "monster", "midnight"},
-    "occult": {"satan", "satanic", "occult", "ritual", "hex", "spell", "hell"},
+    "horror_atmosphere": {"horror", "terror", "nightmare", "scream", "haunt", "haunted", "spooky", "fright", "scary"},
+    "murder_slasher": {"murder", "murderer", "killer", "kill", "slaughter", "stab", "knife", "chainsaw", "victim"},
+    "blood_gore": {"blood", "bleed", "gore", "guts", "wound", "decapitate", "dismember"},
+    "monster_creature": {"monster", "creature", "beast", "werewolf", "frankenstein", "mutant"},
+    "vampire": {"vampire", "dracula", "fang", "fangs", "bloodsucker", "coffin", "stake"},
+    "zombie_undead": {"zombie", "undead", "graveyard", "cemetery", "corpse", "resurrection", "reanimate", "brain", "brains"},
+    "ghost_supernatural": {"ghost", "spirit", "apparition", "poltergeist", "possess", "possession"},
+    "witchcraft_occult": {"witch", "witches", "witchcraft", "curse", "voodoo", "hex", "spell", "ritual", "satan", "satanic", "occult"},
+    "dark_fantasy": {"demon", "devil", "hell", "inferno", "damned", "evil"},
+    "halloween_party": {"halloween", "costume", "trick", "treat", "pumpkin", "jackolantern", "midnight", "masquerade"},
+    "death_afterlife": {"death", "dead", "dying", "die", "grave", "funeral", "coffin", "afterlife", "reaper"},
 }
+SPECIFIC_THEMES = {"vampire", "zombie_undead", "ghost_supernatural", "witchcraft_occult",
+                   "murder_slasher", "monster_creature", "halloween_party"}
 TOKEN_RE = re.compile(r"[a-z0-9']+")
 
 
@@ -127,19 +132,29 @@ def genius_search(title, artist):
 
 
 def analyze_lyrics(lyrics):
+    """Extract reusable thematic features; lyrics are processed transiently."""
     words = TOKEN_RE.findall((lyrics or "").casefold())
+    if not words:
+        return {"schema_version": 2, "themes": {}, "word_count": 0,
+                "horror_relevance": 0.0, "assessment": "unavailable"}
     counts = {}
     for theme, terms in THEMES.items():
-        hits = sorted({word for word in words if word in terms})
+        hits = sorted(set(words).intersection(terms))
         if hits:
-            counts[theme] = {"count": sum(words.count(word) for word in hits), "evidence_terms": hits}
-    total = sum(item["count"] for item in counts.values())
-    # Conservative rule: a theme needs multiple distinct indicators or repeated use.
-    qualifying = {k: v for k, v in counts.items() if len(v["evidence_terms"]) >= 2 or v["count"] >= 3}
-    score = min(1.0, sum(v["count"] for v in qualifying.values()) / max(12, len(words) * 0.08))
-    return {"themes": qualifying, "raw_theme_hits": counts, "word_count": len(words),
-            "horror_relevance": round(score, 3),
-            "assessment": "strong" if score >= .35 else "possible" if score >= .12 else "weak"}
+            counts[theme] = {"count": sum(words.count(word) for word in hits),
+                             "evidence_terms": hits}
+    qualifying = {}
+    for theme, evidence in counts.items():
+        threshold = 1 if theme in SPECIFIC_THEMES else 2
+        if len(evidence["evidence_terms"]) >= threshold or evidence["count"] >= 3:
+            qualifying[theme] = evidence
+    weighted_hits = sum(v["count"] * (1.5 if k in SPECIFIC_THEMES else 0.7)
+                        for k, v in qualifying.items())
+    score = min(1.0, weighted_hits / max(10.0, len(words) * 0.07))
+    assessment = "strong" if score >= .45 else "clear" if score >= .2 else "possible" if score >= .08 else "weak"
+    return {"schema_version": 2, "themes": qualifying, "raw_theme_hits": counts,
+            "word_count": len(words), "horror_relevance": round(score, 3),
+            "assessment": assessment, "method": "lexical_theme_extraction_v2"}
 
 
 def phrase_fingerprints(lyrics, n=5):
@@ -197,22 +212,40 @@ class LyricsLibrary:
         row = self.db.execute("SELECT id FROM songs WHERE normalized_title=? AND normalized_artist=?",
                               (normalize(title), normalize(artist))).fetchone()
         sid = row["id"]
+        analyses = []
         for result in results:
+            lyrics = result.get("lyrics") or ""
             self.db.execute("""INSERT INTO sources(song_id,provider,provider_id,url,checked_at,has_lyrics)
               VALUES(?,?,?,?,?,?) ON CONFLICT(song_id,provider) DO UPDATE SET
               provider_id=excluded.provider_id,url=excluded.url,checked_at=excluded.checked_at,has_lyrics=excluded.has_lyrics""",
-              (sid, result["provider"], result.get("provider_id"), result.get("url"), stamp, int(bool(result.get("lyrics")))))
-            lyrics = result.get("lyrics") or ""
+              (sid, result["provider"], result.get("provider_id"), result.get("url"), stamp, int(bool(lyrics))))
             if lyrics:
-                analysis = analyze_lyrics(lyrics)
-                self.db.execute("""INSERT INTO analyses(song_id,themes_json,relevance,assessment,word_count,analyzed_at)
-                  VALUES(?,?,?,?,?,?) ON CONFLICT(song_id) DO UPDATE SET themes_json=excluded.themes_json,
-                  relevance=excluded.relevance,assessment=excluded.assessment,word_count=excluded.word_count,analyzed_at=excluded.analyzed_at""",
-                  (sid, json.dumps(analysis["themes"], ensure_ascii=False), analysis["horror_relevance"],
-                   analysis["assessment"], analysis["word_count"], stamp))
+                analyses.append((result["provider"], analyze_lyrics(lyrics)))
                 hashes = phrase_fingerprints(lyrics)
                 self.db.executemany("INSERT OR IGNORE INTO phrase_hashes(song_id,phrase_hash) VALUES(?,?)",
                                     [(sid, h) for h in hashes])
+        if analyses:
+            merged = {}
+            for provider, analysis in analyses:
+                for theme, evidence in analysis["themes"].items():
+                    entry = merged.setdefault(theme, {"count": 0, "evidence_terms": set(), "sources": set()})
+                    entry["count"] += evidence["count"]
+                    entry["evidence_terms"].update(evidence["evidence_terms"])
+                    entry["sources"].add(provider)
+            merged = {theme: {"count": v["count"], "evidence_terms": sorted(v["evidence_terms"]),
+                              "source_count": len(v["sources"]), "sources": sorted(v["sources"])}
+                      for theme, v in merged.items()}
+            relevance = round(sum(a["horror_relevance"] for _, a in analyses) / len(analyses), 3)
+            assessment = "strong" if relevance >= .45 else "clear" if relevance >= .2 else "possible" if relevance >= .08 else "weak"
+            word_count = max(a["word_count"] for _, a in analyses)
+            stored = {"schema_version": 2, "themes": merged, "horror_relevance": relevance,
+                      "assessment": assessment, "source_count": len(analyses),
+                      "sources": sorted(p for p, _ in analyses), "analyzed_at": stamp,
+                      "method": "multi_source_lexical_theme_extraction_v2"}
+            self.db.execute("""INSERT INTO analyses(song_id,themes_json,relevance,assessment,word_count,analyzed_at)
+              VALUES(?,?,?,?,?,?) ON CONFLICT(song_id) DO UPDATE SET themes_json=excluded.themes_json,
+              relevance=excluded.relevance,assessment=excluded.assessment,word_count=excluded.word_count,analyzed_at=excluded.analyzed_at""",
+              (sid, json.dumps(stored, ensure_ascii=False), relevance, assessment, word_count, stamp))
         self.db.commit()
         return sid
 
