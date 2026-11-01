@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local Spotify playlist manager. Playlists are locked unless explicitly unlocked."""
-import argparse, base64, hashlib, json, os, secrets, sys, time, urllib.error
-from collections import Counter
+import argparse, base64, hashlib, json, os, re, secrets, sys, time, urllib.error
+from collections import Counter, defaultdict
 import urllib.parse, urllib.request, webbrowser
 from datetime import datetime, timezone, timedelta
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -98,6 +98,24 @@ class Spotify:
         check_spotify_cooldown()
         self.t=read(TOKEN,None) or authorize()
         self.refresh_token_rotated=False
+        self.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
+    @staticmethod
+    def metric_endpoint(path):
+        # Remove query strings and Spotify IDs; metrics must not expose playlist IDs or search terms.
+        clean = path.split("?", 1)[0]
+        clean = re.sub(r"/[A-Za-z0-9]{22}(?=/|$)", "/{id}", clean)
+        return clean or "/"
+    def record_request(self, method, path, status, elapsed_ms):
+        metrics = self.request_metrics
+        endpoint = f"{method.upper()} {self.metric_endpoint(path)}"
+        row = metrics["by_endpoint"].setdefault(endpoint, {"count": 0, "status_counts": {}, "elapsed_ms": 0})
+        row["count"] += 1
+        row["elapsed_ms"] += round(elapsed_ms, 2)
+        status_key = str(status)
+        row["status_counts"][status_key] = row["status_counts"].get(status_key, 0) + 1
+        metrics["by_status"][status_key] = metrics["by_status"].get(status_key, 0) + 1
+        metrics["total_requests"] += 1
+        metrics["elapsed_ms"] += round(elapsed_ms, 2)
     def bearer(self):
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
@@ -114,10 +132,14 @@ class Spotify:
         h={"Authorization":"Bearer "+self.bearer()}; data=None
         if body is not None: h["Content-Type"]="application/json"; data=json.dumps(body).encode()
         req=urllib.request.Request(API+path,data=data,headers=h,method=method)
+        started = time.monotonic()
         try:
             with urllib.request.urlopen(req,timeout=30) as r:
-                raw=r.read(); return json.loads(raw) if raw else None
+                raw=r.read()
+                self.record_request(method, path, r.status, (time.monotonic()-started)*1000)
+                return json.loads(raw) if raw else None
         except urllib.error.HTTPError as e:
+            self.record_request(method, path, e.code, (time.monotonic()-started)*1000)
             if e.code==401 and retry:
                 self.t["obtained_at"]=0; return self.call(method,path,body,False)
             retry_after = e.headers.get("Retry-After")
@@ -348,6 +370,9 @@ def main():
         return 0
     except (ManagerError,OSError,KeyError,ValueError,urllib.error.URLError) as e:
         print("ERROR:",e,file=sys.stderr); return 1
+    finally:
+        if "sp" in locals():
+            print("SPOTIFY_REQUEST_METRICS=" + json.dumps(sp.request_metrics, sort_keys=True), file=sys.stderr)
 if __name__=="__main__": raise SystemExit(main())
 
 
