@@ -46,7 +46,9 @@ jobs:
         run: |
           python - <<'PY'
           import os
+          import sys
           from pathlib import Path
+          sys.path.insert(0, "compat")
           import spotify_playlist_manager as manager
           manager.TOKEN = Path(".spotify_playlist_token.json")
           manager.write(manager.TOKEN, {
