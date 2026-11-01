@@ -1,0 +1,4 @@
+# Optional local audio-analysis dependencies (separate from the core SHIT install).
+# Essentia supplies beat tracking, beat positions, and EBU R128 loudness.
+numpy>=1.24,<2
+essentia==2.1b6.dev1438
