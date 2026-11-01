@@ -193,6 +193,50 @@ def _track_mood_evidence(profile):
     }
 
 
+def _album_track_membership(item, album_profile):
+    """Assess album affinity from exact tracklist membership without claiming recording identity."""
+    evidence = album_profile.get("evidence") if isinstance(album_profile.get("evidence"), dict) else album_profile
+    if not evidence or not evidence.get("identity_verified"):
+        return {"score": None, "confidence": "unknown", "matched": False, "reason": "album identity is not verified"}
+    names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+    artist = norm(names[0]) if names else ""
+    title = norm(item.get("name") or item.get("track"))
+    if not artist or not title:
+        return {"score": None, "confidence": "unknown", "matched": False, "reason": "track identity is incomplete"}
+    for entry in evidence.get("lastfm_tracklist") or []:
+        if norm(entry.get("title")) != title or norm(entry.get("artist")) != artist:
+            continue
+        linked = bool(entry.get("linked_song_id") and entry.get("linked_recording_mbid"))
+        return {"score": 100.0, "confidence": "high" if linked else "medium",
+                "matched": True, "reason": "exact artist/title match in verified album tracklist",
+                "identity_confidence": "high" if linked else "medium"}
+    return {"score": 0.0, "confidence": "medium", "matched": False,
+            "reason": "track not present in verified album tracklist"}
+
+
+def _sound_similarity(track_profile, album_profile):
+    """Compare descriptive sound labels separately from energy and album membership."""
+    album_evidence = album_profile.get("evidence") if isinstance(album_profile.get("evidence"), dict) else album_profile
+    track_labels = set()
+    for field in ("musicbrainz_genres", "musicbrainz_tags", "lastfm_tags", "discogs_styles", "discogs_genres"):
+        for row in track_profile.get(field) or []:
+            value = row.get("tag", "") if isinstance(row, dict) else row
+            if value: track_labels.add(norm(value))
+    album_labels = set()
+    for field in ("lastfm_tags", "lastfm_info_tags", "tags"):
+        for row in album_evidence.get(field) or []:
+            value = row.get("tag", "") if isinstance(row, dict) else row
+            if value: album_labels.add(norm(value))
+    if not track_labels or not album_labels:
+        return {"score": None, "confidence": "unknown", "shared_labels": [],
+                "track_labels": sorted(track_labels), "album_labels": sorted(album_labels)}
+    shared = sorted(track_labels & album_labels)
+    # Directional coverage avoids penalizing a sparse track profile for richer album tags.
+    score = 100.0 * len(shared) / len(track_labels)
+    confidence = "high" if len(track_labels) >= 3 and len(shared) >= 2 else "medium" if shared else "low"
+    return {"score": round(score, 2), "confidence": confidence, "shared_labels": shared,
+            "track_labels": sorted(track_labels), "album_labels": sorted(album_labels)}
+
 def _signal(value, low, high):
     if value is None:
         return None
@@ -321,6 +365,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     album_moods = set()
     for row in _tag_rows(album_profile):
         album_moods.update(mood_inference._tag_moods(row))
+    album_membership = _album_track_membership(item, album_profile)
+    sound_similarity = _sound_similarity(track_profile, album_profile)
     energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
     gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
     if tag_moods:
@@ -364,11 +410,12 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     high_genre = ("metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal", "heavy metal", "metalcore", "horror punk")
     dance_genre = ("electronic", "synthwave", "synthpop", "electropop", "electroclash", "techno", "house", "rave", "ebm", "dark electro", "industrial dance")
     mid_genre = ("rockabilly", "surf rock", "horror surf", "garage rock", "rock and roll", "post-punk", "gothic rock", "deathrock", "darkwave", "alternative rock", "indie rock", "rock")
-    low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient", "shoegaze")
+    # Specific atmospheric genres must be checked before broad rock umbrellas.
+    low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient", "shoegaze", "dream pop", "ethereal")
     if any(x in genre_text for x in high_genre): genre_score = 0.78
     elif any(x in genre_text for x in dance_genre): genre_score = 0.72
-    elif any(x in genre_text for x in mid_genre): genre_score = 0.62
     elif any(x in genre_text for x in low_genre): genre_score = 0.30
+    elif any(x in genre_text for x in mid_genre): genre_score = 0.62
     else: genre_score = None
     if genre_score is not None:
         components.append(genre_score); weights.append(0.05 if tag_moods else 0.08)
@@ -443,6 +490,13 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     group = next(iter(sorted(group_moods)), "unclassified") if group_moods else "unclassified"
     return {
         "score": round(score, 2),
+        "album_affinity": album_membership["score"],
+        "album_affinity_confidence": album_membership["confidence"],
+        "album_membership_verified": album_membership["matched"],
+        "album_affinity_evidence": album_membership["reason"],
+        "sound_similarity": sound_similarity["score"],
+        "sound_similarity_confidence": sound_similarity["confidence"],
+        "sound_similarity_shared_labels": sound_similarity["shared_labels"],
         "acoustic_score": round(acoustic_score, 2) if acoustic_score is not None else None,
         "semantic_score": round(semantic_score, 2) if semantic_score is not None else None,
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
