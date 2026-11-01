@@ -286,8 +286,8 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertTrue(all("section_groups" in row for row in result))
 
     def test_transition_report_explains_handoff_and_uncertainty(self):
-        a = {"score": 40, "confidence": "medium", "acoustic_confidence": "medium", "artist": "A", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
-        b = {"score": 45, "confidence": "medium", "artist": "B", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
+        a = {"score": 40, "acoustic_score": 40, "confidence": "medium", "acoustic_confidence": "medium", "artist": "A", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
+        b = {"score": 45, "acoustic_score": 45, "confidence": "medium", "acoustic_confidence": "medium", "artist": "B", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
         report = sequencer.transition_report(a, b)
         self.assertEqual(report["label"], "gentle")
         self.assertIn("dreamy", report["shared_moods"])
@@ -357,7 +357,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         result = sequencer.score_track(item, artist_profiles=artists)
         self.assertIn("artist-level mood fallback", " ".join(result["evidence"]))
         self.assertIn("energetic", result["vibe_groups"])
-        self.assertEqual(result["confidence"], "medium")
+        self.assertEqual(result["confidence"], "low")
 
     def test_rising_journey_reaches_and_holds_a_sustained_finale(self):
         curve = [sequencer.target_energy(i, 100, "rising", peak_position=85, peak_shape="gradual")
@@ -451,9 +451,11 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(actual, sorted(actual))
 
     def test_section_sorting_uses_the_global_rising_energy_curve(self):
-        high = {"score": 95, "artist": "High", "vibe_groups": [],
+        high = {"score": 95, "acoustic_score": 95, "acoustic_confidence": "high",
+                "artist": "High", "vibe_groups": [],
                 "genre_groups": [], "theme_groups": [], "section_index": 2}
-        low = {"score": 50, "artist": "Low", "vibe_groups": [],
+        low = {"score": 50, "acoustic_score": 50, "acoustic_confidence": "high",
+               "artist": "Low", "vibe_groups": [],
                "genre_groups": [], "theme_groups": [], "section_index": 2}
         high_first = sequencer._sequence_objective(
             [high, low], "rising", 85, "gradual", 0, 0, position_offset=80, total_count=100
