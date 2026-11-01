@@ -222,7 +222,7 @@ def _has_reliable_energy(row):
     return row.get("confidence") in {"medium", "high"}
 
 
-def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
+def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist_penalty=True):
     """Evidence-aware edge cost: absent or weak metadata is omitted, not treated as fact."""
     terms = []
     # Low-confidence genre/artist estimates can guide discovery, but should not
@@ -245,8 +245,10 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
     cost = numerator / denominator if denominator else 0.5
     # Repetition is a genuine sequencing issue, but cap its impact so it cannot
     # overwhelm musical compatibility or make an otherwise strong transition fail.
-    if same_artist:
-        cost += 0.18
+    if same_artist and artist_penalty:
+        # A repeated artist is a sequencing/diversity issue, not a sonic mismatch.
+        # Make it strong enough to break up long artist runs when alternatives exist.
+        cost += 0.65
     genre_affinity = _set_similarity(left.get("genre_groups"), right.get("genre_groups"))
     theme_affinity = _set_similarity(left.get("theme_groups"), right.get("theme_groups"))
     if genre_affinity is not None:
@@ -264,7 +266,9 @@ def transition_report(left, right):
     themes = sorted(set(left.get("theme_groups") or []) & set(right.get("theme_groups") or []))
     same = bool(norm(left.get("artist")) and norm(left.get("artist")) == norm(right.get("artist")))
     tempo_gap = _tempo_relationship(left, right)
-    cost = _transition_cost(left, right)
+    # Reports describe musical compatibility; the optimizer separately applies
+    # a stronger artist-diversity penalty to avoid long consecutive runs.
+    cost = _transition_cost(left, right, artist_penalty=False)
     reasons = []
     if moods: reasons.append("shared track mood: " + ", ".join(moods))
     if genres: reasons.append("shared genre: " + ", ".join(genres))
