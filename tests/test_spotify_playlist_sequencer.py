@@ -316,6 +316,28 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertLess(low_first, high_first)
 
 
+
+    def test_unknown_energy_placeholder_does_not_affect_sequence_objective(self):
+        unknown_low = {"score": 0.0, "confidence": "unknown", "artist": "Unknown",
+                       "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        unknown_high = dict(unknown_low, score=100.0)
+        known = {"score": 80.0, "confidence": "high", "artist": "Known",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        low_cost = sequencer._sequence_objective(
+            [unknown_low, known], "rising", 85, "gradual", 0, 0)
+        high_cost = sequencer._sequence_objective(
+            [unknown_high, known], "rising", 85, "gradual", 0, 0)
+        self.assertEqual(low_cost, high_cost)
+
+    def test_transition_report_does_not_publish_placeholder_energy_gap(self):
+        left = {"score": 50.0, "confidence": "unknown", "artist": "One",
+                "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 95.0, "confidence": "high", "artist": "Two",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertIsNone(report["energy_gap"])
+        self.assertNotIn("estimated energy", " ".join(report["reasons"]))
+
     def test_missing_metadata_is_not_scored_as_disagreement(self):
         left = {"score": 50, "confidence": "unknown", "artist": "One",
                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
