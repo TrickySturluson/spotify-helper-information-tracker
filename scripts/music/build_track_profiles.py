@@ -20,6 +20,8 @@ SOURCE = Path("data/scrobbles.json")
 ROOT = Path("assistant_data/music")
 SHARD_ROOT = ROOT / "artists"
 OUT = ROOT / "track_profiles.json"
+PLAYLIST_ROOT = Path("assistant_data/spotify/playlists")
+PRIORITY_PLAYLIST_IDS = tuple(x.strip() for x in os.environ.get("TRACK_PROFILE_PRIORITY_PLAYLISTS", "").split(",") if x.strip())
 LASTFM_URL = "https://ws.audioscrobbler.com/2.0/"
 MUSICBRAINZ_URL = "https://musicbrainz.org/ws/2/recording/"
 API_KEY = os.environ.get("LASTFM_API_KEY")
@@ -170,6 +172,67 @@ def musicbrainz_tags(item):
     return tags, genre_tags, "matched" if tags or genre_tags else "no_tags"
 
 
+
+def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT):
+    """Build the scrobbled catalogue and add exact tracks from priority playlists.
+
+    Playlist-only tracks are eligible for Last.fm track.getTopTags lookups even
+    when they have never been scrobbled. Spotify artist/title strings are kept
+    as-is and Last.fm response identity checks still gate every accepted tag.
+    """
+    catalogue = {}
+    by_name = {}
+    for row in rows:
+        aid = artist_id(row)
+        tid = track_id(row, aid)
+        key = (norm(row.get("artist")), norm(row.get("track")))
+        rec = catalogue.setdefault(tid, {
+            "track_id": tid, "artist_id": aid,
+            "artist": clean(row.get("artist")), "track": clean(row.get("track")),
+            "track_mbid": row.get("track_mbid") or None, "plays": 0,
+            "priority_playlist_ids": []
+        })
+        rec["plays"] += 1
+        if row.get("track_mbid"):
+            rec["track_mbid"] = row["track_mbid"]
+        by_name.setdefault(key, []).append(tid)
+
+    for playlist_id in priority_playlist_ids:
+        playlist = read(Path(playlist_root) / f"{playlist_id}.json", {})
+        if (not isinstance(playlist, dict) or playlist.get("id") != playlist_id
+                or not playlist.get("items_accessible")):
+            continue
+        for item in playlist.get("items") or []:
+            if not isinstance(item, dict) or item.get("type", "track") != "track":
+                continue
+            artists = item.get("artists") or []
+            artist = clean(artists[0] if artists else "")
+            title = clean(item.get("name"))
+            if artist == "[Unknown]" or title == "[Unknown]":
+                continue
+            key = (norm(artist), norm(title))
+            matches = by_name.get(key, [])
+            # Reuse an archive identity only when artist/title resolves to one
+            # catalogue record. If several recordings share that label, retain
+            # a separate exact-name lookup rather than guessing an MBID.
+            if len(matches) == 1:
+                tid = matches[0]
+                rec = catalogue[tid]
+            else:
+                row = {"artist": artist, "track": title}
+                aid = artist_id(row)
+                tid = track_id(row, aid)
+                rec = catalogue.setdefault(tid, {
+                    "track_id": tid, "artist_id": aid, "artist": artist,
+                    "track": title, "track_mbid": None, "plays": 0,
+                    "priority_playlist_ids": []
+                })
+                by_name.setdefault(key, []).append(tid)
+            rec.setdefault("priority_playlist_ids", [])
+            if playlist_id not in rec["priority_playlist_ids"]:
+                rec["priority_playlist_ids"].append(playlist_id)
+    return catalogue
+
 def main():
     if not API_KEY:
         raise RuntimeError("LASTFM_API_KEY is required.")
@@ -177,16 +240,10 @@ def main():
     if not rows:
         raise RuntimeError("Refusing to enrich an empty archive.")
 
-    catalogue = {}
-    for row in rows:
-        aid = artist_id(row)
-        tid = track_id(row, aid)
-        rec = catalogue.setdefault(tid, {"track_id": tid, "artist_id": aid,
-            "artist": clean(row.get("artist")), "track": clean(row.get("track")),
-            "track_mbid": row.get("track_mbid") or None, "plays": 0})
-        rec["plays"] += 1
-        if row.get("track_mbid"):
-            rec["track_mbid"] = row["track_mbid"]
+    catalogue = build_catalogue(rows, PRIORITY_PLAYLIST_IDS)
+    if PRIORITY_PLAYLIST_IDS:
+        prioritized = sum(1 for item in catalogue.values() if item.get("priority_playlist_ids"))
+        print(f"Priority playlist coverage: {prioritized:,} exact tracks across {len(PRIORITY_PLAYLIST_IDS)} configured playlist(s).")
 
     profiles = read(OUT, {})
     now = int(time.time())
@@ -197,7 +254,10 @@ def main():
         mb_due = bool(item.get("track_mbid")) and not old.get("musicbrainz_checked_at") and int(old.get("musicbrainz_retry_after", 0) or 0) <= now
         if lastfm_due or mb_due:
             due.append(item)
-    due.sort(key=lambda row: (-row["plays"], row["artist"].casefold(), row["track"].casefold()))
+    due.sort(key=lambda row: (
+        not bool(row.get("priority_playlist_ids")),
+        -row["plays"], row["artist"].casefold(), row["track"].casefold()
+    ))
 
     looked = found = mb_looked = mb_found = 0
     for item in due[:LIMIT]:
@@ -296,7 +356,7 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich individual scrobbled tracks with sourced community tags. Last.fm supplies crowd-ranked track tags. MusicBrainz supplies recording tags and genres when a verified recording MBID is already present. No fuzzy MBID search is used here: uncertain identity matches are left unresolved.
+# Purpose: Incrementally enrich scrobbled tracks and exact tracks from configured priority playlists with sourced community tags. Last.fm supplies crowd-ranked track tags. MusicBrainz supplies recording tags and genres when a verified recording MBID is already present. No fuzzy MBID search is used here: uncertain identity matches are left unresolved.
 # Location: Maintained implementation in scripts/music/build_track_profiles.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
