@@ -2,7 +2,7 @@
 
 This catalogue was generated from the pull request's actual Git tree. It names every tracked file at this revision and states its role. It complements, rather than replaces, the more detailed bottom-of-file overviews and directory guides. Machine-readable files are documented here and in adjacent READMEs; their formats are intentionally not modified with comments.
 
-## .github (13 files)
+## .github (14 files)
 
 - `.github/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `.github/spotify_api_cooldown.json` — Persisted Spotify Retry-After cooldown; prevents cloud commands from retrying during a quota restriction.
@@ -14,6 +14,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `.github/workflows/enrich-music-metadata.yml` — GitHub Actions automation for enrich music metadata.
 - `.github/workflows/playlist-manager-check.yml` — GitHub Actions automation for playlist manager check.
 - `.github/workflows/spotify-daily-feedback-observation.yml` — GitHub Actions automation for spotify daily feedback observation.
+- `.github/workflows/spotify-daily-midnight-cycle.yml` — DST-aware automatic Tricky Daily playlist rotation at midnight America/New_York.
 - `.github/workflows/spotify-playlist-manager.yml` — GitHub Actions automation for spotify playlist manager.
 - `.github/workflows/spotify-reference-library.yml` — GitHub Actions automation for spotify reference library.
 - `.github/workflows/update.yml` — GitHub Actions automation for update.
@@ -268,7 +269,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `assistant_data/years/2025.json` — Year-scoped historical listening aggregate for 2025.
 - `assistant_data/years/2026.json` — Year-scoped historical listening aggregate for 2026.
 
-## compat (35 files)
+## compat (36 files)
 
 - `compat/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `compat/__init__.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -295,6 +296,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `compat/playlist_intelligence.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/playlist_metadata.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_daily_feedback.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/spotify_daily_cycle.py` — Compatibility launcher for the Tricky Daily midnight cycle.
 - `compat/spotify_daily_playlist.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_discovery.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playback_tracker.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -314,7 +316,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `data/scrobbles.json` — Canonical raw Last.fm scrobble archive; historical listening source records.
 - `data/stats.json` — Archive-wide statistics snapshot, including explicitly estimated listening-time measures.
 
-## docs (15 files)
+## docs (16 files)
 
 - `docs/AUDIO_ANALYSIS.md` — Guide to measured/local audio analysis and its evidence limits.
 - `docs/AUDIO_MOOD_MODELS.md` — Optional local DEAM valence/arousal inference, provenance and model licensing.
@@ -326,6 +328,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `docs/LYRICS_LIBRARY.md` — Guide to lyric/theme metadata and source handling.
 - `docs/PER_RECORDING_MUSIC_LIBRARY.md` — The Library storage layout, stable song identity rules, staged migration, and lazy lookup behavior.
 - `docs/PLAYLIST_FEEDBACK_CALIBRATION.md` — Playlist-scoped feedback, immutable fit predictions, conservative calibration diagnostics, and holdout safeguards.
+- `docs/TRICKY_DAILY_CYCLE.md` — Midnight Eastern rotation schedule, DST handling, neutral rotation feedback, safety checks, and recovery.
 - `docs/PUBLIC_REPOSITORY_PRIVACY.md` — Public-repository privacy and secret-handling safeguards.
 - `docs/RECENT_TRACK_ENRICHMENT.md` — Workflow for prioritizing recent listening metadata.
 - `docs/REPOSITORY_FILE_INDEX.md` — Catalogue of tracked files and their roles.
@@ -338,7 +341,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `playback_data/.gitkeep` — Placeholder preserving the measured Spotify playback archive directory before records exist.
 - `playback_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 
-## scripts (40 files)
+## scripts (41 files)
 
 - `scripts/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `scripts/__init__.py` — Python package initializer for scripts.
@@ -372,6 +375,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/mood_inference.py` — Maintained implementation module for mood inference. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/__init__.py` — Python package initializer for scripts/spotify.
 - `scripts/spotify/playlist_feedback_calibration.py` — Playlist-scoped immutable prediction ledger and conservative fit-calibration diagnostics.
+- `scripts/spotify/spotify_daily_cycle.py` — DST-aware, backup-protected Tricky Daily midnight rotation runner.
 - `scripts/spotify/playlist_intelligence.py` — Maintained implementation module for playlist intelligence. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/playlist_metadata.py` — Maintained implementation module for playlist metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/spotify_daily_feedback.py` — Maintained implementation module for spotify daily feedback. See its bottom FILE OVERVIEW for detailed behavior.

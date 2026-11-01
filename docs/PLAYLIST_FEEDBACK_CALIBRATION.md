@@ -88,3 +88,11 @@ Run `python compat/playlist_feedback_calibration.py report` to print the
 current read-only calibration report. Use `--min-bin-samples N` to change the
 minimum observations required before a score band is reviewable. The command
 does not call Spotify or alter scoring weights.
+
+
+## Tricky Daily exclusion
+
+Tricky Daily (`4yUVHSMQySfWeEowfIMcx7`) is intentionally rejected by this
+calibration ledger. It is a rotating discovery queue with its own exposure and
+listening feedback model. Scheduled `curator_rotation` removals are neutral and
+must never become playlist-fit rejections or blacklist evidence.
