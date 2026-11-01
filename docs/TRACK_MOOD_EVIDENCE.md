@@ -27,11 +27,11 @@ This document defines how SHIT gathers, stores, and interprets mood-related meta
 
 The album enrichment pipeline deduplicates by normalized artist + album, prioritizes configured playlist snapshots and recent scrobbles, caps each run at 100 unique albums, sends requests sequentially with a 0.4-second minimum delay, verifies the response artist and album exactly, caches empty results for 30 days, checkpoints after each album, and stops on provider cooldowns. It does not call Spotify or modify playlists.
 
-## Normalized per-recording storage
+## Normalized per-song storage
 
 The Library dataset lives under `assistant_data/music/library/`.
 Each artist, album, and recording has its own JSON record; `library_index.json`
-contains only stable-ID paths and lookup aliases. Recording files preserve raw
+contains only stable-ID paths and lookup aliases. Song files preserve raw
 track-provider observations, audio observations, lyric features, derived data,
 coverage, source statuses, and explicit artist/album relations. Artist and album
 evidence remains contextual rather than being copied into track-level evidence.
