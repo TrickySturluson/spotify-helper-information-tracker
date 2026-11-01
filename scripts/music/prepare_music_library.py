@@ -20,10 +20,10 @@ PYTHON = sys.executable
 # explicitly in the caller's environment.
 SAFE_LIMITS = {
     "MUSIC_METADATA_LOOKUPS_PER_RUN": "120",
-    "ARTIST_PROFILE_LOOKUPS_PER_RUN": "100",
+    "MUSIC_PROFILE_LOOKUPS_PER_RUN": "100",
     "TRACK_PROFILE_LOOKUPS_PER_RUN": "200",
     "ALBUM_PROFILE_LOOKUPS_PER_RUN": "100",
-    "MUSICBRAINZ_DURATION_LOOKUPS_PER_RUN": "300",
+    "MUSICBRAINZ_LOOKUPS_PER_RUN": "300",
     "MUSICBRAINZ_ID_LOOKUPS_PER_RUN": "200",
     "DISCOGS_LOOKUPS_PER_RUN": "30",
     "GETSONGBPM_LOOKUPS_PER_RUN": "100",
@@ -52,8 +52,9 @@ def build_plan():
     # lookups only after the offline migration has captured the full catalogue.
     return [
         ("Resolve exact MusicBrainz recording IDs", command("compat/enrich_musicbrainz_recording_ids.py"), {"MUSICBRAINZ_ID_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSICBRAINZ_ID_LOOKUPS_PER_RUN"]}),
+        ("Fill unresolved durations from MusicBrainz", command("compat/enrich_musicbrainz_durations.py"), {"MUSICBRAINZ_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSICBRAINZ_LOOKUPS_PER_RUN"]}),
         ("Enrich scrobbled track durations and rebuild catalogue", command("compat/build_music_metadata.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "MUSIC_METADATA_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSIC_METADATA_LOOKUPS_PER_RUN"]}),
-        ("Build artist genre, mood, and theme profiles", command("compat/build_music_profiles.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "ARTIST_PROFILE_LOOKUPS_PER_RUN": SAFE_LIMITS["ARTIST_PROFILE_LOOKUPS_PER_RUN"]}),
+        ("Build artist genre, mood, and theme profiles", command("compat/build_music_profiles.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "MUSIC_PROFILE_LOOKUPS_PER_RUN": SAFE_LIMITS["MUSIC_PROFILE_LOOKUPS_PER_RUN"]}),
         ("Enrich recording-level Last.fm and MusicBrainz tags", command("compat/build_track_profiles.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "TRACK_PROFILE_LOOKUPS_PER_RUN": SAFE_LIMITS["TRACK_PROFILE_LOOKUPS_PER_RUN"], "TRACK_PROFILE_RECENT_WINDOW_DAYS": SAFE_LIMITS["TRACK_PROFILE_RECENT_WINDOW_DAYS"], "TRACK_PROFILE_RECENT_TOP_N": SAFE_LIMITS["TRACK_PROFILE_RECENT_TOP_N"], "TRACK_PROFILE_PRIORITY_PLAYLISTS": SAFE_LIMITS["TRACK_PROFILE_PRIORITY_PLAYLISTS"]}),
         ("Enrich album tracklists, summaries, artwork, and release tags", command("compat/build_album_profiles.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "ALBUM_PROFILE_LOOKUPS_PER_RUN": SAFE_LIMITS["ALBUM_PROFILE_LOOKUPS_PER_RUN"], "TRACK_PROFILE_PRIORITY_PLAYLISTS": SAFE_LIMITS["TRACK_PROFILE_PRIORITY_PLAYLISTS"]}),
         ("Add optional exact-match Discogs release context", command("compat/enrich_discogs.py"), {"DISCOGS_LOOKUPS_PER_RUN": SAFE_LIMITS["DISCOGS_LOOKUPS_PER_RUN"]}),
