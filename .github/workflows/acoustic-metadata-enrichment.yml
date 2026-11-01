@@ -39,14 +39,19 @@ jobs:
         env:
           ACOUSTICBRAINZ_MAX_BATCHES: ${{ github.event.inputs.max_batches || '100' }}
         run: python enrich_acousticbrainz.py
+      - name: Fetch GetSongBPM fallback metadata (optional)
+        env:
+          GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
+          GETSONGBPM_LOOKUPS_PER_RUN: "300"
+        run: python enrich_getsongbpm.py
       - name: Commit updated audio profiles
         run: |
-          if git diff --quiet -- assistant_data/music/audio_profiles.json assistant_data/music/artists/; then
+          if git diff --quiet -- assistant_data/music/audio_profiles.json assistant_data/music/artists/ assistant_data/music/getsongbpm_lookup_state.json; then
             echo "No new AcousticBrainz profiles."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assistant_data/music/audio_profiles.json assistant_data/music/artists/
+          git add assistant_data/music/audio_profiles.json assistant_data/music/artists/ assistant_data/music/getsongbpm_lookup_state.json
           git commit -m "Update bulk acoustic metadata profiles"
           git push
