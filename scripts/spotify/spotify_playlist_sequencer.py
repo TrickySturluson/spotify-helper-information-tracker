@@ -176,6 +176,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
                         else "tempo estimates disagree; half/double-time ambiguity or version mismatch possible")
 
     # Only actual LUFS measurements are treated as integrated program loudness.
+    loudness = None
     local_lufs = essentia.get("integrated_lufs")
     try:
         local_lufs = float(local_lufs) if local_lufs is not None else None
