@@ -6,7 +6,7 @@
     "title": "Night Ela (Mystic Thing)",
     "album": "Ceres & Calypso in the Deep Time",
     "artist_id": "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48",
-    "album_id": "album:3858c5d33d8c2159eb3d",
+    "album_id": "album:01632cb9b68c6acda89d",
     "recording_mbid": "a55df03b-b6de-4240-a816-e9392fc7e270",
     "spotify_id": null,
     "source_track_id": "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
@@ -65,7 +65,7 @@
   "sources": {},
   "relations": {
     "artist_path": "artists/mb/mbid-da5eaa3b-397e-4af8-9a12-5c4ec93e8b48/artist.json",
-    "album_path": "albums/al/album-3858c5d33d8c2159eb3d/album.json"
+    "album_path": "albums/al/album-01632cb9b68c6acda89d/album.json"
   },
   "listening_context": {
     "source": "Last.fm scrobble archive",
