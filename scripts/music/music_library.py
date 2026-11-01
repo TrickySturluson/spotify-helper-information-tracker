@@ -485,6 +485,25 @@ class MusicLibrary:
                 **old_identity,
                 **{key: value for key, value in current_identity.items() if value not in (None, "", [], {})},
             }
+            # A weaker contextual ID must not replace an established MBID.
+            for identity_field in ("artist_id", "album_id"):
+                old_value = str(old_identity.get(identity_field) or "")
+                new_value = str(current_identity.get(identity_field) or "")
+                if old_value.startswith("mbid:") and new_value and not new_value.startswith("mbid:"):
+                    current["identity"][identity_field] = old_value
+            canonical_artist_id = current["identity"].get("artist_id")
+            canonical_album_id = current["identity"].get("album_id")
+            current["relations"] = dict(current.get("relations") or {})
+            if canonical_artist_id:
+                current["relations"]["artist_path"] = str(
+                    self.path_for("artists", canonical_artist_id).relative_to(self.root)
+                )
+            if canonical_album_id:
+                current["relations"]["album_path"] = str(
+                    self.path_for("albums", canonical_album_id).relative_to(self.root)
+                )
+            else:
+                current["relations"].pop("album_path", None)
             old_evidence = old_record.get("evidence") or {}
             new_evidence = current.get("evidence") or {}
             merged_evidence = dict(old_evidence)
