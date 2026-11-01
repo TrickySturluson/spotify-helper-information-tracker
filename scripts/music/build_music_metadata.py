@@ -25,6 +25,7 @@ MAX_LOOKUPS_PER_RUN = int(os.environ.get("MUSIC_METADATA_LOOKUPS_PER_RUN", "120"
 RETRY_DAYS = 30
 SHARD_COUNT = 32
 USER_AGENT = "TrickyLastFM/1.0 (metadata enrichment)"
+RECENT_TOP = ROOT / "recent_top_tracks.json"
 
 
 def read_json(path, default):
@@ -100,6 +101,16 @@ def api_track_info(track):
     return payload.get("track"), None
 
 
+def recent_priority(path=RECENT_TOP):
+    """Return exact artist/title ranks from the rolling recent top-track cohort."""
+    data = read_json(path, {})
+    return {
+        (norm(row.get("artist")), norm(row.get("track"))): rank
+        for rank, row in enumerate(data.get("tracks", []))
+        if row.get("artist") and row.get("track")
+    }
+
+
 def main():
     if not SOURCE.exists():
         raise FileNotFoundError(SOURCE)
@@ -160,7 +171,14 @@ def main():
         if retry_after > now:
             continue
         due.append(item)
-    due.sort(key=lambda x: (-x["plays"], x["artist"].casefold(), x["track"].casefold()))
+    priority = recent_priority()
+    due.sort(key=lambda x: (
+        priority.get((norm(x["artist"]), norm(x["track"])), 10**9),
+        -x["plays"], x["artist"].casefold(), x["track"].casefold()
+    ))
+    recent_due = sum(1 for item in due
+                     if priority.get((norm(item["artist"]), norm(item["track"])), 10**9) < 200)
+    print(f"Recent top-200 priority: {recent_due:,} tracks are due for duration metadata.")
 
     looked_up = 0
     found = 0
