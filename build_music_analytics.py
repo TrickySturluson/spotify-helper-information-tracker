@@ -37,7 +37,7 @@ def clean(v):
 
 
 def norm(v):
-    return re.sub(r"\\s+", " ", clean(v)).casefold()
+    return re.sub(r"\s+", " ", clean(v)).casefold()
 
 
 def track_norm(v):
