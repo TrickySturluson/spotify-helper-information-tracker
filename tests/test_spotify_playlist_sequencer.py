@@ -708,6 +708,28 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         confidence = sequencer.confidence_summary(ordered)
         coverage = sequencer.evidence_coverage_summary(ordered)
         mood_confidence = coverage["mood_confidence"]
+        playlist_artist_rows = [
+            artist_index.get(sequencer.norm((item.get("artists") or [""])[0]), {})
+            for item in snapshot["items"]
+        ]
+        artist_profiles_with_moods = sum(bool(row.get("moods")) for row in playlist_artist_rows)
+        artist_moods_mapped = sum(
+            any(mood_inference._tag_moods(tag) for tag in (row.get("moods") or []))
+            for row in playlist_artist_rows
+        )
+        artist_mood_examples = sorted({
+            str(tag) for row in playlist_artist_rows for tag in (row.get("moods") or [])
+        }, key=str.casefold)[:12]
+        playlist_track_rows = [
+            track_index.get((sequencer.norm((item.get("artists") or [""])[0]), sequencer.norm(item.get("name"))), {})
+            for item in snapshot["items"]
+        ]
+        track_tag_coverage = {
+            "lastfm_tagged": sum(bool(row.get("lastfm_tags")) for row in playlist_track_rows),
+            "musicbrainz_tagged": sum(bool(row.get("musicbrainz_tags")) for row in playlist_track_rows),
+            "lastfm_no_tags": sum(row.get("lastfm_status") == "no_tags" for row in playlist_track_rows),
+            "lastfm_unmatched": sum(not row for row in playlist_track_rows),
+        }
         changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
         elapsed_seconds = perf_counter() - started
         previous_artist = None
@@ -730,6 +752,9 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             f"longest_artist_run={longest_run}; "
             f"reorder_operations={len(operations)}; confidence={confidence}; "
             f"mood_confidence={mood_confidence}; mood_sources={coverage['mood_source_coverage']}; "
+            f"artist_profiles_with_moods={artist_profiles_with_moods}; "
+            f"artist_moods_mapped={artist_moods_mapped}; artist_mood_examples={artist_mood_examples}; "
+            f"track_tag_coverage={track_tag_coverage}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, provisional:{summary['provisional']}, "
             f"uncertain:{summary['uncertain']}, "
