@@ -12,6 +12,10 @@ git remote set-url origin https://github.com/TrickySturluson/spotify-helper-info
 
 The project combines Spotify's live playlist and playback interfaces with Last.fm's long-term scrobble history. Spotify playlist operations are handled separately from the historical analytics archive, with read-only inspection and preview-first safeguards for changes.
 
+## Project continuity and current work
+
+The durable project handoff lives in [`project/`](project/). When resuming work, read [`project/NEXT_WORK.md`](project/NEXT_WORK.md) first for the current blocker, priorities, constraints, and next action; then consult the [chronological project log](project/PROJECT_LOG.md). Project plans and decisions belong there rather than being left only in chat history.
+
 ## Source of truth
 
 - `data/scrobbles.json` is the canonical, chronological archive. It retains Last.fm identifiers (MBIDs), timestamps, names and URLs.
