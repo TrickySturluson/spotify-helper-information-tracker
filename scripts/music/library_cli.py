@@ -14,6 +14,8 @@ from scripts.music.music_library import MusicLibrary, read_json
 
 DEFAULT_ROOT = REPO_ROOT / "assistant_data" / "music" / "library"
 MIGRATOR = REPO_ROOT / "scripts" / "music" / "migrate_full_music_library.py"
+PREPARER = REPO_ROOT / "scripts" / "music" / "prepare_music_library.py"
+SYNCER = REPO_ROOT / "scripts" / "music" / "sync_music_library.py"
 
 
 def _index(root):
@@ -65,6 +67,25 @@ def run_migration(root, dry_run=False, yes=False):
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
 
+def run_preparation(execute=False, yes=False, skip_spotify_refresh=False, skip_discogs=False, skip_getsongbpm=False):
+    command = [sys.executable, str(PREPARER)]
+    if execute:
+        command.append("--execute")
+    if yes:
+        command.append("--yes")
+    if skip_spotify_refresh:
+        command.append("--skip-spotify-refresh")
+    if skip_discogs:
+        command.append("--skip-discogs")
+    if skip_getsongbpm:
+        command.append("--skip-getsongbpm")
+    return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
+
+
+def sync_library():
+    return subprocess.run([sys.executable, str(SYNCER)], cwd=REPO_ROOT, check=False).returncode
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="shit",
@@ -78,6 +99,8 @@ def build_parser():
         ("preview", "Preview a full migration without writing files or contacting providers"),
         ("migrate", "Migrate stored profiles and accessible playlist snapshots into the library"),
         ("audit", "Validate canonical records, relations and lookup aliases"),
+        ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
+        ("sync", "Merge existing enrichment exports into the canonical library"),
     ):
         sub = actions.add_parser(name, help=help_text)
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
@@ -105,7 +128,8 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Native command interface for the canonical per-recording music library.
-# Commands: status, preview, migrate, audit; preview is read-only and migration
+# Commands: status, preview, migrate, audit, prepare, sync; prepare defaults to a
+# read-only preflight; --execute performs migration and bounded enrichment. Migration
 # creates a timestamped backup before writing. Provider requests and playlist
 # writes are not performed by the offline migration.
 # Related: scripts/music/music_library.py and scripts/music/migrate_full_music_library.py.
