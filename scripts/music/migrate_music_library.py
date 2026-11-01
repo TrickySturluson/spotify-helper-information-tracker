@@ -33,7 +33,7 @@ def main():
     if args.recent_limit:
         recent = load(ROOT / "recent_top_tracks.json", {})
         recent_rows = recent.get("tracks", []) if isinstance(recent, dict) else []
-        tracks, selection = select_recent_track_rows(tracks, recent_rows, args.recent_limit)
+        tracks, selection = select_recent_track_rows(tracks, recent_rows, args.recent_limit, window_days=recent.get('window_days'))
 
     artists = load(ROOT / "artist_profiles.json", {})
     albums = load(ROOT / "album_profiles.json", {})
