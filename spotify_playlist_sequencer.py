@@ -218,6 +218,8 @@ def target_energy(position, count, journey="rising", peak_position=85, peak_shap
         if peak_shape == "sharp": t = t ** 1.8
         elif peak_shape == "sustained": t = min(1.0, t * 1.35)
         return 0.18 + 0.78 * t
+    if journey == "rising":
+        return 0.96
     t = (x - peak) / (1 - peak)
     if peak_shape == "sharp": t = t ** 0.65
     elif peak_shape == "sustained": t = max(0.0, (t - 0.18) / 0.82)
