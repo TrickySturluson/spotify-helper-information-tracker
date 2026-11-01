@@ -87,19 +87,24 @@ def build_parser():
         description="Spotify Helper & Information Tracker — project command interface",
     )
     commands = parser.add_subparsers(dest="area", required=True)
-    library = commands.add_parser("library", help="Manage the canonical per-recording music library")
+    library = commands.add_parser(
+        "library", aliases=["migration"],
+        help="Manage the canonical per-recording music library (migration is an alias)",
+    )
     actions = library.add_subparsers(dest="action", required=True)
     for name, help_text in (
         ("status", "Show indexed catalogue counts and last migration result"),
         ("preview", "Preview migration without writing or contacting providers"),
         ("migrate", "Migrate stored profiles and accessible playlist snapshots"),
+        ("run", "Run the Great Migration (alias for migrate)"),
+        ("resume", "Resume the idempotent Great Migration"),
         ("audit", "Validate canonical records, relations and lookup aliases"),
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
         ("sync", "Merge existing enrichment exports into the canonical library"),
     ):
         sub = actions.add_parser(name, help=help_text)
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
-        if name == "migrate":
+        if name in {"migrate", "run", "resume"}:
             sub.add_argument("--yes", action="store_true", help="Skip migration confirmation")
         if name == "prepare":
             sub.add_argument("--execute", action="store_true", help="Run migration and enrichment; default is read-only preflight")
@@ -119,7 +124,7 @@ def main(argv=None):
         return audit(args.root)
     if args.action == "preview":
         return run_migration(args.root, dry_run=True)
-    if args.action == "migrate":
+    if args.action in {"migrate", "run", "resume"}:
         return run_migration(args.root, yes=args.yes)
     if args.action == "prepare":
         if args.yes and not args.execute:
