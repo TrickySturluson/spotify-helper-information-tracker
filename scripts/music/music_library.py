@@ -129,6 +129,57 @@ class MusicLibrary:
     # Backward-compatible method name for existing callers.
     get_recording = get_song
 
+
+    def audit(self):
+        """Check index aliases and every referenced song/artist/album record."""
+        errors = []
+        songs = self.index.get("songs", self.index.get("recordings", {}))
+        artists = self.index.get("artists", {})
+        albums = self.index.get("albums", {})
+        if not isinstance(songs, dict) or not isinstance(artists, dict) or not isinstance(albums, dict):
+            return {"ok": False, "errors": ["index collections must be objects"], "songs": 0, "artists": 0, "albums": 0}
+        for song_id, entry in songs.items():
+            if not isinstance(entry, dict) or not entry.get("path"):
+                errors.append(f"song index entry is malformed: {song_id}")
+                continue
+            record = read_json(self.root / entry["path"])
+            if not isinstance(record, dict):
+                errors.append(f"song record is missing or invalid: {song_id}")
+                continue
+            if record.get("id") != song_id:
+                errors.append(f"song record ID mismatch: {song_id}")
+            identity = record.get("identity") or {}
+            if not identity.get("artist") or not identity.get("title"):
+                errors.append(f"song identity is missing artist/title: {song_id}")
+            relations = record.get("relations") or {}
+            artist_path = relations.get("artist_path")
+            artist_record = read_json(self.root / artist_path) if artist_path else None
+            if not isinstance(artist_record, dict):
+                errors.append(f"related artist record is missing: {song_id}")
+            elif artist_record.get("id") != identity.get("artist_id"):
+                errors.append(f"related artist identity mismatch: {song_id}")
+            album_path = relations.get("album_path")
+            if album_path:
+                album_record = read_json(self.root / album_path)
+                if not isinstance(album_record, dict):
+                    errors.append(f"related album record is missing: {song_id}")
+                elif album_record.get("id") != identity.get("album_id"):
+                    errors.append(f"related album identity mismatch: {song_id}")
+        for alias, candidates in self.index.get("name_candidates", {}).items():
+            if not isinstance(candidates, list) or not candidates:
+                errors.append(f"name alias has no candidate list: {alias!r}")
+                continue
+            if any(candidate not in songs for candidate in candidates):
+                errors.append(f"name alias references missing song: {alias!r}")
+        for alias_map_name in ("spotify_ids", "recording_mbids"):
+            for alias, song_id in self.index.get(alias_map_name, {}).items():
+                if song_id not in songs:
+                    errors.append(f"{alias_map_name} alias references missing song: {alias}")
+        return {
+            "ok": not errors, "errors": errors,
+            "songs": len(songs), "artists": len(artists), "albums": len(albums),
+        }
+
     def put_catalogue(self, track_rows, artist_rows=None, album_rows=None, audio_rows=None, lyric_rows=None):
         artists = artist_rows if isinstance(artist_rows, dict) else {}
         albums = album_rows if isinstance(album_rows, dict) else {}
