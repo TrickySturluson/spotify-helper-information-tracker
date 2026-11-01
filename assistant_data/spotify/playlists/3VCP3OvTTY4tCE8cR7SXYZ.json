@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-10-31T09:04:34.927845+00:00",
+  "captured_at": "2026-11-01T04:36:59.215415+00:00",
   "id": "3VCP3OvTTY4tCE8cR7SXYZ",
   "name": "winter",
   "description": "",
@@ -14,8 +14,8 @@
   "total_items_reported": 23,
   "item_count_fetched": 0,
   "items_accessible": false,
-  "items_error": "Spotify API does not expose item contents for this playlist to the current account/app.",
-  "last_items_accessible_at": null,
-  "items_snapshot_id": null,
+  "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
+  "last_items_accessible_at": "2026-10-31T09:04:34.927845+00:00",
+  "items_snapshot_id": "AAABp7G2EZe4ZwSBsY7LziJg72kXTy7W",
   "items": []
 }

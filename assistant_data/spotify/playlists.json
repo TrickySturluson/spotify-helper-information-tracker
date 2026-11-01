@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "captured_at": "2026-10-31T09:04:53.939729+00:00",
+  "captured_at": "2026-11-01T04:37:13.391545+00:00",
   "playlist_count": 57,
   "playlists": [
     {
@@ -15,10 +15,10 @@
       "snapshot_id": "AAAA0fWRjnajcW/+621stz3Zqjj6FeEi",
       "item_count": 191,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:48.202858+00:00",
-      "captured_at": "2026-10-31T09:04:48.202811+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:08.699497+00:00",
+      "captured_at": "2026-11-01T04:37:08.699466+00:00",
       "record_path": "assistant_data/spotify/playlists/4HzqY9iy04M1EVSF5kcD64.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "34ZLWdJxp6U7HfFfu7DJu1",
@@ -32,10 +32,10 @@
       "snapshot_id": "AAAAA56PjGNqS/e3hpvLWqKqctrDkxHU",
       "item_count": 625,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:31.106494+00:00",
-      "captured_at": "2026-10-31T09:04:31.106474+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:55.877985+00:00",
+      "captured_at": "2026-11-01T04:36:55.877970+00:00",
       "record_path": "assistant_data/spotify/playlists/34ZLWdJxp6U7HfFfu7DJu1.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "70s94R5XfF7EHJ7T9cF4Hz",
@@ -49,10 +49,10 @@
       "snapshot_id": "AAAACbJZUOXD2h9C7wIpAZ5mZH3sud0t",
       "item_count": 6,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:50.850222+00:00",
-      "captured_at": "2026-10-31T09:04:50.850203+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:10.759059+00:00",
+      "captured_at": "2026-11-01T04:37:10.759047+00:00",
       "record_path": "assistant_data/spotify/playlists/70s94R5XfF7EHJ7T9cF4Hz.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "0O9ojSstxwa5vQy2V7pO2x",
@@ -66,10 +66,10 @@
       "snapshot_id": "AAAAURAbitlmyTbdbXv3QfdyqjDtwiVL",
       "item_count": 60,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:49.053643+00:00",
-      "captured_at": "2026-10-31T09:04:49.053623+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:09.296127+00:00",
+      "captured_at": "2026-11-01T04:37:09.296112+00:00",
       "record_path": "assistant_data/spotify/playlists/0O9ojSstxwa5vQy2V7pO2x.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "6ZsqAs5OnRMVudhfB2QzTx",
@@ -83,10 +83,10 @@
       "snapshot_id": "AAAA6KRtBw0n+hN9CcnrbKrvT8ul4cvJ",
       "item_count": 51,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:22.845064+00:00",
-      "captured_at": "2026-10-31T09:04:22.845046+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:49.937345+00:00",
+      "captured_at": "2026-11-01T04:36:49.937328+00:00",
       "record_path": "assistant_data/spotify/playlists/6ZsqAs5OnRMVudhfB2QzTx.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "0up7QOuebKfpL52Lkv57iG",
@@ -100,10 +100,10 @@
       "snapshot_id": "AAAAFppFQAM6FFg6M4wmcaXWiBrRXuBV",
       "item_count": 17,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:51.088662+00:00",
-      "captured_at": "2026-10-31T09:04:51.088644+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:11.024918+00:00",
+      "captured_at": "2026-11-01T04:37:11.024908+00:00",
       "record_path": "assistant_data/spotify/playlists/0up7QOuebKfpL52Lkv57iG.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4tn53u9giOW4exRSHM9S2Q",
@@ -117,10 +117,10 @@
       "snapshot_id": "AAAAGVvUCaEt8cIpu+GUiW/+ocTS8rbn",
       "item_count": 9,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:49.592464+00:00",
-      "captured_at": "2026-10-31T09:04:49.592446+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:09.946533+00:00",
+      "captured_at": "2026-11-01T04:37:09.946518+00:00",
       "record_path": "assistant_data/spotify/playlists/4tn53u9giOW4exRSHM9S2Q.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4diIlnF8BlgoJrwUfejf49",
@@ -131,11 +131,11 @@
       },
       "public": true,
       "collaborative": false,
-      "snapshot_id": "AAAAZOd61e+/K+kOj1BhjTngNHapJJUZ",
-      "item_count": 94,
+      "snapshot_id": "AAAAw8f2aq8a5+FR+lc4/+oBKO4Uf58T",
+      "item_count": 66,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:20.336297+00:00",
-      "captured_at": "2026-10-31T09:04:20.336269+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:47.552163+00:00",
+      "captured_at": "2026-11-01T04:36:47.552143+00:00",
       "record_path": "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json",
       "changed": true
     },
@@ -151,8 +151,8 @@
       "snapshot_id": "AAAGDsAg/CREeCdrfpY6Stw2bY8jIQ07",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:52.267576+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:52.267576+00:00",
+      "captured_at": "2026-11-01T04:37:11.981072+00:00",
       "record_path": "assistant_data/spotify/playlists/5DjXZzcWUsRT1c7X3jNIqX.json",
       "changed": false
     },
@@ -168,8 +168,8 @@
       "snapshot_id": "AAAAQ0cYoNboJauVdR3bwYzC9c99VPEm",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:33.875770+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:33.875770+00:00",
+      "captured_at": "2026-11-01T04:36:58.231378+00:00",
       "record_path": "assistant_data/spotify/playlists/43OGTiXjftiA4Rfjpd4WKz.json",
       "changed": false
     },
@@ -185,10 +185,10 @@
       "snapshot_id": "AAAACpVi3Bu1BpidTeYWvYdVby8qnNoe",
       "item_count": 3,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:52.031961+00:00",
-      "captured_at": "2026-10-31T09:04:52.031943+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:11.793211+00:00",
+      "captured_at": "2026-11-01T04:37:11.793200+00:00",
       "record_path": "assistant_data/spotify/playlists/09xTFE86ySsLDlUor57oxj.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "6c6Ra1iI1JjhADV2gnT7p6",
@@ -202,8 +202,8 @@
       "snapshot_id": "AABl/m9uEWO2TTricgp2hLYfIZ8J6fGS",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:51.786534+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:51.786534+00:00",
+      "captured_at": "2026-11-01T04:37:11.426592+00:00",
       "record_path": "assistant_data/spotify/playlists/6c6Ra1iI1JjhADV2gnT7p6.json",
       "changed": false
     },
@@ -219,10 +219,10 @@
       "snapshot_id": "AAAADJrb+Fkl0UDBSdh+lgc716gOWKaI",
       "item_count": 9,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:21.419330+00:00",
-      "captured_at": "2026-10-31T09:04:21.419312+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:48.617545+00:00",
+      "captured_at": "2026-11-01T04:36:48.617533+00:00",
       "record_path": "assistant_data/spotify/playlists/5ldEH1DIttBpwfDHCK0cH9.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "1DfldKacNIZzRc1wvUbd7a",
@@ -236,8 +236,8 @@
       "snapshot_id": "AAAAOAUpSUA0nTtP9Lc4y6HmapEx+Kie",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:31.571059+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:31.571059+00:00",
+      "captured_at": "2026-11-01T04:36:56.117923+00:00",
       "record_path": "assistant_data/spotify/playlists/1DfldKacNIZzRc1wvUbd7a.json",
       "changed": false
     },
@@ -253,8 +253,8 @@
       "snapshot_id": "AAACLJpzE5/zec5tGloZu91+v/SZTBIo",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:25.480970+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:25.480970+00:00",
+      "captured_at": "2026-11-01T04:36:51.468753+00:00",
       "record_path": "assistant_data/spotify/playlists/6s5BBWS2DrarnwfTp0KxNx.json",
       "changed": false
     },
@@ -270,8 +270,8 @@
       "snapshot_id": "AAANyEqDEbSLSkf5XGkSypx017n3VmUX",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:34.755890+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:34.755890+00:00",
+      "captured_at": "2026-11-01T04:36:59.026766+00:00",
       "record_path": "assistant_data/spotify/playlists/5oaemzgKQVvRm044eoELf8.json",
       "changed": false
     },
@@ -287,10 +287,10 @@
       "snapshot_id": "AAAAUgMJlaLErE3w+kyK5omee9YbKl5e",
       "item_count": 21,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:32.618630+00:00",
-      "captured_at": "2026-10-31T09:04:32.618612+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:56.819074+00:00",
+      "captured_at": "2026-11-01T04:36:56.819065+00:00",
       "record_path": "assistant_data/spotify/playlists/5wRSUXlFbT8EX9p1kfa6GG.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "2VV3P1FkFgPloylv3FVN75",
@@ -304,10 +304,10 @@
       "snapshot_id": "AAAAFZEAyOnwCpCt3SBWk3xpecPDW28+",
       "item_count": 17,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:26.939913+00:00",
-      "captured_at": "2026-10-31T09:04:26.939892+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:52.661040+00:00",
+      "captured_at": "2026-11-01T04:36:52.661025+00:00",
       "record_path": "assistant_data/spotify/playlists/2VV3P1FkFgPloylv3FVN75.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "2ObNqlwaAvu4VpUVydWlYW",
@@ -321,10 +321,10 @@
       "snapshot_id": "AAAAAqCKHzLe2RwLUl5FK1F0f1BI6nQd",
       "item_count": 1,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:53.719980+00:00",
-      "captured_at": "2026-10-31T09:04:53.719962+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:13.227279+00:00",
+      "captured_at": "2026-11-01T04:37:13.227266+00:00",
       "record_path": "assistant_data/spotify/playlists/2ObNqlwaAvu4VpUVydWlYW.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "5uekshuTjqgJ0A6AVNfhgP",
@@ -338,10 +338,10 @@
       "snapshot_id": "AAAAMn4wqNnRZd6/MRYGHPSUHSKDNShZ",
       "item_count": 30,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:25.703190+00:00",
-      "captured_at": "2026-10-31T09:04:25.703171+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:51.705525+00:00",
+      "captured_at": "2026-11-01T04:36:51.705512+00:00",
       "record_path": "assistant_data/spotify/playlists/5uekshuTjqgJ0A6AVNfhgP.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "5STPnvDqoU9Uc0qtlQsBRE",
@@ -355,10 +355,10 @@
       "snapshot_id": "AAAAF3fIZhpbdPLWjVH3hL0oh+upK30+",
       "item_count": 11,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:26.683961+00:00",
-      "captured_at": "2026-10-31T09:04:26.683943+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:52.393620+00:00",
+      "captured_at": "2026-11-01T04:36:52.393606+00:00",
       "record_path": "assistant_data/spotify/playlists/5STPnvDqoU9Uc0qtlQsBRE.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4b8bnocxVCRuPNFKIfffCU",
@@ -372,10 +372,10 @@
       "snapshot_id": "AAAABxB/fUCw8eE+HvD1mN82Fak1MKah",
       "item_count": 1,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:21.182124+00:00",
-      "captured_at": "2026-10-31T09:04:21.182098+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:48.367073+00:00",
+      "captured_at": "2026-11-01T04:36:48.367063+00:00",
       "record_path": "assistant_data/spotify/playlists/4b8bnocxVCRuPNFKIfffCU.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "3XQz9AyZP6ADcr9i8iBaVx",
@@ -389,10 +389,10 @@
       "snapshot_id": "AAAAhs1n8wdRSU2OkAnyvEAZEoafRPF8",
       "item_count": 1388,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:45.748607+00:00",
-      "captured_at": "2026-10-31T09:04:45.748585+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:06.743654+00:00",
+      "captured_at": "2026-11-01T04:37:06.743638+00:00",
       "record_path": "assistant_data/spotify/playlists/3XQz9AyZP6ADcr9i8iBaVx.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4uj6bJgjBtW7r91ognROc7",
@@ -406,8 +406,8 @@
       "snapshot_id": "AAAA2VjYTS8sDl5ppjtQU6zAy+Vb0ybd",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:51.274973+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:51.274973+00:00",
+      "captured_at": "2026-11-01T04:37:11.226020+00:00",
       "record_path": "assistant_data/spotify/playlists/4uj6bJgjBtW7r91ognROc7.json",
       "changed": false
     },
@@ -423,10 +423,10 @@
       "snapshot_id": "AAAAB1SlO482luvWW/Fkkm1mhod9mf5x",
       "item_count": 3,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:49.399069+00:00",
-      "captured_at": "2026-10-31T09:04:49.399053+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:09.654245+00:00",
+      "captured_at": "2026-11-01T04:37:09.654235+00:00",
       "record_path": "assistant_data/spotify/playlists/3tyyzePtZplN4Ezifl9Zyc.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "3QOXoyzMgmR11E3uApwAXV",
@@ -440,10 +440,10 @@
       "snapshot_id": "AAAAChoNrsFInqK6aRge4fPsmZzY9qlN",
       "item_count": 3,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:33.332197+00:00",
-      "captured_at": "2026-10-31T09:04:33.332179+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:57.776109+00:00",
+      "captured_at": "2026-11-01T04:36:57.776098+00:00",
       "record_path": "assistant_data/spotify/playlists/3QOXoyzMgmR11E3uApwAXV.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4PlyPb9mptoHrMTb6KSka1",
@@ -457,10 +457,10 @@
       "snapshot_id": "AAAAH/mccakLhR1mNRisV0V/gfHh1bIy",
       "item_count": 21,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:23.935339+00:00",
-      "captured_at": "2026-10-31T09:04:23.935320+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:50.697434+00:00",
+      "captured_at": "2026-11-01T04:36:50.697421+00:00",
       "record_path": "assistant_data/spotify/playlists/4PlyPb9mptoHrMTb6KSka1.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "2B3Ie8mcurQaou0BxPBuFe",
@@ -474,10 +474,10 @@
       "snapshot_id": "AAAAEmLrInj/Zv1thVkyKrBOxSXzEws5",
       "item_count": 16,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:46.709110+00:00",
-      "captured_at": "2026-10-31T09:04:46.709093+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:07.549978+00:00",
+      "captured_at": "2026-11-01T04:37:07.549964+00:00",
       "record_path": "assistant_data/spotify/playlists/2B3Ie8mcurQaou0BxPBuFe.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "0hdqYliqXPsvGEvlC63VnR",
@@ -491,10 +491,10 @@
       "snapshot_id": "AAAAM1Wi0vlvbjeykePoWDS4S1bo7WpB",
       "item_count": 46,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:46.950085+00:00",
-      "captured_at": "2026-10-31T09:04:46.950067+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:07.788788+00:00",
+      "captured_at": "2026-11-01T04:37:07.788777+00:00",
       "record_path": "assistant_data/spotify/playlists/0hdqYliqXPsvGEvlC63VnR.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "1Da4M4osxPQ9Undfxz7KOh",
@@ -508,10 +508,10 @@
       "snapshot_id": "AAAAD0yv4/WcEhIH9I91Nun6j4zBJuBz",
       "item_count": 14,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:20.813899+00:00",
-      "captured_at": "2026-10-31T09:04:20.813880+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:48.019441+00:00",
+      "captured_at": "2026-11-01T04:36:48.019430+00:00",
       "record_path": "assistant_data/spotify/playlists/1Da4M4osxPQ9Undfxz7KOh.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "3N0CIzW2q9EQ7K3wdBRjPv",
@@ -525,10 +525,10 @@
       "snapshot_id": "AAAACIftakcxiujNspi90UDFNZ50sCAh",
       "item_count": 5,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:49.223486+00:00",
-      "captured_at": "2026-10-31T09:04:49.223468+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:09.514230+00:00",
+      "captured_at": "2026-11-01T04:37:09.514219+00:00",
       "record_path": "assistant_data/spotify/playlists/3N0CIzW2q9EQ7K3wdBRjPv.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "10oSwSqfz6NKpdqveJRD1N",
@@ -542,8 +542,8 @@
       "snapshot_id": "AAAB+WbGz3FjI2uGpSTRGbS1GZmUnml7",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:32.205247+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:32.205247+00:00",
+      "captured_at": "2026-11-01T04:36:56.460388+00:00",
       "record_path": "assistant_data/spotify/playlists/10oSwSqfz6NKpdqveJRD1N.json",
       "changed": false
     },
@@ -559,10 +559,10 @@
       "snapshot_id": "AAAAB6hdCHUMYsuFKpDoFE97dTavf6FD",
       "item_count": 5,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:53.938856+00:00",
-      "captured_at": "2026-10-31T09:04:53.938805+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:13.390817+00:00",
+      "captured_at": "2026-11-01T04:37:13.390806+00:00",
       "record_path": "assistant_data/spotify/playlists/0SM5JuDrYQMPIcOM5CGrHo.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "43GBDM9QGiRColXN05iHal",
@@ -576,10 +576,10 @@
       "snapshot_id": "AAAAREaSb0573awLTyTLZ4SkF7tkRgOj",
       "item_count": 48,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:48.488340+00:00",
-      "captured_at": "2026-10-31T09:04:48.488321+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:08.909918+00:00",
+      "captured_at": "2026-11-01T04:37:08.909907+00:00",
       "record_path": "assistant_data/spotify/playlists/43GBDM9QGiRColXN05iHal.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "6gaTNs2hbW1kMvBSq0PGDG",
@@ -593,8 +593,8 @@
       "snapshot_id": "AAAACFsA3bvAXdKnRf4t4lh/MlFWY9ck",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:25.138229+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:25.138229+00:00",
+      "captured_at": "2026-11-01T04:36:51.270641+00:00",
       "record_path": "assistant_data/spotify/playlists/6gaTNs2hbW1kMvBSq0PGDG.json",
       "changed": false
     },
@@ -610,8 +610,8 @@
       "snapshot_id": "AAAAOGarRl3dL+Egq1FViPlU4zAmFnIF",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:22.101127+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:22.101127+00:00",
+      "captured_at": "2026-11-01T04:36:49.410234+00:00",
       "record_path": "assistant_data/spotify/playlists/7yQNzIwGXyEfjKwMbUcYYq.json",
       "changed": false
     },
@@ -627,10 +627,10 @@
       "snapshot_id": "AAAACoa+eRtUDNk6wPBUOaXo/Y1/uMFS",
       "item_count": 54,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:23.606022+00:00",
-      "captured_at": "2026-10-31T09:04:23.606003+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:50.520939+00:00",
+      "captured_at": "2026-11-01T04:36:50.520925+00:00",
       "record_path": "assistant_data/spotify/playlists/1aG27IbNdaUcyAkkfpwpMn.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "27W6XAOB0y8rOVs1sEM1qU",
@@ -644,10 +644,10 @@
       "snapshot_id": "AAAACR45hTwfTVtuLIylGRxhthFcVdse",
       "item_count": 4,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:49.950520+00:00",
-      "captured_at": "2026-10-31T09:04:49.950500+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:10.062603+00:00",
+      "captured_at": "2026-11-01T04:37:10.062587+00:00",
       "record_path": "assistant_data/spotify/playlists/27W6XAOB0y8rOVs1sEM1qU.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "0XybIFtyBNGcPQV4hKpjrl",
@@ -661,10 +661,10 @@
       "snapshot_id": "AAAAEG+qr4C7wDiikzWcIjTo0VOgV9o5",
       "item_count": 13,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:23.048361+00:00",
-      "captured_at": "2026-10-31T09:04:23.048341+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:50.189807+00:00",
+      "captured_at": "2026-11-01T04:36:50.189797+00:00",
       "record_path": "assistant_data/spotify/playlists/0XybIFtyBNGcPQV4hKpjrl.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "1xp9Nsr1Q92gFHTSPaTUjT",
@@ -678,8 +678,8 @@
       "snapshot_id": "AAAABERKuhPDSSSeIDkZ5/2JXq7ClJ0m",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:33.576211+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:33.576211+00:00",
+      "captured_at": "2026-11-01T04:36:58.079932+00:00",
       "record_path": "assistant_data/spotify/playlists/1xp9Nsr1Q92gFHTSPaTUjT.json",
       "changed": false
     },
@@ -695,8 +695,8 @@
       "snapshot_id": "AAAAeypkJ36cTXxGgEePgpE7teMYbY3y",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:33.143296+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:33.143296+00:00",
+      "captured_at": "2026-11-01T04:36:57.512637+00:00",
       "record_path": "assistant_data/spotify/playlists/0VdggmUS2v9YwRvbL2wJb8.json",
       "changed": false
     },
@@ -712,10 +712,10 @@
       "snapshot_id": "AAAAIbg1TJ2YRuFEd3E4ZkmDWhbDP9eU",
       "item_count": 23,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:52.574225+00:00",
-      "captured_at": "2026-10-31T09:04:52.574206+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:12.191671+00:00",
+      "captured_at": "2026-11-01T04:37:12.191658+00:00",
       "record_path": "assistant_data/spotify/playlists/36yV3rN8VqwAKm8ZBp28Zb.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "2ICCklgbF6cg0q5p4xAHKi",
@@ -729,10 +729,10 @@
       "snapshot_id": "AAAAD+Es7l8Z/n54n3sSPgglv9epvstS",
       "item_count": 11,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:50.371610+00:00",
-      "captured_at": "2026-10-31T09:04:50.371588+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:10.269971+00:00",
+      "captured_at": "2026-11-01T04:37:10.269960+00:00",
       "record_path": "assistant_data/spotify/playlists/2ICCklgbF6cg0q5p4xAHKi.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "388CR6TFu3pZZGlMsAXlEy",
@@ -746,10 +746,10 @@
       "snapshot_id": "AAAAW0K1zuvfdIVvbhWmdnqyxEMsPyNG",
       "item_count": 54,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:46.390204+00:00",
-      "captured_at": "2026-10-31T09:04:46.390185+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:07.335517+00:00",
+      "captured_at": "2026-11-01T04:37:07.335501+00:00",
       "record_path": "assistant_data/spotify/playlists/388CR6TFu3pZZGlMsAXlEy.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "7L2rSp4SuohBEyNxEtAurx",
@@ -763,10 +763,10 @@
       "snapshot_id": "AAAACWT9Bpa/Zs1s31EjQzUVodDYxqrm",
       "item_count": 8,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:20.993643+00:00",
-      "captured_at": "2026-10-31T09:04:20.993624+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:48.224715+00:00",
+      "captured_at": "2026-11-01T04:36:48.224703+00:00",
       "record_path": "assistant_data/spotify/playlists/7L2rSp4SuohBEyNxEtAurx.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "24DRwQJlzcXYm6fKH770Ty",
@@ -780,8 +780,8 @@
       "snapshot_id": "AAABu432sRyPYFMQKHJu3aY1qx6UilnW",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:32.897417+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:32.897417+00:00",
+      "captured_at": "2026-11-01T04:36:57.000197+00:00",
       "record_path": "assistant_data/spotify/playlists/24DRwQJlzcXYm6fKH770Ty.json",
       "changed": false
     },
@@ -797,10 +797,10 @@
       "snapshot_id": "AAAAGrAUJRB1IVCBjOauxfECd9hZbVLj",
       "item_count": 16,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:21.638368+00:00",
-      "captured_at": "2026-10-31T09:04:21.638342+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:48.898294+00:00",
+      "captured_at": "2026-11-01T04:36:48.898283+00:00",
       "record_path": "assistant_data/spotify/playlists/5meDjtqrqOe5oHpvZGWRMz.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "7pV0AvO89TBM9Jsyo4tgNl",
@@ -814,8 +814,8 @@
       "snapshot_id": "AAABRcaN6iDUPt5zrl3iIf1OnxDodc4r",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:31.819792+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:31.819792+00:00",
+      "captured_at": "2026-11-01T04:36:56.292960+00:00",
       "record_path": "assistant_data/spotify/playlists/7pV0AvO89TBM9Jsyo4tgNl.json",
       "changed": false
     },
@@ -831,10 +831,10 @@
       "snapshot_id": "AAAAW3pzPenSjGXb9xuxbnNs9VEMF14A",
       "item_count": 82,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:24.909912+00:00",
-      "captured_at": "2026-10-31T09:04:24.909893+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:51.155894+00:00",
+      "captured_at": "2026-11-01T04:36:51.155878+00:00",
       "record_path": "assistant_data/spotify/playlists/3Py0bGiIJQHtirIbhwLpdG.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "7ktZCiqIBwsOPWShhqLzRi",
@@ -848,10 +848,10 @@
       "snapshot_id": "AAAABGT6855v40EPCpkq018e4XQRM7PO",
       "item_count": 100,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:34.463617+00:00",
-      "captured_at": "2026-10-31T09:04:34.463599+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:58.764183+00:00",
+      "captured_at": "2026-11-01T04:36:58.764167+00:00",
       "record_path": "assistant_data/spotify/playlists/7ktZCiqIBwsOPWShhqLzRi.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4yUVHSMQySfWeEowfIMcx7",
@@ -865,10 +865,10 @@
       "snapshot_id": "AAAAEjbKSs4Ty7PPchKI/usv9nYJHWxQ",
       "item_count": 30,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:20.549319+00:00",
-      "captured_at": "2026-10-31T09:04:20.549300+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:47.822896+00:00",
+      "captured_at": "2026-11-01T04:36:47.822881+00:00",
       "record_path": "assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "1C6heonV5mxcBwNpmOGMjC",
@@ -882,10 +882,10 @@
       "snapshot_id": "AAAABLJPLnfJi5oISDPuUAWcqpzy2eMt",
       "item_count": 2,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:32.404686+00:00",
-      "captured_at": "2026-10-31T09:04:32.404668+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:56.626518+00:00",
+      "captured_at": "2026-11-01T04:36:56.626470+00:00",
       "record_path": "assistant_data/spotify/playlists/1C6heonV5mxcBwNpmOGMjC.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "0co3cJkCBANbHlMTxMnAmS",
@@ -899,8 +899,8 @@
       "snapshot_id": "AAAAV9mIsqgoYyrr8ZhqILdzicuWVI0S",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:21.887768+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:21.887768+00:00",
+      "captured_at": "2026-11-01T04:36:49.187208+00:00",
       "record_path": "assistant_data/spotify/playlists/0co3cJkCBANbHlMTxMnAmS.json",
       "changed": false
     },
@@ -916,8 +916,8 @@
       "snapshot_id": "AAABp7G2EZe4ZwSBsY7LziJg72kXTy7W",
       "item_count": 0,
       "items_accessible": false,
-      "last_items_accessible_at": null,
-      "captured_at": "2026-10-31T09:04:34.927845+00:00",
+      "last_items_accessible_at": "2026-10-31T09:04:34.927845+00:00",
+      "captured_at": "2026-11-01T04:36:59.215415+00:00",
       "record_path": "assistant_data/spotify/playlists/3VCP3OvTTY4tCE8cR7SXYZ.json",
       "changed": false
     },
@@ -933,10 +933,10 @@
       "snapshot_id": "AAAAA9Bc78kqVDGz/BrjGbN0k/tUw7DX",
       "item_count": 100,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:26.459384+00:00",
-      "captured_at": "2026-10-31T09:04:26.459365+00:00",
+      "last_items_accessible_at": "2026-11-01T04:36:52.245649+00:00",
+      "captured_at": "2026-11-01T04:36:52.245634+00:00",
       "record_path": "assistant_data/spotify/playlists/6zATzTjlOTxtMLM1cC9MQX.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "4lwoL79floIi7Yptos6Xt8",
@@ -950,10 +950,10 @@
       "snapshot_id": "AAAAEBJxBTpWLupeCm9l6iNuHGBGSkzx",
       "item_count": 4,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:50.614166+00:00",
-      "captured_at": "2026-10-31T09:04:50.614147+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:10.504958+00:00",
+      "captured_at": "2026-11-01T04:37:10.504946+00:00",
       "record_path": "assistant_data/spotify/playlists/4lwoL79floIi7Yptos6Xt8.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "2dXmAFyjrI8TMmea1OILCX",
@@ -967,10 +967,10 @@
       "snapshot_id": "AAAVPc6vnSZZAWZoc+VVQZ93pZVtoR5u",
       "item_count": 141,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-10-31T09:04:53.477005+00:00",
-      "captured_at": "2026-10-31T09:04:53.476987+00:00",
+      "last_items_accessible_at": "2026-11-01T04:37:13.031813+00:00",
+      "captured_at": "2026-11-01T04:37:13.031798+00:00",
       "record_path": "assistant_data/spotify/playlists/2dXmAFyjrI8TMmea1OILCX.json",
-      "changed": true
+      "changed": false
     }
   ]
 }
