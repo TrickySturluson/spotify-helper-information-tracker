@@ -1,10 +1,22 @@
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+.secrets/
+*.pem
+*.p12
+*.pfx
+
 # Spotify OAuth credentials and local runtime state
 .spotify_token.json
+.spotify_token.*
+spotify_token.json
+.spotify_playlist_token.json
+.spotify_playlist_token.*
 __pycache__/
 *.py[cod]
 
 # Local Spotify playlist manager credentials, permissions, backups and audit log
-.spotify_playlist_token.json
 .spotify_playlist_manager.json
 playlist_backups/
 playlist_manager_audit.jsonl
@@ -18,9 +30,9 @@ data/lyrics/*.sqlite3-shm
 # FILE OVERVIEW
 # Purpose: Keep credentials, local runtime state, caches, and private/generated
 #          artifacts out of version control.
-# Scope: Rules above cover Spotify OAuth tokens, playlist-manager state/backups,
-#        Python bytecode, and the local lyrics database plus SQLite sidecars.
+# Scope: Rules cover environment files, private certificates, Spotify OAuth
+#        tokens, playlist-manager backups, Python bytecode, and local lyrics DBs.
 # Maintenance: Add new local secrets, caches, and machine-specific runtime files
 #              here; do not ignore canonical source archives or intentional outputs.
-# Related: See .github/README.md, data/README.md, and assistant_data/README.md.
+# Related: See docs/PUBLIC_REPOSITORY_PRIVACY.md, .github/README.md, and data/README.md.
 # -----------------------------------------------------------------------------
