@@ -2,7 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from enrich_musicbrainz_recording_ids import norm, recent_priority, spotify_isrc_index, unique_exact_recording
+from enrich_musicbrainz_recording_ids import norm, recent_priority, spotify_isrc_index, unique_exact_recording, set_provider_cooldown
 
 
 class RecordingIdResolutionTests(unittest.TestCase):
@@ -47,6 +47,19 @@ class RecordingIdResolutionTests(unittest.TestCase):
         ], "Artist", "Song")
         self.assertIsNone(row)
         self.assertEqual(status, "ambiguous")
+
+
+    def test_rate_limit_persists_provider_cooldown(self):
+        state = {}
+        wait = set_provider_cooldown(state, {"Retry-After": "125"}, 1000)
+        self.assertEqual(wait, 125)
+        self.assertEqual(state["provider_retry_after"], 1125)
+
+    def test_missing_rate_limit_header_uses_conservative_default(self):
+        state = {}
+        wait = set_provider_cooldown(state, {}, 1000)
+        self.assertEqual(wait, 3600)
+        self.assertEqual(state["provider_retry_after"], 4600)
 
     def test_recent_priority_preserves_rank_and_exact_identity(self):
         with tempfile.TemporaryDirectory() as temp:
