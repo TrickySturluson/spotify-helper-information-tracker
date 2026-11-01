@@ -8,6 +8,7 @@ to preview and apply. It never edits Spotify directly.
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -111,7 +112,8 @@ def load_library_profiles(items, root=Path("assistant_data/music/library")):
         artist_record = found.get("artist") or {}
         artists[norm(artist)] = artist_record.get("evidence") or {}
         album_record = found.get("album") or {}
-        albums[(norm(artist), norm(album))] = album_record.get("evidence") or {}
+        if album:
+            albums[(norm(artist), norm(album))] = album_record.get("evidence") or {}
     return artists, tracks, audio, albums
 
 
