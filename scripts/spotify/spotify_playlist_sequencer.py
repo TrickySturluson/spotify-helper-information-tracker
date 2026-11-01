@@ -209,6 +209,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         if value:
             genre_values.append(norm(value))
     genre_values.extend(norm(value) for value in artist_profile.get("genres") or [] if value)
+    genre_values.extend(norm(value) for value in track_profile.get("discogs_styles") or [] if value)
+    genre_values.extend(norm(value) for value in track_profile.get("discogs_genres") or [] if value)
     genre_text = " ".join(genre_values)
     high_genre = ("metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal", "heavy metal", "metalcore", "horror punk")
     dance_genre = ("electronic", "synthwave", "synthpop", "electropop", "electroclash", "techno", "house", "rave", "ebm", "dark electro", "industrial dance")
@@ -229,6 +231,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         if value and str(value).strip(): genre_groups.append(str(value).strip())
     genre_groups.extend(str(value).strip() for value in artist_profile.get("genres") or [] if str(value).strip())
     genre_groups.extend(str(value).strip() for value in track_profile.get("discogs_styles") or [] if str(value).strip())
+    genre_groups.extend(str(value).strip() for value in track_profile.get("discogs_genres") or [] if str(value).strip())
     theme_groups = [str(value).strip() for value in artist_profile.get("themes") or [] if str(value).strip()]
     theme_groups.extend(str(value).strip() for value in track_profile.get("theme_groups") or [] if str(value).strip())
     lyric_analysis = track_profile.get("lyric_analysis") or {}
@@ -261,7 +264,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         acoustic_confidence = "unknown" if not components else "low"
 
     semantic_sources = sum(bool(track_profile.get(field)) for field in
-                           ("lastfm_tags", "tags", "musicbrainz_tags", "musicbrainz_genres", "discogs_styles"))
+                           ("lastfm_tags", "tags", "musicbrainz_tags", "musicbrainz_genres", "discogs_styles", "discogs_genres"))
     semantic_sources += int(bool(lyric_themes))
     semantic_sources += int(bool(artist_tags or artist_profile.get("genres")))
     semantic_confidence = ("high" if semantic_sources >= 3 else
@@ -669,6 +672,23 @@ def confidence_summary(scored):
             for label in ("high", "medium", "low", "unknown")}
 
 
+def evidence_coverage_summary(scored):
+    """Summarize confidence and independent tempo-source coverage for a preview."""
+    from collections import Counter
+    acoustic = Counter(row.get("acoustic_confidence", row.get("confidence", "unknown"))
+                       for row in scored)
+    semantic = Counter(row.get("semantic_confidence", "unknown") for row in scored)
+    tempo_sources = Counter(row.get("tempo_source", "unknown") for row in scored
+                            if row.get("tempo_bpm") is not None)
+    return {
+        "acoustic_confidence": {key: acoustic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "semantic_confidence": {key: semantic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "tempo_sources": dict(sorted(tempo_sources.items())),
+        "tempo_agreements": sum(row.get("tempo_agreement") is True for row in scored),
+        "tempo_disagreements": sum(row.get("tempo_agreement") is False for row in scored),
+    }
+
+
 def alternative_preview_message(path, summary):
     """Format the comparison-plan summary without mixing output and string building."""
     return (
@@ -735,7 +755,10 @@ def main():
         confidence_counts = confidence_summary(scored)
         print("Merged audio profiles loaded: " + str(len(audio_profiles)))
         print("Proposed sequence (position | energy | confidence | group | track):")
-        print("Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
+        print("Acoustic confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
+        coverage = evidence_coverage_summary(scored)
+        print("Semantic confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["semantic_confidence"].items()))
+        print("Tempo sources: " + (", ".join(f"{name}={count}" for name, count in coverage["tempo_sources"].items()) or "none") + f"; agreement={coverage['tempo_agreements']}; disagreement={coverage['tempo_disagreements']}")
         for position, row in enumerate(scored, 1):
             group = row.get("sequence_group") or row.get("vibe_group") or "unclassified"
             print(f'  {position:3}. {row["score"]:5.1f} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
