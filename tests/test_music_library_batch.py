@@ -120,5 +120,5 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # - Exercises both committed 50-song batches (100 songs total), not just synthetic fixtures.
-# - Audits every song/artist path and verifies the playlist sequencer can load all 100 songs.
-# - Checks that recent listening counts remain separate from track-level evidence.
+# - Audits song/artist/album paths and checks all four verified Ceres & Calypso recording cross-links.
+# - Verifies the playlist sequencer can load all 100 songs and recent listening counts stay separate from evidence.
