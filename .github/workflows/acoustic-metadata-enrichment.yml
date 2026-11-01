@@ -26,7 +26,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Resolve missing recording IDs (strict exact matches)\n        env:\n          MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "1000"\n        run: python enrich_musicbrainz_recording_ids.py\n      - name: Fetch AcousticBrainz metadata
+      - name: Resolve missing recording IDs (strict exact matches)
+        env:
+          MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "1000"
+        run: python enrich_musicbrainz_recording_ids.py
+      - name: Fetch AcousticBrainz metadata
         env:
           ACOUSTICBRAINZ_MAX_BATCHES: ${{ github.event.inputs.max_batches || '100' }}
         run: python enrich_acousticbrainz.py
