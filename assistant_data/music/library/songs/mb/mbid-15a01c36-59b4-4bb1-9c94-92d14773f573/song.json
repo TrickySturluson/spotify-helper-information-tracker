@@ -6,7 +6,7 @@
     "title": "New Forest (Five Heads of the Sun)",
     "album": "Ceres & Calypso in the Deep Time",
     "artist_id": "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48",
-    "album_id": "spotify:album:5KkGAZrad4N4rc5FriwgzU",
+    "album_id": "album:3858c5d33d8c2159eb3d",
     "recording_mbid": "15a01c36-59b4-4bb1-9c94-92d14773f573",
     "spotify_id": null,
     "source_track_id": "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573",
@@ -65,7 +65,7 @@
   "sources": {},
   "relations": {
     "artist_path": "artists/mb/mbid-da5eaa3b-397e-4af8-9a12-5c4ec93e8b48/artist.json",
-    "album_path": "albums/sp/spotify-5kkgazrad4n4rc5friwgz/album.json"
+    "album_path": "albums/al/album-3858c5d33d8c2159eb3d/album.json"
   },
   "listening_context": {
     "source": "Last.fm scrobble archive",
