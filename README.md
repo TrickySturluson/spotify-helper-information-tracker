@@ -67,6 +67,22 @@ python shit.py library audit
 
 The offline migration does not modify Spotify playlists or call metadata providers. Missing recording-level mood evidence remains unknown rather than being inferred from artist or album context. The older `compat/migrate_full_music_library.py` launcher remains supported for backwards compatibility.
 
+## Canonical library migration and enrichment run
+
+The staged library runner is deliberately read-only unless explicitly told to execute:
+
+```bash
+# Inspect archive, credentials, provider batch caps and migration preview (no writes/API calls)
+python scripts/music/prepare_music_library.py
+
+# Tomorrow, run the offline migration followed by bounded enrichment and final audit
+python scripts/music/prepare_music_library.py --execute
+```
+
+The runner backs up and migrates the existing stored catalogue first, then resolves exact recording IDs, fills missing durations, refreshes artist/track/album context, and enriches available acoustic metadata. After each stage it reconciles the durable exports into `assistant_data/music/library/` and finishes with an integrity audit. Existing provider checkpoints and retry cooldowns are respected, so interrupted runs can be resumed. Default per-run caps are conservative; override them through the documented environment variables only when intentionally increasing a batch. Last.fm requires `LASTFM_API_KEY`; Discogs and GetSongBPM are optional and run only when their secrets are configured. No Spotify playlist writes are performed.
+
+`python scripts/music/sync_music_library.py` can also be run independently to reconcile already-generated track, artist, album, audio and compact lyric-feature exports into the canonical library.
+
 ## Rebuild locally
 
 ```bash
