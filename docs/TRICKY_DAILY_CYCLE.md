@@ -1,61 +1,38 @@
-# Tricky Daily midnight cycle
+# Tricky Daily listening trends
 
-Tricky Daily is a special-purpose rotating discovery queue. It is not scored as a
-permanent-membership playlist and is deliberately excluded from the general
-playlist-fit calibration ledger.
+Tricky Daily is a rotating discovery queue, not a fixed mood/theme playlist.
+Its discovery engine keeps established taste and Last.fm similarity as the
+foundation, uses recent listening momentum as a small soft nudge, and retains
+room for exploration outside current patterns.
 
-## Schedule
+## Trend profile
 
-The GitHub Actions workflow `.github/workflows/spotify-daily-midnight-cycle.yml`
-runs at 04:00 and 05:00 UTC. A runtime gate using the IANA timezone
-`America/New_York` allows only the run that falls in the midnight Eastern
-window to proceed. This handles both EST (UTC-5) and EDT (UTC-4), including
-daylight-saving transitions, without changing the workflow schedule twice a year.
+`scripts/spotify/spotify_listening_trends.py` builds
+`assistant_data/spotify/listening_trends.json` from canonical Last.fm scrobbles
+and artist genre/tag metadata. It reports 7-day, 30-day, 90-day, preceding
+60-day, and all-time artist activity. Genre/tag trends are aggregated from
+recent plays and the artist metadata already available in the project.
 
-GitHub scheduled workflows can start a little late. The script accepts the first
-30 minutes after midnight Eastern. A per-local-date idempotency marker prevents
-the second UTC cron invocation or a manual retry from cycling the playlist twice.
-A manual workflow dispatch can use `force=true` for an intentional off-schedule
-cycle.
+The trend layer distinguishes a rising interest from an established favorite.
+Sparse or missing comparison history is marked low confidence, never treated
+as zero or as an artificial spike. The candidate-ranking nudge is capped at
+0.03 and only applies to medium/high-confidence artist trends. No genre is
+hard-filtered. Daily ignores playlist lyric-theme affinity; other playlists
+retain their playlist-specific theme system.
 
-## Rotation is not rejection
+## Feedback boundaries
 
-Tracks removed because the daily set refreshes are written to Daily's separate
-feedback history with reason `curator_rotation`. This is neutral housekeeping,
-not a dislike, blacklist event, or playlist-fit rejection. Tracks that remain in
-the next set are recorded as another Daily exposure. Listening, Liked Songs
-observations, and post-add scrobbles remain available to Daily's own discovery
-feedback logic.
+Daily's own saves, post-add listening and scrobbles remain useful outcome
+signals. Scheduled rotation is neutral housekeeping and never a blacklist or
+playlist-fit rejection. This trend profile is user-wide context, not a
+replacement for Daily's separate exposure feedback or general playlist-fit
+calibration.
 
-The general fit-calibration module rejects Tricky Daily predictions and feedback
-events. This prevents routine rotation from contaminating whitelist/blacklist
-learning for other playlists.
+## Operation
 
-## Safety and recovery
-
-Before editing, the runner verifies the exact playlist ID and name, authenticated
-ownership, managed-playlist permission, and the existing explicit unlocked state.
-It does not silently unlock a locked playlist. It requires at least 20 resolved
-recommendations, validates unique Spotify track URIs, and saves a complete
-pre-change snapshot before replacement.
-
-The workflow uploads the backup as a 30-day artifact and records its run ID and
-post-cycle snapshot in playlist-manager state. It also uses a concurrency group,
-checks the Spotify API cooldown before requests, and stops on failed discovery or
-insufficient recommendations without changing the playlist.
-
-## Credentials
-
-The workflow requires repository variable `SPOTIFY_CLIENT_ID` and secrets
-`SPOTIFY_REFRESH_TOKEN` and `LASTFM_API_KEY`.
-
-## Manual operation
-
-Run locally from the repository root:
+The midnight cycle refreshes the trend report before building recommendations.
+To inspect or regenerate it independently:
 
 ```bash
-python compat/spotify_daily_cycle.py --force
+python compat/spotify_listening_trends.py
 ```
-
-The normal scheduled command omits `--force` and runs only during midnight
-Eastern. The workflow's manual dispatch exposes the same explicit force option.

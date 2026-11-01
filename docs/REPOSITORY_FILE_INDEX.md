@@ -269,7 +269,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `assistant_data/years/2025.json` — Year-scoped historical listening aggregate for 2025.
 - `assistant_data/years/2026.json` — Year-scoped historical listening aggregate for 2026.
 
-## compat (36 files)
+## compat (37 files)
 
 - `compat/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `compat/__init__.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -297,6 +297,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `compat/playlist_metadata.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_daily_feedback.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_daily_cycle.py` — Compatibility launcher for the Tricky Daily midnight cycle.
+- `compat/spotify_listening_trends.py` — Compatibility CLI for rolling listening-trends generation.
 - `compat/spotify_daily_playlist.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_discovery.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playback_tracker.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -341,7 +342,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `playback_data/.gitkeep` — Placeholder preserving the measured Spotify playback archive directory before records exist.
 - `playback_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 
-## scripts (41 files)
+## scripts (42 files)
 
 - `scripts/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `scripts/__init__.py` — Python package initializer for scripts.
@@ -376,6 +377,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/spotify/__init__.py` — Python package initializer for scripts/spotify.
 - `scripts/spotify/playlist_feedback_calibration.py` — Playlist-scoped immutable prediction ledger and conservative fit-calibration diagnostics.
 - `scripts/spotify/spotify_daily_cycle.py` — DST-aware, backup-protected Tricky Daily midnight rotation runner.
+- `scripts/spotify/spotify_listening_trends.py` — Confidence-aware rolling listening momentum and taste-baseline profile.
 - `scripts/spotify/playlist_intelligence.py` — Maintained implementation module for playlist intelligence. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/playlist_metadata.py` — Maintained implementation module for playlist metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/spotify_daily_feedback.py` — Maintained implementation module for spotify daily feedback. See its bottom FILE OVERVIEW for detailed behavior.

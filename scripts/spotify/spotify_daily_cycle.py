@@ -21,6 +21,7 @@ if str(COMPAT) not in sys.path:
 import spotify_playlist_manager as manager
 import spotify_discovery as discovery
 import spotify_daily_feedback as daily_feedback
+import spotify_listening_trends as listening_trends
 import spotify_playlist_cloud as cloud
 
 DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
@@ -73,6 +74,12 @@ def main():
         return 0
 
     before = manager.snapshot(sp, playlist)
+    trend_report = listening_trends.generate()
+    manager.audit(
+        event="daily_listening_trends_generated", playlist_id=DAILY_ID,
+        coverage=trend_report.get("coverage", {}),
+        top_genres=[row.get("tag") for row in trend_report.get("genres", [])[:8]],
+    )
     recommendations, skipped = discovery.build_discovery_recommendations(
         sp, before["items"], today=local_now.date(), playlist_id=DAILY_ID
     )
