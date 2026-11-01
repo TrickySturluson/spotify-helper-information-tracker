@@ -1,0 +1,65 @@
+# Track mood evidence and coverage
+
+This document defines how SHIT gathers, stores, and interprets mood-related metadata. The central rule is that **evidence scope is not interchangeable**: a recording tag, album tag, artist tag, lyric theme, and audio-model prediction describe different things.
+
+## Evidence hierarchy
+
+| Evidence | Scope | Current use | Confidence treatment |
+|---|---|---|---|
+| Last.fm `track.getTopTags` | Recording / track | Track mood descriptors | Track-level evidence; popularity counts do not equal independent confirmations |
+| MusicBrainz recording tags | Recording / track | Track mood descriptors | Independent track-tag source family when recording MBID is verified |
+| Last.fm `album.getTopTags` | Album / release | Context when track tags are absent | Low-confidence album context; never increases track mood confidence |
+| Discogs styles / genres | Release | Style and genre context | Release context only; not track mood or acoustics |
+| Last.fm artist tags | Artist | Fallback context | Low-confidence artist context; never promoted to track mood evidence |
+| Lyrics analysis | Lyric text | Narrative / subject themes | Separate lyrical evidence; not evidence of how the recording sounds |
+| AcousticBrainz / Essentia / GetSongBPM | Recording audio or catalog | Tempo, dynamics, loudness and other audio features | Acoustic confidence is independent from semantic mood confidence |
+| Essentia MTG mood/theme models | Local audio | Potential audio-derived mood predictions | Not yet integrated into sorter confidence; requires local audio, optional TensorFlow support, model-license review and calibration |
+
+## Stored data and provenance
+
+- `assistant_data/music/track_profiles.json`: track-level Last.fm and verified MusicBrainz recording tags. Each provider has a separate status and checked timestamp.
+- `assistant_data/music/album_profiles.json`: exact Last.fm artist + album lookups. Each row stores the raw tag labels/counts, `source`, `identity_verified`, `status`, `checked_at`, `retry_after`, recent/all-time play priority, and unique track count.
+- `assistant_data/music/album_profile_state.json`: provider-wide cooldown and last-run state. A cooldown prevents additional requests until the provider's retry time.
+- `assistant_data/music/artist_profiles.json`: Last.fm artist tags, separated into genres, moods and themes.
+- `assistant_data/music/audio_profiles.json`: acoustic provider records, with provenance kept separate.
+- `assistant_data/recommendations/lyric_features.json`: compact derived lyric themes; full lyric text is not exported.
+
+The album enrichment pipeline deduplicates by normalized artist + album, prioritizes configured playlist snapshots and recent scrobbles, caps each run at 100 unique albums, sends requests sequentially with a 0.4-second minimum delay, verifies the response artist and album exactly, caches empty results for 30 days, checkpoints after each album, and stops on provider cooldowns. It does not call Spotify or modify playlists.
+
+## Mood confidence rules
+
+The sorter reports track mood confidence separately from acoustic and general semantic confidence.
+
+- **High**: at least two independent track-tag source families, at least two distinct mood descriptors, and no opposing affect-direction conflict.
+- **Medium**: at least two distinct track mood descriptors, or corroboration across two track-tag sources, without an opposing-direction conflict.
+- **Low**: one track mood descriptor, conflicting affect directions, or album/artist fallback context.
+- **Unknown**: no usable track, album or artist mood descriptor.
+
+Album and artist fallback labels remain low confidence and have an explicit `mood_evidence_scope` (`album` or `artist`). They never increase `mood_tag_count` or the confidence of track-specific tags. Raw community tag counts do not increase confidence. A conflict between energetic and gentle affect directions is retained and neutralized in the perceived-energy blend.
+
+Mood contribution to perceived energy is confidence-scaled: track-level high 0.15, medium 0.10, low 0.05; album context 0.04; artist context 0.03. These are blend weights, not probabilities. Mood continuity in sequencing is separately confidence-weighted. Only medium/high track-level mood evidence can count as mood support in a transition-confidence assessment.
+
+## Coverage reporting
+
+The sequencer's preview reports:
+
+- Track mood confidence counts (high / medium / low / unknown).
+- Track mood source-family coverage (for example `lastfm_track`, `musicbrainz_recording`, `lastfm_album`, `lastfm_artist`).
+- Acoustic confidence and source coverage separately.
+- Tempo provider agreement and disagreement separately.
+
+The saved-playlist integration test also reports track-tag and album-tag coverage for **Booze or Boos!**. An empty provider response is a measured coverage gap, not negative evidence and not a reason to invent a mood label.
+
+## Future audio-model path
+
+The Music Technology Group publishes Essentia classifiers for the MTG-Jamendo mood/theme taxonomy (56 labels). The model metadata reports test ROC-AUC 0.76 and PR-AUC 0.14, so its raw scores must not be treated as calibrated probabilities. Essentia's documentation also identifies non-commercial model licensing; the model page and general licensing page differ on the exact Creative Commons suffix. Before integration, confirm the applicable license, require legally obtained local audio, retain model/version provenance, and calibrate against a human-reviewed sample. These predictions must remain a separate audio-model evidence family until validation demonstrates how much weight they deserve.
+
+## References
+
+- Last.fm album top tags: https://www.last.fm/api/show/album.getTopTags
+- MusicBrainz API and rate limiting: https://musicbrainz.org/doc/MusicBrainz_API
+- MTG-Jamendo dataset: https://github.com/MTG/mtg-jamendo-dataset
+- Essentia pretrained models: https://essentia.upf.edu/models.html
+- Essentia model licensing: https://essentia.upf.edu/licensing_information.html
+- DEAM valence/arousal dataset: https://cvml.unige.ch/databases/DEAM/
+
