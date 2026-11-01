@@ -12,7 +12,7 @@ class MusicLibraryTests(unittest.TestCase):
             result = lib.put_catalogue({"r": {"artist": "A", "track": "T", "album": "L", "track_mbid": "rec-1", "spotify_id": "spotify:track:sid", "lastfm_tags": [{"tag": "dark"}]}})
             self.assertEqual(result["songs"], 1)
             found = lib.get_song(spotify_id="sid")
-            self.assertEqual(found["recording"]["evidence"]["track_metadata"]["lastfm_tags"][0]["tag"], "dark")
+            self.assertEqual(found["song"]["evidence"]["track_metadata"]["lastfm_tags"][0]["tag"], "dark")
             self.assertEqual(found["artist"]["artist"], "A")
             self.assertEqual(found["album"]["album"], "L")
     def test_same_title_different_albums_remains_ambiguous(self):
@@ -23,14 +23,14 @@ class MusicLibraryTests(unittest.TestCase):
             self.assertEqual(result["songs"], 2)
             self.assertEqual(result["ambiguous_name_aliases"], 1)
             self.assertIsNone(lib.get_song(artist="A", track="T"))
-            self.assertEqual(lib.get_song(artist="A", track="T", album="Remaster")["recording"]["identity"]["album"], "Remaster")
+            self.assertEqual(lib.get_song(artist="A", track="T", album="Remaster")["song"]["identity"]["album"], "Remaster")
     def test_scopes_remain_separate(self):
         with tempfile.TemporaryDirectory() as temp:
             lib = MusicLibrary(temp)
             lib.put_catalogue({"a": {"artist": "A", "track": "T", "album": "L", "lastfm_tags": [{"tag": "dreamy"}]}})
             found = lib.get_song(artist="A", track="T")
-            self.assertIn("lastfm_tags", found["recording"]["evidence"]["track_metadata"])
-            self.assertEqual(found["recording"]["identity"]["identity_quality"], "fallback_release_context")
+            self.assertIn("lastfm_tags", found["song"]["evidence"]["track_metadata"])
+            self.assertEqual(found["song"]["identity"]["identity_quality"], "fallback_release_context")
     def test_sequencer_loads_playlist_records_by_spotify_id(self):
         with tempfile.TemporaryDirectory() as temp:
             lib = MusicLibrary(temp)
