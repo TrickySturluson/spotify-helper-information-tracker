@@ -253,6 +253,34 @@ class OwnedPlaylistTests(unittest.TestCase):
         spotify.playlists.assert_not_called()
         self.assertEqual(result["snapshot_id"], "fresh-snapshot")
 
+    def test_falls_back_to_owned_playlist_in_current_users_collection(self):
+        spotify = Mock()
+        spotify.call.side_effect = manager.ManagerError(
+            "Spotify API GET /playlists/playlist123: HTTP 404"
+        )
+        playlist = {
+            "id": "playlist123",
+            "name": "Booze or Boos!",
+            "owner": {"id": "user123"},
+            "snapshot_id": "collection-snapshot",
+        }
+        spotify.playlists.return_value = [playlist]
+
+        result = cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+
+        self.assertIs(result, playlist)
+        spotify.playlists.assert_called_once_with()
+
+    def test_access_failure_reports_when_playlist_is_not_in_collection(self):
+        spotify = Mock()
+        spotify.call.side_effect = manager.ManagerError(
+            "Spotify API GET /playlists/playlist123: HTTP 404"
+        )
+        spotify.playlists.return_value = []
+
+        with self.assertRaisesRegex(SystemExit, "not present in this account's playlist collection"):
+            cloud.owned_playlist(spotify, "playlist123", {"id": "user123"})
+
     def test_rejects_playlist_not_owned_by_current_account(self):
         spotify = Mock()
         spotify.call.return_value = {
