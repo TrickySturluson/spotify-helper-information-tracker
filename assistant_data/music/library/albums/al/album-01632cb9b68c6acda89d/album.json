@@ -41,7 +41,14 @@
         "mbid": null,
         "source": "Last.fm album tracklist",
         "disc_number": 1,
-        "recording_identity_verified": false
+        "recording_identity_verified": false,
+        "linked_song_id": "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+        "linked_recording_mbid": "d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+        "link_verification": {
+          "method": "exact_artist_title_and_existing_recording_mbid",
+          "source": "pre-existing verified MusicLibrary song record",
+          "confidence": "high"
+        }
       },
       {
         "position": 4,
@@ -51,7 +58,14 @@
         "mbid": null,
         "source": "Last.fm album tracklist",
         "disc_number": 1,
-        "recording_identity_verified": false
+        "recording_identity_verified": false,
+        "linked_song_id": "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+        "linked_recording_mbid": "4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+        "link_verification": {
+          "method": "exact_artist_title_and_existing_recording_mbid",
+          "source": "pre-existing verified MusicLibrary song record",
+          "confidence": "high"
+        }
       },
       {
         "position": 5,
@@ -61,7 +75,14 @@
         "mbid": null,
         "source": "Last.fm album tracklist",
         "disc_number": 1,
-        "recording_identity_verified": false
+        "recording_identity_verified": false,
+        "linked_song_id": "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573",
+        "linked_recording_mbid": "15a01c36-59b4-4bb1-9c94-92d14773f573",
+        "link_verification": {
+          "method": "exact_artist_title_and_existing_recording_mbid",
+          "source": "pre-existing verified MusicLibrary song record",
+          "confidence": "high"
+        }
       },
       {
         "position": 6,
@@ -121,7 +142,14 @@
         "mbid": null,
         "source": "Last.fm album tracklist",
         "disc_number": 1,
-        "recording_identity_verified": false
+        "recording_identity_verified": false,
+        "linked_song_id": "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
+        "linked_recording_mbid": "a55df03b-b6de-4240-a816-e9392fc7e270",
+        "link_verification": {
+          "method": "exact_artist_title_and_existing_recording_mbid",
+          "source": "pre-existing verified MusicLibrary song record",
+          "confidence": "high"
+        }
       },
       {
         "position": 12,
@@ -248,7 +276,8 @@
     "Album-level tags and description are contextual evidence, not track-level acoustic evidence.",
     "Tracklist membership does not by itself prove recording identity. Only song records already matched by recording MBID are linked here.",
     "Durations are approximate display values; provider/release editions can differ by seconds.",
-    "The album key follows MusicLibrary.album_key() (normalized artist + album); Spotify album ID is retained as corroborating source metadata."
+    "The album key follows MusicLibrary.album_key() (normalized artist + album); Spotify album ID is retained as corroborating source metadata.",
+    "For four tracklist positions, linked_song_id and linked_recording_mbid point to pre-existing verified recording records. These cross-links use separate song-record evidence; the Last.fm tracklist mbid field remains null because Last.fm did not supply those recording MBIDs."
   ],
   "about": {
     "summary": "A 2013 Candy Claws concept album framed around Ceres, a seal-like creature, and Calypso travelling through deep time; lyrics are credited to poet Jenn Morea.",
