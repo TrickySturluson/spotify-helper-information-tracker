@@ -3,6 +3,6 @@ title = "SHIT public music-library identifier allowlist"
 [extend]
 useDefault = true
 
-[[allowlists]]
+[allowlist]
 description = "The canonical music index contains public catalog identifiers, not credentials."
 paths = ['''assistant_data/music/library/library_index\.json''']
