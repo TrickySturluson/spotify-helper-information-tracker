@@ -279,7 +279,7 @@ def transition_report(left, right):
     evidence_count = sum(bool(left.get(field)) and bool(right.get(field))
                          for field in ("vibe_groups", "genre_groups", "theme_groups"))
     evidence_count += int(tempo_gap is not None)
-    evidence_count += int(left.get("confidence") != "unknown" and right.get("confidence") != "unknown")
+    evidence_count += int(energy_known)
     confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
     label = ("uncertain" if evidence_count == 0 else
              "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
