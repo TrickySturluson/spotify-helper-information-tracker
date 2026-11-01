@@ -399,8 +399,11 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
 
 
 def transition_report(left, right):
-    energy_known = _has_reliable_energy(left) and _has_reliable_energy(right)
-    gap = abs(float(_energy_score(left)) - float(_energy_score(right))) / 100.0 if energy_known and _energy_score(left) is not None and _energy_score(right) is not None else None
+    energy_known = (
+        _has_reliable_energy(left) and _has_reliable_energy(right)
+        and _energy_score(left) is not None and _energy_score(right) is not None
+    )
+    gap = abs(float(_energy_score(left)) - float(_energy_score(right))) / 100.0 if energy_known else None
     moods = sorted(set(left.get("vibe_groups") or []) & set(right.get("vibe_groups") or []))
     genres = sorted(set(left.get("genre_groups") or []) & set(right.get("genre_groups") or []))
     themes = sorted(set(left.get("theme_groups") or []) & set(right.get("theme_groups") or []))
