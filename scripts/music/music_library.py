@@ -145,6 +145,69 @@ class MusicLibrary:
             "schema_version": 1, "songs": {}, "spotify_ids": {},
             "recording_mbids": {}, "isrcs": {}, "source_track_ids": {}, "name_candidates": {}, "artists": {}, "albums": {},
         }
+        # Recover an empty or truncated index from canonical records. This is
+        # deliberately a one-time fallback: a populated index keeps lazy reads.
+        if not self.index.get("songs") and self.root.exists():
+            self._rebuild_index_from_records()
+
+    def _rebuild_index_from_records(self):
+        """Recreate lookup aliases from canonical JSON records without provider calls."""
+        index = {
+            "schema_version": 1, "songs": {}, "spotify_ids": {},
+            "recording_mbids": {}, "isrcs": {}, "source_track_ids": {},
+            "name_candidates": {}, "artists": {}, "albums": {},
+        }
+        for path in sorted((self.root / "artists").glob("**/artist.json")):
+            record = read_json(path)
+            if not isinstance(record, dict) or not record.get("id") or not record.get("artist"):
+                continue
+            key = record["id"]
+            index["artists"][key] = {
+                "path": str(path.relative_to(self.root)), "name": record["artist"]
+            }
+        for path in sorted((self.root / "albums").glob("**/album.json")):
+            record = read_json(path)
+            if not isinstance(record, dict) or not record.get("id"):
+                continue
+            key = record["id"]
+            index["albums"][key] = {
+                "path": str(path.relative_to(self.root)),
+                "artist_id": record.get("artist_id") or record.get("identity", {}).get("artist_id"),
+                "artist": record.get("artist") or record.get("identity", {}).get("artist"),
+                "album": record.get("album") or record.get("identity", {}).get("album"),
+            }
+        for path in sorted((self.root / "songs").glob("**/song.json")):
+            record = read_json(path)
+            if not isinstance(record, dict) or not record.get("id"):
+                continue
+            key = record["id"]
+            identity = record.get("identity") or {}
+            artist, title = identity.get("artist"), identity.get("title")
+            index["songs"][key] = {
+                "path": str(path.relative_to(self.root)), "artist": artist, "track": title,
+                "album": identity.get("album"), "album_id": identity.get("album_id"),
+                "track_number": identity.get("track_number"), "disc_number": identity.get("disc_number"),
+            }
+            spotify_id = identity.get("spotify_id")
+            if spotify_id:
+                index["spotify_ids"][str(spotify_id).rsplit(":", 1)[-1].casefold()] = key
+            mbid = identity.get("recording_mbid")
+            if mbid:
+                value = str(mbid).casefold()
+                index["recording_mbids"][value] = key
+                index["recording_mbids"][value[5:] if value.startswith("mbid:") else "mbid:" + value] = key
+            isrc = re.sub(r"[^A-Z0-9]", "", str(identity.get("isrc") or "").upper())
+            if isrc:
+                index["isrcs"][isrc] = key
+            source_id = str(identity.get("source_track_id") or "").casefold()
+            if source_id:
+                index["source_track_ids"][source_id] = key
+            if artist and title:
+                index["name_candidates"].setdefault(norm(artist) + "\\0" + norm(title), []).append(key)
+        if index["songs"] or index["albums"] or index["artists"]:
+            self.root.mkdir(parents=True, exist_ok=True)
+            write_json(self.index_path, index)
+            self.index = index
 
     def path_for(self, kind, key):
         safe = safe_id(key)
