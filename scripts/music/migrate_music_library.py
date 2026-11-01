@@ -14,7 +14,7 @@ def load(path, fallback):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--root", type=Path, default=ROOT / "music_library")
+    parser.add_argument("--root", type=Path, default=ROOT / "library")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     tracks = load(ROOT / "track_profiles.json", {})
