@@ -28,8 +28,9 @@ bulk endpoint does not provide a full within-track loudness envelope.
 For tracks without a MusicBrainz recording ID, the next stage is automated
 MusicBrainz matching (using artist/title and ISRC when available), followed by
 another AcousticBrainz batch pass. Do not infer a recording match from title
-alone. GetSongBPM can serve as a separately attributed BPM-only fallback once
-an API key is configured.
+alone. GetSongBPM is implemented as an optional, separately attributed BPM/key
+fallback once an API key is configured; see [GETSONGBPM.md](GETSONGBPM.md). It
+uses exact artist/title matching, rejects ambiguity, and caches misses.
 
 Detailed intros, builds, drops and loudness changes still require actual audio
 analysis (Essentia) or a source that publishes segment-level data. Spotify
