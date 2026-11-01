@@ -374,6 +374,22 @@ Undo is a preview-first restore from the exact pre-change snapshot. It requires 
 
 ## The Library
 
+### Native SHIT library commands
+
+Use the project entry point for all canonical-library operations:
+
+```bash
+python shit.py library status
+python shit.py library preview
+python shit.py library prepare                 # read-only preflight
+python shit.py library prepare --execute       # migrate, enrich, sync and audit
+python shit.py library sync                    # merge already-generated enrichment exports
+python shit.py library audit
+```
+
+The `prepare` command is the resumable, bounded pipeline. It backs up and migrates first, then refreshes read-only Spotify reference snapshots and runs the available metadata providers. It asks for confirmation before writes and provider requests. Optional sources can be skipped with `--skip-discogs`, `--skip-getsongbpm`, or `--skip-spotify-refresh`. Use `--yes` only for intentionally non-interactive execution; it requires `--execute`.
+
+
 SHIT can store music metadata as individual artist, album, and song JSON
 records rather than requiring every consumer to load large aggregate profiles.
 The canonical layout, identity rules, migration procedure, and lazy lookup
