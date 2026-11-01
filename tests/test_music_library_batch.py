@@ -17,8 +17,8 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         library = MusicLibrary(ROOT)
         report = library.audit()
         self.assertTrue(report["ok"], report["errors"])
-        self.assertEqual(report["songs"], 50)
-        self.assertEqual(report["artists"], 22)
+        self.assertEqual(report["songs"], 100)
+        self.assertEqual(report["artists"], 47)
         self.assertEqual(report["albums"], 0)
 
     def test_committed_batch_loads_through_playlist_sequencer(self):
@@ -30,11 +30,35 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         loaded = sequencer.load_library_profiles(items, root=ROOT)
         self.assertIsNotNone(loaded)
         artists, tracks, audio, albums = loaded
-        self.assertEqual(len(tracks), 50)
-        self.assertEqual(len(artists), 22)
+        self.assertEqual(len(tracks), 100)
+        self.assertEqual(len(artists), 47)
         self.assertEqual(albums, {})
         self.assertTrue(any(profile.get("lastfm_tags") or profile.get("musicbrainz_tags")
                             for profile in tracks.values()))
+
+
+    def test_second_batch_source_id_and_recording_mbid_are_retrievable(self):
+        index = json.loads((ROOT / "library_index.json").read_text(encoding="utf-8"))
+        library = MusicLibrary(ROOT)
+
+        source_entry = next(
+            (key, value) for key, value in index["songs"].items()
+            if key.startswith("source:")
+        )
+        source_song = library.get_song(
+            artist=source_entry[1]["artist"], track=source_entry[1]["track"]
+        )
+        self.assertIsNotNone(source_song)
+        self.assertEqual(source_song["song"]["id"], source_entry[0])
+
+        mbid_entry = next(
+            (key, value) for key, value in index["songs"].items()
+            if key.startswith("mbid:") and value["path"].startswith("songs/")
+            and (ROOT / value["path"]).exists()
+        )
+        mbid_song = library.get_song(recording_mbid=mbid_entry[0])
+        self.assertIsNotNone(mbid_song)
+        self.assertEqual(mbid_song["song"]["id"], mbid_entry[0])
 
     def test_committed_batch_preserves_recent_listening_context(self):
         index = json.loads((ROOT / "library_index.json").read_text(encoding="utf-8"))
@@ -64,6 +88,6 @@ if __name__ == "__main__":
 
 
 # FILE OVERVIEW
-# - Exercises the committed 50-song staged Library dataset, not just synthetic fixtures.
-# - Audits every song/artist path and verifies the playlist sequencer can load the batch.
+# - Exercises both committed 50-song batches (100 songs total), not just synthetic fixtures.
+# - Audits every song/artist path and verifies the playlist sequencer can load all 100 songs.
 # - Checks that recent listening counts remain separate from track-level evidence.
