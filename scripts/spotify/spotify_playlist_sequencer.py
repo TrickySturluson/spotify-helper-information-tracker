@@ -14,6 +14,11 @@ from pathlib import Path
 import mood_inference
 import spotify_playlist_manager as manager
 
+try:
+    from music_library import MusicLibrary
+except ImportError:
+    MusicLibrary = None
+
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 LYRIC_FEATURES = Path("assistant_data/recommendations/lyric_features.json")
@@ -71,6 +76,38 @@ def index_audio_profiles(rows):
         if isinstance(row.get("getsongbpm"), dict):
             merged["source_profiles"]["getsongbpm"] = row["getsongbpm"]
     return indexed
+
+def load_library_profiles(items, root=Path("assistant_data/music/music_library")):
+    """Load only profiles referenced by this playlist; fall back per missing record."""
+    if MusicLibrary is None or not (Path(root) / "library_index.json").exists():
+        return None
+    library = MusicLibrary(root)
+    artists, tracks, audio, albums = {}, {}, {}, {}
+    for item in items:
+        names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+        artist = str(names[0]) if names else ""
+        title = str(item.get("name") or item.get("track") or "")
+        album = str(item.get("album") or item.get("album_name") or "")
+        uri = str(item.get("uri") or "")
+        spotify_id = uri.rsplit(":", 1)[-1] if uri.startswith("spotify:track:") else None
+        found = library.get_recording(spotify_id=spotify_id, recording_mbid=item.get("recording_mbid"),
+                                      artist=artist, track=title, album=album)
+        if not found:
+            continue
+        record = found["recording"]
+        key = (norm(artist), norm(title))
+        tracks[key] = dict(record.get("evidence", {}).get("track_metadata") or {})
+        tracks[key]["derived"] = record.get("derived") or {}
+        tracks[key]["coverage"] = record.get("coverage") or {}
+        if record.get("evidence", {}).get("lyrics"):
+            tracks[key]["lyric_analysis"] = record["evidence"]["lyrics"]
+        audio[key] = record.get("evidence", {}).get("audio") or {}
+        artist_record = found.get("artist") or {}
+        artists[norm(artist)] = artist_record.get("evidence") or {}
+        album_record = found.get("album") or {}
+        albums[(norm(artist), norm(album))] = album_record.get("evidence") or {}
+    return artists, tracks, audio, albums
+
 
 def merge_lyric_features(track_profiles, rows):
     """Attach exported lyric themes to track metadata for transition matching."""
@@ -912,14 +949,26 @@ def main():
         sp = manager.Spotify()
         playlist = manager.find(sp, args.playlist_id)
         snap = manager.snapshot(sp, playlist)
-        artists = index_artists(read_json(ARTIST_PROFILES, {}))
-        tracks = index_tracks(read_json(TRACK_PROFILES, {}))
-        tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
-        audio_rows = read_json(AUDIO_PROFILES, {})
-        audio_profiles = index_audio_profiles(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
-        album_rows = read_json(ALBUM_PROFILES, {})
-        album_profiles = {(norm(row.get("artist")), norm(row.get("album"))): row
-                          for row in album_rows.values() if isinstance(row, dict) and row.get("artist") and row.get("album")}
+        library_profiles = load_library_profiles(snap["items"])
+        if library_profiles is not None:
+            artists, tracks, audio_profiles, album_profiles = library_profiles
+            # Missing library records remain eligible for the legacy cache during
+            # incremental migration; existing records are loaded on demand only.
+            legacy_tracks = index_tracks(read_json(TRACK_PROFILES, {}))
+            for item in snap["items"]:
+                names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+                key = (norm(names[0]) if names else "", norm(item.get("name") or item.get("track")))
+                if key not in tracks and key in legacy_tracks:
+                    tracks[key] = legacy_tracks[key]
+        else:
+            artists = index_artists(read_json(ARTIST_PROFILES, {}))
+            tracks = index_tracks(read_json(TRACK_PROFILES, {}))
+            tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
+            audio_rows = read_json(AUDIO_PROFILES, {})
+            audio_profiles = index_audio_profiles(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
+            album_rows = read_json(ALBUM_PROFILES, {})
+            album_profiles = {(norm(row.get("artist")), norm(row.get("album"))): row
+                              for row in album_rows.values() if isinstance(row, dict) and row.get("artist") and row.get("album")}
         sections = read_json(args.sections, {}) if args.sections else {}
         if not isinstance(sections, dict):
             raise ValueError("--sections must be a JSON object mapping section names to URI lists.")
