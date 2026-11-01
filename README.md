@@ -160,7 +160,7 @@ The manager produces its normal preview, checks playlist lock/ownership and snap
 
 
 
-## Implementation layout
+## File structure
 
 The executable implementation is grouped under `scripts/` by responsibility:
 
@@ -172,6 +172,18 @@ The executable implementation is grouped under `scripts/` by responsibility:
 Legacy command-line entry points live in `compat/`, while the maintained implementation lives under `scripts/`. A small root-level `sitecustomize.py` adds `compat/` to Python's import path so existing module imports and tests continue to work. Run tools with `python compat/TOOL_NAME.py`; add new implementation code under `scripts/`, not `compat/`.
 
 See [scripts/README.md](scripts/README.md) for the layout and migration notes.
+
+## Project overview
+
+**Spotify Helper & Information Tracker (SHIT)** is a personal Spotify and Last.fm toolkit for understanding listening history, enriching music metadata, discovering and curating tracks, and safely managing and sequencing Spotify playlists.
+
+The project brings together several distinct data sources and workflows:
+- **Last.fm** provides the canonical historical scrobble archive and long-term listening analytics.
+- **Spotify** provides live playlist references and, when the local tracker is running, measured playback intervals.
+- **MusicBrainz and community metadata** add sourced artist and track context, with provenance and confidence kept visible.
+- **Curation and sequencing tools** use that evidence to build recommendations, explain transitions, and prepare playlist changes for review.
+
+SHIT is designed around data integrity and user control: generated analytics remain separate from the canonical archive, unknown metadata stays unknown rather than being guessed, playlist edits are preview-first and protected by locks and backups, and historical snapshots preserve changes over time. It is both an analytics project and a practical toolkit for building, evaluating, and maintaining Spotify playlists.
 
 ## Project feature map
 
@@ -396,8 +408,8 @@ A day without listening is neutral. Missing tracker data is unknown, not zero. S
 The reference library and feedback files are personal listening data. Keep the repository private and never commit OAuth tokens or local playback credentials.
 
 
-## File overview
-This document explains the project's purpose, setup, and navigation. Use the individual file overviews in the implementation tree for module-specific details.
+## README overview
+This README introduces **Spotify Helper & Information Tracker (SHIT)**, explains the project's data sources and safety model, and documents setup, file structure, major features, and operating workflows. For module-level documentation, use the file overviews maintained at the bottom of individual implementation files.
 
 
 ## Repository-wide file documentation
