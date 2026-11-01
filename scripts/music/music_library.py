@@ -316,6 +316,15 @@ class MusicLibrary:
             if artist and album and norm(record_artist) == norm(artist) and norm(record_album) == norm(album):
                 matches.append((path, record))
         if len(matches) != 1:
+            print(
+                "Library album lookup diagnostic:",
+                {"root": str(self.root), "artist": artist, "album": album,
+                 "indexed_albums": len(albums), "indexed_match_count": len([
+                     entry for entry in albums.values()
+                     if norm(entry.get("artist")) == norm(artist) and norm(entry.get("album")) == norm(album)
+                 ]), "album_dir_exists": (self.root / "albums").exists(),
+                 "album_files": len(list((self.root / "albums").glob("**/album.json")))},
+            )
             return None
         path, record = matches[0]
         key = record.get("id")
