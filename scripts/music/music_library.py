@@ -288,9 +288,15 @@ class MusicLibrary:
         }
 
     def put_catalogue(self, track_rows, artist_rows=None, album_rows=None, audio_rows=None, lyric_rows=None):
-        from scripts.music.music_evidence import (
-            album_metadata_confidence, identity_confidence, track_metadata_confidence,
-        )
+        try:
+            from .music_evidence import (
+                album_metadata_confidence, identity_confidence, track_metadata_confidence,
+            )
+        except ImportError:
+            # Compatibility launcher imports this module as top-level music_library.
+            from music_evidence import (
+                album_metadata_confidence, identity_confidence, track_metadata_confidence,
+            )
         artists = artist_rows if isinstance(artist_rows, dict) else {}
         albums = album_rows if isinstance(album_rows, dict) else {}
         audio_container = audio_rows if isinstance(audio_rows, dict) else {}
