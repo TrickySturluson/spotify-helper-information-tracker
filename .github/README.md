@@ -1,4 +1,4 @@
-# GitHub automation and state — file overview
+# Spotify Helper & Information Tracker (SHIT)
 
 This directory contains the repository's GitHub Actions workflows and the small state/audit artifacts used by automation.
 
