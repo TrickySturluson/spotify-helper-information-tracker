@@ -77,6 +77,18 @@ class AlbumProfileTests(unittest.TestCase):
         self.assertEqual(info, {})
         self.assertEqual(status, "identity_mismatch")
 
+
+    def test_album_info_refreshes_legacy_tag_cache_once(self):
+        old = {"status": "matched", "lastfm_tags": [{"tag": "rock"}], "retry_after": 0}
+        self.assertTrue(albums.album_info_due(old, now=1000))
+        new = {"status": "matched", "lastfm_info_status": "matched", "lastfm_info_retry_after": 0}
+        self.assertFalse(albums.album_info_due(new, now=1000))
+
+    def test_album_info_negative_cache_obeys_retry_after(self):
+        old = {"lastfm_info_status": "identity_mismatch", "lastfm_info_retry_after": 2000}
+        self.assertFalse(albums.album_info_due(old, now=1000))
+        self.assertTrue(albums.album_info_due(old, now=2000))
+
 if __name__ == "__main__":
     unittest.main()
 

@@ -220,6 +220,14 @@ def fetch_album_tags(artist, album):
     return tags, "matched" if tags else "no_tags"
 
 
+def album_info_due(profile, now=None):
+    """Return whether album.getInfo needs enrichment, independent of legacy tag cache state."""
+    now = int(time.time()) if now is None else int(now)
+    if profile.get("lastfm_info_status") == "matched":
+        return False
+    return int(profile.get("lastfm_info_retry_after", 0) or 0) <= now
+
+
 def main():
     if not API_KEY:
         raise RuntimeError("LASTFM_API_KEY is required.")
@@ -240,11 +248,7 @@ def main():
     due = []
     for key, item in catalogue.items():
         old = profiles.get(key, {})
-        if old.get("status") in {"matched", "no_tags", "not_found"} and int(old.get("retry_after", 0) or 0) > now:
-            continue
-        if old.get("status") == "matched":
-            continue
-        if int(old.get("retry_after", 0) or 0) > now:
+        if not album_info_due(old, now):
             continue
         due.append(item)
     due.sort(key=lambda row: (
@@ -257,7 +261,7 @@ def main():
         key = item["album_id"]
         try:
             info, status = fetch_album_info(item["artist"], item["album"])
-            tags = info.pop("lastfm_info_tags", []) if info else []
+
         except HTTPError as exc:
             if exc.code == 429:
                 try:
@@ -281,12 +285,19 @@ def main():
             print(f"Last.fm album lookup interrupted ({exc}); saved cooldown and stopped.")
             break
         checked = datetime.now(timezone.utc).isoformat()
+        previous = profiles.get(key, {})
+        info_retry = 0 if status == "matched" else int(time.time()) + RETRY_DAYS * 86400
         profiles[key] = {
-            **item, **info, "lastfm_tags": tags, "status": status,
-            "source": "Last.fm album.getInfo",
+            **previous, **item, **info,
+            "lastfm_tags": previous.get("lastfm_tags") or info.get("lastfm_info_tags", []),
+            "status": previous.get("status") or status,
+            "lastfm_info_status": status,
+            "lastfm_info_checked_at": checked,
+            "lastfm_info_retry_after": info_retry,
+            "source": previous.get("source") or "Last.fm album.getInfo",
             "checked_at": checked,
-            "retry_after": 0 if status == "matched" else int(time.time()) + RETRY_DAYS * 86400,
-            "identity_verified": status == "matched",
+            "retry_after": previous.get("retry_after", 0),
+            "identity_verified": bool(previous.get("identity_verified") or status == "matched"),
         }
         looked += 1
         found += int(bool(tags))
