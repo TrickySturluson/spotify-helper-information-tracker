@@ -129,6 +129,10 @@ def main():
     state = read(STATE, {"checked": {}})
     checked = state.setdefault("checked", {})
     now = int(time.time())
+    provider_retry_after = int(state.get("provider_retry_after", 0) or 0)
+    if provider_retry_after > now:
+        print(f"Discogs provider cooldown active for {provider_retry_after - now}s; no request sent.")
+        return
     by_name = {}
     for key, row in profiles.items():
         if isinstance(row, dict) and row.get("artist") and row.get("track"):
@@ -154,7 +158,13 @@ def main():
         except HTTPError as exc:
             if exc.code in (429, 503):
                 retry = exc.headers.get("Retry-After") if exc.headers else None
-                print(f"Discogs rate limit/server busy ({exc.code}, Retry-After={retry}); checkpointed work will resume later.")
+                try:
+                    wait = max(60, int(float(retry))) if retry else 3600
+                except (TypeError, ValueError):
+                    wait = 3600
+                state["provider_retry_after"] = now + wait
+                write(STATE, state)
+                print(f"Discogs HTTP {exc.code}; provider cooldown saved for {wait}s; stopping safely.")
                 break
             print(f"Discogs HTTP {exc.code}; stopping to retry on a later run.")
             break
@@ -162,6 +172,7 @@ def main():
             print(f"Transient Discogs error; stopping to retry: {exc}")
             break
         looked += 1
+        state["provider_retry_after"] = 0
         retry_after = now + (365 if status == "matched" else MISS_RETRY_DAYS) * 86400
         checked[key] = {
             "artist": artist, "track": track,
