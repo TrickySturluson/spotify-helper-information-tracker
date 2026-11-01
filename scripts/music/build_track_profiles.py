@@ -176,7 +176,7 @@ def musicbrainz_tags(item):
 
 
 
-def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT, recent_since=None):
+def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT, recent_since=None, metadata_root=ROOT):
     """Build the scrobbled catalogue and add exact tracks from priority playlists.
 
     Playlist-only tracks are eligible for Last.fm track.getTopTags lookups even
@@ -185,6 +185,18 @@ def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT,
     """
     catalogue = {}
     by_name = {}
+    # Use only unique exact artist/title matches from the canonical metadata shards.
+    # Keep the archive-derived track_id stable even when a recording MBID is added.
+    verified_mbids = {}
+    for shard_no in range(SHARDS):
+        shard = read(Path(metadata_root) / "artists" / f"shard-{shard_no:02d}.json", {})
+        for artist_row in (shard.get("artists") or {}).values():
+            artist_name = clean(artist_row.get("artist"))
+            for track_row in (artist_row.get("tracks") or {}).values():
+                mbid = str(track_row.get("track_mbid") or "").strip()
+                title = clean(track_row.get("track"))
+                if mbid and artist_name != "[Unknown]" and title != "[Unknown]":
+                    verified_mbids.setdefault((norm(artist_name), norm(title)), set()).add(mbid)
     for row in rows:
         aid = artist_id(row)
         tid = track_id(row, aid)
@@ -202,8 +214,11 @@ def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT,
             played_at = 0
         if recent_since is not None and played_at >= int(recent_since):
             rec["recent_plays"] += 1
+        shard_matches = verified_mbids.get(key, set())
         if row.get("track_mbid"):
             rec["track_mbid"] = row["track_mbid"]
+        elif len(shard_matches) == 1:
+            rec["track_mbid"] = next(iter(shard_matches))
         by_name.setdefault(key, []).append(tid)
 
     for playlist_id in priority_playlist_ids:
@@ -240,6 +255,14 @@ def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT,
             rec.setdefault("priority_playlist_ids", [])
             if playlist_id not in rec["priority_playlist_ids"]:
                 rec["priority_playlist_ids"].append(playlist_id)
+    # Add a shard-resolved ID to playlist-only tracks only when the exact
+    # artist/title maps to one recording.
+    for key, tids in by_name.items():
+        matches = verified_mbids.get(key, set())
+        if len(matches) == 1:
+            for tid in tids:
+                if not catalogue[tid].get("track_mbid"):
+                    catalogue[tid]["track_mbid"] = next(iter(matches))
     return catalogue
 
 def recent_top_tracks(catalogue, limit=RECENT_TOP_N, window_days=RECENT_WINDOW_DAYS):
