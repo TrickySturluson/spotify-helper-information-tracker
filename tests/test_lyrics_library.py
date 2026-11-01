@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from lyrics_library import LyricsLibrary, analyze_lyrics, phrase_fingerprints, search_and_analyze
+from lyrics_library import LyricsLibrary, analyze_lyrics, phrase_fingerprints, search_and_analyze, export_analysis_features
 
 
 class LyricsLibraryTests(unittest.TestCase):
@@ -91,6 +91,25 @@ class LyricsLibraryTests(unittest.TestCase):
             self.assertIn("vampire", result["analysis"]["themes"])
             self.assertIn("zombie_undead", result["analysis"]["themes"])
             self.assertEqual(result["analysis"]["source_count"], 2)
+
+    def test_export_contains_derived_themes_but_not_lyrics_or_phrase_hashes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db_path = Path(temp) / "lyrics.sqlite3"
+            export_path = Path(temp) / "lyric_features.json"
+            library = LyricsLibrary(db_path)
+            library.save("Night Song", "Example Artist", results=[{
+                "provider": "test",
+                "lyrics": "The vampire rises from the coffin beneath the midnight moon."
+            }])
+            library.close()
+            self.assertEqual(export_analysis_features(db_path, export_path), 1)
+            payload = export_path.read_text(encoding="utf-8")
+            import json
+            rows = json.loads(payload)
+            self.assertIn("vampire", rows[0]["themes"])
+            self.assertFalse(rows[0]["full_lyrics_stored"])
+            self.assertNotIn("midnight moon", payload)
+            self.assertNotIn("phrase_hash", payload)
 
 
 if __name__ == "__main__":
