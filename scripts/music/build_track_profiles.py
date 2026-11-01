@@ -26,6 +26,9 @@ LASTFM_URL = "https://ws.audioscrobbler.com/2.0/"
 MUSICBRAINZ_URL = "https://musicbrainz.org/ws/2/recording/"
 API_KEY = os.environ.get("LASTFM_API_KEY")
 LIMIT = int(os.environ.get("TRACK_PROFILE_LOOKUPS_PER_RUN", "120"))
+RECENT_WINDOW_DAYS = max(1, int(os.environ.get("TRACK_PROFILE_RECENT_WINDOW_DAYS", "90")))
+RECENT_TOP_N = max(1, int(os.environ.get("TRACK_PROFILE_RECENT_TOP_N", "200")))
+RECENT_TOP_OUT = ROOT / "recent_top_tracks.json"
 RETRY_DAYS = 30
 SHARDS = 32
 UA = "TrickyLastFM/1.2 (track profile enrichment; https://github.com/TrickySturluson/tricky-lastfm)"
@@ -173,7 +176,7 @@ def musicbrainz_tags(item):
 
 
 
-def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT):
+def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT, recent_since=None):
     """Build the scrobbled catalogue and add exact tracks from priority playlists.
 
     Playlist-only tracks are eligible for Last.fm track.getTopTags lookups even
@@ -190,9 +193,15 @@ def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT)
             "track_id": tid, "artist_id": aid,
             "artist": clean(row.get("artist")), "track": clean(row.get("track")),
             "track_mbid": row.get("track_mbid") or None, "plays": 0,
-            "priority_playlist_ids": []
+            "recent_plays": 0, "priority_playlist_ids": []
         })
         rec["plays"] += 1
+        try:
+            played_at = int(row.get("timestamp") or row.get("uts") or 0)
+        except (TypeError, ValueError):
+            played_at = 0
+        if recent_since is not None and played_at >= int(recent_since):
+            rec["recent_plays"] += 1
         if row.get("track_mbid"):
             rec["track_mbid"] = row["track_mbid"]
         by_name.setdefault(key, []).append(tid)
@@ -225,13 +234,37 @@ def build_catalogue(rows, priority_playlist_ids=(), playlist_root=PLAYLIST_ROOT)
                 rec = catalogue.setdefault(tid, {
                     "track_id": tid, "artist_id": aid, "artist": artist,
                     "track": title, "track_mbid": None, "plays": 0,
-                    "priority_playlist_ids": []
+                    "recent_plays": 0, "priority_playlist_ids": []
                 })
                 by_name.setdefault(key, []).append(tid)
             rec.setdefault("priority_playlist_ids", [])
             if playlist_id not in rec["priority_playlist_ids"]:
                 rec["priority_playlist_ids"].append(playlist_id)
     return catalogue
+
+def recent_top_tracks(catalogue, limit=RECENT_TOP_N, window_days=RECENT_WINDOW_DAYS):
+    """Return a deterministic rolling-window ranking from Last.fm scrobbles."""
+    eligible = [item for item in catalogue.values() if int(item.get("recent_plays", 0) or 0) > 0]
+    eligible.sort(key=lambda row: (
+        -int(row.get("recent_plays", 0) or 0),
+        -int(row.get("plays", 0) or 0),
+        row["artist"].casefold(), row["track"].casefold(),
+    ))
+    return {
+        "schema_version": 1,
+        "source": "Last.fm scrobble archive",
+        "window_days": int(window_days),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "candidate_tracks": len(eligible),
+        "tracks": [
+            {"track_id": row["track_id"], "artist_id": row["artist_id"],
+             "artist": row["artist"], "track": row["track"],
+             "track_mbid": row.get("track_mbid"), "recent_plays": int(row["recent_plays"]),
+             "all_time_plays": int(row["plays"])}
+            for row in eligible[:max(1, int(limit))]
+        ],
+    }
+
 
 def main():
     if not API_KEY:
@@ -240,7 +273,12 @@ def main():
     if not rows:
         raise RuntimeError("Refusing to enrich an empty archive.")
 
-    catalogue = build_catalogue(rows, PRIORITY_PLAYLIST_IDS)
+    recent_since = now - RECENT_WINDOW_DAYS * 86400
+    catalogue = build_catalogue(rows, PRIORITY_PLAYLIST_IDS, recent_since=recent_since)
+    recent_ranking = recent_top_tracks(catalogue)
+    write(RECENT_TOP_OUT, recent_ranking)
+    recent_top_ids = {row["track_id"] for row in recent_ranking["tracks"]}
+    print(f"Recent top-track cohort: {len(recent_top_ids):,} tracks from the last {RECENT_WINDOW_DAYS} days; ranked from {recent_ranking['candidate_tracks']:,} recently played unique tracks.")
     if PRIORITY_PLAYLIST_IDS:
         prioritized = sum(1 for item in catalogue.values() if item.get("priority_playlist_ids"))
         print(f"Priority playlist coverage: {prioritized:,} exact tracks across {len(PRIORITY_PLAYLIST_IDS)} configured playlist(s).")
@@ -255,7 +293,9 @@ def main():
         if lastfm_due or mb_due:
             due.append(item)
     due.sort(key=lambda row: (
+        row["track_id"] not in recent_top_ids,
         not bool(row.get("priority_playlist_ids")),
+        -int(row.get("recent_plays", 0) or 0),
         -row["plays"], row["artist"].casefold(), row["track"].casefold()
     ))
 
@@ -356,7 +396,7 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich scrobbled tracks and exact tracks from configured priority playlists with sourced community tags. Last.fm supplies crowd-ranked track tags. MusicBrainz supplies recording tags and genres when a verified recording MBID is already present. No fuzzy MBID search is used here: uncertain identity matches are left unresolved.
+# Purpose: Incrementally enrich scrobbled tracks, exact priority-playlist tracks, and the rolling top 200 tracks by Last.fm plays in the previous 90 days. Writes a reusable recent_top_tracks.json cohort and prioritizes it for Last.fm tags and verified MusicBrainz recording tags. No fuzzy MBID search is used: uncertain identity matches remain unresolved.
 # Location: Maintained implementation in scripts/music/build_track_profiles.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
