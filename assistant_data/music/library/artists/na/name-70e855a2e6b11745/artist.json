@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "name:70e855a2e6b11745",
+  "artist": "Jasper Byrne",
+  "identity": {
+    "artist_mbid": null,
+    "identity_quality": "name_fallback"
+  },
+  "evidence": {},
+  "album_ids": []
+}

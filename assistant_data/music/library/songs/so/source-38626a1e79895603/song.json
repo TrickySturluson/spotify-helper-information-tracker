@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "source:38626a1e79895603",
+  "identity": {
+    "artist": "Jasper Byrne",
+    "title": "Voyager - Original Mix",
+    "album": "",
+    "artist_id": "name:70e855a2e6b11745",
+    "album_id": null,
+    "recording_mbid": null,
+    "spotify_id": null,
+    "source_track_id": "track:38626a1e79895603",
+    "identity_quality": "source_track_id"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:06.078802+00:00",
+      "retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/na/name-70e855a2e6b11745/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 20,
+    "all_time_plays": 22
+  }
+}

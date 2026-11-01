@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "mbid:959551d6-45c6-40ec-acb9-512d08214a30",
+  "identity": {
+    "artist": "Mega Drive",
+    "title": "NARC",
+    "album": "",
+    "artist_id": "mbid:2bcee108-1442-4ac6-b020-df056cf067b4",
+    "album_id": null,
+    "recording_mbid": "959551d6-45c6-40ec-acb9-512d08214a30",
+    "spotify_id": null,
+    "source_track_id": "mbid:959551d6-45c6-40ec-acb9-512d08214a30",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T06:00:06.009629+00:00",
+      "retry_after": 0,
+      "musicbrainz_tags": [
+        {
+          "tag": "electronic",
+          "count": 2,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "synthwave",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        }
+      ],
+      "musicbrainz_genres": [
+        {
+          "tag": "electronic",
+          "count": 2,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "synthwave",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        }
+      ],
+      "musicbrainz_status": "matched",
+      "musicbrainz_checked_at": "2026-11-01T06:00:06.688355+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-2bcee108-1442-4ac6-b020-df056cf067b4/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 18,
+    "all_time_plays": 18
+  }
+}

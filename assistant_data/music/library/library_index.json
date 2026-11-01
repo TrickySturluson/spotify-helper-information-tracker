@@ -301,6 +301,306 @@
       "artist": "Chromatics",
       "track": "Lady",
       "album": ""
+    },
+    "source:431a1b60594bc252": {
+      "path": "songs/so/source-431a1b60594bc252/song.json",
+      "artist": "Drowning Pool",
+      "track": "Bodies",
+      "album": ""
+    },
+    "source:13aca5d59b80a3af": {
+      "path": "songs/so/source-13aca5d59b80a3af/song.json",
+      "artist": "Jasper Byrne",
+      "track": "Miami - Original Mix",
+      "album": ""
+    },
+    "source:c400f603bf5adaca": {
+      "path": "songs/so/source-c400f603bf5adaca/song.json",
+      "artist": "Papa Roach",
+      "track": "Last Resort",
+      "album": ""
+    },
+    "source:edc4a17f75855dc1": {
+      "path": "songs/so/source-edc4a17f75855dc1/song.json",
+      "artist": "AILIFDOPA",
+      "track": "My Goblin",
+      "album": ""
+    },
+    "source:0f303fb209c0e658": {
+      "path": "songs/so/source-0f303fb209c0e658/song.json",
+      "artist": "BRUVVY",
+      "track": "Devour",
+      "album": ""
+    },
+    "source:ebc42dab1e419a01": {
+      "path": "songs/so/source-ebc42dab1e419a01/song.json",
+      "artist": "Duke & Jones",
+      "track": "Synthetic",
+      "album": ""
+    },
+    "source:47f5534c1666485c": {
+      "path": "songs/so/source-47f5534c1666485c/song.json",
+      "artist": "Mac&Wester",
+      "track": "SOMEHOW",
+      "album": ""
+    },
+    "source:ee15880a42f8fcf5": {
+      "path": "songs/so/source-ee15880a42f8fcf5/song.json",
+      "artist": "BLIND GRAPH",
+      "track": "six",
+      "album": ""
+    },
+    "source:958dc50e348cd43c": {
+      "path": "songs/so/source-958dc50e348cd43c/song.json",
+      "artist": "Sun Araw",
+      "track": "Horse Steppin’",
+      "album": ""
+    },
+    "source:38626a1e79895603": {
+      "path": "songs/so/source-38626a1e79895603/song.json",
+      "artist": "Jasper Byrne",
+      "track": "Voyager - Original Mix",
+      "album": ""
+    },
+    "source:a574931a14f9521f": {
+      "path": "songs/so/source-a574931a14f9521f/song.json",
+      "artist": "Perturbator",
+      "track": "Sexualizer (Feat. Flash Arnold)",
+      "album": ""
+    },
+    "source:e23ae5447ffa7d6d": {
+      "path": "songs/so/source-e23ae5447ffa7d6d/song.json",
+      "artist": "Jasper Byrne",
+      "track": "Hotline - Original Mix",
+      "album": ""
+    },
+    "source:d04be44c4d28beb1": {
+      "path": "songs/so/source-d04be44c4d28beb1/song.json",
+      "artist": "M|O|O|N",
+      "track": "Warehouse",
+      "album": ""
+    },
+    "source:6da266f575b0c5bd": {
+      "path": "songs/so/source-6da266f575b0c5bd/song.json",
+      "artist": "Naeleck",
+      "track": "Virtual Gaming",
+      "album": ""
+    },
+    "source:0a40ca816b9a3261": {
+      "path": "songs/so/source-0a40ca816b9a3261/song.json",
+      "artist": "Daft Punk",
+      "track": "Encom Part 2 - Remixed By Com Truise",
+      "album": ""
+    },
+    "source:8c3f12aef208bcf0": {
+      "path": "songs/so/source-8c3f12aef208bcf0/song.json",
+      "artist": "Fukkk Offf",
+      "track": "Pacific Coast Highway",
+      "album": ""
+    },
+    "source:803dd653bfb62c4b": {
+      "path": "songs/so/source-803dd653bfb62c4b/song.json",
+      "artist": "Naeleck",
+      "track": "All my Heroes",
+      "album": ""
+    },
+    "source:e75e10ecee06a7e5": {
+      "path": "songs/so/source-e75e10ecee06a7e5/song.json",
+      "artist": "Perturbator",
+      "track": "Technoir (Feat. Noir Deco)",
+      "album": ""
+    },
+    "source:80f9b2cc6d7350c5": {
+      "path": "songs/so/source-80f9b2cc6d7350c5/song.json",
+      "artist": "Com Truise",
+      "track": "Space Dust (Bonus Track)",
+      "album": ""
+    },
+    "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178": {
+      "path": "songs/mb/mbid-3d5a65cc-395c-38f1-83d9-36c77e0b8178/song.json",
+      "artist": "Electric Youth",
+      "track": "Faces",
+      "album": ""
+    },
+    "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb": {
+      "path": "songs/mb/mbid-74d121d2-75a9-3d82-808c-1007d6431ecb/song.json",
+      "artist": "Lazerhawk",
+      "track": "Electric Groove",
+      "album": ""
+    },
+    "mbid:6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58": {
+      "path": "songs/mb/mbid-6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58/song.json",
+      "artist": "Lazerhawk",
+      "track": "So Far Away",
+      "album": ""
+    },
+    "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927": {
+      "path": "songs/mb/mbid-8c97c447-f59d-341d-8e0e-35ba149e1927/song.json",
+      "artist": "Lazerhawk",
+      "track": "Star Hustler",
+      "album": ""
+    },
+    "mbid:a4405383-6acf-4558-bded-4651f01d61cb": {
+      "path": "songs/mb/mbid-a4405383-6acf-4558-bded-4651f01d61cb/song.json",
+      "artist": "Light Club",
+      "track": "Fahkeet",
+      "album": ""
+    },
+    "mbid:d9213aec-a0ba-4b1a-aae6-d51fa6358a51": {
+      "path": "songs/mb/mbid-d9213aec-a0ba-4b1a-aae6-d51fa6358a51/song.json",
+      "artist": "Magic Sword",
+      "track": "The Way Home",
+      "album": ""
+    },
+    "mbid:959551d6-45c6-40ec-acb9-512d08214a30": {
+      "path": "songs/mb/mbid-959551d6-45c6-40ec-acb9-512d08214a30/song.json",
+      "artist": "Mega Drive",
+      "track": "NARC",
+      "album": ""
+    },
+    "mbid:283b11a2-6be1-469a-bc7b-37ed39cfc8b4": {
+      "path": "songs/mb/mbid-283b11a2-6be1-469a-bc7b-37ed39cfc8b4/song.json",
+      "artist": "M|O|O|N",
+      "track": "Plus Four",
+      "album": ""
+    },
+    "source:1d49f490800262e3": {
+      "path": "songs/so/source-1d49f490800262e3/song.json",
+      "artist": "Naeleck",
+      "track": "Kaboom",
+      "album": ""
+    },
+    "source:e1ca3985d21861f5": {
+      "path": "songs/so/source-e1ca3985d21861f5/song.json",
+      "artist": "Smitech Wesson",
+      "track": "Whisper - The Toxic Avenger Remix",
+      "album": ""
+    },
+    "mbid:19690027-671a-3cdd-a066-1d49a6c98797": {
+      "path": "songs/mb/mbid-19690027-671a-3cdd-a066-1d49a6c98797/song.json",
+      "artist": "Castanets",
+      "track": "You Are The Blood",
+      "album": ""
+    },
+    "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28": {
+      "path": "songs/mb/mbid-31f1ec1c-32ca-497f-98ea-c15d864cbf28/song.json",
+      "artist": "Riddarna",
+      "track": "Simma hem",
+      "album": ""
+    },
+    "mbid:17579de2-f1e4-4e0e-a4c7-e18106026c40": {
+      "path": "songs/mb/mbid-17579de2-f1e4-4e0e-a4c7-e18106026c40/song.json",
+      "artist": "Desire",
+      "track": "Under Your Spell",
+      "album": ""
+    },
+    "source:549f4b544dd2c298": {
+      "path": "songs/so/source-549f4b544dd2c298/song.json",
+      "artist": "Jasper Byrne",
+      "track": "Hotline - Analogue Mix",
+      "album": ""
+    },
+    "mbid:e8763082-bb41-34ab-8d6e-b9332f0ac105": {
+      "path": "songs/mb/mbid-e8763082-bb41-34ab-8d6e-b9332f0ac105/song.json",
+      "artist": "Lazerhawk",
+      "track": "Visitors",
+      "album": ""
+    },
+    "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133": {
+      "path": "songs/mb/mbid-74d35ab7-661c-4bb1-a66b-04a6b7565133/song.json",
+      "artist": "Light Club",
+      "track": "She Meditates",
+      "album": ""
+    },
+    "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4": {
+      "path": "songs/mb/mbid-85f2a42e-ccfe-407a-afb9-168e5d7fd4d4/song.json",
+      "artist": "LukHash",
+      "track": "Code Veronica",
+      "album": ""
+    },
+    "mbid:26689f1e-99f2-3b92-b1bd-3aafb516a8cf": {
+      "path": "songs/mb/mbid-26689f1e-99f2-3b92-b1bd-3aafb516a8cf/song.json",
+      "artist": "Mitch Murder",
+      "track": "Hollywood Heights",
+      "album": ""
+    },
+    "mbid:0b6ebbbf-c499-4632-86b5-e257c1c43380": {
+      "path": "songs/mb/mbid-0b6ebbbf-c499-4632-86b5-e257c1c43380/song.json",
+      "artist": "Perturbator",
+      "track": "Vengeance (The Return of the Night Driving Avenger)",
+      "album": ""
+    },
+    "mbid:0b807347-a7df-4d46-9e42-852cb81ea701": {
+      "path": "songs/mb/mbid-0b807347-a7df-4d46-9e42-852cb81ea701/song.json",
+      "artist": "M|O|O|N",
+      "track": "Quixotic",
+      "album": ""
+    },
+    "mbid:3be0716c-2af4-4466-b686-7d0769799998": {
+      "path": "songs/mb/mbid-3be0716c-2af4-4466-b686-7d0769799998/song.json",
+      "artist": "Mitch Murder",
+      "track": "Frantic Aerobics",
+      "album": ""
+    },
+    "mbid:af031ce1-caea-483b-9326-287825f4e667": {
+      "path": "songs/mb/mbid-af031ce1-caea-483b-9326-287825f4e667/song.json",
+      "artist": "ModuloGeek",
+      "track": "aimlessly",
+      "album": ""
+    },
+    "source:ad6b6663b42a80e6": {
+      "path": "songs/so/source-ad6b6663b42a80e6/song.json",
+      "artist": "Naeleck",
+      "track": "Danse Macabre - Macrowave Remix",
+      "album": ""
+    },
+    "mbid:b910e97f-89ea-4ea0-aa88-4cfbdee22d8b": {
+      "path": "songs/mb/mbid-b910e97f-89ea-4ea0-aa88-4cfbdee22d8b/song.json",
+      "artist": "The Green Kingdom",
+      "track": "Untitled 2",
+      "album": ""
+    },
+    "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84": {
+      "path": "songs/mb/mbid-1eac23c6-2b7a-4317-945c-c70e6bf9df84/song.json",
+      "artist": "Sun Araw",
+      "track": "Deep Cover",
+      "album": ""
+    },
+    "mbid:028ce608-4c7b-45cf-9230-fcc52d6f1902": {
+      "path": "songs/mb/mbid-028ce608-4c7b-45cf-9230-fcc52d6f1902/song.json",
+      "artist": "ModuloGeek",
+      "track": "walking",
+      "album": ""
+    },
+    "mbid:caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b": {
+      "path": "songs/mb/mbid-caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b/song.json",
+      "artist": "Royal Blood",
+      "track": "Figure It Out",
+      "album": ""
+    },
+    "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde": {
+      "path": "songs/mb/mbid-4346d7c9-c6da-4610-b81e-9e2e892b7fde/song.json",
+      "artist": "Candy Claws",
+      "track": "Pangaea Girls (Magic Feeling)",
+      "album": ""
+    },
+    "mbid:a55df03b-b6de-4240-a816-e9392fc7e270": {
+      "path": "songs/mb/mbid-a55df03b-b6de-4240-a816-e9392fc7e270/song.json",
+      "artist": "Candy Claws",
+      "track": "Night Ela (Mystic Thing)",
+      "album": ""
+    },
+    "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df": {
+      "path": "songs/mb/mbid-d6e2c73d-7d12-4b48-8cf4-85063c45e4df/song.json",
+      "artist": "Candy Claws",
+      "track": "Fell in Love (At the Water)",
+      "album": ""
+    },
+    "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573": {
+      "path": "songs/mb/mbid-15a01c36-59b4-4bb1-9c94-92d14773f573/song.json",
+      "artist": "Candy Claws",
+      "track": "New Forest (Five Heads of the Sun)",
+      "album": ""
     }
   },
   "spotify_ids": {},
@@ -354,7 +654,61 @@
     "6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43": "mbid:6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43",
     "04e67c12-ede4-45ec-86fe-f65da611a14c": "mbid:04e67c12-ede4-45ec-86fe-f65da611a14c",
     "abf05efd-9bd2-41ec-9965-68093e4fce25": "mbid:abf05efd-9bd2-41ec-9965-68093e4fce25",
-    "4eaac95a-9c72-4e34-8aaa-43af3e54863f": "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f"
+    "4eaac95a-9c72-4e34-8aaa-43af3e54863f": "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f",
+    "3d5a65cc-395c-38f1-83d9-36c77e0b8178": "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178",
+    "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178": "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178",
+    "74d121d2-75a9-3d82-808c-1007d6431ecb": "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb",
+    "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb": "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb",
+    "6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58": "mbid:6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58",
+    "mbid:6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58": "mbid:6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58",
+    "8c97c447-f59d-341d-8e0e-35ba149e1927": "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927",
+    "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927": "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927",
+    "a4405383-6acf-4558-bded-4651f01d61cb": "mbid:a4405383-6acf-4558-bded-4651f01d61cb",
+    "mbid:a4405383-6acf-4558-bded-4651f01d61cb": "mbid:a4405383-6acf-4558-bded-4651f01d61cb",
+    "d9213aec-a0ba-4b1a-aae6-d51fa6358a51": "mbid:d9213aec-a0ba-4b1a-aae6-d51fa6358a51",
+    "mbid:d9213aec-a0ba-4b1a-aae6-d51fa6358a51": "mbid:d9213aec-a0ba-4b1a-aae6-d51fa6358a51",
+    "959551d6-45c6-40ec-acb9-512d08214a30": "mbid:959551d6-45c6-40ec-acb9-512d08214a30",
+    "mbid:959551d6-45c6-40ec-acb9-512d08214a30": "mbid:959551d6-45c6-40ec-acb9-512d08214a30",
+    "283b11a2-6be1-469a-bc7b-37ed39cfc8b4": "mbid:283b11a2-6be1-469a-bc7b-37ed39cfc8b4",
+    "mbid:283b11a2-6be1-469a-bc7b-37ed39cfc8b4": "mbid:283b11a2-6be1-469a-bc7b-37ed39cfc8b4",
+    "19690027-671a-3cdd-a066-1d49a6c98797": "mbid:19690027-671a-3cdd-a066-1d49a6c98797",
+    "mbid:19690027-671a-3cdd-a066-1d49a6c98797": "mbid:19690027-671a-3cdd-a066-1d49a6c98797",
+    "31f1ec1c-32ca-497f-98ea-c15d864cbf28": "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28",
+    "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28": "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28",
+    "17579de2-f1e4-4e0e-a4c7-e18106026c40": "mbid:17579de2-f1e4-4e0e-a4c7-e18106026c40",
+    "mbid:17579de2-f1e4-4e0e-a4c7-e18106026c40": "mbid:17579de2-f1e4-4e0e-a4c7-e18106026c40",
+    "e8763082-bb41-34ab-8d6e-b9332f0ac105": "mbid:e8763082-bb41-34ab-8d6e-b9332f0ac105",
+    "mbid:e8763082-bb41-34ab-8d6e-b9332f0ac105": "mbid:e8763082-bb41-34ab-8d6e-b9332f0ac105",
+    "74d35ab7-661c-4bb1-a66b-04a6b7565133": "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133",
+    "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133": "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133",
+    "85f2a42e-ccfe-407a-afb9-168e5d7fd4d4": "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+    "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4": "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+    "26689f1e-99f2-3b92-b1bd-3aafb516a8cf": "mbid:26689f1e-99f2-3b92-b1bd-3aafb516a8cf",
+    "mbid:26689f1e-99f2-3b92-b1bd-3aafb516a8cf": "mbid:26689f1e-99f2-3b92-b1bd-3aafb516a8cf",
+    "0b6ebbbf-c499-4632-86b5-e257c1c43380": "mbid:0b6ebbbf-c499-4632-86b5-e257c1c43380",
+    "mbid:0b6ebbbf-c499-4632-86b5-e257c1c43380": "mbid:0b6ebbbf-c499-4632-86b5-e257c1c43380",
+    "0b807347-a7df-4d46-9e42-852cb81ea701": "mbid:0b807347-a7df-4d46-9e42-852cb81ea701",
+    "mbid:0b807347-a7df-4d46-9e42-852cb81ea701": "mbid:0b807347-a7df-4d46-9e42-852cb81ea701",
+    "3be0716c-2af4-4466-b686-7d0769799998": "mbid:3be0716c-2af4-4466-b686-7d0769799998",
+    "mbid:3be0716c-2af4-4466-b686-7d0769799998": "mbid:3be0716c-2af4-4466-b686-7d0769799998",
+    "af031ce1-caea-483b-9326-287825f4e667": "mbid:af031ce1-caea-483b-9326-287825f4e667",
+    "mbid:af031ce1-caea-483b-9326-287825f4e667": "mbid:af031ce1-caea-483b-9326-287825f4e667",
+    "b910e97f-89ea-4ea0-aa88-4cfbdee22d8b": "mbid:b910e97f-89ea-4ea0-aa88-4cfbdee22d8b",
+    "mbid:b910e97f-89ea-4ea0-aa88-4cfbdee22d8b": "mbid:b910e97f-89ea-4ea0-aa88-4cfbdee22d8b",
+    "1eac23c6-2b7a-4317-945c-c70e6bf9df84": "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84",
+    "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84": "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84",
+    "028ce608-4c7b-45cf-9230-fcc52d6f1902": "mbid:028ce608-4c7b-45cf-9230-fcc52d6f1902",
+    "mbid:028ce608-4c7b-45cf-9230-fcc52d6f1902": "mbid:028ce608-4c7b-45cf-9230-fcc52d6f1902",
+    "caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b": "mbid:caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b",
+    "mbid:caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b": "mbid:caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b",
+    "4346d7c9-c6da-4610-b81e-9e2e892b7fde": "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+    "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde": "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+    "a55df03b-b6de-4240-a816-e9392fc7e270": "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
+    "mbid:a55df03b-b6de-4240-a816-e9392fc7e270": "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
+    "d6e2c73d-7d12-4b48-8cf4-85063c45e4df": "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+    "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df": "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+    "15a01c36-59b4-4bb1-9c94-92d14773f573": "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573",
+    "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573": "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573"
   },
   "name_candidates": {
     "carpenter brut\u0000le perv": [
@@ -506,6 +860,156 @@
     ],
     "chromatics\u0000lady": [
       "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f"
+    ],
+    "drowning pool\u0000bodies": [
+      "source:431a1b60594bc252"
+    ],
+    "jasper byrne\u0000miami - original mix": [
+      "source:13aca5d59b80a3af"
+    ],
+    "papa roach\u0000last resort": [
+      "source:c400f603bf5adaca"
+    ],
+    "ailifdopa\u0000my goblin": [
+      "source:edc4a17f75855dc1"
+    ],
+    "bruvvy\u0000devour": [
+      "source:0f303fb209c0e658"
+    ],
+    "duke & jones\u0000synthetic": [
+      "source:ebc42dab1e419a01"
+    ],
+    "mac&wester\u0000somehow": [
+      "source:47f5534c1666485c"
+    ],
+    "blind graph\u0000six": [
+      "source:ee15880a42f8fcf5"
+    ],
+    "sun araw\u0000horse steppin’": [
+      "source:958dc50e348cd43c"
+    ],
+    "jasper byrne\u0000voyager - original mix": [
+      "source:38626a1e79895603"
+    ],
+    "perturbator\u0000sexualizer (feat. flash arnold)": [
+      "source:a574931a14f9521f"
+    ],
+    "jasper byrne\u0000hotline - original mix": [
+      "source:e23ae5447ffa7d6d"
+    ],
+    "m|o|o|n\u0000warehouse": [
+      "source:d04be44c4d28beb1"
+    ],
+    "naeleck\u0000virtual gaming": [
+      "source:6da266f575b0c5bd"
+    ],
+    "daft punk\u0000encom part 2 - remixed by com truise": [
+      "source:0a40ca816b9a3261"
+    ],
+    "fukkk offf\u0000pacific coast highway": [
+      "source:8c3f12aef208bcf0"
+    ],
+    "naeleck\u0000all my heroes": [
+      "source:803dd653bfb62c4b"
+    ],
+    "perturbator\u0000technoir (feat. noir deco)": [
+      "source:e75e10ecee06a7e5"
+    ],
+    "com truise\u0000space dust (bonus track)": [
+      "source:80f9b2cc6d7350c5"
+    ],
+    "electric youth\u0000faces": [
+      "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178"
+    ],
+    "lazerhawk\u0000electric groove": [
+      "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb"
+    ],
+    "lazerhawk\u0000so far away": [
+      "mbid:6b0569cf-e6e0-3901-ba3b-fddbd9c4ef58"
+    ],
+    "lazerhawk\u0000star hustler": [
+      "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927"
+    ],
+    "light club\u0000fahkeet": [
+      "mbid:a4405383-6acf-4558-bded-4651f01d61cb"
+    ],
+    "magic sword\u0000the way home": [
+      "mbid:d9213aec-a0ba-4b1a-aae6-d51fa6358a51"
+    ],
+    "mega drive\u0000narc": [
+      "mbid:959551d6-45c6-40ec-acb9-512d08214a30"
+    ],
+    "m|o|o|n\u0000plus four": [
+      "mbid:283b11a2-6be1-469a-bc7b-37ed39cfc8b4"
+    ],
+    "naeleck\u0000kaboom": [
+      "source:1d49f490800262e3"
+    ],
+    "smitech wesson\u0000whisper - the toxic avenger remix": [
+      "source:e1ca3985d21861f5"
+    ],
+    "castanets\u0000you are the blood": [
+      "mbid:19690027-671a-3cdd-a066-1d49a6c98797"
+    ],
+    "riddarna\u0000simma hem": [
+      "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28"
+    ],
+    "desire\u0000under your spell": [
+      "mbid:17579de2-f1e4-4e0e-a4c7-e18106026c40"
+    ],
+    "jasper byrne\u0000hotline - analogue mix": [
+      "source:549f4b544dd2c298"
+    ],
+    "lazerhawk\u0000visitors": [
+      "mbid:e8763082-bb41-34ab-8d6e-b9332f0ac105"
+    ],
+    "light club\u0000she meditates": [
+      "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133"
+    ],
+    "lukhash\u0000code veronica": [
+      "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4"
+    ],
+    "mitch murder\u0000hollywood heights": [
+      "mbid:26689f1e-99f2-3b92-b1bd-3aafb516a8cf"
+    ],
+    "perturbator\u0000vengeance (the return of the night driving avenger)": [
+      "mbid:0b6ebbbf-c499-4632-86b5-e257c1c43380"
+    ],
+    "m|o|o|n\u0000quixotic": [
+      "mbid:0b807347-a7df-4d46-9e42-852cb81ea701"
+    ],
+    "mitch murder\u0000frantic aerobics": [
+      "mbid:3be0716c-2af4-4466-b686-7d0769799998"
+    ],
+    "modulogeek\u0000aimlessly": [
+      "mbid:af031ce1-caea-483b-9326-287825f4e667"
+    ],
+    "naeleck\u0000danse macabre - macrowave remix": [
+      "source:ad6b6663b42a80e6"
+    ],
+    "the green kingdom\u0000untitled 2": [
+      "mbid:b910e97f-89ea-4ea0-aa88-4cfbdee22d8b"
+    ],
+    "sun araw\u0000deep cover": [
+      "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84"
+    ],
+    "modulogeek\u0000walking": [
+      "mbid:028ce608-4c7b-45cf-9230-fcc52d6f1902"
+    ],
+    "royal blood\u0000figure it out": [
+      "mbid:caab5c9c-3cfc-4ec9-9c2b-c6650f9fdc5b"
+    ],
+    "candy claws\u0000pangaea girls (magic feeling)": [
+      "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde"
+    ],
+    "candy claws\u0000night ela (mystic thing)": [
+      "mbid:a55df03b-b6de-4240-a816-e9392fc7e270"
+    ],
+    "candy claws\u0000fell in love (at the water)": [
+      "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df"
+    ],
+    "candy claws\u0000new forest (five heads of the sun)": [
+      "mbid:15a01c36-59b4-4bb1-9c94-92d14773f573"
     ]
   },
   "artists": {
@@ -596,6 +1100,106 @@
     "mbid:c89ea689-c053-4d97-bada-8b81a6236f58": {
       "path": "artists/mb/mbid-c89ea689-c053-4d97-bada-8b81a6236f58/artist.json",
       "name": "Chromatics"
+    },
+    "name:cd27c0bb981ec039": {
+      "path": "artists/na/name-cd27c0bb981ec039/artist.json",
+      "name": "Drowning Pool"
+    },
+    "name:70e855a2e6b11745": {
+      "path": "artists/na/name-70e855a2e6b11745/artist.json",
+      "name": "Jasper Byrne"
+    },
+    "mbid:c5eb9407-caeb-4303-b383-6929aa94021c": {
+      "path": "artists/mb/mbid-c5eb9407-caeb-4303-b383-6929aa94021c/artist.json",
+      "name": "Papa Roach"
+    },
+    "name:325aff08d2fb3cb7": {
+      "path": "artists/na/name-325aff08d2fb3cb7/artist.json",
+      "name": "AILIFDOPA"
+    },
+    "mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e": {
+      "path": "artists/mb/mbid-a02cddf5-9f57-49bd-9ef0-ba503fbd274e/artist.json",
+      "name": "BRUVVY"
+    },
+    "mbid:2aa4444d-74ff-4cfd-8f29-68919bdf3871": {
+      "path": "artists/mb/mbid-2aa4444d-74ff-4cfd-8f29-68919bdf3871/artist.json",
+      "name": "Duke & Jones"
+    },
+    "name:8a06012964e5f2d1": {
+      "path": "artists/na/name-8a06012964e5f2d1/artist.json",
+      "name": "Mac&Wester"
+    },
+    "name:d273b9c97cfe8ea4": {
+      "path": "artists/na/name-d273b9c97cfe8ea4/artist.json",
+      "name": "BLIND GRAPH"
+    },
+    "name:5ae6a6b3091e8e73": {
+      "path": "artists/na/name-5ae6a6b3091e8e73/artist.json",
+      "name": "Sun Araw"
+    },
+    "mbid:024056d4-cb6a-44ff-ae9e-3510fef2bfac": {
+      "path": "artists/mb/mbid-024056d4-cb6a-44ff-ae9e-3510fef2bfac/artist.json",
+      "name": "Naeleck"
+    },
+    "mbid:056e4f3e-d505-4dad-8ec1-d04f521cbb56": {
+      "path": "artists/mb/mbid-056e4f3e-d505-4dad-8ec1-d04f521cbb56/artist.json",
+      "name": "Daft Punk"
+    },
+    "name:6f3f7190673b4bd6": {
+      "path": "artists/na/name-6f3f7190673b4bd6/artist.json",
+      "name": "Fukkk Offf"
+    },
+    "mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f": {
+      "path": "artists/mb/mbid-a0b2868c-22c7-49eb-b227-3c4251a6c88f/artist.json",
+      "name": "Electric Youth"
+    },
+    "mbid:87c59ab5-5f5d-46f4-87e3-c604abb2bb67": {
+      "path": "artists/mb/mbid-87c59ab5-5f5d-46f4-87e3-c604abb2bb67/artist.json",
+      "name": "Magic Sword"
+    },
+    "name:23be5c4059fc326f": {
+      "path": "artists/na/name-23be5c4059fc326f/artist.json",
+      "name": "Smitech Wesson"
+    },
+    "mbid:e45cc18b-8cda-423b-8763-91e0303614e3": {
+      "path": "artists/mb/mbid-e45cc18b-8cda-423b-8763-91e0303614e3/artist.json",
+      "name": "Castanets"
+    },
+    "mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07": {
+      "path": "artists/mb/mbid-a154c8d8-f3b5-4af3-ba61-c4943ca7ec07/artist.json",
+      "name": "Riddarna"
+    },
+    "name:c3c84bf0c498946f": {
+      "path": "artists/na/name-c3c84bf0c498946f/artist.json",
+      "name": "Desire"
+    },
+    "mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d": {
+      "path": "artists/mb/mbid-ed9e6bc3-9714-4b07-a401-30fbf0a60d4d/artist.json",
+      "name": "LukHash"
+    },
+    "mbid:5a2b9dd6-b605-4f90-9b08-fa4f54e40330": {
+      "path": "artists/mb/mbid-5a2b9dd6-b605-4f90-9b08-fa4f54e40330/artist.json",
+      "name": "Mitch Murder"
+    },
+    "mbid:e643d8c1-7558-43bf-8254-e7952a695c18": {
+      "path": "artists/mb/mbid-e643d8c1-7558-43bf-8254-e7952a695c18/artist.json",
+      "name": "ModuloGeek"
+    },
+    "name:7187cfde22241127": {
+      "path": "artists/na/name-7187cfde22241127/artist.json",
+      "name": "Naeleck"
+    },
+    "mbid:cbb80330-0a12-4728-b91a-cb71be725ad3": {
+      "path": "artists/mb/mbid-cbb80330-0a12-4728-b91a-cb71be725ad3/artist.json",
+      "name": "The Green Kingdom"
+    },
+    "mbid:521c4601-9145-41d4-8275-6644eca4fab2": {
+      "path": "artists/mb/mbid-521c4601-9145-41d4-8275-6644eca4fab2/artist.json",
+      "name": "Sun Araw"
+    },
+    "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48": {
+      "path": "artists/mb/mbid-da5eaa3b-397e-4af8-9a12-5c4ec93e8b48/artist.json",
+      "name": "Candy Claws"
     }
   },
   "albums": {},

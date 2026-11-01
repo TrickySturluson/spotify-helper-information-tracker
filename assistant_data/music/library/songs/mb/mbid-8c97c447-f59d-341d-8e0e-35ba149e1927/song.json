@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927",
+  "identity": {
+    "artist": "Lazerhawk",
+    "title": "Star Hustler",
+    "album": "",
+    "artist_id": "mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b",
+    "album_id": null,
+    "recording_mbid": "8c97c447-f59d-341d-8e0e-35ba149e1927",
+    "spotify_id": null,
+    "source_track_id": "mbid:8c97c447-f59d-341d-8e0e-35ba149e1927",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:59.996484+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T06:00:00.638950+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-b9e46d1a-9068-4615-9200-90b3d5eae68b/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 18,
+    "all_time_plays": 18
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84",
+  "identity": {
+    "artist": "Sun Araw",
+    "title": "Deep Cover",
+    "album": "",
+    "artist_id": "mbid:521c4601-9145-41d4-8275-6644eca4fab2",
+    "album_id": null,
+    "recording_mbid": "1eac23c6-2b7a-4317-945c-c70e6bf9df84",
+    "spotify_id": null,
+    "source_track_id": "mbid:1eac23c6-2b7a-4317-945c-c70e6bf9df84",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T06:00:42.069523+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T06:00:42.720089+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-521c4601-9145-41d4-8275-6644eca4fab2/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 14,
+    "all_time_plays": 38
+  }
+}
