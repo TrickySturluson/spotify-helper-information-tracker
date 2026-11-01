@@ -1,3 +1,13 @@
+## 2026-11-01 — Goal workspaces merged and project-wide loose ends audited
+
+- **Goal:** make each project objective independently recallable and ensure unfinished requirements from repository history and prior SHIT conversations are not lost.
+- **Work:** merged PR #67 (squash) as `4ad701c2c4f36b9f6f73926e83db1f84cbfbcc2c`; added seven goal workspaces with README/ACTIONS histories. Added `project/LOOSE_ENDS.md` as the cross-project audit index and updated each goal action log with verified findings, failed checks, constraints and next steps.
+- **Verification:** PR #67 `tests` passed; `Scan complete Git history for secrets` passed. Documentation-only; no canonical Library records, provider checkpoints, listening history or Spotify playlists modified.
+- **Newly recorded:** run #17 publication recovery; PR #65 unit-test failure; PR #60 unit-test and secret-scan failures; duration analytics checklist; provider gaps; recommendation/deep-cut requirements; Booze or Boos! sequence preview and live-count discrepancy; per-file documentation coverage; shared generated-data publication concurrency.
+- **Important distinction:** PR #60 and #65 are still open and their failures are not diagnosed. The retry queue remains a specification. Great Migration run #17 remains unpublished/unverified until artifact inspection, fresh audit and publication checks.
+- **Next action:** inspect Great Migration run #17 artifact and backup; keep playlist writes paused until migration recovery is complete.
+- **References:** PR #67 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/67; PR #60 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60; PR #65 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65; run #17 https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
+
 # SHIT Project Log
 
 ## 2026-11-01 — Per-goal workspaces established
