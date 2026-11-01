@@ -1,5 +1,13 @@
 # Spotify Helper & Information Tracker (SHIT)
 
+**Canonical repository:** https://github.com/TrickySturluson/spotify-helper-information-tracker
+
+The project name is **Spotify Helper & Information Tracker**; **SHIT** is its shorthand. The repository was renamed from `tricky-lastfm`, so update an existing local clone with:
+
+```bash
+git remote set-url origin https://github.com/TrickySturluson/spotify-helper-information-tracker.git
+```
+
 **Spotify Helper & Information Tracker (SHIT)** is the home for Spotify playlist intelligence, playlist curation and safety tooling, personal listening analytics, and the canonical Last.fm scrobble archive for **TrickySturluson**.
 
 The project combines Spotify's live playlist and playback interfaces with Last.fm's long-term scrobble history. Spotify playlist operations are handled separately from the historical analytics archive, with read-only inspection and preview-first safeguards for changes.
@@ -50,6 +58,8 @@ The scheduled GitHub Actions workflow imports new scrobbles, incrementally enric
 `build_music_metadata.py` builds `assistant_data/music/` from the canonical scrobble archive. It uses Last.fm `track.getInfo` to retrieve track duration in milliseconds, preferring a track MBID when present and otherwise querying artist + title without autocorrection. It verifies returned artist/title labels before accepting a duration. Exact MBID matches are marked high confidence; exact artist/title matches without an ID are medium confidence. Missing or ambiguous results remain unknown and are retried after 30 days.
 
 The catalogue is split into 32 fixed artist-hash shards to avoid thousands of tiny files. `indexes/artists.json` maps artist IDs to shard files; `indexes/tracks.json` maps track IDs to their artist/shard. Each artist entry contains its albums and track records. `overview.json` reports metadata coverage, known-duration full-track-equivalent hours, and a known-duration minimum qualifying-time estimate. Last.fm's documented scrobble rule requires at least half the track or four minutes, whichever comes first (for tracks longer than 30 seconds); the scrobble may be submitted as soon as that threshold is met. The minimum is a theoretical lower bound for the matched subset, not proof of actual playback. Full-track-equivalent assumes every scrobble played the whole track. Unknown-duration scrobbles are excluded from both duration totals. The original scrobble archive is never modified.
+
+For tempo/key enrichment, SHIT first uses the historical AcousticBrainz bulk archive and can optionally query GetSongBPM as a strict-match fallback. GetSongBPM requires a registered API key and a backlink; see [GetSongBPM setup](docs/GETSONGBPM.md).
 
 The daily workflow fills the Last.fm duration cache gradually (120 unique-track lookups per run by default); subsequent runs query only missing/unmatched entries. The **Enrich Music Metadata** workflow now runs automatically once a week (Monday 08:17 UTC) in small batches, in addition to remaining manually dispatchable with larger lookup limits. Scheduled runs use conservative limits (300 MusicBrainz duration lookups, 100 artist profiles, and 120 track profiles); manual runs retain their selectable larger limits. A concurrency group prevents overlapping enrichment runs from racing to commit generated data. It uses MusicBrainz as a secondary source for unresolved durations, builds artist genre/mood/theme profiles from Last.fm community tags, and independently enriches individual tracks with Last.fm and MusicBrainz tags. MusicBrainz requests are limited to roughly one per second. Artist profiles preserve the original community tags and separately expose conservative genre/mood/theme subsets; tags are community-sourced and should be treated as descriptive signals, not definitive classifications. To backfill the entire catalogue on demand, use **Actions → Backfill Music Durations → Run workflow**. It processes up to 12,000 unique tracks in one run, commits the resulting cache, and can be run again if Last.fm rate limits interrupt it. Successfully resolved tracks are cached, so reruns resume rather than repeat completed lookups. Unmatched records are retained and retried after 30 days. The backfill uses Last.fm's `track.getInfo` endpoint and waits between requests to reduce rate-limit pressure.
 
