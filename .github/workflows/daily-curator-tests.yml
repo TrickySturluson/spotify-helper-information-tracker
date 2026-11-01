@@ -39,7 +39,7 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: GitHub Actions workflow "Daily curator tests".
-# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
+# Trigger: Pull requests targeting main and pushes to main or feature/tricky-daily-curator.
 # Behavior: Automates the job steps declared in this workflow, including its
 #           runtime setup, permissions, dependencies, and repository changes.
 # Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
