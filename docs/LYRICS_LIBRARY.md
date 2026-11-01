@@ -17,7 +17,8 @@ The lookup checks these sources independently, so one unavailable provider does 
 
 1. **LRCLIB** — open API, exact title/artist match, with optional album and duration to reduce mismatches. The client identifies itself and waits between requests; it respects rate-limit responses.
 2. **Musixmatch** — official API, enabled when `MUSIXMATCH_API_KEY` is set. Use an API key issued for an account whose plan and terms permit the intended use. The API may return only a licensed excerpt/snippet.
-3. **Genius** — official API, enabled when `GENIUS_ACCESS_TOKEN` is set. Used for song/artist identity and a canonical song-page URL only. Genius's public developer API does not provide full lyrics; SHIT does not scrape Genius pages or bypass its restrictions.
+3. **Lyrics.ovh** — open lyrics endpoint, used as a third text-lyrics fallback. Coverage and availability vary.
+4. **Genius** — official API, enabled when `GENIUS_ACCESS_TOKEN` is set. Used for song/artist identity and a canonical song-page URL only. Genius's public developer API does not provide full lyrics; SHIT does not scrape Genius pages or bypass its restrictions.
 
 Set optional credentials in the local environment, never in source code or committed config:
 
@@ -26,7 +27,7 @@ export MUSIXMATCH_API_KEY="..."
 export GENIUS_ACCESS_TOKEN="..."
 ```
 
-LRCLIB is queried even when no API credentials are configured. Missing credentials and provider failures are reported separately from a genuine no-match. Provider availability and API terms can change; each provider remains independently optional.
+LRCLIB and Lyrics.ovh are queried even when no API credentials are configured. Missing credentials and provider failures are reported separately from a genuine no-match. Provider availability and API terms can change; each provider remains independently optional.
 
 ## What is analyzed
 
