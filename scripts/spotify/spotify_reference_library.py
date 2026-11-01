@@ -7,11 +7,17 @@ writes dated snapshots. It never changes Spotify playlists.
 """
 import argparse
 import json
+import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 import spotify_playlist_manager as manager
+from scripts.music.music_library import MusicLibrary
 
 ROOT = Path("assistant_data/spotify")
 CATALOG = ROOT / "playlists.json"
@@ -123,6 +129,7 @@ def sync(sp):
     catalog = []
     index_tracks, index_artists = defaultdict(list), defaultdict(list)
     changed = 0
+    library_rows = []
     seen_ids = set()
     for playlist in sp.playlists():
         # Spotify pagination can occasionally repeat a playlist across pages.
@@ -170,6 +177,36 @@ def sync(sp):
                 index_tracks[uri].append(pid)
             for artist in item.get("artists", []):
                 index_artists[artist.casefold()].append(pid)
+            if item.get("type") == "track" and item.get("name") and item.get("artists"):
+                spotify_id = item.get("id") or (uri.rsplit(":", 1)[-1] if uri else None)
+                if spotify_id:
+                    library_rows.append({
+                        "track_id": uri or ("spotify:track:" + str(spotify_id)),
+                        "spotify_id": spotify_id,
+                        "artist": item["artists"][0],
+                        "artist_spotify_id": (item.get("artist_ids") or [None])[0],
+                        "track": item["name"],
+                        "album": item.get("album") or "",
+                        "spotify_album_id": item.get("album_id"),
+                        "duration_ms": item.get("duration_ms"),
+                        "isrc": (item.get("external_ids") or {}).get("isrc"),
+                        "playlist_sources": [pid],
+                        "playlist_positions": [{
+                            "playlist_id": pid, "position": item.get("position"),
+                            "playlist_name": record.get("name"),
+                            "snapshot_id": record.get("snapshot_id"),
+                        }],
+                        "listening_context": {
+                            "source": "Spotify reference-library snapshot",
+                            "playlist_ids": [pid],
+                        },
+                    })
+    if library_rows:
+        library_result = MusicLibrary().put_catalogue(library_rows)
+        print("Canonical music library updated from Spotify snapshots: "
+              f"{library_result['songs']:,} songs, "
+              f"{library_result['artists']:,} artists, "
+              f"{library_result['albums']:,} albums.")
     catalog.sort(key=lambda row: (row["name"] or "").casefold())
     manager.write(CATALOG, {"version": 1, "captured_at": stamp(), "playlist_count": len(catalog), "playlists": catalog})
     manager.write(INDEX, {
