@@ -286,6 +286,7 @@ def transition_report(left, right):
     evidence_count += int(energy_known)
     confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
     label = ("uncertain" if evidence_count == 0 else
+             "provisional" if confidence == "limited" else
              "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
     return {"cost": round(cost, 4), "label": label,
             "confidence": confidence, "evidence_count": evidence_count,
@@ -323,7 +324,8 @@ def transition_summary(scored):
     pairs = [transition_report(a, b) for a, b in zip(scored, scored[1:])]
     counts = Counter(row["label"] for row in pairs)
     return {"pairs": pairs, "gentle": counts["gentle"], "moderate": counts["moderate"],
-            "potential_jumps": counts["potential jump"], "uncertain": counts["uncertain"],
+            "potential_jumps": counts["potential jump"], "provisional": counts["provisional"],
+            "uncertain": counts["uncertain"],
             "limited_evidence": sum(row["confidence"] == "limited" for row in pairs)}
 
 
@@ -584,6 +586,7 @@ def alternative_preview_message(path, summary):
         f"Alternative preview: {path} | gentle: {summary['gentle']} "
         f"| moderate: {summary['moderate']} "
         f"| potential jumps: {summary['potential_jumps']} "
+        f"| provisional: {summary.get('provisional', 0)} "
         f"| uncertain: {summary.get('uncertain', 0)}"
     )
 
@@ -639,7 +642,7 @@ def main():
         print(f'Direction: {args.direction}; {len(plan["operations"])} reorder operation(s).')
         summary = transition_summary(scored)
         print("Journey: " + args.journey + "; peak target: " + str(args.peak_position) + "% (" + args.peak_shape + ").")
-        print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " potential jumps, " + str(summary["uncertain"]) + " uncertain (no evidence); limited evidence=" + str(summary["limited_evidence"]) + ".")
+        print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " supported potential jumps, " + str(summary["provisional"]) + " provisional (limited evidence), " + str(summary["uncertain"]) + " uncertain (no evidence).")
         confidence_counts = confidence_summary(scored)
         print("Audio analysis profiles loaded: " + str(len(audio_profiles)))
         print("Proposed sequence (position | energy | confidence | group | track):")
