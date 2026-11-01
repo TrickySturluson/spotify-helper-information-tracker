@@ -271,6 +271,25 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertNotEqual(artists[0], artists[1])
         self.assertNotEqual(artists[1], artists[2])
 
+    def test_explicit_sections_remain_contiguous_and_in_declared_order(self):
+        items = [
+            {"uri": uri, "name": uri, "artists": [artist]}
+            for uri, artist in [
+                ("f2", "Final Artist"), ("c2", "Club Artist"),
+                ("f1", "Final Artist"), ("o2", "Opening Artist"),
+                ("c1", "Club Artist"), ("o1", "Opening Artist"),
+            ]
+        ]
+        sections = {
+            "Opening": ["o1", "o2"],
+            "Club": ["c1", "c2"],
+            "Finale": ["f1", "f2"],
+        }
+        result = sequencer.sequence_tracks(items, sections=sections)
+        ranks = {"o1": 0, "o2": 0, "c1": 1, "c2": 1, "f1": 2, "f2": 2}
+        actual = [ranks[row["item"]["uri"]] for row in result]
+        self.assertEqual(actual, sorted(actual))
+
 
 if __name__ == "__main__":
     unittest.main()
