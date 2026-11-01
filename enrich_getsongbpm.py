@@ -123,12 +123,14 @@ def main():
             "status": "matched" if row else "no_exact_unique_match",
         }
         if row:
-            profile_key = "getsongbpm:" + cache_key
             profile = indexed.get((norm(artist), norm(title))) or {
                 "artist": artist, "track": title,
             }
+            profile_key = next((key for key, value in profiles.items() if value is profile), "getsongbpm:" + cache_key)
             try:
                 tempo = float(row.get("tempo")) if row.get("tempo") not in (None, "") else None
+                if tempo is not None and not 40 <= tempo <= 300:
+                    tempo = None
             except (TypeError, ValueError):
                 tempo = None
             profile["getsongbpm"] = {
