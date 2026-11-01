@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "name:cd27c0bb981ec039",
+  "artist": "Drowning Pool",
+  "identity": {
+    "artist_mbid": null,
+    "identity_quality": "name_fallback"
+  },
+  "evidence": {},
+  "album_ids": []
+}

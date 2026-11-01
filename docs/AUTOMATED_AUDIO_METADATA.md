@@ -75,9 +75,11 @@ stream audio is not downloaded or extracted by this pipeline.
 
 ## Album-level community metadata
 
-The daily **Enrich Music Metadata** workflow also builds `assistant_data/music/album_profiles.json` using Last.fm's `album.getTopTags` endpoint. It deduplicates by normalized artist + album, prioritizes configured playlist snapshots and recent listening, and performs one lookup per album rather than one request per track. Responses must include an exact artist and album identity match before tags are accepted.
+The daily **Enrich Music Metadata** workflow builds `assistant_data/music/album_profiles.json` with Last.fm's `album.getInfo` endpoint. One request per unique normalized artist + album can return the ordered tracklist, per-track duration and recording MBID when supplied, a short wiki summary, community tags, artwork URL, and the provider album URL. Playlist snapshots and recent listening determine lookup priority. The response must contain an exact artist and album identity match before any fields are accepted.
 
-The album-profile cache stores raw tag labels/counts, provider, identity-verification status, check time, result status, and retry-after. Empty results are cached for 30 days; provider-wide cooldowns stop a run cleanly. Requests are sequential with a 0.4-second minimum delay and a 100-album daily batch. This is release-level context: album tags are never treated as track-specific evidence or acoustic measurements. The sequencer may use them only as a low-confidence fallback (after track tags, before artist tags), and reports the source as `lastfm_album`.
+Only the short summary is retained (maximum 600 characters); the full community wiki content is deliberately not copied. Tracklist entries retain position, title, artist credit, duration, recording MBID, and source. The album profile stores provider, identity-verification status, check time, result status, and retry-after. Empty/missing results are cached; provider-wide cooldowns stop a run cleanly. Requests remain sequential, delayed, and bounded by the daily album limit.
+
+During local migration, exact verified album profiles are attached to album records in The Library. A tracklist is release-scoped evidence: it does not automatically create or verify individual song records, and album tags/styles never become track-specific acoustic measurements. The sequencer may use album tags only as low-confidence mood context when track tags are absent.
 
 ## Evidence confidence and redundancy
 
@@ -90,3 +92,14 @@ The sequencer reports acoustic and semantic confidence independently:
 - **Source dependence matters.** MusicBrainz tags, Last.fm tags, Discogs release styles, and lyric themes are descriptive and may be correlated. Several similar tags do not count as several acoustic confirmations.
 
 For an evidence-focused preview, run the sorter as usual and read the separate acoustic/semantic confidence counts and tempo-source agreement summary. The playlist manager remains the only route to applying a reorder; all changes remain previewed, locked by default, and confirmation-gated.
+
+
+## Identity and metadata confidence
+
+The Library exposes an explainable lookup result through `MusicLibrary.lookup_song()`. It reports whether a result matched, remained ambiguous, or was missing; the exact identifier/matching path; all candidate song IDs for unresolved name collisions; and a categorical identity-confidence label. `get_song()` remains backward-compatible and includes the explanation under `lookup_audit`.
+
+Lookup priority is Spotify track ID, MusicBrainz recording MBID, ISRC, stable source-track ID, verified release MBID + disc/track position, then exact artist/title (with exact album disambiguation). Stable provider IDs can resolve an entity directly. A release-position match requires one indexed song at that exact release/disc/track position. Exact names remain medium confidence at best; source-profile IDs remain low confidence. Ambiguous matches are never selected automatically.
+
+Field confidence is separate from identity confidence. `scripts/music/music_evidence.py` evaluates one metadata field at a time using independent source families, explicit conflicts, and field-specific authoritative evidence. Duplicate observations from one provider family do not count as corroboration. A disagreement is retained and lowers confidence. These labels are categorical assessments, not calibrated probabilities, and semantic metadata cannot promote acoustic confidence.
+
+See [Album metadata and lookup confidence](ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md) and [The Library](PER_RECORDING_MUSIC_LIBRARY.md) for the storage and audit model.

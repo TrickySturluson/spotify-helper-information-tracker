@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:2bcee108-1442-4ac6-b020-df056cf067b4",
+  "artist": "Mega Drive",
+  "identity": {
+    "artist_mbid": "2bcee108-1442-4ac6-b020-df056cf067b4",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

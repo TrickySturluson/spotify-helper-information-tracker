@@ -2,7 +2,7 @@
 
 This catalogue was generated from the pull request's actual Git tree. It names every tracked file at this revision and states its role. It complements, rather than replaces, the more detailed bottom-of-file overviews and directory guides. Machine-readable files are documented here and in adjacent READMEs; their formats are intentionally not modified with comments.
 
-## .github (13 files)
+## .github (14 files)
 
 - `.github/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `.github/spotify_api_cooldown.json` — Persisted Spotify Retry-After cooldown; prevents cloud commands from retrying during a quota restriction.
@@ -14,6 +14,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `.github/workflows/enrich-music-metadata.yml` — GitHub Actions automation for enrich music metadata.
 - `.github/workflows/playlist-manager-check.yml` — GitHub Actions automation for playlist manager check.
 - `.github/workflows/spotify-daily-feedback-observation.yml` — GitHub Actions automation for spotify daily feedback observation.
+- `.github/workflows/spotify-daily-midnight-cycle.yml` — DST-aware automatic Tricky Daily playlist rotation at midnight America/New_York.
 - `.github/workflows/spotify-playlist-manager.yml` — GitHub Actions automation for spotify playlist manager.
 - `.github/workflows/spotify-reference-library.yml` — GitHub Actions automation for spotify reference library.
 - `.github/workflows/update.yml` — GitHub Actions automation for update.
@@ -26,7 +27,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `requirements-audio-analysis.txt` — Optional dependency list for local Essentia audio analysis.
 - `sitecustomize.py` — Python startup hook that adds compat/ to the import path for legacy compatibility.
 
-## assistant_data (235 files)
+## assistant_data (238 files)
 
 - `assistant_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `assistant_data/advanced/artist_lifecycle.json` — Advanced historical listening analytics output for artist discovery, lifecycle, diversity, ranking, or session analysis.
@@ -120,6 +121,10 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `assistant_data/music/artists/shard-31.json` — One of 32 deterministic artist metadata shards, containing artist/album/track records and enrichment status.
 - `assistant_data/music/indexes/artists.json` — Lookup index for music metadata records; use it to locate the corresponding artist or track data.
 - `assistant_data/music/indexes/tracks.json` — Lookup index for music metadata records; use it to locate the corresponding artist or track data.
+- `assistant_data/music/library/README.md` — The Library root guide; documents the staged 100-song sample and migration boundaries.
+- `assistant_data/music/library/artists/README.md` — Directory guide for sharded artist records and artist-scoped evidence.
+- `assistant_data/music/library/albums/README.md` — Directory guide for release records, tracklists, and album-scoped evidence.
+- `assistant_data/music/library/songs/README.md` — Directory guide for sharded song records and identity aliases.
 - `assistant_data/music/manifest.json` — Music metadata manifest describing artist shards, indexes, source coverage, and metadata lookup policy.
 - `assistant_data/music/overview.json` — Music metadata coverage summary, duration confidence totals, lookup status, and output pointers.
 - `assistant_data/music/track_profiles.json` — Generated music metadata/enrichment output; consult docs/AUTOMATED_AUDIO_METADATA.md and the music manifest.
@@ -264,7 +269,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `assistant_data/years/2025.json` — Year-scoped historical listening aggregate for 2025.
 - `assistant_data/years/2026.json` — Year-scoped historical listening aggregate for 2026.
 
-## compat (34 files)
+## compat (37 files)
 
 - `compat/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `compat/__init__.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -291,11 +296,15 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `compat/playlist_intelligence.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/playlist_metadata.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_daily_feedback.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/spotify_daily_cycle.py` — Compatibility launcher for the Tricky Daily midnight cycle.
+- `compat/spotify_listening_trends.py` — Compatibility CLI for rolling listening-trends generation.
 - `compat/spotify_daily_playlist.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_discovery.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playback_tracker.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playlist_cloud.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playlist_manager.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/migrate_music_library.py` — Compatibility launcher for the local-only The Library song migration.
+- `compat/music_library.py` — Compatibility import for the canonical music-library API.
 - `compat/spotify_playlist_sequencer.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_reference_library.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/track_playlist_removals.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -308,15 +317,19 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `data/scrobbles.json` — Canonical raw Last.fm scrobble archive; historical listening source records.
 - `data/stats.json` — Archive-wide statistics snapshot, including explicitly estimated listening-time measures.
 
-## docs (13 files)
+## docs (16 files)
 
 - `docs/AUDIO_ANALYSIS.md` — Guide to measured/local audio analysis and its evidence limits.
 - `docs/AUDIO_MOOD_MODELS.md` — Optional local DEAM valence/arousal inference, provenance and model licensing.
 - `docs/AUTOMATED_AUDIO_METADATA.md` — Guide to automated metadata enrichment and provenance.
+- `docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md` — Album tracklist/description storage, lookup hierarchy, and explainable confidence model.
 - `docs/BOOZE_OR_BOOS_SORT.md` — Operating guide for the Booze or Boos! playlist sorter.
 - `docs/CODE_DOCUMENTATION.md` — Conventions for maintained-file overviews and project documentation.
 - `docs/GETSONGBPM.md` — Guide to tempo lookup sources and confidence.
 - `docs/LYRICS_LIBRARY.md` — Guide to lyric/theme metadata and source handling.
+- `docs/PER_RECORDING_MUSIC_LIBRARY.md` — The Library storage layout, stable song identity rules, staged migration, and lazy lookup behavior.
+- `docs/PLAYLIST_FEEDBACK_CALIBRATION.md` — Playlist-scoped feedback, immutable fit predictions, conservative calibration diagnostics, and holdout safeguards.
+- `docs/TRICKY_DAILY_CYCLE.md` — Midnight Eastern rotation schedule, DST handling, neutral rotation feedback, safety checks, and recovery.
 - `docs/PUBLIC_REPOSITORY_PRIVACY.md` — Public-repository privacy and secret-handling safeguards.
 - `docs/RECENT_TRACK_ENRICHMENT.md` — Workflow for prioritizing recent listening metadata.
 - `docs/REPOSITORY_FILE_INDEX.md` — Catalogue of tracked files and their roles.
@@ -329,7 +342,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `playback_data/.gitkeep` — Placeholder preserving the measured Spotify playback archive directory before records exist.
 - `playback_data/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 
-## scripts (38 files)
+## scripts (42 files)
 
 - `scripts/README.md` — Directory guide explaining the purpose, contents, and maintenance rules for this folder.
 - `scripts/__init__.py` — Python package initializer for scripts.
@@ -337,7 +350,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/analytics/audit_project.py` — Maintained implementation module for audit project. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_advanced_analytics.py` — Maintained implementation module for build advanced analytics. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/analyze_audio_mood.py` — Optional local DEAM valence/arousal inference with model/source provenance. See its bottom FILE OVERVIEW for detailed behavior.
-- `scripts/music/build_album_profiles.py` — Incremental Last.fm album-tag enrichment with identity validation and cooldowns. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/build_album_profiles.py` — Incremental Last.fm album metadata enrichment with identity validation, ordered tracklists, summaries, and cooldowns. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_assistant_data.py` — Maintained implementation module for build assistant data. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_listening_time_summary.py` — Maintained implementation module for build listening time summary. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/analytics/build_music_analytics.py` — Maintained implementation module for build music analytics. See its bottom FILE OVERVIEW for detailed behavior.
@@ -350,6 +363,9 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/build_music_metadata.py` — Maintained implementation module for build music metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_music_profiles.py` — Maintained implementation module for build music profiles. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_track_profiles.py` — Maintained implementation module for build track profiles. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/migrate_music_library.py` — Local-only, bounded or full migration from aggregate metadata to artist, album, and song records.
+- `scripts/music/music_library.py` — Canonical The Library song JSON storage, stable-ID index, ISRC/release-position lookup audit, and lazy lookup API.
+- `scripts/music/music_evidence.py` — Shared identity and field-level metadata confidence rules with source-family corroboration and conflict handling.
 - `scripts/music/enrich_acousticbrainz.py` — Maintained implementation module for multi-submission AcousticBrainz enrichment.
 - `scripts/music/enrich_discogs.py` — Optional exact-match Discogs release-context enrichment.
 - `scripts/music/enrich_getsongbpm.py` — Maintained implementation module for enrich getsongbpm. See its bottom FILE OVERVIEW for detailed behavior.
@@ -359,6 +375,9 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/lyrics_library.py` — Maintained implementation module for lyrics library. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/mood_inference.py` — Maintained implementation module for mood inference. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/__init__.py` — Python package initializer for scripts/spotify.
+- `scripts/spotify/playlist_feedback_calibration.py` — Playlist-scoped immutable prediction ledger and conservative fit-calibration diagnostics.
+- `scripts/spotify/spotify_daily_cycle.py` — DST-aware, backup-protected Tricky Daily midnight rotation runner.
+- `scripts/spotify/spotify_listening_trends.py` — Confidence-aware rolling listening momentum and taste-baseline profile.
 - `scripts/spotify/playlist_intelligence.py` — Maintained implementation module for playlist intelligence. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/playlist_metadata.py` — Maintained implementation module for playlist metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/spotify_daily_feedback.py` — Maintained implementation module for spotify daily feedback. See its bottom FILE OVERVIEW for detailed behavior.
@@ -371,7 +390,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/spotify/spotify_reference_library.py` — Maintained implementation module for spotify reference library. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/track_playlist_removals.py` — Maintained implementation module for track playlist removals. See its bottom FILE OVERVIEW for detailed behavior.
 
-## tests (19 files)
+## tests (22 files)
 
 - `tests/__init__.py` — Automated regression tests for   init  .
 - `tests/test_audio_analysis.py` — Automated regression tests for audio analysis.
@@ -383,7 +402,13 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `tests/test_enrich_getsongbpm.py` — Automated regression tests for enrich getsongbpm.
 - `tests/test_lyrics_library.py` — Automated regression tests for lyrics library.
 - `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.
+- `tests/test_library_album_example.py` — Regression tests for Ceres & Calypso album lookup, linked song context, and release-tracklist identity boundaries.
+- `tests/test_music_library.py` — Automated regression tests for song identity, lookup, staged migration selection, and evidence preservation.
+- `tests/test_music_library_batch.py` — Integration tests against the committed 100-song Library batch and playlist-sequencer loading.
+- `tests/test_music_evidence.py` — Regression tests for confidence categories and independent source-family corroboration.
+- `tests/test_music_evidence_integration.py` — Integration tests for ISRC/release-position lookup explanations and verified album evidence.
 - `tests/test_playlist_intelligence.py` — Automated regression tests for playlist intelligence.
+- `tests/test_playlist_feedback_calibration.py` — Regression tests for immutable fit predictions, explicit outcomes, liked-state separation, and calibration holdout safeguards.
 - `tests/test_script_layout.py` — Automated regression tests for script layout.
 - `tests/test_spotify_daily_feedback_scoring.py` — Automated regression tests for spotify daily feedback scoring.
 - `tests/test_spotify_daily_playlist.py` — Automated regression tests for spotify daily playlist.

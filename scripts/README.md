@@ -22,3 +22,7 @@ New implementation code belongs under the appropriate package in `scripts/`; do 
 
 ## File overview
 This guide explains the maintained implementation package layout, the responsibility of each package, and how compatibility entry points preserve older commands. It is the starting point for navigating scripts/; individual implementation files carry their own file-level overview at the bottom.
+
+- `spotify/playlist_feedback_calibration.py` — Playlist-scoped fit prediction and feedback calibration; intentionally separate from Tricky Daily discovery scoring.
+
+- `spotify/spotify_daily_cycle.py` — Backup-protected Tricky Daily playlist rotation at midnight America/New_York; curator rotation is neutral feedback and stays outside playlist-fit calibration.

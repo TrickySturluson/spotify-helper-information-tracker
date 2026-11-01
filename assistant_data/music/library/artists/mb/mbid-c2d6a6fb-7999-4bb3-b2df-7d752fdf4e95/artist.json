@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:c2d6a6fb-7999-4bb3-b2df-7d752fdf4e95",
+  "artist": "House of Pain",
+  "identity": {
+    "artist_mbid": "mbid:c2d6a6fb-7999-4bb3-b2df-7d752fdf4e95",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

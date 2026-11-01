@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "mbid:530c2e8c-947c-4856-9dc1-8d0bce08e972",
+  "identity": {
+    "artist": "M|O|O|N",
+    "title": "Dust",
+    "album": "",
+    "artist_id": "name:683dd81d21c97285",
+    "album_id": null,
+    "recording_mbid": "530c2e8c-947c-4856-9dc1-8d0bce08e972",
+    "spotify_id": null,
+    "source_track_id": "mbid:530c2e8c-947c-4856-9dc1-8d0bce08e972",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:530c2e8c-947c-4856-9dc1-8d0bce08e972",
+      "artist_id": "name:683dd81d21c97285",
+      "track_mbid": "530c2e8c-947c-4856-9dc1-8d0bce08e972",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:28.652828+00:00",
+      "retry_after": 0,
+      "musicbrainz_tags": [
+        {
+          "tag": "ambient",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "electronic",
+          "count": 2,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "electronic-synth",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "soundtrack",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "synth",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "synth electronic",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "synth-pop",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        }
+      ],
+      "musicbrainz_genres": [
+        {
+          "tag": "ambient",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "electronic",
+          "count": 2,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "synth-pop",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        }
+      ],
+      "musicbrainz_status": "matched",
+      "musicbrainz_checked_at": "2026-11-01T05:59:29.288682+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/na/name-683dd81d21c97285/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 19,
+    "all_time_plays": 22
+  }
+}

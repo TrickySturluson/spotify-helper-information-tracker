@@ -405,6 +405,40 @@ def main():
         profiles[tid] = old
 
     write(OUT, profiles)
+
+    # Persist every scraped track profile into the canonical per-recording
+    # library. Existing catalogue evidence and mood assessments are merged.
+    from scripts.music.music_library import MusicLibrary
+    library_rows = []
+    for tid, item in catalogue.items():
+        profile = profiles.get(tid, {})
+        library_rows.append({
+            "track_id": tid,
+            "track_mbid": item.get("track_mbid") or profile.get("track_mbid"),
+            "artist_id": item.get("artist_id"),
+            "artist": item.get("artist"),
+            "track": item.get("track"),
+            "lastfm_tags": profile.get("lastfm_tags") or [],
+            "musicbrainz_tags": profile.get("musicbrainz_tags") or [],
+            "musicbrainz_genres": profile.get("musicbrainz_genres") or [],
+            "lastfm_status": profile.get("lastfm_status"),
+            "musicbrainz_status": profile.get("musicbrainz_status"),
+            "lastfm_checked_at": profile.get("lastfm_checked_at"),
+            "musicbrainz_checked_at": profile.get("musicbrainz_checked_at"),
+            "priority_playlist_ids": item.get("priority_playlist_ids") or [],
+            "listening_context": {
+                "source": "Last.fm scrobble archive and configured Spotify playlists",
+                "all_time_plays": item.get("plays", 0),
+                "recent_plays": item.get("recent_plays", 0),
+                "priority_playlist_ids": item.get("priority_playlist_ids") or [],
+            },
+        })
+    library_result = MusicLibrary().put_catalogue(library_rows)
+    print("Canonical music library updated from track enrichment: "
+          f"{library_result['songs']:,} songs, "
+          f"{library_result['artists']:,} artists, "
+          f"{library_result['albums']:,} albums.")
+
     matched = sum(1 for row in profiles.values() if row.get("lastfm_tags") or row.get("musicbrainz_tags") or row.get("musicbrainz_genres"))
     pending = sum(1 for item in catalogue.values() if should_retry_lastfm(profiles.get(item["track_id"], {}), now) or
                   (item.get("track_mbid") and not profiles.get(item["track_id"], {}).get("musicbrainz_checked_at") and

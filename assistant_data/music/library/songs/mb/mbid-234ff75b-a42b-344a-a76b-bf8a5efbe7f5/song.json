@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:234ff75b-a42b-344a-a76b-bf8a5efbe7f5",
+  "identity": {
+    "artist": "Tape",
+    "title": "Beams",
+    "album": "",
+    "artist_id": "mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3",
+    "album_id": null,
+    "recording_mbid": "234ff75b-a42b-344a-a76b-bf8a5efbe7f5",
+    "spotify_id": null,
+    "source_track_id": "mbid:234ff75b-a42b-344a-a76b-bf8a5efbe7f5",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:234ff75b-a42b-344a-a76b-bf8a5efbe7f5",
+      "artist_id": "mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3",
+      "track_mbid": "234ff75b-a42b-344a-a76b-bf8a5efbe7f5",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:37.146452+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:58:37.945289+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 23,
+    "all_time_plays": 23
+  }
+}

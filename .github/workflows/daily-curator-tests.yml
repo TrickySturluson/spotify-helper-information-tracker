@@ -13,8 +13,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
       - name: Compile every Python module
@@ -39,7 +39,7 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: GitHub Actions workflow "Daily curator tests".
-# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
+# Trigger: Pull requests targeting main and pushes to main or feature/tricky-daily-curator.
 # Behavior: Automates the job steps declared in this workflow, including its
 #           runtime setup, permissions, dependencies, and repository changes.
 # Maintenance: Keep paths, secrets, permissions, and Python versions synchronized

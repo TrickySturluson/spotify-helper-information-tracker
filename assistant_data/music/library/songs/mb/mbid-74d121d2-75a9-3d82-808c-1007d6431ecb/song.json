@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb",
+  "identity": {
+    "artist": "Lazerhawk",
+    "title": "Electric Groove",
+    "album": "",
+    "artist_id": "mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b",
+    "album_id": null,
+    "recording_mbid": "74d121d2-75a9-3d82-808c-1007d6431ecb",
+    "spotify_id": null,
+    "source_track_id": "mbid:74d121d2-75a9-3d82-808c-1007d6431ecb",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:56.264658+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:59:56.911491+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-b9e46d1a-9068-4615-9200-90b3d5eae68b/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 18,
+    "all_time_plays": 18
+  }
+}

@@ -43,7 +43,7 @@ The versioned v3 analyzer extracts reusable song-level themes across multiple ar
 
 Each theme retains evidence terms, counts and source agreement. Horror relevance is calculated only from horror-specific themes; ordinary party, romance or nightlife language cannot inflate the horror score. Multiple providers are merged into one analysis. This is a transparent lexical baseline, not an AI interpretation of metaphor, narrative, irony or musical sound. A low score means "not enough explicit evidence found", not proof that a song is unrelated. Schema and method versions are stored so later analyzers can be compared and migrated safely.
 
-For Booze or Boos!, horror relevance remains a gate; lyrical themes, track/artist metadata and listening judgment are combined, while energy and sonic fit determine sequencing after the gate is satisfied. For other playlists, the broader theme vocabulary can be used without applying the horror gate.
+For Booze or Boos!, horror relevance remains a gate; lyrical themes, track/artist metadata and listening judgment are combined, while energy and sound similarity determine sequencing after the gate is satisfied. For other playlists, the broader theme vocabulary can be used without applying the horror gate.
 
 ## Local lookup and privacy
 

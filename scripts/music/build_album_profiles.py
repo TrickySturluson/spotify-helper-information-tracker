@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Incrementally enrich album context with Last.fm's album.getTopTags.
+"""Incrementally enrich album context with Last.fm album.getInfo: tracklists, summaries, tags and artwork.
 
 Album tags are release-level context, never recording-level proof. The output is
 kept separate from track_profiles.json so the sequencer can use it only as a
@@ -52,7 +52,7 @@ def clean(value):
 
 
 def norm(value):
-    return re.sub(r"\\s+", " ", clean(value)).casefold()
+    return re.sub(r"\s+", " ", clean(value)).casefold()
 
 
 def album_id(artist, album):
@@ -106,6 +106,81 @@ def build_catalogue(scrobbles, playlist_ids=(), playlist_root=PLAYLIST_ROOT):
     return catalogue
 
 
+def parse_album_info(payload, artist, album):
+    """Parse Last.fm album.getInfo after exact artist and album identity verification."""
+    info = payload.get("album") if isinstance(payload, dict) else None
+    if not isinstance(info, dict):
+        return {}, "not_found"
+    returned_artist, returned_album = clean(info.get("artist")), clean(info.get("name"))
+    if not returned_artist or not returned_album:
+        return {}, "identity_unverified"
+    if norm(returned_artist) != norm(artist) or norm(returned_album) != norm(album):
+        return {}, "identity_mismatch"
+    container = info.get("tracks") or {}
+    rows = container.get("track") or [] if isinstance(container, dict) else []
+    if isinstance(rows, dict):
+        rows = [rows]
+    tracklist = []
+    for ordinal, row in enumerate(rows, 1):
+        if not isinstance(row, dict) or not clean(row.get("name")):
+            continue
+        try:
+            position = int((row.get("@attr") or {}).get("rank") or ordinal)
+        except (TypeError, ValueError):
+            position = ordinal
+        try:
+            duration = int(row.get("duration") or 0) or None
+        except (TypeError, ValueError):
+            duration = None
+        credit = row.get("artist")
+        track_artist = clean(credit.get("name")) if isinstance(credit, dict) else clean(credit)
+        tracklist.append({
+            "position": position, "title": clean(row.get("name")),
+            "artist": track_artist or returned_artist, "duration_seconds": duration,
+            "mbid": clean(row.get("mbid")) or None, "source": "Last.fm album.getInfo",
+        })
+    wiki = info.get("wiki") or {}
+    summary = re.sub(r"<[^>]+>", " ", clean(wiki.get("summary")))
+    summary = re.sub(r"\s+", " ", summary).strip()[:600].rstrip() or None
+    images = info.get("image") or []
+    if isinstance(images, dict):
+        images = [images]
+    artwork = next((clean(row.get("#text")) for row in reversed(images)
+                    if isinstance(row, dict) and clean(row.get("#text"))), None)
+    tag_container = info.get("tags") or {}
+    tags = tag_container.get("tag") or [] if isinstance(tag_container, dict) else []
+    if isinstance(tags, dict):
+        tags = [tags]
+    info_tags = [{"tag": clean(row.get("name")), "source": "Last.fm album.getInfo"}
+                 for row in tags if isinstance(row, dict) and clean(row.get("name"))]
+    return {
+        "lastfm_tracklist": tracklist, "lastfm_tracklist_count": len(tracklist),
+        "lastfm_summary": summary, "lastfm_summary_published": clean(wiki.get("published")) or None,
+        "lastfm_url": clean(info.get("url")) or None, "lastfm_album_mbid": clean(info.get("mbid")) or None,
+        "lastfm_artwork_url": artwork, "lastfm_info_tags": info_tags,
+        "lastfm_info_source": "Last.fm album.getInfo", "lastfm_info_identity_verified": True,
+    }, "matched"
+
+
+def fetch_album_info(artist, album):
+    """Fetch tracklist, short summary, community tags and artwork in one request."""
+    params = {
+        "method": "album.getInfo", "artist": artist, "album": album,
+        "api_key": API_KEY, "format": "json", "autocorrect": 0,
+    }
+    request = Request(API_URL + "?" + urlencode(params), headers={
+        "User-Agent": UA, "Accept": "application/json",
+    })
+    with urlopen(request, timeout=25) as response:
+        payload = json.loads(response.read().decode("utf-8"))
+    if "error" in payload:
+        code = str(payload.get("error"))
+        if code in {"11", "16", "29"}:
+            raise RuntimeError("temporary_lastfm_" + code)
+        return {}, "not_found" if code == "6" else "api_error_" + code
+    return parse_album_info(payload, artist, album)
+
+
 def fetch_album_tags(artist, album):
     params = {
         "method": "album.getTopTags", "artist": artist, "album": album,
@@ -145,6 +220,32 @@ def fetch_album_tags(artist, album):
     return tags, "matched" if tags else "no_tags"
 
 
+def album_info_due(profile, now=None):
+    """Return whether album.getInfo needs enrichment, independent of legacy tag cache state."""
+    now = int(time.time()) if now is None else int(now)
+    if profile.get("lastfm_info_status") == "matched":
+        return False
+    return int(profile.get("lastfm_info_retry_after", 0) or 0) <= now
+
+
+def merge_album_info_profile(previous, item, info, status, checked_at, now=None):
+    """Merge new album.getInfo evidence without erasing legacy tag evidence."""
+    previous = previous if isinstance(previous, dict) else {}
+    info = info if isinstance(info, dict) else {}
+    now = int(time.time()) if now is None else int(now)
+    merged = {**previous, **item, **info}
+    merged["lastfm_tags"] = previous.get("lastfm_tags") or info.get("lastfm_info_tags", [])
+    merged["status"] = "matched" if status == "matched" else (previous.get("status") or status)
+    merged["lastfm_info_status"] = status
+    merged["lastfm_info_checked_at"] = checked_at
+    merged["lastfm_info_retry_after"] = 0 if status == "matched" else now + RETRY_DAYS * 86400
+    merged["source"] = previous.get("source") or "Last.fm album.getInfo"
+    merged["checked_at"] = checked_at
+    merged["retry_after"] = previous.get("retry_after", 0)
+    merged["identity_verified"] = bool(previous.get("identity_verified") or status == "matched")
+    return merged
+
+
 def main():
     if not API_KEY:
         raise RuntimeError("LASTFM_API_KEY is required.")
@@ -165,11 +266,7 @@ def main():
     due = []
     for key, item in catalogue.items():
         old = profiles.get(key, {})
-        if old.get("status") in {"matched", "no_tags", "not_found"} and int(old.get("retry_after", 0) or 0) > now:
-            continue
-        if old.get("status") == "matched":
-            continue
-        if int(old.get("retry_after", 0) or 0) > now:
+        if not album_info_due(old, now):
             continue
         due.append(item)
     due.sort(key=lambda row: (
@@ -181,7 +278,8 @@ def main():
     for item in due[:LIMIT]:
         key = item["album_id"]
         try:
-            tags, status = fetch_album_tags(item["artist"], item["album"])
+            info, status = fetch_album_info(item["artist"], item["album"])
+
         except HTTPError as exc:
             if exc.code == 429:
                 try:
@@ -205,15 +303,10 @@ def main():
             print(f"Last.fm album lookup interrupted ({exc}); saved cooldown and stopped.")
             break
         checked = datetime.now(timezone.utc).isoformat()
-        profiles[key] = {
-            **item, "lastfm_tags": tags, "status": status,
-            "source": "Last.fm album.getTopTags",
-            "checked_at": checked,
-            "retry_after": 0 if status == "matched" else int(time.time()) + RETRY_DAYS * 86400,
-            "identity_verified": status in {"matched", "no_tags"},
-        }
+        previous = profiles.get(key, {})
+        profiles[key] = merge_album_info_profile(previous, item, info, status, checked)
         looked += 1
-        found += int(bool(tags))
+        found += int(bool(info.get("lastfm_info_tags")))
         write(OUT, profiles)
         time.sleep(DELAY)
     if not provider_cooldown:
@@ -230,10 +323,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally fetch exact Last.fm album-level community tags for
+# Purpose: Incrementally fetch exact Last.fm album metadata, ordered tracklists, summaries, tags and artwork for
 #          unique albums in the scrobble archive and configured priority playlists.
 # Inputs: data/scrobbles.json and accessible Spotify playlist snapshots.
-# Outputs: assistant_data/music/album_profiles.json and album_profile_state.json.
+# Outputs: assistant_data/music/album_profiles.json and album_profile_state.json, including verified tracklists and short attributed summaries.
 # Data flow: One lookup per normalized artist/album pair; playlist-priority and
 #            recent-listening ordering; exact response identity validation.
 # Tracking: Stores provider status, check timestamp, retry-after, source and

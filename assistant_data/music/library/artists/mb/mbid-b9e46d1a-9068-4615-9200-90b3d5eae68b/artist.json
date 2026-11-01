@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b",
+  "artist": "Lazerhawk",
+  "identity": {
+    "artist_mbid": "b9e46d1a-9068-4615-9200-90b3d5eae68b",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

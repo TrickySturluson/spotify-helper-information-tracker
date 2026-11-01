@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "source:d04be44c4d28beb1",
+  "identity": {
+    "artist": "M|O|O|N",
+    "title": "Warehouse",
+    "album": "",
+    "artist_id": "name:683dd81d21c97285",
+    "album_id": null,
+    "recording_mbid": null,
+    "spotify_id": null,
+    "source_track_id": "track:d04be44c4d28beb1",
+    "identity_quality": "source_track_id"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:25.822000+00:00",
+      "retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/na/name-683dd81d21c97285/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 20,
+    "all_time_plays": 20
+  }
+}

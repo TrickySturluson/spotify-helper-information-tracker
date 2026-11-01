@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "name:be07cc750616e5cd",
+  "artist": "Virtual Mage",
+  "identity": {
+    "artist_mbid": null,
+    "identity_quality": "name_fallback"
+  },
+  "evidence": {},
+  "album_ids": []
+}

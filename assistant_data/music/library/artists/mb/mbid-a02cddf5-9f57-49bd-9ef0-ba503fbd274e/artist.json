@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e",
+  "artist": "BRUVVY",
+  "identity": {
+    "artist_mbid": "a02cddf5-9f57-49bd-9ef0-ba503fbd274e",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

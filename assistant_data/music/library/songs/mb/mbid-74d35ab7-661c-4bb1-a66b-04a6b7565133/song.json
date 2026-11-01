@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133",
+  "identity": {
+    "artist": "Light Club",
+    "title": "She Meditates",
+    "album": "",
+    "artist_id": "mbid:d222a8cb-50c6-474d-a18e-a5596f8b9392",
+    "album_id": null,
+    "recording_mbid": "74d35ab7-661c-4bb1-a66b-04a6b7565133",
+    "spotify_id": null,
+    "source_track_id": "mbid:74d35ab7-661c-4bb1-a66b-04a6b7565133",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T06:00:24.481284+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T06:00:25.110478+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-d222a8cb-50c6-474d-a18e-a5596f8b9392/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 17,
+    "all_time_plays": 17
+  }
+}

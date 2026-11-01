@@ -16,6 +16,13 @@ from datetime import date, datetime
 from pathlib import Path
 
 import playlist_intelligence as intelligence
+# Prefer the maintained source module over its same-named compat launcher.
+import sys
+from pathlib import Path as _Path
+_SOURCE_DIR = str(_Path.cwd() / "scripts" / "spotify")
+if _SOURCE_DIR not in sys.path:
+    sys.path.insert(0, _SOURCE_DIR)
+import spotify_listening_trends as listening_trends
 
 PROFILES = Path("assistant_data/music/artist_profiles.json")
 FEATURES = Path("assistant_data/recommendations/track_features.json")
@@ -371,6 +378,15 @@ def build_discovery_recommendations(
         raise RuntimeError("Music taste/familiarity data is empty or invalid.")
     familiarity = build_familiarity_index(archive)
     feedback = load_playlist_feedback(playlist_items, playlist_id)
+    # Daily receives user-wide momentum as a soft signal, never a fixed mood target.
+    trends_report = {}
+    trends_path = Path("assistant_data/spotify/listening_trends.json")
+    is_daily = playlist_id == "4yUVHSMQySfWeEowfIMcx7"
+    if is_daily and trends_path.is_file():
+        try:
+            trends_report = json.loads(trends_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError, TypeError):
+            trends_report = {}
     # Include manually analyzed songs from the committed theme export and the
     # private local DB, even when they are not part of the Last.fm archive.
     track_metadata = intelligence.track_metadata_index()
@@ -406,13 +422,29 @@ def build_discovery_recommendations(
             )
             lyric_analysis = (track_metadata.get((intelligence.track_norm(artist), intelligence.track_norm(track["name"])), {}) or {}).get("lyric_analysis") or {}
             theme_affinity = lyric_theme_affinity(lyric_analysis, playlist_theme_counts)
-            # Small, explainable tie-break/boost: Last.fm similarity remains the
-            # dominant signal, while lyrical fit helps distinguish candidates.
-            score += 0.06 * theme_affinity
+            # Themed playlists retain lyric-theme affinity. Daily ignores
+            # playlist themes and gets only a small, confidence-gated trend nudge.
+            trend_affinity, trend_confidence, trend_reasons = (
+                listening_trends.candidate_affinity(
+                    artist, trends_report,
+                    next((listening_trends.tags_of(profile) for profile in profiles.values()
+                          if isinstance(profile, dict)
+                          and norm(profile.get("artist") or profile.get("name")) == norm(artist)), []),
+                )
+                if is_daily and trends_report.get("coverage", {}).get("status") == "available"
+                else (0.0, "low", [])
+            )
+            if is_daily:
+                if trend_confidence in ("medium", "high"):
+                    score += 0.03 * trend_affinity
+            else:
+                score += 0.06 * theme_affinity
             row = {
                 "uri": uri, "artist": artist, "track": track["name"],
                 "plays": plays, "last_scrobble": last, "score": round(score, 6),
-                "lyric_theme_affinity": theme_affinity,
+                "lyric_theme_affinity": None if is_daily else theme_affinity,
+                "daily_trend_affinity": trend_affinity if is_daily else None,
+                "daily_trend_confidence": trend_confidence if is_daily else None,
                 "lyric_themes": sorted((lyric_analysis.get("themes") or {}).keys()),
                 "lyric_horror_relevance": lyric_analysis.get("horror_relevance"),
                 "lyric_assessment": lyric_analysis.get("assessment"),
@@ -430,7 +462,10 @@ def build_discovery_recommendations(
                 row["similarity"], row["supporting_seeds"]
             )
             row["why"] = intelligence.recommendation_reasons(row)
-            if theme_affinity >= 0.2:
+            if is_daily and trend_reasons:
+                row["why"].insert(0, trend_reasons[0])
+                row["why"] = row["why"][:4]
+            elif not is_daily and theme_affinity >= 0.2:
                 row["why"].insert(0, "lyrics share themes with this playlist")
                 row["why"] = row["why"][:4]
             if key not in candidates or row["score"] > candidates[key]["score"]:

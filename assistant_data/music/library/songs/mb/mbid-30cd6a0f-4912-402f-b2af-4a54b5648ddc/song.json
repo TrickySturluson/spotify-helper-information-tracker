@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:30cd6a0f-4912-402f-b2af-4a54b5648ddc",
+  "identity": {
+    "artist": "M|O|O|N",
+    "title": "Crystals",
+    "album": "",
+    "artist_id": "name:683dd81d21c97285",
+    "album_id": null,
+    "recording_mbid": "30cd6a0f-4912-402f-b2af-4a54b5648ddc",
+    "spotify_id": null,
+    "source_track_id": "mbid:30cd6a0f-4912-402f-b2af-4a54b5648ddc",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:30cd6a0f-4912-402f-b2af-4a54b5648ddc",
+      "artist_id": "name:683dd81d21c97285",
+      "track_mbid": "30cd6a0f-4912-402f-b2af-4a54b5648ddc",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:46.587561+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:58:47.227898+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/na/name-683dd81d21c97285/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 21,
+    "all_time_plays": 24
+  }
+}

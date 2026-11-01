@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+  "identity": {
+    "artist": "Carpenter Brut",
+    "title": "Le Perv",
+    "album": "",
+    "artist_id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
+    "album_id": null,
+    "recording_mbid": "b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+    "spotify_id": null,
+    "source_track_id": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+      "artist_id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
+      "track_mbid": "b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:16.383859+00:00",
+      "retry_after": 0,
+      "musicbrainz_tags": [
+        {
+          "tag": "darksynth",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "electro house",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "electronic",
+          "count": 3,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "french electro",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "synthwave",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        }
+      ],
+      "musicbrainz_genres": [
+        {
+          "tag": "darksynth",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "electro house",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "electronic",
+          "count": 3,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "french electro",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "synthwave",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        }
+      ],
+      "musicbrainz_status": "matched",
+      "musicbrainz_checked_at": "2026-11-01T05:58:17.264654+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-303abdee-ffca-4685-a582-6aaaefd81b01/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 42,
+    "all_time_plays": 54
+  }
+}

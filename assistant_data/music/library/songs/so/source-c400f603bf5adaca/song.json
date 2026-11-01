@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "source:c400f603bf5adaca",
+  "identity": {
+    "artist": "Papa Roach",
+    "title": "Last Resort",
+    "album": "",
+    "artist_id": "mbid:c5eb9407-caeb-4303-b383-6929aa94021c",
+    "album_id": null,
+    "recording_mbid": null,
+    "spotify_id": null,
+    "source_track_id": "track:c400f603bf5adaca",
+    "identity_quality": "source_track_id"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_tags": [
+        {
+          "tag": "rock",
+          "count": 100,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "Nu Metal",
+          "count": 88,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "alternative",
+          "count": 48,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "metal",
+          "count": 31,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "Papa Roach",
+          "count": 15,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "alternative rock",
+          "count": 9,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "hard rock",
+          "count": 6,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "rapcore",
+          "count": 2,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "alternative metal",
+          "count": 1,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "Nu-metal",
+          "count": 1,
+          "source": "Last.fm track.getTopTags"
+        }
+      ],
+      "lastfm_status": "matched",
+      "lastfm_checked_at": "2026-11-01T05:58:39.101575+00:00",
+      "retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-c5eb9407-caeb-4303-b383-6929aa94021c/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 22,
+    "all_time_plays": 74
+  }
+}

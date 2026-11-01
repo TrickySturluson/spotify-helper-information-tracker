@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:520bed5c-cc89-3a6c-827e-d2eb0d7660b1",
+  "identity": {
+    "artist": "M|O|O|N",
+    "title": "Paris",
+    "album": "",
+    "artist_id": "name:683dd81d21c97285",
+    "album_id": null,
+    "recording_mbid": "520bed5c-cc89-3a6c-827e-d2eb0d7660b1",
+    "spotify_id": null,
+    "source_track_id": "mbid:520bed5c-cc89-3a6c-827e-d2eb0d7660b1",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:520bed5c-cc89-3a6c-827e-d2eb0d7660b1",
+      "artist_id": "name:683dd81d21c97285",
+      "track_mbid": "520bed5c-cc89-3a6c-827e-d2eb0d7660b1",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:32.776091+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:58:33.603882+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/na/name-683dd81d21c97285/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 23,
+    "all_time_plays": 26
+  }
+}

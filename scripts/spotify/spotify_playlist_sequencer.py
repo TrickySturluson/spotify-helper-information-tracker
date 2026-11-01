@@ -8,11 +8,23 @@ to preview and apply. It never edits Spotify directly.
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
 import mood_inference
 import spotify_playlist_manager as manager
+
+try:
+    from music_library import MusicLibrary
+except ImportError:
+    _music_path = Path(__file__).resolve().parents[1] / "music"
+    if str(_music_path) not in sys.path:
+        sys.path.insert(0, str(_music_path))
+    try:
+        from music_library import MusicLibrary
+    except ImportError:
+        MusicLibrary = None
 
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
@@ -71,6 +83,39 @@ def index_audio_profiles(rows):
         if isinstance(row.get("getsongbpm"), dict):
             merged["source_profiles"]["getsongbpm"] = row["getsongbpm"]
     return indexed
+
+def load_library_profiles(items, root=Path("assistant_data/music/library")):
+    """Load only profiles referenced by this playlist; fall back per missing record."""
+    if MusicLibrary is None or not (Path(root) / "library_index.json").exists():
+        return None
+    library = MusicLibrary(root)
+    artists, tracks, audio, albums = {}, {}, {}, {}
+    for item in items:
+        names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+        artist = str(names[0]) if names else ""
+        title = str(item.get("name") or item.get("track") or "")
+        album = str(item.get("album") or item.get("album_name") or "")
+        uri = str(item.get("uri") or "")
+        spotify_id = uri.rsplit(":", 1)[-1] if uri.startswith("spotify:track:") else None
+        found = library.get_song(spotify_id=spotify_id, recording_mbid=item.get("recording_mbid"),
+                                      artist=artist, track=title, album=album)
+        if not found:
+            continue
+        record = found["song"]
+        key = (norm(artist), norm(title))
+        tracks[key] = dict(record.get("evidence", {}).get("track_metadata") or {})
+        tracks[key]["derived"] = record.get("derived") or {}
+        tracks[key]["coverage"] = record.get("coverage") or {}
+        if record.get("evidence", {}).get("lyrics"):
+            tracks[key]["lyric_analysis"] = record["evidence"]["lyrics"]
+        audio[key] = record.get("evidence", {}).get("audio") or {}
+        artist_record = found.get("artist") or {}
+        artists[norm(artist)] = artist_record.get("evidence") or {}
+        album_record = found.get("album") or {}
+        if album:
+            albums[(norm(artist), norm(album))] = album_record.get("evidence") or {}
+    return artists, tracks, audio, albums
+
 
 def merge_lyric_features(track_profiles, rows):
     """Attach exported lyric themes to track metadata for transition matching."""
@@ -147,6 +192,56 @@ def _track_mood_evidence(profile):
         "conflict": conflict,
     }
 
+
+def _album_track_membership(item, album_profile):
+    """Assess album affinity from exact tracklist membership without claiming recording identity."""
+    evidence = album_profile.get("evidence") if isinstance(album_profile.get("evidence"), dict) else album_profile
+    if not evidence or not evidence.get("identity_verified"):
+        return {"score": None, "confidence": "unknown", "matched": False, "reason": "album identity is not verified"}
+    names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+    artist = norm(names[0]) if names else ""
+    title = norm(item.get("name") or item.get("track"))
+    if not artist or not title:
+        return {"score": None, "confidence": "unknown", "matched": False, "reason": "track identity is incomplete"}
+    for entry in evidence.get("lastfm_tracklist") or []:
+        if norm(entry.get("title")) != title or norm(entry.get("artist")) != artist:
+            continue
+        linked = bool(entry.get("linked_song_id") and entry.get("linked_recording_mbid"))
+        return {"score": 100.0, "confidence": "high" if linked else "medium",
+                "matched": True, "reason": "exact artist/title match in verified album tracklist",
+                "identity_confidence": "high" if linked else "medium"}
+    return {"score": 0.0, "confidence": "medium", "matched": False,
+            "reason": "track not present in verified album tracklist"}
+
+
+def _sound_similarity(track_profile, album_profile):
+    """Compare descriptive sound labels separately from energy and album membership."""
+    album_evidence = album_profile.get("evidence") if isinstance(album_profile.get("evidence"), dict) else album_profile
+    track_labels = set()
+    for field in ("musicbrainz_genres", "musicbrainz_tags", "lastfm_tags", "discogs_styles", "discogs_genres"):
+        for row in track_profile.get(field) or []:
+            value = row.get("tag", "") if isinstance(row, dict) else row
+            if value: track_labels.add(norm(value))
+    album_labels = set()
+    for field in ("lastfm_tags", "lastfm_info_tags", "tags"):
+        for row in album_evidence.get(field) or []:
+            value = row.get("tag", "") if isinstance(row, dict) else row
+            if value: album_labels.add(norm(value))
+    if not track_labels or not album_labels:
+        return {"score": None, "confidence": "unknown", "shared_labels": [],
+                "track_labels": sorted(track_labels), "album_labels": sorted(album_labels)}
+    # Broad umbrella labels add little discriminative value and can obscure
+    # specific style matches (e.g. shoegaze hidden among rock/indie rock).
+    broad = {"rock", "indie rock", "pop", "indie", "alternative", "alternative rock"}
+    specific_track_labels = track_labels - broad
+    if specific_track_labels:
+        track_labels = specific_track_labels
+    shared = sorted(track_labels & album_labels)
+    # Directional coverage avoids penalizing a sparse track profile for richer album tags.
+    score = 100.0 * len(shared) / len(track_labels)
+    confidence = "high" if len(track_labels) >= 3 and len(shared) >= 2 else "medium" if shared else "low"
+    return {"score": round(score, 2), "confidence": confidence, "shared_labels": shared,
+            "track_labels": sorted(track_labels), "album_labels": sorted(album_labels)}
 
 def _signal(value, low, high):
     if value is None:
@@ -276,6 +371,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     album_moods = set()
     for row in _tag_rows(album_profile):
         album_moods.update(mood_inference._tag_moods(row))
+    album_membership = _album_track_membership(item, album_profile)
+    sound_similarity = _sound_similarity(track_profile, album_profile)
     energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
     gentle = {"calm", "dreamy", "melancholic", "introspective", "wistful", "warm", "romantic", "desolate"}
     if tag_moods:
@@ -319,11 +416,12 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     high_genre = ("metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal", "heavy metal", "metalcore", "horror punk")
     dance_genre = ("electronic", "synthwave", "synthpop", "electropop", "electroclash", "techno", "house", "rave", "ebm", "dark electro", "industrial dance")
     mid_genre = ("rockabilly", "surf rock", "horror surf", "garage rock", "rock and roll", "post-punk", "gothic rock", "deathrock", "darkwave", "alternative rock", "indie rock", "rock")
-    low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient", "shoegaze")
+    # Specific atmospheric genres must be checked before broad rock umbrellas.
+    low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient", "shoegaze", "dream pop", "ethereal")
     if any(x in genre_text for x in high_genre): genre_score = 0.78
     elif any(x in genre_text for x in dance_genre): genre_score = 0.72
-    elif any(x in genre_text for x in mid_genre): genre_score = 0.62
     elif any(x in genre_text for x in low_genre): genre_score = 0.30
+    elif any(x in genre_text for x in mid_genre): genre_score = 0.62
     else: genre_score = None
     if genre_score is not None:
         components.append(genre_score); weights.append(0.05 if tag_moods else 0.08)
@@ -398,6 +496,13 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     group = next(iter(sorted(group_moods)), "unclassified") if group_moods else "unclassified"
     return {
         "score": round(score, 2),
+        "album_affinity": album_membership["score"],
+        "album_affinity_confidence": album_membership["confidence"],
+        "album_membership_verified": album_membership["matched"],
+        "album_affinity_evidence": album_membership["reason"],
+        "sound_similarity": sound_similarity["score"],
+        "sound_similarity_confidence": sound_similarity["confidence"],
+        "sound_similarity_shared_labels": sound_similarity["shared_labels"],
         "acoustic_score": round(acoustic_score, 2) if acoustic_score is not None else None,
         "semantic_score": round(semantic_score, 2) if semantic_score is not None else None,
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
@@ -912,14 +1017,26 @@ def main():
         sp = manager.Spotify()
         playlist = manager.find(sp, args.playlist_id)
         snap = manager.snapshot(sp, playlist)
-        artists = index_artists(read_json(ARTIST_PROFILES, {}))
-        tracks = index_tracks(read_json(TRACK_PROFILES, {}))
-        tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
-        audio_rows = read_json(AUDIO_PROFILES, {})
-        audio_profiles = index_audio_profiles(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
-        album_rows = read_json(ALBUM_PROFILES, {})
-        album_profiles = {(norm(row.get("artist")), norm(row.get("album"))): row
-                          for row in album_rows.values() if isinstance(row, dict) and row.get("artist") and row.get("album")}
+        library_profiles = load_library_profiles(snap["items"])
+        if library_profiles is not None:
+            artists, tracks, audio_profiles, album_profiles = library_profiles
+            # Missing library records remain eligible for the legacy cache during
+            # incremental migration; existing records are loaded on demand only.
+            legacy_tracks = index_tracks(read_json(TRACK_PROFILES, {}))
+            for item in snap["items"]:
+                names = item.get("artists") or ([item.get("artist")] if item.get("artist") else [])
+                key = (norm(names[0]) if names else "", norm(item.get("name") or item.get("track")))
+                if key not in tracks and key in legacy_tracks:
+                    tracks[key] = legacy_tracks[key]
+        else:
+            artists = index_artists(read_json(ARTIST_PROFILES, {}))
+            tracks = index_tracks(read_json(TRACK_PROFILES, {}))
+            tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
+            audio_rows = read_json(AUDIO_PROFILES, {})
+            audio_profiles = index_audio_profiles(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
+            album_rows = read_json(ALBUM_PROFILES, {})
+            album_profiles = {(norm(row.get("artist")), norm(row.get("album"))): row
+                              for row in album_rows.values() if isinstance(row, dict) and row.get("artist") and row.get("album")}
         sections = read_json(args.sections, {}) if args.sections else {}
         if not isinstance(sections, dict):
             raise ValueError("--sections must be a JSON object mapping section names to URI lists.")

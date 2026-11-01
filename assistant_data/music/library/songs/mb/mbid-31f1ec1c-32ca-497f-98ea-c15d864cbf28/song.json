@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28",
+  "identity": {
+    "artist": "Riddarna",
+    "title": "Simma hem",
+    "album": "",
+    "artist_id": "mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07",
+    "album_id": null,
+    "recording_mbid": "31f1ec1c-32ca-497f-98ea-c15d864cbf28",
+    "spotify_id": null,
+    "source_track_id": "mbid:31f1ec1c-32ca-497f-98ea-c15d864cbf28",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T06:00:13.871886+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T06:00:14.501546+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-a154c8d8-f3b5-4af3-ba61-c4943ca7ec07/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 17,
+    "all_time_plays": 18
+  }
+}

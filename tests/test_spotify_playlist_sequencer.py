@@ -137,6 +137,89 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIn("dark", result["vibe_groups"])
         self.assertIn("album-level mood context", " ".join(result["evidence"]))
 
+    def test_verified_album_tracklist_gives_full_album_affinity_without_track_mood_tags(self):
+        album = {
+            "identity_verified": True,
+            "lastfm_tracklist": [
+                {"title": "Into the Deep Time (One Sun)", "artist": "Candy Claws"},
+                {"title": "White Seal (Shell & Spine)", "artist": "Candy Claws",
+                 "linked_song_id": "mbid:verified", "linked_recording_mbid": "verified"},
+            ],
+            "lastfm_tags": [{"tag": "shoegaze"}, {"tag": "dream pop"},
+                            {"tag": "neo-psychedelia"}, {"tag": "psychedelic pop"}],
+        }
+        profile = {"musicbrainz_genres": [
+            {"tag": "indie rock"}, {"tag": "rock"}, {"tag": "shoegaze"}
+        ]}
+        first = sequencer.score_track(
+            {"name": "Into the Deep Time (One Sun)", "artists": ["Candy Claws"],
+             "album": "Ceres & Calypso in the Deep Time"},
+            track_profiles={("candy claws", "into the deep time (one sun)"): profile},
+            album_profiles={("candy claws", "ceres & calypso in the deep time"): album},
+        )
+        self.assertEqual(first["album_affinity"], 100.0)
+        self.assertEqual(first["album_affinity_confidence"], "medium")
+        self.assertTrue(first["album_membership_verified"])
+        self.assertEqual(first["mood_confidence"], "low")
+        self.assertEqual(first["sound_similarity"], 100.0)
+        self.assertEqual(first["sound_similarity_shared_labels"], ["shoegaze"])
+        linked = sequencer.score_track(
+            {"name": "White Seal (Shell & Spine)", "artists": ["Candy Claws"],
+             "album": "Ceres & Calypso in the Deep Time"},
+            album_profiles={("candy claws", "ceres & calypso in the deep time"): album},
+        )
+        self.assertEqual(linked["album_affinity_confidence"], "high")
+
+    def test_album_affinity_does_not_leak_across_albums_or_artists(self):
+        album = {"identity_verified": True, "lastfm_tracklist": [
+            {"title": "Known Song", "artist": "Artist"}
+        ]}
+        wrong_album = sequencer.score_track(
+            {"name": "Known Song", "artists": ["Artist"], "album": "Different Album"},
+            album_profiles={},
+        )
+        wrong_artist = sequencer.score_track(
+            {"name": "Known Song", "artists": ["Other Artist"], "album": "Record"},
+            album_profiles={("other artist", "record"): album},
+        )
+        self.assertFalse(wrong_album["album_membership_verified"])
+        self.assertFalse(wrong_artist["album_membership_verified"])
+        self.assertIsNone(wrong_album["album_affinity"])
+        self.assertEqual(wrong_artist["album_affinity"], 0.0)
+
+    def test_specific_shoegaze_genre_is_not_swallowed_by_broad_rock_label(self):
+        result = sequencer.score_track(
+            {"name": "Shoegaze", "artists": ["Artist"]},
+            track_profiles={("artist", "shoegaze"): {"musicbrainz_genres": [
+                {"tag": "indie rock"}, {"tag": "rock"}, {"tag": "shoegaze"}
+            ]}},
+        )
+        self.assertAlmostEqual(result["semantic_score"], 30.0)
+
+    def test_real_ceres_album_tracks_have_full_album_affinity(self):
+        root = Path(__file__).resolve().parents[1]
+        album_path = root / "assistant_data/music/library/albums/al/album-01632cb9b68c6acda89d/album.json"
+        track_path = root / "assistant_data/music/track_profiles.json"
+        album_record = json.loads(album_path.read_text(encoding="utf-8"))
+        track_rows = json.loads(track_path.read_text(encoding="utf-8"))
+        album_evidence = album_record["evidence"]
+        track_index = sequencer.index_tracks(track_rows)
+        album_key = (sequencer.norm(album_record["artist"]), sequencer.norm(album_record["album"]))
+        results = []
+        for entry in album_evidence["lastfm_tracklist"]:
+            title = entry["title"]
+            item = {"name": title, "artists": [entry["artist"]], "album": album_record["album"]}
+            profile = track_index.get((sequencer.norm(entry["artist"]), sequencer.norm(title)), {})
+            results.append(sequencer.score_track(
+                item, track_profiles={(sequencer.norm(entry["artist"]), sequencer.norm(title)): profile},
+                album_profiles={album_key: album_evidence},
+            ))
+        self.assertEqual(len(results), 12)
+        self.assertTrue(all(row["album_affinity"] == 100.0 for row in results))
+        self.assertTrue(all(row["album_membership_verified"] for row in results))
+        self.assertEqual(sum(row["sound_similarity"] is not None for row in results), 11)
+        self.assertTrue(all(row["sound_similarity"] == 100.0 for row in results if row["sound_similarity"] is not None))
+
     def test_missing_metadata_is_explicitly_unknown(self):
         result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
         self.assertEqual(result["confidence"], "unknown")

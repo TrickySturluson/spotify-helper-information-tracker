@@ -47,6 +47,42 @@ Keep the repository public only if you are comfortable publishing this listening
 
 All generated timestamps and calendar buckets use UTC. Track identity is the artist/track pair; album identity is the artist/album pair, preventing identical titles by different artists from being collapsed. Advanced analytics prefer MusicBrainz IDs (MBIDs) when present and fall back to case-folded names. They include monthly artist timelines, first-time discovery and 90-day rediscovery events, trailing 30/90-day rankings, inferred listening sessions (30-minute gap threshold), and monthly artist-concentration metrics. Rolling windows end at the newest archived scrobble. Session spans are timestamp-based estimates, not actual playback durations.
 
+## Canonical per-recording music library
+
+The canonical music catalogue lives at `assistant_data/music/library/`, with one JSON record per recording, artist, and album. New Last.fm track-profile and duration-enrichment runs, plus live Spotify reference-library syncs, now merge their results into this library, preserving existing mood assessments, evidence, and listening context. Older shard/index exports remain available as compatibility views while downstream analytics are migrated.
+
+Use the native SHIT command interface from the repository root:
+
+```bash
+python shit.py library status
+python shit.py library preview
+python shit.py library migrate
+python shit.py library audit
+```
+
+- `status` reports indexed counts and the latest migration result.
+- `preview` is read-only: it counts stored profiles and accessible playlist snapshots without writing files or contacting providers.
+- `migrate` imports stored track profiles and accessible playlist snapshots. It creates a timestamped backup automatically and asks for confirmation; use `--yes` for non-interactive execution.
+- `audit` validates record files, relationships, and lookup aliases.
+
+The offline migration does not modify Spotify playlists or call metadata providers. Missing recording-level mood evidence remains unknown rather than being inferred from artist or album context. The older `compat/migrate_full_music_library.py` launcher remains supported for backwards compatibility.
+
+## Canonical library migration and enrichment run
+
+The staged library runner is deliberately read-only unless explicitly told to execute:
+
+```bash
+# Inspect archive, credentials, provider batch caps and migration preview (no writes/API calls)
+python scripts/music/prepare_music_library.py
+
+# Tomorrow, run the offline migration followed by bounded enrichment and final audit
+python scripts/music/prepare_music_library.py --execute
+```
+
+The runner backs up and migrates the existing stored catalogue first, refreshes the read-only Spotify playlist reference snapshots, then resolves exact recording IDs, fills missing durations, refreshes artist/track/album context, and enriches available acoustic metadata. After each stage it reconciles the durable exports into `assistant_data/music/library/` and finishes with an integrity audit. Existing provider checkpoints and retry cooldowns are respected, so interrupted runs can be resumed. Default per-run caps are conservative; override them through the documented environment variables only when intentionally increasing a batch. Last.fm requires `LASTFM_API_KEY`; Discogs and GetSongBPM are optional and run only when their secrets are configured. No Spotify playlist writes are performed. Local Essentia analysis still requires audio files already legitimately available on the user's machine; full lyric text is not scraped or stored, though existing compact lyric-analysis features are merged when present.
+
+`python scripts/music/sync_music_library.py` can also be run independently to reconcile already-generated track, artist, album, audio and compact lyric-feature exports into the canonical library.
+
 ## Rebuild locally
 
 ```bash
@@ -177,9 +213,11 @@ The executable implementation is grouped under `scripts/` by responsibility:
 - `scripts/spotify/` — playlist intelligence, discovery, sequencing, management, playback tracking, and reference-library tooling.
 - `scripts/lastfm/` — Last.fm archive importing.
 
-Legacy command-line entry points live in `compat/`, while the maintained implementation lives under `scripts/`. A small root-level `sitecustomize.py` adds `compat/` to Python's import path so existing module imports and tests continue to work. Run tools with `python compat/TOOL_NAME.py`; add new implementation code under `scripts/`, not `compat/`.
+The root-level `shit.py` is the native project command launcher; `sitecustomize.py` adds `compat/` to Python's import path so existing module imports continue to work. Legacy command-line entry points live in `compat/`, while maintained implementations live under `scripts/`. Add new business logic under `scripts/`, not `compat/`.
 
-See [scripts/README.md](scripts/README.md) for the layout and migration notes.
+The canonical per-recording **Library** stores interconnected artist, album, and song records under `assistant_data/music/library/`. Start with `python shit.py library status`; see [The Great Migration guide](docs/GREAT_MIGRATION.md) for preview, migration, enrichment, audit, and ChatGPT-triggered GitHub Actions operations.
+
+See [scripts/README.md](scripts/README.md) for the implementation layout.
 
 ## Project overview
 
@@ -335,6 +373,51 @@ Undo the most recent completed change with:
 ```
 
 Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its ordered item URIs to match the post-change state recorded by the manager (legacy records fall back to the Spotify snapshot ID). Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
+
+## The Library
+
+### Native SHIT library commands
+
+Use the project entry point for all canonical-library operations:
+
+```bash
+python shit.py library status
+python shit.py library preview
+python shit.py library prepare                 # read-only preflight
+python shit.py library prepare --execute       # migrate, enrich, sync and audit
+python shit.py library sync                    # merge already-generated enrichment exports
+python shit.py library audit
+```
+
+The `prepare` command is the resumable, bounded pipeline. It backs up and migrates first, then refreshes read-only Spotify reference snapshots and runs the available metadata providers. It asks for confirmation before writes and provider requests. Optional sources can be skipped with `--skip-discogs`, `--skip-getsongbpm`, or `--skip-spotify-refresh`. Use `--yes` only for intentionally non-interactive execution; it requires `--execute`.
+
+
+SHIT can store music metadata as individual artist, album, and song JSON
+records rather than requiring every consumer to load large aggregate profiles.
+The canonical layout, identity rules, migration procedure, and lazy lookup
+behavior are documented in [the Library guide](docs/PER_RECORDING_MUSIC_LIBRARY.md).
+Album tracklists and short descriptions are enriched separately from Last.fm
+and retained only after exact artist/album identity checks. Lookup explanations,
+ISRC/release-position matching, and field-level confidence rules are described
+in [Album metadata and lookup confidence](docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md).
+
+Preview and run the local-only migration:
+
+```bash
+python compat/migrate_music_library.py --dry-run
+python compat/migrate_music_library.py
+
+# Optional staged migration of the 50 most-recent unique songs
+python compat/migrate_music_library.py --recent-limit 50 --dry-run
+python compat/migrate_music_library.py --recent-limit 50
+```
+
+The migration makes no provider requests and leaves aggregate JSON intact. Bounded recent batches preserve play counts separately and do not invent album records when release metadata is missing.
+The playlist sequencer prefers per-song lookup when the library exists,
+loading only records referenced by the playlist; missing records can still use
+the legacy track cache during the transition. Spotify track IDs and verified
+recording MBIDs take precedence over names. Ambiguous artist/title matches are
+not guessed.
 
 ### Playlist intelligence and health reports
 
