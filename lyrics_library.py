@@ -23,6 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_DB = ROOT / "data" / "lyrics" / "library.sqlite3"
+DEFAULT_EXPORT = ROOT / "assistant_data" / "recommendations" / "lyric_features.json"
 APP_UA = "SHIT-Lyrics-Library/1.0 (https://github.com/TrickySturluson/tricky-lastfm)"
 THEMES = {
     # Horror / Halloween vocabulary remains explicit and separately scored.
@@ -185,6 +186,52 @@ def phrase_fingerprints(lyrics, n=5):
             for i in range(len(tokens)-n+1)]
 
 
+def export_analysis_features(db_path=DEFAULT_DB, output_path=DEFAULT_EXPORT):
+    """Export compact derived metadata for cloud recommendation workflows.
+
+    Raw lyrics and phrase fingerprints remain in the local, git-ignored SQLite
+    database. This export contains only track identity and derived themes.
+    """
+    db_path = Path(db_path)
+    if not db_path.is_file():
+        return 0
+    connection = sqlite3.connect(db_path)
+    connection.row_factory = sqlite3.Row
+    try:
+        rows = connection.execute("""
+            SELECT s.title, s.artist, a.themes_json, a.relevance, a.assessment,
+                   a.word_count, a.analyzed_at
+            FROM songs s JOIN analyses a ON a.song_id=s.id
+            ORDER BY s.artist COLLATE NOCASE, s.title COLLATE NOCASE
+        """).fetchall()
+    finally:
+        connection.close()
+    exported = []
+    for row in rows:
+        analysis = json.loads(row["themes_json"] or "{}")
+        exported.append({
+            "artist": row["artist"], "track": row["title"],
+            "schema_version": analysis.get("schema_version", 1),
+            "themes": analysis.get("themes", {}),
+            "horror_relevance": row["relevance"],
+            "assessment": row["assessment"],
+            "source_count": analysis.get("source_count", 1),
+            "sources": analysis.get("sources", []),
+            "method": analysis.get("method", "legacy_lexical_analysis"),
+            "word_count": row["word_count"],
+            "analyzed_at": row["analyzed_at"],
+            "evidence_type": "lyrics_keyword_analysis",
+            "full_lyrics_stored": False,
+        })
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = output_path.with_suffix(output_path.suffix + ".tmp")
+    temporary.write_text(json.dumps(exported, ensure_ascii=False, separators=(",", ":")) + "\n",
+                          encoding="utf-8")
+    temporary.replace(output_path)
+    return len(exported)
+
+
 class LyricsLibrary:
     def __init__(self, db_path=DEFAULT_DB):
         self.db_path = Path(db_path)
@@ -331,9 +378,16 @@ def main():
     lookup.add_argument("--title"); lookup.add_argument("--artist"); lookup.add_argument("--phrase")
     lookup.add_argument("--limit", type=int, default=20)
     sub.add_parser("recent", help="Show recently indexed songs")
+    sub.add_parser("export", help="Export compact theme metadata for recommendation workflows")
     args = parser.parse_args()
     if args.command == "analyze":
-        print(json.dumps(search_and_analyze(args.title,args.artist,args.album,args.duration,args.db),indent=2,ensure_ascii=False))
+        result = search_and_analyze(args.title,args.artist,args.album,args.duration,args.db)
+        result["exported_metadata_count"] = export_analysis_features(args.db)
+        result["exported_metadata_path"] = str(DEFAULT_EXPORT)
+        print(json.dumps(result,indent=2,ensure_ascii=False))
+    elif args.command == "export":
+        print(json.dumps({"exported_metadata_count": export_analysis_features(args.db),
+                          "exported_metadata_path": str(DEFAULT_EXPORT)}, indent=2))
     else:
         lib = LyricsLibrary(args.db)
         try:
