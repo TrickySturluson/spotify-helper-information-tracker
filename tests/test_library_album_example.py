@@ -31,7 +31,7 @@ class LibraryAlbumExampleTests(unittest.TestCase):
             recording_mbid="d6e2c73d-7d12-4b48-8cf4-85063c45e4df"
         )
         self.assertEqual(bundle["song"]["identity"]["album"], self.album_title)
-        self.assertEqual(bundle["album"]["id"], "album:3858c5d33d8c2159eb3d")
+        self.assertEqual(bundle["album"]["id"], "album:01632cb9b68c6acda89d")
         self.assertEqual(bundle["album"]["identity"]["spotify_album_id"], "5KkGAZrad4N4rc5FriwgzU")
         self.assertEqual(bundle["album"]["song_ids"], [
             "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
@@ -49,9 +49,9 @@ class LibraryAlbumExampleTests(unittest.TestCase):
 
     def test_album_key_uses_canonical_artist_album_identity(self):
         album = self.library.get_album(artist=self.artist, album=self.album_title)
-        self.assertEqual(album["id"], "album:3858c5d33d8c2159eb3d")
+        self.assertEqual(album["id"], "album:01632cb9b68c6acda89d")
         self.assertEqual(self.library.index["albums"][album["id"]]["path"],
-                         "albums/al/album-3858c5d33d8c2159eb3d/album.json")
+                         "albums/al/album-01632cb9b68c6acda89d/album.json")
 
 
 if __name__ == "__main__":
