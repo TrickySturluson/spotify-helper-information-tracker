@@ -188,27 +188,64 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         next(iter(sorted(artist_moods)), "artist-level") if artist_moods else "unclassified")
     return {"score": round(score, 2), "confidence": confidence,
             "evidence": evidence, "artist": artist, "track": title,
+            "tempo_bpm": float(tempo_value) if tempo_value is not None else None,
             "vibe_group": group, "vibe_groups": sorted(tag_moods or artist_moods),
             "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
 
 
 def _set_similarity(left, right):
+    """Jaccard affinity; callers decide whether both sides have evidence."""
     a, b = set(left or []), set(right or [])
-    return len(a & b) / len(a | b) if a and b else 0.0
+    return len(a & b) / len(a | b) if a and b else None
+
+
+def _tempo_relationship(left, right):
+    """Return a bounded mismatch that treats half/double-time as compatible."""
+    try:
+        a = float(left.get("tempo_bpm"))
+        b = float(right.get("tempo_bpm"))
+    except (TypeError, ValueError):
+        return None
+    if not (40 <= a <= 300 and 40 <= b <= 300):
+        return None
+    ratios = (b / a, a / b)
+    ratio = min(ratios)
+    # A 2:1 or 1:2 tempo relationship is a natural rhythmic bridge.
+    distance = min(abs(ratio - 1.0), abs(ratio - 0.5) * 0.65)
+    return max(0.0, min(1.0, distance / 0.5))
 
 
 def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
-    """Metadata-only edge cost; genre affinity is deliberately a soft bonus."""
-    energy_gap = abs(float(left["score"]) - float(right["score"])) / 100.0
-    mood = _set_similarity(left.get("vibe_groups"), right.get("vibe_groups"))
-    genre = _set_similarity(left.get("genre_groups"), right.get("genre_groups"))
-    theme = _set_similarity(left.get("theme_groups"), right.get("theme_groups"))
+    """Evidence-aware edge cost: absent metadata is omitted, never scored as disagreement."""
+    terms = []
+    # Unknown energy is not a neutral 50/100 measurement. Do not compare it.
+    if left.get("confidence") != "unknown" and right.get("confidence") != "unknown":
+        terms.append((0.34, abs(float(left["score"]) - float(right["score"])) / 100.0))
+    for field, weight in (("vibe_groups", 0.25), ("genre_groups", 0.08), ("theme_groups", 0.08)):
+        affinity = _set_similarity(left.get(field), right.get(field))
+        if affinity is not None:
+            terms.append((weight, 1.0 - affinity))
+    tempo_gap = _tempo_relationship(left, right)
+    if tempo_gap is not None:
+        terms.append((0.12, tempo_gap))
     section = _set_similarity(left.get("section_groups"), right.get("section_groups"))
+    if section is not None:
+        terms.append((0.08, 1.0 - section))
     same_artist = bool(norm(left.get("artist")) and norm(left.get("artist")) == norm(right.get("artist")))
-    return (0.34 * energy_gap + 0.25 * (1.0 - mood) + 0.08 * (1.0 - genre)
-            + 0.08 * (1.0 - theme) + 0.35 * same_artist
-            - 0.12 * max(0.0, min(1.0, genre_strength)) * genre
-            - 0.12 * max(0.0, min(1.0, theme_strength)) * theme - 0.08 * section)
+    numerator = sum(weight * value for weight, value in terms)
+    denominator = sum(weight for weight, _ in terms)
+    cost = numerator / denominator if denominator else 0.5
+    # Repetition is a genuine sequencing issue, but cap its impact so it cannot
+    # overwhelm musical compatibility or make an otherwise strong transition fail.
+    if same_artist:
+        cost += 0.18
+    genre_affinity = _set_similarity(left.get("genre_groups"), right.get("genre_groups"))
+    theme_affinity = _set_similarity(left.get("theme_groups"), right.get("theme_groups"))
+    if genre_affinity is not None:
+        cost -= 0.08 * max(0.0, min(1.0, genre_strength)) * genre_affinity
+    if theme_affinity is not None:
+        cost -= 0.08 * max(0.0, min(1.0, theme_strength)) * theme_affinity
+    return max(0.0, min(1.0, cost))
 
 
 def transition_report(left, right):
@@ -217,18 +254,28 @@ def transition_report(left, right):
     genres = sorted(set(left.get("genre_groups") or []) & set(right.get("genre_groups") or []))
     themes = sorted(set(left.get("theme_groups") or []) & set(right.get("theme_groups") or []))
     same = bool(norm(left.get("artist")) and norm(left.get("artist")) == norm(right.get("artist")))
+    tempo_gap = _tempo_relationship(left, right)
     cost = _transition_cost(left, right)
     reasons = []
     if moods: reasons.append("shared track mood: " + ", ".join(moods))
     if genres: reasons.append("shared genre: " + ", ".join(genres))
     if themes: reasons.append("shared theme: " + ", ".join(themes))
-    if gap <= 0.12: reasons.append("similar estimated energy")
-    elif gap >= 0.35: reasons.append("large estimated energy change")
+    if tempo_gap is not None:
+        reasons.append("compatible tempo relationship (including half/double-time)")
+    if left.get("confidence") != "unknown" and right.get("confidence") != "unknown":
+        if gap <= 0.12: reasons.append("similar estimated energy")
+        elif gap >= 0.35: reasons.append("large estimated energy change")
     if same: reasons.append("same primary artist")
-    if not reasons: reasons.append("limited matching metadata; uncertain handoff")
+    if not reasons: reasons.append("insufficient shared metadata; transition remains uncertain")
+    evidence_count = sum(bool(left.get(field)) and bool(right.get(field))
+                         for field in ("vibe_groups", "genre_groups", "theme_groups"))
+    evidence_count += int(tempo_gap is not None)
+    evidence_count += int(left.get("confidence") != "unknown" and right.get("confidence") != "unknown")
+    confidence = "supported" if evidence_count >= 2 else "limited"
     return {"cost": round(cost, 4), "label": "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump",
-            "confidence": "supported" if left.get("confidence") in ("high", "medium") and right.get("confidence") in ("high", "medium") else "limited",
-            "energy_gap": round(gap, 3), "shared_moods": moods, "shared_genres": genres,
+            "confidence": confidence, "energy_gap": round(gap, 3),
+            "tempo_relationship": round(tempo_gap, 3) if tempo_gap is not None else None,
+            "shared_moods": moods, "shared_genres": genres,
             "shared_themes": themes, "same_artist": same, "reasons": reasons}
 
 
