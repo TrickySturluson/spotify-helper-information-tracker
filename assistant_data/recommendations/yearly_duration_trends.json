@@ -1,54 +1,54 @@
 {
   "2023": {
     "scrobbles": 32915,
-    "known_duration_scrobbles": 28530,
-    "duration_coverage": 0.866778,
-    "known_duration_full_track_equivalent_hours": 1618.842,
-    "known_duration_minimum_qualifying_hours": 800.725,
+    "known_duration_scrobbles": 28710,
+    "duration_coverage": 0.872247,
+    "known_duration_full_track_equivalent_hours": 1629.43,
+    "known_duration_minimum_qualifying_hours": 806.019,
     "unique_tracks": 4473,
     "unique_artists": 2510,
     "note": "Duration estimates include only scrobbles with known track durations; these are not measured playback.",
     "legacy_estimated_hours": 1920.042,
     "legacy_estimate_method": "3.5 minutes per scrobble; includes all scrobbles",
-    "unknown_duration_scrobbles": 4385
+    "unknown_duration_scrobbles": 4205
   },
   "2024": {
     "scrobbles": 43367,
-    "known_duration_scrobbles": 38860,
-    "duration_coverage": 0.896073,
-    "known_duration_full_track_equivalent_hours": 2079.373,
-    "known_duration_minimum_qualifying_hours": 1031.952,
+    "known_duration_scrobbles": 39274,
+    "duration_coverage": 0.905619,
+    "known_duration_full_track_equivalent_hours": 2102.572,
+    "known_duration_minimum_qualifying_hours": 1043.552,
     "unique_tracks": 3159,
     "unique_artists": 1879,
     "note": "Duration estimates include only scrobbles with known track durations; these are not measured playback.",
     "legacy_estimated_hours": 2529.742,
     "legacy_estimate_method": "3.5 minutes per scrobble; includes all scrobbles",
-    "unknown_duration_scrobbles": 4507
+    "unknown_duration_scrobbles": 4093
   },
   "2025": {
     "scrobbles": 49751,
-    "known_duration_scrobbles": 45105,
-    "duration_coverage": 0.906615,
-    "known_duration_full_track_equivalent_hours": 2541.185,
-    "known_duration_minimum_qualifying_hours": 1259.44,
+    "known_duration_scrobbles": 45689,
+    "duration_coverage": 0.918353,
+    "known_duration_full_track_equivalent_hours": 2573.697,
+    "known_duration_minimum_qualifying_hours": 1275.696,
     "unique_tracks": 4330,
     "unique_artists": 2463,
     "note": "Duration estimates include only scrobbles with known track durations; these are not measured playback.",
     "legacy_estimated_hours": 2902.142,
     "legacy_estimate_method": "3.5 minutes per scrobble; includes all scrobbles",
-    "unknown_duration_scrobbles": 4646
+    "unknown_duration_scrobbles": 4062
   },
   "2026": {
     "scrobbles": 25972,
-    "known_duration_scrobbles": 23315,
-    "duration_coverage": 0.897698,
-    "known_duration_full_track_equivalent_hours": 1368.649,
-    "known_duration_minimum_qualifying_hours": 676.25,
+    "known_duration_scrobbles": 23558,
+    "duration_coverage": 0.907054,
+    "known_duration_full_track_equivalent_hours": 1381.813,
+    "known_duration_minimum_qualifying_hours": 682.832,
     "unique_tracks": 3023,
     "unique_artists": 1764,
     "note": "Duration estimates include only scrobbles with known track durations; these are not measured playback.",
     "legacy_estimated_hours": 1515.033,
     "legacy_estimate_method": "3.5 minutes per scrobble; includes all scrobbles",
-    "unknown_duration_scrobbles": 2657
+    "unknown_duration_scrobbles": 2414
   }
 }
