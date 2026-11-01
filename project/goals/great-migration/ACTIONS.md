@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-01 — Fixed-workflow migration rerun requested
+
+- **Action:** opened owner-authored issue #68, `[SHIT LIBRARY] prepare`, after confirming the publication fix is on `main`.
+- **Request:** reuse saved Spotify snapshots, skip Spotify refresh, publish only `assistant_data/music/`, and preserve generated music data/checkpoints plus backup/log in the artifact.
+- **Reference:** https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/68
+- **Outcome:** request submitted; workflow completion and publication not yet observed. Do not report migration complete until post-publish audit/status passes.
+- **Next:** inspect issue result and Actions run; if successful, independently run audit/status against `main`; if publication fails, recover generated output from the new artifact rather than repeating provider work blindly.
+
 ## 2026-11-01 — Recover run #17 evidence and repair publication scope
 
 - **Purpose:** determine whether the Great Migration itself completed and remove the publication failure that prevented its data from reaching `main`.
