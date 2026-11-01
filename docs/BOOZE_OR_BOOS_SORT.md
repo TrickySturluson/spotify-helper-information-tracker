@@ -4,9 +4,10 @@ This preset follows the intended party arc:
 
 1. Campy surf, monster-party novelty, lyrical crowd-pleasers and Messer Chups.
 2. Dark club, synth and rave-leaning Halloween tracks.
-3. Horror punk, psychobilly and heavier horror-rock finale.
+3. Horror punk and psychobilly as the energy climbs.
+4. A short industrial/heavy-rock closer, ending with Rob Zombie.
 
-The sections are ordered preferences for the three-act progression. The sorter optimizes transitions and artist variety within those acts, and the rising-energy curve holds at a high level through the finale. Genre-family energy estimates are conservative; they are not measured Spotify audio features. The preview reports confidence so uncertain estimates are visible.
+The four sections are kept in their declared order and smoothed internally. A single global rising-energy curve is used across the acts, with the high-energy target sustained through the end. Artist repetition is penalized so Messer Chups and other favorites are spread out rather than played in one long block. Genre-family energy estimates are conservative; they are not measured Spotify audio features. The preview reports confidence so uncertain estimates are visible.
 
 The live sequence_preview command refreshes the playlist directly from Spotify, reads artist and track profiles plus the compact lyric-theme export, and creates a one-time confirmation preview. It does not change Spotify. Confirmation is a separate command and is rejected if the playlist changed after preview.
 
