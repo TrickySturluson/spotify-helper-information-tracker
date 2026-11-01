@@ -17,7 +17,13 @@ import spotify_playlist_manager as manager
 try:
     from music_library import MusicLibrary
 except ImportError:
-    MusicLibrary = None
+    _music_path = Path(__file__).resolve().parents[1] / "music"
+    if str(_music_path) not in sys.path:
+        sys.path.insert(0, str(_music_path))
+    try:
+        from music_library import MusicLibrary
+    except ImportError:
+        MusicLibrary = None
 
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
