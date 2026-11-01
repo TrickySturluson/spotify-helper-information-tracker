@@ -264,6 +264,10 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     tag_moods = set(track_mood["moods"])
     artist_tags = _tag_rows(artist_profile)
     artist_moods = set()
+    # The profile builder already separates curated mood hints from raw tags.
+    # Consume that explicit field as well; it remains artist-level fallback only.
+    for tag in artist_profile.get("moods") or []:
+        artist_moods.update(mood_inference._tag_moods(tag))
     for tag in artist_tags:
         artist_moods.update(mood_inference._tag_moods(tag))
     energetic = {"aggressive", "energetic", "chaotic", "tense", "rebellious", "cathartic", "uplifting"}
