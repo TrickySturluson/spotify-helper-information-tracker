@@ -8,13 +8,14 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 ## Immediate resume point — Great Migration
 
-**State: NOT VERIFIED AS PUBLISHED. Do not call the migration complete.**
+**State: RUNNER-SIDE MIGRATION VERIFIED; PUBLICATION STILL UNVERIFIED. Do not call the migration complete yet.**
 
-- Great Migration run #17 failed during the Git rebase/publish stage because generated Library records and indexes conflicted.
-- The run produced an artifact and backup, but their contents and final integrity status still need direct inspection.
+- Run #17 completed prepare, enrichment and a final integrity audit: 13,005 songs, 6,382 artists, 7,861 albums, zero audit errors. Duration coverage was 91.1%; 93 acoustic profiles were stored.
+- Publication failed because the workflow refreshed/staged Spotify playlist snapshots with the generated Library, causing rebase conflicts. Its artifact contained only the backup and log, not the generated Library.
+- Workflow fix committed to `main` (`bdf75f7`): skip Spotify snapshot refresh, publish only `assistant_data/music/`, and retain generated music data/checkpoints in the artifact.
 - Run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
-- **Next actions:** inspect logs/artifact/backup; determine whether the prepare, migrate, enrichment, and audit stages completed; compare artifact against current `main`; preserve the best valid checkpoint; repair publication so concurrent generated-data writers cannot overwrite or conflict with the migration; publish only after a fresh integrity audit.
-- Do not force-push, blindly resolve generated-data conflicts, restart a write-heavy migration without inspecting the artifact, or modify Spotify playlists as part of migration recovery.
+- **Next actions:** trigger a fresh `[SHIT LIBRARY] prepare`; inspect the new run/artifact; confirm generated Library and checkpoints publish; run a separate post-publish `audit` and `status`; continue bounded enrichment.
+- No Spotify playlist writes, force-pushes, or blind generated-data conflict resolution.
 
 ## Priority order
 
