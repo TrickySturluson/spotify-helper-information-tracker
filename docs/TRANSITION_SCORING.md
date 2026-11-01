@@ -10,6 +10,10 @@ The sequencer now uses evidence-aware transition scoring:
 
 - A metadata dimension contributes only when both tracks have evidence for that dimension.
 - Unknown energy is not compared as though a measured score of 50 were real.
+- Low-confidence energy estimates are also excluded from transition-gap claims; only medium/high estimates can support an energy comparison.
+- Low-confidence estimates retain a reduced journey-curve weight, while unknown placeholders remain display-only.
+- Transition confidence is marked supported only when at least two comparable dimensions exist and both tracks have medium/high energy evidence.
+- The optimizer uses four evenly distributed starting tracks and two local-refinement passes within a 12-position neighborhood to keep real-playlist previews responsive.
 - The placeholder score of 50 is display-only: the sequence journey objective skips unknown-energy tracks, so it cannot attract them toward a fictitious midpoint.
 - Transition reports expose `energy_gap: null` when either track lacks energy evidence, rather than publishing a misleading numeric gap.
 - When no comparable evidence exists, the report labels the handoff **uncertain**, not a potential jump or a failed match.
