@@ -177,12 +177,12 @@ class PlaylistSequencerTests(unittest.TestCase):
     def test_evidence_coverage_summary_reports_sources_and_disagreement(self):
         rows = [
             {"confidence": "high", "acoustic_confidence": "high",
-             "semantic_confidence": "medium", "tempo_bpm": 120,
+             "semantic_confidence": "medium", "mood_confidence": "high", "tempo_bpm": 120,
              "tempo_source": "Essentia", "tempo_agreement": True,
              "evidence_sources": ["essentia_lufs", "spotify_audio_features"],
              "semantic_source_families": ["lastfm_community", "musicbrainz"]},
             {"confidence": "low", "acoustic_confidence": "low",
-             "semantic_confidence": "high", "tempo_bpm": 80,
+             "semantic_confidence": "high", "mood_confidence": "low", "tempo_bpm": 80,
              "tempo_source": "AcousticBrainz", "tempo_agreement": False,
              "evidence_sources": ["acousticbrainz"],
              "semantic_source_families": ["discogs_release_context"]},
@@ -194,6 +194,8 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(summary["tempo_agreements"], 1)
         self.assertEqual(summary["tempo_disagreements"], 1)
         self.assertEqual(summary["semantic_confidence"]["high"], 1)
+        self.assertEqual(summary["mood_confidence"]["high"], 1)
+        self.assertEqual(summary["mood_confidence"]["low"], 1)
         self.assertEqual(summary["acoustic_source_coverage"]["acousticbrainz"], 1)
         self.assertEqual(summary["semantic_source_coverage"]["discogs_release_context"], 1)
 
@@ -349,6 +351,17 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(report["label"], "gentle")
         self.assertIn("dreamy", report["shared_moods"])
         self.assertEqual(sequencer.transition_report(dict(a, confidence="unknown", acoustic_confidence="unknown"), b)["confidence"], "limited")
+
+    def test_low_confidence_mood_cannot_support_transition_confidence(self):
+        left = {
+            "score": 40, "acoustic_score": 40, "acoustic_confidence": "high",
+            "artist": "A", "vibe_groups": ["dreamy"], "mood_confidence": "low",
+            "genre_groups": [], "theme_groups": [],
+        }
+        right = dict(left, artist="B", score=42, acoustic_score=42)
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["evidence_count"], 1)
 
     def test_transition_summary_flags_potential_jump(self):
         rows = [
