@@ -296,7 +296,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `compat/spotify_playback_tracker.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playlist_cloud.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_playlist_manager.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
-- `compat/migrate_music_library.py` — Compatibility launcher for the local-only per-recording library migration.\n- `compat/music_library.py` — Compatibility import for the canonical music-library API.\n- `compat/spotify_playlist_sequencer.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/migrate_music_library.py` — Compatibility launcher for the local-only The Library song migration.\n- `compat/music_library.py` — Compatibility import for the canonical music-library API.\n- `compat/spotify_playlist_sequencer.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_reference_library.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/track_playlist_removals.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/update_lastfm.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
