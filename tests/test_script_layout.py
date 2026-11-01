@@ -65,7 +65,7 @@ class ScriptLayoutTests(unittest.TestCase):
             with self.subTest(path=path.relative_to(ROOT).as_posix()):
                 source = path.read_text(encoding="utf-8")
                 self.assertIn("FILE OVERVIEW", source)
-                self.assertGreater(source.rfind("FILE OVERVIEW"), source.find("FILE OVERVIEW"))
+                self.assertGreater(source.find("FILE OVERVIEW"), len(source) * 0.75)
 
     def test_repository_gitignore_has_a_file_overview(self):
         source = (ROOT / ".gitignore").read_text(encoding="utf-8")
