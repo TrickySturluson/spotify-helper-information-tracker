@@ -213,9 +213,11 @@ The executable implementation is grouped under `scripts/` by responsibility:
 - `scripts/spotify/` — playlist intelligence, discovery, sequencing, management, playback tracking, and reference-library tooling.
 - `scripts/lastfm/` — Last.fm archive importing.
 
-Legacy command-line entry points live in `compat/`, while the maintained implementation lives under `scripts/`. A small root-level `sitecustomize.py` adds `compat/` to Python's import path so existing module imports and tests continue to work. Run tools with `python compat/TOOL_NAME.py`; add new implementation code under `scripts/`, not `compat/`.
+The root-level `shit.py` is the native project command launcher; `sitecustomize.py` adds `compat/` to Python's import path so existing module imports continue to work. Legacy command-line entry points live in `compat/`, while maintained implementations live under `scripts/`. Add new business logic under `scripts/`, not `compat/`.
 
-See [scripts/README.md](scripts/README.md) for the layout and migration notes.
+The canonical per-recording **Library** stores interconnected artist, album, and song records under `assistant_data/music/library/`. Start with `python shit.py library status`; see [The Great Migration guide](docs/GREAT_MIGRATION.md) for preview, migration, enrichment, audit, and ChatGPT-triggered GitHub Actions operations.
+
+See [scripts/README.md](scripts/README.md) for the implementation layout.
 
 ## Project overview
 
