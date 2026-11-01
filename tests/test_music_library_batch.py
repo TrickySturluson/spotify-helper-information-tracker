@@ -19,7 +19,7 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         self.assertTrue(report["ok"], report["errors"])
         self.assertEqual(report["songs"], 100)
         self.assertEqual(report["artists"], 47)
-        self.assertEqual(report["albums"], 0)
+        self.assertEqual(report["albums"], 1)  # Ceres & Calypso is the first committed album example
 
     def test_committed_batch_loads_through_playlist_sequencer(self):
         index = json.loads((ROOT / "library_index.json").read_text(encoding="utf-8"))
