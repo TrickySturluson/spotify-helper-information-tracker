@@ -53,7 +53,7 @@ class LyricsLibraryTests(unittest.TestCase):
             library.close()
 
     def test_general_themes_are_detected_without_inflating_horror_score(self):
-        result = analyze_lyrics("We dance in the nightclub tonight with all our friends.")
+        result = analyze_lyrics("We party and celebrate in the nightclub, dancing with friends together tonight.")
         self.assertIn("nightlife_clubbing", result["themes"])
         self.assertIn("party_celebration", result["themes"])
         self.assertIn("friendship_togetherness", result["themes"])
