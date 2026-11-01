@@ -314,6 +314,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
         "acoustic_confidence": acoustic_confidence,
         "semantic_confidence": semantic_confidence,
+        "semantic_source_families": sorted(semantic_source_families),
         "tempo_bpm": tempo_value,
         "tempo_source": tempo_source,
         "tempo_agreement": tempo_agreement if len(tempo_candidates) >= 2 else None,
@@ -736,12 +737,20 @@ def evidence_coverage_summary(scored):
     acoustic = Counter(row.get("acoustic_confidence", row.get("confidence", "unknown"))
                        for row in scored)
     semantic = Counter(row.get("semantic_confidence", "unknown") for row in scored)
+    semantic_source_coverage = Counter(
+        source for row in scored for source in row.get("semantic_source_families", [])
+    )
+    acoustic_source_coverage = Counter(
+        source for row in scored for source in row.get("evidence_sources", [])
+    )
     tempo_sources = Counter(row.get("tempo_source", "unknown") for row in scored
                             if row.get("tempo_bpm") is not None)
     return {
         "acoustic_confidence": {key: acoustic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
         "semantic_confidence": {key: semantic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
         "tempo_sources": dict(sorted(tempo_sources.items())),
+        "acoustic_source_coverage": dict(sorted(acoustic_source_coverage.items())),
+        "semantic_source_coverage": dict(sorted(semantic_source_coverage.items())),
         "tempo_agreements": sum(row.get("tempo_agreement") is True for row in scored),
         "tempo_disagreements": sum(row.get("tempo_agreement") is False for row in scored),
     }
