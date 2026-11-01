@@ -7,6 +7,7 @@ to preview and apply. It never edits Spotify directly.
 """
 import argparse
 import json
+import math
 import re
 from collections import Counter
 from pathlib import Path
@@ -113,19 +114,21 @@ def _track_mood_evidence(profile):
                     continue
                 label = str(tag).strip()
                 key = norm(label)
-                if not key or key in raw_tags:
+                if not key:
+                    continue
+                matches = mood_inference._tag_moods(label)
+                if not matches:
+                    continue
+                family_moods.update(matches)
+                if key in raw_tags:
                     continue
                 raw_tags.add(key)
                 try:
                     count = max(0.0, float(row.get("count", 0) or 0)) if isinstance(row, dict) else 0.0
-                    strength = min(1.0, max(0.15, __import__("math").log1p(count) / __import__("math").log(101))) if count else 0.25
+                    strength = min(1.0, max(0.15, math.log1p(count) / math.log(101))) if count else 0.25
                 except (TypeError, ValueError):
                     strength = 0.25
-                matches = mood_inference._tag_moods(label)
-                if not matches:
-                    continue
                 descriptors.add(key)
-                family_moods.update(matches)
                 for mood in matches:
                     by_mood[mood] = max(by_mood.get(mood, 0.0), strength)
         if family_moods:
