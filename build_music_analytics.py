@@ -13,6 +13,7 @@ import mood_inference
 SOURCE = Path("data/scrobbles.json")
 MUSIC = Path("assistant_data/music")
 OUT = Path("assistant_data/recommendations")
+LYRICS_DB = Path("data/lyrics/library.sqlite3")
 SHARD_COUNT = 32
 
 
@@ -81,7 +82,7 @@ def load_lyric_analyses():
             "evidence_type": "lyrics_keyword_analysis",
             "full_lyrics_stored": False,
         }
-    db = Path("data/lyrics/library.sqlite3")
+    db = LYRICS_DB
     if not db.exists():
         return index
     connection = sqlite3.connect(db)
