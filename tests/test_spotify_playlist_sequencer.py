@@ -220,6 +220,13 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIn("energetic", result["vibe_groups"])
         self.assertEqual(result["confidence"], "medium")
 
+    def test_rising_journey_reaches_and_holds_a_sustained_finale(self):
+        curve = [sequencer.target_energy(i, 100, "rising", peak_position=85, peak_shape="gradual")
+                 for i in range(100)]
+        self.assertTrue(all(left <= right for left, right in zip(curve, curve[1:])))
+        self.assertAlmostEqual(curve[-1], 0.96)
+        self.assertEqual(curve[84], curve[-1])
+
 
 if __name__ == "__main__":
     unittest.main()
