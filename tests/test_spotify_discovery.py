@@ -71,6 +71,14 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertIn("spotify:track:b", liked)
         self.assertEqual(sp.call.call_count, 2)
 
+    def test_lyric_theme_affinity_rewards_playlist_theme_overlap(self):
+        playlist_themes = {"vampire": 3, "murder_slasher": 2, "nightlife_clubbing": 1}
+        aligned = {"themes": {"vampire": {"count": 1}, "nightlife_clubbing": {"count": 2}}}
+        unrelated = {"themes": {"love_romance": {"count": 4}}}
+        self.assertAlmostEqual(discovery.lyric_theme_affinity(aligned, playlist_themes), 4 / 6)
+        self.assertEqual(discovery.lyric_theme_affinity(unrelated, playlist_themes), 0.0)
+        self.assertEqual(discovery.lyric_theme_affinity({}, playlist_themes), 0.0)
+
 
 if __name__ == "__main__":
     unittest.main()
