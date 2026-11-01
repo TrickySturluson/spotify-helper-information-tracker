@@ -208,12 +208,17 @@ if __name__ == "__main__":
             hdrs={"Retry-After": "13060"},
             fp=io.BytesIO(b'{"error":{"status":429,"message":"Too many requests","reason":"QUOTA_EXCEEDED"}}'),
         )
-        with patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
+        with tempfile.TemporaryDirectory() as directory, patch.object(
+            manager, "SPOTIFY_COOLDOWN", Path(directory) / "cooldown.json"
+        ), patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
             with self.assertRaisesRegex(
                 manager.ManagerError,
                 r"quota/rate limit reached.*QUOTA_EXCEEDED.*3h 38m.*No playlist changes were attempted",
             ):
                 spotify.call("GET", "/me/playlists?limit=50")
+            saved = manager.read(manager.SPOTIFY_COOLDOWN, {})
+            self.assertEqual(saved["retry_after_seconds"], 13060)
+            self.assertEqual(saved["reason"], "QUOTA_EXCEEDED")
         request.assert_called_once()
 
 
