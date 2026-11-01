@@ -120,8 +120,6 @@ def _track_mood_evidence(profile):
                 if not matches:
                     continue
                 family_moods.update(matches)
-                if key in raw_tags:
-                    continue
                 raw_tags.add(key)
                 try:
                     count = max(0.0, float(row.get("count", 0) or 0)) if isinstance(row, dict) else 0.0
@@ -928,6 +926,7 @@ def main():
         coverage = evidence_coverage_summary(scored)
         print("Semantic confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["semantic_confidence"].items()))
         print("Track mood confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["mood_confidence"].items()))
+        print("Track mood sources: " + (", ".join(f"{name}={count}" for name, count in coverage["mood_source_coverage"].items()) or "none"))
         print("Acoustic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["acoustic_source_coverage"].items()) or "none"))
         print("Semantic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["semantic_source_coverage"].items()) or "none"))
         print("Tempo sources: " + (", ".join(f"{name}={count}" for name, count in coverage["tempo_sources"].items()) or "none") + f"; agreement={coverage['tempo_agreements']}; disagreement={coverage['tempo_disagreements']}")
