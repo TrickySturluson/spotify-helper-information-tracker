@@ -48,7 +48,7 @@ class LibraryAlbumExampleTests(unittest.TestCase):
             "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
             "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
             "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
-            "mbid:15a01c36-c6b4-4bb1-9c94-92d14773f573",
+            "mbid:15a01c36-7d12-4b48-8cf4-85063c45f573",
         }
         self.assertTrue(expected_verified_ids.issubset(set(album["song_ids"])))
         self.assertTrue(all(row.get("mbid") is None for row in tracklist))
