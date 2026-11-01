@@ -46,15 +46,40 @@ def fail(message):
 
 
 def owned_playlist(sp, pid, me):
-    # Do not use /me/playlists for mutation checks: Spotify may return a stale
-    # snapshot_id in that collection response after a playlist write. Fetch the
-    # playlist resource directly so preview/confirm/undo compare the live version.
+    # Prefer the canonical playlist resource for its freshest snapshot_id.
+    # Spotify API access restrictions can make this endpoint fail while the
+    # playlist still appears in /me/playlists. Fall back only to an exact ID
+    # match from the authenticated account's own playlist collection; never
+    # accept a merely public/followed playlist or a different owner.
+    direct_error = None
     try:
         p = sp.call("GET", f"/playlists/{pid}")
-    except manager.ManagerError:
-        fail("Rejected: playlist not found or not accessible by this account.")
-    if not isinstance(p, dict) or p.get("id") != pid or (p.get("owner") or {}).get("id") != me.get("id"):
-        fail("Rejected: playlist not found or not owned by this account.")
+    except manager.ManagerError as error:
+        direct_error = str(error)
+        p = None
+
+    if not isinstance(p, dict) or p.get("id") != pid:
+        try:
+            p = next((item for item in sp.playlists() if item.get("id") == pid), None)
+        except manager.ManagerError as error:
+            fail(
+                "Rejected: direct playlist lookup failed and the authenticated "
+                f"account's playlist list could not be checked ({error})."
+            )
+        if p is None:
+            detail = f" Spotify response: {direct_error}" if direct_error else ""
+            fail(
+                "Rejected: playlist is not present in this account's playlist "
+                "collection and direct lookup failed." + detail
+            )
+
+    owner_id = (p.get("owner") or {}).get("id")
+    if owner_id != me.get("id"):
+        fail(
+            "Rejected: playlist is accessible but is not owned by the authenticated "
+            f"Spotify account (playlist owner={owner_id or 'unknown'}, "
+            f"authenticated user={me.get('id') or 'unknown'})."
+        )
     return p
 
 
