@@ -108,6 +108,9 @@ class Spotify:
             self.t["obtained_at"]=time.time(); write(TOKEN,self.t)
         return self.t["access_token"]
     def call(self,method,path,body=None,retry=True):
+        # Re-check before every request, not only client construction. This also
+        # blocks recovery/cleanup code from issuing follow-up calls after a 429.
+        check_spotify_cooldown()
         h={"Authorization":"Bearer "+self.bearer()}; data=None
         if body is not None: h["Content-Type"]="application/json"; data=json.dumps(body).encode()
         req=urllib.request.Request(API+path,data=data,headers=h,method=method)
