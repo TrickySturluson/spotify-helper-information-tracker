@@ -31,7 +31,7 @@ class LibraryAlbumExampleTests(unittest.TestCase):
             recording_mbid="d6e2c73d-7d12-4b48-8cf4-85063c45e4df"
         )
         self.assertEqual(bundle["song"]["identity"]["album"], self.album_title)
-        self.assertEqual(bundle["album"]["id"], "spotify:album:5KkGAZrad4N4rc5FriwgzU")
+        self.assertEqual(bundle["album"]["id"], "album:3858c5d33d8c2159eb3d")\n        self.assertEqual(bundle["album"]["identity"]["spotify_album_id"], "5KkGAZrad4N4rc5FriwgzU")
         self.assertEqual(bundle["album"]["song_ids"], [
             "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
             "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
