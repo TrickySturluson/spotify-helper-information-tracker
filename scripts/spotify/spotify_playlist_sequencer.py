@@ -676,7 +676,13 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
             # hybrid remains a backwards-compatible alias; it no longer partitions energy bands.
             result = _smooth_order(scored, journey, peak_position, peak_shape, genre_strength, theme_strength, fixed)
     elif mode == "energy":
-        result = sorted(scored, key=lambda row: (row["score"], row["original_index"]), reverse=direction == "descending")
+        known_energy = [row for row in scored if row.get("acoustic_score") is not None]
+        unknown_energy = [row for row in scored if row.get("acoustic_score") is None]
+        result = sorted(
+            known_energy,
+            key=lambda row: (row["acoustic_score"], row["original_index"]),
+            reverse=direction == "descending",
+        ) + sorted(unknown_energy, key=lambda row: row["original_index"])
     elif mode == "atmosphere":
         if group_by == "none":
             for row in scored:
