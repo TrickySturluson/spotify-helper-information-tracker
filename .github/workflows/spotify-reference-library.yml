@@ -25,7 +25,7 @@ jobs:
       - name: Compile and test
         run: |
           python -m py_compile compat/spotify_playlist_manager.py compat/spotify_reference_library.py compat/spotify_daily_feedback.py
-          python -m unittest discover -s tests -v
+          python -m unittest discover -s tests -t . -v
       - name: Refresh Spotify reference library
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}

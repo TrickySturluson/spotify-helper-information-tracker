@@ -32,7 +32,7 @@ jobs:
       - name: Install no third-party dependencies
         run: |
           python -m py_compile compat/spotify_playlist_manager.py compat/spotify_playlist_cloud.py compat/spotify_discovery.py compat/playlist_intelligence.py compat/playlist_metadata.py compat/mood_inference.py
-          python -m unittest discover -s tests -v
+          python -m unittest discover -s tests -t . -v
       - name: Read command type
         id: parse-command
         run: |

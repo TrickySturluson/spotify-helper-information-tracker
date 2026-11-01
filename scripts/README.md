@@ -9,6 +9,12 @@ The maintained implementation lives under this directory, grouped by responsibil
 
 ## Compatibility entry points
 
-Legacy command-line entry points and import shims live in the repository's `compat/` directory. They preserve existing module names and command behavior while delegating to the organized implementation. A small root-level `sitecustomize.py` adds that directory to Python's import path for existing test and module imports.
+Legacy command-line entry points and import shims live in the repository's `compat/` directory. They preserve existing module names and command behavior while delegating to the organized implementation. A small root-level `sitecustomize.py` adds that directory to Python's import path when the repository is on the startup path; the `tests` package also bootstraps it explicitly for unittest discovery.
 
-Run command-line tools with `python compat/TOOL_NAME.py`. New implementation code belongs under the appropriate package in `scripts/`; do not duplicate logic in `compat/`.
+Run a tool with `python compat/TOOL_NAME.py`. Run the full test suite from the repository root with:
+
+```bash
+python -m unittest discover -s tests -t . -v
+```
+
+New implementation code belongs under the appropriate package in `scripts/`; do not duplicate logic in `compat/`.

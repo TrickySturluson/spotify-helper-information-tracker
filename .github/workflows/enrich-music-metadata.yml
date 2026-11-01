@@ -54,7 +54,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run unit tests before enrichment
-        run: python -m unittest discover -s tests -v
+        run: python -m unittest discover -s tests -t . -v
       - name: Fill missing durations from MusicBrainz
         env:
           MUSICBRAINZ_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.musicbrainz_lookups || '300' }}
