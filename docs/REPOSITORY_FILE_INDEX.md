@@ -317,7 +317,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `docs/CODE_DOCUMENTATION.md` — Conventions for maintained-file overviews and project documentation.
 - `docs/GETSONGBPM.md` — Guide to tempo lookup sources and confidence.
 - `docs/LYRICS_LIBRARY.md` — Guide to lyric/theme metadata and source handling.
-- `docs/PER_RECORDING_MUSIC_LIBRARY.md` — Storage layout, stable identity rules, migration, and lazy lookup behavior.\n- `docs/PUBLIC_REPOSITORY_PRIVACY.md` — Public-repository privacy and secret-handling safeguards.
+- `docs/PER_RECORDING_MUSIC_LIBRARY.md` — The Library storage layout, stable song identity rules, staged migration, and lazy lookup behavior.\n- `docs/PUBLIC_REPOSITORY_PRIVACY.md` — Public-repository privacy and secret-handling safeguards.
 - `docs/RECENT_TRACK_ENRICHMENT.md` — Workflow for prioritizing recent listening metadata.
 - `docs/REPOSITORY_FILE_INDEX.md` — Catalogue of tracked files and their roles.
 - `docs/SPOTIFY_API_OPERATIONS.md` — Spotify API restrictions, quota cooldowns, safe diagnostics, and recovery.
@@ -349,7 +349,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/audio_analysis.py` — Maintained implementation module for audio analysis. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_music_metadata.py` — Maintained implementation module for build music metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_music_profiles.py` — Maintained implementation module for build music profiles. See its bottom FILE OVERVIEW for detailed behavior.
-- `scripts/music/build_track_profiles.py` — Maintained implementation module for build track profiles. See its bottom FILE OVERVIEW for detailed behavior.\n- `scripts/music/migrate_music_library.py` — Local-only migration from aggregate metadata to individual artist, album, and recording records.\n- `scripts/music/music_library.py` — Canonical per-recording JSON storage, stable-ID index, and lazy lookup API.
+- `scripts/music/build_track_profiles.py` — Maintained implementation module for build track profiles. See its bottom FILE OVERVIEW for detailed behavior.\n- `scripts/music/migrate_music_library.py` — Local-only, bounded or full migration from aggregate metadata to artist, album, and song records.\n- `scripts/music/music_library.py` — Canonical The Library song JSON storage, stable-ID index, recent-batch selection, integrity audit, and lazy lookup API.
 - `scripts/music/enrich_acousticbrainz.py` — Maintained implementation module for multi-submission AcousticBrainz enrichment.
 - `scripts/music/enrich_discogs.py` — Optional exact-match Discogs release-context enrichment.
 - `scripts/music/enrich_getsongbpm.py` — Maintained implementation module for enrich getsongbpm. See its bottom FILE OVERVIEW for detailed behavior.
@@ -382,7 +382,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `tests/test_enrich_discogs.py` — Automated regression tests for Discogs identity matching.
 - `tests/test_enrich_getsongbpm.py` — Automated regression tests for enrich getsongbpm.
 - `tests/test_lyrics_library.py` — Automated regression tests for lyrics library.
-- `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.\n- `tests/test_music_library.py` — Automated regression tests for per-recording identity, lookup, and evidence preservation.
+- `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.\n- `tests/test_music_library.py` — Automated regression tests for song identity, lookup, staged migration selection, and evidence preservation.\n- `tests/test_music_library_batch.py` — Integration tests against the committed 50-song Library batch and playlist-sequencer loading.
 - `tests/test_playlist_intelligence.py` — Automated regression tests for playlist intelligence.
 - `tests/test_script_layout.py` — Automated regression tests for script layout.
 - `tests/test_spotify_daily_feedback_scoring.py` — Automated regression tests for spotify daily feedback scoring.
