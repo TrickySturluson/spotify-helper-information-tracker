@@ -47,6 +47,26 @@ Keep the repository public only if you are comfortable publishing this listening
 
 All generated timestamps and calendar buckets use UTC. Track identity is the artist/track pair; album identity is the artist/album pair, preventing identical titles by different artists from being collapsed. Advanced analytics prefer MusicBrainz IDs (MBIDs) when present and fall back to case-folded names. They include monthly artist timelines, first-time discovery and 90-day rediscovery events, trailing 30/90-day rankings, inferred listening sessions (30-minute gap threshold), and monthly artist-concentration metrics. Rolling windows end at the newest archived scrobble. Session spans are timestamp-based estimates, not actual playback durations.
 
+## Canonical per-recording music library
+
+The canonical music catalogue lives at `assistant_data/music/library/`, with one JSON record per recording, artist, and album. New Last.fm metadata-enrichment runs now merge their results into this library, preserving existing mood assessments, evidence, and listening context. Older shard/index exports remain available as compatibility views while downstream analytics are migrated.
+
+Use the native SHIT command interface from the repository root:
+
+```bash
+python shit.py library status
+python shit.py library preview
+python shit.py library migrate
+python shit.py library audit
+```
+
+- `status` reports indexed counts and the latest migration result.
+- `preview` is read-only: it counts stored profiles and accessible playlist snapshots without writing files or contacting providers.
+- `migrate` imports stored track profiles and accessible playlist snapshots. It creates a timestamped backup automatically and asks for confirmation; use `--yes` for non-interactive execution.
+- `audit` validates record files, relationships, and lookup aliases.
+
+The offline migration does not modify Spotify playlists or call metadata providers. Missing recording-level mood evidence remains unknown rather than being inferred from artist or album context. The older `compat/migrate_full_music_library.py` launcher remains supported for backwards compatibility.
+
 ## Rebuild locally
 
 ```bash
