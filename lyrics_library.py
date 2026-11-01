@@ -66,7 +66,7 @@ def now():
 
 
 def normalize(text):
-    return " ".join(re.findall(r"[a-z0-9]+", (text or "").casefold()))
+    return " ".join(TOKEN_RE.findall((text or "").casefold()))
 
 
 def request_json(url, headers=None, timeout=20):
