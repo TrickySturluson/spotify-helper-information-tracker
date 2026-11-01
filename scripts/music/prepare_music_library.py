@@ -48,7 +48,7 @@ def run(label, args, env=None):
         raise SystemExit(f"{label} stopped with exit code {completed.returncode}; fix the issue and rerun (checkpoints are retained).")
 
 
-def build_plan():
+def build_plan(skip_spotify_refresh=False):
     # Resolve exact recording IDs before AcousticBrainz; run track/album/artist
     # lookups only after the offline migration has captured the full catalogue.
     return [
@@ -65,6 +65,9 @@ def build_plan():
         ("Rebuild final duration metadata and merge into canonical library", command("compat/build_music_metadata.py"), {"LASTFM_API_KEY": os.environ.get("LASTFM_API_KEY", ""), "MUSIC_METADATA_LOOKUPS_PER_RUN": "0"}),
         ("Merge every enrichment export and validate the library", command("scripts/music/sync_music_library.py"), {}),
     ]
+    if skip_spotify_refresh:
+        plan = [step for step in plan if step[0] != "Refresh read-only Spotify playlist snapshots"]
+    return plan
 
 
 def main(argv=None):
@@ -109,7 +112,7 @@ def main(argv=None):
             return 1
 
     run("Back up and migrate the existing catalogue", command("shit.py", "library", "migrate", "--yes"))
-    for label, args_list, env in build_plan():
+    for label, args_list, env in build_plan(args.skip_spotify_refresh):
         if args.skip_discogs and "Discogs" in label:
             print(f"Skipping {label} by request.")
             continue
