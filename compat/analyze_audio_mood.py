@@ -1,10 +1,15 @@
-#!/usr/bin/env python3
 """Compatibility entry point for optional local DEAM audio mood inference."""
 from pathlib import Path
-import runpy
+import sys
 
-if __name__ == "__main__":
-    runpy.run_path(str(Path(__file__).resolve().parents[1] / "scripts" / "music" / "analyze_audio_mood.py"), run_name="__main__")
+_ROOT = Path(__file__).resolve().parents[1]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+if str(_ROOT / "compat") not in sys.path:
+    sys.path.insert(0, str(_ROOT / "compat"))
+_source = _ROOT / "scripts" / "music" / "analyze_audio_mood.py"
+__file__ = str(_ROOT / "analyze_audio_mood.py")
+exec(compile(_source.read_text(encoding="utf-8"), __file__, "exec"), globals())
 
 
 # -----------------------------------------------------------------------------
