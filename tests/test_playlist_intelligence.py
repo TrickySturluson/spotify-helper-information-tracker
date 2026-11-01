@@ -4,6 +4,8 @@ from pathlib import Path
 
 import playlist_intelligence as intelligence
 import mood_inference
+from lyrics_library import LyricsLibrary
+from unittest.mock import patch
 
 
 class PlaylistIntelligenceTests(unittest.TestCase):
@@ -157,6 +159,23 @@ class PlaylistIntelligenceTests(unittest.TestCase):
                 {"tag": "vampire", "track_count": 1},
             ])
             self.assertEqual(profile["track_metadata"]["lyric_analyzed_tracks"], 1)
+
+    def test_playlist_index_reads_manually_analyzed_songs_from_local_db(self):
+        with tempfile.TemporaryDirectory() as directory:
+            db_path = Path(directory) / "lyrics.sqlite3"
+            library = LyricsLibrary(db_path)
+            library.save("Night Song", "The Example", results=[{
+                "provider": "test", "lyrics": "The vampire rises from the coffin."
+            }])
+            library.close()
+            with patch.object(intelligence, "LYRICS_DB", db_path):
+                index = intelligence.track_metadata_index(
+                    Path(directory) / "missing-track-profiles.json",
+                    Path(directory) / "missing-track-features.json",
+                )
+            analysis = index[("the example", "night song")]["lyric_analysis"]
+            self.assertIn("vampire", analysis["themes"])
+            self.assertFalse(analysis["full_lyrics_stored"])
 
 
 if __name__ == "__main__":
