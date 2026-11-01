@@ -37,3 +37,12 @@ class AudioAnalysisTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Verify local audio-file parsing and measured audio feature scoring.
+# Coverage: Filename identity, conservative parsing, dBFS edge cases, and sourced
+#           tempo/loudness evidence in playlist energy profiles.
+# Run: python -m unittest tests.test_audio_analysis -v (from the repository root).
+# Related: scripts/music/audio_analysis.py and docs/AUTOMATED_AUDIO_METADATA.md.
+# -----------------------------------------------------------------------------
