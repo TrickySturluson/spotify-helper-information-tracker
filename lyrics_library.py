@@ -40,7 +40,7 @@ THEMES = {
     # General-purpose themes for recommendations beyond seasonal playlists.
     "love_romance": {"love", "lover", "lovers", "romance", "romantic", "kiss", "kisses", "heart", "darling", "beloved"},
     "heartbreak_loss": {"heartbreak", "heartbroken", "lonely", "loneliness", "goodbye", "forgotten", "miss", "missing", "tears", "cry", "broken"},
-    "nightlife_clubbing": {"club", "clubbing", "nightclub", "dancefloor", "disco", "dj", "midnight", "neon", "afterparty"},
+    "nightlife_clubbing": {"club", "clubbing", "nightclub", "dancefloor", "disco", "dj", "midnight", "neon", "afterparty", "dancing", "dance", "rave"},
     "party_celebration": {"party", "celebrate", "celebration", "drunk", "drinking", "dancing", "tonight", "champagne", "whiskey"},
     "rebellion_freedom": {"rebel", "rebellion", "riot", "revolution", "freedom", "breakout", "resist", "fight", "fightback"},
     "nostalgia_memory": {"nostalgia", "memory", "memories", "remember", "remembering", "yesterday", "childhood", "homecoming"},
@@ -56,9 +56,6 @@ THEMES = {
 HORROR_THEMES = {"horror_atmosphere", "murder_slasher", "blood_gore", "monster_creature", "vampire",
                  "zombie_undead", "ghost_supernatural", "witchcraft_occult", "dark_fantasy",
                  "halloween_party", "death_afterlife"}
-SPECIFIC_THEMES = {"vampire", "zombie_undead", "ghost_supernatural", "witchcraft_occult",
-                   "murder_slasher", "monster_creature", "halloween_party"}
-
 SPECIFIC_THEMES = {"vampire", "zombie_undead", "ghost_supernatural", "witchcraft_occult",
                    "murder_slasher", "monster_creature", "halloween_party"}
 TOKEN_RE = re.compile(r"[a-z0-9']+")
