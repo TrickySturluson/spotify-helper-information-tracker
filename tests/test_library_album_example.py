@@ -44,8 +44,17 @@ class LibraryAlbumExampleTests(unittest.TestCase):
         album = self.library.get_album(artist=self.artist, album=self.album_title)
         tracklist = album["evidence"]["lastfm_tracklist"]
         self.assertEqual(len(tracklist), 12)
-        self.assertEqual(len(album["song_ids"]), 4)
+        expected_verified_ids = {
+            "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+            "mbid:a55df03b-b6de-4240-a816-e9392fc7e270",
+            "mbid:d6e2c73d-7d12-4b48-8cf4-85063c45e4df",
+            "mbid:15a01c36-c6b4-4bb1-9c94-92d14773f573",
+        }
+        self.assertTrue(expected_verified_ids.issubset(set(album["song_ids"])))
+        self.assertTrue(all(row.get("mbid") is None for row in tracklist))
         self.assertTrue(all(row["recording_identity_verified"] is False for row in tracklist))
+        linked_ids = {row["linked_song_id"] for row in tracklist if row.get("linked_song_id")}
+        self.assertTrue(linked_ids.issubset(set(album["song_ids"])))
 
     def test_album_key_uses_canonical_artist_album_identity(self):
         album = self.library.get_album(artist=self.artist, album=self.album_title)
