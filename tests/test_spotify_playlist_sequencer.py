@@ -72,6 +72,18 @@ class PlaylistSequencerTests(unittest.TestCase):
         report = sequencer.transition_report(left, right)
         self.assertEqual(report["energy_gap"], 0.0)
 
+
+    def test_energy_mode_sorts_acoustic_score_and_keeps_unknown_last(self):
+        rows = [
+            {"uri": "high", "name": "High", "artists": ["A"],
+             "audio_features": {"energy": 0.9}},
+            {"uri": "low", "name": "Low", "artists": ["B"],
+             "audio_features": {"energy": 0.1}},
+            {"uri": "unknown", "name": "Unknown", "artists": ["C"]},
+        ]
+        result = sequencer.sequence_tracks(rows, mode="energy")
+        self.assertEqual([row["item"]["uri"] for row in result], ["low", "high", "unknown"])
+
     def test_semantic_only_track_has_no_acoustic_score(self):
         result = sequencer.score_track(
             {"name": "Tagged", "artists": ["Artist"]},
