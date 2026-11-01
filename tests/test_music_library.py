@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from music_library import MusicLibrary
+from migrate_music_library import select_recent_track_rows
 import spotify_playlist_sequencer as sequencer
 
 class MusicLibraryTests(unittest.TestCase):
@@ -109,6 +110,31 @@ class MusicLibraryTests(unittest.TestCase):
             self.assertEqual(result["songs"], 2)
             self.assertEqual(result["ambiguous_name_aliases"], 1)
             self.assertIsNone(lib.get_song(artist="Artist", track="Song"))
+
+
+    def test_recent_batch_selection_is_bounded_and_preserves_listening_context(self):
+        profiles = {
+            "mbid:recording-one": {
+                "track_id": "mbid:recording-one", "track_mbid": "recording-one",
+                "artist": "A", "track": "One", "lastfm_tags": [{"tag": "dark"}],
+            },
+            "mbid:recording-two": {
+                "track_id": "mbid:recording-two", "track_mbid": "recording-two",
+                "artist": "B", "track": "Two",
+            },
+        }
+        recent = [
+            {"track_id": "mbid:recording-one", "track_mbid": "recording-one", "recent_plays": 9, "all_time_plays": 20},
+            {"track_id": "mbid:recording-one", "track_mbid": "recording-one", "recent_plays": 8, "all_time_plays": 20},
+            {"track_id": "mbid:recording-two", "track_mbid": "recording-two", "recent_plays": 7, "all_time_plays": 10},
+        ]
+        selected, report = select_recent_track_rows(profiles, recent, 2)
+        self.assertEqual(len(selected), 2)
+        self.assertEqual(report["selected"], 2)
+        self.assertEqual(report["duplicates"], 1)
+        first = selected["mbid:recording-one"]
+        self.assertEqual(first["listening_context"]["recent_plays"], 9)
+        self.assertEqual(first["lastfm_tags"][0]["tag"], "dark")
 
 if __name__ == "__main__": unittest.main()
 
