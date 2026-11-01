@@ -26,9 +26,33 @@
     "spotify:track:4mUm3GB285Na6WQZ2UgEUg",
     "spotify:track:252s9AdYVzDJ8jAQ8G5Iws",
     "spotify:track:5ykjrPyJXKivUqoRcJTl17",
-    "spotify:track:6cRltrjAMIXBO20lYzGGhE"
+    "spotify:track:6cRltrjAMIXBO20lYzGGhE",
+    "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
+    "spotify:track:7F6B0eGSuPpDin9yCK6Zh7",
+    "spotify:track:3lM9UdOYvDIs5PSY8aBEl2",
+    "spotify:track:2rzafMh8q10vQGixcHupCh"
   ],
-  "02 — Horror punk & psychobilly": [
+  "03 — Dark club & rave escalation": [
+    "spotify:track:1E5lJ3PRYAmOwv2Zlqj8FT",
+    "spotify:track:1XWSE59E3X8T2AHE4v11Hu",
+    "spotify:track:51T9xt361Nm8IyUPoAlCPt",
+    "spotify:track:0MK6lVnmhVulpP62vkZBWV",
+    "spotify:track:10qbHF920zH5K8C8IcE5AL",
+    "spotify:track:2m17BTWlZq0wtS9cpJsCfM",
+    "spotify:track:5fFg6pNYG5EgXzuEmDSx91",
+    "spotify:track:3kdSHY9ZQIjyg4Q68YG4Qz"
+  ],
+  "02 — Dark club & rave escalation": [
+    "spotify:track:1E5lJ3PRYAmOwv2Zlqj8FT",
+    "spotify:track:1XWSE59E3X8T2AHE4v11Hu",
+    "spotify:track:51T9xt361Nm8IyUPoAlCPt",
+    "spotify:track:0MK6lVnmhVulpP62vkZBWV",
+    "spotify:track:10qbHF920zH5K8C8IcE5AL",
+    "spotify:track:2m17BTWlZq0wtS9cpJsCfM",
+    "spotify:track:5fFg6pNYG5EgXzuEmDSx91",
+    "spotify:track:3kdSHY9ZQIjyg4Q68YG4Qz"
+  ],
+  "03 — Horror punk, psychobilly & heavy rock finale": [
     "spotify:track:1bPgyV3er2BP0ON7EEEMYf",
     "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
     "spotify:track:18Cs5wC3kOk7k79myWe1Hw",
@@ -64,20 +88,7 @@
     "spotify:track:45qSKVb3rk0CyKCDRqKHga",
     "spotify:track:7uB82W1hgkVbuKnvdaQCLD",
     "spotify:track:6BVvbbgWtthQQRObyHkBO8",
-    "spotify:track:1eAiNGFpK7gRzNXHZD8xFa"
-  ],
-  "03 — Dark club & rave escalation": [
-    "spotify:track:1E5lJ3PRYAmOwv2Zlqj8FT",
-    "spotify:track:1XWSE59E3X8T2AHE4v11Hu",
-    "spotify:track:51T9xt361Nm8IyUPoAlCPt",
-    "spotify:track:2rzafMh8q10vQGixcHupCh",
-    "spotify:track:0MK6lVnmhVulpP62vkZBWV",
-    "spotify:track:10qbHF920zH5K8C8IcE5AL",
-    "spotify:track:2m17BTWlZq0wtS9cpJsCfM",
-    "spotify:track:5fFg6pNYG5EgXzuEmDSx91",
-    "spotify:track:3kdSHY9ZQIjyg4Q68YG4Qz"
-  ],
-  "04 — Heavy horror-rock finale": [
+    "spotify:track:1eAiNGFpK7gRzNXHZD8xFa",
     "spotify:track:3ZDnQ5UGuPvRBfUUmTmwEC",
     "spotify:track:605hJIiMrdsUjr4Vx4BFD6",
     "spotify:track:1NbJFhkVdD47YZ2IojKkJi",
