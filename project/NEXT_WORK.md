@@ -1,6 +1,10 @@
 # SHIT — Next Work
 
-This is the authoritative session handoff. Read this file first when resuming work, then read [PROJECT_LOG.md](PROJECT_LOG.md) and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
+This is the authoritative session handoff. Read this file first when resuming work, then read [LOOSE_ENDS.md](LOOSE_ENDS.md), [PROJECT_LOG.md](PROJECT_LOG.md), and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
+
+## Cross-project loose-ends register
+
+Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
 ## Immediate resume point — Great Migration
 
@@ -62,9 +66,9 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 ## Open pull requests / status to re-check
 
-- **#66 — Project control centre and retry queue specification:** this branch contains the continuity docs; retry queue is specified, not implemented. https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/66
-- **#65 — Read-only Library coverage planner:** proposed code/tests; CI and schema compatibility must be verified. https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65
-- **#60 — Provenance-aware recommendation ingestion:** proposed candidate intake; verify CI, merge state, and implementation before relying on it. https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60
+- **#67 — Per-goal documentation workspaces:** merged as `4ad701c2c4f36b9f6f73926e83db1f84cbfbcc2c`; tests and secret-history scan passed.
+- **#65 — Read-only Library coverage planner:** open draft; unit tests failed while compile/data-doc checks and secret scan passed. Diagnose before relying on it. https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65
+- **#60 — Provenance-aware recommendation ingestion:** open; unit tests and secret-history scan failed. Diagnose both before relying on it. https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60
 
 ## Standing data and safety rules
 
