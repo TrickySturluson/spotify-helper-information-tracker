@@ -296,8 +296,34 @@ class MusicLibrary:
         if key is None and artist and album:
             matches = [album_id for album_id, entry in albums.items()
                 if norm(entry.get("artist")) == norm(artist) and norm(entry.get("album")) == norm(album)]
-            if len(matches) == 1: key = matches[0]
-        return read_json(self.root / albums[key]["path"]) if key else None
+            if len(matches) == 1:
+                key = matches[0]
+        if key:
+            return read_json(self.root / albums[key]["path"])
+        # Stale/partial indexes must not hide canonical album records. This
+        # fallback is used only on a miss, and repairs the index for next lookup.
+        matches = []
+        for path in sorted((self.root / "albums").glob("**/album.json")):
+            record = read_json(path)
+            if not isinstance(record, dict):
+                continue
+            record_artist = record.get("artist") or (record.get("identity") or {}).get("artist")
+            record_album = record.get("album") or (record.get("identity") or {}).get("album")
+            if artist and album and norm(record_artist) == norm(artist) and norm(record_album) == norm(album):
+                matches.append((path, record))
+        if len(matches) != 1:
+            return None
+        path, record = matches[0]
+        key = record.get("id")
+        if key:
+            self.index.setdefault("albums", {})[key] = {
+                "path": str(path.relative_to(self.root)),
+                "artist_id": record.get("artist_id") or (record.get("identity") or {}).get("artist_id"),
+                "artist": record.get("artist") or (record.get("identity") or {}).get("artist"),
+                "album": record.get("album") or (record.get("identity") or {}).get("album"),
+            }
+            write_json(self.index_path, self.index)
+        return record
     # Backward-compatible method name for existing callers.
     get_recording = get_song
 
