@@ -9,7 +9,7 @@ DEFAULT_ROOT = Path("assistant_data/music/music_library")
 INDEX_NAME = "library_index.json"
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 def digest(value, length=20):
     return hashlib.sha256(str(value).encode("utf-8")).hexdigest()[:length]
