@@ -53,7 +53,7 @@ def merge_lyric_features(track_profiles, rows):
 
 def _tag_rows(profile):
     rows = []
-    for field in ("lastfm_tags", "musicbrainz_tags", "musicbrainz_genres"):
+    for field in ("lastfm_tags", "tags", "musicbrainz_tags", "musicbrainz_genres"):
         rows.extend(profile.get(field) or [])
     return [str(row.get("tag", "") if isinstance(row, dict) else row).strip()
             for row in rows if (row.get("tag") if isinstance(row, dict) else row)]
