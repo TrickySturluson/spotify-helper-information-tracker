@@ -57,6 +57,17 @@ class PlaylistSequencerTests(unittest.TestCase):
             {"high": 1, "medium": 0, "low": 1, "unknown": 2},
         )
 
+    def test_alternative_preview_message_formats_all_transition_counts(self):
+        message = sequencer.alternative_preview_message(
+            "plan-peak70.json",
+            {"gentle": 3, "moderate": 2, "potential_jumps": 1, "uncertain": 4},
+        )
+        self.assertEqual(
+            message,
+            "Alternative preview: plan-peak70.json | gentle: 3 | moderate: 2 "
+            "| potential jumps: 1 | uncertain: 4",
+        )
+
     def test_sort_modes_include_atmosphere_style_narrative_and_discovery(self):
         rows = [
             {"uri": "spotify:track:1", "name": "Soft", "artists": ["Rare"]},
