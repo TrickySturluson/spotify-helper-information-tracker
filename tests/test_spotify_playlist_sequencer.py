@@ -352,6 +352,29 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertIn("dreamy", report["shared_moods"])
         self.assertEqual(sequencer.transition_report(dict(a, confidence="unknown", acoustic_confidence="unknown"), b)["confidence"], "limited")
 
+    def test_mood_affinity_weight_scales_with_confidence(self):
+        left = {
+            "artist": "A", "vibe_groups": ["dreamy"],
+            "genre_groups": ["industrial"], "theme_groups": [],
+            "mood_confidence": "high",
+        }
+        right = {
+            "artist": "B", "vibe_groups": ["dreamy"],
+            "genre_groups": ["punk"], "theme_groups": [],
+            "mood_confidence": "high",
+        }
+        high_confidence_cost = sequencer._transition_cost(left, right)
+        low_confidence_cost = sequencer._transition_cost(
+            dict(left, mood_confidence="low"),
+            dict(right, mood_confidence="low"),
+        )
+        unknown_confidence_cost = sequencer._transition_cost(
+            dict(left, mood_confidence="unknown"),
+            dict(right, mood_confidence="unknown"),
+        )
+        self.assertLess(high_confidence_cost, low_confidence_cost)
+        self.assertLess(low_confidence_cost, unknown_confidence_cost)
+
     def test_low_confidence_mood_cannot_support_transition_confidence(self):
         left = {
             "score": 40, "acoustic_score": 40, "acoustic_confidence": "high",
