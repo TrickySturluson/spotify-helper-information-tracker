@@ -40,7 +40,7 @@ THEMES = {
     # General-purpose themes for recommendations beyond seasonal playlists.
     "love_romance": {"love", "lover", "lovers", "romance", "romantic", "kiss", "kisses", "heart", "darling", "beloved"},
     "heartbreak_loss": {"heartbreak", "heartbroken", "lonely", "loneliness", "goodbye", "forgotten", "miss", "missing", "tears", "cry", "broken"},
-    "nightlife_clubbing": {"club", "clubbing", "nightclub", "dancefloor", "disco", " dj", "midnight", " neon", "afterparty"},
+    "nightlife_clubbing": {"club", "clubbing", "nightclub", "dancefloor", "disco", "dj", "midnight", "neon", "afterparty"},
     "party_celebration": {"party", "celebrate", "celebration", "drunk", "drinking", "dancing", "tonight", "champagne", "whiskey"},
     "rebellion_freedom": {"rebel", "rebellion", "riot", "revolution", "freedom", "breakout", "resist", "fight", "fightback"},
     "nostalgia_memory": {"nostalgia", "memory", "memories", "remember", "remembering", "yesterday", "childhood", "homecoming"},
@@ -69,7 +69,7 @@ def now():
 
 
 def normalize(text):
-    return " ".join(TOKEN_RE.findall((text or "").casefold()))
+    return " ".join(re.findall(r"[a-z0-9]+", (text or "").casefold()))
 
 
 def request_json(url, headers=None, timeout=20):
