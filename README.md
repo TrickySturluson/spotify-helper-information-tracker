@@ -336,12 +336,12 @@ Undo the most recent completed change with:
 
 Undo is a preview-first restore from the exact pre-change snapshot. It requires the playlist to be unlocked and its ordered item URIs to match the post-change state recorded by the manager (legacy records fall back to the Spotify snapshot ID). Confirm with the one-time code returned by the preview. The restore replaces the playlist contents in their original order, preserves duplicate track/episode URIs, and saves the current contents as a new recovery artifact first (so undoing an undo can restore the prior state). Recovery artifacts are retained for 30 days; undo is unavailable after the artifact expires or is deleted.
 
-## Per-recording music library
+## The Library
 
 SHIT can store music metadata as individual artist, album, and recording JSON
 records rather than requiring every consumer to load large aggregate profiles.
 The canonical layout, identity rules, migration procedure, and lazy lookup
-behavior are documented in [the per-recording library guide](docs/PER_RECORDING_MUSIC_LIBRARY.md).
+behavior are documented in [the Library guide](docs/PER_RECORDING_MUSIC_LIBRARY.md).
 
 Preview and run the local-only migration:
 
