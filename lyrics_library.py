@@ -25,8 +25,9 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_DB = ROOT / "data" / "lyrics" / "library.sqlite3"
 APP_UA = "SHIT-Lyrics-Library/1.0 (https://github.com/TrickySturluson/tricky-lastfm)"
 THEMES = {
-    "horror_atmosphere": {"horror", "terror", "nightmare", "scream", "haunt", "haunted", "spooky", "fright", "scary"},
-    "murder_slasher": {"murder", "murderer", "killer", "kill", "slaughter", "stab", "knife", "chainsaw", "victim"},
+    # Horror / Halloween vocabulary remains explicit and separately scored.
+    "horror_atmosphere": {"horror", "terror", "nightmare", "scream", "haunt", "haunted", "spooky", "fright", "scary", "creepy"},
+    "murder_slasher": {"murder", "murderer", "killer", "kill", "slaughter", "stab", "knife", "chainsaw", "victim", "assassin"},
     "blood_gore": {"blood", "bleed", "gore", "guts", "wound", "decapitate", "dismember"},
     "monster_creature": {"monster", "creature", "beast", "werewolf", "frankenstein", "mutant"},
     "vampire": {"vampire", "dracula", "fang", "fangs", "bloodsucker", "coffin", "stake"},
@@ -36,7 +37,28 @@ THEMES = {
     "dark_fantasy": {"demon", "devil", "hell", "inferno", "damned", "evil"},
     "halloween_party": {"halloween", "costume", "trick", "treat", "pumpkin", "jackolantern", "midnight", "masquerade"},
     "death_afterlife": {"death", "dead", "dying", "die", "grave", "funeral", "coffin", "afterlife", "reaper"},
+    # General-purpose themes for recommendations beyond seasonal playlists.
+    "love_romance": {"love", "lover", "lovers", "romance", "romantic", "kiss", "kisses", "heart", "darling", "beloved"},
+    "heartbreak_loss": {"heartbreak", "heartbroken", "lonely", "loneliness", "goodbye", "forgotten", "miss", "missing", "tears", "cry", "broken"},
+    "nightlife_clubbing": {"club", "clubbing", "nightclub", "dancefloor", "disco", " dj", "midnight", " neon", "afterparty"},
+    "party_celebration": {"party", "celebrate", "celebration", "drunk", "drinking", "dancing", "tonight", "champagne", "whiskey"},
+    "rebellion_freedom": {"rebel", "rebellion", "riot", "revolution", "freedom", "breakout", "resist", "fight", "fightback"},
+    "nostalgia_memory": {"nostalgia", "memory", "memories", "remember", "remembering", "yesterday", "childhood", "homecoming"},
+    "alienation_identity": {"alien", "outsider", "stranger", "nowhere", "disappear", "invisible", "alone", "identity", "misfit"},
+    "friendship_togetherness": {"friend", "friends", "together", "brother", "sister", "family", "belong", "companions"},
+    "sci_fi_space": {"space", "spaceship", "spaceships", "galaxy", "galaxies", "planet", "planets", "robot", "robots", "cyber", "future", "android"},
+    "travel_escape": {"travel", "journey", "road", "highway", "driving", "running", "escape", "runaway", "destination"},
+    "war_conflict": {"war", "battle", "soldier", "soldiers", "weapon", "weapons", "army", "violence", "conflict"},
+    "nature_weather": {"ocean", "river", "rain", "storm", "thunder", "lightning", "sunshine", "mountain", "forest", "flowers"},
+    "religion_spirituality": {"god", "heaven", "prayer", "faith", "angel", "angels", "church", "soul", "salvation"},
+    "substance_use": {"whiskey", "vodka", "beer", "wine", "cocaine", "heroin", "pills", "smoking", "high", "stoned"},
 }
+HORROR_THEMES = {"horror_atmosphere", "murder_slasher", "blood_gore", "monster_creature", "vampire",
+                 "zombie_undead", "ghost_supernatural", "witchcraft_occult", "dark_fantasy",
+                 "halloween_party", "death_afterlife"}
+SPECIFIC_THEMES = {"vampire", "zombie_undead", "ghost_supernatural", "witchcraft_occult",
+                   "murder_slasher", "monster_creature", "halloween_party"}
+
 SPECIFIC_THEMES = {"vampire", "zombie_undead", "ghost_supernatural", "witchcraft_occult",
                    "murder_slasher", "monster_creature", "halloween_party"}
 TOKEN_RE = re.compile(r"[a-z0-9']+")
@@ -135,8 +157,8 @@ def analyze_lyrics(lyrics):
     """Extract reusable thematic features; lyrics are processed transiently."""
     words = TOKEN_RE.findall((lyrics or "").casefold())
     if not words:
-        return {"schema_version": 2, "themes": {}, "word_count": 0,
-                "horror_relevance": 0.0, "assessment": "unavailable"}
+        return {"schema_version": 3, "themes": {}, "word_count": 0, "horror_relevance": 0.0,
+                "assessment": "unavailable", "method": "lexical_theme_extraction_v3"}
     counts = {}
     for theme, terms in THEMES.items():
         hits = sorted(set(words).intersection(terms))
@@ -148,13 +170,13 @@ def analyze_lyrics(lyrics):
         threshold = 1 if theme in SPECIFIC_THEMES else 2
         if len(evidence["evidence_terms"]) >= threshold or evidence["count"] >= 3:
             qualifying[theme] = evidence
-    weighted_hits = sum(v["count"] * (1.5 if k in SPECIFIC_THEMES else 0.7)
-                        for k, v in qualifying.items())
-    score = min(1.0, weighted_hits / max(10.0, len(words) * 0.07))
+    horror_hits = sum(v["count"] * (1.5 if k in SPECIFIC_THEMES else 0.7)
+                       for k, v in qualifying.items() if k in HORROR_THEMES)
+    score = min(1.0, horror_hits / max(8.0, len(words) * 0.045))
     assessment = "strong" if score >= .45 else "clear" if score >= .2 else "possible" if score >= .08 else "weak"
-    return {"schema_version": 2, "themes": qualifying, "raw_theme_hits": counts,
+    return {"schema_version": 3, "themes": qualifying, "raw_theme_hits": counts,
             "word_count": len(words), "horror_relevance": round(score, 3),
-            "assessment": assessment, "method": "lexical_theme_extraction_v2"}
+            "assessment": assessment, "method": "lexical_theme_extraction_v3"}
 
 
 def phrase_fingerprints(lyrics, n=5):
@@ -238,10 +260,10 @@ class LyricsLibrary:
             relevance = round(sum(a["horror_relevance"] for _, a in analyses) / len(analyses), 3)
             assessment = "strong" if relevance >= .45 else "clear" if relevance >= .2 else "possible" if relevance >= .08 else "weak"
             word_count = max(a["word_count"] for _, a in analyses)
-            stored = {"schema_version": 2, "themes": merged, "horror_relevance": relevance,
+            stored = {"schema_version": 3, "themes": merged, "horror_relevance": relevance,
                       "assessment": assessment, "source_count": len(analyses),
                       "sources": sorted(p for p, _ in analyses), "analyzed_at": stamp,
-                      "method": "multi_source_lexical_theme_extraction_v2"}
+                      "method": "multi_source_lexical_theme_extraction_v3"}
             self.db.execute("""INSERT INTO analyses(song_id,themes_json,relevance,assessment,word_count,analyzed_at)
               VALUES(?,?,?,?,?,?) ON CONFLICT(song_id) DO UPDATE SET themes_json=excluded.themes_json,
               relevance=excluded.relevance,assessment=excluded.assessment,word_count=excluded.word_count,analyzed_at=excluded.analyzed_at""",
@@ -291,11 +313,12 @@ def search_and_analyze(title, artist, album=None, duration=None, db_path=DEFAULT
         time.sleep(.25)
     library = LyricsLibrary(db_path)
     try:
-        library.save(title, artist, album, duration, results)
+        song_id = library.save(title, artist, album, duration, results)
+        row = library.db.execute("SELECT themes_json FROM analyses WHERE song_id=?", (song_id,)).fetchone()
+        merged_analysis = json.loads(row["themes_json"]) if row else analyze_lyrics("")
         return {"song": {"title": title, "artist": artist, "album": album},
                 "sources": [{"provider": r["provider"], "url": r["url"], "lyrics_found": bool(r.get("lyrics"))} for r in results],
-                "analysis": analyze_lyrics(next((r["lyrics"] for r in results if r.get("lyrics")), "")),
-                "errors": errors, "stored_locally": True}
+                "analysis": merged_analysis, "errors": errors, "stored_locally": True}
     finally:
         library.close()
 
