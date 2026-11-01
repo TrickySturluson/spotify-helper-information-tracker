@@ -18,6 +18,7 @@ SCORING_CONFIG = Path("assistant_data/recommendations/playlist_scoring.json")
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
 RECOMMENDATION_TRACKS = Path("assistant_data/recommendations/track_features.json")
+LYRIC_FEATURES = Path("assistant_data/recommendations/lyric_features.json")
 LYRICS_DB = Path("data/lyrics/library.sqlite3")
 SCHEMA_VERSION = 1
 
@@ -97,8 +98,29 @@ def track_metadata_index(path=TRACK_PROFILES, recommendation_path=RECOMMENDATION
         if row.get("lyric_analysis"):
             result.setdefault(key, {"artist": row["artist"], "track": row["track"]})
             result[key]["lyric_analysis"] = row["lyric_analysis"]
+    # The compact, committed export makes analyzed themes available to cloud
+    # playlist discovery without exposing local phrase fingerprints or lyrics.
+    lyric_exports = read_json(LYRIC_FEATURES, [])
+    for row in lyric_exports if isinstance(lyric_exports, list) else []:
+        if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
+            continue
+        key = (track_norm(row["artist"]), track_norm(row["track"]))
+        result.setdefault(key, {"artist": row["artist"], "track": row["track"]})
+        result[key]["lyric_analysis"] = {
+            "schema_version": row.get("schema_version", 1),
+            "themes": row.get("themes", {}),
+            "source_count": row.get("source_count", 1),
+            "sources": row.get("sources", []),
+            "method": row.get("method", "legacy_lexical_analysis"),
+            "horror_relevance": row.get("horror_relevance", 0.0),
+            "assessment": row.get("assessment", "unavailable"),
+            "word_count": row.get("word_count", 0),
+            "analyzed_at": row.get("analyzed_at"),
+            "evidence_type": "lyrics_keyword_analysis",
+            "full_lyrics_stored": False,
+        }
     # The local SQLite library also contains manually analyzed songs that may
-    # not exist in the Last.fm archive or generated recommendation feature file.
+    # not yet have been exported; it takes precedence on this machine.
     if LYRICS_DB.is_file():
         connection = sqlite3.connect(LYRICS_DB)
         connection.row_factory = sqlite3.Row
