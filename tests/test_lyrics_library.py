@@ -1,8 +1,9 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-from lyrics_library import LyricsLibrary, analyze_lyrics, phrase_fingerprints
+from lyrics_library import LyricsLibrary, analyze_lyrics, phrase_fingerprints, search_and_analyze
 
 
 class LyricsLibraryTests(unittest.TestCase):
@@ -74,6 +75,22 @@ class LyricsLibraryTests(unittest.TestCase):
             self.assertEqual(data["themes"]["vampire"]["source_count"], 1)
             self.assertEqual(data["themes"]["zombie_undead"]["source_count"], 1)
             library.close()
+
+    def test_search_returns_merged_analysis_not_first_provider(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with patch("lyrics_library.lrclib_lookup", return_value={
+                "provider": "lrclib", "url": "https://example.test/a",
+                "lyrics": "The vampire rises from the coffin."
+            }), patch("lyrics_library.musixmatch_lookup", return_value={
+                "provider": "musixmatch", "url": "https://example.test/b",
+                "lyrics": "A zombie crawls from the graveyard."
+            }), patch("lyrics_library.lyrics_ovh_lookup", return_value=None), \
+                 patch("lyrics_library.genius_search", return_value=None), \
+                 patch("lyrics_library.time.sleep"):
+                result = search_and_analyze("Monster Song", "Example Artist", db_path=Path(temp) / "lyrics.sqlite3")
+            self.assertIn("vampire", result["analysis"]["themes"])
+            self.assertIn("zombie_undead", result["analysis"]["themes"])
+            self.assertEqual(result["analysis"]["source_count"], 2)
 
 
 if __name__ == "__main__":
