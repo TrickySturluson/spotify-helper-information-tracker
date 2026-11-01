@@ -53,6 +53,27 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_unchanged_snapshot_reuses_cached_items_without_spotify_item_request(self):
+        cached = {
+            "id": "playlist123", "name": "Cached",
+            "snapshot_id": "same-snapshot",
+            "items_snapshot_id": "same-snapshot",
+            "items_accessible": True,
+            "item_count_fetched": 1,
+            "items": [{"uri": "spotify:track:cached", "name": "Cached Track", "artists": ["Artist"]}],
+        }
+        playlist = {
+            "id": "playlist123", "name": "Cached",
+            "owner": {"id": "owner"}, "snapshot_id": "same-snapshot",
+            "items": {"total": 1}, "public": True, "collaborative": False,
+        }
+        sp = Mock()
+        record = library.playlist_record(sp, playlist, cached)
+        sp.items.assert_not_called()
+        self.assertEqual(record["items"], cached["items"])
+        self.assertEqual(record["items_snapshot_id"], "same-snapshot")
+        self.assertTrue(record["items_accessible"])
+
     def test_item_endpoint_404_is_recorded_as_inaccessible(self):
         sp = Mock()
         sp.items.side_effect = manager.ManagerError(
