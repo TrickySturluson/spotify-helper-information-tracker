@@ -60,3 +60,12 @@ Use `MusicLibrary.lookup_song()` to inspect why a song resolved. The legacy
 `get_song()` API remains available and includes its lookup explanation under
 `lookup_audit`. Use `MusicLibrary.audit()` to check index aliases and record
 relationships. Never replace ambiguous candidates with an arbitrary match.
+
+
+## Album affinity and sound similarity
+
+The playlist sequencer reports **album affinity** separately from **sound similarity**. Album affinity is based on an exact artist/title match in a verified album tracklist; it is not an acoustic measurement. A linked recording cross-reference raises membership identity confidence, while a tracklist-only match remains contextual. An exact verified tracklist match can therefore have 100 album affinity without claiming 100% recording-identity certainty.
+
+Sound similarity compares track-level descriptive genre/style labels with album-level descriptive tags. It is directional coverage of the track's known labels, not an energy score or an acoustic fingerprint. Missing labels remain unknown rather than being treated as disagreement. Album-wide tags provide context but are never relabelled as track-specific mood evidence.
+
+Genre-family scoring checks specific atmospheric styles (including shoegaze and dream pop) before broad umbrella genres such as rock and indie rock, so broad tags cannot mask a more informative style label.
