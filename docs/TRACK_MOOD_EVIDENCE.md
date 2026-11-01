@@ -29,7 +29,7 @@ The album enrichment pipeline deduplicates by normalized artist + album, priorit
 
 ## Normalized per-recording storage
 
-The optional normalized store lives under `assistant_data/music/music_library/`.
+The Library dataset lives under `assistant_data/music/library/`.
 Each artist, album, and recording has its own JSON record; `library_index.json`
 contains only stable-ID paths and lookup aliases. Recording files preserve raw
 track-provider observations, audio observations, lyric features, derived data,
