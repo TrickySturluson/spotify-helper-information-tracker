@@ -122,7 +122,7 @@ class LyricsLibraryTests(unittest.TestCase):
                 encoding="utf-8",
             )
             with patch.object(build_music_analytics, "OUT", output), \
-                 patch.object(build_music_analytics.Path, "exists", autospec=True, side_effect=lambda path: str(path) != "data/lyrics/library.sqlite3"):
+                 patch.object(build_music_analytics, "LYRICS_DB", output / "missing.sqlite3"):
                 index = build_music_analytics.load_lyric_analyses()
             self.assertIn(("night song", "example artist"), index)
             self.assertIn("vampire", index[("night song", "example artist")]["themes"])
