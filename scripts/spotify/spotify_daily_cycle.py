@@ -15,6 +15,8 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
 COMPAT = ROOT / "compat"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 if str(COMPAT) not in sys.path:
     sys.path.insert(0, str(COMPAT))
 SOURCE_DIR = ROOT / "scripts" / "spotify"
@@ -26,6 +28,7 @@ import spotify_discovery as discovery
 import spotify_daily_feedback as daily_feedback
 import spotify_listening_trends as listening_trends
 import spotify_playlist_cloud as cloud
+from scripts.music.discovery_ingestion import append_candidates
 
 DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
 EASTERN = ZoneInfo("America/New_York")
@@ -96,6 +99,22 @@ def main():
         raise manager.ManagerError("Recommendation set contains an invalid Spotify track URI.")
     if len(set(uris)) != len(uris):
         raise manager.ManagerError("Recommendation set contains duplicate track URIs.")
+
+    # Record surfaced recommendations before playlist mutation. This is discovery
+    # evidence only; playback, scrobbles, and saves remain separate evidence.
+    discovery_result = append_candidates(
+        recommendations,
+        source="tricky_daily_recommendations",
+        context={"playlist_id": DAILY_ID, "cycle_date_eastern": cycle_date},
+    )
+    manager.audit(
+        event="daily_discovery_candidates_persisted",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        input_rows=discovery_result["input_rows"],
+        new_candidates=discovery_result["new_candidates"],
+        unique_candidates=discovery_result["unique_candidates"],
+    )
 
     liked_baseline = {}
     try:
