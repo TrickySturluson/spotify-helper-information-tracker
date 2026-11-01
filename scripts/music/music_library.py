@@ -81,6 +81,53 @@ def read_json(path):
         return None
 
 
+
+def select_recent_track_rows(track_rows, recent_rows, limit):
+    """Select a bounded, deduplicated recent batch without making provider calls."""
+    if not isinstance(track_rows, dict) or not isinstance(recent_rows, list):
+        return {}, {"selected": 0, "unmatched": 0, "duplicates": 0}
+    by_mbid, by_track_id = {}, {}
+    for row in track_rows.values():
+        if not isinstance(row, dict):
+            continue
+        if row.get("track_id"):
+            by_track_id[str(row["track_id"]).casefold()] = row
+        mbid = str(row.get("track_mbid") or row.get("recording_mbid") or "").strip().casefold()
+        if mbid:
+            current = by_mbid.get(mbid)
+            score = sum(len(row.get(field) or []) for field in ("lastfm_tags", "musicbrainz_tags", "musicbrainz_genres"))
+            current_score = sum(len(current.get(field) or []) for field in ("lastfm_tags", "musicbrainz_tags", "musicbrainz_genres")) if current else -1
+            if score > current_score:
+                by_mbid[mbid] = row
+    selected, seen = {}, set()
+    unmatched = duplicates = 0
+    for recent in recent_rows:
+        if not isinstance(recent, dict):
+            continue
+        mbid = str(recent.get("track_mbid") or "").strip().casefold()
+        track_id = str(recent.get("track_id") or "").strip().casefold()
+        row = by_mbid.get(mbid) if mbid else None
+        row = row or by_track_id.get(track_id)
+        if not row:
+            unmatched += 1
+            continue
+        identity = mbid or str(row.get("track_id") or track_id).casefold()
+        if identity in seen:
+            duplicates += 1
+            continue
+        seen.add(identity)
+        enriched = dict(row)
+        enriched["listening_context"] = {
+            "source": "Last.fm scrobble archive",
+            "recent_plays": recent.get("recent_plays"),
+            "all_time_plays": recent.get("all_time_plays"),
+        }
+        selected[str(row.get("track_id") or identity)] = enriched
+        if len(selected) >= limit:
+            break
+    return selected, {"selected": len(selected), "unmatched": unmatched, "duplicates": duplicates}
+
+
 class MusicLibrary:
     """Index-backed lazy resolver; song JSON remains the canonical evidence."""
 
