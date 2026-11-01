@@ -35,10 +35,10 @@ jobs:
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_METADATA_LOOKUPS_PER_RUN: ${{ inputs.max_lookups }}
-        run: python build_music_metadata.py
+        run: python compat/build_music_metadata.py
 
       - name: Refresh main assistant summary
-        run: python build_assistant_data.py
+        run: python compat/build_assistant_data.py
 
       - name: Validate metadata output
         run: |

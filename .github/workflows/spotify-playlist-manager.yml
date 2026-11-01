@@ -31,7 +31,7 @@ jobs:
           python-version: '3.11'
       - name: Install no third-party dependencies
         run: |
-          python -m py_compile spotify_playlist_manager.py spotify_playlist_cloud.py spotify_discovery.py playlist_intelligence.py playlist_metadata.py mood_inference.py
+          python -m py_compile compat/spotify_playlist_manager.py compat/spotify_playlist_cloud.py compat/spotify_discovery.py compat/playlist_intelligence.py compat/playlist_metadata.py compat/mood_inference.py
           python -m unittest discover -s tests -v
       - name: Read command type
         id: parse-command
@@ -68,7 +68,7 @@ jobs:
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
-        run: python spotify_playlist_cloud.py
+        run: python compat/spotify_playlist_cloud.py
       - name: Preserve pre-change snapshot
         if: always() && hashFiles('playlist_backups/**') != ''
         uses: actions/upload-artifact@v4

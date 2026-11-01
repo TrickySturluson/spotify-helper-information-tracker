@@ -1,14 +1,14 @@
 # Implementation layout
 
-The implementation lives under this directory, grouped by responsibility:
+The maintained implementation lives under this directory, grouped by responsibility:
 
 - `analytics/`: historical archive builders, listening-time aggregates, and project integrity audit.
 - `music/`: audio analysis, music metadata enrichment, lyric metadata, and mood inference.
 - `spotify/`: playlist intelligence, discovery, sequencing, management, playback tracking, and reference-library tooling.
 - `lastfm/`: canonical Last.fm scrobble importer.
 
-## Compatibility
+## Compatibility entry points
 
-The small Python files at the repository root are intentional compatibility entry points. They preserve existing commands (for example, `python spotify_playlist_manager.py`), imports used by tests and sibling modules, and GitHub Actions workflow paths while delegating execution to the organized implementation. This avoids a risky all-at-once rewrite of imports and automation.
+Legacy command-line entry points and import shims live in the repository's `compat/` directory. They preserve existing module names and command behavior while delegating to the organized implementation. A small root-level `sitecustomize.py` adds that directory to Python's import path for existing test and module imports.
 
-New code should be added to the appropriate package under `scripts/`. Keep root wrappers stable until a later migration can update tests, imports, and workflows together.
+Run command-line tools with `python compat/TOOL_NAME.py`. New implementation code belongs under the appropriate package in `scripts/`; do not duplicate logic in `compat/`.

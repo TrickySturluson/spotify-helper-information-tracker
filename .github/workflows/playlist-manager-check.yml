@@ -4,12 +4,12 @@ on:
   push:
     branches: [spotify-playlist-manager]
     paths:
-      - "spotify_playlist_manager.py"
-      - "spotify_playlist_cloud.py"
+      - "compat/spotify_playlist_manager.py"
+      - "compat/spotify_playlist_cloud.py"
       - "README.md"
       - ".github/workflows/spotify-playlist-manager.yml"
-      - "tests/test_spotify_playlist_manager.py"
-      - "tests/test_spotify_playlist_cloud.py"
+      - "tests/test_compat/spotify_playlist_manager.py"
+      - "tests/test_compat/spotify_playlist_cloud.py"
       - ".github/workflows/playlist-manager-check.yml"
   workflow_dispatch:
 
@@ -25,6 +25,6 @@ jobs:
         with:
           python-version: "3.11"
       - name: Compile manager
-        run: python -m py_compile spotify_playlist_manager.py spotify_playlist_cloud.py
+        run: python -m py_compile compat/spotify_playlist_manager.py compat/spotify_playlist_cloud.py
       - name: Run safety tests
         run: python -m unittest discover -s tests -v

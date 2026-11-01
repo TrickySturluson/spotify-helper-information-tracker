@@ -58,28 +58,28 @@ jobs:
       - name: Fill missing durations from MusicBrainz
         env:
           MUSICBRAINZ_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.musicbrainz_lookups || '300' }}
-        run: python enrich_musicbrainz_durations.py
+        run: python compat/enrich_musicbrainz_durations.py
       - name: Enrich artist genres, moods and themes
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.artist_profile_lookups || '100' }}
-        run: python build_music_profiles.py
+        run: python compat/build_music_profiles.py
       - name: Enrich individual track tags from Last.fm and MusicBrainz
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           TRACK_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.track_profile_lookups || '120' }}
-        run: python build_track_profiles.py
+        run: python compat/build_track_profiles.py
       - name: Rebuild metadata summaries
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_METADATA_LOOKUPS_PER_RUN: "0"
-        run: python build_music_metadata.py
+        run: python compat/build_music_metadata.py
       - name: Refresh main assistant summary
-        run: python build_assistant_data.py
+        run: python compat/build_assistant_data.py
       - name: Build music duration trends and recommendation features
-        run: python build_music_analytics.py
+        run: python compat/build_music_analytics.py
       - name: Publish complete-history and verified listening-time estimates
-        run: python build_listening_time_summary.py
+        run: python compat/build_listening_time_summary.py
       - name: Validate generated music metadata
         run: |
           python - <<'PY'
@@ -97,7 +97,7 @@ jobs:
           print(f"Duration coverage: {overview['tracks_with_duration']:,}/{overview['unique_tracks']:,} tracks; artist profiles: {sum(1 for p in profiles.values() if p.get('status') == 'matched'):,}; track profiles: {tagged_tracks:,}")
           PY
       - name: Run umbrella project integrity audit
-        run: python audit_project.py
+        run: python compat/audit_project.py
       - name: Commit enriched music data
         run: |
           git config user.name "github-actions[bot]"
