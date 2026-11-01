@@ -252,6 +252,27 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(score("Club Artist", "synthwave"), 72.0)
         self.assertEqual(score("Heavy Artist", "industrial metal"), 78.0)
 
+
+    def test_smooth_order_breaks_long_same_artist_runs(self):
+        rows = []
+        for uri, artist in [
+            ("a1", "A"), ("a2", "A"), ("a3", "A"), ("a4", "A"),
+            ("b1", "B"), ("b2", "B"), ("c1", "C"), ("d1", "D"),
+        ]:
+            rows.append({
+                "item": {"uri": uri}, "artist": artist, "score": 60,
+                "confidence": "low", "original_index": len(rows),
+                "vibe_groups": ["dark"], "genre_groups": ["rock"],
+                "theme_groups": ["horror"], "section_index": 0,
+            })
+        ordered = sequencer._smooth_order(rows, journey="steady")
+        artists = [row["artist"] for row in ordered]
+        longest = current = 1
+        for left, right in zip(artists, artists[1:]):
+            current = current + 1 if left == right else 1
+            longest = max(longest, current)
+        self.assertLessEqual(longest, 2)
+
     def test_same_artist_transition_has_a_diversity_penalty(self):
         base = {"score": 60, "vibe_groups": ["energetic"], "genre_groups": ["punk"],
                 "theme_groups": ["horror"], "artist": "A"}
@@ -426,6 +447,13 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         confidence = sequencer.confidence_summary(ordered)
         changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
         elapsed_seconds = perf_counter() - started
+        previous_artist = None
+        artist_run = longest_run = 0
+        for row in ordered:
+            artist = row.get("artist")
+            artist_run = artist_run + 1 if artist == previous_artist else 1
+            longest_run = max(longest_run, artist_run)
+            previous_artist = artist
 
         self.assertEqual(len(ordered), len(snapshot["items"]))
         self.assertCountEqual(ordered_uris, original_uris)
@@ -434,6 +462,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
             "SEQUENCER REAL-DATA EVALUATION: "
             f"playlist={snapshot.get('name')!r}; captured_at={snapshot.get('captured_at')}; "
             f"tracks={len(ordered)}; elapsed_seconds={elapsed_seconds:.3f}; moved_positions={changed_positions}; "
+            f"longest_artist_run={longest_run}; "
             f"reorder_operations={len(operations)}; confidence={confidence}; "
             f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
             f"potential_jumps:{summary['potential_jumps']}, uncertain:{summary['uncertain']}, "
