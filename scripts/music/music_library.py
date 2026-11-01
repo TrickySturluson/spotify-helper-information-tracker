@@ -8,11 +8,14 @@ from pathlib import Path
 DEFAULT_ROOT = Path("assistant_data/music/library")
 INDEX_NAME = "library_index.json"
 
+
 def norm(value):
-    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
+    return re.sub(r"\\s+", " ", str(value or "").strip()).casefold()
+
 
 def digest(value, length=20):
     return hashlib.sha256(str(value).encode("utf-8")).hexdigest()[:length]
+
 
 def safe_id(value):
     value = str(value or "").strip().casefold()
@@ -22,31 +25,49 @@ def safe_id(value):
         return "spotify-" + re.sub(r"[^a-z0-9]", "", value.split(":")[-1])
     return re.sub(r"[^a-z0-9_-]", "-", value).strip("-") or "unknown"
 
+
 def artist_key(row):
-    mbid = str(row.get("artist_mbid") or "").strip().casefold()
-    return "mbid:" + mbid if mbid else "name:" + digest(norm(row.get("artist")))
+    candidate = str(row.get("artist_mbid") or row.get("artist_id") or "").strip().casefold()
+    if candidate.startswith("mbid:"):
+        return candidate
+    if candidate and re.fullmatch(r"[0-9a-f-]{36}", candidate):
+        return "mbid:" + candidate
+    return "name:" + digest(norm(row.get("artist")))
+
 
 def album_key(row, aid):
-    mbid = str(row.get("album_mbid") or row.get("release_mbid") or "").strip().casefold()
-    return "mbid:" + mbid if mbid else "album:" + digest(aid + "\\0" + norm(row.get("album") or row.get("album_name")))
+    candidate = str(row.get("album_mbid") or row.get("release_mbid") or "").strip().casefold()
+    if candidate:
+        return "mbid:" + candidate if not candidate.startswith("mbid:") else candidate
+    album = row.get("album") or row.get("album_name")
+    if not album:
+        return None
+    return "album:" + digest(aid + "\\0" + norm(album))
+
 
 def recording_key(row, aid, bid):
-    mbid = str(row.get("track_mbid") or row.get("recording_mbid") or "").strip().casefold()
-    if mbid:
-        return "mbid:" + mbid
+    candidate = str(row.get("track_mbid") or row.get("recording_mbid") or "").strip().casefold()
+    if not candidate:
+        source_id = str(row.get("track_id") or "").strip().casefold()
+        if source_id.startswith("mbid:"):
+            candidate = source_id[5:]
+    if candidate:
+        return "mbid:" + candidate if not candidate.startswith("mbid:") else candidate
     sid = str(row.get("spotify_id") or row.get("spotify_track_id") or "").strip()
     if sid.startswith("spotify:track:"):
         sid = sid.rsplit(":", 1)[-1]
     if sid:
         return "spotify:" + sid.casefold()
     duration = row.get("duration_ms") or row.get("duration") or ""
-    return "fallback:" + digest(aid + "\\0" + bid + "\\0" + norm(row.get("track") or row.get("name")) + "\\0" + str(duration))
+    return "fallback:" + digest((aid or "") + "\\0" + (bid or "") + "\\0" + norm(row.get("track") or row.get("name")) + "\\0" + str(duration))
+
 
 def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
+    tmp.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\\n", encoding="utf-8")
     tmp.replace(path)
+
 
 def read_json(path):
     try:
@@ -54,16 +75,21 @@ def read_json(path):
     except (OSError, ValueError, TypeError):
         return None
 
+
 class MusicLibrary:
     """Index-backed lazy resolver; song JSON remains the canonical evidence."""
+
     def __init__(self, root=DEFAULT_ROOT):
         self.root = Path(root)
         self.index_path = self.root / INDEX_NAME
-        self.index = read_json(self.index_path) or {"schema_version": 1, "songs": {}, "spotify_ids": {}, "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {}}
+        self.index = read_json(self.index_path) or {
+            "schema_version": 1, "songs": {}, "spotify_ids": {},
+            "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {},
+        }
 
     def path_for(self, kind, key):
         safe = safe_id(key)
-        filename = {"artists": "artist.json", "albums": "album.json", "songs": "song.json", "recordings": "recording.json"}[kind]
+        filename = {"artists": "artist.json", "albums": "album.json", "songs": "song.json"}[kind]
         return self.root / kind / safe[:2] / safe / filename
 
     def get_song(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None):
@@ -73,79 +99,181 @@ class MusicLibrary:
         if key is None and recording_mbid:
             key = self.index.get("recording_mbids", {}).get(str(recording_mbid).casefold())
         if key is None and artist and track:
-            candidates = self.index.get("name_candidates", {}).get(norm(artist) + "\\0" + norm(track), [])
+            alias = norm(artist) + "\\0" + norm(track)
+            candidates = self.index.get("name_candidates", {}).get(alias)
+            if candidates is None:  # Read indexes written by the early prototype.
+                candidates = self.index.get("name_candidates", {}).get(norm(artist) + "\\\\0" + norm(track), [])
             if len(candidates) == 1:
                 key = candidates[0]
             elif album:
-                matches = [x for x in candidates if norm(self.index.get("songs", self.index.get("recordings", {})).get(x, {}).get("album")) == norm(album)]
+                entries = self.index.get("songs", self.index.get("recordings", {}))
+                matches = [x for x in candidates if norm(entries.get(x, {}).get("album")) == norm(album)]
                 if len(matches) == 1:
                     key = matches[0]
-        if key is None or key not in self.index.get("songs", self.index.get("recordings", {})):
+        entries = self.index.get("songs", self.index.get("recordings", {}))
+        if key is None or key not in entries:
             return None
-        record = read_json(self.root / self.index.get("songs", self.index.get("recordings", {}))[key]["path"])
+        record = read_json(self.root / entries[key]["path"])
         if not isinstance(record, dict):
             return None
         relations = record.get("relations", {})
-        artist_record = read_json(self.root / relations.get("artist_path", ""))
-        album_record = read_json(self.root / relations.get("album_path", ""))
+        artist_record = read_json(self.root / relations["artist_path"]) if relations.get("artist_path") else None
+        album_record = read_json(self.root / relations["album_path"]) if relations.get("album_path") else None
         return {"song": record, "artist": artist_record or {}, "album": album_record or {}}
 
-    # Compatibility alias for callers using the earlier API name.
+    # Backward-compatible method name for existing callers.
     get_recording = get_song
 
     def put_catalogue(self, track_rows, artist_rows=None, album_rows=None, audio_rows=None, lyric_rows=None):
         artists = artist_rows if isinstance(artist_rows, dict) else {}
         albums = album_rows if isinstance(album_rows, dict) else {}
         audio_container = audio_rows if isinstance(audio_rows, dict) else {}
-        audio = audio_container.get("tracks", audio_container) if isinstance(audio_container.get("tracks", audio_container), dict) else {}
-        lyrics = {(norm(r.get("artist")), norm(r.get("track"))): r for r in (lyric_rows or []) if isinstance(r, dict)}
-        artist_by_name = {norm(v.get("artist")): v for v in artists.values() if isinstance(v, dict) and v.get("artist")}
-        album_by_name = {(norm(v.get("artist")), norm(v.get("album"))): v for v in albums.values() if isinstance(v, dict) and v.get("artist") and v.get("album")}
-        audio_by_name = {(norm(v.get("artist")), norm(v.get("track"))): v for v in audio.values() if isinstance(v, dict) and v.get("artist") and v.get("track")}
-        artist_records, album_records, recordings = {}, {}, {}
-        for row in track_rows.values() if isinstance(track_rows, dict) else []:
-            if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
+        audio_value = audio_container.get("tracks", audio_container)
+        audio = audio_value if isinstance(audio_value, dict) else {}
+        lyrics = {
+            (norm(row.get("artist")), norm(row.get("track"))): row
+            for row in (lyric_rows or []) if isinstance(row, dict)
+        }
+        album_by_name = {
+            (norm(row.get("artist")), norm(row.get("album"))): row
+            for row in albums.values()
+            if isinstance(row, dict) and row.get("artist") and row.get("album")
+        }
+        audio_by_name = {
+            (norm(row.get("artist")), norm(row.get("track"))): row
+            for row in audio.values()
+            if isinstance(row, dict) and row.get("artist") and row.get("track")
+        }
+
+        artist_records, album_records, songs = {}, {}, {}
+        rows = track_rows.values() if isinstance(track_rows, dict) else track_rows if isinstance(track_rows, list) else []
+        for row in rows:
+            if not isinstance(row, dict) or not row.get("artist") or not (row.get("track") or row.get("name")):
                 continue
+            title = row.get("track") or row.get("name")
             aid = artist_key(row)
             bid = album_key(row, aid)
-            rid = recording_key(row, aid, bid)
-            name_key = norm(row["artist"]) + "\\0" + norm(row["track"])
+            sid = recording_key(row, aid, bid)
+            alias = norm(row["artist"]) + "\\0" + norm(title)
+
             artist_source = artists.get(aid) or artists.get(norm(row["artist"])) or {}
-            album_source = album_by_name.get((norm(row["artist"]), norm(row.get("album") or row.get("album_name"))), {})
-            artist_records.setdefault(aid, {"schema_version": 1, "id": aid, "artist": row["artist"], "identity": {"artist_mbid": row.get("artist_mbid"), "identity_quality": "verified" if aid.startswith("mbid:") else "name_fallback"}, "evidence": artist_source, "album_ids": []})
-            artist_records[aid]["album_ids"] = sorted(set(artist_records[aid]["album_ids"] + [bid]))
-            album_records.setdefault(bid, {"schema_version": 1, "id": bid, "artist_id": aid, "artist": row["artist"], "album": row.get("album") or row.get("album_name") or "", "identity": {"album_mbid": row.get("album_mbid") or row.get("release_mbid"), "identity_quality": "verified" if bid.startswith("mbid:") else "contextual_fallback"}, "evidence": album_source if isinstance(album_source, dict) else {}, "song_ids": []})
-            album_records[bid]["song_ids"] = sorted(set(album_records[bid]["song_ids"] + [rid]))
-            rec = recordings.setdefault(rid, {"schema_version": 1, "id": rid, "identity": {"artist": row["artist"], "title": row["track"], "album": row.get("album") or row.get("album_name") or "", "artist_id": aid, "album_id": bid, "recording_mbid": row.get("track_mbid") or row.get("recording_mbid"), "spotify_id": row.get("spotify_id") or row.get("spotify_track_id"), "identity_quality": "verified_recording" if rid.startswith("mbid:") else "spotify_track" if rid.startswith("spotify:") else "fallback_release_context"}, "evidence": {"track_metadata": {}, "audio": {}, "lyrics": None}, "derived": row.get("derived") or {}, "coverage": row.get("coverage") or {}, "sources": {}, "relations": {}})
+            artist_records.setdefault(aid, {
+                "schema_version": 1, "id": aid, "artist": row["artist"],
+                "identity": {
+                    "artist_mbid": row.get("artist_mbid") or (row.get("artist_id") if aid.startswith("mbid:") else None),
+                    "identity_quality": "verified" if aid.startswith("mbid:") else "name_fallback",
+                },
+                "evidence": artist_source, "album_ids": [],
+            })
+
+            album_name = row.get("album") or row.get("album_name") or ""
+            if bid:
+                album_source = album_by_name.get((norm(row["artist"]), norm(album_name)), {})
+                album_records.setdefault(bid, {
+                    "schema_version": 1, "id": bid, "artist_id": aid,
+                    "artist": row["artist"], "album": album_name,
+                    "identity": {
+                        "album_mbid": row.get("album_mbid") or row.get("release_mbid"),
+                        "identity_quality": "verified" if bid.startswith("mbid:") else "contextual_fallback",
+                    },
+                    "evidence": album_source, "song_ids": [],
+                })
+                if bid not in artist_records[aid]["album_ids"]:
+                    artist_records[aid]["album_ids"].append(bid)
+                if sid not in album_records[bid]["song_ids"]:
+                    album_records[bid]["song_ids"].append(sid)
+
+            song = songs.setdefault(sid, {
+                "schema_version": 1, "id": sid,
+                "identity": {
+                    "artist": row["artist"], "title": title, "album": album_name,
+                    "artist_id": aid, "album_id": bid,
+                    "recording_mbid": row.get("track_mbid") or row.get("recording_mbid"),
+                    "spotify_id": row.get("spotify_id") or row.get("spotify_track_id"),
+                    "source_track_id": row.get("track_id"),
+                    "identity_quality": "verified_recording" if sid.startswith("mbid:")
+                        else "spotify_track" if sid.startswith("spotify:")
+                        else "fallback_release_context" if bid else "fallback_artist_title",
+                },
+                "evidence": {"track_metadata": {}, "audio": {}, "lyrics": None},
+                "derived": row.get("derived") or {}, "coverage": row.get("coverage") or {},
+                "sources": {}, "relations": {"artist_path": str(self.path_for("artists", aid).relative_to(self.root))},
+            })
+            if bid:
+                song["relations"]["album_path"] = str(self.path_for("albums", bid).relative_to(self.root))
+
+            # Duplicate source rows can refer to the same MBID. Preserve non-empty
+            # evidence instead of allowing an empty duplicate to erase a populated row.
+            canonical = song["identity"]
+            if norm(canonical["artist"]) != norm(row["artist"]) or norm(canonical["title"]) != norm(title):
+                variant = {"artist": row["artist"], "title": title, "source_track_id": row.get("track_id")}
+                aliases = canonical.setdefault("aliases", [])
+                if variant not in aliases:
+                    aliases.append(variant)
             for field, value in row.items():
-                if field not in {"artist", "track", "album", "album_name", "derived", "coverage"}:
-                    rec["evidence"]["track_metadata"][field] = value
-            rec["evidence"]["audio"] = audio.get(rid) or audio_by_name.get(name_key) or {}
-            rec["evidence"]["lyrics"] = lyrics.get((norm(row["artist"]), norm(row["track"])))
-            rec["sources"] = {k: {"status": v} for k, v in row.items() if k.endswith("_status") and isinstance(v, str)}
-            rec["relations"] = {"artist_path": str(self.path_for("artists", aid).relative_to(self.root)), "album_path": str(self.path_for("albums", bid).relative_to(self.root))}
-        index = {"schema_version": 1, "songs": {}, "spotify_ids": {}, "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {}}
-        for aid, rec in artist_records.items():
-            path = self.path_for("artists", aid); write_json(path, rec)
-            index["artists"][aid] = {"path": str(path.relative_to(self.root)), "name": rec["artist"]}
-        for bid, rec in album_records.items():
-            path = self.path_for("albums", bid); write_json(path, rec)
-            index["albums"][bid] = {"path": str(path.relative_to(self.root)), "artist_id": rec["artist_id"], "album": rec["album"]}
-        for rid, rec in recordings.items():
-            path = self.path_for("songs", rid); write_json(path, rec)
-            ident = rec["identity"]
-            index["songs"][rid] = {"path": str(path.relative_to(self.root)), "artist": ident["artist"], "track": ident["title"], "album": ident["album"]}
-            sid = ident.get("spotify_id")
-            if sid: index["spotify_ids"][str(sid).rsplit(":", 1)[-1].casefold()] = rid
-            mbid = ident.get("recording_mbid")
-            if mbid: index["recording_mbids"][str(mbid).casefold()] = rid
-            index["name_candidates"].setdefault(norm(ident["artist"]) + "\\0" + norm(ident["title"]), []).append(rid)
+                if field in {"artist", "track", "name", "album", "album_name", "derived", "coverage", "listening_context"}:
+                    continue
+                if value not in (None, "", [], {}):
+                    song["evidence"]["track_metadata"][field] = value
+            if row.get("listening_context"):
+                song.setdefault("listening_context", {}).update(row["listening_context"])
+            if row.get("derived"):
+                song["derived"].update(row["derived"])
+            if row.get("coverage"):
+                song["coverage"].update(row["coverage"])
+            audio_row = audio.get(sid) or audio_by_name.get((norm(row["artist"]), norm(title)))
+            if audio_row:
+                song["evidence"]["audio"] = audio_row
+            lyric = lyrics.get((norm(row["artist"]), norm(title)))
+            if lyric:
+                song["evidence"]["lyrics"] = lyric
+            song["sources"].update({
+                key: {"status": value}
+                for key, value in row.items()
+                if key.endswith("_status") and isinstance(value, str)
+            })
+
+        index = {
+            "schema_version": 1, "songs": {}, "spotify_ids": {},
+            "recording_mbids": {}, "name_candidates": {}, "artists": {}, "albums": {},
+        }
+        for aid, record in artist_records.items():
+            path = self.path_for("artists", aid)
+            write_json(path, record)
+            index["artists"][aid] = {"path": str(path.relative_to(self.root)), "name": record["artist"]}
+        for bid, record in album_records.items():
+            path = self.path_for("albums", bid)
+            write_json(path, record)
+            index["albums"][bid] = {"path": str(path.relative_to(self.root)), "artist_id": record["artist_id"], "album": record["album"]}
+        for sid, song in songs.items():
+            path = self.path_for("songs", sid)
+            write_json(path, song)
+            identity = song["identity"]
+            index["songs"][sid] = {
+                "path": str(path.relative_to(self.root)), "artist": identity["artist"],
+                "track": identity["title"], "album": identity["album"],
+            }
+            spotify_id = identity.get("spotify_id")
+            if spotify_id:
+                index["spotify_ids"][str(spotify_id).rsplit(":", 1)[-1].casefold()] = sid
+            mbid = identity.get("recording_mbid")
+            if mbid:
+                index["recording_mbids"][str(mbid).casefold()] = sid
+            index["name_candidates"].setdefault(
+                norm(identity["artist"]) + "\\0" + norm(identity["title"]), []
+            ).append(sid)
         write_json(self.index_path, index)
         self.index = index
-        return {"artists": len(artist_records), "albums": len(album_records), "songs": len(recordings), "ambiguous_name_aliases": sum(len(v) > 1 for v in index["name_candidates"].values())}
+        return {
+            "artists": len(artist_records), "albums": len(album_records),
+            "songs": len(songs),
+            "ambiguous_name_aliases": sum(len(values) > 1 for values in index["name_candidates"].values()),
+        }
+
 
 # FILE OVERVIEW
 # - Stores one JSON record per artist, album, and song in ID-sharded paths.
-# - Resolves Spotify track IDs and verified recording MBIDs before safe name aliases.
-# - Preserves provider evidence, derived fields, coverage, source statuses, and relations.
+# - Uses verified artist/release/recording MBIDs or Spotify IDs before safe aliases.
+# - Does not invent album records when the source has no release context.
+# - Preserves metadata, listening context, audio, lyrics, derived fields, and provenance.
 # - Keeps ambiguous artist/title aliases as candidate lists; never guesses a song version.
