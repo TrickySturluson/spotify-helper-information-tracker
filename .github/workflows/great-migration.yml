@@ -81,7 +81,9 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
           GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
-        run: |\n          set -o pipefail\n          python scripts/music/verify_provider_credentials.py 2>&1 | tee shit-library-run.log
+        run: |
+          set -o pipefail
+          python scripts/music/verify_provider_credentials.py 2>&1 | tee shit-library-run.log
 
       - name: Configure read-only Spotify refresh
         if: steps.request.outputs.command == 'prepare'
@@ -105,6 +107,7 @@ jobs:
           PY
 
       - name: Run requested SHIT Library operation
+        if: steps.request.outputs.command != 'verify'
         env:
           COMMAND: ${{ steps.request.outputs.command }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
@@ -118,7 +121,7 @@ jobs:
             preview) python shit.py library preview ;;
             migrate) python shit.py library migrate --yes ;;
             prepare) python shit.py library prepare --execute --yes ;;
-            audit)   python shit.py library audit ;;\n            verify)  python scripts/music/verify_provider_credentials.py ;;
+            audit)   python shit.py library audit ;;
           esac 2>&1 | tee shit-library-run.log
           {
             echo "## SHIT Library operation"
