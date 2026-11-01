@@ -16,6 +16,7 @@ from urllib.error import HTTPError, URLError
 
 SHARDS = Path("assistant_data/music/artists")
 RECENT_TOP = Path("assistant_data/music/recent_top_tracks.json")
+STATE = Path("assistant_data/music/musicbrainz_id_lookup_state.json")
 PLAYLIST_ROOT = Path("assistant_data/spotify/playlists")
 API = "https://musicbrainz.org/ws/2/recording/"
 ISRC_API = "https://musicbrainz.org/ws/2/isrc/"
@@ -95,15 +96,30 @@ def fetch_json(url):
         return json.loads(response.read().decode("utf-8"))
 
 
+def set_provider_cooldown(state, headers, now):
+    """Persist a conservative provider-wide cooldown after a rate-limit response."""
+    retry = headers.get("Retry-After") if headers else None
+    try:
+        wait = max(60, int(float(retry))) if retry else 3600
+    except (TypeError, ValueError):
+        wait = 3600
+    state["provider_retry_after"] = int(now) + wait
+    return wait
+
 def main():
     priority = recent_priority()
+    provider_state = read(STATE) if STATE.exists() else {}
+    now = int(time.time())
+    provider_retry_after = int(provider_state.get("provider_retry_after", 0) or 0)
+    if provider_retry_after > now:
+        print(f"MusicBrainz provider cooldown active for {provider_retry_after - now}s; no request sent.")
+        return
     isrc_index = spotify_isrc_index()
     isrc_tracks = sum(1 for values in isrc_index.values() if len(values) == 1)
     ambiguous_isrc_tracks = sum(1 for values in isrc_index.values() if len(values) > 1)
     print(f"Existing Spotify snapshots provide one exact ISRC for {isrc_tracks:,} artist/title pairs; {ambiguous_isrc_tracks:,} pairs have conflicting ISRCs.")
     due = []
     shard_data = {}
-    now = int(time.time())
     for i in range(32):
         path = SHARDS / f"shard-{i:02d}.json"
         if not path.exists():
@@ -140,7 +156,9 @@ def main():
                 isrc_obj = fetch_json(ISRC_API + isrc + "?" + urlencode({"fmt": "json"}))
             except HTTPError as exc:
                 if exc.code in (429, 503):
-                    print("MusicBrainz rate limited the client; stop and resume next run.")
+                    wait = set_provider_cooldown(provider_state, exc.headers, now)
+                    write(STATE, provider_state)
+                    print(f"MusicBrainz rate limited the client; cooldown saved for {wait}s. Stop and resume later.")
                     break
                 if exc.code != 404:
                     print(f"ISRC lookup HTTP {exc.code}: {artist} — {title}; falling back to exact title search.")
@@ -149,6 +167,7 @@ def main():
                 print(f"Transient ISRC lookup error; stop and resume: {exc}")
                 break
             looked += 1
+            provider_state["provider_retry_after"] = 0
             isrc_match, isrc_status = unique_exact_recording(isrc_obj.get("recordings", []), artist, title)
             if isrc_match:
                 candidates = [isrc_match]
@@ -189,6 +208,7 @@ def main():
             match, match_status = unique_exact_recording(obj.get("recordings", []), artist, title)
             candidates = [match] if match else []
             looked += 1
+            provider_state["provider_retry_after"] = 0
             if match_status == "ambiguous":
                 ambiguous += 1
                 track["musicbrainz_id_match"] = "ambiguous_exact_candidates"
@@ -210,6 +230,7 @@ def main():
         time.sleep(DELAY)
     for shard_no, data in shard_data.items():
         write(SHARDS / f"shard-{shard_no:02d}.json", data)
+    write(STATE, provider_state)
     remaining = sum(
         1 for data in shard_data.values()
         for artist in (data.get("artists") or {}).values()
