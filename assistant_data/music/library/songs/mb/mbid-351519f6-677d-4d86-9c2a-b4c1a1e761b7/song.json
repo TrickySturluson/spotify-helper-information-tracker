@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "mbid:351519f6-677d-4d86-9c2a-b4c1a1e761b7",
+  "identity": {
+    "artist": "Limp Bizkit",
+    "title": "Rollin' (Air Raid Vehicle)",
+    "album": "",
+    "artist_id": "mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c",
+    "album_id": null,
+    "recording_mbid": "351519f6-677d-4d86-9c2a-b4c1a1e761b7",
+    "spotify_id": null,
+    "source_track_id": "mbid:351519f6-677d-4d86-9c2a-b4c1a1e761b7",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:351519f6-677d-4d86-9c2a-b4c1a1e761b7",
+      "artist_id": "mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c",
+      "track_mbid": "351519f6-677d-4d86-9c2a-b4c1a1e761b7",
+      "lastfm_tags": [
+        {
+          "tag": "Nu Metal",
+          "count": 100,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "rock",
+          "count": 66,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "rapcore",
+          "count": 38,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "alternative rock",
+          "count": 27,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "limp bizkit",
+          "count": 12,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "metal",
+          "count": 6,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "alternative",
+          "count": 5,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "KICK",
+          "count": 2,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "00s",
+          "count": 1,
+          "source": "Last.fm track.getTopTags"
+        },
+        {
+          "tag": "rap metal",
+          "count": 1,
+          "source": "Last.fm track.getTopTags"
+        }
+      ],
+      "lastfm_status": "matched",
+      "lastfm_checked_at": "2026-11-01T05:58:24.477628+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T05:58:25.133505+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-8f9d6bb2-dba4-4cca-9967-cc02b9f4820c/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 24,
+    "all_time_plays": 95
+  }
+}

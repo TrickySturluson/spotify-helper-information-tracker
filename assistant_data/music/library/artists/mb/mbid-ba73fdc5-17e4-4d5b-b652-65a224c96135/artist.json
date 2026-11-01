@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135",
+  "artist": "Scattle",
+  "identity": {
+    "artist_mbid": "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

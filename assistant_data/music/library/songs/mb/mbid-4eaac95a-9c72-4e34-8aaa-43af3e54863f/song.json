@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f",
+  "identity": {
+    "artist": "Chromatics",
+    "title": "Lady",
+    "album": "",
+    "artist_id": "mbid:c89ea689-c053-4d97-bada-8b81a6236f58",
+    "album_id": null,
+    "recording_mbid": "4eaac95a-9c72-4e34-8aaa-43af3e54863f",
+    "spotify_id": null,
+    "source_track_id": "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f",
+      "artist_id": "mbid:c89ea689-c053-4d97-bada-8b81a6236f58",
+      "track_mbid": "4eaac95a-9c72-4e34-8aaa-43af3e54863f",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:52.046087+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:59:52.696380+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-c89ea689-c053-4d97-bada-8b81a6236f58/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 18,
+    "all_time_plays": 18
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "library": "The Library",
+  "batch_id": "recent-top-50",
+  "status": "partial staged migration",
+  "source": {
+    "recent_top_tracks": "assistant_data/music/recent_top_tracks.json",
+    "track_profiles": "assistant_data/music/track_profiles.json",
+    "generated_at": "2026-11-01T08:02:28.928846+00:00",
+    "window_days": 90
+  },
+  "counts": {
+    "songs": 50,
+    "artists": 22,
+    "albums": 0,
+    "songs_with_track_tag_evidence": 7,
+    "songs_without_track_tag_evidence": 43,
+    "ambiguous_name_aliases": 0
+  },
+  "limitations": [
+    "The source track profiles do not contain album/release fields for this batch; no placeholder albums were created.",
+    "Artist identity records are present, but artist aggregate evidence is intentionally left for the full local migration.",
+    "No Spotify track IDs were present in these source rows; songs resolve by verified recording MBID or safe unique artist/title alias."
+  ],
+  "safety": {
+    "provider_requests": 0,
+    "aggregate_files_modified": false,
+    "spotify_playlists_modified": false
+  }
+}

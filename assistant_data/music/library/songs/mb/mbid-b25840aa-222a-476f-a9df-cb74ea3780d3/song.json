@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:b25840aa-222a-476f-a9df-cb74ea3780d3",
+  "identity": {
+    "artist": "The Heavy",
+    "title": "Can't Play Dead",
+    "album": "",
+    "artist_id": "mbid:ea99eec5-bd72-4b4f-86e4-54c5a34f7e10",
+    "album_id": null,
+    "recording_mbid": "b25840aa-222a-476f-a9df-cb74ea3780d3",
+    "spotify_id": null,
+    "source_track_id": "mbid:b25840aa-222a-476f-a9df-cb74ea3780d3",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:b25840aa-222a-476f-a9df-cb74ea3780d3",
+      "artist_id": "mbid:ea99eec5-bd72-4b4f-86e4-54c5a34f7e10",
+      "track_mbid": "b25840aa-222a-476f-a9df-cb74ea3780d3",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:18.473258+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:58:19.183742+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-ea99eec5-bd72-4b4f-86e4-54c5a34f7e10/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 26,
+    "all_time_plays": 100
+  }
+}

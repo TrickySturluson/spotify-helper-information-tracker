@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:41703031-f27d-4f48-ae90-6b9f6b9ad8b1",
+  "identity": {
+    "artist": "College",
+    "title": "The scarlett empress",
+    "album": "",
+    "artist_id": "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62",
+    "album_id": null,
+    "recording_mbid": "41703031-f27d-4f48-ae90-6b9f6b9ad8b1",
+    "spotify_id": null,
+    "source_track_id": "mbid:41703031-f27d-4f48-ae90-6b9f6b9ad8b1",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:41703031-f27d-4f48-ae90-6b9f6b9ad8b1",
+      "artist_id": "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62",
+      "track_mbid": "41703031-f27d-4f48-ae90-6b9f6b9ad8b1",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:13.844724+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:59:14.569265+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-d41396da-ed4b-4d0a-a902-d4bcd39cef62/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 20,
+    "all_time_plays": 20
+  }
+}

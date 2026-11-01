@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+  "identity": {
+    "artist": "Scattle",
+    "title": "Flatline",
+    "album": "",
+    "artist_id": "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135",
+    "album_id": null,
+    "recording_mbid": "9eeaabf2-739f-3eaa-813c-3197fb080e59",
+    "spotify_id": null,
+    "source_track_id": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "track_id": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+      "artist_id": "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135",
+      "track_mbid": "9eeaabf2-739f-3eaa-813c-3197fb080e59",
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:59.595802+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:59:00.738997+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  },
+  "relations": {
+    "artist_path": "artists/mb/mbid-ba73fdc5-17e4-4d5b-b652-65a224c96135/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 20,
+    "all_time_plays": 43
+  }
+}

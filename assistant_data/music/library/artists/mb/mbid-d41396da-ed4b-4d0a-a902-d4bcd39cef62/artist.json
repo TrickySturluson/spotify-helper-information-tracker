@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62",
+  "artist": "College",
+  "identity": {
+    "artist_mbid": "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

@@ -1,0 +1,610 @@
+{
+  "schema_version": 1,
+  "library_name": "The Library",
+  "songs": {
+    "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d": {
+      "path": "songs/mb/mbid-b8b46357-3cb3-4ed8-bcb0-2501a164c90d/song.json",
+      "artist": "Carpenter Brut",
+      "track": "Le Perv",
+      "album": ""
+    },
+    "mbid:b25840aa-222a-476f-a9df-cb74ea3780d3": {
+      "path": "songs/mb/mbid-b25840aa-222a-476f-a9df-cb74ea3780d3/song.json",
+      "artist": "The Heavy",
+      "track": "Can't Play Dead",
+      "album": ""
+    },
+    "mbid:1e266e79-676c-3f23-bf63-954cff4e0b14": {
+      "path": "songs/mb/mbid-1e266e79-676c-3f23-bf63-954cff4e0b14/song.json",
+      "artist": "House of Pain",
+      "track": "Back From the Dead",
+      "album": ""
+    },
+    "mbid:28f6dcfa-81af-44c9-9cb7-4b2c8484ca32": {
+      "path": "songs/mb/mbid-28f6dcfa-81af-44c9-9cb7-4b2c8484ca32/song.json",
+      "artist": "Slipknot",
+      "track": "Unsainted",
+      "album": ""
+    },
+    "mbid:351519f6-677d-4d86-9c2a-b4c1a1e761b7": {
+      "path": "songs/mb/mbid-351519f6-677d-4d86-9c2a-b4c1a1e761b7/song.json",
+      "artist": "Limp Bizkit",
+      "track": "Rollin' (Air Raid Vehicle)",
+      "album": ""
+    },
+    "mbid:6aa1a0d3-bbba-40c6-87d0-bdd1427a0a5c": {
+      "path": "songs/mb/mbid-6aa1a0d3-bbba-40c6-87d0-bdd1427a0a5c/song.json",
+      "artist": "Rage Against the Machine",
+      "track": "Killing in the Name",
+      "album": ""
+    },
+    "mbid:c8ae8e92-23f3-4912-b81b-8f796b2fa987": {
+      "path": "songs/mb/mbid-c8ae8e92-23f3-4912-b81b-8f796b2fa987/song.json",
+      "artist": "Royal Blood",
+      "track": "Out of the Black",
+      "album": ""
+    },
+    "mbid:33737be1-203d-4a99-80a7-59065c4fce6e": {
+      "path": "songs/mb/mbid-33737be1-203d-4a99-80a7-59065c4fce6e/song.json",
+      "artist": "El Huervo",
+      "track": "Daisuke",
+      "album": ""
+    },
+    "mbid:7ab3b7d4-5a33-4478-aaa0-50cb6bdfc652": {
+      "path": "songs/mb/mbid-7ab3b7d4-5a33-4478-aaa0-50cb6bdfc652/song.json",
+      "artist": "Rage Against the Machine",
+      "track": "Bullet in the Head",
+      "album": ""
+    },
+    "mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f": {
+      "path": "songs/mb/mbid-536d7672-eec7-3ee3-acbd-c7cb7273102f/song.json",
+      "artist": "Rage Against the Machine",
+      "track": "Guerrilla Radio",
+      "album": ""
+    },
+    "mbid:520bed5c-cc89-3a6c-827e-d2eb0d7660b1": {
+      "path": "songs/mb/mbid-520bed5c-cc89-3a6c-827e-d2eb0d7660b1/song.json",
+      "artist": "M|O|O|N",
+      "track": "Paris",
+      "album": ""
+    },
+    "mbid:19fb10c5-d86f-3ce6-8671-7cdff785fbf4": {
+      "path": "songs/mb/mbid-19fb10c5-d86f-3ce6-8671-7cdff785fbf4/song.json",
+      "artist": "M|O|O|N",
+      "track": "Release",
+      "album": ""
+    },
+    "mbid:234ff75b-a42b-344a-a76b-bf8a5efbe7f5": {
+      "path": "songs/mb/mbid-234ff75b-a42b-344a-a76b-bf8a5efbe7f5/song.json",
+      "artist": "Tape",
+      "track": "Beams",
+      "album": ""
+    },
+    "mbid:b9d32497-c506-49bc-b076-fe1a673cd5ac": {
+      "path": "songs/mb/mbid-b9d32497-c506-49bc-b076-fe1a673cd5ac/song.json",
+      "artist": "Scattle",
+      "track": "It's Safe Now",
+      "album": ""
+    },
+    "mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3": {
+      "path": "songs/mb/mbid-e139e6a1-4715-420d-b463-b8698d7c1fc3/song.json",
+      "artist": "El Huervo",
+      "track": "Rust",
+      "album": ""
+    },
+    "mbid:0c48cde0-2972-43a6-8d3e-70caa01d1df4": {
+      "path": "songs/mb/mbid-0c48cde0-2972-43a6-8d3e-70caa01d1df4/song.json",
+      "artist": "Perturbator",
+      "track": "Miami Disco",
+      "album": ""
+    },
+    "mbid:0908e932-860b-48f1-83db-7db592107d8b": {
+      "path": "songs/mb/mbid-0908e932-860b-48f1-83db-7db592107d8b/song.json",
+      "artist": "The Heavy",
+      "track": "How You Like Me Now",
+      "album": ""
+    },
+    "mbid:018b493a-c999-4eb5-9075-203f3b04de25": {
+      "path": "songs/mb/mbid-018b493a-c999-4eb5-9075-203f3b04de25/song.json",
+      "artist": "Carpenter Brut",
+      "track": "Roller Mobster",
+      "album": ""
+    },
+    "mbid:30cd6a0f-4912-402f-b2af-4a54b5648ddc": {
+      "path": "songs/mb/mbid-30cd6a0f-4912-402f-b2af-4a54b5648ddc/song.json",
+      "artist": "M|O|O|N",
+      "track": "Crystals",
+      "album": ""
+    },
+    "mbid:27499f45-4140-45e9-901a-70a8c8f495f1": {
+      "path": "songs/mb/mbid-27499f45-4140-45e9-901a-70a8c8f495f1/song.json",
+      "artist": "Perturbator",
+      "track": "Future Club",
+      "album": ""
+    },
+    "mbid:b08b495d-e84a-4a31-984d-55387af62a82": {
+      "path": "songs/mb/mbid-b08b495d-e84a-4a31-984d-55387af62a82/song.json",
+      "artist": "Com Truise",
+      "track": "Open",
+      "album": ""
+    },
+    "mbid:1463b3c7-e9a8-4f10-a157-3f77928e4568": {
+      "path": "songs/mb/mbid-1463b3c7-e9a8-4f10-a157-3f77928e4568/song.json",
+      "artist": "Gesaffelstein",
+      "track": "Pursuit",
+      "album": ""
+    },
+    "mbid:0b70293b-352c-3885-bebd-2857dfa36e9d": {
+      "path": "songs/mb/mbid-0b70293b-352c-3885-bebd-2857dfa36e9d/song.json",
+      "artist": "Lazerhawk",
+      "track": "Shoulder of Orion",
+      "album": ""
+    },
+    "mbid:053fcbda-5829-3a22-8cde-792baa17f585": {
+      "path": "songs/mb/mbid-053fcbda-5829-3a22-8cde-792baa17f585/song.json",
+      "artist": "Perturbator",
+      "track": "Electric Dreams",
+      "album": ""
+    },
+    "mbid:4ff7e797-173f-40dc-bc79-286cf9e7f5d4": {
+      "path": "songs/mb/mbid-4ff7e797-173f-40dc-bc79-286cf9e7f5d4/song.json",
+      "artist": "Limp Bizkit",
+      "track": "Break Stuff",
+      "album": ""
+    },
+    "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59": {
+      "path": "songs/mb/mbid-9eeaabf2-739f-3eaa-813c-3197fb080e59/song.json",
+      "artist": "Scattle",
+      "track": "Flatline",
+      "album": ""
+    },
+    "mbid:5f0472fc-b9e0-311d-b311-c8a7c4aa85f6": {
+      "path": "songs/mb/mbid-5f0472fc-b9e0-311d-b311-c8a7c4aa85f6/song.json",
+      "artist": "Scattle",
+      "track": "Inner Animal",
+      "album": ""
+    },
+    "mbid:4390d554-fe02-3dff-951d-1bd518de4f6d": {
+      "path": "songs/mb/mbid-4390d554-fe02-3dff-951d-1bd518de4f6d/song.json",
+      "artist": "Scattle",
+      "track": "Knock Knock",
+      "album": ""
+    },
+    "mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f": {
+      "path": "songs/mb/mbid-11960fa0-c0c4-404a-aaa8-adec49eda06f/song.json",
+      "artist": "M|O|O|N",
+      "track": "Hydrogen",
+      "album": ""
+    },
+    "mbid:6b9e5239-40db-4fd5-b4d8-4f78586eabd1": {
+      "path": "songs/mb/mbid-6b9e5239-40db-4fd5-b4d8-4f78586eabd1/song.json",
+      "artist": "Scattle",
+      "track": "Remorse",
+      "album": ""
+    },
+    "mbid:9d526738-fb57-44c2-ab73-2410b3d7860d": {
+      "path": "songs/mb/mbid-9d526738-fb57-44c2-ab73-2410b3d7860d/song.json",
+      "artist": "Carpenter Brut",
+      "track": "Escape From Midwich Valley",
+      "album": ""
+    },
+    "mbid:41703031-f27d-4f48-ae90-6b9f6b9ad8b1": {
+      "path": "songs/mb/mbid-41703031-f27d-4f48-ae90-6b9f6b9ad8b1/song.json",
+      "artist": "College",
+      "track": "The scarlett empress",
+      "album": ""
+    },
+    "mbid:18c262fb-4519-49c1-a3ed-37427c2aa7db": {
+      "path": "songs/mb/mbid-18c262fb-4519-49c1-a3ed-37427c2aa7db/song.json",
+      "artist": "Com Truise",
+      "track": "Alfa Beach",
+      "album": ""
+    },
+    "mbid:30c4937a-ca41-439c-8579-109bf22eadcb": {
+      "path": "songs/mb/mbid-30c4937a-ca41-439c-8579-109bf22eadcb/song.json",
+      "artist": "Com Truise",
+      "track": "Closed",
+      "album": ""
+    },
+    "mbid:01a7ffbc-feff-3aa4-b77e-ad0dbe3646db": {
+      "path": "songs/mb/mbid-01a7ffbc-feff-3aa4-b77e-ad0dbe3646db/song.json",
+      "artist": "Com Truise",
+      "track": "Dreambender",
+      "album": ""
+    },
+    "mbid:407c0db7-20a9-4296-a9ac-78a2267115c2": {
+      "path": "songs/mb/mbid-407c0db7-20a9-4296-a9ac-78a2267115c2/song.json",
+      "artist": "El Huervo",
+      "track": "Turf",
+      "album": ""
+    },
+    "mbid:b79490d3-08da-48af-992c-d655e9222e20": {
+      "path": "songs/mb/mbid-b79490d3-08da-48af-992c-d655e9222e20/song.json",
+      "artist": "FM Attack",
+      "track": "Yesterday",
+      "album": ""
+    },
+    "mbid:32da9a8b-8123-4550-981a-9202e4ac2a0b": {
+      "path": "songs/mb/mbid-32da9a8b-8123-4550-981a-9202e4ac2a0b/song.json",
+      "artist": "Light Club",
+      "track": "Blizzard",
+      "album": ""
+    },
+    "mbid:530c2e8c-947c-4856-9dc1-8d0bce08e972": {
+      "path": "songs/mb/mbid-530c2e8c-947c-4856-9dc1-8d0bce08e972/song.json",
+      "artist": "M|O|O|N",
+      "track": "Dust",
+      "album": ""
+    },
+    "mbid:66f9f3e4-2d36-4bbb-964d-db84d96ce161": {
+      "path": "songs/mb/mbid-66f9f3e4-2d36-4bbb-964d-db84d96ce161/song.json",
+      "artist": "Scattle",
+      "track": "Bloodline",
+      "album": ""
+    },
+    "mbid:ac678e7d-ea01-40e1-8dec-1c69a28423cd": {
+      "path": "songs/mb/mbid-ac678e7d-ea01-40e1-8dec-1c69a28423cd/song.json",
+      "artist": "Benny Smiles",
+      "track": "Bad Ending",
+      "album": ""
+    },
+    "mbid:1796d672-4978-495f-9ac8-fc62f2e23dd5": {
+      "path": "songs/mb/mbid-1796d672-4978-495f-9ac8-fc62f2e23dd5/song.json",
+      "artist": "Com Truise",
+      "track": "84' Dreamin",
+      "album": ""
+    },
+    "mbid:6e42efda-3468-433d-8f71-ab990ec42908": {
+      "path": "songs/mb/mbid-6e42efda-3468-433d-8f71-ab990ec42908/song.json",
+      "artist": "Com Truise",
+      "track": "Flightwave",
+      "album": ""
+    },
+    "mbid:1ff4a05e-7411-4c0b-b3e4-7644fa191fd3": {
+      "path": "songs/mb/mbid-1ff4a05e-7411-4c0b-b3e4-7644fa191fd3/song.json",
+      "artist": "El Huervo",
+      "track": "Crush",
+      "album": ""
+    },
+    "mbid:1ec423d8-9de6-4301-be0a-9405d5d149ef": {
+      "path": "songs/mb/mbid-1ec423d8-9de6-4301-be0a-9405d5d149ef/song.json",
+      "artist": "El Huervo",
+      "track": "Ghost",
+      "album": ""
+    },
+    "mbid:0f781f8f-ec72-420f-8426-f24bad38982b": {
+      "path": "songs/mb/mbid-0f781f8f-ec72-420f-8426-f24bad38982b/song.json",
+      "artist": "Lazerhawk",
+      "track": "Overdrive",
+      "album": ""
+    },
+    "mbid:6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43": {
+      "path": "songs/mb/mbid-6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43/song.json",
+      "artist": "Mega Drive",
+      "track": "Acid Spit",
+      "album": ""
+    },
+    "mbid:04e67c12-ede4-45ec-86fe-f65da611a14c": {
+      "path": "songs/mb/mbid-04e67c12-ede4-45ec-86fe-f65da611a14c/song.json",
+      "artist": "Scattle",
+      "track": "To The Top",
+      "album": ""
+    },
+    "mbid:abf05efd-9bd2-41ec-9965-68093e4fce25": {
+      "path": "songs/mb/mbid-abf05efd-9bd2-41ec-9965-68093e4fce25/song.json",
+      "artist": "Virtual Mage",
+      "track": "Sleepy",
+      "album": ""
+    },
+    "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f": {
+      "path": "songs/mb/mbid-4eaac95a-9c72-4e34-8aaa-43af3e54863f/song.json",
+      "artist": "Chromatics",
+      "track": "Lady",
+      "album": ""
+    }
+  },
+  "spotify_ids": {},
+  "recording_mbids": {
+    "b8b46357-3cb3-4ed8-bcb0-2501a164c90d": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+    "b25840aa-222a-476f-a9df-cb74ea3780d3": "mbid:b25840aa-222a-476f-a9df-cb74ea3780d3",
+    "1e266e79-676c-3f23-bf63-954cff4e0b14": "mbid:1e266e79-676c-3f23-bf63-954cff4e0b14",
+    "28f6dcfa-81af-44c9-9cb7-4b2c8484ca32": "mbid:28f6dcfa-81af-44c9-9cb7-4b2c8484ca32",
+    "351519f6-677d-4d86-9c2a-b4c1a1e761b7": "mbid:351519f6-677d-4d86-9c2a-b4c1a1e761b7",
+    "6aa1a0d3-bbba-40c6-87d0-bdd1427a0a5c": "mbid:6aa1a0d3-bbba-40c6-87d0-bdd1427a0a5c",
+    "c8ae8e92-23f3-4912-b81b-8f796b2fa987": "mbid:c8ae8e92-23f3-4912-b81b-8f796b2fa987",
+    "33737be1-203d-4a99-80a7-59065c4fce6e": "mbid:33737be1-203d-4a99-80a7-59065c4fce6e",
+    "7ab3b7d4-5a33-4478-aaa0-50cb6bdfc652": "mbid:7ab3b7d4-5a33-4478-aaa0-50cb6bdfc652",
+    "536d7672-eec7-3ee3-acbd-c7cb7273102f": "mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f",
+    "520bed5c-cc89-3a6c-827e-d2eb0d7660b1": "mbid:520bed5c-cc89-3a6c-827e-d2eb0d7660b1",
+    "19fb10c5-d86f-3ce6-8671-7cdff785fbf4": "mbid:19fb10c5-d86f-3ce6-8671-7cdff785fbf4",
+    "234ff75b-a42b-344a-a76b-bf8a5efbe7f5": "mbid:234ff75b-a42b-344a-a76b-bf8a5efbe7f5",
+    "b9d32497-c506-49bc-b076-fe1a673cd5ac": "mbid:b9d32497-c506-49bc-b076-fe1a673cd5ac",
+    "e139e6a1-4715-420d-b463-b8698d7c1fc3": "mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3",
+    "0c48cde0-2972-43a6-8d3e-70caa01d1df4": "mbid:0c48cde0-2972-43a6-8d3e-70caa01d1df4",
+    "0908e932-860b-48f1-83db-7db592107d8b": "mbid:0908e932-860b-48f1-83db-7db592107d8b",
+    "018b493a-c999-4eb5-9075-203f3b04de25": "mbid:018b493a-c999-4eb5-9075-203f3b04de25",
+    "30cd6a0f-4912-402f-b2af-4a54b5648ddc": "mbid:30cd6a0f-4912-402f-b2af-4a54b5648ddc",
+    "27499f45-4140-45e9-901a-70a8c8f495f1": "mbid:27499f45-4140-45e9-901a-70a8c8f495f1",
+    "b08b495d-e84a-4a31-984d-55387af62a82": "mbid:b08b495d-e84a-4a31-984d-55387af62a82",
+    "1463b3c7-e9a8-4f10-a157-3f77928e4568": "mbid:1463b3c7-e9a8-4f10-a157-3f77928e4568",
+    "0b70293b-352c-3885-bebd-2857dfa36e9d": "mbid:0b70293b-352c-3885-bebd-2857dfa36e9d",
+    "053fcbda-5829-3a22-8cde-792baa17f585": "mbid:053fcbda-5829-3a22-8cde-792baa17f585",
+    "4ff7e797-173f-40dc-bc79-286cf9e7f5d4": "mbid:4ff7e797-173f-40dc-bc79-286cf9e7f5d4",
+    "9eeaabf2-739f-3eaa-813c-3197fb080e59": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+    "5f0472fc-b9e0-311d-b311-c8a7c4aa85f6": "mbid:5f0472fc-b9e0-311d-b311-c8a7c4aa85f6",
+    "4390d554-fe02-3dff-951d-1bd518de4f6d": "mbid:4390d554-fe02-3dff-951d-1bd518de4f6d",
+    "11960fa0-c0c4-404a-aaa8-adec49eda06f": "mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f",
+    "6b9e5239-40db-4fd5-b4d8-4f78586eabd1": "mbid:6b9e5239-40db-4fd5-b4d8-4f78586eabd1",
+    "9d526738-fb57-44c2-ab73-2410b3d7860d": "mbid:9d526738-fb57-44c2-ab73-2410b3d7860d",
+    "41703031-f27d-4f48-ae90-6b9f6b9ad8b1": "mbid:41703031-f27d-4f48-ae90-6b9f6b9ad8b1",
+    "18c262fb-4519-49c1-a3ed-37427c2aa7db": "mbid:18c262fb-4519-49c1-a3ed-37427c2aa7db",
+    "30c4937a-ca41-439c-8579-109bf22eadcb": "mbid:30c4937a-ca41-439c-8579-109bf22eadcb",
+    "01a7ffbc-feff-3aa4-b77e-ad0dbe3646db": "mbid:01a7ffbc-feff-3aa4-b77e-ad0dbe3646db",
+    "407c0db7-20a9-4296-a9ac-78a2267115c2": "mbid:407c0db7-20a9-4296-a9ac-78a2267115c2",
+    "b79490d3-08da-48af-992c-d655e9222e20": "mbid:b79490d3-08da-48af-992c-d655e9222e20",
+    "32da9a8b-8123-4550-981a-9202e4ac2a0b": "mbid:32da9a8b-8123-4550-981a-9202e4ac2a0b",
+    "530c2e8c-947c-4856-9dc1-8d0bce08e972": "mbid:530c2e8c-947c-4856-9dc1-8d0bce08e972",
+    "66f9f3e4-2d36-4bbb-964d-db84d96ce161": "mbid:66f9f3e4-2d36-4bbb-964d-db84d96ce161",
+    "ac678e7d-ea01-40e1-8dec-1c69a28423cd": "mbid:ac678e7d-ea01-40e1-8dec-1c69a28423cd",
+    "1796d672-4978-495f-9ac8-fc62f2e23dd5": "mbid:1796d672-4978-495f-9ac8-fc62f2e23dd5",
+    "6e42efda-3468-433d-8f71-ab990ec42908": "mbid:6e42efda-3468-433d-8f71-ab990ec42908",
+    "1ff4a05e-7411-4c0b-b3e4-7644fa191fd3": "mbid:1ff4a05e-7411-4c0b-b3e4-7644fa191fd3",
+    "1ec423d8-9de6-4301-be0a-9405d5d149ef": "mbid:1ec423d8-9de6-4301-be0a-9405d5d149ef",
+    "0f781f8f-ec72-420f-8426-f24bad38982b": "mbid:0f781f8f-ec72-420f-8426-f24bad38982b",
+    "6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43": "mbid:6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43",
+    "04e67c12-ede4-45ec-86fe-f65da611a14c": "mbid:04e67c12-ede4-45ec-86fe-f65da611a14c",
+    "abf05efd-9bd2-41ec-9965-68093e4fce25": "mbid:abf05efd-9bd2-41ec-9965-68093e4fce25",
+    "4eaac95a-9c72-4e34-8aaa-43af3e54863f": "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f"
+  },
+  "name_candidates": {
+    "carpenter brut\u0000le perv": [
+      "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d"
+    ],
+    "the heavy\u0000can't play dead": [
+      "mbid:b25840aa-222a-476f-a9df-cb74ea3780d3"
+    ],
+    "house of pain\u0000back from the dead": [
+      "mbid:1e266e79-676c-3f23-bf63-954cff4e0b14"
+    ],
+    "slipknot\u0000unsainted": [
+      "mbid:28f6dcfa-81af-44c9-9cb7-4b2c8484ca32"
+    ],
+    "limp bizkit\u0000rollin' (air raid vehicle)": [
+      "mbid:351519f6-677d-4d86-9c2a-b4c1a1e761b7"
+    ],
+    "rage against the machine\u0000killing in the name": [
+      "mbid:6aa1a0d3-bbba-40c6-87d0-bdd1427a0a5c"
+    ],
+    "royal blood\u0000out of the black": [
+      "mbid:c8ae8e92-23f3-4912-b81b-8f796b2fa987"
+    ],
+    "el huervo\u0000daisuke": [
+      "mbid:33737be1-203d-4a99-80a7-59065c4fce6e"
+    ],
+    "rage against the machine\u0000bullet in the head": [
+      "mbid:7ab3b7d4-5a33-4478-aaa0-50cb6bdfc652"
+    ],
+    "rage against the machine\u0000guerrilla radio": [
+      "mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f"
+    ],
+    "m|o|o|n\u0000paris": [
+      "mbid:520bed5c-cc89-3a6c-827e-d2eb0d7660b1"
+    ],
+    "m|o|o|n\u0000release": [
+      "mbid:19fb10c5-d86f-3ce6-8671-7cdff785fbf4"
+    ],
+    "tape\u0000beams": [
+      "mbid:234ff75b-a42b-344a-a76b-bf8a5efbe7f5"
+    ],
+    "scattle\u0000it's safe now": [
+      "mbid:b9d32497-c506-49bc-b076-fe1a673cd5ac"
+    ],
+    "el huervo\u0000rust": [
+      "mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3"
+    ],
+    "perturbator\u0000miami disco": [
+      "mbid:0c48cde0-2972-43a6-8d3e-70caa01d1df4"
+    ],
+    "the heavy\u0000how you like me now": [
+      "mbid:0908e932-860b-48f1-83db-7db592107d8b"
+    ],
+    "carpenter brut\u0000roller mobster": [
+      "mbid:018b493a-c999-4eb5-9075-203f3b04de25"
+    ],
+    "m|o|o|n\u0000crystals": [
+      "mbid:30cd6a0f-4912-402f-b2af-4a54b5648ddc"
+    ],
+    "perturbator\u0000future club": [
+      "mbid:27499f45-4140-45e9-901a-70a8c8f495f1"
+    ],
+    "com truise\u0000open": [
+      "mbid:b08b495d-e84a-4a31-984d-55387af62a82"
+    ],
+    "gesaffelstein\u0000pursuit": [
+      "mbid:1463b3c7-e9a8-4f10-a157-3f77928e4568"
+    ],
+    "lazerhawk\u0000shoulder of orion": [
+      "mbid:0b70293b-352c-3885-bebd-2857dfa36e9d"
+    ],
+    "perturbator\u0000electric dreams": [
+      "mbid:053fcbda-5829-3a22-8cde-792baa17f585"
+    ],
+    "limp bizkit\u0000break stuff": [
+      "mbid:4ff7e797-173f-40dc-bc79-286cf9e7f5d4"
+    ],
+    "scattle\u0000flatline": [
+      "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59"
+    ],
+    "scattle\u0000inner animal": [
+      "mbid:5f0472fc-b9e0-311d-b311-c8a7c4aa85f6"
+    ],
+    "scattle\u0000knock knock": [
+      "mbid:4390d554-fe02-3dff-951d-1bd518de4f6d"
+    ],
+    "m|o|o|n\u0000hydrogen": [
+      "mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f"
+    ],
+    "scattle\u0000remorse": [
+      "mbid:6b9e5239-40db-4fd5-b4d8-4f78586eabd1"
+    ],
+    "carpenter brut\u0000escape from midwich valley": [
+      "mbid:9d526738-fb57-44c2-ab73-2410b3d7860d"
+    ],
+    "college\u0000the scarlett empress": [
+      "mbid:41703031-f27d-4f48-ae90-6b9f6b9ad8b1"
+    ],
+    "com truise\u0000alfa beach": [
+      "mbid:18c262fb-4519-49c1-a3ed-37427c2aa7db"
+    ],
+    "com truise\u0000closed": [
+      "mbid:30c4937a-ca41-439c-8579-109bf22eadcb"
+    ],
+    "com truise\u0000dreambender": [
+      "mbid:01a7ffbc-feff-3aa4-b77e-ad0dbe3646db"
+    ],
+    "el huervo\u0000turf": [
+      "mbid:407c0db7-20a9-4296-a9ac-78a2267115c2"
+    ],
+    "fm attack\u0000yesterday": [
+      "mbid:b79490d3-08da-48af-992c-d655e9222e20"
+    ],
+    "light club\u0000blizzard": [
+      "mbid:32da9a8b-8123-4550-981a-9202e4ac2a0b"
+    ],
+    "m|o|o|n\u0000dust": [
+      "mbid:530c2e8c-947c-4856-9dc1-8d0bce08e972"
+    ],
+    "scattle\u0000bloodline": [
+      "mbid:66f9f3e4-2d36-4bbb-964d-db84d96ce161"
+    ],
+    "benny smiles\u0000bad ending": [
+      "mbid:ac678e7d-ea01-40e1-8dec-1c69a28423cd"
+    ],
+    "com truise\u000084' dreamin": [
+      "mbid:1796d672-4978-495f-9ac8-fc62f2e23dd5"
+    ],
+    "com truise\u0000flightwave": [
+      "mbid:6e42efda-3468-433d-8f71-ab990ec42908"
+    ],
+    "el huervo\u0000crush": [
+      "mbid:1ff4a05e-7411-4c0b-b3e4-7644fa191fd3"
+    ],
+    "el huervo\u0000ghost": [
+      "mbid:1ec423d8-9de6-4301-be0a-9405d5d149ef"
+    ],
+    "lazerhawk\u0000overdrive": [
+      "mbid:0f781f8f-ec72-420f-8426-f24bad38982b"
+    ],
+    "mega drive\u0000acid spit": [
+      "mbid:6d2c9cd5-d9be-4144-bf49-ff3d9fe06a43"
+    ],
+    "scattle\u0000to the top": [
+      "mbid:04e67c12-ede4-45ec-86fe-f65da611a14c"
+    ],
+    "virtual mage\u0000sleepy": [
+      "mbid:abf05efd-9bd2-41ec-9965-68093e4fce25"
+    ],
+    "chromatics\u0000lady": [
+      "mbid:4eaac95a-9c72-4e34-8aaa-43af3e54863f"
+    ]
+  },
+  "artists": {
+    "mbid:303abdee-ffca-4685-a582-6aaaefd81b01": {
+      "path": "artists/mb/mbid-303abdee-ffca-4685-a582-6aaaefd81b01/artist.json",
+      "name": "Carpenter Brut"
+    },
+    "mbid:ea99eec5-bd72-4b4f-86e4-54c5a34f7e10": {
+      "path": "artists/mb/mbid-ea99eec5-bd72-4b4f-86e4-54c5a34f7e10/artist.json",
+      "name": "The Heavy"
+    },
+    "mbid:c2d6a6fb-7999-4bb3-b2df-7d752fdf4e95": {
+      "path": "artists/mb/mbid-c2d6a6fb-7999-4bb3-b2df-7d752fdf4e95/artist.json",
+      "name": "House of Pain"
+    },
+    "name:516fa3fd6bf97a4b": {
+      "path": "artists/na/name-516fa3fd6bf97a4b/artist.json",
+      "name": "Slipknot"
+    },
+    "mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c": {
+      "path": "artists/mb/mbid-8f9d6bb2-dba4-4cca-9967-cc02b9f4820c/artist.json",
+      "name": "Limp Bizkit"
+    },
+    "mbid:3798b104-01cb-484c-a3b0-56adc6399b80": {
+      "path": "artists/mb/mbid-3798b104-01cb-484c-a3b0-56adc6399b80/artist.json",
+      "name": "Rage Against the Machine"
+    },
+    "mbid:aa62b28e-b6d4-4086-91d4-e5fac1ed56f3": {
+      "path": "artists/mb/mbid-aa62b28e-b6d4-4086-91d4-e5fac1ed56f3/artist.json",
+      "name": "Royal Blood"
+    },
+    "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a": {
+      "path": "artists/mb/mbid-e601a215-1921-4ec6-b88e-b21868a35d6a/artist.json",
+      "name": "El Huervo"
+    },
+    "name:683dd81d21c97285": {
+      "path": "artists/na/name-683dd81d21c97285/artist.json",
+      "name": "M|O|O|N"
+    },
+    "mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3": {
+      "path": "artists/mb/mbid-cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3/artist.json",
+      "name": "Tape"
+    },
+    "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135": {
+      "path": "artists/mb/mbid-ba73fdc5-17e4-4d5b-b652-65a224c96135/artist.json",
+      "name": "Scattle"
+    },
+    "mbid:45c25199-fa62-4d4c-b0a2-11eeed6923c3": {
+      "path": "artists/mb/mbid-45c25199-fa62-4d4c-b0a2-11eeed6923c3/artist.json",
+      "name": "Perturbator"
+    },
+    "mbid:51f1ca49-846a-4ef1-b4fa-187ecc88bbe5": {
+      "path": "artists/mb/mbid-51f1ca49-846a-4ef1-b4fa-187ecc88bbe5/artist.json",
+      "name": "Com Truise"
+    },
+    "mbid:cc3e537d-ff34-423f-8cd6-635a80f4dba7": {
+      "path": "artists/mb/mbid-cc3e537d-ff34-423f-8cd6-635a80f4dba7/artist.json",
+      "name": "Gesaffelstein"
+    },
+    "mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b": {
+      "path": "artists/mb/mbid-b9e46d1a-9068-4615-9200-90b3d5eae68b/artist.json",
+      "name": "Lazerhawk"
+    },
+    "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62": {
+      "path": "artists/mb/mbid-d41396da-ed4b-4d0a-a902-d4bcd39cef62/artist.json",
+      "name": "College"
+    },
+    "mbid:93417644-8cfa-4139-aba0-1ced0a702bfb": {
+      "path": "artists/mb/mbid-93417644-8cfa-4139-aba0-1ced0a702bfb/artist.json",
+      "name": "FM Attack"
+    },
+    "mbid:d222a8cb-50c6-474d-a18e-a5596f8b9392": {
+      "path": "artists/mb/mbid-d222a8cb-50c6-474d-a18e-a5596f8b9392/artist.json",
+      "name": "Light Club"
+    },
+    "mbid:f826b7bd-bd15-4066-84a1-ae315a357609": {
+      "path": "artists/mb/mbid-f826b7bd-bd15-4066-84a1-ae315a357609/artist.json",
+      "name": "Benny Smiles"
+    },
+    "mbid:2bcee108-1442-4ac6-b020-df056cf067b4": {
+      "path": "artists/mb/mbid-2bcee108-1442-4ac6-b020-df056cf067b4/artist.json",
+      "name": "Mega Drive"
+    },
+    "name:be07cc750616e5cd": {
+      "path": "artists/na/name-be07cc750616e5cd/artist.json",
+      "name": "Virtual Mage"
+    },
+    "mbid:c89ea689-c053-4d97-bada-8b81a6236f58": {
+      "path": "artists/mb/mbid-c89ea689-c053-4d97-bada-8b81a6236f58/artist.json",
+      "name": "Chromatics"
+    }
+  },
+  "albums": {},
+  "migration": {
+    "batch_id": "recent-top-50",
+    "source": "Last.fm recent_top_tracks.json + track_profiles.json",
+    "source_generated_at": "2026-11-01T08:02:28.928846+00:00",
+    "window_days": 90,
+    "provider_requests": 0,
+    "partial": true
+  }
+}
