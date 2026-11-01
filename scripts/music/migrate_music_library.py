@@ -30,7 +30,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-# File overview
+# FILE OVERVIEW
 # - Reads existing profile exports and performs a no-network migration.
 # - Writes canonical individual records and a compact resolver index.
 # - Leaves aggregate files untouched for compatibility and rollback.
