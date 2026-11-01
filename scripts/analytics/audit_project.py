@@ -79,6 +79,9 @@ def audit_spotify_reference(root=ROOT):
         except (OSError, ValueError) as exc:
             errors.append(f"Spotify playlist record {pid} is invalid JSON: {exc}")
             continue
+        if not isinstance(record, dict):
+            errors.append(f"Spotify playlist record {pid} must contain a JSON object.")
+            continue
         if record.get("id") != pid:
             errors.append(f"Spotify playlist record identity mismatch for {pid}.")
         # The catalog is a summary of this record; catch drift rather than silently
@@ -124,6 +127,9 @@ def audit_spotify_reference(root=ROOT):
     else:
         try:
             index = json.loads(index_path.read_text(encoding="utf-8"))
+            if not isinstance(index, dict):
+                errors.append("Spotify reference index must contain a JSON object.")
+                index = {}
             track_map = index.get("track_playlists", {})
             artist_map = index.get("artist_playlists", {})
             if not isinstance(track_map, dict) or not isinstance(artist_map, dict):
@@ -192,7 +198,10 @@ def main():
     )
     for path in manifests:
         manifest = load(path)
+        if manifest is None:
+            continue
         if not isinstance(manifest, dict):
+            ERRORS.append(f"{path} must contain a JSON object.")
             continue
         for relative in referenced_paths(manifest):
             check((ROOT / relative).exists(), f"{path} references existing file {relative}.")
