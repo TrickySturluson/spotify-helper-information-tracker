@@ -350,6 +350,62 @@ def main():
         "lookup_hint": "Read overview.json, then indexes/artists.json to find an artist shard; artist shard contains all that artist's track metadata.",
     }
     write_json(ROOT / "manifest.json", manifest)
+
+    # The per-recording library is the canonical destination for new scrape
+    # results. Legacy shard/index files remain generated as compatibility views
+    # for existing analytics until those consumers are migrated.
+    from scripts.music.music_library import MusicLibrary
+    library_rows = []
+    artist_rows = {}
+    album_rows = {}
+    for aid, artist_name in artist_names.items():
+        artist_rows[aid] = {
+            "artist": artist_name,
+            "artist_mbid": artist_mbids.get(aid),
+            "artist_id": aid,
+            "source": "Last.fm scrobble archive",
+        }
+        for album_name, count in artist_album_counts[aid].items():
+            album_mbid = artist_album_mbids[aid].get(album_name)
+            album_rows[f"{aid}:{album_name}"] = {
+                "artist": artist_name,
+                "artist_id": aid,
+                "album": album_name,
+                "album_mbid": album_mbid,
+                "identity_verified": bool(album_mbid),
+                "scrobbles": count,
+                "source": "Last.fm scrobble archive",
+            }
+    for item in catalogue.values():
+        meta = previous.get(item["track_id"], {})
+        album_name = item["albums"].most_common(1)[0][0] if item["albums"] else ""
+        library_rows.append({
+            "track_id": item["track_id"],
+            "track_mbid": item.get("track_mbid"),
+            "artist_id": item["artist_id"],
+            "artist": item["artist"],
+            "track": item["track"],
+            "album": album_name,
+            "duration_ms": meta.get("duration_ms"),
+            "duration_source": meta.get("duration_source"),
+            "release_date": meta.get("release_date"),
+            "release_date_source": meta.get("release_date_source"),
+            "listening_context": {
+                "source": "Last.fm scrobble archive",
+                "all_time_plays": item["plays"],
+                "first_scrobble": datetime.fromtimestamp(item["first_scrobble"], timezone.utc).isoformat(),
+                "last_scrobble": datetime.fromtimestamp(item["last_scrobble"], timezone.utc).isoformat(),
+                "observed_albums": [
+                    {"album": name, "scrobbles": count}
+                    for name, count in item["albums"].most_common()
+                ],
+            },
+        })
+    library_result = MusicLibrary().put_catalogue(library_rows, artist_rows, album_rows)
+    print("Canonical music library updated: "
+          f"{library_result['songs']:,} songs, "
+          f"{library_result['artists']:,} artists, "
+          f"{library_result['albums']:,} albums.")
     print(f"Music metadata: {len(catalogue):,} tracks, {duration_plays:,}/{total_plays:,} scrobbles duration-covered ({coverage:.1%}); {looked_up} lookups, {found} matches this run.")
     print(f"Known-duration qualifying minimum: {known_minimum_ms_total / 3600000:.2f}h; full-track equivalent: {duration_ms_total / 3600000:.2f}h.")
 
