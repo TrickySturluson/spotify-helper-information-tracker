@@ -258,6 +258,19 @@ class PlaylistSequencerTests(unittest.TestCase):
         ordered = sequencer._smooth_order(rows, journey="rising")
         self.assertEqual([row["item"]["uri"] for row in ordered], ["a", "b", "c"])
 
+    def test_smooth_order_interleaves_same_artist_tracks_when_possible(self):
+        rows = []
+        for uri, artist in [("a1", "Messer Chups"), ("a2", "Messer Chups"), ("b", "The Ghastly Ones")]:
+            rows.append({
+                "item": {"uri": uri}, "artist": artist, "score": 60,
+                "original_index": len(rows), "vibe_groups": [],
+                "genre_groups": [], "theme_groups": [], "section_index": 0,
+            })
+        ordered = sequencer._smooth_order(rows, journey="steady")
+        artists = [row["artist"] for row in ordered]
+        self.assertNotEqual(artists[0], artists[1])
+        self.assertNotEqual(artists[1], artists[2])
+
 
 if __name__ == "__main__":
     unittest.main()
