@@ -17,6 +17,7 @@ from urllib.error import HTTPError, URLError
 ROOT = Path("assistant_data/music")
 SHARDS = ROOT / "artists"
 OUTPUT = ROOT / "audio_profiles.json"
+RECENT_TOP = ROOT / "recent_top_tracks.json"
 API = "https://acousticbrainz.org/api/v1/low-level"
 UA = "SHIT-AudioMetadata/1.0 (https://github.com/TrickySturluson/spotify-helper-information-tracker)"
 BATCH_SIZE = 25
@@ -67,7 +68,23 @@ def extract(doc, artist, track, mbid):
     }
 
 
+def norm(value):
+    import re
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
+
+
+def recent_priority(path=RECENT_TOP):
+    try:
+        rows = read(path, {}).get("tracks", [])
+    except (AttributeError, TypeError):
+        rows = []
+    return {(norm(row.get("artist")), norm(row.get("track"))): rank
+            for rank, row in enumerate(rows)
+            if row.get("artist") and row.get("track")}
+
+
 def main():
+    priority = recent_priority()
     tracks = {}
     for shard_no in range(32):
         data = read(SHARDS / f"shard-{shard_no:02d}.json", {})
@@ -81,6 +98,13 @@ def main():
     payload = read(OUTPUT, {"schema_version": 1, "analysis_engine": "AcousticBrainz", "tracks": {}})
     results = payload.setdefault("tracks", {})
     todo = [mbid for mbid in tracks if mbid not in results or results[mbid].get("source") != "AcousticBrainz low-level"]
+    todo.sort(key=lambda mbid: (
+        priority.get((norm(tracks[mbid][0]), norm(tracks[mbid][1])), 10**9),
+        norm(tracks[mbid][0]), norm(tracks[mbid][1]), mbid,
+    ))
+    recent_due = sum(1 for mbid in todo
+                     if priority.get((norm(tracks[mbid][0]), norm(tracks[mbid][1])), 10**9) < 200)
+    print(f"Recent top-200 priority: {recent_due:,} recordings with resolved MBIDs are eligible for AcousticBrainz.")
     batches = [todo[i:i+BATCH_SIZE] for i in range(0, len(todo), BATCH_SIZE)]
     batches = batches[:MAX_BATCHES]
     found = 0
