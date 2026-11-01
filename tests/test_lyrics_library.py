@@ -1,4 +1,3 @@
-"""Tests for lyric-source handling, local references, and lyric analysis storage."""
 import tempfile
 import unittest
 from pathlib import Path
@@ -131,3 +130,12 @@ class LyricsLibraryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_lyrics_library -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

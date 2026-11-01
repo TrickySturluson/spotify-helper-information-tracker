@@ -2,3 +2,7 @@
 # Essentia supplies beat tracking, beat positions, and EBU R128 loudness.
 numpy>=1.24,<2
 essentia==2.1b6.dev1438
+
+
+# File overview
+This requirements file lists the optional Python dependencies needed by the local Essentia-based audio-analysis toolchain. It is separate from the core project requirements so users who only need metadata enrichment and playlist tooling do not need to install audio-analysis libraries.

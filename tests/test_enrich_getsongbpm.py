@@ -1,4 +1,3 @@
-"""Tests for exact-match GetSongBPM enrichment and safe fallback behavior."""
 import unittest
 
 from enrich_getsongbpm import exact_match, norm, track_key

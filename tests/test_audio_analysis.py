@@ -1,4 +1,3 @@
-"""Regression tests for local audio parsing, level conversion, and profile scoring."""
 import unittest
 from pathlib import Path
 

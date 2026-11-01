@@ -74,3 +74,15 @@ jobs:
             git commit -m "Backfill music track durations"
             git push
           fi
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: GitHub Actions workflow "Backfill Music Durations".
+# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
+# Behavior: Automates the job steps declared in this workflow, including its
+#           runtime setup, permissions, dependencies, and repository changes.
+# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
+#              with the implementation under scripts/ and compat/.
+# Related: See docs/ for feature-specific operating instructions.
+# -----------------------------------------------------------------------------

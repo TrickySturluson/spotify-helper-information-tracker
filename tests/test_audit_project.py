@@ -1,4 +1,3 @@
-"""Tests for repository data-integrity and generated-artifact audits."""
 import io
 import json
 import tempfile

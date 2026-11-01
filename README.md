@@ -394,3 +394,7 @@ A scheduled read-only observation workflow refreshes Liked Songs status and Last
 A day without listening is neutral. Missing tracker data is unknown, not zero. Spotify save checks or playback tracking can fail independently without interrupting an already-confirmed playlist edit. Last.fm scrobbles remain a separate secondary signal and are not mislabeled as measured Spotify playback.
 
 The reference library and feedback files are personal listening data. Keep the repository private and never commit OAuth tokens or local playback credentials.
+
+
+## File overview
+This document explains the project's purpose, setup, and navigation. Use the individual file overviews in the implementation tree for module-specific details.

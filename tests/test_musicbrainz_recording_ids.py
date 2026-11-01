@@ -1,4 +1,3 @@
-"""Tests for conservative MusicBrainz recording-ID resolution."""
 import unittest
 from enrich_musicbrainz_recording_ids import norm
 
@@ -13,3 +12,12 @@ class RecordingIdResolutionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_musicbrainz_recording_ids -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

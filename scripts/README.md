@@ -18,3 +18,7 @@ python -m unittest discover -s tests -t . -v
 ```
 
 New implementation code belongs under the appropriate package in `scripts/`; do not duplicate logic in `compat/`.
+
+
+## File overview
+This guide explains the maintained implementation package layout, the responsibility of each package, and how compatibility entry points preserve older commands. It is the starting point for navigating scripts/; individual implementation files carry their own file-level overview at the bottom.

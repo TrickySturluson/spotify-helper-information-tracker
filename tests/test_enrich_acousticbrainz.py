@@ -1,4 +1,3 @@
-"""Tests for batched AcousticBrainz metadata lookup and profile extraction."""
 import unittest
 from enrich_acousticbrainz import extract
 

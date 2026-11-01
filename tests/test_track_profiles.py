@@ -1,4 +1,3 @@
-"""Tests for sourced track-level metadata profiles and identity matching."""
 import unittest
 from unittest.mock import patch
 
@@ -97,3 +96,12 @@ class TrackProfileTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_track_profiles -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

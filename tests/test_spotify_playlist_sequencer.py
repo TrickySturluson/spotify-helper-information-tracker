@@ -1,4 +1,3 @@
-"""Tests for playlist sectioning, energy curves, and transition sequencing."""
 import unittest
 
 import spotify_playlist_sequencer as sequencer
@@ -307,3 +306,12 @@ class PlaylistSequencerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_spotify_playlist_sequencer -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

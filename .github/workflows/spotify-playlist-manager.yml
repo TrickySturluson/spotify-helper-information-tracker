@@ -97,3 +97,15 @@ jobs:
           RESULT: ${{ steps.command.outputs.result }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: gh issue comment "$ISSUE_NUMBER" --body "$RESULT"
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: GitHub Actions workflow "SHIT — Spotify Helper & Information Tracker".
+# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
+# Behavior: Automates the job steps declared in this workflow, including runtime
+#           setup, permissions, dependencies, and repository changes.
+# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
+#              with the implementation under scripts/ and compat/.
+# Related: See docs/ for feature-specific operating instructions.
+# -----------------------------------------------------------------------------
