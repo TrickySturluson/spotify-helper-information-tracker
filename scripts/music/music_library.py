@@ -147,7 +147,9 @@ class MusicLibrary:
         }
         # Recover an empty or truncated index from canonical records. This is
         # deliberately a one-time fallback: a populated index keeps lazy reads.
-        if not self.index.get("songs") and self.root.exists():
+        if self.root.exists() and (
+            not self.index.get("songs") or not self.index.get("albums") or not self.index.get("artists")
+        ):
             self._rebuild_index_from_records()
 
     def _rebuild_index_from_records(self):
