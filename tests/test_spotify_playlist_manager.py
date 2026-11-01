@@ -221,6 +221,27 @@ if __name__ == "__main__":
             self.assertEqual(saved["reason"], "QUOTA_EXCEEDED")
         request.assert_called_once()
 
+    def test_active_spotify_cooldown_blocks_client_initialization(self):
+        with tempfile.TemporaryDirectory() as directory:
+            cooldown = Path(directory) / "cooldown.json"
+            manager.write(cooldown, {
+                "cooldown_until": "2999-01-01T00:00:00+00:00",
+                "reason": "QUOTA_EXCEEDED",
+            })
+            with patch.object(manager, "SPOTIFY_COOLDOWN", cooldown):
+                with self.assertRaisesRegex(manager.ManagerError, "Spotify API cooldown is active"):
+                    manager.Spotify()
+
+    def test_expired_spotify_cooldown_allows_client_initialization(self):
+        with tempfile.TemporaryDirectory() as directory:
+            cooldown = Path(directory) / "cooldown.json"
+            manager.write(cooldown, {
+                "cooldown_until": "2000-01-01T00:00:00+00:00",
+                "reason": "QUOTA_EXCEEDED",
+            })
+            with patch.object(manager, "SPOTIFY_COOLDOWN", cooldown):
+                manager.check_spotify_cooldown()
+
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
