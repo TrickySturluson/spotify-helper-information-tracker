@@ -4,6 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from lyrics_library import LyricsLibrary, analyze_lyrics, phrase_fingerprints, search_and_analyze, export_analysis_features
+import build_music_analytics
 
 
 class LyricsLibraryTests(unittest.TestCase):
@@ -110,6 +111,21 @@ class LyricsLibraryTests(unittest.TestCase):
             self.assertFalse(rows[0]["full_lyrics_stored"])
             self.assertNotIn("midnight moon", payload)
             self.assertNotIn("phrase_hash", payload)
+
+    def test_recommendation_builder_loads_committed_lyric_export_without_local_db(self):
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp)
+            (output / "lyric_features.json").write_text(
+                '[{"artist":"Example Artist","track":"Night Song","schema_version":3,'
+                '"themes":{"vampire":{"count":1}},"horror_relevance":0.3,'
+                '"assessment":"clear","source_count":2,"sources":["lrclib","lyrics_ovh"]}]',
+                encoding="utf-8",
+            )
+            with patch.object(build_music_analytics, "OUT", output), \
+                 patch.object(build_music_analytics.Path, "exists", autospec=True, side_effect=lambda path: str(path) != "data/lyrics/library.sqlite3"):
+                index = build_music_analytics.load_lyric_analyses()
+            self.assertIn(("night song", "example artist"), index)
+            self.assertIn("vampire", index[("night song", "example artist")]["themes"])
 
 
 if __name__ == "__main__":
