@@ -3,7 +3,7 @@ name: SHIT — Spotify Reference Library
 on:
   workflow_dispatch:
   schedule:
-    - cron: "41 7 * * 0"
+    - cron: "13 */6 * * *"
 
 permissions:
   contents: write
@@ -43,6 +43,25 @@ jobs:
           })
           PY
           python compat/spotify_reference_library.py sync
+      - name: Verify priority playlist snapshot is complete and current
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json")
+          if not path.is_file():
+              raise SystemExit("Booze or Boos! snapshot is missing; refusing to publish.")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          if not data.get("items_accessible"):
+              raise SystemExit("Booze or Boos! items were inaccessible; refusing to publish a stale snapshot.")
+          reported = data.get("total_items_reported")
+          fetched = data.get("item_count_fetched")
+          if not isinstance(reported, int) or reported != fetched:
+              raise SystemExit(f"Booze or Boos! snapshot is incomplete: Spotify reports {reported}, fetched {fetched}.")
+          if len(data.get("items", [])) != fetched:
+              raise SystemExit("Booze or Boos! item list length does not match fetched count.")
+          print(f"Verified Booze or Boos!: {fetched} items; Spotify snapshot {data.get('snapshot_id')}; captured {data.get('captured_at')}.")
+          PY
       - name: Audit refreshed project data
         run: python compat/audit_project.py
       - name: Commit reference snapshots
