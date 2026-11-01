@@ -41,9 +41,13 @@ def main():
         if not row:
             track["lyric_analysis"] = None
             continue
-        themes = json.loads(row["themes_json"] or "{}")
+        analysis = json.loads(row["themes_json"] or "{}")
         track["lyric_analysis"] = {
-            "themes": themes,
+            "schema_version": analysis.get("schema_version", 1),
+            "themes": analysis.get("themes", analysis),
+            "source_count": analysis.get("source_count", 1),
+            "sources": analysis.get("sources", []),
+            "method": analysis.get("method", "legacy_lexical_analysis"),
             "horror_relevance": row["relevance"],
             "assessment": row["assessment"],
             "word_count": row["word_count"],
