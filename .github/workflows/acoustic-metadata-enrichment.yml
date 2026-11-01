@@ -1,6 +1,11 @@
 name: Acoustic Metadata Enrichment
 
 on:
+  push:
+    paths:
+      - ".github/workflows/acoustic-metadata-enrichment.yml"
+      - "enrich_acousticbrainz.py"
+      - "enrich_musicbrainz_recording_ids.py"
   workflow_dispatch:
     inputs:
       max_batches:
