@@ -60,6 +60,26 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(result["tempo_source"], "GetSongBPM catalog")
         self.assertEqual(result["acoustic_confidence"], "medium")
 
+
+    def test_transition_energy_gap_uses_acoustic_score_not_semantic_blend(self):
+        left_item = {"name": "Same", "artists": ["A"], "audio_features": {"energy": 0.30}}
+        right_item = {"name": "Same", "artists": ["B"], "audio_features": {"energy": 0.30}}
+        right_tracks = {("b", "same"): {"lastfm_tags": [{"tag": "aggressive"}]}}
+        left = sequencer.score_track(left_item)
+        right = sequencer.score_track(right_item, track_profiles=right_tracks)
+        self.assertNotEqual(left["score"], right["score"])
+        self.assertEqual(left["acoustic_score"], right["acoustic_score"])
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["energy_gap"], 0.0)
+
+    def test_semantic_only_track_has_no_acoustic_score(self):
+        result = sequencer.score_track(
+            {"name": "Tagged", "artists": ["Artist"]},
+            track_profiles={("artist", "tagged"): {"lastfm_tags": [{"tag": "aggressive"}]}},
+        )
+        self.assertIsNone(result["acoustic_score"])
+        self.assertEqual(result["acoustic_confidence"], "low")
+
     def test_legacy_medium_confidence_without_acoustic_basis_is_not_energy(self):
         self.assertFalse(sequencer._has_reliable_energy({"confidence": "medium", "score": 80}))
         self.assertTrue(sequencer._has_reliable_energy({
