@@ -16,6 +16,7 @@ from pathlib import Path
 SCORING_CONFIG = Path("assistant_data/recommendations/playlist_scoring.json")
 ARTIST_PROFILES = Path("assistant_data/music/artist_profiles.json")
 TRACK_PROFILES = Path("assistant_data/music/track_profiles.json")
+RECOMMENDATION_TRACKS = Path("assistant_data/recommendations/track_features.json")
 SCHEMA_VERSION = 1
 
 DEFAULT_SCORING = {
@@ -74,21 +75,30 @@ def artist_metadata_index(path=ARTIST_PROFILES):
     return result
 
 
-def track_metadata_index(path=TRACK_PROFILES):
-    """Index sourced track profiles by exact normalized primary-artist/title pair."""
+def track_metadata_index(path=TRACK_PROFILES, recommendation_path=RECOMMENDATION_TRACKS):
+    """Index sourced tags and local lyric themes by exact artist/title identity."""
     rows = read_json(path, {})
     result = {}
     if isinstance(rows, dict):
         for row in rows.values():
             if isinstance(row, dict) and row.get("artist") and row.get("track"):
-                result[(norm(row["artist"]), norm(row["track"]))] = row
+                result[(norm(row["artist"]), norm(row["track"]))] = dict(row)
+    recommendations = read_json(recommendation_path, [])
+    for row in recommendations if isinstance(recommendations, list) else []:
+        if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
+            continue
+        key = (norm(row["artist"]), norm(row["track"]))
+        if row.get("lyric_analysis"):
+            result.setdefault(key, {"artist": row["artist"], "track": row["track"]})
+            result[key]["lyric_analysis"] = row["lyric_analysis"]
     return result
 
 
 def playlist_track_metadata(items, track_profiles):
     """Aggregate only exact track-level metadata; never substitute artist tags."""
-    moods, genres, tags = Counter(), Counter(), Counter()
+    moods, genres, tags, lyric_themes = Counter(), Counter(), Counter(), Counter()
     matched = 0
+    lyric_matched = 0
     for item in items or []:
         if not isinstance(item, dict):
             continue
@@ -112,10 +122,19 @@ def playlist_track_metadata(items, track_profiles):
         for row in profile.get("musicbrainz_genres", []):
             if row.get("tag"):
                 genres[norm(row["tag"])] += 1
+        lyric = profile.get("lyric_analysis") or {}
+        themes = lyric.get("themes") or {}
+        if themes:
+            lyric_matched += 1
+            for theme in themes:
+                lyric_themes[theme] += 1
     total = len(items or [])
     return {
         "matched_tracks": matched,
         "total_tracks": total,
+        "lyric_analyzed_tracks": lyric_matched,
+        "lyric_theme_coverage": round(lyric_matched / max(1, total), 4),
+        "lyric_themes": [{"tag": key, "track_count": count} for key, count in lyric_themes.most_common(20)],
         "coverage": round(matched / max(1, total), 4),
         "moods": [{"tag": key, "track_count": count} for key, count in moods.most_common(12)],
         "genres": [{"tag": key, "track_count": count} for key, count in genres.most_common(12)],
@@ -193,6 +212,7 @@ def build_playlist_profile(items, feedback=None, artist_profiles=None, track_pro
         "artist_moods": [{"tag": row["mood"], "artist_count": row["artist_support"], "confidence": row["confidence"]} for row in inferred_moods["moods"]],
         "track_metadata": track_metadata,
         "track_moods": track_metadata["moods"],
+        "lyric_themes": track_metadata["lyric_themes"],
         "sound_tags": sound_tags,
         "themes": [{"tag": key, "count": count} for key, count in themes.most_common(10)],
         "positive_artist_evidence": sum((feedback.get("positive_artists") or {}).values()),
