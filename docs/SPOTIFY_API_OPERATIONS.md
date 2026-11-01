@@ -30,6 +30,17 @@ A 429 response is not evidence of a bad refresh token, wrong playlist owner, or 
 - Do not add arbitrary concurrency or guessed request-per-second limits. Spotify's rate limit varies by app and quota mode; use observed 429 responses, `Retry-After`, endpoint request counts, and the Developer Dashboard request graph to tune usage.
 - Local list, lookup, and health commands should use cached files and must not construct a Spotify client.
 
+## Request accounting
+
+Every playlist-manager command emits one `SPOTIFY_REQUEST_METRICS=` JSON record to stderr at exit. It reports:
+- Total Web API HTTP attempts, including pagination pages and 401 reauthorization retries.
+- Counts grouped by HTTP method and normalized endpoint, with status-code counts.
+- Aggregate elapsed HTTP time and per-endpoint elapsed time.
+
+Query strings are deliberately omitted, and 22-character Spotify object IDs are redacted as `{id}`. This prevents playlist IDs and search terms from leaking into the metrics. Repeated calls to an `/items` endpoint expose pagination cost directly. A 429 is counted as an HTTP attempt and is also recorded in the cooldown state.
+
+The metrics are per command/run, not a rolling developer-account total. Use the GitHub Actions log record to compare command costs over time; do not infer remaining quota from these counts because Spotify's quota buckets are shared across the app and other clients.
+
 ## Live sorter evidence
 
 A sequence preview is not proof of musical transition quality. Review its evidence tiers and transition summary. In particular, a high count of limited/unknown evidence means the sequence is provisional even if the optimizer successfully generated a complete order. Do not describe estimated energy as measured audio analysis unless the corresponding source is present and verified.
