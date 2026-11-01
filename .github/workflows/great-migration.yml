@@ -148,7 +148,7 @@ jobs:
 
       - name: Report result on the requesting issue
         if: always() && github.event_name == 'issues'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           COMMAND: ${{ steps.request.outputs.command }}
           JOB_STATUS: ${{ job.status }}
