@@ -196,12 +196,13 @@ def main():
         "booze20_preview": {"command", "playlist_id"},
         "booze20_uri_preview": {"command", "playlist_id", "tracks"},
         "booze20_resolve_sources": {"command", "sources"},
+        "sequence_preview": {"command", "playlist_id"},
         "confirm": {"command", "confirmation"},
         "undo": {"command"},
     }
     if not isinstance(action, str) or action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "sequence_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -349,6 +350,91 @@ def main():
         for index, item in enumerate(current["items"], 1):
             artists = ", ".join(item.get("artists") or [])
             lines.append(f'{index:02d}. {artists} — {item.get("name")} [{item.get("uri")}]')
+        result = "\n".join(lines)
+    elif action == "sequence_preview":
+        pid = command["playlist_id"]
+        try:
+            manager.assert_managed(pid)
+        except manager.ManagerError as error:
+            fail(str(error))
+        p = owned_playlist(sp, pid, me)
+        if not manager.unlocked(pid):
+            fail("Blocked: playlist is LOCKED. Unlock it explicitly before requesting a sequence preview.")
+        current = manager.snapshot(sp, p)
+        import spotify_playlist_sequencer as sequencer
+        artists = sequencer.index_artists(manager.read(sequencer.ARTIST_PROFILES, {}))
+        tracks = sequencer.index_tracks(manager.read(sequencer.TRACK_PROFILES, {}))
+        tracks = sequencer.merge_lyric_features(
+            tracks, manager.read(sequencer.LYRIC_FEATURES, [])
+        )
+        section_path = Path("assistant_data/spotify/booze_or_boos_sections.json")
+        sections = manager.read(section_path, {})
+        if not isinstance(sections, dict):
+            fail("Booze or Boos section configuration is invalid; no changes were made.")
+        scored = sequencer.sequence_tracks(
+            current["items"], artists, tracks,
+            mode="smooth", journey="rising", peak_position=85,
+            peak_shape="gradual", genre_strength=0.2, theme_strength=0.25,
+            sections=sections,
+        )
+        plan = sequencer.make_plan(current, scored)
+        summary = sequencer.transition_summary(scored)
+        confidence = sequencer.confidence_summary(scored)
+        unassigned = sum(row.get("section_index") is None for row in scored)
+        confirmation = secrets.token_urlsafe(12)
+        operations = plan["operations"]
+        if operations:
+            config["pending"] = {
+                "kind": "sequence", "playlist_id": pid, "operations": operations,
+                "snapshot_id": p.get("snapshot_id"),
+                "expected_uris": snapshot_uris(current),
+                "confirmation": confirmation,
+            }
+            manager.write(STATE, config)
+            manager.audit(
+                event="sequence_previewed", playlist_id=pid, track_count=len(scored),
+                reorder_operations=len(operations), journey="rising",
+                peak_position=85, section_coverage=len(scored) - unassigned,
+            )
+        else:
+            if (config.get("pending") or {}).get("playlist_id") == pid:
+                config.pop("pending", None)
+                manager.write(STATE, config)
+        lines = [
+            f'SEQUENCE PREVIEW — {p.get("name")} [{pid}]',
+            f'Tracks: {len(scored)}; reorder operations: {len(operations)}.',
+            "Journey: rising, gradual build, sustained high-energy finale.",
+            f'Transitions: {summary["gentle"]} gentle; {summary["moderate"]} moderate; '
+            f'{summary["potential_jumps"]} potential jumps; limited evidence={summary["limited_evidence"]}.',
+            "Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence.items()),
+            f'Section assignment: {len(scored) - unassigned}/{len(scored)} tracks; '
+            f'{unassigned} unassigned (new or uncategorized tracks).',
+            "No Spotify changes have been made.",
+            "",
+            "PROPOSED ORDER (position | energy | confidence | section | track)",
+        ]
+        for position, row in enumerate(scored, 1):
+            lines.append(
+                f'{position:02d}. {row["score"]:5.1f} [{row["confidence"]}] '
+                f'[{row.get("section_name") or "unassigned"}] '
+                f'{row["artist"]} — {row["track"]}'
+            )
+            if position < len(scored):
+                pair = summary["pairs"][position - 1]
+                if pair["label"] == "potential jump" or pair["confidence"] == "limited":
+                    lines.append(
+                        f'    Transition: {pair["label"]} ({pair["confidence"]}): '
+                        + "; ".join(pair["reasons"])
+                    )
+        if operations:
+            lines.extend([
+                "",
+                "To apply this exact sequence, submit a confirm command with this one-time code:",
+                confirmation,
+                "The playlist must remain unlocked and unchanged until confirmation.",
+            ])
+        else:
+            lines.append("The playlist is already in the proposed order; no changes are needed.")
         result = "\n".join(lines)
     elif action == "preview":
         try: manager.assert_managed(command["playlist_id"])
