@@ -47,6 +47,10 @@ def norm(value):
     return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
 
 
+
+def track_norm(value):
+    return " ".join(re.findall(r"[a-z0-9]+", str(value or "").casefold()))
+
 def read_json(path, fallback):
     try:
         return json.loads(Path(path).read_text(encoding="utf-8"))
@@ -84,12 +88,12 @@ def track_metadata_index(path=TRACK_PROFILES, recommendation_path=RECOMMENDATION
     if isinstance(rows, dict):
         for row in rows.values():
             if isinstance(row, dict) and row.get("artist") and row.get("track"):
-                result[(norm(row["artist"]), norm(row["track"]))] = dict(row)
+                result[(track_norm(row["artist"]), track_norm(row["track"]))] = dict(row)
     recommendations = read_json(recommendation_path, [])
     for row in recommendations if isinstance(recommendations, list) else []:
         if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
             continue
-        key = (norm(row["artist"]), norm(row["track"]))
+        key = (track_norm(row["artist"]), track_norm(row["track"]))
         if row.get("lyric_analysis"):
             result.setdefault(key, {"artist": row["artist"], "track": row["track"]})
             result[key]["lyric_analysis"] = row["lyric_analysis"]
@@ -107,7 +111,7 @@ def track_metadata_index(path=TRACK_PROFILES, recommendation_path=RECOMMENDATION
         finally:
             connection.close()
         for row in lyric_rows:
-            key = (norm(row["artist"]), norm(row["title"]))
+            key = (track_norm(row["artist"]), track_norm(row["title"]))
             analysis = json.loads(row["themes_json"] or "{}")
             result.setdefault(key, {"artist": row["artist"], "track": row["title"]})
             result[key]["lyric_analysis"] = {
@@ -138,7 +142,7 @@ def playlist_track_metadata(items, track_profiles):
         title = item.get("name") or item.get("track")
         if not names or not names[0] or not title:
             continue
-        profile = track_profiles.get((norm(names[0]), norm(title)))
+        profile = track_profiles.get((track_norm(names[0]), track_norm(title)))
         if not profile:
             continue
         matched += 1
