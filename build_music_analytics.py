@@ -3,6 +3,7 @@
 import hashlib
 import json
 import re
+import sqlite3
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -55,6 +56,40 @@ def track_id(row, aid):
 
 def iso(ts):
     return datetime.fromtimestamp(ts, timezone.utc).isoformat()
+
+
+def load_lyric_analyses():
+    """Load private local lyric metadata without making cloud builds depend on it."""
+    db = Path("data/lyrics/library.sqlite3")
+    if not db.exists():
+        return {}
+    connection = sqlite3.connect(db)
+    connection.row_factory = sqlite3.Row
+    try:
+        rows = connection.execute("""
+            SELECT s.normalized_title, s.normalized_artist, a.themes_json,
+                   a.relevance, a.assessment, a.word_count, a.analyzed_at
+            FROM songs s JOIN analyses a ON a.song_id=s.id
+        """).fetchall()
+    finally:
+        connection.close()
+    index = {}
+    for row in rows:
+        analysis = json.loads(row["themes_json"] or "{}")
+        index[(row["normalized_title"], row["normalized_artist"])] = {
+            "schema_version": analysis.get("schema_version", 1),
+            "themes": analysis.get("themes", {}),
+            "source_count": analysis.get("source_count", 1),
+            "sources": analysis.get("sources", []),
+            "method": analysis.get("method", "legacy_lexical_analysis"),
+            "horror_relevance": row["relevance"],
+            "assessment": row["assessment"],
+            "word_count": row["word_count"],
+            "analyzed_at": row["analyzed_at"],
+            "evidence_type": "lyrics_keyword_analysis",
+            "full_lyrics_stored": False,
+        }
+    return index
 
 
 def main():
@@ -137,6 +172,7 @@ def main():
         })
     artist_output.sort(key=lambda a: (-a["plays"], a["artist"].casefold()))
 
+    lyric_index = load_lyric_analyses()
     track_output = []
     for tid, t in tracks.items():
         meta = durations.get(tid, {})
@@ -162,6 +198,7 @@ def main():
             "artist_genres": profile.get("genres", []),
             "artist_moods": profile.get("moods", []),
             "artist_themes": profile.get("themes", []),
+            "lyric_analysis": lyric_index.get((norm(t["track"]), norm(t["artist"]))),
             "familiarity": "frequent" if t["plays"] >= 25 else "known" if t["plays"] >= 2 else "single_scrobble"
         })
     track_output.sort(key=lambda t: (-t["plays"], t["artist"].casefold(), t["track"].casefold()))
@@ -176,6 +213,7 @@ def main():
         "tracks_with_duration": sum(1 for t in tracks if t in durations),
         "tracks_with_artist_profiles": sum(1 for aid in artists if profiles.get(aid, {}).get("status") == "matched"),
         "tracks_with_track_tags": sum(1 for tid in tracks if track_profiles.get(tid, {}).get("lastfm_tags") or track_profiles.get(tid, {}).get("musicbrainz_tags") or track_profiles.get(tid, {}).get("musicbrainz_genres")),
+        "tracks_with_lyric_analysis": sum(1 for t in track_output if t.get("lyric_analysis")),
         "tracks_with_track_moods": sum(1 for tid in tracks if any(mood_inference._tag_moods(row.get("tag", "")) for row in (track_profiles.get(tid, {}).get("lastfm_tags", []) + track_profiles.get(tid, {}).get("musicbrainz_tags", [])))),
         "files": {
             "monthly_duration_trends": "monthly_duration_trends.json",
@@ -188,6 +226,7 @@ def main():
             "Tracks with one scrobble are still previously heard in the archive; external discovery requires a separate catalogue/search step.",
             "Artist genres, moods and themes remain separate from track-level tags; track moods are conservative mappings from track-sourced tags only.",
             "Track-level community tags are descriptive evidence, not objective audio analysis; source and identity provenance are retained.",
+            "Lyric themes are local optional enrichment; the database stores derived metadata and phrase hashes, not full lyric text.",
             "Duration trends include only scrobbles whose track duration is known."
         ]
     }
