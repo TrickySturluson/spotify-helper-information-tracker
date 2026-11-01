@@ -127,9 +127,12 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     spotify = item.get("audio_features") or {}
 
     components, weights, evidence, evidence_sources = [], [], [], []
+    acoustic_components, acoustic_weights = [], []
+    semantic_components, semantic_weights = [], []
     direct_energy = _signal(spotify.get("energy"), 0, 1)
     if direct_energy is not None:
         components.append(direct_energy); weights.append(0.42)
+        acoustic_components.append(direct_energy); acoustic_weights.append(0.42)
         evidence.append(f"Spotify audio-feature energy={direct_energy:.2f}")
         evidence_sources.append("spotify_audio_features")
 
@@ -154,6 +157,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     if tempo is not None:
         tempo_weight = 0.23 if tempo_source != "GetSongBPM catalog" else 0.08
         components.append(tempo); weights.append(tempo_weight)
+        if tempo_source != "GetSongBPM catalog":
+            acoustic_components.append(tempo); acoustic_weights.append(tempo_weight)
         evidence.append(f"{tempo_source} tempo={tempo_value:.1f} BPM")
         evidence_sources.append(tempo_source.casefold().replace(" ", "_"))
     tempo_agreement = (
@@ -174,6 +179,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     if local_lufs is not None:
         loudness = _signal(local_lufs, -35, -5)
         components.append(loudness); weights.append(0.15)
+        acoustic_components.append(loudness); acoustic_weights.append(0.15)
         evidence.append(f"Essentia integrated loudness={local_lufs:.1f} LUFS")
         evidence_sources.append("essentia_lufs")
     elif spotify.get("loudness") is not None:
@@ -181,6 +187,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         loudness = _signal(spotify.get("loudness"), -35, -5)
         if loudness is not None:
             components.append(loudness); weights.append(0.10)
+            acoustic_components.append(loudness); acoustic_weights.append(0.10)
             evidence.append(f"Spotify loudness={float(spotify['loudness']):.1f} dB (not LUFS)")
             evidence_sources.append("spotify_loudness")
 
@@ -197,10 +204,12 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     if tag_moods:
         mood_score = 0.72 if tag_moods & energetic else 0.28 if tag_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.15)
+        semantic_components.append(mood_score); semantic_weights.append(0.15)
         evidence.append("track-tag mood=" + ", ".join(sorted(tag_moods)))
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.06)
+        semantic_components.append(mood_score); semantic_weights.append(0.06)
         evidence.append("artist-level mood fallback=" + ", ".join(sorted(artist_moods)))
 
     genre_values = []
@@ -223,6 +232,7 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     else: genre_score = None
     if genre_score is not None:
         components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
+        semantic_components.append(genre_score); semantic_weights.append(0.05 if track_tags else 0.08)
         evidence.append(f"genre-family signal={genre_score:.2f}")
 
     genre_groups = []
@@ -247,6 +257,14 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         score = 50.0
     else:
         score = sum(v * w for v, w in zip(components, weights)) / sum(weights) * 100
+    acoustic_score = (
+        sum(v * w for v, w in zip(acoustic_components, acoustic_weights)) /
+        sum(acoustic_weights) * 100 if acoustic_weights else None
+    )
+    semantic_score = (
+        sum(v * w for v, w in zip(semantic_components, semantic_weights)) /
+        sum(semantic_weights) * 100 if semantic_weights else None
+    )
 
     # Acoustic confidence is deliberately independent of genre/mood/lyric counts.
     local_tempo_conf = essentia.get("tempo_confidence")
@@ -280,6 +298,8 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         next(iter(sorted(artist_moods)), "artist-level") if artist_moods else "unclassified")
     return {
         "score": round(score, 2),
+        "acoustic_score": round(acoustic_score, 2) if acoustic_score is not None else None,
+        "semantic_score": round(semantic_score, 2) if semantic_score is not None else None,
         "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
         "acoustic_confidence": acoustic_confidence,
         "semantic_confidence": semantic_confidence,
@@ -315,6 +335,15 @@ def _tempo_relationship(left, right):
     return max(0.0, min(1.0, distance / 0.5))
 
 
+def _energy_score(row):
+    """Return an acoustic-only energy estimate, never a semantic blend."""
+    if "acoustic_score" in row:
+        return row.get("acoustic_score")
+    # Hand-authored rows may supply an explicit acoustic tier without the
+    # newer split score; ordinary legacy rows are not trusted as measured.
+    return row.get("score") if row.get("acoustic_confidence") in {"medium", "high"} else None
+
+
 def _has_reliable_energy(row):
     """Only medium/high estimates are reliable enough to drive transition scoring."""
     return row.get("acoustic_confidence") in {"medium", "high"}
@@ -326,7 +355,9 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
     # Low-confidence genre/artist estimates can guide discovery, but should not
     # dominate handoff quality as if they were measured track energy.
     if _has_reliable_energy(left) and _has_reliable_energy(right):
-        terms.append((0.34, abs(float(left["score"]) - float(right["score"])) / 100.0))
+        left_energy, right_energy = _energy_score(left), _energy_score(right)
+        if left_energy is not None and right_energy is not None:
+            terms.append((0.34, abs(float(left_energy) - float(right_energy)) / 100.0))
     for field, weight in (("vibe_groups", 0.25), ("genre_groups", 0.08), ("theme_groups", 0.08)):
         affinity = _set_similarity(left.get(field), right.get(field))
         if affinity is not None:
@@ -358,7 +389,7 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
 
 def transition_report(left, right):
     energy_known = _has_reliable_energy(left) and _has_reliable_energy(right)
-    gap = abs(float(left["score"]) - float(right["score"])) / 100.0 if energy_known else None
+    gap = abs(float(_energy_score(left)) - float(_energy_score(right))) / 100.0 if energy_known and _energy_score(left) is not None and _energy_score(right) is not None else None
     moods = sorted(set(left.get("vibe_groups") or []) & set(right.get("vibe_groups") or []))
     genres = sorted(set(left.get("genre_groups") or []) & set(right.get("genre_groups") or []))
     themes = sorted(set(left.get("theme_groups") or []) & set(right.get("theme_groups") or []))
@@ -433,9 +464,10 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
         # Curve fit is intentionally low-weight: continuity beats a mathematically perfect arc.
         # Unknown scores use 50 only as a display placeholder. They must not be
         # pulled toward or away from a journey curve as if 50 were measured data.
-        if row.get("acoustic_confidence", row.get("confidence")) != "unknown":
-            curve_weight = 0.10 if row.get("acoustic_confidence", row.get("confidence")) in {"high", "medium"} else 0.04
-            total += curve_weight * abs(float(row["score"]) / 100 - target_energy(
+        energy_value = _energy_score(row)
+        if energy_value is not None and row.get("acoustic_confidence") != "unknown":
+            curve_weight = 0.10 if row.get("acoustic_confidence") in {"high", "medium"} else 0.04
+            total += curve_weight * abs(float(energy_value) / 100 - target_energy(
                 index + position_offset, total_count or len(rows), journey, peak_position, peak_shape))
         if index:
             previous = rows[index - 1]
@@ -495,8 +527,8 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
                     pool = alternatives
             nxt = min(pool, key=lambda row: (
                 _transition_cost(order[-1], row, genre_strength, theme_strength),
-                (abs(row["score"] - order[-1]["score"]) * 0.001
-                 if _has_reliable_energy(row) and _has_reliable_energy(order[-1]) else 0.0),
+                (abs(float(_energy_score(row)) - float(_energy_score(order[-1]))) * 0.001
+                 if _has_reliable_energy(row) and _has_reliable_energy(order[-1]) and _energy_score(row) is not None and _energy_score(order[-1]) is not None else 0.0),
                 row["original_index"]))
             order.append(nxt)
             remaining.remove(nxt)
