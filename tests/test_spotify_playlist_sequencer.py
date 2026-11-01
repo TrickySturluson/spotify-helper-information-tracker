@@ -458,6 +458,7 @@ class SavedPlaylistIntegrationTests(unittest.TestCase):
         self.assertEqual(len(ordered), len(snapshot["items"]))
         self.assertCountEqual(ordered_uris, original_uris)
         self.assertEqual(sum(confidence.values()), len(ordered))
+        self.assertLessEqual(longest_run, 2, "real playlist preview should avoid long artist runs")
         print(
             "SEQUENCER REAL-DATA EVALUATION: "
             f"playlist={snapshot.get('name')!r}; captured_at={snapshot.get('captured_at')}; "
