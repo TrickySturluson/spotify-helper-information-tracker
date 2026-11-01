@@ -135,6 +135,10 @@ def main():
     state = read(STATE, {"checked": {}})
     checked = state.setdefault("checked", {})
     now = int(time.time())
+    provider_retry_after = int(state.get("provider_retry_after", 0) or 0)
+    if provider_retry_after > now:
+        print(f"AcousticBrainz provider cooldown active for {provider_retry_after - now}s; no request sent.")
+        return
     todo = [mbid for mbid in tracks
             if (mbid not in results or results[mbid].get("source") != "AcousticBrainz low-level"
                 or not results[mbid].get("submission_count"))
@@ -159,11 +163,18 @@ def main():
                 data = json.loads(response.read().decode("utf-8"))
                 reset = response.headers.get("X-RateLimit-Reset-In")
         except HTTPError as exc:
-            if exc.code == 429:
-                wait = int(exc.headers.get("X-RateLimit-Reset-In", "10"))
-                print(f"Rate limited; wait {wait}s and rerun to resume.")
+            if exc.code in (429, 503):
+                header = (exc.headers.get("X-RateLimit-Reset-In") or exc.headers.get("Retry-After")) if exc.headers else None
+                try:
+                    wait = max(60, int(float(header))) if header else 3600
+                except (TypeError, ValueError):
+                    wait = 3600
+                state["provider_retry_after"] = now + wait
+                write(STATE, state)
+                print(f"AcousticBrainz returned HTTP {exc.code}; provider cooldown saved for {wait}s. Stop and resume later.")
                 break
             raise
+        state["provider_retry_after"] = 0
         for mbid in batch:
             docs = data.get(mbid) or data.get(mbid.upper()) or {}
             if isinstance(docs, list):
