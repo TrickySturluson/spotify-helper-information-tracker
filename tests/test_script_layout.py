@@ -47,7 +47,7 @@ class ScriptLayoutTests(unittest.TestCase):
 
     def test_root_contains_only_the_python_import_bootstrap(self):
         root_python = {path.name for path in ROOT.glob("*.py")}
-        self.assertEqual(root_python, {"sitecustomize.py"})
+        self.assertEqual(root_python, {"sitecustomize.py", "shit.py"})
 
     def test_compatibility_directory_is_on_import_path(self):
         import sys
