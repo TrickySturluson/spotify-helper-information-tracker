@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:f826b7bd-bd15-4066-84a1-ae315a357609",
-  "artist": "Benny Smiles",
-  "identity": {
-    "artist_mbid": "mbid:f826b7bd-bd15-4066-84a1-ae315a357609",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:17290730e7adb2482e96"],"artist":"Benny Smiles","evidence":{"artist":"Benny Smiles","artist_id":"mbid:f826b7bd-bd15-4066-84a1-ae315a357609","artist_mbid":"f826b7bd-bd15-4066-84a1-ae315a357609","source":"Last.fm scrobble archive"},"id":"mbid:f826b7bd-bd15-4066-84a1-ae315a357609","identity":{"artist_mbid":"mbid:f826b7bd-bd15-4066-84a1-ae315a357609","identity_quality":"verified"},"schema_version":1}

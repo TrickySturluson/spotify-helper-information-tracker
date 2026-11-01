@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:cd27c0bb981ec039",
-  "artist": "Drowning Pool",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:4d3be3a33b3d6144977c","album:a651fee71e7a9a652dae"],"artist":"Drowning Pool","evidence":{"artist":"Drowning Pool","artist_id":"name:cd27c0bb981ec039","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:cd27c0bb981ec039","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

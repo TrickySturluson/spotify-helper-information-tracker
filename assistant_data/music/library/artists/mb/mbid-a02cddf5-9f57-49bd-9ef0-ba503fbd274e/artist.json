@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e",
-  "artist": "BRUVVY",
-  "identity": {
-    "artist_mbid": "a02cddf5-9f57-49bd-9ef0-ba503fbd274e",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:104e406e40819c22e93c"],"artist":"BRUVVY","evidence":{"artist":"BRUVVY","artist_id":"mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e","artist_mbid":"a02cddf5-9f57-49bd-9ef0-ba503fbd274e","source":"Last.fm scrobble archive"},"id":"mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e","identity":{"artist_mbid":"mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e","identity_quality":"verified"},"schema_version":1}

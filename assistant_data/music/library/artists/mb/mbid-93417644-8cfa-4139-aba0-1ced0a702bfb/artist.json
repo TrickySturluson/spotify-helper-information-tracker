@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:93417644-8cfa-4139-aba0-1ced0a702bfb",
-  "artist": "FM Attack",
-  "identity": {
-    "artist_mbid": "mbid:93417644-8cfa-4139-aba0-1ced0a702bfb",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:2518458f9fc89df380f1"],"artist":"FM Attack","evidence":{"artist":"FM Attack","artist_id":"mbid:93417644-8cfa-4139-aba0-1ced0a702bfb","artist_mbid":"93417644-8cfa-4139-aba0-1ced0a702bfb","source":"Last.fm scrobble archive"},"id":"mbid:93417644-8cfa-4139-aba0-1ced0a702bfb","identity":{"artist_mbid":"mbid:93417644-8cfa-4139-aba0-1ced0a702bfb","identity_quality":"verified"},"schema_version":1}

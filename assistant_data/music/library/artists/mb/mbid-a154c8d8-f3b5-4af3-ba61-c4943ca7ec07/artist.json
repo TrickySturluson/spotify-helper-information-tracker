@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07",
-  "artist": "Riddarna",
-  "identity": {
-    "artist_mbid": "a154c8d8-f3b5-4af3-ba61-c4943ca7ec07",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:d0d546a2870766e9d625"],"artist":"Riddarna","evidence":{"artist":"Riddarna","artist_id":"mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07","artist_mbid":"a154c8d8-f3b5-4af3-ba61-c4943ca7ec07","source":"Last.fm scrobble archive"},"id":"mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07","identity":{"artist_mbid":"mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07","identity_quality":"verified"},"schema_version":1}

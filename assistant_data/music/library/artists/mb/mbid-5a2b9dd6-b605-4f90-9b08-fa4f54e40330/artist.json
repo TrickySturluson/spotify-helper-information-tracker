@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:5a2b9dd6-b605-4f90-9b08-fa4f54e40330",
-  "artist": "Mitch Murder",
-  "identity": {
-    "artist_mbid": "5a2b9dd6-b605-4f90-9b08-fa4f54e40330",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:c13f0fe8146fe9f33c28","album:691e207f9ab895b8d002"],"artist":"Mitch Murder","evidence":{"artist":"Mitch Murder","artist_id":"mbid:5a2b9dd6-b605-4f90-9b08-fa4f54e40330","artist_mbid":"5a2b9dd6-b605-4f90-9b08-fa4f54e40330","source":"Last.fm scrobble archive"},"id":"mbid:5a2b9dd6-b605-4f90-9b08-fa4f54e40330","identity":{"artist_mbid":"mbid:5a2b9dd6-b605-4f90-9b08-fa4f54e40330","identity_quality":"verified"},"schema_version":1}

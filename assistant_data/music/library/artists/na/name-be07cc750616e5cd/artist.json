@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:be07cc750616e5cd",
-  "artist": "Virtual Mage",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:d6ee7352845e2d13209a"],"artist":"Virtual Mage","evidence":{"artist":"Virtual Mage","artist_id":"name:be07cc750616e5cd","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:be07cc750616e5cd","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

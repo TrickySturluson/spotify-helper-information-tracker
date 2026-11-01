@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b",
-  "artist": "Lazerhawk",
-  "identity": {
-    "artist_mbid": "b9e46d1a-9068-4615-9200-90b3d5eae68b",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:fd4a36ca13da6d2c135a","album:62d969f1e94f4a8d1546"],"artist":"Lazerhawk","evidence":{"artist":"Lazerhawk","artist_id":"mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b","artist_mbid":"b9e46d1a-9068-4615-9200-90b3d5eae68b","source":"Last.fm scrobble archive"},"id":"mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b","identity":{"artist_mbid":"mbid:b9e46d1a-9068-4615-9200-90b3d5eae68b","identity_quality":"verified"},"schema_version":1}

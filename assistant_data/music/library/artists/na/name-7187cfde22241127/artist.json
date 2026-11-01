@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:7187cfde22241127",
-  "artist": "Naeleck",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":[],"artist":"Naeleck","evidence":{},"id":"name:7187cfde22241127","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

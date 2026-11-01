@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:056e4f3e-d505-4dad-8ec1-d04f521cbb56",
-  "artist": "Daft Punk",
-  "identity": {
-    "artist_mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:b09f1cfdaa365e65c7b9","album:4d6ac3468817cb4d2fd3","album:f8c5c7abbdecd6a0545b"],"artist":"Daft Punk","evidence":{"artist":"Daft Punk","artist_id":"mbid:056e4f3e-d505-4dad-8ec1-d04f521cbb56","artist_mbid":"056e4f3e-d505-4dad-8ec1-d04f521cbb56","source":"Last.fm scrobble archive"},"id":"mbid:056e4f3e-d505-4dad-8ec1-d04f521cbb56","identity":{"artist_mbid":"mbid:056e4f3e-d505-4dad-8ec1-d04f521cbb56","identity_quality":"verified"},"schema_version":1}

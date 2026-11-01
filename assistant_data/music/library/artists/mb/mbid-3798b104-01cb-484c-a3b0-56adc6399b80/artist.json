@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:3798b104-01cb-484c-a3b0-56adc6399b80",
-  "artist": "Rage Against the Machine",
-  "identity": {
-    "artist_mbid": "mbid:3798b104-01cb-484c-a3b0-56adc6399b80",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:7a5d76be4c91eb23f075","album:aa858e68fe10b588551a","album:8ed4f4ab43865d6ee5dc","album:dc1abb640abbdd941095","album:945bfee7527f5d90cf71","album:748846d56ccfa35aff9e"],"artist":"Rage Against the Machine","evidence":{"artist":"Rage Against the Machine","artist_id":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","artist_mbid":"3798b104-01cb-484c-a3b0-56adc6399b80","source":"Last.fm scrobble archive"},"id":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","identity":{"artist_mbid":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","identity_quality":"verified"},"schema_version":1}

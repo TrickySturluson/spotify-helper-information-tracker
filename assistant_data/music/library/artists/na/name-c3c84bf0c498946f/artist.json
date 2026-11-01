@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:c3c84bf0c498946f",
-  "artist": "Desire",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:6a9d09af11c73934e1a0"],"artist":"Desire","evidence":{"artist":"Desire","artist_id":"name:c3c84bf0c498946f","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:c3c84bf0c498946f","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

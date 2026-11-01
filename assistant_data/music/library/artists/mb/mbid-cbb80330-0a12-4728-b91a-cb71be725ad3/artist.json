@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:cbb80330-0a12-4728-b91a-cb71be725ad3",
-  "artist": "The Green Kingdom",
-  "identity": {
-    "artist_mbid": "cbb80330-0a12-4728-b91a-cb71be725ad3",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:e3f553f59c67b701242b"],"artist":"The Green Kingdom","evidence":{"artist":"The Green Kingdom","artist_id":"mbid:cbb80330-0a12-4728-b91a-cb71be725ad3","artist_mbid":"cbb80330-0a12-4728-b91a-cb71be725ad3","source":"Last.fm scrobble archive"},"id":"mbid:cbb80330-0a12-4728-b91a-cb71be725ad3","identity":{"artist_mbid":"mbid:cbb80330-0a12-4728-b91a-cb71be725ad3","identity_quality":"verified"},"schema_version":1}

@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:aa62b28e-b6d4-4086-91d4-e5fac1ed56f3",
-  "artist": "Royal Blood",
-  "identity": {
-    "artist_mbid": "aa62b28e-b6d4-4086-91d4-e5fac1ed56f3",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:308787fe780b880c763f","album:0c0397f727ce2616f04e"],"artist":"Royal Blood","evidence":{"artist":"Royal Blood","artist_id":"mbid:aa62b28e-b6d4-4086-91d4-e5fac1ed56f3","artist_mbid":"aa62b28e-b6d4-4086-91d4-e5fac1ed56f3","source":"Last.fm scrobble archive"},"id":"mbid:aa62b28e-b6d4-4086-91d4-e5fac1ed56f3","identity":{"artist_mbid":"mbid:aa62b28e-b6d4-4086-91d4-e5fac1ed56f3","identity_quality":"verified"},"schema_version":1}

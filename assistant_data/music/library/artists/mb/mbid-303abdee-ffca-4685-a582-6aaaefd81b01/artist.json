@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
-  "artist": "Carpenter Brut",
-  "identity": {
-    "artist_mbid": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:c3a455ccd4077e2b20da","album:bf8f3cc3981a7942150c"],"artist":"Carpenter Brut","evidence":{"artist":"Carpenter Brut","artist_id":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","artist_mbid":"303abdee-ffca-4685-a582-6aaaefd81b01","source":"Last.fm scrobble archive"},"id":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","identity":{"artist_mbid":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","identity_quality":"verified"},"schema_version":1}

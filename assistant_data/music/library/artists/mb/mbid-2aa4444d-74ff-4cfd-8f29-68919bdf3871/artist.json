@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:2aa4444d-74ff-4cfd-8f29-68919bdf3871",
-  "artist": "Duke & Jones",
-  "identity": {
-    "artist_mbid": "2aa4444d-74ff-4cfd-8f29-68919bdf3871",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:6987145b68fc2e7e53a5"],"artist":"Duke & Jones","evidence":{"artist":"Duke & Jones","artist_id":"mbid:2aa4444d-74ff-4cfd-8f29-68919bdf3871","artist_mbid":"2aa4444d-74ff-4cfd-8f29-68919bdf3871","source":"Last.fm scrobble archive"},"id":"mbid:2aa4444d-74ff-4cfd-8f29-68919bdf3871","identity":{"artist_mbid":"mbid:2aa4444d-74ff-4cfd-8f29-68919bdf3871","identity_quality":"verified"},"schema_version":1}

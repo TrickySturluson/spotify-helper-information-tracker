@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c",
-  "artist": "Limp Bizkit",
-  "identity": {
-    "artist_mbid": "mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:438e17a4b2e5e719b940","album:268940577e209c9d9349","album:ff289dbf26e004edfe29","album:20df2f4ca710e5701823","album:644f0ea6a46ea4adbbaf","album:e79ea669cb8f416c5048","album:f7ae2f10214eeaa3181d","album:e9d6ce88024daa460436","album:af0c718e5f3a056e98c3","album:889d4600f5162b0d7cf9"],"artist":"Limp Bizkit","evidence":{"artist":"Limp Bizkit","artist_id":"mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c","artist_mbid":"8f9d6bb2-dba4-4cca-9967-cc02b9f4820c","source":"Last.fm scrobble archive"},"id":"mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c","identity":{"artist_mbid":"mbid:8f9d6bb2-dba4-4cca-9967-cc02b9f4820c","identity_quality":"verified"},"schema_version":1}

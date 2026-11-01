@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:e45cc18b-8cda-423b-8763-91e0303614e3",
-  "artist": "Castanets",
-  "identity": {
-    "artist_mbid": "e45cc18b-8cda-423b-8763-91e0303614e3",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:028ed7125bc25c015f2e"],"artist":"Castanets","evidence":{"artist":"Castanets","artist_id":"mbid:e45cc18b-8cda-423b-8763-91e0303614e3","artist_mbid":"e45cc18b-8cda-423b-8763-91e0303614e3","source":"Last.fm scrobble archive"},"id":"mbid:e45cc18b-8cda-423b-8763-91e0303614e3","identity":{"artist_mbid":"mbid:e45cc18b-8cda-423b-8763-91e0303614e3","identity_quality":"verified"},"schema_version":1}

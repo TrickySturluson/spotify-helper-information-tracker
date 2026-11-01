@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:325aff08d2fb3cb7",
-  "artist": "AILIFDOPA",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:b4cfb19533bd6490c1ec","album:a7f016e4d81d953c1a76","album:27910e6042b1cc6d0f36","album:d028c1ad2f89800a6f24"],"artist":"AILIFDOPA","evidence":{"artist":"AILIFDOPA","artist_id":"name:325aff08d2fb3cb7","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:325aff08d2fb3cb7","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

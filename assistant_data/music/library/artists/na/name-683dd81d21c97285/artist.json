@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:683dd81d21c97285",
-  "artist": "M|O|O|N",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:421178386ccb14301d74","album:eb781e1b6e207b01fa0d","album:e9cf566aa20a4b5663f4"],"artist":"M|O|O|N","evidence":{"artist":"M|O|O|N","artist_id":"name:683dd81d21c97285","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:683dd81d21c97285","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

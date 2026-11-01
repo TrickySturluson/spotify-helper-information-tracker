@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:87c59ab5-5f5d-46f4-87e3-c604abb2bb67",
-  "artist": "Magic Sword",
-  "identity": {
-    "artist_mbid": "87c59ab5-5f5d-46f4-87e3-c604abb2bb67",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:b0dab1597d5d213239ca"],"artist":"Magic Sword","evidence":{"artist":"Magic Sword","artist_id":"mbid:87c59ab5-5f5d-46f4-87e3-c604abb2bb67","artist_mbid":"87c59ab5-5f5d-46f4-87e3-c604abb2bb67","source":"Last.fm scrobble archive"},"id":"mbid:87c59ab5-5f5d-46f4-87e3-c604abb2bb67","identity":{"artist_mbid":"mbid:87c59ab5-5f5d-46f4-87e3-c604abb2bb67","identity_quality":"verified"},"schema_version":1}

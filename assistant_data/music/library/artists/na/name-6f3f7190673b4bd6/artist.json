@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:6f3f7190673b4bd6",
-  "artist": "Fukkk Offf",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:d69fbce10cb0ae43732b"],"artist":"Fukkk Offf","evidence":{"artist":"Fukkk Offf","artist_id":"name:6f3f7190673b4bd6","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:6f3f7190673b4bd6","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

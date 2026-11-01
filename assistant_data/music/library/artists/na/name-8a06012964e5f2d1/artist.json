@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:8a06012964e5f2d1",
-  "artist": "Mac&Wester",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:2b156fd26b71f2f14d2b"],"artist":"Mac&Wester","evidence":{"artist":"Mac&Wester","artist_id":"name:8a06012964e5f2d1","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:8a06012964e5f2d1","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

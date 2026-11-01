@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "name:516fa3fd6bf97a4b",
-  "artist": "Slipknot",
-  "identity": {
-    "artist_mbid": null,
-    "identity_quality": "name_fallback"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:dcba3c8cf4cf39d496fe","album:44059294214004cde855","album:e2a00a17658e3f0185e3","album:3dd4d73c3c898e80e75a","album:c9d9c4ec101424126ac0","album:1b2eda66af4a27d36744","album:cec81e509966adf7c6a5","album:d27d5ca1a25f187a834a","album:a7cbdf2a2b980b06dda5"],"artist":"Slipknot","evidence":{"artist":"Slipknot","artist_id":"name:516fa3fd6bf97a4b","artist_mbid":null,"source":"Last.fm scrobble archive"},"id":"name:516fa3fd6bf97a4b","identity":{"artist_mbid":null,"identity_quality":"name_fallback"},"schema_version":1}

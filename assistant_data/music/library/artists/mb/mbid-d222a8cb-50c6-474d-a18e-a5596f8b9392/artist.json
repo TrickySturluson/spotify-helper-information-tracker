@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:d222a8cb-50c6-474d-a18e-a5596f8b9392",
-  "artist": "Light Club",
-  "identity": {
-    "artist_mbid": "d222a8cb-50c6-474d-a18e-a5596f8b9392",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:f2d7a2a9d4b79a7c3897"],"artist":"Light Club","evidence":{"artist":"Light Club","artist_id":"mbid:d222a8cb-50c6-474d-a18e-a5596f8b9392","artist_mbid":"d222a8cb-50c6-474d-a18e-a5596f8b9392","source":"Last.fm scrobble archive"},"id":"mbid:d222a8cb-50c6-474d-a18e-a5596f8b9392","identity":{"artist_mbid":"mbid:d222a8cb-50c6-474d-a18e-a5596f8b9392","identity_quality":"verified"},"schema_version":1}

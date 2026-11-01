@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:521c4601-9145-41d4-8275-6644eca4fab2",
-  "artist": "Sun Araw",
-  "identity": {
-    "artist_mbid": "521c4601-9145-41d4-8275-6644eca4fab2",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:11f2cd03c45e4201d29e","album:8be1b95e50596c5038a6"],"artist":"Sun Araw","evidence":{"artist":"Sun Araw","artist_id":"mbid:521c4601-9145-41d4-8275-6644eca4fab2","artist_mbid":"521c4601-9145-41d4-8275-6644eca4fab2","source":"Last.fm scrobble archive"},"id":"mbid:521c4601-9145-41d4-8275-6644eca4fab2","identity":{"artist_mbid":"name:5ae6a6b3091e8e73","identity_quality":"verified"},"schema_version":1}

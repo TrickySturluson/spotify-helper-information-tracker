@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3",
-  "artist": "Tape",
-  "identity": {
-    "artist_mbid": "mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:4485851edc44822f9b9f"],"artist":"Tape","evidence":{"artist":"Tape","artist_id":"mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3","artist_mbid":"cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3","source":"Last.fm scrobble archive"},"id":"mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3","identity":{"artist_mbid":"mbid:cb9e36f2-e268-47b5-881f-d0aaaaa6b1a3","identity_quality":"verified"},"schema_version":1}

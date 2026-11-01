@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:c89ea689-c053-4d97-bada-8b81a6236f58",
-  "artist": "Chromatics",
-  "identity": {
-    "artist_mbid": "mbid:c89ea689-c053-4d97-bada-8b81a6236f58",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:2b19ae10ad7a8834cb09","album:f46ab051699f85acac91"],"artist":"Chromatics","evidence":{"artist":"Chromatics","artist_id":"mbid:c89ea689-c053-4d97-bada-8b81a6236f58","artist_mbid":"c89ea689-c053-4d97-bada-8b81a6236f58","source":"Last.fm scrobble archive"},"id":"mbid:c89ea689-c053-4d97-bada-8b81a6236f58","identity":{"artist_mbid":"mbid:c89ea689-c053-4d97-bada-8b81a6236f58","identity_quality":"verified"},"schema_version":1}

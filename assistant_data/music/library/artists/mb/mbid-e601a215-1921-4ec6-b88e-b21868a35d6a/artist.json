@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a",
-  "artist": "El Huervo",
-  "identity": {
-    "artist_mbid": "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:7ccbcd2c8b12d04be96d","album:7b02eb0605d7dafb1542","album:e74c15d1d137b95b74d5","album:2c0e987a16b8b21340c0"],"artist":"El Huervo","evidence":{"artist":"El Huervo","artist_id":"mbid:e601a215-1921-4ec6-b88e-b21868a35d6a","artist_mbid":"e601a215-1921-4ec6-b88e-b21868a35d6a","source":"Last.fm scrobble archive"},"id":"mbid:e601a215-1921-4ec6-b88e-b21868a35d6a","identity":{"artist_mbid":"mbid:e601a215-1921-4ec6-b88e-b21868a35d6a","identity_quality":"verified"},"schema_version":1}

@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62",
-  "artist": "College",
-  "identity": {
-    "artist_mbid": "mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:900fba009c087d762ea2","album:96c48345d3fa39b5d38a"],"artist":"College","evidence":{"artist":"College","artist_id":"mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62","artist_mbid":"d41396da-ed4b-4d0a-a902-d4bcd39cef62","source":"Last.fm scrobble archive"},"id":"mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62","identity":{"artist_mbid":"mbid:d41396da-ed4b-4d0a-a902-d4bcd39cef62","identity_quality":"verified"},"schema_version":1}

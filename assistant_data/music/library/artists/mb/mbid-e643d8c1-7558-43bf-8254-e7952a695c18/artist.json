@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:e643d8c1-7558-43bf-8254-e7952a695c18",
-  "artist": "ModuloGeek",
-  "identity": {
-    "artist_mbid": "e643d8c1-7558-43bf-8254-e7952a695c18",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:d066f342029de947a8e7"],"artist":"ModuloGeek","evidence":{"artist":"ModuloGeek","artist_id":"mbid:e643d8c1-7558-43bf-8254-e7952a695c18","artist_mbid":"e643d8c1-7558-43bf-8254-e7952a695c18","source":"Last.fm scrobble archive"},"id":"mbid:e643d8c1-7558-43bf-8254-e7952a695c18","identity":{"artist_mbid":"mbid:e643d8c1-7558-43bf-8254-e7952a695c18","identity_quality":"verified"},"schema_version":1}

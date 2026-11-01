@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d",
-  "artist": "LukHash",
-  "identity": {
-    "artist_mbid": "ed9e6bc3-9714-4b07-a401-30fbf0a60d4d",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:2abc6fcc9f561aa77236"],"artist":"LukHash","evidence":{"artist":"LukHash","artist_id":"mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d","artist_mbid":"ed9e6bc3-9714-4b07-a401-30fbf0a60d4d","source":"Last.fm scrobble archive"},"id":"mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d","identity":{"artist_mbid":"mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d","identity_quality":"verified"},"schema_version":1}

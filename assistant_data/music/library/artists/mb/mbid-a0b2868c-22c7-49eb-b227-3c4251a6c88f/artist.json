@@ -1,11 +1,1 @@
-{
-  "schema_version": 1,
-  "id": "mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f",
-  "artist": "Electric Youth",
-  "identity": {
-    "artist_mbid": "a0b2868c-22c7-49eb-b227-3c4251a6c88f",
-    "identity_quality": "verified"
-  },
-  "evidence": {},
-  "album_ids": []
-}
+{"album_ids":["album:3e52c30c1baf740527aa"],"artist":"Electric Youth","evidence":{"artist":"Electric Youth","artist_id":"mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f","artist_mbid":"a0b2868c-22c7-49eb-b227-3c4251a6c88f","source":"Last.fm scrobble archive"},"id":"mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f","identity":{"artist_mbid":"mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f","identity_quality":"verified"},"schema_version":1}
