@@ -17,6 +17,9 @@ ROOT = Path(__file__).resolve().parents[2]
 COMPAT = ROOT / "compat"
 if str(COMPAT) not in sys.path:
     sys.path.insert(0, str(COMPAT))
+SOURCE_DIR = ROOT / "scripts" / "spotify"
+if str(SOURCE_DIR) not in sys.path:
+    sys.path.insert(0, str(SOURCE_DIR))
 
 import spotify_playlist_manager as manager
 import spotify_discovery as discovery
