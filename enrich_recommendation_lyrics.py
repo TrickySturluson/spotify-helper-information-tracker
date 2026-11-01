@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""Merge local lyric-analysis evidence into recommendation track features.
+
+Run after build_music_analytics.py. If the local lyrics database is absent,
+the command exits cleanly without changing generated recommendation data.
+"""
+import json
+import re
+import sqlite3
+from pathlib import Path
+
+DB = Path("data/lyrics/library.sqlite3")
+FEATURES = Path("assistant_data/recommendations/track_features.json")
+
+
+def norm(value):
+    return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
+
+
+def main():
+    if not DB.exists():
+        print("No local lyrics database; recommendation lyric enrichment skipped.")
+        return
+    if not FEATURES.exists():
+        raise FileNotFoundError(f"Missing {FEATURES}; run build_music_analytics.py first.")
+    connection = sqlite3.connect(DB)
+    connection.row_factory = sqlite3.Row
+    try:
+        rows = connection.execute("""
+            SELECT s.normalized_title, s.normalized_artist, a.themes_json,
+                   a.relevance, a.assessment, a.word_count, a.analyzed_at
+            FROM songs s LEFT JOIN analyses a ON a.song_id=s.id
+        """).fetchall()
+    finally:
+        connection.close()
+    index = {(row["normalized_title"], row["normalized_artist"]): row for row in rows}
+    features = json.loads(FEATURES.read_text(encoding="utf-8"))
+    enriched = 0
+    for track in features:
+        row = index.get((norm(track.get("track")), norm(track.get("artist"))))
+        if not row:
+            track["lyric_analysis"] = None
+            continue
+        themes = json.loads(row["themes_json"] or "{}")
+        track["lyric_analysis"] = {
+            "themes": themes,
+            "horror_relevance": row["relevance"],
+            "assessment": row["assessment"],
+            "word_count": row["word_count"],
+            "analyzed_at": row["analyzed_at"],
+            "evidence_type": "lyrics_keyword_analysis",
+            "full_lyrics_stored": False
+        }
+        enriched += 1
+    temp = FEATURES.with_suffix(".json.tmp")
+    temp.write_text(json.dumps(features, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    temp.replace(FEATURES)
+    print(f"Added lyric-analysis metadata to {enriched:,} of {len(features):,} recommendation tracks.")
+
+
+if __name__ == "__main__":
+    main()
