@@ -219,6 +219,10 @@ if __name__ == "__main__":
             saved = manager.read(manager.SPOTIFY_COOLDOWN, {})
             self.assertEqual(saved["retry_after_seconds"], 13060)
             self.assertEqual(saved["reason"], "QUOTA_EXCEEDED")
+            # A later request in the same process must be blocked before
+            # urlopen, including best-effort recovery code after the 429.
+            with self.assertRaisesRegex(manager.ManagerError, "Spotify API cooldown is active"):
+                spotify.call("GET", "/me")
         request.assert_called_once()
 
     def test_active_spotify_cooldown_blocks_client_initialization(self):
