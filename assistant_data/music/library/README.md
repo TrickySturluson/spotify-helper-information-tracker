@@ -9,7 +9,7 @@ This directory contains the staged 100-song sample from the saved 90-day Last.fm
 
 ## Album example
 
-`albums/al/album-3858c5d33d8c2159eb3d/album.json` stores the 12-track ordered tracklist, approximate durations, release date, Last.fm community tags, a short attributed description, source links, confidence by field, and the Spotify album ID observed in saved playlist snapshots.
+`albums/al/album-01632cb9b68c6acda89d/album.json` stores the 12-track ordered tracklist, approximate durations, release date, Last.fm community tags, a short attributed description, source links, confidence by field, and the Spotify album ID observed in saved playlist snapshots.
 
 The artist record links to the album, and four existing song records are linked to it only where the artist/title and recording MBID already match the staged sample. The album's full tracklist is not treated as proof that every track is present in the song library or that every recording belongs to this release. This makes the example useful for testing album recall without manufacturing 12 song identities.
 
