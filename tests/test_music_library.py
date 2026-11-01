@@ -2,8 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from music_library import MusicLibrary
-from migrate_music_library import select_recent_track_rows
+from music_library import MusicLibrary, select_recent_track_rows
 import spotify_playlist_sequencer as sequencer
 
 class MusicLibraryTests(unittest.TestCase):
