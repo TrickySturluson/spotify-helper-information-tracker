@@ -306,7 +306,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `data/scrobbles.json` — Canonical raw Last.fm scrobble archive; historical listening source records.
 - `data/stats.json` — Archive-wide statistics snapshot, including explicitly estimated listening-time measures.
 
-## docs (11 files)
+## docs (12 files)
 
 - `docs/AUDIO_ANALYSIS.md` — Guide to measured/local audio analysis and its evidence limits.
 - `docs/AUTOMATED_AUDIO_METADATA.md` — Guide to automated metadata enrichment and provenance.
@@ -318,6 +318,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `docs/RECENT_TRACK_ENRICHMENT.md` — Workflow for prioritizing recent listening metadata.
 - `docs/REPOSITORY_FILE_INDEX.md` — Catalogue of tracked files and their roles.
 - `docs/SPOTIFY_API_OPERATIONS.md` — Spotify API restrictions, quota cooldowns, safe diagnostics, and recovery.
+- `docs/TRACK_MOOD_EVIDENCE.md` — Source hierarchy, mood-confidence rules, provenance, coverage and model licensing notes.
 - `docs/TRANSITION_SCORING.md` — Explanation of playlist transition scoring and evidence tiers.
 
 ## playback_data (2 files)
