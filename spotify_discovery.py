@@ -404,7 +404,7 @@ def build_discovery_recommendations(
             score, plays, last, is_liked = candidate_score(
                 track, artist_row["similarity"], familiarity, liked_keys, today, feedback
             )
-            lyric_analysis = (track_metadata.get((norm(artist), norm(track["name"])), {}) or {}).get("lyric_analysis") or {}
+            lyric_analysis = (track_metadata.get((intelligence.track_norm(artist), intelligence.track_norm(track["name"])), {}) or {}).get("lyric_analysis") or {}
             theme_affinity = lyric_theme_affinity(lyric_analysis, playlist_theme_counts)
             # Small, explainable tie-break/boost: Last.fm similarity remains the
             # dominant signal, while lyrical fit helps distinguish candidates.
