@@ -67,7 +67,9 @@ def build_trends(scrobbles,artist_profiles=None,now=None):
         events.append((when,name))
     events.sort()
     d7=now-timedelta(days=7); d30=now-timedelta(days=30); d90=now-timedelta(days=90)
+    d14=now-timedelta(days=14)
     c7=_count(events,d7,now+timedelta(microseconds=1))
+    prev7=_count(events,d14,d7)
     c30=_count(events,d30,now+timedelta(microseconds=1))
     c90=_count(events,d90,now+timedelta(microseconds=1))
     prev60=_count(events,d90,d30)
@@ -77,16 +79,18 @@ def build_trends(scrobbles,artist_profiles=None,now=None):
     for artist in set(c90)|set(prev60)|set(alltime):
         recent,short,baseline=c30[artist],c7[artist],prev60[artist]
         mom30=_momentum(recent,baseline,30,60)
-        mom7=_momentum(short,recent,7,30)
+        mom7=_momentum(short,prev7[artist],7,7)
         artists[artist]={
             "plays_7d":short,"plays_30d":recent,"plays_previous_60d":baseline,
-            "plays_90d":c90[artist],"plays_all_time":alltime[artist],
+            "plays_90d":c90[artist],"plays_previous_7d":prev7[artist],"plays_all_time":alltime[artist],
             "momentum_30d":mom30,"momentum_7d":mom7,"tags":tags_of(profiles.get(artist,{})),
             "trend_confidence":"high" if recent>=8 and baseline>=8 else "medium" if recent>=3 and baseline>=3 else "low"
         }
-    genre_counts=Counter()
+    genre_counts=Counter(); genre_previous=Counter()
     for row in artists.values():
-        for tag in row["tags"]: genre_counts[tag]+=row["plays_30d"]
+        for tag in row["tags"]:
+            genre_counts[tag]+=row["plays_30d"]
+            genre_previous[tag]+=row["plays_previous_60d"]
     total30=sum(c30.values()); totalprev=sum(prev60.values())
     return {
         "version":VERSION,"generated_at":now.isoformat(),"source":"data/scrobbles.json",
@@ -95,11 +99,13 @@ def build_trends(scrobbles,artist_profiles=None,now=None):
             "status":"available" if total30>=10 and totalprev>=10 else "low"},
         "windows":{"7d":dict(c7),"30d":dict(c30),"previous_60d":dict(prev60),"90d":dict(c90)},
         "artists":artists,
-        "genres":[{"tag":tag,"plays_30d":count,"share_30d":round(count/total30,4) if total30 else 0}
+        "genres":[{"tag":tag,"plays_30d":count,"plays_previous_60d":genre_previous[tag],
+                    "momentum_30d":_momentum(count,genre_previous[tag],30,60),
+                    "share_30d":round(count/total30,4) if total30 else 0}
                   for tag,count in genre_counts.most_common(40)],
         "baseline":{"all_time_scrobbles":len(events),"unique_artists":len(alltime),
             "recent_vs_previous_60d_rate":round((total30/30)/(totalprev/60),4) if totalprev else None},
-        "method":{"recent_window_days":30,"short_window_days":7,"comparison_window_days":60,
+        "method":{"recent_window_days":30,"short_window_days":7,"short_comparison_window_days":7,"comparison_window_days":60,
             "sparse_history_is_unknown":True,"daily_rotation_is_not_negative":True}
     }
 
