@@ -99,6 +99,12 @@ class PlaylistIntelligenceTests(unittest.TestCase):
         self.assertIn("nocturnal", mood_inference._tag_moods("nocturnal"))
         self.assertIn("chaotic", mood_inference._tag_moods("chaotic"))
         self.assertIn("groovy", mood_inference._tag_moods("groovy"))
+        self.assertIn("dark", mood_inference._tag_moods("cold"))
+        self.assertIn("dark", mood_inference._tag_moods("menacing"))
+        self.assertIn("eerie", mood_inference._tag_moods("scary"))
+        self.assertIn("melancholic", mood_inference._tag_moods("angsty"))
+        self.assertIn("calm", mood_inference._tag_moods("mellow"))
+        self.assertIn("mysterious", mood_inference._tag_moods("weird"))
         self.assertNotIn("shoegaze", mood_inference._tag_moods("shoegaze"))
         items = [{"artists": ["One"]}, {"artists": ["Two"]}]
         profiles = {
