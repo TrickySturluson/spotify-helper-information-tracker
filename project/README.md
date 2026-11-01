@@ -7,10 +7,11 @@ It is deliberately separate from `assistant_data/music/library/`: project plans 
 ## Start here when resuming work
 
 1. Read [NEXT_WORK.md](NEXT_WORK.md) first. It is the authoritative current handoff: active blocker, priorities, constraints, open work, and the next concrete action.
-2. Read [PROJECT_LOG.md](PROJECT_LOG.md) for chronological context and verified outcomes.
-3. Read [RETRY_QUEUE_SPEC.md](RETRY_QUEUE_SPEC.md) before changing retry planning/execution.
-4. Read the relevant [goal workspace index](goals/README.md) and that goal's `README.md` + `ACTIONS.md`.
-5. Read the repository [README](../README.md) for architecture, canonical data locations, and commands.
+2. Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the cross-project unfinished-work and verification register.
+3. Read [PROJECT_LOG.md](PROJECT_LOG.md) for chronological context and verified outcomes.
+4. Read [RETRY_QUEUE_SPEC.md](RETRY_QUEUE_SPEC.md) before changing retry planning/execution.
+5. Read the relevant [goal workspace index](goals/README.md) and that goal's `README.md` + `ACTIONS.md`.
+6. Read the repository [README](../README.md) for architecture, canonical data locations, and commands.
 
 A new assistant session should inspect these files and current GitHub branches, pull requests, and workflow runs before claiming a task is complete or starting a potentially destructive operation.
 
@@ -22,6 +23,7 @@ Each major objective has its own folder under [`goals/`](goals/README.md). Read 
 
 - [NEXT_WORK.md](NEXT_WORK.md) — current priorities, active work, blockers, and concrete next actions. Update this whenever status changes.
 - [PROJECT_LOG.md](PROJECT_LOG.md) — chronological record of meaningful work, decisions, tests, failures, and handoffs.
+- [LOOSE_ENDS.md](LOOSE_ENDS.md) — cross-project index of unfinished work, known failures, deferred requirements, and next verification steps.
 - [RETRY_QUEUE_SPEC.md](RETRY_QUEUE_SPEC.md) — contract for the machine-maintained metadata retry queue.
 
 ## Project goals tracked here
