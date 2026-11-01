@@ -30,7 +30,7 @@ python shit.py migration audit
 - **status** reports indexed song, artist, and album counts.
 - **preview** inventories the source catalogue and predicts migration input without writes.
 - **migrate/run/resume** merge all saved track profiles and accessible Spotify playlist snapshots into The Library. A timestamped backup is created before writing.
-- **audit** checks canonical record files, cross-record relationships, and resolver aliases.
+- **audit** checks canonical record files, cross-record relationships, and resolver aliases.\n- **verify** performs harmless authenticated provider checks without changing the Library or playlists.
 - **prepare --execute** performs the offline migration, then bounded provider enrichment, incremental Library syncs, and a final audit. Without `--execute`, preparation is read-only preflight.
 
 The migration preserves every playlist membership while deduplicating repeated Spotify track IDs. Inaccessible playlists are counted and skipped. An accessible snapshot whose fetched count does not match its saved item list blocks execution rather than silently migrating partial data. Existing Library records and accumulated evidence are merged, not discarded.
@@ -45,7 +45,7 @@ After this workflow is merged into the repository's default branch, ChatGPT can 
 - `[SHIT LIBRARY] preview`
 - `[SHIT LIBRARY] migrate`
 - `[SHIT LIBRARY] prepare`
-- `[SHIT LIBRARY] audit`
+- `[SHIT LIBRARY] audit`\n- `[SHIT LIBRARY] verify`
 
 The dedicated **SHIT — Great Migration** GitHub Actions workflow accepts only
 issues opened by the repository owner and only the five allow-listed operations.
@@ -55,7 +55,7 @@ Successful `migrate` and `prepare` runs commit generated Library/enrichment
 data; read-only operations do not commit anything. Repository maintainers can
 also use the workflow's manual Actions dispatch.
 
-The `prepare` operation requires the existing `LASTFM_API_KEY` secret and
+The `verify` operation checks Spotify refresh-token exchange plus read-only account access, Last.fm API access, and optional Discogs/GetSongBPM credentials. It never prints or persists credentials and makes no playlist or Library changes.\n\nThe `prepare` operation requires the existing `LASTFM_API_KEY` secret and
 Spotify refresh credentials (`SPOTIFY_CLIENT_ID` repository variable and
 `SPOTIFY_REFRESH_TOKEN` secret). Discogs and GetSongBPM remain optional.
 Never put credentials or tokens in an issue title or body.
