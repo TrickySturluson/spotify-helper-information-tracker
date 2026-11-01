@@ -3,7 +3,7 @@
 The maintained implementation lives under this directory, grouped by responsibility:
 
 - `analytics/`: historical archive builders, listening-time aggregates, and project integrity audit.
-- `music/`: audio analysis, music metadata enrichment, lyric metadata, and mood inference.
+- `music/`: audio analysis, multi-source music metadata enrichment (AcousticBrainz, MusicBrainz/ISRC, Last.fm, Discogs, GetSongBPM), lyric metadata, and mood inference.
 - `spotify/`: playlist intelligence, discovery, sequencing, management, playback tracking, and reference-library tooling.
 - `lastfm/`: canonical Last.fm scrobble importer.
 

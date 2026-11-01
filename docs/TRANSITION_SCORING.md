@@ -10,7 +10,9 @@ The sequencer now uses evidence-aware transition scoring:
 
 - A metadata dimension contributes only when both tracks have evidence for that dimension.
 - Unknown energy is not compared as though a measured score of 50 were real.
-- Low-confidence energy estimates are also excluded from transition-gap claims; only medium/high estimates can support an energy comparison.
+- Only explicit `acoustic_confidence=medium|high` can support an energy comparison. A legacy generic `confidence=medium` without an acoustic basis is not trusted.
+- Acoustic and semantic confidence are separate. Multiple genre, mood, lyric, or artist tags cannot promote acoustic confidence.
+- The displayed perceived-energy score may blend acoustic and descriptive cues, but transition energy gaps and the journey curve use the separate acoustic-only score. Semantic-only tracks have no acoustic score and are not pulled toward a fictitious journey-curve target.
 - Low-confidence estimates retain a reduced journey-curve weight, while unknown placeholders remain display-only.
 - Transition confidence is marked supported only when at least two comparable dimensions exist and both tracks have medium/high energy evidence.
 - The optimizer uses four evenly distributed starting tracks and two local-refinement passes within a 12-position neighborhood to keep real-playlist previews responsive.
@@ -18,7 +20,10 @@ The sequencer now uses evidence-aware transition scoring:
 - Transition reports expose `energy_gap: null` when either track lacks energy evidence, rather than publishing a misleading numeric gap.
 - When no comparable evidence exists, the report labels the handoff **uncertain**, not a potential jump or a failed match.
 - Available dimensions are normalized over their actual weights, so missing fields do not create automatic penalties.
-- BPM compatibility is included when both tracks have valid tempo values.
+- BPM compatibility is included when both tracks have valid tempo values; each estimate retains its source (Essentia, Spotify-provided features, AcousticBrainz, or GetSongBPM catalog).
+- The source summary reports tempo-provider coverage and cross-provider agreement/disagreement, with half/double-time equivalence handled before judging agreement.
+- Multiple providers for the same artist/title are merged into one profile without discarding provider-specific records; a later provider cannot erase a populated value with a null.
+- Discogs styles/genres may enrich the descriptive genre context only after exact artist and tracklist validation against one unique release/master. They never count as acoustic evidence.
 - Half-time and double-time relationships are treated as rhythmically compatible (for example, 80 and 160 BPM).
 - Repeating the same primary artist receives a strong sequencing-only diversity penalty; the greedy builder avoids a third consecutive track by the same artist when alternatives exist, and the sequence objective penalizes any remaining run of three or more. The transition report keeps musical compatibility separate from that preference.
 - Genre and theme preferences remain soft bonuses, not hard grouping requirements.
@@ -31,7 +36,7 @@ Track energy confidence remains separate from transition confidence. The sequenc
 
 ## Data provenance
 
-Tempo and acoustic descriptors retain their provider/source fields. AcousticBrainz average loudness is not LUFS. GetSongBPM tempo is catalog metadata, not a local audio measurement. Essentia LUFS and segment-level dynamics are available only for legally obtained local audio analyzed by the project. Missing values must remain missing; do not fill them with zero.
+Tempo and acoustic descriptors retain provider/source fields. AcousticBrainz average loudness is not LUFS; multiple AcousticBrainz submissions are median-aggregated with spread and count retained. GetSongBPM tempo is catalog metadata, not a local audio measurement. Spotify loudness in dB is not LUFS. Essentia LUFS and segment-level dynamics are available only for legally obtained local audio analyzed by the project. Discogs genres/styles are release-level context, not track-level acoustic evidence. Missing values must remain missing; do not fill them with zero.
 
 ## Regression tests
 
@@ -41,7 +46,7 @@ Run from the repository root:
 python -m unittest tests.test_spotify_playlist_sequencer -v
 ```
 
-The tests cover unknown metadata, half/double-time BPM relationships, the effect of shared metadata on transition cost, and formatting of alternative-preview summaries.
+The tests cover unknown metadata, acoustic-versus-semantic confidence separation, provider merging and tempo agreement, half/double-time BPM relationships, the effect of shared metadata on transition cost, and formatting of alternative-preview summaries.
 
 ## FILE OVERVIEW
 

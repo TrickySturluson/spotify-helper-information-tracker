@@ -31,7 +31,7 @@ RECENT_TOP_N = max(1, int(os.environ.get("TRACK_PROFILE_RECENT_TOP_N", "200")))
 RECENT_TOP_OUT = ROOT / "recent_top_tracks.json"
 RETRY_DAYS = 30
 SHARDS = 32
-UA = "TrickyLastFM/1.2 (track profile enrichment; https://github.com/TrickySturluson/tricky-lastfm)"
+UA = "TrickyLastFM/1.2 (track profile enrichment; https://github.com/TrickySturluson/spotify-helper-information-tracker)"
 
 
 def read(path, default):

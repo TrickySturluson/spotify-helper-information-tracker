@@ -344,10 +344,11 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/music/build_music_metadata.py` — Maintained implementation module for build music metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_music_profiles.py` — Maintained implementation module for build music profiles. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/build_track_profiles.py` — Maintained implementation module for build track profiles. See its bottom FILE OVERVIEW for detailed behavior.
-- `scripts/music/enrich_acousticbrainz.py` — Maintained implementation module for enrich acousticbrainz. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/enrich_acousticbrainz.py` — Maintained implementation module for multi-submission AcousticBrainz enrichment.
+- `scripts/music/enrich_discogs.py` — Optional exact-match Discogs release-context enrichment.
 - `scripts/music/enrich_getsongbpm.py` — Maintained implementation module for enrich getsongbpm. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/enrich_musicbrainz_durations.py` — Maintained implementation module for enrich musicbrainz durations. See its bottom FILE OVERVIEW for detailed behavior.
-- `scripts/music/enrich_musicbrainz_recording_ids.py` — Maintained implementation module for enrich musicbrainz recording ids. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/music/enrich_musicbrainz_recording_ids.py` — ISRC-first, exact-match MusicBrainz recording identity resolver. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/enrich_recommendation_lyrics.py` — Maintained implementation module for enrich recommendation lyrics. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/lyrics_library.py` — Maintained implementation module for lyrics library. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/music/mood_inference.py` — Maintained implementation module for mood inference. See its bottom FILE OVERVIEW for detailed behavior.
@@ -369,7 +370,8 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `tests/__init__.py` — Automated regression tests for   init  .
 - `tests/test_audio_analysis.py` — Automated regression tests for audio analysis.
 - `tests/test_audit_project.py` — Automated regression tests for audit project.
-- `tests/test_enrich_acousticbrainz.py` — Automated regression tests for enrich acousticbrainz.
+- `tests/test_enrich_acousticbrainz.py` — Automated regression tests for AcousticBrainz aggregation.
+- `tests/test_enrich_discogs.py` — Automated regression tests for Discogs identity matching.
 - `tests/test_enrich_getsongbpm.py` — Automated regression tests for enrich getsongbpm.
 - `tests/test_lyrics_library.py` — Automated regression tests for lyrics library.
 - `tests/test_musicbrainz_recording_ids.py` — Automated regression tests for musicbrainz recording ids.

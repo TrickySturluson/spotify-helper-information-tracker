@@ -9,6 +9,10 @@ on:
       - ".github/workflows/enrich-music-metadata.yml"
       - "scripts/music/build_track_profiles.py"
       - "compat/build_track_profiles.py"
+      - "scripts/music/enrich_discogs.py"
+      - "compat/enrich_discogs.py"
+      - "scripts/music/enrich_musicbrainz_recording_ids.py"
+      - "compat/enrich_musicbrainz_recording_ids.py"
       - "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json"
   # Small daily batches keep metadata coverage moving without a large backfill.
   # UTC 08:17; manual dispatch remains available for larger runs.
@@ -73,6 +77,10 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           MUSIC_PROFILE_LOOKUPS_PER_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.artist_profile_lookups || '100' }}
         run: python compat/build_music_profiles.py
+      - name: Resolve recording IDs with existing Spotify ISRCs and exact MusicBrainz matches
+        env:
+          MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "200"
+        run: python compat/enrich_musicbrainz_recording_ids.py
       - name: Enrich individual track tags from Last.fm and MusicBrainz
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
@@ -81,6 +89,16 @@ jobs:
           TRACK_PROFILE_RECENT_TOP_N: "200"
           TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
         run: python compat/build_track_profiles.py
+      - name: Enrich exact track matches with Discogs release styles (optional)
+        env:
+          DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
+          DISCOGS_LOOKUPS_PER_RUN: "30"
+        run: |
+          if [ -n "$DISCOGS_USER_TOKEN" ]; then
+            python compat/enrich_discogs.py
+          else
+            echo "DISCOGS_USER_TOKEN is not configured; optional Discogs enrichment skipped."
+          fi
       - name: Rebuild metadata summaries
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}

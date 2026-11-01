@@ -24,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DEFAULT_DB = ROOT / "data" / "lyrics" / "library.sqlite3"
 DEFAULT_EXPORT = ROOT / "assistant_data" / "recommendations" / "lyric_features.json"
-APP_UA = "SHIT-Lyrics-Library/1.0 (https://github.com/TrickySturluson/tricky-lastfm)"
+APP_UA = "SHIT-Lyrics-Library/1.0 (https://github.com/TrickySturluson/spotify-helper-information-tracker)"
 THEMES = {
     # Horror / Halloween vocabulary remains explicit and separately scored.
     "horror_atmosphere": {"horror", "terror", "nightmare", "scream", "haunt", "haunted", "spooky", "fright", "scary", "creepy"},

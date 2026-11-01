@@ -12,7 +12,7 @@ GROUPS = {
     ),
     "music": (
         "audio_analysis.py", "build_music_metadata.py", "build_music_profiles.py",
-        "build_track_profiles.py", "enrich_acousticbrainz.py", "enrich_getsongbpm.py",
+        "build_track_profiles.py", "enrich_acousticbrainz.py", "enrich_discogs.py", "enrich_getsongbpm.py",
         "enrich_musicbrainz_durations.py", "enrich_musicbrainz_recording_ids.py",
         "enrich_recommendation_lyrics.py", "lyrics_library.py", "mood_inference.py",
     ),

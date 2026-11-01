@@ -43,10 +43,9 @@ or `--output path/to/file.json` to select another destination.
 
 ## Playlist sorter integration
 
-`compat/spotify_playlist_sequencer.py` loads this profile file automatically. Measured BPM
-and integrated LUFS can contribute to the energy estimate; loudness range and
-dynamic complexity are reported as additional evidence. Spotify-provided features,
-when present in an item export, take precedence over locally measured values.
+`compat/spotify_playlist_sequencer.py` loads this profile file automatically. Multiple audio providers are merged by normalized artist/title while preserving provider-specific records. Local Essentia tempo and integrated LUFS are treated as measured acoustic evidence; Spotify-provided energy/tempo/loudness are retained with their own provenance; historical AcousticBrainz BPM and dynamics remain separately attributed. GetSongBPM catalog tempo can inform rhythm compatibility but cannot independently raise acoustic confidence. Spotify's loudness dB field is not mislabeled as LUFS.
+
+The preview reports acoustic confidence separately from semantic confidence, plus tempo-provider coverage and cross-provider agreement/disagreement. Half/double-time equivalence is checked before calling tempo sources inconsistent. If sources disagree, the disagreement is shown rather than silently replacing one provider's value.
 
 The current sorter does not yet perform true DJ beatmatching or automatic gain
 normalization. Segment envelopes are preserved for future transition planning;

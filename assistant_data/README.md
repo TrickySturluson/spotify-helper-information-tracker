@@ -9,7 +9,7 @@ This directory contains derived, reproducible outputs built from the canonical L
 - `rankings/`: artist, album, and track rankings derived from the Last.fm archive.
 - `advanced/`: deeper discovery, artist lifecycle, rediscovery, monthly diversity, rolling rankings, and session outputs.
 - `indexes/`: lookup-oriented indexes for artists and other archive entities.
-- `music/`: artist and track metadata, duration totals, metadata shards, recording identifiers, acoustic profiles, and enrichment state. See `docs/AUTOMATED_AUDIO_METADATA.md` and `docs/GETSONGBPM.md`.
+- `music/`: artist and track metadata, duration totals, metadata shards, recording identifiers (including Spotify-snapshot ISRC corroboration), acoustic profiles, Discogs release context, and durable enrichment state. See `docs/AUTOMATED_AUDIO_METADATA.md` and `docs/GETSONGBPM.md`.
 - `recommendations/`: derived artist/track features, lyric-theme exports, duration trends, and playlist scoring inputs. See `docs/LYRICS_LIBRARY.md`.
 - `playback/`: summaries built from measured Spotify playback records. These are distinct from Last.fm scrobbles; an empty or sparse playback export does not mean the Last.fm archive is empty.
 - `spotify/`: Spotify playlist snapshots, managed-playlist metadata, reference-library indexes, playlist-specific presets, health/state summaries, and historical snapshots. Playlist snapshots are generated from Spotify API observations and should not be mistaken for Last.fm listening history.

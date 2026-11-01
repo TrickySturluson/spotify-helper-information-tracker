@@ -38,8 +38,38 @@ def index_artists(rows):
 
 def index_tracks(rows):
     return {(norm(row["artist"]), norm(row["track"])): row for row in rows.values()
-            if isinstance(row, dict) and row.get("artist") and row.get("track")} if isinstance(rows, dict) else {}
+            if isinstance(row, dict) and row.get("artist") and row.get("track")}
 
+
+def index_audio_profiles(rows):
+    """Merge audio providers by recording identity without discarding provenance."""
+    indexed = {}
+    for row in rows.values() if isinstance(rows, dict) else []:
+        if not isinstance(row, dict) or not row.get("artist") or not row.get("track"):
+            continue
+        key = (norm(row["artist"]), norm(row["track"]))
+        merged = indexed.setdefault(key, {"source_profiles": {}})
+        engine = str(row.get("analysis_engine") or "").casefold()
+        source = str(row.get("source") or "").casefold()
+        if "essentia" in engine:
+            merged["source_profiles"]["essentia"] = row
+        elif "acousticbrainz" in source or row.get("recording_mbid"):
+            acoustic_row = dict(row)
+            # GetSongBPM may fill a previously empty flat tempo_bpm field on an
+            # AcousticBrainz profile. Keep that catalog value out of the AB slot.
+            if str(row.get("tempo_source") or "").casefold().startswith("getsongbpm"):
+                acoustic_row["tempo_bpm"] = None
+            merged["source_profiles"]["acousticbrainz"] = acoustic_row
+        elif row.get("getsongbpm") or "getsongbpm" in source:
+            merged["source_profiles"]["getsongbpm"] = row.get("getsongbpm") or row
+        # Preserve useful scalar metadata, but never erase a populated value
+        # with a later null/empty field from another provider.
+        for field, value in row.items():
+            if value not in (None, "", [], {}):
+                merged[field] = value
+        if isinstance(row.get("getsongbpm"), dict):
+            merged["source_profiles"]["getsongbpm"] = row["getsongbpm"]
+    return indexed
 
 def merge_lyric_features(track_profiles, rows):
     """Attach exported lyric themes to track metadata for transition matching."""
@@ -69,12 +99,23 @@ def _signal(value, low, high):
         return None
 
 
-def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=None):
-    """Return a conservative 0..100 perceived-energy score and its evidence.
+def _tempo_compatible(a, b, tolerance=0.08):
+    """Compare tempo estimates while allowing half/double-time equivalence."""
+    try:
+        a, b = float(a), float(b)
+    except (TypeError, ValueError):
+        return False
+    if not (40 <= a <= 300 and 40 <= b <= 300):
+        return False
+    ratio = max(a, b) / min(a, b)
+    return min(abs(ratio - 1.0), abs(ratio - 2.0)) <= tolerance
 
-    Spotify audio features, when already present in a playlist export, are the
-    strongest signals. Sourced track tags come next; artist metadata is a weak
-    fallback and is never presented as track-level fact.
+
+def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=None):
+    """Score perceived energy while keeping acoustic and semantic confidence separate.
+
+    Genre, mood, lyrics, and artist tags can influence the display score, but
+    they can never promote acoustic confidence or make energy comparable.
     """
     artist_profiles = artist_profiles or {}
     track_profiles = track_profiles or {}
@@ -84,28 +125,83 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     artist_profile = artist_profiles.get(norm(artist), {})
     track_profile = track_profiles.get((norm(artist), norm(title)), {})
     measured_audio = (audio_profiles or {}).get((norm(artist), norm(title)), {})
-    audio = {**measured_audio, **(item.get("audio_features") or {})}
-    components = []
-    evidence = []
-    weights = []
+    sources = measured_audio.get("source_profiles") or {}
+    essentia = sources.get("essentia") or (
+        measured_audio if (
+            "essentia" in str(measured_audio.get("analysis_engine", "")).casefold()
+            or any(measured_audio.get(field) is not None
+                   for field in ("integrated_lufs", "loudness_range_lu", "tempo_confidence"))
+        ) else {}
+    )
+    acousticbrainz = sources.get("acousticbrainz") or (measured_audio if "acousticbrainz" in str(measured_audio.get("source", "")).casefold() else {})
+    getsongbpm = sources.get("getsongbpm") or measured_audio.get("getsongbpm") or {}
+    spotify = item.get("audio_features") or {}
 
-    # Spotify's 0..1 energy is the most direct available signal.
-    direct_energy = _signal(audio.get("energy"), 0, 1)
+    components, weights, evidence, evidence_sources = [], [], [], []
+    acoustic_components, acoustic_weights = [], []
+    semantic_components, semantic_weights = [], []
+    direct_energy = _signal(spotify.get("energy"), 0, 1)
     if direct_energy is not None:
         components.append(direct_energy); weights.append(0.42)
-        evidence.append(f"Spotify energy={direct_energy:.2f} (42% base weight)")
+        acoustic_components.append(direct_energy); acoustic_weights.append(0.42)
+        evidence.append(f"Spotify audio-feature energy={direct_energy:.2f}")
+        evidence_sources.append("spotify_audio_features")
 
-    tempo_value = audio.get("tempo_bpm", audio.get("tempo"))
+    # Prefer independent local analysis, then Spotify-provided tempo, then the
+    # historical AcousticBrainz estimate, and finally catalog-only GetSongBPM.
+    tempo_candidates = []
+    for source_name, row, field in (
+        ("Essentia", essentia, "tempo_bpm"),
+        ("Spotify audio features", spotify, "tempo"),
+        ("AcousticBrainz", acousticbrainz, "tempo_bpm"),
+        ("GetSongBPM catalog", getsongbpm, "tempo_bpm"),
+    ):
+        value = row.get(field) if isinstance(row, dict) else None
+        try:
+            value = float(value) if value is not None else None
+        except (TypeError, ValueError):
+            value = None
+        if value is not None and 40 <= value <= 300:
+            tempo_candidates.append((source_name, value))
+    tempo_source, tempo_value = tempo_candidates[0] if tempo_candidates else ("unknown", None)
     tempo = _signal(tempo_value, 60, 180)
     if tempo is not None:
-        components.append(tempo); weights.append(0.23)
-        evidence.append(f"tempo={float(tempo_value):.1f} BPM (23% base weight)")
+        tempo_weight = 0.23 if tempo_source != "GetSongBPM catalog" else 0.08
+        components.append(tempo); weights.append(tempo_weight)
+        if tempo_source != "GetSongBPM catalog":
+            acoustic_components.append(tempo); acoustic_weights.append(tempo_weight)
+        evidence.append(f"{tempo_source} tempo={tempo_value:.1f} BPM")
+        evidence_sources.append(tempo_source.casefold().replace(" ", "_"))
+    tempo_agreement = (
+        len(tempo_candidates) >= 2 and
+        all(_tempo_compatible(tempo_candidates[0][1], candidate[1])
+            for candidate in tempo_candidates[1:])
+    )
+    if len(tempo_candidates) >= 2:
+        evidence.append("independent tempo estimates agree" if tempo_agreement
+                        else "tempo estimates disagree; half/double-time ambiguity or version mismatch possible")
 
-    loudness_value = audio.get("integrated_lufs", audio.get("loudness"))
-    loudness = _signal(loudness_value, -35, -5)
-    if loudness is not None:
+    # Only actual LUFS measurements are treated as integrated program loudness.
+    loudness = None
+    local_lufs = essentia.get("integrated_lufs")
+    try:
+        local_lufs = float(local_lufs) if local_lufs is not None else None
+    except (TypeError, ValueError):
+        local_lufs = None
+    if local_lufs is not None:
+        loudness = _signal(local_lufs, -35, -5)
         components.append(loudness); weights.append(0.15)
-        evidence.append(f"integrated loudness={float(loudness_value):.1f} LUFS (15% base weight)")
+        acoustic_components.append(loudness); acoustic_weights.append(0.15)
+        evidence.append(f"Essentia integrated loudness={local_lufs:.1f} LUFS")
+        evidence_sources.append("essentia_lufs")
+    elif spotify.get("loudness") is not None:
+        # Spotify's loudness is a dB value, not LUFS. Keep its provenance clear.
+        loudness = _signal(spotify.get("loudness"), -35, -5)
+        if loudness is not None:
+            components.append(loudness); weights.append(0.10)
+            acoustic_components.append(loudness); acoustic_weights.append(0.10)
+            evidence.append(f"Spotify loudness={float(spotify['loudness']):.1f} dB (not LUFS)")
+            evidence_sources.append("spotify_loudness")
 
     track_tags = _tag_rows(track_profile)
     artist_tags = _tag_rows(artist_profile)
@@ -120,11 +216,13 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
     if tag_moods:
         mood_score = 0.72 if tag_moods & energetic else 0.28 if tag_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.15)
-        evidence.append(f"track-tag mood={mood_score:.2f} (15% base weight): " + ", ".join(sorted(tag_moods)))
+        semantic_components.append(mood_score); semantic_weights.append(0.15)
+        evidence.append("track-tag mood=" + ", ".join(sorted(tag_moods)))
     elif artist_moods:
         mood_score = 0.68 if artist_moods & energetic else 0.32 if artist_moods & gentle else 0.5
         components.append(mood_score); weights.append(0.06)
-        evidence.append(f"artist-level mood fallback={mood_score:.2f} (6% base weight): " + ", ".join(sorted(artist_moods)))
+        semantic_components.append(mood_score); semantic_weights.append(0.06)
+        evidence.append("artist-level mood fallback=" + ", ".join(sorted(artist_moods)))
 
     genre_values = []
     for row in track_profile.get("musicbrainz_genres") or []:
@@ -132,68 +230,106 @@ def score_track(item, artist_profiles=None, track_profiles=None, audio_profiles=
         if value:
             genre_values.append(norm(value))
     genre_values.extend(norm(value) for value in artist_profile.get("genres") or [] if value)
+    genre_values.extend(norm(value) for value in track_profile.get("discogs_styles") or [] if value)
+    genre_values.extend(norm(value) for value in track_profile.get("discogs_genres") or [] if value)
     genre_text = " ".join(genre_values)
-    high_genre = (
-        "metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal",
-        "heavy metal", "metalcore", "horror punk",
-    )
-    dance_genre = (
-        "electronic", "synthwave", "synthpop", "electropop", "electroclash",
-        "techno", "house", "rave", "ebm", "dark electro", "industrial dance",
-    )
-    mid_genre = (
-        "rockabilly", "surf rock", "horror surf", "garage rock", "rock and roll",
-        "post-punk", "gothic rock", "deathrock", "darkwave", "alternative rock",
-        "indie rock", "rock",
-    )
+    high_genre = ("metal", "hardcore", "punk", "industrial", "drum and bass", "breakcore", "hardstyle", "psychobilly", "hard rock", "nu metal", "heavy metal", "metalcore", "horror punk")
+    dance_genre = ("electronic", "synthwave", "synthpop", "electropop", "electroclash", "techno", "house", "rave", "ebm", "dark electro", "industrial dance")
+    mid_genre = ("rockabilly", "surf rock", "horror surf", "garage rock", "rock and roll", "post-punk", "gothic rock", "deathrock", "darkwave", "alternative rock", "indie rock", "rock")
     low_genre = ("ambient", "drone", "neoclassical", "slowcore", "dark ambient", "shoegaze")
-    if any(x in genre_text for x in high_genre):
-        genre_score = 0.78
-    elif any(x in genre_text for x in dance_genre):
-        genre_score = 0.72
-    elif any(x in genre_text for x in mid_genre):
-        genre_score = 0.62
-    elif any(x in genre_text for x in low_genre):
-        genre_score = 0.30
-    else:
-        genre_score = None
+    if any(x in genre_text for x in high_genre): genre_score = 0.78
+    elif any(x in genre_text for x in dance_genre): genre_score = 0.72
+    elif any(x in genre_text for x in mid_genre): genre_score = 0.62
+    elif any(x in genre_text for x in low_genre): genre_score = 0.30
+    else: genre_score = None
     if genre_score is not None:
         components.append(genre_score); weights.append(0.05 if track_tags else 0.08)
-        evidence.append(f"genre-family signal={genre_score:.2f} ({(0.05 if track_tags else 0.08):.0%} base weight)")
+        semantic_components.append(genre_score); semantic_weights.append(0.05 if track_tags else 0.08)
+        evidence.append(f"genre-family signal={genre_score:.2f}")
 
     genre_groups = []
     for row in track_profile.get("musicbrainz_genres") or []:
         value = row.get("tag", "") if isinstance(row, dict) else row
-        if value and str(value).strip():
-            genre_groups.append(str(value).strip())
+        if value and str(value).strip(): genre_groups.append(str(value).strip())
     genre_groups.extend(str(value).strip() for value in artist_profile.get("genres") or [] if str(value).strip())
+    genre_groups.extend(str(value).strip() for value in track_profile.get("discogs_styles") or [] if str(value).strip())
+    genre_groups.extend(str(value).strip() for value in track_profile.get("discogs_genres") or [] if str(value).strip())
     theme_groups = [str(value).strip() for value in artist_profile.get("themes") or [] if str(value).strip()]
     theme_groups.extend(str(value).strip() for value in track_profile.get("theme_groups") or [] if str(value).strip())
     lyric_analysis = track_profile.get("lyric_analysis") or {}
     lyric_themes = lyric_analysis.get("themes") or {}
     theme_groups.extend(str(value).strip() for value in lyric_themes if str(value).strip())
-    if lyric_themes:
-        evidence.append("lyric-theme evidence: " + ", ".join(sorted(lyric_themes)))
-    if measured_audio.get("loudness_range_lu") is not None:
-        evidence.append(f"loudness range={float(measured_audio['loudness_range_lu']):.1f} LU (track dynamics)")
-    if measured_audio.get("dynamic_complexity") is not None:
-        evidence.append(f"dynamic complexity={float(measured_audio['dynamic_complexity']):.2f}")
+    if lyric_themes: evidence.append("lyric-theme evidence: " + ", ".join(sorted(lyric_themes)))
+    if essentia.get("loudness_range_lu") is not None:
+        evidence.append(f"loudness range={float(essentia['loudness_range_lu']):.1f} LU")
+    if acousticbrainz.get("dynamic_complexity") is not None:
+        evidence.append(f"AcousticBrainz dynamic complexity={float(acousticbrainz['dynamic_complexity']):.2f}")
+    if acousticbrainz.get("tempo_spread_bpm") is not None:
+        evidence.append(
+            f"AcousticBrainz submission tempo spread={float(acousticbrainz['tempo_spread_bpm']):.1f} BPM "
+            f"across {int(acousticbrainz.get('tempo_submission_count') or acousticbrainz.get('submission_count') or 0)} submission(s)"
+        )
+
     if not components:
-        return {"score": 50.0, "confidence": "unknown", "evidence": evidence,
-                "artist": artist, "track": title,
-                "tempo_bpm": float(tempo_value) if tempo_value is not None else None,
-                "vibe_group": "unclassified",
-                "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
-    score = sum(v * w for v, w in zip(components, weights)) / sum(weights) * 100
-    confidence = "high" if direct_energy is not None and (tempo is not None or loudness is not None) else "medium" if len(components) >= 2 else "low"
+        score = 50.0
+    else:
+        score = sum(v * w for v, w in zip(components, weights)) / sum(weights) * 100
+    acoustic_score = (
+        sum(v * w for v, w in zip(acoustic_components, acoustic_weights)) /
+        sum(acoustic_weights) * 100 if acoustic_weights else None
+    )
+    semantic_score = (
+        sum(v * w for v, w in zip(semantic_components, semantic_weights)) /
+        sum(semantic_weights) * 100 if semantic_weights else None
+    )
+
+    # Acoustic confidence is deliberately independent of genre/mood/lyric counts.
+    local_tempo_conf = essentia.get("tempo_confidence")
+    try: local_tempo_conf = float(local_tempo_conf) if local_tempo_conf is not None else None
+    except (TypeError, ValueError): local_tempo_conf = None
+    if direct_energy is not None and (tempo_source in {"Essentia", "Spotify audio features"} and tempo is not None or loudness is not None):
+        acoustic_confidence = "high"
+    elif local_lufs is not None or (tempo_source == "Essentia" and (local_tempo_conf or 0) >= 0.55) or direct_energy is not None:
+        acoustic_confidence = "medium"
+    elif tempo_source == "AcousticBrainz":
+        acoustic_confidence = "low"
+    elif tempo_source == "GetSongBPM catalog":
+        acoustic_confidence = "low"
+    else:
+        acoustic_confidence = "unknown" if not components else "low"
+
+    semantic_source_families = set()
+    if track_profile.get("lastfm_tags") or track_profile.get("tags") or artist_tags or artist_profile.get("genres"):
+        semantic_source_families.add("lastfm_community")
+    if track_profile.get("musicbrainz_tags") or track_profile.get("musicbrainz_genres"):
+        semantic_source_families.add("musicbrainz")
+    if track_profile.get("discogs_styles") or track_profile.get("discogs_genres"):
+        semantic_source_families.add("discogs_release_context")
+    if lyric_themes:
+        semantic_source_families.add("lyric_analysis")
+    semantic_sources = len(semantic_source_families)
+    semantic_confidence = ("high" if semantic_sources >= 3 else
+                           "medium" if semantic_sources == 2 else
+                           "low" if semantic_sources == 1 else "unknown")
     group = next(iter(sorted(tag_moods)), "unclassified") if tag_moods else (
         next(iter(sorted(artist_moods)), "artist-level") if artist_moods else "unclassified")
-    return {"score": round(score, 2), "confidence": confidence,
-            "evidence": evidence, "artist": artist, "track": title,
-            "tempo_bpm": float(tempo_value) if tempo_value is not None else None,
-            "vibe_group": group, "vibe_groups": sorted(tag_moods or artist_moods),
-            "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups))}
-
+    return {
+        "score": round(score, 2),
+        "acoustic_score": round(acoustic_score, 2) if acoustic_score is not None else None,
+        "semantic_score": round(semantic_score, 2) if semantic_score is not None else None,
+        "confidence": acoustic_confidence,  # backwards-compatible acoustic-only alias
+        "acoustic_confidence": acoustic_confidence,
+        "semantic_confidence": semantic_confidence,
+        "semantic_source_families": sorted(semantic_source_families),
+        "tempo_bpm": tempo_value,
+        "tempo_source": tempo_source,
+        "tempo_agreement": tempo_agreement if len(tempo_candidates) >= 2 else None,
+        "tempo_sources": [{"source": name, "bpm": value} for name, value in tempo_candidates],
+        "evidence_sources": sorted(set(evidence_sources)),
+        "evidence": evidence, "artist": artist, "track": title,
+        "vibe_group": group, "vibe_groups": sorted(tag_moods or artist_moods),
+        "genre_groups": sorted(set(genre_groups)), "theme_groups": sorted(set(theme_groups)),
+    }
 
 def _set_similarity(left, right):
     """Jaccard affinity; callers decide whether both sides have evidence."""
@@ -217,9 +353,18 @@ def _tempo_relationship(left, right):
     return max(0.0, min(1.0, distance / 0.5))
 
 
+def _energy_score(row):
+    """Return an acoustic-only energy estimate, never a semantic blend."""
+    if "acoustic_score" in row:
+        return row.get("acoustic_score")
+    # Hand-authored rows may supply an explicit acoustic tier without the
+    # newer split score; ordinary legacy rows are not trusted as measured.
+    return row.get("score") if row.get("acoustic_confidence") in {"medium", "high"} else None
+
+
 def _has_reliable_energy(row):
     """Only medium/high estimates are reliable enough to drive transition scoring."""
-    return row.get("confidence") in {"medium", "high"}
+    return row.get("acoustic_confidence") in {"medium", "high"}
 
 
 def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist_penalty=True):
@@ -228,7 +373,9 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
     # Low-confidence genre/artist estimates can guide discovery, but should not
     # dominate handoff quality as if they were measured track energy.
     if _has_reliable_energy(left) and _has_reliable_energy(right):
-        terms.append((0.34, abs(float(left["score"]) - float(right["score"])) / 100.0))
+        left_energy, right_energy = _energy_score(left), _energy_score(right)
+        if left_energy is not None and right_energy is not None:
+            terms.append((0.34, abs(float(left_energy) - float(right_energy)) / 100.0))
     for field, weight in (("vibe_groups", 0.25), ("genre_groups", 0.08), ("theme_groups", 0.08)):
         affinity = _set_similarity(left.get(field), right.get(field))
         if affinity is not None:
@@ -259,8 +406,11 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
 
 
 def transition_report(left, right):
-    energy_known = _has_reliable_energy(left) and _has_reliable_energy(right)
-    gap = abs(float(left["score"]) - float(right["score"])) / 100.0 if energy_known else None
+    energy_known = (
+        _has_reliable_energy(left) and _has_reliable_energy(right)
+        and _energy_score(left) is not None and _energy_score(right) is not None
+    )
+    gap = abs(float(_energy_score(left)) - float(_energy_score(right))) / 100.0 if energy_known else None
     moods = sorted(set(left.get("vibe_groups") or []) & set(right.get("vibe_groups") or []))
     genres = sorted(set(left.get("genre_groups") or []) & set(right.get("genre_groups") or []))
     themes = sorted(set(left.get("theme_groups") or []) & set(right.get("theme_groups") or []))
@@ -335,9 +485,10 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
         # Curve fit is intentionally low-weight: continuity beats a mathematically perfect arc.
         # Unknown scores use 50 only as a display placeholder. They must not be
         # pulled toward or away from a journey curve as if 50 were measured data.
-        if row.get("confidence") != "unknown":
-            curve_weight = 0.10 if row.get("confidence") in {"high", "medium"} else 0.04
-            total += curve_weight * abs(float(row["score"]) / 100 - target_energy(
+        energy_value = _energy_score(row)
+        if energy_value is not None and row.get("acoustic_confidence") != "unknown":
+            curve_weight = 0.10 if row.get("acoustic_confidence") in {"high", "medium"} else 0.04
+            total += curve_weight * abs(float(energy_value) / 100 - target_energy(
                 index + position_offset, total_count or len(rows), journey, peak_position, peak_shape))
         if index:
             previous = rows[index - 1]
@@ -397,8 +548,8 @@ def _smooth_order(rows, journey="rising", peak_position=85, peak_shape="gradual"
                     pool = alternatives
             nxt = min(pool, key=lambda row: (
                 _transition_cost(order[-1], row, genre_strength, theme_strength),
-                (abs(row["score"] - order[-1]["score"]) * 0.001
-                 if _has_reliable_energy(row) and _has_reliable_energy(order[-1]) else 0.0),
+                (abs(float(_energy_score(row)) - float(_energy_score(order[-1]))) * 0.001
+                 if _has_reliable_energy(row) and _has_reliable_energy(order[-1]) and _energy_score(row) is not None and _energy_score(order[-1]) is not None else 0.0),
                 row["original_index"]))
             order.append(nxt)
             remaining.remove(nxt)
@@ -536,7 +687,13 @@ def sequence_tracks(items, artist_profiles=None, track_profiles=None,
             # hybrid remains a backwards-compatible alias; it no longer partitions energy bands.
             result = _smooth_order(scored, journey, peak_position, peak_shape, genre_strength, theme_strength, fixed)
     elif mode == "energy":
-        result = sorted(scored, key=lambda row: (row["score"], row["original_index"]), reverse=direction == "descending")
+        known_energy = [row for row in scored if row.get("acoustic_score") is not None]
+        unknown_energy = [row for row in scored if row.get("acoustic_score") is None]
+        result = sorted(
+            known_energy,
+            key=lambda row: (row["acoustic_score"], row["original_index"]),
+            reverse=direction == "descending",
+        ) + sorted(unknown_energy, key=lambda row: row["original_index"])
     elif mode == "atmosphere":
         if group_by == "none":
             for row in scored:
@@ -578,6 +735,31 @@ def confidence_summary(scored):
     """Count confidence tiers in a sequence preview, including unknown metadata."""
     return {label: sum(1 for row in scored if row.get("confidence") == label)
             for label in ("high", "medium", "low", "unknown")}
+
+
+def evidence_coverage_summary(scored):
+    """Summarize confidence and independent tempo-source coverage for a preview."""
+    from collections import Counter
+    acoustic = Counter(row.get("acoustic_confidence", row.get("confidence", "unknown"))
+                       for row in scored)
+    semantic = Counter(row.get("semantic_confidence", "unknown") for row in scored)
+    semantic_source_coverage = Counter(
+        source for row in scored for source in row.get("semantic_source_families", [])
+    )
+    acoustic_source_coverage = Counter(
+        source for row in scored for source in row.get("evidence_sources", [])
+    )
+    tempo_sources = Counter(row.get("tempo_source", "unknown") for row in scored
+                            if row.get("tempo_bpm") is not None)
+    return {
+        "acoustic_confidence": {key: acoustic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "semantic_confidence": {key: semantic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "tempo_sources": dict(sorted(tempo_sources.items())),
+        "acoustic_source_coverage": dict(sorted(acoustic_source_coverage.items())),
+        "semantic_source_coverage": dict(sorted(semantic_source_coverage.items())),
+        "tempo_agreements": sum(row.get("tempo_agreement") is True for row in scored),
+        "tempo_disagreements": sum(row.get("tempo_agreement") is False for row in scored),
+    }
 
 
 def alternative_preview_message(path, summary):
@@ -627,7 +809,7 @@ def main():
         tracks = index_tracks(read_json(TRACK_PROFILES, {}))
         tracks = merge_lyric_features(tracks, read_json(LYRIC_FEATURES, []))
         audio_rows = read_json(AUDIO_PROFILES, {})
-        audio_profiles = index_tracks(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
+        audio_profiles = index_audio_profiles(audio_rows.get("tracks", audio_rows) if isinstance(audio_rows, dict) else {})
         sections = read_json(args.sections, {}) if args.sections else {}
         if not isinstance(sections, dict):
             raise ValueError("--sections must be a JSON object mapping section names to URI lists.")
@@ -644,12 +826,18 @@ def main():
         print("Journey: " + args.journey + "; peak target: " + str(args.peak_position) + "% (" + args.peak_shape + ").")
         print("Transitions: " + str(summary["gentle"]) + " gentle, " + str(summary["moderate"]) + " moderate, " + str(summary["potential_jumps"]) + " supported potential jumps, " + str(summary["provisional"]) + " provisional (limited evidence), " + str(summary["uncertain"]) + " uncertain (no evidence).")
         confidence_counts = confidence_summary(scored)
-        print("Audio analysis profiles loaded: " + str(len(audio_profiles)))
-        print("Proposed sequence (position | energy | confidence | group | track):")
-        print("Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
+        print("Merged audio profiles loaded: " + str(len(audio_profiles)))
+        print("Proposed sequence (position | perceived energy | acoustic energy | confidence | group | track):")
+        print("Acoustic confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
+        coverage = evidence_coverage_summary(scored)
+        print("Semantic confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["semantic_confidence"].items()))
+        print("Acoustic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["acoustic_source_coverage"].items()) or "none"))
+        print("Semantic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["semantic_source_coverage"].items()) or "none"))
+        print("Tempo sources: " + (", ".join(f"{name}={count}" for name, count in coverage["tempo_sources"].items()) or "none") + f"; agreement={coverage['tempo_agreements']}; disagreement={coverage['tempo_disagreements']}")
         for position, row in enumerate(scored, 1):
             group = row.get("sequence_group") or row.get("vibe_group") or "unclassified"
-            print(f'  {position:3}. {row["score"]:5.1f} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
+            acoustic_display = f"{row['acoustic_score']:.1f}" if row.get("acoustic_score") is not None else "n/a"
+            print(f'  {position:3}. {row["score"]:5.1f} / {acoustic_display:>5} [{row["confidence"]:7}] [{group}] {row["artist"]} — {row["track"]}')
             signals = row.get("evidence") or []
             print("       Signals: " + ("; ".join(signals) if signals else "no sourced metadata; neutral placeholder score"))
             if position < len(scored):
