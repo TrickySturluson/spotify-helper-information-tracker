@@ -197,8 +197,8 @@ class MusicLibrary:
         from scripts.music.music_evidence import identity_confidence
         confidence = identity_confidence(matched_by, record.get("identity") or {})
         return {"status": "matched", "song_id": key, "matched_by": matched_by,
-            "confidence": confidence, "candidate_ids": [key],
-            "reason": "resolved by " + matched_by.replace("_", " "), "record": record}
+            "confidence": confidence, "metadata_confidence": (record.get("confidence") or {}).get("metadata", {}),
+            "candidate_ids": [key], "reason": "resolved by " + matched_by.replace("_", " "), "record": record}
 
     def get_song(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None,
                  isrc=None, source_track_id=None, release_mbid=None, track_number=None, disc_number=None):
@@ -282,6 +282,9 @@ class MusicLibrary:
         }
 
     def put_catalogue(self, track_rows, artist_rows=None, album_rows=None, audio_rows=None, lyric_rows=None):
+        from scripts.music.music_evidence import (
+            album_metadata_confidence, identity_confidence, track_metadata_confidence,
+        )
         artists = artist_rows if isinstance(artist_rows, dict) else {}
         albums = album_rows if isinstance(album_rows, dict) else {}
         audio_container = audio_rows if isinstance(audio_rows, dict) else {}
@@ -343,7 +346,7 @@ class MusicLibrary:
                         "album_mbid": row.get("album_mbid") or row.get("release_mbid"),
                         "identity_quality": "verified" if bid.startswith("mbid:") else "contextual_fallback",
                     },
-                    "evidence": album_source, "song_ids": [],
+                    "evidence": album_source, "confidence": album_metadata_confidence(album_source), "song_ids": [],
                 })
                 if bid not in artist_records[aid]["album_ids"]:
                     artist_records[aid]["album_ids"].append(bid)
@@ -367,6 +370,12 @@ class MusicLibrary:
                         else "fallback_release_context" if bid else "fallback_artist_title",
                 },
                 "evidence": {"track_metadata": {}, "audio": {}, "lyrics": None},
+                "confidence": {"identity": identity_confidence(
+                    "musicbrainz_recording_mbid" if sid.startswith("mbid:") else
+                    "spotify_track_id" if sid.startswith("spotify:") else
+                    "source_track_id" if sid.startswith("source:") else "fallback_identity",
+                    {"identity_quality": "fallback_artist_title" if sid.startswith("fallback:") else ""}),
+                    "metadata": {}},
                 "derived": row.get("derived") or {}, "coverage": row.get("coverage") or {},
                 "sources": {}, "relations": {"artist_path": str(self.path_for("artists", aid).relative_to(self.root))},
             })
@@ -398,6 +407,7 @@ class MusicLibrary:
             lyric = lyrics.get((norm(row["artist"]), norm(title)))
             if lyric:
                 song["evidence"]["lyrics"] = lyric
+            song["confidence"]["metadata"] = track_metadata_confidence(song["evidence"]["track_metadata"])
             for source_key, status in row.items():
                 if not source_key.endswith("_status") or not isinstance(status, str):
                     continue

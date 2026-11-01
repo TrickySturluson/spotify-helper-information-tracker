@@ -1,5 +1,5 @@
 import unittest
-from scripts.music.music_evidence import identity_confidence, metadata_confidence
+from scripts.music.music_evidence import (identity_confidence, metadata_confidence, track_metadata_confidence, album_metadata_confidence)
 
 class MusicEvidenceTests(unittest.TestCase):
     def test_exact_stable_ids_are_high_confidence(self):
@@ -32,6 +32,24 @@ class MusicEvidenceTests(unittest.TestCase):
         self.assertEqual(result["confidence"], "low")
         self.assertIn("disagree", result["reason"])
 
+
+    def test_track_metadata_confidence_is_calculated_per_descriptor(self):
+        result = track_metadata_confidence({
+            "lastfm_tags": [{"tag": "dark"}, {"tag": "dreamy"}],
+            "musicbrainz_tags": [{"tag": "dark"}],
+            "duration_ms": 210000, "duration_source": "MusicBrainz recording",
+        })
+        self.assertEqual(result["track_tags"]["dark"]["confidence"], "high")
+        self.assertEqual(result["track_tags"]["dreamy"]["confidence"], "low")
+        self.assertEqual(result["duration"]["confidence"], "low")
+
+    def test_album_field_confidence_stays_release_scoped(self):
+        result = album_metadata_confidence({
+            "lastfm_tracklist": [{"position": 1, "title": "Song"}],
+            "lastfm_summary": "A short description.",
+        })
+        self.assertEqual(result["tracklist"]["confidence"], "low")
+        self.assertEqual(result["summary"]["confidence"], "low")
 if __name__ == "__main__": unittest.main()
 
 # FILE OVERVIEW

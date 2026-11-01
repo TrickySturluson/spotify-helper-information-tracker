@@ -10,11 +10,13 @@ class MusicEvidenceIntegrationTests(unittest.TestCase):
             library.put_catalogue({"one": {
                 "artist": "Artist", "track": "Song", "isrc": "US-ABC-26-12345",
                 "track_mbid": "recording-id",
+                "lastfm_tags": [{"tag": "dark"}], "musicbrainz_tags": [{"tag": "dark"}],
             }})
             result = library.lookup_song(isrc="USABC2612345")
             self.assertEqual(result["status"], "matched")
             self.assertEqual(result["matched_by"], "isrc")
             self.assertEqual(result["confidence"], "high")
+            self.assertEqual(result["metadata_confidence"]["track_tags"]["dark"]["confidence"], "high")
             self.assertEqual(library.get_song(isrc="USABC2612345")["lookup_audit"]["matched_by"], "isrc")
 
     def test_release_position_lookup_requires_unique_release_disc_and_track(self):
@@ -59,6 +61,7 @@ class MusicEvidenceIntegrationTests(unittest.TestCase):
             result = library.get_album(artist="Artist", album="Record")
             self.assertEqual(result["evidence"]["lastfm_tracklist"][0]["title"], "Song")
             self.assertIn("Short attributed summary", result["evidence"]["lastfm_summary"])
+            self.assertEqual(result["confidence"]["summary"]["confidence"], "low")
 
 
 if __name__ == "__main__":

@@ -43,3 +43,69 @@ def metadata_confidence(evidence, conflicts=None):
 # Outputs: Categorical confidence and explicit corroboration/conflict reasons.
 # Safety: Community tag counts and contextual album/artist evidence never manufacture track identity or acoustic evidence.
 # Related: scripts/music/music_library.py; tests/test_music_evidence.py; docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md.
+
+
+def _tag_label(value):
+    if isinstance(value, dict):
+        return str(value.get("tag") or value.get("name") or "").strip()
+    return str(value or "").strip()
+
+
+def _source_family(label):
+    value = str(label or "").casefold()
+    if "musicbrainz" in value: return "musicbrainz_catalog"
+    if "last.fm" in value or "lastfm" in value: return "lastfm_catalog"
+    if "discogs" in value: return "discogs_catalog"
+    if "spotify" in value: return "spotify_catalog"
+    if "acousticbrainz" in value: return "acousticbrainz"
+    if "essentia" in value: return "essentia"
+    return ""
+
+
+def track_metadata_confidence(row):
+    """Build per-field confidence from source-attributed track metadata."""
+    row = row if isinstance(row, dict) else {}
+    by_tag = {}
+    for field, family in (
+        ("lastfm_tags", "lastfm_community"),
+        ("musicbrainz_tags", "musicbrainz_community"),
+        ("musicbrainz_genres", "musicbrainz_community"),
+    ):
+        values = row.get(field) or []
+        if isinstance(values, (str, dict)):
+            values = [values]
+        for value in values:
+            label = _tag_label(value)
+            if label:
+                by_tag.setdefault(label.casefold(), {"label": label, "evidence": []})
+                by_tag[label.casefold()]["evidence"].append({"source_family": family, "value": label})
+    result = {"track_tags": {
+        item["label"]: metadata_confidence(item["evidence"])
+        for item in by_tag.values()
+    }}
+    duration = row.get("duration_ms") or row.get("duration")
+    family = _source_family(row.get("duration_source") or row.get("duration_provider"))
+    if duration not in (None, "", 0) and family:
+        result["duration"] = metadata_confidence([{"source_family": family, "value": duration}])
+    release_date = row.get("release_date") or row.get("first_release_date")
+    family = _source_family(row.get("release_date_source") or row.get("release_source"))
+    if release_date and family:
+        result["release_date"] = metadata_confidence([{"source_family": family, "value": release_date}])
+    return result
+
+
+def album_metadata_confidence(profile):
+    """Assess release fields independently; album context never upgrades track confidence."""
+    profile = profile if isinstance(profile, dict) else {}
+    fields = {
+        "tracklist": "lastfm_tracklist",
+        "summary": "lastfm_summary",
+        "artwork": "lastfm_artwork_url",
+        "tags": "lastfm_tags",
+    }
+    result = {}
+    for field, source_key in fields.items():
+        value = profile.get(source_key)
+        if value not in (None, "", [], {}):
+            result[field] = metadata_confidence([{"source_family": "lastfm_catalog", "value": value}])
+    return result
