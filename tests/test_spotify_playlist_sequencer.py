@@ -96,6 +96,16 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(result["mood_confidence"], "low")
         self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
 
+    def test_derived_artist_moods_are_used_as_low_confidence_fallback(self):
+        result = sequencer.score_track(
+            {"name": "Curated Artist Mood", "artists": ["Artist"]},
+            artist_profiles={"artist": {"moods": ["dreamy", "haunting"]}},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
+        self.assertIn("dreamy", result["vibe_groups"])
+        self.assertIn("eerie", result["vibe_groups"])
+
     def test_missing_metadata_is_explicitly_unknown(self):
         result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
         self.assertEqual(result["confidence"], "unknown")
