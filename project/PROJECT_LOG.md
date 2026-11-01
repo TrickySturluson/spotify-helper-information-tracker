@@ -1,6 +1,18 @@
 # SHIT Project Log
 
-Chronological handoff record for substantial project work. New entries go at the top, newest first.
+Chronological handoff record for substantial project work. New entries go at the top, newest first. Record verified outcomes, not intentions as completed work.
+
+## 2026-11-01 — Continuity system and consolidated project goals
+
+- **Goal:** make the repository, rather than cross-chat memory, the durable source of truth for project decisions, active work, test evidence, blockers, and next actions.
+- **Work completed in this branch:** created the `project/` control-centre structure with a project index, chronological log, current handoff, and retry-queue design contract. Expanded `NEXT_WORK.md` to capture migration recovery, bounded enrichment, provider retry semantics, recommendation/discovery ingestion, playlist intelligence/safety, and documentation requirements.
+- **Files:** `project/README.md`, `project/PROJECT_LOG.md`, `project/NEXT_WORK.md`, `project/RETRY_QUEUE_SPEC.md`.
+- **Migration status:** Great Migration run #17 failed during Git rebase/publication. Publication and final verification remain unconfirmed. Do not treat counts from a generated artifact as published Library state. Inspect the artifact, backup, and run logs before retrying or reconciling generated files.
+- **Run reference:** https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
+- **Related open work:** PR #65 proposes a read-only coverage planner; PR #60 proposes recommendation intake with evidence separation. Both require CI/code verification before being treated as complete.
+- **Verification:** documentation changes only. No canonical Library records, provider checkpoints, listening history, or Spotify playlists were modified by this documentation work. Retry queue is a specification only; no queue was generated or executed.
+- **Outcome:** partial — continuity documentation is prepared on the PR branch; not yet merged into `main`.
+- **Next action:** inspect Great Migration run #17 artifacts and audit result; then continue with the next-work priorities.
 
 ## 2026-11-01 — Project control centre proposed
 
