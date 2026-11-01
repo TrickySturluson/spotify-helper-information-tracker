@@ -416,7 +416,7 @@ class MusicLibrary:
         for bid, record in album_records.items():
             path = self.path_for("albums", bid)
             write_json(path, record)
-            index["albums"][bid] = {"path": str(path.relative_to(self.root)), "artist_id": record["artist_id"], "album": record["album"]}
+            index["albums"][bid] = {"path": str(path.relative_to(self.root)), "artist_id": record["artist_id"], "artist": record["artist"], "album": record["album"]}
         for sid, song in songs.items():
             path = self.path_for("songs", sid)
             write_json(path, song)
