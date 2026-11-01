@@ -230,6 +230,12 @@ def _sound_similarity(track_profile, album_profile):
     if not track_labels or not album_labels:
         return {"score": None, "confidence": "unknown", "shared_labels": [],
                 "track_labels": sorted(track_labels), "album_labels": sorted(album_labels)}
+    # Broad umbrella labels add little discriminative value and can obscure
+    # specific style matches (e.g. shoegaze hidden among rock/indie rock).
+    broad = {"rock", "indie rock", "pop", "indie", "alternative", "alternative rock"}
+    specific_track_labels = track_labels - broad
+    if specific_track_labels:
+        track_labels = specific_track_labels
     shared = sorted(track_labels & album_labels)
     # Directional coverage avoids penalizing a sparse track profile for richer album tags.
     score = 100.0 * len(shared) / len(track_labels)
