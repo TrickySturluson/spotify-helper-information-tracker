@@ -16,11 +16,13 @@ assistant_data/music/library/
   songs/<shard>/<stable-id>/song.json
 ```
 
-Stable IDs prefer verified MusicBrainz MBIDs. Spotify track IDs are retained as
-song aliases. When neither exists, the source profile ID is retained as a non-verified fallback so same-title releases do not collapse just because album metadata is missing. If no source ID exists, the fallback uses available artist, release context, title, and duration; name-only lookup remains ambiguous when multiple candidates exist. Name-only
-lookups retain all candidates and refuse to choose when multiple versions match.
-A fallback identity is explicitly marked as such; it is not represented as a
-verified song match.
+Stable IDs prefer verified MusicBrainz MBIDs, followed by Spotify track IDs.
+When neither exists, a stable source-profile ID is retained as a non-verified
+fallback so same-title releases do not collapse just because album metadata is
+missing. If no source ID exists, the fallback uses available artist, release
+context, title, and duration. Name-only lookups retain all candidates and refuse
+to choose when multiple versions match. Fallback identities are explicitly
+marked; they are never represented as verified song matches.
 
 Song files keep track metadata, audio observations, lyric analysis, derived
 features, coverage, source status, and artist/album relations in separate fields.
@@ -41,9 +43,16 @@ python scripts/music/migrate_music_library.py --recent-limit 50
 ```
 
 A bounded recent batch carries play counts in a separate listening-context field;
-missing album information does not create placeholder album records. Migration is local-only. It makes no provider requests, does not modify the
-legacy aggregate JSON, and can be repeated to refresh the normalized records.
-The old aggregates remain available for rollback and incremental compatibility.
+missing album information does not create placeholder album records. Migration
+is local-only. It makes no provider requests, does not modify the legacy
+aggregate JSON, and can be repeated to refresh the normalized records. The old
+aggregates remain available for rollback and incremental compatibility.
+
+The committed validation batch currently contains 50 unique recent songs and
+22 artist identity records. It has no album records because those source track
+profiles did not contain release metadata; seven songs have track-tag evidence,
+while 43 preserve an explicit no-tag/empty-evidence state. The batch is a
+partial integration sample, not a full migration.
 
 ## Lookup behavior
 
@@ -61,6 +70,7 @@ missing individual records may still fall back to legacy track metadata.
 - Preserve source provenance and raw observations; rebuild derived features
   from source data rather than treating derived labels as new evidence.
 - Do not resolve collisions by selecting the first artist/title match.
-- The initial migration is deliberately conservative. Provider aggregates
-  with uncertain identity remain attached only when their source row carries
-  an exact artist/title match.
+- The migration is deliberately conservative. Provider aggregates with uncertain
+  identity remain attached only when their source row carries an exact
+  artist/title match. Use `MusicLibrary.audit()` to validate index aliases and
+  referenced song/artist/album files.
