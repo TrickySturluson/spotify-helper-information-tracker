@@ -287,7 +287,7 @@ def transition_report(left, right):
     confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
     label = ("uncertain" if evidence_count == 0 else
              "provisional" if confidence == "limited" else
-             "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
+             "provisional" if confidence == "limited" else "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
     return {"cost": round(cost, 4), "label": label,
             "confidence": confidence, "evidence_count": evidence_count,
             "energy_gap": round(gap, 3) if gap is not None else None,
@@ -586,6 +586,7 @@ def alternative_preview_message(path, summary):
         f"Alternative preview: {path} | gentle: {summary['gentle']} "
         f"| moderate: {summary['moderate']} "
         f"| potential jumps: {summary['potential_jumps']} "
+        f"| provisional: {summary.get('provisional', 0)} "
         f"| provisional: {summary.get('provisional', 0)} "
         f"| uncertain: {summary.get('uncertain', 0)}"
     )
