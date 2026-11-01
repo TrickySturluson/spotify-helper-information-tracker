@@ -150,7 +150,9 @@ class MusicLibrary:
         if spotify_id:
             key = self.index.get("spotify_ids", {}).get(str(spotify_id).rsplit(":", 1)[-1].casefold())
         if key is None and recording_mbid:
-            key = self.index.get("recording_mbids", {}).get(str(recording_mbid).casefold())
+            mbid_alias = str(recording_mbid).casefold()
+            aliases = self.index.get("recording_mbids", {})
+            key = aliases.get(mbid_alias) or aliases.get(mbid_alias[5:] if mbid_alias.startswith("mbid:") else "mbid:" + mbid_alias)
         if key is None and artist and track:
             alias = norm(artist) + "\0" + norm(track)
             candidates = self.index.get("name_candidates", {}).get(alias)
@@ -372,7 +374,9 @@ class MusicLibrary:
                 index["spotify_ids"][str(spotify_id).rsplit(":", 1)[-1].casefold()] = sid
             mbid = identity.get("recording_mbid")
             if mbid:
-                index["recording_mbids"][str(mbid).casefold()] = sid
+                mbid_alias = str(mbid).casefold()
+                index["recording_mbids"][mbid_alias] = sid
+                index["recording_mbids"][mbid_alias[5:] if mbid_alias.startswith("mbid:") else "mbid:" + mbid_alias] = sid
             index["name_candidates"].setdefault(
                 norm(identity["artist"]) + "\0" + norm(identity["title"]), []
             ).append(sid)
