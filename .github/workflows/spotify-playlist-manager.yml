@@ -87,6 +87,7 @@ jobs:
           if [ -f .github/spotify_api_cooldown.json ]; then git add .github/spotify_api_cooldown.json; fi
           if [ -f assistant_data/music/artist_profiles.json ]; then git add assistant_data/music/artist_profiles.json; fi
           if [ -f assistant_data/spotify/daily_feedback.json ]; then git add assistant_data/spotify/daily_feedback.json; fi
+          if [ -f assistant_data/recommendations/discovery_candidates.json ]; then git add assistant_data/recommendations/discovery_candidates.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update Spotify playlist manager state"
             git push
