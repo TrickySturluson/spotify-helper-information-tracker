@@ -2,6 +2,10 @@
 
 Each major SHIT objective has its own folder containing its scope, design decisions, current state, actions taken, verification evidence, and next steps.
 
+## Cross-project status
+
+See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification blockers across all goal areas. The detailed history belongs in each goal's `ACTIONS.md`.
+
 ## How to use
 
 1. Start at [the project handoff](../NEXT_WORK.md).
