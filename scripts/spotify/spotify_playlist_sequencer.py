@@ -96,11 +96,11 @@ def load_library_profiles(items, root=Path("assistant_data/music/library")):
         album = str(item.get("album") or item.get("album_name") or "")
         uri = str(item.get("uri") or "")
         spotify_id = uri.rsplit(":", 1)[-1] if uri.startswith("spotify:track:") else None
-        found = library.get_recording(spotify_id=spotify_id, recording_mbid=item.get("recording_mbid"),
+        found = library.get_song(spotify_id=spotify_id, recording_mbid=item.get("recording_mbid"),
                                       artist=artist, track=title, album=album)
         if not found:
             continue
-        record = found["recording"]
+        record = found["song"]
         key = (norm(artist), norm(title))
         tracks[key] = dict(record.get("evidence", {}).get("track_metadata") or {})
         tracks[key]["derived"] = record.get("derived") or {}
