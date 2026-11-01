@@ -32,7 +32,15 @@ class LibraryBatchIntegrationTests(unittest.TestCase):
         loaded = sequencer.load_library_profiles(items, root=ROOT)
         self.assertIsNotNone(loaded)
         artists, tracks, audio, albums = loaded
-        self.assertEqual(len(tracks), len(index["songs"]))
+        # The sequencer intentionally keys profiles by normalized
+        # artist/title, so multiple release/recording IDs can collapse to one
+        # playlist-facing profile without losing lookup correctness.
+        expected_profile_keys = {
+            (" ".join(entry["artist"].split()).casefold(),
+             " ".join(entry["track"].split()).casefold())
+            for entry in index["songs"].values()
+        }
+        self.assertEqual(len(tracks), len(expected_profile_keys))
         self.assertGreater(len(artists), 0)
         self.assertEqual(albums, {})
         self.assertTrue(any(profile.get("lastfm_tags") or profile.get("musicbrainz_tags")
