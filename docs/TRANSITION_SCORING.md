@@ -12,6 +12,7 @@ The sequencer now uses evidence-aware transition scoring:
 - Unknown energy is not compared as though a measured score of 50 were real.
 - Only explicit `acoustic_confidence=medium|high` can support an energy comparison. A legacy generic `confidence=medium` without an acoustic basis is not trusted.
 - Acoustic and semantic confidence are separate. Multiple genre, mood, lyric, or artist tags cannot promote acoustic confidence.
+- The displayed perceived-energy score may blend acoustic and descriptive cues, but transition energy gaps and the journey curve use the separate acoustic-only score. Semantic-only tracks have no acoustic score and are not pulled toward a fictitious journey-curve target.
 - Low-confidence estimates retain a reduced journey-curve weight, while unknown placeholders remain display-only.
 - Transition confidence is marked supported only when at least two comparable dimensions exist and both tracks have medium/high energy evidence.
 - The optimizer uses four evenly distributed starting tracks and two local-refinement passes within a 12-position neighborhood to keep real-playlist previews responsive.
