@@ -1,15 +1,15 @@
-# Per-recording music library
+# The Library
 
 ## Purpose
 
-The normalized library makes one recording's metadata retrievable without loading
+The Library makes one recording's metadata retrievable without loading
 the complete track, audio, artist, and album aggregates. Individual JSON records
 are canonical evidence stores; `library_index.json` is a small resolver index.
 
 ## Layout
 
 ```text
-assistant_data/music/music_library/
+assistant_data/music/library/
   library_index.json
   artists/<shard>/<stable-id>/artist.json
   albums/<shard>/<stable-id>/album.json
