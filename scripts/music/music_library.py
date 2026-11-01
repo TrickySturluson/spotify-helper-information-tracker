@@ -305,6 +305,22 @@ class MusicLibrary:
             if isinstance(row, dict) and row.get("artist") and row.get("track")
         }
 
+        # Snapshot the current catalogue before rebuilding. Existing records may
+        # contain mood assessments, listening context, and evidence absent from
+        # the incoming source exports; never discard that accumulated knowledge.
+        previous_index = self.index if isinstance(self.index, dict) else {}
+        previous_songs = {}
+        previous_artists = {}
+        previous_albums = {}
+        for collection, target in (
+            ("songs", previous_songs), ("artists", previous_artists), ("albums", previous_albums)
+        ):
+            for record_id, entry in (previous_index.get(collection) or {}).items():
+                if isinstance(entry, dict) and entry.get("path"):
+                    record = read_json(self.root / entry["path"])
+                    if isinstance(record, dict):
+                        target[record_id] = record
+
         artist_records, album_records, songs = {}, {}, {}
         rows = list(track_rows.values()) if isinstance(track_rows, dict) else list(track_rows) if isinstance(track_rows, list) else []
         preferred_artist_ids = {}
@@ -421,6 +437,72 @@ class MusicLibrary:
                 old_status = song["sources"].get(source_key, {}).get("status")
                 if old_status != "matched" or status == "matched":
                     song["sources"][source_key] = {"status": status}
+
+        # Merge old artist and album records, retaining their evidence and
+        # relationships when the current source exports are incomplete.
+        for aid, old_record in previous_artists.items():
+            if aid not in artist_records:
+                artist_records[aid] = old_record
+            else:
+                current = artist_records[aid]
+                current["evidence"] = {**(old_record.get("evidence") or {}), **(current.get("evidence") or {})}
+                current["album_ids"] = list(dict.fromkeys(
+                    list(old_record.get("album_ids") or []) + list(current.get("album_ids") or [])
+                ))
+                if old_record.get("identity") and not current.get("identity", {}).get("artist_mbid"):
+                    current["identity"] = {**old_record["identity"], **current.get("identity", {})}
+        for bid, old_record in previous_albums.items():
+            if bid not in album_records:
+                album_records[bid] = old_record
+            else:
+                current = album_records[bid]
+                current["evidence"] = {**(old_record.get("evidence") or {}), **(current.get("evidence") or {})}
+                current["song_ids"] = list(dict.fromkeys(
+                    list(old_record.get("song_ids") or []) + list(current.get("song_ids") or [])
+                ))
+                current["confidence"] = {**(old_record.get("confidence") or {}), **(current.get("confidence") or {})}
+
+        # Preserve old songs absent from the incoming rows, and retain their
+        # accumulated evidence/mood state when the same stable ID is refreshed.
+        for sid, old_record in previous_songs.items():
+            if sid not in songs:
+                songs[sid] = old_record
+                continue
+            current = songs[sid]
+            old_identity = old_record.get("identity") or {}
+            current_identity = current.get("identity") or {}
+            current["identity"] = {
+                **old_identity,
+                **{key: value for key, value in current_identity.items() if value not in (None, "", [], {})},
+            }
+            old_evidence = old_record.get("evidence") or {}
+            new_evidence = current.get("evidence") or {}
+            merged_evidence = dict(old_evidence)
+            for evidence_key, evidence_value in new_evidence.items():
+                if evidence_value not in (None, "", [], {}):
+                    if isinstance(evidence_value, dict) and isinstance(merged_evidence.get(evidence_key), dict):
+                        merged_evidence[evidence_key] = {**merged_evidence[evidence_key], **evidence_value}
+                    else:
+                        merged_evidence[evidence_key] = evidence_value
+            current["evidence"] = merged_evidence
+            current["mood"] = old_record.get("mood") or current.get("mood") or {}
+            current["listening_context"] = {
+                **(old_record.get("listening_context") or {}),
+                **(current.get("listening_context") or {}),
+            }
+            current["sources"] = {
+                **(old_record.get("sources") or {}),
+                **(current.get("sources") or {}),
+            }
+            for field in ("derived", "coverage"):
+                current[field] = {
+                    **(old_record.get(field) or {}),
+                    **(current.get(field) or {}),
+                }
+            current["confidence"] = {
+                **(old_record.get("confidence") or {}),
+                **(current.get("confidence") or {}),
+            }
 
         index = {
             "schema_version": 1, "songs": {}, "spotify_ids": {},
