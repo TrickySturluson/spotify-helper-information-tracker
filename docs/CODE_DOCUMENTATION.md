@@ -17,6 +17,18 @@ SHIT uses documentation at three levels:
 - Do not insert comments into generated JSON, JSONL, CSV, or source archives. Document their schemas and provenance in adjacent guides or manifests.
 - Keep documentation factual and synchronized with actual behavior. Distinguish Last.fm scrobbles from measured Spotify playback, and sourced metadata from locally measured audio features.
 
+## Documentation is part of the definition of done
+
+A behavior or configuration change is not complete until its documentation is updated in the same change. Before committing, check all of the following:
+
+- Update the affected file's bottom overview so its purpose, inputs, outputs, side effects, safeguards, and run command still describe the implementation.
+- Update the relevant feature guide and root README when user-visible behavior, supported options, setup, data provenance, or operational schedules change.
+- Update workflow overviews when triggers, permissions, secrets, runtime versions, or automated steps change.
+- Keep examples executable and paths pointed at maintained `scripts/` implementations or the supported `compat/` launchers.
+- Add or adjust regression tests for behavior changes; documentation-only edits must not imply behavior that tests or code do not support.
+
+If a change affects several layers, update those layers together rather than leaving the file overview, feature guide, and top-level documentation describing different versions of the system.
+
 ## Adding or changing a module
 
 When introducing a Python module, add a concise module docstring and a bottom `FILE OVERVIEW` block. Document externally used functions and non-obvious data contracts. Update the relevant guide and tests in the same change when behavior, inputs, outputs, or operational requirements change.
