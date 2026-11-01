@@ -30,7 +30,7 @@ The raw listening archive is intentionally retained as the canonical source for 
 - The current tracked-file inventory contained no obvious .env, OAuth-token, credential, or private-key filenames.
 - The inspected .gitignore, Spotify automation workflows, playlist-manager state/audit, and data manifests showed credentials passed through GitHub Actions secrets/variables rather than literal values.
 - No obvious embedded credential was identified in those inspected files. GitHub code-search queries for common token/secret terms returned no matches, but this was not a complete scan of historical blob contents.
-- A full-history Gitleaks workflow has now been added at `.github/workflows/public-repository-security.yml`. Its first run is pending at the time this guide was updated; findings must be reviewed before calling the repository clean.
+- A Gitleaks workflow has been added at `.github/workflows/public-repository-security.yml`. Its initial main-branch scan inspected 722 commits (218.73 MB) and reported no leaks. The workflow now scans all fetched refs with `--log-opts=--all`, not just the current branch; review that expanded scan before treating every branch as clean.
 - The repository history contains hundreds of commits and exposes the personal author email in commit metadata. This review did not inspect every historical blob for leaked credentials; therefore it cannot certify that no secret was ever committed.
 - The public dataset includes precise listening timestamps and identifiable playlist history. This is personal behavioral data, even though it is not an authentication secret.
 
