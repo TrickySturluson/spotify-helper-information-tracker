@@ -276,6 +276,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `compat/build_listening_time_summary.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_music_analytics.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_music_metadata.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/build_album_profiles.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_music_profiles.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_playback_analytics.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/build_stats.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
