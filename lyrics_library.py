@@ -317,7 +317,7 @@ class LyricsLibrary:
 
     def lookup(self, title=None, artist=None, phrase=None, limit=20):
         if phrase:
-            hashes = phrase_fingerprints(phrase)
+            hashes = phrase_fingerprints(phrase)[:900]
             if not hashes:
                 return []
             rows = self.db.execute("""SELECT s.*, a.themes_json,a.relevance,a.assessment,COUNT(DISTINCT p.phrase_hash) matches
