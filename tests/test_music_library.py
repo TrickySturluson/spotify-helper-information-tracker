@@ -136,6 +136,22 @@ class MusicLibraryTests(unittest.TestCase):
         self.assertEqual(first["listening_context"]["recent_plays"], 9)
         self.assertEqual(first["lastfm_tags"][0]["tag"], "dark")
 
+
+    def test_library_audit_accepts_consistent_song_artist_relations(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            lib.put_catalogue({
+                "mbid:recording": {
+                    "track_id": "mbid:recording", "track_mbid": "recording",
+                    "artist_id": "mbid:artist", "artist": "Artist", "track": "Song",
+                }
+            })
+            report = lib.audit()
+            self.assertTrue(report["ok"], report["errors"])
+            self.assertEqual(report["songs"], 1)
+            self.assertEqual(report["artists"], 1)
+            self.assertEqual(report["albums"], 0)
+
 if __name__ == "__main__": unittest.main()
 
 # FILE OVERVIEW
