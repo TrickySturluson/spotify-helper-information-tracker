@@ -17,8 +17,7 @@ assistant_data/music/library/
 ```
 
 Stable IDs prefer verified MusicBrainz MBIDs. Spotify track IDs are retained as
-song aliases. When neither exists, deterministic fallback IDs include
-artist, album/release context, title, and duration where available. Name-only
+song aliases. When neither exists, the source profile ID is retained as a non-verified fallback so same-title releases do not collapse just because album metadata is missing. If no source ID exists, the fallback uses available artist, release context, title, and duration; name-only lookup remains ambiguous when multiple candidates exist. Name-only
 lookups retain all candidates and refuse to choose when multiple versions match.
 A fallback identity is explicitly marked as such; it is not represented as a
 verified song match.
@@ -35,9 +34,14 @@ Run a dry-run first, then migrate locally:
 ```bash
 python scripts/music/migrate_music_library.py --dry-run
 python scripts/music/migrate_music_library.py
+
+# Optional staged migration: up to 50 unique songs from recent listening
+python scripts/music/migrate_music_library.py --recent-limit 50 --dry-run
+python scripts/music/migrate_music_library.py --recent-limit 50
 ```
 
-Migration is local-only. It makes no provider requests, does not modify the
+A bounded recent batch carries play counts in a separate listening-context field;
+missing album information does not create placeholder album records. Migration is local-only. It makes no provider requests, does not modify the
 legacy aggregate JSON, and can be repeated to refresh the normalized records.
 The old aggregates remain available for rollback and incremental compatibility.
 
@@ -46,7 +50,7 @@ The old aggregates remain available for rollback and incremental compatibility.
 The sequencer first resolves each playlist item by Spotify track ID, then by
 verified recording MBID, then by an exact artist/title alias only when unique.
 An album name may disambiguate otherwise ambiguous versions. It loads the
-song plus its related artist and album files on demand. If the library
+song plus its related artist file and, only when known, its album file on demand. If the library
 does not exist, the existing aggregate path remains active; during migration,
 missing individual records may still fall back to legacy track metadata.
 
