@@ -33,3 +33,12 @@ class AcousticBrainzTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Verify extraction and normalization of sourced AcousticBrainz features.
+# Coverage: Tempo, loudness, dynamic complexity, replay gain, license metadata,
+#           and safe handling of missing feature fields.
+# Run: python -m unittest tests.test_enrich_acousticbrainz -v (from the repository root).
+# Related: scripts/music/enrich_acousticbrainz.py and docs/AUTOMATED_AUDIO_METADATA.md.
+# -----------------------------------------------------------------------------
