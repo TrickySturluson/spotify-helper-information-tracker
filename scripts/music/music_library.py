@@ -28,7 +28,7 @@ def safe_id(value):
 
 def artist_key(row):
     candidate = str(row.get("artist_mbid") or row.get("artist_id") or "").strip().casefold()
-    if candidate.startswith("mbid:"):
+    if candidate.startswith(("mbid:", "name:")):
         return candidate
     if candidate and re.fullmatch(r"[0-9a-f-]{36}", candidate):
         return "mbid:" + candidate
