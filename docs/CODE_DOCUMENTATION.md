@@ -32,3 +32,7 @@ If a change affects several layers, update those layers together rather than lea
 ## Adding or changing a module
 
 When introducing a Python module, add a concise module docstring and a bottom `FILE OVERVIEW` block. Document externally used functions and non-obvious data contracts. Update the relevant guide and tests in the same change when behavior, inputs, outputs, or operational requirements change.
+
+## Automated enforcement
+
+The `tests/test_script_layout.py` suite checks that maintained Python files under `scripts/`, `compat/`, and `tests/`, plus GitHub Actions workflow YAML files, contain a bottom `FILE OVERVIEW` block. The same test checks the root `.gitignore`. The main CI workflow runs this check explicitly before the full unit-test suite. Generated JSON/JSONL and data archives remain documented by adjacent guides and manifests rather than invalid inline comments.
