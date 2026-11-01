@@ -81,7 +81,7 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
           GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
-        run: python scripts/music/verify_provider_credentials.py
+        run: |\n          set -o pipefail\n          python scripts/music/verify_provider_credentials.py 2>&1 | tee shit-library-run.log
 
       - name: Configure read-only Spotify refresh
         if: steps.request.outputs.command == 'prepare'
