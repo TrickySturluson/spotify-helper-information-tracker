@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """Full offline migration of stored tracks and accessible Spotify playlist snapshots."""
-import argparse, json
+import argparse, json, shutil, sys
+from datetime import datetime, timezone
 from pathlib import Path
-from music_library import MusicLibrary
 
-ROOT = Path("assistant_data/music")
-PLAYLISTS = Path("assistant_data/spotify/playlists")
-LYRICS = Path("assistant_data/recommendations/lyric_features.json")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+from scripts.music.music_library import MusicLibrary
+
+ROOT = REPO_ROOT / "assistant_data/music"
+PLAYLISTS = REPO_ROOT / "assistant_data/spotify/playlists"
+LYRICS = REPO_ROOT / "assistant_data/recommendations/lyric_features.json"
 
 def load(path, fallback):
     try: return json.loads(path.read_text(encoding="utf-8"))
@@ -50,6 +55,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT / "library")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--no-backup", action="store_true",
+                        help="Skip the automatic pre-migration library backup (not recommended)")
     args = parser.parse_args()
     profiles = load(ROOT / "track_profiles.json", {})
     artists = load(ROOT / "artist_profiles.json", {})
@@ -83,6 +90,12 @@ def main():
     if args.dry_run:
         print(json.dumps({**report, "writes": 0}, indent=2))
         return
+    backup_path = None
+    if args.root.exists() and (args.root / "library_index.json").exists() and not args.no_backup:
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        backup_path = args.root.with_name(args.root.name + ".backup-" + stamp)
+        shutil.copytree(args.root, backup_path)
+        report["backup_path"] = str(backup_path)
     result = MusicLibrary(args.root).put_catalogue(rows, artists, albums, audio, lyrics)
     report["migration_result"] = result
     report["library_audit"] = MusicLibrary(args.root).audit()
