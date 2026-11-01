@@ -31,9 +31,18 @@ LRCLIB and Lyrics.ovh are queried even when no API credentials are configured. M
 
 ## What is analyzed
 
-The versioned analyzer extracts explicit song-level themes, with an initial emphasis on horror, slasher/murder, blood/gore, monsters, vampires, zombies/undead, ghosts/supernatural, witchcraft/occult, dark fantasy, Halloween-party imagery, and death/afterlife. It records matched evidence terms, counts, source agreement, word count, a relevance score, and a coarse assessment. When multiple providers return lyrics, their theme evidence is merged rather than overwritten. This is a transparent lexical baseline, not an AI interpretation of metaphor, narrative, irony, or musical sound. A low score means "not enough explicit evidence found", not proof that the song is unrelated.
+The versioned v3 analyzer extracts reusable song-level themes across multiple areas:
 
-For Booze or Boos!, the lyric result should be combined with track/artist metadata and listening judgment. Halloween/horror relevance is a gate; energy and sonic fit determine sequencing only after that gate is satisfied.
+- **Horror:** slasher/murder, blood/gore, monsters, vampires, zombies/undead, ghosts, occult, Halloween, death and dark fantasy.
+- **Relationships:** romance, love, heartbreak and loss.
+- **Social energy:** nightlife, clubbing, parties, celebration and friendship.
+- **Personal/emotional:** rebellion, freedom, nostalgia, identity, alienation and belonging.
+- **World and setting:** science fiction/space, travel/escape, war/conflict, nature/weather and religion/spirituality.
+- **Other recurring subjects:** substance use and related nightlife imagery.
+
+Each theme retains evidence terms, counts and source agreement. Horror relevance is calculated only from horror-specific themes; ordinary party, romance or nightlife language cannot inflate the horror score. Multiple providers are merged into one analysis. This is a transparent lexical baseline, not an AI interpretation of metaphor, narrative, irony or musical sound. A low score means "not enough explicit evidence found", not proof that a song is unrelated. Schema and method versions are stored so later analyzers can be compared and migrated safely.
+
+For Booze or Boos!, horror relevance remains a gate; lyrical themes, track/artist metadata and listening judgment are combined, while energy and sonic fit determine sequencing after the gate is satisfied. For other playlists, the broader theme vocabulary can be used without applying the horror gate.
 
 ## Local lookup and privacy
 
@@ -51,11 +60,6 @@ The database supports searching by title, artist, remembered phrase, and recent 
 
 ## Recommendation feature integration
 
-After rebuilding recommendation features, merge any locally analyzed lyric evidence into the generated track feature file:
+`python build_music_analytics.py` rebuilds recommendation features and automatically merges any matching lyric analyses from the local SQLite database into each track's `lyric_analysis` field. It also reports the number of enriched tracks in the recommendation manifest. The standalone `enrich_recommendation_lyrics.py` remains available for rebuilding the join after the feature file has already been generated.
 
-```bash
-python build_music_analytics.py
-python enrich_recommendation_lyrics.py
-```
-
-The enrichment is local-only and additive. It joins on normalized artist + track title, writes a compact `lyric_analysis` object into `assistant_data/recommendations/track_features.json`, and leaves tracks without a local lyric record explicitly marked `null`. A clean cloud runner without the local SQLite database skips this step rather than fabricating empty evidence. The canonical Last.fm archive and Spotify reference data are not modified.
+The lyric database is intentionally local and git-ignored. A clean GitHub Actions runner therefore builds the normal recommendation dataset without private lyric records; it does not fabricate empty analysis or upload the local database. To include locally researched lyric metadata in a local feature build, keep `data/lyrics/library.sqlite3` on that machine and run the normal analytics builder. The canonical Last.fm archive and Spotify reference data are not modified.
