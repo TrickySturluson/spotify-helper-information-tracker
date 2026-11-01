@@ -227,6 +227,16 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertAlmostEqual(curve[-1], 0.96)
         self.assertEqual(curve[85], curve[-1])
 
+    def test_genre_family_estimates_support_surf_club_and_heavy_sections(self):
+        def score(artist, genre):
+            return sequencer.score_track(
+                {"uri": "spotify:track:1", "name": "Track", "artists": [artist]},
+                artist_profiles={artist.casefold(): {"genres": [genre]}},
+            )["score"]
+        self.assertEqual(score("Surf Artist", "surf rock"), 62.0)
+        self.assertEqual(score("Club Artist", "synthwave"), 72.0)
+        self.assertEqual(score("Heavy Artist", "industrial metal"), 78.0)
+
 
 if __name__ == "__main__":
     unittest.main()
