@@ -348,9 +348,13 @@ Preview and run the local-only migration:
 ```bash
 python compat/migrate_music_library.py --dry-run
 python compat/migrate_music_library.py
+
+# Optional staged migration of the 50 most-recent unique songs
+python compat/migrate_music_library.py --recent-limit 50 --dry-run
+python compat/migrate_music_library.py --recent-limit 50
 ```
 
-The migration makes no provider requests and leaves aggregate JSON intact.
+The migration makes no provider requests and leaves aggregate JSON intact. Bounded recent batches preserve play counts separately and do not invent album records when release metadata is missing.
 The playlist sequencer prefers per-song lookup when the library exists,
 loading only records referenced by the playlist; missing records can still use
 the legacy track cache during the transition. Spotify track IDs and verified
