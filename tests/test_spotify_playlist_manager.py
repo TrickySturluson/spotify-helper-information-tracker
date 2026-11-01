@@ -1,3 +1,4 @@
+"""Tests for playlist locking, OAuth, preview, and explicit apply safeguards."""
 import tempfile
 import io
 import urllib.error

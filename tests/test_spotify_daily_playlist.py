@@ -1,3 +1,4 @@
+"""Tests for balanced daily playlist construction and selection rules."""
 import unittest
 import urllib.parse
 from datetime import date

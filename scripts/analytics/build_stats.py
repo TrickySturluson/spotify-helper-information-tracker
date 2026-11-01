@@ -1,3 +1,8 @@
+"""Generate legacy aggregate statistics from the canonical scrobble archive.
+
+Preserves the original all-history counters and timestamp buckets; newer
+assistant-facing analytics are built by the dedicated analytics scripts.
+"""
 import json
 import os
 from collections import Counter, defaultdict

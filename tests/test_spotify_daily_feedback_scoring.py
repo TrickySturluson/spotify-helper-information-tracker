@@ -1,3 +1,4 @@
+"""Tests for exposure-aware Spotify Daily feedback scoring."""
 import unittest
 from datetime import date
 

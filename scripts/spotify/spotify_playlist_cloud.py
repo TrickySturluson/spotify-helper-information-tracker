@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
+"""Owner-verified GitHub issue command handler for Spotify playlist control.
+
+Validates issue authors and command payloads before delegating playlist
+operations to the local manager; it is not an open public command endpoint.
+"""
 import time
-"""Owner-verified GitHub issue command handler for Spotify playlist control."""
 import json
 import os
 import re

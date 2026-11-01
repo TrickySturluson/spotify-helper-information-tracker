@@ -1,3 +1,4 @@
+"""Tests for read-only Spotify playlist snapshots and reference metadata."""
 import json
 import tempfile
 import unittest

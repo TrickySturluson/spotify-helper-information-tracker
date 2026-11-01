@@ -1,3 +1,4 @@
+"""Tests for discovery candidate ranking and Spotify catalogue integration."""
 import tempfile
 import unittest
 from datetime import date

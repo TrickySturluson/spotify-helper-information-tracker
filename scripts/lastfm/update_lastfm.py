@@ -1,3 +1,9 @@
+"""Download and maintain the canonical Last.fm scrobble history.
+
+Uses Last.fm recent-track pagination and retry handling. The archive in data/
+is the historical source of truth used by downstream analytics; generated
+assistant_data files are derived separately.
+"""
 import json
 import os
 import time

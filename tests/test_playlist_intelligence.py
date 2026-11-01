@@ -1,3 +1,4 @@
+"""Tests for playlist taste profiles, diagnostics, and recommendation evidence."""
 import tempfile
 import unittest
 from pathlib import Path

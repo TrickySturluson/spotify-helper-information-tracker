@@ -1,3 +1,4 @@
+"""Tests for sourced track-level metadata profiles and identity matching."""
 import unittest
 from unittest.mock import patch
 

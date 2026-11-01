@@ -1,3 +1,4 @@
+"""Tests for conservative MusicBrainz recording-ID resolution."""
 import unittest
 from enrich_musicbrainz_recording_ids import norm
 

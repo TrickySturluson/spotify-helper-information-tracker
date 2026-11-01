@@ -1,3 +1,4 @@
+"""Tests for playlist sectioning, energy curves, and transition sequencing."""
 import unittest
 
 import spotify_playlist_sequencer as sequencer

@@ -1,3 +1,4 @@
+"""Tests for authenticated GitHub issue commands controlling Spotify playlists."""
 import json
 import os
 import tempfile

@@ -1,3 +1,4 @@
+"""Tests for lyric-source handling, local references, and lyric analysis storage."""
 import tempfile
 import unittest
 from pathlib import Path

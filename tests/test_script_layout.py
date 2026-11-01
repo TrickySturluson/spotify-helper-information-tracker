@@ -1,3 +1,4 @@
+"""Tests that enforce SHIT's organized script and compatibility layout."""
 """Guard the responsibility-based implementation and compatibility layout."""
 import unittest
 from pathlib import Path
