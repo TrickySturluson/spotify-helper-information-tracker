@@ -103,17 +103,8 @@ def main():
     )
     cloud.replace_playlist(sp, DAILY_ID, uris)
 
-    old_uris = {row.get("uri") for row in before["items"] if row.get("uri")}
-    new_uris = set(uris)
-    metadata = {row["uri"]: {"artist": row.get("artist"), "track": row.get("track")}
-                for row in recommendations}
-    daily_feedback.record_additions(
-        [{"uri": uri, **metadata.get(uri, {})} for uri in uris],
-        added_at=manager.stamp(), liked_at_add=liked_baseline,
-    )
-    for old_uri in old_uris - new_uris:
-        daily_feedback.record_removal(old_uri, removed_at=manager.stamp(), reason="curator_rotation")
-
+    # Persist the per-day guard immediately after Spotify accepts the replacement.
+    # If a later observation fails, a rerun cannot accidentally rotate twice.
     updated = sp.call("GET", f"/playlists/{DAILY_ID}")
     updated_snapshot = manager.snapshot(sp, updated)
     config = manager.config()
@@ -132,6 +123,18 @@ def main():
         "cycle_date_eastern": cycle_date,
     }
     manager.write(manager.CONFIG, config)
+
+    old_uris = {row.get("uri") for row in before["items"] if row.get("uri")}
+    new_uris = set(uris)
+    metadata = {row["uri"]: {"artist": row.get("artist"), "track": row.get("track")}
+                for row in recommendations}
+    daily_feedback.record_additions(
+        [{"uri": uri, **metadata.get(uri, {})} for uri in uris],
+        added_at=manager.stamp(), liked_at_add=liked_baseline,
+    )
+    for old_uri in old_uris - new_uris:
+        daily_feedback.record_removal(old_uri, removed_at=manager.stamp(), reason="curator_rotation")
+
     manager.audit(
         event="daily_cycle_completed", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), removed_by_rotation=len(old_uris - new_uris),
