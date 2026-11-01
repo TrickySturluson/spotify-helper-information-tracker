@@ -92,27 +92,6 @@ jobs:
           set -o pipefail
           python scripts/music/verify_provider_credentials.py 2>&1 | tee shit-library-run.log
 
-      - name: Configure read-only Spotify refresh
-        if: steps.request.outputs.command == 'prepare'
-        env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-        run: |
-          test -n "$SPOTIFY_CLIENT_ID" || (echo "Missing repository variable SPOTIFY_CLIENT_ID"; exit 1)
-          test -n "$SPOTIFY_REFRESH_TOKEN" || (echo "Missing repository secret SPOTIFY_REFRESH_TOKEN"; exit 1)
-          python - <<'PY'
-          import os, sys
-          from pathlib import Path
-          sys.path.insert(0, "compat")
-          import spotify_playlist_manager as manager
-          manager.TOKEN = Path(".spotify_playlist_token.json")
-          manager.write(manager.TOKEN, {
-              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-              "obtained_at": 0,
-              "expires_in": 0,
-          })
-          PY
-
       - name: Run requested SHIT Library operation
         if: steps.request.outputs.command != 'verify'
         env:
@@ -127,7 +106,7 @@ jobs:
             status)  python shit.py library status ;;
             preview) python shit.py library preview ;;
             migrate) python shit.py library migrate --yes ;;
-            prepare) python shit.py library prepare --execute --yes ;;
+            prepare) python shit.py library prepare --execute --yes --skip-spotify-refresh ;;
             audit)   python shit.py library audit ;;
           esac 2>&1 | tee shit-library-run.log
           {
@@ -146,7 +125,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assistant_data/
+          git add assistant_data/music/
           if git diff --cached --quiet; then
             echo "No generated Library or metadata changes to commit."
           else
@@ -162,7 +141,7 @@ jobs:
         with:
           name: shit-library-run-${{ github.run_id }}
           path: |
-            assistant_data/music/library.backup-*/
+            assistant_data/music/
             shit-library-run.log
           if-no-files-found: ignore
           retention-days: 30
@@ -194,7 +173,7 @@ jobs:
                 report,
                 '```',
                 '',
-                'The complete logs and any pre-migration backup are attached to this workflow run.'
+                'The complete logs, generated music data, and pre-migration backup are attached to this workflow run.'
               ].join('\n')
             });
 
