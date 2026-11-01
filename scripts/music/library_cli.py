@@ -58,8 +58,7 @@ def run_migration(root, dry_run=False, yes=False):
         command.append("--dry-run")
     elif not yes:
         answer = input(
-            "This will update the canonical per-recording library. "
-            "A timestamped backup is created automatically. Continue? [y/N] "
+            "This updates the canonical library. A timestamped backup is created automatically. Continue? [y/N] "
         ).strip().casefold()
         if answer not in {"y", "yes"}:
             print("Migration cancelled; no library writes performed.")
@@ -67,18 +66,14 @@ def run_migration(root, dry_run=False, yes=False):
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
 
-def run_preparation(execute=False, yes=False, skip_spotify_refresh=False, skip_discogs=False, skip_getsongbpm=False):
+def run_preparation(args):
+    if args.root != DEFAULT_ROOT:
+        print("Custom --root is not supported for full preparation; use the default canonical library root.")
+        return 2
     command = [sys.executable, str(PREPARER)]
-    if execute:
-        command.append("--execute")
-    if yes:
-        command.append("--yes")
-    if skip_spotify_refresh:
-        command.append("--skip-spotify-refresh")
-    if skip_discogs:
-        command.append("--skip-discogs")
-    if skip_getsongbpm:
-        command.append("--skip-getsongbpm")
+    for flag in ("execute", "yes", "skip_spotify_refresh", "skip_discogs", "skip_getsongbpm"):
+        if getattr(args, flag):
+            command.append("--" + flag.replace("_", "-"))
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
 
@@ -95,9 +90,9 @@ def build_parser():
     library = commands.add_parser("library", help="Manage the canonical per-recording music library")
     actions = library.add_subparsers(dest="action", required=True)
     for name, help_text in (
-        ("status", "Show indexed catalogue counts and the last migration result"),
-        ("preview", "Preview a full migration without writing files or contacting providers"),
-        ("migrate", "Migrate stored profiles and accessible playlist snapshots into the library"),
+        ("status", "Show indexed catalogue counts and last migration result"),
+        ("preview", "Preview migration without writing or contacting providers"),
+        ("migrate", "Migrate stored profiles and accessible playlist snapshots"),
         ("audit", "Validate canonical records, relations and lookup aliases"),
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
         ("sync", "Merge existing enrichment exports into the canonical library"),
@@ -105,7 +100,13 @@ def build_parser():
         sub = actions.add_parser(name, help=help_text)
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
         if name == "migrate":
-            sub.add_argument("--yes", action="store_true", help="Confirm the migration without an interactive prompt")
+            sub.add_argument("--yes", action="store_true", help="Skip migration confirmation")
+        if name == "prepare":
+            sub.add_argument("--execute", action="store_true", help="Run migration and enrichment; default is read-only preflight")
+            sub.add_argument("--yes", action="store_true", help="Skip confirmation (requires --execute)")
+            sub.add_argument("--skip-spotify-refresh", action="store_true")
+            sub.add_argument("--skip-discogs", action="store_true")
+            sub.add_argument("--skip-getsongbpm", action="store_true")
     return parser
 
 
@@ -120,16 +121,26 @@ def main(argv=None):
         return run_migration(args.root, dry_run=True)
     if args.action == "migrate":
         return run_migration(args.root, yes=args.yes)
+    if args.action == "prepare":
+        if args.yes and not args.execute:
+            raise SystemExit("--yes requires --execute")
+        return run_preparation(args)
+    if args.action == "sync":
+        if args.root != DEFAULT_ROOT:
+            print("Custom --root is not supported for sync; use the default canonical library root.")
+            return 2
+        return sync_library()
     return 2
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
 
+
 # FILE OVERVIEW
 # Purpose: Native command interface for the canonical per-recording music library.
-# Commands: status, preview, migrate, audit, prepare, sync; prepare defaults to a
-# read-only preflight; --execute performs migration and bounded enrichment. Migration
-# creates a timestamped backup before writing. Provider requests and playlist
-# writes are not performed by the offline migration.
-# Related: scripts/music/music_library.py and scripts/music/migrate_full_music_library.py.
+# Commands: status, preview, migrate, audit, prepare, sync.
+# Prepare defaults to a read-only preflight; --execute runs migration and bounded
+# provider enrichment. Sync merges existing durable exports into the canonical store.
+# Offline migration creates a timestamped backup and makes no provider requests.
+# Related: scripts/music/music_library.py, prepare_music_library.py, sync_music_library.py.
