@@ -2,9 +2,27 @@ import unittest
 from unittest.mock import patch
 
 import build_track_profiles as profiles
+import build_music_metadata as music_metadata
 
 
 class TrackProfileTests(unittest.TestCase):
+
+
+    def test_duration_metadata_priority_uses_recent_top_track_ranking(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "recent.json"
+            path.write_text(json.dumps({"tracks": [
+                {"artist": "Recent Artist", "track": "Recent Song"},
+                {"artist": "Other Artist", "track": "Other Song"},
+            ]}), encoding="utf-8")
+            priority = music_metadata.recent_priority(path)
+        self.assertEqual(priority[("recent artist", "recent song")], 0)
+        self.assertEqual(priority[("other artist", "other song")], 1)
+        self.assertNotIn(("all time artist", "old favorite"), priority)
 
     def test_recent_top_tracks_uses_rolling_window_and_deterministic_ties(self):
         catalogue = {
