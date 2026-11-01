@@ -280,7 +280,9 @@ Before applying a plan, the manager saves a complete pre-change playlist snapsho
 
 **Spotify content boundary:** complete playlist tracklists and snapshots stay outside `assistant_data/` and are never included in control issue comments. For user-requested management, the control panel surfaces only minimal operational metadata (playlist name, ID, item count, lock state) and the explicit track URIs in a proposed plan. Full pre-change snapshots are stored as GitHub Actions artifacts for recovery, not in issue comments or assistant-facing analytics.
 
-The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use `/items` (not the older `/tracks` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app.
+The manager is intentionally local and uses the Spotify Web API. Spotify's current playlist endpoints use `/items` (not the older `/tracks` routes). Spotify's development-mode requirements and API access limits may apply to the connected Developer app. Full playlist item reads are restricted to playlists owned by the authenticated account or where that account is a collaborator; public visibility alone does not grant item access.
+
+Spotify HTTP 429 responses are treated as a hard cooldown, not retried. The manager records the supplied `Retry-After` deadline in `.github/spotify_api_cooldown.json`; cloud workflows persist it and refuse further Spotify API requests until it expires. Do not repeatedly edit the control issue to retry a rate-limited command. See [Spotify API operations and recovery](docs/SPOTIFY_API_OPERATIONS.md) for the diagnostic sequence and current API constraints.
 
 
 ### GitHub Actions control panel
