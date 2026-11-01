@@ -176,6 +176,24 @@ class SpotifyReferenceAuditTests(unittest.TestCase):
 
 
 
+    def test_non_object_playlist_record_is_reported_without_crashing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            record_path = base / "playlists" / "p1.json"
+            record_path.write_text(json.dumps(["not", "an", "object"]), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("playlist record p1 must contain a JSON object" in error for error in errors))
+
+    def test_non_object_reference_index_is_reported_without_crashing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.write_library(root)
+            (base / "reference_index.json").write_text(json.dumps(["not", "an", "object"]), encoding="utf-8")
+            errors, _ = audit_project.audit_spotify_reference(root)
+            self.assertTrue(any("reference index must contain a JSON object" in error for error in errors))
+
+
 class ProjectAuditMainTests(unittest.TestCase):
     def write_minimal_project(self, root):
         files = {
@@ -225,6 +243,18 @@ class ProjectAuditMainTests(unittest.TestCase):
             self.assertEqual(result, 1)
             self.assertIn("ERROR: Canonical scrobble count is valid.", output.getvalue())
             self.assertIn("ERROR: Music duration coverage counts are valid.", output.getvalue())
+
+
+    def test_non_object_manifest_is_reported_without_crashing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_minimal_project(root)
+            (root / "assistant_data/manifest.json").write_text(json.dumps(["not", "an", "object"]), encoding="utf-8")
+            output = io.StringIO()
+            with patch.object(audit_project, "ROOT", root), redirect_stdout(output):
+                result = audit_project.main()
+            self.assertEqual(result, 1)
+            self.assertIn("assistant_data/manifest.json must contain a JSON object", output.getvalue())
 
     def test_main_clears_previous_results_between_runs(self):
         with tempfile.TemporaryDirectory() as directory:
