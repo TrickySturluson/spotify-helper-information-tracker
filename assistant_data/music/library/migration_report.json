@@ -1,50 +1,47 @@
 {
-  "library": "The Library",
-  "batch_id": "two-batches-100",
-  "status": "partial staged migration",
-  "source": {
-    "recent_top_tracks": "assistant_data/music/recent_top_tracks.json",
-    "track_profiles": "assistant_data/music/track_profiles.json",
-    "generated_at": "2026-11-01T08:02:28.928846+00:00",
-    "window_days": 90
+  "existing_library_records": {
+    "songs": 11149,
+    "artists": 5230,
+    "albums": 6439,
+    "preservation": "existing indexed records and accumulated evidence are merged, not replaced"
   },
-  "counts": {
-    "songs": 100,
-    "artists": 47,
-    "albums": 0,
-    "first_batch_songs": 50,
-    "second_batch_songs": 50,
-    "second_batch_recording_mbid_ids": 27,
-    "second_batch_source_profile_ids": 23,
-    "second_batch_spotify_ids": 0
+  "track_profile_rows": 1207,
+  "playlist_snapshot_stats": {
+    "snapshots": 57,
+    "inaccessible": 16,
+    "invalid": 0,
+    "incomplete": 0,
+    "incomplete_details": [],
+    "playlist_track_occurrences": 3307,
+    "unique_playlist_spotify_ids": 1857
   },
+  "playlist_track_occurrences": 3307,
+  "unique_playlist_spotify_ids": 1857,
+  "combined_input_rows": 3064,
+  "artist_profiles": 3698,
+  "album_profiles": 200,
+  "audio_profiles": 0,
+  "lyric_features": 0,
+  "provider_requests": 0,
+  "spotify_playlist_writes": 0,
+  "backup_path": "/home/runner/work/spotify-helper-information-tracker/spotify-helper-information-tracker/assistant_data/music/library.backup-20261101-145751-217220",
+  "migration_result": {
+    "artists": 5238,
+    "albums": 6439,
+    "songs": 11149,
+    "ambiguous_name_aliases": 14
+  },
+  "library_audit": {
+    "ok": true,
+    "errors": [],
+    "songs": 11149,
+    "artists": 5238,
+    "albums": 6439
+  },
+  "status": "migrated stored profiles and accessible playlist snapshots; library audit passed",
   "limitations": [
-    "Neither staged batch includes reliable track-to-album relationships; no album records or song-to-album links were invented.",
-    "Artist identity records are present, but artist aggregate evidence is intentionally left for the full local migration.",
-    "The second batch has no Spotify track IDs; 23 songs use stable source-profile IDs rather than verified recording IDs."
-  ],
-  "safety": {
-    "provider_requests": 0,
-    "aggregate_files_modified": false,
-    "spotify_playlists_modified": false
-  },
-  "batches": [
-    {
-      "batch_id": "recent-top-50",
-      "songs": 50,
-      "artists": 22,
-      "albums": 0,
-      "identity_note": "50 songs resolved by recording MBID; album context absent"
-    },
-    {
-      "batch_id": "recent-top-50-followup",
-      "songs": 50,
-      "artist_records_added": 25,
-      "albums": 0,
-      "verified_recording_ids": 27,
-      "source_profile_ids": 23,
-      "spotify_ids": 0,
-      "identity_note": "27 verified recording IDs and 23 stable source-profile IDs; no album links inferred"
-    }
+    "Raw Last.fm scrobbles absent from track_profiles.json are not included.",
+    "Inaccessible playlist snapshots are skipped and counted.",
+    "No provider metadata is fetched; missing recording-level mood evidence stays unknown."
   ]
 }

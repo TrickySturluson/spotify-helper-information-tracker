@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T04:37:13.427176+00:00",
+  "generated_at": "2026-11-01T14:58:21.611369+00:00",
   "playlists": {
     "total": 57,
     "accessible": 41,
@@ -9,8 +9,8 @@
     "item_count_mismatches": []
   },
   "index": {
-    "unique_tracks": 1858,
-    "unique_artists": 1304
+    "unique_tracks": 1857,
+    "unique_artists": 1303
   },
   "daily_feedback": {
     "tracks_observed": 0,
