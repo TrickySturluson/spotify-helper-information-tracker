@@ -19,7 +19,7 @@ Spotify's February 2026 Web API migration changed playlist item endpoints from `
 
 Spotify may respond with HTTP 429 and a `Retry-After` header. SHIT must not automatically retry a 429. Treat `QUOTA_EXCEEDED` as an app/account-level cooldown, preserve the supplied retry interval, and stop making Spotify requests until that interval has elapsed. Do not repeatedly edit the control issue to retry the same command: each issue event starts another workflow and can consume more API quota.
 
-A 429 response is not evidence of a bad refresh token, wrong playlist owner, or missing playlist. Diagnose those only after the cooldown, using the actual HTTP status and response body.
+A 429 response is not evidence of a bad refresh token, wrong playlist owner, or missing playlist. Diagnose those only after the cooldown, using the actual HTTP status and response body. SHIT persists the observed cooldown in `.github/spotify_api_cooldown.json`; cloud workflow runs commit that file so subsequent commands can stop before sending another Spotify request. The guard expires automatically at the recorded deadline.
 
 ## Live sorter evidence
 
