@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The Library makes one recording's metadata retrievable without loading
+The Library makes one song's metadata retrievable without loading
 the complete track, audio, artist, and album aggregates. Individual JSON records
 are canonical evidence stores; `library_index.json` is a small resolver index.
 
@@ -13,20 +13,20 @@ assistant_data/music/library/
   library_index.json
   artists/<shard>/<stable-id>/artist.json
   albums/<shard>/<stable-id>/album.json
-  recordings/<shard>/<stable-id>/recording.json
+  songs/<shard>/<stable-id>/song.json
 ```
 
 Stable IDs prefer verified MusicBrainz MBIDs. Spotify track IDs are retained as
-recording aliases. When neither exists, deterministic fallback IDs include
+song aliases. When neither exists, deterministic fallback IDs include
 artist, album/release context, title, and duration where available. Name-only
 lookups retain all candidates and refuse to choose when multiple versions match.
 A fallback identity is explicitly marked as such; it is not represented as a
-verified recording match.
+verified song match.
 
-Recording files keep track metadata, audio observations, lyric analysis, derived
+Song files keep track metadata, audio observations, lyric analysis, derived
 features, coverage, source status, and artist/album relations in separate fields.
 Artist and album evidence remains contextual and is never copied into the
-recording's track-specific evidence.
+song's track-specific evidence.
 
 ## Migration
 
@@ -46,7 +46,7 @@ The old aggregates remain available for rollback and incremental compatibility.
 The sequencer first resolves each playlist item by Spotify track ID, then by
 verified recording MBID, then by an exact artist/title alias only when unique.
 An album name may disambiguate otherwise ambiguous versions. It loads the
-recording plus its related artist and album files on demand. If the library
+song plus its related artist and album files on demand. If the library
 does not exist, the existing aggregate path remains active; during migration,
 missing individual records may still fall back to legacy track metadata.
 
