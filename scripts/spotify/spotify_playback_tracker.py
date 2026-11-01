@@ -218,3 +218,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Locally sample Spotify playback progress and append measured listening intervals. Uses Spotify OAuth Authorization Code with PKCE and only the user-read-playback-state scope. No client secret is stored.
+# Location: Maintained implementation in scripts/spotify/spotify_playback_tracker.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_playback_tracker.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

@@ -42,3 +42,14 @@ def enrich_artists(artists, api_key, path=PROFILE_PATH, sleep=time.sleep):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(profiles, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
     return {'requested':len(missing),'enriched':enriched,'unavailable':unavailable,'known_before':len(artists)-len(missing)}
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Enrich playlist artist metadata from Last.fm without changing playlist contents.
+# Location: Maintained implementation in scripts/spotify/playlist_metadata.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/playlist_metadata.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

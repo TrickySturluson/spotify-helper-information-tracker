@@ -64,3 +64,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Merge local lyric-analysis evidence into recommendation track features. Run after build_music_analytics.py. If the local lyrics database is absent, the command exits cleanly without changing generated recommendation data.
+# Location: Maintained implementation in scripts/music/enrich_recommendation_lyrics.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/enrich_recommendation_lyrics.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

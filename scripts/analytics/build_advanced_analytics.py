@@ -227,3 +227,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Build deeper identity-aware listening analytics from the canonical archive. All timestamps and buckets are UTC. MBIDs are preferred for entity identity; normalized names are fallbacks where Last.fm did not provide an MBID.
+# Location: Maintained implementation in scripts/analytics/build_advanced_analytics.py.
+# Data flow: Reads canonical project inputs and/or existing generated artifacts;
+#            writes only the outputs described by this module's implementation.
+# Run: python compat/build_advanced_analytics.py (legacy CLI entry point, when this tool has one).
+# Related: tests/ (regression coverage for build_advanced_analytics). See docs/ for longer operational and data-contract guides.
+# -----------------------------------------------------------------------------

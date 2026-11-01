@@ -131,3 +131,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Track manual removals across all owned Spotify playlists and detect duplicates. Run: python track_playlist_removals.py Optional: python track_playlist_removals.py PLAYLIST_ID Add --dedupe to remove extra occurrences from unlocked playlists only. First run establishes baselines; later runs detect tracks removed since the previous run and persist them in playlist_removed_tracks.json.
+# Location: Maintained implementation in scripts/spotify/track_playlist_removals.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/track_playlist_removals.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

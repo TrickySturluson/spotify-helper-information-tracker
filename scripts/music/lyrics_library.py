@@ -399,3 +399,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: SHIT lyrics lookup and local song-reference library. Lyrics are fetched transiently for analysis. The local SQLite database stores song metadata, source references, theme evidence, and one-way phrase fingerprints rather than copying full copyrighted lyric text.
+# Location: Maintained implementation in scripts/music/lyrics_library.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/lyrics_library.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

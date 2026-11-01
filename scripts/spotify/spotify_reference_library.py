@@ -316,3 +316,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers. Run: python spotify_reference_library.py sync The command reads every playlist returned by the authorized Spotify account and writes dated snapshots. It never changes Spotify playlists.
+# Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_reference_library.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

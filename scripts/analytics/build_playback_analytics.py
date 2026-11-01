@@ -72,3 +72,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Aggregate measured Spotify playback intervals into queryable analytics.
+# Location: Maintained implementation in scripts/analytics/build_playback_analytics.py.
+# Data flow: Uses the canonical archives and/or generated project data; see the
+#            module's paths and command options for exact inputs and outputs.
+# Run: python compat/build_playback_analytics.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

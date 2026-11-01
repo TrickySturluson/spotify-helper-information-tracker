@@ -1,8 +1,3 @@
-"""Generate legacy aggregate statistics from the canonical scrobble archive.
-
-Preserves the original all-history counters and timestamp buckets; newer
-assistant-facing analytics are built by the dedicated analytics scripts.
-"""
 import json
 import os
 from collections import Counter, defaultdict
@@ -552,3 +547,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Implementation module scripts/analytics/build_stats.py.
+# Location: Maintained implementation in scripts/analytics/build_stats.py.
+# Data flow: Uses the canonical archives and/or generated project data; see the
+#            module's paths and command options for exact inputs and outputs.
+# Run: python compat/build_stats.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------

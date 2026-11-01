@@ -291,3 +291,14 @@ def main():
     except (ManagerError,OSError,KeyError,ValueError,urllib.error.URLError) as e:
         print("ERROR:",e,file=sys.stderr); return 1
 if __name__=="__main__": raise SystemExit(main())
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Local Spotify playlist manager. Playlists are locked unless explicitly unlocked.
+# Location: Maintained implementation in scripts/spotify/spotify_playlist_manager.py.
+# Data flow: Uses the canonical archives and/or generated project data; consult
+#            this module's configuration and command options for exact paths.
+# Run: python compat/spotify_playlist_manager.py (legacy command entry point, when applicable).
+# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# -----------------------------------------------------------------------------
