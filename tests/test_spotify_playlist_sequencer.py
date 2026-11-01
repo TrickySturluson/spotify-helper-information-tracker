@@ -186,6 +186,32 @@ class PlaylistSequencerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "not in this playlist"):
             sequencer.sequence_tracks(rows, opener_uri="missing")
 
+    def test_exported_lyric_themes_feed_transition_theme_groups(self):
+        profiles = {}
+        exported = [{
+            "artist": "Night Club",
+            "track": "Vampires",
+            "themes": {"vampire": {"count": 3}, "nightlife_clubbing": {"count": 2}},
+            "source_count": 2,
+        }]
+        sequencer.merge_lyric_features(profiles, exported)
+        item = {"uri": "spotify:track:1", "name": "Vampires", "artists": ["Night Club"]}
+        scored = sequencer.score_track(item, track_profiles=profiles)
+        self.assertIn("vampire", scored["theme_groups"])
+        self.assertIn("nightlife_clubbing", scored["theme_groups"])
+        self.assertTrue(any("lyric-theme evidence" in row for row in scored["evidence"]))
+
+    def test_lyric_themes_are_preserved_even_when_energy_is_unknown(self):
+        profiles = {("night club", "vampires"): {
+            "lyric_analysis": {"themes": {"vampire": {"count": 3}}}
+        }}
+        scored = sequencer.score_track(
+            {"uri": "spotify:track:1", "name": "Vampires", "artists": ["Night Club"]},
+            track_profiles=profiles,
+        )
+        self.assertEqual(scored["confidence"], "unknown")
+        self.assertIn("vampire", scored["theme_groups"])
+
 
 if __name__ == "__main__":
     unittest.main()
