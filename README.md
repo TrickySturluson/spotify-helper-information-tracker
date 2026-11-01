@@ -19,6 +19,14 @@ The project combines Spotify's live playlist and playback interfaces with Last.f
 - `data/stats.json` is the existing compact dashboard summary.
 - `assistant_data/` contains query-friendly, generated JSON indexes and time slices. It is always rebuilt from the canonical archive; do not edit generated files by hand.
 
+## Public repository and privacy
+
+This repository is public. It intentionally publishes personal listening-history material, not just application source code. The public data includes the Last.fm username and chronological scrobble archive (including timestamps, artist/track names, MBIDs and URLs), derived listening-pattern and session summaries, Spotify playlist identifiers and snapshots, and playlist-manager state/audit timestamps. These records can reveal listening habits and approximate routines.
+
+No OAuth token or API secret file was apparent in the current tracked-file inventory and inspected workflow/configuration files during the 2026-10-31 review. This is not a guarantee that every historical blob is clean: the review did not complete a content scan of every revision. GitHub Actions workflows reference credentials through repository secrets/variables rather than embedding their values.
+
+Keep the repository public only if you are comfortable publishing this listening history and playlist activity. Never commit .env files, OAuth tokens, refresh tokens, API keys/secrets, private keys, local playback logs, or account exports. Use GitHub's secret scanning and push protection where available, and rotate any credential immediately if it is ever exposed. Git commit metadata is public too; configure a GitHub-provided noreply email for future commits if you do not want your personal commit email exposed. See [the public-repository privacy guide](docs/PUBLIC_REPOSITORY_PRIVACY.md) for the data inventory, audit limits, and recommendations.
+
 ## Assistant data layout
 
 | Path | Contents |
@@ -405,7 +413,7 @@ A scheduled read-only observation workflow refreshes Liked Songs status and Last
 
 A day without listening is neutral. Missing tracker data is unknown, not zero. Spotify save checks or playback tracking can fail independently without interrupting an already-confirmed playlist edit. Last.fm scrobbles remain a separate secondary signal and are not mislabeled as measured Spotify playback.
 
-The reference library and feedback files are personal listening data. Keep the repository private and never commit OAuth tokens or local playback credentials.
+The reference library and feedback files are personal listening data. Because this repository is public, treat every committed snapshot, playlist identifier, feedback record, and timestamp as intentionally public. Never commit OAuth tokens or local playback credentials; see [the public-repository privacy guide](docs/PUBLIC_REPOSITORY_PRIVACY.md).
 
 
 ## README overview
