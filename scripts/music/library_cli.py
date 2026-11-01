@@ -133,7 +133,8 @@ def main(argv=None):
         return run_preparation(args)
     if args.action == "verify":
         verifier = REPO_ROOT / "scripts" / "music" / "verify_provider_credentials.py"
-        return subprocess.run([sys.executable, str(verifier)], cwd=REPO_ROOT, check=False).returncode\n    if args.action == "sync":
+        return subprocess.run([sys.executable, str(verifier)], cwd=REPO_ROOT, check=False).returncode
+    if args.action == "sync":
         if args.root != DEFAULT_ROOT:
             print("Custom --root is not supported for sync; use the default canonical library root.")
             return 2
