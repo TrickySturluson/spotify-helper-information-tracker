@@ -15,6 +15,7 @@ on:
           - migrate
           - prepare
           - audit
+          - verify
 
 permissions:
   contents: write
@@ -41,7 +42,7 @@ jobs:
         run: |
           python - <<'PY'
           import json, os
-          allowed = {"status", "preview", "migrate", "prepare", "audit"}
+          allowed = {"status", "preview", "migrate", "prepare", "audit", "verify"}
           if os.environ["EVENT_NAME"] == "workflow_dispatch":
               command = os.environ.get("DISPATCH_COMMAND", "").strip().lower()
           else:
@@ -71,6 +72,16 @@ jobs:
         run: |
           python -m compileall -q scripts compat shit.py
           python -m unittest discover -s tests -t . -v
+
+      - name: Verify provider credentials (read-only)
+        if: steps.request.outputs.command == 'verify'
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
+          GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
+        run: python scripts/music/verify_provider_credentials.py
 
       - name: Configure read-only Spotify refresh
         if: steps.request.outputs.command == 'prepare'
@@ -107,7 +118,7 @@ jobs:
             preview) python shit.py library preview ;;
             migrate) python shit.py library migrate --yes ;;
             prepare) python shit.py library prepare --execute --yes ;;
-            audit)   python shit.py library audit ;;
+            audit)   python shit.py library audit ;;\n            verify)  python scripts/music/verify_provider_credentials.py ;;
           esac 2>&1 | tee shit-library-run.log
           {
             echo "## SHIT Library operation"
@@ -179,7 +190,7 @@ jobs:
 
 # FILE OVERVIEW
 # Purpose: ChatGPT-triggerable and manually dispatchable SHIT Library operations.
-# Trigger: Owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare|audit>.
+# Trigger: Owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare|audit|verify>.
 # Commands: status/preview are read-only; migrate is offline; prepare runs migration
 #           followed by bounded, checkpointed metadata enrichment and final audit.
 # Safety: owner validation, allow-listed operations, serialized runs, tests first,
