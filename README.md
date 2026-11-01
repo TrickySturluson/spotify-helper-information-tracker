@@ -49,7 +49,7 @@ All generated timestamps and calendar buckets use UTC. Track identity is the art
 
 ## Canonical per-recording music library
 
-The canonical music catalogue lives at `assistant_data/music/library/`, with one JSON record per recording, artist, and album. New Last.fm metadata-enrichment runs now merge their results into this library, preserving existing mood assessments, evidence, and listening context. Older shard/index exports remain available as compatibility views while downstream analytics are migrated.
+The canonical music catalogue lives at `assistant_data/music/library/`, with one JSON record per recording, artist, and album. New Last.fm track-profile and duration-enrichment runs, plus live Spotify reference-library syncs, now merge their results into this library, preserving existing mood assessments, evidence, and listening context. Older shard/index exports remain available as compatibility views while downstream analytics are migrated.
 
 Use the native SHIT command interface from the repository root:
 
