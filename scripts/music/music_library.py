@@ -203,7 +203,7 @@ class MusicLibrary:
             if source_id:
                 index["source_track_ids"][source_id] = key
             if artist and title:
-                index["name_candidates"].setdefault(norm(artist) + "\\0" + norm(title), []).append(key)
+                index["name_candidates"].setdefault(norm(artist) + "\0" + norm(title), []).append(key)
         if index["songs"] or index["albums"] or index["artists"]:
             self.root.mkdir(parents=True, exist_ok=True)
             write_json(self.index_path, index)
