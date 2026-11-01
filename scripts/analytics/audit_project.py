@@ -256,10 +256,13 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Cross-check canonical SHIT data and generated manifests.
-# Location: Maintained implementation in scripts/analytics/audit_project.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/audit_project.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for audit_project). See docs/ for longer operational and data-contract guides.
+# Purpose: Validate canonical Last.fm counts, generated manifests, music metadata,
+#          Spotify playlist records, and the cross-playlist reference index.
+# Inputs: data/metadata.json; assistant_data manifests, profiles, Spotify catalog,
+#         per-playlist snapshots, and reference_index.json.
+# Outputs: Prints PASS/WARNING/ERROR diagnostics and exits nonzero on integrity errors;
+#          this audit does not modify source archives or generated data.
+# Safety: Malformed JSON shapes, stale references, duplicate memberships, and
+#         inaccessible playlist contents are reported without treating unknown as empty.
+# Run: python compat/audit_project.py (repository root).
 # -----------------------------------------------------------------------------
