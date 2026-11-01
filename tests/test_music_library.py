@@ -10,8 +10,8 @@ class MusicLibraryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             lib = MusicLibrary(temp)
             result = lib.put_catalogue({"r": {"artist": "A", "track": "T", "album": "L", "track_mbid": "rec-1", "spotify_id": "spotify:track:sid", "lastfm_tags": [{"tag": "dark"}]}})
-            self.assertEqual(result["recordings"], 1)
-            found = lib.get_recording(spotify_id="sid")
+            self.assertEqual(result["songs"], 1)
+            found = lib.get_song(spotify_id="sid")
             self.assertEqual(found["recording"]["evidence"]["track_metadata"]["lastfm_tags"][0]["tag"], "dark")
             self.assertEqual(found["artist"]["artist"], "A")
             self.assertEqual(found["album"]["album"], "L")
@@ -20,15 +20,15 @@ class MusicLibraryTests(unittest.TestCase):
             lib = MusicLibrary(temp)
             rows = {"a": {"artist": "A", "track": "T", "album": "Original"}, "b": {"artist": "A", "track": "T", "album": "Remaster"}}
             result = lib.put_catalogue(rows)
-            self.assertEqual(result["recordings"], 2)
+            self.assertEqual(result["songs"], 2)
             self.assertEqual(result["ambiguous_name_aliases"], 1)
-            self.assertIsNone(lib.get_recording(artist="A", track="T"))
-            self.assertEqual(lib.get_recording(artist="A", track="T", album="Remaster")["recording"]["identity"]["album"], "Remaster")
+            self.assertIsNone(lib.get_song(artist="A", track="T"))
+            self.assertEqual(lib.get_song(artist="A", track="T", album="Remaster")["recording"]["identity"]["album"], "Remaster")
     def test_scopes_remain_separate(self):
         with tempfile.TemporaryDirectory() as temp:
             lib = MusicLibrary(temp)
             lib.put_catalogue({"a": {"artist": "A", "track": "T", "album": "L", "lastfm_tags": [{"tag": "dreamy"}]}})
-            found = lib.get_recording(artist="A", track="T")
+            found = lib.get_song(artist="A", track="T")
             self.assertIn("lastfm_tags", found["recording"]["evidence"]["track_metadata"])
             self.assertEqual(found["recording"]["identity"]["identity_quality"], "fallback_release_context")
     def test_sequencer_loads_playlist_records_by_spotify_id(self):
@@ -49,10 +49,10 @@ class MusicLibraryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             lib = MusicLibrary(temp); lib.put_catalogue({"a": {"artist": "A", "track": "T", "album": "L"}})
             index = json.loads((Path(temp) / "library_index.json").read_text())
-            key = next(iter(index["recordings"]))
-            self.assertTrue((Path(temp) / index["recordings"][key]["path"]).exists())
+            key = next(iter(index["songs"]))
+            self.assertTrue((Path(temp) / index["songs"][key]["path"]).exists())
 
 if __name__ == "__main__": unittest.main()
 
 # FILE OVERVIEW
-# - Covers lazy ID resolution, release collisions, evidence separation, and on-disk layout.
+# - Covers lazy ID resolution, release collisions, evidence separation, and on-disk song layout.
