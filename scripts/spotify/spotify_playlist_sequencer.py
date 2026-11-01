@@ -825,6 +825,8 @@ def main():
         print("Acoustic confidence: " + ", ".join(f"{label}={count}" for label, count in confidence_counts.items()))
         coverage = evidence_coverage_summary(scored)
         print("Semantic confidence: " + ", ".join(f"{label}={count}" for label, count in coverage["semantic_confidence"].items()))
+        print("Acoustic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["acoustic_source_coverage"].items()) or "none"))
+        print("Semantic sources: " + (", ".join(f"{name}={count}" for name, count in coverage["semantic_source_coverage"].items()) or "none"))
         print("Tempo sources: " + (", ".join(f"{name}={count}" for name, count in coverage["tempo_sources"].items()) or "none") + f"; agreement={coverage['tempo_agreements']}; disagreement={coverage['tempo_disagreements']}")
         for position, row in enumerate(scored, 1):
             group = row.get("sequence_group") or row.get("vibe_group") or "unclassified"
