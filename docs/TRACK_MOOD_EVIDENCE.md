@@ -30,13 +30,13 @@ The album enrichment pipeline deduplicates by normalized artist + album, priorit
 ## Normalized per-song storage
 
 The Library dataset lives under `assistant_data/music/library/`.
-Each artist, album, and recording has its own JSON record; `library_index.json`
+Each artist, album, and song has its own JSON record; `library_index.json`
 contains only stable-ID paths and lookup aliases. Song files preserve raw
-track-provider observations, audio observations, lyric features, derived data,
+track-provider observations, listening context, audio observations, lyric features, derived data,
 coverage, source statuses, and explicit artist/album relations. Artist and album
 evidence remains contextual rather than being copied into track-level evidence.
 
-The migration reads existing aggregate JSON locally and makes no network calls.
+The migration reads existing aggregate JSON locally and makes no network calls. It omits album records when no release identity is present and supports bounded recent-song batches.
 It does not delete or rewrite the aggregates. See
 [PER_RECORDING_MUSIC_LIBRARY.md](PER_RECORDING_MUSIC_LIBRARY.md) for identity
 precedence, fallback identity caveats, layout, and lookup behavior.
