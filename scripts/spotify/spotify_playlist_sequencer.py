@@ -454,9 +454,15 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0, artist
         left_energy, right_energy = _energy_score(left), _energy_score(right)
         if left_energy is not None and right_energy is not None:
             terms.append((0.34, abs(float(left_energy) - float(right_energy)) / 100.0))
-    for field, weight in (("vibe_groups", 0.25), ("genre_groups", 0.08), ("theme_groups", 0.08)):
+    mood_tiers = {"high": 0.25, "medium": 0.17, "low": 0.08, "unknown": 0.0}
+    left_mood_conf = left.get("mood_confidence", "low")
+    right_mood_conf = right.get("mood_confidence", "low")
+    mood_weight = min(mood_tiers.get(left_mood_conf, 0.0),
+                      mood_tiers.get(right_mood_conf, 0.0))
+    for field, weight in (("vibe_groups", mood_weight),
+                          ("genre_groups", 0.08), ("theme_groups", 0.08)):
         affinity = _set_similarity(left.get(field), right.get(field))
-        if affinity is not None:
+        if affinity is not None and weight > 0:
             terms.append((weight, 1.0 - affinity))
     tempo_gap = _tempo_relationship(left, right)
     if tempo_gap is not None:
@@ -508,8 +514,14 @@ def transition_report(left, right):
         elif gap >= 0.35: reasons.append("large estimated energy change")
     if same: reasons.append("same primary artist")
     if not reasons: reasons.append("insufficient shared metadata; transition remains uncertain")
-    evidence_count = sum(bool(left.get(field)) and bool(right.get(field))
-                         for field in ("vibe_groups", "genre_groups", "theme_groups"))
+    mood_supported = (
+        left.get("mood_confidence") in {"medium", "high"}
+        and right.get("mood_confidence") in {"medium", "high"}
+        and bool(left.get("vibe_groups")) and bool(right.get("vibe_groups"))
+    )
+    evidence_count = int(mood_supported)
+    evidence_count += sum(bool(left.get(field)) and bool(right.get(field))
+                          for field in ("genre_groups", "theme_groups"))
     evidence_count += int(tempo_gap is not None)
     evidence_count += int(energy_known)
     confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
@@ -821,6 +833,10 @@ def evidence_coverage_summary(scored):
     acoustic = Counter(row.get("acoustic_confidence", row.get("confidence", "unknown"))
                        for row in scored)
     semantic = Counter(row.get("semantic_confidence", "unknown") for row in scored)
+    mood = Counter(row.get("mood_confidence", "unknown") for row in scored)
+    mood_source_coverage = Counter(
+        source for row in scored for source in row.get("mood_source_families", [])
+    )
     semantic_source_coverage = Counter(
         source for row in scored for source in row.get("semantic_source_families", [])
     )
@@ -832,6 +848,8 @@ def evidence_coverage_summary(scored):
     return {
         "acoustic_confidence": {key: acoustic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
         "semantic_confidence": {key: semantic.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "mood_confidence": {key: mood.get(key, 0) for key in ("high", "medium", "low", "unknown")},
+        "mood_source_coverage": dict(sorted(mood_source_coverage.items())),
         "tempo_sources": dict(sorted(tempo_sources.items())),
         "acoustic_source_coverage": dict(sorted(acoustic_source_coverage.items())),
         "semantic_source_coverage": dict(sorted(semantic_source_coverage.items())),
