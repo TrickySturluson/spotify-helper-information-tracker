@@ -198,7 +198,7 @@ def _transition_cost(left, right, genre_strength=0.0, theme_strength=0.0):
     section = _set_similarity(left.get("section_groups"), right.get("section_groups"))
     same_artist = bool(norm(left.get("artist")) and norm(left.get("artist")) == norm(right.get("artist")))
     return (0.34 * energy_gap + 0.25 * (1.0 - mood) + 0.08 * (1.0 - genre)
-            + 0.08 * (1.0 - theme) + 0.10 * same_artist
+            + 0.08 * (1.0 - theme) + 0.22 * same_artist
             - 0.12 * max(0.0, min(1.0, genre_strength)) * genre
             - 0.12 * max(0.0, min(1.0, theme_strength)) * theme - 0.08 * section)
 
@@ -267,7 +267,7 @@ def _sequence_objective(rows, journey, peak_position, peak_shape, genre_strength
             total += _transition_cost(previous, row, genre_strength, theme_strength)
             left_section, right_section = previous.get("section_index"), row.get("section_index")
             if left_section is not None and right_section is not None and right_section < left_section:
-                total += 0.10
+                total += 0.65
     return total
 
 
