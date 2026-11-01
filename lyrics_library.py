@@ -96,6 +96,17 @@ def musixmatch_lookup(title, artist):
             "instrumental": False, "url": "https://www.musixmatch.com/"}
 
 
+def lyrics_ovh_lookup(title, artist):
+    """Open lyrics.ovh endpoint; coverage and uptime vary."""
+    path = urllib.parse.quote(artist, safe="") + "/" + urllib.parse.quote(title, safe="")
+    data = request_json("https://api.lyrics.ovh/v1/" + path)
+    lyrics = (data or {}).get("lyrics")
+    if not lyrics:
+        return None
+    return {"provider": "lyrics_ovh", "provider_id": "", "title": title,
+            "artist": artist, "album": None, "lyrics": lyrics,
+            "instrumental": False, "url": "https://lyrics.ovh/"}
+
 def genius_search(title, artist):
     """Genius official API is a metadata/link fallback; it does not expose full lyrics."""
     token = os.getenv("GENIUS_ACCESS_TOKEN", "").strip()
@@ -235,7 +246,7 @@ class LyricsLibrary:
 
 
 def search_and_analyze(title, artist, album=None, duration=None, db_path=DEFAULT_DB):
-    providers = (lrclib_lookup, musixmatch_lookup, genius_search)
+    providers = (lrclib_lookup, musixmatch_lookup, lyrics_ovh_lookup, genius_search)
     results, errors = [], []
     for provider in providers:
         try:
