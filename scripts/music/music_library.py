@@ -82,7 +82,7 @@ def read_json(path):
 
 
 
-def select_recent_track_rows(track_rows, recent_rows, limit):
+def select_recent_track_rows(track_rows, recent_rows, limit, window_days=None):
     """Select a bounded, deduplicated recent batch without making provider calls."""
     if not isinstance(track_rows, dict) or not isinstance(recent_rows, list):
         return {}, {"selected": 0, "unmatched": 0, "duplicates": 0}
@@ -119,6 +119,7 @@ def select_recent_track_rows(track_rows, recent_rows, limit):
         enriched = dict(row)
         enriched["listening_context"] = {
             "source": "Last.fm scrobble archive",
+            "window_days": window_days,
             "recent_plays": recent.get("recent_plays"),
             "all_time_plays": recent.get("all_time_plays"),
         }
