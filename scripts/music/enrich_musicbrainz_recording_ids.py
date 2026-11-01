@@ -195,7 +195,9 @@ def main():
                 obj = fetch_json(url)
             except HTTPError as exc:
                 if exc.code in (429, 503):
-                    print("MusicBrainz rate limited the client; stop and resume next run.")
+                    wait = set_provider_cooldown(provider_state, exc.headers, now)
+                    write(STATE, provider_state)
+                    print(f"MusicBrainz rate limited the client; cooldown saved for {wait}s. Stop and resume later.")
                     break
                 print(f"HTTP {exc.code}: {artist} — {title}")
                 track["musicbrainz_id_retry_after"] = now + 30 * 86400
