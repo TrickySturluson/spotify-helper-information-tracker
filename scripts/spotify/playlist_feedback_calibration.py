@@ -183,6 +183,52 @@ def record_liked_observation(
     return event
 
 
+
+def record_exposure_observation(
+    prediction_id: str,
+    *,
+    spotify_plays: int | None = None,
+    lastfm_scrobbles: int | None = None,
+    observed_at: str | None = None,
+    path: Path = DEFAULT_PATH,
+) -> dict:
+    """Attach post-prediction listening exposure without inferring playlist fit."""
+    payload = _read(path)
+    prediction = payload["predictions"].get(prediction_id)
+    if prediction is None:
+        raise KeyError(f"Unknown prediction_id: {prediction_id}")
+    values = {"spotify_plays": spotify_plays, "lastfm_scrobbles": lastfm_scrobbles}
+    for key, value in values.items():
+        if value is not None and (isinstance(value, bool) or int(value) < 0):
+            raise ValueError(f"{key} must be a non-negative integer or None")
+        if value is not None:
+            values[key] = int(value)
+    event = {**values, "observed_at": observed_at or _now()}
+    observations = prediction.setdefault("exposure_observations", [])
+    if not observations or observations[-1] != event:
+        observations.append(event)
+        _write(path, payload)
+    return event
+
+
+def _removal_feedback_weight(prediction: dict) -> float:
+    """Weight manual removal by whether the track had a fair listening exposure."""
+    observations = prediction.get("exposure_observations") or []
+    if not observations:
+        return 0.65
+    latest = observations[-1]
+    measured = [latest.get(key) for key in ("spotify_plays", "lastfm_scrobbles")
+                if latest.get(key) is not None]
+    if not measured:
+        return 0.65
+    plays = max(measured)
+    if plays == 0:
+        return 0.45
+    if plays >= 3:
+        return 0.90
+    return 0.75
+
+
 def _holdout(prediction_id: str) -> bool:
     """Stable 20% holdout, independent of score and outcome."""
     return int(hashlib.sha256(prediction_id.encode()).hexdigest()[:8], 16) % 5 == 0
@@ -278,13 +324,34 @@ def ingest_manual_removals(
             source = str(row.get("source") or "").casefold()
             if "manual" not in source and "user-confirmed" not in source:
                 continue
+            store = _read(feedback_path)
+            prediction = store["predictions"].get(prediction_id)
+            if prediction is None:
+                continue
             record_feedback(
                 prediction_id, "rejected", "manual_removal",
                 reason="Imported from playlist-specific removal history",
+                weight=_removal_feedback_weight(prediction),
                 path=feedback_path,
             )
             count += 1
     return count
+
+def main() -> int:
+    """Print a read-only calibration report for the local feedback store."""
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=("report",), nargs="?", default="report")
+    parser.add_argument("--min-bin-samples", type=int, default=8)
+    args = parser.parse_args()
+    if args.min_bin_samples < 1:
+        parser.error("--min-bin-samples must be at least 1")
+    print(json.dumps(calibration_report(min_bin_samples=args.min_bin_samples), indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
 
 
 # -----------------------------------------------------------------------------

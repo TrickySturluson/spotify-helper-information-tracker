@@ -85,6 +85,26 @@ class PlaylistFeedbackCalibrationTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             calibration.record_feedback("missing", "accepted", "explicit_whitelist", path=self.path)
 
+    def test_exposure_is_context_only_and_does_not_label_prediction(self):
+        row = self.prediction()
+        calibration.record_exposure_observation(
+            row["prediction_id"], spotify_plays=4, lastfm_scrobbles=2, path=self.path
+        )
+        report = calibration.calibration_report(self.path)
+        self.assertEqual(report["labelled_predictions"], 0)
+        payload = json.loads(self.path.read_text())
+        self.assertEqual(payload["predictions"][row["prediction_id"]]["exposure_observations"][0]["spotify_plays"], 4)
+
+    def test_removal_weight_reflects_exposure_without_changing_outcome(self):
+        row = self.prediction()
+        payload = json.loads(self.path.read_text())
+        prediction = payload["predictions"][row["prediction_id"]]
+        self.assertEqual(calibration._removal_feedback_weight(prediction), 0.65)
+        prediction["exposure_observations"] = [{"spotify_plays": 0, "lastfm_scrobbles": None}]
+        self.assertEqual(calibration._removal_feedback_weight(prediction), 0.45)
+        prediction["exposure_observations"] = [{"spotify_plays": 5, "lastfm_scrobbles": None}]
+        self.assertEqual(calibration._removal_feedback_weight(prediction), 0.90)
+
     def test_report_has_independent_holdout_and_no_automatic_weight_updates(self):
         row = self.prediction()
         calibration.record_feedback(row["prediction_id"], "accepted", "explicit_whitelist", path=self.path)

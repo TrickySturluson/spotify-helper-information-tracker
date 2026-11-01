@@ -80,3 +80,11 @@ The default append-oriented store is
 when prediction or feedback APIs are called. Do not commit personal feedback
 records or Spotify identifiers unless the repository's data policy explicitly
 allows it.
+
+
+## Operating the report
+
+Run `python compat/playlist_feedback_calibration.py report` to print the
+current read-only calibration report. Use `--min-bin-samples N` to change the
+minimum observations required before a score band is reviewable. The command
+does not call Spotify or alter scoring weights.
