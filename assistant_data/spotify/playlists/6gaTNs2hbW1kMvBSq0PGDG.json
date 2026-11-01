@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:51.270641+00:00",
+  "id": "6gaTNs2hbW1kMvBSq0PGDG",
+  "name": "meow mix by meowballz",
+  "description": "meow merp mew meow murr meow",
+  "owner": {
+    "id": "ilsobhl12cfanr7lwofztvsd0",
+    "display_name": "iKleins"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAACFsA3bvAXdKnRf4t4lh/MlFWY9ck",
+  "total_items_reported": 5,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
+  "last_items_accessible_at": "2026-10-31T09:04:25.138229+00:00",
+  "items_snapshot_id": "AAAACFsA3bvAXdKnRf4t4lh/MlFWY9ck",
+  "items": []
+}

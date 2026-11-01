@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:49.410234+00:00",
+  "id": "7yQNzIwGXyEfjKwMbUcYYq",
+  "name": "Motion",
+  "description": "Groove forward music",
+  "owner": {
+    "id": "laydros",
+    "display_name": "Jason Hamilton"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAOGarRl3dL+Egq1FViPlU4zAmFnIF",
+  "total_items_reported": 22,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
+  "last_items_accessible_at": "2026-10-31T09:04:22.101127+00:00",
+  "items_snapshot_id": "AAAAOGarRl3dL+Egq1FViPlU4zAmFnIF",
+  "items": []
+}

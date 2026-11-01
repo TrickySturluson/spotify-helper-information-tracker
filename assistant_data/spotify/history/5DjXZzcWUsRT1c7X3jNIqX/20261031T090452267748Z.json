@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:52.267576+00:00",
+  "id": "5DjXZzcWUsRT1c7X3jNIqX",
+  "name": "Borderlands 4",
+  "description": "",
+  "owner": {
+    "id": "jdude161717",
+    "display_name": "Playlist Pop"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAGDsAg/CREeCdrfpY6Stw2bY8jIQ07",
+  "total_items_reported": 92,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API does not expose item contents for this playlist to the current account/app.",
+  "last_items_accessible_at": null,
+  "items_snapshot_id": null,
+  "items": []
+}

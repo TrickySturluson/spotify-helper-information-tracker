@@ -1,0 +1,930 @@
+import json
+import unittest
+from pathlib import Path
+from time import perf_counter
+
+import spotify_playlist_sequencer as sequencer
+
+
+class PlaylistSequencerTests(unittest.TestCase):
+    def test_audio_energy_dominates_order(self):
+        rows = [
+            {"uri": "spotify:track:high", "name": "Loud", "artists": ["Artist"],
+             "audio_features": {"energy": 0.95, "tempo": 170, "loudness": -4}},
+            {"uri": "spotify:track:low", "name": "Quiet", "artists": ["Artist"],
+             "audio_features": {"energy": 0.08, "tempo": 65, "loudness": -29}},
+        ]
+        result = sequencer.sequence_tracks(rows)
+        self.assertEqual([r["item"]["name"] for r in result], ["Quiet", "Loud"])
+        self.assertGreater(result[1]["score"], result[0]["score"])
+        self.assertEqual(result[0]["confidence"], "high")
+
+    def test_track_tags_are_preferred_to_artist_mood(self):
+        item = {"uri": "spotify:track:1", "name": "Track", "artists": ["Artist"]}
+        artists = {"artist": {"tags": [{"tag": "calm"}]}}
+        tracks = {("artist", "track"): {"lastfm_tags": [{"tag": "aggressive"}]}}
+        result = sequencer.score_track(item, artists, tracks)
+        self.assertIn("aggressive", " ".join(result["evidence"]))
+        self.assertNotIn("artist-level mood fallback", " ".join(result["evidence"]))
+
+    def test_single_track_mood_tag_is_low_confidence(self):
+        result = sequencer.score_track(
+            {"name": "One Tag", "artists": ["Artist"]},
+            track_profiles={("artist", "one tag"): {
+                "lastfm_tags": [{"tag": "aggressive", "count": 3}]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_tag_count"], 1)
+        self.assertEqual(result["mood_weight"], 0.05)
+        self.assertFalse(result["mood_conflict"])
+
+    def test_independent_track_tag_sources_can_support_high_mood_confidence(self):
+        result = sequencer.score_track(
+            {"name": "Corroborated", "artists": ["Artist"]},
+            track_profiles={("artist", "corroborated"): {
+                "lastfm_tags": [{"tag": "aggressive", "count": 40}],
+                "musicbrainz_tags": [{"tag": "chaotic", "count": 5}],
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "high")
+        self.assertEqual(result["mood_weight"], 0.15)
+        self.assertEqual(
+            result["mood_source_families"],
+            ["lastfm_track", "musicbrainz_recording"],
+        )
+
+    def test_multiple_track_mood_descriptors_from_one_source_are_medium(self):
+        result = sequencer.score_track(
+            {"name": "Two Descriptors", "artists": ["Artist"]},
+            track_profiles={("artist", "two descriptors"): {
+                "lastfm_tags": [
+                    {"tag": "dreamy", "count": 10},
+                    {"tag": "ethereal", "count": 8},
+                ]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "medium")
+        self.assertEqual(result["mood_weight"], 0.10)
+
+    def test_same_mood_from_two_sources_is_corroborated_but_not_high(self):
+        result = sequencer.score_track(
+            {"name": "One Descriptor", "artists": ["Artist"]},
+            track_profiles={("artist", "one descriptor"): {
+                "lastfm_tags": [{"tag": "dark", "count": 1000}],
+                "musicbrainz_tags": [{"tag": "dark", "count": 1}],
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "medium")
+        self.assertEqual(result["mood_tag_count"], 1)
+        self.assertEqual(len(result["mood_source_families"]), 2)
+
+    def test_conflicting_track_moods_lower_confidence_and_neutralize_energy_blend(self):
+        result = sequencer.score_track(
+            {"name": "Mixed Signals", "artists": ["Artist"]},
+            track_profiles={("artist", "mixed signals"): {
+                "lastfm_tags": [
+                    {"tag": "aggressive", "count": 30},
+                    {"tag": "calm", "count": 30},
+                ]
+            }},
+        )
+        self.assertTrue(result["mood_conflict"])
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertAlmostEqual(result["semantic_score"], 50.0)
+
+    def test_genre_labels_do_not_count_as_track_mood_evidence(self):
+        result = sequencer.score_track(
+            {"name": "Genre Only", "artists": ["Artist"]},
+            track_profiles={("artist", "genre only"): {
+                "musicbrainz_genres": [{"tag": "aggressive"}]
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "unknown")
+        self.assertEqual(result["mood_tag_count"], 0)
+
+    def test_artist_mood_fallback_is_explicitly_low_confidence(self):
+        result = sequencer.score_track(
+            {"name": "Artist Proxy", "artists": ["Artist"]},
+            artist_profiles={"artist": {"tags": [{"tag": "dreamy"}]}},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_weight"], 0.03)
+        self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
+
+    def test_derived_artist_moods_are_used_as_low_confidence_fallback(self):
+        result = sequencer.score_track(
+            {"name": "Curated Artist Mood", "artists": ["Artist"]},
+            artist_profiles={"artist": {"moods": ["dreamy", "haunting"]}},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_source_families"], ["lastfm_artist"])
+        self.assertIn("dreamy", result["vibe_groups"])
+        self.assertIn("eerie", result["vibe_groups"])
+
+    def test_album_mood_is_low_confidence_context_not_track_evidence(self):
+        result = sequencer.score_track(
+            {"name": "Album Cut", "artists": ["Artist"], "album": "Record"},
+            album_profiles={("artist", "record"): {
+                "lastfm_tags": [{"tag": "dark", "count": 80}],
+                "status": "matched",
+            }},
+        )
+        self.assertEqual(result["mood_confidence"], "low")
+        self.assertEqual(result["mood_evidence_scope"], "album")
+        self.assertEqual(result["mood_source_families"], ["lastfm_album"])
+        self.assertEqual(result["mood_tag_count"], 0)
+        self.assertIn("dark", result["vibe_groups"])
+        self.assertIn("album-level mood context", " ".join(result["evidence"]))
+
+    def test_verified_album_tracklist_gives_full_album_affinity_without_track_mood_tags(self):
+        album = {
+            "identity_verified": True,
+            "lastfm_tracklist": [
+                {"title": "Into the Deep Time (One Sun)", "artist": "Candy Claws"},
+                {"title": "White Seal (Shell & Spine)", "artist": "Candy Claws",
+                 "linked_song_id": "mbid:verified", "linked_recording_mbid": "verified"},
+            ],
+            "lastfm_tags": [{"tag": "shoegaze"}, {"tag": "dream pop"},
+                            {"tag": "neo-psychedelia"}, {"tag": "psychedelic pop"}],
+        }
+        profile = {"musicbrainz_genres": [
+            {"tag": "indie rock"}, {"tag": "rock"}, {"tag": "shoegaze"}
+        ]}
+        first = sequencer.score_track(
+            {"name": "Into the Deep Time (One Sun)", "artists": ["Candy Claws"],
+             "album": "Ceres & Calypso in the Deep Time"},
+            track_profiles={("candy claws", "into the deep time (one sun)"): profile},
+            album_profiles={("candy claws", "ceres & calypso in the deep time"): album},
+        )
+        self.assertEqual(first["album_affinity"], 100.0)
+        self.assertEqual(first["album_affinity_confidence"], "medium")
+        self.assertTrue(first["album_membership_verified"])
+        self.assertEqual(first["mood_confidence"], "low")
+        self.assertEqual(first["sound_similarity"], 100.0)
+        self.assertEqual(first["sound_similarity_shared_labels"], ["shoegaze"])
+        linked = sequencer.score_track(
+            {"name": "White Seal (Shell & Spine)", "artists": ["Candy Claws"],
+             "album": "Ceres & Calypso in the Deep Time"},
+            album_profiles={("candy claws", "ceres & calypso in the deep time"): album},
+        )
+        self.assertEqual(linked["album_affinity_confidence"], "high")
+
+    def test_album_affinity_does_not_leak_across_albums_or_artists(self):
+        album = {"identity_verified": True, "lastfm_tracklist": [
+            {"title": "Known Song", "artist": "Artist"}
+        ]}
+        wrong_album = sequencer.score_track(
+            {"name": "Known Song", "artists": ["Artist"], "album": "Different Album"},
+            album_profiles={},
+        )
+        wrong_artist = sequencer.score_track(
+            {"name": "Known Song", "artists": ["Other Artist"], "album": "Record"},
+            album_profiles={("other artist", "record"): album},
+        )
+        self.assertFalse(wrong_album["album_membership_verified"])
+        self.assertFalse(wrong_artist["album_membership_verified"])
+        self.assertIsNone(wrong_album["album_affinity"])
+        self.assertEqual(wrong_artist["album_affinity"], 0.0)
+
+    def test_specific_shoegaze_genre_is_not_swallowed_by_broad_rock_label(self):
+        result = sequencer.score_track(
+            {"name": "Shoegaze", "artists": ["Artist"]},
+            track_profiles={("artist", "shoegaze"): {"musicbrainz_genres": [
+                {"tag": "indie rock"}, {"tag": "rock"}, {"tag": "shoegaze"}
+            ]}},
+        )
+        self.assertAlmostEqual(result["semantic_score"], 30.0)
+
+    def test_real_ceres_album_tracks_have_full_album_affinity(self):
+        root = Path(__file__).resolve().parents[1]
+        album_path = root / "assistant_data/music/library/albums/al/album-01632cb9b68c6acda89d/album.json"
+        track_path = root / "assistant_data/music/track_profiles.json"
+        album_record = json.loads(album_path.read_text(encoding="utf-8"))
+        track_rows = json.loads(track_path.read_text(encoding="utf-8"))
+        album_evidence = album_record["evidence"]
+        track_index = sequencer.index_tracks(track_rows)
+        album_key = (sequencer.norm(album_record["artist"]), sequencer.norm(album_record["album"]))
+        results = []
+        for entry in album_evidence["lastfm_tracklist"]:
+            title = entry["title"]
+            item = {"name": title, "artists": [entry["artist"]], "album": album_record["album"]}
+            profile = track_index.get((sequencer.norm(entry["artist"]), sequencer.norm(title)), {})
+            results.append(sequencer.score_track(
+                item, track_profiles={(sequencer.norm(entry["artist"]), sequencer.norm(title)): profile},
+                album_profiles={album_key: album_evidence},
+            ))
+        self.assertEqual(len(results), 12)
+        self.assertTrue(all(row["album_affinity"] == 100.0 for row in results))
+        self.assertTrue(all(row["album_membership_verified"] for row in results))
+        self.assertEqual(sum(row["sound_similarity"] is not None for row in results), 11)
+        self.assertTrue(all(row["sound_similarity"] == 100.0 for row in results if row["sound_similarity"] is not None))
+
+    def test_missing_metadata_is_explicitly_unknown(self):
+        result = sequencer.score_track({"uri": "spotify:track:1", "name": "Unknown", "artists": ["No Profile"]})
+        self.assertEqual(result["confidence"], "unknown")
+        self.assertEqual(result["score"], 50.0)
+
+
+
+    def test_semantic_metadata_never_promotes_acoustic_confidence(self):
+        item = {"uri": "spotify:track:semantic", "name": "Semantic", "artists": ["Artist"]}
+        artists = {"artist": {"genres": ["industrial"], "tags": [{"tag": "aggressive"}]}}
+        tracks = {("artist", "semantic"): {
+            "lastfm_tags": [{"tag": "energetic"}],
+            "musicbrainz_genres": [{"tag": "industrial"}],
+        }}
+        result = sequencer.score_track(item, artists, tracks)
+        self.assertEqual(result["acoustic_confidence"], "low")
+        self.assertEqual(result["confidence"], "low")
+        self.assertNotIn(result["acoustic_confidence"], {"medium", "high"})
+        self.assertNotEqual(result["semantic_confidence"], "unknown")
+
+
+    def test_catalog_tempo_cannot_promote_spotify_energy_to_high_confidence(self):
+        audio = {("artist", "catalog bpm"): {
+            "getsongbpm": {"tempo_bpm": 128, "source": "GetSongBPM API"}
+        }}
+        result = sequencer.score_track(
+            {"name": "Catalog BPM", "artists": ["Artist"],
+             "audio_features": {"energy": 0.8}},
+            audio_profiles=audio,
+        )
+        self.assertEqual(result["tempo_source"], "GetSongBPM catalog")
+        self.assertEqual(result["acoustic_confidence"], "medium")
+
+
+    def test_transition_energy_gap_uses_acoustic_score_not_semantic_blend(self):
+        left_item = {"name": "Same", "artists": ["A"], "audio_features": {"energy": 0.30}}
+        right_item = {"name": "Same", "artists": ["B"], "audio_features": {"energy": 0.30}}
+        right_tracks = {("b", "same"): {"lastfm_tags": [{"tag": "aggressive"}]}}
+        left = sequencer.score_track(left_item)
+        right = sequencer.score_track(right_item, track_profiles=right_tracks)
+        self.assertNotEqual(left["score"], right["score"])
+        self.assertEqual(left["acoustic_score"], right["acoustic_score"])
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["energy_gap"], 0.0)
+
+
+    def test_energy_mode_sorts_acoustic_score_and_keeps_unknown_last(self):
+        rows = [
+            {"uri": "high", "name": "High", "artists": ["A"],
+             "audio_features": {"energy": 0.9}},
+            {"uri": "low", "name": "Low", "artists": ["B"],
+             "audio_features": {"energy": 0.1}},
+            {"uri": "unknown", "name": "Unknown", "artists": ["C"]},
+        ]
+        result = sequencer.sequence_tracks(rows, mode="energy")
+        self.assertEqual([row["item"]["uri"] for row in result], ["low", "high", "unknown"])
+
+    def test_semantic_only_track_has_no_acoustic_score(self):
+        result = sequencer.score_track(
+            {"name": "Tagged", "artists": ["Artist"]},
+            track_profiles={("artist", "tagged"): {"lastfm_tags": [{"tag": "aggressive"}]}},
+        )
+        self.assertIsNone(result["acoustic_score"])
+        self.assertEqual(result["acoustic_confidence"], "low")
+
+    def test_legacy_medium_confidence_without_acoustic_basis_is_not_energy(self):
+        self.assertFalse(sequencer._has_reliable_energy({"confidence": "medium", "score": 80}))
+        self.assertTrue(sequencer._has_reliable_energy({
+            "confidence": "medium", "acoustic_confidence": "medium", "score": 80
+        }))
+
+
+
+    def test_getsongbpm_fallback_is_not_mislabelled_as_acousticbrainz(self):
+        indexed = sequencer.index_audio_profiles({
+            "profile": {
+                "artist": "Artist", "track": "Song",
+                "source": "AcousticBrainz low-level",
+                "tempo_bpm": 128, "tempo_source": "GetSongBPM API",
+                "getsongbpm": {"tempo_bpm": 128, "source": "GetSongBPM API"},
+            }
+        })
+        merged = indexed[("artist", "song")]
+        self.assertIsNone(merged["source_profiles"]["acousticbrainz"]["tempo_bpm"])
+        result = sequencer.score_track(
+            {"name": "Song", "artists": ["Artist"]}, audio_profiles=indexed
+        )
+        self.assertEqual(result["tempo_source"], "GetSongBPM catalog")
+        self.assertEqual(result["acoustic_confidence"], "low")
+
+    def test_evidence_coverage_summary_reports_sources_and_disagreement(self):
+        rows = [
+            {"confidence": "high", "acoustic_confidence": "high",
+             "semantic_confidence": "medium", "mood_confidence": "high", "tempo_bpm": 120,
+             "tempo_source": "Essentia", "tempo_agreement": True,
+             "evidence_sources": ["essentia_lufs", "spotify_audio_features"],
+             "semantic_source_families": ["lastfm_community", "musicbrainz"]},
+            {"confidence": "low", "acoustic_confidence": "low",
+             "semantic_confidence": "high", "mood_confidence": "low", "tempo_bpm": 80,
+             "tempo_source": "AcousticBrainz", "tempo_agreement": False,
+             "evidence_sources": ["acousticbrainz"],
+             "semantic_source_families": ["discogs_release_context"]},
+            {"confidence": "unknown", "acoustic_confidence": "unknown",
+             "semantic_confidence": "unknown"},
+        ]
+        summary = sequencer.evidence_coverage_summary(rows)
+        self.assertEqual(summary["tempo_sources"], {"AcousticBrainz": 1, "Essentia": 1})
+        self.assertEqual(summary["tempo_agreements"], 1)
+        self.assertEqual(summary["tempo_disagreements"], 1)
+        self.assertEqual(summary["semantic_confidence"]["high"], 1)
+        self.assertEqual(summary["mood_confidence"]["high"], 1)
+        self.assertEqual(summary["mood_confidence"]["low"], 1)
+        self.assertEqual(summary["acoustic_source_coverage"]["acousticbrainz"], 1)
+        self.assertEqual(summary["semantic_source_coverage"]["discogs_release_context"], 1)
+
+    def test_audio_profile_index_preserves_multiple_provider_records(self):
+        rows = {
+            "ab": {"artist": "A", "track": "T", "source": "AcousticBrainz low-level", "tempo_bpm": 120},
+            "ess": {"artist": "A", "track": "T", "analysis_engine": "Essentia", "tempo_bpm": 122, "integrated_lufs": -9},
+            "gsb": {"artist": "A", "track": "T", "getsongbpm": {"tempo_bpm": 121}},
+        }
+        indexed = sequencer.index_audio_profiles(rows)
+        merged = indexed[("a", "t")]
+        self.assertIn("acousticbrainz", merged["source_profiles"])
+        self.assertIn("essentia", merged["source_profiles"])
+        self.assertIn("getsongbpm", merged["source_profiles"])
+        result = sequencer.score_track(
+            {"name": "T", "artists": ["A"]}, audio_profiles=indexed
+        )
+        self.assertEqual(result["tempo_source"], "Essentia")
+        self.assertTrue(result["tempo_agreement"])
+
+    def test_theme_grouping_is_available_without_replacing_energy_scores(self):
+        rows = [
+            {"uri": "spotify:track:b", "name": "B", "artists": ["Artist B"],
+             "audio_features": {"energy": 0.51}},
+            {"uri": "spotify:track:a", "name": "A", "artists": ["Artist A"],
+             "audio_features": {"energy": 0.52}},
+        ]
+        artists = {
+            "artist a": {"themes": ["dreamlike"]},
+            "artist b": {"themes": ["nocturnal"]},
+        }
+        result = sequencer.sequence_tracks(rows, artist_profiles=artists, group_by="theme")
+        self.assertEqual({row["sequence_group"] for row in result}, {"dreamlike", "nocturnal"})
+        self.assertLessEqual(abs(result[1]["score"] - result[0]["score"]), 10)
+
+    def test_confidence_summary_counts_unknown_metadata(self):
+        rows = [
+            {"confidence": "high"},
+            {"confidence": "low"},
+            {"confidence": "unknown"},
+            {"confidence": "unknown"},
+        ]
+        self.assertEqual(
+            sequencer.confidence_summary(rows),
+            {"high": 1, "medium": 0, "low": 1, "unknown": 2},
+        )
+
+    def test_alternative_preview_message_formats_all_transition_counts(self):
+        message = sequencer.alternative_preview_message(
+            "plan-peak70.json",
+            {"gentle": 3, "moderate": 2, "potential_jumps": 1, "uncertain": 4},
+        )
+        self.assertEqual(
+            message,
+            "Alternative preview: plan-peak70.json | gentle: 3 | moderate: 2 "
+            "| potential jumps: 1 | provisional: 0 | uncertain: 4",
+        )
+
+    def test_sort_modes_include_atmosphere_style_narrative_and_discovery(self):
+        rows = [
+            {"uri": "spotify:track:1", "name": "Soft", "artists": ["Rare"]},
+            {"uri": "spotify:track:2", "name": "Loud", "artists": ["Popular"]},
+            {"uri": "spotify:track:3", "name": "Dark", "artists": ["Dark Artist"]},
+        ]
+        artists = {
+            "rare": {"play_count": 12, "lastfm_tags": [{"tag": "dreamy"}], "genres": ["dream pop"], "themes": ["dreamlike"]},
+            "popular": {"play_count": 900, "lastfm_tags": [{"tag": "energetic"}], "genres": ["punk"], "themes": ["rebellious"]},
+            "dark artist": {"play_count": 80, "lastfm_tags": [{"tag": "dark"}], "genres": ["darkwave"], "themes": ["nocturnal"]},
+        }
+        atmosphere = sequencer.sequence_tracks(rows, artists, mode="atmosphere")
+        self.assertEqual(atmosphere[0]["sequence_group"], "dreamy")
+        style = sequencer.sequence_tracks(rows, artists, mode="style")
+        self.assertEqual({row["sequence_group"] for row in style}, {"dream pop", "punk", "darkwave"})
+        narrative = sequencer.sequence_tracks(rows, artists, mode="narrative")
+        self.assertEqual(narrative[0]["sequence_group"], "act-1")
+        discovery = sequencer.sequence_tracks(rows, artists, mode="discovery")
+        self.assertEqual(discovery[0]["artist"], "Rare")
+
+    def test_hybrid_keeps_broad_energy_bands_in_order(self):
+        rows = [
+            {"uri": "spotify:track:high", "name": "High", "artists": ["A"],
+             "audio_features": {"energy": 0.91}},
+            {"uri": "spotify:track:low", "name": "Low", "artists": ["B"],
+             "audio_features": {"energy": 0.12}},
+        ]
+        result = sequencer.sequence_tracks(rows, mode="hybrid")
+        self.assertEqual([row["item"]["name"] for row in result], ["Low", "High"])
+
+    def test_reorder_plan_preserves_duplicates_and_transforms_order(self):
+        current = ["a", "b", "a", "c"]
+        desired = ["a", "a", "c", "b"]
+        operations = sequencer.build_reorder_operations(current, desired)
+        working = list(current)
+        for op in operations:
+            moved = working.pop(op["range_start"])
+            working.insert(op["insert_before"], moved)
+        self.assertEqual(working, desired)
+
+    def test_reorder_rejects_changed_playlist_membership(self):
+        with self.assertRaises(ValueError):
+            sequencer.build_reorder_operations(["a", "b"], ["a", "c"])
+
+
+    def test_smooth_is_default_and_hybrid_is_compatibility_alias(self):
+        rows = [
+            {"uri": "a", "name": "A", "artists": ["A"], "audio_features": {"energy": .1}},
+            {"uri": "b", "name": "B", "artists": ["B"], "audio_features": {"energy": .5}},
+            {"uri": "c", "name": "C", "artists": ["C"], "audio_features": {"energy": .2}},
+            {"uri": "d", "name": "D", "artists": ["D"], "audio_features": {"energy": .9}},
+        ]
+        self.assertEqual(sequencer.sequence_tracks(rows), sequencer.sequence_tracks(rows, mode="hybrid"))
+        self.assertEqual({r["item"]["uri"] for r in sequencer.sequence_tracks(rows)}, set("abcd"))
+
+    def test_peak_position_and_shape(self):
+        curve = [sequencer.target_energy(i, 100, peak_position=85) for i in range(100)]
+        self.assertAlmostEqual(curve[85], curve[98])
+        self.assertNotEqual(
+            sequencer.target_energy(70, 100, peak_shape="sharp"),
+            sequencer.target_energy(70, 100, peak_shape="gradual"),
+        )
+        self.assertNotEqual(
+            sequencer.target_energy(70, 100, peak_shape="sustained"),
+            sequencer.target_energy(70, 100, peak_shape="gradual"),
+        )
+
+    def test_journey_shapes(self):
+        self.assertGreater(sequencer.target_energy(0, 20, "falling"), sequencer.target_energy(19, 20, "falling"))
+        self.assertLess(sequencer.target_energy(0, 20, "rising"), sequencer.target_energy(19, 20, "rising"))
+        self.assertAlmostEqual(sequencer.target_energy(0, 20, "steady"), sequencer.target_energy(19, 20, "steady"))
+        self.assertLess(sequencer.target_energy(0, 100, "wave"), sequencer.target_energy(50, 100, "wave"))
+
+    def test_opener_closer_and_pinned_track(self):
+        rows = [
+            {"uri": x, "name": x, "artists": [x], "audio_features": {"energy": energy}}
+            for x, energy in [("a", .1), ("b", .9), ("c", .3), ("d", .8), ("e", .2)]
+        ]
+        result = sequencer.sequence_tracks(rows, opener_uri="b", closer_uri="a", pinned_uris={"c"})
+        uris = [r["item"]["uri"] for r in result]
+        self.assertEqual(uris[0], "b")
+        self.assertEqual(uris[-1], "a")
+        self.assertEqual(uris[2], "c")
+
+    def test_sections_keep_all_tracks_and_add_soft_affinity(self):
+        rows = [{"uri": x, "name": x, "artists": [x]} for x in "abcd"]
+        result = sequencer.sequence_tracks(rows, sections={"Opening": ["a", "b"], "Finish": ["c", "d"]})
+        self.assertEqual({r["item"]["uri"] for r in result}, set("abcd"))
+        self.assertTrue(all("section_groups" in row for row in result))
+
+    def test_transition_report_explains_handoff_and_uncertainty(self):
+        a = {"score": 40, "acoustic_score": 40, "confidence": "medium", "acoustic_confidence": "medium", "artist": "A", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
+        b = {"score": 45, "acoustic_score": 45, "confidence": "medium", "acoustic_confidence": "medium", "artist": "B", "vibe_groups": ["dreamy"], "genre_groups": ["dream pop"], "theme_groups": ["dreamlike"]}
+        report = sequencer.transition_report(a, b)
+        self.assertEqual(report["label"], "gentle")
+        self.assertIn("dreamy", report["shared_moods"])
+        self.assertEqual(sequencer.transition_report(dict(a, confidence="unknown", acoustic_confidence="unknown"), b)["confidence"], "limited")
+
+    def test_mood_affinity_weight_scales_with_confidence(self):
+        left = {
+            "artist": "A", "vibe_groups": ["dreamy"],
+            "genre_groups": ["industrial"], "theme_groups": [],
+            "mood_confidence": "high",
+        }
+        right = {
+            "artist": "B", "vibe_groups": ["dreamy"],
+            "genre_groups": ["punk"], "theme_groups": [],
+            "mood_confidence": "high",
+        }
+        high_confidence_cost = sequencer._transition_cost(left, right)
+        low_confidence_cost = sequencer._transition_cost(
+            dict(left, mood_confidence="low"),
+            dict(right, mood_confidence="low"),
+        )
+        unknown_confidence_cost = sequencer._transition_cost(
+            dict(left, mood_confidence="unknown"),
+            dict(right, mood_confidence="unknown"),
+        )
+        self.assertLess(high_confidence_cost, low_confidence_cost)
+        self.assertLess(low_confidence_cost, unknown_confidence_cost)
+
+    def test_low_confidence_mood_cannot_support_transition_confidence(self):
+        left = {
+            "score": 40, "acoustic_score": 40, "acoustic_confidence": "high",
+            "artist": "A", "vibe_groups": ["dreamy"], "mood_confidence": "low",
+            "genre_groups": [], "theme_groups": [],
+        }
+        right = dict(left, artist="B", score=42, acoustic_score=42)
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["evidence_count"], 1)
+
+    def test_transition_summary_flags_potential_jump(self):
+        rows = [
+            {"score": 5, "confidence": "low", "artist": "a", "vibe_groups": [], "genre_groups": [], "theme_groups": []},
+            {"score": 98, "confidence": "unknown", "artist": "b", "vibe_groups": [], "genre_groups": [], "theme_groups": []},
+        ]
+        self.assertEqual(sequencer.transition_summary(rows)["potential_jumps"], 0)
+        self.assertEqual(sequencer.transition_summary(rows)["uncertain"], 1)
+
+
+    def test_ordered_sections_are_softly_preferred(self):
+        first = {"score": 50, "confidence": "medium", "artist": "A", "vibe_groups": [],
+                 "genre_groups": [], "theme_groups": [], "section_groups": ["section:0"], "section_index": 0}
+        second = {"score": 50, "confidence": "medium", "artist": "B", "vibe_groups": [],
+                  "genre_groups": [], "theme_groups": [], "section_groups": ["section:1"], "section_index": 1}
+        forward = sequencer._sequence_objective([first, second], "steady", 85, "gradual", 0, 0)
+        backward = sequencer._sequence_objective([second, first], "steady", 85, "gradual", 0, 0)
+        self.assertLess(forward, backward)
+
+    def test_all_tracks_can_be_fixed_by_opening_and_closing_anchors(self):
+        rows = [
+            {"uri": "start", "name": "Start", "artists": ["A"]},
+            {"uri": "end", "name": "End", "artists": ["B"]},
+        ]
+        result = sequencer.sequence_tracks(rows, opener_uri="start", closer_uri="end")
+        self.assertEqual([row["item"]["uri"] for row in result], ["start", "end"])
+
+
+    def test_unknown_anchor_uri_is_rejected(self):
+        rows = [{"uri": "present", "name": "Present", "artists": ["A"]}]
+        with self.assertRaisesRegex(ValueError, "not in this playlist"):
+            sequencer.sequence_tracks(rows, opener_uri="missing")
+
+    def test_exported_lyric_themes_feed_transition_theme_groups(self):
+        profiles = {}
+        exported = [{
+            "artist": "Night Club",
+            "track": "Vampires",
+            "themes": {"vampire": {"count": 3}, "nightlife_clubbing": {"count": 2}},
+            "source_count": 2,
+        }]
+        sequencer.merge_lyric_features(profiles, exported)
+        item = {"uri": "spotify:track:1", "name": "Vampires", "artists": ["Night Club"]}
+        scored = sequencer.score_track(item, track_profiles=profiles)
+        self.assertIn("vampire", scored["theme_groups"])
+        self.assertIn("nightlife_clubbing", scored["theme_groups"])
+        self.assertTrue(any("lyric-theme evidence" in row for row in scored["evidence"]))
+
+    def test_lyric_themes_are_preserved_even_when_energy_is_unknown(self):
+        profiles = {("night club", "vampires"): {
+            "lyric_analysis": {"themes": {"vampire": {"count": 3}}}
+        }}
+        scored = sequencer.score_track(
+            {"uri": "spotify:track:1", "name": "Vampires", "artists": ["Night Club"]},
+            track_profiles=profiles,
+        )
+        self.assertEqual(scored["confidence"], "unknown")
+        self.assertIn("vampire", scored["theme_groups"])
+
+    def test_lastfm_artist_tags_are_used_as_low_confidence_mood_fallback(self):
+        item = {"uri": "spotify:track:1", "name": "Track", "artists": ["Artist"]}
+        artists = {"artist": {"tags": [{"tag": "energetic"}, {"tag": "punk"}], "genres": ["punk"]}}
+        result = sequencer.score_track(item, artist_profiles=artists)
+        self.assertIn("artist-level mood fallback", " ".join(result["evidence"]))
+        self.assertIn("energetic", result["vibe_groups"])
+        self.assertEqual(result["confidence"], "low")
+
+    def test_rising_journey_reaches_and_holds_a_sustained_finale(self):
+        curve = [sequencer.target_energy(i, 100, "rising", peak_position=85, peak_shape="gradual")
+                 for i in range(100)]
+        self.assertTrue(all(left <= right for left, right in zip(curve, curve[1:])))
+        self.assertAlmostEqual(curve[-1], 0.96)
+        self.assertEqual(curve[85], curve[-1])
+
+    def test_genre_family_estimates_support_surf_club_and_heavy_sections(self):
+        def score(artist, genre):
+            return sequencer.score_track(
+                {"uri": "spotify:track:1", "name": "Track", "artists": [artist]},
+                artist_profiles={artist.casefold(): {"genres": [genre]}},
+            )["score"]
+        self.assertEqual(score("Surf Artist", "surf rock"), 62.0)
+        self.assertEqual(score("Club Artist", "synthwave"), 72.0)
+        self.assertEqual(score("Heavy Artist", "industrial metal"), 78.0)
+
+
+    def test_smooth_order_breaks_long_same_artist_runs(self):
+        rows = []
+        for uri, artist in [
+            ("a1", "A"), ("a2", "A"), ("a3", "A"), ("a4", "A"),
+            ("b1", "B"), ("b2", "B"), ("c1", "C"), ("d1", "D"),
+        ]:
+            rows.append({
+                "item": {"uri": uri}, "artist": artist, "score": 60,
+                "confidence": "low", "original_index": len(rows),
+                "vibe_groups": ["dark"], "genre_groups": ["rock"],
+                "theme_groups": ["horror"], "section_index": 0,
+            })
+        ordered = sequencer._smooth_order(rows, journey="steady")
+        artists = [row["artist"] for row in ordered]
+        longest = current = 1
+        for left, right in zip(artists, artists[1:]):
+            current = current + 1 if left == right else 1
+            longest = max(longest, current)
+        self.assertLessEqual(longest, 2)
+
+    def test_same_artist_transition_has_a_diversity_penalty(self):
+        base = {"score": 60, "vibe_groups": ["energetic"], "genre_groups": ["punk"],
+                "theme_groups": ["horror"], "artist": "A"}
+        same = dict(base, artist="A")
+        different = dict(base, artist="B")
+        self.assertGreater(
+            sequencer._transition_cost(base, same),
+            sequencer._transition_cost(base, different),
+        )
+
+    def test_smooth_sort_respects_the_three_act_section_order(self):
+        rows = []
+        for uri, section in [("c", 2), ("b", 1), ("a", 0)]:
+            rows.append({
+                "item": {"uri": uri}, "score": 60, "original_index": len(rows),
+                "vibe_groups": [], "genre_groups": [], "theme_groups": [],
+                "section_index": section, "section_name": str(section),
+            })
+        ordered = sequencer._smooth_order(rows, journey="rising")
+        self.assertEqual([row["item"]["uri"] for row in ordered], ["a", "b", "c"])
+
+    def test_smooth_order_interleaves_same_artist_tracks_when_possible(self):
+        rows = []
+        for uri, artist in [("a1", "Messer Chups"), ("a2", "Messer Chups"), ("b", "The Ghastly Ones")]:
+            rows.append({
+                "item": {"uri": uri}, "artist": artist, "score": 60,
+                "original_index": len(rows), "vibe_groups": [],
+                "genre_groups": [], "theme_groups": [], "section_index": 0,
+            })
+        ordered = sequencer._smooth_order(rows, journey="steady")
+        artists = [row["artist"] for row in ordered]
+        self.assertNotEqual(artists[0], artists[1])
+        self.assertNotEqual(artists[1], artists[2])
+
+    def test_explicit_sections_remain_contiguous_and_in_declared_order(self):
+        items = [
+            {"uri": uri, "name": uri, "artists": [artist]}
+            for uri, artist in [
+                ("f2", "Final Artist"), ("c2", "Club Artist"),
+                ("f1", "Final Artist"), ("o2", "Opening Artist"),
+                ("c1", "Club Artist"), ("o1", "Opening Artist"),
+            ]
+        ]
+        sections = {
+            "Opening": ["o1", "o2"],
+            "Club": ["c1", "c2"],
+            "Finale": ["f1", "f2"],
+        }
+        result = sequencer.sequence_tracks(items, sections=sections)
+        ranks = {"o1": 0, "o2": 0, "c1": 1, "c2": 1, "f1": 2, "f2": 2}
+        actual = [ranks[row["item"]["uri"]] for row in result]
+        self.assertEqual(actual, sorted(actual))
+
+    def test_section_sorting_uses_the_global_rising_energy_curve(self):
+        high = {"score": 95, "acoustic_score": 95, "acoustic_confidence": "high",
+                "artist": "High", "vibe_groups": [],
+                "genre_groups": [], "theme_groups": [], "section_index": 2}
+        low = {"score": 50, "acoustic_score": 50, "acoustic_confidence": "high",
+               "artist": "Low", "vibe_groups": [],
+               "genre_groups": [], "theme_groups": [], "section_index": 2}
+        high_first = sequencer._sequence_objective(
+            [high, low], "rising", 85, "gradual", 0, 0, position_offset=80, total_count=100
+        )
+        low_first = sequencer._sequence_objective(
+            [low, high], "rising", 85, "gradual", 0, 0, position_offset=80, total_count=100
+        )
+        self.assertLess(low_first, high_first)
+
+
+
+    def test_unknown_energy_placeholder_does_not_affect_sequence_objective(self):
+        unknown_low = {"score": 0.0, "confidence": "unknown", "artist": "Unknown",
+                       "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        unknown_high = dict(unknown_low, score=100.0)
+        known = {"score": 80.0, "confidence": "high", "artist": "Known",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        low_cost = sequencer._sequence_objective(
+            [unknown_low, known], "rising", 85, "gradual", 0, 0)
+        high_cost = sequencer._sequence_objective(
+            [unknown_high, known], "rising", 85, "gradual", 0, 0)
+        self.assertEqual(low_cost, high_cost)
+
+    def test_transition_report_does_not_publish_placeholder_energy_gap(self):
+        left = {"score": 50.0, "confidence": "unknown", "artist": "One",
+                "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 95.0, "confidence": "high", "artist": "Two",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertIsNone(report["energy_gap"])
+        self.assertNotIn("estimated energy", " ".join(report["reasons"]))
+
+
+
+    def test_low_confidence_mismatch_is_provisional_not_a_confirmed_jump(self):
+        left = {"score": 20, "confidence": "low", "artist": "One",
+                "vibe_groups": ["calm"], "genre_groups": ["ambient"], "theme_groups": []}
+        right = {"score": 95, "confidence": "low", "artist": "Two",
+                 "vibe_groups": ["aggressive"], "genre_groups": ["metal"], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["label"], "provisional")
+
+
+    def test_low_confidence_mismatch_is_provisional_not_a_confirmed_jump(self):
+        left = {"score": 20, "confidence": "low", "artist": "One",
+                "vibe_groups": ["calm"], "genre_groups": ["ambient"], "theme_groups": []}
+        right = {"score": 95, "confidence": "low", "artist": "Two",
+                 "vibe_groups": ["aggressive"], "genre_groups": ["metal"], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["label"], "provisional")
+
+    def test_low_confidence_energy_is_not_used_as_transition_fact(self):
+        left = {"score": 5, "confidence": "low", "artist": "One",
+                "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 98, "confidence": "low", "artist": "Two",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertIsNone(report["energy_gap"])
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["label"], "uncertain")
+        self.assertEqual(
+            sequencer._transition_cost(left, right),
+            sequencer._transition_cost(dict(left, score=98), right),
+        )
+
+    def test_missing_metadata_is_not_scored_as_disagreement(self):
+        left = {"score": 50, "confidence": "unknown", "artist": "One",
+                "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 50, "confidence": "unknown", "artist": "Two",
+                 "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["label"], "uncertain")
+        self.assertEqual(report["confidence"], "limited")
+        self.assertEqual(report["evidence_count"], 0)
+
+    def test_half_time_tempo_relationship_is_compatible(self):
+        left = {"score": 60, "confidence": "medium", "artist": "One",
+                "tempo_bpm": 80, "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        right = {"score": 60, "confidence": "medium", "artist": "Two",
+                 "tempo_bpm": 160, "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        report = sequencer.transition_report(left, right)
+        self.assertEqual(report["tempo_relationship"], 0.0)
+        self.assertIn("half/double-time", " ".join(report["reasons"]))
+
+    def test_shared_metadata_reduces_transition_cost(self):
+        left = {"score": 60, "confidence": "medium", "artist": "One",
+                "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
+        right = {"score": 60, "confidence": "medium", "artist": "Two",
+                 "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
+        sparse = {"score": 90, "confidence": "medium", "artist": "Three",
+                  "vibe_groups": [], "genre_groups": [], "theme_groups": []}
+        self.assertLess(sequencer._transition_cost(left, right),
+                        sequencer._transition_cost(left, sparse))
+
+
+
+class SavedPlaylistIntegrationTests(unittest.TestCase):
+    def test_saved_booze_or_boos_snapshot_sequence_preview(self):
+        """Exercise the real saved playlist snapshot without Spotify writes."""
+        root = Path(__file__).resolve().parents[1]
+        snapshot_path = root / "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json"
+        self.assertTrue(snapshot_path.is_file(), "saved Booze or Boos snapshot is missing")
+        snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        self.assertIsInstance(snapshot.get("items"), list)
+        self.assertTrue(snapshot.get("items_accessible"))
+        self.assertEqual(snapshot.get("item_count_fetched"), len(snapshot["items"]))
+
+        def load_object(path):
+            try:
+                value = json.loads(path.read_text(encoding="utf-8"))
+                return value if isinstance(value, dict) else {}
+            except (OSError, ValueError):
+                return {}
+
+        artists = load_object(root / "assistant_data/music/artist_profiles.json")
+        tracks = load_object(root / "assistant_data/music/track_profiles.json")
+        audio_path = root / "assistant_data/music/audio_profiles.json"
+        audio_data = load_object(audio_path) if audio_path.exists() else {}
+        artist_index = sequencer.index_artists(artists)
+        track_index = sequencer.index_tracks(tracks)
+        audio_index = sequencer.index_audio_profiles(audio_data.get("tracks", audio_data))
+        album_data = load_object(root / "assistant_data/music/album_profiles.json")
+        album_index = {
+            (sequencer.norm(row.get("artist")), sequencer.norm(row.get("album"))): row
+            for row in album_data.values()
+            if isinstance(row, dict) and row.get("artist") and row.get("album")
+        }
+
+        started = perf_counter()
+        ordered = sequencer.sequence_tracks(
+            snapshot["items"], artist_index, track_index,
+            mode="smooth", journey="rising", peak_position=85,
+            peak_shape="gradual", audio_profiles=audio_index,
+            album_profiles=album_index,
+        )
+        original_uris = [item["uri"] for item in snapshot["items"]]
+        ordered_uris = [row["item"]["uri"] for row in ordered]
+        operations = sequencer.build_reorder_operations(original_uris, ordered_uris)
+        summary = sequencer.transition_summary(ordered)
+        confidence = sequencer.confidence_summary(ordered)
+        coverage = sequencer.evidence_coverage_summary(ordered)
+        mood_confidence = coverage["mood_confidence"]
+        playlist_artist_rows = [
+            artist_index.get(sequencer.norm((item.get("artists") or [""])[0]), {})
+            for item in snapshot["items"]
+        ]
+        artist_profiles_with_moods = sum(bool(row.get("moods")) for row in playlist_artist_rows)
+        artist_profiles_with_tags = sum(bool(row.get("tags")) for row in playlist_artist_rows)
+        curated_artist_moods_mapped = sum(
+            any(sequencer.mood_inference._tag_moods(tag) for tag in (row.get("moods") or []))
+            for row in playlist_artist_rows
+        )
+        artist_raw_moods_mapped = sum(
+            any(sequencer.mood_inference._tag_moods(
+                tag.get("tag", "") if isinstance(tag, dict) else tag
+            ) for tag in (row.get("tags") or []))
+            for row in playlist_artist_rows
+        )
+        artist_mood_examples = sorted({
+            str(tag) for row in playlist_artist_rows for tag in (row.get("moods") or [])
+        }, key=str.casefold)[:12]
+        artist_tag_examples = sorted({
+            str(tag.get("tag", "") if isinstance(tag, dict) else tag)
+            for row in playlist_artist_rows for tag in (row.get("tags") or [])
+            if tag
+        }, key=str.casefold)[:24]
+        playlist_track_rows = [
+            track_index.get((sequencer.norm((item.get("artists") or [""])[0]), sequencer.norm(item.get("name"))), {})
+            for item in snapshot["items"]
+        ]
+        track_tag_coverage = {
+            "lastfm_tagged": sum(bool(row.get("lastfm_tags")) for row in playlist_track_rows),
+            "musicbrainz_tagged": sum(bool(row.get("musicbrainz_tags")) for row in playlist_track_rows),
+            "lastfm_no_tags": sum(row.get("lastfm_status") == "no_tags" for row in playlist_track_rows),
+            "lastfm_unmatched": sum(not row for row in playlist_track_rows),
+        }
+        playlist_album_rows = [
+            album_index.get((sequencer.norm((item.get("artists") or [""])[0]),
+                             sequencer.norm(item.get("album"))), {})
+            for item in snapshot["items"]
+        ]
+        album_tag_coverage = {
+            "tagged_albums": len({(row.get("artist"), row.get("album")) for row in playlist_album_rows
+                                  if row.get("lastfm_tags")}),
+            "no_tags": len({(row.get("artist"), row.get("album")) for row in playlist_album_rows
+                            if row.get("status") == "no_tags"}),
+            "unmatched_tracks": sum(not row for row in playlist_album_rows),
+        }
+        changed_positions = sum(a != b for a, b in zip(original_uris, ordered_uris))
+        elapsed_seconds = perf_counter() - started
+        previous_artist = None
+        artist_run = longest_run = 0
+        for row in ordered:
+            artist = row.get("artist")
+            artist_run = artist_run + 1 if artist == previous_artist else 1
+            longest_run = max(longest_run, artist_run)
+            previous_artist = artist
+
+        self.assertEqual(len(ordered), len(snapshot["items"]))
+        self.assertCountEqual(ordered_uris, original_uris)
+        self.assertEqual(sum(confidence.values()), len(ordered))
+        self.assertEqual(sum(mood_confidence.values()), len(ordered))
+        self.assertLessEqual(longest_run, 2, "real playlist preview should avoid long artist runs")
+        print(
+            "SEQUENCER REAL-DATA EVALUATION: "
+            f"playlist={snapshot.get('name')!r}; captured_at={snapshot.get('captured_at')}; "
+            f"tracks={len(ordered)}; elapsed_seconds={elapsed_seconds:.3f}; moved_positions={changed_positions}; "
+            f"longest_artist_run={longest_run}; "
+            f"reorder_operations={len(operations)}; confidence={confidence}; "
+            f"mood_confidence={mood_confidence}; mood_sources={coverage['mood_source_coverage']}; "
+            f"artist_profiles_with_moods={artist_profiles_with_moods}; "
+            f"artist_profiles_with_tags={artist_profiles_with_tags}; "
+            f"curated_artist_moods_mapped={curated_artist_moods_mapped}; artist_raw_moods_mapped={artist_raw_moods_mapped}; artist_mood_examples={artist_mood_examples}; "
+            f"artist_tag_examples={artist_tag_examples}; track_tag_coverage={track_tag_coverage}; "
+            f"album_tag_coverage={album_tag_coverage}; album_profiles_loaded={len(album_index)}; "
+            f"transitions={{gentle:{summary['gentle']}, moderate:{summary['moderate']}, "
+            f"potential_jumps:{summary['potential_jumps']}, provisional:{summary['provisional']}, "
+            f"uncertain:{summary['uncertain']}, "
+            f"limited_evidence:{summary['limited_evidence']}}}; "
+            f"artist_profiles={len(artist_index)}; track_profiles={len(track_index)}; "
+            f"audio_profiles={len(audio_index)}"
+        )
+        print(
+            "SEQUENCER PREVIEW SAMPLE: "
+            + " -> ".join(
+                f"{row['artist']} — {row['track']} [{row['confidence']}]"
+                for row in ordered[:12]
+            )
+        )
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_spotify_playlist_sequencer -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

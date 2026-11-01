@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "source:e1ca3985d21861f5",
+  "identity": {
+    "artist": "Smitech Wesson",
+    "title": "Whisper - The Toxic Avenger Remix",
+    "album": "",
+    "artist_id": "name:23be5c4059fc326f",
+    "album_id": null,
+    "recording_mbid": null,
+    "spotify_id": null,
+    "source_track_id": "track:e1ca3985d21861f5",
+    "identity_quality": "source_track_id"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T06:00:11.488591+00:00",
+      "retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/na/name-23be5c4059fc326f/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 18,
+    "all_time_plays": 18
+  }
+}

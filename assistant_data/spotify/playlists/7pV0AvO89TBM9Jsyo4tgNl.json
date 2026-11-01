@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:56.292960+00:00",
+  "id": "7pV0AvO89TBM9Jsyo4tgNl",
+  "name": "Travel ",
+  "description": "",
+  "owner": {
+    "id": "j4ap8wdi5zww8osq6loz4s1nz",
+    "display_name": "Trin;p"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAABRcaN6iDUPt5zrl3iIf1OnxDodc4r",
+  "total_items_reported": 335,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
+  "last_items_accessible_at": "2026-10-31T09:04:31.819792+00:00",
+  "items_snapshot_id": "AAABRcaN6iDUPt5zrl3iIf1OnxDodc4r",
+  "items": []
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "name:d273b9c97cfe8ea4",
+  "artist": "BLIND GRAPH",
+  "identity": {
+    "artist_mbid": null,
+    "identity_quality": "name_fallback"
+  },
+  "evidence": {},
+  "album_ids": []
+}

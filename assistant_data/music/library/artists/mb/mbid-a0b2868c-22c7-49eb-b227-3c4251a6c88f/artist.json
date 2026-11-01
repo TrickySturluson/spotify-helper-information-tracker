@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f",
+  "artist": "Electric Youth",
+  "identity": {
+    "artist_mbid": "a0b2868c-22c7-49eb-b227-3c4251a6c88f",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

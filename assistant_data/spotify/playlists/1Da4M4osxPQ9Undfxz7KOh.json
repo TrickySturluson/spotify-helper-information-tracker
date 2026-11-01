@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:48.019430+00:00",
+  "id": "1Da4M4osxPQ9Undfxz7KOh",
+  "name": "Killer songs to Slay/Die to",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAD0yv4/WcEhIH9I91Nun6j4zBJuBz",
+  "total_items_reported": 14,
+  "item_count_fetched": 14,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-01T04:36:48.019441+00:00",
+  "items_snapshot_id": "AAAAD0yv4/WcEhIH9I91Nun6j4zBJuBz",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-10-28T02:15:03Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4NFMIIgeniFgNfsB8Uj9Ta",
+      "uri": "spotify:track:4NFMIIgeniFgNfsB8Uj9Ta",
+      "name": "Hex Girl",
+      "artists": [
+        "Moon Sisters",
+        "The Nostalgia Girls"
+      ],
+      "artist_ids": [
+        "1ShxlsSSCyVCcrmXBd6Djf",
+        "0cgD9eoyZxiDAIPuWEqIm4"
+      ],
+      "album": "Embers of Beauty",
+      "album_id": "0Unube3XUOtZsDhXGmQ3yQ",
+      "duration_ms": 100963,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJ3V1320212"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2026-10-29T20:27:13Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ccHDZoNnN6dG59j6tnh9O",
+      "uri": "spotify:track:6ccHDZoNnN6dG59j6tnh9O",
+      "name": "Spirit of the Slime",
+      "artists": [
+        "Nathan Hanover Synthonic Orchestra"
+      ],
+      "artist_ids": [
+        "1iJMIncZvu0OgeL9mL1Wt1"
+      ],
+      "album": "Generation 1: The Social Experiments (Original Livestream Soundtrack)",
+      "album_id": "0wvzTXUUtuCVegZ6YnAumP",
+      "duration_ms": 254000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6H2317541"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-10-29T20:31:26Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1apH42Wa9c0Iy2X7VZOZr9",
+      "uri": "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
+      "name": "Who Do You Voodoo (From Dead Island)",
+      "artists": [
+        "Josef \"J7\" Lord",
+        "Christopher H. Knight"
+      ],
+      "artist_ids": [
+        "31qzD4WUZylF2isV5iAxJf",
+        "20t46j8qf1wSIa1JeknNRh"
+      ],
+      "album": "Who Do You Voodoo (From Dead Island)",
+      "album_id": "0jmd3nmEtMpdQVNHdxmHSk",
+      "duration_ms": 142580,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCABA1155345"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-10-29T20:49:18Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0lCl0dDgxcRHEHQkKCnAOr",
+      "uri": "spotify:track:0lCl0dDgxcRHEHQkKCnAOr",
+      "name": "Blood on Your Blade",
+      "artists": [
+        "Night Club"
+      ],
+      "artist_ids": [
+        "3OUOnyTJNDDf8UreCAqJpM"
+      ],
+      "album": "Scary World",
+      "album_id": "1HMQ50pxld8ain4N27cvX5",
+      "duration_ms": 187882,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL1808548"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-10-29T20:56:15Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2rzafMh8q10vQGixcHupCh",
+      "uri": "spotify:track:2rzafMh8q10vQGixcHupCh",
+      "name": "Back From The Dead",
+      "artists": [
+        "House Of Pain"
+      ],
+      "artist_ids": [
+        "0AuW7OCyKfFrsMbtHrYgIV"
+      ],
+      "album": "Same As It Ever Was",
+      "album_id": "5fuj5MjKypNxYNqjS6QlFK",
+      "duration_ms": 212306,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRH11000018"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2026-10-29T20:58:37Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5BBK1WoaiD3b3sJ2UysLuM",
+      "uri": "spotify:track:5BBK1WoaiD3b3sJ2UysLuM",
+      "name": "Witches",
+      "artists": [
+        "Alice Phoebe Lou"
+      ],
+      "artist_ids": [
+        "03uMw43UVu9MsQCcHVSGjX"
+      ],
+      "album": "Witches",
+      "album_id": "2tqLyWHOTHOGRvEYXUHoqM",
+      "duration_ms": 195078,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL2089608"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2026-10-29T21:00:38Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0MK6lVnmhVulpP62vkZBWV",
+      "uri": "spotify:track:0MK6lVnmhVulpP62vkZBWV",
+      "name": "Locals (Girls like us) [with gabby start]",
+      "artists": [
+        "underscores",
+        "gabby start"
+      ],
+      "artist_ids": [
+        "7HfUJxeVTgrvhk0eWHFzV7",
+        "33L1klom7IXmoAP8fjrGm9"
+      ],
+      "album": "Wallsocket",
+      "album_id": "6exrhkZKAwCGoihIZDJnpv",
+      "duration_ms": 258084,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USQE92300060"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2026-10-29T23:46:23Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "58m6CyZocf1hJ5dXU31M9L",
+      "uri": "spotify:track:58m6CyZocf1hJ5dXU31M9L",
+      "name": "The Kid Who Drowned at Summer Camp",
+      "artists": [
+        "Hot Sugar"
+      ],
+      "artist_ids": [
+        "5doDInHCvRMOOapyaos2AE"
+      ],
+      "album": "Moon Money",
+      "album_id": "5drJaRTDZUHwu8RYgExSmw",
+      "duration_ms": 198447,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCAEA1810137"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2026-10-29T23:47:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2z9kVLkoT5d790vCOhjOO5",
+      "uri": "spotify:track:2z9kVLkoT5d790vCOhjOO5",
+      "name": "What Is A Killer Like You Gonna Do Here?",
+      "artists": [
+        "Zeal & Ardor"
+      ],
+      "artist_ids": [
+        "6yCjbLFZ9qAnWfsy9ujm5Y"
+      ],
+      "album": "Devil Is Fine",
+      "album_id": "5Oc87gybQZkVeqogIFXzMd",
+      "duration_ms": 135104,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FR59R1612431"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2026-10-29T23:48:25Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7dSCxR4LqkmxoBrq9MzVSD",
+      "uri": "spotify:track:7dSCxR4LqkmxoBrq9MzVSD",
+      "name": "Psycho Killer",
+      "artists": [
+        "Talking Heads"
+      ],
+      "artist_ids": [
+        "2x9SpqnPi8rlE9pjHBwmSC"
+      ],
+      "album": "Talking Heads '77",
+      "album_id": "0r7o2FeARRr23EZ0TJ0a8S",
+      "duration_ms": 260506,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USWB19900858"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2026-10-29T23:49:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "67opOypS0qzzvNpUuAnu1r",
+      "uri": "spotify:track:67opOypS0qzzvNpUuAnu1r",
+      "name": "10 Simple Murders",
+      "artists": [
+        "The Future Kings of Nowhere"
+      ],
+      "artist_ids": [
+        "7AJ4lnWtw7XbNKjDlef8Wa"
+      ],
+      "album": "The Future Kings of Nowhere",
+      "album_id": "0tutfHxObdG3fjOk8aK9wY",
+      "duration_ms": 197813,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgj1084838"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-10-30T00:00:21Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4PoJzhTdeH3lKNr6yOFMEz",
+      "uri": "spotify:track:4PoJzhTdeH3lKNr6yOFMEz",
+      "name": "Killer",
+      "artists": [
+        "Sordid Pink"
+      ],
+      "artist_ids": [
+        "5FSSocUbUylI8xOIj3mkEb"
+      ],
+      "album": "Sordid Pink",
+      "album_id": "1qxw0lG0Xyhh661lWKMSUo",
+      "duration_ms": 215183,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6G2077112"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2026-10-30T00:13:00Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "59Df4UMatV1b5rhjSkCLFv",
+      "uri": "spotify:track:59Df4UMatV1b5rhjSkCLFv",
+      "name": "Cannibal Queen",
+      "artists": [
+        "Miniature Tigers"
+      ],
+      "artist_ids": [
+        "7xWU2A2lw1xf4zTjKhkrGK"
+      ],
+      "album": "Tell It to the Volcano",
+      "album_id": "3qmAEhCBKv3TeqhwIqQgqU",
+      "duration_ms": 164386,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US8JX0900001"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-10-30T00:17:37Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7oDd2ubdKM4r6x7eqUxeAB",
+      "uri": "spotify:track:7oDd2ubdKM4r6x7eqUxeAB",
+      "name": "Vincent Price Bible",
+      "artists": [
+        "Messer Chups"
+      ],
+      "artist_ids": [
+        "756Li3sKcK4EdDiniLPqRl"
+      ],
+      "album": "Heretic Channel",
+      "album_id": "0AiEMcpcHrUT5ilQ0VZ9bu",
+      "duration_ms": 272706,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DEW010901659"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

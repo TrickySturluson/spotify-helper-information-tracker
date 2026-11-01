@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:57.776098+00:00",
+  "id": "3QOXoyzMgmR11E3uApwAXV",
+  "name": "I'll kill you",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAChoNrsFInqK6aRge4fPsmZzY9qlN",
+  "total_items_reported": 3,
+  "item_count_fetched": 3,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-01T04:36:57.776109+00:00",
+  "items_snapshot_id": "AAAAChoNrsFInqK6aRge4fPsmZzY9qlN",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2023-12-20T18:15:01Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6o34ZxXf0aKYCFcbiol5tU",
+      "uri": "spotify:track:6o34ZxXf0aKYCFcbiol5tU",
+      "name": "Black",
+      "artists": [
+        "The Soft Moon"
+      ],
+      "artist_ids": [
+        "40HeNm05FEAxGx8gUOV4my"
+      ],
+      "album": "Deeper",
+      "album_id": "4sdTiKZkufFUNlvtNcIiFh",
+      "duration_ms": 208001,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMMZN1521802"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2023-12-20T18:16:07Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6PEhpdRn0HDEipDcgSzWix",
+      "uri": "spotify:track:6PEhpdRn0HDEipDcgSzWix",
+      "name": "Murder You",
+      "artists": [
+        "Oddscure"
+      ],
+      "artist_ids": [
+        "3WuKVUq69gLanafXYXjZBQ"
+      ],
+      "album": "Murder You",
+      "album_id": "47HN6bgXYCQaECRqD47iOd",
+      "duration_ms": 181224,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZDA52133792"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2023-12-20T18:16:02Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3UMApnBSwN8lHsG0s1ijxR",
+      "uri": "spotify:track:3UMApnBSwN8lHsG0s1ijxR",
+      "name": "Woe to All (On the Day of My Wrath)",
+      "artists": [
+        "Lingua Ignota"
+      ],
+      "artist_ids": [
+        "3Q2RrKEOBdkWI2MJQgdt84"
+      ],
+      "album": "All Bitches Die",
+      "album_id": "3aDIaurNXBbxjrbQm5l7iY",
+      "duration_ms": 901506,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USN681820201"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

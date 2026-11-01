@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:37:13.227266+00:00",
+  "id": "2ObNqlwaAvu4VpUVydWlYW",
+  "name": "Happy Together – The Turtles",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAAqCKHzLe2RwLUl5FK1F0f1BI6nQd",
+  "total_items_reported": 1,
+  "item_count_fetched": 1,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-01T04:37:13.227279+00:00",
+  "items_snapshot_id": "AAAAAqCKHzLe2RwLUl5FK1F0f1BI6nQd",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2019-07-20T17:28:28Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1JO1xLtVc8mWhIoE3YaCL0",
+      "uri": "spotify:track:1JO1xLtVc8mWhIoE3YaCL0",
+      "name": "Happy Together",
+      "artists": [
+        "The Turtles"
+      ],
+      "artist_ids": [
+        "2VIoWte1HPDbZ2WqHd2La7"
+      ],
+      "album": "Happy Together",
+      "album_id": "2pMxs38Y5A0mmHrcu3twvB",
+      "duration_ms": 176293,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA560587940"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

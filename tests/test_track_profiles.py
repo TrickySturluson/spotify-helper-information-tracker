@@ -1,0 +1,245 @@
+import unittest
+from unittest.mock import patch
+
+import build_track_profiles as profiles
+import build_music_metadata as music_metadata
+
+
+class TrackProfileTests(unittest.TestCase):
+
+
+    def test_duration_metadata_priority_uses_recent_top_track_ranking(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "recent.json"
+            path.write_text(json.dumps({"tracks": [
+                {"artist": "Recent Artist", "track": "Recent Song"},
+                {"artist": "Other Artist", "track": "Other Song"},
+            ]}), encoding="utf-8")
+            priority = music_metadata.recent_priority(path)
+        self.assertEqual(priority[("recent artist", "recent song")], 0)
+        self.assertEqual(priority[("other artist", "other song")], 1)
+        self.assertNotIn(("all time artist", "old favorite"), priority)
+
+    def test_recent_top_tracks_uses_rolling_window_and_deterministic_ties(self):
+        catalogue = {
+            "a": {"track_id": "a", "artist_id": "artist-a", "artist": "Artist A",
+                  "track": "Track A", "plays": 20, "recent_plays": 3},
+            "b": {"track_id": "b", "artist_id": "artist-b", "artist": "Artist B",
+                  "track": "Track B", "plays": 30, "recent_plays": 3},
+            "c": {"track_id": "c", "artist_id": "artist-c", "artist": "Artist C",
+                  "track": "Track C", "plays": 100, "recent_plays": 0},
+        }
+        result = profiles.recent_top_tracks(catalogue, limit=2, window_days=90)
+        self.assertEqual([row["track_id"] for row in result["tracks"]], ["b", "a"])
+        self.assertEqual(result["window_days"], 90)
+        self.assertEqual(result["candidate_tracks"], 2)
+
+    def test_build_catalogue_counts_recent_scrobbles_separately(self):
+        rows = [
+            {"artist": "Artist", "track": "Song", "timestamp": 100},
+            {"artist": "Artist", "track": "Song", "timestamp": 200},
+            {"artist": "Artist", "track": "Song", "timestamp": 50},
+        ]
+        catalogue = profiles.build_catalogue(rows, recent_since=100)
+        item = next(iter(catalogue.values()))
+        self.assertEqual(item["plays"], 3)
+        self.assertEqual(item["recent_plays"], 2)
+
+    def test_track_identity_matches_metadata_builder_fallback(self):
+        row = {"artist": "Example Artist", "track": "Example Song"}
+        aid = profiles.artist_id(row)
+        self.assertEqual(aid, "name:" + __import__("hashlib").sha1(b"example artist").hexdigest()[:16])
+        self.assertEqual(
+            profiles.track_id(row, aid),
+            "track:" + __import__("hashlib").sha1((aid + "\0example song").encode()).hexdigest()[:16],
+        )
+
+    def test_lastfm_tags_preserve_counts_and_source(self):
+        payload = {"toptags": {"@attr": {"artist": "Example Artist", "track": "Example Song"},
+                               "tag": [{"name": "dreamy", "count": "42"}, {"name": "shoegaze", "count": "7"}]}}
+        with patch.object(profiles, "request_json", return_value=payload):
+            tags, status = profiles.lastfm_tags({"artist": "Example Artist", "track": "Example Song"})
+        self.assertEqual(status, "matched")
+        self.assertEqual(tags[0], {"tag": "dreamy", "count": 42, "source": "Last.fm track.getTopTags"})
+
+    def test_lastfm_identity_mismatch_is_not_accepted(self):
+        payload = {"toptags": {"@attr": {"artist": "Different Artist", "track": "Example Song"},
+                               "tag": [{"name": "pop", "count": "99"}]}}
+        with patch.object(profiles, "request_json", return_value=payload):
+            tags, status = profiles.lastfm_tags({"artist": "Example Artist", "track": "Example Song"})
+        self.assertEqual(tags, [])
+        self.assertEqual(status, "identity_mismatch")
+
+
+    def test_mbid_http_400_falls_back_to_exact_artist_and_track(self):
+        from urllib.error import HTTPError
+        from io import BytesIO
+
+        mbid = "12345678-1234-1234-1234-123456789abc"
+        item = {"artist": "Example Artist", "track": "Example Song", "track_mbid": mbid}
+        payload = {"toptags": {"@attr": {"artist": "Example Artist", "track": "Example Song"},
+                               "tag": [{"name": "dream pop", "count": "12"}]}}
+        error = HTTPError("https://ws.audioscrobbler.com/2.0/", 400, "Bad Request", {}, BytesIO(b"{}"))
+        with patch.object(profiles, "request_json", side_effect=[error, payload]) as request:
+            tags, status = profiles.lastfm_tags(item)
+        self.assertEqual(status, "matched")
+        self.assertEqual(tags[0]["tag"], "dream pop")
+        first_params = request.call_args_list[0].args[1]
+        second_params = request.call_args_list[1].args[1]
+        self.assertEqual(first_params["mbid"], mbid)
+        self.assertNotIn("mbid", second_params)
+        self.assertEqual((second_params["artist"], second_params["track"]), ("Example Artist", "Example Song"))
+
+    def test_mbid_http_404_falls_back_but_still_checks_identity(self):
+        from urllib.error import HTTPError
+        from io import BytesIO
+
+        item = {"artist": "Example Artist", "track": "Example Song",
+                "track_mbid": "12345678-1234-1234-1234-123456789abc"}
+        wrong_identity = {"toptags": {"@attr": {"artist": "Other Artist", "track": "Example Song"},
+                                      "tag": [{"name": "pop", "count": "99"}]}}
+        error = HTTPError("https://ws.audioscrobbler.com/2.0/", 404, "Not Found", {}, BytesIO(b"{}"))
+        with patch.object(profiles, "request_json", side_effect=[error, wrong_identity]):
+            tags, status = profiles.lastfm_tags(item)
+        self.assertEqual(tags, [])
+        self.assertEqual(status, "identity_mismatch")
+
+    def test_http_errors_respect_retry_cooldown(self):
+        now = 1_800_000_000
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_400",
+                                                       "retry_after": now + 30 * 86400}, now))
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_404",
+                                                       "retry_after": now + 30 * 86400}, now))
+        self.assertTrue(profiles.should_retry_lastfm({"lastfm_status": "http_400",
+                                                      "retry_after": now - 1}, now))
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "matched",
+                                                       "retry_after": 0}, now))
+        self.assertFalse(profiles.should_retry_lastfm({"lastfm_status": "http_500",
+                                                       "retry_after": now + 3600}, now))
+
+    def test_musicbrainz_requires_existing_exact_recording_mbid(self):
+        with patch.object(profiles, "request_json") as request:
+            tags, genres, status = profiles.musicbrainz_tags({"track": "Song"})
+        self.assertEqual((tags, genres, status), ([], [], "no_recording_mbid"))
+        request.assert_not_called()
+
+    def test_musicbrainz_source_provenance_is_preserved(self):
+        mbid = "12345678-1234-1234-1234-123456789abc"
+        payload = {"id": mbid, "tags": [{"name": "haunting", "count": 4}],
+                   "genres": [{"name": "alternative", "count": 2}]}
+        with patch.object(profiles, "request_json", return_value=payload):
+            tags, genres, status = profiles.musicbrainz_tags({"track_mbid": mbid})
+        self.assertEqual(status, "matched")
+        self.assertEqual(tags[0]["source"], "MusicBrainz recording tag")
+        self.assertEqual(genres[0]["source"], "MusicBrainz recording genre")
+
+
+
+    def test_catalogue_reuses_only_unique_exact_shard_recording_ids(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        mbid = "12345678-1234-1234-1234-123456789abc"
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            artists = root / "artists"
+            artists.mkdir()
+            (artists / "shard-00.json").write_text(json.dumps({"artists": {
+                "artist-key": {"artist": "Example Artist", "tracks": {
+                    "track-key": {"track": "Example Song", "track_mbid": mbid}
+                }}
+            }}), encoding="utf-8")
+            catalogue = profiles.build_catalogue(
+                [{"artist": "Example Artist", "track": "Example Song", "timestamp": 100}],
+                metadata_root=root,
+            )
+        item = next(iter(catalogue.values()))
+        self.assertEqual(item["track_mbid"], mbid)
+        self.assertNotEqual(item["track_id"], "mbid:" + mbid)
+
+    def test_catalogue_does_not_guess_between_multiple_shard_recording_ids(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            artists = root / "artists"
+            artists.mkdir()
+            tracks = {
+                "one": {"track": "Example Song", "track_mbid": "11111111-1111-1111-1111-111111111111"},
+                "two": {"track": "Example Song", "track_mbid": "22222222-2222-2222-2222-222222222222"},
+            }
+            (artists / "shard-00.json").write_text(json.dumps({"artists": {
+                "artist-key": {"artist": "Example Artist", "tracks": tracks}
+            }}), encoding="utf-8")
+            catalogue = profiles.build_catalogue(
+                [{"artist": "Example Artist", "track": "Example Song", "timestamp": 100}],
+                metadata_root=root,
+            )
+        item = next(iter(catalogue.values()))
+        self.assertIsNone(item["track_mbid"])
+
+    def test_priority_playlist_tracks_are_added_even_without_scrobbles(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            playlist_id = "4diIlnF8BlgoJrwUfejf49"
+            (root / f"{playlist_id}.json").write_text(json.dumps({
+                "id": playlist_id,
+                "items_accessible": True,
+                "items": [
+                    {"type": "track", "name": "Unscrobbled Song", "artists": ["Priority Artist"]},
+                    {"type": "episode", "name": "Not a track", "artists": ["Podcast"]},
+                ],
+            }), encoding="utf-8")
+            catalogue = profiles.build_catalogue([], [playlist_id], root)
+
+        self.assertEqual(len(catalogue), 1)
+        item = next(iter(catalogue.values()))
+        self.assertEqual((item["artist"], item["track"]), ("Priority Artist", "Unscrobbled Song"))
+        self.assertEqual(item["plays"], 0)
+        self.assertEqual(item["priority_playlist_ids"], [playlist_id])
+
+    def test_priority_playlist_reuses_unambiguous_archive_identity(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        row = {"artist": "Example Artist", "track": "Example Song", "track_mbid": None}
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            playlist_id = "4diIlnF8BlgoJrwUfejf49"
+            (root / f"{playlist_id}.json").write_text(json.dumps({
+                "id": playlist_id,
+                "items_accessible": True,
+                "items": [{"type": "track", "name": "Example Song", "artists": ["Example Artist"]}],
+            }), encoding="utf-8")
+            catalogue = profiles.build_catalogue([row], [playlist_id], root)
+
+        self.assertEqual(len(catalogue), 1)
+        item = next(iter(catalogue.values()))
+        self.assertEqual(item["plays"], 1)
+        self.assertEqual(item["priority_playlist_ids"], [playlist_id])
+
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression test module.
+# Scope: Regression checks for the behavior named by this test module.
+# Run: python -m unittest tests.test_track_profiles -v (from the repository root).
+# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# -----------------------------------------------------------------------------

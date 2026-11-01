@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "source:6da266f575b0c5bd",
+  "identity": {
+    "artist": "Naeleck",
+    "title": "Virtual Gaming",
+    "album": "",
+    "artist_id": "mbid:024056d4-cb6a-44ff-ae9e-3510fef2bfac",
+    "album_id": null,
+    "recording_mbid": null,
+    "spotify_id": null,
+    "source_track_id": "track:6da266f575b0c5bd",
+    "identity_quality": "source_track_id"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:26.154891+00:00",
+      "retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-024056d4-cb6a-44ff-ae9e-3510fef2bfac/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 20,
+    "all_time_plays": 20
+  }
+}

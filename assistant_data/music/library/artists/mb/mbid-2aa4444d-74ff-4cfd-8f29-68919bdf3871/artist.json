@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:2aa4444d-74ff-4cfd-8f29-68919bdf3871",
+  "artist": "Duke & Jones",
+  "identity": {
+    "artist_mbid": "2aa4444d-74ff-4cfd-8f29-68919bdf3871",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

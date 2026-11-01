@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:58.079932+00:00",
+  "id": "1xp9Nsr1Q92gFHTSPaTUjT",
+  "name": "rirus 2023 wrapped",
+  "description": "",
+  "owner": {
+    "id": "19be8sn6c79xp2ubwx2chgeuj",
+    "display_name": "RiRu"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAABERKuhPDSSSeIDkZ5/2JXq7ClJ0m",
+  "total_items_reported": 100,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
+  "last_items_accessible_at": "2026-10-31T09:04:33.576211+00:00",
+  "items_snapshot_id": "AAAABERKuhPDSSSeIDkZ5/2JXq7ClJ0m",
+  "items": []
+}

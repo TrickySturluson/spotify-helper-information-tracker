@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:51.274973+00:00",
+  "id": "4uj6bJgjBtW7r91ognROc7",
+  "name": "Hotline Miami Soundtrack (1 & 2)",
+  "description": "Best songs and music from Hotline Miami | OST | Payday | ホットライン・マイアミ",
+  "owner": {
+    "id": "l70mtbcfoapp3mst5n81hlkz9",
+    "display_name": "Boisterous Pop"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAA2VjYTS8sDl5ppjtQU6zAy+Vb0ybd",
+  "total_items_reported": 83,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API does not expose item contents for this playlist to the current account/app.",
+  "last_items_accessible_at": null,
+  "items_snapshot_id": null,
+  "items": []
+}

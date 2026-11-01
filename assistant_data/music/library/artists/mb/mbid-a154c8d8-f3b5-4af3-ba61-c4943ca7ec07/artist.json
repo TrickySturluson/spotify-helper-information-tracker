@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:a154c8d8-f3b5-4af3-ba61-c4943ca7ec07",
+  "artist": "Riddarna",
+  "identity": {
+    "artist_mbid": "a154c8d8-f3b5-4af3-ba61-c4943ca7ec07",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

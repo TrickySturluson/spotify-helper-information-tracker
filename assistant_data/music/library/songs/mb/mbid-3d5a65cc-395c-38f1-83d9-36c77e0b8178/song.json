@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178",
+  "identity": {
+    "artist": "Electric Youth",
+    "title": "Faces",
+    "album": "",
+    "artist_id": "mbid:a0b2868c-22c7-49eb-b227-3c4251a6c88f",
+    "album_id": null,
+    "recording_mbid": "3d5a65cc-395c-38f1-83d9-36c77e0b8178",
+    "spotify_id": null,
+    "source_track_id": "mbid:3d5a65cc-395c-38f1-83d9-36c77e0b8178",
+    "identity_quality": "verified_recording"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:59:54.351951+00:00",
+      "retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "musicbrainz_checked_at": "2026-11-01T05:59:55.009817+00:00",
+      "musicbrainz_retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-a0b2868c-22c7-49eb-b227-3c4251a6c88f/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 18,
+    "all_time_plays": 18
+  }
+}

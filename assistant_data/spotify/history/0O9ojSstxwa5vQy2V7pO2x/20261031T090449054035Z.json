@@ -1,0 +1,1530 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:49.053623+00:00",
+  "id": "0O9ojSstxwa5vQy2V7pO2x",
+  "name": "=^=",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAURAbitlmyTbdbXv3QfdyqjDtwiVL",
+  "total_items_reported": 60,
+  "item_count_fetched": 60,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:49.053643+00:00",
+  "items_snapshot_id": "AAAAURAbitlmyTbdbXv3QfdyqjDtwiVL",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2019-07-12T10:45:17Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7kKLHjFif3r0HG5YyBTv6d",
+      "uri": "spotify:track:7kKLHjFif3r0HG5YyBTv6d",
+      "name": "I'm a Wanted Man",
+      "artists": [
+        "Royal Deluxe"
+      ],
+      "artist_ids": [
+        "54OEro9sWZ3mVfMdlz2CIt"
+      ],
+      "album": "Born for This",
+      "album_id": "1JQGANnIP7VAYpecgkCCsT",
+      "duration_ms": 228986,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US43C1601053"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2019-07-12T10:47:18Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6PjXme885qOumicO2EN5oQ",
+      "uri": "spotify:track:6PjXme885qOumicO2EN5oQ",
+      "name": "Sweet Providing Woman",
+      "artists": [
+        "Paul Otten"
+      ],
+      "artist_ids": [
+        "6UhDX431GWF6SQrcwu4NhX"
+      ],
+      "album": "Rock Bottom",
+      "album_id": "5YcORoML5blHE9APSNCudb",
+      "duration_ms": 139200,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P1257517"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2019-07-12T10:53:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2ZMR3mwpvXa6UAdbVe8g78",
+      "uri": "spotify:track:2ZMR3mwpvXa6UAdbVe8g78",
+      "name": "Back to the Way I Was",
+      "artists": [
+        "Emily Bell"
+      ],
+      "artist_ids": [
+        "4RIgd92elBKXl3021Xlpmp"
+      ],
+      "album": "Back to the Way I Was",
+      "album_id": "79eRzatkavm6GUPNPMcrNi",
+      "duration_ms": 227226,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMHCR1300001"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2019-07-12T10:53:47Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0mHSePRiFnTy7qYPsIeIJ8",
+      "uri": "spotify:track:0mHSePRiFnTy7qYPsIeIJ8",
+      "name": "Where the Devil Don't Go",
+      "artists": [
+        "Elle King"
+      ],
+      "artist_ids": [
+        "3bhu7P5PfngueRHiB9hjcx"
+      ],
+      "album": "Love Stuff",
+      "album_id": "0B4eikFaUJcf3hc6DaSVov",
+      "duration_ms": 181480,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC11402892"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2019-07-12T10:55:27Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3nGWzFBJ5tMzHWAgs16fK6",
+      "uri": "spotify:track:3nGWzFBJ5tMzHWAgs16fK6",
+      "name": "What Makes A Good Man?",
+      "artists": [
+        "The Heavy"
+      ],
+      "artist_ids": [
+        "0bZCak2tcRMY1dzEIuwF42"
+      ],
+      "album": "The Glorious Dead",
+      "album_id": "5MmMomspau1V5YpXjHYJRy",
+      "duration_ms": 226380,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCFB1200102"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2019-07-12T10:58:11Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7JOizhmt3HlBgQyJEa0AgK",
+      "uri": "spotify:track:7JOizhmt3HlBgQyJEa0AgK",
+      "name": "Short Change Hero",
+      "artists": [
+        "The Heavy"
+      ],
+      "artist_ids": [
+        "0bZCak2tcRMY1dzEIuwF42"
+      ],
+      "album": "The House That Dirt Built",
+      "album_id": "0sKcuounq52lm9hmFwEZN5",
+      "duration_ms": 322266,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCFB0901504"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2019-07-12T11:08:57Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0ZPMI8Gnz7p6omBBIOwiO9",
+      "uri": "spotify:track:0ZPMI8Gnz7p6omBBIOwiO9",
+      "name": "A Little Wicked",
+      "artists": [
+        "Valerie Broussard"
+      ],
+      "artist_ids": [
+        "6eVWXmKBW7Iltub01D9R1c"
+      ],
+      "album": "A Little Wicked",
+      "album_id": "1RG2EZlhtK8fPJF0bKAVwT",
+      "duration_ms": 210274,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMPKX1645089"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2019-07-12T11:12:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5vancraKmvtADRXTlPl3H3",
+      "uri": "spotify:track:5vancraKmvtADRXTlPl3H3",
+      "name": "Getting Surreal",
+      "artists": [
+        "The Fratellis"
+      ],
+      "artist_ids": [
+        "3M4ThdJR28z9eSMcQHAZ5G"
+      ],
+      "album": "Eyes Wide, Tongue Tied (Deluxe)",
+      "album_id": "1SRcbGTK9lBZplbVt3dfZP",
+      "duration_ms": 232266,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GB5KW1500009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2019-07-12T11:19:47Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4li9PeXr7Yi2bbNDQWSBOt",
+      "uri": "spotify:track:4li9PeXr7Yi2bbNDQWSBOt",
+      "name": "Devil Like You",
+      "artists": [
+        "Gareth Dunlop"
+      ],
+      "artist_ids": [
+        "20wLNsNYfXIbH8QPdqS4dz"
+      ],
+      "album": "Devil Like You",
+      "album_id": "30chX3kvazALJOaAy2AcPv",
+      "duration_ms": 210261,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US59J1600002"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2019-07-12T11:20:06Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5bCDC7qkmxiJc0lPsqiALj",
+      "uri": "spotify:track:5bCDC7qkmxiJc0lPsqiALj",
+      "name": "Let Me Live / Let Me Die",
+      "artists": [
+        "Des Rocs"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8"
+      ],
+      "album": "Let The Vultures In",
+      "album_id": "4xPEjD84ueU6Oq6l2saC2d",
+      "duration_ms": 207141,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL1812549"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2019-07-12T11:22:56Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5gXzlZgbBIYIcGGf2x3uyZ",
+      "uri": "spotify:track:5gXzlZgbBIYIcGGf2x3uyZ",
+      "name": "Dead Ringer",
+      "artists": [
+        "Des Rocs"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8"
+      ],
+      "album": "Dead Ringer",
+      "album_id": "41K6rP8tclMHjyBE1RLEPn",
+      "duration_ms": 162742,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5VF1900925"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2019-07-12T11:24:05Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5xlUcf5txiXDgPleHzkm8s",
+      "uri": "spotify:track:5xlUcf5txiXDgPleHzkm8s",
+      "name": "Used to the Darkness",
+      "artists": [
+        "Des Rocs"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8"
+      ],
+      "album": "Let The Vultures In",
+      "album_id": "4xPEjD84ueU6Oq6l2saC2d",
+      "duration_ms": 256343,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL1805608"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2019-07-12T11:27:31Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0taM1mwoUfIQrrz3YRJQuM",
+      "uri": "spotify:track:0taM1mwoUfIQrrz3YRJQuM",
+      "name": "Outta My Mind",
+      "artists": [
+        "Des Rocs",
+        "The Cobra"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8",
+        "6ljXzPvTDhxrhXTDuz3YEr"
+      ],
+      "album": "Outta My Mind",
+      "album_id": "5yu5D6ReRR1iXkxM2WkNXn",
+      "duration_ms": 165566,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5VF1900132"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2019-07-12T11:28:47Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5SEisU96ZNSUjCtYvV7EeD",
+      "uri": "spotify:track:5SEisU96ZNSUjCtYvV7EeD",
+      "name": "SLO",
+      "artists": [
+        "Des Rocs"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8"
+      ],
+      "album": "SLO",
+      "album_id": "40jBzvO1XDrYq9z4duvPvW",
+      "duration_ms": 175007,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "usdy41930581"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2019-07-12T11:29:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5jowQ1uh3cLRLoMTZ8VbhC",
+      "uri": "spotify:track:5jowQ1uh3cLRLoMTZ8VbhC",
+      "name": "Maybe, I",
+      "artists": [
+        "Des Rocs"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8"
+      ],
+      "album": "Let The Vultures In",
+      "album_id": "4xPEjD84ueU6Oq6l2saC2d",
+      "duration_ms": 186747,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL1819627"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2019-07-12T11:30:37Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6aa3hdip1HZelrbQ1zzKK2",
+      "uri": "spotify:track:6aa3hdip1HZelrbQ1zzKK2",
+      "name": "HVY MTL DRMR",
+      "artists": [
+        "Des Rocs"
+      ],
+      "artist_ids": [
+        "2kO6mP0olFJGGh6kvUdNC8"
+      ],
+      "album": "Let The Vultures In",
+      "album_id": "4xPEjD84ueU6Oq6l2saC2d",
+      "duration_ms": 172071,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL1899419"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2019-07-12T11:39:06Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5VXfsQX2NYS9USmDgVyys0",
+      "uri": "spotify:track:5VXfsQX2NYS9USmDgVyys0",
+      "name": "Call Me Devil",
+      "artists": [
+        "Friends in Tokyo"
+      ],
+      "artist_ids": [
+        "7ibSayHmOpaidZJPhgdWYb"
+      ],
+      "album": "Keep Moving On",
+      "album_id": "5V9o2sVPjhrB78w4mCOPh6",
+      "duration_ms": 249599,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USPSI1500008"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2019-07-12T11:41:16Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0X0Lz7LwpiIWcdGqVWaxXD",
+      "uri": "spotify:track:0X0Lz7LwpiIWcdGqVWaxXD",
+      "name": "Mess Around",
+      "artists": [
+        "Cage The Elephant"
+      ],
+      "artist_ids": [
+        "26T3LtbuGT1Fu9m0eRq5X3"
+      ],
+      "album": "Tell Me I'm Pretty",
+      "album_id": "0nW0w37lrQ87k7PLZvC4qJ",
+      "duration_ms": 173175,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC11502822"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2019-07-12T11:42:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2kPnC0HHVh3w1sWI4AP52S",
+      "uri": "spotify:track:2kPnC0HHVh3w1sWI4AP52S",
+      "name": "Let Me Get It Out",
+      "artists": [
+        "Born Ruffians"
+      ],
+      "artist_ids": [
+        "7wGrLSB3v7jkV3fSsjYwtv"
+      ],
+      "album": "RUFF",
+      "album_id": "4EOEZKbilqXRcTRzR3JzL0",
+      "duration_ms": 228359,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CAP431501261"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2019-07-12T11:42:50Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0YNjN8GzHJdz96fbSzUd21",
+      "uri": "spotify:track:0YNjN8GzHJdz96fbSzUd21",
+      "name": "Hummingbird",
+      "artists": [
+        "Born Ruffians"
+      ],
+      "artist_ids": [
+        "7wGrLSB3v7jkV3fSsjYwtv"
+      ],
+      "album": "Red, Yellow & Blue",
+      "album_id": "5R8hBq1KDYyLo02GJcSAKs",
+      "duration_ms": 188013,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBBPW0700150"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2019-07-12T11:52:32Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2ltKWdynZPuw3jthNf1pU5",
+      "uri": "spotify:track:2ltKWdynZPuw3jthNf1pU5",
+      "name": "Readin' Your Will",
+      "artists": [
+        "Zachary Kibbee"
+      ],
+      "artist_ids": [
+        "3QYTmCDKIFaBgDCfwlZjdU"
+      ],
+      "album": "Little Clocks EP",
+      "album_id": "1rqL5Rg563pNCR6YOKnv0N",
+      "duration_ms": 218122,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACA1433038"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2019-07-12T11:53:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1DG8aQMP3dS9Pxf1lUnKh4",
+      "uri": "spotify:track:1DG8aQMP3dS9Pxf1lUnKh4",
+      "name": "That Thing You Do",
+      "artists": [
+        "Ellem"
+      ],
+      "artist_ids": [
+        "0ehmsw6dIJWtA0Jw5wvAyD"
+      ],
+      "album": "That Thing You Do",
+      "album_id": "5EvtBkEZmescEq0kniPSHt",
+      "duration_ms": 188000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "ushm21681006"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2019-07-12T11:54:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1hkcNMXqgm107oOabSCJKt",
+      "uri": "spotify:track:1hkcNMXqgm107oOabSCJKt",
+      "name": "Wild Rose",
+      "artists": [
+        "Ellem"
+      ],
+      "artist_ids": [
+        "0ehmsw6dIJWtA0Jw5wvAyD"
+      ],
+      "album": "Wild Rose",
+      "album_id": "7xn6gzrOMMEecQqLVjwVw5",
+      "duration_ms": 212470,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "ushm21780636"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2019-07-12T11:58:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6w7xuveTcKlICIOvSRGBvw",
+      "uri": "spotify:track:6w7xuveTcKlICIOvSRGBvw",
+      "name": "I Was Once a Glass of Tang",
+      "artists": [
+        "Jet Horns"
+      ],
+      "artist_ids": [
+        "6IonwIHL7OqmSxXmqHfvCb"
+      ],
+      "album": "Onward Space Hologram",
+      "album_id": "6pFEywsE2A8ATH1qrzqWAx",
+      "duration_ms": 149053,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SEYOK1114807"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2019-07-12T11:59:43Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "475uLoRnKvvkW7cvlF9U4v",
+      "uri": "spotify:track:475uLoRnKvvkW7cvlF9U4v",
+      "name": "Last Damn Night",
+      "artists": [
+        "Elle King"
+      ],
+      "artist_ids": [
+        "3bhu7P5PfngueRHiB9hjcx"
+      ],
+      "album": "Love Stuff",
+      "album_id": "0B4eikFaUJcf3hc6DaSVov",
+      "duration_ms": 242337,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC11402894"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 25,
+      "added_at": "2019-07-12T12:00:11Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3PEq5AGDfU3XjK3iS91IqK",
+      "uri": "spotify:track:3PEq5AGDfU3XjK3iS91IqK",
+      "name": "All Eyes on Me",
+      "artists": [
+        "Pigeon John"
+      ],
+      "artist_ids": [
+        "3RfeWhoxAqlNRNcywG7RJj"
+      ],
+      "album": "Good Sinner",
+      "album_id": "0hlZFIgLyiS5Hxzk8bW73K",
+      "duration_ms": 197213,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CADE71600135"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 26,
+      "added_at": "2019-07-12T12:00:56Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4eYmH4Sh0ibdU9nmnbu7aM",
+      "uri": "spotify:track:4eYmH4Sh0ibdU9nmnbu7aM",
+      "name": "The Bomb",
+      "artists": [
+        "Pigeon John"
+      ],
+      "artist_ids": [
+        "3RfeWhoxAqlNRNcywG7RJj"
+      ],
+      "album": "Dragon Slayer",
+      "album_id": "00qOCzVYbnem6uVcHqVktz",
+      "duration_ms": 203666,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US2P21010045"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 27,
+      "added_at": "2019-07-12T12:02:58Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0i4Pt5T7mZxvaitQHL72NG",
+      "uri": "spotify:track:0i4Pt5T7mZxvaitQHL72NG",
+      "name": "Play It Again",
+      "artists": [
+        "Pigeon John"
+      ],
+      "artist_ids": [
+        "3RfeWhoxAqlNRNcywG7RJj"
+      ],
+      "album": "Play It Again",
+      "album_id": "4rMHxsZhfnBcegtlFdx0wK",
+      "duration_ms": 195157,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCADD1731358"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 28,
+      "added_at": "2019-07-12T12:08:19Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5ervA7lbl13K2ekOUFmgKe",
+      "uri": "spotify:track:5ervA7lbl13K2ekOUFmgKe",
+      "name": "Jungle Youth",
+      "artists": [
+        "Young the Giant"
+      ],
+      "artist_ids": [
+        "4j56EQDQu5XnL7R3E9iFJT"
+      ],
+      "album": "Home of the Strange",
+      "album_id": "3PYk8e7eo2t5CA1Y3AvhaG",
+      "duration_ms": 220813,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21601133"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2019-07-12T12:11:02Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6mvfE9VPGnB1qniHpu5B5p",
+      "uri": "spotify:track:6mvfE9VPGnB1qniHpu5B5p",
+      "name": "California",
+      "artists": [
+        "Bahari"
+      ],
+      "artist_ids": [
+        "0fs8oBR1rx7JIXZi75h7Uu"
+      ],
+      "album": "Dancing On The Sun",
+      "album_id": "2sMOSxpgh3vQg1GFFv6hOB",
+      "duration_ms": 236000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM71601528"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 30,
+      "added_at": "2019-07-12T12:15:51Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "65ZyD8JcEDubHxsfxOVb2K",
+      "uri": "spotify:track:65ZyD8JcEDubHxsfxOVb2K",
+      "name": "Low Lays the Devil",
+      "artists": [
+        "The Veils"
+      ],
+      "artist_ids": [
+        "1MDw0zSUU0XtI9D5JgEZH5"
+      ],
+      "album": "Total Depravity",
+      "album_id": "6gASlHZuvLvUUQymZHZGTX",
+      "duration_ms": 197520,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CAN111600117"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 31,
+      "added_at": "2019-07-12T12:18:17Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "39shmbIHICJ2Wxnk1fPSdz",
+      "uri": "spotify:track:39shmbIHICJ2Wxnk1fPSdz",
+      "name": "Should I Stay or Should I Go - Remastered",
+      "artists": [
+        "The Clash"
+      ],
+      "artist_ids": [
+        "3RGLhK1IP9jnYFH4BRFJBS"
+      ],
+      "album": "Combat Rock (Remastered)",
+      "album_id": "1ZH5g1RDq3GY1OvyD0w0s2",
+      "duration_ms": 188987,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBARL1200670"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 32,
+      "added_at": "2019-07-12T12:22:31Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2QKD09hrYATwi4EDEGnqe3",
+      "uri": "spotify:track:2QKD09hrYATwi4EDEGnqe3",
+      "name": "The Love That You Give",
+      "artists": [
+        "Wolfmother"
+      ],
+      "artist_ids": [
+        "3yEnArbNHyTCwMRvD9SBy4"
+      ],
+      "album": "Victorious",
+      "album_id": "2dwb86bhTK0Nr9ClfXQbZA",
+      "duration_ms": 158720,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG11501512"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 33,
+      "added_at": "2019-07-12T12:31:26Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4kMDtiUf4xrnw1dIC7be6d",
+      "uri": "spotify:track:4kMDtiUf4xrnw1dIC7be6d",
+      "name": "Please Yourself",
+      "artists": [
+        "Ron Gallo"
+      ],
+      "artist_ids": [
+        "4rfE3kN2zKNC9L9tt3iVOg"
+      ],
+      "album": "HEAVY META",
+      "album_id": "6w5N3oL83KiitLdFcCrzTj",
+      "duration_ms": 83313,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US27Q1763736"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 34,
+      "added_at": "2019-07-12T12:37:27Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6XsWkvm8BqZuuJpug7N5tm",
+      "uri": "spotify:track:6XsWkvm8BqZuuJpug7N5tm",
+      "name": "God Will Cut You Down",
+      "artists": [
+        "Robin Loxley",
+        "Jay Hawke"
+      ],
+      "artist_ids": [
+        "2Lc0SlbkNbedYcGd5V7R4g",
+        "5uviAN5TZkqHHW62l2Na0O"
+      ],
+      "album": "Dark Country",
+      "album_id": "1l4PX6Y6u9YlzW84kNCZVk",
+      "duration_ms": 181109,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCABI1217375"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 35,
+      "added_at": "2019-07-12T12:41:33Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0UEfokGvs2lOgqUlgzonsQ",
+      "uri": "spotify:track:0UEfokGvs2lOgqUlgzonsQ",
+      "name": "Thought You Should Know",
+      "artists": [
+        "Sip Sip Bubbleheads"
+      ],
+      "artist_ids": [
+        "0YPIUotuuYVsBezGZV3m34"
+      ],
+      "album": "Thought You Should Know (As Featured in \"Lucifer\" TV Series) - Single",
+      "album_id": "58isVHXJr2zjuhGciOlnc3",
+      "duration_ms": 167978,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US3DF1610977"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 36,
+      "added_at": "2019-07-12T12:41:58Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0Tr5G2mE56eLUGvCaXRM8I",
+      "uri": "spotify:track:0Tr5G2mE56eLUGvCaXRM8I",
+      "name": "No Good",
+      "artists": [
+        "KALEO"
+      ],
+      "artist_ids": [
+        "7jdFEYD2LTYjfwxOdlVjmc"
+      ],
+      "album": "A/B",
+      "album_id": "4he4SQup02hEIQdwhZlZlk",
+      "duration_ms": 234240,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21601267"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 37,
+      "added_at": "2019-07-12T12:42:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6wyEzU0usnMXLpgfTdeFJt",
+      "uri": "spotify:track:6wyEzU0usnMXLpgfTdeFJt",
+      "name": "Devils Got a Hold on Me",
+      "artists": [
+        "El Grande"
+      ],
+      "artist_ids": [
+        "1yAg1v0t759zMQiQ8JEWMq"
+      ],
+      "album": "Devils Got a Hold on Me",
+      "album_id": "2e8SwuQY0KxlZtiJURDHcR",
+      "duration_ms": 138574,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACN1632067"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 38,
+      "added_at": "2019-07-12T12:45:22Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "15qyDcWWADw0sU3tASkA9N",
+      "uri": "spotify:track:15qyDcWWADw0sU3tASkA9N",
+      "name": "Broken Bones",
+      "artists": [
+        "CRX"
+      ],
+      "artist_ids": [
+        "4NfVXEoTZVX7rpJSZEVGLg"
+      ],
+      "album": "New Skin",
+      "album_id": "0f6Zi7ogg4cCMJd4yXtGHP",
+      "duration_ms": 211386,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM11606707"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 39,
+      "added_at": "2019-07-12T12:47:37Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3h00HzSTS3guFKT5KXJ7b4",
+      "uri": "spotify:track:3h00HzSTS3guFKT5KXJ7b4",
+      "name": "Give It Up",
+      "artists": [
+        "CRX"
+      ],
+      "artist_ids": [
+        "4NfVXEoTZVX7rpJSZEVGLg"
+      ],
+      "album": "New Skin",
+      "album_id": "0f6Zi7ogg4cCMJd4yXtGHP",
+      "duration_ms": 231940,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM11606708"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 40,
+      "added_at": "2019-07-12T12:47:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5jCyw3gXBuokjBKJJYsDsk",
+      "uri": "spotify:track:5jCyw3gXBuokjBKJJYsDsk",
+      "name": "Can't Hold Me Down",
+      "artists": [
+        "GRiZ",
+        "Tash Neal"
+      ],
+      "artist_ids": [
+        "25oLRSUjJk4YHNUsQXk7Ut",
+        "63oJNt0P1lu1EDXUGonpGM"
+      ],
+      "album": "Good Will Prevail",
+      "album_id": "1H11dYnWcUyVpw3MMakGAl",
+      "duration_ms": 216837,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P1686659"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 41,
+      "added_at": "2019-07-12T12:48:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "37mfTcSlX60JtAvAETytGs",
+      "uri": "spotify:track:37mfTcSlX60JtAvAETytGs",
+      "name": "Choke",
+      "artists": [
+        "I DONT KNOW HOW BUT THEY FOUND ME"
+      ],
+      "artist_ids": [
+        "0Raaw7kr1Vzat4ZvHzjsJR"
+      ],
+      "album": "Choke",
+      "album_id": "2KwVOjuUAYp2qtdBcFDfCn",
+      "duration_ms": 195717,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCADH1774692"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 42,
+      "added_at": "2019-07-12T12:49:00Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "14ny3vlL25p6Vix2Sb8k1b",
+      "uri": "spotify:track:14ny3vlL25p6Vix2Sb8k1b",
+      "name": "Do It All The Time",
+      "artists": [
+        "I DONT KNOW HOW BUT THEY FOUND ME"
+      ],
+      "artist_ids": [
+        "0Raaw7kr1Vzat4ZvHzjsJR"
+      ],
+      "album": "Do It All The Time",
+      "album_id": "7JvM9qMW23SCkpfz4ZrLsS",
+      "duration_ms": 167803,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US5261823005"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 43,
+      "added_at": "2019-07-12T12:49:24Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3xUsaaH6oCG1w8kD1oGhGW",
+      "uri": "spotify:track:3xUsaaH6oCG1w8kD1oGhGW",
+      "name": "Social Climb",
+      "artists": [
+        "I DONT KNOW HOW BUT THEY FOUND ME"
+      ],
+      "artist_ids": [
+        "0Raaw7kr1Vzat4ZvHzjsJR"
+      ],
+      "album": "1981 Extended Play",
+      "album_id": "6JmnnC2r3mvEFugTomuxWG",
+      "duration_ms": 176853,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US5261823015"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 44,
+      "added_at": "2019-07-12T12:49:38Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4hs2FbesB8qo6H5Berbikd",
+      "uri": "spotify:track:4hs2FbesB8qo6H5Berbikd",
+      "name": "Absinthe",
+      "artists": [
+        "I DONT KNOW HOW BUT THEY FOUND ME"
+      ],
+      "artist_ids": [
+        "0Raaw7kr1Vzat4ZvHzjsJR"
+      ],
+      "album": "1981 Extended Play",
+      "album_id": "6JmnnC2r3mvEFugTomuxWG",
+      "duration_ms": 183653,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US5261823017"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 45,
+      "added_at": "2019-07-12T12:50:31Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "685zlleGxc9sPJea7jUoMW",
+      "uri": "spotify:track:685zlleGxc9sPJea7jUoMW",
+      "name": "Modern Day Cain",
+      "artists": [
+        "I DONT KNOW HOW BUT THEY FOUND ME"
+      ],
+      "artist_ids": [
+        "0Raaw7kr1Vzat4ZvHzjsJR"
+      ],
+      "album": "Modern Day Cain",
+      "album_id": "5cTV8MHQCUnZNq8WyBVjBf",
+      "duration_ms": 189238,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCADE1778133"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 46,
+      "added_at": "2019-07-12T12:50:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3kwKL0TkuPdt4kpAyaBezI",
+      "uri": "spotify:track:3kwKL0TkuPdt4kpAyaBezI",
+      "name": "Bleed Magic",
+      "artists": [
+        "I DONT KNOW HOW BUT THEY FOUND ME"
+      ],
+      "artist_ids": [
+        "0Raaw7kr1Vzat4ZvHzjsJR"
+      ],
+      "album": "1981 Extended Play",
+      "album_id": "6JmnnC2r3mvEFugTomuxWG",
+      "duration_ms": 203720,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US5261823016"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 47,
+      "added_at": "2019-08-20T19:39:26Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4JuQaU1j7vFXwK5g30kxiv",
+      "uri": "spotify:track:4JuQaU1j7vFXwK5g30kxiv",
+      "name": "Black Holes (Solid Ground)",
+      "artists": [
+        "The Blue Stones"
+      ],
+      "artist_ids": [
+        "5VPCIIfZPK8KPsgz4jmOEC"
+      ],
+      "album": "Black Holes",
+      "album_id": "7uDSOgunaHsoMJchpIU44T",
+      "duration_ms": 185960,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCACN1677390"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 48,
+      "added_at": "2019-08-29T22:44:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2nIulsLMiP2SMTDrtxfQXX",
+      "uri": "spotify:track:2nIulsLMiP2SMTDrtxfQXX",
+      "name": "Out of the Black",
+      "artists": [
+        "Royal Blood"
+      ],
+      "artist_ids": [
+        "2S5hlvw4CMtMGswFtfdK15"
+      ],
+      "album": "Royal Blood",
+      "album_id": "7DJijwZ2wqJrgLpcRMxs3G",
+      "duration_ms": 240572,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBAHT1400097"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 49,
+      "added_at": "2020-02-17T06:45:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1gEriIUmIQwXOTBvEZ8JLk",
+      "uri": "spotify:track:1gEriIUmIQwXOTBvEZ8JLk",
+      "name": "Money",
+      "artists": [
+        "The Delta Riggs"
+      ],
+      "artist_ids": [
+        "1wWcqWYBaZeSYC0aAfh3qy"
+      ],
+      "album": "Talupo Mountain Music Vol. II",
+      "album_id": "790pSlhN1icUVVuwEh6JEc",
+      "duration_ms": 187790,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "AUU341100402"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 50,
+      "added_at": "2020-02-17T06:46:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1LEts6yVIfK8kFM1SO1ZzQ",
+      "uri": "spotify:track:1LEts6yVIfK8kFM1SO1ZzQ",
+      "name": "Get Some Freedom (feat. Dragonette)",
+      "artists": [
+        "Big Data",
+        "Dragonette"
+      ],
+      "artist_ids": [
+        "4S1nvNHWiZLP4rzwmULmUa",
+        "4GLJPBj5Cdr9AgLKvLWM4n"
+      ],
+      "album": "2.0",
+      "album_id": "7MvpqHRTRxHu7QoPiYnmzH",
+      "duration_ms": 217546,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USWB11501185"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 51,
+      "added_at": "2020-04-23T03:54:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6gyqI2rsYpq9uw1t7lQDox",
+      "uri": "spotify:track:6gyqI2rsYpq9uw1t7lQDox",
+      "name": "Mary",
+      "artists": [
+        "The Happy Fits"
+      ],
+      "artist_ids": [
+        "73rPcaYEhBd0UuVZBqqyQJ"
+      ],
+      "album": "Concentrate",
+      "album_id": "71q7z1IMtbYcyDdGYm0iDz",
+      "duration_ms": 194733,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBMJG1808930"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 52,
+      "added_at": "2020-04-23T21:13:00Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4YTFAawmOFyRjJdT6H95oE",
+      "uri": "spotify:track:4YTFAawmOFyRjJdT6H95oE",
+      "name": "Saint Bernard",
+      "artists": [
+        "Lincoln"
+      ],
+      "artist_ids": [
+        "6RcxmUOBnyAQr2rRsNfQI5"
+      ],
+      "album": "A Constant State of Ohio",
+      "album_id": "6vEyxIuSDfiR0qIfK7F167",
+      "duration_ms": 103343,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USBAL1600001"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 53,
+      "added_at": "2020-08-12T19:04:01Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6duWrSlajEdgjAfaiKZV31",
+      "uri": "spotify:track:6duWrSlajEdgjAfaiKZV31",
+      "name": "Baby Outlaw",
+      "artists": [
+        "Elle King"
+      ],
+      "artist_ids": [
+        "3bhu7P5PfngueRHiB9hjcx"
+      ],
+      "album": "Shake The Spirit",
+      "album_id": "0YYboPBsKcVDrXiNfNIi7o",
+      "duration_ms": 199840,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC11802047"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 54,
+      "added_at": "2021-08-16T07:13:10Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4YZVtRbdGOhHdGNi4JpCL5",
+      "uri": "spotify:track:4YZVtRbdGOhHdGNi4JpCL5",
+      "name": "Thank God I'm Not You",
+      "artists": [
+        "HIMALAYAS"
+      ],
+      "artist_ids": [
+        "71NBOcJ9lMeXqnbnya1z0x"
+      ],
+      "album": "Thank God I'm Not You",
+      "album_id": "78vmVv9bN0amzSiE1Fvzav",
+      "duration_ms": 194625,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "uscgj1798848"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 55,
+      "added_at": "2021-08-16T07:16:09Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3vpnCWDEtzmOyICqE9uFfL",
+      "uri": "spotify:track:3vpnCWDEtzmOyICqE9uFfL",
+      "name": "Violence",
+      "artists": [
+        "The Unlikely Candidates"
+      ],
+      "artist_ids": [
+        "4hwJwkgsufeilLXS1ZfJqq"
+      ],
+      "album": "Bed of Liars",
+      "album_id": "1Gbja1LJgJAQkLXlQdMiTF",
+      "duration_ms": 203293,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US4E41741903"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 56,
+      "added_at": "2021-08-16T07:21:45Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1RVfzEuoVcqRxvGnfPmIOS",
+      "uri": "spotify:track:1RVfzEuoVcqRxvGnfPmIOS",
+      "name": "Creature",
+      "artists": [
+        "BONES UK"
+      ],
+      "artist_ids": [
+        "16kd5X3pBMOtXdLlX5LcAw"
+      ],
+      "album": "Bones UK",
+      "album_id": "3oGWjFc2ol3g4iIiCAXav3",
+      "duration_ms": 188000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USHM21806291"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 57,
+      "added_at": "2022-03-15T11:34:32Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0ZQon6cdXbvGbKtwJD078c",
+      "uri": "spotify:track:0ZQon6cdXbvGbKtwJD078c",
+      "name": "I'm Gonna Do My Thing",
+      "artists": [
+        "Royal Deluxe"
+      ],
+      "artist_ids": [
+        "54OEro9sWZ3mVfMdlz2CIt"
+      ],
+      "album": "Royal Deluxe",
+      "album_id": "33itOLFW78EMZomkXAM5I5",
+      "duration_ms": 189500,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US43C1400923"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 58,
+      "added_at": "2023-11-14T17:05:28Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2kWowW0k4oFymhkr7LmvzO",
+      "uri": "spotify:track:2kWowW0k4oFymhkr7LmvzO",
+      "name": "Come with Me Now",
+      "artists": [
+        "KONGOS"
+      ],
+      "artist_ids": [
+        "58R5LHkK3vkmEyGUPOR5kS"
+      ],
+      "album": "Lunatic",
+      "album_id": "71C65HI7THrlkpHHa24YJX",
+      "duration_ms": 211960,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USY741100002"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 59,
+      "added_at": "2023-11-14T17:11:11Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4n2G1Wxz1gYxe7AhYV7N9E",
+      "uri": "spotify:track:4n2G1Wxz1gYxe7AhYV7N9E",
+      "name": "Hands",
+      "artists": [
+        "Barns Courtney"
+      ],
+      "artist_ids": [
+        "5tFRohaO5yEsuJxmMnlCO9"
+      ],
+      "album": "The Attractions Of Youth",
+      "album_id": "2pWDyiJFya59ue0391kzSl",
+      "duration_ms": 191053,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBUM71700145"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

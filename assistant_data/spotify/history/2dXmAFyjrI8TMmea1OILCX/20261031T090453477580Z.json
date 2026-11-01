@@ -1,0 +1,3631 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31T09:04:53.476987+00:00",
+  "id": "2dXmAFyjrI8TMmea1OILCX",
+  "name": "",
+  "description": "",
+  "owner": {
+    "id": "bellabellabelle",
+    "display_name": "bellabellabelle"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAVPc6vnSZZAWZoc+VVQZ93pZVtoR5u",
+  "total_items_reported": 141,
+  "item_count_fetched": 141,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-10-31T09:04:53.477005+00:00",
+  "items_snapshot_id": "AAAVPc6vnSZZAWZoc+VVQZ93pZVtoR5u",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2021-11-08T18:50:17Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2Is9zrqsT5J8lmU7T43p4I",
+      "uri": "spotify:track:2Is9zrqsT5J8lmU7T43p4I",
+      "name": "Pipe Up",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Something for Thee Hotties",
+      "album_id": "6B26OzQRObxAp1tbf8jeTq",
+      "duration_ms": 169565,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32100936"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2021-11-08T18:50:21Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5bnqxdR3sr2tJD34WJOSXW",
+      "uri": "spotify:track:5bnqxdR3sr2tJD34WJOSXW",
+      "name": "Bae Goals",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Something for Thee Hotties",
+      "album_id": "6B26OzQRObxAp1tbf8jeTq",
+      "duration_ms": 148906,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32100934"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2021-11-08T18:50:26Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2CaqcyuubKt9aOSl9bXqAv",
+      "uri": "spotify:track:2CaqcyuubKt9aOSl9bXqAv",
+      "name": "Opposite Day",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Something for Thee Hotties",
+      "album_id": "6B26OzQRObxAp1tbf8jeTq",
+      "duration_ms": 134400,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32100935"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2022-08-13T17:46:01Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0QWauSvdEXExwUUDa4QCsj",
+      "uri": "spotify:track:0QWauSvdEXExwUUDa4QCsj",
+      "name": "Scary (feat. Rico Nasty)",
+      "artists": [
+        "Megan Thee Stallion",
+        "Rico Nasty"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK",
+        "2OaHYHb2XcFPvqL3VsyPzU"
+      ],
+      "album": "Traumazine",
+      "album_id": "4YP0h2KGDb20eJuStnBvim",
+      "duration_ms": 153645,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22212382"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2022-08-16T14:42:19Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5odEKBDCHBNrNm0skWsSUv",
+      "uri": "spotify:track:5odEKBDCHBNrNm0skWsSUv",
+      "name": "Who Me (feat. Pooh Shiesty)",
+      "artists": [
+        "Megan Thee Stallion",
+        "Pooh Shiesty"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK",
+        "5F1aAS1duwlzExnPs3l2Xe"
+      ],
+      "album": "Traumazine",
+      "album_id": "4YP0h2KGDb20eJuStnBvim",
+      "duration_ms": 118025,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22212380"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2022-08-16T14:47:43Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1DIFFX5zpjyxaJvA8YFEji",
+      "uri": "spotify:track:1DIFFX5zpjyxaJvA8YFEji",
+      "name": "Not Nice",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Traumazine",
+      "album_id": "4YP0h2KGDb20eJuStnBvim",
+      "duration_ms": 165745,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22212375"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2023-02-12T02:39:05Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1f5PNhkNgUpvDEeZfcIlO1",
+      "uri": "spotify:track:1f5PNhkNgUpvDEeZfcIlO1",
+      "name": "I Do (feat. SZA)",
+      "artists": [
+        "Cardi B",
+        "SZA"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "7tYKF4w9nC0nq9CsPZTHyP"
+      ],
+      "album": "Invasion of Privacy",
+      "album_id": "4KdtEKjY3Gi0mKiSdy96ML",
+      "duration_ms": 200205,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21801435"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2023-07-09T23:27:20Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5fjPlGybR0O6UwKIjk51A0",
+      "uri": "spotify:track:5fjPlGybR0O6UwKIjk51A0",
+      "name": "SKATE",
+      "artists": [
+        "BIA"
+      ],
+      "artist_ids": [
+        "6veh5zbFpm31XsPdjBgPER"
+      ],
+      "album": "FOR CERTAIN (Deluxe)",
+      "album_id": "76j8Cihag4ps0oykYSo0Bc",
+      "duration_ms": 162779,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM12006519"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2023-07-17T19:18:24Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1ZynYY8BPvWnx7t1EGwrPs",
+      "uri": "spotify:track:1ZynYY8BPvWnx7t1EGwrPs",
+      "name": "Outside",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Good News",
+      "album_id": "0KjckH1EE6HRRurMIXSc0r",
+      "duration_ms": 151991,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32000689"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2023-11-04T00:55:33Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3Kh8X9lHztqVBTgw30HbXn",
+      "uri": "spotify:track:3Kh8X9lHztqVBTgw30HbXn",
+      "name": "Cobra",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Cobra",
+      "album_id": "08VJzxuxr4leLd9YhJNlQl",
+      "duration_ms": 168932,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22312436"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2024-01-30T19:53:34Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6c6WmIHcHlhccEwSFBhzNa",
+      "uri": "spotify:track:6c6WmIHcHlhccEwSFBhzNa",
+      "name": "Put It On Da Floor Again (feat. Cardi B)",
+      "artists": [
+        "Latto",
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ",
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "Put It On Da Floor Again (feat. Cardi B)",
+      "album_id": "4A43tzEN3jILvseI1HeXGG",
+      "duration_ms": 185748,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12301450"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2024-04-02T18:33:46Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0xuAmZCrXjMooAUmBgUljM",
+      "uri": "spotify:track:0xuAmZCrXjMooAUmBgUljM",
+      "name": "Freakend",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Something for Thee Hotties",
+      "album_id": "6B26OzQRObxAp1tbf8jeTq",
+      "duration_ms": 114000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32100933"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2024-05-23T12:30:03Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3tUwmCcdunuXKwHu8u2aBn",
+      "uri": "spotify:track:3tUwmCcdunuXKwHu8u2aBn",
+      "name": "BOA",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "BOA",
+      "album_id": "0oXRheajSwu5UTpcDzloop",
+      "duration_ms": 154732,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22402630"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4Ir7CB5dXbd0fGBQ1rW85m",
+      "uri": "spotify:track:4Ir7CB5dXbd0fGBQ1rW85m",
+      "name": "Rattle",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 205416,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405471"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "01teRdn4aIEsPzVT1K6FAf",
+      "uri": "spotify:track:01teRdn4aIEsPzVT1K6FAf",
+      "name": "Broke His Heart",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 159156,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405474"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7J0N8YDjfrlEPJo2ZzGjYG",
+      "uri": "spotify:track:7J0N8YDjfrlEPJo2ZzGjYG",
+      "name": "Find Out",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 155767,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405477"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0i1LliXxuipWRboFGpS2gG",
+      "uri": "spotify:track:0i1LliXxuipWRboFGpS2gG",
+      "name": "Accent (feat. GloRilla)",
+      "artists": [
+        "Megan Thee Stallion",
+        "GloRilla"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK",
+        "2qoQgPAilErOKCwE2Y8wOG"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 199741,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405479"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1Jq7VmkrvMxGphj0YUgOoR",
+      "uri": "spotify:track:1Jq7VmkrvMxGphj0YUgOoR",
+      "name": "Down Stairs DJ",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 164000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405482"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "42zaxtRnvPQIroeZ6btUTG",
+      "uri": "spotify:track:42zaxtRnvPQIroeZ6btUTG",
+      "name": "Worthy",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 139371,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405484"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2024-06-29T01:33:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0GahO8wCb34TPeUKbtBJku",
+      "uri": "spotify:track:0GahO8wCb34TPeUKbtBJku",
+      "name": "Moody Girl",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN",
+      "album_id": "0FzWvaeMBfKBCqxHTLVlB8",
+      "duration_ms": 167529,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22405485"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2024-07-21T08:56:06Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4VjWhs9rWkI6n5jZTtkMAq",
+      "uri": "spotify:track:4VjWhs9rWkI6n5jZTtkMAq",
+      "name": "DOD",
+      "artists": [
+        "JT"
+      ],
+      "artist_ids": [
+        "39af15p0feaAOdL9DTRj3m"
+      ],
+      "album": "City Cinderella",
+      "album_id": "66HrXUpGRlJdwXIw7B9SQI",
+      "duration_ms": 166956,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12400153"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2024-07-21T08:56:12Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0YSunN721SC5IeuOuklmci",
+      "uri": "spotify:track:0YSunN721SC5IeuOuklmci",
+      "name": "Lemon Pepper (feat. Stunna Girl)",
+      "artists": [
+        "JT",
+        "Stunna Girl"
+      ],
+      "artist_ids": [
+        "39af15p0feaAOdL9DTRj3m",
+        "4eEkR7IDAXyGngHvnJZpdV"
+      ],
+      "album": "City Cinderella",
+      "album_id": "66HrXUpGRlJdwXIw7B9SQI",
+      "duration_ms": 216986,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12400154"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2024-07-31T13:58:49Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3C8lsLOz4Jk0ELFpf0eUIk",
+      "uri": "spotify:track:3C8lsLOz4Jk0ELFpf0eUIk",
+      "name": "OKAY",
+      "artists": [
+        "JT"
+      ],
+      "artist_ids": [
+        "39af15p0feaAOdL9DTRj3m"
+      ],
+      "album": "City Cinderella",
+      "album_id": "66HrXUpGRlJdwXIw7B9SQI",
+      "duration_ms": 164074,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12400080"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2024-08-12T18:56:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4rIf3U4gqmK416tLeNun69",
+      "uri": "spotify:track:4rIf3U4gqmK416tLeNun69",
+      "name": "Squeeze (feat. Megan Thee Stallion)",
+      "artists": [
+        "Latto",
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ",
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Sugar Honey Iced Tea",
+      "album_id": "1S9LGRodo5jsXGsMeVaYNp",
+      "duration_ms": 164960,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12401466"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2024-08-12T18:56:20Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1KhUaRnlArqC9MxvUfk8Tb",
+      "uri": "spotify:track:1KhUaRnlArqC9MxvUfk8Tb",
+      "name": "H&M",
+      "artists": [
+        "Latto"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Sugar Honey Iced Tea",
+      "album_id": "1S9LGRodo5jsXGsMeVaYNp",
+      "duration_ms": 146893,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12402310"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 25,
+      "added_at": "2024-08-20T19:07:36Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1THBOjddqycGYWN3E7dkDV",
+      "uri": "spotify:track:1THBOjddqycGYWN3E7dkDV",
+      "name": "Settle Down",
+      "artists": [
+        "Latto"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Sugar Honey Iced Tea",
+      "album_id": "1S9LGRodo5jsXGsMeVaYNp",
+      "duration_ms": 162386,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12401458"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 26,
+      "added_at": "2024-08-20T19:11:45Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1JF8LkQWZ8grXb2emqrNKn",
+      "uri": "spotify:track:1JF8LkQWZ8grXb2emqrNKn",
+      "name": "Brokey",
+      "artists": [
+        "Latto"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Sugar Honey Iced Tea",
+      "album_id": "1S9LGRodo5jsXGsMeVaYNp",
+      "duration_ms": 217613,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12401455"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 27,
+      "added_at": "2024-11-08T17:45:48Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "42FdbvIajSJKZzAoT6ziKo",
+      "uri": "spotify:track:42FdbvIajSJKZzAoT6ziKo",
+      "name": "PROCEDURE (feat. Latto)",
+      "artists": [
+        "GloRilla",
+        "Latto"
+      ],
+      "artist_ids": [
+        "2qoQgPAilErOKCwE2Y8wOG",
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "GLORIOUS (BONUS TRACK EDITION)",
+      "album_id": "30U4ER7EKDECmVSxsFYRQc",
+      "duration_ms": 174683,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72411012"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 28,
+      "added_at": "2024-11-08T17:45:58Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4WKzlltlTUqNPS2OYM1thG",
+      "uri": "spotify:track:4WKzlltlTUqNPS2OYM1thG",
+      "name": "HOW I LOOK (feat. Megan Thee Stallion)",
+      "artists": [
+        "GloRilla",
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "2qoQgPAilErOKCwE2Y8wOG",
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "GLORIOUS (BONUS TRACK EDITION)",
+      "album_id": "30U4ER7EKDECmVSxsFYRQc",
+      "duration_ms": 118518,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72411009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2024-11-08T17:46:03Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4B4LyF5ggC87E7JWAyF9HZ",
+      "uri": "spotify:track:4B4LyF5ggC87E7JWAyF9HZ",
+      "name": "He Think I Love Him",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN: ACT II",
+      "album_id": "1HOMjYmPvDpCNbb44JnFaa",
+      "duration_ms": 95199,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22409899"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 30,
+      "added_at": "2024-11-08T17:46:07Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3SVbM6VYsL61FLFLRXfB5M",
+      "uri": "spotify:track:3SVbM6VYsL61FLFLRXfB5M",
+      "name": "Fell In Love",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN: ACT II",
+      "album_id": "1HOMjYmPvDpCNbb44JnFaa",
+      "duration_ms": 147245,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22409898"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 31,
+      "added_at": "2024-11-08T17:46:11Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2Tn2PueS8H5jfDvL8dNU5T",
+      "uri": "spotify:track:2Tn2PueS8H5jfDvL8dNU5T",
+      "name": "Number One Rule",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN: ACT II",
+      "album_id": "1HOMjYmPvDpCNbb44JnFaa",
+      "duration_ms": 140883,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22409891"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 32,
+      "added_at": "2024-11-08T17:46:14Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0XW9AyYhwwUyBYFvRfrfIs",
+      "uri": "spotify:track:0XW9AyYhwwUyBYFvRfrfIs",
+      "name": "Bigger In Texas",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN: ACT II",
+      "album_id": "1HOMjYmPvDpCNbb44JnFaa",
+      "duration_ms": 152571,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22409889"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 33,
+      "added_at": "2024-11-16T13:47:27Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7pKQ8k33PnvE2djwJ64wzx",
+      "uri": "spotify:track:7pKQ8k33PnvE2djwJ64wzx",
+      "name": "In My Bag (feat. GloRilla)",
+      "artists": [
+        "FLO",
+        "GloRilla"
+      ],
+      "artist_ids": [
+        "0s4kXsjYeH0S1xRyVGN4NO",
+        "2qoQgPAilErOKCwE2Y8wOG"
+      ],
+      "album": "In My Bag (feat. GloRilla)",
+      "album_id": "7Donh3heAnk9VwIN1Rr7sK",
+      "duration_ms": 188348,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBUM72405129"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 34,
+      "added_at": "2024-12-01T02:09:57Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4jCKLCyhHjrzz6be6NDhrd",
+      "uri": "spotify:track:4jCKLCyhHjrzz6be6NDhrd",
+      "name": "Roc Steady (feat. Flo Milli)",
+      "artists": [
+        "Megan Thee Stallion",
+        "Flo Milli"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK",
+        "08PvCOlef4xdOr20jFSTPd"
+      ],
+      "album": "MEGAN: ACT II",
+      "album_id": "7KYpVsgw7yqbfmGBp9gYiR",
+      "duration_ms": 139193,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22409892"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 35,
+      "added_at": "2025-01-01T12:53:42Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5BsGbw1doMaFghuOMkkiJB",
+      "uri": "spotify:track:5BsGbw1doMaFghuOMkkiJB",
+      "name": "Chicken Grease",
+      "artists": [
+        "Latto"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Sugar Honey Iced Tea",
+      "album_id": "78bwcxLYi7vPZ2eCL9Vtvp",
+      "duration_ms": 161666,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12402650"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 36,
+      "added_at": "2025-02-25T15:46:32Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2o3II1DVbFPlCnR95xauge",
+      "uri": "spotify:track:2o3II1DVbFPlCnR95xauge",
+      "name": "Leo Luv The Sluts",
+      "artists": [
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Throwing Bows",
+      "album_id": "4eK0tskh6kKkNny0wRrqg3",
+      "duration_ms": 169929,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMBZ92437625"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 37,
+      "added_at": "2025-02-25T15:47:02Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "44AlUStg32yZ3xwhhrUGxq",
+      "uri": "spotify:track:44AlUStg32yZ3xwhhrUGxq",
+      "name": "Perfect",
+      "artists": [
+        "Baby Tate"
+      ],
+      "artist_ids": [
+        "3IJ21966TwNZI24MwZHMu4"
+      ],
+      "album": "Mani/Pedi",
+      "album_id": "1PggRLfABCLlNktVA64NDh",
+      "duration_ms": 172793,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USWB12205174"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 38,
+      "added_at": "2025-03-13T18:30:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6VcQT9i7ONuuFauExsWran",
+      "uri": "spotify:track:6VcQT9i7ONuuFauExsWran",
+      "name": "Bottega",
+      "artists": [
+        "Dess Dior"
+      ],
+      "artist_ids": [
+        "1RnSjp7u3KIyEJbRiQLs9O"
+      ],
+      "album": "RAW",
+      "album_id": "7qjfG80Q4046ra6Pvn6yLc",
+      "duration_ms": 197551,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZQQE2100281"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 39,
+      "added_at": "2025-03-30T02:08:47Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1cFpJsDccThCnkHS10ypSB",
+      "uri": "spotify:track:1cFpJsDccThCnkHS10ypSB",
+      "name": "Turn Me Up",
+      "artists": [
+        "Lebra Jolie"
+      ],
+      "artist_ids": [
+        "3ej8SuMJzEgwFLe2lCBikV"
+      ],
+      "album": "Turn Me Up",
+      "album_id": "6Lc6kbVxDCYWlqvh42A6KC",
+      "duration_ms": 165250,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72413920"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 40,
+      "added_at": "2025-05-20T18:20:32Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1CYqi8NwMa9BsD65hQuMci",
+      "uri": "spotify:track:1CYqi8NwMa9BsD65hQuMci",
+      "name": "I <3 My N***a",
+      "artists": [
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "I <3 My N***a",
+      "album_id": "5hRRLQ9KdFuPxfgq41jXel",
+      "duration_ms": 152380,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMBZ92368917"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 41,
+      "added_at": "2025-05-20T18:20:36Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4oVUfLx1BVgXbPXc0MlPkr",
+      "uri": "spotify:track:4oVUfLx1BVgXbPXc0MlPkr",
+      "name": "Whenever",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Whenever",
+      "album_id": "72PmiHAfjlwVxpWWgiHowx",
+      "duration_ms": 165668,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22502955"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 42,
+      "added_at": "2025-05-20T18:20:41Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1GpslorH7Gi64x8uodyvfO",
+      "uri": "spotify:track:1GpslorH7Gi64x8uodyvfO",
+      "name": "Somebody",
+      "artists": [
+        "Latto"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Somebody",
+      "album_id": "39jgucp2ZAo3pYpG3AcUY1",
+      "duration_ms": 202426,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12500481"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 43,
+      "added_at": "2025-06-02T09:35:27Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3HA9JaK01wlePDQLnEVqTf",
+      "uri": "spotify:track:3HA9JaK01wlePDQLnEVqTf",
+      "name": "Feels So Good",
+      "artists": [
+        "Aminé"
+      ],
+      "artist_ids": [
+        "3Gm5F95VdRxW3mqCn8RPBJ"
+      ],
+      "album": "13 Months of Sunshine",
+      "album_id": "5B4zpYhcIOJXQO7YWBh0LE",
+      "duration_ms": 131053,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZJ842501397"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 44,
+      "added_at": "2025-06-02T09:45:41Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4DRrkGW5OpK80HzMSk7mGu",
+      "uri": "spotify:track:4DRrkGW5OpK80HzMSk7mGu",
+      "name": "Ice Me",
+      "artists": [
+        "Big Boss Vette"
+      ],
+      "artist_ids": [
+        "6fKiutMtRIcxi4zEau0BuI"
+      ],
+      "album": "Ice Me",
+      "album_id": "7DcjUsuRBzr5K3lxOsFCFm",
+      "duration_ms": 153006,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12403676"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 45,
+      "added_at": "2025-06-12T08:56:52Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "08L2vgqPpiLt7PpwMHbbk1",
+      "uri": "spotify:track:08L2vgqPpiLt7PpwMHbbk1",
+      "name": "Typa",
+      "artists": [
+        "GloRilla"
+      ],
+      "artist_ids": [
+        "2qoQgPAilErOKCwE2Y8wOG"
+      ],
+      "album": "Typa",
+      "album_id": "296t8NLKxtLZ8jBOa0eGSY",
+      "duration_ms": 124137,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72506205"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 46,
+      "added_at": "2025-06-12T09:10:49Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "32yzfN13URHhpeq5tYbBNX",
+      "uri": "spotify:track:32yzfN13URHhpeq5tYbBNX",
+      "name": "Omote",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 116567,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479211"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 47,
+      "added_at": "2025-06-12T09:11:00Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "67WsbWbEI02qt27s5YcXso",
+      "uri": "spotify:track:67WsbWbEI02qt27s5YcXso",
+      "name": "Maybach",
+      "artists": [
+        "千葉雄喜",
+        "Murda Beatz"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu",
+        "3CbYyyd8wH3RT6t0jwpdzC"
+      ],
+      "album": "Maybach",
+      "album_id": "2UsXysLvyNlrGvcvG6KtyB",
+      "duration_ms": 165311,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QT4K32543134"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 48,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1Er6pCfJr6jFFpl3ri0ETO",
+      "uri": "spotify:track:1Er6pCfJr6jFFpl3ri0ETO",
+      "name": "Ichibyo",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 174875,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479206"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 49,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7uirnGEuyBGGF5aZqGh5Bb",
+      "uri": "spotify:track:7uirnGEuyBGGF5aZqGh5Bb",
+      "name": "Imaga",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 172875,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479208"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 50,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2UanZdw6148nBuGqt5rINi",
+      "uri": "spotify:track:2UanZdw6148nBuGqt5rINi",
+      "name": "Shinpin Muji T",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 168237,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479209"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 51,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7pigNwZC8IlUI9dboZb90x",
+      "uri": "spotify:track:7pigNwZC8IlUI9dboZb90x",
+      "name": "Arinomama",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 166036,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479213"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 52,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2fo4wQaKBnO6TXxOA6rxsR",
+      "uri": "spotify:track:2fo4wQaKBnO6TXxOA6rxsR",
+      "name": "Medatsu",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 166756,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479214"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 53,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0CeYPT3xRjwAoQtGtvD8i3",
+      "uri": "spotify:track:0CeYPT3xRjwAoQtGtvD8i3",
+      "name": "Heart Emoji",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 160985,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479218"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 54,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3jwNomnPdAdsCbRbeLra0U",
+      "uri": "spotify:track:3jwNomnPdAdsCbRbeLra0U",
+      "name": "Odoritakunaru",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 148055,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479220"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 55,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2jiq61awL0L1m7BjUPGgXi",
+      "uri": "spotify:track:2jiq61awL0L1m7BjUPGgXi",
+      "name": "Panpan Na Floor",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 161410,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479222"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 56,
+      "added_at": "2025-06-12T09:11:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2VW0AsrpB4GkHGdWQAggPX",
+      "uri": "spotify:track:2VW0AsrpB4GkHGdWQAggPX",
+      "name": "Wakannai",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "STAR",
+      "album_id": "18MwbH9QVqszhUvrwLQ4s5",
+      "duration_ms": 193721,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPC2479225"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 57,
+      "added_at": "2025-06-13T04:16:03Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6kNpaCTMRDUna3RChX1Vdu",
+      "uri": "spotify:track:6kNpaCTMRDUna3RChX1Vdu",
+      "name": "BANK",
+      "artists": [
+        "千葉雄喜"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu"
+      ],
+      "album": "Okuman Choja",
+      "album_id": "04VJrJ9xtUum0ZgZ7VN4Lz",
+      "duration_ms": 201931,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QT2VB2502233"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 58,
+      "added_at": "2025-07-01T13:19:23Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "139nLHDFZNr3anx8CpUy7u",
+      "uri": "spotify:track:139nLHDFZNr3anx8CpUy7u",
+      "name": "Outside",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "Outside",
+      "album_id": "3yFZYSdLY7V209cDXPEeae",
+      "duration_ms": 206711,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504480"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 59,
+      "added_at": "2025-07-01T13:22:51Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6xpHKtTf57YtRwSxH3iWqS",
+      "uri": "spotify:track:6xpHKtTf57YtRwSxH3iWqS",
+      "name": "Strip Club",
+      "artists": [
+        "Erica Banks"
+      ],
+      "artist_ids": [
+        "2SXhbucehn00OBVKhzxDyM"
+      ],
+      "album": "Strip Club",
+      "album_id": "3iXG1LkV3YkYESOpXnvlCJ",
+      "duration_ms": 151166,
+      "is_local": false,
+      "is_playable": false,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTGW2405302"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 60,
+      "added_at": "2025-07-01T13:24:49Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2nQHxlSAN9Gw3G6asqrDWe",
+      "uri": "spotify:track:2nQHxlSAN9Gw3G6asqrDWe",
+      "name": "Give (with Monaleo)",
+      "artists": [
+        "Genia",
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "4aAD0IqgpuOUyFGFZKEgNB",
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Give",
+      "album_id": "59TLnqSlR6Vhtm4fMOY0Fj",
+      "duration_ms": 145714,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72502192"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 61,
+      "added_at": "2025-07-21T15:36:06Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0sMqGaH6o0HGQbT0Ttxcji",
+      "uri": "spotify:track:0sMqGaH6o0HGQbT0Ttxcji",
+      "name": "First",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "First",
+      "album_id": "2kZwByLNOpxPu22QKwVoNZ",
+      "duration_ms": 164210,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNMZ2405349"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 62,
+      "added_at": "2025-09-09T13:12:37Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3srvOwMjHkTEmjphUucVip",
+      "uri": "spotify:track:3srvOwMjHkTEmjphUucVip",
+      "name": "Gyatt",
+      "artists": [
+        "Latto",
+        "Ice Spice"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ",
+        "3LZZPxNDGDFVSIPqf4JuEf"
+      ],
+      "album": "Gyatt",
+      "album_id": "6mJonxS4QLPYRzYYmjnZwV",
+      "duration_ms": 137733,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12501761"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 63,
+      "added_at": "2025-10-01T11:44:02Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2wn0AYkmcF0Cm7PmvA7hJ7",
+      "uri": "spotify:track:2wn0AYkmcF0Cm7PmvA7hJ7",
+      "name": "Pretty & Petty",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 183426,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504693"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 64,
+      "added_at": "2025-10-01T11:44:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5g8frSfNnBYjSpLkLtFnCd",
+      "uri": "spotify:track:5g8frSfNnBYjSpLkLtFnCd",
+      "name": "Shower Tears (feat. Summer Walker)",
+      "artists": [
+        "Cardi B",
+        "Summer Walker"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "57LYzLEk2LcFghVwuWbcuS"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 207400,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504692"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 65,
+      "added_at": "2025-10-03T17:22:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5MnPcgXz4RXqx09nIqvHKX",
+      "uri": "spotify:track:5MnPcgXz4RXqx09nIqvHKX",
+      "name": "Hello",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 155000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504683"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 66,
+      "added_at": "2025-10-03T17:25:48Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5sWjhIs29sp6rbgOicg4NS",
+      "uri": "spotify:track:5sWjhIs29sp6rbgOicg4NS",
+      "name": "Salute",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 154080,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504688"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 67,
+      "added_at": "2025-10-03T17:26:59Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7dHblXsJTRemgyIvFNJE7t",
+      "uri": "spotify:track:7dHblXsJTRemgyIvFNJE7t",
+      "name": "Magnet",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 178360,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504684"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 68,
+      "added_at": "2025-10-03T17:28:37Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4JI9FH3KOYOushudtnZt0z",
+      "uri": "spotify:track:4JI9FH3KOYOushudtnZt0z",
+      "name": "Bodega Baddie",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 104066,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504687"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 69,
+      "added_at": "2025-10-03T17:29:09Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6kuEBz6FG4JRZrdAi7kHQ8",
+      "uri": "spotify:track:6kuEBz6FG4JRZrdAi7kHQ8",
+      "name": "Better Than You (feat. Cash Cobain)",
+      "artists": [
+        "Cardi B",
+        "Cash Cobain"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "2R0CFyeMDiRbfkhkIMbyl1"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 241386,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504694"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 70,
+      "added_at": "2025-10-03T17:31:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "65OIh4xcmjZFFXNvp7NAml",
+      "uri": "spotify:track:65OIh4xcmjZFFXNvp7NAml",
+      "name": "Principal (feat. Janet Jackson)",
+      "artists": [
+        "Cardi B",
+        "Janet Jackson"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "4qwGe91Bz9K2T8jXTZ815W"
+      ],
+      "album": "AM I THE DRAMA?",
+      "album_id": "1LsNb6mVitbLZCxnRsbCDJ",
+      "duration_ms": 137346,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22504698"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 71,
+      "added_at": "2025-10-03T17:33:11Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7kMjH87CnhyoA25KieDB05",
+      "uri": "spotify:track:7kMjH87CnhyoA25KieDB05",
+      "name": "Bolaji",
+      "artists": [
+        "Ro$ama",
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "6sacEP77oivRMuZRlOuSCr",
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Bolaji",
+      "album_id": "5lrGVnEe6VyPzwXfGkDUif",
+      "duration_ms": 151384,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNMW2547151"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 72,
+      "added_at": "2025-10-03T17:33:17Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3C9H7htrTDVHrP8BiB2f2r",
+      "uri": "spotify:track:3C9H7htrTDVHrP8BiB2f2r",
+      "name": "Putting Ya Dine",
+      "artists": [
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Putting Ya Dine",
+      "album_id": "1EfvRoD67Fh0xHvMfeFrGo",
+      "duration_ms": 179476,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USQX92504806"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 73,
+      "added_at": "2025-10-03T17:43:53Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0ikDnozlxJ995H1XXcZXuJ",
+      "uri": "spotify:track:0ikDnozlxJ995H1XXcZXuJ",
+      "name": "Fine Shit",
+      "artists": [
+        "Erica Banks"
+      ],
+      "artist_ids": [
+        "2SXhbucehn00OBVKhzxDyM"
+      ],
+      "album": "Fine Shit",
+      "album_id": "4QrLMZEsm9BMGcdqQKY64t",
+      "duration_ms": 144168,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTGW2405966"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 74,
+      "added_at": "2025-10-27T17:10:26Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3t6kNqWEd1CPE2nPz6wcQg",
+      "uri": "spotify:track:3t6kNqWEd1CPE2nPz6wcQg",
+      "name": "LOVER GIRL",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "LOVER GIRL",
+      "album_id": "5919KmtJqUR1VqkXJEH2US",
+      "duration_ms": 264669,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NL8RL2567124"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 75,
+      "added_at": "2025-11-05T21:01:15Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4hcQDZwYcx3qXTzfegb45N",
+      "uri": "spotify:track:4hcQDZwYcx3qXTzfegb45N",
+      "name": "ErrTime (feat. Latto) [Remix]",
+      "artists": [
+        "Cardi B",
+        "Latto"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "AM I THE DRAMA? (ErrTime Edition)",
+      "album_id": "4wQ6C0rMkwvWsANBN1kZXO",
+      "duration_ms": 146560,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22507301"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 76,
+      "added_at": "2025-11-05T21:14:28Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7tOvfTjTmjBr1GoKfpzXqd",
+      "uri": "spotify:track:7tOvfTjTmjBr1GoKfpzXqd",
+      "name": "Still",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous",
+      "album_id": "0V2FmNlHJtmiCvZmsQltYF",
+      "duration_ms": 160000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZL382581231"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 77,
+      "added_at": "2025-11-05T21:18:04Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5SCYRMXSNsyUlGQofO5JRR",
+      "uri": "spotify:track:5SCYRMXSNsyUlGQofO5JRR",
+      "name": "Cocky",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous",
+      "album_id": "0V2FmNlHJtmiCvZmsQltYF",
+      "duration_ms": 120000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZJG52599194"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 78,
+      "added_at": "2025-11-05T21:23:55Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3LP8UhaVYrkr4RRIZIcAjt",
+      "uri": "spotify:track:3LP8UhaVYrkr4RRIZIcAjt",
+      "name": "Checkin In",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Back To 304'n",
+      "album_id": "01Q0we3MvUuyWfJrVq85gg",
+      "duration_ms": 117551,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMJMT2304902"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 79,
+      "added_at": "2025-11-05T21:27:48Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6y1va5MYOIB3xJScmddSaM",
+      "uri": "spotify:track:6y1va5MYOIB3xJScmddSaM",
+      "name": "Not My N*gga",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Back To 304'n",
+      "album_id": "01Q0we3MvUuyWfJrVq85gg",
+      "duration_ms": 128000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM24S2205519"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 80,
+      "added_at": "2025-11-05T21:31:53Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "24nznP32D4cuhAYyMYeTId",
+      "uri": "spotify:track:24nznP32D4cuhAYyMYeTId",
+      "name": "Dallas",
+      "artists": [
+        "Erica Banks"
+      ],
+      "artist_ids": [
+        "2SXhbucehn00OBVKhzxDyM"
+      ],
+      "album": "Ain't Shit Stopped",
+      "album_id": "09QccDPYvqNdIs8ZnDm2KS",
+      "duration_ms": 115220,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTGW2405962"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 81,
+      "added_at": "2025-11-05T21:33:47Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5TS9Rzbih6orBzpuGPbZ09",
+      "uri": "spotify:track:5TS9Rzbih6orBzpuGPbZ09",
+      "name": "Church",
+      "artists": [
+        "Erica Banks",
+        "Trap Dickey"
+      ],
+      "artist_ids": [
+        "2SXhbucehn00OBVKhzxDyM",
+        "20B8Ga2HfEUNJBAbZsJU2c"
+      ],
+      "album": "Ain't Shit Stopped",
+      "album_id": "09QccDPYvqNdIs8ZnDm2KS",
+      "duration_ms": 178991,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTGW2405963"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 82,
+      "added_at": "2025-11-05T21:39:21Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1rcTYRJzUV91iPkVoI0vIk",
+      "uri": "spotify:track:1rcTYRJzUV91iPkVoI0vIk",
+      "name": "Ain't Shit",
+      "artists": [
+        "Erica Banks"
+      ],
+      "artist_ids": [
+        "2SXhbucehn00OBVKhzxDyM"
+      ],
+      "album": "Ain't Shit Stopped",
+      "album_id": "09QccDPYvqNdIs8ZnDm2KS",
+      "duration_ms": 166889,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTGW2405968"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 83,
+      "added_at": "2025-11-05T21:42:04Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6Q7CZt8c9mBdRZr8WaMq07",
+      "uri": "spotify:track:6Q7CZt8c9mBdRZr8WaMq07",
+      "name": "Bigger Than Big",
+      "artists": [
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Who Did The Body",
+      "album_id": "4HOuHBKlSAkdpHf50kHMAH",
+      "duration_ms": 175000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USQX92505536"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 84,
+      "added_at": "2025-11-15T21:34:29Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5LauNe3yQm77DPlsfnlbR4",
+      "uri": "spotify:track:5LauNe3yQm77DPlsfnlbR4",
+      "name": "Still",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous (Deluxe)",
+      "album_id": "1bTRnEiTxdO68ZGsNFmWuf",
+      "duration_ms": 160000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZL382581231"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 85,
+      "added_at": "2025-11-15T21:34:51Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4nDYiB7QT9CDmZfcHEVNFP",
+      "uri": "spotify:track:4nDYiB7QT9CDmZfcHEVNFP",
+      "name": "Big Sh*t Talker",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous (Deluxe)",
+      "album_id": "1bTRnEiTxdO68ZGsNFmWuf",
+      "duration_ms": 128000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZL382581222"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 86,
+      "added_at": "2025-11-15T21:34:55Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1BcaRmHiKOuaNL6jk34dtL",
+      "uri": "spotify:track:1BcaRmHiKOuaNL6jk34dtL",
+      "name": "Black - Extended",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous (Deluxe)",
+      "album_id": "1bTRnEiTxdO68ZGsNFmWuf",
+      "duration_ms": 145600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2557848"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 87,
+      "added_at": "2025-11-15T21:35:02Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "39esb0WEASSAEgB5yU5OoL",
+      "uri": "spotify:track:39esb0WEASSAEgB5yU5OoL",
+      "name": "My Ball",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous (Deluxe)",
+      "album_id": "1bTRnEiTxdO68ZGsNFmWuf",
+      "duration_ms": 180000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2557845"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 88,
+      "added_at": "2025-11-15T21:35:07Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5Y6bvUCLYYXfSC6kK9UrHZ",
+      "uri": "spotify:track:5Y6bvUCLYYXfSC6kK9UrHZ",
+      "name": "Where My…",
+      "artists": [
+        "KenTheMan"
+      ],
+      "artist_ids": [
+        "6o4O5GX5kOWAGXtZUedxo3"
+      ],
+      "album": "Kinda Famous (Deluxe)",
+      "album_id": "1bTRnEiTxdO68ZGsNFmWuf",
+      "duration_ms": 104493,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2557843"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 89,
+      "added_at": "2025-11-15T21:35:13Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3oQB5uHe4gWp4kZG7uJwtI",
+      "uri": "spotify:track:3oQB5uHe4gWp4kZG7uJwtI",
+      "name": "Baller (with GloRilla, Sexyy Red & Monaleo)",
+      "artists": [
+        "Summer Walker",
+        "GloRilla",
+        "Sexyy Red",
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "57LYzLEk2LcFghVwuWbcuS",
+        "2qoQgPAilErOKCwE2Y8wOG",
+        "3DbwFQlvLxRSi2uX8mf81A",
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Baller (with GloRilla, Sexyy Red & Monaleo)",
+      "album_id": "5fL1VB3drZwSiUohjS81Mu",
+      "duration_ms": 204120,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72509052"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 90,
+      "added_at": "2025-11-21T16:02:21Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6SxzDQP0Qb91iCjaDTFO37",
+      "uri": "spotify:track:6SxzDQP0Qb91iCjaDTFO37",
+      "name": "Motion",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "MEGAN: ACT II",
+      "album_id": "7KYpVsgw7yqbfmGBp9gYiR",
+      "duration_ms": 134834,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22409897"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 91,
+      "added_at": "2025-11-21T16:08:16Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2GGMabyHXnJmjY6CXhhB2e",
+      "uri": "spotify:track:2GGMabyHXnJmjY6CXhhB2e",
+      "name": "Money",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "Money",
+      "album_id": "2drqVzCt52KiDxKgl0Rq0P",
+      "duration_ms": 183527,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21811495"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 92,
+      "added_at": "2025-11-21T16:08:48Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6KBYefIoo7KydImq1uUQlL",
+      "uri": "spotify:track:6KBYefIoo7KydImq1uUQlL",
+      "name": "Bodak Yellow",
+      "artists": [
+        "Cardi B"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB"
+      ],
+      "album": "Invasion of Privacy",
+      "album_id": "4KdtEKjY3Gi0mKiSdy96ML",
+      "duration_ms": 223712,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21701762"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 93,
+      "added_at": "2025-11-21T16:08:59Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "25ypHCQpDX2nrDFly7eZLZ",
+      "uri": "spotify:track:25ypHCQpDX2nrDFly7eZLZ",
+      "name": "Bonfire",
+      "artists": [
+        "Childish Gambino"
+      ],
+      "artist_ids": [
+        "73sIBHcqh3Z3NyqHKZ7FOL"
+      ],
+      "album": "Camp",
+      "album_id": "2nkHPk6e7TgemWh07yFHxh",
+      "duration_ms": 192946,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USYAH1100339"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 94,
+      "added_at": "2025-11-27T10:41:45Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "4Q34FP1AT7GEl9oLgNtiWj",
+      "uri": "spotify:track:4Q34FP1AT7GEl9oLgNtiWj",
+      "name": "Mr. Right Now (feat. Drake)",
+      "artists": [
+        "21 Savage",
+        "Metro Boomin",
+        "Drake"
+      ],
+      "artist_ids": [
+        "1URnnhqYAYcrqrcwql10ft",
+        "0iEtIxbK0KxaSlF7G42ZOp",
+        "3TVXtAsR1Inumwj472S9r4"
+      ],
+      "album": "SAVAGE MODE II",
+      "album_id": "6wTyGUWGCilBFZ837k5aRi",
+      "duration_ms": 193838,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM12005343"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 95,
+      "added_at": "2025-11-27T10:43:00Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0dIoGTQXDh1wVnhIiSyYEa",
+      "uri": "spotify:track:0dIoGTQXDh1wVnhIiSyYEa",
+      "name": "Bartier Cardi (feat. 21 Savage)",
+      "artists": [
+        "Cardi B",
+        "21 Savage"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "1URnnhqYAYcrqrcwql10ft"
+      ],
+      "album": "Invasion of Privacy",
+      "album_id": "4KdtEKjY3Gi0mKiSdy96ML",
+      "duration_ms": 224284,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21705413"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 96,
+      "added_at": "2025-11-27T10:43:14Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "58q2HKrzhC3ozto2nDdN4z",
+      "uri": "spotify:track:58q2HKrzhC3ozto2nDdN4z",
+      "name": "I Like It",
+      "artists": [
+        "Cardi B",
+        "Bad Bunny",
+        "J Balvin"
+      ],
+      "artist_ids": [
+        "4kYSro6naA4h99UJvo89HB",
+        "4q3ewBCX7sLwd24euuV69X",
+        "1vyhD5VmyZ7KMfW5gqLgo5"
+      ],
+      "album": "Invasion of Privacy",
+      "album_id": "4KdtEKjY3Gi0mKiSdy96ML",
+      "duration_ms": 253390,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21801431"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 97,
+      "added_at": "2025-11-27T10:43:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "00GOPLxW4PGQuUYdPJh8K1",
+      "uri": "spotify:track:00GOPLxW4PGQuUYdPJh8K1",
+      "name": "IV. Sweatpants",
+      "artists": [
+        "Childish Gambino"
+      ],
+      "artist_ids": [
+        "73sIBHcqh3Z3NyqHKZ7FOL"
+      ],
+      "album": "Because the Internet",
+      "album_id": "4GNIhgEGXzWGAefgN5qjdU",
+      "duration_ms": 180675,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USYAH1300223"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 98,
+      "added_at": "2025-11-27T10:45:28Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1WoOzgvz6CgH4pX6a1RKGp",
+      "uri": "spotify:track:1WoOzgvz6CgH4pX6a1RKGp",
+      "name": "My Way (feat. Monty)",
+      "artists": [
+        "Fetty Wap",
+        "Monty"
+      ],
+      "artist_ids": [
+        "6PXS4YHDkKvl1wkIl4V8DL",
+        "1Wnfj5qZsp8nPsGBBRRa4W"
+      ],
+      "album": "Fetty Wap (Deluxe)",
+      "album_id": "2gKQvajkEEaDtkqJ8FJ4uw",
+      "duration_ms": 213053,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE31500316"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 99,
+      "added_at": "2025-11-27T10:46:52Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6HZILIRieu8S0iqY8kIKhj",
+      "uri": "spotify:track:6HZILIRieu8S0iqY8kIKhj",
+      "name": "DNA.",
+      "artists": [
+        "Kendrick Lamar"
+      ],
+      "artist_ids": [
+        "2YZyLoL8N0Wb9xBt1NhZWg"
+      ],
+      "album": "DAMN.",
+      "album_id": "4eLPsYPBmXABThSJ821sqY",
+      "duration_ms": 185946,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM71703079"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 100,
+      "added_at": "2025-11-27T10:46:59Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7KXjTSCq5nL1LoYtL7XAwS",
+      "uri": "spotify:track:7KXjTSCq5nL1LoYtL7XAwS",
+      "name": "HUMBLE.",
+      "artists": [
+        "Kendrick Lamar"
+      ],
+      "artist_ids": [
+        "2YZyLoL8N0Wb9xBt1NhZWg"
+      ],
+      "album": "DAMN.",
+      "album_id": "4eLPsYPBmXABThSJ821sqY",
+      "duration_ms": 177000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM71703085"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 101,
+      "added_at": "2025-11-27T10:47:38Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6lABMzDz2QUqZXRPvQIkuJ",
+      "uri": "spotify:track:6lABMzDz2QUqZXRPvQIkuJ",
+      "name": "Another Nasty Song",
+      "artists": [
+        "Latto"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Another Nasty Song",
+      "album_id": "6lFb5yNr5P8oniP9OfDuNb",
+      "duration_ms": 144313,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12204770"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 102,
+      "added_at": "2025-11-27T10:47:48Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2BxboWjnfktO1E9HGfPXq1",
+      "uri": "spotify:track:2BxboWjnfktO1E9HGfPXq1",
+      "name": "Wheelie (feat. 21 Savage)",
+      "artists": [
+        "Latto",
+        "21 Savage"
+      ],
+      "artist_ids": [
+        "3MdXrJWsbVzdn6fe5JYkSQ",
+        "1URnnhqYAYcrqrcwql10ft"
+      ],
+      "album": "Wheelie (feat. 21 Savage)",
+      "album_id": "5gwTtcUw2dHvT1x9ad49ag",
+      "duration_ms": 170270,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12200362"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 103,
+      "added_at": "2025-11-27T10:48:07Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1HF6P40Z7nfExGaB1Gk99v",
+      "uri": "spotify:track:1HF6P40Z7nfExGaB1Gk99v",
+      "name": "Got The Guap (feat. Young Thug)",
+      "artists": [
+        "Lil Uzi Vert",
+        "Young Thug"
+      ],
+      "artist_ids": [
+        "4O15NlyKLIASxsJ0PrXPfz",
+        "50co4Is1HCEo8bhOyUWKpn"
+      ],
+      "album": "Eternal Atake (Deluxe) - LUV vs. The World 2",
+      "album_id": "0fEO7g2c5onkaXsybEtuD2",
+      "duration_ms": 176756,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22001641"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 104,
+      "added_at": "2025-11-27T10:48:22Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1QgTBfRN5m81a5K01qens6",
+      "uri": "spotify:track:1QgTBfRN5m81a5K01qens6",
+      "name": "444+222",
+      "artists": [
+        "Lil Uzi Vert"
+      ],
+      "artist_ids": [
+        "4O15NlyKLIASxsJ0PrXPfz"
+      ],
+      "album": "Luv Is Rage 2",
+      "album_id": "733e1ZfktLSwj96X5rsMeE",
+      "duration_ms": 247347,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21703426"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 105,
+      "added_at": "2025-11-27T10:48:36Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0Fpen1PTuEnCmOJtUU9Iud",
+      "uri": "spotify:track:0Fpen1PTuEnCmOJtUU9Iud",
+      "name": "New Patek",
+      "artists": [
+        "Lil Uzi Vert"
+      ],
+      "artist_ids": [
+        "4O15NlyKLIASxsJ0PrXPfz"
+      ],
+      "album": "New Patek",
+      "album_id": "64eE6FnNj7UJ9LEkN4EbvS",
+      "duration_ms": 343099,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21811270"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 106,
+      "added_at": "2025-11-27T10:48:51Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3yv7994DWTEk3ihwy75YBQ",
+      "uri": "spotify:track:3yv7994DWTEk3ihwy75YBQ",
+      "name": "Don’t Stop (feat. Young Thug)",
+      "artists": [
+        "Megan Thee Stallion",
+        "Young Thug"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK",
+        "50co4Is1HCEo8bhOyUWKpn"
+      ],
+      "album": "Don’t Stop (feat. Young Thug)",
+      "album_id": "6dm2dXeXB37jhsxKjgKAvw",
+      "duration_ms": 187992,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32000541"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 107,
+      "added_at": "2025-11-27T10:49:01Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0i3Q1vsKX0iEQLOdf2a8mz",
+      "uri": "spotify:track:0i3Q1vsKX0iEQLOdf2a8mz",
+      "name": "Realer",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Realer",
+      "album_id": "0BFB87VJlDwD7dI62BQ53B",
+      "duration_ms": 149703,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE31902188"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 108,
+      "added_at": "2025-11-27T10:49:06Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6WbTTAGKrQtCQvmc5BuYfh",
+      "uri": "spotify:track:6WbTTAGKrQtCQvmc5BuYfh",
+      "name": "Girls in the Hood",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Girls in the Hood",
+      "album_id": "0pcFMWHPMVHE25NiT1U6Bc",
+      "duration_ms": 154389,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32000328"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 109,
+      "added_at": "2025-11-27T10:49:19Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1E3VQQWFQAPJkXfYHjqWoI",
+      "uri": "spotify:track:1E3VQQWFQAPJkXfYHjqWoI",
+      "name": "Captain Hook",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Suga",
+      "album_id": "6Lo6ylJg4qbFfxicPEOzMI",
+      "duration_ms": 176749,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32000098"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 110,
+      "added_at": "2025-11-27T10:49:23Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5zNW5ARjYhJQJz1AChP33n",
+      "uri": "spotify:track:5zNW5ARjYhJQJz1AChP33n",
+      "name": "Thot Shit",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Thot Shit",
+      "album_id": "7gEGuvkVs79hY4tG7OYnzx",
+      "duration_ms": 184634,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE32100339"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 111,
+      "added_at": "2025-11-27T10:49:33Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1YU0fHUCpUyxkWqxx9ivHK",
+      "uri": "spotify:track:1YU0fHUCpUyxkWqxx9ivHK",
+      "name": "Running Up Freestyle",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Fever",
+      "album_id": "5WLquTz7nUnsHCj80b6wci",
+      "duration_ms": 124802,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE31902210"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 112,
+      "added_at": "2025-11-27T10:49:41Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3BFxkzhkESwALQxjxOVFgJ",
+      "uri": "spotify:track:3BFxkzhkESwALQxjxOVFgJ",
+      "name": "Budget (feat. Latto)",
+      "artists": [
+        "Megan Thee Stallion",
+        "Latto"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK",
+        "3MdXrJWsbVzdn6fe5JYkSQ"
+      ],
+      "album": "Traumazine",
+      "album_id": "4YP0h2KGDb20eJuStnBvim",
+      "duration_ms": 201979,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22212376"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 113,
+      "added_at": "2025-11-27T10:50:20Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "688QpQAwqsLdBR6lr13wK1",
+      "uri": "spotify:track:688QpQAwqsLdBR6lr13wK1",
+      "name": "Same Bitches (feat. G-Eazy & YG)",
+      "artists": [
+        "Post Malone",
+        "G-Eazy",
+        "YG"
+      ],
+      "artist_ids": [
+        "246dkjvS1zLTtiykXe5h60",
+        "02kJSzxNuaWGqwubyUba0Z",
+        "0A0FS04o6zMoto8OKPsDwY"
+      ],
+      "album": "beerbongs & bentleys",
+      "album_id": "6trNtQUgC8cgbWcqoMYkOR",
+      "duration_ms": 212466,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM71805174"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 114,
+      "added_at": "2025-11-27T10:50:27Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3a1lNhkSLSkpJE4MSHpDu9",
+      "uri": "spotify:track:3a1lNhkSLSkpJE4MSHpDu9",
+      "name": "Congratulations",
+      "artists": [
+        "Post Malone",
+        "Quavo"
+      ],
+      "artist_ids": [
+        "246dkjvS1zLTtiykXe5h60",
+        "0VRj0yCOv2FXJNP47XQnx5"
+      ],
+      "album": "Stoney (Deluxe)",
+      "album_id": "5s0rmjP8XOPhP6HhqOhuyC",
+      "duration_ms": 220293,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM71614484"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 115,
+      "added_at": "2025-11-27T10:50:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6wign87DUJTlNzrFYQKcut",
+      "uri": "spotify:track:6wign87DUJTlNzrFYQKcut",
+      "name": "OHFR?",
+      "artists": [
+        "Rico Nasty"
+      ],
+      "artist_ids": [
+        "2OaHYHb2XcFPvqL3VsyPzU"
+      ],
+      "album": "Nightmare Vacation",
+      "album_id": "6mlRdEExXqk8Git4nghBSL",
+      "duration_ms": 120964,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22007045"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 116,
+      "added_at": "2025-11-27T10:50:47Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0t7XhUJnuiDbvX18PGADDA",
+      "uri": "spotify:track:0t7XhUJnuiDbvX18PGADDA",
+      "name": "Don't Like Me (feat. Don Toliver & Gucci Mane)",
+      "artists": [
+        "Rico Nasty",
+        "Don Toliver",
+        "Gucci Mane"
+      ],
+      "artist_ids": [
+        "2OaHYHb2XcFPvqL3VsyPzU",
+        "4Gso3d4CscCijv0lmajZWs",
+        "13y7CgLHjMVRMDqxdx0Xdo"
+      ],
+      "album": "Nightmare Vacation",
+      "album_id": "6mlRdEExXqk8Git4nghBSL",
+      "duration_ms": 165399,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT22006638"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 117,
+      "added_at": "2025-12-01T00:54:48Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7nO0HvIskIk4ex50ECyTRG",
+      "uri": "spotify:track:7nO0HvIskIk4ex50ECyTRG",
+      "name": "Regardless",
+      "artists": [
+        "Kayykilo"
+      ],
+      "artist_ids": [
+        "0gh7zTXiSZH7MQ7OrHy0SG"
+      ],
+      "album": "Cutthroat Love Letter",
+      "album_id": "0dVB4zyK1ydlk8ldmDtIuR",
+      "duration_ms": 104520,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLD91735485"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 118,
+      "added_at": "2025-12-01T00:55:38Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7GX5flRQZVHRAGd6B4TmDO",
+      "uri": "spotify:track:7GX5flRQZVHRAGd6B4TmDO",
+      "name": "XO Tour Llif3",
+      "artists": [
+        "Lil Uzi Vert"
+      ],
+      "artist_ids": [
+        "4O15NlyKLIASxsJ0PrXPfz"
+      ],
+      "album": "Luv Is Rage 2",
+      "album_id": "733e1ZfktLSwj96X5rsMeE",
+      "duration_ms": 182706,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21703440"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 119,
+      "added_at": "2025-12-01T00:55:53Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "04b0tLlmpRhukCXaXT6l2J",
+      "uri": "spotify:track:04b0tLlmpRhukCXaXT6l2J",
+      "name": "Body Bag",
+      "artists": [
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Body Bag",
+      "album_id": "1uGar7MLJx7xRxSttyCw75",
+      "duration_ms": 158117,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMDA62264825"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 120,
+      "added_at": "2025-12-12T18:24:06Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7zPqfEr2mvXfDbPYaJhaJd",
+      "uri": "spotify:track:7zPqfEr2mvXfDbPYaJhaJd",
+      "name": "MARCH",
+      "artists": [
+        "GloRilla"
+      ],
+      "artist_ids": [
+        "2qoQgPAilErOKCwE2Y8wOG"
+      ],
+      "album": "MARCH",
+      "album_id": "5D2Bdw5Lwvsfd7RZcTXNAE",
+      "duration_ms": 170666,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72512069"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 121,
+      "added_at": "2025-12-16T23:28:38Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0JbYqO2CYBfJoXVDWVq6fq",
+      "uri": "spotify:track:0JbYqO2CYBfJoXVDWVq6fq",
+      "name": "Talk Yo Shit",
+      "artists": [
+        "Big Boss Vette"
+      ],
+      "artist_ids": [
+        "6fKiutMtRIcxi4zEau0BuI"
+      ],
+      "album": "Talk Yo Shit",
+      "album_id": "6PPSalbxNszeQGObdNJfMV",
+      "duration_ms": 105000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMFMG2569922"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 122,
+      "added_at": "2025-12-24T19:31:12Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3A2yGHWIzmGEIolwonU69h",
+      "uri": "spotify:track:3A2yGHWIzmGEIolwonU69h",
+      "name": "Act Up",
+      "artists": [
+        "City Girls"
+      ],
+      "artist_ids": [
+        "37hAfseJWi0G3Scife12Il"
+      ],
+      "album": "Girl Code",
+      "album_id": "6zzs0HMzEPRotJaEJe8uwJ",
+      "duration_ms": 158332,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG11802247"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 123,
+      "added_at": "2025-12-24T19:31:18Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2JQlJ8NMAsc64NpK40I7FK",
+      "uri": "spotify:track:2JQlJ8NMAsc64NpK40I7FK",
+      "name": "Ranchero",
+      "artists": [
+        "Monaleo"
+      ],
+      "artist_ids": [
+        "2sflbTtCirog5VxD6jPAfb"
+      ],
+      "album": "Ranchero",
+      "album_id": "6YuTYAphtTtx15HsessRq4",
+      "duration_ms": 175094,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6MZ2414916"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 124,
+      "added_at": "2026-01-02T17:26:31Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1oN0RFxIHaqjsyjk25I3Vn",
+      "uri": "spotify:track:1oN0RFxIHaqjsyjk25I3Vn",
+      "name": "Another One",
+      "artists": [
+        "Big Boss Vette"
+      ],
+      "artist_ids": [
+        "6fKiutMtRIcxi4zEau0BuI"
+      ],
+      "album": "RESILIENCE",
+      "album_id": "6oq03SmM5eN38iNZOFpjmx",
+      "duration_ms": 172302,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12305794"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 125,
+      "added_at": "2026-01-02T17:26:40Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2UwabhgfIAlkEA5nuTks56",
+      "uri": "spotify:track:2UwabhgfIAlkEA5nuTks56",
+      "name": "The Catch",
+      "artists": [
+        "Diamond The Body"
+      ],
+      "artist_ids": [
+        "3LxyybGMussJaKdrdt5MET"
+      ],
+      "album": "The Catch",
+      "album_id": "5rMgjGbZ70IJ2bNIJtO9mt",
+      "duration_ms": 104418,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2539445"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 126,
+      "added_at": "2026-01-02T17:38:46Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7N3mR4WnEuq1MUQlxb6JWH",
+      "uri": "spotify:track:7N3mR4WnEuq1MUQlxb6JWH",
+      "name": "Muévelo",
+      "artists": [
+        "Kali Uchis"
+      ],
+      "artist_ids": [
+        "1U1el3k54VvEUzo3ybLPlM"
+      ],
+      "album": "Muévelo",
+      "album_id": "6tKu7fGPGQyKD1nbSMWTje",
+      "duration_ms": 127366,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12503764"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 127,
+      "added_at": "2026-01-02T17:41:35Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "1qimDZEBflJE25RXkF24Yg",
+      "uri": "spotify:track:1qimDZEBflJE25RXkF24Yg",
+      "name": "WYM Freestyle",
+      "artists": [
+        "Doja Cat"
+      ],
+      "artist_ids": [
+        "5cj0lLjcoR7YOSnhnX0Po5"
+      ],
+      "album": "Scarlet",
+      "album_id": "6DmPNcfpkXBVRJsEIJY9tl",
+      "duration_ms": 124096,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12302412"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 128,
+      "added_at": "2026-01-02T17:43:17Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5MqauQV2PhcEFfhKtBOTua",
+      "uri": "spotify:track:5MqauQV2PhcEFfhKtBOTua",
+      "name": "Wet Vagina",
+      "artists": [
+        "Doja Cat"
+      ],
+      "artist_ids": [
+        "5cj0lLjcoR7YOSnhnX0Po5"
+      ],
+      "album": "Scarlet",
+      "album_id": "6DmPNcfpkXBVRJsEIJY9tl",
+      "duration_ms": 192238,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC12302184"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 129,
+      "added_at": "2026-01-06T22:18:06Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "5xsd1d5ArJqqdBTK7RHOKN",
+      "uri": "spotify:track:5xsd1d5ArJqqdBTK7RHOKN",
+      "name": "Fly Shhh (feat. Gloss Up)",
+      "artists": [
+        "Big Boss Vette",
+        "Gloss Up"
+      ],
+      "artist_ids": [
+        "6fKiutMtRIcxi4zEau0BuI",
+        "7eDFwYpqsAROCZibWYr5C1"
+      ],
+      "album": "RESILIENCE",
+      "album_id": "6oq03SmM5eN38iNZOFpjmx",
+      "duration_ms": 124187,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12305795"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 130,
+      "added_at": "2026-01-10T15:58:29Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2cUJ6wbyqH8hDZN8VWQ5oC",
+      "uri": "spotify:track:2cUJ6wbyqH8hDZN8VWQ5oC",
+      "name": "因果(Karma Code)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 151111,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272926"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 131,
+      "added_at": "2026-01-10T15:58:37Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0hEWvzkgbI301JZj947gFz",
+      "uri": "spotify:track:0hEWvzkgbI301JZj947gFz",
+      "name": "大展鴻圖(Blueprint Supreme)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD",
+        "AR刘夫阳"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI",
+        "0Ayv7StVio9fi017JAgu45"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 212727,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272925"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 132,
+      "added_at": "2026-01-10T15:58:43Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "7jm2PueKmv4EOHfdbdXMKT",
+      "uri": "spotify:track:7jm2PueKmv4EOHfdbdXMKT",
+      "name": "八方來財(Stacks from All Sides)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 173037,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272921"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 133,
+      "added_at": "2026-01-10T16:00:25Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "6L62p7soXthpBzRgupum0L",
+      "uri": "spotify:track:6L62p7soXthpBzRgupum0L",
+      "name": "活络油",
+      "artists": [
+        "攬佬SKAI ISYOURGOD"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI"
+      ],
+      "album": "顺风顺水顺财神",
+      "album_id": "4535MYgac70dsHipI4FIaE",
+      "duration_ms": 138835,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CNZ852316465"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 134,
+      "added_at": "2026-01-10T16:03:06Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "0EvTrXZUvbA0cBKcWPqz43",
+      "uri": "spotify:track:0EvTrXZUvbA0cBKcWPqz43",
+      "name": "六爻(Hexagrams)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 178094,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272924"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 135,
+      "added_at": "2026-01-10T16:27:32Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2bmM9FCWjDgynYnKwzzM04",
+      "uri": "spotify:track:2bmM9FCWjDgynYnKwzzM04",
+      "name": "香車豪宅(Whips and Cribs)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 171156,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272922"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 136,
+      "added_at": "2026-01-10T16:29:58Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2x2Yw9TkqufnCtOtjxu7JK",
+      "uri": "spotify:track:2x2Yw9TkqufnCtOtjxu7JK",
+      "name": "鶴立雞群(Rare One)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD",
+        "Fac-D12"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI",
+        "7tRhR2HHw1gNwowp0jI0zS"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 199237,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272927"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 137,
+      "added_at": "2026-01-14T22:40:11Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2jvUo4te4DUcV1mZ41UKO6",
+      "uri": "spotify:track:2jvUo4te4DUcV1mZ41UKO6",
+      "name": "文化沙漠種綠植(Green in Drought)",
+      "artists": [
+        "攬佬SKAI ISYOURGOD"
+      ],
+      "artist_ids": [
+        "4LUmhH4A1lvFljre6d00NI"
+      ],
+      "album": "八方來財(Stacks from All Sides)",
+      "album_id": "5vYWbmWrSSBskg28cRmcjg",
+      "duration_ms": 218053,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "HKE022272929"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 138,
+      "added_at": "2026-01-28T12:31:05Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "79o6CP5pgfHARPPXRHOcBN",
+      "uri": "spotify:track:79o6CP5pgfHARPPXRHOcBN",
+      "name": "アニョハセヨ",
+      "artists": [
+        "千葉雄喜",
+        "Lil Moshpit"
+      ],
+      "artist_ids": [
+        "6Qhgat07PNOdnJSnCXJigu",
+        "0tVSrjQ0NpDlecsJwGmrMy"
+      ],
+      "album": "アニョハセヨ",
+      "album_id": "2Vxwq1HTQ54jYHyinyIgWl",
+      "duration_ms": 116800,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPWP02600096"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 139,
+      "added_at": "2026-01-28T12:34:49Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "2eizuiK7HRMP5o0whQACvV",
+      "uri": "spotify:track:2eizuiK7HRMP5o0whQACvV",
+      "name": "F’in Wit Me",
+      "artists": [
+        "Lebra Jolie"
+      ],
+      "artist_ids": [
+        "3ej8SuMJzEgwFLe2lCBikV"
+      ],
+      "album": "F’in Wit Me",
+      "album_id": "1ikIMZVKTKUiHFN1BDmpnH",
+      "duration_ms": 114494,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM72513157"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 140,
+      "added_at": "2026-02-07T00:55:56Z",
+      "added_by": "bellabellabelle",
+      "type": "track",
+      "id": "3qVNNJ7f9RQeNR4iPIeS0c",
+      "uri": "spotify:track:3qVNNJ7f9RQeNR4iPIeS0c",
+      "name": "Realer",
+      "artists": [
+        "Megan Thee Stallion"
+      ],
+      "artist_ids": [
+        "181bsRPaVXVlUKXrxwZfHK"
+      ],
+      "album": "Fever",
+      "album_id": "5WLquTz7nUnsHCj80b6wci",
+      "duration_ms": 149703,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMCE31902188"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

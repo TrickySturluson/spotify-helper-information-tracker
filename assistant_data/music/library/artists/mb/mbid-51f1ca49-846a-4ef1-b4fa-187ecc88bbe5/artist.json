@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:51f1ca49-846a-4ef1-b4fa-187ecc88bbe5",
+  "artist": "Com Truise",
+  "identity": {
+    "artist_mbid": "51f1ca49-846a-4ef1-b4fa-187ecc88bbe5",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

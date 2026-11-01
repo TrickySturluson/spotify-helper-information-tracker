@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:36:56.819065+00:00",
+  "id": "5wRSUXlFbT8EX9p1kfa6GG",
+  "name": "FUCK YOU",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAUgMJlaLErE3w+kyK5omee9YbKl5e",
+  "total_items_reported": 21,
+  "item_count_fetched": 21,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-01T04:36:56.819074+00:00",
+  "items_snapshot_id": "AAAAUgMJlaLErE3w+kyK5omee9YbKl5e",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2024-01-29T02:44:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3IznIgmXtrUaoPWpQTy5jB",
+      "uri": "spotify:track:3IznIgmXtrUaoPWpQTy5jB",
+      "name": "Not Allowed",
+      "artists": [
+        "TV Girl"
+      ],
+      "artist_ids": [
+        "0Y6dVaC9DZtPNH4591M42W"
+      ],
+      "album": "Who Really Cares",
+      "album_id": "4oL7pMxnb04uuRI7ReXmuh",
+      "duration_ms": 167864,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USCGH1682131"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2024-01-29T02:43:29Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "30QD4VRP9yEneOh0eGTrtJ",
+      "uri": "spotify:track:30QD4VRP9yEneOh0eGTrtJ",
+      "name": "Solitude",
+      "artists": [
+        "Billie Holiday"
+      ],
+      "artist_ids": [
+        "1YzCsTRb22dQkh9lghPIrp"
+      ],
+      "album": "Solitude",
+      "album_id": "4izD3SCRElbkO06i8yf4Zp",
+      "duration_ms": 207600,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USPR35200072"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2024-01-29T02:42:54Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6anCRrgCX42ipxrv00DqW9",
+      "uri": "spotify:track:6anCRrgCX42ipxrv00DqW9",
+      "name": "Waiting For You",
+      "artists": [
+        "Alex G"
+      ],
+      "artist_ids": [
+        "6lcwlkAjBPSKnFBZjjZFJs"
+      ],
+      "album": "Revive #2",
+      "album_id": "2rJuOiQIEPUtgLcGi0PcfF",
+      "duration_ms": 210332,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBJET1400035"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2024-01-29T02:43:18Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5LndmQTjXKBbA3EaR0vSRQ",
+      "uri": "spotify:track:5LndmQTjXKBbA3EaR0vSRQ",
+      "name": "Do Your Worst",
+      "artists": [
+        "The Happy Fits"
+      ],
+      "artist_ids": [
+        "73rPcaYEhBd0UuVZBqqyQJ"
+      ],
+      "album": "Under The Shade of Green",
+      "album_id": "7zDlksfOktU7vodm08KPsb",
+      "duration_ms": 209626,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBKPL2201998"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2024-01-29T02:42:49Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3lWU0u5AZTmr0vm3m8VV2R",
+      "uri": "spotify:track:3lWU0u5AZTmr0vm3m8VV2R",
+      "name": "Goodnight Socialite",
+      "artists": [
+        "The Brobecks"
+      ],
+      "artist_ids": [
+        "29TCgxO6qzQx4O3pjUIMzn"
+      ],
+      "album": "Violent Things",
+      "album_id": "1KLBdhphdiK82hYpAiw8DR",
+      "duration_ms": 199720,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USTC90933542"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2024-01-29T02:42:45Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0EBBt2OSiGanyjPMcU5UBW",
+      "uri": "spotify:track:0EBBt2OSiGanyjPMcU5UBW",
+      "name": "Under My Skin",
+      "artists": [
+        "Jukebox The Ghost"
+      ],
+      "artist_ids": [
+        "0L8jXe7QeS9oYUoXbANmX4"
+      ],
+      "album": "Let Live & Let Ghosts",
+      "album_id": "0RxiXc9NOzT4H71lTTIb43",
+      "duration_ms": 199586,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USEF70600140"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2024-01-29T02:43:50Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3wILopdjm5k4sObfNmfeYt",
+      "uri": "spotify:track:3wILopdjm5k4sObfNmfeYt",
+      "name": "Dude, Where's My Skin?",
+      "artists": [
+        "Schoolyard Heroes"
+      ],
+      "artist_ids": [
+        "2umvffrPSrINnWYTrrJFAx"
+      ],
+      "album": "Abominations",
+      "album_id": "2o0pDDkycDELBilKgYhzFr",
+      "duration_ms": 157746,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70740109"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2024-01-29T02:44:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0o15du2j41QoYBJd7MoNhc",
+      "uri": "spotify:track:0o15du2j41QoYBJd7MoNhc",
+      "name": "I'm tired of your repeating story",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 103680,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908012"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2024-01-29T03:10:12Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "18ThXUp9jiQg26iD1w8reE",
+      "uri": "spotify:track:18ThXUp9jiQg26iD1w8reE",
+      "name": "Don't light my fire",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 136760,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2024-01-29T02:39:35Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "785w7ixnkUZCOKy1l4kcHT",
+      "uri": "spotify:track:785w7ixnkUZCOKy1l4kcHT",
+      "name": "Boring",
+      "artists": [
+        "Lil Mariko",
+        "Full Tac"
+      ],
+      "artist_ids": [
+        "1ZRRl4S2B4xZBzHtIf65Jx",
+        "5ZXkHp732tYHIzqctoZP0E"
+      ],
+      "album": "Boring",
+      "album_id": "6A45un1GRwZwh8RpeiAhF8",
+      "duration_ms": 135463,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM4TX2108841"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2024-01-29T02:57:02Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0xLCawHAfE3tqlPWRvhT49",
+      "uri": "spotify:track:0xLCawHAfE3tqlPWRvhT49",
+      "name": "Saccharine",
+      "artists": [
+        "Jazmin Bean"
+      ],
+      "artist_ids": [
+        "6blEmsLU25ewy8hHtgZaSL"
+      ],
+      "album": "Worldwide Torture",
+      "album_id": "2SVRzumTLUTdoHgYNQ4Rh9",
+      "duration_ms": 179720,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN81940759"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2024-01-29T02:49:25Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0pEC10owcK34KgGYGddAqU",
+      "uri": "spotify:track:0pEC10owcK34KgGYGddAqU",
+      "name": "Stalker's Tango",
+      "artists": [
+        "Autoheart"
+      ],
+      "artist_ids": [
+        "5Lm1CMoa8VOCBCLZesAcvc"
+      ],
+      "album": "Lent",
+      "album_id": "2jrIkEEjcflyyvDK3drUAq",
+      "duration_ms": 175000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA561472828"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2024-01-29T03:01:53Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5poS8LyxohSACjuIZ61EyS",
+      "uri": "spotify:track:5poS8LyxohSACjuIZ61EyS",
+      "name": "Hey Kids",
+      "artists": [
+        "Molina",
+        "Late Verlane"
+      ],
+      "artist_ids": [
+        "0pxhu7zSqPjBTUWMl6piHF",
+        "6P4APuruGUYRvwnzboQir3"
+      ],
+      "album": "Hey Kids",
+      "album_id": "2w5lbvxycNKqfGSrWgmDpI",
+      "duration_ms": 233374,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DKPF51800801"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2024-01-29T03:02:38Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ZHh3KhhhNyNJjwze1V2WE",
+      "uri": "spotify:track:6ZHh3KhhhNyNJjwze1V2WE",
+      "name": "Bikes",
+      "artists": [
+        "Rubblebucket"
+      ],
+      "artist_ids": [
+        "6xriZDSK3wPXhOoZXr9fzF"
+      ],
+      "album": "Rubblebucket",
+      "album_id": "1NC7PSvb5XaF5P4gh9tyM5",
+      "duration_ms": 277226,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USTCZ0942980"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2024-01-29T02:48:02Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0WpRF4X2LyMTZnqqrXX19U",
+      "uri": "spotify:track:0WpRF4X2LyMTZnqqrXX19U",
+      "name": "Get Jinxed",
+      "artists": [
+        "League of Legends",
+        "Djerv"
+      ],
+      "artist_ids": [
+        "47mIJdHORyRerp4os813jD",
+        "0maicLMFF0aeHwJlQgZrNa"
+      ],
+      "album": "The Music of League of Legends Vol. 1",
+      "album_id": "4pg51OJaG6MGlpRFxWWLpr",
+      "duration_ms": 154960,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMAF31400023"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2024-01-29T02:43:09Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6D3VUXF4ClDUmsoNGRIB8z",
+      "uri": "spotify:track:6D3VUXF4ClDUmsoNGRIB8z",
+      "name": "Dogs",
+      "artists": [
+        "Ergo, Bria"
+      ],
+      "artist_ids": [
+        "0AF9HrL08aOaZPsIiO8GmA"
+      ],
+      "album": "Dogs",
+      "album_id": "40d7Jww6oN3BnVj8gKfmlA",
+      "duration_ms": 142249,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWY2278140"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2024-01-29T02:42:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3XKEnMrPNaxyZa9Q2LH5qy",
+      "uri": "spotify:track:3XKEnMrPNaxyZa9Q2LH5qy",
+      "name": "On My Way to Hell",
+      "artists": [
+        "Połoz",
+        "Tinnitus"
+      ],
+      "artist_ids": [
+        "1zYoJwd806MyTe23nwzBV2",
+        "2J6KhtJb2qZz8woKTKF6KC"
+      ],
+      "album": "Cyberpunk 2077: Radio, Vol. 2 (Original Soundtrack)",
+      "album_id": "1VGVJdmvOSRK2w9RKXk18A",
+      "duration_ms": 320310,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLS52081709"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2024-01-29T02:48:08Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4Vvz2vcRqx8tYyl4QdOjoA",
+      "uri": "spotify:track:4Vvz2vcRqx8tYyl4QdOjoA",
+      "name": "koi geba",
+      "artists": [
+        "ATARASHII GAKKO!"
+      ],
+      "artist_ids": [
+        "4OfU76YhPU04wlmbVFFgTJ"
+      ],
+      "album": "wakage ga itaru",
+      "album_id": "7wN4b7hcoWOabX4PKu73pi",
+      "duration_ms": 253400,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPVI01900010"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2024-01-29T02:47:33Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1iQQIAfpATwzNGL9cjvsqL",
+      "uri": "spotify:track:1iQQIAfpATwzNGL9cjvsqL",
+      "name": "Lost Kitten",
+      "artists": [
+        "Metric"
+      ],
+      "artist_ids": [
+        "1rCIEwPp5OnXW0ornlSsRl"
+      ],
+      "album": "Synthetica",
+      "album_id": "6dnw3X7u1ErlRAdeDDL4EK",
+      "duration_ms": 196546,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CARB71211206"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2024-01-29T02:48:46Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0kwg23L2duCHhWPI8Ff5V0",
+      "uri": "spotify:track:0kwg23L2duCHhWPI8Ff5V0",
+      "name": "Wobbly",
+      "artists": [
+        "Ezra Furman"
+      ],
+      "artist_ids": [
+        "1uR7zoLrSRI8bSL43OZ0GY"
+      ],
+      "album": "Perpetual Motion People",
+      "album_id": "3EkoIV1a31YFALeSf4qIfH",
+      "duration_ms": 180000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBBRP1549806"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2024-01-29T02:56:38Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4YTFAawmOFyRjJdT6H95oE",
+      "uri": "spotify:track:4YTFAawmOFyRjJdT6H95oE",
+      "name": "Saint Bernard",
+      "artists": [
+        "Lincoln"
+      ],
+      "artist_ids": [
+        "6RcxmUOBnyAQr2rRsNfQI5"
+      ],
+      "album": "A Constant State of Ohio",
+      "album_id": "6vEyxIuSDfiR0qIfK7F167",
+      "duration_ms": 103343,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USBAL1600001"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

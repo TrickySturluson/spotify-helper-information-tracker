@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:37:11.426592+00:00",
+  "id": "6c6Ra1iI1JjhADV2gnT7p6",
+  "name": "Compact Cassette 🎃",
+  "description": "A weekly rotation of new indie,  alternative, dreampop, electronic, postpunk and lofi music 💜",
+  "owner": {
+    "id": "0z4xefp3blhykemskd7ymri3j",
+    "display_name": "David Dean Burkhart"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AABl/m9uEWO2TTricgp2hLYfIZ8J6fGS",
+  "total_items_reported": 1901,
+  "item_count_fetched": 0,
+  "items_accessible": false,
+  "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
+  "last_items_accessible_at": "2026-10-31T09:04:51.786534+00:00",
+  "items_snapshot_id": "AABl/m9uEWO2TTricgp2hLYfIZ8J6fGS",
+  "items": []
+}

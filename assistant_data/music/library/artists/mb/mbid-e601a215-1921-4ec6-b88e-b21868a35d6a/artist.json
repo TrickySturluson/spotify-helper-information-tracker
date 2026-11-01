@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a",
+  "artist": "El Huervo",
+  "identity": {
+    "artist_mbid": "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a",
+    "identity_quality": "verified"
+  },
+  "evidence": {},
+  "album_ids": []
+}

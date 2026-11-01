@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "source:0f303fb209c0e658",
+  "identity": {
+    "artist": "BRUVVY",
+    "title": "Devour",
+    "album": "",
+    "artist_id": "mbid:a02cddf5-9f57-49bd-9ef0-ba503fbd274e",
+    "album_id": null,
+    "recording_mbid": null,
+    "spotify_id": null,
+    "source_track_id": "track:0f303fb209c0e658",
+    "identity_quality": "source_track_id"
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_checked_at": "2026-11-01T05:58:43.679969+00:00",
+      "retry_after": 0
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-a02cddf5-9f57-49bd-9ef0-ba503fbd274e/artist.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 22,
+    "all_time_plays": 22
+  }
+}

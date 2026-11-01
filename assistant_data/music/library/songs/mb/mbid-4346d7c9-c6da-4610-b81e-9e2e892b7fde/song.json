@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+  "identity": {
+    "artist": "Candy Claws",
+    "title": "Pangaea Girls (Magic Feeling)",
+    "album": "Ceres & Calypso in the Deep Time",
+    "artist_id": "mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48",
+    "album_id": "album:01632cb9b68c6acda89d",
+    "recording_mbid": "4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+    "spotify_id": null,
+    "source_track_id": "mbid:4346d7c9-c6da-4610-b81e-9e2e892b7fde",
+    "identity_quality": "verified_recording",
+    "track_number": 4,
+    "disc_number": 1
+  },
+  "evidence": {
+    "track_metadata": {
+      "lastfm_status": "no_tags",
+      "lastfm_error": "{}",
+      "lastfm_checked_at": "2026-10-31T06:34:47.992758+00:00",
+      "retry_after": 0,
+      "musicbrainz_tags": [
+        {
+          "tag": "indie rock",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "rock",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        },
+        {
+          "tag": "shoegaze",
+          "count": 1,
+          "source": "MusicBrainz recording tag"
+        }
+      ],
+      "musicbrainz_genres": [
+        {
+          "tag": "indie rock",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "rock",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        },
+        {
+          "tag": "shoegaze",
+          "count": 1,
+          "source": "MusicBrainz recording genre"
+        }
+      ],
+      "musicbrainz_status": "matched",
+      "musicbrainz_checked_at": "2026-10-31T06:34:48.811102+00:00"
+    },
+    "audio": {},
+    "lyrics": null
+  },
+  "derived": {},
+  "coverage": {},
+  "sources": {},
+  "relations": {
+    "artist_path": "artists/mb/mbid-da5eaa3b-397e-4af8-9a12-5c4ec93e8b48/artist.json",
+    "album_path": "albums/al/album-01632cb9b68c6acda89d/album.json"
+  },
+  "listening_context": {
+    "source": "Last.fm scrobble archive",
+    "window_days": 90,
+    "recent_plays": 11,
+    "all_time_plays": 1050
+  }
+}

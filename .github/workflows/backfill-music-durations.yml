@@ -1,0 +1,88 @@
+name: Backfill Music Durations
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_lookups:
+        description: "Maximum unique-track lookups this run (up to 12,000)"
+        required: true
+        default: "12000"
+        type: choice
+        options:
+          - "12000"
+          - "6000"
+          - "3000"
+          - "1000"
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Backfill cached track durations
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_METADATA_LOOKUPS_PER_RUN: ${{ inputs.max_lookups }}
+        run: python compat/build_music_metadata.py
+
+      - name: Refresh main assistant summary
+        run: python compat/build_assistant_data.py
+
+      - name: Validate metadata output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          overview = json.loads(Path("assistant_data/music/overview.json").read_text(encoding="utf-8"))
+          manifest = json.loads(Path("assistant_data/music/manifest.json").read_text(encoding="utf-8"))
+          assert overview["unique_tracks"] == manifest["unique_tracks"] > 0
+          assert overview["total_scrobbles"] == manifest["source_scrobbles"]
+          assert 0 <= overview["scrobbles_with_duration"] <= overview["total_scrobbles"]
+          print(
+              f"Duration coverage: {overview['scrobbles_with_duration']:,}/"
+              f"{overview['total_scrobbles']:,} scrobbles "
+              f"({overview['scrobble_duration_coverage']:.1%})"
+          )
+          print(
+              f"Unique tracks with duration: {overview['tracks_with_duration']:,}/"
+              f"{overview['unique_tracks']:,}"
+          )
+          print(f"Pending tracks: {overview['lookup']['pending_tracks']:,}")
+          PY
+
+      - name: Commit updated music dictionary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assistant_data/
+          if git diff --cached --quiet; then
+            echo "No music metadata changes to commit."
+          else
+            git commit -m "Backfill music track durations"
+            git push
+          fi
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: GitHub Actions workflow "Backfill Music Durations".
+# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
+# Behavior: Automates the job steps declared in this workflow, including its
+#           runtime setup, permissions, dependencies, and repository changes.
+# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
+#              with the implementation under scripts/ and compat/.
+# Related: See docs/ for feature-specific operating instructions.
+# -----------------------------------------------------------------------------

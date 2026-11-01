@@ -1,0 +1,179 @@
+name: Update Last.fm History
+
+on:
+  # Editing this workflow on main is an auditable one-time full refresh trigger.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: Validate Spotify credentials
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing repository variable SPOTIFY_CLIENT_ID" >&2; exit 1; }
+          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing repository secret SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
+
+      - name: Refresh Spotify reference library (read-only)
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, "compat")
+          import spotify_playlist_manager as manager
+          manager.TOKEN = Path(".spotify_playlist_token.json")
+          manager.write(manager.TOKEN, {
+              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+              "obtained_at": 0,
+              "expires_in": 0,
+          })
+          PY
+          python compat/spotify_reference_library.py sync
+          python compat/spotify_reference_library.py health
+
+      - name: Update Last.fm history
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: python compat/update_lastfm.py
+
+      - name: Enrich artist genre, mood and theme profiles
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_PROFILE_LOOKUPS_PER_RUN: 120
+        run: python compat/build_music_profiles.py
+
+      - name: Rank recent top 200 tracks and enrich their sourced tags
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          TRACK_PROFILE_LOOKUPS_PER_RUN: "200"
+          TRACK_PROFILE_RECENT_WINDOW_DAYS: "90"
+          TRACK_PROFILE_RECENT_TOP_N: "200"
+          TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
+        run: python compat/build_track_profiles.py
+
+      - name: Prioritize recent top 200 for cached durations
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          MUSIC_METADATA_LOOKUPS_PER_RUN: "300"
+        run: python compat/build_music_metadata.py
+
+      - name: Resolve exact MusicBrainz recording IDs for recent leaders
+        env:
+          MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "250"
+        run: python compat/enrich_musicbrainz_recording_ids.py
+
+      - name: Fetch available AcousticBrainz descriptors (recent leaders first)
+        env:
+          ACOUSTICBRAINZ_MAX_BATCHES: "20"
+        run: python compat/enrich_acousticbrainz.py
+
+      - name: Attach newly resolved MusicBrainz tags to recent track profiles
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          TRACK_PROFILE_LOOKUPS_PER_RUN: "200"
+          TRACK_PROFILE_RECENT_WINDOW_DAYS: "90"
+          TRACK_PROFILE_RECENT_TOP_N: "200"
+          TRACK_PROFILE_PRIORITY_PLAYLISTS: "4diIlnF8BlgoJrwUfejf49"
+        run: python compat/build_track_profiles.py
+
+      - name: Build existing statistics
+        run: python compat/build_stats.py
+
+      - name: Build assistant-friendly analytics
+        run: python compat/build_assistant_data.py
+
+      - name: Build music duration trends and recommendation features
+        run: python compat/build_music_analytics.py
+
+      - name: Build advanced listening analytics
+        run: python compat/build_advanced_analytics.py
+
+      - name: Publish complete-history and verified listening-time estimates
+        run: python compat/build_listening_time_summary.py
+
+      - name: Build measured Spotify playback analytics
+        run: python compat/build_playback_analytics.py
+
+      - name: Validate generated data
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(Path("assistant_data/manifest.json").read_text(encoding="utf-8"))
+          advanced = json.loads(Path("assistant_data/advanced/manifest.json").read_text(encoding="utf-8"))
+          playback = json.loads(Path("assistant_data/playback/manifest.json").read_text(encoding="utf-8"))
+          music = json.loads(Path("assistant_data/music/manifest.json").read_text(encoding="utf-8"))
+          music_analytics = json.loads(Path("assistant_data/recommendations/manifest.json").read_text(encoding="utf-8"))
+          metadata = json.loads(Path("data/metadata.json").read_text(encoding="utf-8"))
+          stats = json.loads(Path("data/stats.json").read_text(encoding="utf-8"))
+          expected = int(metadata["total_scrobbles"])
+          assert manifest["source_scrobbles"] == expected, (manifest["source_scrobbles"], expected)
+          assert advanced["source_scrobbles"] == expected, (advanced["source_scrobbles"], expected)
+          assert playback["recorded_intervals"] >= 0
+          assert music["source_scrobbles"] == expected, (music["source_scrobbles"], expected)
+          assert music["unique_tracks"] > 0
+          assert music_analytics["source_scrobbles"] == expected
+          assert music_analytics["unique_tracks"] > 0
+          assert stats["overview"]["total_scrobbles"] == expected
+          assert manifest["validation"]["year_total"] == expected
+          assert manifest["validation"]["month_total"] == expected
+          assert manifest["validation"]["day_total"] == expected
+          print(f"Validated {expected:,} scrobbles across assistant datasets.")
+          PY
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/ assistant_data/ playback_data/
+
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Update Last.fm history and assistant analytics"
+            # Other workflows may publish generated data while this refresh runs.
+            # Rebase our validated data commit on the latest main before pushing.
+            git pull --rebase origin main
+            git push
+          fi
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: GitHub Actions workflow "Update Last.fm History".
+# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
+# Behavior: Automates the job steps declared in this workflow, including runtime
+#           setup, permissions, dependencies, and repository changes.
+# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
+#              with the implementation under scripts/ and compat/.
+# Related: See docs/ for feature-specific operating instructions.
+# -----------------------------------------------------------------------------

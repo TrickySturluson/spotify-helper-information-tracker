@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-01T04:37:09.514219+00:00",
+  "id": "3N0CIzW2q9EQ7K3wdBRjPv",
+  "name": "Kiss Up",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAACIftakcxiujNspi90UDFNZ50sCAh",
+  "total_items_reported": 5,
+  "item_count_fetched": 5,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-01T04:37:09.514230+00:00",
+  "items_snapshot_id": "AAAACIftakcxiujNspi90UDFNZ50sCAh",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2022-05-21T13:44:10Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5Ppa3ayepketqhfXf9yO39",
+      "uri": "spotify:track:5Ppa3ayepketqhfXf9yO39",
+      "name": "ChuChu Lovely MuniMuni MuraMura PrinPrin Boron Nururu ReroRero",
+      "artists": [
+        "MAXIMUM THE HORMONE"
+      ],
+      "artist_ids": [
+        "3AMut7lAb1JjINkn8Fmkhu"
+      ],
+      "album": "Bu-ikikaesu",
+      "album_id": "43KD7ooLIEkXriTaZA4drI",
+      "duration_ms": 186293,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPVP00702207"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2022-05-21T13:46:22Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "18ThXUp9jiQg26iD1w8reE",
+      "uri": "spotify:track:18ThXUp9jiQg26iD1w8reE",
+      "name": "Don't light my fire",
+      "artists": [
+        "Otoboke Beaver"
+      ],
+      "artist_ids": [
+        "0HutkALC7kq2L8b9bnZUkq"
+      ],
+      "album": "ITEKOMA HITS",
+      "album_id": "0A7dXsu3QAMbs2Wu0FUdF4",
+      "duration_ms": 136760,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBH3Q1908009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2022-05-21T13:46:45Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2nYwBcAlpyI4DWy69CRgtR",
+      "uri": "spotify:track:2nYwBcAlpyI4DWy69CRgtR",
+      "name": "Superhero Jagganath",
+      "artists": [
+        "Diablo Swing Orchestra"
+      ],
+      "artist_ids": [
+        "2cbWJP4X5b9sKEDW80uc5r"
+      ],
+      "album": "Pacifisticuffs",
+      "album_id": "6VesKYf187PLb4kZSaVIZ8",
+      "duration_ms": 341373,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBUM71703827"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2022-05-21T13:49:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4GwNeCsNlcnxtss75iWnDY",
+      "uri": "spotify:track:4GwNeCsNlcnxtss75iWnDY",
+      "name": "The Hounds",
+      "artists": [
+        "The Protomen"
+      ],
+      "artist_ids": [
+        "2rVDi66o7gdeUq1OHUzM0W"
+      ],
+      "album": "Act II: The Father Of Death",
+      "album_id": "5dVmbXxmkROv6smdOfTcyJ",
+      "duration_ms": 271133,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US6QM0900004"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2022-05-21T13:53:01Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6Nqhg6SGsfBYSlTmLATycp",
+      "uri": "spotify:track:6Nqhg6SGsfBYSlTmLATycp",
+      "name": "Nature Calls",
+      "artists": [
+        "Iguana Death Cult"
+      ],
+      "artist_ids": [
+        "3krOZK9c8q5QOdt9QSdEV8"
+      ],
+      "album": "Nude Casino",
+      "album_id": "3o9z8RqidxXxoqJA7nEJ8x",
+      "duration_ms": 228293,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USD8D1968011"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}
