@@ -1,6 +1,8 @@
 name: SHIT — Great Migration
 
 on:
+  schedule:
+    - cron: '17 9 * * *'
   issues:
     types: [opened]
   workflow_dispatch:
@@ -191,9 +193,88 @@ jobs:
               ].join('\n')
             });
 
+
+  daily-credential-check:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Verify provider credentials (read-only)
+        id: verify
+        continue-on-error: true
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
+          GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
+        run: |
+          set -o pipefail
+          python scripts/music/verify_provider_credentials.py 2>&1 | tee credential-verification.log
+      - name: Publish daily verification summary
+        if: always()
+        env:
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+        run: |
+          {
+            echo "## SHIT daily credential verification"
+            echo
+            echo "- Date: $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "- Result: $VERIFY_OUTCOME"
+            echo
+            echo '\`\`\`text'
+            if [ -f credential-verification.log ]; then cat credential-verification.log; else echo "Verifier did not produce a report."; fi
+            echo ' \`\`\`'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Alert on failed verification
+        if: steps.verify.outcome == 'failure'
+        uses: actions/github-script@v8
+        env:
+          REPORT_FILE: credential-verification.log
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync(process.env.REPORT_FILE)
+              ? fs.readFileSync(process.env.REPORT_FILE, 'utf8').slice(-12000)
+              : 'Verifier failed before producing a report. See the workflow run logs.';
+            const title = '[SHIT ALERT] Daily credential verification failed';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            const existing = issues.find(issue => issue.title === title);
+            const body = [
+              'Automated daily provider credential verification failed.',
+              '',
+              'No credentials are included in this report. Review the sanitized results below and the linked Actions run.',
+              '',
+              'Workflow run: ' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId,
+              '',
+              '```text',
+              report,
+              '```'
+            ].join('\n');
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, body
+              });
+            } else {
+              await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
+            }
+
 # FILE OVERVIEW
 # Purpose: ChatGPT-triggerable and manually dispatchable SHIT Library operations.
-# Trigger: Owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare|audit|verify>.
+# Trigger: Daily provider credential check at 09:17 UTC; owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare|audit|verify>.
 # Commands: status/preview are read-only; migrate is offline; prepare runs migration
 #           followed by bounded, checkpointed metadata enrichment and final audit.
 # Safety: owner validation, allow-listed operations, serialized runs, tests first,
