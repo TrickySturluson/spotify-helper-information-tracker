@@ -141,6 +141,62 @@ class MusicLibraryTests(unittest.TestCase):
         self.assertEqual(first["lastfm_tags"][0]["tag"], "dark")
 
 
+    def test_catalogue_refresh_preserves_unseen_existing_records_and_mood(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            lib.put_catalogue({
+                "old": {"track_id": "track:old", "artist": "Old Artist", "track": "Old Song",
+                        "lastfm_tags": [{"tag": "nocturnal"}]},
+                "refresh": {"track_id": "track:refresh", "artist": "Artist", "track": "Song"},
+            })
+            old_key = next(key for key in lib.index["songs"] if key.startswith("source:old"))
+            old_path = Path(temp) / lib.index["songs"][old_key]["path"]
+            old_record = json.loads(old_path.read_text())
+            old_record["mood"]["status"] = "assessed"
+            old_record["mood"]["recording_level"] = {
+                "moods": ["nocturnal"], "confidence": "high",
+                "evidence_refs": ["lastfm:recording-tag"], "method": "curated",
+            }
+            old_record["listening_context"] = {"all_time_plays": 42}
+            old_path.write_text(json.dumps(old_record))
+
+            lib.put_catalogue({
+                "new": {"track_id": "track:new", "artist": "New Artist", "track": "New Song"},
+            })
+            lib = MusicLibrary(temp)
+            self.assertEqual(len(lib.index["songs"]), 3)
+            preserved = lib.get_song(source_track_id="track:old")["song"]
+            self.assertEqual(preserved["mood"]["status"], "assessed")
+            self.assertEqual(preserved["mood"]["recording_level"]["moods"], ["nocturnal"])
+            self.assertEqual(preserved["listening_context"]["all_time_plays"], 42)
+            self.assertIn("lastfm_tags", preserved["evidence"]["track_metadata"])
+            self.assertTrue(lib.audit()["ok"], lib.audit()["errors"])
+
+    def test_catalogue_refresh_merges_new_evidence_without_erasing_existing_mood(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            lib.put_catalogue({
+                "r": {"track_id": "track:r", "artist": "Artist", "track": "Song",
+                      "lastfm_tags": [{"tag": "dark"}]},
+            })
+            key = next(iter(lib.index["songs"]))
+            path = Path(temp) / lib.index["songs"][key]["path"]
+            record = json.loads(path.read_text())
+            record["mood"]["recording_level"] = {
+                "moods": ["ominous"], "confidence": "medium",
+                "evidence_refs": ["manual:review"], "method": "manual",
+            }
+            path.write_text(json.dumps(record))
+            lib.put_catalogue({
+                "r": {"track_id": "track:r", "artist": "Artist", "track": "Song",
+                      "musicbrainz_tags": [{"tag": "industrial"}]},
+            })
+            refreshed = MusicLibrary(temp).get_song(source_track_id="track:r")["song"]
+            self.assertEqual(refreshed["mood"]["recording_level"]["moods"], ["ominous"])
+            tags = refreshed["evidence"]["track_metadata"]
+            self.assertEqual(tags["lastfm_tags"][0]["tag"], "dark")
+            self.assertEqual(tags["musicbrainz_tags"][0]["tag"], "industrial")
+
     def test_library_audit_accepts_consistent_song_artist_relations(self):
         with tempfile.TemporaryDirectory() as temp:
             lib = MusicLibrary(temp)
