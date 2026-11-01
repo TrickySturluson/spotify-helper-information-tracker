@@ -173,6 +173,7 @@ def main():
         -row["recent_plays"], -row["plays"], row["artist"].casefold(), row["album"].casefold(),
     ))
     looked = found = 0
+    provider_cooldown = False
     for item in due[:LIMIT]:
         key = item["album_id"]
         try:
@@ -187,6 +188,7 @@ def main():
                 wait = 3600
             state["provider_retry_after"] = int(time.time()) + wait
             write(STATE, state)
+            provider_cooldown = True
             print(f"Last.fm album lookup HTTP {exc.code}; saved provider cooldown {wait}s and stopped.")
             break
         except (URLError, TimeoutError, ValueError, RuntimeError) as exc:
@@ -195,6 +197,7 @@ def main():
                 wait = 6 * 3600
             state["provider_retry_after"] = int(time.time()) + wait
             write(STATE, state)
+            provider_cooldown = True
             print(f"Last.fm album lookup interrupted ({exc}); saved cooldown and stopped.")
             break
         checked = datetime.now(timezone.utc).isoformat()
@@ -209,8 +212,7 @@ def main():
         found += int(bool(tags))
         write(OUT, profiles)
         time.sleep(DELAY)
-    state["provider_retry_after"] = 0
-    state["last_run_at"] = datetime.now(timezone.utc).isoformat()
+    if not provider_cooldown:\n        state["provider_retry_after"] = 0\n    state["last_run_at"] = datetime.now(timezone.utc).isoformat()
     write(STATE, state)
     matched = sum(row.get("status") == "matched" for row in profiles.values())
     print(f"Album profiles: {matched:,} matched; {looked:,} lookups this run; {found:,} tagged; {len(due)-looked:,} due/pending; {len(catalogue):,} catalogue albums.")
