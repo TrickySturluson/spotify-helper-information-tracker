@@ -17,9 +17,18 @@ Spotify's February 2026 Web API migration changed playlist item endpoints from `
 
 ## Rate limits and quota exhaustion
 
-Spotify may respond with HTTP 429 and a `Retry-After` header. SHIT must not automatically retry a 429. Treat `QUOTA_EXCEEDED` as an app/account-level cooldown, preserve the supplied retry interval, and stop making Spotify requests until that interval has elapsed. Do not repeatedly edit the control issue to retry the same command: each issue event starts another workflow and can consume more API quota.
+Spotify may respond with HTTP 429 and a `Retry-After` header. SHIT must not automatically retry a 429. Treat `QUOTA_EXCEEDED` as an app/developer-account-level cooldown, preserve the supplied retry interval, and stop making Spotify requests until that interval has elapsed. Do not repeatedly edit the control issue to retry the same command: each issue event starts another workflow and can consume more API quota. Spotify calculates ordinary rate limits over a rolling 30-second window; development-mode quota is separate, shared across the developer account, and grouped by endpoint buckets.
 
 A 429 response is not evidence of a bad refresh token, wrong playlist owner, or missing playlist. Diagnose those only after the cooldown, using the actual HTTP status and response body. SHIT persists the observed cooldown in `.github/spotify_api_cooldown.json`; cloud workflow runs commit that file so subsequent commands can stop before sending another Spotify request. The guard expires automatically at the recorded deadline.
+
+## Request minimization
+
+- Playlist control uses one exact `GET /playlists/{id}` lookup plus the authenticated-user check. If the exact lookup fails, it stops instead of scanning every page of `/me/playlists`.
+- Reference-library sync refreshes the playlist catalog but reuses saved item pages whenever Spotify's `snapshot_id` is unchanged. Item pagination is performed only for new or changed playlists.
+- The reference-library schedule runs daily rather than every six hours. Manual sync remains available when a refresh is genuinely needed.
+- Catalog search makes one targeted request per query. A 429 is never retried inside a command; the central client records the cooldown and stops.
+- Do not add arbitrary concurrency or guessed request-per-second limits. Spotify's rate limit varies by app and quota mode; use observed 429 responses, `Retry-After`, endpoint request counts, and the Developer Dashboard request graph to tune usage.
+- Local list, lookup, and health commands should use cached files and must not construct a Spotify client.
 
 ## Live sorter evidence
 
