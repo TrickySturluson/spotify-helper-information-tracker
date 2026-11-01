@@ -47,6 +47,19 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertNotIn(result["acoustic_confidence"], {"medium", "high"})
         self.assertNotEqual(result["semantic_confidence"], "unknown")
 
+
+    def test_catalog_tempo_cannot_promote_spotify_energy_to_high_confidence(self):
+        audio = {("artist", "catalog bpm"): {
+            "getsongbpm": {"tempo_bpm": 128, "source": "GetSongBPM API"}
+        }}
+        result = sequencer.score_track(
+            {"name": "Catalog BPM", "artists": ["Artist"],
+             "audio_features": {"energy": 0.8}},
+            audio_profiles=audio,
+        )
+        self.assertEqual(result["tempo_source"], "GetSongBPM catalog")
+        self.assertEqual(result["acoustic_confidence"], "medium")
+
     def test_legacy_medium_confidence_without_acoustic_basis_is_not_energy(self):
         self.assertFalse(sequencer._has_reliable_energy({"confidence": "medium", "score": 80}))
         self.assertTrue(sequencer._has_reliable_energy({
