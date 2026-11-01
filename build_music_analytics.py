@@ -37,6 +37,10 @@ def clean(v):
 
 
 def norm(v):
+    return re.sub(r"\\s+", " ", clean(v)).casefold()
+
+
+def track_norm(v):
     return " ".join(re.findall(r"[a-z0-9]+", clean(v).casefold()))
 
 def stable_id(prefix, value):
@@ -197,7 +201,7 @@ def main():
             "artist_genres": profile.get("genres", []),
             "artist_moods": profile.get("moods", []),
             "artist_themes": profile.get("themes", []),
-            "lyric_analysis": lyric_index.get((norm(t["track"]), norm(t["artist"]))),
+            "lyric_analysis": lyric_index.get((track_norm(t["track"]), track_norm(t["artist"]))),
             "familiarity": "frequent" if t["plays"] >= 25 else "known" if t["plays"] >= 2 else "single_scrobble"
         })
     track_output.sort(key=lambda t: (-t["plays"], t["artist"].casefold(), t["track"].casefold()))
