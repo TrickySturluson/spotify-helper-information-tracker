@@ -94,8 +94,31 @@ class Spotify:
             if e.code==401 and retry:
                 self.t["obtained_at"]=0; return self.call(method,path,body,False)
             retry_after = e.headers.get("Retry-After")
-            detail=e.read().decode(errors="replace")
+            detail = e.read().decode(errors="replace")
             retry_note = f" Retry-After: {retry_after}" if retry_after else ""
+            if e.code == 429:
+                try:
+                    payload = json.loads(detail)
+                except (TypeError, ValueError):
+                    payload = {}
+                api_error = payload.get("error") if isinstance(payload, dict) else {}
+                api_error = api_error if isinstance(api_error, dict) else {}
+                reason = str(api_error.get("reason") or api_error.get("message") or "rate limit")
+                if retry_after and retry_after.isdigit():
+                    seconds = int(retry_after)
+                    hours, remainder = divmod(seconds, 3600)
+                    minutes = remainder // 60
+                    wait = f"{hours}h {minutes}m" if hours else f"{minutes}m"
+                else:
+                    wait = "the interval specified by Spotify"
+                raise ManagerError(
+                    f"Spotify API quota/rate limit reached on {method} {path} "
+                    f"(HTTP 429; {reason}). Spotify says wait {wait} "
+                    f"(Retry-After: {retry_after or 'not supplied'}). "
+                    "No playlist changes were attempted. Do not retry read/preview "
+                    "commands until the cooldown expires; repeated requests can "
+                    "extend service restrictions."
+                ) from e
             raise ManagerError(f"Spotify API {method} {path}: HTTP {e.code}:{retry_note} {detail}")
     def me(self): return self.call("GET","/me")
     def playlists(self):
