@@ -18,7 +18,11 @@ def load(path, fallback):
     except (OSError, ValueError, TypeError): return fallback
 
 def collect_playlist_rows():
-    rows, stats = [], {"snapshots": 0, "inaccessible": 0, "invalid": 0}
+    """Collect one row per Spotify recording and retain every playlist membership."""
+    rows_by_id, stats = {}, {
+        "snapshots": 0, "inaccessible": 0, "invalid": 0,
+        "incomplete": 0, "incomplete_details": [], "playlist_track_occurrences": 0,
+    }
     for path in sorted(PLAYLISTS.glob("*.json")):
         snap = load(path, None)
         if not isinstance(snap, dict):
@@ -28,8 +32,28 @@ def collect_playlist_rows():
         if snap.get("items_accessible") is False:
             stats["inaccessible"] += 1
             continue
-        for item in snap.get("items") or []:
+        items = snap.get("items")
+        fetched = snap.get("item_count_fetched")
+        reported = snap.get("total_items_reported")
+        if (
+            not isinstance(items, list)
+            or not isinstance(fetched, int)
+            or fetched != len(items)
+            or (isinstance(reported, int) and reported != fetched)
+        ):
+            stats["incomplete"] += 1
+            stats["incomplete_details"].append({
+                "playlist_id": snap.get("id") or path.stem,
+                "name": snap.get("name"),
+                "reported": reported,
+                "fetched": fetched,
+                "actual_items": len(items) if isinstance(items, list) else None,
+            })
+            continue
+        for item in items:
             if not isinstance(item, dict) or item.get("type") not in (None, "track"):
+                continue
+            if item.get("is_local"):
                 continue
             title = item.get("name") or item.get("track")
             artists = item.get("artists") or []
@@ -39,17 +63,35 @@ def collect_playlist_rows():
                 continue
             sid = str(sid).rsplit(":", 1)[-1]
             ext = item.get("external_ids") or {}
-            rows.append({
-                "track_id": "spotify:track:" + sid, "spotify_id": sid,
-                "artist": artist, "track": title, "album": item.get("album") or "",
+            row = rows_by_id.setdefault(sid, {
+                "track_id": "spotify:track:" + sid,
+                "spotify_id": sid,
+                "artist": artist,
+                "artists": list(artists),
+                "album": item.get("album") or "",
                 "artist_spotify_id": (item.get("artist_ids") or [None])[0],
                 "spotify_album_id": item.get("album_id"),
-                "duration_ms": item.get("duration_ms"), "isrc": ext.get("isrc"),
-                "playlist_sources": [snap.get("id")],
-                "playlist_positions": [{"playlist_id": snap.get("id"), "position": item.get("position")}],
-                "metadata_source": "stored Spotify playlist snapshot",
+                "duration_ms": item.get("duration_ms"),
+                "isrc": ext.get("isrc"),
+                "playlist_sources": [],
+                "playlist_positions": [],
+                "metadata_source": "stored Spotify playlist snapshots",
             })
-    return rows, stats
+            # Keep source metadata and all playlist memberships when the same
+            # recording appears more than once. Do not let later duplicates
+            # overwrite the earlier membership list.
+            playlist_id = snap.get("id") or path.stem
+            if playlist_id not in row["playlist_sources"]:
+                row["playlist_sources"].append(playlist_id)
+            row["playlist_positions"].append({
+                "playlist_id": playlist_id,
+                "playlist_name": snap.get("name"),
+                "position": item.get("position"),
+                "added_at": item.get("added_at"),
+            })
+            stats["playlist_track_occurrences"] += 1
+    stats["unique_playlist_spotify_ids"] = len(rows_by_id)
+    return list(rows_by_id.values()), stats
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -66,8 +108,13 @@ def main():
     if not isinstance(profiles, dict):
         raise SystemExit("Refusing: track_profiles.json is not an object")
     playlist_rows, snapshot_stats = collect_playlist_rows()
-    # Preserve each profile row; the library resolver deduplicates only on
-    # explicit recording IDs or exact stable Spotify IDs, never name alone.
+    if snapshot_stats["incomplete"]:
+        raise SystemExit(
+            "Refusing to migrate: accessible playlist snapshots are incomplete. "
+            + json.dumps(snapshot_stats["incomplete_details"][:10], ensure_ascii=False)
+        )
+    # Preserve every profile row and add one deduplicated row per Spotify ID.
+    # The snapshot stats separately retain total playlist occurrences.
     rows = list(profiles.values()) + playlist_rows
     existing_index = load(args.root / "library_index.json", {})
     existing_index = existing_index if isinstance(existing_index, dict) else {}
@@ -79,8 +126,8 @@ def main():
             "preservation": "existing indexed records and accumulated evidence are merged, not replaced",
         },
         "track_profile_rows": len(profiles), "playlist_snapshot_stats": snapshot_stats,
-        "playlist_track_occurrences": len(playlist_rows),
-        "unique_playlist_spotify_ids": len({r["spotify_id"] for r in playlist_rows}),
+        "playlist_track_occurrences": snapshot_stats["playlist_track_occurrences"],
+        "unique_playlist_spotify_ids": snapshot_stats["unique_playlist_spotify_ids"],
         "combined_input_rows": len(rows), "artist_profiles": len(artists),
         "album_profiles": len(albums),
         "audio_profiles": len(audio.get("tracks", audio)) if isinstance(audio, dict) else 0,
@@ -100,7 +147,7 @@ def main():
     report["migration_result"] = result
     report["library_audit"] = MusicLibrary(args.root).audit()
     if not report["library_audit"].get("ok"):
-        report["status"] = "migration completed with library audit errors; inspect library_audit.errors"
+        report["status"] = "failed: post-migration Library audit errors"
     else:
         report["status"] = "migrated stored profiles and accessible playlist snapshots; library audit passed"
     report["limitations"] = [
@@ -114,6 +161,8 @@ def main():
     tmp.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     tmp.replace(target)
     print(json.dumps(report, indent=2))
+    if not report["library_audit"].get("ok"):
+        raise SystemExit(2)
 
 if __name__ == "__main__":
     main()
