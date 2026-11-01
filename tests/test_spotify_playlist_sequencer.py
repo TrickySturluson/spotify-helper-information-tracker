@@ -121,10 +121,14 @@ class PlaylistSequencerTests(unittest.TestCase):
         rows = [
             {"confidence": "high", "acoustic_confidence": "high",
              "semantic_confidence": "medium", "tempo_bpm": 120,
-             "tempo_source": "Essentia", "tempo_agreement": True},
+             "tempo_source": "Essentia", "tempo_agreement": True,
+             "evidence_sources": ["essentia_lufs", "spotify_audio_features"],
+             "semantic_source_families": ["lastfm_community", "musicbrainz"]},
             {"confidence": "low", "acoustic_confidence": "low",
              "semantic_confidence": "high", "tempo_bpm": 80,
-             "tempo_source": "AcousticBrainz", "tempo_agreement": False},
+             "tempo_source": "AcousticBrainz", "tempo_agreement": False,
+             "evidence_sources": ["acousticbrainz"],
+             "semantic_source_families": ["discogs_release_context"]},
             {"confidence": "unknown", "acoustic_confidence": "unknown",
              "semantic_confidence": "unknown"},
         ]
@@ -133,6 +137,8 @@ class PlaylistSequencerTests(unittest.TestCase):
         self.assertEqual(summary["tempo_agreements"], 1)
         self.assertEqual(summary["tempo_disagreements"], 1)
         self.assertEqual(summary["semantic_confidence"]["high"], 1)
+        self.assertEqual(summary["acoustic_source_coverage"]["acousticbrainz"], 1)
+        self.assertEqual(summary["semantic_source_coverage"]["discogs_release_context"], 1)
 
     def test_audio_profile_index_preserves_multiple_provider_records(self):
         rows = {
