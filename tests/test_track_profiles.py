@@ -5,6 +5,32 @@ import build_track_profiles as profiles
 
 
 class TrackProfileTests(unittest.TestCase):
+
+    def test_recent_top_tracks_uses_rolling_window_and_deterministic_ties(self):
+        catalogue = {
+            "a": {"track_id": "a", "artist_id": "artist-a", "artist": "Artist A",
+                  "track": "Track A", "plays": 20, "recent_plays": 3},
+            "b": {"track_id": "b", "artist_id": "artist-b", "artist": "Artist B",
+                  "track": "Track B", "plays": 30, "recent_plays": 3},
+            "c": {"track_id": "c", "artist_id": "artist-c", "artist": "Artist C",
+                  "track": "Track C", "plays": 100, "recent_plays": 0},
+        }
+        result = profiles.recent_top_tracks(catalogue, limit=2, window_days=90)
+        self.assertEqual([row["track_id"] for row in result["tracks"]], ["b", "a"])
+        self.assertEqual(result["window_days"], 90)
+        self.assertEqual(result["candidate_tracks"], 2)
+
+    def test_build_catalogue_counts_recent_scrobbles_separately(self):
+        rows = [
+            {"artist": "Artist", "track": "Song", "timestamp": 100},
+            {"artist": "Artist", "track": "Song", "timestamp": 200},
+            {"artist": "Artist", "track": "Song", "timestamp": 50},
+        ]
+        catalogue = profiles.build_catalogue(rows, recent_since=100)
+        item = next(iter(catalogue.values()))
+        self.assertEqual(item["plays"], 3)
+        self.assertEqual(item["recent_plays"], 2)
+
     def test_track_identity_matches_metadata_builder_fallback(self):
         row = {"artist": "Example Artist", "track": "Example Song"}
         aid = profiles.artist_id(row)
