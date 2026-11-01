@@ -50,7 +50,33 @@ def item_record(entry, position):
     }
 
 
-def playlist_record(sp, playlist):
+def playlist_record(sp, playlist, cached=None):
+    # Reuse complete local item pages while Spotify's snapshot_id is unchanged.
+    # This avoids re-downloading every page for every playlist on each sync.
+    if (
+        isinstance(cached, dict)
+        and cached.get("items_accessible") is True
+        and cached.get("items_snapshot_id", cached.get("snapshot_id")) == playlist.get("snapshot_id")
+        and isinstance(cached.get("items"), list)
+    ):
+        owner = playlist.get("owner") or {}
+        return {
+            **cached,
+            "captured_at": stamp(),
+            "id": playlist["id"],
+            "name": playlist.get("name"),
+            "description": playlist.get("description"),
+            "owner": {"id": owner.get("id"), "display_name": owner.get("display_name")},
+            "public": playlist.get("public"),
+            "collaborative": playlist.get("collaborative"),
+            "snapshot_id": playlist.get("snapshot_id"),
+            "total_items_reported": (playlist.get("items") or playlist.get("tracks") or {}).get("total"),
+            "item_count_fetched": len(cached["items"]),
+            "items_accessible": True,
+            "items_error": None,
+            "items_snapshot_id": playlist.get("snapshot_id"),
+        }
+
     items_accessible = True
     items_error = None
     try:
@@ -105,10 +131,9 @@ def sync(sp):
         if not pid or pid in seen_ids:
             continue
         seen_ids.add(pid)
-        record = playlist_record(sp, playlist)
-        pid = record["id"]
         path = PLAYLIST_DIR / f"{pid}.json"
         old = manager.read(path, {})
+        record = playlist_record(sp, playlist, old)
         # A 403 is not an empty playlist. Preserve the last known ordered contents,
         # mark them stale/inaccessible, and never snapshot the failed empty response.
         if not record["items_accessible"] and old:
