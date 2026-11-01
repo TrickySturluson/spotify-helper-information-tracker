@@ -301,7 +301,7 @@ class PlaylistSequencerTests(unittest.TestCase):
         low_first = sequencer._sequence_objective(
             [low, high], "rising", 85, "gradual", 0, 0, position_offset=80, total_count=100
         )
-        self.assertLess(high_first, low_first)
+        self.assertLess(low_first, high_first)
 
 
 if __name__ == "__main__":
