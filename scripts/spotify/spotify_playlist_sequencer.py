@@ -104,7 +104,6 @@ def _track_mood_evidence(profile):
     by_mood = {}
     descriptors = set()
     source_families = set()
-    raw_tags = set()
     for family, fields in source_fields.items():
         family_moods = set()
         for field in fields:
@@ -120,7 +119,6 @@ def _track_mood_evidence(profile):
                 if not matches:
                     continue
                 family_moods.update(matches)
-                raw_tags.add(key)
                 try:
                     count = max(0.0, float(row.get("count", 0) or 0)) if isinstance(row, dict) else 0.0
                     strength = min(1.0, max(0.15, math.log1p(count) / math.log(101))) if count else 0.25
