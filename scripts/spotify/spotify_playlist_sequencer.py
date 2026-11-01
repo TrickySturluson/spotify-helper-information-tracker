@@ -54,7 +54,12 @@ def index_audio_profiles(rows):
         if "essentia" in engine:
             merged["source_profiles"]["essentia"] = row
         elif "acousticbrainz" in source or row.get("recording_mbid"):
-            merged["source_profiles"]["acousticbrainz"] = row
+            acoustic_row = dict(row)
+            # GetSongBPM may fill a previously empty flat tempo_bpm field on an
+            # AcousticBrainz profile. Keep that catalog value out of the AB slot.
+            if str(row.get("tempo_source") or "").casefold().startswith("getsongbpm"):
+                acoustic_row["tempo_bpm"] = None
+            merged["source_profiles"]["acousticbrainz"] = acoustic_row
         elif row.get("getsongbpm") or "getsongbpm" in source:
             merged["source_profiles"]["getsongbpm"] = row.get("getsongbpm") or row
         # Preserve useful scalar metadata, but never erase a populated value
