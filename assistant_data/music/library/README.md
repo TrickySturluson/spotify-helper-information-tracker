@@ -1,16 +1,36 @@
-# The Library — staged batch
+# The Library — catalogue navigation
 
-This directory contains the staged 100-song sample from the saved 90-day Last.fm recent-track view, plus a first release-level album example.
+> **Branch note:** The Library is currently being developed on [PR #49](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/49). These files are on the feature branch and will not appear when browsing `main` until the pull request is merged. Open the PR or switch the GitHub branch selector to `feature/per-recording-music-library`.
 
-- `library_index.json` is the compact resolver index for songs, artists, albums, Spotify IDs, recording MBIDs, ISRCs, source IDs, and exact-name candidate lists.
-- `artists/` and `songs/` contain one JSON record per entity.
-- `albums/` contains release-scoped album records. The first example is **Candy Claws — Ceres & Calypso in the Deep Time**.
-- `migration_report.json` records coverage and migration boundaries.
+## Start here
 
-## Album example
+- [Artist records](artists/README.md) — artist identity, sourced artist-level context, and related albums/songs.
+- [Album records](albums/README.md) — release identity, album overview, ordered tracklist, sources, and confidence.
+- [Song records](songs/README.md) — per-recording identity, track metadata, evidence, and relationships.
+- [Library index](library_index.json) — compact resolver mapping stable IDs and names to record paths.
+- [Migration report](migration_report.json) — staged coverage and migration boundaries.
 
-`albums/al/album-01632cb9b68c6acda89d/album.json` stores the 12-track ordered tracklist, approximate durations, release date, Last.fm community tags, a short attributed description, source links, confidence by field, and the Spotify album ID observed in saved playlist snapshots.
+## Directory map
 
-The artist record links to the album, and four existing song records are linked to it only where the artist/title and recording MBID already match the staged sample. The album's full tracklist is not treated as proof that every track is present in the song library or that every recording belongs to this release. This makes the example useful for testing album recall without manufacturing 12 song identities.
+| Folder/file | What it contains |
+|---|---|
+| `artists/<shard>/<stable-id>/artist.json` | One canonical artist record per identity |
+| `albums/<shard>/<stable-id>/album.json` | One release-scoped album record per album identity |
+| `songs/<shard>/<stable-id>/song.json` | One song/recording record per known identity |
+| `library_index.json` | Lookup index for artists, albums, songs, and candidate aliases |
+| `migration_report.json` | What was migrated and what remains incomplete |
 
-The sample remains partial, not a full catalogue migration. Legacy aggregate files remain unchanged. Migration is local-only and makes no provider requests; it does not edit Spotify playlists. Run `python compat/migrate_music_library.py --dry-run` before a full local migration.
+Open the folder-level README files first; each describes the records below it and the identity/evidence rules that apply.
+
+## First album example
+
+[**Candy Claws — Ceres & Calypso in the Deep Time**](albums/al/album-01632cb9b68c6acda89d/album.json) is the first worked album record. Its record contains a sourced album overview and 12-position tracklist. Four existing song records are linked only where artist/title and the existing recording MBID match. The other eight tracks remain album-level entries; their recording identities are not invented.
+
+## Data and safety rules
+
+- Identity fields and metadata evidence are separate.
+- Every descriptive claim should retain its source and field-level confidence where available.
+- Album tags and descriptions are contextual evidence, not track-level acoustic measurements.
+- Tracklist membership alone does not prove that a song record or specific recording identity exists.
+- The staged sample is partial, not a full catalogue migration. Legacy aggregate files remain unchanged.
+- Migration is local-only and does not call providers or edit Spotify playlists. Run `python compat/migrate_music_library.py --dry-run` before a full local migration.
