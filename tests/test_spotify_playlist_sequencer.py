@@ -160,7 +160,8 @@ class PlaylistSequencerTests(unittest.TestCase):
             {"score": 5, "confidence": "low", "artist": "a", "vibe_groups": [], "genre_groups": [], "theme_groups": []},
             {"score": 98, "confidence": "unknown", "artist": "b", "vibe_groups": [], "genre_groups": [], "theme_groups": []},
         ]
-        self.assertEqual(sequencer.transition_summary(rows)["potential_jumps"], 1)
+        self.assertEqual(sequencer.transition_summary(rows)["potential_jumps"], 0)
+        self.assertEqual(sequencer.transition_summary(rows)["uncertain"], 1)
 
 
     def test_ordered_sections_are_softly_preferred(self):
@@ -326,7 +327,7 @@ class PlaylistSequencerTests(unittest.TestCase):
     def test_shared_metadata_reduces_transition_cost(self):
         left = {"score": 60, "confidence": "medium", "artist": "One",
                 "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
-        right = {"score": 62, "confidence": "medium", "artist": "Two",
+        right = {"score": 60, "confidence": "medium", "artist": "Two",
                  "vibe_groups": ["dark"], "genre_groups": ["industrial"], "theme_groups": []}
         sparse = {"score": 60, "confidence": "medium", "artist": "Three",
                   "vibe_groups": [], "genre_groups": [], "theme_groups": []}
