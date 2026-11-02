@@ -16,8 +16,13 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from scripts.music.library_health import inspect_library
-from scripts.music.music_library import MusicLibrary, read_json, write_json
+try:
+    from scripts.music.library_health import inspect_library
+    from scripts.music.music_library import MusicLibrary, read_json, write_json
+except ModuleNotFoundError:
+    # Direct script execution puts scripts/music, not the repository root, on sys.path.
+    from library_health import inspect_library
+    from music_library import MusicLibrary, read_json, write_json
 
 ALIAS_MAPS = ("spotify_ids", "recording_mbids", "isrcs", "source_track_ids")
 
