@@ -275,8 +275,10 @@ def create(sp,name,description,public):
     # Register provenance immediately: only SHIT-created playlists may be edited.
     register_created(p["id"], p["name"])
     c=config(); c["playlists"][p["id"]]={"name":p["name"],"state":"locked","updated_at":stamp()}; write(CONFIG,c)
-    audit(event="created_locked",playlist_id=p["id"],name=p["name"])
+    initial_snapshot = save_snapshot(snapshot(sp, p))
+    audit(event="created_locked",playlist_id=p["id"],name=p["name"],snapshot=initial_snapshot)
     print(f'Created "{p["name"]}" ({p["id"]}); it is LOCKED by default.')
+    print("Initial playlist snapshot:",initial_snapshot)
 def validate(plan):
     if not isinstance(plan,dict) or not isinstance(plan.get("playlist_id"),str) or not isinstance(plan.get("operations"),list) or not plan["operations"]: raise ManagerError("Plan needs playlist_id and a non-empty operations list.")
     ops=[]
@@ -357,8 +359,10 @@ def apply(sp,path):
             if current: remove(sp,pid,current)
             add(sp,pid,op["uris"])
         else: sp.call("PUT",f"/playlists/{pid}/items",{**{k:op[k] for k in ("range_start","insert_before","range_length")},"snapshot_id":find(sp,pid).get("snapshot_id")})
-    audit(event="change_completed",playlist_id=pid,backup=backup,operations=ops)
+    after_snapshot = save_snapshot(snapshot(sp, find(sp, pid)))
+    audit(event="change_completed",playlist_id=pid,backup=backup,after_snapshot=after_snapshot,operations=ops)
     print("Done. Pre-change snapshot:",backup)
+    print("Post-change snapshot:",after_snapshot)
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__); sub=ap.add_subparsers(dest="cmd",required=True)
