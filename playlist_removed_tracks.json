@@ -191,6 +191,14 @@
             "The Meteors"
           ],
           "album": "Best Of"
+        },
+        {
+          "uri": "spotify:track:7jocE0sVmK2fTudE5pC9fe",
+          "name": "Ghost on the Highway",
+          "artists": [
+            "The Gun Club"
+          ],
+          "album": "Early Warning"
         }
       ],
       "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required. Two additional Creature Feature tracks were detected missing by comparing the confirmed 87-track post-add state against the fresh 82-track Spotify snapshot on 2026-11-02; their exact URIs are now sticky playlist-local removals."

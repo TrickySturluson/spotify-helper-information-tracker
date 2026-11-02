@@ -8072,14 +8072,6 @@
         "album": "Long Gone Gulch (Original Soundtrack)"
       },
       {
-        "uri": "spotify:track:7jocE0sVmK2fTudE5pC9fe",
-        "name": "Ghost on the Highway",
-        "artists": [
-          "The Gun Club"
-        ],
-        "album": "Early Warning"
-      },
-      {
         "uri": "spotify:track:1EK6EP11eJfvaPDHmfFEGJ",
         "name": "Zombie Dance - Remastered 1989",
         "artists": [
@@ -8472,6 +8464,81 @@
           "The Horrors"
         ],
         "album": "Strange House"
+      },
+      {
+        "uri": "spotify:track:6YGdEZFf2ScoZ5UwHI8OUj",
+        "name": "Evil Dead",
+        "artists": [
+          "Creepy"
+        ],
+        "album": "Creepy"
+      },
+      {
+        "uri": "spotify:track:4oYhjvRS1xkZ57sMUJhbPe",
+        "name": "My Heart is a Graveyard",
+        "artists": [
+          "The Darts (U.S.)"
+        ],
+        "album": "The Darts"
+      },
+      {
+        "uri": "spotify:track:5NikbOnmxmXuWl8TJ7HKlf",
+        "name": "Attack of the Vampire Mermaids",
+        "artists": [
+          "Monster Wave"
+        ],
+        "album": "The Rise of Monster Wave"
+      },
+      {
+        "uri": "spotify:track:7yyc6sHS3DIhmiGzkCMTy3",
+        "name": "Cocaine Werewolf",
+        "artists": [
+          "The 69 Cats",
+          "Jyrki 69",
+          "Danny B. Harvey",
+          "Clem Burke"
+        ],
+        "album": "Cocaine Werewolf"
+      },
+      {
+        "uri": "spotify:track:1augeAxke7uiwYrY7GDCeu",
+        "name": "Garage Bat",
+        "artists": [
+          "Olivia Jean"
+        ],
+        "album": "Night Owl"
+      },
+      {
+        "uri": "spotify:track:4vkyiEKQdCbj9Yhd3zUQYz",
+        "name": "Nightcrawler",
+        "artists": [
+          "The Dahmers"
+        ],
+        "album": "Nightcrawler"
+      },
+      {
+        "uri": "spotify:track:5lg5J8MWo2p7LDE3xWvdsT",
+        "name": "Acid Dreams",
+        "artists": [
+          "The Monsters"
+        ],
+        "album": "I See Dead People"
+      },
+      {
+        "uri": "spotify:track:54FcoaV60w56CP2r2R9pR3",
+        "name": "Let's Have Some Fun Alt",
+        "artists": [
+          "The Desperados"
+        ],
+        "album": "Won't Be Broken"
+      },
+      {
+        "uri": "spotify:track:6Fugb7wXYYiwffZ2mQ4851",
+        "name": "Without a Face",
+        "artists": [
+          "The Dahmers"
+        ],
+        "album": "Down in the Basement"
       }
     ],
     "09xTFE86ySsLDlUor57oxj": [
@@ -27287,6 +27354,6 @@
       }
     ]
   },
-  "seeded_from_reference_library_at": "2026-11-02T10:39:06.448477+00:00",
-  "seeded_playlist_count": 42
+  "seeded_from_reference_library_at": "2026-11-02T21:38:36.634886+00:00",
+  "seeded_playlist_count": 0
 }
