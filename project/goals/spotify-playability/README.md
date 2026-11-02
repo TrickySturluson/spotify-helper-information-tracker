@@ -53,7 +53,7 @@ A song without a Spotify ID has no Spotify playability observation; do not assig
 
 ## Current status
 
-**Implementation in draft branch; CI not yet verified.** Read-only Spotify playlist snapshot ingestion now carries explicit `is_playable`, restriction details, relinking IDs, source context and an observation timestamp into the canonical song record under `evidence.spotify_playability`. Observations are retained by market, with `unknown` used when the snapshot does not identify a market. This is not yet a market-specific API check, and the change is not merged.
+**Market-aware implementation in draft branch; CI pending.** Reference-library playlist reads now request `market=from_token` (Spotify's authenticated user's account country), preserve `is_playable` and restrictions, distinguish requested original ID from returned/relinked ID, and append observations only to an existing canonical song. A backup-protected offline backfill imports saved snapshots without provider requests. It is not yet merged or run against production snapshots.
 
 ## Resume
 
