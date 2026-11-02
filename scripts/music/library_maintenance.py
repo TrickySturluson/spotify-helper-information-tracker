@@ -74,18 +74,34 @@ def plan_maintenance(root):
     """Return a no-write, no-network plan for the safe derived-index repair."""
     root = Path(root)
     health = inspect_library(root)
-    old_index = read_json(root / "library_index.json")
+    index_path = root / "library_index.json"
+    old_index = read_json(index_path)
     try:
         expected = _build_expected_index(root)
         build_error = None
     except Exception as error:
         expected, build_error = None, f"{type(error).__name__}: {error}"
-    missing = _subset_preserved(old_index, expected) if expected else {"build": [build_error or "preview failed"]}
-    errors = health.get("errors", [])
-    non_index_errors = [
-        error for error in errors
-        if not any(token in error.casefold() for token in ("index", "alias", "name candidate"))
-    ]
+    if expected is None:
+        missing = {"build": [build_error or "preview failed"]}
+    elif not index_path.exists():
+        missing = {}
+    elif old_index is None:
+        missing = {"unreadable_existing_index": ["existing index is present but is not valid JSON"]}
+    else:
+        missing = _subset_preserved(old_index, expected)
+
+    findings = list(health.get("errors", [])) + list(health.get("warnings", []))
+    def index_related(message):
+        value = str(message).casefold()
+        return (
+            value.startswith(("library index", "songs index", "artists index", "albums index"))
+            or " alias " in value
+            or "name candidate alias" in value
+            or "canonical songs record is not referenced by the index" in value
+            or "canonical artists record is not referenced by the index" in value
+            or "canonical albums record is not referenced by the index" in value
+        )
+    non_index_findings = [item for item in findings if not index_related(item)]
     return {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -95,9 +111,9 @@ def plan_maintenance(root):
         "health_errors": len(errors),
         "health_warnings": len(health.get("warnings", [])),
         "repair_type": "derived_index_rebuild",
-        "repair_needed": bool(errors or health.get("warnings")),
-        "safe_to_rebuild": bool(expected is not None and not missing and not non_index_errors),
-        "blocking_record_errors": non_index_errors[:25],
+        "repair_needed": bool(findings) and not non_index_findings,
+        "safe_to_rebuild": bool(expected is not None and not missing and not non_index_findings),
+        "blocking_record_findings": non_index_findings[:25],
         "aliases_or_records_that_would_be_lost": missing,
         "current_counts": health.get("counts", {}),
         "proposed_counts": {
@@ -142,7 +158,7 @@ def maintain(root, apply=False, repair_index=False):
     try:
         write_json(index_path, proposed)
         after = inspect_library(root)
-        if after.get("errors"):
+        if after.get("errors") or after.get("warnings"):
             if existed:
                 shutil.copy2(backup_path, index_path.with_suffix(".rollback.tmp"))
                 index_path.with_suffix(".rollback.tmp").replace(index_path)
