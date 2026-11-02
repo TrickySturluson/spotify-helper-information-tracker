@@ -93,9 +93,10 @@ def build_reference_profile(
                         continue
                     if 0 <= value <= 100:
                         by_family.setdefault(row["source_family"], []).append(value)
-                for family, vals in by_family.items():
-                    values.append(mean(vals))
-                    families.add(family)
+                if by_family:
+                    # One vote per recording; duplicate providers cannot overweight a track.
+                    values.append(mean(mean(vals) for vals in by_family.values()))
+                    families.update(by_family)
             ordered = sorted(values)
             def percentile(fraction):
                 if not ordered:
@@ -120,12 +121,14 @@ def build_reference_profile(
                     continue
                 track_count += 1
                 per_family = {}
+                track_tokens = set()
                 for row in rows:
                     per_family.setdefault(row["source_family"], set()).update(_tokens([row]))
-                for family, tokens in per_family.items():
-                    families.add(family)
-                    for token in tokens:
-                        counts[token] += 1
+                    track_tokens.update(_tokens([row]))
+                families.update(per_family)
+                # Count each descriptor once per recording, regardless of provider duplication.
+                for token in track_tokens:
+                    counts[token] += 1
             dimensions[dim] = {
                 "prevalence": {k: round(v / max(1, track_count), 4) for k, v in counts.items()},
                 "track_count": track_count, "source_families": sorted(families),
