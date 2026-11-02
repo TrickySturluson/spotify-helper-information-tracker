@@ -221,6 +221,44 @@ class MetadataFreshnessTests(unittest.TestCase):
             self.assertEqual(first["provider_requests"], 0)
             self.assertEqual(first["writes"], 0)
 
+    def test_due_tasks_take_priority_and_baseline_fills_only_remaining_slots(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_song(root, "due-song", {
+                "id": "due-song",
+                "identity": {"artist": "Artist", "title": "Due Song",
+                             "spotify_id": "abcdefghijklmnopqrstuv"},
+                "evidence": {"spotify_playability": {"latest_by_market": {
+                    "FROM_TOKEN": {
+                        "checked_at": "2025-01-01T00:00:00Z",
+                        "status": "playable",
+                        "is_playable": True,
+                    }
+                }}},
+            })
+            self.write_song(root, "baseline-song", {
+                "id": "baseline-song",
+                "identity": {"artist": "Artist", "title": "Baseline Song"},
+                "evidence": {"track_metadata": {
+                    "lastfm_tags": [{"tag": "shoegaze"}],
+                    "lastfm_status": "matched",
+                }},
+            })
+            report = build_plan(
+                root, limit=2, market="from_token",
+                now=datetime(2026, 11, 2, tzinfo=timezone.utc),
+                include_unknown_age=True,
+            )
+            self.assertEqual(report["due_task_count"], 1)
+            self.assertEqual(report["baseline_candidate_count"], 1)
+            self.assertEqual(report["selected_due_count"], 1)
+            self.assertEqual(report["selected_baseline_count"], 1)
+            self.assertEqual(report["selected_task_count"], 2)
+            self.assertEqual(report["selected"][0]["status"], "stale")
+            self.assertEqual(report["selected"][1]["status"], "baseline_required")
+            self.assertEqual(report["provider_requests"], 0)
+            self.assertEqual(report["writes"], 0)
+
     def test_planning_is_deterministic_bounded_and_does_not_write(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
