@@ -6,18 +6,36 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
-## Immediate resume point — Great Migration
+## Immediate resume point — Library reliability and final enrichment
 
-**State: full canonical track catalogue is published on main; run #18 successfully enriched/reconciled and published. Run #21 completed prepare/audit but failed publication due stale issue-event checkout; latest-main checkout fix is committed. A full post-publish audit is still required.**
+**State: full canonical Library is published on main.** The latest verified main index contains 13,005 songs, 6,386 artists, and 7,861 albums. Run #18 successfully published enrichment commit `c55012f`; run #21 later repeated work from stale checkpoints and failed publication, so none of #21's generated output was pushed. Workflow fix `21cc2ed` now explicitly checks out latest `main` before migration. The independent read-only health check on the full catalogue passed with zero errors and zero warnings; the confidence audit and 314-test main-branch regression suite also passed.
 
-- Run #17 completed prepare, enrichment and a final integrity audit: 13,005 songs, 6,382 artists, 7,861 albums, zero audit errors. Duration coverage was 91.1%; 93 acoustic profiles were stored.
-- Publication failed because the workflow refreshed/staged Spotify playlist snapshots with the generated Library, causing rebase conflicts. Its artifact contained only the backup and log, not the generated Library.
-- Workflow fix committed to `main` (`bdf75f7`): skip Spotify snapshot refresh, publish only `assistant_data/music/`, and retain generated music data/checkpoints in the artifact.
-- Latest run: [#18](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298) is currently in progress. Validation, checkout, compile and full regression tests passed; Library prepare is still running; publication/artifact steps have not started.
-- Queue warning: runs #19 and #20 were cancelled; #21 is pending. The shared concurrency group retains only one pending run, so submit only one issue-triggered request at a time.
-- Previous failed run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
-- **Next actions:** trigger a fresh `[SHIT LIBRARY] prepare`; inspect the new run/artifact; confirm generated Library and checkpoints publish; run a separate post-publish `audit` and `status`; continue bounded enrichment.
-- No Spotify playlist writes, force-pushes, or blind generated-data conflict resolution.
+- Run #18: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298
+- Run #21 stale-checkout failure and artifact diagnosis: see [Great Migration ACTIONS](goals/great-migration/ACTIONS.md).
+- Full catalogue/source coverage: 11,130/11,130 legacy track-index IDs resolve via source-track or recording-MBID aliases; all 5,358/5,358 legacy artist names are represented.
+- Run #22 health operation: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41367899566 (read-only, successful; 13,005/6,386/7,861; zero errors/warnings).
+- Main-branch full CI including confidence audit: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41368125489 (314 tests passed).
+- Latest main enrichment metadata remains incomplete: approx. 91.1% duration coverage; lyric features 0; audio profiles 115; artist profiles 3,998; album profiles 400; track profiles 1,778 in the published run #18 report. Provider limitations include MusicBrainz rate limits/503s, Last.fm HTTP 400s, and absent optional Discogs/GetSongBPM credentials. Re-measure before quoting as current.
+- PR #79 (legacy archive coverage reporting) is merged. Its latest main compile/regression and security workflows passed.
+- Do not run another full prepare until current playability work and the next targeted enrichment plan are reconciled with durable checkpoints. Run one serialized operation at a time; no concurrent migration writers.
+- No Spotify playlist writes, force-pushes, or blind conflict resolution.
+
+## Current Library reliability work
+
+- **Health checker:** merged in PR #73. Full-catalogue read-only scan passed. See [health-maintenance goal](goals/library-health-maintenance/README.md).
+- **Data maintainer:** draft PR #80 adds read-only preview and explicit, backup-protected, alias-preserving index rebuild with rollback. Its latest tests and security scan passed; inspect PR and run fixture checks before marking complete. It changes only the derived index.
+- **Metadata freshness:** still at specification stage. Build a read-only field/provider-specific due planner first; reuse retry/provider state, avoid fields with no reliable observation timestamp, and do not perform live lookups until the plan is deterministic and budgeted.
+- **Spotify playability:** initial snapshot persistence merged in PR #72. Draft PR #78 adds market-aware Get Track checks, offline snapshot backfill, and stale-only bounded refresh. Latest full CI and security scan passed after fixing a missing test import; keep it unmerged until final review. No live refresh has been executed.
+- **Confidence:** read-only confidence audit is merged and passes full-catalogue CI. Remaining work is gold-set/manual false-match review and confidence distribution analysis.
+
+## Immediate priorities
+
+1. Review/complete PR #78 and PR #80 without enabling live provider polling.
+2. Backfill playability from saved snapshots offline; audit market/unknown/relink observations and confirm playlist-addability remains separate.
+3. Build the field-level freshness planner and bounded rotating partial lookup worker, reusing existing provider checkpoints/retry queue.
+4. Complete the broader safe maintainer only after index-only repair has passed tests on a disposable copy of the real catalogue; do not auto-edit song identities or evidence.
+5. Produce fresh coverage and provider-gap reports from published main, then complete the confidence gold set.
+6. Only after these gates, return to sorter evaluation against the new Library.
 
 ## Immediate expanded Library requirements
 
