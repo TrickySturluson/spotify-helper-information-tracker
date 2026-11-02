@@ -168,6 +168,17 @@ class LibraryHealthTests(unittest.TestCase):
             report = inspect_library(root)
             self.assertTrue(report["ok"], report["errors"])
 
+    def test_valid_musicbrainz_duration_observation_passes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.build_valid_library(root)
+            self.add_duration_observation(root, {
+                "provider": "musicbrainz",
+                "source": "MusicBrainz recording",
+            })
+            report = inspect_library(root)
+            self.assertTrue(report["ok"], report["errors"])
+
     def test_duration_observation_rejects_bad_timestamp_and_source_provider_mismatch(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
