@@ -90,11 +90,22 @@ jobs:
             python -m unittest discover -s tests -t . -v
           } 2>&1 | tee shit-library-run.log
 
+      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        if: steps.request.outputs.command == 'verify'
+        id: spotify-secret-writer
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
+          permission-secrets: write
+
       - name: Verify provider credentials (read-only)
         if: steps.request.outputs.command == 'verify'
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
           GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
@@ -264,12 +275,21 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        id: spotify-secret-writer-daily
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
+          permission-secrets: write
       - name: Verify provider credentials (read-only)
         id: verify
         continue-on-error: true
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer-daily.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
           GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}

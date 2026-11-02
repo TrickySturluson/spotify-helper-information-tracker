@@ -49,6 +49,14 @@ jobs:
               playlist_id = command.get("playlist_id") or (state.get("pending") or {}).get("playlist_id", "")
               output.write("playlist_id=" + str(playlist_id) + "\n")
           PY
+      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        id: spotify-secret-writer
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
+          permission-secrets: write
+
       - name: Refresh playlist removal history before protected staging or confirmation
         if: >-
           steps.parse-command.outputs.command == 'booze5_preview' ||
@@ -63,6 +71,8 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
         run: |
           # The removal tracker uses the shared Spotify manager, which reads
@@ -101,6 +111,8 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python compat/spotify_playlist_cloud.py
@@ -109,6 +121,8 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
         run: python compat/track_playlist_removals.py "$PLAYLIST_ID"
       - name: Preserve playlist snapshots
