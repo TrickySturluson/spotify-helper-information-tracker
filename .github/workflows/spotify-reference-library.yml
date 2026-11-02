@@ -39,6 +39,8 @@ jobs:
         run: |
           test -n "$SPOTIFY_CLIENT_ID" || (echo "Missing repository variable SPOTIFY_CLIENT_ID"; exit 1)
           test -n "$SPOTIFY_REFRESH_TOKEN" || (echo "Missing repository secret SPOTIFY_REFRESH_TOKEN"; exit 1)
+      - name: Seed removal baseline from the previous complete snapshots
+        run: python compat/track_playlist_removals.py --seed-from-reference-library
       - name: Refresh Spotify reference library
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
@@ -82,6 +84,8 @@ jobs:
                   raise SystemExit(f"{name} item list length does not match fetched count.")
               print(f"Verified {name}: {fetched} items; Spotify snapshot {data.get('snapshot_id')}; captured {data.get('captured_at')}.")
           PY
+      - name: Compare removals against the freshly refreshed snapshots
+        run: python compat/track_playlist_removals.py --from-reference-library
       - name: Audit refreshed project data
         run: python compat/audit_project.py
       - name: Commit reference snapshots
@@ -89,6 +93,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assistant_data/spotify/
+          if [ -f playlist_removal_baseline.json ]; then git add playlist_removal_baseline.json; fi
+          if [ -f playlist_removed_tracks.json ]; then git add playlist_removed_tracks.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh Spotify reference library"
             git push
