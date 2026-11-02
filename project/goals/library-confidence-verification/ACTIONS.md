@@ -1,3 +1,12 @@
+## 2026-11-02 — Create real-data identity review set and identify duplicate entity candidates
+
+- Added `IDENTITY_REVIEW_SET.md` (commit `2b8b840`) and linked it from the goal README (commit `456fac0`).
+- The review set includes a verified recording-MBID song (Messer Chups — Night Stripper), a high-confidence Spotify-ID song with market-scoped playability (Candy Claws — Into the Deep Time (One Sun)), and a low-confidence source-track-only song (S-Connection — Summerlove).
+- Found a concrete duplicate-entity candidate not caught by structural health: Candy Claws has both a verified MBID artist record (`mbid:da5eaa3b-397e-4af8-9a12-5c4ec93e8b48`) and an empty name-fallback artist record (`name:df4e3388540b77ea392a`). The same album appears as enriched `album:01632cb9b68c6acda89d` and empty fallback `album:985073c24c6efb9b926d`.
+- Strong cross-link evidence: Spotify song `spotify:0lw2mlzncwftftvdojdysg` has `spotify_album_id=5KkGAZrad4N4rc5FriwgzU`, matching the enriched album's Spotify album ID, but currently points to the fallback album. Artist fallback is name-only pending verification of Spotify artist ID `34Xay0uKsALHCrn5LkrYeh`.
+- This is a **candidate**, not a confirmed merge instruction. No records were modified. Need a read-only duplicate-entity audit that distinguishes exact shared external IDs from name-only candidates, preserves distinct releases/versions, and emits proposed cross-links with evidence and confidence.
+- Structural health can pass while duplicate entities remain internally consistent. Add duplicate artist/album/song candidate review to confidence verification before sorter integration.
+
 ## 2026-11-02 — Re-run confidence audit with missing-vs-mismatch classification (issue #92)
 
 - Latest-main run [41372492615](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41372492615) succeeded; report scanned all 13,005 songs.
