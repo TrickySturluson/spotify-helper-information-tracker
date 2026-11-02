@@ -7,10 +7,12 @@ writes dated snapshots. It never changes Spotify playlists.
 """
 import argparse
 import json
+import re
 import shutil
 import sys
+import time
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -304,6 +306,174 @@ def sync(sp):
     print(f"Reference library synced: {len(catalog)} playlists; {changed} new/changed snapshots.")
     print(f"Accessible item lists: {report['playlists']['accessible']}; inaccessible: {report['playlists']['inaccessible']}; incomplete: {report['playlists']['incomplete']}.")
     print(f"Catalog: {CATALOG}; history: {HISTORY_DIR}")
+
+
+def _parse_observation_time(value):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return None
+
+
+def refresh_playability_from_spotify(library_root=None, limit=25, stale_days=90,
+                                     market="from_token", sp=None, execute=False,
+                                     sleep_seconds=0.25):
+    """Plan or perform a bounded refresh using individual GET /tracks/{id} requests."""
+    if not 1 <= int(limit) <= 50:
+        raise ValueError("Playability refresh limit must be between 1 and 50 tracks.")
+    if int(stale_days) < 1:
+        raise ValueError("stale_days must be at least 1.")
+    if market != "from_token" and not re.fullmatch(r"[A-Z]{2}", str(market)):
+        raise ValueError("Market must be from_token or a two-letter ISO country code.")
+    library = MusicLibrary(library_root) if library_root else MusicLibrary()
+    now = datetime.now(timezone.utc)
+    due = []
+    songs = library.index.get("songs") or {}
+    for song_id, entry in songs.items():
+        path = library.root / (entry.get("path") or "")
+        record = manager.read(path, None)
+        if not isinstance(record, dict):
+            continue
+        identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
+        spotify_id = identity.get("spotify_id")
+        if not isinstance(spotify_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_id):
+            continue
+        evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+        playability = evidence.get("spotify_playability") if isinstance(evidence.get("spotify_playability"), dict) else {}
+        latest = (playability.get("latest_by_market") or {}).get(str(market).upper())
+        checked = _parse_observation_time(latest.get("checked_at")) if isinstance(latest, dict) else None
+        age_days = (now - checked).total_seconds() / 86400 if checked else None
+        if checked and age_days < stale_days:
+            continue
+        due.append({
+            "song_id": song_id,
+            "spotify_id": spotify_id,
+            "last_checked_at": latest.get("checked_at") if isinstance(latest, dict) else None,
+            "age_days": round(age_days, 2) if age_days is not None else None,
+        })
+    due.sort(key=lambda row: (row["last_checked_at"] or "", row["song_id"]))
+    selected = due[:int(limit)]
+    report = {
+        "mode": "execute" if execute else "plan",
+        "market": market,
+        "stale_days": int(stale_days),
+        "limit": int(limit),
+        "spotify_ids_available": len([
+            1 for song_id, entry in songs.items()
+            if isinstance(entry, dict) and entry.get("path")
+        ]),
+        "due_count": len(due),
+        "selected_count": len(selected),
+        "selected": selected,
+        "provider_requests": 0,
+        "updated": 0,
+        "unchanged": 0,
+        "not_found_or_unavailable": 0,
+        "unmatched": 0,
+        "backup_path": None,
+    }
+    if not execute:
+        return report
+    if sp is None:
+        raise ValueError("An authenticated Spotify client is required for execute mode.")
+
+    backed_up = set()
+    backup_root = None
+    for position, candidate in enumerate(selected):
+        spotify_id = candidate["spotify_id"]
+        checked_at = datetime.now(timezone.utc).isoformat()
+        try:
+            track = sp.track(spotify_id, market=market)
+            report["provider_requests"] += 1
+            response_status = 200
+        except manager.ManagerError as error:
+            report["provider_requests"] += 1
+            if "HTTP 404" not in str(error):
+                raise
+            track = None
+            response_status = 404
+            report["not_found_or_unavailable"] += 1
+
+        if isinstance(track, dict):
+            item = {
+                "id": track.get("id"),
+                "linked_from": track.get("linked_from"),
+                "is_playable": track.get("is_playable"),
+                "is_playable_present": "is_playable" in track,
+                "playability_market": market,
+                "playability_checked_at": checked_at,
+                "restrictions": track.get("restrictions") or {},
+                "is_local": track.get("is_local", False),
+            }
+            observation = playability_observation(
+                item, None, None, checked_at, fallback_market=market,
+                source="spotify_get_track", requested_spotify_id=spotify_id,
+            )
+            if observation is None:
+                observation = {
+                    "status": "unknown",
+                    "is_playable": None,
+                    "market": market,
+                    "market_context": "spotify_user_account_country" if market == "from_token" else "explicit_country_market",
+                    "checked_at": checked_at,
+                    "provider": "Spotify",
+                    "source": "spotify_get_track",
+                    "playlist_id": None,
+                    "playlist_snapshot_id": None,
+                    "requested_spotify_id": spotify_id,
+                    "returned_spotify_id": track.get("id"),
+                    "linked_from_spotify_id": None,
+                    "restrictions": track.get("restrictions") or {},
+                    "restrictions_reason": None,
+                    "reason": "is_playable_not_returned",
+                    "response_status": response_status,
+                }
+        else:
+            observation = {
+                "status": "unknown",
+                "is_playable": None,
+                "market": market,
+                "market_context": "spotify_user_account_country" if market == "from_token" else "explicit_country_market",
+                "checked_at": checked_at,
+                "provider": "Spotify",
+                "source": "spotify_get_track",
+                "playlist_id": None,
+                "playlist_snapshot_id": None,
+                "requested_spotify_id": spotify_id,
+                "returned_spotify_id": None,
+                "linked_from_spotify_id": None,
+                "restrictions": {},
+                "restrictions_reason": None,
+                "reason": "spotify_track_not_found_or_unavailable",
+                "response_status": response_status,
+            }
+
+        match = library.lookup_song(spotify_id=spotify_id)
+        if match.get("status") != "matched":
+            report["unmatched"] += 1
+        else:
+            song_id = match["song_id"]
+            entry = (library.index.get("songs") or {}).get(song_id) or {}
+            source_path = library.root / (entry.get("path") or "")
+            if song_id not in backed_up and source_path.is_file():
+                if backup_root is None:
+                    stamp_id = now.strftime("%Y%m%d-%H%M%S-%f")
+                    backup_root = library.root.with_name(library.root.name + ".playability-refresh-backup-" + stamp_id)
+                target = backup_root / source_path.relative_to(library.root)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source_path, target)
+                backed_up.add(song_id)
+            result = library.add_spotify_playability_observation(spotify_id, observation)
+            if result.get("status") == "updated":
+                report["updated"] += 1
+            elif result.get("status") == "unchanged":
+                report["unchanged"] += 1
+        if sleep_seconds and position + 1 < len(selected):
+            time.sleep(float(sleep_seconds))
+    report["backup_path"] = str(backup_root) if backup_root else None
+    return report
 
 
 def backfill_playability_from_snapshots(playlist_dir=None, library_root=None):
