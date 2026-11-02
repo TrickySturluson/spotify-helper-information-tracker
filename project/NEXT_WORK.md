@@ -187,3 +187,11 @@ Before handing off, update this file and the project log with:
 - Implemented the deterministic profile-based description generator and regression tests in `scripts/spotify/spotify_playlist_descriptions.py` and `tests/test_spotify_playlist_descriptions.py`.
 - Next: wire preview/confirmation into the playlist cloud controller, then schedule a bounded refresh for eligible managed playlists only. Preserve non-empty manual descriptions; require explicit `details` permission and unlock for writes; skip unchanged signatures; respect Spotify cooldown.
 - Do not auto-edit personal playlists merely because their description is blank.
+
+
+## 2026-11-02 — Recommendation intake + playlist follow-through default
+
+- Default for every song SHIT recommends or proposes for a playlist: persist compact identity/discovery evidence in `assistant_data/recommendations/discovery_candidates.json` (not listening evidence), resolve/dedupe its Spotify identity, and make it eligible for canonical Library enrichment. Do not treat a recommendation as a play, like, acceptance, or negative signal if ignored.
+- Default after any playlist addition: refresh the actual live playlist, verify duplicates/blacklist and identity, run the sequencer preview against the post-add contents, and review the sequence. Sorting is a required follow-through step, but automatic playlist reordering remains confirmation-gated; do not blindly write when transition evidence is low.
+- Booze batch preview now records resolved tracks through `append_candidates` before staging, with an audit event. Fixed a missing `time` import that caused `booze20_preview` to fail before resolution. Needs a fresh workflow run and tests to verify end-to-end.
+- First 15-track recommendation set is being assembled as a review batch; do not assume any item is absent until compared with a fresh live playlist snapshot.
