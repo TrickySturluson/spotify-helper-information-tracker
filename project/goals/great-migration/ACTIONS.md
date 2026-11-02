@@ -1,3 +1,9 @@
+## 2026-11-02 — Rerun migration coverage-report CI against latest main
+
+- PR #74's confidence audit is now merged into main. The standard CI workflow now includes a full-library confidence-audit step; this branch's previous CI run failed only because it predated that script on main.
+- Triggering a fresh CI run to validate migration coverage-report tests against the updated base.
+- No migration/provider execution or data writes.
+
 ## 2026-11-02 — Verify published catalogue coverage and successful enrichment publication
 
 - **Run #18:** [41364145298](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298) completed successfully. Compile and full regression suite passed; prepare's final canonical audit passed with zero errors; publish step pushed commit c55012f1d9707d9059be9096d0be88dbf50b1bcb to main; artifact #13107605034 uploaded (46,841,540 bytes; 54,558 files). The report/issue comment and full job log were inspected.
