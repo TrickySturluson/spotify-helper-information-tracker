@@ -155,3 +155,10 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Fail-closed status:** when all five profiles have zero usable evidence, output status is blocked_insufficient_reference_evidence and all fit scores remain null.
 - **Regression tests:** added coverage for exact album/duration fallback, medium identity confidence without mutating the Library record, duration mismatch rejection, canonical-record holdout exclusion, and blocked zero-evidence output.
 - **Verification pending:** focused and full CI plus a fresh real-data artifact must pass after this adapter change. No Spotify API calls or playlist writes.
+
+
+### Exact identity bridge test correction — 2026-11-02
+
+- Workflow run 41403433459 failed one new regression fixture because the fake Last.fm source record omitted its duration; the implementation correctly refused the fallback and retained the exact Spotify record. The fixture now supplies the required matching 100,000 ms duration. No production logic was weakened.
+- The bridge is now implemented as a read-only index over canonical song records rather than calling the Library's mutating fallback repair paths. It selects exactly one non-Spotify source record with normalized exact artist/title/album and duration within 2,000 ms; zero or multiple matches are rejected.
+- Latest verification is pending for the corrected fixture and the full real-data preview.
