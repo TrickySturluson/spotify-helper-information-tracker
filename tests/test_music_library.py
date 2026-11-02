@@ -212,6 +212,66 @@ class MusicLibraryTests(unittest.TestCase):
             self.assertEqual(report["artists"], 1)
             self.assertEqual(report["albums"], 0)
 
+
+    def test_spotify_playability_observations_are_preserved_and_market_scoped(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            base = {
+                "track_id": "spotify:track:abc",
+                "spotify_id": "abc",
+                "artist": "Artist",
+                "track": "Song",
+            }
+            lib.put_catalogue({"first": {
+                **base,
+                "spotify_playability_observation": {
+                    "status": "unplayable", "is_playable": False,
+                    "market": "unknown", "checked_at": "2026-11-01T10:00:00+00:00",
+                    "source": "read_only_playlist_snapshot",
+                    "requested_spotify_id": "abc", "returned_spotify_id": "abc",
+                    "linked_from_spotify_id": "original",
+                },
+            }})
+            lib.put_catalogue({"second": {
+                **base,
+                "spotify_playability_observation": {
+                    "status": "playable", "is_playable": True,
+                    "market": "US", "checked_at": "2026-11-02T10:00:00+00:00",
+                    "source": "read_only_playlist_snapshot",
+                },
+            }})
+            lib.put_catalogue({"third": {
+                **base,
+                "spotify_playability_observation": {
+                    "status": "restricted", "is_playable": False,
+                    "market": "CA", "checked_at": "2026-11-02T11:00:00+00:00",
+                    "restrictions_reason": "market",
+                },
+            }})
+            song = MusicLibrary(temp).get_song(spotify_id="abc")["song"]
+            evidence = song["evidence"]["spotify_playability"]
+            self.assertEqual(len(evidence["observations"]), 3)
+            self.assertEqual(evidence["latest_by_market"]["UNKNOWN"]["status"], "unplayable")
+            self.assertEqual(evidence["latest_by_market"]["US"]["status"], "playable")
+            self.assertEqual(evidence["latest_by_market"]["CA"]["status"], "restricted")
+            self.assertEqual(evidence["observations"][0]["linked_from_spotify_id"], "original")
+
+    def test_spotify_playability_observation_deduplicates_without_erasing_history(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            row = {
+                "track_id": "spotify:track:abc", "spotify_id": "abc",
+                "artist": "Artist", "track": "Song",
+                "spotify_playability_observation": {
+                    "status": "unplayable", "is_playable": False,
+                    "market": "US", "checked_at": "2026-11-02T10:00:00+00:00",
+                },
+            }
+            lib.put_catalogue({"first": row})
+            lib.put_catalogue({"again": row})
+            song = MusicLibrary(temp).get_song(spotify_id="abc")["song"]
+            self.assertEqual(len(song["evidence"]["spotify_playability"]["observations"]), 1)
+
 if __name__ == "__main__": unittest.main()
 
 # FILE OVERVIEW

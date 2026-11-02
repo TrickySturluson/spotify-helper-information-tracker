@@ -87,6 +87,35 @@ def read_json(path):
         return None
 
 
+def merge_spotify_playability(existing, incoming):
+    """Append unique, timestamped playability observations without losing history."""
+    current = dict(existing) if isinstance(existing, dict) else {}
+    observations = list(current.get("observations") or [])
+    additions = incoming if isinstance(incoming, list) else [incoming]
+    seen = {
+        json.dumps(row, sort_keys=True, ensure_ascii=False)
+        for row in observations if isinstance(row, dict)
+    }
+    for row in additions:
+        if not isinstance(row, dict):
+            continue
+        encoded = json.dumps(row, sort_keys=True, ensure_ascii=False)
+        if encoded not in seen:
+            observations.append(row)
+            seen.add(encoded)
+    latest = {}
+    for row in observations:
+        if not isinstance(row, dict):
+            continue
+        market = str(row.get("market") or "unknown").upper()
+        prior = latest.get(market)
+        if prior is None or str(row.get("checked_at") or "") >= str(prior.get("checked_at") or ""):
+            latest[market] = row
+    current["observations"] = observations
+    current["latest_by_market"] = latest
+    return current
+
+
 
 def select_recent_track_rows(track_rows, recent_rows, limit, window_days=None):
     """Select a bounded, deduplicated recent batch without making provider calls."""
@@ -537,6 +566,12 @@ class MusicLibrary:
                 if variant not in aliases:
                     aliases.append(variant)
             for field, value in row.items():
+                if field == "spotify_playability_observation":
+                    if isinstance(value, dict):
+                        song["evidence"]["spotify_playability"] = merge_spotify_playability(
+                            song["evidence"].get("spotify_playability"), value
+                        )
+                    continue
                 if field in {"artist", "track", "name", "album", "album_name", "derived", "coverage", "listening_context"}:
                     continue
                 if value not in (None, "", [], {}):
@@ -632,7 +667,12 @@ class MusicLibrary:
             merged_evidence = dict(old_evidence)
             for evidence_key, evidence_value in new_evidence.items():
                 if evidence_value not in (None, "", [], {}):
-                    if isinstance(evidence_value, dict) and isinstance(merged_evidence.get(evidence_key), dict):
+                    if evidence_key == "spotify_playability":
+                        merged_evidence[evidence_key] = merge_spotify_playability(
+                            merged_evidence.get(evidence_key), evidence_value.get("observations", [])
+                            if isinstance(evidence_value, dict) else evidence_value
+                        )
+                    elif isinstance(evidence_value, dict) and isinstance(merged_evidence.get(evidence_key), dict):
                         merged_evidence[evidence_key] = {**merged_evidence[evidence_key], **evidence_value}
                     else:
                         merged_evidence[evidence_key] = evidence_value
@@ -708,4 +748,4 @@ class MusicLibrary:
 # - Uses MusicBrainz/Spotify IDs, ISRCs and verified release positions before safe name aliases.
 # - Explains lookup paths and confidence; ambiguous artist/title candidates are never guessed.
 # - Does not invent album records when the source has no release context.
-# - Preserves metadata, listening context, audio, lyrics, derived fields, and provenance.
+# - Preserves metadata, listening context, audio, lyrics, derived fields, provenance, and timestamped Spotify playability observations.

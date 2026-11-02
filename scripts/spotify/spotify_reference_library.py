@@ -50,9 +50,49 @@ def item_record(entry, position):
         "duration_ms": item.get("duration_ms"),
         "is_local": bool(item.get("is_local")),
         "is_playable": item.get("is_playable"),
+        "is_playable_present": "is_playable" in item,
+        "playability_checked_at": stamp() if "is_playable" in item else None,
+        "restrictions": item.get("restrictions") or {},
         "linked_from": (item.get("linked_from") or {}).get("uri"),
         "external_ids": item.get("external_ids") or {},
         "available_markets_count": len(item.get("available_markets") or []),
+    }
+
+
+def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=None):
+    """Convert explicit Spotify response fields into a provenance-rich observation."""
+    if not isinstance(item, dict):
+        return None
+    restrictions = item.get("restrictions") or {}
+    explicit = item.get("is_playable_present") or isinstance(item.get("is_playable"), bool) or bool(restrictions)
+    if not explicit:
+        return None
+    playable = item.get("is_playable")
+    reason = restrictions.get("reason") if isinstance(restrictions, dict) else None
+    linked_uri = item.get("linked_from")
+    return {
+        "status": (
+            "restricted" if reason else
+            "playable" if playable is True else
+            "unplayable" if playable is False else
+            "unknown"
+        ),
+        "is_playable": playable,
+        "market": "unknown",
+        "market_context": "playlist_items_response_market_not_explicit",
+        "checked_at": item.get("playability_checked_at") or fallback_checked_at,
+        "provider": "Spotify",
+        "source": "read_only_playlist_snapshot",
+        "playlist_id": playlist_id,
+        "playlist_snapshot_id": snapshot_id,
+        "requested_spotify_id": item.get("id"),
+        "returned_spotify_id": item.get("id"),
+        "linked_from_spotify_uri": linked_uri,
+        "linked_from_spotify_id": linked_uri.rsplit(":", 1)[-1] if linked_uri else None,
+        "restrictions": restrictions,
+        "restrictions_reason": reason,
+        "is_local": item.get("is_local"),
+        "available_markets_count": item.get("available_markets_count"),
     }
 
 
@@ -190,6 +230,10 @@ def sync(sp):
                         "spotify_album_id": item.get("album_id"),
                         "duration_ms": item.get("duration_ms"),
                         "isrc": (item.get("external_ids") or {}).get("isrc"),
+                        "spotify_playability_observation": playability_observation(
+                            item, pid, record.get("snapshot_id"),
+                            item.get("playability_checked_at") or record.get("last_items_accessible_at") or record.get("captured_at"),
+                        ),
                         "playlist_sources": [pid],
                         "playlist_positions": [{
                             "playlist_id": pid, "position": item.get("position"),
@@ -382,7 +426,9 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers. Run: python spotify_reference_library.py sync The command reads every playlist returned by the authorized Spotify account and writes dated snapshots. It never changes Spotify playlists.
+# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
+# Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
+# Safety: Snapshot ingestion never changes Spotify playlists; playability is stored as a timestamped observation.
 # Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
