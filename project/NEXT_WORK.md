@@ -17,6 +17,15 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - **Next actions:** trigger a fresh `[SHIT LIBRARY] prepare`; inspect the new run/artifact; confirm generated Library and checkpoints publish; run a separate post-publish `audit` and `status`; continue bounded enrichment.
 - No Spotify playlist writes, force-pushes, or blind generated-data conflict resolution.
 
+## Immediate expanded Library requirements
+
+Three new goal workspaces were added on 2026-11-02:
+- [Library health checker and data maintainer](goals/library-health-maintenance/README.md): read-only health diagnostics first; safe, backup-protected, idempotent repairs only.
+- [Metadata freshness and partial revalidation](goals/metadata-freshness/README.md): field/provider-specific staleness, deterministic rotating partial samples, bounded requests, reuse retry queue/checkpoints.
+- [Spotify playability and availability](goals/spotify-playability/README.md): market-scoped, timestamped playability observations distinct from playlist addability; preserve restrictions and relinking IDs.
+
+These are now required Library foundations before sorter confidence verification is considered complete. Do not block migration publication on building all three; document and implement in parallel only when safe and non-conflicting.
+
 ## Priority order
 
 1. **Recover, publish, and verify the Great Migration**
