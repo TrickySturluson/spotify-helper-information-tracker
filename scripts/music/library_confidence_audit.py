@@ -49,6 +49,10 @@ def inspect_confidence(root=DEFAULT_ROOT, music_root=MUSIC_ROOT):
     identity_drift = []
     metadata_tiers = {}
     metadata_drift = []
+    metadata_missing = []
+    metadata_mismatch = []
+    metadata_missing_by_field = Counter()
+    metadata_mismatch_by_field = Counter()
     coverage = Counter()
     provenance_missing = Counter()
     songs_seen = 0
@@ -103,10 +107,17 @@ def inspect_confidence(root=DEFAULT_ROOT, music_root=MUSIC_ROOT):
             if field == "duration" and not (track_metadata.get("duration_ms") or track_metadata.get("duration")):
                 continue
             if stored_metadata.get(field) != detail:
-                metadata_drift.append({
+                difference = {
                     "song_id": song_id, "field": field,
                     "stored": stored_metadata.get(field), "recomputed": detail,
-                })
+                }
+                metadata_drift.append(difference)
+                if field not in stored_metadata or stored_metadata.get(field) is None:
+                    metadata_missing.append(difference)
+                    metadata_missing_by_field[field] += 1
+                else:
+                    metadata_mismatch.append(difference)
+                    metadata_mismatch_by_field[field] += 1
 
         if track_metadata.get("duration_ms") or track_metadata.get("duration"):
             coverage["duration"] += 1
@@ -168,6 +179,12 @@ def inspect_confidence(root=DEFAULT_ROOT, music_root=MUSIC_ROOT):
         "metadata_confidence": {field: dict(counts) for field, counts in metadata_tiers.items()},
         "metadata_confidence_drift_count": len(metadata_drift),
         "metadata_confidence_drift_examples": metadata_drift[:25],
+        "metadata_confidence_missing_count": len(metadata_missing),
+        "metadata_confidence_missing_by_field": dict(metadata_missing_by_field),
+        "metadata_confidence_missing_examples": metadata_missing[:25],
+        "metadata_confidence_mismatch_count": len(metadata_mismatch),
+        "metadata_confidence_mismatch_by_field": dict(metadata_mismatch_by_field),
+        "metadata_confidence_mismatch_examples": metadata_mismatch[:25],
         "field_coverage": dict(coverage),
         "missing_provenance_counts": dict(provenance_missing),
         "ambiguous_name_aliases": candidate_aliases,
