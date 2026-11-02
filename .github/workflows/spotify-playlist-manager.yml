@@ -69,7 +69,13 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python compat/spotify_playlist_cloud.py
-      - name: Preserve pre-change snapshot
+      - name: Capture playlist removals after every control operation
+        if: steps.command.outcome == 'success'
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: python compat/track_playlist_removals.py
+      - name: Preserve playlist snapshots
         if: always() && hashFiles('playlist_backups/**') != ''
         uses: actions/upload-artifact@v7.0.2
         with:
@@ -88,6 +94,8 @@ jobs:
           if [ -f assistant_data/music/artist_profiles.json ]; then git add assistant_data/music/artist_profiles.json; fi
           if [ -f assistant_data/spotify/daily_feedback.json ]; then git add assistant_data/spotify/daily_feedback.json; fi
           if [ -f assistant_data/recommendations/discovery_candidates.json ]; then git add assistant_data/recommendations/discovery_candidates.json; fi
+          if [ -f playlist_removal_baseline.json ]; then git add playlist_removal_baseline.json; fi
+          if [ -f playlist_removed_tracks.json ]; then git add playlist_removed_tracks.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update Spotify playlist manager state"
             published=false
