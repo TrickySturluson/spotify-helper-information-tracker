@@ -346,6 +346,8 @@ def refresh_playability_from_spotify(library_root=None, limit=25, stale_days=90,
         playability = evidence.get("spotify_playability") if isinstance(evidence.get("spotify_playability"), dict) else {}
         latest = (playability.get("latest_by_market") or {}).get(str(market).upper())
         checked = _parse_observation_time(latest.get("checked_at")) if isinstance(latest, dict) else None
+        if isinstance(latest, dict) and latest.get("latest_snapshot_accessible") is False:
+            checked = None
         age_days = (now - checked).total_seconds() / 86400 if checked else None
         if checked and age_days < stale_days:
             continue
@@ -730,7 +732,7 @@ if __name__ == "__main__":
 # Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
 # Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
 # Safety: Snapshot ingestion never changes playlists; offline backfill makes a song-file backup before appending observations.
-# Playability: Use bounded stale-only GET /tracks/{id}?market=from_token checks; relinked IDs stay distinct from requested IDs.
+# Playability: Use bounded stale-only GET /tracks/{id}?market=from_token checks (25/run, 90-day TTL); relinked IDs stay distinct from requested IDs.
 # Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
