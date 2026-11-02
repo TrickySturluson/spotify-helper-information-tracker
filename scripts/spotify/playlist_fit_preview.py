@@ -131,6 +131,25 @@ def profile_for_record(record: dict, cache_by_song: dict) -> dict | None:
     return row if isinstance(row, dict) else None
 
 
+def profile_matches_record(record: dict, profile: dict | None) -> bool:
+    if not isinstance(profile, dict):
+        return False
+    identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
+    expected = set()
+    if identity.get("source_track_id"):
+        expected.add(str(identity["source_track_id"]).casefold())
+    if identity.get("recording_mbid"):
+        expected.add("mbid:" + str(identity["recording_mbid"]).casefold().removeprefix("mbid:"))
+    if identity.get("spotify_id"):
+        expected.add("spotify:track:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
+    return bool(expected and str(profile.get("track_id") or "").casefold() in expected)
+
+
+def accepted_profile_for_record(record: dict, cache_by_song: dict) -> dict | None:
+    profile = profile_for_record(record, cache_by_song)
+    return profile if profile_matches_record(record, profile) else None
+
+
 def has_recording_fit_evidence(record: dict, profile: dict | None = None) -> bool:
     evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
     metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
@@ -155,7 +174,7 @@ def resolve_item_record(item: dict, records: dict, cache_by_song: dict, name_alb
     """Resolve by Spotify ID first; fallback requires exact artist/title/album plus duration."""
     uri = spotify_uri(item.get("uri") or item.get("id"))
     exact = records.get(uri) if uri else None
-    if exact and has_recording_fit_evidence(exact, profile_for_record(exact, cache_by_song)):
+    if exact and has_recording_fit_evidence(exact, accepted_profile_for_record(exact, cache_by_song)):
         return exact, "spotify_track_id"
 
     artists = item.get("artists") or []
@@ -254,7 +273,7 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
                 continue
             if record_id:
                 seen_record_ids.add(record_id)
-            adapted = track_from_library_record(record, profile_for_record(record, cache))
+            adapted = track_from_library_record(record, accepted_profile_for_record(record, cache))
             adapted["uri"] = uri
             tracks.append(adapted)
             resolution_counts[method] = resolution_counts.get(method, 0) + 1
@@ -279,7 +298,7 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
 
     results = []
     for candidate, record, method in candidate_resolutions:
-        track = (track_from_library_record(record, profile_for_record(record, cache))
+        track = (track_from_library_record(record, accepted_profile_for_record(record, cache))
                  if record else {"uri": candidate["uri"], "title": candidate["title"],
                                  "artist": candidate["artist"], "dimensions": {}})
         track["uri"] = candidate["uri"]
