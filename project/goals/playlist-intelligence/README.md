@@ -17,3 +17,9 @@ Only generated playlists are in scope by default. Personal playlists remain read
 ## Documentation and resume
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
+
+## Production playlist-fit model
+
+Read [PLAYLIST_FIT_MODEL.md](PLAYLIST_FIT_MODEL.md) before changing fit scoring. It defines five independent dimensions (genre, sound, energy, mood, theme), source/scope provenance, field-specific confidence, candidate exclusion, held-out evaluation, and production acceptance tests.
+
+The 25-track human slider exercise is exploratory sanity-check context only. It is not ground truth, production labels, training data, or a sorting recipe. The existing sequencer's acoustic/semantic energy and transition scoring is useful infrastructure but is not yet a five-axis playlist-fit classifier. Keep scoring read-only and preview-only until the model and acceptance tests are implemented and pass.
