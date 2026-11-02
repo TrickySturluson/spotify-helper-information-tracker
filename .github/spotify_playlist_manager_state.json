@@ -293,14 +293,14 @@
         "uris": [
           "spotify:track:3Auu9Qn6SJtj3m2pSXDvRn",
           "spotify:track:3SckfIVpVUzxajKpTyz1lz",
-          "spotify:track:2aQPNm5EtLWBHsqzNuAdcq",
           "spotify:track:4pbhZVYcPpKfksYzmLlvWf",
           "spotify:track:5t4sUPylyiRocqLG7lG2jc",
           "spotify:track:4TwRAkQUQ3gc3uzO60jXqn",
           "spotify:track:6MUw29wzA834p6Zcs1DSXi",
           "spotify:track:2kYcEUoIa394Bvdi1J916I",
           "spotify:track:6KTXHrliiM0il8gq7AkQPC",
-          "spotify:track:30SIHI5BlW9QjfgGdtjigD"
+          "spotify:track:30SIHI5BlW9QjfgGdtjigD",
+          "spotify:track:6ghX8UGeO4PiFLiG9X0i0T"
         ]
       }
     ],
@@ -399,8 +399,8 @@
       "spotify:track:6Fugb7wXYYiwffZ2mQ4851",
       "spotify:track:6AsSfqrBu1cFXDhnCa85D9"
     ],
-    "confirmation": "hUr5aqB34r_H0J4G",
-    "kind": "booze10",
+    "confirmation": "jmBSlpPLuWLnyVd7",
+    "kind": "booze20",
     "candidate_tracks": [
       {
         "artist": "Kid Congo & The Pink Monkey Birds",
@@ -411,11 +411,6 @@
         "artist": "Alien Sex Fiend",
         "title": "Now I'm Feeling Zombiefied",
         "uri": "spotify:track:3SckfIVpVUzxajKpTyz1lz"
-      },
-      {
-        "artist": "Love and Rockets",
-        "title": "Haunted When the Minutes Drag",
-        "uri": "spotify:track:2aQPNm5EtLWBHsqzNuAdcq"
       },
       {
         "artist": "Harley Poe",
@@ -451,6 +446,11 @@
         "artist": "Demented Are Go",
         "title": "Brand New Corpse",
         "uri": "spotify:track:30SIHI5BlW9QjfgGdtjigD"
+      },
+      {
+        "artist": "The Meteors",
+        "title": "Chainsaw Boogie",
+        "uri": "spotify:track:6ghX8UGeO4PiFLiG9X0i0T"
       }
     ]
   }
