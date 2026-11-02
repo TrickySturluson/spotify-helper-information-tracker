@@ -11,6 +11,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.music.music_library import MusicLibrary, read_json
+from scripts.music import backfill_duration_observations
 
 DEFAULT_ROOT = REPO_ROOT / "assistant_data" / "music" / "library"
 MIGRATOR = REPO_ROOT / "scripts" / "music" / "migrate_full_music_library.py"
@@ -145,13 +146,17 @@ def build_parser():
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
         ("sync", "Merge existing enrichment exports into the canonical library"),
         ("verify", "Verify configured provider credentials without changing data"),
+        ("duration-evidence", "Preview or backfill exact legacy duration observation timestamps"),
     ):
         sub = actions.add_parser(name, help=help_text)
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
         if name in {"migrate", "run", "resume"}:
             sub.add_argument("--yes", action="store_true", help="Skip migration confirmation")
-        if name in {"health", "confidence", "maintain", "freshness"}:
+        if name in {"health", "confidence", "maintain", "freshness", "duration-evidence"}:
             sub.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+        if name == "duration-evidence":
+            sub.add_argument("--apply", action="store_true", help="apply missing-only provenance updates after backup")
+            sub.add_argument("--yes", action="store_true", help="confirm duration provenance backfill")
         if name == "freshness":
             sub.add_argument("--limit", type=int, default=25, help="Maximum due observations to include (1-100)")
             sub.add_argument("--market", default="from_token", help="Spotify market code or from_token")
@@ -183,6 +188,15 @@ def main(argv=None):
         return run_confidence(args)
     if args.action == "freshness":
         return run_freshness(args)
+    if args.action == "duration-evidence":
+        argv = ["--root", str(args.root), "--music-root", str(args.root.parent)]
+        if args.apply:
+            argv.append("--apply")
+        if args.yes:
+            argv.append("--yes")
+        if args.json:
+            argv.append("--json")
+        return backfill_duration_observations.main(argv)
     if args.action == "preview":
         return run_migration(args.root, dry_run=True)
     if args.action in {"migrate", "run", "resume"}:
@@ -208,7 +222,7 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Native command interface for the canonical per-recording music library.
-# Commands: status, preview, migrate, audit, health, maintain, confidence, freshness, prepare, sync, verify.
+# Commands: status, preview, migrate, audit, health, maintain, confidence, freshness, duration-evidence, prepare, sync, verify.
 # Health is a separate read-only scan and does not instantiate the auto-rebuilding resolver.
 # Prepare defaults to a read-only preflight; --execute runs migration and bounded
 # provider enrichment. Sync merges existing durable exports into the canonical store.
