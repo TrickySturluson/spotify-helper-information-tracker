@@ -150,3 +150,5 @@
 {"at": "2026-11-02T08:21:36.763236+00:00", "event": "booze15_candidates_persisted", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "input_rows": 14, "new_candidates": 4, "unique_candidates": 35}
 {"at": "2026-11-02T08:22:53.630737+00:00", "event": "booze15_candidates_persisted", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "input_rows": 14, "new_candidates": 0, "unique_candidates": 35}
 {"at": "2026-11-02T08:22:53.631383+00:00", "event": "booze15_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 14}
+{"at": "2026-11-02T08:24:13.404620+00:00", "event": "booze15_candidates_persisted", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "input_rows": 15, "new_candidates": 1, "unique_candidates": 36}
+{"at": "2026-11-02T08:24:13.405798+00:00", "event": "booze15_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 15}

@@ -67,6 +67,7 @@
           "spotify:track:4AYUejlbusnbZY7s2z2C9G",
           "spotify:track:5YEkxfNMTHkfoYlh4d1Y7b",
           "spotify:track:62EKjHgJEMoBkL2uhCVHKr",
+          "spotify:track:1OcDvY7VSrlB5wa5zQoBzb",
           "spotify:track:1WAFh6Q2IVs2OgnAIQFjjC",
           "spotify:track:0mWwoJf3MLLZtnHH1VlxPM",
           "spotify:track:1sh9C3fQEAQ5NLJjUluPhG",
@@ -149,7 +150,7 @@
       "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
       "spotify:track:2VDqNzRGI49PkXKlhpinmJ"
     ],
-    "confirmation": "I_zKw1fKpYgF9rl_",
+    "confirmation": "NLSyFHvIy9da5Plp",
     "kind": "booze20"
   },
   "track_uri_cache": {
@@ -314,6 +315,12 @@
       "uri": "spotify:track:7dWyBjRr6F6Ap2N6xNNXf2",
       "album": "Collection",
       "duration_ms": 131333
+    },
+    "thecramps|zombiedance": {
+      "name": "Zombie Dance - Remastered 1989",
+      "uri": "spotify:track:1OcDvY7VSrlB5wa5zQoBzb",
+      "album": "Songs The Lord Taught Us",
+      "duration_ms": 115440
     }
   }
 }

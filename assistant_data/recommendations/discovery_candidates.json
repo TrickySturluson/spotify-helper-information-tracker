@@ -780,6 +780,32 @@
     }
   },
   {
+    "spotify_id": "1OcDvY7VSrlB5wa5zQoBzb",
+    "spotify_uri": "spotify:track:1OcDvY7VSrlB5wa5zQoBzb",
+    "artist": "The Cramps",
+    "track": "Zombie Dance - Remastered 1989",
+    "album": "Songs The Lord Taught Us",
+    "duration_ms": 115440,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:24:13.403287+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0UzhQhSjlIiNHqozH0tKHl",
     "spotify_uri": "spotify:track:0UzhQhSjlIiNHqozH0tKHl",
     "artist": "The Prodigy",
