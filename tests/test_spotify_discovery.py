@@ -153,6 +153,58 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertEqual(discovery.lyric_theme_affinity(unrelated, playlist_themes), 0.0)
         self.assertEqual(discovery.lyric_theme_affinity({}, playlist_themes), 0.0)
 
+    def test_explicit_whitelist_is_positive_track_level_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "removed.json"
+            history.write_text(
+                '{"playlists":{"playlist":{"removed":[{"artist":"Artist","name":"Song","uri":"spotify:track:song"}],'
+                '"whitelisted":[{"artist":"Artist","name":"Song","uri":"spotify:track:song"}]}}}',
+                encoding="utf-8",
+            )
+            feedback = discovery.load_playlist_feedback([], "playlist", history)
+        track = {"name": "Song", "artists": [{"name": "Artist"}], "uri": "spotify:track:song"}
+        plain, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 10, 30), {})
+        approved, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 10, 30), feedback)
+        self.assertIn("artist|song", feedback["positive_keys"])
+        self.assertIn("spotify:track:song", feedback["positive_uris"])
+        self.assertGreater(approved, plain)
+
+    def test_corrupt_removal_feedback_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "removed.json"
+            history.write_text("{not valid json", encoding="utf-8")
+            with self.assertRaisesRegex(RuntimeError, "recommendation generation stopped"):
+                discovery.load_playlist_feedback([], "playlist", history)
+
+    def test_general_discovery_never_recommends_exactly_removed_track(self):
+        import json
+        with tempfile.TemporaryDirectory() as directory:
+            profiles = Path(directory) / "profiles.json"
+            features = Path(directory) / "features.json"
+            profiles.write_text(json.dumps({"seed": {"artist": "Seed", "status": "matched", "genres": ["rock"]}}), encoding="utf-8")
+            features.write_text("[]", encoding="utf-8")
+            blocked_feedback = {
+                "negative_keys": {"candidate artist|rejected song"},
+                "negative_uris": {"spotify:track:rejected"},
+                "negative_artists": {},
+                "positive_artists": {},
+                "positive_keys": set(),
+                "positive_uris": set(),
+                "daily_evidence": {},
+            }
+            track = {"name": "Rejected Song", "uri": "spotify:track:rejected",
+                     "artists": [{"name": "Candidate Artist"}]}
+            with patch.object(discovery, "load_playlist_feedback", return_value=blocked_feedback), \
+                 patch.object(discovery, "spotify_artist_tracks", return_value=[track]), \
+                 patch.object(discovery.intelligence, "track_metadata_index", return_value={}), \
+                 patch.object(discovery.intelligence, "playlist_track_metadata", return_value={"lyric_themes": []}):
+                with self.assertRaisesRegex(RuntimeError, "Only 0 discovery candidates"):
+                    discovery.build_discovery_recommendations(
+                        Mock(), [], profiles_path=profiles, features_path=features,
+                        similar_artist_rows=[{"artist": "Candidate Artist", "similarity": 1.0, "supporting_seeds": 5}],
+                        liked_keys=set(), playlist_id="playlist", target_size=1,
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()
