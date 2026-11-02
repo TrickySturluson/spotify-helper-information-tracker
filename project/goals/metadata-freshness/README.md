@@ -47,9 +47,9 @@ A global `freshness_state.json` may track per-provider cursor, last successful p
 
 Full-catalogue CI scanned 13,005 songs, 6,386 artists, and 7,861 albums; it recognized 1,778 track-profile rows, 3,998 artist-profile rows, and 400 album-profile rows. After the offline playability backfill, it selected **0 due tasks** under the current initial TTL policies. The planner is network-free and write-free. 335 tests and 131 Python module compilations passed on the final PR revision.
 
-**Native CLI and weekly automation merged in PR #86** at `e4ae9b5`. Run `python shit.py library freshness --limit 25 --market from_token` for a bounded plan. The weekly workflow runs structural health, confidence, and freshness planning every Sunday at 09:17 UTC, stores reports as a 30-day artifact, and makes no provider requests or Library writes. A manual `[SHIT LIBRARY] freshness-review` operation is also available. No provider-backed periodic executor is enabled; the current scheduled workflow is read-only and produces a plan/report.
+**Native CLI and weekly automation merged in PR #86** at `e4ae9b5`. Run `python shit.py library freshness --limit 25 --market from_token` for a bounded plan. The weekly workflow runs structural health, confidence, and freshness planning every Sunday at 09:17 UTC, stores reports as a 30-day artifact, and makes no provider requests or Library writes. PR #95 adds an optional rotating baseline sample for data-bearing fields with unknown age; it is labelled `baseline_required`, not stale, and rotates deterministically by ISO week. A manual `[SHIT LIBRARY] freshness-review` operation is also available. No provider-backed periodic executor is enabled; the current scheduled workflow is read-only and produces a plan/report.
 
-Some album/field observations still lack per-field timestamps; these are reported/skipped rather than treated as stale. TTLs are initial configurable defaults and must be reviewed before live execution.
+Absent fields are counted as `no_data`, not missing timestamps. Existing values with no field-specific observation time are counted separately and may enter a small weekly baseline sample. Duration values with no known source are reported as missing provenance and are not blindly queried. TTLs are initial configurable defaults and must be reviewed before live execution.
 
 
 
