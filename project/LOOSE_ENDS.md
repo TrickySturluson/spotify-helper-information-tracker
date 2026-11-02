@@ -2,7 +2,7 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-02  
+**Last reviewed:** 2026-11-02 (after PR #87/#88 merges and issue #90 freshness baseline)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
 ## Critical path
@@ -34,11 +34,12 @@ This is the cross-project register of known unfinished work discovered from the 
 ## Metadata and canonical Library
 
 ### New Library reliability requirements (2026-11-02)
-- [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): catalogue coverage is verified, but full confidence distribution, field evidence consistency, and gold-set false-match evaluation are not complete.
 
-- [Library health checker & maintainer](goals/library-health-maintenance/README.md): read-only checker is merged and full-catalogue clean. PR #80 maintainer is merged; issue #85 full-catalogue preview confirmed 13,005/6,386/7,861 records, zero errors/warnings, all aliases reconstructable, no repair needed. Draft PR #87 adds semantic checks for market-scoped playability observations (status/value, timestamps, market latest-map, requested/relinked IDs).
-- [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): PR #81 planner merged; full-catalogue scan found 0 due tasks after playability backfill and consumed existing track/artist/album profile caches. PR #86 merged native CLI and weekly read-only review (Sunday 09:17 UTC, no provider calls/writes); issue #89 manual plan is queued. Provider-backed executor remains unimplemented; align with retry state and budgets before enabling lookups.
-- [Spotify playability](goals/spotify-playability/README.md): initial timestamped observation persistence is merged in PR #72. Draft PR #78 adds market-aware Get Track refresh, offline snapshot backfill, and bounded stale-only checks; latest CI passed after a test-import fix. Review/merge before running offline backfill; do not infer playability from playlist addability.
+- [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): full-catalogue identity audit is clean (identity confidence drift 0); PR #88 merged and now separates missing stored confidence from genuine mismatches. Issue #92 requests a fresh post-merge breakdown. Gold-set/manual false-match review remains open.
+- [Library health checker & maintainer](goals/library-health-maintenance/README.md): read-only checker is merged and full-catalogue clean. PR #80 maintainer is merged; issue #85 full-catalogue preview confirmed 13,005/6,386/7,861 records, zero errors/warnings, all aliases reconstructable, no repair needed. PR #87 merged and adds market-aware playability observation semantic validation. Issue #92 is the post-merge full-catalogue verification.
+- [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): PR #81 planner and PR #86 native CLI/weekly read-only review workflow are merged. Manual issue #90 completed: 13,005 songs, 6,386 artists, 7,861 albums; 8,799 fresh, 0 stale/due, 42,158 missing field/provider timestamps, 1,184 cooldown skips; 0 provider requests and 0 writes. The 42,158 missing timestamps are not proven stale and are not scheduled. Generic provider-backed executor remains unimplemented.
+- [Spotify playability](goals/spotify-playability/README.md): PRs #72 and #78 merged. Offline backfill run #82 updated 3,305 observations across 1,856 song records (3,250 playable, 55 unplayable) from saved snapshots; zero API requests and playlist writes. The song schema stores append-only, market-scoped observations under `evidence.spotify_playability`. Live refresh is a separate bounded Get Track path (25 default, max 50, 90-day TTL, dry-run by default, explicit execute confirmation); no live refresh has yet been executed.
+- **Next:** inspect issue #92; classify missing metadata vs present-but-undated evidence vs provider no-result/negative-cache/cooldown states; propagate trustworthy source timestamps from existing caches/checkpoints; only then design a bounded provider-backed partial executor. Keep sorter on hold until confidence/gold-set checks pass.
 
 ### 4. Finish post-migration enrichment and coverage measurement
 - No fresh, post-publication coverage report has been verified.
