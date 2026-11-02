@@ -44,11 +44,10 @@ def track_key(artist, track):
 
 
 def is_playlist_candidate_blocked(artist, title, uri, feedback):
-    """Return True only for an exact track explicitly removed from this playlist.
+    """Block exact playlist removals unless explicitly whitelisted.
 
-    Current membership is resolved by load_playlist_feedback first, so a
-    re-added track is whitelisted and no longer appears in the negative sets.
-    Artist-level removals remain ranking penalties, not hard exclusions.
+    Current membership is not approval: automation may have re-added a rejected
+    candidate. Artist-level removals remain soft ranking evidence.
     """
     feedback = feedback or {}
     return (
@@ -237,10 +236,10 @@ def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST):
 
 
 def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_removed_tracks.json")):
-    """Build playlist-scoped positive/negative taste evidence.
+    """Build playlist-scoped evidence; only explicit whitelist records clear removals.
 
-    A removed track currently present in this same playlist is whitelisted:
-    its old removal is ignored and its artist contributes positive evidence.
+    Presence in the playlist is deliberately not treated as approval because
+    automated workflows can re-add their own previously rejected candidates.
     """
     current_uris = set()
     current_keys = set()
@@ -264,7 +263,22 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
     if path.is_file() and playlist_id:
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
-            records = (payload.get("playlists") or {}).get(playlist_id, {}).get("removed") or []
+            playlist_feedback = (payload.get("playlists") or {}).get(playlist_id, {})
+            whitelist_rows = playlist_feedback.get("whitelisted") or []
+            whitelist_uris = {
+                row.get("uri") for row in whitelist_rows
+                if isinstance(row, dict) and row.get("uri")
+            }
+            whitelist_keys = set()
+            for row in whitelist_rows:
+                if not isinstance(row, dict):
+                    continue
+                artists = row.get("artists") or []
+                artist = artists[0] if artists else row.get("artist", "")
+                name = row.get("name") or row.get("track", "")
+                if artist and name:
+                    whitelist_keys.add(track_key(artist, name))
+            records = playlist_feedback.get("removed") or []
             for row in records:
                 if not isinstance(row, dict):
                     continue
@@ -273,7 +287,7 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
                 artist = artists[0] if artists else row.get("artist", "")
                 name = row.get("name") or row.get("track", "")
                 key = track_key(artist, name) if artist and name else ""
-                if (uri and uri in current_uris) or (key and key in current_keys):
+                if (uri and uri in whitelist_uris) or (key and key in whitelist_keys):
                     whitelisted_count += 1
                     continue
                 if artist or name or uri:
@@ -282,7 +296,6 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
                         "name": norm(name),
                     })
         except (OSError, ValueError, TypeError):
-            # Feedback is optional; malformed history must not break discovery.
             removed = []
             whitelisted_count = 0
 
