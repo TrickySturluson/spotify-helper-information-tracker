@@ -63,6 +63,12 @@ Issue #90 completed a read-only plan against the 13,005-song catalogue. It scann
 
 **Unknown-age baseline rotation merged in PR #100** (`61cc5c0`). The planner separates `no_data` from data-bearing fields with missing timestamps, reports missing duration provenance independently, and selects a deterministic weekly rotating sample of up to 25 unknown-age observations. These are labelled `baseline_required`, never `stale`; due tasks take priority and duplicate task keys are removed across due/baseline groups. Full CI and public security scan passed (344 tests); issue #101 also validated the full-catalogue CLI plan. Baseline report: 6,613 candidates, 25 selected (all Last.fm duration), 0 due/stale, 33,689 no-data fields, 1,856 missing duration provenance, 1,362 cooldown skips. This remains a read-only plan with zero provider requests and writes. No provider-backed executor is enabled yet.
 
+
+
+## Duration provenance recovery in progress
+
+A follow-up audit found that some duration timestamps were present in legacy artist shards as `metadata_checked_at` but absent from canonical song evidence. At the Gates — Slaughter of the Soul is a confirmed example: exact duration/source and a successful Last.fm check timestamp exist in the legacy row, but the canonical song record has no observation timestamp. This explains at least part of the 6,613 unknown-age duration candidates. The new `library duration-evidence` preview/backfill utility restores only exact ID + duration + source + successful-status matches into append-only `duration_observations`; it is preview-only by default and requires backup-protected explicit apply. Issue #104 is running the preview. Do not execute baseline provider lookups until this provenance recovery has been measured and applied safely.
+
 ## Resume
 
 Read [ACTIONS.md](ACTIONS.md), review PR #86 and its scheduled workflow, then inspect the completed manual baseline in ACTIONS.md and let the weekly report run. Reconcile missing field timestamps and retry queue state before enabling any provider-backed execution. Keep planning read-only; build one bounded executor only after tests prove provider budgets, cooldowns, and evidence preservation.
