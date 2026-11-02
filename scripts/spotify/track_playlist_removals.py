@@ -33,10 +33,7 @@ def save_state(baseline_data, blacklist_data):
     write_json(BLACKLIST, blacklist_data)
 
 
-def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
-    pid = playlist["id"]
-    name = playlist.get("name", "")
-    rows = manager.tracks(sp, playlist)
+def process_removal_rows(pid, name, rows, baseline_data, blacklist_data):
     current_uris = {row["uri"] for row in rows if row.get("uri")}
     old_rows = baseline_data.get("playlists", {}).get(pid)
     pblack = blacklist_data.setdefault("playlists", {}).setdefault(
@@ -53,6 +50,14 @@ def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
         newly_removed.sort(key=lambda r: (", ".join(r.get("artists", [])), r.get("name", "")))
         removed_rows.extend(newly_removed)
         print(f'REMOVALS  {name}: {len(newly_removed)} newly removed; {len(removed_rows)} blacklisted total')
+    baseline_data.setdefault("playlists", {})[pid] = rows
+
+
+def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
+    pid = playlist["id"]
+    name = playlist.get("name", "")
+    rows = manager.tracks(sp, playlist)
+    process_removal_rows(pid, name, rows, baseline_data, blacklist_data)
 
     positions = defaultdict(list)
     for index, row in enumerate(rows):
@@ -92,7 +97,6 @@ def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
     else:
         print(f'OK        {name}: no duplicate track URIs')
 
-    baseline_data.setdefault("playlists", {})[pid] = rows
 
 
 def seed_from_reference_library(baseline_data):
@@ -143,11 +147,45 @@ def main():
                         help="Remove extra copies of duplicate tracks from unlocked playlists")
     parser.add_argument("--seed-from-reference-library", action="store_true",
                         help="Seed only missing baselines from prior complete reference snapshots; make no Spotify requests")
+    parser.add_argument("--from-reference-library", action="store_true",
+                        help="Compare against freshly synced complete reference snapshots; make no Spotify requests")
     args = parser.parse_args()
 
     if args.seed_from_reference_library:
         baseline_data = read_json(BASELINE, {"version": 1, "playlists": {}})
         seed_from_reference_library(baseline_data)
+        return
+
+    if args.from_reference_library:
+        root = Path("assistant_data/spotify")
+        catalog = read_json(root / "playlists.json", {"playlists": []})
+        baseline_data = read_json(BASELINE, {"version": 1, "playlists": {}})
+        blacklist_data = read_json(BLACKLIST, {"version": 1, "playlists": {}})
+        processed = skipped = 0
+        for entry in catalog.get("playlists", []):
+            pid = entry.get("id")
+            if not pid or (args.playlist_id and pid != args.playlist_id):
+                continue
+            path = root / "playlists" / f"{pid}.json"
+            if not path.is_file():
+                skipped += 1
+                continue
+            record = read_json(path, {})
+            items = record.get("items") or []
+            reported, fetched = record.get("total_items_reported"), record.get("item_count_fetched")
+            if (not record.get("items_accessible") or not isinstance(reported, int)
+                    or reported != fetched or len(items) != fetched):
+                print(f'SKIP      {entry.get("name", pid)}: snapshot missing, inaccessible or incomplete')
+                skipped += 1
+                continue
+            rows = [{"uri": item.get("uri"), "name": item.get("name"),
+                     "artists": item.get("artists") or [], "album": item.get("album") or ""}
+                    for item in items]
+            process_removal_rows(pid, record.get("name") or entry.get("name", ""),
+                                 rows, baseline_data, blacklist_data)
+            save_state(baseline_data, blacklist_data)
+            processed += 1
+        print(f"\\nCompared {processed} complete refreshed playlist snapshots; skipped {skipped} inaccessible/incomplete playlists.")
         return
 
     sp = manager.Spotify()
