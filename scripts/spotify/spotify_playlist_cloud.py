@@ -610,7 +610,7 @@ def main():
             lines.extend(["", "To add these exact five tracks, submit confirm with this one-time code:", confirmation])
             result = "\\n".join(lines)
     elif action == "booze10_preview":
-        # Resolve five fresh, high-specificity Halloween party tracks. Every
+        # Resolve ten fresh, high-specificity Halloween party tracks. Every
         # candidate is checked against current playlist membership and sticky
         # playlist-local removals before it can be staged.
         candidates = [
@@ -721,13 +721,13 @@ def main():
             )
             lines = [
                 f'TEN-TRACK HALLOWEEN PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; additions: 5; after confirmation: {len(current["items"]) + 5}.',
+                f'Current items: {len(current["items"])}; additions: 10; after confirmation: {len(current["items"]) + 10}.',
                 f'New candidates saved to the SHIT discovery library: {intake["unique_candidates"]}.',
                 "No Spotify changes have been made.",
                 "",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
-            lines.extend(["", "To add these exact five tracks, submit confirm with this one-time code:", confirmation])
+            lines.extend(["", "To add these exact ten tracks, submit confirm with this one-time code:", confirmation])
             result = "\\n".join(lines)
     elif action == "booze20_preview":
         # Resolve the strict 15-track Halloween-themed batch through Spotify's catalogue.
