@@ -8,6 +8,8 @@ on:
       - "assistant_data/spotify/playlist_roles.json"
       - "assistant_data/spotify/playlists/**"
       - "assistant_data/spotify/playlist_fit_heldout_candidates_20261102.json"
+      - "assistant_data/spotify/playlist_fit_booze_candidates_20261102.json"
+      - "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json"
       - "tests/test_playlist_fit_model.py"
       - "tests/test_playlist_fit_preview.py"
       - "scripts/spotify/compare_playlist_fit_human_reference.py"
@@ -55,6 +57,18 @@ jobs:
         with:
           name: playlist-fit-human-reference-diagnostic
           path: artifacts/playlist_fit_human_reference_comparison.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Build Booze or Boos! cross-reference fit audit (read-only)
+        run: |
+          python scripts/spotify/playlist_fit_preview.py \
+            --candidates assistant_data/spotify/playlist_fit_booze_candidates_20261102.json \
+            --output artifacts/playlist_fit_booze_cross_reference.json
+      - name: Upload Booze cross-reference audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: booze-five-axis-cross-reference-audit
+          path: artifacts/playlist_fit_booze_cross_reference.json
           if-no-files-found: error
           retention-days: 14
 
