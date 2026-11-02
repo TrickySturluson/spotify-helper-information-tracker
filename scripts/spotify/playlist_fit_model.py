@@ -291,7 +291,7 @@ def track_from_library_record(record: dict, track_profile: dict | None = None) -
     profile_id = str(profile.get("track_id") or "").casefold()
     if profile and (not profile_id or profile_id not in expected_ids):
         profile = {}
-    metadata = {**profile, **metadata}
+    metadata = {**profile, **{key: value for key, value in metadata.items() if value not in (None, [], {})}}
     mood = record.get("mood") if isinstance(record.get("mood"), dict) else {}
     recording_mood = mood.get("recording_level") if isinstance(mood.get("recording_level"), dict) else {}
     confidence = record.get("confidence") if isinstance(record.get("confidence"), dict) else {}
