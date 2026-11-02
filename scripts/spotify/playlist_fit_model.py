@@ -202,14 +202,15 @@ def _dimension_result(track: dict, dim: str, profile: dict) -> dict:
         score = 100.0 * mean(prevalence.get(token, 0.0) for token in tokens)
         observed = sorted(tokens)
     independent = len(families)
-    scope_factor = 1.0 if any(s in {"recording", "lyrics", "audio"} for s in scopes) else 0.35
+    scope_factor = max((SCOPE_WEIGHT.get(r["scope"], 0.0) for r in rows), default=0.0)
     identity_rank = min(CONFIDENCE_RANK[r.get("identity_confidence", "unknown")] for r in rows)
     confidence = ("high" if independent >= 2 and identity_rank >= 3 and scope_factor == 1.0
                   else "medium" if independent >= 2 or (identity_rank >= 2 and scope_factor == 1.0)
                   else "low")
     return {"score": round(score, 2), "confidence": confidence,
             "evidence_count": len(rows), "source_families": families,
-            "scopes": scopes, "observed_values": observed if dim != "energy" else round(observed, 2),
+            "scopes": scopes, "scope_weight_factor": scope_factor,
+            "observed_values": observed if dim != "energy" else round(observed, 2),
             "reason": "recording-level evidence" if scope_factor == 1.0 else "context-only evidence"}
 
 
@@ -225,13 +226,14 @@ def score_track(
         raise ValueError("weights must provide non-negative values for all five dimensions")
     axes = {dim: _dimension_result(track, dim, profile["dimensions"].get(dim, {}))
             for dim in DIMENSIONS}
-    observed = [(float(axes[d]["score"]), float(weights[d])) for d in DIMENSIONS
-                if axes[d]["score"] is not None and float(weights[d]) > 0]
+    observed = [(float(axes[d]["score"]), float(weights[d]) * float(axes[d].get("scope_weight_factor", 1.0)))
+                for d in DIMENSIONS if axes[d]["score"] is not None and float(weights[d]) > 0]
     total_weight = sum(w for _, w in observed)
     fit = sum(score * weight for score, weight in observed) / total_weight if total_weight else None
     coverage = sum(float(weights[d]) for d in DIMENSIONS if axes[d]["score"] is not None) / max(
         1e-9, sum(float(weights[d]) for d in DIMENSIONS))
     supported = sum(axes[d]["score"] is not None for d in DIMENSIONS)
+    direct_supported = sum(axes[d]["score"] is not None and axes[d].get("scope_weight_factor", 0) >= 1.0 for d in DIMENSIONS)
     source_families = {family for axis in axes.values() for family in axis["source_families"]}
     identity_ranks = [CONFIDENCE_RANK.get(row.get("identity_confidence", "unknown"), 0)
                       for dim in DIMENSIONS for row in _observations(track, dim) if _valid_observation(row)]
@@ -239,9 +241,9 @@ def score_track(
     profile_tier = profile.get("profile_confidence", "unknown")
     if fit is None or identity == 0:
         confidence = "unknown"
-    elif supported >= 4 and len(source_families) >= 2 and identity >= 3 and profile_tier == "high":
+    elif supported == 5 and direct_supported >= 4 and len(source_families) >= 2 and identity >= 3 and profile_tier == "high":
         confidence = "high"
-    elif supported >= 3 and identity >= 2 and profile_tier in {"medium", "high"}:
+    elif supported >= 3 and direct_supported >= 2 and identity >= 2 and profile_tier in {"medium", "high"}:
         confidence = "medium"
     else:
         confidence = "low"
@@ -260,6 +262,7 @@ def score_track(
         "model_version": MODEL_VERSION, "fit_score": round(fit, 2) if fit is not None else None,
         "confidence_tier": confidence, "dimension_scores": axes,
         "evidence_coverage": round(coverage, 3), "supported_dimensions": supported,
+        "directly_supported_dimensions": direct_supported,
         "identity_confidence": "high" if identity >= 3 else "medium" if identity == 2 else "low" if identity == 1 else "unknown",
         "profile_confidence": profile_tier, "confidence_reasons": reasons,
         "decision": "insufficient_evidence" if confidence in {"low", "unknown"} else
