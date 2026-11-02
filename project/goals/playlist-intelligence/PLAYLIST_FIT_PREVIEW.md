@@ -44,6 +44,10 @@ Optional `--library`, `--music-data`, and `--spotify-data` arguments support alt
 
 The JSON contains target snapshot provenance, profile size and confidence, per-dimension coverage, candidate-to-target fit scores, independent confidence tiers, explanations, and explicit safety flags. Fit scores are compatibility estimates, not probabilities. The output is marked `read_only_preview_not_for_sorting` and must not be treated as an enabled production recommender.
 
+## Contextual evidence boundary
+
+The preview may add explicit artist and release **genres** and explicitly supplied artist/release **moods** from the canonical relation records. These observations retain their artist/release scopes and the scorer's 0.15/0.35 scope weights. Artist genres are never converted into track mood; context is never converted into sound, energy or lyric theme. Target profile confidence and the primary coverage field are calculated from direct recording/audio/lyrics evidence only; contextual coverage is reported separately. Context-only results remain low-confidence and cannot pass the production gate.
+
 ## Current limitation
 
 The Library's track-profile cache is the only legacy cache currently joined. Sound, energy, mood and theme remain unknown unless the canonical song record itself contains correctly scoped evidence. The legacy AcousticBrainz cache currently exposes low-level loudness/complexity values but not a validated playlist-energy or sound descriptor; BPM is not a substitute. The next enrichment work should add validated recording-level evidence before broadening the adapter.
