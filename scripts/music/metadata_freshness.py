@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Read-only field-level freshness planner for the canonical music Library.
 
-The planner makes no provider requests and writes no files. It schedules only
-fields with explicit field/provider observation timestamps, plus Spotify
-playability for the requested market. Missing timestamps are reported rather
-than guessed from a record's modified time.
+The planner makes no provider requests and writes no files. It uses explicit
+field/provider observation timestamps already present in song and artist
+evidence, plus market-scoped Spotify playability. Missing timestamps are
+reported rather than guessed from record/file modification times.
 
 Run: python scripts/music/metadata_freshness.py [--limit 25] [--market from_token]
 """
@@ -18,10 +18,11 @@ from pathlib import Path
 DEFAULT_ROOT = Path(__file__).resolve().parents[2] / "assistant_data/music/library"
 POLICIES = {
     "spotify_playability": {"provider": "spotify", "ttl_days": 90, "priority": 100},
-    "track_tags": {"provider": "lastfm", "ttl_days": 180, "priority": 60},
-    "artist_profile": {"provider": "lastfm", "ttl_days": 365, "priority": 35},
-    "album_profile": {"provider": "lastfm", "ttl_days": 365, "priority": 30},
-    "duration": {"provider": "musicbrainz", "ttl_days": 730, "priority": 20},
+    "lastfm_track_tags": {"provider": "lastfm", "ttl_days": 180, "priority": 70},
+    "musicbrainz_track_tags": {"provider": "musicbrainz", "ttl_days": 365, "priority": 55},
+    "duration": {"provider": "source_recorded_on_song", "ttl_days": 730, "priority": 45},
+    "artist_profile": {"provider": "source_recorded_on_artist", "ttl_days": 365, "priority": 35},
+    "album_profile": {"provider": "source_recorded_on_album", "ttl_days": 365, "priority": 30},
 }
 
 
@@ -53,23 +54,17 @@ def _nested(value, *keys):
     return current
 
 
-def _generic_observation(record, field):
-    freshness = record.get("freshness") if isinstance(record.get("freshness"), dict) else {}
-    observations = freshness.get("observations") if isinstance(freshness.get("observations"), dict) else {}
-    row = observations.get(field)
-    if isinstance(row, dict) and "observed_at" in row:
-        return row
-    return None
-
-
-def _task(song_id, record, field, provider, market, observed_at, policy, now):
+def _make_task(entity_type, entity_id, record, field, provider, market,
+               observed_at, policy, now, status):
     parsed = _parse_time(observed_at)
     age = (now - parsed).total_seconds() / 86400 if parsed else None
-    return {
-        "task_key": f"{song_id}:{field}:{provider}:{market or 'global'}",
-        "song_id": song_id,
-        "artist": _nested(record, "identity", "artist"),
-        "title": _nested(record, "identity", "title"),
+    identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
+    task = {
+        "task_key": f"{entity_type}:{entity_id}:{field}:{provider}:{market or 'global'}",
+        "entity_type": entity_type,
+        "entity_id": entity_id,
+        "artist": identity.get("artist") or record.get("artist"),
+        "title": identity.get("title") or record.get("album") or record.get("artist"),
         "field_family": field,
         "provider": provider,
         "market": market,
@@ -77,12 +72,43 @@ def _task(song_id, record, field, provider, market, observed_at, policy, now):
         "age_days": round(age, 2) if age is not None else None,
         "ttl_days": policy["ttl_days"],
         "priority": policy["priority"],
-        "status": "missing_observation" if parsed is None else "stale",
+        "status": status,
     }
+    if entity_type == "song":
+        task["song_id"] = entity_id
+    return task
+
+
+def _consider(tasks, counts, entity_type, entity_id, record, field, provider,
+              observed_at, policy, now, market=None, next_check_after=None,
+              provider_status=None):
+    """Count and optionally schedule one explicit field/provider observation."""
+    next_check = _parse_time(next_check_after)
+    if next_check and next_check > now:
+        counts["cooldown"] += 1
+        return
+    status = str(provider_status or "").casefold()
+    if status in {"http_400", "authentication_error", "unauthorized", "blocked", "invalid_query"}:
+        counts["blocked"] += 1
+        return
+    parsed = _parse_time(observed_at)
+    if observed_at and parsed is None:
+        counts["invalid_timestamp"] += 1
+        return
+    if parsed is None:
+        counts["missing_timestamp"] += 1
+        return
+    age = (now - parsed).total_seconds() / 86400
+    if age >= policy["ttl_days"]:
+        counts["stale"] += 1
+        tasks.append(_make_task(entity_type, entity_id, record, field, provider,
+                                market, observed_at, policy, now, "stale"))
+    else:
+        counts["fresh"] += 1
 
 
 def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
-    """Build a deterministic, network-free plan from explicit observation evidence."""
+    """Build a deterministic, network-free plan from field-specific evidence."""
     root = Path(root)
     if not 1 <= int(limit) <= 100:
         raise ValueError("limit must be between 1 and 100")
@@ -97,10 +123,12 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
 
     tasks, errors = [], []
     counts = {
-        "songs_scanned": 0, "spotify_ids": 0, "fresh": 0,
-        "stale": 0, "missing_observation": 0, "missing_timestamp": 0,
-        "invalid_timestamp": 0, "cooldown": 0,
+        "songs_scanned": 0, "artists_scanned": 0, "albums_scanned": 0,
+        "spotify_ids": 0, "fresh": 0, "stale": 0,
+        "missing_observation": 0, "missing_timestamp": 0,
+        "invalid_timestamp": 0, "cooldown": 0, "blocked": 0,
     }
+
     for path in sorted((root / "songs").rglob("song.json")):
         record, problem = _read(path)
         if problem or not isinstance(record, dict):
@@ -109,52 +137,102 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
         counts["songs_scanned"] += 1
         song_id = record.get("id") or path.parent.name
         identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
+        evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+        metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
+
         spotify_id = identity.get("spotify_id")
         if isinstance(spotify_id, str) and spotify_id.strip():
             counts["spotify_ids"] += 1
-            playability = _nested(record, "evidence", "spotify_playability")
+            playability = evidence.get("spotify_playability")
             latest_map = playability.get("latest_by_market") if isinstance(playability, dict) else {}
             latest = latest_map.get(market_key) if isinstance(latest_map, dict) else None
             observed_at = latest.get("checked_at") if isinstance(latest, dict) else None
-            policy = POLICIES["spotify_playability"]
-            parsed = _parse_time(observed_at)
-            if parsed is None:
-                # Unknown-market snapshots do not satisfy a current-market check.
+            if not isinstance(latest, dict):
                 counts["missing_observation"] += 1
-                tasks.append(_task(song_id, record, "spotify_playability", "spotify",
-                                   market, None, policy, now))
+                tasks.append(_make_task(
+                    "song", song_id, record, "spotify_playability", "spotify",
+                    market, None, POLICIES["spotify_playability"], now, "missing_observation"
+                ))
             else:
-                age = (now - parsed).total_seconds() / 86400
-                if age >= policy["ttl_days"]:
-                    counts["stale"] += 1
-                    tasks.append(_task(song_id, record, "spotify_playability", "spotify",
-                                       market, observed_at, policy, now))
-                else:
-                    counts["fresh"] += 1
+                _consider(tasks, counts, "song", song_id, record, "spotify_playability",
+                          "spotify", observed_at, POLICIES["spotify_playability"], now,
+                          market=market, provider_status=latest.get("status"))
 
-        for field in ("track_tags", "artist_profile", "album_profile", "duration"):
-            observation = _generic_observation(record, field)
-            if observation is None:
-                # No reliable field-specific timestamp: do not infer age from file/record timestamps.
-                counts["missing_timestamp"] += 1
-                continue
-            provider = str(observation.get("provider") or POLICIES[field]["provider"])
-            observed_at = observation.get("observed_at")
-            parsed = _parse_time(observed_at)
-            next_check = _parse_time(observation.get("next_check_after"))
-            if next_check and next_check > now:
-                counts["cooldown"] += 1
-                continue
-            if parsed is None:
-                counts["invalid_timestamp"] += 1
-                continue
-            age = (now - parsed).total_seconds() / 86400
-            if age >= POLICIES[field]["ttl_days"]:
-                counts["stale"] += 1
-                tasks.append(_task(song_id, record, field, provider, None,
-                                   observed_at, POLICIES[field], now))
+        # Track tags can be checked independently at Last.fm and MusicBrainz.
+        for provider, timestamp_key, status_key, retry_key, field in (
+            ("lastfm", "lastfm_checked_at", "lastfm_status", "lastfm_retry_after", "lastfm_track_tags"),
+            ("musicbrainz", "musicbrainz_checked_at", "musicbrainz_status", "musicbrainz_retry_after", "musicbrainz_track_tags"),
+        ):
+            observed_at = metadata.get(timestamp_key)
+            provider_status = metadata.get(status_key)
+            if observed_at or provider_status:
+                _consider(tasks, counts, "song", song_id, record, "track_tags",
+                          provider, observed_at, POLICIES[field], now,
+                          next_check_after=metadata.get(retry_key), provider_status=provider_status)
             else:
-                counts["fresh"] += 1
+                counts["missing_timestamp"] += 1
+
+        # Duration freshness follows the provider that actually supplied the duration.
+        duration_source = str(metadata.get("duration_source") or "").casefold()
+        if metadata.get("duration_ms") is not None:
+            if "last.fm" in duration_source or "lastfm" in duration_source:
+                provider, checked = "lastfm", metadata.get("lastfm_checked_at")
+            elif "musicbrainz" in duration_source:
+                provider, checked = "musicbrainz", metadata.get("musicbrainz_checked_at")
+            else:
+                provider, checked = None, None
+            if provider:
+                _consider(tasks, counts, "song", song_id, record, "duration",
+                          provider, checked, POLICIES["duration"], now,
+                          provider_status=metadata.get(provider + "_status"))
+            else:
+                counts["missing_timestamp"] += 1
+
+        # Newer ingestion paths may provide normalized explicit field observations.
+        observations = _nested(record, "freshness", "observations") or {}
+        if isinstance(observations, dict):
+            for field in ("track_tags", "duration"):
+                row = observations.get(field)
+                if not isinstance(row, dict):
+                    continue
+                provider = str(row.get("provider") or POLICIES[field]["provider"])
+                policy = POLICIES.get(field, {"ttl_days": 180, "priority": 20})
+                _consider(tasks, counts, "song", song_id, record, field, provider,
+                          row.get("observed_at"), policy, now,
+                          next_check_after=row.get("next_check_after"), provider_status=row.get("status"))
+
+    for path in sorted((root / "artists").rglob("artist.json")):
+        record, problem = _read(path)
+        if problem or not isinstance(record, dict):
+            errors.append({"path": str(path), "error": problem or "record must be an object"})
+            continue
+        counts["artists_scanned"] += 1
+        evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+        source = str(evidence.get("source") or "").casefold()
+        provider = "lastfm" if "last.fm" in source or "lastfm" in source else None
+        if provider and evidence.get("checked_at"):
+            _consider(tasks, counts, "artist", record.get("id") or path.parent.name,
+                      record, "artist_profile", provider, evidence.get("checked_at"),
+                      POLICIES["artist_profile"], now, provider_status=evidence.get("status"))
+        else:
+            counts["missing_timestamp"] += 1
+
+    for path in sorted((root / "albums").rglob("album.json")):
+        record, problem = _read(path)
+        if problem or not isinstance(record, dict):
+            errors.append({"path": str(path), "error": problem or "record must be an object"})
+            continue
+        counts["albums_scanned"] += 1
+        evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+        source = str(evidence.get("source") or "").casefold()
+        provider = "lastfm" if "last.fm" in source or "lastfm" in source else None
+        observed_at = evidence.get("checked_at") or evidence.get("lastfm_checked_at")
+        if provider and observed_at:
+            _consider(tasks, counts, "album", record.get("id") or path.parent.name,
+                      record, "album_profile", provider, observed_at,
+                      POLICIES["album_profile"], now, provider_status=evidence.get("status"))
+        else:
+            counts["missing_timestamp"] += 1
 
     # Oldest observations first; stable task hash breaks ties and makes repeat plans identical.
     tasks.sort(key=lambda row: (
@@ -183,6 +261,7 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             "Record modified times are not used as metadata observation times.",
             "Missing field timestamps are reported, not automatically fetched.",
             "Spotify playability is evaluated separately for the requested market; unknown-market evidence is not treated as current-market confirmation.",
+            "Artist and album profile freshness uses only source-stamped evidence; records without a field timestamp remain unscheduled.",
             "This planner does not execute lookups or mutate the Library.",
         ],
     }
@@ -206,7 +285,7 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Deterministic read-only planner for field/provider-specific metadata freshness.
-# Scope: Spotify playability plus explicit freshness.observations for tags, artist/album profiles and duration.
+# Scope: Spotify playability, track tags/duration, and source-stamped artist/album profiles.
 # Safety: No network requests, writes, provider execution, or inference from record modification times.
 # Scheduling: Oldest due observation first, stable hash tie-break, bounded selection.
 # Related: project/goals/metadata-freshness/README.md, RETRY_QUEUE_SPEC.md, spotify_reference_library.py.
