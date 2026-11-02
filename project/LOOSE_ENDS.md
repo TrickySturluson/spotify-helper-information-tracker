@@ -162,3 +162,10 @@ For every item, record status as **not started / in progress / blocked / ready f
 - Current model evidence is insufficient for automatic decisions: 32/64 tracks score per calibration target, all low-confidence and one-axis; 31/32 are artist-context genre only; 32/64 unknown. Only 2/64 Booze track-profile rows have Last.fm tags; zero lyrics, direct mood, recognized energy; one sparse audio-profile match.
 - Live sequence preview run #41407486669: 72 tracks; 48 reorder operations; 8 unassigned; 0 gentle/moderate/supported potential jumps; 71 transitions limited-evidence; 62 low-confidence, 10 unknown. No Spotify changes made. Do not confirm this sequence.
 - Next: refresh snapshot; bounded provider-aware recording-level enrichment; explicit Halloween-theme review; substantial verified additions; rerun and inspect the full sequence; only then consider confirmation-gated sorting.
+
+
+### 2026-11-02 — Recommendation batch workflow
+
+- Run #41408232279 failed in `booze20_preview` due to `NameError: time is not defined`; fixed by importing `time` in `scripts/spotify/spotify_playlist_cloud.py` (commit `5730e78`). No playlist write occurred.
+- Resolved Booze candidates now get persisted to `assistant_data/recommendations/discovery_candidates.json` via `append_candidates`, with a source/context event and audit count. This is discovery evidence, not a claim that the track was listened to or that the canonical Library has completed enrichment.
+- Verify with a fresh live `booze20_preview` run, then inspect candidate rows and compare all proposed additions against the live playlist and removed-track blacklist. Follow any confirmed addition with a new live sequence preview; do not automatically apply reorder operations while confidence remains low.
