@@ -47,9 +47,9 @@ A global `freshness_state.json` may track per-provider cursor, last successful p
 
 Full-catalogue CI scanned 13,005 songs, 6,386 artists, and 7,861 albums; it recognized 1,778 track-profile rows, 3,998 artist-profile rows, and 400 album-profile rows. After the offline playability backfill, it selected **0 due tasks** under the current initial TTL policies. The planner is network-free and write-free. 335 tests and 131 Python module compilations passed on the final PR revision.
 
-**Native CLI and weekly automation merged in PR #86** at `e4ae9b5`. Run `python shit.py library freshness --limit 25 --market from_token` for a bounded plan. The weekly workflow runs structural health, confidence, and freshness planning every Sunday at 09:17 UTC, stores reports as a 30-day artifact, and makes no provider requests or Library writes. PR #95 adds an optional rotating baseline sample for data-bearing fields with unknown age; it is labelled `baseline_required`, not stale, and rotates deterministically by ISO week. A manual `[SHIT LIBRARY] freshness-review` operation is also available. No provider-backed periodic executor is enabled; the current scheduled workflow is read-only and produces a plan/report.
+**Native CLI and weekly automation merged in PR #86** at `e4ae9b5`. Run `python shit.py library freshness --limit 25 --market from_token` for a bounded plan. The weekly workflow runs structural health, confidence, a read-only maintenance preview, and freshness planning every Sunday at 09:17 UTC, stores reports as a 30-day artifact, and makes no provider requests or Library writes. A manual `[SHIT LIBRARY] freshness-review` operation is also available. No provider-backed periodic executor is enabled; the current scheduled workflow is read-only and produces a plan/report.
 
-Absent fields are counted as `no_data`, not missing timestamps. Existing values with no field-specific observation time are counted separately and may enter a small weekly baseline sample. Duration values with no known source are reported as missing provenance and are not blindly queried. TTLs are initial configurable defaults and must be reviewed before live execution.
+Some album/field observations still lack per-field timestamps; these are reported/skipped rather than treated as stale. TTLs are initial configurable defaults and must be reviewed before live execution.
 
 
 
@@ -58,6 +58,10 @@ Absent fields are counted as `no_data`, not missing timestamps. Existing values 
 Issue #90 completed a read-only plan against the 13,005-song catalogue. It scanned 13,005 songs, 6,386 artists, and 7,861 albums; found 1,856 Spotify IDs and cache rows for 1,778 tracks, 3,998 artists, and 400 albums. It reported 8,799 fresh observations, 0 stale/due tasks, 0 missing playability observations, 42,158 missing field/provider timestamps, 1,184 cooldown skips, and no invalid timestamps, blocked tasks, or errors. The selected batch was 0/25; provider requests and writes were both zero.
 
 **Interpretation:** zero due tasks does not mean every Library field has been recently verified. The 42,158 missing-timestamp observations are not proven stale; missing and undated evidence is deliberately not scheduled. Existing track-profile cache rows do have source timestamps (1,778 Last.fm check times; 1,180 MusicBrainz check times). Next work is to classify missing metadata vs present-but-undated evidence vs provider no-result/negative-cache states, and propagate trustworthy timestamps from caches/checkpoints into the canonical evidence model where possible. Only then should a provider-backed partial executor be enabled.
+
+
+
+**Unknown-age baseline rotation (PR #95, under review):** the next planner revision separates `no_data` from fields that contain data but lack a trustworthy timestamp, reports missing duration provenance independently, and can select a deterministic weekly rotating baseline sample of up to 25 unknown-age observations. These are labelled `baseline_required`, never `stale`; the planner remains read-only and performs no provider calls. The first CI run caught a duplicate argparse declaration for `--include-unknown-age`; the duplicate was removed. Issue #99 then validated the corrected branch with 344 passing tests and a full-catalogue read-only plan: 6,613 unknown-age duration candidates, with 25 selected; no due tasks, provider requests or writes. PR #97 is being reconciled with latest main before merge. Do not enable provider execution until merge and a final main-branch report are complete.
 
 ## Resume
 
