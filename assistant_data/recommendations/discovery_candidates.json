@@ -1,5 +1,31 @@
 [
   {
+    "spotify_id": "3ORmOghS8xkXCF25PblMiz",
+    "spotify_uri": "spotify:track:3ORmOghS8xkXCF25PblMiz",
+    "artist": "45 Grave",
+    "track": "Partytime",
+    "album": "Sleep In Safety",
+    "duration_ms": 197333,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze5_recommendation_preview",
+        "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4SSnFejRGlZikf02HLewEF",
     "spotify_uri": "spotify:track:4SSnFejRGlZikf02HLewEF",
     "artist": "Billie Eilish",
@@ -702,6 +728,32 @@
     }
   },
   {
+    "spotify_id": "2CVsEpXpqU8ZEafa5SzIGI",
+    "spotify_uri": "spotify:track:2CVsEpXpqU8ZEafa5SzIGI",
+    "artist": "The Birthday Party",
+    "track": "Release The Bats",
+    "album": "Junkyard",
+    "duration_ms": 151733,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze5_recommendation_preview",
+        "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0ElRzK07sc9eszyk1ea9Ab",
     "spotify_uri": "spotify:track:0ElRzK07sc9eszyk1ea9Ab",
     "artist": "The Cramps",
@@ -792,6 +844,84 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T08:24:13.403287+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1cjtVHPJsrMBVf0JCKYJAn",
+    "spotify_uri": "spotify:track:1cjtVHPJsrMBVf0JCKYJAn",
+    "artist": "The Creepshow",
+    "track": "Grave Diggers",
+    "album": "Sell Your Soul",
+    "duration_ms": 123893,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze5_recommendation_preview",
+        "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "54kGnwVw5c1fh9XciEurwT",
+    "spotify_uri": "spotify:track:54kGnwVw5c1fh9XciEurwT",
+    "artist": "The Fuzztones",
+    "track": "She's Wicked",
+    "album": "The Coolest Songs in the World! Vol. 4",
+    "duration_ms": 194240,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze5_recommendation_preview",
+        "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "45XtqGyKhOkkYIeOND0KF7",
+    "spotify_uri": "spotify:track:45XtqGyKhOkkYIeOND0KF7",
+    "artist": "The Meteors",
+    "track": "Psycho for Your Love",
+    "album": "The Lost Album",
+    "duration_ms": 173106,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze5_recommendation_preview",
+        "observed_at": "2026-11-02T11:17:07.455428+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",

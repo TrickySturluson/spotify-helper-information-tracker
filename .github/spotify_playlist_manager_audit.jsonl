@@ -156,3 +156,4 @@
 {"at": "2026-11-02T08:31:24.658733+00:00", "event": "confirmation_consumed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "backup": "playlist_backups/20261102T083124657326Z_4diIlnF8BlgoJrwUfejf49.json", "kind": "booze20"}
 {"at": "2026-11-02T08:31:25.719747+00:00", "event": "change_completed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "backup": "playlist_backups/20261102T083124657326Z_4diIlnF8BlgoJrwUfejf49.json", "kind": "booze20"}
 {"at": "2026-11-02T08:32:17.532922+00:00", "event": "sequence_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "track_count": 87, "reorder_operations": 57, "journey": "rising", "peak_position": 85, "section_coverage": 64}
+{"at": "2026-11-02T11:17:07.457202+00:00", "event": "booze5_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 5, "candidates_persisted": 41}
