@@ -30,6 +30,11 @@ This is the cross-project register of known unfinished work discovered from the 
 
 ## Metadata and canonical Library
 
+### New Library reliability requirements (2026-11-02)
+- [Library health checker & maintainer](goals/library-health-maintenance/README.md): current audit/status are a foundation, but comprehensive health reporting and safe repair workflow remain to be implemented.
+- [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): no unified field-level freshness planner verified; must reuse existing provider caches/retry queue and avoid full-catalogue polling.
+- [Spotify playability](goals/spotify-playability/README.md): song files need market-scoped, timestamped playability observations, restriction reasons, and requested/returned/relinked Spotify IDs. Playlist addability must not be treated as proof of playback.
+
 ### 4. Finish post-migration enrichment and coverage measurement
 - No fresh, post-publication coverage report has been verified.
 - Historical conversational estimates included artist 1,587; track 9,778; album 6,384; unresolved duration 2,919, but these are stale/unverified snapshots and must not be presented as current counts.
