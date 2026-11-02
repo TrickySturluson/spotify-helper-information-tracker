@@ -44,6 +44,9 @@ jobs:
       - name: Run read-only confidence audit
         run: python shit.py library confidence --json > library-confidence.json
 
+      - name: Preview safe Library maintenance (read-only)
+        run: python shit.py library maintain --json > library-maintenance-plan.json
+
       - name: Build bounded field-level freshness plan
         env:
           MARKET: ${{ inputs.market || 'from_token' }}
@@ -57,15 +60,22 @@ jobs:
           from pathlib import Path
           health = json.loads(Path("library-health.json").read_text(encoding="utf-8"))
           confidence = json.loads(Path("library-confidence.json").read_text(encoding="utf-8"))
+          maintenance = json.loads(Path("library-maintenance-plan.json").read_text(encoding="utf-8"))
           freshness = json.loads(Path("library-freshness-plan.json").read_text(encoding="utf-8"))
           assert health.get("ok") is True, health.get("errors", [])[:10]
           assert confidence.get("ok") is True, confidence.get("errors", [])[:10]
+          assert maintenance.get("mode") == "preview", maintenance
+          assert maintenance.get("changed") is False, maintenance
+          assert maintenance.get("provider_requests") == 0, maintenance
+          assert maintenance.get("spotify_playlist_writes") == 0, maintenance
           assert freshness.get("mode") == "read_only_plan"
           assert freshness.get("provider_requests") == 0
           assert freshness.get("writes") == 0
           assert not freshness.get("errors"), freshness.get("errors", [])[:10]
           print("Library health:", health.get("counts"))
           print("Confidence drift:", confidence.get("metadata_confidence_drift_count"))
+          print("Maintenance repair needed:", maintenance.get("repair_needed"),
+                "safe to rebuild:", maintenance.get("safe_to_rebuild"))
           print("Freshness scanned:", freshness.get("counts"))
           print("Due tasks:", freshness.get("due_task_count"),
                 "selected:", freshness.get("selected_task_count"))
@@ -78,6 +88,7 @@ jobs:
           path: |
             library-health.json
             library-confidence.json
+            library-maintenance-plan.json
             library-freshness-plan.json
           retention-days: 30
           if-no-files-found: error
@@ -85,6 +96,6 @@ jobs:
 # FILE OVERVIEW
 # Purpose: Weekly, read-only structural health, confidence and metadata freshness review.
 # Schedule: Sundays at 09:17 UTC; can also be dispatched manually with a market and batch limit.
-# Outputs: Health, confidence and bounded freshness JSON reports as a 30-day workflow artifact.
+# Outputs: Health, confidence, read-only maintenance preview, and bounded freshness JSON reports as a 30-day artifact.
 # Safety: No provider requests, Library writes, playlist writes, or automatic repairs.
 # Related: shit.py library health|confidence|freshness and project/goals/metadata-freshness/.
