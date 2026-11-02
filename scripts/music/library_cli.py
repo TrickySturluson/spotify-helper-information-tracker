@@ -108,6 +108,8 @@ def run_freshness(args):
         sys.executable, str(FRESHNESS_PLANNER), "--root", str(args.root),
         "--limit", str(args.limit), "--market", args.market, "--json",
     ]
+    if args.include_unknown_age:
+        command.append("--include-unknown-age")
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
 
@@ -153,6 +155,7 @@ def build_parser():
         if name == "freshness":
             sub.add_argument("--limit", type=int, default=25, help="Maximum due observations to include (1-100)")
             sub.add_argument("--market", default="from_token", help="Spotify market code or from_token")
+            sub.add_argument("--include-unknown-age", action="store_true", help="include a rotating sample of data-bearing fields with unknown age")
         if name == "maintain":
             sub.add_argument("--apply", action="store_true", help="Apply a safe repair after creating a backup")
             sub.add_argument("--repair-index", action="store_true", help="Explicitly allow rebuilding the derived index")
