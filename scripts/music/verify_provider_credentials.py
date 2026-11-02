@@ -89,8 +89,18 @@ def verify_spotify():
     detail = "Refresh-token exchange and read-only GET /me succeeded; " + account + "."
     status = "passed"
     if rotated:
-        status = "failed"
-        detail += " Spotify returned a replacement refresh token; update the GitHub SPOTIFY_REFRESH_TOKEN secret before migration."
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            try:
+                sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[2] / "compat"))
+                import spotify_playlist_manager as manager
+                manager.persist_refresh_token(token_data["refresh_token"])
+                detail += " Spotify's replacement refresh token was immediately persisted to the repository secret."
+            except Exception:
+                status = "failed"
+                detail += " Spotify returned a replacement refresh token, but secure repository-secret persistence failed; do not start another Spotify workflow until this is resolved."
+        else:
+            status = "failed"
+            detail += " Spotify returned a replacement refresh token; this local verification cannot update the GitHub repository secret."
     return [result(
         "Spotify", status, detail, True, refresh_token_rotation_returned=rotated,
     )]
