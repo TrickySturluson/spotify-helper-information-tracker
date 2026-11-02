@@ -10,7 +10,7 @@ from collections import Counter
 from statistics import mean, pstdev
 from typing import Any
 
-MODEL_VERSION = "five-axis-fit-v0.1"
+MODEL_VERSION = "five-axis-fit-v0.2"
 DIMENSIONS = ("genre", "sound", "energy", "mood", "theme")
 DEFAULT_WEIGHTS = {
     "genre": 0.15, "sound": 0.25, "energy": 0.20,
@@ -96,9 +96,20 @@ def build_reference_profile(
                 for family, vals in by_family.items():
                     values.append(mean(vals))
                     families.add(family)
+            ordered = sorted(values)
+            def percentile(fraction):
+                if not ordered:
+                    return None
+                position = (len(ordered) - 1) * fraction
+                lower = int(position)
+                upper = min(lower + 1, len(ordered) - 1)
+                return ordered[lower] + (ordered[upper] - ordered[lower]) * (position - lower)
             dimensions[dim] = {
                 "mean": round(mean(values), 3) if values else None,
                 "spread": round(pstdev(values), 3) if len(values) > 1 else 0.0 if values else None,
+                "min": min(values) if values else None, "max": max(values) if values else None,
+                "p10": round(percentile(0.10), 3) if values else None,
+                "p90": round(percentile(0.90), 3) if values else None,
                 "track_count": len(values), "source_families": sorted(families),
             }
         else:
@@ -157,8 +168,17 @@ def _dimension_result(track: dict, dim: str, profile: dict) -> dict:
                     "source_families": families, "scopes": scopes,
                     "reason": "no comparable recording-level energy or target profile"}
         observed = mean(direct)
-        spread = max(12.0, float(profile.get("spread") or 0.0))
-        score = max(0.0, min(100.0, 100.0 - abs(observed - target) / spread * 30.0))
+        low = float(profile.get("p10", target))
+        high = float(profile.get("p90", target))
+        minimum = float(profile.get("min", target))
+        maximum = float(profile.get("max", target))
+        # Match the playlist's energy distribution, not just its arithmetic mean.
+        if low <= observed <= high:
+            score = 100.0
+        elif observed < low:
+            score = 100.0 * max(0.0, 1.0 - (low - observed) / max(1.0, low - minimum))
+        else:
+            score = 100.0 * max(0.0, 1.0 - (observed - high) / max(1.0, maximum - high))
     else:
         tokens = _tokens(rows)
         prevalence = profile.get("prevalence") or {}
