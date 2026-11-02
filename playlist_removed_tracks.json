@@ -53,9 +53,33 @@
           ],
           "uri": "spotify:track:4AYUejlbusnbZY7s2z2C9G",
           "source": "user-reported repeated manual removal"
+        },
+        {
+          "name": "The Greatest Show Unearthed",
+          "artists": [
+            "Creature Feature"
+          ],
+          "album": "The Greatest Show Unearthed",
+          "uri": "spotify:track:5YEkxfNMTHkfoYlh4d1Y7b",
+          "source": "user-confirmed manual removal; absent from fresh snapshot after confirmed 87-track addition",
+          "detected_at": "2026-11-02T10:39:07.873339+00:00",
+          "last_present_snapshot_id": "AAAA/ScPSXp0d8nmx/aBsb0KprHk94Wa",
+          "current_snapshot_id": "AAABA/dKtho948buIMKTHoeoPu5L57D5"
+        },
+        {
+          "name": "The Netherworld",
+          "artists": [
+            "Creature Feature"
+          ],
+          "album": "",
+          "uri": "spotify:track:62EKjHgJEMoBkL2uhCVHKr",
+          "source": "user-confirmed manual removal; absent from fresh snapshot after confirmed 87-track addition",
+          "detected_at": "2026-11-02T10:39:07.873339+00:00",
+          "last_present_snapshot_id": "AAAA/ScPSXp0d8nmx/aBsb0KprHk94Wa",
+          "current_snapshot_id": "AAABA/dKtho948buIMKTHoeoPu5L57D5"
         }
       ],
-      "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required."
+      "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required. Two additional Creature Feature tracks were detected missing by comparing the confirmed 87-track post-add state against the fresh 82-track Spotify snapshot on 2026-11-02; their exact URIs are now sticky playlist-local removals."
     },
     "4HzqY9iy04M1EVSF5kcD64": {
       "name": ". . .",
