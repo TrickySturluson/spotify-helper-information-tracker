@@ -264,20 +264,47 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None, inclu
             else:
                 counts["no_data"] += 1
 
-        # Duration freshness follows the provider that actually supplied the duration.
-        duration_source = str(metadata.get("duration_source") or "").casefold()
+        # Duration freshness follows the exact provider observation for the current value.
+        duration_source_raw = str(metadata.get("duration_source") or "")
+        duration_source = duration_source_raw.casefold()
         if metadata.get("duration_ms") is not None:
             if "last.fm" in duration_source or "lastfm" in duration_source:
-                provider, checked = "lastfm", metadata.get("lastfm_checked_at")
+                provider = "lastfm"
             elif "musicbrainz" in duration_source:
-                provider, checked = "musicbrainz", metadata.get("musicbrainz_checked_at")
+                provider = "musicbrainz"
             else:
-                provider, checked = None, None
+                provider = None
             if provider:
+                current_duration = metadata.get("duration_ms")
+                try:
+                    current_duration = int(current_duration)
+                except (TypeError, ValueError):
+                    current_duration = None
+                duration_observations = metadata.get("duration_observations")
+                duration_observations = duration_observations if isinstance(duration_observations, list) else []
+                matching_observations = [
+                    row for row in duration_observations
+                    if isinstance(row, dict)
+                    and row.get("provider") == provider
+                    and row.get("duration_ms") == current_duration
+                    and str(row.get("source") or "").strip().casefold() == duration_source
+                    and row.get("checked_at")
+                ]
+                latest_duration_observation = max(
+                    matching_observations, key=lambda row: str(row.get("checked_at") or "")
+                ) if matching_observations else None
+                if latest_duration_observation:
+                    checked = latest_duration_observation.get("checked_at")
+                    provider_status = latest_duration_observation.get("status")
+                    retry_after = latest_duration_observation.get("retry_after")
+                else:
+                    checked = metadata.get(provider + "_checked_at")
+                    provider_status = metadata.get(provider + "_status") or metadata.get("metadata_status")
+                    retry_after = metadata.get(provider + "_retry_after") or metadata.get("retry_after")
                 _consider(tasks, counts, "song", song_id, record, "duration",
                           provider, checked, POLICIES["duration"], now,
-                          next_check_after=metadata.get(provider + "_retry_after") or metadata.get("retry_after"),
-                          provider_status=metadata.get(provider + "_status"), baseline_candidates=baseline_candidates,
+                          next_check_after=retry_after,
+                          provider_status=provider_status, baseline_candidates=baseline_candidates,
                           include_unknown_age=include_unknown_age, has_data=True)
             else:
                 counts["missing_provenance"] += 1
