@@ -61,7 +61,7 @@ def item_record(entry, position, market=None):
     }
 
 
-def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=None, fallback_market="unknown", snapshot_accessible=True):
+def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=None, fallback_market="unknown", snapshot_accessible=True, source="read_only_playlist_snapshot", requested_spotify_id=None):
     """Convert explicit Spotify response fields into a provenance-rich observation."""
     if not isinstance(item, dict):
         return None
@@ -71,14 +71,19 @@ def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=
         return None
     playable = item.get("is_playable")
     reason = restrictions.get("reason") if isinstance(restrictions, dict) else None
-    linked_uri = item.get("linked_from")
+    linked = item.get("linked_from")
+    linked_uri = linked.get("uri") if isinstance(linked, dict) else linked
+    linked_id = linked.get("id") if isinstance(linked, dict) else (
+        linked_uri.rsplit(":", 1)[-1] if isinstance(linked_uri, str) else None
+    )
     market = item.get("playability_market") or fallback_market or "unknown"
     market_context = (
         "spotify_user_account_country" if market == "from_token" else
         "explicit_country_market" if market != "unknown" else
         "market_not_established"
     )
-    requested_id = linked_uri.rsplit(":", 1)[-1] if linked_uri else item.get("id")
+    requested_id = requested_spotify_id or linked_id or item.get("id")
+    returned_id = item.get("id")
     return {
         "status": (
             "restricted" if reason else
@@ -89,16 +94,16 @@ def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=
         "is_playable": playable,
         "market": market,
         "market_context": market_context,
-        "latest_snapshot_accessible": bool(snapshot_accessible),
+        "latest_snapshot_accessible": bool(snapshot_accessible) if source == "read_only_playlist_snapshot" else None,
         "checked_at": item.get("playability_checked_at") or fallback_checked_at,
         "provider": "Spotify",
-        "source": "read_only_playlist_snapshot",
+        "source": source,
         "playlist_id": playlist_id,
         "playlist_snapshot_id": snapshot_id,
         "requested_spotify_id": requested_id,
         "returned_spotify_id": item.get("id"),
         "linked_from_spotify_uri": linked_uri,
-        "linked_from_spotify_id": linked_uri.rsplit(":", 1)[-1] if linked_uri else None,
+        "linked_from_spotify_id": linked_id,
         "restrictions": restrictions,
         "restrictions_reason": reason,
         "is_local": item.get("is_local"),
