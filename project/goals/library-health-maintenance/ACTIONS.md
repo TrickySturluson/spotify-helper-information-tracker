@@ -1,3 +1,11 @@
+## 2026-11-02 — Verify new playability health rules against full catalogue
+
+- Issue #92 / Great Migration workflow run [41372492615](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41372492615) completed successfully.
+- Canonical audit: 13,005 songs, 6,386 artists, 7,861 albums; zero errors.
+- Read-only structural health: index counts match; zero errors and zero warnings. Alias counts: 1,856 Spotify IDs, 11,338 recording MBIDs, 1,816 ISRCs, 13,003 source-track IDs, 11,529 name candidates.
+- The merged playability semantic checks passed against all populated song records, including observation history, status/value consistency, market keys, requested/relinked IDs, timestamps, and latest-by-market index.
+- No provider requests, Library writes, repairs, or playlist writes.
+
 ## 2026-11-02 — Merge market-aware playability evidence validation
 
 - PR #87 merged to main as `6c9fe067a8af6bc504548bc45e715ed27aa0cea8`.
