@@ -31,6 +31,8 @@ This is the cross-project register of known unfinished work discovered from the 
 ## Metadata and canonical Library
 
 ### New Library reliability requirements (2026-11-02)
+- [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): catalogue coverage is verified, but full confidence distribution, field evidence consistency, and gold-set false-match evaluation are not complete.
+
 - [Library health checker & maintainer](goals/library-health-maintenance/README.md): current audit/status are a foundation, but comprehensive health reporting and safe repair workflow remain to be implemented.
 - [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): no unified field-level freshness planner verified; must reuse existing provider caches/retry queue and avoid full-catalogue polling.
 - [Spotify playability](goals/spotify-playability/README.md): song files need market-scoped, timestamped playability observations, restriction reasons, and requested/returned/relinked Spotify IDs. Playlist addability must not be treated as proof of playback.
