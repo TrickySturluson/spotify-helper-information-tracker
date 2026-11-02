@@ -334,12 +334,19 @@ def remove(sp,pid,uris):
     assert_managed(pid)
     for i in range(0,len(uris),100):
         if not unlocked(pid): raise ManagerError("Playlist is LOCKED; remaining removals stopped.")
-        sp.call("DELETE",f"/playlists/{pid}/items",{"items":[{"uri":u} for u in uris[i:i+100]]})
+        batch=uris[i:i+100]
+        mutate_with_snapshots(
+            sp,pid,lambda batch=batch: sp.call("DELETE",f"/playlists/{pid}/items",
+                {"items":[{"uri":u} for u in batch]}),
+            event="track_removal_batch",batch_start=i,item_count=len(batch))
 def add(sp,pid,uris):
     assert_managed(pid)
     for i in range(0,len(uris),100):
         if not unlocked(pid): raise ManagerError("Playlist is LOCKED; remaining additions stopped.")
-        sp.call("POST",f"/playlists/{pid}/items",{"uris":uris[i:i+100]})
+        batch=uris[i:i+100]
+        mutate_with_snapshots(
+            sp,pid,lambda batch=batch: sp.call("POST",f"/playlists/{pid}/items",{"uris":batch}),
+            event="track_addition_batch",batch_start=i,item_count=len(batch))
 def apply(sp,path):
     pid,ops=validate(read(path,None))
     assert_managed(pid)
