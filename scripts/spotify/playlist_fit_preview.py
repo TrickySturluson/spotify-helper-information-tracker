@@ -19,7 +19,7 @@ if str(REPO_ROOT) not in sys.path:
 from scripts.spotify.playlist_fit_model import (
     MODEL_VERSION, build_reference_profile, score_track, track_from_library_record,
 )
-from scripts.music.music_library import MusicLibrary, norm as library_norm
+from scripts.music.music_library import norm as library_norm
 
 DEFAULT_LIBRARY = REPO_ROOT / "assistant_data/music/library"
 DEFAULT_MUSIC = REPO_ROOT / "assistant_data/music"
@@ -68,9 +68,13 @@ def load_candidate_identities(path: Path) -> list[dict]:
     return candidates
 
 
-def load_library_records(root: Path, music_root: Path) -> tuple[dict, dict]:
-    """Read canonical songs and stable-ID keyed track-profile cache."""
-    records = {}
+def name_album_key(artist: Any, title: Any, album: Any) -> tuple[str, str, str]:
+    return (library_norm(artist), library_norm(title), library_norm(album))
+
+
+def load_library_records(root: Path, music_root: Path) -> tuple[dict, dict, dict]:
+    """Read canonical songs, exact Spotify aliases, and exact name/album candidates."""
+    records, name_album_index = {}, {}
     for path in sorted((root / "songs").rglob("song.json")):
         record = read_json(path)
         if not isinstance(record, dict):
@@ -80,13 +84,16 @@ def load_library_records(root: Path, music_root: Path) -> tuple[dict, dict]:
         uri = spotify_uri(spotify_id)
         if uri:
             records[uri] = record
+        if identity.get("artist") and identity.get("title") and identity.get("album"):
+            key = name_album_key(identity["artist"], identity["title"], identity["album"])
+            name_album_index.setdefault(key, []).append(record)
     cache = read_json(music_root / "track_profiles.json")
     if not isinstance(cache, dict):
         raise ValueError("track_profiles.json must contain an object")
     library_index = read_json(root / "library_index.json")
     if not isinstance(library_index, dict):
         raise ValueError("library_index.json must contain an object")
-    return records, index_profiles_by_song(cache, library_index)
+    return records, index_profiles_by_song(cache, library_index), name_album_index
 
 
 def index_profiles_by_song(cache: dict, library_index: dict) -> dict:
@@ -144,7 +151,7 @@ def has_recording_fit_evidence(record: dict, profile: dict | None = None) -> boo
     return bool(recording.get("moods"))
 
 
-def resolve_item_record(item: dict, records: dict, cache_by_song: dict, library=None):
+def resolve_item_record(item: dict, records: dict, cache_by_song: dict, name_album_index: dict | None = None):
     """Resolve by Spotify ID first; fallback requires exact artist/title/album plus duration."""
     uri = spotify_uri(item.get("uri") or item.get("id"))
     exact = records.get(uri) if uri else None
@@ -156,28 +163,27 @@ def resolve_item_record(item: dict, records: dict, cache_by_song: dict, library=
     title = item.get("name") or item.get("title")
     album = item.get("album")
     spotify_duration = item.get("duration_ms")
-    if library is not None and artist and title and album and spotify_duration not in (None, ""):
-        match = library.lookup_song(artist=artist, track=title, album=album)
-        if match.get("status") == "matched":
-            record = match.get("record") or {}
-            identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
-            metadata = (record.get("evidence") or {}).get("track_metadata") or {}
+    if name_album_index is not None and artist and title and album and spotify_duration not in (None, ""):
+        candidates = name_album_index.get(name_album_key(artist, title, album), [])
+        matches = []
+        for record in candidates:
+            if exact and str(record.get("id") or "") == str(exact.get("id") or ""):
+                continue
+            evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+            metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
             source_duration = metadata.get("duration_ms")
-            exact_names = (
-                library_norm(identity.get("artist")) == library_norm(artist)
-                and library_norm(identity.get("title")) == library_norm(title)
-                and library_norm(identity.get("album")) == library_norm(album)
-            )
             try:
                 duration_match = source_duration is not None and abs(int(source_duration) - int(spotify_duration)) <= 2000
             except (TypeError, ValueError):
                 duration_match = False
-            if exact_names and duration_match:
-                copied = dict(record)
-                confidence = dict(record.get("confidence") or {})
-                confidence["identity"] = match.get("confidence") or "medium"
-                copied["confidence"] = confidence
-                return copied, "exact_artist_title_album_duration"
+            if duration_match:
+                matches.append(record)
+        if len(matches) == 1:
+            copied = dict(matches[0])
+            confidence = dict(copied.get("confidence") or {})
+            confidence["identity"] = "medium"
+            copied["confidence"] = confidence
+            return copied, "exact_artist_title_album_duration"
     return (exact, "spotify_track_id") if exact else (None, "unmatched")
 
 
@@ -218,7 +224,7 @@ def load_reference_targets(spotify_root: Path) -> dict:
     return targets
 
 
-def build_preview(candidates: list[dict], targets: dict, records: dict, cache: dict, library=None) -> dict:
+def build_preview(candidates: list[dict], targets: dict, records: dict, cache: dict, name_album_index: dict | None = None) -> dict:
     heldout = {candidate["uri"] for candidate in candidates}
     candidate_resolutions = []
     heldout_record_ids = set()
@@ -228,7 +234,7 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
             "artists": [candidate.get("artist")] if candidate.get("artist") else [],
             "album": candidate.get("album"), "duration_ms": candidate.get("duration_ms"),
         }
-        record, method = resolve_item_record(item, records, cache, library)
+        record, method = resolve_item_record(item, records, cache, name_album_index)
         candidate_resolutions.append((candidate, record, method))
         if record and record.get("id"):
             heldout_record_ids.add(str(record["id"]))
@@ -240,7 +246,7 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
         resolution_counts = {}
         for item in target["items"]:
             uri = spotify_uri(item.get("uri") or item.get("id"))
-            record, method = resolve_item_record(item, records, cache, library)
+            record, method = resolve_item_record(item, records, cache, name_album_index)
             if record is None:
                 continue
             record_id = str(record.get("id") or "")
@@ -325,10 +331,9 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
     candidates = load_candidate_identities(args.candidates)
-    records, cache = load_library_records(args.library, args.music_data)
+    records, cache, name_album_index = load_library_records(args.library, args.music_data)
     targets = load_reference_targets(args.spotify_data)
-    library = MusicLibrary(args.library)
-    result = build_preview(candidates, targets, records, cache, library=library)
+    result = build_preview(candidates, targets, records, cache, name_album_index=name_album_index)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({
