@@ -56,7 +56,7 @@ def build_description(name, items, profile):
     if theme_terms:
         parts.append("Themes: " + ", ".join(theme_terms))
     if not parts:
-        artists = _tags(profile.get("top_artists"), 3)
+        artists = [row.get("artist") for row in (profile.get("top_artists") or []) if isinstance(row, dict) and row.get("artist")][:3]
         if artists:
             parts.append("Featuring " + ", ".join(artists))
         else:
