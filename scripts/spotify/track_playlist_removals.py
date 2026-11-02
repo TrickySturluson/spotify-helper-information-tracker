@@ -189,11 +189,14 @@ def main():
         return
 
     sp = manager.Spotify()
-    playlists = sp.playlists()
     if args.playlist_id:
-        playlists = [p for p in playlists if p.get("id") == args.playlist_id]
-        if not playlists:
-            raise SystemExit("Playlist not found in your Spotify collection.")
+        try:
+            playlist = manager.fetch_playlist(sp, args.playlist_id)
+        except manager.ManagerError as error:
+            raise SystemExit(f"Could not read the requested playlist: {error}") from error
+        playlists = [playlist]
+    else:
+        playlists = sp.playlists()
 
     baseline_data = read_json(BASELINE, {"version": 1, "playlists": {}})
     blacklist_data = read_json(BLACKLIST, {"version": 1, "playlists": {}})
