@@ -148,6 +148,59 @@ def _validate_playability(song_id, song, errors, warnings):
             errors.append(f"Spotify playability latest market entry is stale or inconsistent: {song_id} [{market_key}]")
 
 
+def _validate_duration_observations(song_id, song, errors, warnings):
+    """Validate optional field-level duration provenance history without rewriting it."""
+    evidence = song.get("evidence") if isinstance(song.get("evidence"), dict) else {}
+    metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
+    observations = metadata.get("duration_observations")
+    if observations is None:
+        return
+    if not isinstance(observations, list):
+        errors.append(f"song duration_observations must be a list: {song_id}")
+        return
+
+    seen = set()
+    for position, observation in enumerate(observations):
+        label = f"{song_id} duration_observations[{position}]"
+        if not isinstance(observation, dict):
+            errors.append(f"duration observation must be an object: {label}")
+            continue
+        encoded = json.dumps(observation, sort_keys=True, ensure_ascii=False)
+        if encoded in seen:
+            warnings.append(f"duplicate duration observation: {label}")
+        seen.add(encoded)
+
+        provider = observation.get("provider")
+        if provider not in {"lastfm", "musicbrainz"}:
+            errors.append(f"duration observation has unsupported provider {provider!r}: {label}")
+        checked_at = observation.get("checked_at")
+        if _parse_observation_time(checked_at) is None:
+            errors.append(f"duration observation has missing/invalid checked_at: {label}")
+        status = observation.get("status")
+        if not isinstance(status, str) or not status.strip():
+            errors.append(f"duration observation has no status: {label}")
+        source = str(observation.get("source") or "").strip()
+        if not source:
+            errors.append(f"duration observation has no source: {label}")
+        elif provider == "lastfm" and "last.fm" not in source.casefold() and "lastfm" not in source.casefold():
+            errors.append(f"Last.fm duration observation source/provider mismatch: {label}")
+        elif provider == "musicbrainz" and "musicbrainz" not in source.casefold():
+            errors.append(f"MusicBrainz duration observation source/provider mismatch: {label}")
+        try:
+            duration_ms = int(observation.get("duration_ms") or 0)
+            if duration_ms <= 0:
+                raise ValueError
+        except (TypeError, ValueError):
+            errors.append(f"duration observation has invalid duration_ms: {label}")
+        retry_after = observation.get("retry_after")
+        if retry_after is not None:
+            try:
+                if int(retry_after) < 0:
+                    raise ValueError
+            except (TypeError, ValueError):
+                errors.append(f"duration observation has invalid retry_after: {label}")
+
+
 def inspect_library(root=DEFAULT_ROOT):
     """Return a read-only health report; never instantiate the mutating lazy resolver."""
     root = Path(root)
@@ -269,6 +322,7 @@ def inspect_library(root=DEFAULT_ROOT):
     for song_id, song in records["songs"].items():
         identity = song.get("identity") if isinstance(song.get("identity"), dict) else {}
         _validate_playability(song_id, song, errors, warnings)
+        _validate_duration_observations(song_id, song, errors, warnings)
         if not identity.get("artist") or not identity.get("title"):
             errors.append(f"song identity is missing artist/title: {song_id}")
         relations = song.get("relations") if isinstance(song.get("relations"), dict) else {}
