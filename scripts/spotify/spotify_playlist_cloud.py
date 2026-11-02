@@ -517,6 +517,13 @@ def main():
             ("Los Straitjackets", "Rockula"),
             ("Deadbolt", "Psychic Voodoo Doll"),
             ("45 Grave", "Evil"),
+            ("The Birthday Party", "Release the Bats"),
+            ("The Damned", "Grimly Fiendish"),
+            ("The Groovie Ghoulies", "Graveyard Girlfriend"),
+            ("The Revillos", "Vampires from Outer Space"),
+            ("The Damned", "Plan 9 Channel 7"),
+            ("The Cramps", "Creature from the Black Leather Lagoon"),
+            ("Screaming Lord Sutch", "Jack the Ripper"),
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
