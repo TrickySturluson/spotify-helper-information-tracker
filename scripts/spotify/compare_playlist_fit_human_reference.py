@@ -80,6 +80,7 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
         by_display.setdefault(key, []).append(row)
 
     pairs_by_target = {name: [] for name in target_names.values()}
+    human_pairs_by_target = {name: 0 for name in target_names.values()}
     matched_ratings = unmatched = ambiguous = unknown = 0
     match_methods = {"spotify_uri": 0, "unique_exact_title_artist_display_join": 0}
     confidence_counts = {"low": 0, "medium": 0, "high": 0, "unknown": 0}
@@ -109,6 +110,7 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
             target_name = target_names.get(playlist_id)
             if not target_name:
                 continue
+            human_pairs_by_target[target_name] += 1
             model_row = score_rows.get(target_name) if isinstance(score_rows.get(target_name), dict) else {}
             model_score = model_row.get("fit_score")
             if model_score is None:
@@ -131,15 +133,11 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
     all_pairs = []
     for name, pairs in pairs_by_target.items():
         all_pairs.extend(pairs)
-        total_human = sum(
-            1 for rating in ratings
-            for row in (rating.get("human_fit_ratings") or [])
-            if target_names.get(row.get("playlist_id")) == name
-            and by_uri.get(str((rating.get("track") or {}).get("uri") or ""))
-                or False
-        )
+        human_pair_count = human_pairs_by_target[name]
         target_reports[name] = {
-            **metrics(pairs), "scored_pairs": len(pairs),
+            **metrics(pairs), "human_rating_pairs": human_pair_count,
+            "scored_pairs": len(pairs), "unknown_pairs": human_pair_count - len(pairs),
+            "score_coverage": round(len(pairs) / human_pair_count, 3) if human_pair_count else 0.0,
             "pairs": pairs,
         }
 
