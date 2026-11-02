@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b0979956-e40d-4a35-89b1-124af2288354","duration_ms":228000,"duration_source":"Last.fm track.getInfo","track_id":"track:c4daf21ea076f5e0"}},"id":"source:c4daf21ea076f5e0","identity":{"album":"Maggot Belly","album_id":"album:fb3cb23074940c81f089","artist":"awfultune","artist_id":"mbid:b0979956-e40d-4a35-89b1-124af2288354","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:c4daf21ea076f5e0","spotify_id":null,"title":"Maggot Belly","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2024-06-11T07:10:53+00:00","last_scrobble":"2024-06-13T03:02:47+00:00","observed_albums":[{"album":"Maggot Belly","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fb3cb23074940c81f089/album.json","artist_path":"artists/mb/mbid-b0979956-e40d-4a35-89b1-124af2288354/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b0979956-e40d-4a35-89b1-124af2288354",
+      "duration_ms": 228000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:c4daf21ea076f5e0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 228000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:c4daf21ea076f5e0",
+  "identity": {
+    "album": "Maggot Belly",
+    "album_id": "album:fb3cb23074940c81f089",
+    "artist": "awfultune",
+    "artist_id": "mbid:b0979956-e40d-4a35-89b1-124af2288354",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:c4daf21ea076f5e0",
+    "spotify_id": null,
+    "title": "Maggot Belly",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2024-06-11T07:10:53+00:00",
+    "last_scrobble": "2024-06-13T03:02:47+00:00",
+    "observed_albums": [
+      {
+        "album": "Maggot Belly",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fb3cb23074940c81f089/album.json",
+    "artist_path": "artists/mb/mbid-b0979956-e40d-4a35-89b1-124af2288354/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

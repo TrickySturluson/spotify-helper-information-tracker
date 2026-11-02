@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:def22222964adbfc","duration_ms":120000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7","track_mbid":"2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7"}},"id":"mbid:2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7","identity":{"album":"Dial Note","album_id":"album:41fb177199cbf6c6a67a","artist":"Crim Nanakusa","artist_id":"name:def22222964adbfc","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7","source_track_id":"mbid:2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7","spotify_id":null,"title":"Dial Note","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2025-08-15T22:21:29+00:00","last_scrobble":"2026-02-03T22:17:08+00:00","observed_albums":[{"album":"Dial Note","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-41fb177199cbf6c6a67a/album.json","artist_path":"artists/na/name-def22222964adbfc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:def22222964adbfc",
+      "duration_ms": 120000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7",
+      "track_mbid": "2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 120000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7",
+  "identity": {
+    "album": "Dial Note",
+    "album_id": "album:41fb177199cbf6c6a67a",
+    "artist": "Crim Nanakusa",
+    "artist_id": "name:def22222964adbfc",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7",
+    "source_track_id": "mbid:2bfbb487-e3ef-43f8-aa40-b968c1f0bbe7",
+    "spotify_id": null,
+    "title": "Dial Note",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2025-08-15T22:21:29+00:00",
+    "last_scrobble": "2026-02-03T22:17:08+00:00",
+    "observed_albums": [
+      {
+        "album": "Dial Note",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-41fb177199cbf6c6a67a/album.json",
+    "artist_path": "artists/na/name-def22222964adbfc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

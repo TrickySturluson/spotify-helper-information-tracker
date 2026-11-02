@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:57bea489-898f-4b1c-aed2-e7d6f47526c8","duration_ms":83000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:02:23.302247+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:7a755fbb7635fb63"}},"id":"source:7a755fbb7635fb63","identity":{"album":"Sungazing","album_id":"album:5eb083052c58eee59f72","artist":"Video Days","artist_id":"mbid:57bea489-898f-4b1c-aed2-e7d6f47526c8","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:7a755fbb7635fb63","spotify_id":null,"title":"Bleached","track_number":null},"listening_context":{"all_time_plays":16,"first_scrobble":"2026-01-05T13:36:05+00:00","last_scrobble":"2026-10-03T22:56:30+00:00","observed_albums":[{"album":"Sungazing","scrobbles":16}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5eb083052c58eee59f72/album.json","artist_path":"artists/mb/mbid-57bea489-898f-4b1c-aed2-e7d6f47526c8/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:57bea489-898f-4b1c-aed2-e7d6f47526c8",
+      "duration_ms": 83000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:02:23.302247+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:7a755fbb7635fb63",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 83000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:7a755fbb7635fb63",
+  "identity": {
+    "album": "Sungazing",
+    "album_id": "album:5eb083052c58eee59f72",
+    "artist": "Video Days",
+    "artist_id": "mbid:57bea489-898f-4b1c-aed2-e7d6f47526c8",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:7a755fbb7635fb63",
+    "spotify_id": null,
+    "title": "Bleached",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 16,
+    "first_scrobble": "2026-01-05T13:36:05+00:00",
+    "last_scrobble": "2026-10-03T22:56:30+00:00",
+    "observed_albums": [
+      {
+        "album": "Sungazing",
+        "scrobbles": 16
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5eb083052c58eee59f72/album.json",
+    "artist_path": "artists/mb/mbid-57bea489-898f-4b1c-aed2-e7d6f47526c8/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

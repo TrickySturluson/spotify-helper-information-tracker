@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:603c5f9f-492a-4f21-9d6f-1642a5dbea2d","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:157fa3ac-13f9-3b69-9b0d-dfe4f944a904","track_mbid":"157fa3ac-13f9-3b69-9b0d-dfe4f944a904"}},"id":"mbid:157fa3ac-13f9-3b69-9b0d-dfe4f944a904","identity":{"album":"Who Will Cut Our Hair When We're Gone? (Remastered)","album_id":"album:354df75445d596ac130e","artist":"The Unicorns","artist_id":"mbid:603c5f9f-492a-4f21-9d6f-1642a5dbea2d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"157fa3ac-13f9-3b69-9b0d-dfe4f944a904","source_track_id":"mbid:157fa3ac-13f9-3b69-9b0d-dfe4f944a904","spotify_id":null,"title":"Les OS","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-10-20T15:58:27+00:00","last_scrobble":"2024-10-20T15:58:27+00:00","observed_albums":[{"album":"Who Will Cut Our Hair When We're Gone? (Remastered)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-354df75445d596ac130e/album.json","artist_path":"artists/mb/mbid-603c5f9f-492a-4f21-9d6f-1642a5dbea2d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:603c5f9f-492a-4f21-9d6f-1642a5dbea2d",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:157fa3ac-13f9-3b69-9b0d-dfe4f944a904",
+      "track_mbid": "157fa3ac-13f9-3b69-9b0d-dfe4f944a904",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:157fa3ac-13f9-3b69-9b0d-dfe4f944a904",
+  "identity": {
+    "album": "Who Will Cut Our Hair When We're Gone? (Remastered)",
+    "album_id": "album:354df75445d596ac130e",
+    "artist": "The Unicorns",
+    "artist_id": "mbid:603c5f9f-492a-4f21-9d6f-1642a5dbea2d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "157fa3ac-13f9-3b69-9b0d-dfe4f944a904",
+    "source_track_id": "mbid:157fa3ac-13f9-3b69-9b0d-dfe4f944a904",
+    "spotify_id": null,
+    "title": "Les OS",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-10-20T15:58:27+00:00",
+    "last_scrobble": "2024-10-20T15:58:27+00:00",
+    "observed_albums": [
+      {
+        "album": "Who Will Cut Our Hair When We're Gone? (Remastered)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-354df75445d596ac130e/album.json",
+    "artist_path": "artists/mb/mbid-603c5f9f-492a-4f21-9d6f-1642a5dbea2d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

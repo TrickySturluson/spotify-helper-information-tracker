@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b4600630-58a9-4693-b4ae-e18ecaf95f10","duration_ms":146000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7271bd46-710b-4985-a8c7-da0f360b9200","track_mbid":"7271bd46-710b-4985-a8c7-da0f360b9200"}},"id":"mbid:7271bd46-710b-4985-a8c7-da0f360b9200","identity":{"album":"New Skin","album_id":"album:dce9db0d83f5e5ec6762","artist":"CRX","artist_id":"mbid:b4600630-58a9-4693-b4ae-e18ecaf95f10","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7271bd46-710b-4985-a8c7-da0f360b9200","source_track_id":"mbid:7271bd46-710b-4985-a8c7-da0f360b9200","spotify_id":null,"title":"Unnatural","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-27T06:53:59+00:00","last_scrobble":"2024-11-27T06:53:59+00:00","observed_albums":[{"album":"New Skin","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-dce9db0d83f5e5ec6762/album.json","artist_path":"artists/mb/mbid-b4600630-58a9-4693-b4ae-e18ecaf95f10/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b4600630-58a9-4693-b4ae-e18ecaf95f10",
+      "duration_ms": 146000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7271bd46-710b-4985-a8c7-da0f360b9200",
+      "track_mbid": "7271bd46-710b-4985-a8c7-da0f360b9200",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 146000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7271bd46-710b-4985-a8c7-da0f360b9200",
+  "identity": {
+    "album": "New Skin",
+    "album_id": "album:dce9db0d83f5e5ec6762",
+    "artist": "CRX",
+    "artist_id": "mbid:b4600630-58a9-4693-b4ae-e18ecaf95f10",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7271bd46-710b-4985-a8c7-da0f360b9200",
+    "source_track_id": "mbid:7271bd46-710b-4985-a8c7-da0f360b9200",
+    "spotify_id": null,
+    "title": "Unnatural",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-27T06:53:59+00:00",
+    "last_scrobble": "2024-11-27T06:53:59+00:00",
+    "observed_albums": [
+      {
+        "album": "New Skin",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-dce9db0d83f5e5ec6762/album.json",
+    "artist_path": "artists/mb/mbid-b4600630-58a9-4693-b4ae-e18ecaf95f10/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

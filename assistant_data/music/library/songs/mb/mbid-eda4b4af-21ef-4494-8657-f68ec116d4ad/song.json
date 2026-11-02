@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:606bf117-494f-4864-891f-09d63ff6aa4b","duration_ms":242000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:eda4b4af-21ef-4494-8657-f68ec116d4ad","track_mbid":"eda4b4af-21ef-4494-8657-f68ec116d4ad"}},"id":"mbid:eda4b4af-21ef-4494-8657-f68ec116d4ad","identity":{"album":"Appeal to Reason","album_id":"album:944e8bc5fdbf0d8b60fd","artist":"Rise Against","artist_id":"mbid:606bf117-494f-4864-891f-09d63ff6aa4b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"eda4b4af-21ef-4494-8657-f68ec116d4ad","source_track_id":"mbid:eda4b4af-21ef-4494-8657-f68ec116d4ad","spotify_id":null,"title":"Savior","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-07-04T07:30:55+00:00","last_scrobble":"2025-07-05T03:07:18+00:00","observed_albums":[{"album":"Appeal to Reason","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-944e8bc5fdbf0d8b60fd/album.json","artist_path":"artists/mb/mbid-606bf117-494f-4864-891f-09d63ff6aa4b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:606bf117-494f-4864-891f-09d63ff6aa4b",
+      "duration_ms": 242000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:eda4b4af-21ef-4494-8657-f68ec116d4ad",
+      "track_mbid": "eda4b4af-21ef-4494-8657-f68ec116d4ad",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 242000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:eda4b4af-21ef-4494-8657-f68ec116d4ad",
+  "identity": {
+    "album": "Appeal to Reason",
+    "album_id": "album:944e8bc5fdbf0d8b60fd",
+    "artist": "Rise Against",
+    "artist_id": "mbid:606bf117-494f-4864-891f-09d63ff6aa4b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "eda4b4af-21ef-4494-8657-f68ec116d4ad",
+    "source_track_id": "mbid:eda4b4af-21ef-4494-8657-f68ec116d4ad",
+    "spotify_id": null,
+    "title": "Savior",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-07-04T07:30:55+00:00",
+    "last_scrobble": "2025-07-05T03:07:18+00:00",
+    "observed_albums": [
+      {
+        "album": "Appeal to Reason",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-944e8bc5fdbf0d8b60fd/album.json",
+    "artist_path": "artists/mb/mbid-606bf117-494f-4864-891f-09d63ff6aa4b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

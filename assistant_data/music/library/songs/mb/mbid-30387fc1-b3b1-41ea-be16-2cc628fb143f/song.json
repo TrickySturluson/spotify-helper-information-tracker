@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c42e60f4-4520-4954-b6e4-82bbdf532c11","duration_ms":353000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:30387fc1-b3b1-41ea-be16-2cc628fb143f","track_mbid":"30387fc1-b3b1-41ea-be16-2cc628fb143f"}},"id":"mbid:30387fc1-b3b1-41ea-be16-2cc628fb143f","identity":{"album":"black ben carson","album_id":"album:905e10f4b96b27df5d74","artist":"JPEGMAFIA","artist_id":"mbid:c42e60f4-4520-4954-b6e4-82bbdf532c11","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"30387fc1-b3b1-41ea-be16-2cc628fb143f","source_track_id":"mbid:30387fc1-b3b1-41ea-be16-2cc628fb143f","spotify_id":null,"title":"i just killed a cop now i'm horny","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-04-07T20:18:46+00:00","last_scrobble":"2024-04-07T20:18:46+00:00","observed_albums":[{"album":"black ben carson","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-905e10f4b96b27df5d74/album.json","artist_path":"artists/mb/mbid-c42e60f4-4520-4954-b6e4-82bbdf532c11/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c42e60f4-4520-4954-b6e4-82bbdf532c11",
+      "duration_ms": 353000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:30387fc1-b3b1-41ea-be16-2cc628fb143f",
+      "track_mbid": "30387fc1-b3b1-41ea-be16-2cc628fb143f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 353000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:30387fc1-b3b1-41ea-be16-2cc628fb143f",
+  "identity": {
+    "album": "black ben carson",
+    "album_id": "album:905e10f4b96b27df5d74",
+    "artist": "JPEGMAFIA",
+    "artist_id": "mbid:c42e60f4-4520-4954-b6e4-82bbdf532c11",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "30387fc1-b3b1-41ea-be16-2cc628fb143f",
+    "source_track_id": "mbid:30387fc1-b3b1-41ea-be16-2cc628fb143f",
+    "spotify_id": null,
+    "title": "i just killed a cop now i'm horny",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-04-07T20:18:46+00:00",
+    "last_scrobble": "2024-04-07T20:18:46+00:00",
+    "observed_albums": [
+      {
+        "album": "black ben carson",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-905e10f4b96b27df5d74/album.json",
+    "artist_path": "artists/mb/mbid-c42e60f4-4520-4954-b6e4-82bbdf532c11/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

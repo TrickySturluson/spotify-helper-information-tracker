@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:236a3822-4d64-47a0-9c19-e9f7a0d4875c","duration_ms":210000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6106b781-fb16-4a15-ab3d-abe1b1ccf888","track_mbid":"6106b781-fb16-4a15-ab3d-abe1b1ccf888"}},"id":"mbid:6106b781-fb16-4a15-ab3d-abe1b1ccf888","identity":{"album":"Black Moose","album_id":"album:abf1c738eb4ceefd6f04","artist":"The Dead Brothers","artist_id":"mbid:236a3822-4d64-47a0-9c19-e9f7a0d4875c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6106b781-fb16-4a15-ab3d-abe1b1ccf888","source_track_id":"mbid:6106b781-fb16-4a15-ab3d-abe1b1ccf888","spotify_id":null,"title":"Black Moose","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-08-14T08:02:34+00:00","last_scrobble":"2025-08-14T08:02:34+00:00","observed_albums":[{"album":"Black Moose","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-abf1c738eb4ceefd6f04/album.json","artist_path":"artists/mb/mbid-236a3822-4d64-47a0-9c19-e9f7a0d4875c/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:236a3822-4d64-47a0-9c19-e9f7a0d4875c",
+      "duration_ms": 210000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6106b781-fb16-4a15-ab3d-abe1b1ccf888",
+      "track_mbid": "6106b781-fb16-4a15-ab3d-abe1b1ccf888",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 210000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6106b781-fb16-4a15-ab3d-abe1b1ccf888",
+  "identity": {
+    "album": "Black Moose",
+    "album_id": "album:abf1c738eb4ceefd6f04",
+    "artist": "The Dead Brothers",
+    "artist_id": "mbid:236a3822-4d64-47a0-9c19-e9f7a0d4875c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6106b781-fb16-4a15-ab3d-abe1b1ccf888",
+    "source_track_id": "mbid:6106b781-fb16-4a15-ab3d-abe1b1ccf888",
+    "spotify_id": null,
+    "title": "Black Moose",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-08-14T08:02:34+00:00",
+    "last_scrobble": "2025-08-14T08:02:34+00:00",
+    "observed_albums": [
+      {
+        "album": "Black Moose",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-abf1c738eb4ceefd6f04/album.json",
+    "artist_path": "artists/mb/mbid-236a3822-4d64-47a0-9c19-e9f7a0d4875c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

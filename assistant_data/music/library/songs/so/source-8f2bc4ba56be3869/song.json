@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3b2e545f-4f04-4a18-8e06-bb70a71d9009","duration_ms":279000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:03:35.291242+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:8f2bc4ba56be3869"}},"id":"source:8f2bc4ba56be3869","identity":{"album":"The War: Act II","album_id":"album:e2270b8b2d9ce175d1f2","artist":"The Family Crest","artist_id":"mbid:3b2e545f-4f04-4a18-8e06-bb70a71d9009","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:8f2bc4ba56be3869","spotify_id":null,"title":"Cold, Cold, Cold","track_number":null},"listening_context":{"all_time_plays":66,"first_scrobble":"2024-09-23T16:57:09+00:00","last_scrobble":"2026-07-08T02:10:01+00:00","observed_albums":[{"album":"The War: Act II","scrobbles":66}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e2270b8b2d9ce175d1f2/album.json","artist_path":"artists/mb/mbid-3b2e545f-4f04-4a18-8e06-bb70a71d9009/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3b2e545f-4f04-4a18-8e06-bb70a71d9009",
+      "duration_ms": 279000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:03:35.291242+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:8f2bc4ba56be3869",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 279000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:8f2bc4ba56be3869",
+  "identity": {
+    "album": "The War: Act II",
+    "album_id": "album:e2270b8b2d9ce175d1f2",
+    "artist": "The Family Crest",
+    "artist_id": "mbid:3b2e545f-4f04-4a18-8e06-bb70a71d9009",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:8f2bc4ba56be3869",
+    "spotify_id": null,
+    "title": "Cold, Cold, Cold",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 66,
+    "first_scrobble": "2024-09-23T16:57:09+00:00",
+    "last_scrobble": "2026-07-08T02:10:01+00:00",
+    "observed_albums": [
+      {
+        "album": "The War: Act II",
+        "scrobbles": 66
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e2270b8b2d9ce175d1f2/album.json",
+    "artist_path": "artists/mb/mbid-3b2e545f-4f04-4a18-8e06-bb70a71d9009/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

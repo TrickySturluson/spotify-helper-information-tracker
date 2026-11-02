@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:17088c94f05980bf","duration_ms":257000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:68edf517-3a89-4134-8902-7b25ce37a30e","track_mbid":"68edf517-3a89-4134-8902-7b25ce37a30e"}},"id":"mbid:68edf517-3a89-4134-8902-7b25ce37a30e","identity":{"album":"L'Enfant Sauvage (Special Edition)","album_id":"album:d6b094a399359f01bfb4","artist":"Gojira","artist_id":"name:17088c94f05980bf","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"68edf517-3a89-4134-8902-7b25ce37a30e","source_track_id":"mbid:68edf517-3a89-4134-8902-7b25ce37a30e","spotify_id":null,"title":"L'Enfant Sauvage","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-10T17:43:28+00:00","last_scrobble":"2026-03-10T17:43:28+00:00","observed_albums":[{"album":"L'Enfant Sauvage (Special Edition)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d6b094a399359f01bfb4/album.json","artist_path":"artists/na/name-17088c94f05980bf/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:17088c94f05980bf",
+      "duration_ms": 257000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:68edf517-3a89-4134-8902-7b25ce37a30e",
+      "track_mbid": "68edf517-3a89-4134-8902-7b25ce37a30e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 257000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:68edf517-3a89-4134-8902-7b25ce37a30e",
+  "identity": {
+    "album": "L'Enfant Sauvage (Special Edition)",
+    "album_id": "album:d6b094a399359f01bfb4",
+    "artist": "Gojira",
+    "artist_id": "name:17088c94f05980bf",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "68edf517-3a89-4134-8902-7b25ce37a30e",
+    "source_track_id": "mbid:68edf517-3a89-4134-8902-7b25ce37a30e",
+    "spotify_id": null,
+    "title": "L'Enfant Sauvage",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-10T17:43:28+00:00",
+    "last_scrobble": "2026-03-10T17:43:28+00:00",
+    "observed_albums": [
+      {
+        "album": "L'Enfant Sauvage (Special Edition)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d6b094a399359f01bfb4/album.json",
+    "artist_path": "artists/na/name-17088c94f05980bf/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

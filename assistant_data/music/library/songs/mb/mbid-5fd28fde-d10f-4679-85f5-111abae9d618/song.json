@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f031c443-5d31-49f7-9766-4c70b0b4d2ba","duration_ms":242000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5fd28fde-d10f-4679-85f5-111abae9d618","track_mbid":"5fd28fde-d10f-4679-85f5-111abae9d618"}},"id":"mbid:5fd28fde-d10f-4679-85f5-111abae9d618","identity":{"album":"Bad Dream","album_id":"album:896973db36989b653360","artist":"Teen Ravine","artist_id":"mbid:f031c443-5d31-49f7-9766-4c70b0b4d2ba","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5fd28fde-d10f-4679-85f5-111abae9d618","source_track_id":"mbid:5fd28fde-d10f-4679-85f5-111abae9d618","spotify_id":null,"title":"Bad Dream","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2023-03-12T22:18:34+00:00","last_scrobble":"2025-12-17T23:46:08+00:00","observed_albums":[{"album":"Bad Dream","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-896973db36989b653360/album.json","artist_path":"artists/mb/mbid-f031c443-5d31-49f7-9766-4c70b0b4d2ba/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f031c443-5d31-49f7-9766-4c70b0b4d2ba",
+      "duration_ms": 242000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5fd28fde-d10f-4679-85f5-111abae9d618",
+      "track_mbid": "5fd28fde-d10f-4679-85f5-111abae9d618",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 242000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5fd28fde-d10f-4679-85f5-111abae9d618",
+  "identity": {
+    "album": "Bad Dream",
+    "album_id": "album:896973db36989b653360",
+    "artist": "Teen Ravine",
+    "artist_id": "mbid:f031c443-5d31-49f7-9766-4c70b0b4d2ba",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5fd28fde-d10f-4679-85f5-111abae9d618",
+    "source_track_id": "mbid:5fd28fde-d10f-4679-85f5-111abae9d618",
+    "spotify_id": null,
+    "title": "Bad Dream",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2023-03-12T22:18:34+00:00",
+    "last_scrobble": "2025-12-17T23:46:08+00:00",
+    "observed_albums": [
+      {
+        "album": "Bad Dream",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-896973db36989b653360/album.json",
+    "artist_path": "artists/mb/mbid-f031c443-5d31-49f7-9766-4c70b0b4d2ba/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

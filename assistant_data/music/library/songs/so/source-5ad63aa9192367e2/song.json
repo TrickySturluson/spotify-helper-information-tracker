@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:583f7bac-69cd-4d44-be76-4d43a194b80a","duration_ms":194000,"duration_source":"Last.fm track.getInfo","track_id":"track:5ad63aa9192367e2"}},"id":"source:5ad63aa9192367e2","identity":{"album":"Nobody Loves You","album_id":"album:7e16c0eaf72c8e50e26f","artist":"SIMILAR KIND","artist_id":"mbid:583f7bac-69cd-4d44-be76-4d43a194b80a","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:5ad63aa9192367e2","spotify_id":null,"title":"Nobody Loves You","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2023-11-28T00:03:43+00:00","last_scrobble":"2025-03-13T01:51:34+00:00","observed_albums":[{"album":"Nobody Loves You","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7e16c0eaf72c8e50e26f/album.json","artist_path":"artists/mb/mbid-583f7bac-69cd-4d44-be76-4d43a194b80a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:583f7bac-69cd-4d44-be76-4d43a194b80a",
+      "duration_ms": 194000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:5ad63aa9192367e2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 194000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:5ad63aa9192367e2",
+  "identity": {
+    "album": "Nobody Loves You",
+    "album_id": "album:7e16c0eaf72c8e50e26f",
+    "artist": "SIMILAR KIND",
+    "artist_id": "mbid:583f7bac-69cd-4d44-be76-4d43a194b80a",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:5ad63aa9192367e2",
+    "spotify_id": null,
+    "title": "Nobody Loves You",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2023-11-28T00:03:43+00:00",
+    "last_scrobble": "2025-03-13T01:51:34+00:00",
+    "observed_albums": [
+      {
+        "album": "Nobody Loves You",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7e16c0eaf72c8e50e26f/album.json",
+    "artist_path": "artists/mb/mbid-583f7bac-69cd-4d44-be76-4d43a194b80a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

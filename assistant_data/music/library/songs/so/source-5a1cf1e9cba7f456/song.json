@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8830afec-83b3-4213-aad0-f6377f1d73ac","duration_ms":145000,"duration_source":"Last.fm track.getInfo","track_id":"track:5a1cf1e9cba7f456"}},"id":"source:5a1cf1e9cba7f456","identity":{"album":"Disco Elysium","album_id":"album:906a0d105b809e50f99d","artist":"Sea Power","artist_id":"mbid:8830afec-83b3-4213-aad0-f6377f1d73ac","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:5a1cf1e9cba7f456","spotify_id":null,"title":"Your Body Betrays Your Degeneracy","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-27T01:55:52+00:00","last_scrobble":"2024-11-27T01:55:52+00:00","observed_albums":[{"album":"Disco Elysium","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-906a0d105b809e50f99d/album.json","artist_path":"artists/mb/mbid-8830afec-83b3-4213-aad0-f6377f1d73ac/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8830afec-83b3-4213-aad0-f6377f1d73ac",
+      "duration_ms": 145000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:5a1cf1e9cba7f456",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 145000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:5a1cf1e9cba7f456",
+  "identity": {
+    "album": "Disco Elysium",
+    "album_id": "album:906a0d105b809e50f99d",
+    "artist": "Sea Power",
+    "artist_id": "mbid:8830afec-83b3-4213-aad0-f6377f1d73ac",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:5a1cf1e9cba7f456",
+    "spotify_id": null,
+    "title": "Your Body Betrays Your Degeneracy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-27T01:55:52+00:00",
+    "last_scrobble": "2024-11-27T01:55:52+00:00",
+    "observed_albums": [
+      {
+        "album": "Disco Elysium",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-906a0d105b809e50f99d/album.json",
+    "artist_path": "artists/mb/mbid-8830afec-83b3-4213-aad0-f6377f1d73ac/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

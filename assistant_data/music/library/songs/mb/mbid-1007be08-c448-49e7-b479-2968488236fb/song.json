@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f9133036-ab3d-4e97-bd11-7a2c98ad148a","duration_ms":175000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:35:28.695365+00:00","lastfm_error":"{}","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-10-31T06:35:30.401843+00:00","musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:1007be08-c448-49e7-b479-2968488236fb","track_mbid":"1007be08-c448-49e7-b479-2968488236fb"}},"id":"mbid:1007be08-c448-49e7-b479-2968488236fb","identity":{"album":"Bottomless Pit","album_id":"album:e192fdba05cf3faf9ab8","artist":"Death Grips","artist_id":"mbid:f9133036-ab3d-4e97-bd11-7a2c98ad148a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1007be08-c448-49e7-b479-2968488236fb","source_track_id":"mbid:1007be08-c448-49e7-b479-2968488236fb","spotify_id":null,"title":"Bottomless Pit","track_number":null},"listening_context":{"all_time_plays":284,"first_scrobble":"2023-02-15T22:50:52+00:00","last_scrobble":"2026-10-03T10:13:26+00:00","observed_albums":[{"album":"Bottomless Pit","scrobbles":284}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e192fdba05cf3faf9ab8/album.json","artist_path":"artists/mb/mbid-f9133036-ab3d-4e97-bd11-7a2c98ad148a/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f9133036-ab3d-4e97-bd11-7a2c98ad148a",
+      "duration_ms": 175000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:35:28.695365+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-10-31T06:35:30.401843+00:00",
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:1007be08-c448-49e7-b479-2968488236fb",
+      "track_mbid": "1007be08-c448-49e7-b479-2968488236fb",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:24:56+00:00",
+          "status": "matched",
+          "duration_ms": 175000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1007be08-c448-49e7-b479-2968488236fb",
+  "identity": {
+    "album": "Bottomless Pit",
+    "album_id": "album:e192fdba05cf3faf9ab8",
+    "artist": "Death Grips",
+    "artist_id": "mbid:f9133036-ab3d-4e97-bd11-7a2c98ad148a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1007be08-c448-49e7-b479-2968488236fb",
+    "source_track_id": "mbid:1007be08-c448-49e7-b479-2968488236fb",
+    "spotify_id": null,
+    "title": "Bottomless Pit",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 284,
+    "first_scrobble": "2023-02-15T22:50:52+00:00",
+    "last_scrobble": "2026-10-03T10:13:26+00:00",
+    "observed_albums": [
+      {
+        "album": "Bottomless Pit",
+        "scrobbles": 284
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e192fdba05cf3faf9ab8/album.json",
+    "artist_path": "artists/mb/mbid-f9133036-ab3d-4e97-bd11-7a2c98ad148a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

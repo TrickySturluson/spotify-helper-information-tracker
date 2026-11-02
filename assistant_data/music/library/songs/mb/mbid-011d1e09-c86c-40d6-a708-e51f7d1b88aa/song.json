@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5eb5be6c-c071-4f5d-b487-1e55dac5d194","duration_ms":134000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:011d1e09-c86c-40d6-a708-e51f7d1b88aa","track_mbid":"011d1e09-c86c-40d6-a708-e51f7d1b88aa"}},"id":"mbid:011d1e09-c86c-40d6-a708-e51f7d1b88aa","identity":{"album":"Tell Me What You Want","album_id":"album:659297374d159a1a1237","artist":"Carver Commodore","artist_id":"mbid:5eb5be6c-c071-4f5d-b487-1e55dac5d194","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"011d1e09-c86c-40d6-a708-e51f7d1b88aa","source_track_id":"mbid:011d1e09-c86c-40d6-a708-e51f7d1b88aa","spotify_id":null,"title":"Black Plastic","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-11-10T02:32:53+00:00","last_scrobble":"2025-11-21T16:13:29+00:00","observed_albums":[{"album":"Tell Me What You Want","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-659297374d159a1a1237/album.json","artist_path":"artists/mb/mbid-5eb5be6c-c071-4f5d-b487-1e55dac5d194/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5eb5be6c-c071-4f5d-b487-1e55dac5d194",
+      "duration_ms": 134000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:011d1e09-c86c-40d6-a708-e51f7d1b88aa",
+      "track_mbid": "011d1e09-c86c-40d6-a708-e51f7d1b88aa",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 134000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:011d1e09-c86c-40d6-a708-e51f7d1b88aa",
+  "identity": {
+    "album": "Tell Me What You Want",
+    "album_id": "album:659297374d159a1a1237",
+    "artist": "Carver Commodore",
+    "artist_id": "mbid:5eb5be6c-c071-4f5d-b487-1e55dac5d194",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "011d1e09-c86c-40d6-a708-e51f7d1b88aa",
+    "source_track_id": "mbid:011d1e09-c86c-40d6-a708-e51f7d1b88aa",
+    "spotify_id": null,
+    "title": "Black Plastic",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-11-10T02:32:53+00:00",
+    "last_scrobble": "2025-11-21T16:13:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Tell Me What You Want",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-659297374d159a1a1237/album.json",
+    "artist_path": "artists/mb/mbid-5eb5be6c-c071-4f5d-b487-1e55dac5d194/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4678bb93-2720-41f1-8712-41a7d075f302","duration_ms":118000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:2a4b7fff-1813-47f7-ad02-d537d5f6d25a","track_mbid":"2a4b7fff-1813-47f7-ad02-d537d5f6d25a"}},"id":"mbid:2a4b7fff-1813-47f7-ad02-d537d5f6d25a","identity":{"album":"Three Cheers For Disappointment","album_id":"album:1aa6ddb23a07c9e755da","artist":"The Arrogant Sons of Bitches","artist_id":"mbid:4678bb93-2720-41f1-8712-41a7d075f302","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2a4b7fff-1813-47f7-ad02-d537d5f6d25a","source_track_id":"mbid:2a4b7fff-1813-47f7-ad02-d537d5f6d25a","spotify_id":null,"title":"So Let's Go Nowhere","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-06-28T18:48:17+00:00","last_scrobble":"2023-06-28T18:48:17+00:00","observed_albums":[{"album":"Three Cheers For Disappointment","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1aa6ddb23a07c9e755da/album.json","artist_path":"artists/mb/mbid-4678bb93-2720-41f1-8712-41a7d075f302/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4678bb93-2720-41f1-8712-41a7d075f302",
+      "duration_ms": 118000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:2a4b7fff-1813-47f7-ad02-d537d5f6d25a",
+      "track_mbid": "2a4b7fff-1813-47f7-ad02-d537d5f6d25a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 118000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2a4b7fff-1813-47f7-ad02-d537d5f6d25a",
+  "identity": {
+    "album": "Three Cheers For Disappointment",
+    "album_id": "album:1aa6ddb23a07c9e755da",
+    "artist": "The Arrogant Sons of Bitches",
+    "artist_id": "mbid:4678bb93-2720-41f1-8712-41a7d075f302",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2a4b7fff-1813-47f7-ad02-d537d5f6d25a",
+    "source_track_id": "mbid:2a4b7fff-1813-47f7-ad02-d537d5f6d25a",
+    "spotify_id": null,
+    "title": "So Let's Go Nowhere",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-06-28T18:48:17+00:00",
+    "last_scrobble": "2023-06-28T18:48:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Three Cheers For Disappointment",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1aa6ddb23a07c9e755da/album.json",
+    "artist_path": "artists/mb/mbid-4678bb93-2720-41f1-8712-41a7d075f302/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6a65d878-fcd0-42cf-aff9-ca1d636a8bcc","duration_ms":244000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:27c76ce5-4e94-4872-973f-ac1cc7888185","track_mbid":"27c76ce5-4e94-4872-973f-ac1cc7888185"}},"id":"mbid:27c76ce5-4e94-4872-973f-ac1cc7888185","identity":{"album":"What Went Down","album_id":"album:2b9f30a013853e2fe013","artist":"Foals","artist_id":"mbid:6a65d878-fcd0-42cf-aff9-ca1d636a8bcc","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"27c76ce5-4e94-4872-973f-ac1cc7888185","source_track_id":"mbid:27c76ce5-4e94-4872-973f-ac1cc7888185","spotify_id":null,"title":"Mountain at My Gates","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-01-22T21:22:44+00:00","last_scrobble":"2026-01-22T21:22:44+00:00","observed_albums":[{"album":"What Went Down","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2b9f30a013853e2fe013/album.json","artist_path":"artists/mb/mbid-6a65d878-fcd0-42cf-aff9-ca1d636a8bcc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6a65d878-fcd0-42cf-aff9-ca1d636a8bcc",
+      "duration_ms": 244000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:27c76ce5-4e94-4872-973f-ac1cc7888185",
+      "track_mbid": "27c76ce5-4e94-4872-973f-ac1cc7888185",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 244000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:27c76ce5-4e94-4872-973f-ac1cc7888185",
+  "identity": {
+    "album": "What Went Down",
+    "album_id": "album:2b9f30a013853e2fe013",
+    "artist": "Foals",
+    "artist_id": "mbid:6a65d878-fcd0-42cf-aff9-ca1d636a8bcc",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "27c76ce5-4e94-4872-973f-ac1cc7888185",
+    "source_track_id": "mbid:27c76ce5-4e94-4872-973f-ac1cc7888185",
+    "spotify_id": null,
+    "title": "Mountain at My Gates",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-01-22T21:22:44+00:00",
+    "last_scrobble": "2026-01-22T21:22:44+00:00",
+    "observed_albums": [
+      {
+        "album": "What Went Down",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2b9f30a013853e2fe013/album.json",
+    "artist_path": "artists/mb/mbid-6a65d878-fcd0-42cf-aff9-ca1d636a8bcc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

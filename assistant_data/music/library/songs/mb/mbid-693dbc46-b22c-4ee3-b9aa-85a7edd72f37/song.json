@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:194eeda1-e662-43bc-b9be-32fc1afecc8b","duration_ms":244000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:693dbc46-b22c-4ee3-b9aa-85a7edd72f37","track_mbid":"693dbc46-b22c-4ee3-b9aa-85a7edd72f37"}},"id":"mbid:693dbc46-b22c-4ee3-b9aa-85a7edd72f37","identity":{"album":"The Silence In Black and White (Re-Issue)","album_id":"album:ff6c5d1e61d04dc33d7d","artist":"Hawthorne Heights","artist_id":"mbid:194eeda1-e662-43bc-b9be-32fc1afecc8b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"693dbc46-b22c-4ee3-b9aa-85a7edd72f37","source_track_id":"mbid:693dbc46-b22c-4ee3-b9aa-85a7edd72f37","spotify_id":null,"title":"Ohio Is For Lovers","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-07-09T00:56:24+00:00","last_scrobble":"2024-07-09T00:56:24+00:00","observed_albums":[{"album":"The Silence In Black and White (Re-Issue)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ff6c5d1e61d04dc33d7d/album.json","artist_path":"artists/mb/mbid-194eeda1-e662-43bc-b9be-32fc1afecc8b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:194eeda1-e662-43bc-b9be-32fc1afecc8b",
+      "duration_ms": 244000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:693dbc46-b22c-4ee3-b9aa-85a7edd72f37",
+      "track_mbid": "693dbc46-b22c-4ee3-b9aa-85a7edd72f37",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 244000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:693dbc46-b22c-4ee3-b9aa-85a7edd72f37",
+  "identity": {
+    "album": "The Silence In Black and White (Re-Issue)",
+    "album_id": "album:ff6c5d1e61d04dc33d7d",
+    "artist": "Hawthorne Heights",
+    "artist_id": "mbid:194eeda1-e662-43bc-b9be-32fc1afecc8b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "693dbc46-b22c-4ee3-b9aa-85a7edd72f37",
+    "source_track_id": "mbid:693dbc46-b22c-4ee3-b9aa-85a7edd72f37",
+    "spotify_id": null,
+    "title": "Ohio Is For Lovers",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-07-09T00:56:24+00:00",
+    "last_scrobble": "2024-07-09T00:56:24+00:00",
+    "observed_albums": [
+      {
+        "album": "The Silence In Black and White (Re-Issue)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ff6c5d1e61d04dc33d7d/album.json",
+    "artist_path": "artists/mb/mbid-194eeda1-e662-43bc-b9be-32fc1afecc8b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

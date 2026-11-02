@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f0433178-6b43-4a2c-86e1-bbfeb296cdf1","duration_ms":213000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ce8d105e-9398-4d5e-82e8-830f0f62e291","track_mbid":"ce8d105e-9398-4d5e-82e8-830f0f62e291"}},"id":"mbid:ce8d105e-9398-4d5e-82e8-830f0f62e291","identity":{"album":"Hell's Comin' With Me","album_id":"album:efd96d2f6e72bc00a75e","artist":"Poor Man's Poison","artist_id":"mbid:f0433178-6b43-4a2c-86e1-bbfeb296cdf1","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ce8d105e-9398-4d5e-82e8-830f0f62e291","source_track_id":"mbid:ce8d105e-9398-4d5e-82e8-830f0f62e291","spotify_id":null,"title":"Hell's Comin' with Me","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-12-19T23:38:31+00:00","last_scrobble":"2025-12-19T23:38:31+00:00","observed_albums":[{"album":"Hell's Comin' With Me","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-efd96d2f6e72bc00a75e/album.json","artist_path":"artists/mb/mbid-f0433178-6b43-4a2c-86e1-bbfeb296cdf1/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f0433178-6b43-4a2c-86e1-bbfeb296cdf1",
+      "duration_ms": 213000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ce8d105e-9398-4d5e-82e8-830f0f62e291",
+      "track_mbid": "ce8d105e-9398-4d5e-82e8-830f0f62e291",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 213000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ce8d105e-9398-4d5e-82e8-830f0f62e291",
+  "identity": {
+    "album": "Hell's Comin' With Me",
+    "album_id": "album:efd96d2f6e72bc00a75e",
+    "artist": "Poor Man's Poison",
+    "artist_id": "mbid:f0433178-6b43-4a2c-86e1-bbfeb296cdf1",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ce8d105e-9398-4d5e-82e8-830f0f62e291",
+    "source_track_id": "mbid:ce8d105e-9398-4d5e-82e8-830f0f62e291",
+    "spotify_id": null,
+    "title": "Hell's Comin' with Me",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-12-19T23:38:31+00:00",
+    "last_scrobble": "2025-12-19T23:38:31+00:00",
+    "observed_albums": [
+      {
+        "album": "Hell's Comin' With Me",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-efd96d2f6e72bc00a75e/album.json",
+    "artist_path": "artists/mb/mbid-f0433178-6b43-4a2c-86e1-bbfeb296cdf1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

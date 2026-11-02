@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8b79698d-8173-4419-b5db-f57346a65dea","duration_ms":212000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:42:42.506963+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:b1ffe6f6ca07d820"}},"id":"source:b1ffe6f6ca07d820","identity":{"album":"Wild Rose","album_id":"album:bbb624e170206ab8dce6","artist":"Ellem","artist_id":"mbid:8b79698d-8173-4419-b5db-f57346a65dea","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:b1ffe6f6ca07d820","spotify_id":null,"title":"Wild Rose","track_number":null},"listening_context":{"all_time_plays":20,"first_scrobble":"2023-04-10T22:58:38+00:00","last_scrobble":"2024-08-26T01:21:21+00:00","observed_albums":[{"album":"Wild Rose","scrobbles":20}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bbb624e170206ab8dce6/album.json","artist_path":"artists/mb/mbid-8b79698d-8173-4419-b5db-f57346a65dea/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8b79698d-8173-4419-b5db-f57346a65dea",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:42:42.506963+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:b1ffe6f6ca07d820",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:b1ffe6f6ca07d820",
+  "identity": {
+    "album": "Wild Rose",
+    "album_id": "album:bbb624e170206ab8dce6",
+    "artist": "Ellem",
+    "artist_id": "mbid:8b79698d-8173-4419-b5db-f57346a65dea",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:b1ffe6f6ca07d820",
+    "spotify_id": null,
+    "title": "Wild Rose",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 20,
+    "first_scrobble": "2023-04-10T22:58:38+00:00",
+    "last_scrobble": "2024-08-26T01:21:21+00:00",
+    "observed_albums": [
+      {
+        "album": "Wild Rose",
+        "scrobbles": 20
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bbb624e170206ab8dce6/album.json",
+    "artist_path": "artists/mb/mbid-8b79698d-8173-4419-b5db-f57346a65dea/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

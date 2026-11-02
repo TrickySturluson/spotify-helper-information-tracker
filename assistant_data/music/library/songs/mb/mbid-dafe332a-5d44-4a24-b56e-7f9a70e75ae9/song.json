@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:153c9281-268f-4cf3-8938-f5a4593e5df4","duration_ms":378000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:dafe332a-5d44-4a24-b56e-7f9a70e75ae9","track_mbid":"dafe332a-5d44-4a24-b56e-7f9a70e75ae9"}},"id":"mbid:dafe332a-5d44-4a24-b56e-7f9a70e75ae9","identity":{"album":"Superunknown (Deluxe Edition)","album_id":"album:105a4f2e437322caa173","artist":"Soundgarden","artist_id":"mbid:153c9281-268f-4cf3-8938-f5a4593e5df4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"dafe332a-5d44-4a24-b56e-7f9a70e75ae9","source_track_id":"mbid:dafe332a-5d44-4a24-b56e-7f9a70e75ae9","spotify_id":null,"title":"4th of July","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-20T08:01:02+00:00","last_scrobble":"2026-04-20T08:01:02+00:00","observed_albums":[{"album":"Superunknown (Deluxe Edition)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-105a4f2e437322caa173/album.json","artist_path":"artists/mb/mbid-153c9281-268f-4cf3-8938-f5a4593e5df4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:153c9281-268f-4cf3-8938-f5a4593e5df4",
+      "duration_ms": 378000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:dafe332a-5d44-4a24-b56e-7f9a70e75ae9",
+      "track_mbid": "dafe332a-5d44-4a24-b56e-7f9a70e75ae9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 378000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:dafe332a-5d44-4a24-b56e-7f9a70e75ae9",
+  "identity": {
+    "album": "Superunknown (Deluxe Edition)",
+    "album_id": "album:105a4f2e437322caa173",
+    "artist": "Soundgarden",
+    "artist_id": "mbid:153c9281-268f-4cf3-8938-f5a4593e5df4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "dafe332a-5d44-4a24-b56e-7f9a70e75ae9",
+    "source_track_id": "mbid:dafe332a-5d44-4a24-b56e-7f9a70e75ae9",
+    "spotify_id": null,
+    "title": "4th of July",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-20T08:01:02+00:00",
+    "last_scrobble": "2026-04-20T08:01:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Superunknown (Deluxe Edition)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-105a4f2e437322caa173/album.json",
+    "artist_path": "artists/mb/mbid-153c9281-268f-4cf3-8938-f5a4593e5df4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

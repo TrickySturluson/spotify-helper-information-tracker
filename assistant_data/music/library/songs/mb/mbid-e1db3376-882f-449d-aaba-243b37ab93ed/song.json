@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18","duration_ms":241000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e1db3376-882f-449d-aaba-243b37ab93ed","track_mbid":"e1db3376-882f-449d-aaba-243b37ab93ed"}},"id":"mbid:e1db3376-882f-449d-aaba-243b37ab93ed","identity":{"album":"Pelicans We","album_id":"album:b8b6d639e1efec3678e9","artist":"Cosmo Sheldrake","artist_id":"mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e1db3376-882f-449d-aaba-243b37ab93ed","source_track_id":"mbid:e1db3376-882f-449d-aaba-243b37ab93ed","spotify_id":null,"title":"Tardigrade Song","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-04-22T14:50:18+00:00","last_scrobble":"2024-04-25T19:16:29+00:00","observed_albums":[{"album":"Pelicans We","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b8b6d639e1efec3678e9/album.json","artist_path":"artists/mb/mbid-fda925d2-7af4-4b67-b8c1-692292c9cb18/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18",
+      "duration_ms": 241000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e1db3376-882f-449d-aaba-243b37ab93ed",
+      "track_mbid": "e1db3376-882f-449d-aaba-243b37ab93ed",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 241000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e1db3376-882f-449d-aaba-243b37ab93ed",
+  "identity": {
+    "album": "Pelicans We",
+    "album_id": "album:b8b6d639e1efec3678e9",
+    "artist": "Cosmo Sheldrake",
+    "artist_id": "mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e1db3376-882f-449d-aaba-243b37ab93ed",
+    "source_track_id": "mbid:e1db3376-882f-449d-aaba-243b37ab93ed",
+    "spotify_id": null,
+    "title": "Tardigrade Song",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-04-22T14:50:18+00:00",
+    "last_scrobble": "2024-04-25T19:16:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Pelicans We",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b8b6d639e1efec3678e9/album.json",
+    "artist_path": "artists/mb/mbid-fda925d2-7af4-4b67-b8c1-692292c9cb18/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

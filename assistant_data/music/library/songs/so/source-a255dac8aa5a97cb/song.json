@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:30eaa7be82d7f06b","duration_ms":182000,"duration_source":"Last.fm track.getInfo","track_id":"track:a255dac8aa5a97cb"}},"id":"source:a255dac8aa5a97cb","identity":{"album":"Nancy-Mae","album_id":"album:7fd9d59c01077f61b8cd","artist":"Suzanne Tripp","artist_id":"name:30eaa7be82d7f06b","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:a255dac8aa5a97cb","spotify_id":null,"title":"Nancy-Mae","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-06-01T17:06:39+00:00","last_scrobble":"2026-06-01T17:06:39+00:00","observed_albums":[{"album":"Nancy-Mae","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7fd9d59c01077f61b8cd/album.json","artist_path":"artists/na/name-30eaa7be82d7f06b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:30eaa7be82d7f06b",
+      "duration_ms": 182000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:a255dac8aa5a97cb",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 182000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:a255dac8aa5a97cb",
+  "identity": {
+    "album": "Nancy-Mae",
+    "album_id": "album:7fd9d59c01077f61b8cd",
+    "artist": "Suzanne Tripp",
+    "artist_id": "name:30eaa7be82d7f06b",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:a255dac8aa5a97cb",
+    "spotify_id": null,
+    "title": "Nancy-Mae",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-06-01T17:06:39+00:00",
+    "last_scrobble": "2026-06-01T17:06:39+00:00",
+    "observed_albums": [
+      {
+        "album": "Nancy-Mae",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7fd9d59c01077f61b8cd/album.json",
+    "artist_path": "artists/na/name-30eaa7be82d7f06b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

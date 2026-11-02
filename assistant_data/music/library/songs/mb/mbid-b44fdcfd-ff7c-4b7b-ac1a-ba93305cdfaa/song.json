@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a3ae199e-e15f-4967-b9ae-f94b9c4138f2","duration_ms":204000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa","track_mbid":"b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa"}},"id":"mbid:b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa","identity":{"album":"You Knew","album_id":"album:b97449976d8768ff8545","artist":"Mother Falcon","artist_id":"mbid:a3ae199e-e15f-4967-b9ae-f94b9c4138f2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa","source_track_id":"mbid:b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa","spotify_id":null,"title":"Dirty Summer","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-06-05T05:37:59+00:00","last_scrobble":"2023-06-05T07:14:26+00:00","observed_albums":[{"album":"You Knew","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b97449976d8768ff8545/album.json","artist_path":"artists/mb/mbid-a3ae199e-e15f-4967-b9ae-f94b9c4138f2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a3ae199e-e15f-4967-b9ae-f94b9c4138f2",
+      "duration_ms": 204000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa",
+      "track_mbid": "b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 204000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa",
+  "identity": {
+    "album": "You Knew",
+    "album_id": "album:b97449976d8768ff8545",
+    "artist": "Mother Falcon",
+    "artist_id": "mbid:a3ae199e-e15f-4967-b9ae-f94b9c4138f2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa",
+    "source_track_id": "mbid:b44fdcfd-ff7c-4b7b-ac1a-ba93305cdfaa",
+    "spotify_id": null,
+    "title": "Dirty Summer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-06-05T05:37:59+00:00",
+    "last_scrobble": "2023-06-05T07:14:26+00:00",
+    "observed_albums": [
+      {
+        "album": "You Knew",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b97449976d8768ff8545/album.json",
+    "artist_path": "artists/mb/mbid-a3ae199e-e15f-4967-b9ae-f94b9c4138f2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

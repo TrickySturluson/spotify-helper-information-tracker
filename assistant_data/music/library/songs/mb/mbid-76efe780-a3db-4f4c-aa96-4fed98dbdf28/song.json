@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ae9082a4-854c-44e9-b3aa-45743326ada2","duration_ms":200000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:76efe780-a3db-4f4c-aa96-4fed98dbdf28","track_mbid":"76efe780-a3db-4f4c-aa96-4fed98dbdf28"}},"id":"mbid:76efe780-a3db-4f4c-aa96-4fed98dbdf28","identity":{"album":"Your Looks Can't Save You","album_id":"album:ce48dbb514105fd722ea","artist":"Mickey Darling","artist_id":"mbid:ae9082a4-854c-44e9-b3aa-45743326ada2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"76efe780-a3db-4f4c-aa96-4fed98dbdf28","source_track_id":"mbid:76efe780-a3db-4f4c-aa96-4fed98dbdf28","spotify_id":null,"title":"Your Looks Can't Save You","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-03-13T06:56:02+00:00","last_scrobble":"2025-03-13T06:56:02+00:00","observed_albums":[{"album":"Your Looks Can't Save You","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ce48dbb514105fd722ea/album.json","artist_path":"artists/mb/mbid-ae9082a4-854c-44e9-b3aa-45743326ada2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ae9082a4-854c-44e9-b3aa-45743326ada2",
+      "duration_ms": 200000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:76efe780-a3db-4f4c-aa96-4fed98dbdf28",
+      "track_mbid": "76efe780-a3db-4f4c-aa96-4fed98dbdf28",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 200000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:76efe780-a3db-4f4c-aa96-4fed98dbdf28",
+  "identity": {
+    "album": "Your Looks Can't Save You",
+    "album_id": "album:ce48dbb514105fd722ea",
+    "artist": "Mickey Darling",
+    "artist_id": "mbid:ae9082a4-854c-44e9-b3aa-45743326ada2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "76efe780-a3db-4f4c-aa96-4fed98dbdf28",
+    "source_track_id": "mbid:76efe780-a3db-4f4c-aa96-4fed98dbdf28",
+    "spotify_id": null,
+    "title": "Your Looks Can't Save You",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-03-13T06:56:02+00:00",
+    "last_scrobble": "2025-03-13T06:56:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Your Looks Can't Save You",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ce48dbb514105fd722ea/album.json",
+    "artist_path": "artists/mb/mbid-ae9082a4-854c-44e9-b3aa-45743326ada2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

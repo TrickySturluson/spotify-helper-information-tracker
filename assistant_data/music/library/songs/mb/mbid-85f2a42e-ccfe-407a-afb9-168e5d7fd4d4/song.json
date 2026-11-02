@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d","duration_ms":236000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T06:00:26.367934+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T06:00:27.003065+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4","track_mbid":"85f2a42e-ccfe-407a-afb9-168e5d7fd4d4"}},"id":"mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4","identity":{"album":"We Are Stardust","album_id":"album:2abc6fcc9f561aa77236","artist":"LukHash","artist_id":"mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d","identity_quality":"verified_recording","recording_mbid":"85f2a42e-ccfe-407a-afb9-168e5d7fd4d4","source_track_id":"mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4","spotify_id":null,"title":"Code Veronica"},"listening_context":{"all_time_plays":17,"first_scrobble":"2026-10-14T00:54:31+00:00","last_scrobble":"2026-10-29T04:52:50+00:00","observed_albums":[{"album":"We Are Stardust","scrobbles":17}],"priority_playlist_ids":[],"recent_plays":17,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2abc6fcc9f561aa77236/album.json","artist_path":"artists/mb/mbid-ed9e6bc3-9714-4b07-a401-30fbf0a60d4d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d",
+      "duration_ms": 236000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T06:00:26.367934+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T06:00:27.003065+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+      "track_mbid": "85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 236000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+  "identity": {
+    "album": "We Are Stardust",
+    "album_id": "album:2abc6fcc9f561aa77236",
+    "artist": "LukHash",
+    "artist_id": "mbid:ed9e6bc3-9714-4b07-a401-30fbf0a60d4d",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+    "source_track_id": "mbid:85f2a42e-ccfe-407a-afb9-168e5d7fd4d4",
+    "spotify_id": null,
+    "title": "Code Veronica"
+  },
+  "listening_context": {
+    "all_time_plays": 17,
+    "first_scrobble": "2026-10-14T00:54:31+00:00",
+    "last_scrobble": "2026-10-29T04:52:50+00:00",
+    "observed_albums": [
+      {
+        "album": "We Are Stardust",
+        "scrobbles": 17
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 17,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2abc6fcc9f561aa77236/album.json",
+    "artist_path": "artists/mb/mbid-ed9e6bc3-9714-4b07-a401-30fbf0a60d4d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

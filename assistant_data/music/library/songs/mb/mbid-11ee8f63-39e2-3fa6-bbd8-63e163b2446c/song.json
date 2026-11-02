@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9ab19acf-06d9-4c92-bd5a-8c945488d45b","duration_ms":298000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:11ee8f63-39e2-3fa6-bbd8-63e163b2446c","track_mbid":"11ee8f63-39e2-3fa6-bbd8-63e163b2446c"}},"id":"mbid:11ee8f63-39e2-3fa6-bbd8-63e163b2446c","identity":{"album":"D-12 World","album_id":"album:066f578c6da9ca1e504d","artist":"D12","artist_id":"mbid:9ab19acf-06d9-4c92-bd5a-8c945488d45b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"11ee8f63-39e2-3fa6-bbd8-63e163b2446c","source_track_id":"mbid:11ee8f63-39e2-3fa6-bbd8-63e163b2446c","spotify_id":null,"title":"My Band","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-08-01T17:19:53+00:00","last_scrobble":"2025-01-04T18:51:08+00:00","observed_albums":[{"album":"D-12 World","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-066f578c6da9ca1e504d/album.json","artist_path":"artists/mb/mbid-9ab19acf-06d9-4c92-bd5a-8c945488d45b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9ab19acf-06d9-4c92-bd5a-8c945488d45b",
+      "duration_ms": 298000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:11ee8f63-39e2-3fa6-bbd8-63e163b2446c",
+      "track_mbid": "11ee8f63-39e2-3fa6-bbd8-63e163b2446c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 298000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:11ee8f63-39e2-3fa6-bbd8-63e163b2446c",
+  "identity": {
+    "album": "D-12 World",
+    "album_id": "album:066f578c6da9ca1e504d",
+    "artist": "D12",
+    "artist_id": "mbid:9ab19acf-06d9-4c92-bd5a-8c945488d45b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "11ee8f63-39e2-3fa6-bbd8-63e163b2446c",
+    "source_track_id": "mbid:11ee8f63-39e2-3fa6-bbd8-63e163b2446c",
+    "spotify_id": null,
+    "title": "My Band",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-08-01T17:19:53+00:00",
+    "last_scrobble": "2025-01-04T18:51:08+00:00",
+    "observed_albums": [
+      {
+        "album": "D-12 World",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-066f578c6da9ca1e504d/album.json",
+    "artist_path": "artists/mb/mbid-9ab19acf-06d9-4c92-bd5a-8c945488d45b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

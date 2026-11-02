@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:68c39cd1b2a9a89f","duration_ms":58000,"duration_source":"Last.fm track.getInfo","track_id":"track:7c4e00761773f143"}},"id":"source:7c4e00761773f143","identity":{"album":"Effective. Power","album_id":"album:61df9a3b25bdfe50a3d7","artist":"MIMIDEATH","artist_id":"name:68c39cd1b2a9a89f","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:7c4e00761773f143","spotify_id":null,"title":"if god didnt want us to snort worms he wouldn't have made them cylindrical!","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-04-08T15:24:10+00:00","last_scrobble":"2023-04-08T15:24:10+00:00","observed_albums":[{"album":"Effective. Power","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-61df9a3b25bdfe50a3d7/album.json","artist_path":"artists/na/name-68c39cd1b2a9a89f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:68c39cd1b2a9a89f",
+      "duration_ms": 58000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:7c4e00761773f143",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 58000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:7c4e00761773f143",
+  "identity": {
+    "album": "Effective. Power",
+    "album_id": "album:61df9a3b25bdfe50a3d7",
+    "artist": "MIMIDEATH",
+    "artist_id": "name:68c39cd1b2a9a89f",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:7c4e00761773f143",
+    "spotify_id": null,
+    "title": "if god didnt want us to snort worms he wouldn't have made them cylindrical!",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-04-08T15:24:10+00:00",
+    "last_scrobble": "2023-04-08T15:24:10+00:00",
+    "observed_albums": [
+      {
+        "album": "Effective. Power",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-61df9a3b25bdfe50a3d7/album.json",
+    "artist_path": "artists/na/name-68c39cd1b2a9a89f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

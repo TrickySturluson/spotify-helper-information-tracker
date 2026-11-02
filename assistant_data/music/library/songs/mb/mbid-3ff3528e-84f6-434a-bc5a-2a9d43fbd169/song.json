@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9d5d6f06-2f63-4d13-98e7-c890fa52ad9c","duration_ms":184000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3ff3528e-84f6-434a-bc5a-2a9d43fbd169","track_mbid":"3ff3528e-84f6-434a-bc5a-2a9d43fbd169"}},"id":"mbid:3ff3528e-84f6-434a-bc5a-2a9d43fbd169","identity":{"album":"Night in the Woods","album_id":"album:499d89aed597e72cdaf5","artist":"Gender Chores","artist_id":"mbid:9d5d6f06-2f63-4d13-98e7-c890fa52ad9c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3ff3528e-84f6-434a-bc5a-2a9d43fbd169","source_track_id":"mbid:3ff3528e-84f6-434a-bc5a-2a9d43fbd169","spotify_id":null,"title":"Night in the Woods","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-06-02T22:13:30+00:00","last_scrobble":"2023-06-04T06:29:09+00:00","observed_albums":[{"album":"Night in the Woods","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-499d89aed597e72cdaf5/album.json","artist_path":"artists/mb/mbid-9d5d6f06-2f63-4d13-98e7-c890fa52ad9c/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9d5d6f06-2f63-4d13-98e7-c890fa52ad9c",
+      "duration_ms": 184000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3ff3528e-84f6-434a-bc5a-2a9d43fbd169",
+      "track_mbid": "3ff3528e-84f6-434a-bc5a-2a9d43fbd169",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 184000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3ff3528e-84f6-434a-bc5a-2a9d43fbd169",
+  "identity": {
+    "album": "Night in the Woods",
+    "album_id": "album:499d89aed597e72cdaf5",
+    "artist": "Gender Chores",
+    "artist_id": "mbid:9d5d6f06-2f63-4d13-98e7-c890fa52ad9c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3ff3528e-84f6-434a-bc5a-2a9d43fbd169",
+    "source_track_id": "mbid:3ff3528e-84f6-434a-bc5a-2a9d43fbd169",
+    "spotify_id": null,
+    "title": "Night in the Woods",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-06-02T22:13:30+00:00",
+    "last_scrobble": "2023-06-04T06:29:09+00:00",
+    "observed_albums": [
+      {
+        "album": "Night in the Woods",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-499d89aed597e72cdaf5/album.json",
+    "artist_path": "artists/mb/mbid-9d5d6f06-2f63-4d13-98e7-c890fa52ad9c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

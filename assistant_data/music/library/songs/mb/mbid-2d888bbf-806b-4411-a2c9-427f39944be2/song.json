@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:f4593566fdf9f7de","duration_ms":130000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:2d888bbf-806b-4411-a2c9-427f39944be2","track_mbid":"2d888bbf-806b-4411-a2c9-427f39944be2"}},"id":"mbid:2d888bbf-806b-4411-a2c9-427f39944be2","identity":{"album":"魚の夜夢の夜","album_id":"album:5187d3568a37f47ac8de","artist":"Koronba","artist_id":"name:f4593566fdf9f7de","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2d888bbf-806b-4411-a2c9-427f39944be2","source_track_id":"mbid:2d888bbf-806b-4411-a2c9-427f39944be2","spotify_id":null,"title":"0330","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2024-06-22T18:44:03+00:00","last_scrobble":"2024-06-23T04:36:45+00:00","observed_albums":[{"album":"魚の夜夢の夜","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5187d3568a37f47ac8de/album.json","artist_path":"artists/na/name-f4593566fdf9f7de/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:f4593566fdf9f7de",
+      "duration_ms": 130000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:2d888bbf-806b-4411-a2c9-427f39944be2",
+      "track_mbid": "2d888bbf-806b-4411-a2c9-427f39944be2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 130000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2d888bbf-806b-4411-a2c9-427f39944be2",
+  "identity": {
+    "album": "魚の夜夢の夜",
+    "album_id": "album:5187d3568a37f47ac8de",
+    "artist": "Koronba",
+    "artist_id": "name:f4593566fdf9f7de",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2d888bbf-806b-4411-a2c9-427f39944be2",
+    "source_track_id": "mbid:2d888bbf-806b-4411-a2c9-427f39944be2",
+    "spotify_id": null,
+    "title": "0330",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2024-06-22T18:44:03+00:00",
+    "last_scrobble": "2024-06-23T04:36:45+00:00",
+    "observed_albums": [
+      {
+        "album": "魚の夜夢の夜",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5187d3568a37f47ac8de/album.json",
+    "artist_path": "artists/na/name-f4593566fdf9f7de/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:82510cff-d816-43a1-8236-fd6ea4301230","duration_ms":234000,"duration_source":"Last.fm track.getInfo","track_id":"track:b81da8de9a459fac"}},"id":"source:b81da8de9a459fac","identity":{"album":"Circus","album_id":"album:1af252cae5bb45a00543","artist":"Sandhouse","artist_id":"mbid:82510cff-d816-43a1-8236-fd6ea4301230","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:b81da8de9a459fac","spotify_id":null,"title":"Bite Me Back","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2025-07-28T21:23:05+00:00","last_scrobble":"2025-07-31T21:11:58+00:00","observed_albums":[{"album":"Circus","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1af252cae5bb45a00543/album.json","artist_path":"artists/mb/mbid-82510cff-d816-43a1-8236-fd6ea4301230/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:82510cff-d816-43a1-8236-fd6ea4301230",
+      "duration_ms": 234000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:b81da8de9a459fac",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 234000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:b81da8de9a459fac",
+  "identity": {
+    "album": "Circus",
+    "album_id": "album:1af252cae5bb45a00543",
+    "artist": "Sandhouse",
+    "artist_id": "mbid:82510cff-d816-43a1-8236-fd6ea4301230",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:b81da8de9a459fac",
+    "spotify_id": null,
+    "title": "Bite Me Back",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2025-07-28T21:23:05+00:00",
+    "last_scrobble": "2025-07-31T21:11:58+00:00",
+    "observed_albums": [
+      {
+        "album": "Circus",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1af252cae5bb45a00543/album.json",
+    "artist_path": "artists/mb/mbid-82510cff-d816-43a1-8236-fd6ea4301230/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

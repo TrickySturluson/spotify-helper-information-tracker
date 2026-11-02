@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c","duration_ms":243000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:501819a7-e8b0-34ac-801e-6340e6f66503","track_mbid":"501819a7-e8b0-34ac-801e-6340e6f66503"}},"id":"mbid:501819a7-e8b0-34ac-801e-6340e6f66503","identity":{"album":"Cowboys From Hell","album_id":"album:dc55a28f5a00ba2a0f63","artist":"Pantera","artist_id":"mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"501819a7-e8b0-34ac-801e-6340e6f66503","source_track_id":"mbid:501819a7-e8b0-34ac-801e-6340e6f66503","spotify_id":null,"title":"Cowboys From Hell","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-07-04T08:18:01+00:00","last_scrobble":"2025-07-04T08:18:01+00:00","observed_albums":[{"album":"Cowboys From Hell","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-dc55a28f5a00ba2a0f63/album.json","artist_path":"artists/mb/mbid-541f16f5-ad7a-428e-af89-9fa1b16d3c9c/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c",
+      "duration_ms": 243000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:501819a7-e8b0-34ac-801e-6340e6f66503",
+      "track_mbid": "501819a7-e8b0-34ac-801e-6340e6f66503",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 243000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:501819a7-e8b0-34ac-801e-6340e6f66503",
+  "identity": {
+    "album": "Cowboys From Hell",
+    "album_id": "album:dc55a28f5a00ba2a0f63",
+    "artist": "Pantera",
+    "artist_id": "mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "501819a7-e8b0-34ac-801e-6340e6f66503",
+    "source_track_id": "mbid:501819a7-e8b0-34ac-801e-6340e6f66503",
+    "spotify_id": null,
+    "title": "Cowboys From Hell",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-07-04T08:18:01+00:00",
+    "last_scrobble": "2025-07-04T08:18:01+00:00",
+    "observed_albums": [
+      {
+        "album": "Cowboys From Hell",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-dc55a28f5a00ba2a0f63/album.json",
+    "artist_path": "artists/mb/mbid-541f16f5-ad7a-428e-af89-9fa1b16d3c9c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

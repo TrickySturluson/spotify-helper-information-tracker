@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:eb83bc31-5ae2-4d68-849c-c5adfcdcf15a","duration_ms":288000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b90401c2-97eb-49e1-8ad5-609c7f3cac85","track_mbid":"b90401c2-97eb-49e1-8ad5-609c7f3cac85"}},"id":"mbid:b90401c2-97eb-49e1-8ad5-609c7f3cac85","identity":{"album":"Cojum Dip","album_id":"album:4723feb28ad2b006f5ae","artist":"Cojum Dip","artist_id":"mbid:eb83bc31-5ae2-4d68-849c-c5adfcdcf15a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b90401c2-97eb-49e1-8ad5-609c7f3cac85","source_track_id":"mbid:b90401c2-97eb-49e1-8ad5-609c7f3cac85","spotify_id":null,"title":"Cell","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-09-11T05:02:54+00:00","last_scrobble":"2023-09-11T10:08:24+00:00","observed_albums":[{"album":"Cojum Dip","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4723feb28ad2b006f5ae/album.json","artist_path":"artists/mb/mbid-eb83bc31-5ae2-4d68-849c-c5adfcdcf15a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:eb83bc31-5ae2-4d68-849c-c5adfcdcf15a",
+      "duration_ms": 288000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b90401c2-97eb-49e1-8ad5-609c7f3cac85",
+      "track_mbid": "b90401c2-97eb-49e1-8ad5-609c7f3cac85",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 288000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b90401c2-97eb-49e1-8ad5-609c7f3cac85",
+  "identity": {
+    "album": "Cojum Dip",
+    "album_id": "album:4723feb28ad2b006f5ae",
+    "artist": "Cojum Dip",
+    "artist_id": "mbid:eb83bc31-5ae2-4d68-849c-c5adfcdcf15a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b90401c2-97eb-49e1-8ad5-609c7f3cac85",
+    "source_track_id": "mbid:b90401c2-97eb-49e1-8ad5-609c7f3cac85",
+    "spotify_id": null,
+    "title": "Cell",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-09-11T05:02:54+00:00",
+    "last_scrobble": "2023-09-11T10:08:24+00:00",
+    "observed_albums": [
+      {
+        "album": "Cojum Dip",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4723feb28ad2b006f5ae/album.json",
+    "artist_path": "artists/mb/mbid-eb83bc31-5ae2-4d68-849c-c5adfcdcf15a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

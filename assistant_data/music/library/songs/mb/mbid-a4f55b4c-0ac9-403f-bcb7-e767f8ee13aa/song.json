@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5df148ae-78eb-495a-8a0b-d16f3105992d","duration_ms":179000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa","track_mbid":"a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa"}},"id":"mbid:a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa","identity":{"album":"THE END OF EVERYTHING","album_id":"album:aa855c629c53844b195c","artist":"Noah Cyrus","artist_id":"mbid:5df148ae-78eb-495a-8a0b-d16f3105992d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa","source_track_id":"mbid:a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa","spotify_id":null,"title":"July","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-01-06T05:16:55+00:00","last_scrobble":"2024-01-06T05:16:55+00:00","observed_albums":[{"album":"THE END OF EVERYTHING","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-aa855c629c53844b195c/album.json","artist_path":"artists/mb/mbid-5df148ae-78eb-495a-8a0b-d16f3105992d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5df148ae-78eb-495a-8a0b-d16f3105992d",
+      "duration_ms": 179000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa",
+      "track_mbid": "a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 179000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa",
+  "identity": {
+    "album": "THE END OF EVERYTHING",
+    "album_id": "album:aa855c629c53844b195c",
+    "artist": "Noah Cyrus",
+    "artist_id": "mbid:5df148ae-78eb-495a-8a0b-d16f3105992d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa",
+    "source_track_id": "mbid:a4f55b4c-0ac9-403f-bcb7-e767f8ee13aa",
+    "spotify_id": null,
+    "title": "July",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-01-06T05:16:55+00:00",
+    "last_scrobble": "2024-01-06T05:16:55+00:00",
+    "observed_albums": [
+      {
+        "album": "THE END OF EVERYTHING",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-aa855c629c53844b195c/album.json",
+    "artist_path": "artists/mb/mbid-5df148ae-78eb-495a-8a0b-d16f3105992d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

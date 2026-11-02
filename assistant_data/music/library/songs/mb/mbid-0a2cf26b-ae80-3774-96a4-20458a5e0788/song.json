@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d8df7087-06d5-4545-9024-831bb8558ad1","duration_ms":256000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0a2cf26b-ae80-3774-96a4-20458a5e0788","track_mbid":"0a2cf26b-ae80-3774-96a4-20458a5e0788"}},"id":"mbid:0a2cf26b-ae80-3774-96a4-20458a5e0788","identity":{"album":"JoCo Looks Back","album_id":"album:e36e9069a72cae8d6a8b","artist":"Jonathan Coulton","artist_id":"mbid:d8df7087-06d5-4545-9024-831bb8558ad1","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0a2cf26b-ae80-3774-96a4-20458a5e0788","source_track_id":"mbid:0a2cf26b-ae80-3774-96a4-20458a5e0788","spotify_id":null,"title":"Skullcrusher Mountain","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-18T20:25:56+00:00","last_scrobble":"2024-11-18T20:25:56+00:00","observed_albums":[{"album":"JoCo Looks Back","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e36e9069a72cae8d6a8b/album.json","artist_path":"artists/mb/mbid-d8df7087-06d5-4545-9024-831bb8558ad1/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d8df7087-06d5-4545-9024-831bb8558ad1",
+      "duration_ms": 256000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0a2cf26b-ae80-3774-96a4-20458a5e0788",
+      "track_mbid": "0a2cf26b-ae80-3774-96a4-20458a5e0788",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 256000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0a2cf26b-ae80-3774-96a4-20458a5e0788",
+  "identity": {
+    "album": "JoCo Looks Back",
+    "album_id": "album:e36e9069a72cae8d6a8b",
+    "artist": "Jonathan Coulton",
+    "artist_id": "mbid:d8df7087-06d5-4545-9024-831bb8558ad1",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0a2cf26b-ae80-3774-96a4-20458a5e0788",
+    "source_track_id": "mbid:0a2cf26b-ae80-3774-96a4-20458a5e0788",
+    "spotify_id": null,
+    "title": "Skullcrusher Mountain",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-18T20:25:56+00:00",
+    "last_scrobble": "2024-11-18T20:25:56+00:00",
+    "observed_albums": [
+      {
+        "album": "JoCo Looks Back",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e36e9069a72cae8d6a8b/album.json",
+    "artist_path": "artists/mb/mbid-d8df7087-06d5-4545-9024-831bb8558ad1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

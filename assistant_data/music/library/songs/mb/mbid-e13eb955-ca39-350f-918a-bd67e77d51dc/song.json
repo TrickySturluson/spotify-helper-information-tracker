@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:540e9359-4360-4694-95fc-ba42be67bf03","duration_ms":223000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e13eb955-ca39-350f-918a-bd67e77d51dc","track_mbid":"e13eb955-ca39-350f-918a-bd67e77d51dc"}},"id":"mbid:e13eb955-ca39-350f-918a-bd67e77d51dc","identity":{"album":"SWAX","album_id":"album:1b5a3a14db3c3c215c3c","artist":"Scapegoat Wax","artist_id":"mbid:540e9359-4360-4694-95fc-ba42be67bf03","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e13eb955-ca39-350f-918a-bd67e77d51dc","source_track_id":"mbid:e13eb955-ca39-350f-918a-bd67e77d51dc","spotify_id":null,"title":"Aisle 10 (Hello Allison)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-02-05T23:27:33+00:00","last_scrobble":"2024-02-05T23:27:33+00:00","observed_albums":[{"album":"SWAX","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1b5a3a14db3c3c215c3c/album.json","artist_path":"artists/mb/mbid-540e9359-4360-4694-95fc-ba42be67bf03/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:540e9359-4360-4694-95fc-ba42be67bf03",
+      "duration_ms": 223000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e13eb955-ca39-350f-918a-bd67e77d51dc",
+      "track_mbid": "e13eb955-ca39-350f-918a-bd67e77d51dc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 223000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e13eb955-ca39-350f-918a-bd67e77d51dc",
+  "identity": {
+    "album": "SWAX",
+    "album_id": "album:1b5a3a14db3c3c215c3c",
+    "artist": "Scapegoat Wax",
+    "artist_id": "mbid:540e9359-4360-4694-95fc-ba42be67bf03",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e13eb955-ca39-350f-918a-bd67e77d51dc",
+    "source_track_id": "mbid:e13eb955-ca39-350f-918a-bd67e77d51dc",
+    "spotify_id": null,
+    "title": "Aisle 10 (Hello Allison)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-02-05T23:27:33+00:00",
+    "last_scrobble": "2024-02-05T23:27:33+00:00",
+    "observed_albums": [
+      {
+        "album": "SWAX",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1b5a3a14db3c3c215c3c/album.json",
+    "artist_path": "artists/mb/mbid-540e9359-4360-4694-95fc-ba42be67bf03/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:eb212bb2faeeaf8f","duration_ms":390000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:a5f8e223-0247-483c-ae93-d07581cf8b7e","track_mbid":"a5f8e223-0247-483c-ae93-d07581cf8b7e"}},"id":"mbid:a5f8e223-0247-483c-ae93-d07581cf8b7e","identity":{"album":"Dripping","album_id":"album:b5e236bf0b3d3f186bc4","artist":"Pile","artist_id":"name:eb212bb2faeeaf8f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a5f8e223-0247-483c-ae93-d07581cf8b7e","source_track_id":"mbid:a5f8e223-0247-483c-ae93-d07581cf8b7e","spotify_id":null,"title":"The Jones","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2023-04-04T07:00:11+00:00","last_scrobble":"2023-04-07T10:49:29+00:00","observed_albums":[{"album":"Dripping","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b5e236bf0b3d3f186bc4/album.json","artist_path":"artists/na/name-eb212bb2faeeaf8f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:eb212bb2faeeaf8f",
+      "duration_ms": 390000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:a5f8e223-0247-483c-ae93-d07581cf8b7e",
+      "track_mbid": "a5f8e223-0247-483c-ae93-d07581cf8b7e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 390000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a5f8e223-0247-483c-ae93-d07581cf8b7e",
+  "identity": {
+    "album": "Dripping",
+    "album_id": "album:b5e236bf0b3d3f186bc4",
+    "artist": "Pile",
+    "artist_id": "name:eb212bb2faeeaf8f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a5f8e223-0247-483c-ae93-d07581cf8b7e",
+    "source_track_id": "mbid:a5f8e223-0247-483c-ae93-d07581cf8b7e",
+    "spotify_id": null,
+    "title": "The Jones",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2023-04-04T07:00:11+00:00",
+    "last_scrobble": "2023-04-07T10:49:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Dripping",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b5e236bf0b3d3f186bc4/album.json",
+    "artist_path": "artists/na/name-eb212bb2faeeaf8f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

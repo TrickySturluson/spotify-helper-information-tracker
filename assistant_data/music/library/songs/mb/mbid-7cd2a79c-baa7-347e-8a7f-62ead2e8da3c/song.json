@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:70178a609a4bb27a","duration_ms":132000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7cd2a79c-baa7-347e-8a7f-62ead2e8da3c","track_mbid":"7cd2a79c-baa7-347e-8a7f-62ead2e8da3c"}},"id":"mbid:7cd2a79c-baa7-347e-8a7f-62ead2e8da3c","identity":{"album":"Maniac Meat","album_id":"album:510fd46d2c20ee883e99","artist":"Tobacco","artist_id":"name:70178a609a4bb27a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7cd2a79c-baa7-347e-8a7f-62ead2e8da3c","source_track_id":"mbid:7cd2a79c-baa7-347e-8a7f-62ead2e8da3c","spotify_id":null,"title":"Sweatmother","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-09T01:51:07+00:00","last_scrobble":"2026-05-09T01:51:07+00:00","observed_albums":[{"album":"Maniac Meat","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-510fd46d2c20ee883e99/album.json","artist_path":"artists/na/name-70178a609a4bb27a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:70178a609a4bb27a",
+      "duration_ms": 132000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7cd2a79c-baa7-347e-8a7f-62ead2e8da3c",
+      "track_mbid": "7cd2a79c-baa7-347e-8a7f-62ead2e8da3c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 132000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7cd2a79c-baa7-347e-8a7f-62ead2e8da3c",
+  "identity": {
+    "album": "Maniac Meat",
+    "album_id": "album:510fd46d2c20ee883e99",
+    "artist": "Tobacco",
+    "artist_id": "name:70178a609a4bb27a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7cd2a79c-baa7-347e-8a7f-62ead2e8da3c",
+    "source_track_id": "mbid:7cd2a79c-baa7-347e-8a7f-62ead2e8da3c",
+    "spotify_id": null,
+    "title": "Sweatmother",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-09T01:51:07+00:00",
+    "last_scrobble": "2026-05-09T01:51:07+00:00",
+    "observed_albums": [
+      {
+        "album": "Maniac Meat",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-510fd46d2c20ee883e99/album.json",
+    "artist_path": "artists/na/name-70178a609a4bb27a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

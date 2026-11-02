@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a6c6897a-7415-4f8d-b5a5-3a5e05f3be67","duration_ms":202000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:46bb3e3a-eb7a-4092-90dd-b705292f49d7","track_mbid":"46bb3e3a-eb7a-4092-90dd-b705292f49d7"}},"id":"mbid:46bb3e3a-eb7a-4092-90dd-b705292f49d7","identity":{"album":"Blurryface","album_id":"album:8b516553be9672c896f8","artist":"Twenty One Pilots","artist_id":"mbid:a6c6897a-7415-4f8d-b5a5-3a5e05f3be67","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"46bb3e3a-eb7a-4092-90dd-b705292f49d7","source_track_id":"mbid:46bb3e3a-eb7a-4092-90dd-b705292f49d7","spotify_id":null,"title":"Stressed Out","track_number":null},"listening_context":{"all_time_plays":12,"first_scrobble":"2023-12-20T19:33:58+00:00","last_scrobble":"2025-10-23T16:35:28+00:00","observed_albums":[{"album":"Blurryface","scrobbles":12}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8b516553be9672c896f8/album.json","artist_path":"artists/mb/mbid-a6c6897a-7415-4f8d-b5a5-3a5e05f3be67/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+      "duration_ms": 202000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:46bb3e3a-eb7a-4092-90dd-b705292f49d7",
+      "track_mbid": "46bb3e3a-eb7a-4092-90dd-b705292f49d7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 202000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:46bb3e3a-eb7a-4092-90dd-b705292f49d7",
+  "identity": {
+    "album": "Blurryface",
+    "album_id": "album:8b516553be9672c896f8",
+    "artist": "Twenty One Pilots",
+    "artist_id": "mbid:a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "46bb3e3a-eb7a-4092-90dd-b705292f49d7",
+    "source_track_id": "mbid:46bb3e3a-eb7a-4092-90dd-b705292f49d7",
+    "spotify_id": null,
+    "title": "Stressed Out",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 12,
+    "first_scrobble": "2023-12-20T19:33:58+00:00",
+    "last_scrobble": "2025-10-23T16:35:28+00:00",
+    "observed_albums": [
+      {
+        "album": "Blurryface",
+        "scrobbles": 12
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8b516553be9672c896f8/album.json",
+    "artist_path": "artists/mb/mbid-a6c6897a-7415-4f8d-b5a5-3a5e05f3be67/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

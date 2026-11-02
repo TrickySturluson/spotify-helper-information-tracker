@@ -1,1 +1,125 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{"analyzed_at":"2026-11-01T15:09:23.127699+00:00","artist":"Adrianne Lenker","average_loudness":0.915160238743,"beats_count":null,"bpm_first_peak":null,"bpm_second_peak":null,"danceability":null,"dynamic_complexity":3.34323358536,"measurement_note":"AcousticBrainz average_loudness is not LUFS; no within-track loudness envelope is supplied by this endpoint. Multiple submissions are summarized by median; disagreement is retained.","onset_rate":null,"recording_mbid":"d5ead31c-b1b9-4df3-8b24-4c9021fd251e","replay_gain_db":-12.559173584,"source":"AcousticBrainz low-level","source_license":"CC0","submission_count":1,"submission_policy":"median of all returned submissions; spread retained","tempo_bpm":null,"track":"cradle"},"lyrics":null,"track_metadata":{"artist_id":"mbid:763cb144-afdb-471e-bd86-d4f5b9b58641","duration_ms":197000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-02T00:00:40.735156+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-02T00:00:42.373687+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:d5ead31c-b1b9-4df3-8b24-4c9021fd251e","track_mbid":"d5ead31c-b1b9-4df3-8b24-4c9021fd251e"}},"id":"mbid:d5ead31c-b1b9-4df3-8b24-4c9021fd251e","identity":{"album":"cradle","album_id":"album:f0fda6f0466a7b50f601","artist":"Adrianne Lenker","artist_id":"mbid:763cb144-afdb-471e-bd86-d4f5b9b58641","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d5ead31c-b1b9-4df3-8b24-4c9021fd251e","source_track_id":"mbid:d5ead31c-b1b9-4df3-8b24-4c9021fd251e","spotify_id":null,"title":"cradle","track_number":null},"listening_context":{"all_time_plays":16,"first_scrobble":"2023-03-08T04:48:52+00:00","last_scrobble":"2025-12-17T18:02:47+00:00","observed_albums":[{"album":"cradle","scrobbles":14},{"album":"abysskiss","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f0fda6f0466a7b50f601/album.json","artist_path":"artists/mb/mbid-763cb144-afdb-471e-bd86-d4f5b9b58641/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {
+      "analyzed_at": "2026-11-01T15:09:23.127699+00:00",
+      "artist": "Adrianne Lenker",
+      "average_loudness": 0.915160238743,
+      "beats_count": null,
+      "bpm_first_peak": null,
+      "bpm_second_peak": null,
+      "danceability": null,
+      "dynamic_complexity": 3.34323358536,
+      "measurement_note": "AcousticBrainz average_loudness is not LUFS; no within-track loudness envelope is supplied by this endpoint. Multiple submissions are summarized by median; disagreement is retained.",
+      "onset_rate": null,
+      "recording_mbid": "d5ead31c-b1b9-4df3-8b24-4c9021fd251e",
+      "replay_gain_db": -12.559173584,
+      "source": "AcousticBrainz low-level",
+      "source_license": "CC0",
+      "submission_count": 1,
+      "submission_policy": "median of all returned submissions; spread retained",
+      "tempo_bpm": null,
+      "track": "cradle"
+    },
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:763cb144-afdb-471e-bd86-d4f5b9b58641",
+      "duration_ms": 197000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-02T00:00:40.735156+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-02T00:00:42.373687+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:d5ead31c-b1b9-4df3-8b24-4c9021fd251e",
+      "track_mbid": "d5ead31c-b1b9-4df3-8b24-4c9021fd251e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 197000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d5ead31c-b1b9-4df3-8b24-4c9021fd251e",
+  "identity": {
+    "album": "cradle",
+    "album_id": "album:f0fda6f0466a7b50f601",
+    "artist": "Adrianne Lenker",
+    "artist_id": "mbid:763cb144-afdb-471e-bd86-d4f5b9b58641",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d5ead31c-b1b9-4df3-8b24-4c9021fd251e",
+    "source_track_id": "mbid:d5ead31c-b1b9-4df3-8b24-4c9021fd251e",
+    "spotify_id": null,
+    "title": "cradle",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 16,
+    "first_scrobble": "2023-03-08T04:48:52+00:00",
+    "last_scrobble": "2025-12-17T18:02:47+00:00",
+    "observed_albums": [
+      {
+        "album": "cradle",
+        "scrobbles": 14
+      },
+      {
+        "album": "abysskiss",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f0fda6f0466a7b50f601/album.json",
+    "artist_path": "artists/mb/mbid-763cb144-afdb-471e-bd86-d4f5b9b58641/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

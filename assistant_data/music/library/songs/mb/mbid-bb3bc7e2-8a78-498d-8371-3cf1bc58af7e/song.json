@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8a744775-e8b1-4554-9f7b-96939b07c829","duration_ms":168000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:bb3bc7e2-8a78-498d-8371-3cf1bc58af7e","track_mbid":"bb3bc7e2-8a78-498d-8371-3cf1bc58af7e"}},"id":"mbid:bb3bc7e2-8a78-498d-8371-3cf1bc58af7e","identity":{"album":"Tell It To The Volcano","album_id":"album:5fb6703e9eee27b70f99","artist":"Miniature Tigers","artist_id":"mbid:8a744775-e8b1-4554-9f7b-96939b07c829","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"bb3bc7e2-8a78-498d-8371-3cf1bc58af7e","source_track_id":"mbid:bb3bc7e2-8a78-498d-8371-3cf1bc58af7e","spotify_id":null,"title":"Hot Venom","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-04-07T18:25:53+00:00","last_scrobble":"2025-11-20T14:23:24+00:00","observed_albums":[{"album":"Tell It To The Volcano","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5fb6703e9eee27b70f99/album.json","artist_path":"artists/mb/mbid-8a744775-e8b1-4554-9f7b-96939b07c829/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8a744775-e8b1-4554-9f7b-96939b07c829",
+      "duration_ms": 168000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:bb3bc7e2-8a78-498d-8371-3cf1bc58af7e",
+      "track_mbid": "bb3bc7e2-8a78-498d-8371-3cf1bc58af7e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 168000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:bb3bc7e2-8a78-498d-8371-3cf1bc58af7e",
+  "identity": {
+    "album": "Tell It To The Volcano",
+    "album_id": "album:5fb6703e9eee27b70f99",
+    "artist": "Miniature Tigers",
+    "artist_id": "mbid:8a744775-e8b1-4554-9f7b-96939b07c829",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "bb3bc7e2-8a78-498d-8371-3cf1bc58af7e",
+    "source_track_id": "mbid:bb3bc7e2-8a78-498d-8371-3cf1bc58af7e",
+    "spotify_id": null,
+    "title": "Hot Venom",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-04-07T18:25:53+00:00",
+    "last_scrobble": "2025-11-20T14:23:24+00:00",
+    "observed_albums": [
+      {
+        "album": "Tell It To The Volcano",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5fb6703e9eee27b70f99/album.json",
+    "artist_path": "artists/mb/mbid-8a744775-e8b1-4554-9f7b-96939b07c829/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

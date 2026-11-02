@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:60751b65f896fe9e","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c8e302fd-b560-45d7-93d6-848add6cbabd","track_mbid":"c8e302fd-b560-45d7-93d6-848add6cbabd"}},"id":"mbid:c8e302fd-b560-45d7-93d6-848add6cbabd","identity":{"album":"Computerwife","album_id":"album:a0dc0cea2030e34978b8","artist":"Computerwife","artist_id":"name:60751b65f896fe9e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c8e302fd-b560-45d7-93d6-848add6cbabd","source_track_id":"mbid:c8e302fd-b560-45d7-93d6-848add6cbabd","spotify_id":null,"title":"Vacation","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-21T05:44:14+00:00","last_scrobble":"2025-10-21T05:44:14+00:00","observed_albums":[{"album":"Computerwife","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a0dc0cea2030e34978b8/album.json","artist_path":"artists/na/name-60751b65f896fe9e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:60751b65f896fe9e",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c8e302fd-b560-45d7-93d6-848add6cbabd",
+      "track_mbid": "c8e302fd-b560-45d7-93d6-848add6cbabd",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c8e302fd-b560-45d7-93d6-848add6cbabd",
+  "identity": {
+    "album": "Computerwife",
+    "album_id": "album:a0dc0cea2030e34978b8",
+    "artist": "Computerwife",
+    "artist_id": "name:60751b65f896fe9e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c8e302fd-b560-45d7-93d6-848add6cbabd",
+    "source_track_id": "mbid:c8e302fd-b560-45d7-93d6-848add6cbabd",
+    "spotify_id": null,
+    "title": "Vacation",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-21T05:44:14+00:00",
+    "last_scrobble": "2025-10-21T05:44:14+00:00",
+    "observed_albums": [
+      {
+        "album": "Computerwife",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a0dc0cea2030e34978b8/album.json",
+    "artist_path": "artists/na/name-60751b65f896fe9e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

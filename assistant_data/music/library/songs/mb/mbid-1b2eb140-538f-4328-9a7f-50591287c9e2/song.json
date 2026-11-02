@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:aaf09f31-bb5c-43e5-9f54-bb6554c33a71","duration_ms":257000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1b2eb140-538f-4328-9a7f-50591287c9e2","track_mbid":"1b2eb140-538f-4328-9a7f-50591287c9e2"}},"id":"mbid:1b2eb140-538f-4328-9a7f-50591287c9e2","identity":{"album":"Tweekend","album_id":"album:0fd242dbc6a0fd396d5c","artist":"The Crystal Method","artist_id":"mbid:aaf09f31-bb5c-43e5-9f54-bb6554c33a71","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1b2eb140-538f-4328-9a7f-50591287c9e2","source_track_id":"mbid:1b2eb140-538f-4328-9a7f-50591287c9e2","spotify_id":null,"title":"Name of the Game","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-09T02:08:29+00:00","last_scrobble":"2026-05-09T02:08:29+00:00","observed_albums":[{"album":"Tweekend","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0fd242dbc6a0fd396d5c/album.json","artist_path":"artists/mb/mbid-aaf09f31-bb5c-43e5-9f54-bb6554c33a71/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:aaf09f31-bb5c-43e5-9f54-bb6554c33a71",
+      "duration_ms": 257000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1b2eb140-538f-4328-9a7f-50591287c9e2",
+      "track_mbid": "1b2eb140-538f-4328-9a7f-50591287c9e2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 257000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1b2eb140-538f-4328-9a7f-50591287c9e2",
+  "identity": {
+    "album": "Tweekend",
+    "album_id": "album:0fd242dbc6a0fd396d5c",
+    "artist": "The Crystal Method",
+    "artist_id": "mbid:aaf09f31-bb5c-43e5-9f54-bb6554c33a71",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1b2eb140-538f-4328-9a7f-50591287c9e2",
+    "source_track_id": "mbid:1b2eb140-538f-4328-9a7f-50591287c9e2",
+    "spotify_id": null,
+    "title": "Name of the Game",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-09T02:08:29+00:00",
+    "last_scrobble": "2026-05-09T02:08:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Tweekend",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0fd242dbc6a0fd396d5c/album.json",
+    "artist_path": "artists/mb/mbid-aaf09f31-bb5c-43e5-9f54-bb6554c33a71/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

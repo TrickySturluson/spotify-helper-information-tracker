@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c4a1d94a-b37b-4d1a-8449-e3f8c65beecb","duration_ms":187000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3f215461-6c6b-4b30-b44a-7eff5fad8757","track_mbid":"3f215461-6c6b-4b30-b44a-7eff5fad8757"}},"id":"mbid:3f215461-6c6b-4b30-b44a-7eff5fad8757","identity":{"album":"There Is No Neil Frances","album_id":"album:82ffb72a475af1ad5b2f","artist":"Neil Frances","artist_id":"mbid:c4a1d94a-b37b-4d1a-8449-e3f8c65beecb","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3f215461-6c6b-4b30-b44a-7eff5fad8757","source_track_id":"mbid:3f215461-6c6b-4b30-b44a-7eff5fad8757","spotify_id":null,"title":"It's Like a Dream","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-21T15:09:45+00:00","last_scrobble":"2025-10-21T15:09:45+00:00","observed_albums":[{"album":"There Is No Neil Frances","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-82ffb72a475af1ad5b2f/album.json","artist_path":"artists/mb/mbid-c4a1d94a-b37b-4d1a-8449-e3f8c65beecb/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c4a1d94a-b37b-4d1a-8449-e3f8c65beecb",
+      "duration_ms": 187000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3f215461-6c6b-4b30-b44a-7eff5fad8757",
+      "track_mbid": "3f215461-6c6b-4b30-b44a-7eff5fad8757",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 187000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3f215461-6c6b-4b30-b44a-7eff5fad8757",
+  "identity": {
+    "album": "There Is No Neil Frances",
+    "album_id": "album:82ffb72a475af1ad5b2f",
+    "artist": "Neil Frances",
+    "artist_id": "mbid:c4a1d94a-b37b-4d1a-8449-e3f8c65beecb",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3f215461-6c6b-4b30-b44a-7eff5fad8757",
+    "source_track_id": "mbid:3f215461-6c6b-4b30-b44a-7eff5fad8757",
+    "spotify_id": null,
+    "title": "It's Like a Dream",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-21T15:09:45+00:00",
+    "last_scrobble": "2025-10-21T15:09:45+00:00",
+    "observed_albums": [
+      {
+        "album": "There Is No Neil Frances",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-82ffb72a475af1ad5b2f/album.json",
+    "artist_path": "artists/mb/mbid-c4a1d94a-b37b-4d1a-8449-e3f8c65beecb/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

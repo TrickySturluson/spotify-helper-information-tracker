@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:510fcf21-a1f3-40af-9087-40593af86f7f","duration_ms":204000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1d2af870-7334-4f55-afc9-c0055444f94f","track_mbid":"1d2af870-7334-4f55-afc9-c0055444f94f"}},"id":"mbid:1d2af870-7334-4f55-afc9-c0055444f94f","identity":{"album":"The Attractions of Youth","album_id":"album:89c96f4848f3900dfcab","artist":"Barns Courtney","artist_id":"mbid:510fcf21-a1f3-40af-9087-40593af86f7f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1d2af870-7334-4f55-afc9-c0055444f94f","source_track_id":"mbid:1d2af870-7334-4f55-afc9-c0055444f94f","spotify_id":null,"title":"The Attractions of Youth","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-07-08T20:39:17+00:00","last_scrobble":"2024-07-08T20:39:17+00:00","observed_albums":[{"album":"The Attractions of Youth","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-89c96f4848f3900dfcab/album.json","artist_path":"artists/mb/mbid-510fcf21-a1f3-40af-9087-40593af86f7f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:510fcf21-a1f3-40af-9087-40593af86f7f",
+      "duration_ms": 204000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1d2af870-7334-4f55-afc9-c0055444f94f",
+      "track_mbid": "1d2af870-7334-4f55-afc9-c0055444f94f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 204000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1d2af870-7334-4f55-afc9-c0055444f94f",
+  "identity": {
+    "album": "The Attractions of Youth",
+    "album_id": "album:89c96f4848f3900dfcab",
+    "artist": "Barns Courtney",
+    "artist_id": "mbid:510fcf21-a1f3-40af-9087-40593af86f7f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1d2af870-7334-4f55-afc9-c0055444f94f",
+    "source_track_id": "mbid:1d2af870-7334-4f55-afc9-c0055444f94f",
+    "spotify_id": null,
+    "title": "The Attractions of Youth",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-07-08T20:39:17+00:00",
+    "last_scrobble": "2024-07-08T20:39:17+00:00",
+    "observed_albums": [
+      {
+        "album": "The Attractions of Youth",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-89c96f4848f3900dfcab/album.json",
+    "artist_path": "artists/mb/mbid-510fcf21-a1f3-40af-9087-40593af86f7f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

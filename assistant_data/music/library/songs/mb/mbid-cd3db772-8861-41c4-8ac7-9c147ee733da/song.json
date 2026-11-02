@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a980d55e-7117-4abe-8ccd-7a4148c28e9e","duration_ms":209000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:cd3db772-8861-41c4-8ac7-9c147ee733da","track_mbid":"cd3db772-8861-41c4-8ac7-9c147ee733da"}},"id":"mbid:cd3db772-8861-41c4-8ac7-9c147ee733da","identity":{"album":"The Ghost Club","album_id":"album:f8e53ed5454de44fde56","artist":"The Ghost Club","artist_id":"mbid:a980d55e-7117-4abe-8ccd-7a4148c28e9e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cd3db772-8861-41c4-8ac7-9c147ee733da","source_track_id":"mbid:cd3db772-8861-41c4-8ac7-9c147ee733da","spotify_id":null,"title":"Same Graves","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2024-01-15T20:48:38+00:00","last_scrobble":"2024-01-19T20:30:42+00:00","observed_albums":[{"album":"The Ghost Club","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f8e53ed5454de44fde56/album.json","artist_path":"artists/mb/mbid-a980d55e-7117-4abe-8ccd-7a4148c28e9e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a980d55e-7117-4abe-8ccd-7a4148c28e9e",
+      "duration_ms": 209000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:cd3db772-8861-41c4-8ac7-9c147ee733da",
+      "track_mbid": "cd3db772-8861-41c4-8ac7-9c147ee733da",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 209000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cd3db772-8861-41c4-8ac7-9c147ee733da",
+  "identity": {
+    "album": "The Ghost Club",
+    "album_id": "album:f8e53ed5454de44fde56",
+    "artist": "The Ghost Club",
+    "artist_id": "mbid:a980d55e-7117-4abe-8ccd-7a4148c28e9e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cd3db772-8861-41c4-8ac7-9c147ee733da",
+    "source_track_id": "mbid:cd3db772-8861-41c4-8ac7-9c147ee733da",
+    "spotify_id": null,
+    "title": "Same Graves",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2024-01-15T20:48:38+00:00",
+    "last_scrobble": "2024-01-19T20:30:42+00:00",
+    "observed_albums": [
+      {
+        "album": "The Ghost Club",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f8e53ed5454de44fde56/album.json",
+    "artist_path": "artists/mb/mbid-a980d55e-7117-4abe-8ccd-7a4148c28e9e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

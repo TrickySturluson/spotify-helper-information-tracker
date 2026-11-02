@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4593d49a-7f67-46ba-9ec0-126bd676286f","duration_ms":231000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7d98e3b6-8aed-451b-8dc1-5dd5ba931570","track_mbid":"7d98e3b6-8aed-451b-8dc1-5dd5ba931570"}},"id":"mbid:7d98e3b6-8aed-451b-8dc1-5dd5ba931570","identity":{"album":"Mail on Sunday","album_id":"album:39cc0690c7d9b0e523c1","artist":"Flo Rida","artist_id":"mbid:4593d49a-7f67-46ba-9ec0-126bd676286f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7d98e3b6-8aed-451b-8dc1-5dd5ba931570","source_track_id":"mbid:7d98e3b6-8aed-451b-8dc1-5dd5ba931570","spotify_id":null,"title":"Low (feat. T-Pain)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-12-30T00:58:34+00:00","last_scrobble":"2023-12-30T00:58:34+00:00","observed_albums":[{"album":"Mail on Sunday","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-39cc0690c7d9b0e523c1/album.json","artist_path":"artists/mb/mbid-4593d49a-7f67-46ba-9ec0-126bd676286f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4593d49a-7f67-46ba-9ec0-126bd676286f",
+      "duration_ms": 231000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7d98e3b6-8aed-451b-8dc1-5dd5ba931570",
+      "track_mbid": "7d98e3b6-8aed-451b-8dc1-5dd5ba931570",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 231000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7d98e3b6-8aed-451b-8dc1-5dd5ba931570",
+  "identity": {
+    "album": "Mail on Sunday",
+    "album_id": "album:39cc0690c7d9b0e523c1",
+    "artist": "Flo Rida",
+    "artist_id": "mbid:4593d49a-7f67-46ba-9ec0-126bd676286f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7d98e3b6-8aed-451b-8dc1-5dd5ba931570",
+    "source_track_id": "mbid:7d98e3b6-8aed-451b-8dc1-5dd5ba931570",
+    "spotify_id": null,
+    "title": "Low (feat. T-Pain)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-12-30T00:58:34+00:00",
+    "last_scrobble": "2023-12-30T00:58:34+00:00",
+    "observed_albums": [
+      {
+        "album": "Mail on Sunday",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-39cc0690c7d9b0e523c1/album.json",
+    "artist_path": "artists/mb/mbid-4593d49a-7f67-46ba-9ec0-126bd676286f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

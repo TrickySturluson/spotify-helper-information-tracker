@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:bcb6e491a7f56d6e","duration_ms":186000,"duration_source":"Last.fm track.getInfo","track_id":"track:db93e41c9c2c7e88"}},"id":"source:db93e41c9c2c7e88","identity":{"album":"Inaction","album_id":"album:688ae48c3f2a02c9da30","artist":"Declan Welsh and The Decadent West","artist_id":"name:bcb6e491a7f56d6e","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:db93e41c9c2c7e88","spotify_id":null,"title":"Inaction","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2025-08-19T17:08:21+00:00","last_scrobble":"2025-08-21T05:55:07+00:00","observed_albums":[{"album":"Inaction","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-688ae48c3f2a02c9da30/album.json","artist_path":"artists/na/name-bcb6e491a7f56d6e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:bcb6e491a7f56d6e",
+      "duration_ms": 186000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:db93e41c9c2c7e88",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 186000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:db93e41c9c2c7e88",
+  "identity": {
+    "album": "Inaction",
+    "album_id": "album:688ae48c3f2a02c9da30",
+    "artist": "Declan Welsh and The Decadent West",
+    "artist_id": "name:bcb6e491a7f56d6e",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:db93e41c9c2c7e88",
+    "spotify_id": null,
+    "title": "Inaction",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2025-08-19T17:08:21+00:00",
+    "last_scrobble": "2025-08-21T05:55:07+00:00",
+    "observed_albums": [
+      {
+        "album": "Inaction",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-688ae48c3f2a02c9da30/album.json",
+    "artist_path": "artists/na/name-bcb6e491a7f56d6e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

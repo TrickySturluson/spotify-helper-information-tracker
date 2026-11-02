@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:76f0d03209c873d0","duration_ms":182000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e332e928-bbbb-4a94-a056-60a888fbc5e7","track_mbid":"e332e928-bbbb-4a94-a056-60a888fbc5e7"}},"id":"mbid:e332e928-bbbb-4a94-a056-60a888fbc5e7","identity":{"album":"Quarter Life Crisis","album_id":"album:a5e3f18774625a2d3755","artist":"Strange Case","artist_id":"name:76f0d03209c873d0","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e332e928-bbbb-4a94-a056-60a888fbc5e7","source_track_id":"mbid:e332e928-bbbb-4a94-a056-60a888fbc5e7","spotify_id":null,"title":"27 Club","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2026-02-12T16:22:16+00:00","last_scrobble":"2026-02-12T20:14:30+00:00","observed_albums":[{"album":"Quarter Life Crisis","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a5e3f18774625a2d3755/album.json","artist_path":"artists/na/name-76f0d03209c873d0/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:76f0d03209c873d0",
+      "duration_ms": 182000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e332e928-bbbb-4a94-a056-60a888fbc5e7",
+      "track_mbid": "e332e928-bbbb-4a94-a056-60a888fbc5e7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 182000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e332e928-bbbb-4a94-a056-60a888fbc5e7",
+  "identity": {
+    "album": "Quarter Life Crisis",
+    "album_id": "album:a5e3f18774625a2d3755",
+    "artist": "Strange Case",
+    "artist_id": "name:76f0d03209c873d0",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e332e928-bbbb-4a94-a056-60a888fbc5e7",
+    "source_track_id": "mbid:e332e928-bbbb-4a94-a056-60a888fbc5e7",
+    "spotify_id": null,
+    "title": "27 Club",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2026-02-12T16:22:16+00:00",
+    "last_scrobble": "2026-02-12T20:14:30+00:00",
+    "observed_albums": [
+      {
+        "album": "Quarter Life Crisis",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a5e3f18774625a2d3755/album.json",
+    "artist_path": "artists/na/name-76f0d03209c873d0/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

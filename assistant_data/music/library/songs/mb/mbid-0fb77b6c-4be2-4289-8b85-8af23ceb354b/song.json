@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:46b02238-8b8e-457b-8ff5-56452a1d5842","duration_ms":147000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0fb77b6c-4be2-4289-8b85-8af23ceb354b","track_mbid":"0fb77b6c-4be2-4289-8b85-8af23ceb354b"}},"id":"mbid:0fb77b6c-4be2-4289-8b85-8af23ceb354b","identity":{"album":"Dreamsickle","album_id":"album:3d8cee5283c6752ab97a","artist":"Wombo","artist_id":"mbid:46b02238-8b8e-457b-8ff5-56452a1d5842","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0fb77b6c-4be2-4289-8b85-8af23ceb354b","source_track_id":"mbid:0fb77b6c-4be2-4289-8b85-8af23ceb354b","spotify_id":null,"title":"Dreamsickle","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-06-26T21:34:32+00:00","last_scrobble":"2025-06-27T05:50:20+00:00","observed_albums":[{"album":"Dreamsickle","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3d8cee5283c6752ab97a/album.json","artist_path":"artists/mb/mbid-46b02238-8b8e-457b-8ff5-56452a1d5842/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:46b02238-8b8e-457b-8ff5-56452a1d5842",
+      "duration_ms": 147000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0fb77b6c-4be2-4289-8b85-8af23ceb354b",
+      "track_mbid": "0fb77b6c-4be2-4289-8b85-8af23ceb354b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 147000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0fb77b6c-4be2-4289-8b85-8af23ceb354b",
+  "identity": {
+    "album": "Dreamsickle",
+    "album_id": "album:3d8cee5283c6752ab97a",
+    "artist": "Wombo",
+    "artist_id": "mbid:46b02238-8b8e-457b-8ff5-56452a1d5842",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0fb77b6c-4be2-4289-8b85-8af23ceb354b",
+    "source_track_id": "mbid:0fb77b6c-4be2-4289-8b85-8af23ceb354b",
+    "spotify_id": null,
+    "title": "Dreamsickle",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-06-26T21:34:32+00:00",
+    "last_scrobble": "2025-06-27T05:50:20+00:00",
+    "observed_albums": [
+      {
+        "album": "Dreamsickle",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3d8cee5283c6752ab97a/album.json",
+    "artist_path": "artists/mb/mbid-46b02238-8b8e-457b-8ff5-56452a1d5842/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4d8d2c7c-978e-47ac-ba4a-9e798424bf83","duration_ms":208000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:bb51be74-08c7-4a34-a352-7852b97ffc1b","track_mbid":"bb51be74-08c7-4a34-a352-7852b97ffc1b"}},"id":"mbid:bb51be74-08c7-4a34-a352-7852b97ffc1b","identity":{"album":"What's Happened to Soho?","album_id":"album:5cf947117ab892b50c48","artist":"The Correspondents","artist_id":"mbid:4d8d2c7c-978e-47ac-ba4a-9e798424bf83","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"bb51be74-08c7-4a34-a352-7852b97ffc1b","source_track_id":"mbid:bb51be74-08c7-4a34-a352-7852b97ffc1b","spotify_id":null,"title":"Washington Square","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2025-01-20T16:27:53+00:00","last_scrobble":"2025-01-21T03:04:45+00:00","observed_albums":[{"album":"What's Happened to Soho?","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5cf947117ab892b50c48/album.json","artist_path":"artists/mb/mbid-4d8d2c7c-978e-47ac-ba4a-9e798424bf83/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4d8d2c7c-978e-47ac-ba4a-9e798424bf83",
+      "duration_ms": 208000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:bb51be74-08c7-4a34-a352-7852b97ffc1b",
+      "track_mbid": "bb51be74-08c7-4a34-a352-7852b97ffc1b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 208000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:bb51be74-08c7-4a34-a352-7852b97ffc1b",
+  "identity": {
+    "album": "What's Happened to Soho?",
+    "album_id": "album:5cf947117ab892b50c48",
+    "artist": "The Correspondents",
+    "artist_id": "mbid:4d8d2c7c-978e-47ac-ba4a-9e798424bf83",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "bb51be74-08c7-4a34-a352-7852b97ffc1b",
+    "source_track_id": "mbid:bb51be74-08c7-4a34-a352-7852b97ffc1b",
+    "spotify_id": null,
+    "title": "Washington Square",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2025-01-20T16:27:53+00:00",
+    "last_scrobble": "2025-01-21T03:04:45+00:00",
+    "observed_albums": [
+      {
+        "album": "What's Happened to Soho?",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5cf947117ab892b50c48/album.json",
+    "artist_path": "artists/mb/mbid-4d8d2c7c-978e-47ac-ba4a-9e798424bf83/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

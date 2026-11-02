@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b2176eae-16da-46e7-a29c-31efea86505e","duration_ms":230000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:38:14.328409+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:38:14.990765+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:27815358-78dd-43b4-b317-9e06b2414989","track_mbid":"27815358-78dd-43b4-b317-9e06b2414989"}},"id":"mbid:27815358-78dd-43b4-b317-9e06b2414989","identity":{"album":"Legacy of the Witty","album_id":"album:41bdf2fbc41fc9a36dfe","artist":"Trigg & Gusset","artist_id":"mbid:b2176eae-16da-46e7-a29c-31efea86505e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"27815358-78dd-43b4-b317-9e06b2414989","source_track_id":"mbid:27815358-78dd-43b4-b317-9e06b2414989","spotify_id":null,"title":"Last Known Spy","track_number":null},"listening_context":{"all_time_plays":28,"first_scrobble":"2025-05-30T17:52:29+00:00","last_scrobble":"2025-06-02T03:17:46+00:00","observed_albums":[{"album":"Legacy of the Witty","scrobbles":28}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-41bdf2fbc41fc9a36dfe/album.json","artist_path":"artists/mb/mbid-b2176eae-16da-46e7-a29c-31efea86505e/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b2176eae-16da-46e7-a29c-31efea86505e",
+      "duration_ms": 230000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:38:14.328409+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:38:14.990765+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:27815358-78dd-43b4-b317-9e06b2414989",
+      "track_mbid": "27815358-78dd-43b4-b317-9e06b2414989",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 230000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:27815358-78dd-43b4-b317-9e06b2414989",
+  "identity": {
+    "album": "Legacy of the Witty",
+    "album_id": "album:41bdf2fbc41fc9a36dfe",
+    "artist": "Trigg & Gusset",
+    "artist_id": "mbid:b2176eae-16da-46e7-a29c-31efea86505e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "27815358-78dd-43b4-b317-9e06b2414989",
+    "source_track_id": "mbid:27815358-78dd-43b4-b317-9e06b2414989",
+    "spotify_id": null,
+    "title": "Last Known Spy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 28,
+    "first_scrobble": "2025-05-30T17:52:29+00:00",
+    "last_scrobble": "2025-06-02T03:17:46+00:00",
+    "observed_albums": [
+      {
+        "album": "Legacy of the Witty",
+        "scrobbles": 28
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-41bdf2fbc41fc9a36dfe/album.json",
+    "artist_path": "artists/mb/mbid-b2176eae-16da-46e7-a29c-31efea86505e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

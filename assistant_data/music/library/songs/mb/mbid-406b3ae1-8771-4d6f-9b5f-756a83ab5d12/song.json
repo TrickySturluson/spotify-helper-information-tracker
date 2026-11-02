@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fca1cb57-5858-4bee-aeea-f0939d8a33db","duration_ms":229000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:406b3ae1-8771-4d6f-9b5f-756a83ab5d12","track_mbid":"406b3ae1-8771-4d6f-9b5f-756a83ab5d12"}},"id":"mbid:406b3ae1-8771-4d6f-9b5f-756a83ab5d12","identity":{"album":"Bought to Rot","album_id":"album:e207318dd5abd4cd59c7","artist":"Laura Jane Grace & the Devouring Mothers","artist_id":"mbid:fca1cb57-5858-4bee-aeea-f0939d8a33db","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"406b3ae1-8771-4d6f-9b5f-756a83ab5d12","source_track_id":"mbid:406b3ae1-8771-4d6f-9b5f-756a83ab5d12","spotify_id":null,"title":"Manic Depression","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2023-03-21T06:16:05+00:00","last_scrobble":"2023-03-22T01:01:35+00:00","observed_albums":[{"album":"Bought to Rot","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e207318dd5abd4cd59c7/album.json","artist_path":"artists/mb/mbid-fca1cb57-5858-4bee-aeea-f0939d8a33db/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fca1cb57-5858-4bee-aeea-f0939d8a33db",
+      "duration_ms": 229000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:406b3ae1-8771-4d6f-9b5f-756a83ab5d12",
+      "track_mbid": "406b3ae1-8771-4d6f-9b5f-756a83ab5d12",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 229000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:406b3ae1-8771-4d6f-9b5f-756a83ab5d12",
+  "identity": {
+    "album": "Bought to Rot",
+    "album_id": "album:e207318dd5abd4cd59c7",
+    "artist": "Laura Jane Grace & the Devouring Mothers",
+    "artist_id": "mbid:fca1cb57-5858-4bee-aeea-f0939d8a33db",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "406b3ae1-8771-4d6f-9b5f-756a83ab5d12",
+    "source_track_id": "mbid:406b3ae1-8771-4d6f-9b5f-756a83ab5d12",
+    "spotify_id": null,
+    "title": "Manic Depression",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2023-03-21T06:16:05+00:00",
+    "last_scrobble": "2023-03-22T01:01:35+00:00",
+    "observed_albums": [
+      {
+        "album": "Bought to Rot",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e207318dd5abd4cd59c7/album.json",
+    "artist_path": "artists/mb/mbid-fca1cb57-5858-4bee-aeea-f0939d8a33db/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

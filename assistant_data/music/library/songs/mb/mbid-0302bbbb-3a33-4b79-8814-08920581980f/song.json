@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:16bb2a92-2f1e-445d-b24e-3d60f435043b","duration_ms":189000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0302bbbb-3a33-4b79-8814-08920581980f","track_mbid":"0302bbbb-3a33-4b79-8814-08920581980f"}},"id":"mbid:0302bbbb-3a33-4b79-8814-08920581980f","identity":{"album":"destiny XL","album_id":"album:e02d73cde83bb3efd2b9","artist":"They Are Gutting a Body of Water","artist_id":"mbid:16bb2a92-2f1e-445d-b24e-3d60f435043b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0302bbbb-3a33-4b79-8814-08920581980f","source_track_id":"mbid:0302bbbb-3a33-4b79-8814-08920581980f","spotify_id":null,"title":"Eightball","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-21T02:29:53+00:00","last_scrobble":"2025-10-21T02:29:53+00:00","observed_albums":[{"album":"destiny XL","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e02d73cde83bb3efd2b9/album.json","artist_path":"artists/mb/mbid-16bb2a92-2f1e-445d-b24e-3d60f435043b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:16bb2a92-2f1e-445d-b24e-3d60f435043b",
+      "duration_ms": 189000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0302bbbb-3a33-4b79-8814-08920581980f",
+      "track_mbid": "0302bbbb-3a33-4b79-8814-08920581980f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 189000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0302bbbb-3a33-4b79-8814-08920581980f",
+  "identity": {
+    "album": "destiny XL",
+    "album_id": "album:e02d73cde83bb3efd2b9",
+    "artist": "They Are Gutting a Body of Water",
+    "artist_id": "mbid:16bb2a92-2f1e-445d-b24e-3d60f435043b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0302bbbb-3a33-4b79-8814-08920581980f",
+    "source_track_id": "mbid:0302bbbb-3a33-4b79-8814-08920581980f",
+    "spotify_id": null,
+    "title": "Eightball",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-21T02:29:53+00:00",
+    "last_scrobble": "2025-10-21T02:29:53+00:00",
+    "observed_albums": [
+      {
+        "album": "destiny XL",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e02d73cde83bb3efd2b9/album.json",
+    "artist_path": "artists/mb/mbid-16bb2a92-2f1e-445d-b24e-3d60f435043b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02","duration_ms":315000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:43:19.270377+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:43:19.927704+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:cb9f9d8c-31e1-330e-a44b-5a20b6bbded0","track_mbid":"cb9f9d8c-31e1-330e-a44b-5a20b6bbded0"}},"id":"mbid:cb9f9d8c-31e1-330e-a44b-5a20b6bbded0","identity":{"album":"Abominations","album_id":"album:07cf3e5ea34bb01e6486","artist":"Schoolyard Heroes","artist_id":"mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cb9f9d8c-31e1-330e-a44b-5a20b6bbded0","source_track_id":"mbid:cb9f9d8c-31e1-330e-a44b-5a20b6bbded0","spotify_id":null,"title":"All The Pretty Corpses","track_number":null},"listening_context":{"all_time_plays":20,"first_scrobble":"2026-03-20T19:03:03+00:00","last_scrobble":"2026-03-22T08:31:19+00:00","observed_albums":[{"album":"Abominations","scrobbles":20}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-07cf3e5ea34bb01e6486/album.json","artist_path":"artists/mb/mbid-26bfcd89-b3f8-420e-8b9a-22f736e00c02/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02",
+      "duration_ms": 315000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:43:19.270377+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:43:19.927704+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:cb9f9d8c-31e1-330e-a44b-5a20b6bbded0",
+      "track_mbid": "cb9f9d8c-31e1-330e-a44b-5a20b6bbded0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 315000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cb9f9d8c-31e1-330e-a44b-5a20b6bbded0",
+  "identity": {
+    "album": "Abominations",
+    "album_id": "album:07cf3e5ea34bb01e6486",
+    "artist": "Schoolyard Heroes",
+    "artist_id": "mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cb9f9d8c-31e1-330e-a44b-5a20b6bbded0",
+    "source_track_id": "mbid:cb9f9d8c-31e1-330e-a44b-5a20b6bbded0",
+    "spotify_id": null,
+    "title": "All The Pretty Corpses",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 20,
+    "first_scrobble": "2026-03-20T19:03:03+00:00",
+    "last_scrobble": "2026-03-22T08:31:19+00:00",
+    "observed_albums": [
+      {
+        "album": "Abominations",
+        "scrobbles": 20
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-07cf3e5ea34bb01e6486/album.json",
+    "artist_path": "artists/mb/mbid-26bfcd89-b3f8-420e-8b9a-22f736e00c02/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

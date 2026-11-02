@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fc52f2d6-1e78-49e7-8d76-ccd3d4ba7f4d","duration_ms":173000,"duration_source":"Last.fm track.getInfo","track_id":"track:2cc880d37407b997"}},"id":"source:2cc880d37407b997","identity":{"album":"Absolute Pro","album_id":"album:3bdd87f199b766db8261","artist":"Cloudfodder","artist_id":"mbid:fc52f2d6-1e78-49e7-8d76-ccd3d4ba7f4d","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:2cc880d37407b997","spotify_id":null,"title":"Absolute Pro","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2024-04-01T10:01:31+00:00","last_scrobble":"2024-04-01T22:39:43+00:00","observed_albums":[{"album":"Absolute Pro","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3bdd87f199b766db8261/album.json","artist_path":"artists/mb/mbid-fc52f2d6-1e78-49e7-8d76-ccd3d4ba7f4d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fc52f2d6-1e78-49e7-8d76-ccd3d4ba7f4d",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:2cc880d37407b997",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:2cc880d37407b997",
+  "identity": {
+    "album": "Absolute Pro",
+    "album_id": "album:3bdd87f199b766db8261",
+    "artist": "Cloudfodder",
+    "artist_id": "mbid:fc52f2d6-1e78-49e7-8d76-ccd3d4ba7f4d",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:2cc880d37407b997",
+    "spotify_id": null,
+    "title": "Absolute Pro",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2024-04-01T10:01:31+00:00",
+    "last_scrobble": "2024-04-01T22:39:43+00:00",
+    "observed_albums": [
+      {
+        "album": "Absolute Pro",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3bdd87f199b766db8261/album.json",
+    "artist_path": "artists/mb/mbid-fc52f2d6-1e78-49e7-8d76-ccd3d4ba7f4d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

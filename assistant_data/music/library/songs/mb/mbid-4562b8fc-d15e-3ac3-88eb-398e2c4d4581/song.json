@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:0c751690-c784-4a4f-b1e4-c1de27d47581","duration_ms":139000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4562b8fc-d15e-3ac3-88eb-398e2c4d4581","track_mbid":"4562b8fc-d15e-3ac3-88eb-398e2c4d4581"}},"id":"mbid:4562b8fc-d15e-3ac3-88eb-398e2c4d4581","identity":{"album":"Sung Tongs","album_id":"album:aafc376ccb6d6fb5006e","artist":"Animal Collective","artist_id":"mbid:0c751690-c784-4a4f-b1e4-c1de27d47581","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4562b8fc-d15e-3ac3-88eb-398e2c4d4581","source_track_id":"mbid:4562b8fc-d15e-3ac3-88eb-398e2c4d4581","spotify_id":null,"title":"Who Could Win a Rabbit","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-02-12T19:54:01+00:00","last_scrobble":"2026-02-12T21:00:17+00:00","observed_albums":[{"album":"Sung Tongs","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-aafc376ccb6d6fb5006e/album.json","artist_path":"artists/mb/mbid-0c751690-c784-4a4f-b1e4-c1de27d47581/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:0c751690-c784-4a4f-b1e4-c1de27d47581",
+      "duration_ms": 139000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4562b8fc-d15e-3ac3-88eb-398e2c4d4581",
+      "track_mbid": "4562b8fc-d15e-3ac3-88eb-398e2c4d4581",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 139000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4562b8fc-d15e-3ac3-88eb-398e2c4d4581",
+  "identity": {
+    "album": "Sung Tongs",
+    "album_id": "album:aafc376ccb6d6fb5006e",
+    "artist": "Animal Collective",
+    "artist_id": "mbid:0c751690-c784-4a4f-b1e4-c1de27d47581",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4562b8fc-d15e-3ac3-88eb-398e2c4d4581",
+    "source_track_id": "mbid:4562b8fc-d15e-3ac3-88eb-398e2c4d4581",
+    "spotify_id": null,
+    "title": "Who Could Win a Rabbit",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-02-12T19:54:01+00:00",
+    "last_scrobble": "2026-02-12T21:00:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Sung Tongs",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-aafc376ccb6d6fb5006e/album.json",
+    "artist_path": "artists/mb/mbid-0c751690-c784-4a4f-b1e4-c1de27d47581/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

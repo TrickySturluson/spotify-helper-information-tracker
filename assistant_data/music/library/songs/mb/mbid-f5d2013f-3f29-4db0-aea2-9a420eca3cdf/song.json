@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:086c1936-9eaa-4091-b140-ad33a51a3b71","duration_ms":133000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f5d2013f-3f29-4db0-aea2-9a420eca3cdf","track_mbid":"f5d2013f-3f29-4db0-aea2-9a420eca3cdf"}},"id":"mbid:f5d2013f-3f29-4db0-aea2-9a420eca3cdf","identity":{"album":"Have a Holly Jolly Christmas","album_id":"album:76cae7fc2f1f3b97411a","artist":"Burl Ives","artist_id":"mbid:086c1936-9eaa-4091-b140-ad33a51a3b71","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f5d2013f-3f29-4db0-aea2-9a420eca3cdf","source_track_id":"mbid:f5d2013f-3f29-4db0-aea2-9a420eca3cdf","spotify_id":null,"title":"A Holly Jolly Christmas","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2024-11-09T03:40:07+00:00","last_scrobble":"2024-11-11T05:01:47+00:00","observed_albums":[{"album":"Have a Holly Jolly Christmas","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-76cae7fc2f1f3b97411a/album.json","artist_path":"artists/mb/mbid-086c1936-9eaa-4091-b140-ad33a51a3b71/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:086c1936-9eaa-4091-b140-ad33a51a3b71",
+      "duration_ms": 133000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f5d2013f-3f29-4db0-aea2-9a420eca3cdf",
+      "track_mbid": "f5d2013f-3f29-4db0-aea2-9a420eca3cdf",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 133000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f5d2013f-3f29-4db0-aea2-9a420eca3cdf",
+  "identity": {
+    "album": "Have a Holly Jolly Christmas",
+    "album_id": "album:76cae7fc2f1f3b97411a",
+    "artist": "Burl Ives",
+    "artist_id": "mbid:086c1936-9eaa-4091-b140-ad33a51a3b71",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f5d2013f-3f29-4db0-aea2-9a420eca3cdf",
+    "source_track_id": "mbid:f5d2013f-3f29-4db0-aea2-9a420eca3cdf",
+    "spotify_id": null,
+    "title": "A Holly Jolly Christmas",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2024-11-09T03:40:07+00:00",
+    "last_scrobble": "2024-11-11T05:01:47+00:00",
+    "observed_albums": [
+      {
+        "album": "Have a Holly Jolly Christmas",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-76cae7fc2f1f3b97411a/album.json",
+    "artist_path": "artists/mb/mbid-086c1936-9eaa-4091-b140-ad33a51a3b71/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

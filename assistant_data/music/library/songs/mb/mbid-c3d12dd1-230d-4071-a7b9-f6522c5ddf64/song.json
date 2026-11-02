@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:67f4da94-37f3-4355-8b4e-f84d7d596857","duration_ms":142000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c3d12dd1-230d-4071-a7b9-f6522c5ddf64","track_mbid":"c3d12dd1-230d-4071-a7b9-f6522c5ddf64"}},"id":"mbid:c3d12dd1-230d-4071-a7b9-f6522c5ddf64","identity":{"album":"Mating Calls","album_id":"album:f71343d12fc09b2563b7","artist":"Cowboy Hunters","artist_id":"mbid:67f4da94-37f3-4355-8b4e-f84d7d596857","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c3d12dd1-230d-4071-a7b9-f6522c5ddf64","source_track_id":"mbid:c3d12dd1-230d-4071-a7b9-f6522c5ddf64","spotify_id":null,"title":"Mating Calls","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-03T20:02:07+00:00","last_scrobble":"2025-11-03T20:02:07+00:00","observed_albums":[{"album":"Mating Calls","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f71343d12fc09b2563b7/album.json","artist_path":"artists/mb/mbid-67f4da94-37f3-4355-8b4e-f84d7d596857/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:67f4da94-37f3-4355-8b4e-f84d7d596857",
+      "duration_ms": 142000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c3d12dd1-230d-4071-a7b9-f6522c5ddf64",
+      "track_mbid": "c3d12dd1-230d-4071-a7b9-f6522c5ddf64",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 142000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c3d12dd1-230d-4071-a7b9-f6522c5ddf64",
+  "identity": {
+    "album": "Mating Calls",
+    "album_id": "album:f71343d12fc09b2563b7",
+    "artist": "Cowboy Hunters",
+    "artist_id": "mbid:67f4da94-37f3-4355-8b4e-f84d7d596857",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c3d12dd1-230d-4071-a7b9-f6522c5ddf64",
+    "source_track_id": "mbid:c3d12dd1-230d-4071-a7b9-f6522c5ddf64",
+    "spotify_id": null,
+    "title": "Mating Calls",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-03T20:02:07+00:00",
+    "last_scrobble": "2025-11-03T20:02:07+00:00",
+    "observed_albums": [
+      {
+        "album": "Mating Calls",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f71343d12fc09b2563b7/album.json",
+    "artist_path": "artists/mb/mbid-67f4da94-37f3-4355-8b4e-f84d7d596857/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

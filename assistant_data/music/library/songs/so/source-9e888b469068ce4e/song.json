@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:d273b9c97cfe8ea4","duration_ms":242000,"duration_source":"Last.fm track.getInfo","track_id":"track:9e888b469068ce4e"}},"id":"source:9e888b469068ce4e","identity":{"album":"SIx..","album_id":"album:31d803de214e1f934a77","artist":"BLIND GRAPH","artist_id":"name:d273b9c97cfe8ea4","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:9e888b469068ce4e","spotify_id":null,"title":"zeroizm","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2026-03-08T07:31:40+00:00","last_scrobble":"2026-03-09T16:37:51+00:00","observed_albums":[{"album":"SIx..","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-31d803de214e1f934a77/album.json","artist_path":"artists/na/name-d273b9c97cfe8ea4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:d273b9c97cfe8ea4",
+      "duration_ms": 242000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:9e888b469068ce4e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 242000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:9e888b469068ce4e",
+  "identity": {
+    "album": "SIx..",
+    "album_id": "album:31d803de214e1f934a77",
+    "artist": "BLIND GRAPH",
+    "artist_id": "name:d273b9c97cfe8ea4",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:9e888b469068ce4e",
+    "spotify_id": null,
+    "title": "zeroizm",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2026-03-08T07:31:40+00:00",
+    "last_scrobble": "2026-03-09T16:37:51+00:00",
+    "observed_albums": [
+      {
+        "album": "SIx..",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-31d803de214e1f934a77/album.json",
+    "artist_path": "artists/na/name-d273b9c97cfe8ea4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

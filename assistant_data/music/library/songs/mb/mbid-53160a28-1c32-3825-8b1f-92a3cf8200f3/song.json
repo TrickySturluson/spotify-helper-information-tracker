@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3a4dbe08-8189-4207-a92e-93c6a054f71f","duration_ms":155000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:03:36.579308+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T09:03:37.202881+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:53160a28-1c32-3825-8b1f-92a3cf8200f3","track_mbid":"53160a28-1c32-3825-8b1f-92a3cf8200f3"}},"id":"mbid:53160a28-1c32-3825-8b1f-92a3cf8200f3","identity":{"album":"A Love Extreme","album_id":"album:7031acd43cddc2eb3a0b","artist":"Benji Hughes","artist_id":"mbid:3a4dbe08-8189-4207-a92e-93c6a054f71f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"53160a28-1c32-3825-8b1f-92a3cf8200f3","source_track_id":"mbid:53160a28-1c32-3825-8b1f-92a3cf8200f3","spotify_id":null,"title":"Neighbor Down The Hall","track_number":null},"listening_context":{"all_time_plays":107,"first_scrobble":"2023-08-12T22:44:00+00:00","last_scrobble":"2026-10-03T07:50:51+00:00","observed_albums":[{"album":"A Love Extreme","scrobbles":107}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7031acd43cddc2eb3a0b/album.json","artist_path":"artists/mb/mbid-3a4dbe08-8189-4207-a92e-93c6a054f71f/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3a4dbe08-8189-4207-a92e-93c6a054f71f",
+      "duration_ms": 155000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:03:36.579308+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T09:03:37.202881+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:53160a28-1c32-3825-8b1f-92a3cf8200f3",
+      "track_mbid": "53160a28-1c32-3825-8b1f-92a3cf8200f3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 155000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:53160a28-1c32-3825-8b1f-92a3cf8200f3",
+  "identity": {
+    "album": "A Love Extreme",
+    "album_id": "album:7031acd43cddc2eb3a0b",
+    "artist": "Benji Hughes",
+    "artist_id": "mbid:3a4dbe08-8189-4207-a92e-93c6a054f71f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "53160a28-1c32-3825-8b1f-92a3cf8200f3",
+    "source_track_id": "mbid:53160a28-1c32-3825-8b1f-92a3cf8200f3",
+    "spotify_id": null,
+    "title": "Neighbor Down The Hall",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 107,
+    "first_scrobble": "2023-08-12T22:44:00+00:00",
+    "last_scrobble": "2026-10-03T07:50:51+00:00",
+    "observed_albums": [
+      {
+        "album": "A Love Extreme",
+        "scrobbles": 107
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7031acd43cddc2eb3a0b/album.json",
+    "artist_path": "artists/mb/mbid-3a4dbe08-8189-4207-a92e-93c6a054f71f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

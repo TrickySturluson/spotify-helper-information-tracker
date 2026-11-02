@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3944b36f-0ec2-4972-bab4-c45477b7b8f1","duration_ms":152000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:fe5b897b-4e54-4e73-964b-2abc8439152d","track_mbid":"fe5b897b-4e54-4e73-964b-2abc8439152d"}},"id":"mbid:fe5b897b-4e54-4e73-964b-2abc8439152d","identity":{"album":"Transgender Street Legend, Vol. 3","album_id":"album:004a596d0549a2c91b08","artist":"Left at London","artist_id":"mbid:3944b36f-0ec2-4972-bab4-c45477b7b8f1","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"fe5b897b-4e54-4e73-964b-2abc8439152d","source_track_id":"mbid:fe5b897b-4e54-4e73-964b-2abc8439152d","spotify_id":null,"title":"My Old Ways","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-12-26T19:22:42+00:00","last_scrobble":"2026-05-17T19:08:26+00:00","observed_albums":[{"album":"Transgender Street Legend, Vol. 3","scrobbles":1},{"album":"Transgender Street Legend: The ACAB Anthology (Assigned Compilation At Birth)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-004a596d0549a2c91b08/album.json","artist_path":"artists/mb/mbid-3944b36f-0ec2-4972-bab4-c45477b7b8f1/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3944b36f-0ec2-4972-bab4-c45477b7b8f1",
+      "duration_ms": 152000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:fe5b897b-4e54-4e73-964b-2abc8439152d",
+      "track_mbid": "fe5b897b-4e54-4e73-964b-2abc8439152d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 152000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:fe5b897b-4e54-4e73-964b-2abc8439152d",
+  "identity": {
+    "album": "Transgender Street Legend, Vol. 3",
+    "album_id": "album:004a596d0549a2c91b08",
+    "artist": "Left at London",
+    "artist_id": "mbid:3944b36f-0ec2-4972-bab4-c45477b7b8f1",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "fe5b897b-4e54-4e73-964b-2abc8439152d",
+    "source_track_id": "mbid:fe5b897b-4e54-4e73-964b-2abc8439152d",
+    "spotify_id": null,
+    "title": "My Old Ways",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-12-26T19:22:42+00:00",
+    "last_scrobble": "2026-05-17T19:08:26+00:00",
+    "observed_albums": [
+      {
+        "album": "Transgender Street Legend, Vol. 3",
+        "scrobbles": 1
+      },
+      {
+        "album": "Transgender Street Legend: The ACAB Anthology (Assigned Compilation At Birth)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-004a596d0549a2c91b08/album.json",
+    "artist_path": "artists/mb/mbid-3944b36f-0ec2-4972-bab4-c45477b7b8f1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

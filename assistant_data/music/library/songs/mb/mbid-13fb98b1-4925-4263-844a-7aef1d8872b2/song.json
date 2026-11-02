@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:f9a9dea74525063a","duration_ms":190000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:13fb98b1-4925-4263-844a-7aef1d8872b2","track_mbid":"13fb98b1-4925-4263-844a-7aef1d8872b2"}},"id":"mbid:13fb98b1-4925-4263-844a-7aef1d8872b2","identity":{"album":"When Death Was Mine","album_id":"album:50aee55126973480fe68","artist":"Zalinki","artist_id":"name:f9a9dea74525063a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"13fb98b1-4925-4263-844a-7aef1d8872b2","source_track_id":"mbid:13fb98b1-4925-4263-844a-7aef1d8872b2","spotify_id":null,"title":"Lampshade King","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-09-03T03:29:29+00:00","last_scrobble":"2025-09-03T19:14:39+00:00","observed_albums":[{"album":"When Death Was Mine","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-50aee55126973480fe68/album.json","artist_path":"artists/na/name-f9a9dea74525063a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:f9a9dea74525063a",
+      "duration_ms": 190000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:13fb98b1-4925-4263-844a-7aef1d8872b2",
+      "track_mbid": "13fb98b1-4925-4263-844a-7aef1d8872b2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 190000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:13fb98b1-4925-4263-844a-7aef1d8872b2",
+  "identity": {
+    "album": "When Death Was Mine",
+    "album_id": "album:50aee55126973480fe68",
+    "artist": "Zalinki",
+    "artist_id": "name:f9a9dea74525063a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "13fb98b1-4925-4263-844a-7aef1d8872b2",
+    "source_track_id": "mbid:13fb98b1-4925-4263-844a-7aef1d8872b2",
+    "spotify_id": null,
+    "title": "Lampshade King",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-09-03T03:29:29+00:00",
+    "last_scrobble": "2025-09-03T19:14:39+00:00",
+    "observed_albums": [
+      {
+        "album": "When Death Was Mine",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-50aee55126973480fe68/album.json",
+    "artist_path": "artists/na/name-f9a9dea74525063a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

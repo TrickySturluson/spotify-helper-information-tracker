@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:717fc9c4-dfa9-4a77-af1c-22f2bed40407","duration_ms":130000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:bc10e724-05f1-4603-9236-55325c5d96e3","track_mbid":"bc10e724-05f1-4603-9236-55325c5d96e3"}},"id":"mbid:bc10e724-05f1-4603-9236-55325c5d96e3","identity":{"album":"Blood And Bones","album_id":"album:efd0439d1d2161b40d45","artist":"The Blake Robinson Synthetic Orchestra","artist_id":"mbid:717fc9c4-dfa9-4a77-af1c-22f2bed40407","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"bc10e724-05f1-4603-9236-55325c5d96e3","source_track_id":"mbid:bc10e724-05f1-4603-9236-55325c5d96e3","spotify_id":null,"title":"Blood and Bones","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-10-09T15:06:35+00:00","last_scrobble":"2024-11-27T05:48:20+00:00","observed_albums":[{"album":"Blood And Bones","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-efd0439d1d2161b40d45/album.json","artist_path":"artists/mb/mbid-717fc9c4-dfa9-4a77-af1c-22f2bed40407/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:717fc9c4-dfa9-4a77-af1c-22f2bed40407",
+      "duration_ms": 130000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:bc10e724-05f1-4603-9236-55325c5d96e3",
+      "track_mbid": "bc10e724-05f1-4603-9236-55325c5d96e3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 130000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:bc10e724-05f1-4603-9236-55325c5d96e3",
+  "identity": {
+    "album": "Blood And Bones",
+    "album_id": "album:efd0439d1d2161b40d45",
+    "artist": "The Blake Robinson Synthetic Orchestra",
+    "artist_id": "mbid:717fc9c4-dfa9-4a77-af1c-22f2bed40407",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "bc10e724-05f1-4603-9236-55325c5d96e3",
+    "source_track_id": "mbid:bc10e724-05f1-4603-9236-55325c5d96e3",
+    "spotify_id": null,
+    "title": "Blood and Bones",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-10-09T15:06:35+00:00",
+    "last_scrobble": "2024-11-27T05:48:20+00:00",
+    "observed_albums": [
+      {
+        "album": "Blood And Bones",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-efd0439d1d2161b40d45/album.json",
+    "artist_path": "artists/mb/mbid-717fc9c4-dfa9-4a77-af1c-22f2bed40407/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

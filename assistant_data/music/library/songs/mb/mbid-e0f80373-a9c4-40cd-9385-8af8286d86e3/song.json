@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:744b52c8-509b-4451-abfd-a17d18d4bd1d","duration_ms":347000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e0f80373-a9c4-40cd-9385-8af8286d86e3","track_mbid":"e0f80373-a9c4-40cd-9385-8af8286d86e3"}},"id":"mbid:e0f80373-a9c4-40cd-9385-8af8286d86e3","identity":{"album":"Jazz Impressions of Black Orpheus","album_id":"album:f61691d07a80db25f654","artist":"Vince Guaraldi Trio","artist_id":"mbid:744b52c8-509b-4451-abfd-a17d18d4bd1d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e0f80373-a9c4-40cd-9385-8af8286d86e3","source_track_id":"mbid:e0f80373-a9c4-40cd-9385-8af8286d86e3","spotify_id":null,"title":"Manha De Carnaval","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-27T19:40:44+00:00","last_scrobble":"2025-11-27T19:40:44+00:00","observed_albums":[{"album":"Jazz Impressions of Black Orpheus","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f61691d07a80db25f654/album.json","artist_path":"artists/mb/mbid-744b52c8-509b-4451-abfd-a17d18d4bd1d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:744b52c8-509b-4451-abfd-a17d18d4bd1d",
+      "duration_ms": 347000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e0f80373-a9c4-40cd-9385-8af8286d86e3",
+      "track_mbid": "e0f80373-a9c4-40cd-9385-8af8286d86e3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 347000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e0f80373-a9c4-40cd-9385-8af8286d86e3",
+  "identity": {
+    "album": "Jazz Impressions of Black Orpheus",
+    "album_id": "album:f61691d07a80db25f654",
+    "artist": "Vince Guaraldi Trio",
+    "artist_id": "mbid:744b52c8-509b-4451-abfd-a17d18d4bd1d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e0f80373-a9c4-40cd-9385-8af8286d86e3",
+    "source_track_id": "mbid:e0f80373-a9c4-40cd-9385-8af8286d86e3",
+    "spotify_id": null,
+    "title": "Manha De Carnaval",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-27T19:40:44+00:00",
+    "last_scrobble": "2025-11-27T19:40:44+00:00",
+    "observed_albums": [
+      {
+        "album": "Jazz Impressions of Black Orpheus",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f61691d07a80db25f654/album.json",
+    "artist_path": "artists/mb/mbid-744b52c8-509b-4451-abfd-a17d18d4bd1d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

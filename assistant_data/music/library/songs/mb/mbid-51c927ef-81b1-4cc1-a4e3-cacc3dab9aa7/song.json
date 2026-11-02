@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:baba5da4-fceb-45c5-9e3e-925bc98c4495","duration_ms":211000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7","track_mbid":"51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7"}},"id":"mbid:51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7","identity":{"album":"Suicider","album_id":"album:10e4ee95d431d1bb11b6","artist":"Kennyoung","artist_id":"mbid:baba5da4-fceb-45c5-9e3e-925bc98c4495","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7","source_track_id":"mbid:51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7","spotify_id":null,"title":"Suicider","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-12-03T16:17:51+00:00","last_scrobble":"2024-12-03T16:17:51+00:00","observed_albums":[{"album":"Suicider","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-10e4ee95d431d1bb11b6/album.json","artist_path":"artists/mb/mbid-baba5da4-fceb-45c5-9e3e-925bc98c4495/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:baba5da4-fceb-45c5-9e3e-925bc98c4495",
+      "duration_ms": 211000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7",
+      "track_mbid": "51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 211000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7",
+  "identity": {
+    "album": "Suicider",
+    "album_id": "album:10e4ee95d431d1bb11b6",
+    "artist": "Kennyoung",
+    "artist_id": "mbid:baba5da4-fceb-45c5-9e3e-925bc98c4495",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7",
+    "source_track_id": "mbid:51c927ef-81b1-4cc1-a4e3-cacc3dab9aa7",
+    "spotify_id": null,
+    "title": "Suicider",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-12-03T16:17:51+00:00",
+    "last_scrobble": "2024-12-03T16:17:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Suicider",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-10e4ee95d431d1bb11b6/album.json",
+    "artist_path": "artists/mb/mbid-baba5da4-fceb-45c5-9e3e-925bc98c4495/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

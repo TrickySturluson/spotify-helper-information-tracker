@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:6d84407aa09083b4","duration_ms":235000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:94f558a8-adb2-4320-8e52-148c4a7bbd9b","track_mbid":"94f558a8-adb2-4320-8e52-148c4a7bbd9b"}},"id":"mbid:94f558a8-adb2-4320-8e52-148c4a7bbd9b","identity":{"album":"Le Pop","album_id":"album:4dcbd85388eb3905dcc3","artist":"Katzenjammer","artist_id":"name:6d84407aa09083b4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"94f558a8-adb2-4320-8e52-148c4a7bbd9b","source_track_id":"mbid:94f558a8-adb2-4320-8e52-148c4a7bbd9b","spotify_id":null,"title":"Le Pop","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2023-03-10T15:29:15+00:00","last_scrobble":"2023-11-01T21:55:42+00:00","observed_albums":[{"album":"Le Pop","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4dcbd85388eb3905dcc3/album.json","artist_path":"artists/na/name-6d84407aa09083b4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:6d84407aa09083b4",
+      "duration_ms": 235000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:94f558a8-adb2-4320-8e52-148c4a7bbd9b",
+      "track_mbid": "94f558a8-adb2-4320-8e52-148c4a7bbd9b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 235000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:94f558a8-adb2-4320-8e52-148c4a7bbd9b",
+  "identity": {
+    "album": "Le Pop",
+    "album_id": "album:4dcbd85388eb3905dcc3",
+    "artist": "Katzenjammer",
+    "artist_id": "name:6d84407aa09083b4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "94f558a8-adb2-4320-8e52-148c4a7bbd9b",
+    "source_track_id": "mbid:94f558a8-adb2-4320-8e52-148c4a7bbd9b",
+    "spotify_id": null,
+    "title": "Le Pop",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2023-03-10T15:29:15+00:00",
+    "last_scrobble": "2023-11-01T21:55:42+00:00",
+    "observed_albums": [
+      {
+        "album": "Le Pop",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4dcbd85388eb3905dcc3/album.json",
+    "artist_path": "artists/na/name-6d84407aa09083b4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:89a2ae140f72bbf0","duration_ms":169000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5db47044-2961-4ebc-9fde-567de142c3ba","track_mbid":"5db47044-2961-4ebc-9fde-567de142c3ba"}},"id":"mbid:5db47044-2961-4ebc-9fde-567de142c3ba","identity":{"album":"Untitled '91 (Deluxe Edition)","album_id":"album:62326a8afff836edaddc","artist":"Hector Gachan","artist_id":"name:89a2ae140f72bbf0","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5db47044-2961-4ebc-9fde-567de142c3ba","source_track_id":"mbid:5db47044-2961-4ebc-9fde-567de142c3ba","spotify_id":null,"title":"Bye Dummy","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-07-01T20:10:06+00:00","last_scrobble":"2025-07-06T11:55:32+00:00","observed_albums":[{"album":"Untitled '91 (Deluxe Edition)","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-62326a8afff836edaddc/album.json","artist_path":"artists/na/name-89a2ae140f72bbf0/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:89a2ae140f72bbf0",
+      "duration_ms": 169000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5db47044-2961-4ebc-9fde-567de142c3ba",
+      "track_mbid": "5db47044-2961-4ebc-9fde-567de142c3ba",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 169000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5db47044-2961-4ebc-9fde-567de142c3ba",
+  "identity": {
+    "album": "Untitled '91 (Deluxe Edition)",
+    "album_id": "album:62326a8afff836edaddc",
+    "artist": "Hector Gachan",
+    "artist_id": "name:89a2ae140f72bbf0",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5db47044-2961-4ebc-9fde-567de142c3ba",
+    "source_track_id": "mbid:5db47044-2961-4ebc-9fde-567de142c3ba",
+    "spotify_id": null,
+    "title": "Bye Dummy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-07-01T20:10:06+00:00",
+    "last_scrobble": "2025-07-06T11:55:32+00:00",
+    "observed_albums": [
+      {
+        "album": "Untitled '91 (Deluxe Edition)",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-62326a8afff836edaddc/album.json",
+    "artist_path": "artists/na/name-89a2ae140f72bbf0/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

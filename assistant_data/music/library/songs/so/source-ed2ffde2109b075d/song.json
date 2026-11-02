@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3447f7bc-160f-4d40-9fae-f56b6fd4e50c","duration_ms":92000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:02:35.187362+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:ed2ffde2109b075d"}},"id":"source:ed2ffde2109b075d","identity":{"album":"Bug Bite","album_id":"album:9909c9cdfbacff268785","artist":"Straight White Teeth","artist_id":"mbid:3447f7bc-160f-4d40-9fae-f56b6fd4e50c","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:ed2ffde2109b075d","spotify_id":null,"title":"Bug Bite","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2026-04-15T03:33:12+00:00","last_scrobble":"2026-10-09T20:14:57+00:00","observed_albums":[{"album":"Bug Bite","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9909c9cdfbacff268785/album.json","artist_path":"artists/mb/mbid-3447f7bc-160f-4d40-9fae-f56b6fd4e50c/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3447f7bc-160f-4d40-9fae-f56b6fd4e50c",
+      "duration_ms": 92000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:02:35.187362+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:ed2ffde2109b075d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 92000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:ed2ffde2109b075d",
+  "identity": {
+    "album": "Bug Bite",
+    "album_id": "album:9909c9cdfbacff268785",
+    "artist": "Straight White Teeth",
+    "artist_id": "mbid:3447f7bc-160f-4d40-9fae-f56b6fd4e50c",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:ed2ffde2109b075d",
+    "spotify_id": null,
+    "title": "Bug Bite",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2026-04-15T03:33:12+00:00",
+    "last_scrobble": "2026-10-09T20:14:57+00:00",
+    "observed_albums": [
+      {
+        "album": "Bug Bite",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9909c9cdfbacff268785/album.json",
+    "artist_path": "artists/mb/mbid-3447f7bc-160f-4d40-9fae-f56b6fd4e50c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

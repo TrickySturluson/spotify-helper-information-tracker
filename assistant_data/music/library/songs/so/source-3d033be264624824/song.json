@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:93a4d03b-4f0e-42da-ae0b-a62876e46071","duration_ms":143000,"duration_source":"Last.fm track.getInfo","track_id":"track:3d033be264624824"}},"id":"source:3d033be264624824","identity":{"album":"THE BADDEST (BADDER) [feat. Ayesha Erotica]","album_id":"album:4c445fb45b4d0433dbcc","artist":"Joey Valence & Brae","artist_id":"mbid:93a4d03b-4f0e-42da-ae0b-a62876e46071","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:3d033be264624824","spotify_id":null,"title":"THE BADDEST (BADDER) [feat. Ayesha Erotica]","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-12-11T07:44:52+00:00","last_scrobble":"2025-12-11T07:44:52+00:00","observed_albums":[{"album":"THE BADDEST (BADDER) [feat. Ayesha Erotica]","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4c445fb45b4d0433dbcc/album.json","artist_path":"artists/mb/mbid-93a4d03b-4f0e-42da-ae0b-a62876e46071/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:93a4d03b-4f0e-42da-ae0b-a62876e46071",
+      "duration_ms": 143000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:3d033be264624824",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 143000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:3d033be264624824",
+  "identity": {
+    "album": "THE BADDEST (BADDER) [feat. Ayesha Erotica]",
+    "album_id": "album:4c445fb45b4d0433dbcc",
+    "artist": "Joey Valence & Brae",
+    "artist_id": "mbid:93a4d03b-4f0e-42da-ae0b-a62876e46071",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:3d033be264624824",
+    "spotify_id": null,
+    "title": "THE BADDEST (BADDER) [feat. Ayesha Erotica]",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-12-11T07:44:52+00:00",
+    "last_scrobble": "2025-12-11T07:44:52+00:00",
+    "observed_albums": [
+      {
+        "album": "THE BADDEST (BADDER) [feat. Ayesha Erotica]",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4c445fb45b4d0433dbcc/album.json",
+    "artist_path": "artists/mb/mbid-93a4d03b-4f0e-42da-ae0b-a62876e46071/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

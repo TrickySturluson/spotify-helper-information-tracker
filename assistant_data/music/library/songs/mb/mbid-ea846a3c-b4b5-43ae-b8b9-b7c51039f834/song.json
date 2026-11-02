@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:bc4edcce8a85405e","duration_ms":263000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ea846a3c-b4b5-43ae-b8b9-b7c51039f834","track_mbid":"ea846a3c-b4b5-43ae-b8b9-b7c51039f834"}},"id":"mbid:ea846a3c-b4b5-43ae-b8b9-b7c51039f834","identity":{"album":"For Lovers","album_id":"album:f0071dedb4a6ab876187","artist":"Lamp","artist_id":"name:bc4edcce8a85405e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ea846a3c-b4b5-43ae-b8b9-b7c51039f834","source_track_id":"mbid:ea846a3c-b4b5-43ae-b8b9-b7c51039f834","spotify_id":null,"title":"Last Train At 25 O'clock","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-02-02T19:59:28+00:00","last_scrobble":"2024-02-02T19:59:28+00:00","observed_albums":[{"album":"For Lovers","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f0071dedb4a6ab876187/album.json","artist_path":"artists/na/name-bc4edcce8a85405e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:bc4edcce8a85405e",
+      "duration_ms": 263000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ea846a3c-b4b5-43ae-b8b9-b7c51039f834",
+      "track_mbid": "ea846a3c-b4b5-43ae-b8b9-b7c51039f834",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 263000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ea846a3c-b4b5-43ae-b8b9-b7c51039f834",
+  "identity": {
+    "album": "For Lovers",
+    "album_id": "album:f0071dedb4a6ab876187",
+    "artist": "Lamp",
+    "artist_id": "name:bc4edcce8a85405e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ea846a3c-b4b5-43ae-b8b9-b7c51039f834",
+    "source_track_id": "mbid:ea846a3c-b4b5-43ae-b8b9-b7c51039f834",
+    "spotify_id": null,
+    "title": "Last Train At 25 O'clock",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-02-02T19:59:28+00:00",
+    "last_scrobble": "2024-02-02T19:59:28+00:00",
+    "observed_albums": [
+      {
+        "album": "For Lovers",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f0071dedb4a6ab876187/album.json",
+    "artist_path": "artists/na/name-bc4edcce8a85405e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

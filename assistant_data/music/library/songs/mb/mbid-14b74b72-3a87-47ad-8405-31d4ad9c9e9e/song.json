@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:664a01c2-8af6-4030-b9a4-e0a6044e252d","duration_ms":217000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:14b74b72-3a87-47ad-8405-31d4ad9c9e9e","track_mbid":"14b74b72-3a87-47ad-8405-31d4ad9c9e9e"}},"id":"mbid:14b74b72-3a87-47ad-8405-31d4ad9c9e9e","identity":{"album":"MOOMINVALLEY (Official Soundtrack)","album_id":"album:35f313bff50ee3d9a329","artist":"Colonel Suns","artist_id":"mbid:664a01c2-8af6-4030-b9a4-e0a6044e252d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"14b74b72-3a87-47ad-8405-31d4ad9c9e9e","source_track_id":"mbid:14b74b72-3a87-47ad-8405-31d4ad9c9e9e","spotify_id":null,"title":"Back to the Cave","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-11-20T17:40:47+00:00","last_scrobble":"2023-11-20T17:40:47+00:00","observed_albums":[{"album":"MOOMINVALLEY (Official Soundtrack)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-35f313bff50ee3d9a329/album.json","artist_path":"artists/mb/mbid-664a01c2-8af6-4030-b9a4-e0a6044e252d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:664a01c2-8af6-4030-b9a4-e0a6044e252d",
+      "duration_ms": 217000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:14b74b72-3a87-47ad-8405-31d4ad9c9e9e",
+      "track_mbid": "14b74b72-3a87-47ad-8405-31d4ad9c9e9e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 217000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:14b74b72-3a87-47ad-8405-31d4ad9c9e9e",
+  "identity": {
+    "album": "MOOMINVALLEY (Official Soundtrack)",
+    "album_id": "album:35f313bff50ee3d9a329",
+    "artist": "Colonel Suns",
+    "artist_id": "mbid:664a01c2-8af6-4030-b9a4-e0a6044e252d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "14b74b72-3a87-47ad-8405-31d4ad9c9e9e",
+    "source_track_id": "mbid:14b74b72-3a87-47ad-8405-31d4ad9c9e9e",
+    "spotify_id": null,
+    "title": "Back to the Cave",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-11-20T17:40:47+00:00",
+    "last_scrobble": "2023-11-20T17:40:47+00:00",
+    "observed_albums": [
+      {
+        "album": "MOOMINVALLEY (Official Soundtrack)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-35f313bff50ee3d9a329/album.json",
+    "artist_path": "artists/mb/mbid-664a01c2-8af6-4030-b9a4-e0a6044e252d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

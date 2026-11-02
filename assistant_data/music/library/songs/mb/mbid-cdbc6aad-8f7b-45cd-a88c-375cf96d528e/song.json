@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8830afec-83b3-4213-aad0-f6377f1d73ac","duration_ms":189000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:cdbc6aad-8f7b-45cd-a88c-375cf96d528e","track_mbid":"cdbc6aad-8f7b-45cd-a88c-375cf96d528e"}},"id":"mbid:cdbc6aad-8f7b-45cd-a88c-375cf96d528e","identity":{"album":"Disco Elysium","album_id":"album:906a0d105b809e50f99d","artist":"Sea Power","artist_id":"mbid:8830afec-83b3-4213-aad0-f6377f1d73ac","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cdbc6aad-8f7b-45cd-a88c-375cf96d528e","source_track_id":"mbid:cdbc6aad-8f7b-45cd-a88c-375cf96d528e","spotify_id":null,"title":"Burn, Baby, Burn","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-07-22T18:08:41+00:00","last_scrobble":"2024-07-27T03:36:43+00:00","observed_albums":[{"album":"Disco Elysium","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-906a0d105b809e50f99d/album.json","artist_path":"artists/mb/mbid-8830afec-83b3-4213-aad0-f6377f1d73ac/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8830afec-83b3-4213-aad0-f6377f1d73ac",
+      "duration_ms": 189000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:cdbc6aad-8f7b-45cd-a88c-375cf96d528e",
+      "track_mbid": "cdbc6aad-8f7b-45cd-a88c-375cf96d528e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 189000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cdbc6aad-8f7b-45cd-a88c-375cf96d528e",
+  "identity": {
+    "album": "Disco Elysium",
+    "album_id": "album:906a0d105b809e50f99d",
+    "artist": "Sea Power",
+    "artist_id": "mbid:8830afec-83b3-4213-aad0-f6377f1d73ac",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cdbc6aad-8f7b-45cd-a88c-375cf96d528e",
+    "source_track_id": "mbid:cdbc6aad-8f7b-45cd-a88c-375cf96d528e",
+    "spotify_id": null,
+    "title": "Burn, Baby, Burn",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-07-22T18:08:41+00:00",
+    "last_scrobble": "2024-07-27T03:36:43+00:00",
+    "observed_albums": [
+      {
+        "album": "Disco Elysium",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-906a0d105b809e50f99d/album.json",
+    "artist_path": "artists/mb/mbid-8830afec-83b3-4213-aad0-f6377f1d73ac/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

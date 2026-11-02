@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5c05af8f-5b58-43be-9332-1155cfb1d196","duration_ms":252000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:629b5e1c-8ee9-48ac-837b-efa4fb1950fb","track_mbid":"629b5e1c-8ee9-48ac-837b-efa4fb1950fb"}},"id":"mbid:629b5e1c-8ee9-48ac-837b-efa4fb1950fb","identity":{"album":"For Your Safety And The Safety Of Others","album_id":"album:b3ae4c50e35689e6b88b","artist":"Graham Kartna","artist_id":"mbid:5c05af8f-5b58-43be-9332-1155cfb1d196","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"629b5e1c-8ee9-48ac-837b-efa4fb1950fb","source_track_id":"mbid:629b5e1c-8ee9-48ac-837b-efa4fb1950fb","spotify_id":null,"title":"Dizzy's","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-06-26T21:43:56+00:00","last_scrobble":"2025-06-27T05:59:45+00:00","observed_albums":[{"album":"For Your Safety And The Safety Of Others","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b3ae4c50e35689e6b88b/album.json","artist_path":"artists/mb/mbid-5c05af8f-5b58-43be-9332-1155cfb1d196/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5c05af8f-5b58-43be-9332-1155cfb1d196",
+      "duration_ms": 252000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:629b5e1c-8ee9-48ac-837b-efa4fb1950fb",
+      "track_mbid": "629b5e1c-8ee9-48ac-837b-efa4fb1950fb",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 252000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:629b5e1c-8ee9-48ac-837b-efa4fb1950fb",
+  "identity": {
+    "album": "For Your Safety And The Safety Of Others",
+    "album_id": "album:b3ae4c50e35689e6b88b",
+    "artist": "Graham Kartna",
+    "artist_id": "mbid:5c05af8f-5b58-43be-9332-1155cfb1d196",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "629b5e1c-8ee9-48ac-837b-efa4fb1950fb",
+    "source_track_id": "mbid:629b5e1c-8ee9-48ac-837b-efa4fb1950fb",
+    "spotify_id": null,
+    "title": "Dizzy's",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-06-26T21:43:56+00:00",
+    "last_scrobble": "2025-06-27T05:59:45+00:00",
+    "observed_albums": [
+      {
+        "album": "For Your Safety And The Safety Of Others",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b3ae4c50e35689e6b88b/album.json",
+    "artist_path": "artists/mb/mbid-5c05af8f-5b58-43be-9332-1155cfb1d196/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

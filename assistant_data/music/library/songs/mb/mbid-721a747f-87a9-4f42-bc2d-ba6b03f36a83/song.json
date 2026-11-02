@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f","duration_ms":114000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:721a747f-87a9-4f42-bc2d-ba6b03f36a83","track_mbid":"721a747f-87a9-4f42-bc2d-ba6b03f36a83"}},"id":"mbid:721a747f-87a9-4f42-bc2d-ba6b03f36a83","identity":{"album":"Yeule","album_id":"album:8853b0dd423f64a323ef","artist":"yeule","artist_id":"mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"721a747f-87a9-4f42-bc2d-ba6b03f36a83","source_track_id":"mbid:721a747f-87a9-4f42-bc2d-ba6b03f36a83","spotify_id":null,"title":"Intermission","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-10-12T23:23:35+00:00","last_scrobble":"2023-10-13T15:48:04+00:00","observed_albums":[{"album":"Yeule","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8853b0dd423f64a323ef/album.json","artist_path":"artists/mb/mbid-31da7b06-bc30-4a1f-9f4a-c2ac1a84167f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f",
+      "duration_ms": 114000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:721a747f-87a9-4f42-bc2d-ba6b03f36a83",
+      "track_mbid": "721a747f-87a9-4f42-bc2d-ba6b03f36a83",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 114000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:721a747f-87a9-4f42-bc2d-ba6b03f36a83",
+  "identity": {
+    "album": "Yeule",
+    "album_id": "album:8853b0dd423f64a323ef",
+    "artist": "yeule",
+    "artist_id": "mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "721a747f-87a9-4f42-bc2d-ba6b03f36a83",
+    "source_track_id": "mbid:721a747f-87a9-4f42-bc2d-ba6b03f36a83",
+    "spotify_id": null,
+    "title": "Intermission",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-10-12T23:23:35+00:00",
+    "last_scrobble": "2023-10-13T15:48:04+00:00",
+    "observed_albums": [
+      {
+        "album": "Yeule",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8853b0dd423f64a323ef/album.json",
+    "artist_path": "artists/mb/mbid-31da7b06-bc30-4a1f-9f4a-c2ac1a84167f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

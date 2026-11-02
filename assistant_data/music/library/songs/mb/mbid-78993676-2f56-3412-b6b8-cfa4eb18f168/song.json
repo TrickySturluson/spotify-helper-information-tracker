@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"00s":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"2000":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"australian":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"chillout":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"dance":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"electronic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"electronica":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"summer":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"trip-hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"turntablism":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:a66b011331b7dac7","duration_ms":261000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:29:50.195275+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"electronic"},{"count":85,"source":"Last.fm track.getTopTags","tag":"chillout"},{"count":34,"source":"Last.fm track.getTopTags","tag":"summer"},{"count":28,"source":"Last.fm track.getTopTags","tag":"00s"},{"count":13,"source":"Last.fm track.getTopTags","tag":"electronica"},{"count":10,"source":"Last.fm track.getTopTags","tag":"dance"},{"count":10,"source":"Last.fm track.getTopTags","tag":"turntablism"},{"count":3,"source":"Last.fm track.getTopTags","tag":"2000"},{"count":3,"source":"Last.fm track.getTopTags","tag":"australian"},{"count":1,"source":"Last.fm track.getTopTags","tag":"trip-hop"}],"musicbrainz_checked_at":"2026-11-01T14:29:50.922333+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:78993676-2f56-3412-b6b8-cfa4eb18f168","track_mbid":"78993676-2f56-3412-b6b8-cfa4eb18f168"}},"id":"mbid:78993676-2f56-3412-b6b8-cfa4eb18f168","identity":{"album":"Since I Left You (20th Anniversary Deluxe Edition)","album_id":"album:04c4f7dc7d43ad7d2fb6","artist":"The Avalanches","artist_id":"name:a66b011331b7dac7","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"78993676-2f56-3412-b6b8-cfa4eb18f168","source_track_id":"mbid:78993676-2f56-3412-b6b8-cfa4eb18f168","spotify_id":null,"title":"Since I Left You","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-10-07T18:58:08+00:00","last_scrobble":"2026-10-07T18:58:08+00:00","observed_albums":[{"album":"Since I Left You (20th Anniversary Deluxe Edition)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-04c4f7dc7d43ad7d2fb6/album.json","artist_path":"artists/na/name-a66b011331b7dac7/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "00s": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "2000": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "australian": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "chillout": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "dance": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "electronic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "electronica": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "summer": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "trip-hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "turntablism": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:a66b011331b7dac7",
+      "duration_ms": 261000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:29:50.195275+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "electronic"
+        },
+        {
+          "count": 85,
+          "source": "Last.fm track.getTopTags",
+          "tag": "chillout"
+        },
+        {
+          "count": 34,
+          "source": "Last.fm track.getTopTags",
+          "tag": "summer"
+        },
+        {
+          "count": 28,
+          "source": "Last.fm track.getTopTags",
+          "tag": "00s"
+        },
+        {
+          "count": 13,
+          "source": "Last.fm track.getTopTags",
+          "tag": "electronica"
+        },
+        {
+          "count": 10,
+          "source": "Last.fm track.getTopTags",
+          "tag": "dance"
+        },
+        {
+          "count": 10,
+          "source": "Last.fm track.getTopTags",
+          "tag": "turntablism"
+        },
+        {
+          "count": 3,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2000"
+        },
+        {
+          "count": 3,
+          "source": "Last.fm track.getTopTags",
+          "tag": "australian"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "trip-hop"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T14:29:50.922333+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:78993676-2f56-3412-b6b8-cfa4eb18f168",
+      "track_mbid": "78993676-2f56-3412-b6b8-cfa4eb18f168",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 261000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:78993676-2f56-3412-b6b8-cfa4eb18f168",
+  "identity": {
+    "album": "Since I Left You (20th Anniversary Deluxe Edition)",
+    "album_id": "album:04c4f7dc7d43ad7d2fb6",
+    "artist": "The Avalanches",
+    "artist_id": "name:a66b011331b7dac7",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "78993676-2f56-3412-b6b8-cfa4eb18f168",
+    "source_track_id": "mbid:78993676-2f56-3412-b6b8-cfa4eb18f168",
+    "spotify_id": null,
+    "title": "Since I Left You",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-10-07T18:58:08+00:00",
+    "last_scrobble": "2026-10-07T18:58:08+00:00",
+    "observed_albums": [
+      {
+        "album": "Since I Left You (20th Anniversary Deluxe Edition)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-04c4f7dc7d43ad7d2fb6/album.json",
+    "artist_path": "artists/na/name-a66b011331b7dac7/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

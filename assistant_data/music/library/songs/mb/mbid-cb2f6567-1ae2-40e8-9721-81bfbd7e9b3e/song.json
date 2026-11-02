@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:507d821a-dd31-426c-8bae-4006148f7ca1","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e","track_mbid":"cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e"}},"id":"mbid:cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e","identity":{"album":"A Safety Meeting","album_id":"album:6f71abf5a8218a4d8327","artist":"MANWOLVES","artist_id":"mbid:507d821a-dd31-426c-8bae-4006148f7ca1","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e","source_track_id":"mbid:cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e","spotify_id":null,"title":"Reaper","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-12-05T17:51:14+00:00","last_scrobble":"2023-12-05T17:51:14+00:00","observed_albums":[{"album":"A Safety Meeting","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6f71abf5a8218a4d8327/album.json","artist_path":"artists/mb/mbid-507d821a-dd31-426c-8bae-4006148f7ca1/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:507d821a-dd31-426c-8bae-4006148f7ca1",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e",
+      "track_mbid": "cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e",
+  "identity": {
+    "album": "A Safety Meeting",
+    "album_id": "album:6f71abf5a8218a4d8327",
+    "artist": "MANWOLVES",
+    "artist_id": "mbid:507d821a-dd31-426c-8bae-4006148f7ca1",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e",
+    "source_track_id": "mbid:cb2f6567-1ae2-40e8-9721-81bfbd7e9b3e",
+    "spotify_id": null,
+    "title": "Reaper",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-12-05T17:51:14+00:00",
+    "last_scrobble": "2023-12-05T17:51:14+00:00",
+    "observed_albums": [
+      {
+        "album": "A Safety Meeting",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6f71abf5a8218a4d8327/album.json",
+    "artist_path": "artists/mb/mbid-507d821a-dd31-426c-8bae-4006148f7ca1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

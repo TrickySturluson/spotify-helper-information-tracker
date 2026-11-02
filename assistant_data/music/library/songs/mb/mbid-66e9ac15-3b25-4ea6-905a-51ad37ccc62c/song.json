@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:048a14e9-6bab-4855-8ea2-374a443ca526","duration_ms":217000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:66e9ac15-3b25-4ea6-905a-51ad37ccc62c","track_mbid":"66e9ac15-3b25-4ea6-905a-51ad37ccc62c"}},"id":"mbid:66e9ac15-3b25-4ea6-905a-51ad37ccc62c","identity":{"album":"Used To It","album_id":"album:29189324f61d997b3230","artist":"Noshows","artist_id":"mbid:048a14e9-6bab-4855-8ea2-374a443ca526","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"66e9ac15-3b25-4ea6-905a-51ad37ccc62c","source_track_id":"mbid:66e9ac15-3b25-4ea6-905a-51ad37ccc62c","spotify_id":null,"title":"Used To It","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-09T23:11:30+00:00","last_scrobble":"2025-11-09T23:11:30+00:00","observed_albums":[{"album":"Used To It","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-29189324f61d997b3230/album.json","artist_path":"artists/mb/mbid-048a14e9-6bab-4855-8ea2-374a443ca526/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:048a14e9-6bab-4855-8ea2-374a443ca526",
+      "duration_ms": 217000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:66e9ac15-3b25-4ea6-905a-51ad37ccc62c",
+      "track_mbid": "66e9ac15-3b25-4ea6-905a-51ad37ccc62c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 217000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:66e9ac15-3b25-4ea6-905a-51ad37ccc62c",
+  "identity": {
+    "album": "Used To It",
+    "album_id": "album:29189324f61d997b3230",
+    "artist": "Noshows",
+    "artist_id": "mbid:048a14e9-6bab-4855-8ea2-374a443ca526",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "66e9ac15-3b25-4ea6-905a-51ad37ccc62c",
+    "source_track_id": "mbid:66e9ac15-3b25-4ea6-905a-51ad37ccc62c",
+    "spotify_id": null,
+    "title": "Used To It",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-09T23:11:30+00:00",
+    "last_scrobble": "2025-11-09T23:11:30+00:00",
+    "observed_albums": [
+      {
+        "album": "Used To It",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-29189324f61d997b3230/album.json",
+    "artist_path": "artists/mb/mbid-048a14e9-6bab-4855-8ea2-374a443ca526/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

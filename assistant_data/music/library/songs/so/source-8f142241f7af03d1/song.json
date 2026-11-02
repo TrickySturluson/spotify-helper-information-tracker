@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5c4c2df9-63ba-4605-a965-5ea11db27cf5","duration_ms":221000,"duration_source":"Last.fm track.getInfo","track_id":"track:8f142241f7af03d1"}},"id":"source:8f142241f7af03d1","identity":{"album":"Regular People","album_id":"album:d2dbe20ca281447cfbd0","artist":"Moon Walker","artist_id":"mbid:5c4c2df9-63ba-4605-a965-5ea11db27cf5","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:8f142241f7af03d1","spotify_id":null,"title":"Regular People","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-02-19T04:12:18+00:00","last_scrobble":"2025-02-19T04:12:18+00:00","observed_albums":[{"album":"Regular People","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d2dbe20ca281447cfbd0/album.json","artist_path":"artists/mb/mbid-5c4c2df9-63ba-4605-a965-5ea11db27cf5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5c4c2df9-63ba-4605-a965-5ea11db27cf5",
+      "duration_ms": 221000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:8f142241f7af03d1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 221000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:8f142241f7af03d1",
+  "identity": {
+    "album": "Regular People",
+    "album_id": "album:d2dbe20ca281447cfbd0",
+    "artist": "Moon Walker",
+    "artist_id": "mbid:5c4c2df9-63ba-4605-a965-5ea11db27cf5",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:8f142241f7af03d1",
+    "spotify_id": null,
+    "title": "Regular People",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-02-19T04:12:18+00:00",
+    "last_scrobble": "2025-02-19T04:12:18+00:00",
+    "observed_albums": [
+      {
+        "album": "Regular People",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d2dbe20ca281447cfbd0/album.json",
+    "artist_path": "artists/mb/mbid-5c4c2df9-63ba-4605-a965-5ea11db27cf5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

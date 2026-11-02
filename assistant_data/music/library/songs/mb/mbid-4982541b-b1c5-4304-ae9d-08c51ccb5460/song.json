@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6b014cfd-4927-4187-a741-715998e6d785","duration_ms":200000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4982541b-b1c5-4304-ae9d-08c51ccb5460","track_mbid":"4982541b-b1c5-4304-ae9d-08c51ccb5460"}},"id":"mbid:4982541b-b1c5-4304-ae9d-08c51ccb5460","identity":{"album":"Spirit Phone","album_id":"album:8c13688b12e5b53018e8","artist":"Lemon Demon","artist_id":"mbid:6b014cfd-4927-4187-a741-715998e6d785","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4982541b-b1c5-4304-ae9d-08c51ccb5460","source_track_id":"mbid:4982541b-b1c5-4304-ae9d-08c51ccb5460","spotify_id":null,"title":"As Your Father I Expressly Forbid It","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2026-02-16T22:55:23+00:00","last_scrobble":"2026-02-17T05:01:35+00:00","observed_albums":[{"album":"Spirit Phone","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8c13688b12e5b53018e8/album.json","artist_path":"artists/mb/mbid-6b014cfd-4927-4187-a741-715998e6d785/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6b014cfd-4927-4187-a741-715998e6d785",
+      "duration_ms": 200000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4982541b-b1c5-4304-ae9d-08c51ccb5460",
+      "track_mbid": "4982541b-b1c5-4304-ae9d-08c51ccb5460",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 200000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4982541b-b1c5-4304-ae9d-08c51ccb5460",
+  "identity": {
+    "album": "Spirit Phone",
+    "album_id": "album:8c13688b12e5b53018e8",
+    "artist": "Lemon Demon",
+    "artist_id": "mbid:6b014cfd-4927-4187-a741-715998e6d785",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4982541b-b1c5-4304-ae9d-08c51ccb5460",
+    "source_track_id": "mbid:4982541b-b1c5-4304-ae9d-08c51ccb5460",
+    "spotify_id": null,
+    "title": "As Your Father I Expressly Forbid It",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2026-02-16T22:55:23+00:00",
+    "last_scrobble": "2026-02-17T05:01:35+00:00",
+    "observed_albums": [
+      {
+        "album": "Spirit Phone",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8c13688b12e5b53018e8/album.json",
+    "artist_path": "artists/mb/mbid-6b014cfd-4927-4187-a741-715998e6d785/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

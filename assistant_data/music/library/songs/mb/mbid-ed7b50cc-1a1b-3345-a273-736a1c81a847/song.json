@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3f446338-cb5f-4c4c-9ea4-1b12794cf48f","duration_ms":256000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ed7b50cc-1a1b-3345-a273-736a1c81a847","track_mbid":"ed7b50cc-1a1b-3345-a273-736a1c81a847"}},"id":"mbid:ed7b50cc-1a1b-3345-a273-736a1c81a847","identity":{"album":"Welcome To Condale","album_id":"album:7dad15043ba6684951fa","artist":"Summer Camp","artist_id":"mbid:3f446338-cb5f-4c4c-9ea4-1b12794cf48f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ed7b50cc-1a1b-3345-a273-736a1c81a847","source_track_id":"mbid:ed7b50cc-1a1b-3345-a273-736a1c81a847","spotify_id":null,"title":"I Want You","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2025-03-31T18:23:32+00:00","last_scrobble":"2025-04-06T03:12:29+00:00","observed_albums":[{"album":"Welcome To Condale","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7dad15043ba6684951fa/album.json","artist_path":"artists/mb/mbid-3f446338-cb5f-4c4c-9ea4-1b12794cf48f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3f446338-cb5f-4c4c-9ea4-1b12794cf48f",
+      "duration_ms": 256000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ed7b50cc-1a1b-3345-a273-736a1c81a847",
+      "track_mbid": "ed7b50cc-1a1b-3345-a273-736a1c81a847",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 256000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ed7b50cc-1a1b-3345-a273-736a1c81a847",
+  "identity": {
+    "album": "Welcome To Condale",
+    "album_id": "album:7dad15043ba6684951fa",
+    "artist": "Summer Camp",
+    "artist_id": "mbid:3f446338-cb5f-4c4c-9ea4-1b12794cf48f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ed7b50cc-1a1b-3345-a273-736a1c81a847",
+    "source_track_id": "mbid:ed7b50cc-1a1b-3345-a273-736a1c81a847",
+    "spotify_id": null,
+    "title": "I Want You",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2025-03-31T18:23:32+00:00",
+    "last_scrobble": "2025-04-06T03:12:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Welcome To Condale",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7dad15043ba6684951fa/album.json",
+    "artist_path": "artists/mb/mbid-3f446338-cb5f-4c4c-9ea4-1b12794cf48f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

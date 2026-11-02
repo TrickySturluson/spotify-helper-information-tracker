@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:15e3dba3-2839-41d3-8328-4c5914f113e8","duration_ms":219000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ef031b3f-c0bb-4104-b6bb-e5e5cce62aec","track_mbid":"ef031b3f-c0bb-4104-b6bb-e5e5cce62aec"}},"id":"mbid:ef031b3f-c0bb-4104-b6bb-e5e5cce62aec","identity":{"album":"Zoo&LENNON","album_id":"album:91d6efacf7752cf8a96d","artist":"0.8秒と衝撃。","artist_id":"mbid:15e3dba3-2839-41d3-8328-4c5914f113e8","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ef031b3f-c0bb-4104-b6bb-e5e5cce62aec","source_track_id":"mbid:ef031b3f-c0bb-4104-b6bb-e5e5cce62aec","spotify_id":null,"title":"POGO DANCE","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-09T05:51:04+00:00","last_scrobble":"2026-03-09T05:51:04+00:00","observed_albums":[{"album":"Zoo&LENNON","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-91d6efacf7752cf8a96d/album.json","artist_path":"artists/mb/mbid-15e3dba3-2839-41d3-8328-4c5914f113e8/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:15e3dba3-2839-41d3-8328-4c5914f113e8",
+      "duration_ms": 219000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ef031b3f-c0bb-4104-b6bb-e5e5cce62aec",
+      "track_mbid": "ef031b3f-c0bb-4104-b6bb-e5e5cce62aec",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 219000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ef031b3f-c0bb-4104-b6bb-e5e5cce62aec",
+  "identity": {
+    "album": "Zoo&LENNON",
+    "album_id": "album:91d6efacf7752cf8a96d",
+    "artist": "0.8秒と衝撃。",
+    "artist_id": "mbid:15e3dba3-2839-41d3-8328-4c5914f113e8",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ef031b3f-c0bb-4104-b6bb-e5e5cce62aec",
+    "source_track_id": "mbid:ef031b3f-c0bb-4104-b6bb-e5e5cce62aec",
+    "spotify_id": null,
+    "title": "POGO DANCE",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-09T05:51:04+00:00",
+    "last_scrobble": "2026-03-09T05:51:04+00:00",
+    "observed_albums": [
+      {
+        "album": "Zoo&LENNON",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-91d6efacf7752cf8a96d/album.json",
+    "artist_path": "artists/mb/mbid-15e3dba3-2839-41d3-8328-4c5914f113e8/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

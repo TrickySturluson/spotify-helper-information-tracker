@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6bee822d-b4b3-4ae8-962c-c4259f711bac","duration_ms":556000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:00557ceb-6316-425a-8d53-aa31a44a66c6","track_mbid":"00557ceb-6316-425a-8d53-aa31a44a66c6"}},"id":"mbid:00557ceb-6316-425a-8d53-aa31a44a66c6","identity":{"album":"metacontinues","album_id":"album:bb42b9d8a711f93a4532","artist":"Frums","artist_id":"mbid:6bee822d-b4b3-4ae8-962c-c4259f711bac","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"00557ceb-6316-425a-8d53-aa31a44a66c6","source_track_id":"mbid:00557ceb-6316-425a-8d53-aa31a44a66c6","spotify_id":null,"title":"XNOR XNOR XNOR","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2023-08-29T00:11:12+00:00","last_scrobble":"2023-09-02T23:02:52+00:00","observed_albums":[{"album":"metacontinues","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bb42b9d8a711f93a4532/album.json","artist_path":"artists/mb/mbid-6bee822d-b4b3-4ae8-962c-c4259f711bac/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6bee822d-b4b3-4ae8-962c-c4259f711bac",
+      "duration_ms": 556000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:00557ceb-6316-425a-8d53-aa31a44a66c6",
+      "track_mbid": "00557ceb-6316-425a-8d53-aa31a44a66c6",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 556000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:00557ceb-6316-425a-8d53-aa31a44a66c6",
+  "identity": {
+    "album": "metacontinues",
+    "album_id": "album:bb42b9d8a711f93a4532",
+    "artist": "Frums",
+    "artist_id": "mbid:6bee822d-b4b3-4ae8-962c-c4259f711bac",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "00557ceb-6316-425a-8d53-aa31a44a66c6",
+    "source_track_id": "mbid:00557ceb-6316-425a-8d53-aa31a44a66c6",
+    "spotify_id": null,
+    "title": "XNOR XNOR XNOR",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2023-08-29T00:11:12+00:00",
+    "last_scrobble": "2023-09-02T23:02:52+00:00",
+    "observed_albums": [
+      {
+        "album": "metacontinues",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bb42b9d8a711f93a4532/album.json",
+    "artist_path": "artists/mb/mbid-6bee822d-b4b3-4ae8-962c-c4259f711bac/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

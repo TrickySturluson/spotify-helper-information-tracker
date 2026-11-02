@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9546cb60-dae3-46f0-a94f-d7d87a3e1ef2","duration_ms":234000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:43:13.535785+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:a475a72afc539106"}},"id":"source:a475a72afc539106","identity":{"album":"System","album_id":"album:21075b1eae869bacda46","artist":"Prewn","artist_id":"mbid:9546cb60-dae3-46f0-a94f-d7d87a3e1ef2","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:a475a72afc539106","spotify_id":null,"title":"System","track_number":null},"listening_context":{"all_time_plays":20,"first_scrobble":"2026-04-16T19:29:43+00:00","last_scrobble":"2026-07-19T23:15:44+00:00","observed_albums":[{"album":"System","scrobbles":20}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-21075b1eae869bacda46/album.json","artist_path":"artists/mb/mbid-9546cb60-dae3-46f0-a94f-d7d87a3e1ef2/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9546cb60-dae3-46f0-a94f-d7d87a3e1ef2",
+      "duration_ms": 234000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:43:13.535785+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:a475a72afc539106",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 234000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:a475a72afc539106",
+  "identity": {
+    "album": "System",
+    "album_id": "album:21075b1eae869bacda46",
+    "artist": "Prewn",
+    "artist_id": "mbid:9546cb60-dae3-46f0-a94f-d7d87a3e1ef2",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:a475a72afc539106",
+    "spotify_id": null,
+    "title": "System",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 20,
+    "first_scrobble": "2026-04-16T19:29:43+00:00",
+    "last_scrobble": "2026-07-19T23:15:44+00:00",
+    "observed_albums": [
+      {
+        "album": "System",
+        "scrobbles": 20
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-21075b1eae869bacda46/album.json",
+    "artist_path": "artists/mb/mbid-9546cb60-dae3-46f0-a94f-d7d87a3e1ef2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"british":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"cabaret":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"dark cabaret":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"darkwave":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"electronic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"singer-songwriter":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"synthpop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"trip-hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e4d05411-9a3d-452e-8b0e-a55b86b7cf85","duration_ms":322000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:03:49.568247+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"electronic"},{"count":80,"source":"Last.fm track.getTopTags","tag":"synthpop"},{"count":36,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":16,"source":"Last.fm track.getTopTags","tag":"dark cabaret"},{"count":4,"source":"Last.fm track.getTopTags","tag":"british"},{"count":2,"source":"Last.fm track.getTopTags","tag":"cabaret"},{"count":2,"source":"Last.fm track.getTopTags","tag":"indie"},{"count":1,"source":"Last.fm track.getTopTags","tag":"darkwave"},{"count":1,"source":"Last.fm track.getTopTags","tag":"singer-songwriter"},{"count":1,"source":"Last.fm track.getTopTags","tag":"trip-hop"}],"musicbrainz_checked_at":"2026-11-01T09:03:50.210852+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:f8bb32d8-b7fb-3644-af54-ad58ee15fab8","track_mbid":"f8bb32d8-b7fb-3644-af54-ad58ee15fab8"}},"id":"mbid:f8bb32d8-b7fb-3644-af54-ad58ee15fab8","identity":{"album":"Volatile Times","album_id":"album:34e63ab509735f0c160f","artist":"IAMX","artist_id":"mbid:e4d05411-9a3d-452e-8b0e-a55b86b7cf85","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f8bb32d8-b7fb-3644-af54-ad58ee15fab8","source_track_id":"mbid:f8bb32d8-b7fb-3644-af54-ad58ee15fab8","spotify_id":null,"title":"Bernadette","track_number":null},"listening_context":{"all_time_plays":105,"first_scrobble":"2023-03-19T05:37:51+00:00","last_scrobble":"2026-10-10T03:12:55+00:00","observed_albums":[{"album":"Volatile Times","scrobbles":105}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-34e63ab509735f0c160f/album.json","artist_path":"artists/mb/mbid-e4d05411-9a3d-452e-8b0e-a55b86b7cf85/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "british": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "cabaret": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "dark cabaret": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "darkwave": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "electronic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "singer-songwriter": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "synthpop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "trip-hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e4d05411-9a3d-452e-8b0e-a55b86b7cf85",
+      "duration_ms": 322000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:03:49.568247+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "electronic"
+        },
+        {
+          "count": 80,
+          "source": "Last.fm track.getTopTags",
+          "tag": "synthpop"
+        },
+        {
+          "count": 36,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 16,
+          "source": "Last.fm track.getTopTags",
+          "tag": "dark cabaret"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "british"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "cabaret"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "darkwave"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "singer-songwriter"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "trip-hop"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T09:03:50.210852+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:f8bb32d8-b7fb-3644-af54-ad58ee15fab8",
+      "track_mbid": "f8bb32d8-b7fb-3644-af54-ad58ee15fab8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 322000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f8bb32d8-b7fb-3644-af54-ad58ee15fab8",
+  "identity": {
+    "album": "Volatile Times",
+    "album_id": "album:34e63ab509735f0c160f",
+    "artist": "IAMX",
+    "artist_id": "mbid:e4d05411-9a3d-452e-8b0e-a55b86b7cf85",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f8bb32d8-b7fb-3644-af54-ad58ee15fab8",
+    "source_track_id": "mbid:f8bb32d8-b7fb-3644-af54-ad58ee15fab8",
+    "spotify_id": null,
+    "title": "Bernadette",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 105,
+    "first_scrobble": "2023-03-19T05:37:51+00:00",
+    "last_scrobble": "2026-10-10T03:12:55+00:00",
+    "observed_albums": [
+      {
+        "album": "Volatile Times",
+        "scrobbles": 105
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-34e63ab509735f0c160f/album.json",
+    "artist_path": "artists/mb/mbid-e4d05411-9a3d-452e-8b0e-a55b86b7cf85/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

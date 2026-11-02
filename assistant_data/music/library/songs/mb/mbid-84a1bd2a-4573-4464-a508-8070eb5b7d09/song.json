@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:e8576bd52e4bf53e","duration_ms":220000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:29:39.982798+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T14:29:40.708997+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:84a1bd2a-4573-4464-a508-8070eb5b7d09","track_mbid":"84a1bd2a-4573-4464-a508-8070eb5b7d09"}},"id":"mbid:84a1bd2a-4573-4464-a508-8070eb5b7d09","identity":{"album":"Machine","album_id":"album:66428ffd86fc8c74aa82","artist":"Static-X","artist_id":"name:e8576bd52e4bf53e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"84a1bd2a-4573-4464-a508-8070eb5b7d09","source_track_id":"mbid:84a1bd2a-4573-4464-a508-8070eb5b7d09","spotify_id":null,"title":"Cold","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-10-31T06:40:22+00:00","last_scrobble":"2026-10-31T06:40:22+00:00","observed_albums":[{"album":"Machine","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-66428ffd86fc8c74aa82/album.json","artist_path":"artists/na/name-e8576bd52e4bf53e/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:e8576bd52e4bf53e",
+      "duration_ms": 220000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:29:39.982798+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T14:29:40.708997+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:84a1bd2a-4573-4464-a508-8070eb5b7d09",
+      "track_mbid": "84a1bd2a-4573-4464-a508-8070eb5b7d09",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-31T06:56:37+00:00",
+          "status": "matched",
+          "duration_ms": 220000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:84a1bd2a-4573-4464-a508-8070eb5b7d09",
+  "identity": {
+    "album": "Machine",
+    "album_id": "album:66428ffd86fc8c74aa82",
+    "artist": "Static-X",
+    "artist_id": "name:e8576bd52e4bf53e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "84a1bd2a-4573-4464-a508-8070eb5b7d09",
+    "source_track_id": "mbid:84a1bd2a-4573-4464-a508-8070eb5b7d09",
+    "spotify_id": null,
+    "title": "Cold",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-10-31T06:40:22+00:00",
+    "last_scrobble": "2026-10-31T06:40:22+00:00",
+    "observed_albums": [
+      {
+        "album": "Machine",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-66428ffd86fc8c74aa82/album.json",
+    "artist_path": "artists/na/name-e8576bd52e4bf53e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

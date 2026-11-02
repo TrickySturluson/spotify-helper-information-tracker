@@ -1,1 +1,103 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f0805df4-1541-48b1-8482-4c789f83cfcf","duration_ms":174000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:19:00.191317+00:00","lastfm_error":"{}","lastfm_status":"http_400","musicbrainz_checked_at":"2026-10-31T07:30:22.273719+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"identity_mismatch","retry_after":1796019496,"track_id":"mbid:c744518c-aa50-46e1-aa24-fddcec05e8c7","track_mbid":"c744518c-aa50-46e1-aa24-fddcec05e8c7"}},"id":"mbid:c744518c-aa50-46e1-aa24-fddcec05e8c7","identity":{"album":"I Need to Start a Garden","album_id":"album:9ea60e2aa580c7e4b14f","artist":"Haley Heynderickx","artist_id":"mbid:f0805df4-1541-48b1-8482-4c789f83cfcf","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c744518c-aa50-46e1-aa24-fddcec05e8c7","source_track_id":"mbid:c744518c-aa50-46e1-aa24-fddcec05e8c7","spotify_id":null,"title":"Oom Sha La La","track_number":null},"listening_context":{"all_time_plays":118,"first_scrobble":"2024-01-25T16:54:31+00:00","last_scrobble":"2026-10-26T04:48:25+00:00","observed_albums":[{"album":"I Need to Start a Garden","scrobbles":118}],"priority_playlist_ids":[],"recent_plays":8,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9ea60e2aa580c7e4b14f/album.json","artist_path":"artists/mb/mbid-f0805df4-1541-48b1-8482-4c789f83cfcf/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"http_400"},"musicbrainz_status":{"status":"identity_mismatch"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f0805df4-1541-48b1-8482-4c789f83cfcf",
+      "duration_ms": 174000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:19:00.191317+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "http_400",
+      "musicbrainz_checked_at": "2026-10-31T07:30:22.273719+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "identity_mismatch",
+      "retry_after": 1796019496,
+      "track_id": "mbid:c744518c-aa50-46e1-aa24-fddcec05e8c7",
+      "track_mbid": "c744518c-aa50-46e1-aa24-fddcec05e8c7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 174000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c744518c-aa50-46e1-aa24-fddcec05e8c7",
+  "identity": {
+    "album": "I Need to Start a Garden",
+    "album_id": "album:9ea60e2aa580c7e4b14f",
+    "artist": "Haley Heynderickx",
+    "artist_id": "mbid:f0805df4-1541-48b1-8482-4c789f83cfcf",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c744518c-aa50-46e1-aa24-fddcec05e8c7",
+    "source_track_id": "mbid:c744518c-aa50-46e1-aa24-fddcec05e8c7",
+    "spotify_id": null,
+    "title": "Oom Sha La La",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 118,
+    "first_scrobble": "2024-01-25T16:54:31+00:00",
+    "last_scrobble": "2026-10-26T04:48:25+00:00",
+    "observed_albums": [
+      {
+        "album": "I Need to Start a Garden",
+        "scrobbles": 118
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 8,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9ea60e2aa580c7e4b14f/album.json",
+    "artist_path": "artists/mb/mbid-f0805df4-1541-48b1-8482-4c789f83cfcf/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "http_400"
+    },
+    "musicbrainz_status": {
+      "status": "identity_mismatch"
+    }
+  }
+}

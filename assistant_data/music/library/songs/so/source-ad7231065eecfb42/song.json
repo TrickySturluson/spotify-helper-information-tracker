@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:400b04e1-42d3-4e13-8e3b-efce1db9c508","duration_ms":176000,"duration_source":"Last.fm track.getInfo","track_id":"track:ad7231065eecfb42"}},"id":"source:ad7231065eecfb42","identity":{"album":"In Birth","album_id":"album:120f396be8bd2819c93c","artist":"Witch Fever","artist_id":"mbid:400b04e1-42d3-4e13-8e3b-efce1db9c508","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:ad7231065eecfb42","spotify_id":null,"title":"In Birth","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2025-06-09T09:34:39+00:00","last_scrobble":"2026-07-06T15:34:30+00:00","observed_albums":[{"album":"In Birth","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-120f396be8bd2819c93c/album.json","artist_path":"artists/mb/mbid-400b04e1-42d3-4e13-8e3b-efce1db9c508/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:400b04e1-42d3-4e13-8e3b-efce1db9c508",
+      "duration_ms": 176000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:ad7231065eecfb42",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 176000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:ad7231065eecfb42",
+  "identity": {
+    "album": "In Birth",
+    "album_id": "album:120f396be8bd2819c93c",
+    "artist": "Witch Fever",
+    "artist_id": "mbid:400b04e1-42d3-4e13-8e3b-efce1db9c508",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:ad7231065eecfb42",
+    "spotify_id": null,
+    "title": "In Birth",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2025-06-09T09:34:39+00:00",
+    "last_scrobble": "2026-07-06T15:34:30+00:00",
+    "observed_albums": [
+      {
+        "album": "In Birth",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-120f396be8bd2819c93c/album.json",
+    "artist_path": "artists/mb/mbid-400b04e1-42d3-4e13-8e3b-efce1db9c508/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6c11309a-264e-4d39-a4c6-6f028c6da747","duration_ms":237000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:511ddb69-08e9-4489-9fbe-2c0480db2e19","track_mbid":"511ddb69-08e9-4489-9fbe-2c0480db2e19"}},"id":"mbid:511ddb69-08e9-4489-9fbe-2c0480db2e19","identity":{"album":"Devour You","album_id":"album:5f668308f8c621d2bb4b","artist":"Starcrawler","artist_id":"mbid:6c11309a-264e-4d39-a4c6-6f028c6da747","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"511ddb69-08e9-4489-9fbe-2c0480db2e19","source_track_id":"mbid:511ddb69-08e9-4489-9fbe-2c0480db2e19","spotify_id":null,"title":"Bet My Brains","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-06-26T05:25:00+00:00","last_scrobble":"2026-06-26T18:32:13+00:00","observed_albums":[{"album":"Devour You","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5f668308f8c621d2bb4b/album.json","artist_path":"artists/mb/mbid-6c11309a-264e-4d39-a4c6-6f028c6da747/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6c11309a-264e-4d39-a4c6-6f028c6da747",
+      "duration_ms": 237000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:511ddb69-08e9-4489-9fbe-2c0480db2e19",
+      "track_mbid": "511ddb69-08e9-4489-9fbe-2c0480db2e19",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 237000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:511ddb69-08e9-4489-9fbe-2c0480db2e19",
+  "identity": {
+    "album": "Devour You",
+    "album_id": "album:5f668308f8c621d2bb4b",
+    "artist": "Starcrawler",
+    "artist_id": "mbid:6c11309a-264e-4d39-a4c6-6f028c6da747",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "511ddb69-08e9-4489-9fbe-2c0480db2e19",
+    "source_track_id": "mbid:511ddb69-08e9-4489-9fbe-2c0480db2e19",
+    "spotify_id": null,
+    "title": "Bet My Brains",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-06-26T05:25:00+00:00",
+    "last_scrobble": "2026-06-26T18:32:13+00:00",
+    "observed_albums": [
+      {
+        "album": "Devour You",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5f668308f8c621d2bb4b/album.json",
+    "artist_path": "artists/mb/mbid-6c11309a-264e-4d39-a4c6-6f028c6da747/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

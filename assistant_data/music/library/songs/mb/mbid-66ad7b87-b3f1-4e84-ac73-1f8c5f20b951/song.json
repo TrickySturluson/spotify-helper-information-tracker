@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7fb57fba-a6ef-44c2-abab-2fa3bdee607e","duration_ms":288000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:66ad7b87-b3f1-4e84-ac73-1f8c5f20b951","track_mbid":"66ad7b87-b3f1-4e84-ac73-1f8c5f20b951"}},"id":"mbid:66ad7b87-b3f1-4e84-ac73-1f8c5f20b951","identity":{"album":"This Is America","album_id":"album:88ce573e404ab9385f8c","artist":"Childish Gambino","artist_id":"mbid:7fb57fba-a6ef-44c2-abab-2fa3bdee607e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"66ad7b87-b3f1-4e84-ac73-1f8c5f20b951","source_track_id":"mbid:66ad7b87-b3f1-4e84-ac73-1f8c5f20b951","spotify_id":null,"title":"This Is America","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-23T16:45:27+00:00","last_scrobble":"2025-10-23T16:45:27+00:00","observed_albums":[{"album":"This Is America","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-88ce573e404ab9385f8c/album.json","artist_path":"artists/mb/mbid-7fb57fba-a6ef-44c2-abab-2fa3bdee607e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7fb57fba-a6ef-44c2-abab-2fa3bdee607e",
+      "duration_ms": 288000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:66ad7b87-b3f1-4e84-ac73-1f8c5f20b951",
+      "track_mbid": "66ad7b87-b3f1-4e84-ac73-1f8c5f20b951",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 288000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:66ad7b87-b3f1-4e84-ac73-1f8c5f20b951",
+  "identity": {
+    "album": "This Is America",
+    "album_id": "album:88ce573e404ab9385f8c",
+    "artist": "Childish Gambino",
+    "artist_id": "mbid:7fb57fba-a6ef-44c2-abab-2fa3bdee607e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "66ad7b87-b3f1-4e84-ac73-1f8c5f20b951",
+    "source_track_id": "mbid:66ad7b87-b3f1-4e84-ac73-1f8c5f20b951",
+    "spotify_id": null,
+    "title": "This Is America",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-23T16:45:27+00:00",
+    "last_scrobble": "2025-10-23T16:45:27+00:00",
+    "observed_albums": [
+      {
+        "album": "This Is America",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-88ce573e404ab9385f8c/album.json",
+    "artist_path": "artists/mb/mbid-7fb57fba-a6ef-44c2-abab-2fa3bdee607e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

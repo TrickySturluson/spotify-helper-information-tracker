@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:91c55ca7713f019f","duration_ms":207000,"duration_source":"Last.fm track.getInfo","track_id":"track:fd35ef26dea61b42"}},"id":"source:fd35ef26dea61b42","identity":{"album":"KILLED BY ANGEL","album_id":"album:8715de4f4ca137639c59","artist":"Alice Schach and the Magic Orchestra","artist_id":"name:91c55ca7713f019f","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:fd35ef26dea61b42","spotify_id":null,"title":"KILLED BY ANGEL","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2024-06-22T22:19:35+00:00","last_scrobble":"2024-06-23T04:15:33+00:00","observed_albums":[{"album":"KILLED BY ANGEL","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8715de4f4ca137639c59/album.json","artist_path":"artists/na/name-91c55ca7713f019f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:91c55ca7713f019f",
+      "duration_ms": 207000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:fd35ef26dea61b42",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 207000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:fd35ef26dea61b42",
+  "identity": {
+    "album": "KILLED BY ANGEL",
+    "album_id": "album:8715de4f4ca137639c59",
+    "artist": "Alice Schach and the Magic Orchestra",
+    "artist_id": "name:91c55ca7713f019f",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:fd35ef26dea61b42",
+    "spotify_id": null,
+    "title": "KILLED BY ANGEL",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2024-06-22T22:19:35+00:00",
+    "last_scrobble": "2024-06-23T04:15:33+00:00",
+    "observed_albums": [
+      {
+        "album": "KILLED BY ANGEL",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8715de4f4ca137639c59/album.json",
+    "artist_path": "artists/na/name-91c55ca7713f019f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

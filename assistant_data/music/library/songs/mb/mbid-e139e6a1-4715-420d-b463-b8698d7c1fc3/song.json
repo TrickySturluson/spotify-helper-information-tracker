@@ -1,1 +1,104 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e601a215-1921-4ec6-b88e-b21868a35d6a","duration_ms":376000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T05:58:39.929830+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T05:58:40.651198+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3","track_mbid":"e139e6a1-4715-420d-b463-b8698d7c1fc3"}},"id":"mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3","identity":{"album":"Rust b/w Ghost","album_id":"album:7b02eb0605d7dafb1542","artist":"El Huervo","artist_id":"mbid:e601a215-1921-4ec6-b88e-b21868a35d6a","identity_quality":"verified_recording","recording_mbid":"e139e6a1-4715-420d-b463-b8698d7c1fc3","source_track_id":"mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3","spotify_id":null,"title":"Rust"},"listening_context":{"all_time_plays":48,"first_scrobble":"2023-03-13T21:07:37+00:00","last_scrobble":"2026-10-29T18:59:04+00:00","observed_albums":[{"album":"Rust b/w Ghost","scrobbles":26},{"album":"Rust","scrobbles":22}],"priority_playlist_ids":[],"recent_plays":22,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7b02eb0605d7dafb1542/album.json","artist_path":"artists/mb/mbid-e601a215-1921-4ec6-b88e-b21868a35d6a/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a",
+      "duration_ms": 376000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T05:58:39.929830+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T05:58:40.651198+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3",
+      "track_mbid": "e139e6a1-4715-420d-b463-b8698d7c1fc3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 376000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3",
+  "identity": {
+    "album": "Rust b/w Ghost",
+    "album_id": "album:7b02eb0605d7dafb1542",
+    "artist": "El Huervo",
+    "artist_id": "mbid:e601a215-1921-4ec6-b88e-b21868a35d6a",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "e139e6a1-4715-420d-b463-b8698d7c1fc3",
+    "source_track_id": "mbid:e139e6a1-4715-420d-b463-b8698d7c1fc3",
+    "spotify_id": null,
+    "title": "Rust"
+  },
+  "listening_context": {
+    "all_time_plays": 48,
+    "first_scrobble": "2023-03-13T21:07:37+00:00",
+    "last_scrobble": "2026-10-29T18:59:04+00:00",
+    "observed_albums": [
+      {
+        "album": "Rust b/w Ghost",
+        "scrobbles": 26
+      },
+      {
+        "album": "Rust",
+        "scrobbles": 22
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 22,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7b02eb0605d7dafb1542/album.json",
+    "artist_path": "artists/mb/mbid-e601a215-1921-4ec6-b88e-b21868a35d6a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

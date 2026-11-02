@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4a9ee909-7f71-4fd3-a8d5-60dfbaecf14d","duration_ms":232000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:58c92279-20ed-4add-af4b-38f2d84ef059","track_mbid":"58c92279-20ed-4add-af4b-38f2d84ef059"}},"id":"mbid:58c92279-20ed-4add-af4b-38f2d84ef059","identity":{"album":"I AM WOMAN","album_id":"album:b8f7b433d6a5c0547504","artist":"Emmy Meli","artist_id":"mbid:4a9ee909-7f71-4fd3-a8d5-60dfbaecf14d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"58c92279-20ed-4add-af4b-38f2d84ef059","source_track_id":"mbid:58c92279-20ed-4add-af4b-38f2d84ef059","spotify_id":null,"title":"I AM WOMAN","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-23T20:14:11+00:00","last_scrobble":"2025-10-23T20:14:11+00:00","observed_albums":[{"album":"I AM WOMAN","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b8f7b433d6a5c0547504/album.json","artist_path":"artists/mb/mbid-4a9ee909-7f71-4fd3-a8d5-60dfbaecf14d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4a9ee909-7f71-4fd3-a8d5-60dfbaecf14d",
+      "duration_ms": 232000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:58c92279-20ed-4add-af4b-38f2d84ef059",
+      "track_mbid": "58c92279-20ed-4add-af4b-38f2d84ef059",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 232000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:58c92279-20ed-4add-af4b-38f2d84ef059",
+  "identity": {
+    "album": "I AM WOMAN",
+    "album_id": "album:b8f7b433d6a5c0547504",
+    "artist": "Emmy Meli",
+    "artist_id": "mbid:4a9ee909-7f71-4fd3-a8d5-60dfbaecf14d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "58c92279-20ed-4add-af4b-38f2d84ef059",
+    "source_track_id": "mbid:58c92279-20ed-4add-af4b-38f2d84ef059",
+    "spotify_id": null,
+    "title": "I AM WOMAN",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-23T20:14:11+00:00",
+    "last_scrobble": "2025-10-23T20:14:11+00:00",
+    "observed_albums": [
+      {
+        "album": "I AM WOMAN",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b8f7b433d6a5c0547504/album.json",
+    "artist_path": "artists/mb/mbid-4a9ee909-7f71-4fd3-a8d5-60dfbaecf14d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

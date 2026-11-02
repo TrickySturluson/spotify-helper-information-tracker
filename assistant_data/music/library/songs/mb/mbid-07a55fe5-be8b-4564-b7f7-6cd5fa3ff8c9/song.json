@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8be0594f-8c13-46bb-ab06-f93ffba5c776","duration_ms":196000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9","track_mbid":"07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9"}},"id":"mbid:07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9","identity":{"album":"Snowfall: The Tony Bennett Christmas Album","album_id":"album:e362f28600c5f3e12424","artist":"Tony Bennett","artist_id":"mbid:8be0594f-8c13-46bb-ab06-f93ffba5c776","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9","source_track_id":"mbid:07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9","spotify_id":null,"title":"My Favourite Things","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2024-11-09T04:39:25+00:00","last_scrobble":"2024-11-11T06:32:25+00:00","observed_albums":[{"album":"Snowfall: The Tony Bennett Christmas Album","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e362f28600c5f3e12424/album.json","artist_path":"artists/mb/mbid-8be0594f-8c13-46bb-ab06-f93ffba5c776/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8be0594f-8c13-46bb-ab06-f93ffba5c776",
+      "duration_ms": 196000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9",
+      "track_mbid": "07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 196000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9",
+  "identity": {
+    "album": "Snowfall: The Tony Bennett Christmas Album",
+    "album_id": "album:e362f28600c5f3e12424",
+    "artist": "Tony Bennett",
+    "artist_id": "mbid:8be0594f-8c13-46bb-ab06-f93ffba5c776",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9",
+    "source_track_id": "mbid:07a55fe5-be8b-4564-b7f7-6cd5fa3ff8c9",
+    "spotify_id": null,
+    "title": "My Favourite Things",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2024-11-09T04:39:25+00:00",
+    "last_scrobble": "2024-11-11T06:32:25+00:00",
+    "observed_albums": [
+      {
+        "album": "Snowfall: The Tony Bennett Christmas Album",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e362f28600c5f3e12424/album.json",
+    "artist_path": "artists/mb/mbid-8be0594f-8c13-46bb-ab06-f93ffba5c776/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

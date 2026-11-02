@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f3430779-bbec-437b-944d-1fbf45d2e786","duration_ms":181000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6f953b85-2e96-4dfc-a783-4860be4c5620","track_mbid":"6f953b85-2e96-4dfc-a783-4860be4c5620"}},"id":"mbid:6f953b85-2e96-4dfc-a783-4860be4c5620","identity":{"album":"Dark Days","album_id":"album:964eb2e30c49505fa676","artist":"Coal Chamber","artist_id":"mbid:f3430779-bbec-437b-944d-1fbf45d2e786","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6f953b85-2e96-4dfc-a783-4860be4c5620","source_track_id":"mbid:6f953b85-2e96-4dfc-a783-4860be4c5620","spotify_id":null,"title":"Fiend","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-04-29T20:05:25+00:00","last_scrobble":"2025-04-29T20:05:25+00:00","observed_albums":[{"album":"Dark Days","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-964eb2e30c49505fa676/album.json","artist_path":"artists/mb/mbid-f3430779-bbec-437b-944d-1fbf45d2e786/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f3430779-bbec-437b-944d-1fbf45d2e786",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6f953b85-2e96-4dfc-a783-4860be4c5620",
+      "track_mbid": "6f953b85-2e96-4dfc-a783-4860be4c5620",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6f953b85-2e96-4dfc-a783-4860be4c5620",
+  "identity": {
+    "album": "Dark Days",
+    "album_id": "album:964eb2e30c49505fa676",
+    "artist": "Coal Chamber",
+    "artist_id": "mbid:f3430779-bbec-437b-944d-1fbf45d2e786",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6f953b85-2e96-4dfc-a783-4860be4c5620",
+    "source_track_id": "mbid:6f953b85-2e96-4dfc-a783-4860be4c5620",
+    "spotify_id": null,
+    "title": "Fiend",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-04-29T20:05:25+00:00",
+    "last_scrobble": "2025-04-29T20:05:25+00:00",
+    "observed_albums": [
+      {
+        "album": "Dark Days",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-964eb2e30c49505fa676/album.json",
+    "artist_path": "artists/mb/mbid-f3430779-bbec-437b-944d-1fbf45d2e786/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

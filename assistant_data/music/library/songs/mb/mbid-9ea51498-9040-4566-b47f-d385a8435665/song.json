@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:371da36e-f702-4702-9913-80a5c8f9c68f","duration_ms":96000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:37:09.683968+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:37:10.338713+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:9ea51498-9040-4566-b47f-d385a8435665","track_mbid":"9ea51498-9040-4566-b47f-d385a8435665"}},"id":"mbid:9ea51498-9040-4566-b47f-d385a8435665","identity":{"album":"Alpha Beta Omegle","album_id":"album:75fb137abd0d85e636e1","artist":"massie99","artist_id":"mbid:371da36e-f702-4702-9913-80a5c8f9c68f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9ea51498-9040-4566-b47f-d385a8435665","source_track_id":"mbid:9ea51498-9040-4566-b47f-d385a8435665","spotify_id":null,"title":"Anika","track_number":null},"listening_context":{"all_time_plays":35,"first_scrobble":"2025-04-07T15:47:54+00:00","last_scrobble":"2026-05-20T23:47:06+00:00","observed_albums":[{"album":"Alpha Beta Omegle","scrobbles":35}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-75fb137abd0d85e636e1/album.json","artist_path":"artists/mb/mbid-371da36e-f702-4702-9913-80a5c8f9c68f/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:371da36e-f702-4702-9913-80a5c8f9c68f",
+      "duration_ms": 96000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:37:09.683968+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:37:10.338713+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:9ea51498-9040-4566-b47f-d385a8435665",
+      "track_mbid": "9ea51498-9040-4566-b47f-d385a8435665",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 96000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9ea51498-9040-4566-b47f-d385a8435665",
+  "identity": {
+    "album": "Alpha Beta Omegle",
+    "album_id": "album:75fb137abd0d85e636e1",
+    "artist": "massie99",
+    "artist_id": "mbid:371da36e-f702-4702-9913-80a5c8f9c68f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9ea51498-9040-4566-b47f-d385a8435665",
+    "source_track_id": "mbid:9ea51498-9040-4566-b47f-d385a8435665",
+    "spotify_id": null,
+    "title": "Anika",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 35,
+    "first_scrobble": "2025-04-07T15:47:54+00:00",
+    "last_scrobble": "2026-05-20T23:47:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Alpha Beta Omegle",
+        "scrobbles": 35
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-75fb137abd0d85e636e1/album.json",
+    "artist_path": "artists/mb/mbid-371da36e-f702-4702-9913-80a5c8f9c68f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

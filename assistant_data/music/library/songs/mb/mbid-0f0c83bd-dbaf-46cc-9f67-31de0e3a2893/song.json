@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"2018":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"camp":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"funny":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"hip hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"jazz rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"pop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rnb":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"sexy":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"trap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5df62a88-cac9-490a-b62c-c7c88f4020f4","duration_ms":283000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T07:31:57.752300+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"trap"},{"count":56,"source":"Last.fm track.getTopTags","tag":"pop"},{"count":37,"source":"Last.fm track.getTopTags","tag":"rap"},{"count":37,"source":"Last.fm track.getTopTags","tag":"rnb"},{"count":8,"source":"Last.fm track.getTopTags","tag":"2018"},{"count":8,"source":"Last.fm track.getTopTags","tag":"hip hop"},{"count":2,"source":"Last.fm track.getTopTags","tag":"funny"},{"count":1,"source":"Last.fm track.getTopTags","tag":"camp"},{"count":1,"source":"Last.fm track.getTopTags","tag":"jazz rap"},{"count":1,"source":"Last.fm track.getTopTags","tag":"sexy"}],"musicbrainz_checked_at":"2026-10-31T07:31:58.473651+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:0f0c83bd-dbaf-46cc-9f67-31de0e3a2893","track_mbid":"0f0c83bd-dbaf-46cc-9f67-31de0e3a2893"}},"id":"mbid:0f0c83bd-dbaf-46cc-9f67-31de0e3a2893","identity":{"album":"Amala (Deluxe Version)","album_id":"album:59d357d16b424e4b3d6c","artist":"Doja Cat","artist_id":"mbid:5df62a88-cac9-490a-b62c-c7c88f4020f4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0f0c83bd-dbaf-46cc-9f67-31de0e3a2893","source_track_id":"mbid:0f0c83bd-dbaf-46cc-9f67-31de0e3a2893","spotify_id":null,"title":"Mooo!","track_number":null},"listening_context":{"all_time_plays":113,"first_scrobble":"2023-02-14T02:20:25+00:00","last_scrobble":"2026-07-19T03:21:10+00:00","observed_albums":[{"album":"Amala (Deluxe Version)","scrobbles":113}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-59d357d16b424e4b3d6c/album.json","artist_path":"artists/mb/mbid-5df62a88-cac9-490a-b62c-c7c88f4020f4/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "2018": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "camp": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "funny": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "hip hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "jazz rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "pop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rnb": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "sexy": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "trap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5df62a88-cac9-490a-b62c-c7c88f4020f4",
+      "duration_ms": 283000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T07:31:57.752300+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "trap"
+        },
+        {
+          "count": 56,
+          "source": "Last.fm track.getTopTags",
+          "tag": "pop"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rap"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rnb"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2018"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "hip hop"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "funny"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "camp"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "jazz rap"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "sexy"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-10-31T07:31:58.473651+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:0f0c83bd-dbaf-46cc-9f67-31de0e3a2893",
+      "track_mbid": "0f0c83bd-dbaf-46cc-9f67-31de0e3a2893",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 283000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0f0c83bd-dbaf-46cc-9f67-31de0e3a2893",
+  "identity": {
+    "album": "Amala (Deluxe Version)",
+    "album_id": "album:59d357d16b424e4b3d6c",
+    "artist": "Doja Cat",
+    "artist_id": "mbid:5df62a88-cac9-490a-b62c-c7c88f4020f4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0f0c83bd-dbaf-46cc-9f67-31de0e3a2893",
+    "source_track_id": "mbid:0f0c83bd-dbaf-46cc-9f67-31de0e3a2893",
+    "spotify_id": null,
+    "title": "Mooo!",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 113,
+    "first_scrobble": "2023-02-14T02:20:25+00:00",
+    "last_scrobble": "2026-07-19T03:21:10+00:00",
+    "observed_albums": [
+      {
+        "album": "Amala (Deluxe Version)",
+        "scrobbles": 113
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-59d357d16b424e4b3d6c/album.json",
+    "artist_path": "artists/mb/mbid-5df62a88-cac9-490a-b62c-c7c88f4020f4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

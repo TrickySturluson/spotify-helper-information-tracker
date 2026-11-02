@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:da0a2dbf058b1d82","duration_ms":120000,"duration_source":"Last.fm track.getInfo","track_id":"track:7f36db737e554c52"}},"id":"source:7f36db737e554c52","identity":{"album":"Circle Circle Dot Dot","album_id":"album:6808ff89f088243b5f7d","artist":"isemhi","artist_id":"name:da0a2dbf058b1d82","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:7f36db737e554c52","spotify_id":null,"title":"Circle Circle Dot Dot","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-26T17:58:49+00:00","last_scrobble":"2024-11-26T17:58:49+00:00","observed_albums":[{"album":"Circle Circle Dot Dot","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6808ff89f088243b5f7d/album.json","artist_path":"artists/na/name-da0a2dbf058b1d82/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:da0a2dbf058b1d82",
+      "duration_ms": 120000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:7f36db737e554c52",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 120000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:7f36db737e554c52",
+  "identity": {
+    "album": "Circle Circle Dot Dot",
+    "album_id": "album:6808ff89f088243b5f7d",
+    "artist": "isemhi",
+    "artist_id": "name:da0a2dbf058b1d82",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:7f36db737e554c52",
+    "spotify_id": null,
+    "title": "Circle Circle Dot Dot",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-26T17:58:49+00:00",
+    "last_scrobble": "2024-11-26T17:58:49+00:00",
+    "observed_albums": [
+      {
+        "album": "Circle Circle Dot Dot",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6808ff89f088243b5f7d/album.json",
+    "artist_path": "artists/na/name-da0a2dbf058b1d82/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:48b82408-3db2-4a96-bd97-129fbdeddfc4","duration_ms":163000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c872696f-90c4-3b91-aa65-7a82a525a1b1","track_mbid":"c872696f-90c4-3b91-aa65-7a82a525a1b1"}},"id":"mbid:c872696f-90c4-3b91-aa65-7a82a525a1b1","identity":{"album":"Beat Scene: Jack Kerouac, His Contemporaries and Influences","album_id":"album:8897304ea319abd7b36c","artist":"Slim Gaillard","artist_id":"mbid:48b82408-3db2-4a96-bd97-129fbdeddfc4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c872696f-90c4-3b91-aa65-7a82a525a1b1","source_track_id":"mbid:c872696f-90c4-3b91-aa65-7a82a525a1b1","spotify_id":null,"title":"Atomic Cocktail","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-07-28T22:22:09+00:00","last_scrobble":"2025-07-29T23:05:17+00:00","observed_albums":[{"album":"Beat Scene: Jack Kerouac, His Contemporaries and Influences","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8897304ea319abd7b36c/album.json","artist_path":"artists/mb/mbid-48b82408-3db2-4a96-bd97-129fbdeddfc4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:48b82408-3db2-4a96-bd97-129fbdeddfc4",
+      "duration_ms": 163000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c872696f-90c4-3b91-aa65-7a82a525a1b1",
+      "track_mbid": "c872696f-90c4-3b91-aa65-7a82a525a1b1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 163000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c872696f-90c4-3b91-aa65-7a82a525a1b1",
+  "identity": {
+    "album": "Beat Scene: Jack Kerouac, His Contemporaries and Influences",
+    "album_id": "album:8897304ea319abd7b36c",
+    "artist": "Slim Gaillard",
+    "artist_id": "mbid:48b82408-3db2-4a96-bd97-129fbdeddfc4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c872696f-90c4-3b91-aa65-7a82a525a1b1",
+    "source_track_id": "mbid:c872696f-90c4-3b91-aa65-7a82a525a1b1",
+    "spotify_id": null,
+    "title": "Atomic Cocktail",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-07-28T22:22:09+00:00",
+    "last_scrobble": "2025-07-29T23:05:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Beat Scene: Jack Kerouac, His Contemporaries and Influences",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8897304ea319abd7b36c/album.json",
+    "artist_path": "artists/mb/mbid-48b82408-3db2-4a96-bd97-129fbdeddfc4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

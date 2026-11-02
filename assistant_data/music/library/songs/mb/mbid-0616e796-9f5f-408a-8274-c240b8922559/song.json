@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:38bbbd07-9d89-4ff1-9a4e-28e48f57d63a","duration_ms":266000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:04:19.213618+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T15:04:19.955892+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:0616e796-9f5f-408a-8274-c240b8922559","track_mbid":"0616e796-9f5f-408a-8274-c240b8922559"}},"id":"mbid:0616e796-9f5f-408a-8274-c240b8922559","identity":{"album":"MO x Caro Emerald by Grandmono","album_id":"album:cfb70387f0077cb640c0","artist":"Caro Emerald","artist_id":"mbid:38bbbd07-9d89-4ff1-9a4e-28e48f57d63a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0616e796-9f5f-408a-8274-c240b8922559","source_track_id":"mbid:0616e796-9f5f-408a-8274-c240b8922559","spotify_id":null,"title":"Tahitian Skies","track_number":null},"listening_context":{"all_time_plays":60,"first_scrobble":"2025-01-09T06:54:15+00:00","last_scrobble":"2026-07-21T20:30:41+00:00","observed_albums":[{"album":"MO x Caro Emerald by Grandmono","scrobbles":60}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-cfb70387f0077cb640c0/album.json","artist_path":"artists/mb/mbid-38bbbd07-9d89-4ff1-9a4e-28e48f57d63a/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:38bbbd07-9d89-4ff1-9a4e-28e48f57d63a",
+      "duration_ms": 266000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:04:19.213618+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T15:04:19.955892+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:0616e796-9f5f-408a-8274-c240b8922559",
+      "track_mbid": "0616e796-9f5f-408a-8274-c240b8922559",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 266000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0616e796-9f5f-408a-8274-c240b8922559",
+  "identity": {
+    "album": "MO x Caro Emerald by Grandmono",
+    "album_id": "album:cfb70387f0077cb640c0",
+    "artist": "Caro Emerald",
+    "artist_id": "mbid:38bbbd07-9d89-4ff1-9a4e-28e48f57d63a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0616e796-9f5f-408a-8274-c240b8922559",
+    "source_track_id": "mbid:0616e796-9f5f-408a-8274-c240b8922559",
+    "spotify_id": null,
+    "title": "Tahitian Skies",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 60,
+    "first_scrobble": "2025-01-09T06:54:15+00:00",
+    "last_scrobble": "2026-07-21T20:30:41+00:00",
+    "observed_albums": [
+      {
+        "album": "MO x Caro Emerald by Grandmono",
+        "scrobbles": 60
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-cfb70387f0077cb640c0/album.json",
+    "artist_path": "artists/mb/mbid-38bbbd07-9d89-4ff1-9a4e-28e48f57d63a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

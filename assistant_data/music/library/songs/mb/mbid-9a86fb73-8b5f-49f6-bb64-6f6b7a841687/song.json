@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9e975e9b-7538-4acd-ba91-8e5fd5df6b6e","duration_ms":215000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:37:55.532659+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:37:56.234793+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:9a86fb73-8b5f-49f6-bb64-6f6b7a841687","track_mbid":"9a86fb73-8b5f-49f6-bb64-6f6b7a841687"}},"id":"mbid:9a86fb73-8b5f-49f6-bb64-6f6b7a841687","identity":{"album":"Lately It Feels Alright","album_id":"album:bf45c8ceb817a7f9d5af","artist":"Kid Bloom","artist_id":"mbid:9e975e9b-7538-4acd-ba91-8e5fd5df6b6e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9a86fb73-8b5f-49f6-bb64-6f6b7a841687","source_track_id":"mbid:9a86fb73-8b5f-49f6-bb64-6f6b7a841687","spotify_id":null,"title":"Lately It Feels Alright","track_number":null},"listening_context":{"all_time_plays":29,"first_scrobble":"2024-05-14T20:25:17+00:00","last_scrobble":"2024-05-19T08:28:45+00:00","observed_albums":[{"album":"Lately It Feels Alright","scrobbles":29}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bf45c8ceb817a7f9d5af/album.json","artist_path":"artists/mb/mbid-9e975e9b-7538-4acd-ba91-8e5fd5df6b6e/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9e975e9b-7538-4acd-ba91-8e5fd5df6b6e",
+      "duration_ms": 215000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:37:55.532659+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:37:56.234793+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:9a86fb73-8b5f-49f6-bb64-6f6b7a841687",
+      "track_mbid": "9a86fb73-8b5f-49f6-bb64-6f6b7a841687",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 215000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9a86fb73-8b5f-49f6-bb64-6f6b7a841687",
+  "identity": {
+    "album": "Lately It Feels Alright",
+    "album_id": "album:bf45c8ceb817a7f9d5af",
+    "artist": "Kid Bloom",
+    "artist_id": "mbid:9e975e9b-7538-4acd-ba91-8e5fd5df6b6e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9a86fb73-8b5f-49f6-bb64-6f6b7a841687",
+    "source_track_id": "mbid:9a86fb73-8b5f-49f6-bb64-6f6b7a841687",
+    "spotify_id": null,
+    "title": "Lately It Feels Alright",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 29,
+    "first_scrobble": "2024-05-14T20:25:17+00:00",
+    "last_scrobble": "2024-05-19T08:28:45+00:00",
+    "observed_albums": [
+      {
+        "album": "Lately It Feels Alright",
+        "scrobbles": 29
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bf45c8ceb817a7f9d5af/album.json",
+    "artist_path": "artists/mb/mbid-9e975e9b-7538-4acd-ba91-8e5fd5df6b6e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:44cf61b8-5197-448a-b82b-cef6ee89fac5","duration_ms":225000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0516b5b0-de25-391d-a668-c79ad3854ff4","track_mbid":"0516b5b0-de25-391d-a668-c79ad3854ff4"}},"id":"mbid:0516b5b0-de25-391d-a668-c79ad3854ff4","identity":{"album":"brand new eyes","album_id":"album:d38f44181599a0494183","artist":"Paramore","artist_id":"mbid:44cf61b8-5197-448a-b82b-cef6ee89fac5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0516b5b0-de25-391d-a668-c79ad3854ff4","source_track_id":"mbid:0516b5b0-de25-391d-a668-c79ad3854ff4","spotify_id":null,"title":"All I Wanted","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-23T19:47:42+00:00","last_scrobble":"2025-10-23T19:47:42+00:00","observed_albums":[{"album":"brand new eyes","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d38f44181599a0494183/album.json","artist_path":"artists/mb/mbid-44cf61b8-5197-448a-b82b-cef6ee89fac5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:44cf61b8-5197-448a-b82b-cef6ee89fac5",
+      "duration_ms": 225000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0516b5b0-de25-391d-a668-c79ad3854ff4",
+      "track_mbid": "0516b5b0-de25-391d-a668-c79ad3854ff4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 225000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0516b5b0-de25-391d-a668-c79ad3854ff4",
+  "identity": {
+    "album": "brand new eyes",
+    "album_id": "album:d38f44181599a0494183",
+    "artist": "Paramore",
+    "artist_id": "mbid:44cf61b8-5197-448a-b82b-cef6ee89fac5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0516b5b0-de25-391d-a668-c79ad3854ff4",
+    "source_track_id": "mbid:0516b5b0-de25-391d-a668-c79ad3854ff4",
+    "spotify_id": null,
+    "title": "All I Wanted",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-23T19:47:42+00:00",
+    "last_scrobble": "2025-10-23T19:47:42+00:00",
+    "observed_albums": [
+      {
+        "album": "brand new eyes",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d38f44181599a0494183/album.json",
+    "artist_path": "artists/mb/mbid-44cf61b8-5197-448a-b82b-cef6ee89fac5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2","duration_ms":167000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3754032c-7f41-47d7-99b1-d7ff07dda343","track_mbid":"3754032c-7f41-47d7-99b1-d7ff07dda343"}},"id":"mbid:3754032c-7f41-47d7-99b1-d7ff07dda343","identity":{"album":"Cavalry","album_id":"album:365af87edee8bf9ccecb","artist":"Shayfer James","artist_id":"mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3754032c-7f41-47d7-99b1-d7ff07dda343","source_track_id":"mbid:3754032c-7f41-47d7-99b1-d7ff07dda343","spotify_id":null,"title":"Cavalry","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-12-01T16:51:21+00:00","last_scrobble":"2025-12-02T00:02:01+00:00","observed_albums":[{"album":"Cavalry","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-365af87edee8bf9ccecb/album.json","artist_path":"artists/mb/mbid-53d2ae18-de31-4fd2-b368-82e6c1cebeb2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2",
+      "duration_ms": 167000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3754032c-7f41-47d7-99b1-d7ff07dda343",
+      "track_mbid": "3754032c-7f41-47d7-99b1-d7ff07dda343",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 167000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3754032c-7f41-47d7-99b1-d7ff07dda343",
+  "identity": {
+    "album": "Cavalry",
+    "album_id": "album:365af87edee8bf9ccecb",
+    "artist": "Shayfer James",
+    "artist_id": "mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3754032c-7f41-47d7-99b1-d7ff07dda343",
+    "source_track_id": "mbid:3754032c-7f41-47d7-99b1-d7ff07dda343",
+    "spotify_id": null,
+    "title": "Cavalry",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-12-01T16:51:21+00:00",
+    "last_scrobble": "2025-12-02T00:02:01+00:00",
+    "observed_albums": [
+      {
+        "album": "Cavalry",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-365af87edee8bf9ccecb/album.json",
+    "artist_path": "artists/mb/mbid-53d2ae18-de31-4fd2-b368-82e6c1cebeb2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

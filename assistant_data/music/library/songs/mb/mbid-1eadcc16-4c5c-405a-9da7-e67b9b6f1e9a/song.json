@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:aaffbbf0-153d-46bf-8bd4-72ef84479778","duration_ms":188000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a","track_mbid":"1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a"}},"id":"mbid:1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a","identity":{"album":"The Make Believes","album_id":"album:38016b398566351b0353","artist":"The Make Believes","artist_id":"mbid:aaffbbf0-153d-46bf-8bd4-72ef84479778","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a","source_track_id":"mbid:1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a","spotify_id":null,"title":"Cheer Up","track_number":null},"listening_context":{"all_time_plays":13,"first_scrobble":"2024-01-04T22:30:12+00:00","last_scrobble":"2026-07-24T22:09:12+00:00","observed_albums":[{"album":"The Make Believes","scrobbles":13}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-38016b398566351b0353/album.json","artist_path":"artists/mb/mbid-aaffbbf0-153d-46bf-8bd4-72ef84479778/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:aaffbbf0-153d-46bf-8bd4-72ef84479778",
+      "duration_ms": 188000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a",
+      "track_mbid": "1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 188000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a",
+  "identity": {
+    "album": "The Make Believes",
+    "album_id": "album:38016b398566351b0353",
+    "artist": "The Make Believes",
+    "artist_id": "mbid:aaffbbf0-153d-46bf-8bd4-72ef84479778",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a",
+    "source_track_id": "mbid:1eadcc16-4c5c-405a-9da7-e67b9b6f1e9a",
+    "spotify_id": null,
+    "title": "Cheer Up",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 13,
+    "first_scrobble": "2024-01-04T22:30:12+00:00",
+    "last_scrobble": "2026-07-24T22:09:12+00:00",
+    "observed_albums": [
+      {
+        "album": "The Make Believes",
+        "scrobbles": 13
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-38016b398566351b0353/album.json",
+    "artist_path": "artists/mb/mbid-aaffbbf0-153d-46bf-8bd4-72ef84479778/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

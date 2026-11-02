@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","duration_ms":184000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:156381e1-e171-4cf9-938f-74d6a14474d4","track_mbid":"156381e1-e171-4cf9-938f-74d6a14474d4"}},"id":"mbid:156381e1-e171-4cf9-938f-74d6a14474d4","identity":{"album":"Laurel Hell","album_id":"album:d08f81c8d7e32b8f2612","artist":"Mitski","artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"156381e1-e171-4cf9-938f-74d6a14474d4","source_track_id":"mbid:156381e1-e171-4cf9-938f-74d6a14474d4","spotify_id":null,"title":"The Only Heartbreaker","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-03-16T03:49:37+00:00","last_scrobble":"2024-04-01T11:25:02+00:00","observed_albums":[{"album":"Laurel Hell","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d08f81c8d7e32b8f2612/album.json","artist_path":"artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+      "duration_ms": 184000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:156381e1-e171-4cf9-938f-74d6a14474d4",
+      "track_mbid": "156381e1-e171-4cf9-938f-74d6a14474d4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 184000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:156381e1-e171-4cf9-938f-74d6a14474d4",
+  "identity": {
+    "album": "Laurel Hell",
+    "album_id": "album:d08f81c8d7e32b8f2612",
+    "artist": "Mitski",
+    "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "156381e1-e171-4cf9-938f-74d6a14474d4",
+    "source_track_id": "mbid:156381e1-e171-4cf9-938f-74d6a14474d4",
+    "spotify_id": null,
+    "title": "The Only Heartbreaker",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-03-16T03:49:37+00:00",
+    "last_scrobble": "2024-04-01T11:25:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Laurel Hell",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d08f81c8d7e32b8f2612/album.json",
+    "artist_path": "artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

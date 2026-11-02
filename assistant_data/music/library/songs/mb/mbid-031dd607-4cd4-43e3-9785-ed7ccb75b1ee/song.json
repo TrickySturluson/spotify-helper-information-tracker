@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:03ec28ea-fbcd-48c6-93ce-d3fecfe74d53","duration_ms":149000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:031dd607-4cd4-43e3-9785-ed7ccb75b1ee","track_mbid":"031dd607-4cd4-43e3-9785-ed7ccb75b1ee"}},"id":"mbid:031dd607-4cd4-43e3-9785-ed7ccb75b1ee","identity":{"album":"All Shades of Teal","album_id":"album:75e37d012c1bfc3b3564","artist":"Early Eyes","artist_id":"mbid:03ec28ea-fbcd-48c6-93ce-d3fecfe74d53","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"031dd607-4cd4-43e3-9785-ed7ccb75b1ee","source_track_id":"mbid:031dd607-4cd4-43e3-9785-ed7ccb75b1ee","spotify_id":null,"title":"Apple Cider","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2024-09-11T23:54:35+00:00","last_scrobble":"2024-09-12T08:47:01+00:00","observed_albums":[{"album":"All Shades of Teal","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-75e37d012c1bfc3b3564/album.json","artist_path":"artists/mb/mbid-03ec28ea-fbcd-48c6-93ce-d3fecfe74d53/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:03ec28ea-fbcd-48c6-93ce-d3fecfe74d53",
+      "duration_ms": 149000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:031dd607-4cd4-43e3-9785-ed7ccb75b1ee",
+      "track_mbid": "031dd607-4cd4-43e3-9785-ed7ccb75b1ee",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 149000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:031dd607-4cd4-43e3-9785-ed7ccb75b1ee",
+  "identity": {
+    "album": "All Shades of Teal",
+    "album_id": "album:75e37d012c1bfc3b3564",
+    "artist": "Early Eyes",
+    "artist_id": "mbid:03ec28ea-fbcd-48c6-93ce-d3fecfe74d53",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "031dd607-4cd4-43e3-9785-ed7ccb75b1ee",
+    "source_track_id": "mbid:031dd607-4cd4-43e3-9785-ed7ccb75b1ee",
+    "spotify_id": null,
+    "title": "Apple Cider",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2024-09-11T23:54:35+00:00",
+    "last_scrobble": "2024-09-12T08:47:01+00:00",
+    "observed_albums": [
+      {
+        "album": "All Shades of Teal",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-75e37d012c1bfc3b3564/album.json",
+    "artist_path": "artists/mb/mbid-03ec28ea-fbcd-48c6-93ce-d3fecfe74d53/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

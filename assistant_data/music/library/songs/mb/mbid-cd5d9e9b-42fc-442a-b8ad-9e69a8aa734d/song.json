@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:27afdb7c-c932-4698-9d2a-96d7199acbed","duration_ms":209000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d","track_mbid":"cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d"}},"id":"mbid:cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d","identity":{"album":"End of It","album_id":"album:8d8daa5b231749c1fe7b","artist":"Friday Pilots Club","artist_id":"mbid:27afdb7c-c932-4698-9d2a-96d7199acbed","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d","source_track_id":"mbid:cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d","spotify_id":null,"title":"End of It","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-01-09T08:10:57+00:00","last_scrobble":"2025-01-09T08:22:50+00:00","observed_albums":[{"album":"End of It","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8d8daa5b231749c1fe7b/album.json","artist_path":"artists/mb/mbid-27afdb7c-c932-4698-9d2a-96d7199acbed/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:27afdb7c-c932-4698-9d2a-96d7199acbed",
+      "duration_ms": 209000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d",
+      "track_mbid": "cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 209000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d",
+  "identity": {
+    "album": "End of It",
+    "album_id": "album:8d8daa5b231749c1fe7b",
+    "artist": "Friday Pilots Club",
+    "artist_id": "mbid:27afdb7c-c932-4698-9d2a-96d7199acbed",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d",
+    "source_track_id": "mbid:cd5d9e9b-42fc-442a-b8ad-9e69a8aa734d",
+    "spotify_id": null,
+    "title": "End of It",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-01-09T08:10:57+00:00",
+    "last_scrobble": "2025-01-09T08:22:50+00:00",
+    "observed_albums": [
+      {
+        "album": "End of It",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8d8daa5b231749c1fe7b/album.json",
+    "artist_path": "artists/mb/mbid-27afdb7c-c932-4698-9d2a-96d7199acbed/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

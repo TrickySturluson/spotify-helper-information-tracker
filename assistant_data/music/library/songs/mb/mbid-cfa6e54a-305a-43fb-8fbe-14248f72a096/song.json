@@ -1,1 +1,274 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"2020s":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"2022":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Hi-NRG":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"best of 2022":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"energetic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"heard live":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"mitski":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"new wave":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"personal favourites":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"power pop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"synthpop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","duration_ms":212000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-02T00:02:23.866980+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"new wave"},{"count":100,"source":"Last.fm track.getTopTags","tag":"synthpop"},{"count":66,"source":"Last.fm track.getTopTags","tag":"2022"},{"count":16,"source":"Last.fm track.getTopTags","tag":"power pop"},{"count":8,"source":"Last.fm track.getTopTags","tag":"heard live"},{"count":8,"source":"Last.fm track.getTopTags","tag":"Hi-NRG"},{"count":8,"source":"Last.fm track.getTopTags","tag":"personal favourites"},{"count":2,"source":"Last.fm track.getTopTags","tag":"2020s"},{"count":2,"source":"Last.fm track.getTopTags","tag":"best of 2022"},{"count":2,"source":"Last.fm track.getTopTags","tag":"mitski"}],"musicbrainz_checked_at":"2026-11-02T00:02:26.671976+00:00","musicbrainz_genres":[{"count":1,"source":"MusicBrainz recording genre","tag":"indie rock"}],"musicbrainz_retry_after":0,"musicbrainz_status":"matched","musicbrainz_tags":[{"count":1,"source":"MusicBrainz recording tag","tag":"alternative"},{"count":1,"source":"MusicBrainz recording tag","tag":"energetic"},{"count":1,"source":"MusicBrainz recording tag","tag":"indie rock"}],"retry_after":0,"track_id":"mbid:cfa6e54a-305a-43fb-8fbe-14248f72a096","track_mbid":"cfa6e54a-305a-43fb-8fbe-14248f72a096"}},"id":"mbid:cfa6e54a-305a-43fb-8fbe-14248f72a096","identity":{"album":"Love Me More","album_id":"album:f4b7f8976c62657bd15f","artist":"Mitski","artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cfa6e54a-305a-43fb-8fbe-14248f72a096","source_track_id":"mbid:cfa6e54a-305a-43fb-8fbe-14248f72a096","spotify_id":null,"title":"Love Me More","track_number":null},"listening_context":{"all_time_plays":16,"first_scrobble":"2023-03-08T03:40:04+00:00","last_scrobble":"2025-12-17T20:15:22+00:00","observed_albums":[{"album":"Love Me More","scrobbles":14},{"album":"Laurel Hell","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f4b7f8976c62657bd15f/album.json","artist_path":"artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"matched"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "2020s": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "2022": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Hi-NRG": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "best of 2022": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "energetic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "heard live": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "mitski": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "new wave": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "personal favourites": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "power pop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "synthpop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-02T00:02:23.866980+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "new wave"
+        },
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "synthpop"
+        },
+        {
+          "count": 66,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2022"
+        },
+        {
+          "count": 16,
+          "source": "Last.fm track.getTopTags",
+          "tag": "power pop"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "heard live"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Hi-NRG"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "personal favourites"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2020s"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "best of 2022"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "mitski"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-02T00:02:26.671976+00:00",
+      "musicbrainz_genres": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "indie rock"
+        }
+      ],
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "matched",
+      "musicbrainz_tags": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "alternative"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "energetic"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "indie rock"
+        }
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:cfa6e54a-305a-43fb-8fbe-14248f72a096",
+      "track_mbid": "cfa6e54a-305a-43fb-8fbe-14248f72a096",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cfa6e54a-305a-43fb-8fbe-14248f72a096",
+  "identity": {
+    "album": "Love Me More",
+    "album_id": "album:f4b7f8976c62657bd15f",
+    "artist": "Mitski",
+    "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cfa6e54a-305a-43fb-8fbe-14248f72a096",
+    "source_track_id": "mbid:cfa6e54a-305a-43fb-8fbe-14248f72a096",
+    "spotify_id": null,
+    "title": "Love Me More",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 16,
+    "first_scrobble": "2023-03-08T03:40:04+00:00",
+    "last_scrobble": "2025-12-17T20:15:22+00:00",
+    "observed_albums": [
+      {
+        "album": "Love Me More",
+        "scrobbles": 14
+      },
+      {
+        "album": "Laurel Hell",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f4b7f8976c62657bd15f/album.json",
+    "artist_path": "artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3315c1eb-a544-43a7-b541-235e646f9b9c","duration_ms":139000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6fd6d163-d86e-306c-917c-c57cf2f30338","track_mbid":"6fd6d163-d86e-306c-917c-c57cf2f30338"}},"id":"mbid:6fd6d163-d86e-306c-917c-c57cf2f30338","identity":{"album":"Get Some","album_id":"album:f11f8fb761034cd05114","artist":"Snot","artist_id":"mbid:3315c1eb-a544-43a7-b541-235e646f9b9c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6fd6d163-d86e-306c-917c-c57cf2f30338","source_track_id":"mbid:6fd6d163-d86e-306c-917c-c57cf2f30338","spotify_id":null,"title":"Deadfall","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-03-10T19:00:03+00:00","last_scrobble":"2026-03-13T04:33:28+00:00","observed_albums":[{"album":"Get Some","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f11f8fb761034cd05114/album.json","artist_path":"artists/mb/mbid-3315c1eb-a544-43a7-b541-235e646f9b9c/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3315c1eb-a544-43a7-b541-235e646f9b9c",
+      "duration_ms": 139000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6fd6d163-d86e-306c-917c-c57cf2f30338",
+      "track_mbid": "6fd6d163-d86e-306c-917c-c57cf2f30338",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 139000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6fd6d163-d86e-306c-917c-c57cf2f30338",
+  "identity": {
+    "album": "Get Some",
+    "album_id": "album:f11f8fb761034cd05114",
+    "artist": "Snot",
+    "artist_id": "mbid:3315c1eb-a544-43a7-b541-235e646f9b9c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6fd6d163-d86e-306c-917c-c57cf2f30338",
+    "source_track_id": "mbid:6fd6d163-d86e-306c-917c-c57cf2f30338",
+    "spotify_id": null,
+    "title": "Deadfall",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-03-10T19:00:03+00:00",
+    "last_scrobble": "2026-03-13T04:33:28+00:00",
+    "observed_albums": [
+      {
+        "album": "Get Some",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f11f8fb761034cd05114/album.json",
+    "artist_path": "artists/mb/mbid-3315c1eb-a544-43a7-b541-235e646f9b9c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

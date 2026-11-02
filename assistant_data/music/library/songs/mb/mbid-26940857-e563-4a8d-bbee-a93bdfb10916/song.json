@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c7020c6d-cae9-4db3-92a7-e5c561cbad50","duration_ms":196000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:26940857-e563-4a8d-bbee-a93bdfb10916","track_mbid":"26940857-e563-4a8d-bbee-a93bdfb10916"}},"id":"mbid:26940857-e563-4a8d-bbee-a93bdfb10916","identity":{"album":"Strangeland (Bonus Track Version)","album_id":"album:60634af606359b79c96a","artist":"Keane","artist_id":"mbid:c7020c6d-cae9-4db3-92a7-e5c561cbad50","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"26940857-e563-4a8d-bbee-a93bdfb10916","source_track_id":"mbid:26940857-e563-4a8d-bbee-a93bdfb10916","spotify_id":null,"title":"Silenced by the Night","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-11-06T10:55:19+00:00","last_scrobble":"2023-11-06T10:55:19+00:00","observed_albums":[{"album":"Strangeland (Bonus Track Version)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-60634af606359b79c96a/album.json","artist_path":"artists/mb/mbid-c7020c6d-cae9-4db3-92a7-e5c561cbad50/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+      "duration_ms": 196000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:26940857-e563-4a8d-bbee-a93bdfb10916",
+      "track_mbid": "26940857-e563-4a8d-bbee-a93bdfb10916",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 196000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:26940857-e563-4a8d-bbee-a93bdfb10916",
+  "identity": {
+    "album": "Strangeland (Bonus Track Version)",
+    "album_id": "album:60634af606359b79c96a",
+    "artist": "Keane",
+    "artist_id": "mbid:c7020c6d-cae9-4db3-92a7-e5c561cbad50",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "26940857-e563-4a8d-bbee-a93bdfb10916",
+    "source_track_id": "mbid:26940857-e563-4a8d-bbee-a93bdfb10916",
+    "spotify_id": null,
+    "title": "Silenced by the Night",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-11-06T10:55:19+00:00",
+    "last_scrobble": "2023-11-06T10:55:19+00:00",
+    "observed_albums": [
+      {
+        "album": "Strangeland (Bonus Track Version)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-60634af606359b79c96a/album.json",
+    "artist_path": "artists/mb/mbid-c7020c6d-cae9-4db3-92a7-e5c561cbad50/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

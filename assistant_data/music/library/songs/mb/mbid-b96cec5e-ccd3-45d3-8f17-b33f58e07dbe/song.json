@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a7fd3cbf-15cc-4a8a-b59f-587b5784feb2","duration_ms":204000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b96cec5e-ccd3-45d3-8f17-b33f58e07dbe","track_mbid":"b96cec5e-ccd3-45d3-8f17-b33f58e07dbe"}},"id":"mbid:b96cec5e-ccd3-45d3-8f17-b33f58e07dbe","identity":{"album":"Maggot","album_id":"album:4a38509aeea621a3a1c6","artist":"Dazey and the Scouts","artist_id":"mbid:a7fd3cbf-15cc-4a8a-b59f-587b5784feb2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b96cec5e-ccd3-45d3-8f17-b33f58e07dbe","source_track_id":"mbid:b96cec5e-ccd3-45d3-8f17-b33f58e07dbe","spotify_id":null,"title":"Nice Nice","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2024-01-15T19:42:00+00:00","last_scrobble":"2024-01-19T20:20:39+00:00","observed_albums":[{"album":"Maggot","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4a38509aeea621a3a1c6/album.json","artist_path":"artists/mb/mbid-a7fd3cbf-15cc-4a8a-b59f-587b5784feb2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a7fd3cbf-15cc-4a8a-b59f-587b5784feb2",
+      "duration_ms": 204000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b96cec5e-ccd3-45d3-8f17-b33f58e07dbe",
+      "track_mbid": "b96cec5e-ccd3-45d3-8f17-b33f58e07dbe",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 204000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b96cec5e-ccd3-45d3-8f17-b33f58e07dbe",
+  "identity": {
+    "album": "Maggot",
+    "album_id": "album:4a38509aeea621a3a1c6",
+    "artist": "Dazey and the Scouts",
+    "artist_id": "mbid:a7fd3cbf-15cc-4a8a-b59f-587b5784feb2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b96cec5e-ccd3-45d3-8f17-b33f58e07dbe",
+    "source_track_id": "mbid:b96cec5e-ccd3-45d3-8f17-b33f58e07dbe",
+    "spotify_id": null,
+    "title": "Nice Nice",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2024-01-15T19:42:00+00:00",
+    "last_scrobble": "2024-01-19T20:20:39+00:00",
+    "observed_albums": [
+      {
+        "album": "Maggot",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4a38509aeea621a3a1c6/album.json",
+    "artist_path": "artists/mb/mbid-a7fd3cbf-15cc-4a8a-b59f-587b5784feb2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

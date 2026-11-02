@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:146b33647c1f44a9","duration_ms":125000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7","track_mbid":"b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7"}},"id":"mbid:b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7","identity":{"album":"2000s: the re-up","album_id":"album:5f830ae069b56b5854df","artist":"Layo","artist_id":"name:146b33647c1f44a9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7","source_track_id":"mbid:b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7","spotify_id":null,"title":"Ramen Beat","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-08-09T18:03:48+00:00","last_scrobble":"2024-08-09T18:03:48+00:00","observed_albums":[{"album":"2000s: the re-up","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5f830ae069b56b5854df/album.json","artist_path":"artists/na/name-146b33647c1f44a9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:146b33647c1f44a9",
+      "duration_ms": 125000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7",
+      "track_mbid": "b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 125000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7",
+  "identity": {
+    "album": "2000s: the re-up",
+    "album_id": "album:5f830ae069b56b5854df",
+    "artist": "Layo",
+    "artist_id": "name:146b33647c1f44a9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7",
+    "source_track_id": "mbid:b151f2f3-c64e-44fa-8873-e8fc5ec1bbb7",
+    "spotify_id": null,
+    "title": "Ramen Beat",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-08-09T18:03:48+00:00",
+    "last_scrobble": "2024-08-09T18:03:48+00:00",
+    "observed_albums": [
+      {
+        "album": "2000s: the re-up",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5f830ae069b56b5854df/album.json",
+    "artist_path": "artists/na/name-146b33647c1f44a9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ce7dcc51-41c1-4350-a888-1a1d4872ea98","duration_ms":189000,"duration_source":"Last.fm track.getInfo","track_id":"track:dd48b35c83fe65fa"}},"id":"source:dd48b35c83fe65fa","identity":{"album":"New Beginnings EP","album_id":"album:2746833784f4bc9fb20d","artist":"Weird Wolves","artist_id":"mbid:ce7dcc51-41c1-4350-a888-1a1d4872ea98","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:dd48b35c83fe65fa","spotify_id":null,"title":"Realization - Prey: Mooncrash (Original Game Soundtrack)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-04-12T17:26:04+00:00","last_scrobble":"2023-04-12T17:26:04+00:00","observed_albums":[{"album":"New Beginnings EP","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2746833784f4bc9fb20d/album.json","artist_path":"artists/mb/mbid-ce7dcc51-41c1-4350-a888-1a1d4872ea98/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ce7dcc51-41c1-4350-a888-1a1d4872ea98",
+      "duration_ms": 189000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:dd48b35c83fe65fa",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 189000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:dd48b35c83fe65fa",
+  "identity": {
+    "album": "New Beginnings EP",
+    "album_id": "album:2746833784f4bc9fb20d",
+    "artist": "Weird Wolves",
+    "artist_id": "mbid:ce7dcc51-41c1-4350-a888-1a1d4872ea98",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:dd48b35c83fe65fa",
+    "spotify_id": null,
+    "title": "Realization - Prey: Mooncrash (Original Game Soundtrack)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-04-12T17:26:04+00:00",
+    "last_scrobble": "2023-04-12T17:26:04+00:00",
+    "observed_albums": [
+      {
+        "album": "New Beginnings EP",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2746833784f4bc9fb20d/album.json",
+    "artist_path": "artists/mb/mbid-ce7dcc51-41c1-4350-a888-1a1d4872ea98/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

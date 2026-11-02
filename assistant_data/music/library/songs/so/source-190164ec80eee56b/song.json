@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:30036cba133c3880","duration_ms":192000,"duration_source":"Last.fm track.getInfo","track_id":"track:190164ec80eee56b"}},"id":"source:190164ec80eee56b","identity":{"album":"The Voice of Zombierella","album_id":"album:94fa4e3679e057bad309","artist":"Bone Collectors","artist_id":"name:30036cba133c3880","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:190164ec80eee56b","spotify_id":null,"title":"Lucretia My Reflection","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-05-22T07:32:53+00:00","last_scrobble":"2023-05-22T07:32:53+00:00","observed_albums":[{"album":"The Voice of Zombierella","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-94fa4e3679e057bad309/album.json","artist_path":"artists/na/name-30036cba133c3880/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:30036cba133c3880",
+      "duration_ms": 192000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:190164ec80eee56b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 192000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:190164ec80eee56b",
+  "identity": {
+    "album": "The Voice of Zombierella",
+    "album_id": "album:94fa4e3679e057bad309",
+    "artist": "Bone Collectors",
+    "artist_id": "name:30036cba133c3880",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:190164ec80eee56b",
+    "spotify_id": null,
+    "title": "Lucretia My Reflection",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-05-22T07:32:53+00:00",
+    "last_scrobble": "2023-05-22T07:32:53+00:00",
+    "observed_albums": [
+      {
+        "album": "The Voice of Zombierella",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-94fa4e3679e057bad309/album.json",
+    "artist_path": "artists/na/name-30036cba133c3880/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

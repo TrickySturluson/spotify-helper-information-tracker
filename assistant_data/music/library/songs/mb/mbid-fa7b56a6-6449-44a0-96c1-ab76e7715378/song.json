@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:6710d5f25e2d6cf4","duration_ms":251000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:fa7b56a6-6449-44a0-96c1-ab76e7715378","track_mbid":"fa7b56a6-6449-44a0-96c1-ab76e7715378"}},"id":"mbid:fa7b56a6-6449-44a0-96c1-ab76e7715378","identity":{"album":"My Hobbies Suck","album_id":"album:e5d6d01a6882c391307b","artist":"Worse in Person","artist_id":"name:6710d5f25e2d6cf4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"fa7b56a6-6449-44a0-96c1-ab76e7715378","source_track_id":"mbid:fa7b56a6-6449-44a0-96c1-ab76e7715378","spotify_id":null,"title":"The Freeze","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2024-11-13T04:52:27+00:00","last_scrobble":"2024-11-13T13:49:19+00:00","observed_albums":[{"album":"My Hobbies Suck","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e5d6d01a6882c391307b/album.json","artist_path":"artists/na/name-6710d5f25e2d6cf4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:6710d5f25e2d6cf4",
+      "duration_ms": 251000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:fa7b56a6-6449-44a0-96c1-ab76e7715378",
+      "track_mbid": "fa7b56a6-6449-44a0-96c1-ab76e7715378",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 251000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:fa7b56a6-6449-44a0-96c1-ab76e7715378",
+  "identity": {
+    "album": "My Hobbies Suck",
+    "album_id": "album:e5d6d01a6882c391307b",
+    "artist": "Worse in Person",
+    "artist_id": "name:6710d5f25e2d6cf4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "fa7b56a6-6449-44a0-96c1-ab76e7715378",
+    "source_track_id": "mbid:fa7b56a6-6449-44a0-96c1-ab76e7715378",
+    "spotify_id": null,
+    "title": "The Freeze",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2024-11-13T04:52:27+00:00",
+    "last_scrobble": "2024-11-13T13:49:19+00:00",
+    "observed_albums": [
+      {
+        "album": "My Hobbies Suck",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e5d6d01a6882c391307b/album.json",
+    "artist_path": "artists/na/name-6710d5f25e2d6cf4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

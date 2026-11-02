@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3f1ccfd1-fb11-4aef-acdc-60bd8c38f99f","duration_ms":301000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b670ebdb-fbcf-3461-9284-309e1dc55cd2","track_mbid":"b670ebdb-fbcf-3461-9284-309e1dc55cd2"}},"id":"mbid:b670ebdb-fbcf-3461-9284-309e1dc55cd2","identity":{"album":"a lost era in nyc 1987 - 1992","album_id":"album:7936f849b5002f0b572c","artist":"Bobby Konders","artist_id":"mbid:3f1ccfd1-fb11-4aef-acdc-60bd8c38f99f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b670ebdb-fbcf-3461-9284-309e1dc55cd2","source_track_id":"mbid:b670ebdb-fbcf-3461-9284-309e1dc55cd2","spotify_id":null,"title":"Nervous Acid","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-22T16:34:58+00:00","last_scrobble":"2025-10-22T16:34:58+00:00","observed_albums":[{"album":"a lost era in nyc 1987 - 1992","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7936f849b5002f0b572c/album.json","artist_path":"artists/mb/mbid-3f1ccfd1-fb11-4aef-acdc-60bd8c38f99f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3f1ccfd1-fb11-4aef-acdc-60bd8c38f99f",
+      "duration_ms": 301000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b670ebdb-fbcf-3461-9284-309e1dc55cd2",
+      "track_mbid": "b670ebdb-fbcf-3461-9284-309e1dc55cd2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 301000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b670ebdb-fbcf-3461-9284-309e1dc55cd2",
+  "identity": {
+    "album": "a lost era in nyc 1987 - 1992",
+    "album_id": "album:7936f849b5002f0b572c",
+    "artist": "Bobby Konders",
+    "artist_id": "mbid:3f1ccfd1-fb11-4aef-acdc-60bd8c38f99f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b670ebdb-fbcf-3461-9284-309e1dc55cd2",
+    "source_track_id": "mbid:b670ebdb-fbcf-3461-9284-309e1dc55cd2",
+    "spotify_id": null,
+    "title": "Nervous Acid",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-22T16:34:58+00:00",
+    "last_scrobble": "2025-10-22T16:34:58+00:00",
+    "observed_albums": [
+      {
+        "album": "a lost era in nyc 1987 - 1992",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7936f849b5002f0b572c/album.json",
+    "artist_path": "artists/mb/mbid-3f1ccfd1-fb11-4aef-acdc-60bd8c38f99f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

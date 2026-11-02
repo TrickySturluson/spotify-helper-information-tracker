@@ -1,1 +1,103 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3d2cd44b-9e77-4249-9d37-d8028e756693","duration_ms":307000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:19:00.929197+00:00","lastfm_error":"{}","lastfm_status":"http_400","musicbrainz_checked_at":"2026-10-31T07:30:31.126156+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":1796019496,"track_id":"mbid:8cc230f0-c5be-4d75-89ff-8754cb7051ad","track_mbid":"8cc230f0-c5be-4d75-89ff-8754cb7051ad"}},"id":"mbid:8cc230f0-c5be-4d75-89ff-8754cb7051ad","identity":{"album":"すとーりーず","album_id":"album:f3474d14c79643b304f4","artist":"ZAZEN BOYS","artist_id":"mbid:3d2cd44b-9e77-4249-9d37-d8028e756693","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"8cc230f0-c5be-4d75-89ff-8754cb7051ad","source_track_id":"mbid:8cc230f0-c5be-4d75-89ff-8754cb7051ad","spotify_id":null,"title":"サイボーグのオバケ","track_number":null},"listening_context":{"all_time_plays":118,"first_scrobble":"2023-03-21T05:28:12+00:00","last_scrobble":"2026-06-28T18:52:34+00:00","observed_albums":[{"album":"すとーりーず","scrobbles":118}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f3474d14c79643b304f4/album.json","artist_path":"artists/mb/mbid-3d2cd44b-9e77-4249-9d37-d8028e756693/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"http_400"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3d2cd44b-9e77-4249-9d37-d8028e756693",
+      "duration_ms": 307000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:19:00.929197+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "http_400",
+      "musicbrainz_checked_at": "2026-10-31T07:30:31.126156+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 1796019496,
+      "track_id": "mbid:8cc230f0-c5be-4d75-89ff-8754cb7051ad",
+      "track_mbid": "8cc230f0-c5be-4d75-89ff-8754cb7051ad",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 307000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:8cc230f0-c5be-4d75-89ff-8754cb7051ad",
+  "identity": {
+    "album": "すとーりーず",
+    "album_id": "album:f3474d14c79643b304f4",
+    "artist": "ZAZEN BOYS",
+    "artist_id": "mbid:3d2cd44b-9e77-4249-9d37-d8028e756693",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "8cc230f0-c5be-4d75-89ff-8754cb7051ad",
+    "source_track_id": "mbid:8cc230f0-c5be-4d75-89ff-8754cb7051ad",
+    "spotify_id": null,
+    "title": "サイボーグのオバケ",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 118,
+    "first_scrobble": "2023-03-21T05:28:12+00:00",
+    "last_scrobble": "2026-06-28T18:52:34+00:00",
+    "observed_albums": [
+      {
+        "album": "すとーりーず",
+        "scrobbles": 118
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f3474d14c79643b304f4/album.json",
+    "artist_path": "artists/mb/mbid-3d2cd44b-9e77-4249-9d37-d8028e756693/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "http_400"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

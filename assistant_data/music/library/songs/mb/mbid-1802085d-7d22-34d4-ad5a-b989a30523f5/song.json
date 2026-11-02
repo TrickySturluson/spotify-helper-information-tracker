@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:785e1c02-f535-4fc0-a1d6-23de849ebdcb","duration_ms":234000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1802085d-7d22-34d4-ad5a-b989a30523f5","track_mbid":"1802085d-7d22-34d4-ad5a-b989a30523f5"}},"id":"mbid:1802085d-7d22-34d4-ad5a-b989a30523f5","identity":{"album":"Foreign Language (10 Year Anniversary)","album_id":"album:3b5357400c09aa2779a8","artist":"Flight Facilities","artist_id":"mbid:785e1c02-f535-4fc0-a1d6-23de849ebdcb","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1802085d-7d22-34d4-ad5a-b989a30523f5","source_track_id":"mbid:1802085d-7d22-34d4-ad5a-b989a30523f5","spotify_id":null,"title":"Foreign Language","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-10-21T16:29:48+00:00","last_scrobble":"2025-10-22T17:06:28+00:00","observed_albums":[{"album":"Foreign Language (10 Year Anniversary)","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3b5357400c09aa2779a8/album.json","artist_path":"artists/mb/mbid-785e1c02-f535-4fc0-a1d6-23de849ebdcb/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:785e1c02-f535-4fc0-a1d6-23de849ebdcb",
+      "duration_ms": 234000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1802085d-7d22-34d4-ad5a-b989a30523f5",
+      "track_mbid": "1802085d-7d22-34d4-ad5a-b989a30523f5",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 234000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1802085d-7d22-34d4-ad5a-b989a30523f5",
+  "identity": {
+    "album": "Foreign Language (10 Year Anniversary)",
+    "album_id": "album:3b5357400c09aa2779a8",
+    "artist": "Flight Facilities",
+    "artist_id": "mbid:785e1c02-f535-4fc0-a1d6-23de849ebdcb",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1802085d-7d22-34d4-ad5a-b989a30523f5",
+    "source_track_id": "mbid:1802085d-7d22-34d4-ad5a-b989a30523f5",
+    "spotify_id": null,
+    "title": "Foreign Language",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-10-21T16:29:48+00:00",
+    "last_scrobble": "2025-10-22T17:06:28+00:00",
+    "observed_albums": [
+      {
+        "album": "Foreign Language (10 Year Anniversary)",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3b5357400c09aa2779a8/album.json",
+    "artist_path": "artists/mb/mbid-785e1c02-f535-4fc0-a1d6-23de849ebdcb/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

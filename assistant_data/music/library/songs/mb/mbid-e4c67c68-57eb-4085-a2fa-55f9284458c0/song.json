@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f96de591-5dae-41da-855b-eb387d88d7d4","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e4c67c68-57eb-4085-a2fa-55f9284458c0","track_mbid":"e4c67c68-57eb-4085-a2fa-55f9284458c0"}},"id":"mbid:e4c67c68-57eb-4085-a2fa-55f9284458c0","identity":{"album":"The Action Is Go","album_id":"album:0d20ae16b0a1c5beaa89","artist":"Fu Manchu","artist_id":"mbid:f96de591-5dae-41da-855b-eb387d88d7d4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e4c67c68-57eb-4085-a2fa-55f9284458c0","source_track_id":"mbid:e4c67c68-57eb-4085-a2fa-55f9284458c0","spotify_id":null,"title":"Evil Eye","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-10T16:43:53+00:00","last_scrobble":"2026-03-10T16:43:53+00:00","observed_albums":[{"album":"The Action Is Go","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0d20ae16b0a1c5beaa89/album.json","artist_path":"artists/mb/mbid-f96de591-5dae-41da-855b-eb387d88d7d4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f96de591-5dae-41da-855b-eb387d88d7d4",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e4c67c68-57eb-4085-a2fa-55f9284458c0",
+      "track_mbid": "e4c67c68-57eb-4085-a2fa-55f9284458c0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e4c67c68-57eb-4085-a2fa-55f9284458c0",
+  "identity": {
+    "album": "The Action Is Go",
+    "album_id": "album:0d20ae16b0a1c5beaa89",
+    "artist": "Fu Manchu",
+    "artist_id": "mbid:f96de591-5dae-41da-855b-eb387d88d7d4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e4c67c68-57eb-4085-a2fa-55f9284458c0",
+    "source_track_id": "mbid:e4c67c68-57eb-4085-a2fa-55f9284458c0",
+    "spotify_id": null,
+    "title": "Evil Eye",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-10T16:43:53+00:00",
+    "last_scrobble": "2026-03-10T16:43:53+00:00",
+    "observed_albums": [
+      {
+        "album": "The Action Is Go",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0d20ae16b0a1c5beaa89/album.json",
+    "artist_path": "artists/mb/mbid-f96de591-5dae-41da-855b-eb387d88d7d4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

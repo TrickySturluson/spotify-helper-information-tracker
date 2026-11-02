@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4bc09c51-5d42-4c93-9ba6-8cc21a0edb8d","duration_ms":297000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0c7c355c-079e-3480-a886-20589b11b575","track_mbid":"0c7c355c-079e-3480-a886-20589b11b575"}},"id":"mbid:0c7c355c-079e-3480-a886-20589b11b575","identity":{"album":"Them Crooked Vultures","album_id":"album:8853595b687bca0c8797","artist":"Them Crooked Vultures","artist_id":"mbid:4bc09c51-5d42-4c93-9ba6-8cc21a0edb8d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0c7c355c-079e-3480-a886-20589b11b575","source_track_id":"mbid:0c7c355c-079e-3480-a886-20589b11b575","spotify_id":null,"title":"Mind Eraser, No Chaser","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-12T18:54:56+00:00","last_scrobble":"2026-03-12T18:54:56+00:00","observed_albums":[{"album":"Them Crooked Vultures","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8853595b687bca0c8797/album.json","artist_path":"artists/mb/mbid-4bc09c51-5d42-4c93-9ba6-8cc21a0edb8d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4bc09c51-5d42-4c93-9ba6-8cc21a0edb8d",
+      "duration_ms": 297000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0c7c355c-079e-3480-a886-20589b11b575",
+      "track_mbid": "0c7c355c-079e-3480-a886-20589b11b575",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 297000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0c7c355c-079e-3480-a886-20589b11b575",
+  "identity": {
+    "album": "Them Crooked Vultures",
+    "album_id": "album:8853595b687bca0c8797",
+    "artist": "Them Crooked Vultures",
+    "artist_id": "mbid:4bc09c51-5d42-4c93-9ba6-8cc21a0edb8d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0c7c355c-079e-3480-a886-20589b11b575",
+    "source_track_id": "mbid:0c7c355c-079e-3480-a886-20589b11b575",
+    "spotify_id": null,
+    "title": "Mind Eraser, No Chaser",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-12T18:54:56+00:00",
+    "last_scrobble": "2026-03-12T18:54:56+00:00",
+    "observed_albums": [
+      {
+        "album": "Them Crooked Vultures",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8853595b687bca0c8797/album.json",
+    "artist_path": "artists/mb/mbid-4bc09c51-5d42-4c93-9ba6-8cc21a0edb8d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:768633eb-8810-4fbe-aabb-f891c07d29d3","duration_ms":206000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ba9058eb-8bcf-456e-bc82-3d910471d100","track_mbid":"ba9058eb-8bcf-456e-bc82-3d910471d100"}},"id":"mbid:ba9058eb-8bcf-456e-bc82-3d910471d100","identity":{"album":"son of a sauce!","album_id":"album:1d6e706ce21745e94c2a","artist":"Salami Rose Joe Louis","artist_id":"mbid:768633eb-8810-4fbe-aabb-f891c07d29d3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ba9058eb-8bcf-456e-bc82-3d910471d100","source_track_id":"mbid:ba9058eb-8bcf-456e-bc82-3d910471d100","spotify_id":null,"title":"i miss you so","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2023-06-23T03:17:08+00:00","last_scrobble":"2025-12-17T22:25:29+00:00","observed_albums":[{"album":"son of a sauce!","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1d6e706ce21745e94c2a/album.json","artist_path":"artists/mb/mbid-768633eb-8810-4fbe-aabb-f891c07d29d3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:768633eb-8810-4fbe-aabb-f891c07d29d3",
+      "duration_ms": 206000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ba9058eb-8bcf-456e-bc82-3d910471d100",
+      "track_mbid": "ba9058eb-8bcf-456e-bc82-3d910471d100",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 206000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ba9058eb-8bcf-456e-bc82-3d910471d100",
+  "identity": {
+    "album": "son of a sauce!",
+    "album_id": "album:1d6e706ce21745e94c2a",
+    "artist": "Salami Rose Joe Louis",
+    "artist_id": "mbid:768633eb-8810-4fbe-aabb-f891c07d29d3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ba9058eb-8bcf-456e-bc82-3d910471d100",
+    "source_track_id": "mbid:ba9058eb-8bcf-456e-bc82-3d910471d100",
+    "spotify_id": null,
+    "title": "i miss you so",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2023-06-23T03:17:08+00:00",
+    "last_scrobble": "2025-12-17T22:25:29+00:00",
+    "observed_albums": [
+      {
+        "album": "son of a sauce!",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1d6e706ce21745e94c2a/album.json",
+    "artist_path": "artists/mb/mbid-768633eb-8810-4fbe-aabb-f891c07d29d3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

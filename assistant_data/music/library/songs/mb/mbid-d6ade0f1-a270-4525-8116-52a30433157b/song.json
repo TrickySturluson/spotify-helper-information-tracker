@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:55111838-f001-494a-a1b5-9d818db85810","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d6ade0f1-a270-4525-8116-52a30433157b","track_mbid":"d6ade0f1-a270-4525-8116-52a30433157b"}},"id":"mbid:d6ade0f1-a270-4525-8116-52a30433157b","identity":{"album":"Creature of Habit","album_id":"album:7cc9d0fb4150935ddd86","artist":"Courtney Barnett","artist_id":"mbid:55111838-f001-494a-a1b5-9d818db85810","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d6ade0f1-a270-4525-8116-52a30433157b","source_track_id":"mbid:d6ade0f1-a270-4525-8116-52a30433157b","spotify_id":null,"title":"Mostly Patient","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-19T01:23:49+00:00","last_scrobble":"2026-04-19T01:23:49+00:00","observed_albums":[{"album":"Creature of Habit","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7cc9d0fb4150935ddd86/album.json","artist_path":"artists/mb/mbid-55111838-f001-494a-a1b5-9d818db85810/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:55111838-f001-494a-a1b5-9d818db85810",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d6ade0f1-a270-4525-8116-52a30433157b",
+      "track_mbid": "d6ade0f1-a270-4525-8116-52a30433157b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d6ade0f1-a270-4525-8116-52a30433157b",
+  "identity": {
+    "album": "Creature of Habit",
+    "album_id": "album:7cc9d0fb4150935ddd86",
+    "artist": "Courtney Barnett",
+    "artist_id": "mbid:55111838-f001-494a-a1b5-9d818db85810",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d6ade0f1-a270-4525-8116-52a30433157b",
+    "source_track_id": "mbid:d6ade0f1-a270-4525-8116-52a30433157b",
+    "spotify_id": null,
+    "title": "Mostly Patient",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-19T01:23:49+00:00",
+    "last_scrobble": "2026-04-19T01:23:49+00:00",
+    "observed_albums": [
+      {
+        "album": "Creature of Habit",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7cc9d0fb4150935ddd86/album.json",
+    "artist_path": "artists/mb/mbid-55111838-f001-494a-a1b5-9d818db85810/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

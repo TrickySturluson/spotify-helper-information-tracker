@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:0a7920d5-135b-4bca-885c-ebd79f0d5d9f","duration_ms":239000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9","track_mbid":"e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9"}},"id":"mbid:e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9","identity":{"album":"Metamodernity","album_id":"album:4348dae63d6695558ed7","artist":"Vansire","artist_id":"mbid:0a7920d5-135b-4bca-885c-ebd79f0d5d9f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9","source_track_id":"mbid:e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9","spotify_id":null,"title":"Metamodernity","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-11-29T19:26:14+00:00","last_scrobble":"2023-11-29T19:28:55+00:00","observed_albums":[{"album":"Metamodernity","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4348dae63d6695558ed7/album.json","artist_path":"artists/mb/mbid-0a7920d5-135b-4bca-885c-ebd79f0d5d9f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:0a7920d5-135b-4bca-885c-ebd79f0d5d9f",
+      "duration_ms": 239000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9",
+      "track_mbid": "e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 239000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9",
+  "identity": {
+    "album": "Metamodernity",
+    "album_id": "album:4348dae63d6695558ed7",
+    "artist": "Vansire",
+    "artist_id": "mbid:0a7920d5-135b-4bca-885c-ebd79f0d5d9f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9",
+    "source_track_id": "mbid:e6f7b59d-3fd2-4d62-8fe8-d6a070ff0fc9",
+    "spotify_id": null,
+    "title": "Metamodernity",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-11-29T19:26:14+00:00",
+    "last_scrobble": "2023-11-29T19:28:55+00:00",
+    "observed_albums": [
+      {
+        "album": "Metamodernity",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4348dae63d6695558ed7/album.json",
+    "artist_path": "artists/mb/mbid-0a7920d5-135b-4bca-885c-ebd79f0d5d9f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

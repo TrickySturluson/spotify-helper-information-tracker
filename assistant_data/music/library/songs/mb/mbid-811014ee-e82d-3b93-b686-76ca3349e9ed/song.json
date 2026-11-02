@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fbe054ec-a143-4101-9e9e-64abc5ff5ac9","duration_ms":123000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:811014ee-e82d-3b93-b686-76ca3349e9ed","track_mbid":"811014ee-e82d-3b93-b686-76ca3349e9ed"}},"id":"mbid:811014ee-e82d-3b93-b686-76ca3349e9ed","identity":{"album":"The Christmas Song (Expanded Edition)","album_id":"album:95822f532f6bedb37d9a","artist":"Nat King Cole","artist_id":"mbid:fbe054ec-a143-4101-9e9e-64abc5ff5ac9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"811014ee-e82d-3b93-b686-76ca3349e9ed","source_track_id":"mbid:811014ee-e82d-3b93-b686-76ca3349e9ed","spotify_id":null,"title":"Caroling, Caroling","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2024-11-09T08:40:53+00:00","last_scrobble":"2024-11-11T05:57:54+00:00","observed_albums":[{"album":"The Christmas Song (Expanded Edition)","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-95822f532f6bedb37d9a/album.json","artist_path":"artists/mb/mbid-fbe054ec-a143-4101-9e9e-64abc5ff5ac9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fbe054ec-a143-4101-9e9e-64abc5ff5ac9",
+      "duration_ms": 123000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:811014ee-e82d-3b93-b686-76ca3349e9ed",
+      "track_mbid": "811014ee-e82d-3b93-b686-76ca3349e9ed",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 123000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:811014ee-e82d-3b93-b686-76ca3349e9ed",
+  "identity": {
+    "album": "The Christmas Song (Expanded Edition)",
+    "album_id": "album:95822f532f6bedb37d9a",
+    "artist": "Nat King Cole",
+    "artist_id": "mbid:fbe054ec-a143-4101-9e9e-64abc5ff5ac9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "811014ee-e82d-3b93-b686-76ca3349e9ed",
+    "source_track_id": "mbid:811014ee-e82d-3b93-b686-76ca3349e9ed",
+    "spotify_id": null,
+    "title": "Caroling, Caroling",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2024-11-09T08:40:53+00:00",
+    "last_scrobble": "2024-11-11T05:57:54+00:00",
+    "observed_albums": [
+      {
+        "album": "The Christmas Song (Expanded Edition)",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-95822f532f6bedb37d9a/album.json",
+    "artist_path": "artists/mb/mbid-fbe054ec-a143-4101-9e9e-64abc5ff5ac9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

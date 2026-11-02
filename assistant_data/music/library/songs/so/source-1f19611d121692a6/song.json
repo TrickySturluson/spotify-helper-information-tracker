@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6357c51d-205a-4963-9f7c-d4f814fd51d6","duration_ms":197000,"duration_source":"Last.fm track.getInfo","track_id":"track:1f19611d121692a6"}},"id":"source:1f19611d121692a6","identity":{"album":"Voices","album_id":"album:c123d7a33cad87c5288c","artist":"Peter Doran","artist_id":"mbid:6357c51d-205a-4963-9f7c-d4f814fd51d6","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:1f19611d121692a6","spotify_id":null,"title":"Blue Mountains","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-17T05:42:56+00:00","last_scrobble":"2026-04-17T05:42:56+00:00","observed_albums":[{"album":"Voices","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c123d7a33cad87c5288c/album.json","artist_path":"artists/mb/mbid-6357c51d-205a-4963-9f7c-d4f814fd51d6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6357c51d-205a-4963-9f7c-d4f814fd51d6",
+      "duration_ms": 197000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:1f19611d121692a6",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 197000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:1f19611d121692a6",
+  "identity": {
+    "album": "Voices",
+    "album_id": "album:c123d7a33cad87c5288c",
+    "artist": "Peter Doran",
+    "artist_id": "mbid:6357c51d-205a-4963-9f7c-d4f814fd51d6",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:1f19611d121692a6",
+    "spotify_id": null,
+    "title": "Blue Mountains",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-17T05:42:56+00:00",
+    "last_scrobble": "2026-04-17T05:42:56+00:00",
+    "observed_albums": [
+      {
+        "album": "Voices",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c123d7a33cad87c5288c/album.json",
+    "artist_path": "artists/mb/mbid-6357c51d-205a-4963-9f7c-d4f814fd51d6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

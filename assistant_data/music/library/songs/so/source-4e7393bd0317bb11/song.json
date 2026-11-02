@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5924b460-4091-441c-8fc8-66bc0c7607c8","duration_ms":268000,"duration_source":"Last.fm track.getInfo","track_id":"track:4e7393bd0317bb11"}},"id":"source:4e7393bd0317bb11","identity":{"album":"Mountains on the Moon","album_id":"album:5b4b0042f78f8f0a8816","artist":"Paper Wings","artist_id":"mbid:5924b460-4091-441c-8fc8-66bc0c7607c8","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:4e7393bd0317bb11","spotify_id":null,"title":"Fumblin","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-17T06:03:55+00:00","last_scrobble":"2026-04-17T06:03:55+00:00","observed_albums":[{"album":"Mountains on the Moon","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5b4b0042f78f8f0a8816/album.json","artist_path":"artists/mb/mbid-5924b460-4091-441c-8fc8-66bc0c7607c8/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5924b460-4091-441c-8fc8-66bc0c7607c8",
+      "duration_ms": 268000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:4e7393bd0317bb11",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 268000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:4e7393bd0317bb11",
+  "identity": {
+    "album": "Mountains on the Moon",
+    "album_id": "album:5b4b0042f78f8f0a8816",
+    "artist": "Paper Wings",
+    "artist_id": "mbid:5924b460-4091-441c-8fc8-66bc0c7607c8",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:4e7393bd0317bb11",
+    "spotify_id": null,
+    "title": "Fumblin",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-17T06:03:55+00:00",
+    "last_scrobble": "2026-04-17T06:03:55+00:00",
+    "observed_albums": [
+      {
+        "album": "Mountains on the Moon",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5b4b0042f78f8f0a8816/album.json",
+    "artist_path": "artists/mb/mbid-5924b460-4091-441c-8fc8-66bc0c7607c8/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:3d659ae40ac14432","duration_ms":113000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:63ba695f-a529-40d2-902a-c711de418795","track_mbid":"63ba695f-a529-40d2-902a-c711de418795"}},"id":"mbid:63ba695f-a529-40d2-902a-c711de418795","identity":{"album":"Sunset Rose Cocktail (Original Lackadaisy Animated Short Soundtrack)","album_id":"album:ed9443d67cc1e63fe410","artist":"M Gewehr","artist_id":"name:3d659ae40ac14432","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"63ba695f-a529-40d2-902a-c711de418795","source_track_id":"mbid:63ba695f-a529-40d2-902a-c711de418795","spotify_id":null,"title":"Sunset Rose Cocktail (Original Lackadaisy Animated Short Soundtrack)","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-07-08T21:55:46+00:00","last_scrobble":"2024-07-09T00:14:43+00:00","observed_albums":[{"album":"Sunset Rose Cocktail (Original Lackadaisy Animated Short Soundtrack)","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ed9443d67cc1e63fe410/album.json","artist_path":"artists/na/name-3d659ae40ac14432/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:3d659ae40ac14432",
+      "duration_ms": 113000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:63ba695f-a529-40d2-902a-c711de418795",
+      "track_mbid": "63ba695f-a529-40d2-902a-c711de418795",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 113000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:63ba695f-a529-40d2-902a-c711de418795",
+  "identity": {
+    "album": "Sunset Rose Cocktail (Original Lackadaisy Animated Short Soundtrack)",
+    "album_id": "album:ed9443d67cc1e63fe410",
+    "artist": "M Gewehr",
+    "artist_id": "name:3d659ae40ac14432",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "63ba695f-a529-40d2-902a-c711de418795",
+    "source_track_id": "mbid:63ba695f-a529-40d2-902a-c711de418795",
+    "spotify_id": null,
+    "title": "Sunset Rose Cocktail (Original Lackadaisy Animated Short Soundtrack)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-07-08T21:55:46+00:00",
+    "last_scrobble": "2024-07-09T00:14:43+00:00",
+    "observed_albums": [
+      {
+        "album": "Sunset Rose Cocktail (Original Lackadaisy Animated Short Soundtrack)",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ed9443d67cc1e63fe410/album.json",
+    "artist_path": "artists/na/name-3d659ae40ac14432/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

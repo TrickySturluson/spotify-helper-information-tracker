@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b156fdf3-0146-41bb-b589-ee170e5aa8db","duration_ms":106000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:74d9fb41-ab68-4b0d-9e31-1209431ec41c","track_mbid":"74d9fb41-ab68-4b0d-9e31-1209431ec41c"}},"id":"mbid:74d9fb41-ab68-4b0d-9e31-1209431ec41c","identity":{"album":"Overclocked","album_id":"album:417405d806f09a5b4537","artist":"MoxiFloxi","artist_id":"mbid:b156fdf3-0146-41bb-b589-ee170e5aa8db","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"74d9fb41-ab68-4b0d-9e31-1209431ec41c","source_track_id":"mbid:74d9fb41-ab68-4b0d-9e31-1209431ec41c","spotify_id":null,"title":"Overclocked","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-07-24T09:16:06+00:00","last_scrobble":"2023-07-24T09:16:06+00:00","observed_albums":[{"album":"Overclocked","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-417405d806f09a5b4537/album.json","artist_path":"artists/mb/mbid-b156fdf3-0146-41bb-b589-ee170e5aa8db/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b156fdf3-0146-41bb-b589-ee170e5aa8db",
+      "duration_ms": 106000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:74d9fb41-ab68-4b0d-9e31-1209431ec41c",
+      "track_mbid": "74d9fb41-ab68-4b0d-9e31-1209431ec41c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 106000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:74d9fb41-ab68-4b0d-9e31-1209431ec41c",
+  "identity": {
+    "album": "Overclocked",
+    "album_id": "album:417405d806f09a5b4537",
+    "artist": "MoxiFloxi",
+    "artist_id": "mbid:b156fdf3-0146-41bb-b589-ee170e5aa8db",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "74d9fb41-ab68-4b0d-9e31-1209431ec41c",
+    "source_track_id": "mbid:74d9fb41-ab68-4b0d-9e31-1209431ec41c",
+    "spotify_id": null,
+    "title": "Overclocked",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-07-24T09:16:06+00:00",
+    "last_scrobble": "2023-07-24T09:16:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Overclocked",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-417405d806f09a5b4537/album.json",
+    "artist_path": "artists/mb/mbid-b156fdf3-0146-41bb-b589-ee170e5aa8db/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

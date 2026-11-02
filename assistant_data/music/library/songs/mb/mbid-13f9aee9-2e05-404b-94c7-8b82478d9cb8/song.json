@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:16456fed-c9f2-4adf-b6ea-97b648c474d2","duration_ms":288000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:13f9aee9-2e05-404b-94c7-8b82478d9cb8","track_mbid":"13f9aee9-2e05-404b-94c7-8b82478d9cb8"}},"id":"mbid:13f9aee9-2e05-404b-94c7-8b82478d9cb8","identity":{"album":"Downtown Battle Mountain","album_id":"album:5f3e6f3a4f1df7c7381a","artist":"Dance Gavin Dance","artist_id":"mbid:16456fed-c9f2-4adf-b6ea-97b648c474d2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"13f9aee9-2e05-404b-94c7-8b82478d9cb8","source_track_id":"mbid:13f9aee9-2e05-404b-94c7-8b82478d9cb8","spotify_id":null,"title":"And I Told Them I Invented Times New Roman","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-23T14:57:37+00:00","last_scrobble":"2025-10-23T14:57:37+00:00","observed_albums":[{"album":"Downtown Battle Mountain","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5f3e6f3a4f1df7c7381a/album.json","artist_path":"artists/mb/mbid-16456fed-c9f2-4adf-b6ea-97b648c474d2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:16456fed-c9f2-4adf-b6ea-97b648c474d2",
+      "duration_ms": 288000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:13f9aee9-2e05-404b-94c7-8b82478d9cb8",
+      "track_mbid": "13f9aee9-2e05-404b-94c7-8b82478d9cb8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 288000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:13f9aee9-2e05-404b-94c7-8b82478d9cb8",
+  "identity": {
+    "album": "Downtown Battle Mountain",
+    "album_id": "album:5f3e6f3a4f1df7c7381a",
+    "artist": "Dance Gavin Dance",
+    "artist_id": "mbid:16456fed-c9f2-4adf-b6ea-97b648c474d2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "13f9aee9-2e05-404b-94c7-8b82478d9cb8",
+    "source_track_id": "mbid:13f9aee9-2e05-404b-94c7-8b82478d9cb8",
+    "spotify_id": null,
+    "title": "And I Told Them I Invented Times New Roman",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-23T14:57:37+00:00",
+    "last_scrobble": "2025-10-23T14:57:37+00:00",
+    "observed_albums": [
+      {
+        "album": "Downtown Battle Mountain",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5f3e6f3a4f1df7c7381a/album.json",
+    "artist_path": "artists/mb/mbid-16456fed-c9f2-4adf-b6ea-97b648c474d2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

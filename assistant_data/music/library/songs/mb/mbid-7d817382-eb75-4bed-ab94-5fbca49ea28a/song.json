@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c339108e-8eeb-4392-9933-9a72bd50e9b6","duration_ms":332000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:02:31.486850+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T09:02:32.121124+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:7d817382-eb75-4bed-ab94-5fbca49ea28a","track_mbid":"7d817382-eb75-4bed-ab94-5fbca49ea28a"}},"id":"mbid:7d817382-eb75-4bed-ab94-5fbca49ea28a","identity":{"album":"Rosalie Cunningham","album_id":"album:49fcac280c9b7850d21e","artist":"Rosalie Cunningham","artist_id":"mbid:c339108e-8eeb-4392-9933-9a72bd50e9b6","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7d817382-eb75-4bed-ab94-5fbca49ea28a","source_track_id":"mbid:7d817382-eb75-4bed-ab94-5fbca49ea28a","spotify_id":null,"title":"Dethroning of the Party Queen","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2026-03-24T16:53:30+00:00","last_scrobble":"2026-10-14T00:37:34+00:00","observed_albums":[{"album":"Rosalie Cunningham","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-49fcac280c9b7850d21e/album.json","artist_path":"artists/mb/mbid-c339108e-8eeb-4392-9933-9a72bd50e9b6/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c339108e-8eeb-4392-9933-9a72bd50e9b6",
+      "duration_ms": 332000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:02:31.486850+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T09:02:32.121124+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:7d817382-eb75-4bed-ab94-5fbca49ea28a",
+      "track_mbid": "7d817382-eb75-4bed-ab94-5fbca49ea28a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 332000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7d817382-eb75-4bed-ab94-5fbca49ea28a",
+  "identity": {
+    "album": "Rosalie Cunningham",
+    "album_id": "album:49fcac280c9b7850d21e",
+    "artist": "Rosalie Cunningham",
+    "artist_id": "mbid:c339108e-8eeb-4392-9933-9a72bd50e9b6",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7d817382-eb75-4bed-ab94-5fbca49ea28a",
+    "source_track_id": "mbid:7d817382-eb75-4bed-ab94-5fbca49ea28a",
+    "spotify_id": null,
+    "title": "Dethroning of the Party Queen",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2026-03-24T16:53:30+00:00",
+    "last_scrobble": "2026-10-14T00:37:34+00:00",
+    "observed_albums": [
+      {
+        "album": "Rosalie Cunningham",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-49fcac280c9b7850d21e/album.json",
+    "artist_path": "artists/mb/mbid-c339108e-8eeb-4392-9933-9a72bd50e9b6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

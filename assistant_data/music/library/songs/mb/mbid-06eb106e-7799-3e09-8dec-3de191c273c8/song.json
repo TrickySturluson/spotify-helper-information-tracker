@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02","duration_ms":358000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:03:08.651953+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:03:09.336228+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:06eb106e-7799-3e09-8dec-3de191c273c8","track_mbid":"06eb106e-7799-3e09-8dec-3de191c273c8"}},"id":"mbid:06eb106e-7799-3e09-8dec-3de191c273c8","identity":{"album":"Abominations","album_id":"album:07cf3e5ea34bb01e6486","artist":"Schoolyard Heroes","artist_id":"mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"06eb106e-7799-3e09-8dec-3de191c273c8","source_track_id":"mbid:06eb106e-7799-3e09-8dec-3de191c273c8","spotify_id":null,"title":"Screaming \"Theater\" in a Crowded Fire","track_number":null},"listening_context":{"all_time_plays":35,"first_scrobble":"2026-03-20T19:14:43+00:00","last_scrobble":"2026-10-29T23:34:37+00:00","observed_albums":[{"album":"Abominations","scrobbles":35}],"priority_playlist_ids":[],"recent_plays":3,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-07cf3e5ea34bb01e6486/album.json","artist_path":"artists/mb/mbid-26bfcd89-b3f8-420e-8b9a-22f736e00c02/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02",
+      "duration_ms": 358000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:03:08.651953+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:03:09.336228+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:06eb106e-7799-3e09-8dec-3de191c273c8",
+      "track_mbid": "06eb106e-7799-3e09-8dec-3de191c273c8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 358000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:06eb106e-7799-3e09-8dec-3de191c273c8",
+  "identity": {
+    "album": "Abominations",
+    "album_id": "album:07cf3e5ea34bb01e6486",
+    "artist": "Schoolyard Heroes",
+    "artist_id": "mbid:26bfcd89-b3f8-420e-8b9a-22f736e00c02",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "06eb106e-7799-3e09-8dec-3de191c273c8",
+    "source_track_id": "mbid:06eb106e-7799-3e09-8dec-3de191c273c8",
+    "spotify_id": null,
+    "title": "Screaming \"Theater\" in a Crowded Fire",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 35,
+    "first_scrobble": "2026-03-20T19:14:43+00:00",
+    "last_scrobble": "2026-10-29T23:34:37+00:00",
+    "observed_albums": [
+      {
+        "album": "Abominations",
+        "scrobbles": 35
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 3,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-07cf3e5ea34bb01e6486/album.json",
+    "artist_path": "artists/mb/mbid-26bfcd89-b3f8-420e-8b9a-22f736e00c02/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

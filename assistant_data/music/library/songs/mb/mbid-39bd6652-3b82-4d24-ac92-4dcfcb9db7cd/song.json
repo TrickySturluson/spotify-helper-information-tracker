@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ac865b2e-bba8-4f5a-8756-dd40d5e39f46","duration_ms":246000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:39bd6652-3b82-4d24-ac92-4dcfcb9db7cd","track_mbid":"39bd6652-3b82-4d24-ac92-4dcfcb9db7cd"}},"id":"mbid:39bd6652-3b82-4d24-ac92-4dcfcb9db7cd","identity":{"album":"Take a Look in the Mirror","album_id":"album:00955d3cfee61af63341","artist":"Korn","artist_id":"mbid:ac865b2e-bba8-4f5a-8756-dd40d5e39f46","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"39bd6652-3b82-4d24-ac92-4dcfcb9db7cd","source_track_id":"mbid:39bd6652-3b82-4d24-ac92-4dcfcb9db7cd","spotify_id":null,"title":"Did My Time","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-04-30T01:45:27+00:00","last_scrobble":"2025-04-30T01:45:27+00:00","observed_albums":[{"album":"Take a Look in the Mirror","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-00955d3cfee61af63341/album.json","artist_path":"artists/mb/mbid-ac865b2e-bba8-4f5a-8756-dd40d5e39f46/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ac865b2e-bba8-4f5a-8756-dd40d5e39f46",
+      "duration_ms": 246000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:39bd6652-3b82-4d24-ac92-4dcfcb9db7cd",
+      "track_mbid": "39bd6652-3b82-4d24-ac92-4dcfcb9db7cd",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 246000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:39bd6652-3b82-4d24-ac92-4dcfcb9db7cd",
+  "identity": {
+    "album": "Take a Look in the Mirror",
+    "album_id": "album:00955d3cfee61af63341",
+    "artist": "Korn",
+    "artist_id": "mbid:ac865b2e-bba8-4f5a-8756-dd40d5e39f46",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "39bd6652-3b82-4d24-ac92-4dcfcb9db7cd",
+    "source_track_id": "mbid:39bd6652-3b82-4d24-ac92-4dcfcb9db7cd",
+    "spotify_id": null,
+    "title": "Did My Time",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-04-30T01:45:27+00:00",
+    "last_scrobble": "2025-04-30T01:45:27+00:00",
+    "observed_albums": [
+      {
+        "album": "Take a Look in the Mirror",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-00955d3cfee61af63341/album.json",
+    "artist_path": "artists/mb/mbid-ac865b2e-bba8-4f5a-8756-dd40d5e39f46/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

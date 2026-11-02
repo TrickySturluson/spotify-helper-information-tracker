@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Muse":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Progressive rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"british":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"epic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"hysteria":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090","duration_ms":300000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:03:02.668333+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"alternative rock"},{"count":78,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":39,"source":"Last.fm track.getTopTags","tag":"Progressive rock"},{"count":37,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":18,"source":"Last.fm track.getTopTags","tag":"Muse"},{"count":8,"source":"Last.fm track.getTopTags","tag":"british"},{"count":4,"source":"Last.fm track.getTopTags","tag":"indie rock"},{"count":1,"source":"Last.fm track.getTopTags","tag":"epic"},{"count":1,"source":"Last.fm track.getTopTags","tag":"hysteria"},{"count":1,"source":"Last.fm track.getTopTags","tag":"indie"}],"musicbrainz_checked_at":"2026-11-01T08:03:03.556884+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:1794d542-ff4d-4b57-9062-bbe88ecaaca3","track_mbid":"1794d542-ff4d-4b57-9062-bbe88ecaaca3"}},"id":"mbid:1794d542-ff4d-4b57-9062-bbe88ecaaca3","identity":{"album":"Absolution","album_id":"album:88f27faa651499d8a3de","artist":"Muse","artist_id":"mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1794d542-ff4d-4b57-9062-bbe88ecaaca3","source_track_id":"mbid:1794d542-ff4d-4b57-9062-bbe88ecaaca3","spotify_id":null,"title":"Hysteria","track_number":null},"listening_context":{"all_time_plays":42,"first_scrobble":"2025-06-30T11:04:37+00:00","last_scrobble":"2026-10-29T20:22:33+00:00","observed_albums":[{"album":"Absolution","scrobbles":42}],"priority_playlist_ids":[],"recent_plays":3,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-88f27faa651499d8a3de/album.json","artist_path":"artists/mb/mbid-9c9f1380-2516-4fc9-a3e6-f9f61941d090/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Muse": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Progressive rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "british": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "epic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "hysteria": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+      "duration_ms": 300000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:03:02.668333+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 78,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 39,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Progressive rock"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 18,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Muse"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "british"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie rock"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "epic"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "hysteria"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T08:03:03.556884+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:1794d542-ff4d-4b57-9062-bbe88ecaaca3",
+      "track_mbid": "1794d542-ff4d-4b57-9062-bbe88ecaaca3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 300000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1794d542-ff4d-4b57-9062-bbe88ecaaca3",
+  "identity": {
+    "album": "Absolution",
+    "album_id": "album:88f27faa651499d8a3de",
+    "artist": "Muse",
+    "artist_id": "mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1794d542-ff4d-4b57-9062-bbe88ecaaca3",
+    "source_track_id": "mbid:1794d542-ff4d-4b57-9062-bbe88ecaaca3",
+    "spotify_id": null,
+    "title": "Hysteria",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 42,
+    "first_scrobble": "2025-06-30T11:04:37+00:00",
+    "last_scrobble": "2026-10-29T20:22:33+00:00",
+    "observed_albums": [
+      {
+        "album": "Absolution",
+        "scrobbles": 42
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 3,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-88f27faa651499d8a3de/album.json",
+    "artist_path": "artists/mb/mbid-9c9f1380-2516-4fc9-a3e6-f9f61941d090/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

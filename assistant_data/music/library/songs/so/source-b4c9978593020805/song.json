@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4fdfc022-5720-4682-82ce-aeb9e5d6783d","duration_ms":152000,"duration_source":"Last.fm track.getInfo","track_id":"track:b4c9978593020805"}},"id":"source:b4c9978593020805","identity":{"album":"No Room Left","album_id":"album:e8fdff0b7ef9670f792d","artist":"Mookielaka","artist_id":"mbid:4fdfc022-5720-4682-82ce-aeb9e5d6783d","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:b4c9978593020805","spotify_id":null,"title":"No Room Left","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2024-02-05T23:38:10+00:00","last_scrobble":"2024-02-06T20:44:20+00:00","observed_albums":[{"album":"No Room Left","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e8fdff0b7ef9670f792d/album.json","artist_path":"artists/mb/mbid-4fdfc022-5720-4682-82ce-aeb9e5d6783d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4fdfc022-5720-4682-82ce-aeb9e5d6783d",
+      "duration_ms": 152000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:b4c9978593020805",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 152000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:b4c9978593020805",
+  "identity": {
+    "album": "No Room Left",
+    "album_id": "album:e8fdff0b7ef9670f792d",
+    "artist": "Mookielaka",
+    "artist_id": "mbid:4fdfc022-5720-4682-82ce-aeb9e5d6783d",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:b4c9978593020805",
+    "spotify_id": null,
+    "title": "No Room Left",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2024-02-05T23:38:10+00:00",
+    "last_scrobble": "2024-02-06T20:44:20+00:00",
+    "observed_albums": [
+      {
+        "album": "No Room Left",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e8fdff0b7ef9670f792d/album.json",
+    "artist_path": "artists/mb/mbid-4fdfc022-5720-4682-82ce-aeb9e5d6783d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

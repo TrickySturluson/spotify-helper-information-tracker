@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:bdb2e504-7372-4f5b-a6c7-d578021c53b5","duration_ms":215000,"duration_source":"Last.fm track.getInfo","track_id":"track:5d6e086e595e7f47"}},"id":"source:5d6e086e595e7f47","identity":{"album":"Good Girls (Don’t Get Used)","album_id":"album:8c95a5a599fe88375a84","artist":"Beach Bunny","artist_id":"mbid:bdb2e504-7372-4f5b-a6c7-d578021c53b5","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:5d6e086e595e7f47","spotify_id":null,"title":"Good Girls (Don’t Get Used)","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2024-04-22T15:37:08+00:00","last_scrobble":"2024-04-26T16:50:53+00:00","observed_albums":[{"album":"Good Girls (Don’t Get Used)","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8c95a5a599fe88375a84/album.json","artist_path":"artists/mb/mbid-bdb2e504-7372-4f5b-a6c7-d578021c53b5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:bdb2e504-7372-4f5b-a6c7-d578021c53b5",
+      "duration_ms": 215000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:5d6e086e595e7f47",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 215000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:5d6e086e595e7f47",
+  "identity": {
+    "album": "Good Girls (Don’t Get Used)",
+    "album_id": "album:8c95a5a599fe88375a84",
+    "artist": "Beach Bunny",
+    "artist_id": "mbid:bdb2e504-7372-4f5b-a6c7-d578021c53b5",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:5d6e086e595e7f47",
+    "spotify_id": null,
+    "title": "Good Girls (Don’t Get Used)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2024-04-22T15:37:08+00:00",
+    "last_scrobble": "2024-04-26T16:50:53+00:00",
+    "observed_albums": [
+      {
+        "album": "Good Girls (Don’t Get Used)",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8c95a5a599fe88375a84/album.json",
+    "artist_path": "artists/mb/mbid-bdb2e504-7372-4f5b-a6c7-d578021c53b5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

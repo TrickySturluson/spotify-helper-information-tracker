@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9f93c34a-2dc2-400e-ada5-937c3efc3437","duration_ms":155000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:895f00a3-92fc-4008-be30-de3db32d8a5a","track_mbid":"895f00a3-92fc-4008-be30-de3db32d8a5a"}},"id":"mbid:895f00a3-92fc-4008-be30-de3db32d8a5a","identity":{"album":"The Water's Fine!","album_id":"album:6d299057985b4abc7704","artist":"Liana Flores","artist_id":"mbid:9f93c34a-2dc2-400e-ada5-937c3efc3437","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"895f00a3-92fc-4008-be30-de3db32d8a5a","source_track_id":"mbid:895f00a3-92fc-4008-be30-de3db32d8a5a","spotify_id":null,"title":"The Water's Fine!","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2023-11-06T18:25:55+00:00","last_scrobble":"2024-05-30T18:15:36+00:00","observed_albums":[{"album":"The Water's Fine!","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6d299057985b4abc7704/album.json","artist_path":"artists/mb/mbid-9f93c34a-2dc2-400e-ada5-937c3efc3437/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9f93c34a-2dc2-400e-ada5-937c3efc3437",
+      "duration_ms": 155000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:895f00a3-92fc-4008-be30-de3db32d8a5a",
+      "track_mbid": "895f00a3-92fc-4008-be30-de3db32d8a5a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 155000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:895f00a3-92fc-4008-be30-de3db32d8a5a",
+  "identity": {
+    "album": "The Water's Fine!",
+    "album_id": "album:6d299057985b4abc7704",
+    "artist": "Liana Flores",
+    "artist_id": "mbid:9f93c34a-2dc2-400e-ada5-937c3efc3437",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "895f00a3-92fc-4008-be30-de3db32d8a5a",
+    "source_track_id": "mbid:895f00a3-92fc-4008-be30-de3db32d8a5a",
+    "spotify_id": null,
+    "title": "The Water's Fine!",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2023-11-06T18:25:55+00:00",
+    "last_scrobble": "2024-05-30T18:15:36+00:00",
+    "observed_albums": [
+      {
+        "album": "The Water's Fine!",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6d299057985b4abc7704/album.json",
+    "artist_path": "artists/mb/mbid-9f93c34a-2dc2-400e-ada5-937c3efc3437/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

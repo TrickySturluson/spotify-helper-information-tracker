@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:586f04e5-d1ef-4ac4-b9f9-687f87830657","duration_ms":140000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:58e673e9-2e06-405e-9794-b31454b04236","track_mbid":"58e673e9-2e06-405e-9794-b31454b04236"}},"id":"mbid:58e673e9-2e06-405e-9794-b31454b04236","identity":{"album":"VS EGO:","album_id":"album:76d634d6dc7011ab305d","artist":"NEMOPHILA","artist_id":"mbid:586f04e5-d1ef-4ac4-b9f9-687f87830657","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"58e673e9-2e06-405e-9794-b31454b04236","source_track_id":"mbid:58e673e9-2e06-405e-9794-b31454b04236","spotify_id":null,"title":"VS EGO:","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-09T04:56:24+00:00","last_scrobble":"2026-03-09T04:56:24+00:00","observed_albums":[{"album":"VS EGO:","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-76d634d6dc7011ab305d/album.json","artist_path":"artists/mb/mbid-586f04e5-d1ef-4ac4-b9f9-687f87830657/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:586f04e5-d1ef-4ac4-b9f9-687f87830657",
+      "duration_ms": 140000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:58e673e9-2e06-405e-9794-b31454b04236",
+      "track_mbid": "58e673e9-2e06-405e-9794-b31454b04236",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 140000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:58e673e9-2e06-405e-9794-b31454b04236",
+  "identity": {
+    "album": "VS EGO:",
+    "album_id": "album:76d634d6dc7011ab305d",
+    "artist": "NEMOPHILA",
+    "artist_id": "mbid:586f04e5-d1ef-4ac4-b9f9-687f87830657",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "58e673e9-2e06-405e-9794-b31454b04236",
+    "source_track_id": "mbid:58e673e9-2e06-405e-9794-b31454b04236",
+    "spotify_id": null,
+    "title": "VS EGO:",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-09T04:56:24+00:00",
+    "last_scrobble": "2026-03-09T04:56:24+00:00",
+    "observed_albums": [
+      {
+        "album": "VS EGO:",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-76d634d6dc7011ab305d/album.json",
+    "artist_path": "artists/mb/mbid-586f04e5-d1ef-4ac4-b9f9-687f87830657/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

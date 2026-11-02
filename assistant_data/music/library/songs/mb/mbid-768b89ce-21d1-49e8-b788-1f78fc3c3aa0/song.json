@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fbc075fb-2959-43b9-ae26-0444fe655fb2","duration_ms":125000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:768b89ce-21d1-49e8-b788-1f78fc3c3aa0","track_mbid":"768b89ce-21d1-49e8-b788-1f78fc3c3aa0"}},"id":"mbid:768b89ce-21d1-49e8-b788-1f78fc3c3aa0","identity":{"album":"Gigi (New Broadway Cast Recording)","album_id":"album:a4242dc245bbc4b24369","artist":"Corey Cott","artist_id":"mbid:fbc075fb-2959-43b9-ae26-0444fe655fb2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"768b89ce-21d1-49e8-b788-1f78fc3c3aa0","source_track_id":"mbid:768b89ce-21d1-49e8-b788-1f78fc3c3aa0","spotify_id":null,"title":"Gaston's Soliloquy","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-20T14:02:17+00:00","last_scrobble":"2025-11-20T14:02:17+00:00","observed_albums":[{"album":"Gigi (New Broadway Cast Recording)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a4242dc245bbc4b24369/album.json","artist_path":"artists/mb/mbid-fbc075fb-2959-43b9-ae26-0444fe655fb2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fbc075fb-2959-43b9-ae26-0444fe655fb2",
+      "duration_ms": 125000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:768b89ce-21d1-49e8-b788-1f78fc3c3aa0",
+      "track_mbid": "768b89ce-21d1-49e8-b788-1f78fc3c3aa0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 125000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:768b89ce-21d1-49e8-b788-1f78fc3c3aa0",
+  "identity": {
+    "album": "Gigi (New Broadway Cast Recording)",
+    "album_id": "album:a4242dc245bbc4b24369",
+    "artist": "Corey Cott",
+    "artist_id": "mbid:fbc075fb-2959-43b9-ae26-0444fe655fb2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "768b89ce-21d1-49e8-b788-1f78fc3c3aa0",
+    "source_track_id": "mbid:768b89ce-21d1-49e8-b788-1f78fc3c3aa0",
+    "spotify_id": null,
+    "title": "Gaston's Soliloquy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-20T14:02:17+00:00",
+    "last_scrobble": "2025-11-20T14:02:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Gigi (New Broadway Cast Recording)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a4242dc245bbc4b24369/album.json",
+    "artist_path": "artists/mb/mbid-fbc075fb-2959-43b9-ae26-0444fe655fb2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

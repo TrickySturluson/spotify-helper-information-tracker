@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:303a37f0-17ae-4ae9-a886-220b274b963b","duration_ms":153000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:64e37868-6a5a-46e7-9ceb-137d6d5a3fe9","track_mbid":"64e37868-6a5a-46e7-9ceb-137d6d5a3fe9"}},"id":"mbid:64e37868-6a5a-46e7-9ceb-137d6d5a3fe9","identity":{"album":"The Last of the 20th Century Girls","album_id":"album:751076f6866b7f5bbdc5","artist":"Findlay","artist_id":"mbid:303a37f0-17ae-4ae9-a886-220b274b963b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"64e37868-6a5a-46e7-9ceb-137d6d5a3fe9","source_track_id":"mbid:64e37868-6a5a-46e7-9ceb-137d6d5a3fe9","spotify_id":null,"title":"Night Sweats","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-22T10:53:25+00:00","last_scrobble":"2026-05-22T10:53:25+00:00","observed_albums":[{"album":"The Last of the 20th Century Girls","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-751076f6866b7f5bbdc5/album.json","artist_path":"artists/mb/mbid-303a37f0-17ae-4ae9-a886-220b274b963b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:303a37f0-17ae-4ae9-a886-220b274b963b",
+      "duration_ms": 153000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:64e37868-6a5a-46e7-9ceb-137d6d5a3fe9",
+      "track_mbid": "64e37868-6a5a-46e7-9ceb-137d6d5a3fe9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 153000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:64e37868-6a5a-46e7-9ceb-137d6d5a3fe9",
+  "identity": {
+    "album": "The Last of the 20th Century Girls",
+    "album_id": "album:751076f6866b7f5bbdc5",
+    "artist": "Findlay",
+    "artist_id": "mbid:303a37f0-17ae-4ae9-a886-220b274b963b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "64e37868-6a5a-46e7-9ceb-137d6d5a3fe9",
+    "source_track_id": "mbid:64e37868-6a5a-46e7-9ceb-137d6d5a3fe9",
+    "spotify_id": null,
+    "title": "Night Sweats",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-22T10:53:25+00:00",
+    "last_scrobble": "2026-05-22T10:53:25+00:00",
+    "observed_albums": [
+      {
+        "album": "The Last of the 20th Century Girls",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-751076f6866b7f5bbdc5/album.json",
+    "artist_path": "artists/mb/mbid-303a37f0-17ae-4ae9-a886-220b274b963b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

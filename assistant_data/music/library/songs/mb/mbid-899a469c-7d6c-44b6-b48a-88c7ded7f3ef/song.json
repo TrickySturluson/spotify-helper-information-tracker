@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b95ce3ff-3d05-4e87-9e01-c97b66af13d4","duration_ms":288000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:899a469c-7d6c-44b6-b48a-88c7ded7f3ef","track_mbid":"899a469c-7d6c-44b6-b48a-88c7ded7f3ef"}},"id":"mbid:899a469c-7d6c-44b6-b48a-88c7ded7f3ef","identity":{"album":"Music To Be Murdered By - Side B (Deluxe Edition)","album_id":"album:87477905a741c03f5c54","artist":"Eminem","artist_id":"mbid:b95ce3ff-3d05-4e87-9e01-c97b66af13d4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"899a469c-7d6c-44b6-b48a-88c7ded7f3ef","source_track_id":"mbid:899a469c-7d6c-44b6-b48a-88c7ded7f3ef","spotify_id":null,"title":"Tone Deaf","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-12-17T05:12:23+00:00","last_scrobble":"2023-12-17T05:12:23+00:00","observed_albums":[{"album":"Music To Be Murdered By - Side B (Deluxe Edition)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-87477905a741c03f5c54/album.json","artist_path":"artists/mb/mbid-b95ce3ff-3d05-4e87-9e01-c97b66af13d4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b95ce3ff-3d05-4e87-9e01-c97b66af13d4",
+      "duration_ms": 288000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:899a469c-7d6c-44b6-b48a-88c7ded7f3ef",
+      "track_mbid": "899a469c-7d6c-44b6-b48a-88c7ded7f3ef",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 288000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:899a469c-7d6c-44b6-b48a-88c7ded7f3ef",
+  "identity": {
+    "album": "Music To Be Murdered By - Side B (Deluxe Edition)",
+    "album_id": "album:87477905a741c03f5c54",
+    "artist": "Eminem",
+    "artist_id": "mbid:b95ce3ff-3d05-4e87-9e01-c97b66af13d4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "899a469c-7d6c-44b6-b48a-88c7ded7f3ef",
+    "source_track_id": "mbid:899a469c-7d6c-44b6-b48a-88c7ded7f3ef",
+    "spotify_id": null,
+    "title": "Tone Deaf",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-12-17T05:12:23+00:00",
+    "last_scrobble": "2023-12-17T05:12:23+00:00",
+    "observed_albums": [
+      {
+        "album": "Music To Be Murdered By - Side B (Deluxe Edition)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-87477905a741c03f5c54/album.json",
+    "artist_path": "artists/mb/mbid-b95ce3ff-3d05-4e87-9e01-c97b66af13d4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

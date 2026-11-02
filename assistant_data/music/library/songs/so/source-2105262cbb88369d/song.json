@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:b3cd16bf4d27f6df","duration_ms":235000,"duration_source":"Last.fm track.getInfo","track_id":"track:2105262cbb88369d"}},"id":"source:2105262cbb88369d","identity":{"album":"Bricks Are Heavy","album_id":"album:80020aaddd42d9fb62a3","artist":"L7","artist_id":"name:b3cd16bf4d27f6df","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:2105262cbb88369d","spotify_id":null,"title":"Pretend We're Dead","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-09-18T22:55:17+00:00","last_scrobble":"2025-09-18T22:55:17+00:00","observed_albums":[{"album":"Bricks Are Heavy","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-80020aaddd42d9fb62a3/album.json","artist_path":"artists/na/name-b3cd16bf4d27f6df/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:b3cd16bf4d27f6df",
+      "duration_ms": 235000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:2105262cbb88369d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 235000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:2105262cbb88369d",
+  "identity": {
+    "album": "Bricks Are Heavy",
+    "album_id": "album:80020aaddd42d9fb62a3",
+    "artist": "L7",
+    "artist_id": "name:b3cd16bf4d27f6df",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:2105262cbb88369d",
+    "spotify_id": null,
+    "title": "Pretend We're Dead",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-09-18T22:55:17+00:00",
+    "last_scrobble": "2025-09-18T22:55:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Bricks Are Heavy",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-80020aaddd42d9fb62a3/album.json",
+    "artist_path": "artists/na/name-b3cd16bf4d27f6df/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

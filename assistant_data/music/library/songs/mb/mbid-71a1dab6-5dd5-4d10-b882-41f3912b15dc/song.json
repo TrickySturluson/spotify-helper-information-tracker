@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:282713c0-97eb-4dc8-a839-5fa212c38527","duration_ms":274000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:71a1dab6-5dd5-4d10-b882-41f3912b15dc","track_mbid":"71a1dab6-5dd5-4d10-b882-41f3912b15dc"}},"id":"mbid:71a1dab6-5dd5-4d10-b882-41f3912b15dc","identity":{"album":"カミイロアワセ","album_id":"album:fb731a43bd96b06e561d","artist":"binaria","artist_id":"mbid:282713c0-97eb-4dc8-a839-5fa212c38527","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"71a1dab6-5dd5-4d10-b882-41f3912b15dc","source_track_id":"mbid:71a1dab6-5dd5-4d10-b882-41f3912b15dc","spotify_id":null,"title":"カミイロアワセ","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2024-11-18T19:51:34+00:00","last_scrobble":"2024-11-21T04:43:57+00:00","observed_albums":[{"album":"カミイロアワセ","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fb731a43bd96b06e561d/album.json","artist_path":"artists/mb/mbid-282713c0-97eb-4dc8-a839-5fa212c38527/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:282713c0-97eb-4dc8-a839-5fa212c38527",
+      "duration_ms": 274000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:71a1dab6-5dd5-4d10-b882-41f3912b15dc",
+      "track_mbid": "71a1dab6-5dd5-4d10-b882-41f3912b15dc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 274000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:71a1dab6-5dd5-4d10-b882-41f3912b15dc",
+  "identity": {
+    "album": "カミイロアワセ",
+    "album_id": "album:fb731a43bd96b06e561d",
+    "artist": "binaria",
+    "artist_id": "mbid:282713c0-97eb-4dc8-a839-5fa212c38527",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "71a1dab6-5dd5-4d10-b882-41f3912b15dc",
+    "source_track_id": "mbid:71a1dab6-5dd5-4d10-b882-41f3912b15dc",
+    "spotify_id": null,
+    "title": "カミイロアワセ",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2024-11-18T19:51:34+00:00",
+    "last_scrobble": "2024-11-21T04:43:57+00:00",
+    "observed_albums": [
+      {
+        "album": "カミイロアワセ",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fb731a43bd96b06e561d/album.json",
+    "artist_path": "artists/mb/mbid-282713c0-97eb-4dc8-a839-5fa212c38527/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

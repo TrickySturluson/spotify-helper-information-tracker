@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:de6a52b1-4f04-4c29-b471-345c06b93ac2","duration_ms":260000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:99382313-ac4c-4dba-b69e-39ae77ef8c7b","track_mbid":"99382313-ac4c-4dba-b69e-39ae77ef8c7b"}},"id":"mbid:99382313-ac4c-4dba-b69e-39ae77ef8c7b","identity":{"album":"v.i.p. - very important pony (remiixes)","album_id":"album:df3f7724991b0a4f8a16","artist":"horsegiirL","artist_id":"mbid:de6a52b1-4f04-4c29-b471-345c06b93ac2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"99382313-ac4c-4dba-b69e-39ae77ef8c7b","source_track_id":"mbid:99382313-ac4c-4dba-b69e-39ae77ef8c7b","spotify_id":null,"title":"take it offff (SoFTT Remix)","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-12-16T00:17:43+00:00","last_scrobble":"2025-12-16T00:26:48+00:00","observed_albums":[{"album":"v.i.p. - very important pony (remiixes)","scrobbles":1},{"album":"take it offff (SoFTT Remix)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-df3f7724991b0a4f8a16/album.json","artist_path":"artists/mb/mbid-de6a52b1-4f04-4c29-b471-345c06b93ac2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:de6a52b1-4f04-4c29-b471-345c06b93ac2",
+      "duration_ms": 260000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:99382313-ac4c-4dba-b69e-39ae77ef8c7b",
+      "track_mbid": "99382313-ac4c-4dba-b69e-39ae77ef8c7b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 260000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:99382313-ac4c-4dba-b69e-39ae77ef8c7b",
+  "identity": {
+    "album": "v.i.p. - very important pony (remiixes)",
+    "album_id": "album:df3f7724991b0a4f8a16",
+    "artist": "horsegiirL",
+    "artist_id": "mbid:de6a52b1-4f04-4c29-b471-345c06b93ac2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "99382313-ac4c-4dba-b69e-39ae77ef8c7b",
+    "source_track_id": "mbid:99382313-ac4c-4dba-b69e-39ae77ef8c7b",
+    "spotify_id": null,
+    "title": "take it offff (SoFTT Remix)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-12-16T00:17:43+00:00",
+    "last_scrobble": "2025-12-16T00:26:48+00:00",
+    "observed_albums": [
+      {
+        "album": "v.i.p. - very important pony (remiixes)",
+        "scrobbles": 1
+      },
+      {
+        "album": "take it offff (SoFTT Remix)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-df3f7724991b0a4f8a16/album.json",
+    "artist_path": "artists/mb/mbid-de6a52b1-4f04-4c29-b471-345c06b93ac2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

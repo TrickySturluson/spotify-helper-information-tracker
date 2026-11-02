@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18","duration_ms":190000,"duration_source":"Last.fm track.getInfo","track_id":"track:dd56e0ad3821604c"}},"id":"source:dd56e0ad3821604c","identity":{"album":"No. 3","album_id":"album:06bf5cbc825d13b42fae","artist":"Cosmo Sheldrake","artist_id":"mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:dd56e0ad3821604c","spotify_id":null,"title":"No. 3","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2023-06-05T06:40:24+00:00","last_scrobble":"2023-06-06T03:21:56+00:00","observed_albums":[{"album":"No. 3","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-06bf5cbc825d13b42fae/album.json","artist_path":"artists/mb/mbid-fda925d2-7af4-4b67-b8c1-692292c9cb18/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18",
+      "duration_ms": 190000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:dd56e0ad3821604c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 190000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:dd56e0ad3821604c",
+  "identity": {
+    "album": "No. 3",
+    "album_id": "album:06bf5cbc825d13b42fae",
+    "artist": "Cosmo Sheldrake",
+    "artist_id": "mbid:fda925d2-7af4-4b67-b8c1-692292c9cb18",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:dd56e0ad3821604c",
+    "spotify_id": null,
+    "title": "No. 3",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2023-06-05T06:40:24+00:00",
+    "last_scrobble": "2023-06-06T03:21:56+00:00",
+    "observed_albums": [
+      {
+        "album": "No. 3",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-06bf5cbc825d13b42fae/album.json",
+    "artist_path": "artists/mb/mbid-fda925d2-7af4-4b67-b8c1-692292c9cb18/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

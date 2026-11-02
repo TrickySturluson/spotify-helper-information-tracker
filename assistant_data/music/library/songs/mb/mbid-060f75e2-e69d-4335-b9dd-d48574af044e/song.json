@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:4ef29fc554829cf7","duration_ms":187000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:060f75e2-e69d-4335-b9dd-d48574af044e","track_mbid":"060f75e2-e69d-4335-b9dd-d48574af044e"}},"id":"mbid:060f75e2-e69d-4335-b9dd-d48574af044e","identity":{"album":"The ghost of words is looking through the window","album_id":"album:2e646cda4ba3177fc13d","artist":"Frog96","artist_id":"name:4ef29fc554829cf7","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"060f75e2-e69d-4335-b9dd-d48574af044e","source_track_id":"mbid:060f75e2-e69d-4335-b9dd-d48574af044e","spotify_id":null,"title":"The ghost of words is looking through the window","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2023-09-19T17:17:10+00:00","last_scrobble":"2023-09-21T18:53:20+00:00","observed_albums":[{"album":"The ghost of words is looking through the window","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2e646cda4ba3177fc13d/album.json","artist_path":"artists/na/name-4ef29fc554829cf7/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:4ef29fc554829cf7",
+      "duration_ms": 187000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:060f75e2-e69d-4335-b9dd-d48574af044e",
+      "track_mbid": "060f75e2-e69d-4335-b9dd-d48574af044e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 187000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:060f75e2-e69d-4335-b9dd-d48574af044e",
+  "identity": {
+    "album": "The ghost of words is looking through the window",
+    "album_id": "album:2e646cda4ba3177fc13d",
+    "artist": "Frog96",
+    "artist_id": "name:4ef29fc554829cf7",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "060f75e2-e69d-4335-b9dd-d48574af044e",
+    "source_track_id": "mbid:060f75e2-e69d-4335-b9dd-d48574af044e",
+    "spotify_id": null,
+    "title": "The ghost of words is looking through the window",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2023-09-19T17:17:10+00:00",
+    "last_scrobble": "2023-09-21T18:53:20+00:00",
+    "observed_albums": [
+      {
+        "album": "The ghost of words is looking through the window",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2e646cda4ba3177fc13d/album.json",
+    "artist_path": "artists/na/name-4ef29fc554829cf7/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

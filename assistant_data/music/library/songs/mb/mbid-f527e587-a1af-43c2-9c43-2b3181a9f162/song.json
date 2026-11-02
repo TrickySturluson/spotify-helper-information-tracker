@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:06b37882-f31c-4df9-b4fe-fe09eace7453","duration_ms":204000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f527e587-a1af-43c2-9c43-2b3181a9f162","track_mbid":"f527e587-a1af-43c2-9c43-2b3181a9f162"}},"id":"mbid:f527e587-a1af-43c2-9c43-2b3181a9f162","identity":{"album":"Joe Hawley Joe Hawley","album_id":"album:22ef4cc6a2b1df2962ed","artist":"Joe Hawley","artist_id":"mbid:06b37882-f31c-4df9-b4fe-fe09eace7453","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f527e587-a1af-43c2-9c43-2b3181a9f162","source_track_id":"mbid:f527e587-a1af-43c2-9c43-2b3181a9f162","spotify_id":null,"title":"Hoodz 'n the Woodz","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-02-08T21:49:04+00:00","last_scrobble":"2025-02-08T21:49:04+00:00","observed_albums":[{"album":"Joe Hawley Joe Hawley","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-22ef4cc6a2b1df2962ed/album.json","artist_path":"artists/mb/mbid-06b37882-f31c-4df9-b4fe-fe09eace7453/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:06b37882-f31c-4df9-b4fe-fe09eace7453",
+      "duration_ms": 204000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f527e587-a1af-43c2-9c43-2b3181a9f162",
+      "track_mbid": "f527e587-a1af-43c2-9c43-2b3181a9f162",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 204000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f527e587-a1af-43c2-9c43-2b3181a9f162",
+  "identity": {
+    "album": "Joe Hawley Joe Hawley",
+    "album_id": "album:22ef4cc6a2b1df2962ed",
+    "artist": "Joe Hawley",
+    "artist_id": "mbid:06b37882-f31c-4df9-b4fe-fe09eace7453",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f527e587-a1af-43c2-9c43-2b3181a9f162",
+    "source_track_id": "mbid:f527e587-a1af-43c2-9c43-2b3181a9f162",
+    "spotify_id": null,
+    "title": "Hoodz 'n the Woodz",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-02-08T21:49:04+00:00",
+    "last_scrobble": "2025-02-08T21:49:04+00:00",
+    "observed_albums": [
+      {
+        "album": "Joe Hawley Joe Hawley",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-22ef4cc6a2b1df2962ed/album.json",
+    "artist_path": "artists/mb/mbid-06b37882-f31c-4df9-b4fe-fe09eace7453/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

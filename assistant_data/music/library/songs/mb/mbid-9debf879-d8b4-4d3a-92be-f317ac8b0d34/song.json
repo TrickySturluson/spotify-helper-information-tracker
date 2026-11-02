@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:c1e05c0abb48d808","duration_ms":166000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9debf879-d8b4-4d3a-92be-f317ac8b0d34","track_mbid":"9debf879-d8b4-4d3a-92be-f317ac8b0d34"}},"id":"mbid:9debf879-d8b4-4d3a-92be-f317ac8b0d34","identity":{"album":"Lucky Tiger","album_id":"album:3b1279668cd353ac41c7","artist":"Telenights","artist_id":"name:c1e05c0abb48d808","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9debf879-d8b4-4d3a-92be-f317ac8b0d34","source_track_id":"mbid:9debf879-d8b4-4d3a-92be-f317ac8b0d34","spotify_id":null,"title":"Sun Phases","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-08-03T23:19:01+00:00","last_scrobble":"2025-08-03T23:19:01+00:00","observed_albums":[{"album":"Lucky Tiger","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3b1279668cd353ac41c7/album.json","artist_path":"artists/na/name-c1e05c0abb48d808/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:c1e05c0abb48d808",
+      "duration_ms": 166000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9debf879-d8b4-4d3a-92be-f317ac8b0d34",
+      "track_mbid": "9debf879-d8b4-4d3a-92be-f317ac8b0d34",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 166000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9debf879-d8b4-4d3a-92be-f317ac8b0d34",
+  "identity": {
+    "album": "Lucky Tiger",
+    "album_id": "album:3b1279668cd353ac41c7",
+    "artist": "Telenights",
+    "artist_id": "name:c1e05c0abb48d808",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9debf879-d8b4-4d3a-92be-f317ac8b0d34",
+    "source_track_id": "mbid:9debf879-d8b4-4d3a-92be-f317ac8b0d34",
+    "spotify_id": null,
+    "title": "Sun Phases",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-08-03T23:19:01+00:00",
+    "last_scrobble": "2025-08-03T23:19:01+00:00",
+    "observed_albums": [
+      {
+        "album": "Lucky Tiger",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3b1279668cd353ac41c7/album.json",
+    "artist_path": "artists/na/name-c1e05c0abb48d808/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

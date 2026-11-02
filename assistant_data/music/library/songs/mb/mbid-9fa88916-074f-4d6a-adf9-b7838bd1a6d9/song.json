@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9","duration_ms":286000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9fa88916-074f-4d6a-adf9-b7838bd1a6d9","track_mbid":"9fa88916-074f-4d6a-adf9-b7838bd1a6d9"}},"id":"mbid:9fa88916-074f-4d6a-adf9-b7838bd1a6d9","identity":{"album":"NOW THAT'S WHY I KILLED MUSIC","album_id":"album:5affcee98c5f59f9a432","artist":"Whitey","artist_id":"mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9fa88916-074f-4d6a-adf9-b7838bd1a6d9","source_track_id":"mbid:9fa88916-074f-4d6a-adf9-b7838bd1a6d9","spotify_id":null,"title":"Pick Up Your Shadow","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-27T02:29:55+00:00","last_scrobble":"2024-11-27T02:29:55+00:00","observed_albums":[{"album":"NOW THAT'S WHY I KILLED MUSIC","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5affcee98c5f59f9a432/album.json","artist_path":"artists/mb/mbid-007a084b-f435-4d78-be2a-3f9dd552ebc9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9",
+      "duration_ms": 286000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9fa88916-074f-4d6a-adf9-b7838bd1a6d9",
+      "track_mbid": "9fa88916-074f-4d6a-adf9-b7838bd1a6d9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 286000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9fa88916-074f-4d6a-adf9-b7838bd1a6d9",
+  "identity": {
+    "album": "NOW THAT'S WHY I KILLED MUSIC",
+    "album_id": "album:5affcee98c5f59f9a432",
+    "artist": "Whitey",
+    "artist_id": "mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9fa88916-074f-4d6a-adf9-b7838bd1a6d9",
+    "source_track_id": "mbid:9fa88916-074f-4d6a-adf9-b7838bd1a6d9",
+    "spotify_id": null,
+    "title": "Pick Up Your Shadow",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-27T02:29:55+00:00",
+    "last_scrobble": "2024-11-27T02:29:55+00:00",
+    "observed_albums": [
+      {
+        "album": "NOW THAT'S WHY I KILLED MUSIC",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5affcee98c5f59f9a432/album.json",
+    "artist_path": "artists/mb/mbid-007a084b-f435-4d78-be2a-3f9dd552ebc9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

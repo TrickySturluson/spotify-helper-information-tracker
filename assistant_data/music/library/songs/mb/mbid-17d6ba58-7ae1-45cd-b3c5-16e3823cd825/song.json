@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:692d52cc-2e26-4c44-9a2e-d094fe28070b","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:17d6ba58-7ae1-45cd-b3c5-16e3823cd825","track_mbid":"17d6ba58-7ae1-45cd-b3c5-16e3823cd825"}},"id":"mbid:17d6ba58-7ae1-45cd-b3c5-16e3823cd825","identity":{"album":"Streetwalker","album_id":"album:981ab8a025e72f2cb9c5","artist":"Nightstop","artist_id":"mbid:692d52cc-2e26-4c44-9a2e-d094fe28070b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"17d6ba58-7ae1-45cd-b3c5-16e3823cd825","source_track_id":"mbid:17d6ba58-7ae1-45cd-b3c5-16e3823cd825","spotify_id":null,"title":"She Dances In The Dark","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-03-13T22:53:20+00:00","last_scrobble":"2023-03-14T21:42:38+00:00","observed_albums":[{"album":"Streetwalker","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-981ab8a025e72f2cb9c5/album.json","artist_path":"artists/mb/mbid-692d52cc-2e26-4c44-9a2e-d094fe28070b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:692d52cc-2e26-4c44-9a2e-d094fe28070b",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:17d6ba58-7ae1-45cd-b3c5-16e3823cd825",
+      "track_mbid": "17d6ba58-7ae1-45cd-b3c5-16e3823cd825",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:17d6ba58-7ae1-45cd-b3c5-16e3823cd825",
+  "identity": {
+    "album": "Streetwalker",
+    "album_id": "album:981ab8a025e72f2cb9c5",
+    "artist": "Nightstop",
+    "artist_id": "mbid:692d52cc-2e26-4c44-9a2e-d094fe28070b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "17d6ba58-7ae1-45cd-b3c5-16e3823cd825",
+    "source_track_id": "mbid:17d6ba58-7ae1-45cd-b3c5-16e3823cd825",
+    "spotify_id": null,
+    "title": "She Dances In The Dark",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-03-13T22:53:20+00:00",
+    "last_scrobble": "2023-03-14T21:42:38+00:00",
+    "observed_albums": [
+      {
+        "album": "Streetwalker",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-981ab8a025e72f2cb9c5/album.json",
+    "artist_path": "artists/mb/mbid-692d52cc-2e26-4c44-9a2e-d094fe28070b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

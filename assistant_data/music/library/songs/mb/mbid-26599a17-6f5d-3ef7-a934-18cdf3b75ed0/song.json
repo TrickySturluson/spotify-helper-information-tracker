@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e031ae5d-db68-4e06-980b-f828fe5b40dd","duration_ms":231000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:26599a17-6f5d-3ef7-a934-18cdf3b75ed0","track_mbid":"26599a17-6f5d-3ef7-a934-18cdf3b75ed0"}},"id":"mbid:26599a17-6f5d-3ef7-a934-18cdf3b75ed0","identity":{"album":"Come Over to the Deepend","album_id":"album:9ad21b6fa3a8c1e5f653","artist":"COALTAR OF THE DEEPERS","artist_id":"mbid:e031ae5d-db68-4e06-980b-f828fe5b40dd","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"26599a17-6f5d-3ef7-a934-18cdf3b75ed0","source_track_id":"mbid:26599a17-6f5d-3ef7-a934-18cdf3b75ed0","spotify_id":null,"title":"C/O/T/D","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-09T03:47:50+00:00","last_scrobble":"2026-03-09T03:47:50+00:00","observed_albums":[{"album":"Come Over to the Deepend","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9ad21b6fa3a8c1e5f653/album.json","artist_path":"artists/mb/mbid-e031ae5d-db68-4e06-980b-f828fe5b40dd/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e031ae5d-db68-4e06-980b-f828fe5b40dd",
+      "duration_ms": 231000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:26599a17-6f5d-3ef7-a934-18cdf3b75ed0",
+      "track_mbid": "26599a17-6f5d-3ef7-a934-18cdf3b75ed0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 231000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:26599a17-6f5d-3ef7-a934-18cdf3b75ed0",
+  "identity": {
+    "album": "Come Over to the Deepend",
+    "album_id": "album:9ad21b6fa3a8c1e5f653",
+    "artist": "COALTAR OF THE DEEPERS",
+    "artist_id": "mbid:e031ae5d-db68-4e06-980b-f828fe5b40dd",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "26599a17-6f5d-3ef7-a934-18cdf3b75ed0",
+    "source_track_id": "mbid:26599a17-6f5d-3ef7-a934-18cdf3b75ed0",
+    "spotify_id": null,
+    "title": "C/O/T/D",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-09T03:47:50+00:00",
+    "last_scrobble": "2026-03-09T03:47:50+00:00",
+    "observed_albums": [
+      {
+        "album": "Come Over to the Deepend",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9ad21b6fa3a8c1e5f653/album.json",
+    "artist_path": "artists/mb/mbid-e031ae5d-db68-4e06-980b-f828fe5b40dd/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

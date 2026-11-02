@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6a125082-74c4-4a1b-bf4b-d91d9cafde4c","duration_ms":248000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:06:39.990478+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:06:40.694732+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:22a48310-299e-477a-937e-ca6d13f55e62","track_mbid":"22a48310-299e-477a-937e-ca6d13f55e62"}},"id":"mbid:22a48310-299e-477a-937e-ca6d13f55e62","identity":{"album":"Cures What Ails Ya","album_id":"album:7cffbd0fe767686bc607","artist":"The Longest Johns","artist_id":"mbid:6a125082-74c4-4a1b-bf4b-d91d9cafde4c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"22a48310-299e-477a-937e-ca6d13f55e62","source_track_id":"mbid:22a48310-299e-477a-937e-ca6d13f55e62","spotify_id":null,"title":"Oak & Ash & Thorn","track_number":null},"listening_context":{"all_time_plays":40,"first_scrobble":"2025-11-01T02:24:05+00:00","last_scrobble":"2026-10-29T21:39:10+00:00","observed_albums":[{"album":"Cures What Ails Ya","scrobbles":40}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7cffbd0fe767686bc607/album.json","artist_path":"artists/mb/mbid-6a125082-74c4-4a1b-bf4b-d91d9cafde4c/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6a125082-74c4-4a1b-bf4b-d91d9cafde4c",
+      "duration_ms": 248000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:06:39.990478+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:06:40.694732+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:22a48310-299e-477a-937e-ca6d13f55e62",
+      "track_mbid": "22a48310-299e-477a-937e-ca6d13f55e62",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 248000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:22a48310-299e-477a-937e-ca6d13f55e62",
+  "identity": {
+    "album": "Cures What Ails Ya",
+    "album_id": "album:7cffbd0fe767686bc607",
+    "artist": "The Longest Johns",
+    "artist_id": "mbid:6a125082-74c4-4a1b-bf4b-d91d9cafde4c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "22a48310-299e-477a-937e-ca6d13f55e62",
+    "source_track_id": "mbid:22a48310-299e-477a-937e-ca6d13f55e62",
+    "spotify_id": null,
+    "title": "Oak & Ash & Thorn",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 40,
+    "first_scrobble": "2025-11-01T02:24:05+00:00",
+    "last_scrobble": "2026-10-29T21:39:10+00:00",
+    "observed_albums": [
+      {
+        "album": "Cures What Ails Ya",
+        "scrobbles": 40
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7cffbd0fe767686bc607/album.json",
+    "artist_path": "artists/mb/mbid-6a125082-74c4-4a1b-bf4b-d91d9cafde4c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

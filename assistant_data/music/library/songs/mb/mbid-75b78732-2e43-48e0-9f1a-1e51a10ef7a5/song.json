@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:769930ba-9724-41a6-9c25-7d55504415bf","duration_ms":213000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:75b78732-2e43-48e0-9f1a-1e51a10ef7a5","track_mbid":"75b78732-2e43-48e0-9f1a-1e51a10ef7a5"}},"id":"mbid:75b78732-2e43-48e0-9f1a-1e51a10ef7a5","identity":{"album":"Ultra Rare Vol 1","album_id":"album:030ed0dbb5987e190a19","artist":"Mystery Skulls","artist_id":"mbid:769930ba-9724-41a6-9c25-7d55504415bf","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"75b78732-2e43-48e0-9f1a-1e51a10ef7a5","source_track_id":"mbid:75b78732-2e43-48e0-9f1a-1e51a10ef7a5","spotify_id":null,"title":"Freaking Out","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-03-05T21:28:49+00:00","last_scrobble":"2026-03-08T21:25:58+00:00","observed_albums":[{"album":"Ultra Rare Vol 1","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-030ed0dbb5987e190a19/album.json","artist_path":"artists/mb/mbid-769930ba-9724-41a6-9c25-7d55504415bf/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:769930ba-9724-41a6-9c25-7d55504415bf",
+      "duration_ms": 213000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:75b78732-2e43-48e0-9f1a-1e51a10ef7a5",
+      "track_mbid": "75b78732-2e43-48e0-9f1a-1e51a10ef7a5",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 213000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:75b78732-2e43-48e0-9f1a-1e51a10ef7a5",
+  "identity": {
+    "album": "Ultra Rare Vol 1",
+    "album_id": "album:030ed0dbb5987e190a19",
+    "artist": "Mystery Skulls",
+    "artist_id": "mbid:769930ba-9724-41a6-9c25-7d55504415bf",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "75b78732-2e43-48e0-9f1a-1e51a10ef7a5",
+    "source_track_id": "mbid:75b78732-2e43-48e0-9f1a-1e51a10ef7a5",
+    "spotify_id": null,
+    "title": "Freaking Out",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-03-05T21:28:49+00:00",
+    "last_scrobble": "2026-03-08T21:25:58+00:00",
+    "observed_albums": [
+      {
+        "album": "Ultra Rare Vol 1",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-030ed0dbb5987e190a19/album.json",
+    "artist_path": "artists/mb/mbid-769930ba-9724-41a6-9c25-7d55504415bf/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

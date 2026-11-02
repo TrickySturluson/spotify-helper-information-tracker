@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:54613822807f7793","duration_ms":151000,"duration_source":"Last.fm track.getInfo","track_id":"track:bd1dd4967db68f2a"}},"id":"source:bd1dd4967db68f2a","identity":{"album":"Winter's End","album_id":"album:31902a3e8d4aa61b5ccb","artist":"Joel Tumelty","artist_id":"name:54613822807f7793","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:bd1dd4967db68f2a","spotify_id":null,"title":"Winter's End","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-12-01T06:46:10+00:00","last_scrobble":"2024-12-01T06:46:10+00:00","observed_albums":[{"album":"Winter's End","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-31902a3e8d4aa61b5ccb/album.json","artist_path":"artists/na/name-54613822807f7793/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:54613822807f7793",
+      "duration_ms": 151000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:bd1dd4967db68f2a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 151000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:bd1dd4967db68f2a",
+  "identity": {
+    "album": "Winter's End",
+    "album_id": "album:31902a3e8d4aa61b5ccb",
+    "artist": "Joel Tumelty",
+    "artist_id": "name:54613822807f7793",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:bd1dd4967db68f2a",
+    "spotify_id": null,
+    "title": "Winter's End",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-12-01T06:46:10+00:00",
+    "last_scrobble": "2024-12-01T06:46:10+00:00",
+    "observed_albums": [
+      {
+        "album": "Winter's End",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-31902a3e8d4aa61b5ccb/album.json",
+    "artist_path": "artists/na/name-54613822807f7793/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

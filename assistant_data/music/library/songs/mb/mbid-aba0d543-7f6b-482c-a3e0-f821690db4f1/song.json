@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","duration_ms":254000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:aba0d543-7f6b-482c-a3e0-f821690db4f1","track_mbid":"aba0d543-7f6b-482c-a3e0-f821690db4f1"}},"id":"mbid:aba0d543-7f6b-482c-a3e0-f821690db4f1","identity":{"album":"Trilogy","album_id":"album:bf8f3cc3981a7942150c","artist":"Carpenter Brut","artist_id":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"aba0d543-7f6b-482c-a3e0-f821690db4f1","source_track_id":"mbid:aba0d543-7f6b-482c-a3e0-f821690db4f1","spotify_id":null,"title":"Paradise Warfare","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-03-13T22:14:09+00:00","last_scrobble":"2023-03-14T21:03:28+00:00","observed_albums":[{"album":"Trilogy","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bf8f3cc3981a7942150c/album.json","artist_path":"artists/mb/mbid-303abdee-ffca-4685-a582-6aaaefd81b01/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
+      "duration_ms": 254000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:aba0d543-7f6b-482c-a3e0-f821690db4f1",
+      "track_mbid": "aba0d543-7f6b-482c-a3e0-f821690db4f1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 254000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:aba0d543-7f6b-482c-a3e0-f821690db4f1",
+  "identity": {
+    "album": "Trilogy",
+    "album_id": "album:bf8f3cc3981a7942150c",
+    "artist": "Carpenter Brut",
+    "artist_id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "aba0d543-7f6b-482c-a3e0-f821690db4f1",
+    "source_track_id": "mbid:aba0d543-7f6b-482c-a3e0-f821690db4f1",
+    "spotify_id": null,
+    "title": "Paradise Warfare",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-03-13T22:14:09+00:00",
+    "last_scrobble": "2023-03-14T21:03:28+00:00",
+    "observed_albums": [
+      {
+        "album": "Trilogy",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bf8f3cc3981a7942150c/album.json",
+    "artist_path": "artists/mb/mbid-303abdee-ffca-4685-a582-6aaaefd81b01/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

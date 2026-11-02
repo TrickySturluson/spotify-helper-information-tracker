@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3b727b65-1bae-47e8-8f8e-a7f3acd2fd64","duration_ms":254000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5ffb0852-02b6-442d-8ec7-88e8be47134f","track_mbid":"5ffb0852-02b6-442d-8ec7-88e8be47134f"}},"id":"mbid:5ffb0852-02b6-442d-8ec7-88e8be47134f","identity":{"album":"The Bifrost Incident","album_id":"album:ccbf72a09ccc0c79d8cd","artist":"The Mechanisms","artist_id":"mbid:3b727b65-1bae-47e8-8f8e-a7f3acd2fd64","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5ffb0852-02b6-442d-8ec7-88e8be47134f","source_track_id":"mbid:5ffb0852-02b6-442d-8ec7-88e8be47134f","spotify_id":null,"title":"Loki","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-02-03T16:39:54+00:00","last_scrobble":"2025-02-08T22:33:44+00:00","observed_albums":[{"album":"The Bifrost Incident","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ccbf72a09ccc0c79d8cd/album.json","artist_path":"artists/mb/mbid-3b727b65-1bae-47e8-8f8e-a7f3acd2fd64/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3b727b65-1bae-47e8-8f8e-a7f3acd2fd64",
+      "duration_ms": 254000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5ffb0852-02b6-442d-8ec7-88e8be47134f",
+      "track_mbid": "5ffb0852-02b6-442d-8ec7-88e8be47134f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 254000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5ffb0852-02b6-442d-8ec7-88e8be47134f",
+  "identity": {
+    "album": "The Bifrost Incident",
+    "album_id": "album:ccbf72a09ccc0c79d8cd",
+    "artist": "The Mechanisms",
+    "artist_id": "mbid:3b727b65-1bae-47e8-8f8e-a7f3acd2fd64",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5ffb0852-02b6-442d-8ec7-88e8be47134f",
+    "source_track_id": "mbid:5ffb0852-02b6-442d-8ec7-88e8be47134f",
+    "spotify_id": null,
+    "title": "Loki",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-02-03T16:39:54+00:00",
+    "last_scrobble": "2025-02-08T22:33:44+00:00",
+    "observed_albums": [
+      {
+        "album": "The Bifrost Incident",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ccbf72a09ccc0c79d8cd/album.json",
+    "artist_path": "artists/mb/mbid-3b727b65-1bae-47e8-8f8e-a7f3acd2fd64/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

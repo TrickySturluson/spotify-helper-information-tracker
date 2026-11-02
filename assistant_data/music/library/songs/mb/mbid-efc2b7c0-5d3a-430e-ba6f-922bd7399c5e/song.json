@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:27638856-79a1-4495-b7da-1912899560c7","duration_ms":120000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:efc2b7c0-5d3a-430e-ba6f-922bd7399c5e","track_mbid":"efc2b7c0-5d3a-430e-ba6f-922bd7399c5e"}},"id":"mbid:efc2b7c0-5d3a-430e-ba6f-922bd7399c5e","identity":{"album":"bag or die","album_id":"album:c42f244278a032427b67","artist":"bbno$","artist_id":"mbid:27638856-79a1-4495-b7da-1912899560c7","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"efc2b7c0-5d3a-430e-ba6f-922bd7399c5e","source_track_id":"mbid:efc2b7c0-5d3a-430e-ba6f-922bd7399c5e","spotify_id":null,"title":"piccolo","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-02-16T09:07:01+00:00","last_scrobble":"2025-02-16T09:07:01+00:00","observed_albums":[{"album":"bag or die","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c42f244278a032427b67/album.json","artist_path":"artists/mb/mbid-27638856-79a1-4495-b7da-1912899560c7/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:27638856-79a1-4495-b7da-1912899560c7",
+      "duration_ms": 120000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:efc2b7c0-5d3a-430e-ba6f-922bd7399c5e",
+      "track_mbid": "efc2b7c0-5d3a-430e-ba6f-922bd7399c5e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 120000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:efc2b7c0-5d3a-430e-ba6f-922bd7399c5e",
+  "identity": {
+    "album": "bag or die",
+    "album_id": "album:c42f244278a032427b67",
+    "artist": "bbno$",
+    "artist_id": "mbid:27638856-79a1-4495-b7da-1912899560c7",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "efc2b7c0-5d3a-430e-ba6f-922bd7399c5e",
+    "source_track_id": "mbid:efc2b7c0-5d3a-430e-ba6f-922bd7399c5e",
+    "spotify_id": null,
+    "title": "piccolo",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-02-16T09:07:01+00:00",
+    "last_scrobble": "2025-02-16T09:07:01+00:00",
+    "observed_albums": [
+      {
+        "album": "bag or die",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c42f244278a032427b67/album.json",
+    "artist_path": "artists/mb/mbid-27638856-79a1-4495-b7da-1912899560c7/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

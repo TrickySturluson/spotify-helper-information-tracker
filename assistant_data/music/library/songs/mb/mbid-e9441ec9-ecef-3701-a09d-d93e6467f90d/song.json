@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:dc6a0d29-a881-4284-aa72-12bbf878b444","duration_ms":236000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e9441ec9-ecef-3701-a09d-d93e6467f90d","track_mbid":"e9441ec9-ecef-3701-a09d-d93e6467f90d"}},"id":"mbid:e9441ec9-ecef-3701-a09d-d93e6467f90d","identity":{"album":"Portrait - EP","album_id":"album:03fb03f4b0288f1f652e","artist":"Polite Fiction","artist_id":"mbid:dc6a0d29-a881-4284-aa72-12bbf878b444","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e9441ec9-ecef-3701-a09d-d93e6467f90d","source_track_id":"mbid:e9441ec9-ecef-3701-a09d-d93e6467f90d","spotify_id":null,"title":"Perspective","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-09-03T15:10:05+00:00","last_scrobble":"2024-09-03T15:10:05+00:00","observed_albums":[{"album":"Portrait - EP","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-03fb03f4b0288f1f652e/album.json","artist_path":"artists/mb/mbid-dc6a0d29-a881-4284-aa72-12bbf878b444/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:dc6a0d29-a881-4284-aa72-12bbf878b444",
+      "duration_ms": 236000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e9441ec9-ecef-3701-a09d-d93e6467f90d",
+      "track_mbid": "e9441ec9-ecef-3701-a09d-d93e6467f90d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 236000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e9441ec9-ecef-3701-a09d-d93e6467f90d",
+  "identity": {
+    "album": "Portrait - EP",
+    "album_id": "album:03fb03f4b0288f1f652e",
+    "artist": "Polite Fiction",
+    "artist_id": "mbid:dc6a0d29-a881-4284-aa72-12bbf878b444",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e9441ec9-ecef-3701-a09d-d93e6467f90d",
+    "source_track_id": "mbid:e9441ec9-ecef-3701-a09d-d93e6467f90d",
+    "spotify_id": null,
+    "title": "Perspective",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-09-03T15:10:05+00:00",
+    "last_scrobble": "2024-09-03T15:10:05+00:00",
+    "observed_albums": [
+      {
+        "album": "Portrait - EP",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-03fb03f4b0288f1f652e/album.json",
+    "artist_path": "artists/mb/mbid-dc6a0d29-a881-4284-aa72-12bbf878b444/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

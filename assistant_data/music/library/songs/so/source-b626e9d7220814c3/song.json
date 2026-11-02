@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:a3ed7097eba608e3","duration_ms":220000,"duration_source":"Last.fm track.getInfo","track_id":"track:b626e9d7220814c3"}},"id":"source:b626e9d7220814c3","identity":{"album":"Pretty Cvnt","album_id":"album:73700f1aa0da23242700","artist":"swrslt","artist_id":"name:a3ed7097eba608e3","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:b626e9d7220814c3","spotify_id":null,"title":"Pretty Cvnt","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-01-13T08:15:51+00:00","last_scrobble":"2024-01-13T08:15:51+00:00","observed_albums":[{"album":"Pretty Cvnt","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-73700f1aa0da23242700/album.json","artist_path":"artists/na/name-a3ed7097eba608e3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:a3ed7097eba608e3",
+      "duration_ms": 220000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:b626e9d7220814c3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 220000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:b626e9d7220814c3",
+  "identity": {
+    "album": "Pretty Cvnt",
+    "album_id": "album:73700f1aa0da23242700",
+    "artist": "swrslt",
+    "artist_id": "name:a3ed7097eba608e3",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:b626e9d7220814c3",
+    "spotify_id": null,
+    "title": "Pretty Cvnt",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-01-13T08:15:51+00:00",
+    "last_scrobble": "2024-01-13T08:15:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Pretty Cvnt",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-73700f1aa0da23242700/album.json",
+    "artist_path": "artists/na/name-a3ed7097eba608e3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d991f802-a673-4f2a-8de0-22f760895b83","duration_ms":243000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4ed68349-8266-4f51-bb38-40abeab3355e","track_mbid":"4ed68349-8266-4f51-bb38-40abeab3355e"}},"id":"mbid:4ed68349-8266-4f51-bb38-40abeab3355e","identity":{"album":"Milk Outside a Bag of Milk Outside a Bag of Milk (Original Game Soundtrack)","album_id":"album:06278816ae8ce733402c","artist":"Nikita Kryukov","artist_id":"mbid:d991f802-a673-4f2a-8de0-22f760895b83","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4ed68349-8266-4f51-bb38-40abeab3355e","source_track_id":"mbid:4ed68349-8266-4f51-bb38-40abeab3355e","spotify_id":null,"title":"mirror music","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-27T00:46:59+00:00","last_scrobble":"2024-11-27T00:46:59+00:00","observed_albums":[{"album":"Milk Outside a Bag of Milk Outside a Bag of Milk (Original Game Soundtrack)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-06278816ae8ce733402c/album.json","artist_path":"artists/mb/mbid-d991f802-a673-4f2a-8de0-22f760895b83/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d991f802-a673-4f2a-8de0-22f760895b83",
+      "duration_ms": 243000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4ed68349-8266-4f51-bb38-40abeab3355e",
+      "track_mbid": "4ed68349-8266-4f51-bb38-40abeab3355e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 243000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4ed68349-8266-4f51-bb38-40abeab3355e",
+  "identity": {
+    "album": "Milk Outside a Bag of Milk Outside a Bag of Milk (Original Game Soundtrack)",
+    "album_id": "album:06278816ae8ce733402c",
+    "artist": "Nikita Kryukov",
+    "artist_id": "mbid:d991f802-a673-4f2a-8de0-22f760895b83",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4ed68349-8266-4f51-bb38-40abeab3355e",
+    "source_track_id": "mbid:4ed68349-8266-4f51-bb38-40abeab3355e",
+    "spotify_id": null,
+    "title": "mirror music",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-27T00:46:59+00:00",
+    "last_scrobble": "2024-11-27T00:46:59+00:00",
+    "observed_albums": [
+      {
+        "album": "Milk Outside a Bag of Milk Outside a Bag of Milk (Original Game Soundtrack)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-06278816ae8ce733402c/album.json",
+    "artist_path": "artists/mb/mbid-d991f802-a673-4f2a-8de0-22f760895b83/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

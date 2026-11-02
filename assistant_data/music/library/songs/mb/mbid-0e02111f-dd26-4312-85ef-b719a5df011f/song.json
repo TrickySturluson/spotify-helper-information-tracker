@@ -1,1 +1,275 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Neo-Psychedelia":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative dance":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"electronic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"electronic rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"fav":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"gorillaz":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"party":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"power pop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"synth-pop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"synthpop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e21857d5-3256-4547-afb3-4b6ded592596","duration_ms":162000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:37:28.688096+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"electronic"},{"count":100,"source":"Last.fm track.getTopTags","tag":"synthpop"},{"count":37,"source":"Last.fm track.getTopTags","tag":"electronic rock"},{"count":37,"source":"Last.fm track.getTopTags","tag":"Neo-Psychedelia"},{"count":19,"source":"Last.fm track.getTopTags","tag":"gorillaz"},{"count":8,"source":"Last.fm track.getTopTags","tag":"alternative dance"},{"count":8,"source":"Last.fm track.getTopTags","tag":"power pop"},{"count":1,"source":"Last.fm track.getTopTags","tag":"fav"},{"count":1,"source":"Last.fm track.getTopTags","tag":"indie"},{"count":1,"source":"Last.fm track.getTopTags","tag":"rock"}],"musicbrainz_checked_at":"2026-11-01T22:37:29.364492+00:00","musicbrainz_genres":[{"count":1,"source":"MusicBrainz recording genre","tag":"alternative rock"},{"count":1,"source":"MusicBrainz recording genre","tag":"synth-pop"}],"musicbrainz_retry_after":0,"musicbrainz_status":"matched","musicbrainz_tags":[{"count":1,"source":"MusicBrainz recording tag","tag":"alternative rock"},{"count":1,"source":"MusicBrainz recording tag","tag":"party"},{"count":1,"source":"MusicBrainz recording tag","tag":"synth-pop"}],"retry_after":0,"track_id":"mbid:0e02111f-dd26-4312-85ef-b719a5df011f","track_mbid":"0e02111f-dd26-4312-85ef-b719a5df011f"}},"id":"mbid:0e02111f-dd26-4312-85ef-b719a5df011f","identity":{"album":"The Now Now","album_id":"album:d2eda7a8c07c4b308028","artist":"Gorillaz","artist_id":"mbid:e21857d5-3256-4547-afb3-4b6ded592596","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0e02111f-dd26-4312-85ef-b719a5df011f","source_track_id":"mbid:0e02111f-dd26-4312-85ef-b719a5df011f","spotify_id":null,"title":"Tranz","track_number":null},"listening_context":{"all_time_plays":31,"first_scrobble":"2023-08-14T00:18:26+00:00","last_scrobble":"2026-06-15T15:25:17+00:00","observed_albums":[{"album":"The Now Now","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d2eda7a8c07c4b308028/album.json","artist_path":"artists/mb/mbid-e21857d5-3256-4547-afb3-4b6ded592596/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"matched"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Neo-Psychedelia": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative dance": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "electronic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "electronic rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "fav": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "gorillaz": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "party": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "power pop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "synth-pop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "synthpop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e21857d5-3256-4547-afb3-4b6ded592596",
+      "duration_ms": 162000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:37:28.688096+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "electronic"
+        },
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "synthpop"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "electronic rock"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Neo-Psychedelia"
+        },
+        {
+          "count": 19,
+          "source": "Last.fm track.getTopTags",
+          "tag": "gorillaz"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative dance"
+        },
+        {
+          "count": 8,
+          "source": "Last.fm track.getTopTags",
+          "tag": "power pop"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "fav"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T22:37:29.364492+00:00",
+      "musicbrainz_genres": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "synth-pop"
+        }
+      ],
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "matched",
+      "musicbrainz_tags": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "party"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "synth-pop"
+        }
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:0e02111f-dd26-4312-85ef-b719a5df011f",
+      "track_mbid": "0e02111f-dd26-4312-85ef-b719a5df011f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 162000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0e02111f-dd26-4312-85ef-b719a5df011f",
+  "identity": {
+    "album": "The Now Now",
+    "album_id": "album:d2eda7a8c07c4b308028",
+    "artist": "Gorillaz",
+    "artist_id": "mbid:e21857d5-3256-4547-afb3-4b6ded592596",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0e02111f-dd26-4312-85ef-b719a5df011f",
+    "source_track_id": "mbid:0e02111f-dd26-4312-85ef-b719a5df011f",
+    "spotify_id": null,
+    "title": "Tranz",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 31,
+    "first_scrobble": "2023-08-14T00:18:26+00:00",
+    "last_scrobble": "2026-06-15T15:25:17+00:00",
+    "observed_albums": [
+      {
+        "album": "The Now Now",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d2eda7a8c07c4b308028/album.json",
+    "artist_path": "artists/mb/mbid-e21857d5-3256-4547-afb3-4b6ded592596/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  }
+}

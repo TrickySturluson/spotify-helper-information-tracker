@@ -1,1 +1,103 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:dc0d5e24-0ab3-4711-a342-a7fc92b35071","duration_ms":281000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:18:46.964196+00:00","lastfm_error":"{}","lastfm_status":"http_400","musicbrainz_checked_at":"2026-10-31T07:29:05.001894+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":1796019496,"track_id":"mbid:eb68939f-2cd6-4b22-9f01-36f2258953fc","track_mbid":"eb68939f-2cd6-4b22-9f01-36f2258953fc"}},"id":"mbid:eb68939f-2cd6-4b22-9f01-36f2258953fc","identity":{"album":"History Is a Suicide Note","album_id":"album:139b4a42d6337fe02636","artist":"That Handsome Devil","artist_id":"mbid:dc0d5e24-0ab3-4711-a342-a7fc92b35071","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"eb68939f-2cd6-4b22-9f01-36f2258953fc","source_track_id":"mbid:eb68939f-2cd6-4b22-9f01-36f2258953fc","spotify_id":null,"title":"Savages","track_number":null},"listening_context":{"all_time_plays":127,"first_scrobble":"2023-02-14T00:45:35+00:00","last_scrobble":"2026-10-06T16:31:41+00:00","observed_albums":[{"album":"History Is a Suicide Note","scrobbles":127}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-139b4a42d6337fe02636/album.json","artist_path":"artists/mb/mbid-dc0d5e24-0ab3-4711-a342-a7fc92b35071/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"http_400"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:dc0d5e24-0ab3-4711-a342-a7fc92b35071",
+      "duration_ms": 281000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:18:46.964196+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "http_400",
+      "musicbrainz_checked_at": "2026-10-31T07:29:05.001894+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 1796019496,
+      "track_id": "mbid:eb68939f-2cd6-4b22-9f01-36f2258953fc",
+      "track_mbid": "eb68939f-2cd6-4b22-9f01-36f2258953fc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 281000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:eb68939f-2cd6-4b22-9f01-36f2258953fc",
+  "identity": {
+    "album": "History Is a Suicide Note",
+    "album_id": "album:139b4a42d6337fe02636",
+    "artist": "That Handsome Devil",
+    "artist_id": "mbid:dc0d5e24-0ab3-4711-a342-a7fc92b35071",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "eb68939f-2cd6-4b22-9f01-36f2258953fc",
+    "source_track_id": "mbid:eb68939f-2cd6-4b22-9f01-36f2258953fc",
+    "spotify_id": null,
+    "title": "Savages",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 127,
+    "first_scrobble": "2023-02-14T00:45:35+00:00",
+    "last_scrobble": "2026-10-06T16:31:41+00:00",
+    "observed_albums": [
+      {
+        "album": "History Is a Suicide Note",
+        "scrobbles": 127
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-139b4a42d6337fe02636/album.json",
+    "artist_path": "artists/mb/mbid-dc0d5e24-0ab3-4711-a342-a7fc92b35071/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "http_400"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

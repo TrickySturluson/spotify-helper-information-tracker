@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:31824f36-753f-41a2-b191-8b38b7dca273","duration_ms":195000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T23:59:42.669780+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T23:59:43.241714+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:2b13cc68-ae9c-42e8-896e-04797af719d6","track_mbid":"2b13cc68-ae9c-42e8-896e-04797af719d6"}},"id":"mbid:2b13cc68-ae9c-42e8-896e-04797af719d6","identity":{"album":"Play It Again","album_id":"album:9ec348a865a12787bb5e","artist":"Pigeon John","artist_id":"mbid:31824f36-753f-41a2-b191-8b38b7dca273","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2b13cc68-ae9c-42e8-896e-04797af719d6","source_track_id":"mbid:2b13cc68-ae9c-42e8-896e-04797af719d6","spotify_id":null,"title":"Play It Again","track_number":null},"listening_context":{"all_time_plays":17,"first_scrobble":"2023-04-11T23:13:38+00:00","last_scrobble":"2024-08-26T01:38:08+00:00","observed_albums":[{"album":"Play It Again","scrobbles":17}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9ec348a865a12787bb5e/album.json","artist_path":"artists/mb/mbid-31824f36-753f-41a2-b191-8b38b7dca273/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:31824f36-753f-41a2-b191-8b38b7dca273",
+      "duration_ms": 195000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T23:59:42.669780+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T23:59:43.241714+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:2b13cc68-ae9c-42e8-896e-04797af719d6",
+      "track_mbid": "2b13cc68-ae9c-42e8-896e-04797af719d6",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 195000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2b13cc68-ae9c-42e8-896e-04797af719d6",
+  "identity": {
+    "album": "Play It Again",
+    "album_id": "album:9ec348a865a12787bb5e",
+    "artist": "Pigeon John",
+    "artist_id": "mbid:31824f36-753f-41a2-b191-8b38b7dca273",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2b13cc68-ae9c-42e8-896e-04797af719d6",
+    "source_track_id": "mbid:2b13cc68-ae9c-42e8-896e-04797af719d6",
+    "spotify_id": null,
+    "title": "Play It Again",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 17,
+    "first_scrobble": "2023-04-11T23:13:38+00:00",
+    "last_scrobble": "2024-08-26T01:38:08+00:00",
+    "observed_albums": [
+      {
+        "album": "Play It Again",
+        "scrobbles": 17
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9ec348a865a12787bb5e/album.json",
+    "artist_path": "artists/mb/mbid-31824f36-753f-41a2-b191-8b38b7dca273/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

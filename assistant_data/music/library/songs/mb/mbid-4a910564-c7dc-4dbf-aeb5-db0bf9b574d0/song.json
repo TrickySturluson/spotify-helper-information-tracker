@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d8e66d18-35e5-4e00-964f-5e8218e5870b","duration_ms":130000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4a910564-c7dc-4dbf-aeb5-db0bf9b574d0","track_mbid":"4a910564-c7dc-4dbf-aeb5-db0bf9b574d0"}},"id":"mbid:4a910564-c7dc-4dbf-aeb5-db0bf9b574d0","identity":{"album":"Sleepyhead","album_id":"album:b687f33772dfdeb36730","artist":"Lala Lala","artist_id":"mbid:d8e66d18-35e5-4e00-964f-5e8218e5870b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4a910564-c7dc-4dbf-aeb5-db0bf9b574d0","source_track_id":"mbid:4a910564-c7dc-4dbf-aeb5-db0bf9b574d0","spotify_id":null,"title":"Dream Song","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2024-04-29T22:27:14+00:00","last_scrobble":"2024-05-01T00:37:15+00:00","observed_albums":[{"album":"Sleepyhead","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b687f33772dfdeb36730/album.json","artist_path":"artists/mb/mbid-d8e66d18-35e5-4e00-964f-5e8218e5870b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d8e66d18-35e5-4e00-964f-5e8218e5870b",
+      "duration_ms": 130000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4a910564-c7dc-4dbf-aeb5-db0bf9b574d0",
+      "track_mbid": "4a910564-c7dc-4dbf-aeb5-db0bf9b574d0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 130000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4a910564-c7dc-4dbf-aeb5-db0bf9b574d0",
+  "identity": {
+    "album": "Sleepyhead",
+    "album_id": "album:b687f33772dfdeb36730",
+    "artist": "Lala Lala",
+    "artist_id": "mbid:d8e66d18-35e5-4e00-964f-5e8218e5870b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4a910564-c7dc-4dbf-aeb5-db0bf9b574d0",
+    "source_track_id": "mbid:4a910564-c7dc-4dbf-aeb5-db0bf9b574d0",
+    "spotify_id": null,
+    "title": "Dream Song",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2024-04-29T22:27:14+00:00",
+    "last_scrobble": "2024-05-01T00:37:15+00:00",
+    "observed_albums": [
+      {
+        "album": "Sleepyhead",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b687f33772dfdeb36730/album.json",
+    "artist_path": "artists/mb/mbid-d8e66d18-35e5-4e00-964f-5e8218e5870b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

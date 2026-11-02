@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd","duration_ms":211000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:922b6f2f-3cdf-4c63-b120-a0ca1c4688fc","track_mbid":"922b6f2f-3cdf-4c63-b120-a0ca1c4688fc"}},"id":"mbid:922b6f2f-3cdf-4c63-b120-a0ca1c4688fc","identity":{"album":"Everywhere at the end of time (Stage 1)","album_id":"album:989ad5bc33d26919fd2b","artist":"The Caretaker","artist_id":"mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"922b6f2f-3cdf-4c63-b120-a0ca1c4688fc","source_track_id":"mbid:922b6f2f-3cdf-4c63-b120-a0ca1c4688fc","spotify_id":null,"title":"B1 - All that follows is true","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2024-04-12T05:57:47+00:00","last_scrobble":"2024-04-12T07:20:20+00:00","observed_albums":[{"album":"Everywhere at the end of time (Stage 1)","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-989ad5bc33d26919fd2b/album.json","artist_path":"artists/mb/mbid-82c770d1-8c62-4f4d-9021-7bd8a097f7dd/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd",
+      "duration_ms": 211000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:922b6f2f-3cdf-4c63-b120-a0ca1c4688fc",
+      "track_mbid": "922b6f2f-3cdf-4c63-b120-a0ca1c4688fc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 211000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:922b6f2f-3cdf-4c63-b120-a0ca1c4688fc",
+  "identity": {
+    "album": "Everywhere at the end of time (Stage 1)",
+    "album_id": "album:989ad5bc33d26919fd2b",
+    "artist": "The Caretaker",
+    "artist_id": "mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "922b6f2f-3cdf-4c63-b120-a0ca1c4688fc",
+    "source_track_id": "mbid:922b6f2f-3cdf-4c63-b120-a0ca1c4688fc",
+    "spotify_id": null,
+    "title": "B1 - All that follows is true",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2024-04-12T05:57:47+00:00",
+    "last_scrobble": "2024-04-12T07:20:20+00:00",
+    "observed_albums": [
+      {
+        "album": "Everywhere at the end of time (Stage 1)",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-989ad5bc33d26919fd2b/album.json",
+    "artist_path": "artists/mb/mbid-82c770d1-8c62-4f4d-9021-7bd8a097f7dd/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

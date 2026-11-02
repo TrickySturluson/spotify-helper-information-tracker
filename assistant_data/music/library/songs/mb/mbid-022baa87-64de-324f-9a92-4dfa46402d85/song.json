@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fabb37f8-eb2a-4cc1-a72a-b56935bbb72d","duration_ms":202000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:022baa87-64de-324f-9a92-4dfa46402d85","track_mbid":"022baa87-64de-324f-9a92-4dfa46402d85"}},"id":"mbid:022baa87-64de-324f-9a92-4dfa46402d85","identity":{"album":"One-X","album_id":"album:36de7fb388f0d2209ca2","artist":"Three Days Grace","artist_id":"mbid:fabb37f8-eb2a-4cc1-a72a-b56935bbb72d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"022baa87-64de-324f-9a92-4dfa46402d85","source_track_id":"mbid:022baa87-64de-324f-9a92-4dfa46402d85","spotify_id":null,"title":"Pain","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-07-04T16:18:01+00:00","last_scrobble":"2025-07-04T16:18:01+00:00","observed_albums":[{"album":"One-X","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-36de7fb388f0d2209ca2/album.json","artist_path":"artists/mb/mbid-fabb37f8-eb2a-4cc1-a72a-b56935bbb72d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fabb37f8-eb2a-4cc1-a72a-b56935bbb72d",
+      "duration_ms": 202000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:022baa87-64de-324f-9a92-4dfa46402d85",
+      "track_mbid": "022baa87-64de-324f-9a92-4dfa46402d85",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 202000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:022baa87-64de-324f-9a92-4dfa46402d85",
+  "identity": {
+    "album": "One-X",
+    "album_id": "album:36de7fb388f0d2209ca2",
+    "artist": "Three Days Grace",
+    "artist_id": "mbid:fabb37f8-eb2a-4cc1-a72a-b56935bbb72d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "022baa87-64de-324f-9a92-4dfa46402d85",
+    "source_track_id": "mbid:022baa87-64de-324f-9a92-4dfa46402d85",
+    "spotify_id": null,
+    "title": "Pain",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-07-04T16:18:01+00:00",
+    "last_scrobble": "2025-07-04T16:18:01+00:00",
+    "observed_albums": [
+      {
+        "album": "One-X",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-36de7fb388f0d2209ca2/album.json",
+    "artist_path": "artists/mb/mbid-fabb37f8-eb2a-4cc1-a72a-b56935bbb72d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

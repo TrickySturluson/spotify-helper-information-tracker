@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:f3a5bdb9eb1786b6","duration_ms":194000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:cacf870a-00be-4114-8f57-9b397874c995","track_mbid":"cacf870a-00be-4114-8f57-9b397874c995"}},"id":"mbid:cacf870a-00be-4114-8f57-9b397874c995","identity":{"album":"Perfume","album_id":"album:d3fe236a86283519656f","artist":"annella","artist_id":"name:f3a5bdb9eb1786b6","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cacf870a-00be-4114-8f57-9b397874c995","source_track_id":"mbid:cacf870a-00be-4114-8f57-9b397874c995","spotify_id":null,"title":"Perfume","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-03-25T00:56:03+00:00","last_scrobble":"2025-03-28T21:37:10+00:00","observed_albums":[{"album":"Perfume","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d3fe236a86283519656f/album.json","artist_path":"artists/na/name-f3a5bdb9eb1786b6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:f3a5bdb9eb1786b6",
+      "duration_ms": 194000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:cacf870a-00be-4114-8f57-9b397874c995",
+      "track_mbid": "cacf870a-00be-4114-8f57-9b397874c995",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 194000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cacf870a-00be-4114-8f57-9b397874c995",
+  "identity": {
+    "album": "Perfume",
+    "album_id": "album:d3fe236a86283519656f",
+    "artist": "annella",
+    "artist_id": "name:f3a5bdb9eb1786b6",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cacf870a-00be-4114-8f57-9b397874c995",
+    "source_track_id": "mbid:cacf870a-00be-4114-8f57-9b397874c995",
+    "spotify_id": null,
+    "title": "Perfume",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-03-25T00:56:03+00:00",
+    "last_scrobble": "2025-03-28T21:37:10+00:00",
+    "observed_albums": [
+      {
+        "album": "Perfume",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d3fe236a86283519656f/album.json",
+    "artist_path": "artists/na/name-f3a5bdb9eb1786b6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

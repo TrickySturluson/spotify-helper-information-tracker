@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:77be388f-f645-4c35-ab6d-09d24b4a0bed","duration_ms":175000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:49ee7b14-f23d-427c-ade2-983453698857","track_mbid":"49ee7b14-f23d-427c-ade2-983453698857"}},"id":"mbid:49ee7b14-f23d-427c-ade2-983453698857","identity":{"album":"WAVES","album_id":"album:96e0ecef03e0bf9fc7db","artist":"Bitter Ruin","artist_id":"mbid:77be388f-f645-4c35-ab6d-09d24b4a0bed","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"49ee7b14-f23d-427c-ade2-983453698857","source_track_id":"mbid:49ee7b14-f23d-427c-ade2-983453698857","spotify_id":null,"title":"Stampede","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-03-08T16:43:35+00:00","last_scrobble":"2024-03-08T21:37:34+00:00","observed_albums":[{"album":"WAVES","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-96e0ecef03e0bf9fc7db/album.json","artist_path":"artists/mb/mbid-77be388f-f645-4c35-ab6d-09d24b4a0bed/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:77be388f-f645-4c35-ab6d-09d24b4a0bed",
+      "duration_ms": 175000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:49ee7b14-f23d-427c-ade2-983453698857",
+      "track_mbid": "49ee7b14-f23d-427c-ade2-983453698857",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 175000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:49ee7b14-f23d-427c-ade2-983453698857",
+  "identity": {
+    "album": "WAVES",
+    "album_id": "album:96e0ecef03e0bf9fc7db",
+    "artist": "Bitter Ruin",
+    "artist_id": "mbid:77be388f-f645-4c35-ab6d-09d24b4a0bed",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "49ee7b14-f23d-427c-ade2-983453698857",
+    "source_track_id": "mbid:49ee7b14-f23d-427c-ade2-983453698857",
+    "spotify_id": null,
+    "title": "Stampede",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-03-08T16:43:35+00:00",
+    "last_scrobble": "2024-03-08T21:37:34+00:00",
+    "observed_albums": [
+      {
+        "album": "WAVES",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-96e0ecef03e0bf9fc7db/album.json",
+    "artist_path": "artists/mb/mbid-77be388f-f645-4c35-ab6d-09d24b4a0bed/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

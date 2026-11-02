@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:08fb26c7-8681-487f-85ad-bbd8bb39c6b3","duration_ms":202000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb","track_mbid":"f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb"}},"id":"mbid:f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb","identity":{"album":"Autoportrait","album_id":"album:4684108aa87009ae0ccb","artist":"Demob Happy","artist_id":"mbid:08fb26c7-8681-487f-85ad-bbd8bb39c6b3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb","source_track_id":"mbid:f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb","spotify_id":null,"title":"Autoportrait","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-07-20T08:54:49+00:00","last_scrobble":"2026-06-20T05:12:04+00:00","observed_albums":[{"album":"Autoportrait","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4684108aa87009ae0ccb/album.json","artist_path":"artists/mb/mbid-08fb26c7-8681-487f-85ad-bbd8bb39c6b3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:08fb26c7-8681-487f-85ad-bbd8bb39c6b3",
+      "duration_ms": 202000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb",
+      "track_mbid": "f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 202000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb",
+  "identity": {
+    "album": "Autoportrait",
+    "album_id": "album:4684108aa87009ae0ccb",
+    "artist": "Demob Happy",
+    "artist_id": "mbid:08fb26c7-8681-487f-85ad-bbd8bb39c6b3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb",
+    "source_track_id": "mbid:f12a0ea8-3b7f-4234-bea3-a8cc35daa7fb",
+    "spotify_id": null,
+    "title": "Autoportrait",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-07-20T08:54:49+00:00",
+    "last_scrobble": "2026-06-20T05:12:04+00:00",
+    "observed_albums": [
+      {
+        "album": "Autoportrait",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4684108aa87009ae0ccb/album.json",
+    "artist_path": "artists/mb/mbid-08fb26c7-8681-487f-85ad-bbd8bb39c6b3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

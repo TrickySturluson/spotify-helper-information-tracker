@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b747dabe-b66c-48f6-bae6-b5e16d86b9ab","duration_ms":318000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:fb550b59-1877-4dcd-a17b-f399799495be","track_mbid":"fb550b59-1877-4dcd-a17b-f399799495be"}},"id":"mbid:fb550b59-1877-4dcd-a17b-f399799495be","identity":{"album":"Locket","album_id":"album:0e4b36c67f2959c3e4bd","artist":"Crumb","artist_id":"mbid:b747dabe-b66c-48f6-bae6-b5e16d86b9ab","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"fb550b59-1877-4dcd-a17b-f399799495be","source_track_id":"mbid:fb550b59-1877-4dcd-a17b-f399799495be","spotify_id":null,"title":"Locket","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-04-22T15:50:04+00:00","last_scrobble":"2024-04-25T22:14:06+00:00","observed_albums":[{"album":"Locket","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0e4b36c67f2959c3e4bd/album.json","artist_path":"artists/mb/mbid-b747dabe-b66c-48f6-bae6-b5e16d86b9ab/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b747dabe-b66c-48f6-bae6-b5e16d86b9ab",
+      "duration_ms": 318000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:fb550b59-1877-4dcd-a17b-f399799495be",
+      "track_mbid": "fb550b59-1877-4dcd-a17b-f399799495be",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 318000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:fb550b59-1877-4dcd-a17b-f399799495be",
+  "identity": {
+    "album": "Locket",
+    "album_id": "album:0e4b36c67f2959c3e4bd",
+    "artist": "Crumb",
+    "artist_id": "mbid:b747dabe-b66c-48f6-bae6-b5e16d86b9ab",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "fb550b59-1877-4dcd-a17b-f399799495be",
+    "source_track_id": "mbid:fb550b59-1877-4dcd-a17b-f399799495be",
+    "spotify_id": null,
+    "title": "Locket",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-04-22T15:50:04+00:00",
+    "last_scrobble": "2024-04-25T22:14:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Locket",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0e4b36c67f2959c3e4bd/album.json",
+    "artist_path": "artists/mb/mbid-b747dabe-b66c-48f6-bae6-b5e16d86b9ab/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

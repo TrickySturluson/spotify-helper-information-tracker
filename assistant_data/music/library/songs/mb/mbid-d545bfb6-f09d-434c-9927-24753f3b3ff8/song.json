@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:115cd88d-2486-4a5c-9537-d2d81244055f","duration_ms":213000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d545bfb6-f09d-434c-9927-24753f3b3ff8","track_mbid":"d545bfb6-f09d-434c-9927-24753f3b3ff8"}},"id":"mbid:d545bfb6-f09d-434c-9927-24753f3b3ff8","identity":{"album":"youngstown","album_id":"album:22d0827ce23c76da712a","artist":"Sorry Mom","artist_id":"mbid:115cd88d-2486-4a5c-9537-d2d81244055f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d545bfb6-f09d-434c-9927-24753f3b3ff8","source_track_id":"mbid:d545bfb6-f09d-434c-9927-24753f3b3ff8","spotify_id":null,"title":"youngstown","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-07-07T12:55:38+00:00","last_scrobble":"2025-07-07T12:55:38+00:00","observed_albums":[{"album":"youngstown","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-22d0827ce23c76da712a/album.json","artist_path":"artists/mb/mbid-115cd88d-2486-4a5c-9537-d2d81244055f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:115cd88d-2486-4a5c-9537-d2d81244055f",
+      "duration_ms": 213000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d545bfb6-f09d-434c-9927-24753f3b3ff8",
+      "track_mbid": "d545bfb6-f09d-434c-9927-24753f3b3ff8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 213000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d545bfb6-f09d-434c-9927-24753f3b3ff8",
+  "identity": {
+    "album": "youngstown",
+    "album_id": "album:22d0827ce23c76da712a",
+    "artist": "Sorry Mom",
+    "artist_id": "mbid:115cd88d-2486-4a5c-9537-d2d81244055f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d545bfb6-f09d-434c-9927-24753f3b3ff8",
+    "source_track_id": "mbid:d545bfb6-f09d-434c-9927-24753f3b3ff8",
+    "spotify_id": null,
+    "title": "youngstown",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-07-07T12:55:38+00:00",
+    "last_scrobble": "2025-07-07T12:55:38+00:00",
+    "observed_albums": [
+      {
+        "album": "youngstown",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-22d0827ce23c76da712a/album.json",
+    "artist_path": "artists/mb/mbid-115cd88d-2486-4a5c-9537-d2d81244055f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

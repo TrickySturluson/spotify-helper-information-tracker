@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f1df0431-9250-4ec8-95d8-f19ce7cf7fb6","duration_ms":295000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:cfe93bfe-93df-4178-8050-f1fb2f6a351b","track_mbid":"cfe93bfe-93df-4178-8050-f1fb2f6a351b"}},"id":"mbid:cfe93bfe-93df-4178-8050-f1fb2f6a351b","identity":{"album":"Dots and Loops (Expanded Edition)","album_id":"album:5408c17cce98a654ff8f","artist":"Stereolab","artist_id":"mbid:f1df0431-9250-4ec8-95d8-f19ce7cf7fb6","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cfe93bfe-93df-4178-8050-f1fb2f6a351b","source_track_id":"mbid:cfe93bfe-93df-4178-8050-f1fb2f6a351b","spotify_id":null,"title":"The Flower Called Nowhere","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-12-18T22:41:55+00:00","last_scrobble":"2025-10-21T06:39:24+00:00","observed_albums":[{"album":"Dots and Loops (Expanded Edition)","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5408c17cce98a654ff8f/album.json","artist_path":"artists/mb/mbid-f1df0431-9250-4ec8-95d8-f19ce7cf7fb6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f1df0431-9250-4ec8-95d8-f19ce7cf7fb6",
+      "duration_ms": 295000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:cfe93bfe-93df-4178-8050-f1fb2f6a351b",
+      "track_mbid": "cfe93bfe-93df-4178-8050-f1fb2f6a351b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 295000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cfe93bfe-93df-4178-8050-f1fb2f6a351b",
+  "identity": {
+    "album": "Dots and Loops (Expanded Edition)",
+    "album_id": "album:5408c17cce98a654ff8f",
+    "artist": "Stereolab",
+    "artist_id": "mbid:f1df0431-9250-4ec8-95d8-f19ce7cf7fb6",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cfe93bfe-93df-4178-8050-f1fb2f6a351b",
+    "source_track_id": "mbid:cfe93bfe-93df-4178-8050-f1fb2f6a351b",
+    "spotify_id": null,
+    "title": "The Flower Called Nowhere",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-12-18T22:41:55+00:00",
+    "last_scrobble": "2025-10-21T06:39:24+00:00",
+    "observed_albums": [
+      {
+        "album": "Dots and Loops (Expanded Edition)",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5408c17cce98a654ff8f/album.json",
+    "artist_path": "artists/mb/mbid-f1df0431-9250-4ec8-95d8-f19ce7cf7fb6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

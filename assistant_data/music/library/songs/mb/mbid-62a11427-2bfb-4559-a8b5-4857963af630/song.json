@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:354cd944-6623-443a-bc11-58117834c87d","duration_ms":208000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T07:33:14.723285+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-10-31T07:33:15.444618+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:62a11427-2bfb-4559-a8b5-4857963af630","track_mbid":"62a11427-2bfb-4559-a8b5-4857963af630"}},"id":"mbid:62a11427-2bfb-4559-a8b5-4857963af630","identity":{"album":"Feel Your Feelings Fool!","album_id":"album:949cf4cfb798375aee55","artist":"The Regrettes","artist_id":"mbid:354cd944-6623-443a-bc11-58117834c87d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"62a11427-2bfb-4559-a8b5-4857963af630","source_track_id":"mbid:62a11427-2bfb-4559-a8b5-4857963af630","spotify_id":null,"title":"Seashore","track_number":null},"listening_context":{"all_time_plays":111,"first_scrobble":"2023-03-19T05:11:31+00:00","last_scrobble":"2026-10-03T07:41:45+00:00","observed_albums":[{"album":"Feel Your Feelings Fool!","scrobbles":111}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-949cf4cfb798375aee55/album.json","artist_path":"artists/mb/mbid-354cd944-6623-443a-bc11-58117834c87d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:354cd944-6623-443a-bc11-58117834c87d",
+      "duration_ms": 208000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T07:33:14.723285+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-10-31T07:33:15.444618+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:62a11427-2bfb-4559-a8b5-4857963af630",
+      "track_mbid": "62a11427-2bfb-4559-a8b5-4857963af630",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 208000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:62a11427-2bfb-4559-a8b5-4857963af630",
+  "identity": {
+    "album": "Feel Your Feelings Fool!",
+    "album_id": "album:949cf4cfb798375aee55",
+    "artist": "The Regrettes",
+    "artist_id": "mbid:354cd944-6623-443a-bc11-58117834c87d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "62a11427-2bfb-4559-a8b5-4857963af630",
+    "source_track_id": "mbid:62a11427-2bfb-4559-a8b5-4857963af630",
+    "spotify_id": null,
+    "title": "Seashore",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 111,
+    "first_scrobble": "2023-03-19T05:11:31+00:00",
+    "last_scrobble": "2026-10-03T07:41:45+00:00",
+    "observed_albums": [
+      {
+        "album": "Feel Your Feelings Fool!",
+        "scrobbles": 111
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-949cf4cfb798375aee55/album.json",
+    "artist_path": "artists/mb/mbid-354cd944-6623-443a-bc11-58117834c87d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

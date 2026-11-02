@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:1aec723c67583d2b","duration_ms":173000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f4d362ed-243d-4c63-a793-77b48c8b7e3c","track_mbid":"f4d362ed-243d-4c63-a793-77b48c8b7e3c"}},"id":"mbid:f4d362ed-243d-4c63-a793-77b48c8b7e3c","identity":{"album":"the rot//rot","album_id":"album:1d827542003ba797d52f","artist":"inuday","artist_id":"name:1aec723c67583d2b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f4d362ed-243d-4c63-a793-77b48c8b7e3c","source_track_id":"mbid:f4d362ed-243d-4c63-a793-77b48c8b7e3c","spotify_id":null,"title":"the rot//rot","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-10-14T16:01:36+00:00","last_scrobble":"2025-10-19T01:46:30+00:00","observed_albums":[{"album":"the rot//rot","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1d827542003ba797d52f/album.json","artist_path":"artists/na/name-1aec723c67583d2b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:1aec723c67583d2b",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f4d362ed-243d-4c63-a793-77b48c8b7e3c",
+      "track_mbid": "f4d362ed-243d-4c63-a793-77b48c8b7e3c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f4d362ed-243d-4c63-a793-77b48c8b7e3c",
+  "identity": {
+    "album": "the rot//rot",
+    "album_id": "album:1d827542003ba797d52f",
+    "artist": "inuday",
+    "artist_id": "name:1aec723c67583d2b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f4d362ed-243d-4c63-a793-77b48c8b7e3c",
+    "source_track_id": "mbid:f4d362ed-243d-4c63-a793-77b48c8b7e3c",
+    "spotify_id": null,
+    "title": "the rot//rot",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-10-14T16:01:36+00:00",
+    "last_scrobble": "2025-10-19T01:46:30+00:00",
+    "observed_albums": [
+      {
+        "album": "the rot//rot",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1d827542003ba797d52f/album.json",
+    "artist_path": "artists/na/name-1aec723c67583d2b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

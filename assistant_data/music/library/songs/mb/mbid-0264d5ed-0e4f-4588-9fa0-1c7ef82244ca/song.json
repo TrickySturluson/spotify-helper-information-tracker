@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Maynard James Keenan":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Progressive":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Progressive metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Progressive rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"experimental":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"tool":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:66fc5bf8-daa4-4241-b378-9bc9077939d2","duration_ms":484000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:02:45.210732+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"Progressive metal"},{"count":64,"source":"Last.fm track.getTopTags","tag":"Progressive rock"},{"count":34,"source":"Last.fm track.getTopTags","tag":"tool"},{"count":28,"source":"Last.fm track.getTopTags","tag":"metal"},{"count":12,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":5,"source":"Last.fm track.getTopTags","tag":"alternative metal"},{"count":4,"source":"Last.fm track.getTopTags","tag":"Progressive"},{"count":1,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":1,"source":"Last.fm track.getTopTags","tag":"experimental"},{"count":1,"source":"Last.fm track.getTopTags","tag":"Maynard James Keenan"}],"musicbrainz_checked_at":"2026-11-01T09:02:45.852216+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:0264d5ed-0e4f-4588-9fa0-1c7ef82244ca","track_mbid":"0264d5ed-0e4f-4588-9fa0-1c7ef82244ca"}},"id":"mbid:0264d5ed-0e4f-4588-9fa0-1c7ef82244ca","identity":{"album":"10,000 Days","album_id":"album:acd3976437d6911d20b0","artist":"Tool","artist_id":"mbid:66fc5bf8-daa4-4241-b378-9bc9077939d2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0264d5ed-0e4f-4588-9fa0-1c7ef82244ca","source_track_id":"mbid:0264d5ed-0e4f-4588-9fa0-1c7ef82244ca","spotify_id":null,"title":"The Pot","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-10-23T14:28:59+00:00","last_scrobble":"2026-10-07T16:57:00+00:00","observed_albums":[{"album":"10,000 Days","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-acd3976437d6911d20b0/album.json","artist_path":"artists/mb/mbid-66fc5bf8-daa4-4241-b378-9bc9077939d2/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Maynard James Keenan": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Progressive": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Progressive metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Progressive rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "experimental": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "tool": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:66fc5bf8-daa4-4241-b378-9bc9077939d2",
+      "duration_ms": 484000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:02:45.210732+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Progressive metal"
+        },
+        {
+          "count": 64,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Progressive rock"
+        },
+        {
+          "count": 34,
+          "source": "Last.fm track.getTopTags",
+          "tag": "tool"
+        },
+        {
+          "count": 28,
+          "source": "Last.fm track.getTopTags",
+          "tag": "metal"
+        },
+        {
+          "count": 12,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 5,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative metal"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Progressive"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "experimental"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Maynard James Keenan"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T09:02:45.852216+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:0264d5ed-0e4f-4588-9fa0-1c7ef82244ca",
+      "track_mbid": "0264d5ed-0e4f-4588-9fa0-1c7ef82244ca",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 484000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0264d5ed-0e4f-4588-9fa0-1c7ef82244ca",
+  "identity": {
+    "album": "10,000 Days",
+    "album_id": "album:acd3976437d6911d20b0",
+    "artist": "Tool",
+    "artist_id": "mbid:66fc5bf8-daa4-4241-b378-9bc9077939d2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0264d5ed-0e4f-4588-9fa0-1c7ef82244ca",
+    "source_track_id": "mbid:0264d5ed-0e4f-4588-9fa0-1c7ef82244ca",
+    "spotify_id": null,
+    "title": "The Pot",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-10-23T14:28:59+00:00",
+    "last_scrobble": "2026-10-07T16:57:00+00:00",
+    "observed_albums": [
+      {
+        "album": "10,000 Days",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-acd3976437d6911d20b0/album.json",
+    "artist_path": "artists/mb/mbid-66fc5bf8-daa4-4241-b378-9bc9077939d2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

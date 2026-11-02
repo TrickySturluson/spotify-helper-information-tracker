@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:78e46ae5-9bfd-433b-be3f-19e993d67ecc","duration_ms":280000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:67c7ef8f-907b-4495-9d64-dd3e0d416641","track_mbid":"67c7ef8f-907b-4495-9d64-dd3e0d416641"}},"id":"mbid:67c7ef8f-907b-4495-9d64-dd3e0d416641","identity":{"album":"Meet The Robinsons Original Soundtrack","album_id":"album:c6c2112ec3de67ccf745","artist":"Rufus Wainwright","artist_id":"mbid:78e46ae5-9bfd-433b-be3f-19e993d67ecc","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"67c7ef8f-907b-4495-9d64-dd3e0d416641","source_track_id":"mbid:67c7ef8f-907b-4495-9d64-dd3e0d416641","spotify_id":null,"title":"Another Believer","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2024-01-29T20:19:19+00:00","last_scrobble":"2024-02-02T06:47:42+00:00","observed_albums":[{"album":"Meet The Robinsons Original Soundtrack","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c6c2112ec3de67ccf745/album.json","artist_path":"artists/mb/mbid-78e46ae5-9bfd-433b-be3f-19e993d67ecc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:78e46ae5-9bfd-433b-be3f-19e993d67ecc",
+      "duration_ms": 280000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:67c7ef8f-907b-4495-9d64-dd3e0d416641",
+      "track_mbid": "67c7ef8f-907b-4495-9d64-dd3e0d416641",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 280000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:67c7ef8f-907b-4495-9d64-dd3e0d416641",
+  "identity": {
+    "album": "Meet The Robinsons Original Soundtrack",
+    "album_id": "album:c6c2112ec3de67ccf745",
+    "artist": "Rufus Wainwright",
+    "artist_id": "mbid:78e46ae5-9bfd-433b-be3f-19e993d67ecc",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "67c7ef8f-907b-4495-9d64-dd3e0d416641",
+    "source_track_id": "mbid:67c7ef8f-907b-4495-9d64-dd3e0d416641",
+    "spotify_id": null,
+    "title": "Another Believer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2024-01-29T20:19:19+00:00",
+    "last_scrobble": "2024-02-02T06:47:42+00:00",
+    "observed_albums": [
+      {
+        "album": "Meet The Robinsons Original Soundtrack",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c6c2112ec3de67ccf745/album.json",
+    "artist_path": "artists/mb/mbid-78e46ae5-9bfd-433b-be3f-19e993d67ecc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3b7dbf09-0f10-4fc5-8d44-69dc6673c5fe","duration_ms":252000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:03:30.521454+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:03:31.201876+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:2d79433f-91f4-4a6f-b188-df5bc67a9c2c","track_mbid":"2d79433f-91f4-4a6f-b188-df5bc67a9c2c"}},"id":"mbid:2d79433f-91f4-4a6f-b188-df5bc67a9c2c","identity":{"album":"ZIrconium Meconium","album_id":"album:af65d8445f249e11f04c","artist":"Fever The Ghost","artist_id":"mbid:3b7dbf09-0f10-4fc5-8d44-69dc6673c5fe","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2d79433f-91f4-4a6f-b188-df5bc67a9c2c","source_track_id":"mbid:2d79433f-91f4-4a6f-b188-df5bc67a9c2c","spotify_id":null,"title":"Sun Moth","track_number":null},"listening_context":{"all_time_plays":15,"first_scrobble":"2026-07-04T16:35:33+00:00","last_scrobble":"2026-10-08T02:15:57+00:00","observed_albums":[{"album":"ZIrconium Meconium","scrobbles":15}],"priority_playlist_ids":[],"recent_plays":3,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-af65d8445f249e11f04c/album.json","artist_path":"artists/mb/mbid-3b7dbf09-0f10-4fc5-8d44-69dc6673c5fe/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3b7dbf09-0f10-4fc5-8d44-69dc6673c5fe",
+      "duration_ms": 252000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:03:30.521454+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:03:31.201876+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:2d79433f-91f4-4a6f-b188-df5bc67a9c2c",
+      "track_mbid": "2d79433f-91f4-4a6f-b188-df5bc67a9c2c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 252000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2d79433f-91f4-4a6f-b188-df5bc67a9c2c",
+  "identity": {
+    "album": "ZIrconium Meconium",
+    "album_id": "album:af65d8445f249e11f04c",
+    "artist": "Fever The Ghost",
+    "artist_id": "mbid:3b7dbf09-0f10-4fc5-8d44-69dc6673c5fe",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2d79433f-91f4-4a6f-b188-df5bc67a9c2c",
+    "source_track_id": "mbid:2d79433f-91f4-4a6f-b188-df5bc67a9c2c",
+    "spotify_id": null,
+    "title": "Sun Moth",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 15,
+    "first_scrobble": "2026-07-04T16:35:33+00:00",
+    "last_scrobble": "2026-10-08T02:15:57+00:00",
+    "observed_albums": [
+      {
+        "album": "ZIrconium Meconium",
+        "scrobbles": 15
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 3,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-af65d8445f249e11f04c/album.json",
+    "artist_path": "artists/mb/mbid-3b7dbf09-0f10-4fc5-8d44-69dc6673c5fe/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

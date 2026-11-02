@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f5dd24ca-611d-4ad1-bb43-04601901ac0d","duration_ms":360000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:08567c55-a94d-45ca-a78c-ad1c9e036455","track_mbid":"08567c55-a94d-45ca-a78c-ad1c9e036455"}},"id":"mbid:08567c55-a94d-45ca-a78c-ad1c9e036455","identity":{"album":"Memories of Tokyo-To","album_id":"album:ce1e2bd6da45445bf220","artist":"2 Mello","artist_id":"mbid:f5dd24ca-611d-4ad1-bb43-04601901ac0d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"08567c55-a94d-45ca-a78c-ad1c9e036455","source_track_id":"mbid:08567c55-a94d-45ca-a78c-ad1c9e036455","spotify_id":null,"title":"BIG BEAST","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2023-04-05T02:23:46+00:00","last_scrobble":"2023-04-07T09:46:30+00:00","observed_albums":[{"album":"Memories of Tokyo-To","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ce1e2bd6da45445bf220/album.json","artist_path":"artists/mb/mbid-f5dd24ca-611d-4ad1-bb43-04601901ac0d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f5dd24ca-611d-4ad1-bb43-04601901ac0d",
+      "duration_ms": 360000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:08567c55-a94d-45ca-a78c-ad1c9e036455",
+      "track_mbid": "08567c55-a94d-45ca-a78c-ad1c9e036455",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 360000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:08567c55-a94d-45ca-a78c-ad1c9e036455",
+  "identity": {
+    "album": "Memories of Tokyo-To",
+    "album_id": "album:ce1e2bd6da45445bf220",
+    "artist": "2 Mello",
+    "artist_id": "mbid:f5dd24ca-611d-4ad1-bb43-04601901ac0d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "08567c55-a94d-45ca-a78c-ad1c9e036455",
+    "source_track_id": "mbid:08567c55-a94d-45ca-a78c-ad1c9e036455",
+    "spotify_id": null,
+    "title": "BIG BEAST",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2023-04-05T02:23:46+00:00",
+    "last_scrobble": "2023-04-07T09:46:30+00:00",
+    "observed_albums": [
+      {
+        "album": "Memories of Tokyo-To",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ce1e2bd6da45445bf220/album.json",
+    "artist_path": "artists/mb/mbid-f5dd24ca-611d-4ad1-bb43-04601901ac0d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

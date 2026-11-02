@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a79ec878-e728-4832-83b7-dd2d99eb731b","duration_ms":95000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:acf5396e-6f05-4d20-90aa-379b6080bb37","track_mbid":"acf5396e-6f05-4d20-90aa-379b6080bb37"}},"id":"mbid:acf5396e-6f05-4d20-90aa-379b6080bb37","identity":{"album":"DIGITAL UTOPIA","album_id":"album:271a873e9f6484efea13","artist":"milkypossum","artist_id":"mbid:a79ec878-e728-4832-83b7-dd2d99eb731b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"acf5396e-6f05-4d20-90aa-379b6080bb37","source_track_id":"mbid:acf5396e-6f05-4d20-90aa-379b6080bb37","spotify_id":null,"title":"I Can Haz Torrentz?","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2024-07-25T17:32:30+00:00","last_scrobble":"2024-07-27T03:44:43+00:00","observed_albums":[{"album":"DIGITAL UTOPIA","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-271a873e9f6484efea13/album.json","artist_path":"artists/mb/mbid-a79ec878-e728-4832-83b7-dd2d99eb731b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a79ec878-e728-4832-83b7-dd2d99eb731b",
+      "duration_ms": 95000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:acf5396e-6f05-4d20-90aa-379b6080bb37",
+      "track_mbid": "acf5396e-6f05-4d20-90aa-379b6080bb37",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 95000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:acf5396e-6f05-4d20-90aa-379b6080bb37",
+  "identity": {
+    "album": "DIGITAL UTOPIA",
+    "album_id": "album:271a873e9f6484efea13",
+    "artist": "milkypossum",
+    "artist_id": "mbid:a79ec878-e728-4832-83b7-dd2d99eb731b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "acf5396e-6f05-4d20-90aa-379b6080bb37",
+    "source_track_id": "mbid:acf5396e-6f05-4d20-90aa-379b6080bb37",
+    "spotify_id": null,
+    "title": "I Can Haz Torrentz?",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2024-07-25T17:32:30+00:00",
+    "last_scrobble": "2024-07-27T03:44:43+00:00",
+    "observed_albums": [
+      {
+        "album": "DIGITAL UTOPIA",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-271a873e9f6484efea13/album.json",
+    "artist_path": "artists/mb/mbid-a79ec878-e728-4832-83b7-dd2d99eb731b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

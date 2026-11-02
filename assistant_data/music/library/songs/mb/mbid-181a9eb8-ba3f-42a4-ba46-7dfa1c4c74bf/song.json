@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:f2fb89e4ee2d0d0d","duration_ms":175000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf","track_mbid":"181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf"}},"id":"mbid:181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf","identity":{"album":"Watery Autumoon","album_id":"album:1adcae23a2c10159df8d","artist":"TOPHAMHAT-KYO","artist_id":"name:f2fb89e4ee2d0d0d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf","source_track_id":"mbid:181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf","spotify_id":null,"title":"Princess♂","track_number":null},"listening_context":{"all_time_plays":12,"first_scrobble":"2024-11-18T18:06:42+00:00","last_scrobble":"2024-11-21T04:48:32+00:00","observed_albums":[{"album":"Watery Autumoon","scrobbles":12}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1adcae23a2c10159df8d/album.json","artist_path":"artists/na/name-f2fb89e4ee2d0d0d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:f2fb89e4ee2d0d0d",
+      "duration_ms": 175000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf",
+      "track_mbid": "181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 175000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf",
+  "identity": {
+    "album": "Watery Autumoon",
+    "album_id": "album:1adcae23a2c10159df8d",
+    "artist": "TOPHAMHAT-KYO",
+    "artist_id": "name:f2fb89e4ee2d0d0d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf",
+    "source_track_id": "mbid:181a9eb8-ba3f-42a4-ba46-7dfa1c4c74bf",
+    "spotify_id": null,
+    "title": "Princess♂",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 12,
+    "first_scrobble": "2024-11-18T18:06:42+00:00",
+    "last_scrobble": "2024-11-21T04:48:32+00:00",
+    "observed_albums": [
+      {
+        "album": "Watery Autumoon",
+        "scrobbles": 12
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1adcae23a2c10159df8d/album.json",
+    "artist_path": "artists/na/name-f2fb89e4ee2d0d0d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

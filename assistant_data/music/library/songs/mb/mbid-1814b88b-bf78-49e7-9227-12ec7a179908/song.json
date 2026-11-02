@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:12c3c3bc0ad58595","duration_ms":153000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1814b88b-bf78-49e7-9227-12ec7a179908","track_mbid":"1814b88b-bf78-49e7-9227-12ec7a179908"}},"id":"mbid:1814b88b-bf78-49e7-9227-12ec7a179908","identity":{"album":"Fight Songs: The Music Of Team Fortress 2","album_id":"album:93f9bbcbba2904283558","artist":"Valve Studio Orchestra","artist_id":"name:12c3c3bc0ad58595","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1814b88b-bf78-49e7-9227-12ec7a179908","source_track_id":"mbid:1814b88b-bf78-49e7-9227-12ec7a179908","spotify_id":null,"title":"MEDIC!","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-06T20:03:02+00:00","last_scrobble":"2025-10-06T20:03:02+00:00","observed_albums":[{"album":"Fight Songs: The Music Of Team Fortress 2","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-93f9bbcbba2904283558/album.json","artist_path":"artists/na/name-12c3c3bc0ad58595/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:12c3c3bc0ad58595",
+      "duration_ms": 153000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1814b88b-bf78-49e7-9227-12ec7a179908",
+      "track_mbid": "1814b88b-bf78-49e7-9227-12ec7a179908",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 153000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1814b88b-bf78-49e7-9227-12ec7a179908",
+  "identity": {
+    "album": "Fight Songs: The Music Of Team Fortress 2",
+    "album_id": "album:93f9bbcbba2904283558",
+    "artist": "Valve Studio Orchestra",
+    "artist_id": "name:12c3c3bc0ad58595",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1814b88b-bf78-49e7-9227-12ec7a179908",
+    "source_track_id": "mbid:1814b88b-bf78-49e7-9227-12ec7a179908",
+    "spotify_id": null,
+    "title": "MEDIC!",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-06T20:03:02+00:00",
+    "last_scrobble": "2025-10-06T20:03:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Fight Songs: The Music Of Team Fortress 2",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-93f9bbcbba2904283558/album.json",
+    "artist_path": "artists/na/name-12c3c3bc0ad58595/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

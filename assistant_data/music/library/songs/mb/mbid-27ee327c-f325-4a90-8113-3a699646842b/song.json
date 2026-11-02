@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4449ccf6-c948-4d33-aa97-b6ad98ce4b5b","duration_ms":185000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:27ee327c-f325-4a90-8113-3a699646842b","track_mbid":"27ee327c-f325-4a90-8113-3a699646842b"}},"id":"mbid:27ee327c-f325-4a90-8113-3a699646842b","identity":{"album":"Old World Underground, Where Are You Now?","album_id":"album:58691b5fc711d9ba90ad","artist":"Metric","artist_id":"mbid:4449ccf6-c948-4d33-aa97-b6ad98ce4b5b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"27ee327c-f325-4a90-8113-3a699646842b","source_track_id":"mbid:27ee327c-f325-4a90-8113-3a699646842b","spotify_id":null,"title":"Succexy","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2024-03-08T04:08:20+00:00","last_scrobble":"2024-03-08T21:22:33+00:00","observed_albums":[{"album":"Old World Underground, Where Are You Now?","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-58691b5fc711d9ba90ad/album.json","artist_path":"artists/mb/mbid-4449ccf6-c948-4d33-aa97-b6ad98ce4b5b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4449ccf6-c948-4d33-aa97-b6ad98ce4b5b",
+      "duration_ms": 185000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:27ee327c-f325-4a90-8113-3a699646842b",
+      "track_mbid": "27ee327c-f325-4a90-8113-3a699646842b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 185000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:27ee327c-f325-4a90-8113-3a699646842b",
+  "identity": {
+    "album": "Old World Underground, Where Are You Now?",
+    "album_id": "album:58691b5fc711d9ba90ad",
+    "artist": "Metric",
+    "artist_id": "mbid:4449ccf6-c948-4d33-aa97-b6ad98ce4b5b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "27ee327c-f325-4a90-8113-3a699646842b",
+    "source_track_id": "mbid:27ee327c-f325-4a90-8113-3a699646842b",
+    "spotify_id": null,
+    "title": "Succexy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2024-03-08T04:08:20+00:00",
+    "last_scrobble": "2024-03-08T21:22:33+00:00",
+    "observed_albums": [
+      {
+        "album": "Old World Underground, Where Are You Now?",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-58691b5fc711d9ba90ad/album.json",
+    "artist_path": "artists/mb/mbid-4449ccf6-c948-4d33-aa97-b6ad98ce4b5b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

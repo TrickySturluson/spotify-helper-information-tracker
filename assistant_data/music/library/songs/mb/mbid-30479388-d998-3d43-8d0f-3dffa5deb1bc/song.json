@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:75f30e15-549a-440d-b9b9-3d08daadef9d","duration_ms":196000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:30479388-d998-3d43-8d0f-3dffa5deb1bc","track_mbid":"30479388-d998-3d43-8d0f-3dffa5deb1bc"}},"id":"mbid:30479388-d998-3d43-8d0f-3dffa5deb1bc","identity":{"album":"Act III: Life and Death","album_id":"album:8e1a08e7036ea6681f63","artist":"The Dear Hunter","artist_id":"mbid:75f30e15-549a-440d-b9b9-3d08daadef9d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"30479388-d998-3d43-8d0f-3dffa5deb1bc","source_track_id":"mbid:30479388-d998-3d43-8d0f-3dffa5deb1bc","spotify_id":null,"title":"Go Get Your Gun","track_number":null},"listening_context":{"all_time_plays":13,"first_scrobble":"2024-10-28T15:55:55+00:00","last_scrobble":"2024-11-03T05:06:39+00:00","observed_albums":[{"album":"Act III: Life and Death","scrobbles":13}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8e1a08e7036ea6681f63/album.json","artist_path":"artists/mb/mbid-75f30e15-549a-440d-b9b9-3d08daadef9d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:75f30e15-549a-440d-b9b9-3d08daadef9d",
+      "duration_ms": 196000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:30479388-d998-3d43-8d0f-3dffa5deb1bc",
+      "track_mbid": "30479388-d998-3d43-8d0f-3dffa5deb1bc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 196000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:30479388-d998-3d43-8d0f-3dffa5deb1bc",
+  "identity": {
+    "album": "Act III: Life and Death",
+    "album_id": "album:8e1a08e7036ea6681f63",
+    "artist": "The Dear Hunter",
+    "artist_id": "mbid:75f30e15-549a-440d-b9b9-3d08daadef9d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "30479388-d998-3d43-8d0f-3dffa5deb1bc",
+    "source_track_id": "mbid:30479388-d998-3d43-8d0f-3dffa5deb1bc",
+    "spotify_id": null,
+    "title": "Go Get Your Gun",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 13,
+    "first_scrobble": "2024-10-28T15:55:55+00:00",
+    "last_scrobble": "2024-11-03T05:06:39+00:00",
+    "observed_albums": [
+      {
+        "album": "Act III: Life and Death",
+        "scrobbles": 13
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8e1a08e7036ea6681f63/album.json",
+    "artist_path": "artists/mb/mbid-75f30e15-549a-440d-b9b9-3d08daadef9d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

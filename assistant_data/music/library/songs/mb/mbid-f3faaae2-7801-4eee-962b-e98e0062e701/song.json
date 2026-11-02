@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:5ff1ebd4428452af","duration_ms":223000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f3faaae2-7801-4eee-962b-e98e0062e701","track_mbid":"f3faaae2-7801-4eee-962b-e98e0062e701"}},"id":"mbid:f3faaae2-7801-4eee-962b-e98e0062e701","identity":{"album":"Black On Both Sides","album_id":"album:4c101ba51e6e3c997254","artist":"Mos Def","artist_id":"name:5ff1ebd4428452af","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f3faaae2-7801-4eee-962b-e98e0062e701","source_track_id":"mbid:f3faaae2-7801-4eee-962b-e98e0062e701","spotify_id":null,"title":"Ms. Fat Booty","track_number":null},"listening_context":{"all_time_plays":15,"first_scrobble":"2026-04-23T21:50:26+00:00","last_scrobble":"2026-07-08T02:35:56+00:00","observed_albums":[{"album":"Black On Both Sides","scrobbles":15}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4c101ba51e6e3c997254/album.json","artist_path":"artists/na/name-5ff1ebd4428452af/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:5ff1ebd4428452af",
+      "duration_ms": 223000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f3faaae2-7801-4eee-962b-e98e0062e701",
+      "track_mbid": "f3faaae2-7801-4eee-962b-e98e0062e701",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 223000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f3faaae2-7801-4eee-962b-e98e0062e701",
+  "identity": {
+    "album": "Black On Both Sides",
+    "album_id": "album:4c101ba51e6e3c997254",
+    "artist": "Mos Def",
+    "artist_id": "name:5ff1ebd4428452af",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f3faaae2-7801-4eee-962b-e98e0062e701",
+    "source_track_id": "mbid:f3faaae2-7801-4eee-962b-e98e0062e701",
+    "spotify_id": null,
+    "title": "Ms. Fat Booty",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 15,
+    "first_scrobble": "2026-04-23T21:50:26+00:00",
+    "last_scrobble": "2026-07-08T02:35:56+00:00",
+    "observed_albums": [
+      {
+        "album": "Black On Both Sides",
+        "scrobbles": 15
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4c101ba51e6e3c997254/album.json",
+    "artist_path": "artists/na/name-5ff1ebd4428452af/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

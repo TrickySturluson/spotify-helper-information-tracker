@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e94d59fd-177a-4a79-85ba-0632207b134b","duration_ms":276000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f73f2616-e5a8-3dc0-9c29-004e715278ec","track_mbid":"f73f2616-e5a8-3dc0-9c29-004e715278ec"}},"id":"mbid:f73f2616-e5a8-3dc0-9c29-004e715278ec","identity":{"album":"Triangular Daisies EP","album_id":"album:c795d63eeac2925e1874","artist":"Rubblebucket","artist_id":"mbid:e94d59fd-177a-4a79-85ba-0632207b134b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f73f2616-e5a8-3dc0-9c29-004e715278ec","source_track_id":"mbid:f73f2616-e5a8-3dc0-9c29-004e715278ec","spotify_id":null,"title":"Bikes (Fun Secret 8-bit version)","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2023-02-21T10:33:36+00:00","last_scrobble":"2024-01-28T15:30:40+00:00","observed_albums":[{"album":"Triangular Daisies EP","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c795d63eeac2925e1874/album.json","artist_path":"artists/mb/mbid-e94d59fd-177a-4a79-85ba-0632207b134b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e94d59fd-177a-4a79-85ba-0632207b134b",
+      "duration_ms": 276000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f73f2616-e5a8-3dc0-9c29-004e715278ec",
+      "track_mbid": "f73f2616-e5a8-3dc0-9c29-004e715278ec",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 276000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f73f2616-e5a8-3dc0-9c29-004e715278ec",
+  "identity": {
+    "album": "Triangular Daisies EP",
+    "album_id": "album:c795d63eeac2925e1874",
+    "artist": "Rubblebucket",
+    "artist_id": "mbid:e94d59fd-177a-4a79-85ba-0632207b134b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f73f2616-e5a8-3dc0-9c29-004e715278ec",
+    "source_track_id": "mbid:f73f2616-e5a8-3dc0-9c29-004e715278ec",
+    "spotify_id": null,
+    "title": "Bikes (Fun Secret 8-bit version)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2023-02-21T10:33:36+00:00",
+    "last_scrobble": "2024-01-28T15:30:40+00:00",
+    "observed_albums": [
+      {
+        "album": "Triangular Daisies EP",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c795d63eeac2925e1874/album.json",
+    "artist_path": "artists/mb/mbid-e94d59fd-177a-4a79-85ba-0632207b134b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

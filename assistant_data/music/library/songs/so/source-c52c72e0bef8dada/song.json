@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5caafbc8-2a57-4751-9e63-2f72469c56b6","duration_ms":203000,"duration_source":"Last.fm track.getInfo","track_id":"track:c52c72e0bef8dada"}},"id":"source:c52c72e0bef8dada","identity":{"album":"The Flood","album_id":"album:c212d67fd9bfc44642c7","artist":"Ben Caplan","artist_id":"mbid:5caafbc8-2a57-4751-9e63-2f72469c56b6","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:c52c72e0bef8dada","spotify_id":null,"title":"The Flood","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-05-20T18:49:59+00:00","last_scrobble":"2025-05-20T18:49:59+00:00","observed_albums":[{"album":"The Flood","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c212d67fd9bfc44642c7/album.json","artist_path":"artists/mb/mbid-5caafbc8-2a57-4751-9e63-2f72469c56b6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5caafbc8-2a57-4751-9e63-2f72469c56b6",
+      "duration_ms": 203000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:c52c72e0bef8dada",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 203000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:c52c72e0bef8dada",
+  "identity": {
+    "album": "The Flood",
+    "album_id": "album:c212d67fd9bfc44642c7",
+    "artist": "Ben Caplan",
+    "artist_id": "mbid:5caafbc8-2a57-4751-9e63-2f72469c56b6",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:c52c72e0bef8dada",
+    "spotify_id": null,
+    "title": "The Flood",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-05-20T18:49:59+00:00",
+    "last_scrobble": "2025-05-20T18:49:59+00:00",
+    "observed_albums": [
+      {
+        "album": "The Flood",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c212d67fd9bfc44642c7/album.json",
+    "artist_path": "artists/mb/mbid-5caafbc8-2a57-4751-9e63-2f72469c56b6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

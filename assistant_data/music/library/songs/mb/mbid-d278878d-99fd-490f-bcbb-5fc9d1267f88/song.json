@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:072a1c1a-08a1-4bee-8ff2-94d047b50f37","duration_ms":215000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d278878d-99fd-490f-bcbb-5fc9d1267f88","track_mbid":"d278878d-99fd-490f-bcbb-5fc9d1267f88"}},"id":"mbid:d278878d-99fd-490f-bcbb-5fc9d1267f88","identity":{"album":"I Hope We Can Still Be Friends","album_id":"album:d3061145db6799755d62","artist":"Dean Johnson","artist_id":"mbid:072a1c1a-08a1-4bee-8ff2-94d047b50f37","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d278878d-99fd-490f-bcbb-5fc9d1267f88","source_track_id":"mbid:d278878d-99fd-490f-bcbb-5fc9d1267f88","spotify_id":null,"title":"Before You Hit the Ground","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-17T07:19:51+00:00","last_scrobble":"2026-04-17T07:19:51+00:00","observed_albums":[{"album":"I Hope We Can Still Be Friends","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d3061145db6799755d62/album.json","artist_path":"artists/mb/mbid-072a1c1a-08a1-4bee-8ff2-94d047b50f37/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:072a1c1a-08a1-4bee-8ff2-94d047b50f37",
+      "duration_ms": 215000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d278878d-99fd-490f-bcbb-5fc9d1267f88",
+      "track_mbid": "d278878d-99fd-490f-bcbb-5fc9d1267f88",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 215000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d278878d-99fd-490f-bcbb-5fc9d1267f88",
+  "identity": {
+    "album": "I Hope We Can Still Be Friends",
+    "album_id": "album:d3061145db6799755d62",
+    "artist": "Dean Johnson",
+    "artist_id": "mbid:072a1c1a-08a1-4bee-8ff2-94d047b50f37",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d278878d-99fd-490f-bcbb-5fc9d1267f88",
+    "source_track_id": "mbid:d278878d-99fd-490f-bcbb-5fc9d1267f88",
+    "spotify_id": null,
+    "title": "Before You Hit the Ground",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-17T07:19:51+00:00",
+    "last_scrobble": "2026-04-17T07:19:51+00:00",
+    "observed_albums": [
+      {
+        "album": "I Hope We Can Still Be Friends",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d3061145db6799755d62/album.json",
+    "artist_path": "artists/mb/mbid-072a1c1a-08a1-4bee-8ff2-94d047b50f37/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

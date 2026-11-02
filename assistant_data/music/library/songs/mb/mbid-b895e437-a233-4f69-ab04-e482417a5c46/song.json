@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8c529495-91f5-4e2f-b71b-adcb66878d04","duration_ms":244000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b895e437-a233-4f69-ab04-e482417a5c46","track_mbid":"b895e437-a233-4f69-ab04-e482417a5c46"}},"id":"mbid:b895e437-a233-4f69-ab04-e482417a5c46","identity":{"album":"Polyvinyl 4-Track Singles Series, Vol. 3","album_id":"album:ab7eed4e390740d8ccb3","artist":"Japanese Breakfast","artist_id":"mbid:8c529495-91f5-4e2f-b71b-adcb66878d04","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b895e437-a233-4f69-ab04-e482417a5c46","source_track_id":"mbid:b895e437-a233-4f69-ab04-e482417a5c46","spotify_id":null,"title":"Posing in Bondage","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-06-28T22:14:43+00:00","last_scrobble":"2023-06-28T22:55:11+00:00","observed_albums":[{"album":"Polyvinyl 4-Track Singles Series, Vol. 3","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ab7eed4e390740d8ccb3/album.json","artist_path":"artists/mb/mbid-8c529495-91f5-4e2f-b71b-adcb66878d04/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8c529495-91f5-4e2f-b71b-adcb66878d04",
+      "duration_ms": 244000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b895e437-a233-4f69-ab04-e482417a5c46",
+      "track_mbid": "b895e437-a233-4f69-ab04-e482417a5c46",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 244000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b895e437-a233-4f69-ab04-e482417a5c46",
+  "identity": {
+    "album": "Polyvinyl 4-Track Singles Series, Vol. 3",
+    "album_id": "album:ab7eed4e390740d8ccb3",
+    "artist": "Japanese Breakfast",
+    "artist_id": "mbid:8c529495-91f5-4e2f-b71b-adcb66878d04",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b895e437-a233-4f69-ab04-e482417a5c46",
+    "source_track_id": "mbid:b895e437-a233-4f69-ab04-e482417a5c46",
+    "spotify_id": null,
+    "title": "Posing in Bondage",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-06-28T22:14:43+00:00",
+    "last_scrobble": "2023-06-28T22:55:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Polyvinyl 4-Track Singles Series, Vol. 3",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ab7eed4e390740d8ccb3/album.json",
+    "artist_path": "artists/mb/mbid-8c529495-91f5-4e2f-b71b-adcb66878d04/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

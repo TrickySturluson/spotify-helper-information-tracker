@@ -1,1 +1,100 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:a873152559d6ba2d","duration_ms":141000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:18:45.618422+00:00","lastfm_status":"no_tags","priority_playlist_ids":["4diIlnF8BlgoJrwUfejf49"],"retry_after":0,"track_id":"track:e946eb9844d0f6fa"}},"id":"source:e946eb9844d0f6fa","identity":{"album":"Who Do You Voodoo (From Dead Island)","album_id":"album:27f3a746959893a57308","artist":"Josef \"J7\" Lord","artist_id":"name:a873152559d6ba2d","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:e946eb9844d0f6fa","spotify_id":null,"title":"Who Do You Voodoo (from Dead Island)","track_number":null},"listening_context":{"all_time_plays":131,"first_scrobble":"2023-02-14T01:13:57+00:00","last_scrobble":"2026-10-30T21:58:27+00:00","observed_albums":[{"album":"Who Do You Voodoo (From Dead Island)","scrobbles":131}],"priority_playlist_ids":["4diIlnF8BlgoJrwUfejf49"],"recent_plays":5,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-27f3a746959893a57308/album.json","artist_path":"artists/na/name-a873152559d6ba2d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:a873152559d6ba2d",
+      "duration_ms": 141000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:18:45.618422+00:00",
+      "lastfm_status": "no_tags",
+      "priority_playlist_ids": [
+        "4diIlnF8BlgoJrwUfejf49"
+      ],
+      "retry_after": 0,
+      "track_id": "track:e946eb9844d0f6fa",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 141000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:e946eb9844d0f6fa",
+  "identity": {
+    "album": "Who Do You Voodoo (From Dead Island)",
+    "album_id": "album:27f3a746959893a57308",
+    "artist": "Josef \"J7\" Lord",
+    "artist_id": "name:a873152559d6ba2d",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:e946eb9844d0f6fa",
+    "spotify_id": null,
+    "title": "Who Do You Voodoo (from Dead Island)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 131,
+    "first_scrobble": "2023-02-14T01:13:57+00:00",
+    "last_scrobble": "2026-10-30T21:58:27+00:00",
+    "observed_albums": [
+      {
+        "album": "Who Do You Voodoo (From Dead Island)",
+        "scrobbles": 131
+      }
+    ],
+    "priority_playlist_ids": [
+      "4diIlnF8BlgoJrwUfejf49"
+    ],
+    "recent_plays": 5,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-27f3a746959893a57308/album.json",
+    "artist_path": "artists/na/name-a873152559d6ba2d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

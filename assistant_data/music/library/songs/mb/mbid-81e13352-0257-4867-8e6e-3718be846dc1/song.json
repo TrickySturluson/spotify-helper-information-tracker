@@ -1,1 +1,110 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":173000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T23:56:50.320533+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T23:56:50.903103+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:81e13352-0257-4867-8e6e-3718be846dc1","track_mbid":"81e13352-0257-4867-8e6e-3718be846dc1"}},"id":"mbid:81e13352-0257-4867-8e6e-3718be846dc1","identity":{"album":"Night Stripper","album_id":"album:41343738b689377345d4","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"81e13352-0257-4867-8e6e-3718be846dc1","source_track_id":"mbid:81e13352-0257-4867-8e6e-3718be846dc1","spotify_id":null,"title":"Night Stripper","track_number":null},"listening_context":{"all_time_plays":19,"first_scrobble":"2023-04-13T18:03:01+00:00","last_scrobble":"2025-07-11T10:23:06+00:00","observed_albums":[{"album":"Night Stripper","scrobbles":13},{"album":"Spook-O-Rama - The Best Of Messer Chups","scrobbles":3},{"album":"Taste the Blood of Guitaracula","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-41343738b689377345d4/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T23:56:50.320533+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T23:56:50.903103+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:81e13352-0257-4867-8e6e-3718be846dc1",
+      "track_mbid": "81e13352-0257-4867-8e6e-3718be846dc1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:81e13352-0257-4867-8e6e-3718be846dc1",
+  "identity": {
+    "album": "Night Stripper",
+    "album_id": "album:41343738b689377345d4",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "81e13352-0257-4867-8e6e-3718be846dc1",
+    "source_track_id": "mbid:81e13352-0257-4867-8e6e-3718be846dc1",
+    "spotify_id": null,
+    "title": "Night Stripper",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 19,
+    "first_scrobble": "2023-04-13T18:03:01+00:00",
+    "last_scrobble": "2025-07-11T10:23:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Night Stripper",
+        "scrobbles": 13
+      },
+      {
+        "album": "Spook-O-Rama - The Best Of Messer Chups",
+        "scrobbles": 3
+      },
+      {
+        "album": "Taste the Blood of Guitaracula",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-41343738b689377345d4/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

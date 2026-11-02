@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:094f10e7-27d5-400d-a145-331013e67229","duration_ms":218000,"duration_source":"Last.fm track.getInfo","track_id":"track:d4a4e088d857acd7"}},"id":"source:d4a4e088d857acd7","identity":{"album":"Bitchcraft (Caravan Palace remix)","album_id":"album:e5e37bf348b01974d940","artist":"Drake Bell","artist_id":"mbid:094f10e7-27d5-400d-a145-331013e67229","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:d4a4e088d857acd7","spotify_id":null,"title":"Bitchcraft - Caravan Palace Remix","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-01-15T21:18:13+00:00","last_scrobble":"2024-01-19T20:46:51+00:00","observed_albums":[{"album":"Bitchcraft (Caravan Palace remix)","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e5e37bf348b01974d940/album.json","artist_path":"artists/mb/mbid-094f10e7-27d5-400d-a145-331013e67229/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:094f10e7-27d5-400d-a145-331013e67229",
+      "duration_ms": 218000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:d4a4e088d857acd7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 218000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:d4a4e088d857acd7",
+  "identity": {
+    "album": "Bitchcraft (Caravan Palace remix)",
+    "album_id": "album:e5e37bf348b01974d940",
+    "artist": "Drake Bell",
+    "artist_id": "mbid:094f10e7-27d5-400d-a145-331013e67229",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:d4a4e088d857acd7",
+    "spotify_id": null,
+    "title": "Bitchcraft - Caravan Palace Remix",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-01-15T21:18:13+00:00",
+    "last_scrobble": "2024-01-19T20:46:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Bitchcraft (Caravan Palace remix)",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e5e37bf348b01974d940/album.json",
+    "artist_path": "artists/mb/mbid-094f10e7-27d5-400d-a145-331013e67229/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

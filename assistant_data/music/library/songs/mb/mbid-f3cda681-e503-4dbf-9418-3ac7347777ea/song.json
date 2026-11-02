@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fdc9f358-9d9a-4a50-ba61-5731ea220da1","duration_ms":173000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f3cda681-e503-4dbf-9418-3ac7347777ea","track_mbid":"f3cda681-e503-4dbf-9418-3ac7347777ea"}},"id":"mbid:f3cda681-e503-4dbf-9418-3ac7347777ea","identity":{"album":"Daria","album_id":"album:4ad3bfab20468dfae7ac","artist":"Splendora","artist_id":"mbid:fdc9f358-9d9a-4a50-ba61-5731ea220da1","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f3cda681-e503-4dbf-9418-3ac7347777ea","source_track_id":"mbid:f3cda681-e503-4dbf-9418-3ac7347777ea","spotify_id":null,"title":"You're Standing on My Neck","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2025-03-03T20:46:09+00:00","last_scrobble":"2025-03-09T23:38:49+00:00","observed_albums":[{"album":"Daria","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4ad3bfab20468dfae7ac/album.json","artist_path":"artists/mb/mbid-fdc9f358-9d9a-4a50-ba61-5731ea220da1/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fdc9f358-9d9a-4a50-ba61-5731ea220da1",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f3cda681-e503-4dbf-9418-3ac7347777ea",
+      "track_mbid": "f3cda681-e503-4dbf-9418-3ac7347777ea",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f3cda681-e503-4dbf-9418-3ac7347777ea",
+  "identity": {
+    "album": "Daria",
+    "album_id": "album:4ad3bfab20468dfae7ac",
+    "artist": "Splendora",
+    "artist_id": "mbid:fdc9f358-9d9a-4a50-ba61-5731ea220da1",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f3cda681-e503-4dbf-9418-3ac7347777ea",
+    "source_track_id": "mbid:f3cda681-e503-4dbf-9418-3ac7347777ea",
+    "spotify_id": null,
+    "title": "You're Standing on My Neck",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2025-03-03T20:46:09+00:00",
+    "last_scrobble": "2025-03-09T23:38:49+00:00",
+    "observed_albums": [
+      {
+        "album": "Daria",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4ad3bfab20468dfae7ac/album.json",
+    "artist_path": "artists/mb/mbid-fdc9f358-9d9a-4a50-ba61-5731ea220da1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

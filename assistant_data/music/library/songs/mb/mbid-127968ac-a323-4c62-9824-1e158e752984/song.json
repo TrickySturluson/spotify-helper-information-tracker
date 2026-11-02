@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11","duration_ms":181000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:127968ac-a323-4c62-9824-1e158e752984","track_mbid":"127968ac-a323-4c62-9824-1e158e752984"}},"id":"mbid:127968ac-a323-4c62-9824-1e158e752984","identity":{"album":"THE GREAT UNKNOWN","album_id":"album:0f7d2e3194e7d1298c73","artist":"Ice Nine Kills","artist_id":"mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"127968ac-a323-4c62-9824-1e158e752984","source_track_id":"mbid:127968ac-a323-4c62-9824-1e158e752984","spotify_id":null,"title":"The Great Unknown","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-08-15T19:51:28+00:00","last_scrobble":"2025-08-15T19:51:28+00:00","observed_albums":[{"album":"THE GREAT UNKNOWN","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0f7d2e3194e7d1298c73/album.json","artist_path":"artists/mb/mbid-d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:127968ac-a323-4c62-9824-1e158e752984",
+      "track_mbid": "127968ac-a323-4c62-9824-1e158e752984",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:127968ac-a323-4c62-9824-1e158e752984",
+  "identity": {
+    "album": "THE GREAT UNKNOWN",
+    "album_id": "album:0f7d2e3194e7d1298c73",
+    "artist": "Ice Nine Kills",
+    "artist_id": "mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "127968ac-a323-4c62-9824-1e158e752984",
+    "source_track_id": "mbid:127968ac-a323-4c62-9824-1e158e752984",
+    "spotify_id": null,
+    "title": "The Great Unknown",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-08-15T19:51:28+00:00",
+    "last_scrobble": "2025-08-15T19:51:28+00:00",
+    "observed_albums": [
+      {
+        "album": "THE GREAT UNKNOWN",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0f7d2e3194e7d1298c73/album.json",
+    "artist_path": "artists/mb/mbid-d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

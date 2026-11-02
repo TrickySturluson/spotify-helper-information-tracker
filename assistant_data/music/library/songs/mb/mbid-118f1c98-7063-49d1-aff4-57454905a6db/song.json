@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:33b1695b-0b35-4e22-b1d4-be4971fb71ba","duration_ms":220000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:37:20.304408+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:37:21.263337+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:118f1c98-7063-49d1-aff4-57454905a6db","track_mbid":"118f1c98-7063-49d1-aff4-57454905a6db"}},"id":"mbid:118f1c98-7063-49d1-aff4-57454905a6db","identity":{"album":"Sewer//Slvt - EP","album_id":"album:2bda4de8878fcb4660e1","artist":"Sewerslvt","artist_id":"mbid:33b1695b-0b35-4e22-b1d4-be4971fb71ba","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"118f1c98-7063-49d1-aff4-57454905a6db","source_track_id":"mbid:118f1c98-7063-49d1-aff4-57454905a6db","spotify_id":null,"title":"Pretty Cvnt","track_number":null},"listening_context":{"all_time_plays":33,"first_scrobble":"2023-03-25T00:26:46+00:00","last_scrobble":"2024-03-23T18:29:51+00:00","observed_albums":[{"album":"Sewer//Slvt - EP","scrobbles":33}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2bda4de8878fcb4660e1/album.json","artist_path":"artists/mb/mbid-33b1695b-0b35-4e22-b1d4-be4971fb71ba/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:33b1695b-0b35-4e22-b1d4-be4971fb71ba",
+      "duration_ms": 220000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:37:20.304408+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:37:21.263337+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:118f1c98-7063-49d1-aff4-57454905a6db",
+      "track_mbid": "118f1c98-7063-49d1-aff4-57454905a6db",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 220000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:118f1c98-7063-49d1-aff4-57454905a6db",
+  "identity": {
+    "album": "Sewer//Slvt - EP",
+    "album_id": "album:2bda4de8878fcb4660e1",
+    "artist": "Sewerslvt",
+    "artist_id": "mbid:33b1695b-0b35-4e22-b1d4-be4971fb71ba",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "118f1c98-7063-49d1-aff4-57454905a6db",
+    "source_track_id": "mbid:118f1c98-7063-49d1-aff4-57454905a6db",
+    "spotify_id": null,
+    "title": "Pretty Cvnt",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 33,
+    "first_scrobble": "2023-03-25T00:26:46+00:00",
+    "last_scrobble": "2024-03-23T18:29:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Sewer//Slvt - EP",
+        "scrobbles": 33
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2bda4de8878fcb4660e1/album.json",
+    "artist_path": "artists/mb/mbid-33b1695b-0b35-4e22-b1d4-be4971fb71ba/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

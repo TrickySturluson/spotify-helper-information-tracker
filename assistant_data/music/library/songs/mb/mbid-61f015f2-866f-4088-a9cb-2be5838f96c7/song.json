@@ -1,1 +1,111 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":125000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:07:06.646881+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:07:08.392836+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","priority_playlist_ids":["4diIlnF8BlgoJrwUfejf49"],"retry_after":0,"track_id":"mbid:61f015f2-866f-4088-a9cb-2be5838f96c7","track_mbid":"61f015f2-866f-4088-a9cb-2be5838f96c7"}},"id":"mbid:61f015f2-866f-4088-a9cb-2be5838f96c7","identity":{"album":"Spooky Hook","album_id":"album:719309a713c971e7e95f","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"61f015f2-866f-4088-a9cb-2be5838f96c7","source_track_id":"track:0cc7dadc2bac508b","spotify_id":null,"title":"Munster Theme","track_number":null},"listening_context":{"all_time_plays":25,"first_scrobble":"2023-04-13T18:46:48+00:00","last_scrobble":"2026-10-30T19:31:39+00:00","observed_albums":[{"album":"Spooky Hook","scrobbles":22},{"album":"Heretic Channel","scrobbles":3}],"priority_playlist_ids":["4diIlnF8BlgoJrwUfejf49"],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-719309a713c971e7e95f/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 125000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:07:06.646881+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:07:08.392836+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "priority_playlist_ids": [
+        "4diIlnF8BlgoJrwUfejf49"
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:61f015f2-866f-4088-a9cb-2be5838f96c7",
+      "track_mbid": "61f015f2-866f-4088-a9cb-2be5838f96c7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 125000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:61f015f2-866f-4088-a9cb-2be5838f96c7",
+  "identity": {
+    "album": "Spooky Hook",
+    "album_id": "album:719309a713c971e7e95f",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "61f015f2-866f-4088-a9cb-2be5838f96c7",
+    "source_track_id": "track:0cc7dadc2bac508b",
+    "spotify_id": null,
+    "title": "Munster Theme",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 25,
+    "first_scrobble": "2023-04-13T18:46:48+00:00",
+    "last_scrobble": "2026-10-30T19:31:39+00:00",
+    "observed_albums": [
+      {
+        "album": "Spooky Hook",
+        "scrobbles": 22
+      },
+      {
+        "album": "Heretic Channel",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [
+      "4diIlnF8BlgoJrwUfejf49"
+    ],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-719309a713c971e7e95f/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

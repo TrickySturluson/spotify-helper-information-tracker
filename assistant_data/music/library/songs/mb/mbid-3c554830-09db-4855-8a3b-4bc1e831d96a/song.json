@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:2d2279d6-c4cf-4c65-9100-57b9573bccd3","duration_ms":316000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3c554830-09db-4855-8a3b-4bc1e831d96a","track_mbid":"3c554830-09db-4855-8a3b-4bc1e831d96a"}},"id":"mbid:3c554830-09db-4855-8a3b-4bc1e831d96a","identity":{"album":"Warm Milk","album_id":"album:17c3b6808e468ec0f080","artist":"Vilde","artist_id":"mbid:2d2279d6-c4cf-4c65-9100-57b9573bccd3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3c554830-09db-4855-8a3b-4bc1e831d96a","source_track_id":"mbid:3c554830-09db-4855-8a3b-4bc1e831d96a","spotify_id":null,"title":"Warm Milk","track_number":null},"listening_context":{"all_time_plays":12,"first_scrobble":"2023-03-15T06:12:30+00:00","last_scrobble":"2025-12-17T18:47:27+00:00","observed_albums":[{"album":"Warm Milk","scrobbles":12}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-17c3b6808e468ec0f080/album.json","artist_path":"artists/mb/mbid-2d2279d6-c4cf-4c65-9100-57b9573bccd3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:2d2279d6-c4cf-4c65-9100-57b9573bccd3",
+      "duration_ms": 316000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3c554830-09db-4855-8a3b-4bc1e831d96a",
+      "track_mbid": "3c554830-09db-4855-8a3b-4bc1e831d96a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 316000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3c554830-09db-4855-8a3b-4bc1e831d96a",
+  "identity": {
+    "album": "Warm Milk",
+    "album_id": "album:17c3b6808e468ec0f080",
+    "artist": "Vilde",
+    "artist_id": "mbid:2d2279d6-c4cf-4c65-9100-57b9573bccd3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3c554830-09db-4855-8a3b-4bc1e831d96a",
+    "source_track_id": "mbid:3c554830-09db-4855-8a3b-4bc1e831d96a",
+    "spotify_id": null,
+    "title": "Warm Milk",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 12,
+    "first_scrobble": "2023-03-15T06:12:30+00:00",
+    "last_scrobble": "2025-12-17T18:47:27+00:00",
+    "observed_albums": [
+      {
+        "album": "Warm Milk",
+        "scrobbles": 12
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-17c3b6808e468ec0f080/album.json",
+    "artist_path": "artists/mb/mbid-2d2279d6-c4cf-4c65-9100-57b9573bccd3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

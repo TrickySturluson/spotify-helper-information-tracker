@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:120e1cb5-4b8d-4f6d-a68b-311a71b00821","duration_ms":207000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b488b8a5-a15d-49ab-93a4-647d716a548a","track_mbid":"b488b8a5-a15d-49ab-93a4-647d716a548a"}},"id":"mbid:b488b8a5-a15d-49ab-93a4-647d716a548a","identity":{"album":"Numbskull","album_id":"album:53d8ddfcd3d0957c4a08","artist":"The Band Ice Cream","artist_id":"mbid:120e1cb5-4b8d-4f6d-a68b-311a71b00821","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b488b8a5-a15d-49ab-93a4-647d716a548a","source_track_id":"mbid:b488b8a5-a15d-49ab-93a4-647d716a548a","spotify_id":null,"title":"When You Are Not Around","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2023-12-05T16:51:35+00:00","last_scrobble":"2023-12-11T05:03:43+00:00","observed_albums":[{"album":"Numbskull","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-53d8ddfcd3d0957c4a08/album.json","artist_path":"artists/mb/mbid-120e1cb5-4b8d-4f6d-a68b-311a71b00821/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:120e1cb5-4b8d-4f6d-a68b-311a71b00821",
+      "duration_ms": 207000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b488b8a5-a15d-49ab-93a4-647d716a548a",
+      "track_mbid": "b488b8a5-a15d-49ab-93a4-647d716a548a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 207000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b488b8a5-a15d-49ab-93a4-647d716a548a",
+  "identity": {
+    "album": "Numbskull",
+    "album_id": "album:53d8ddfcd3d0957c4a08",
+    "artist": "The Band Ice Cream",
+    "artist_id": "mbid:120e1cb5-4b8d-4f6d-a68b-311a71b00821",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b488b8a5-a15d-49ab-93a4-647d716a548a",
+    "source_track_id": "mbid:b488b8a5-a15d-49ab-93a4-647d716a548a",
+    "spotify_id": null,
+    "title": "When You Are Not Around",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2023-12-05T16:51:35+00:00",
+    "last_scrobble": "2023-12-11T05:03:43+00:00",
+    "observed_albums": [
+      {
+        "album": "Numbskull",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-53d8ddfcd3d0957c4a08/album.json",
+    "artist_path": "artists/mb/mbid-120e1cb5-4b8d-4f6d-a68b-311a71b00821/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

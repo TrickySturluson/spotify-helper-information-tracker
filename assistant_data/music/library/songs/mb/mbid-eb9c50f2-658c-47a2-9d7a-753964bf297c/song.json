@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5cc1ec13-d96d-40e0-9153-c59ca680b240","duration_ms":231000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:eb9c50f2-658c-47a2-9d7a-753964bf297c","track_mbid":"eb9c50f2-658c-47a2-9d7a-753964bf297c"}},"id":"mbid:eb9c50f2-658c-47a2-9d7a-753964bf297c","identity":{"album":"Beats and Breaks from the Flower Patch","album_id":"album:7949dfb6adfaad6136e6","artist":"Kitty Craft","artist_id":"mbid:5cc1ec13-d96d-40e0-9153-c59ca680b240","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"eb9c50f2-658c-47a2-9d7a-753964bf297c","source_track_id":"mbid:eb9c50f2-658c-47a2-9d7a-753964bf297c","spotify_id":null,"title":"Locked Groove","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-21T05:34:11+00:00","last_scrobble":"2025-10-21T05:34:11+00:00","observed_albums":[{"album":"Beats and Breaks from the Flower Patch","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7949dfb6adfaad6136e6/album.json","artist_path":"artists/mb/mbid-5cc1ec13-d96d-40e0-9153-c59ca680b240/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5cc1ec13-d96d-40e0-9153-c59ca680b240",
+      "duration_ms": 231000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:eb9c50f2-658c-47a2-9d7a-753964bf297c",
+      "track_mbid": "eb9c50f2-658c-47a2-9d7a-753964bf297c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 231000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:eb9c50f2-658c-47a2-9d7a-753964bf297c",
+  "identity": {
+    "album": "Beats and Breaks from the Flower Patch",
+    "album_id": "album:7949dfb6adfaad6136e6",
+    "artist": "Kitty Craft",
+    "artist_id": "mbid:5cc1ec13-d96d-40e0-9153-c59ca680b240",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "eb9c50f2-658c-47a2-9d7a-753964bf297c",
+    "source_track_id": "mbid:eb9c50f2-658c-47a2-9d7a-753964bf297c",
+    "spotify_id": null,
+    "title": "Locked Groove",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-21T05:34:11+00:00",
+    "last_scrobble": "2025-10-21T05:34:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Beats and Breaks from the Flower Patch",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7949dfb6adfaad6136e6/album.json",
+    "artist_path": "artists/mb/mbid-5cc1ec13-d96d-40e0-9153-c59ca680b240/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

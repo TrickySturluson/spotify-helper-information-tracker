@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:cfe572bf-840f-4bed-934a-f69f4b1e90d4","duration_ms":234000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:00:34.152330+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T15:00:34.962133+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:327ee6dc-346a-4895-8ea0-791009fdfba9","track_mbid":"327ee6dc-346a-4895-8ea0-791009fdfba9"}},"id":"mbid:327ee6dc-346a-4895-8ea0-791009fdfba9","identity":{"album":"La Sexorcisto: Devil Music Volume 1","album_id":"album:a0195b38a3c1d8aae54e","artist":"White Zombie","artist_id":"mbid:cfe572bf-840f-4bed-934a-f69f4b1e90d4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"327ee6dc-346a-4895-8ea0-791009fdfba9","source_track_id":"mbid:327ee6dc-346a-4895-8ea0-791009fdfba9","spotify_id":null,"title":"Thunder Kiss '65","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-10-31T05:22:19+00:00","last_scrobble":"2026-10-31T05:22:19+00:00","observed_albums":[{"album":"La Sexorcisto: Devil Music Volume 1","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a0195b38a3c1d8aae54e/album.json","artist_path":"artists/mb/mbid-cfe572bf-840f-4bed-934a-f69f4b1e90d4/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:cfe572bf-840f-4bed-934a-f69f4b1e90d4",
+      "duration_ms": 234000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:00:34.152330+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T15:00:34.962133+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:327ee6dc-346a-4895-8ea0-791009fdfba9",
+      "track_mbid": "327ee6dc-346a-4895-8ea0-791009fdfba9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-31T06:56:37+00:00",
+          "status": "matched",
+          "duration_ms": 234000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:327ee6dc-346a-4895-8ea0-791009fdfba9",
+  "identity": {
+    "album": "La Sexorcisto: Devil Music Volume 1",
+    "album_id": "album:a0195b38a3c1d8aae54e",
+    "artist": "White Zombie",
+    "artist_id": "mbid:cfe572bf-840f-4bed-934a-f69f4b1e90d4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "327ee6dc-346a-4895-8ea0-791009fdfba9",
+    "source_track_id": "mbid:327ee6dc-346a-4895-8ea0-791009fdfba9",
+    "spotify_id": null,
+    "title": "Thunder Kiss '65",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-10-31T05:22:19+00:00",
+    "last_scrobble": "2026-10-31T05:22:19+00:00",
+    "observed_albums": [
+      {
+        "album": "La Sexorcisto: Devil Music Volume 1",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a0195b38a3c1d8aae54e/album.json",
+    "artist_path": "artists/mb/mbid-cfe572bf-840f-4bed-934a-f69f4b1e90d4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

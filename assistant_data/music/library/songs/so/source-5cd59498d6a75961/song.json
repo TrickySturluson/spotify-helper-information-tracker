@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e22d2f66-881e-41ca-9356-544697ee5f90","duration_ms":290000,"duration_source":"Last.fm track.getInfo","track_id":"track:5cd59498d6a75961"}},"id":"source:5cd59498d6a75961","identity":{"album":"Twelve Songs Of Christmas","album_id":"album:c91fc0b5b3f3ab04a294","artist":"Etta James","artist_id":"mbid:e22d2f66-881e-41ca-9356-544697ee5f90","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:5cd59498d6a75961","spotify_id":null,"title":"O Holy Night","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-11-10T06:27:52+00:00","last_scrobble":"2024-11-11T04:29:55+00:00","observed_albums":[{"album":"Twelve Songs Of Christmas","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c91fc0b5b3f3ab04a294/album.json","artist_path":"artists/mb/mbid-e22d2f66-881e-41ca-9356-544697ee5f90/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e22d2f66-881e-41ca-9356-544697ee5f90",
+      "duration_ms": 290000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:5cd59498d6a75961",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 290000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:5cd59498d6a75961",
+  "identity": {
+    "album": "Twelve Songs Of Christmas",
+    "album_id": "album:c91fc0b5b3f3ab04a294",
+    "artist": "Etta James",
+    "artist_id": "mbid:e22d2f66-881e-41ca-9356-544697ee5f90",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:5cd59498d6a75961",
+    "spotify_id": null,
+    "title": "O Holy Night",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-11-10T06:27:52+00:00",
+    "last_scrobble": "2024-11-11T04:29:55+00:00",
+    "observed_albums": [
+      {
+        "album": "Twelve Songs Of Christmas",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c91fc0b5b3f3ab04a294/album.json",
+    "artist_path": "artists/mb/mbid-e22d2f66-881e-41ca-9356-544697ee5f90/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

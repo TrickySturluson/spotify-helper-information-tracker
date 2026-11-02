@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:802d37d5-0aaa-492e-b366-99f75e5a196f","duration_ms":233000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5c2ac9aa-8d8a-4c77-a284-29cfc27d110c","track_mbid":"5c2ac9aa-8d8a-4c77-a284-29cfc27d110c"}},"id":"mbid:5c2ac9aa-8d8a-4c77-a284-29cfc27d110c","identity":{"album":"Eat 'em and Smile","album_id":"album:a17a78e7101bc00eb29a","artist":"David Lee Roth","artist_id":"mbid:802d37d5-0aaa-492e-b366-99f75e5a196f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5c2ac9aa-8d8a-4c77-a284-29cfc27d110c","source_track_id":"mbid:5c2ac9aa-8d8a-4c77-a284-29cfc27d110c","spotify_id":null,"title":"Yankee Rose","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-20T13:45:11+00:00","last_scrobble":"2025-11-20T13:45:11+00:00","observed_albums":[{"album":"Eat 'em and Smile","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a17a78e7101bc00eb29a/album.json","artist_path":"artists/mb/mbid-802d37d5-0aaa-492e-b366-99f75e5a196f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:802d37d5-0aaa-492e-b366-99f75e5a196f",
+      "duration_ms": 233000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5c2ac9aa-8d8a-4c77-a284-29cfc27d110c",
+      "track_mbid": "5c2ac9aa-8d8a-4c77-a284-29cfc27d110c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 233000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5c2ac9aa-8d8a-4c77-a284-29cfc27d110c",
+  "identity": {
+    "album": "Eat 'em and Smile",
+    "album_id": "album:a17a78e7101bc00eb29a",
+    "artist": "David Lee Roth",
+    "artist_id": "mbid:802d37d5-0aaa-492e-b366-99f75e5a196f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5c2ac9aa-8d8a-4c77-a284-29cfc27d110c",
+    "source_track_id": "mbid:5c2ac9aa-8d8a-4c77-a284-29cfc27d110c",
+    "spotify_id": null,
+    "title": "Yankee Rose",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-20T13:45:11+00:00",
+    "last_scrobble": "2025-11-20T13:45:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Eat 'em and Smile",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a17a78e7101bc00eb29a/album.json",
+    "artist_path": "artists/mb/mbid-802d37d5-0aaa-492e-b366-99f75e5a196f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

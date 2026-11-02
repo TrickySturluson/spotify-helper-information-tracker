@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:69c31705-6eac-4b10-bb11-bfd174acd921","duration_ms":196000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:db137a21-abba-4aed-be8a-a8e9487a3f6a","track_mbid":"db137a21-abba-4aed-be8a-a8e9487a3f6a"}},"id":"mbid:db137a21-abba-4aed-be8a-a8e9487a3f6a","identity":{"album":"It Flew By","album_id":"album:a7d1d896a3cc7b9e2eea","artist":"The Electric Swing Circus","artist_id":"mbid:69c31705-6eac-4b10-bb11-bfd174acd921","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"db137a21-abba-4aed-be8a-a8e9487a3f6a","source_track_id":"mbid:db137a21-abba-4aed-be8a-a8e9487a3f6a","spotify_id":null,"title":"Remedy","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-03-13T01:08:17+00:00","last_scrobble":"2025-03-13T01:08:17+00:00","observed_albums":[{"album":"It Flew By","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a7d1d896a3cc7b9e2eea/album.json","artist_path":"artists/mb/mbid-69c31705-6eac-4b10-bb11-bfd174acd921/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:69c31705-6eac-4b10-bb11-bfd174acd921",
+      "duration_ms": 196000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:db137a21-abba-4aed-be8a-a8e9487a3f6a",
+      "track_mbid": "db137a21-abba-4aed-be8a-a8e9487a3f6a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 196000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:db137a21-abba-4aed-be8a-a8e9487a3f6a",
+  "identity": {
+    "album": "It Flew By",
+    "album_id": "album:a7d1d896a3cc7b9e2eea",
+    "artist": "The Electric Swing Circus",
+    "artist_id": "mbid:69c31705-6eac-4b10-bb11-bfd174acd921",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "db137a21-abba-4aed-be8a-a8e9487a3f6a",
+    "source_track_id": "mbid:db137a21-abba-4aed-be8a-a8e9487a3f6a",
+    "spotify_id": null,
+    "title": "Remedy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-03-13T01:08:17+00:00",
+    "last_scrobble": "2025-03-13T01:08:17+00:00",
+    "observed_albums": [
+      {
+        "album": "It Flew By",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a7d1d896a3cc7b9e2eea/album.json",
+    "artist_path": "artists/mb/mbid-69c31705-6eac-4b10-bb11-bfd174acd921/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

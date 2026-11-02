@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5882e375-503f-4bd2-89b1-967e0bfcb199","duration_ms":219000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:32e1aa58-c7c8-408e-836f-dd71932f0178","track_mbid":"32e1aa58-c7c8-408e-836f-dd71932f0178"}},"id":"mbid:32e1aa58-c7c8-408e-836f-dd71932f0178","identity":{"album":"pom pom","album_id":"album:605ca2e56e7607546699","artist":"Ariel Pink","artist_id":"mbid:5882e375-503f-4bd2-89b1-967e0bfcb199","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"32e1aa58-c7c8-408e-836f-dd71932f0178","source_track_id":"mbid:32e1aa58-c7c8-408e-836f-dd71932f0178","spotify_id":null,"title":"Four Shadows","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-09-06T01:52:22+00:00","last_scrobble":"2023-09-09T08:04:52+00:00","observed_albums":[{"album":"pom pom","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-605ca2e56e7607546699/album.json","artist_path":"artists/mb/mbid-5882e375-503f-4bd2-89b1-967e0bfcb199/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5882e375-503f-4bd2-89b1-967e0bfcb199",
+      "duration_ms": 219000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:32e1aa58-c7c8-408e-836f-dd71932f0178",
+      "track_mbid": "32e1aa58-c7c8-408e-836f-dd71932f0178",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 219000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:32e1aa58-c7c8-408e-836f-dd71932f0178",
+  "identity": {
+    "album": "pom pom",
+    "album_id": "album:605ca2e56e7607546699",
+    "artist": "Ariel Pink",
+    "artist_id": "mbid:5882e375-503f-4bd2-89b1-967e0bfcb199",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "32e1aa58-c7c8-408e-836f-dd71932f0178",
+    "source_track_id": "mbid:32e1aa58-c7c8-408e-836f-dd71932f0178",
+    "spotify_id": null,
+    "title": "Four Shadows",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-09-06T01:52:22+00:00",
+    "last_scrobble": "2023-09-09T08:04:52+00:00",
+    "observed_albums": [
+      {
+        "album": "pom pom",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-605ca2e56e7607546699/album.json",
+    "artist_path": "artists/mb/mbid-5882e375-503f-4bd2-89b1-967e0bfcb199/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

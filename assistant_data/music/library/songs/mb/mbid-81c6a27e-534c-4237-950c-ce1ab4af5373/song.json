@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:34c9cca1-1e7e-4123-b77b-dcbf57f6c4c2","duration_ms":326000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:81c6a27e-534c-4237-950c-ce1ab4af5373","track_mbid":"81c6a27e-534c-4237-950c-ce1ab4af5373"}},"id":"mbid:81c6a27e-534c-4237-950c-ce1ab4af5373","identity":{"album":"Nostalgia for Infinity","album_id":"album:e6c2d51dbf8dce6b27a6","artist":"Sound of Ceres","artist_id":"mbid:34c9cca1-1e7e-4123-b77b-dcbf57f6c4c2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"81c6a27e-534c-4237-950c-ce1ab4af5373","source_track_id":"mbid:81c6a27e-534c-4237-950c-ce1ab4af5373","spotify_id":null,"title":"Pursuer","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2023-02-26T03:08:10+00:00","last_scrobble":"2023-02-27T13:36:52+00:00","observed_albums":[{"album":"Nostalgia for Infinity","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e6c2d51dbf8dce6b27a6/album.json","artist_path":"artists/mb/mbid-34c9cca1-1e7e-4123-b77b-dcbf57f6c4c2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:34c9cca1-1e7e-4123-b77b-dcbf57f6c4c2",
+      "duration_ms": 326000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:81c6a27e-534c-4237-950c-ce1ab4af5373",
+      "track_mbid": "81c6a27e-534c-4237-950c-ce1ab4af5373",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 326000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:81c6a27e-534c-4237-950c-ce1ab4af5373",
+  "identity": {
+    "album": "Nostalgia for Infinity",
+    "album_id": "album:e6c2d51dbf8dce6b27a6",
+    "artist": "Sound of Ceres",
+    "artist_id": "mbid:34c9cca1-1e7e-4123-b77b-dcbf57f6c4c2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "81c6a27e-534c-4237-950c-ce1ab4af5373",
+    "source_track_id": "mbid:81c6a27e-534c-4237-950c-ce1ab4af5373",
+    "spotify_id": null,
+    "title": "Pursuer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2023-02-26T03:08:10+00:00",
+    "last_scrobble": "2023-02-27T13:36:52+00:00",
+    "observed_albums": [
+      {
+        "album": "Nostalgia for Infinity",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e6c2d51dbf8dce6b27a6/album.json",
+    "artist_path": "artists/mb/mbid-34c9cca1-1e7e-4123-b77b-dcbf57f6c4c2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

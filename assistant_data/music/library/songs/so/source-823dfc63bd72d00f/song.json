@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:6b3846b06c7f8289","duration_ms":248000,"duration_source":"Last.fm track.getInfo","track_id":"track:823dfc63bd72d00f"}},"id":"source:823dfc63bd72d00f","identity":{"album":"Magic Ways","album_id":"album:9949c3134e3f29c77ba9","artist":"Matcha Fever","artist_id":"name:6b3846b06c7f8289","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:823dfc63bd72d00f","spotify_id":null,"title":"Magic Ways","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-19T19:41:58+00:00","last_scrobble":"2026-03-19T19:41:58+00:00","observed_albums":[{"album":"Magic Ways","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9949c3134e3f29c77ba9/album.json","artist_path":"artists/na/name-6b3846b06c7f8289/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:6b3846b06c7f8289",
+      "duration_ms": 248000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:823dfc63bd72d00f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 248000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:823dfc63bd72d00f",
+  "identity": {
+    "album": "Magic Ways",
+    "album_id": "album:9949c3134e3f29c77ba9",
+    "artist": "Matcha Fever",
+    "artist_id": "name:6b3846b06c7f8289",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:823dfc63bd72d00f",
+    "spotify_id": null,
+    "title": "Magic Ways",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-19T19:41:58+00:00",
+    "last_scrobble": "2026-03-19T19:41:58+00:00",
+    "observed_albums": [
+      {
+        "album": "Magic Ways",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9949c3134e3f29c77ba9/album.json",
+    "artist_path": "artists/na/name-6b3846b06c7f8289/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

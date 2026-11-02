@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:26d09032-2c33-4656-92bc-1e855f3e7d89","duration_ms":140000,"duration_source":"Last.fm track.getInfo","track_id":"track:c442fa3686ba61bb"}},"id":"source:c442fa3686ba61bb","identity":{"album":"And They All Fall Down","album_id":"album:74cb581c168d4ae1a4cc","artist":"Saint Agnes","artist_id":"mbid:26d09032-2c33-4656-92bc-1e855f3e7d89","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:c442fa3686ba61bb","spotify_id":null,"title":"And They All Fall Down","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-01-23T23:19:27+00:00","last_scrobble":"2026-01-23T23:19:27+00:00","observed_albums":[{"album":"And They All Fall Down","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-74cb581c168d4ae1a4cc/album.json","artist_path":"artists/mb/mbid-26d09032-2c33-4656-92bc-1e855f3e7d89/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:26d09032-2c33-4656-92bc-1e855f3e7d89",
+      "duration_ms": 140000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:c442fa3686ba61bb",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 140000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:c442fa3686ba61bb",
+  "identity": {
+    "album": "And They All Fall Down",
+    "album_id": "album:74cb581c168d4ae1a4cc",
+    "artist": "Saint Agnes",
+    "artist_id": "mbid:26d09032-2c33-4656-92bc-1e855f3e7d89",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:c442fa3686ba61bb",
+    "spotify_id": null,
+    "title": "And They All Fall Down",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-01-23T23:19:27+00:00",
+    "last_scrobble": "2026-01-23T23:19:27+00:00",
+    "observed_albums": [
+      {
+        "album": "And They All Fall Down",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-74cb581c168d4ae1a4cc/album.json",
+    "artist_path": "artists/mb/mbid-26d09032-2c33-4656-92bc-1e855f3e7d89/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

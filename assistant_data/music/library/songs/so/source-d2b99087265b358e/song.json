@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:02b0b2afc7224b59","duration_ms":257000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:01:18.005696+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:d2b99087265b358e"}},"id":"source:d2b99087265b358e","identity":{"album":"ADULT","album_id":"album:b4144ace2dd499dd5ac0","artist":"-MASA Works DESIGEN-","artist_id":"name:02b0b2afc7224b59","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:d2b99087265b358e","spotify_id":null,"title":"The Fox's Wedding","track_number":null},"listening_context":{"all_time_plays":99,"first_scrobble":"2023-02-17T04:09:55+00:00","last_scrobble":"2026-07-25T07:32:28+00:00","observed_albums":[{"album":"ADULT","scrobbles":99}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b4144ace2dd499dd5ac0/album.json","artist_path":"artists/na/name-02b0b2afc7224b59/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:02b0b2afc7224b59",
+      "duration_ms": 257000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:01:18.005696+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:d2b99087265b358e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 257000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:d2b99087265b358e",
+  "identity": {
+    "album": "ADULT",
+    "album_id": "album:b4144ace2dd499dd5ac0",
+    "artist": "-MASA Works DESIGEN-",
+    "artist_id": "name:02b0b2afc7224b59",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:d2b99087265b358e",
+    "spotify_id": null,
+    "title": "The Fox's Wedding",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 99,
+    "first_scrobble": "2023-02-17T04:09:55+00:00",
+    "last_scrobble": "2026-07-25T07:32:28+00:00",
+    "observed_albums": [
+      {
+        "album": "ADULT",
+        "scrobbles": 99
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b4144ace2dd499dd5ac0/album.json",
+    "artist_path": "artists/na/name-02b0b2afc7224b59/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

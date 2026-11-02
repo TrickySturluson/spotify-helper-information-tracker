@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:bf5ebc9a-2118-49ec-91b6-c43305190628","duration_ms":66000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:2f5e9f07-19a5-4779-bc72-492f4f2f657c","track_mbid":"2f5e9f07-19a5-4779-bc72-492f4f2f657c"}},"id":"mbid:2f5e9f07-19a5-4779-bc72-492f4f2f657c","identity":{"album":"Van","album_id":"album:caccec8808312d6fa758","artist":"Clown Core","artist_id":"mbid:bf5ebc9a-2118-49ec-91b6-c43305190628","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2f5e9f07-19a5-4779-bc72-492f4f2f657c","source_track_id":"mbid:2f5e9f07-19a5-4779-bc72-492f4f2f657c","spotify_id":null,"title":"Song","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-09-11T05:12:15+00:00","last_scrobble":"2023-09-11T10:17:46+00:00","observed_albums":[{"album":"Van","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-caccec8808312d6fa758/album.json","artist_path":"artists/mb/mbid-bf5ebc9a-2118-49ec-91b6-c43305190628/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:bf5ebc9a-2118-49ec-91b6-c43305190628",
+      "duration_ms": 66000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:2f5e9f07-19a5-4779-bc72-492f4f2f657c",
+      "track_mbid": "2f5e9f07-19a5-4779-bc72-492f4f2f657c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 66000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2f5e9f07-19a5-4779-bc72-492f4f2f657c",
+  "identity": {
+    "album": "Van",
+    "album_id": "album:caccec8808312d6fa758",
+    "artist": "Clown Core",
+    "artist_id": "mbid:bf5ebc9a-2118-49ec-91b6-c43305190628",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2f5e9f07-19a5-4779-bc72-492f4f2f657c",
+    "source_track_id": "mbid:2f5e9f07-19a5-4779-bc72-492f4f2f657c",
+    "spotify_id": null,
+    "title": "Song",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-09-11T05:12:15+00:00",
+    "last_scrobble": "2023-09-11T10:17:46+00:00",
+    "observed_albums": [
+      {
+        "album": "Van",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-caccec8808312d6fa758/album.json",
+    "artist_path": "artists/mb/mbid-bf5ebc9a-2118-49ec-91b6-c43305190628/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:facf743e-1231-410d-bdf1-9ba11a6a4f3c","duration_ms":521000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9357f9cd-2094-4a1a-a09c-e229b7c4269a","track_mbid":"9357f9cd-2094-4a1a-a09c-e229b7c4269a"}},"id":"mbid:9357f9cd-2094-4a1a-a09c-e229b7c4269a","identity":{"album":"All Of Me","album_id":"album:de72ca95365780fb9676","artist":"高中正義","artist_id":"mbid:facf743e-1231-410d-bdf1-9ba11a6a4f3c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9357f9cd-2094-4a1a-a09c-e229b7c4269a","source_track_id":"mbid:9357f9cd-2094-4a1a-a09c-e229b7c4269a","spotify_id":null,"title":"Ready to Fly","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-22T02:21:20+00:00","last_scrobble":"2026-04-22T02:21:20+00:00","observed_albums":[{"album":"All Of Me","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-de72ca95365780fb9676/album.json","artist_path":"artists/mb/mbid-facf743e-1231-410d-bdf1-9ba11a6a4f3c/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:facf743e-1231-410d-bdf1-9ba11a6a4f3c",
+      "duration_ms": 521000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9357f9cd-2094-4a1a-a09c-e229b7c4269a",
+      "track_mbid": "9357f9cd-2094-4a1a-a09c-e229b7c4269a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 521000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9357f9cd-2094-4a1a-a09c-e229b7c4269a",
+  "identity": {
+    "album": "All Of Me",
+    "album_id": "album:de72ca95365780fb9676",
+    "artist": "高中正義",
+    "artist_id": "mbid:facf743e-1231-410d-bdf1-9ba11a6a4f3c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9357f9cd-2094-4a1a-a09c-e229b7c4269a",
+    "source_track_id": "mbid:9357f9cd-2094-4a1a-a09c-e229b7c4269a",
+    "spotify_id": null,
+    "title": "Ready to Fly",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-22T02:21:20+00:00",
+    "last_scrobble": "2026-04-22T02:21:20+00:00",
+    "observed_albums": [
+      {
+        "album": "All Of Me",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-de72ca95365780fb9676/album.json",
+    "artist_path": "artists/mb/mbid-facf743e-1231-410d-bdf1-9ba11a6a4f3c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

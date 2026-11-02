@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"2010s":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"2012":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Grunge":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Vibe":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"fire":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"lush":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"mania":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","duration_ms":132000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:06:32.928440+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"alternative rock"},{"count":100,"source":"Last.fm track.getTopTags","tag":"indie"},{"count":29,"source":"Last.fm track.getTopTags","tag":"2012"},{"count":29,"source":"Last.fm track.getTopTags","tag":"Grunge"},{"count":15,"source":"Last.fm track.getTopTags","tag":"2010s"},{"count":4,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":4,"source":"Last.fm track.getTopTags","tag":"lush"},{"count":1,"source":"Last.fm track.getTopTags","tag":"fire"},{"count":1,"source":"Last.fm track.getTopTags","tag":"mania"},{"count":1,"source":"Last.fm track.getTopTags","tag":"Vibe"}],"musicbrainz_checked_at":"2026-11-01T09:06:33.784709+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:24199d83-3da3-4fe6-ae55-c76adadeeb6c","track_mbid":"24199d83-3da3-4fe6-ae55-c76adadeeb6c"}},"id":"mbid:24199d83-3da3-4fe6-ae55-c76adadeeb6c","identity":{"album":"LUSH","album_id":"album:71d208c9f74b6def00f4","artist":"Mitski","artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"24199d83-3da3-4fe6-ae55-c76adadeeb6c","source_track_id":"mbid:24199d83-3da3-4fe6-ae55-c76adadeeb6c","spotify_id":null,"title":"Brand New City","track_number":null},"listening_context":{"all_time_plays":73,"first_scrobble":"2024-03-16T03:23:37+00:00","last_scrobble":"2026-10-09T17:47:32+00:00","observed_albums":[{"album":"LUSH","scrobbles":73}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-71d208c9f74b6def00f4/album.json","artist_path":"artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "2010s": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "2012": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Grunge": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Vibe": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "fire": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "lush": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "mania": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+      "duration_ms": 132000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:06:32.928440+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        },
+        {
+          "count": 29,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2012"
+        },
+        {
+          "count": 29,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Grunge"
+        },
+        {
+          "count": 15,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2010s"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "lush"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "fire"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "mania"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Vibe"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T09:06:33.784709+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:24199d83-3da3-4fe6-ae55-c76adadeeb6c",
+      "track_mbid": "24199d83-3da3-4fe6-ae55-c76adadeeb6c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 132000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:24199d83-3da3-4fe6-ae55-c76adadeeb6c",
+  "identity": {
+    "album": "LUSH",
+    "album_id": "album:71d208c9f74b6def00f4",
+    "artist": "Mitski",
+    "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "24199d83-3da3-4fe6-ae55-c76adadeeb6c",
+    "source_track_id": "mbid:24199d83-3da3-4fe6-ae55-c76adadeeb6c",
+    "spotify_id": null,
+    "title": "Brand New City",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 73,
+    "first_scrobble": "2024-03-16T03:23:37+00:00",
+    "last_scrobble": "2026-10-09T17:47:32+00:00",
+    "observed_albums": [
+      {
+        "album": "LUSH",
+        "scrobbles": 73
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-71d208c9f74b6def00f4/album.json",
+    "artist_path": "artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

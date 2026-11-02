@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fcefa5c2-a874-4722-b384-fb0ba560f66b","duration_ms":187000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:dfd1d4bb-5783-465b-b678-9280c2d0369a","track_mbid":"dfd1d4bb-5783-465b-b678-9280c2d0369a"}},"id":"mbid:dfd1d4bb-5783-465b-b678-9280c2d0369a","identity":{"album":"Good Gracious! Bad People.","album_id":"album:12287a9749be69c7aa93","artist":"Sarah and the Safe Word","artist_id":"mbid:fcefa5c2-a874-4722-b384-fb0ba560f66b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"dfd1d4bb-5783-465b-b678-9280c2d0369a","source_track_id":"mbid:dfd1d4bb-5783-465b-b678-9280c2d0369a","spotify_id":null,"title":"The Last Great Sweetheart of the Grand Electric Rodeo","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-06-26T15:37:19+00:00","last_scrobble":"2024-06-26T15:37:19+00:00","observed_albums":[{"album":"Good Gracious! Bad People.","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-12287a9749be69c7aa93/album.json","artist_path":"artists/mb/mbid-fcefa5c2-a874-4722-b384-fb0ba560f66b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fcefa5c2-a874-4722-b384-fb0ba560f66b",
+      "duration_ms": 187000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:dfd1d4bb-5783-465b-b678-9280c2d0369a",
+      "track_mbid": "dfd1d4bb-5783-465b-b678-9280c2d0369a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 187000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:dfd1d4bb-5783-465b-b678-9280c2d0369a",
+  "identity": {
+    "album": "Good Gracious! Bad People.",
+    "album_id": "album:12287a9749be69c7aa93",
+    "artist": "Sarah and the Safe Word",
+    "artist_id": "mbid:fcefa5c2-a874-4722-b384-fb0ba560f66b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "dfd1d4bb-5783-465b-b678-9280c2d0369a",
+    "source_track_id": "mbid:dfd1d4bb-5783-465b-b678-9280c2d0369a",
+    "spotify_id": null,
+    "title": "The Last Great Sweetheart of the Grand Electric Rodeo",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-06-26T15:37:19+00:00",
+    "last_scrobble": "2024-06-26T15:37:19+00:00",
+    "observed_albums": [
+      {
+        "album": "Good Gracious! Bad People.",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-12287a9749be69c7aa93/album.json",
+    "artist_path": "artists/mb/mbid-fcefa5c2-a874-4722-b384-fb0ba560f66b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"70s":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"a horse with no name":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"acoustic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"america":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"classic rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"folk":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"folk rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"oldies":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"soft rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:34cf95c7-4be9-4efd-a48a-c2ea4a0bb114","duration_ms":250000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:37:11.663440+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"classic rock"},{"count":85,"source":"Last.fm track.getTopTags","tag":"70s"},{"count":30,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":30,"source":"Last.fm track.getTopTags","tag":"soft rock"},{"count":12,"source":"Last.fm track.getTopTags","tag":"folk"},{"count":6,"source":"Last.fm track.getTopTags","tag":"folk rock"},{"count":5,"source":"Last.fm track.getTopTags","tag":"america"},{"count":1,"source":"Last.fm track.getTopTags","tag":"a horse with no name"},{"count":1,"source":"Last.fm track.getTopTags","tag":"acoustic"},{"count":1,"source":"Last.fm track.getTopTags","tag":"oldies"}],"musicbrainz_checked_at":"2026-11-01T22:37:12.745521+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"identity_mismatch","retry_after":0,"track_id":"mbid:839dec00-3e80-4de3-94cd-6f04cc969d17","track_mbid":"839dec00-3e80-4de3-94cd-6f04cc969d17"}},"id":"mbid:839dec00-3e80-4de3-94cd-6f04cc969d17","identity":{"album":"America","album_id":"album:f4ebdde8a7fa9a4610f6","artist":"America","artist_id":"mbid:34cf95c7-4be9-4efd-a48a-c2ea4a0bb114","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"839dec00-3e80-4de3-94cd-6f04cc969d17","source_track_id":"track:bd3696e77623c5b3","spotify_id":null,"title":"A Horse With No Name","track_number":null},"listening_context":{"all_time_plays":34,"first_scrobble":"2025-10-21T14:08:34+00:00","last_scrobble":"2026-07-20T04:53:32+00:00","observed_albums":[{"album":"America","scrobbles":34}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f4ebdde8a7fa9a4610f6/album.json","artist_path":"artists/mb/mbid-34cf95c7-4be9-4efd-a48a-c2ea4a0bb114/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"identity_mismatch"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "70s": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "a horse with no name": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "acoustic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "america": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "classic rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "folk": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "folk rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "oldies": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "soft rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:34cf95c7-4be9-4efd-a48a-c2ea4a0bb114",
+      "duration_ms": 250000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:37:11.663440+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "classic rock"
+        },
+        {
+          "count": 85,
+          "source": "Last.fm track.getTopTags",
+          "tag": "70s"
+        },
+        {
+          "count": 30,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 30,
+          "source": "Last.fm track.getTopTags",
+          "tag": "soft rock"
+        },
+        {
+          "count": 12,
+          "source": "Last.fm track.getTopTags",
+          "tag": "folk"
+        },
+        {
+          "count": 6,
+          "source": "Last.fm track.getTopTags",
+          "tag": "folk rock"
+        },
+        {
+          "count": 5,
+          "source": "Last.fm track.getTopTags",
+          "tag": "america"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "a horse with no name"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "acoustic"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "oldies"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T22:37:12.745521+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "identity_mismatch",
+      "retry_after": 0,
+      "track_id": "mbid:839dec00-3e80-4de3-94cd-6f04cc969d17",
+      "track_mbid": "839dec00-3e80-4de3-94cd-6f04cc969d17",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 250000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:839dec00-3e80-4de3-94cd-6f04cc969d17",
+  "identity": {
+    "album": "America",
+    "album_id": "album:f4ebdde8a7fa9a4610f6",
+    "artist": "America",
+    "artist_id": "mbid:34cf95c7-4be9-4efd-a48a-c2ea4a0bb114",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "839dec00-3e80-4de3-94cd-6f04cc969d17",
+    "source_track_id": "track:bd3696e77623c5b3",
+    "spotify_id": null,
+    "title": "A Horse With No Name",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 34,
+    "first_scrobble": "2025-10-21T14:08:34+00:00",
+    "last_scrobble": "2026-07-20T04:53:32+00:00",
+    "observed_albums": [
+      {
+        "album": "America",
+        "scrobbles": 34
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f4ebdde8a7fa9a4610f6/album.json",
+    "artist_path": "artists/mb/mbid-34cf95c7-4be9-4efd-a48a-c2ea4a0bb114/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "identity_mismatch"
+    }
+  }
+}

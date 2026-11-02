@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:64245a744a4bc6db","duration_ms":108000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:2038c1b9-11d4-319e-aa09-76cf722ed9a2","track_mbid":"2038c1b9-11d4-319e-aa09-76cf722ed9a2"}},"id":"mbid:2038c1b9-11d4-319e-aa09-76cf722ed9a2","identity":{"album":"Martial Arts Weekend","album_id":"album:c0fc289b19973479e3fb","artist":"The Extra Glenns","artist_id":"name:64245a744a4bc6db","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2038c1b9-11d4-319e-aa09-76cf722ed9a2","source_track_id":"mbid:2038c1b9-11d4-319e-aa09-76cf722ed9a2","spotify_id":null,"title":"All Rooms Cable A/C Free Coffee","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2024-09-30T16:42:47+00:00","last_scrobble":"2024-10-05T23:05:34+00:00","observed_albums":[{"album":"Martial Arts Weekend","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c0fc289b19973479e3fb/album.json","artist_path":"artists/na/name-64245a744a4bc6db/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:64245a744a4bc6db",
+      "duration_ms": 108000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:2038c1b9-11d4-319e-aa09-76cf722ed9a2",
+      "track_mbid": "2038c1b9-11d4-319e-aa09-76cf722ed9a2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 108000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2038c1b9-11d4-319e-aa09-76cf722ed9a2",
+  "identity": {
+    "album": "Martial Arts Weekend",
+    "album_id": "album:c0fc289b19973479e3fb",
+    "artist": "The Extra Glenns",
+    "artist_id": "name:64245a744a4bc6db",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2038c1b9-11d4-319e-aa09-76cf722ed9a2",
+    "source_track_id": "mbid:2038c1b9-11d4-319e-aa09-76cf722ed9a2",
+    "spotify_id": null,
+    "title": "All Rooms Cable A/C Free Coffee",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2024-09-30T16:42:47+00:00",
+    "last_scrobble": "2024-10-05T23:05:34+00:00",
+    "observed_albums": [
+      {
+        "album": "Martial Arts Weekend",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c0fc289b19973479e3fb/album.json",
+    "artist_path": "artists/na/name-64245a744a4bc6db/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

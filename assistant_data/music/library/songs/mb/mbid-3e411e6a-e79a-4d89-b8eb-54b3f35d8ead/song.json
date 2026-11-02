@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:40ba9452-6a60-42a2-8704-572c7a598bf7","duration_ms":181000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3e411e6a-e79a-4d89-b8eb-54b3f35d8ead","track_mbid":"3e411e6a-e79a-4d89-b8eb-54b3f35d8ead"}},"id":"mbid:3e411e6a-e79a-4d89-b8eb-54b3f35d8ead","identity":{"album":"Possession","album_id":"album:df594768ef3056ea60fb","artist":"Joywave","artist_id":"mbid:40ba9452-6a60-42a2-8704-572c7a598bf7","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3e411e6a-e79a-4d89-b8eb-54b3f35d8ead","source_track_id":"mbid:3e411e6a-e79a-4d89-b8eb-54b3f35d8ead","spotify_id":null,"title":"F.E.A.R.","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-13T23:24:51+00:00","last_scrobble":"2026-03-13T23:24:51+00:00","observed_albums":[{"album":"Possession","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-df594768ef3056ea60fb/album.json","artist_path":"artists/mb/mbid-40ba9452-6a60-42a2-8704-572c7a598bf7/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:40ba9452-6a60-42a2-8704-572c7a598bf7",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3e411e6a-e79a-4d89-b8eb-54b3f35d8ead",
+      "track_mbid": "3e411e6a-e79a-4d89-b8eb-54b3f35d8ead",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3e411e6a-e79a-4d89-b8eb-54b3f35d8ead",
+  "identity": {
+    "album": "Possession",
+    "album_id": "album:df594768ef3056ea60fb",
+    "artist": "Joywave",
+    "artist_id": "mbid:40ba9452-6a60-42a2-8704-572c7a598bf7",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3e411e6a-e79a-4d89-b8eb-54b3f35d8ead",
+    "source_track_id": "mbid:3e411e6a-e79a-4d89-b8eb-54b3f35d8ead",
+    "spotify_id": null,
+    "title": "F.E.A.R.",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-13T23:24:51+00:00",
+    "last_scrobble": "2026-03-13T23:24:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Possession",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-df594768ef3056ea60fb/album.json",
+    "artist_path": "artists/mb/mbid-40ba9452-6a60-42a2-8704-572c7a598bf7/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

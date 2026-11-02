@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7c39e770-0ca8-4c23-895f-6f0a2e04174d","duration_ms":278000,"duration_source":"Last.fm track.getInfo","track_id":"track:1794b96b0476fa7e"}},"id":"source:1794b96b0476fa7e","identity":{"album":"Grungy Bungee","album_id":"album:195112ed53b3d3b038a9","artist":"Mr Floyd Larry","artist_id":"mbid:7c39e770-0ca8-4c23-895f-6f0a2e04174d","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:1794b96b0476fa7e","spotify_id":null,"title":"Safe and Sound","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2024-04-11T02:47:21+00:00","last_scrobble":"2024-04-14T20:55:17+00:00","observed_albums":[{"album":"Grungy Bungee","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-195112ed53b3d3b038a9/album.json","artist_path":"artists/mb/mbid-7c39e770-0ca8-4c23-895f-6f0a2e04174d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7c39e770-0ca8-4c23-895f-6f0a2e04174d",
+      "duration_ms": 278000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:1794b96b0476fa7e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 278000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:1794b96b0476fa7e",
+  "identity": {
+    "album": "Grungy Bungee",
+    "album_id": "album:195112ed53b3d3b038a9",
+    "artist": "Mr Floyd Larry",
+    "artist_id": "mbid:7c39e770-0ca8-4c23-895f-6f0a2e04174d",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:1794b96b0476fa7e",
+    "spotify_id": null,
+    "title": "Safe and Sound",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2024-04-11T02:47:21+00:00",
+    "last_scrobble": "2024-04-14T20:55:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Grungy Bungee",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-195112ed53b3d3b038a9/album.json",
+    "artist_path": "artists/mb/mbid-7c39e770-0ca8-4c23-895f-6f0a2e04174d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

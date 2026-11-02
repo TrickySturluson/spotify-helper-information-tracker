@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ea0f2a37-7007-4217-a812-396227f5013a","duration_ms":406000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0e806c0d-f5fe-3178-8cb7-a0d68c95a4be","track_mbid":"0e806c0d-f5fe-3178-8cb7-a0d68c95a4be"}},"id":"mbid:0e806c0d-f5fe-3178-8cb7-a0d68c95a4be","identity":{"album":"Welcome to Sky Valley","album_id":"album:1358c0fb239b7597c0b1","artist":"Kyuss","artist_id":"mbid:ea0f2a37-7007-4217-a812-396227f5013a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0e806c0d-f5fe-3178-8cb7-a0d68c95a4be","source_track_id":"mbid:0e806c0d-f5fe-3178-8cb7-a0d68c95a4be","spotify_id":null,"title":"Gardenia","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-03-12T00:53:16+00:00","last_scrobble":"2026-03-13T01:16:07+00:00","observed_albums":[{"album":"Welcome to Sky Valley","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1358c0fb239b7597c0b1/album.json","artist_path":"artists/mb/mbid-ea0f2a37-7007-4217-a812-396227f5013a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ea0f2a37-7007-4217-a812-396227f5013a",
+      "duration_ms": 406000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0e806c0d-f5fe-3178-8cb7-a0d68c95a4be",
+      "track_mbid": "0e806c0d-f5fe-3178-8cb7-a0d68c95a4be",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 406000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0e806c0d-f5fe-3178-8cb7-a0d68c95a4be",
+  "identity": {
+    "album": "Welcome to Sky Valley",
+    "album_id": "album:1358c0fb239b7597c0b1",
+    "artist": "Kyuss",
+    "artist_id": "mbid:ea0f2a37-7007-4217-a812-396227f5013a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0e806c0d-f5fe-3178-8cb7-a0d68c95a4be",
+    "source_track_id": "mbid:0e806c0d-f5fe-3178-8cb7-a0d68c95a4be",
+    "spotify_id": null,
+    "title": "Gardenia",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-03-12T00:53:16+00:00",
+    "last_scrobble": "2026-03-13T01:16:07+00:00",
+    "observed_albums": [
+      {
+        "album": "Welcome to Sky Valley",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1358c0fb239b7597c0b1/album.json",
+    "artist_path": "artists/mb/mbid-ea0f2a37-7007-4217-a812-396227f5013a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

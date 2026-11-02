@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8549ac4e-d240-4a86-8685-e355e51b3103","duration_ms":269000,"duration_source":"Last.fm track.getInfo","track_id":"track:b68345e2cd015fe3"}},"id":"source:b68345e2cd015fe3","identity":{"album":"Headlights / Lizarz","album_id":"album:8931ca82b9a2ce6d9e1c","artist":"Speelburg","artist_id":"mbid:8549ac4e-d240-4a86-8685-e355e51b3103","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:b68345e2cd015fe3","spotify_id":null,"title":"Headlights","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-02-25T12:17:50+00:00","last_scrobble":"2023-02-25T12:17:50+00:00","observed_albums":[{"album":"Headlights / Lizarz","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8931ca82b9a2ce6d9e1c/album.json","artist_path":"artists/mb/mbid-8549ac4e-d240-4a86-8685-e355e51b3103/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8549ac4e-d240-4a86-8685-e355e51b3103",
+      "duration_ms": 269000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:b68345e2cd015fe3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 269000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:b68345e2cd015fe3",
+  "identity": {
+    "album": "Headlights / Lizarz",
+    "album_id": "album:8931ca82b9a2ce6d9e1c",
+    "artist": "Speelburg",
+    "artist_id": "mbid:8549ac4e-d240-4a86-8685-e355e51b3103",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:b68345e2cd015fe3",
+    "spotify_id": null,
+    "title": "Headlights",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-02-25T12:17:50+00:00",
+    "last_scrobble": "2023-02-25T12:17:50+00:00",
+    "observed_albums": [
+      {
+        "album": "Headlights / Lizarz",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8931ca82b9a2ce6d9e1c/album.json",
+    "artist_path": "artists/mb/mbid-8549ac4e-d240-4a86-8685-e355e51b3103/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

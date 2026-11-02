@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a49b394a-2d64-4d57-b4fe-b389a3cabafd","duration_ms":138000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0fbedaaa-0b06-43d2-8091-e410b122aedd","track_mbid":"0fbedaaa-0b06-43d2-8091-e410b122aedd"}},"id":"mbid:0fbedaaa-0b06-43d2-8091-e410b122aedd","identity":{"album":"music for museum gift shops","album_id":"album:d459586ab08a5c5e464a","artist":"Lullatone","artist_id":"mbid:a49b394a-2d64-4d57-b4fe-b389a3cabafd","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0fbedaaa-0b06-43d2-8091-e410b122aedd","source_track_id":"mbid:0fbedaaa-0b06-43d2-8091-e410b122aedd","spotify_id":null,"title":"fireflies and lightning bugs (piano version)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-16T02:28:42+00:00","last_scrobble":"2026-04-16T02:28:42+00:00","observed_albums":[{"album":"music for museum gift shops","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d459586ab08a5c5e464a/album.json","artist_path":"artists/mb/mbid-a49b394a-2d64-4d57-b4fe-b389a3cabafd/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a49b394a-2d64-4d57-b4fe-b389a3cabafd",
+      "duration_ms": 138000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0fbedaaa-0b06-43d2-8091-e410b122aedd",
+      "track_mbid": "0fbedaaa-0b06-43d2-8091-e410b122aedd",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 138000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0fbedaaa-0b06-43d2-8091-e410b122aedd",
+  "identity": {
+    "album": "music for museum gift shops",
+    "album_id": "album:d459586ab08a5c5e464a",
+    "artist": "Lullatone",
+    "artist_id": "mbid:a49b394a-2d64-4d57-b4fe-b389a3cabafd",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0fbedaaa-0b06-43d2-8091-e410b122aedd",
+    "source_track_id": "mbid:0fbedaaa-0b06-43d2-8091-e410b122aedd",
+    "spotify_id": null,
+    "title": "fireflies and lightning bugs (piano version)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-16T02:28:42+00:00",
+    "last_scrobble": "2026-04-16T02:28:42+00:00",
+    "observed_albums": [
+      {
+        "album": "music for museum gift shops",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d459586ab08a5c5e464a/album.json",
+    "artist_path": "artists/mb/mbid-a49b394a-2d64-4d57-b4fe-b389a3cabafd/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

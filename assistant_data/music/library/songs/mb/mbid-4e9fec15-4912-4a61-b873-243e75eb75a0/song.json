@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:bf629fc0-2d07-4fa3-90dd-1e77629be935","duration_ms":192000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4e9fec15-4912-4a61-b873-243e75eb75a0","track_mbid":"4e9fec15-4912-4a61-b873-243e75eb75a0"}},"id":"mbid:4e9fec15-4912-4a61-b873-243e75eb75a0","identity":{"album":"Ceremony","album_id":"album:01fbea4286c74cf5f9ba","artist":"Twin Tribes","artist_id":"mbid:bf629fc0-2d07-4fa3-90dd-1e77629be935","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4e9fec15-4912-4a61-b873-243e75eb75a0","source_track_id":"mbid:4e9fec15-4912-4a61-b873-243e75eb75a0","spotify_id":null,"title":"Fantasmas","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-07-02T16:13:42+00:00","last_scrobble":"2025-07-06T12:23:15+00:00","observed_albums":[{"album":"Ceremony","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-01fbea4286c74cf5f9ba/album.json","artist_path":"artists/mb/mbid-bf629fc0-2d07-4fa3-90dd-1e77629be935/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:bf629fc0-2d07-4fa3-90dd-1e77629be935",
+      "duration_ms": 192000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4e9fec15-4912-4a61-b873-243e75eb75a0",
+      "track_mbid": "4e9fec15-4912-4a61-b873-243e75eb75a0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 192000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4e9fec15-4912-4a61-b873-243e75eb75a0",
+  "identity": {
+    "album": "Ceremony",
+    "album_id": "album:01fbea4286c74cf5f9ba",
+    "artist": "Twin Tribes",
+    "artist_id": "mbid:bf629fc0-2d07-4fa3-90dd-1e77629be935",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4e9fec15-4912-4a61-b873-243e75eb75a0",
+    "source_track_id": "mbid:4e9fec15-4912-4a61-b873-243e75eb75a0",
+    "spotify_id": null,
+    "title": "Fantasmas",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-07-02T16:13:42+00:00",
+    "last_scrobble": "2025-07-06T12:23:15+00:00",
+    "observed_albums": [
+      {
+        "album": "Ceremony",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-01fbea4286c74cf5f9ba/album.json",
+    "artist_path": "artists/mb/mbid-bf629fc0-2d07-4fa3-90dd-1e77629be935/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

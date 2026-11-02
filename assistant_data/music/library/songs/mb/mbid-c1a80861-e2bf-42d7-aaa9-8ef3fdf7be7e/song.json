@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:48f987de-4924-48da-8eb0-e3228f7657b4","duration_ms":208000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e","track_mbid":"c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e"}},"id":"mbid:c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e","identity":{"album":"Language","album_id":"album:d308d0407da96a56762a","artist":"XXX","artist_id":"mbid:48f987de-4924-48da-8eb0-e3228f7657b4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e","source_track_id":"mbid:c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e","spotify_id":null,"title":"What You Want","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-09-18T18:19:27+00:00","last_scrobble":"2025-09-18T18:26:32+00:00","observed_albums":[{"album":"Language","scrobbles":1},{"album":"What You Want","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d308d0407da96a56762a/album.json","artist_path":"artists/mb/mbid-48f987de-4924-48da-8eb0-e3228f7657b4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:48f987de-4924-48da-8eb0-e3228f7657b4",
+      "duration_ms": 208000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e",
+      "track_mbid": "c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 208000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e",
+  "identity": {
+    "album": "Language",
+    "album_id": "album:d308d0407da96a56762a",
+    "artist": "XXX",
+    "artist_id": "mbid:48f987de-4924-48da-8eb0-e3228f7657b4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e",
+    "source_track_id": "mbid:c1a80861-e2bf-42d7-aaa9-8ef3fdf7be7e",
+    "spotify_id": null,
+    "title": "What You Want",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-09-18T18:19:27+00:00",
+    "last_scrobble": "2025-09-18T18:26:32+00:00",
+    "observed_albums": [
+      {
+        "album": "Language",
+        "scrobbles": 1
+      },
+      {
+        "album": "What You Want",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d308d0407da96a56762a/album.json",
+    "artist_path": "artists/mb/mbid-48f987de-4924-48da-8eb0-e3228f7657b4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

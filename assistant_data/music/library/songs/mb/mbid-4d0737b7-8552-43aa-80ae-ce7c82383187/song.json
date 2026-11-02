@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:b0e474d83a3640d5","duration_ms":185000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4d0737b7-8552-43aa-80ae-ce7c82383187","track_mbid":"4d0737b7-8552-43aa-80ae-ce7c82383187"}},"id":"mbid:4d0737b7-8552-43aa-80ae-ce7c82383187","identity":{"album":"The Boiler Room","album_id":"album:3d7f25f022ab15553aff","artist":"Jarv & Thief","artist_id":"name:b0e474d83a3640d5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4d0737b7-8552-43aa-80ae-ce7c82383187","source_track_id":"mbid:4d0737b7-8552-43aa-80ae-ce7c82383187","spotify_id":null,"title":"Lady Killer","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-12-25T05:49:48+00:00","last_scrobble":"2025-12-25T05:49:48+00:00","observed_albums":[{"album":"The Boiler Room","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3d7f25f022ab15553aff/album.json","artist_path":"artists/na/name-b0e474d83a3640d5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:b0e474d83a3640d5",
+      "duration_ms": 185000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4d0737b7-8552-43aa-80ae-ce7c82383187",
+      "track_mbid": "4d0737b7-8552-43aa-80ae-ce7c82383187",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 185000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4d0737b7-8552-43aa-80ae-ce7c82383187",
+  "identity": {
+    "album": "The Boiler Room",
+    "album_id": "album:3d7f25f022ab15553aff",
+    "artist": "Jarv & Thief",
+    "artist_id": "name:b0e474d83a3640d5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4d0737b7-8552-43aa-80ae-ce7c82383187",
+    "source_track_id": "mbid:4d0737b7-8552-43aa-80ae-ce7c82383187",
+    "spotify_id": null,
+    "title": "Lady Killer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-12-25T05:49:48+00:00",
+    "last_scrobble": "2025-12-25T05:49:48+00:00",
+    "observed_albums": [
+      {
+        "album": "The Boiler Room",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3d7f25f022ab15553aff/album.json",
+    "artist_path": "artists/na/name-b0e474d83a3640d5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

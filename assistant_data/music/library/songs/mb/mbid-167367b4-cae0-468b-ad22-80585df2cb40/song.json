@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c9fc1027-3fce-4d79-a634-5bde4344dce4","duration_ms":233000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T07:33:50.479748+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-10-31T07:33:51.219463+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:167367b4-cae0-468b-ad22-80585df2cb40","track_mbid":"167367b4-cae0-468b-ad22-80585df2cb40"}},"id":"mbid:167367b4-cae0-468b-ad22-80585df2cb40","identity":{"album":"Hot Freaks","album_id":"album:904a5ea014801a2bdc81","artist":"Hot Freaks","artist_id":"mbid:c9fc1027-3fce-4d79-a634-5bde4344dce4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"167367b4-cae0-468b-ad22-80585df2cb40","source_track_id":"mbid:167367b4-cae0-468b-ad22-80585df2cb40","spotify_id":null,"title":"Outset Island","track_number":null},"listening_context":{"all_time_plays":109,"first_scrobble":"2023-06-12T18:14:06+00:00","last_scrobble":"2026-10-11T22:41:48+00:00","observed_albums":[{"album":"Hot Freaks","scrobbles":109}],"priority_playlist_ids":[],"recent_plays":3,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-904a5ea014801a2bdc81/album.json","artist_path":"artists/mb/mbid-c9fc1027-3fce-4d79-a634-5bde4344dce4/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c9fc1027-3fce-4d79-a634-5bde4344dce4",
+      "duration_ms": 233000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T07:33:50.479748+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-10-31T07:33:51.219463+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:167367b4-cae0-468b-ad22-80585df2cb40",
+      "track_mbid": "167367b4-cae0-468b-ad22-80585df2cb40",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 233000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:167367b4-cae0-468b-ad22-80585df2cb40",
+  "identity": {
+    "album": "Hot Freaks",
+    "album_id": "album:904a5ea014801a2bdc81",
+    "artist": "Hot Freaks",
+    "artist_id": "mbid:c9fc1027-3fce-4d79-a634-5bde4344dce4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "167367b4-cae0-468b-ad22-80585df2cb40",
+    "source_track_id": "mbid:167367b4-cae0-468b-ad22-80585df2cb40",
+    "spotify_id": null,
+    "title": "Outset Island",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 109,
+    "first_scrobble": "2023-06-12T18:14:06+00:00",
+    "last_scrobble": "2026-10-11T22:41:48+00:00",
+    "observed_albums": [
+      {
+        "album": "Hot Freaks",
+        "scrobbles": 109
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 3,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-904a5ea014801a2bdc81/album.json",
+    "artist_path": "artists/mb/mbid-c9fc1027-3fce-4d79-a634-5bde4344dce4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

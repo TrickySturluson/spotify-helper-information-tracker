@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:86c80cc3-13b0-4ca7-ae5a-d16f00c11a59","duration_ms":208000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f2e6daad-3af7-48b1-aed6-38b48a32017a","track_mbid":"f2e6daad-3af7-48b1-aed6-38b48a32017a"}},"id":"mbid:f2e6daad-3af7-48b1-aed6-38b48a32017a","identity":{"album":"The Pact","album_id":"album:6581760c2c7d5e97d2b0","artist":"Slothrust","artist_id":"mbid:86c80cc3-13b0-4ca7-ae5a-d16f00c11a59","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f2e6daad-3af7-48b1-aed6-38b48a32017a","source_track_id":"mbid:f2e6daad-3af7-48b1-aed6-38b48a32017a","spotify_id":null,"title":"Planetarium","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2023-02-15T23:42:12+00:00","last_scrobble":"2026-07-12T23:12:25+00:00","observed_albums":[{"album":"The Pact","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6581760c2c7d5e97d2b0/album.json","artist_path":"artists/mb/mbid-86c80cc3-13b0-4ca7-ae5a-d16f00c11a59/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:86c80cc3-13b0-4ca7-ae5a-d16f00c11a59",
+      "duration_ms": 208000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f2e6daad-3af7-48b1-aed6-38b48a32017a",
+      "track_mbid": "f2e6daad-3af7-48b1-aed6-38b48a32017a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 208000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f2e6daad-3af7-48b1-aed6-38b48a32017a",
+  "identity": {
+    "album": "The Pact",
+    "album_id": "album:6581760c2c7d5e97d2b0",
+    "artist": "Slothrust",
+    "artist_id": "mbid:86c80cc3-13b0-4ca7-ae5a-d16f00c11a59",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f2e6daad-3af7-48b1-aed6-38b48a32017a",
+    "source_track_id": "mbid:f2e6daad-3af7-48b1-aed6-38b48a32017a",
+    "spotify_id": null,
+    "title": "Planetarium",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2023-02-15T23:42:12+00:00",
+    "last_scrobble": "2026-07-12T23:12:25+00:00",
+    "observed_albums": [
+      {
+        "album": "The Pact",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6581760c2c7d5e97d2b0/album.json",
+    "artist_path": "artists/mb/mbid-86c80cc3-13b0-4ca7-ae5a-d16f00c11a59/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

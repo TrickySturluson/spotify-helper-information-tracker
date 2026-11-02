@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f","duration_ms":222000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4371b4e7-a950-434f-807f-2b3d0ba92baa","track_mbid":"4371b4e7-a950-434f-807f-2b3d0ba92baa"}},"id":"mbid:4371b4e7-a950-434f-807f-2b3d0ba92baa","identity":{"album":"Coma","album_id":"album:50e84ee89de78d3028df","artist":"yeule","artist_id":"mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4371b4e7-a950-434f-807f-2b3d0ba92baa","source_track_id":"mbid:4371b4e7-a950-434f-807f-2b3d0ba92baa","spotify_id":null,"title":"Separation Anxiety","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-10-12T18:59:52+00:00","last_scrobble":"2023-10-30T15:07:13+00:00","observed_albums":[{"album":"Coma","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-50e84ee89de78d3028df/album.json","artist_path":"artists/mb/mbid-31da7b06-bc30-4a1f-9f4a-c2ac1a84167f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f",
+      "duration_ms": 222000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4371b4e7-a950-434f-807f-2b3d0ba92baa",
+      "track_mbid": "4371b4e7-a950-434f-807f-2b3d0ba92baa",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 222000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4371b4e7-a950-434f-807f-2b3d0ba92baa",
+  "identity": {
+    "album": "Coma",
+    "album_id": "album:50e84ee89de78d3028df",
+    "artist": "yeule",
+    "artist_id": "mbid:31da7b06-bc30-4a1f-9f4a-c2ac1a84167f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4371b4e7-a950-434f-807f-2b3d0ba92baa",
+    "source_track_id": "mbid:4371b4e7-a950-434f-807f-2b3d0ba92baa",
+    "spotify_id": null,
+    "title": "Separation Anxiety",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-10-12T18:59:52+00:00",
+    "last_scrobble": "2023-10-30T15:07:13+00:00",
+    "observed_albums": [
+      {
+        "album": "Coma",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-50e84ee89de78d3028df/album.json",
+    "artist_path": "artists/mb/mbid-31da7b06-bc30-4a1f-9f4a-c2ac1a84167f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

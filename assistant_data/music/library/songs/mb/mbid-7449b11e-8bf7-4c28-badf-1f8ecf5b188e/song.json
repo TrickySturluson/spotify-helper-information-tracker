@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:198841d93349226b","duration_ms":232000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7449b11e-8bf7-4c28-badf-1f8ecf5b188e","track_mbid":"7449b11e-8bf7-4c28-badf-1f8ecf5b188e"}},"id":"mbid:7449b11e-8bf7-4c28-badf-1f8ecf5b188e","identity":{"album":"pressed rose","album_id":"album:530a6d9ba942d5f089ff","artist":"elliotly","artist_id":"name:198841d93349226b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7449b11e-8bf7-4c28-badf-1f8ecf5b188e","source_track_id":"mbid:7449b11e-8bf7-4c28-badf-1f8ecf5b188e","spotify_id":null,"title":"eating my computer","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-04-01T16:10:21+00:00","last_scrobble":"2023-04-01T16:10:21+00:00","observed_albums":[{"album":"pressed rose","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-530a6d9ba942d5f089ff/album.json","artist_path":"artists/na/name-198841d93349226b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:198841d93349226b",
+      "duration_ms": 232000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7449b11e-8bf7-4c28-badf-1f8ecf5b188e",
+      "track_mbid": "7449b11e-8bf7-4c28-badf-1f8ecf5b188e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 232000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7449b11e-8bf7-4c28-badf-1f8ecf5b188e",
+  "identity": {
+    "album": "pressed rose",
+    "album_id": "album:530a6d9ba942d5f089ff",
+    "artist": "elliotly",
+    "artist_id": "name:198841d93349226b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7449b11e-8bf7-4c28-badf-1f8ecf5b188e",
+    "source_track_id": "mbid:7449b11e-8bf7-4c28-badf-1f8ecf5b188e",
+    "spotify_id": null,
+    "title": "eating my computer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-04-01T16:10:21+00:00",
+    "last_scrobble": "2023-04-01T16:10:21+00:00",
+    "observed_albums": [
+      {
+        "album": "pressed rose",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-530a6d9ba942d5f089ff/album.json",
+    "artist_path": "artists/na/name-198841d93349226b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

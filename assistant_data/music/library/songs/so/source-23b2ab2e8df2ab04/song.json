@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:985b51f4736ff7ee","duration_ms":173000,"duration_source":"Last.fm track.getInfo","track_id":"track:23b2ab2e8df2ab04"}},"id":"source:23b2ab2e8df2ab04","identity":{"album":"Had It","album_id":"album:dae82afb8bdbc739221a","artist":"Dumb Crush","artist_id":"name:985b51f4736ff7ee","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:23b2ab2e8df2ab04","spotify_id":null,"title":"Had It","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-07-04T17:37:43+00:00","last_scrobble":"2026-07-04T17:37:43+00:00","observed_albums":[{"album":"Had It","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-dae82afb8bdbc739221a/album.json","artist_path":"artists/na/name-985b51f4736ff7ee/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:985b51f4736ff7ee",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:23b2ab2e8df2ab04",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:23b2ab2e8df2ab04",
+  "identity": {
+    "album": "Had It",
+    "album_id": "album:dae82afb8bdbc739221a",
+    "artist": "Dumb Crush",
+    "artist_id": "name:985b51f4736ff7ee",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:23b2ab2e8df2ab04",
+    "spotify_id": null,
+    "title": "Had It",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-07-04T17:37:43+00:00",
+    "last_scrobble": "2026-07-04T17:37:43+00:00",
+    "observed_albums": [
+      {
+        "album": "Had It",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-dae82afb8bdbc739221a/album.json",
+    "artist_path": "artists/na/name-985b51f4736ff7ee/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

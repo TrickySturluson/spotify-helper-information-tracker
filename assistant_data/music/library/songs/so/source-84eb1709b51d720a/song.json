@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:24a083dc-a94b-4ba2-a596-64bb1bd69fff","duration_ms":192000,"duration_source":"Last.fm track.getInfo","track_id":"track:84eb1709b51d720a"}},"id":"source:84eb1709b51d720a","identity":{"album":"Pop Rocks","album_id":"album:5b949e131ac662687130","artist":"Cherry Hencefox","artist_id":"mbid:24a083dc-a94b-4ba2-a596-64bb1bd69fff","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:84eb1709b51d720a","spotify_id":null,"title":"Pop Rocks","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2024-06-11T14:03:25+00:00","last_scrobble":"2024-11-27T06:41:42+00:00","observed_albums":[{"album":"Pop Rocks","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5b949e131ac662687130/album.json","artist_path":"artists/mb/mbid-24a083dc-a94b-4ba2-a596-64bb1bd69fff/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:24a083dc-a94b-4ba2-a596-64bb1bd69fff",
+      "duration_ms": 192000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:84eb1709b51d720a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 192000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:84eb1709b51d720a",
+  "identity": {
+    "album": "Pop Rocks",
+    "album_id": "album:5b949e131ac662687130",
+    "artist": "Cherry Hencefox",
+    "artist_id": "mbid:24a083dc-a94b-4ba2-a596-64bb1bd69fff",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:84eb1709b51d720a",
+    "spotify_id": null,
+    "title": "Pop Rocks",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2024-06-11T14:03:25+00:00",
+    "last_scrobble": "2024-11-27T06:41:42+00:00",
+    "observed_albums": [
+      {
+        "album": "Pop Rocks",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5b949e131ac662687130/album.json",
+    "artist_path": "artists/mb/mbid-24a083dc-a94b-4ba2-a596-64bb1bd69fff/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

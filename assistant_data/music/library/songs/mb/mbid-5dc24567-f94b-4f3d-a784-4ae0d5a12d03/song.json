@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4ad8190b-d2fd-46f8-a3d9-c0f55c034976","duration_ms":235000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5dc24567-f94b-4f3d-a784-4ae0d5a12d03","track_mbid":"5dc24567-f94b-4f3d-a784-4ae0d5a12d03"}},"id":"mbid:5dc24567-f94b-4f3d-a784-4ae0d5a12d03","identity":{"album":"I Disagree","album_id":"album:923c264c2b196983012e","artist":"Poppy","artist_id":"mbid:4ad8190b-d2fd-46f8-a3d9-c0f55c034976","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5dc24567-f94b-4f3d-a784-4ae0d5a12d03","source_track_id":"mbid:5dc24567-f94b-4f3d-a784-4ae0d5a12d03","spotify_id":null,"title":"Concrete","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2024-03-06T22:22:54+00:00","last_scrobble":"2024-03-09T19:27:47+00:00","observed_albums":[{"album":"I Disagree","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-923c264c2b196983012e/album.json","artist_path":"artists/mb/mbid-4ad8190b-d2fd-46f8-a3d9-c0f55c034976/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4ad8190b-d2fd-46f8-a3d9-c0f55c034976",
+      "duration_ms": 235000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5dc24567-f94b-4f3d-a784-4ae0d5a12d03",
+      "track_mbid": "5dc24567-f94b-4f3d-a784-4ae0d5a12d03",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 235000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5dc24567-f94b-4f3d-a784-4ae0d5a12d03",
+  "identity": {
+    "album": "I Disagree",
+    "album_id": "album:923c264c2b196983012e",
+    "artist": "Poppy",
+    "artist_id": "mbid:4ad8190b-d2fd-46f8-a3d9-c0f55c034976",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5dc24567-f94b-4f3d-a784-4ae0d5a12d03",
+    "source_track_id": "mbid:5dc24567-f94b-4f3d-a784-4ae0d5a12d03",
+    "spotify_id": null,
+    "title": "Concrete",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2024-03-06T22:22:54+00:00",
+    "last_scrobble": "2024-03-09T19:27:47+00:00",
+    "observed_albums": [
+      {
+        "album": "I Disagree",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-923c264c2b196983012e/album.json",
+    "artist_path": "artists/mb/mbid-4ad8190b-d2fd-46f8-a3d9-c0f55c034976/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

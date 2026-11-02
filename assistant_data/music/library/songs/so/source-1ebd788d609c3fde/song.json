@@ -1,1 +1,99 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5a953539-e40d-4fa5-9e56-1df3dbd2170e","duration_ms":242000,"duration_source":"Last.fm track.getInfo","track_id":"track:1ebd788d609c3fde"}},"id":"source:1ebd788d609c3fde","identity":{"album":"November","album_id":"album:d4fa9ad89d6fac5d8a6d","artist":"Sparkbird","artist_id":"mbid:5a953539-e40d-4fa5-9e56-1df3dbd2170e","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:1ebd788d609c3fde","spotify_id":null,"title":"November","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-12-12T17:03:22+00:00","last_scrobble":"2026-05-22T10:01:56+00:00","observed_albums":[{"album":"November","scrobbles":1},{"album":"Head Like A Nest","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d4fa9ad89d6fac5d8a6d/album.json","artist_path":"artists/mb/mbid-5a953539-e40d-4fa5-9e56-1df3dbd2170e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5a953539-e40d-4fa5-9e56-1df3dbd2170e",
+      "duration_ms": 242000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:1ebd788d609c3fde",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 242000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:1ebd788d609c3fde",
+  "identity": {
+    "album": "November",
+    "album_id": "album:d4fa9ad89d6fac5d8a6d",
+    "artist": "Sparkbird",
+    "artist_id": "mbid:5a953539-e40d-4fa5-9e56-1df3dbd2170e",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:1ebd788d609c3fde",
+    "spotify_id": null,
+    "title": "November",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-12-12T17:03:22+00:00",
+    "last_scrobble": "2026-05-22T10:01:56+00:00",
+    "observed_albums": [
+      {
+        "album": "November",
+        "scrobbles": 1
+      },
+      {
+        "album": "Head Like A Nest",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d4fa9ad89d6fac5d8a6d/album.json",
+    "artist_path": "artists/mb/mbid-5a953539-e40d-4fa5-9e56-1df3dbd2170e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

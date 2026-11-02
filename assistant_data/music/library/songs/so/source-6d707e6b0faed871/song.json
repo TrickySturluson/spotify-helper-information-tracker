@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:303df10e-ce24-4725-97b4-7d1370d65adc","duration_ms":293000,"duration_source":"Last.fm track.getInfo","track_id":"track:6d707e6b0faed871"}},"id":"source:6d707e6b0faed871","identity":{"album":"Ground Vision","album_id":"album:292ec3bf1bc7696ee01b","artist":"Drive45","artist_id":"mbid:303df10e-ce24-4725-97b4-7d1370d65adc","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:6d707e6b0faed871","spotify_id":null,"title":"Ground Vision","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2024-11-26T17:53:13+00:00","last_scrobble":"2024-11-30T23:32:53+00:00","observed_albums":[{"album":"Ground Vision","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-292ec3bf1bc7696ee01b/album.json","artist_path":"artists/mb/mbid-303df10e-ce24-4725-97b4-7d1370d65adc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:303df10e-ce24-4725-97b4-7d1370d65adc",
+      "duration_ms": 293000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:6d707e6b0faed871",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 293000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:6d707e6b0faed871",
+  "identity": {
+    "album": "Ground Vision",
+    "album_id": "album:292ec3bf1bc7696ee01b",
+    "artist": "Drive45",
+    "artist_id": "mbid:303df10e-ce24-4725-97b4-7d1370d65adc",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:6d707e6b0faed871",
+    "spotify_id": null,
+    "title": "Ground Vision",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2024-11-26T17:53:13+00:00",
+    "last_scrobble": "2024-11-30T23:32:53+00:00",
+    "observed_albums": [
+      {
+        "album": "Ground Vision",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-292ec3bf1bc7696ee01b/album.json",
+    "artist_path": "artists/mb/mbid-303df10e-ce24-4725-97b4-7d1370d65adc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:da3f85d9-c72d-4732-8458-c559ab3530af","duration_ms":144000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:00:52.248050+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:6c6340a7ec7b491b"}},"id":"source:6c6340a7ec7b491b","identity":{"album":"Night in the Woods (Original Soundtrack, Vol. 1) [At the End of Everything]","album_id":"album:7538406102ac173d6ab8","artist":"Alec Holowka","artist_id":"mbid:da3f85d9-c72d-4732-8458-c559ab3530af","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:6c6340a7ec7b491b","spotify_id":null,"title":"Die Anywhere Else","track_number":null},"listening_context":{"all_time_plays":107,"first_scrobble":"2023-03-10T05:22:09+00:00","last_scrobble":"2026-07-19T00:15:21+00:00","observed_albums":[{"album":"Night in the Woods (Original Soundtrack, Vol. 1) [At the End of Everything]","scrobbles":107}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7538406102ac173d6ab8/album.json","artist_path":"artists/mb/mbid-da3f85d9-c72d-4732-8458-c559ab3530af/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:da3f85d9-c72d-4732-8458-c559ab3530af",
+      "duration_ms": 144000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:00:52.248050+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:6c6340a7ec7b491b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 144000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:6c6340a7ec7b491b",
+  "identity": {
+    "album": "Night in the Woods (Original Soundtrack, Vol. 1) [At the End of Everything]",
+    "album_id": "album:7538406102ac173d6ab8",
+    "artist": "Alec Holowka",
+    "artist_id": "mbid:da3f85d9-c72d-4732-8458-c559ab3530af",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:6c6340a7ec7b491b",
+    "spotify_id": null,
+    "title": "Die Anywhere Else",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 107,
+    "first_scrobble": "2023-03-10T05:22:09+00:00",
+    "last_scrobble": "2026-07-19T00:15:21+00:00",
+    "observed_albums": [
+      {
+        "album": "Night in the Woods (Original Soundtrack, Vol. 1) [At the End of Everything]",
+        "scrobbles": 107
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7538406102ac173d6ab8/album.json",
+    "artist_path": "artists/mb/mbid-da3f85d9-c72d-4732-8458-c559ab3530af/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

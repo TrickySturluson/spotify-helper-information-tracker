@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fbc3ae79-247b-45f5-a32b-e1553c79f5d6","duration_ms":169000,"duration_source":"Last.fm track.getInfo","track_id":"track:988cd3f7ee4cc410"}},"id":"source:988cd3f7ee4cc410","identity":{"album":"The Hand Lender","album_id":"album:054f7bf871825c5d276a","artist":"Queen Cult","artist_id":"mbid:fbc3ae79-247b-45f5-a32b-e1553c79f5d6","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:988cd3f7ee4cc410","spotify_id":null,"title":"The Hand Lender","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-22T06:05:34+00:00","last_scrobble":"2026-05-22T06:05:34+00:00","observed_albums":[{"album":"The Hand Lender","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-054f7bf871825c5d276a/album.json","artist_path":"artists/mb/mbid-fbc3ae79-247b-45f5-a32b-e1553c79f5d6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fbc3ae79-247b-45f5-a32b-e1553c79f5d6",
+      "duration_ms": 169000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:988cd3f7ee4cc410",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 169000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:988cd3f7ee4cc410",
+  "identity": {
+    "album": "The Hand Lender",
+    "album_id": "album:054f7bf871825c5d276a",
+    "artist": "Queen Cult",
+    "artist_id": "mbid:fbc3ae79-247b-45f5-a32b-e1553c79f5d6",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:988cd3f7ee4cc410",
+    "spotify_id": null,
+    "title": "The Hand Lender",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-22T06:05:34+00:00",
+    "last_scrobble": "2026-05-22T06:05:34+00:00",
+    "observed_albums": [
+      {
+        "album": "The Hand Lender",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-054f7bf871825c5d276a/album.json",
+    "artist_path": "artists/mb/mbid-fbc3ae79-247b-45f5-a32b-e1553c79f5d6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

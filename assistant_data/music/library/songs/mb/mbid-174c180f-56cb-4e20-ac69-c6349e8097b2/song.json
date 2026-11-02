@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:18dab8ad-3d93-46aa-b153-2f22772ea5bc","duration_ms":299000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:174c180f-56cb-4e20-ac69-c6349e8097b2","track_mbid":"174c180f-56cb-4e20-ac69-c6349e8097b2"}},"id":"mbid:174c180f-56cb-4e20-ac69-c6349e8097b2","identity":{"album":"Cadence","album_id":"album:fb7f11b66aa4db94ac72","artist":"The Long Faces","artist_id":"mbid:18dab8ad-3d93-46aa-b153-2f22772ea5bc","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"174c180f-56cb-4e20-ac69-c6349e8097b2","source_track_id":"mbid:174c180f-56cb-4e20-ac69-c6349e8097b2","spotify_id":null,"title":"Cadence","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-03-13T07:42:29+00:00","last_scrobble":"2025-03-13T07:42:29+00:00","observed_albums":[{"album":"Cadence","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fb7f11b66aa4db94ac72/album.json","artist_path":"artists/mb/mbid-18dab8ad-3d93-46aa-b153-2f22772ea5bc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:18dab8ad-3d93-46aa-b153-2f22772ea5bc",
+      "duration_ms": 299000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:174c180f-56cb-4e20-ac69-c6349e8097b2",
+      "track_mbid": "174c180f-56cb-4e20-ac69-c6349e8097b2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 299000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:174c180f-56cb-4e20-ac69-c6349e8097b2",
+  "identity": {
+    "album": "Cadence",
+    "album_id": "album:fb7f11b66aa4db94ac72",
+    "artist": "The Long Faces",
+    "artist_id": "mbid:18dab8ad-3d93-46aa-b153-2f22772ea5bc",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "174c180f-56cb-4e20-ac69-c6349e8097b2",
+    "source_track_id": "mbid:174c180f-56cb-4e20-ac69-c6349e8097b2",
+    "spotify_id": null,
+    "title": "Cadence",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-03-13T07:42:29+00:00",
+    "last_scrobble": "2025-03-13T07:42:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Cadence",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fb7f11b66aa4db94ac72/album.json",
+    "artist_path": "artists/mb/mbid-18dab8ad-3d93-46aa-b153-2f22772ea5bc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

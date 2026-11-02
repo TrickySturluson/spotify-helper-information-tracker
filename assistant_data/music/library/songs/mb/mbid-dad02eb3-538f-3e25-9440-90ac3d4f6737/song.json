@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:163c8bbc-053d-4208-ae42-4cb0dc75f050","duration_ms":182000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:02:45.045505+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:02:45.737871+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:dad02eb3-538f-3e25-9440-90ac3d4f6737","track_mbid":"dad02eb3-538f-3e25-9440-90ac3d4f6737"}},"id":"mbid:dad02eb3-538f-3e25-9440-90ac3d4f6737","identity":{"album":"Gold Motel","album_id":"album:adc0465587bf194c9a6a","artist":"Gold Motel","artist_id":"mbid:163c8bbc-053d-4208-ae42-4cb0dc75f050","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"dad02eb3-538f-3e25-9440-90ac3d4f6737","source_track_id":"mbid:dad02eb3-538f-3e25-9440-90ac3d4f6737","spotify_id":null,"title":"Brand New Kind Of Blue","track_number":null},"listening_context":{"all_time_plays":56,"first_scrobble":"2023-02-15T23:22:28+00:00","last_scrobble":"2026-10-13T23:20:26+00:00","observed_albums":[{"album":"Gold Motel","scrobbles":56}],"priority_playlist_ids":[],"recent_plays":3,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-adc0465587bf194c9a6a/album.json","artist_path":"artists/mb/mbid-163c8bbc-053d-4208-ae42-4cb0dc75f050/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:163c8bbc-053d-4208-ae42-4cb0dc75f050",
+      "duration_ms": 182000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:02:45.045505+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:02:45.737871+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:dad02eb3-538f-3e25-9440-90ac3d4f6737",
+      "track_mbid": "dad02eb3-538f-3e25-9440-90ac3d4f6737",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 182000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:dad02eb3-538f-3e25-9440-90ac3d4f6737",
+  "identity": {
+    "album": "Gold Motel",
+    "album_id": "album:adc0465587bf194c9a6a",
+    "artist": "Gold Motel",
+    "artist_id": "mbid:163c8bbc-053d-4208-ae42-4cb0dc75f050",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "dad02eb3-538f-3e25-9440-90ac3d4f6737",
+    "source_track_id": "mbid:dad02eb3-538f-3e25-9440-90ac3d4f6737",
+    "spotify_id": null,
+    "title": "Brand New Kind Of Blue",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 56,
+    "first_scrobble": "2023-02-15T23:22:28+00:00",
+    "last_scrobble": "2026-10-13T23:20:26+00:00",
+    "observed_albums": [
+      {
+        "album": "Gold Motel",
+        "scrobbles": 56
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 3,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-adc0465587bf194c9a6a/album.json",
+    "artist_path": "artists/mb/mbid-163c8bbc-053d-4208-ae42-4cb0dc75f050/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

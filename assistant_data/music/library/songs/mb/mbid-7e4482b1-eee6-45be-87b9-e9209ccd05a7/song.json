@@ -1,1 +1,106 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":102000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:25:32.386932+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T14:25:33.120057+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:7e4482b1-eee6-45be-87b9-e9209ccd05a7","track_mbid":"7e4482b1-eee6-45be-87b9-e9209ccd05a7"}},"id":"mbid:7e4482b1-eee6-45be-87b9-e9209ccd05a7","identity":{"album":"Surf Riders From the Swamp Lagoon","album_id":"album:a49f373c5821e516e475","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7e4482b1-eee6-45be-87b9-e9209ccd05a7","source_track_id":"mbid:7e4482b1-eee6-45be-87b9-e9209ccd05a7","spotify_id":null,"title":"Stampede","track_number":null},"listening_context":{"all_time_plays":21,"first_scrobble":"2023-04-13T20:00:06+00:00","last_scrobble":"2026-10-15T04:25:54+00:00","observed_albums":[{"album":"Surf Riders From the Swamp Lagoon","scrobbles":19},{"album":"Spook-O-Rama - The Best Of Messer Chups","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a49f373c5821e516e475/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 102000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:25:32.386932+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T14:25:33.120057+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:7e4482b1-eee6-45be-87b9-e9209ccd05a7",
+      "track_mbid": "7e4482b1-eee6-45be-87b9-e9209ccd05a7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 102000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7e4482b1-eee6-45be-87b9-e9209ccd05a7",
+  "identity": {
+    "album": "Surf Riders From the Swamp Lagoon",
+    "album_id": "album:a49f373c5821e516e475",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7e4482b1-eee6-45be-87b9-e9209ccd05a7",
+    "source_track_id": "mbid:7e4482b1-eee6-45be-87b9-e9209ccd05a7",
+    "spotify_id": null,
+    "title": "Stampede",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 21,
+    "first_scrobble": "2023-04-13T20:00:06+00:00",
+    "last_scrobble": "2026-10-15T04:25:54+00:00",
+    "observed_albums": [
+      {
+        "album": "Surf Riders From the Swamp Lagoon",
+        "scrobbles": 19
+      },
+      {
+        "album": "Spook-O-Rama - The Best Of Messer Chups",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a49f373c5821e516e475/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:dbe7fdf7-81b2-418b-b3f6-81ae71532f40","duration_ms":434000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:8ccd09ff-2898-410e-8d67-cffe2f32b296","track_mbid":"8ccd09ff-2898-410e-8d67-cffe2f32b296"}},"id":"mbid:8ccd09ff-2898-410e-8d67-cffe2f32b296","identity":{"album":"Historian","album_id":"album:c65e2d14c77c46a9cbe7","artist":"Lucy Dacus","artist_id":"mbid:dbe7fdf7-81b2-418b-b3f6-81ae71532f40","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"8ccd09ff-2898-410e-8d67-cffe2f32b296","source_track_id":"mbid:8ccd09ff-2898-410e-8d67-cffe2f32b296","spotify_id":null,"title":"Pillar Of Truth","track_number":null},"listening_context":{"all_time_plays":15,"first_scrobble":"2023-03-08T21:16:40+00:00","last_scrobble":"2024-12-09T15:12:57+00:00","observed_albums":[{"album":"Historian","scrobbles":15}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c65e2d14c77c46a9cbe7/album.json","artist_path":"artists/mb/mbid-dbe7fdf7-81b2-418b-b3f6-81ae71532f40/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:dbe7fdf7-81b2-418b-b3f6-81ae71532f40",
+      "duration_ms": 434000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:8ccd09ff-2898-410e-8d67-cffe2f32b296",
+      "track_mbid": "8ccd09ff-2898-410e-8d67-cffe2f32b296",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 434000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:8ccd09ff-2898-410e-8d67-cffe2f32b296",
+  "identity": {
+    "album": "Historian",
+    "album_id": "album:c65e2d14c77c46a9cbe7",
+    "artist": "Lucy Dacus",
+    "artist_id": "mbid:dbe7fdf7-81b2-418b-b3f6-81ae71532f40",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "8ccd09ff-2898-410e-8d67-cffe2f32b296",
+    "source_track_id": "mbid:8ccd09ff-2898-410e-8d67-cffe2f32b296",
+    "spotify_id": null,
+    "title": "Pillar Of Truth",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 15,
+    "first_scrobble": "2023-03-08T21:16:40+00:00",
+    "last_scrobble": "2024-12-09T15:12:57+00:00",
+    "observed_albums": [
+      {
+        "album": "Historian",
+        "scrobbles": 15
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c65e2d14c77c46a9cbe7/album.json",
+    "artist_path": "artists/mb/mbid-dbe7fdf7-81b2-418b-b3f6-81ae71532f40/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

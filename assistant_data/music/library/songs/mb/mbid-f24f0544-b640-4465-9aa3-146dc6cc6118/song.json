@@ -1,1 +1,213 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Love":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Olivia":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"chill":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"fire":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"in love":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"jazz":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"jazz revival":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"vocal jazz":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:21a89505-10a9-4ac0-8388-833bc07b9f86","duration_ms":168000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:06:06.722375+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"jazz"},{"count":100,"source":"Last.fm track.getTopTags","tag":"Love"},{"count":66,"source":"Last.fm track.getTopTags","tag":"chill"},{"count":66,"source":"Last.fm track.getTopTags","tag":"indie"},{"count":33,"source":"Last.fm track.getTopTags","tag":"fire"},{"count":33,"source":"Last.fm track.getTopTags","tag":"Olivia"},{"count":33,"source":"Last.fm track.getTopTags","tag":"vocal jazz"},{"count":10,"source":"Last.fm track.getTopTags","tag":"in love"},{"count":10,"source":"Last.fm track.getTopTags","tag":"jazz revival"}],"musicbrainz_checked_at":"2026-11-01T09:06:07.625559+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:f24f0544-b640-4465-9aa3-146dc6cc6118","track_mbid":"f24f0544-b640-4465-9aa3-146dc6cc6118"}},"id":"mbid:f24f0544-b640-4465-9aa3-146dc6cc6118","identity":{"album":"Everything I Know About Love","album_id":"album:1393ce89ccc7dcd5d203","artist":"Laufey","artist_id":"mbid:21a89505-10a9-4ac0-8388-833bc07b9f86","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f24f0544-b640-4465-9aa3-146dc6cc6118","source_track_id":"mbid:f24f0544-b640-4465-9aa3-146dc6cc6118","spotify_id":null,"title":"Valentine","track_number":null},"listening_context":{"all_time_plays":78,"first_scrobble":"2024-02-26T21:25:25+00:00","last_scrobble":"2026-10-04T07:22:41+00:00","observed_albums":[{"album":"Everything I Know About Love","scrobbles":78}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1393ce89ccc7dcd5d203/album.json","artist_path":"artists/mb/mbid-21a89505-10a9-4ac0-8388-833bc07b9f86/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Love": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Olivia": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "chill": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "fire": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "in love": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "jazz": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "jazz revival": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "vocal jazz": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:21a89505-10a9-4ac0-8388-833bc07b9f86",
+      "duration_ms": 168000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:06:06.722375+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "jazz"
+        },
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Love"
+        },
+        {
+          "count": 66,
+          "source": "Last.fm track.getTopTags",
+          "tag": "chill"
+        },
+        {
+          "count": 66,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        },
+        {
+          "count": 33,
+          "source": "Last.fm track.getTopTags",
+          "tag": "fire"
+        },
+        {
+          "count": 33,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Olivia"
+        },
+        {
+          "count": 33,
+          "source": "Last.fm track.getTopTags",
+          "tag": "vocal jazz"
+        },
+        {
+          "count": 10,
+          "source": "Last.fm track.getTopTags",
+          "tag": "in love"
+        },
+        {
+          "count": 10,
+          "source": "Last.fm track.getTopTags",
+          "tag": "jazz revival"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T09:06:07.625559+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:f24f0544-b640-4465-9aa3-146dc6cc6118",
+      "track_mbid": "f24f0544-b640-4465-9aa3-146dc6cc6118",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 168000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f24f0544-b640-4465-9aa3-146dc6cc6118",
+  "identity": {
+    "album": "Everything I Know About Love",
+    "album_id": "album:1393ce89ccc7dcd5d203",
+    "artist": "Laufey",
+    "artist_id": "mbid:21a89505-10a9-4ac0-8388-833bc07b9f86",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f24f0544-b640-4465-9aa3-146dc6cc6118",
+    "source_track_id": "mbid:f24f0544-b640-4465-9aa3-146dc6cc6118",
+    "spotify_id": null,
+    "title": "Valentine",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 78,
+    "first_scrobble": "2024-02-26T21:25:25+00:00",
+    "last_scrobble": "2026-10-04T07:22:41+00:00",
+    "observed_albums": [
+      {
+        "album": "Everything I Know About Love",
+        "scrobbles": 78
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1393ce89ccc7dcd5d203/album.json",
+    "artist_path": "artists/mb/mbid-21a89505-10a9-4ac0-8388-833bc07b9f86/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

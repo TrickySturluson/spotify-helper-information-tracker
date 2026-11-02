@@ -1,1 +1,223 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Rage Against The Machine":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"hard rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"political":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rap metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rapcore":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","duration_ms":206000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T05:58:30.417269+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":87,"source":"Last.fm track.getTopTags","tag":"rapcore"},{"count":52,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":37,"source":"Last.fm track.getTopTags","tag":"hard rock"},{"count":17,"source":"Last.fm track.getTopTags","tag":"political"},{"count":12,"source":"Last.fm track.getTopTags","tag":"alternative rock"},{"count":9,"source":"Last.fm track.getTopTags","tag":"Rage Against The Machine"},{"count":2,"source":"Last.fm track.getTopTags","tag":"alternative metal"},{"count":2,"source":"Last.fm track.getTopTags","tag":"metal"},{"count":2,"source":"Last.fm track.getTopTags","tag":"rap metal"}],"musicbrainz_checked_at":"2026-11-01T05:58:31.156617+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f","track_mbid":"536d7672-eec7-3ee3-acbd-c7cb7273102f"}},"id":"mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f","identity":{"album":"The Battle of Los Angeles","album_id":"album:7a5d76be4c91eb23f075","artist":"Rage Against the Machine","artist_id":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","identity_quality":"verified_recording","recording_mbid":"536d7672-eec7-3ee3-acbd-c7cb7273102f","source_track_id":"mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f","spotify_id":null,"title":"Guerrilla Radio"},"listening_context":{"all_time_plays":73,"first_scrobble":"2025-04-29T20:29:41+00:00","last_scrobble":"2026-10-15T02:20:30+00:00","observed_albums":[{"album":"The Battle of Los Angeles","scrobbles":73}],"priority_playlist_ids":[],"recent_plays":23,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7a5d76be4c91eb23f075/album.json","artist_path":"artists/mb/mbid-3798b104-01cb-484c-a3b0-56adc6399b80/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Rage Against The Machine": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "hard rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "political": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rap metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rapcore": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3798b104-01cb-484c-a3b0-56adc6399b80",
+      "duration_ms": 206000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T05:58:30.417269+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 87,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rapcore"
+        },
+        {
+          "count": 52,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "hard rock"
+        },
+        {
+          "count": 17,
+          "source": "Last.fm track.getTopTags",
+          "tag": "political"
+        },
+        {
+          "count": 12,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 9,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Rage Against The Machine"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative metal"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "metal"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rap metal"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T05:58:31.156617+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f",
+      "track_mbid": "536d7672-eec7-3ee3-acbd-c7cb7273102f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 206000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f",
+  "identity": {
+    "album": "The Battle of Los Angeles",
+    "album_id": "album:7a5d76be4c91eb23f075",
+    "artist": "Rage Against the Machine",
+    "artist_id": "mbid:3798b104-01cb-484c-a3b0-56adc6399b80",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "536d7672-eec7-3ee3-acbd-c7cb7273102f",
+    "source_track_id": "mbid:536d7672-eec7-3ee3-acbd-c7cb7273102f",
+    "spotify_id": null,
+    "title": "Guerrilla Radio"
+  },
+  "listening_context": {
+    "all_time_plays": 73,
+    "first_scrobble": "2025-04-29T20:29:41+00:00",
+    "last_scrobble": "2026-10-15T02:20:30+00:00",
+    "observed_albums": [
+      {
+        "album": "The Battle of Los Angeles",
+        "scrobbles": 73
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 23,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7a5d76be4c91eb23f075/album.json",
+    "artist_path": "artists/mb/mbid-3798b104-01cb-484c-a3b0-56adc6399b80/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

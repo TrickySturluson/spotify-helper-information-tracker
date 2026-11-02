@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6b23f7a9-6778-40d5-bd32-e0b9e70a100a","duration_ms":197000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d24afaf9-105f-4c15-8986-a53b6748fda7","track_mbid":"d24afaf9-105f-4c15-8986-a53b6748fda7"}},"id":"mbid:d24afaf9-105f-4c15-8986-a53b6748fda7","identity":{"album":"F*ck Love","album_id":"album:c0f5824418e3cf5dffac","artist":"Lund","artist_id":"mbid:6b23f7a9-6778-40d5-bd32-e0b9e70a100a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d24afaf9-105f-4c15-8986-a53b6748fda7","source_track_id":"mbid:d24afaf9-105f-4c15-8986-a53b6748fda7","spotify_id":null,"title":"F*ck Love","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-11-05T05:36:56+00:00","last_scrobble":"2023-11-05T07:31:19+00:00","observed_albums":[{"album":"F*ck Love","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c0f5824418e3cf5dffac/album.json","artist_path":"artists/mb/mbid-6b23f7a9-6778-40d5-bd32-e0b9e70a100a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6b23f7a9-6778-40d5-bd32-e0b9e70a100a",
+      "duration_ms": 197000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d24afaf9-105f-4c15-8986-a53b6748fda7",
+      "track_mbid": "d24afaf9-105f-4c15-8986-a53b6748fda7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 197000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d24afaf9-105f-4c15-8986-a53b6748fda7",
+  "identity": {
+    "album": "F*ck Love",
+    "album_id": "album:c0f5824418e3cf5dffac",
+    "artist": "Lund",
+    "artist_id": "mbid:6b23f7a9-6778-40d5-bd32-e0b9e70a100a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d24afaf9-105f-4c15-8986-a53b6748fda7",
+    "source_track_id": "mbid:d24afaf9-105f-4c15-8986-a53b6748fda7",
+    "spotify_id": null,
+    "title": "F*ck Love",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-11-05T05:36:56+00:00",
+    "last_scrobble": "2023-11-05T07:31:19+00:00",
+    "observed_albums": [
+      {
+        "album": "F*ck Love",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c0f5824418e3cf5dffac/album.json",
+    "artist_path": "artists/mb/mbid-6b23f7a9-6778-40d5-bd32-e0b9e70a100a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

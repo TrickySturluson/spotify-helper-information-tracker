@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"2008":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"The Offspring":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"american":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"dance fucker dance":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"pop punk":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"punk":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"punk rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:23a03e33-a603-404e-bcbf-2c00159d7067","duration_ms":177000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:04:54.090425+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"punk rock"},{"count":63,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":37,"source":"Last.fm track.getTopTags","tag":"punk"},{"count":27,"source":"Last.fm track.getTopTags","tag":"The Offspring"},{"count":9,"source":"Last.fm track.getTopTags","tag":"dance fucker dance"},{"count":5,"source":"Last.fm track.getTopTags","tag":"alternative rock"},{"count":4,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":1,"source":"Last.fm track.getTopTags","tag":"2008"},{"count":1,"source":"Last.fm track.getTopTags","tag":"american"},{"count":1,"source":"Last.fm track.getTopTags","tag":"pop punk"}],"musicbrainz_checked_at":"2026-11-01T15:04:55.341787+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"identity_mismatch","retry_after":0,"track_id":"mbid:fa45d43e-c059-4b03-aed2-c71f71eef123","track_mbid":"fa45d43e-c059-4b03-aed2-c71f71eef123"}},"id":"mbid:fa45d43e-c059-4b03-aed2-c71f71eef123","identity":{"album":"Rise and Fall, Rage and Grace","album_id":"album:79b95cc1fc546c2180c2","artist":"The Offspring","artist_id":"mbid:23a03e33-a603-404e-bcbf-2c00159d7067","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"fa45d43e-c059-4b03-aed2-c71f71eef123","source_track_id":"mbid:fa45d43e-c059-4b03-aed2-c71f71eef123","spotify_id":null,"title":"You're Gonna Go Far, Kid","track_number":null},"listening_context":{"all_time_plays":51,"first_scrobble":"2023-08-10T03:39:39+00:00","last_scrobble":"2026-07-20T03:01:11+00:00","observed_albums":[{"album":"Rise and Fall, Rage and Grace","scrobbles":51}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-79b95cc1fc546c2180c2/album.json","artist_path":"artists/mb/mbid-23a03e33-a603-404e-bcbf-2c00159d7067/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"identity_mismatch"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "2008": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "The Offspring": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "american": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "dance fucker dance": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "pop punk": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "punk": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "punk rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:23a03e33-a603-404e-bcbf-2c00159d7067",
+      "duration_ms": 177000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:04:54.090425+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "punk rock"
+        },
+        {
+          "count": 63,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "punk"
+        },
+        {
+          "count": 27,
+          "source": "Last.fm track.getTopTags",
+          "tag": "The Offspring"
+        },
+        {
+          "count": 9,
+          "source": "Last.fm track.getTopTags",
+          "tag": "dance fucker dance"
+        },
+        {
+          "count": 5,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "2008"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "american"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "pop punk"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T15:04:55.341787+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "identity_mismatch",
+      "retry_after": 0,
+      "track_id": "mbid:fa45d43e-c059-4b03-aed2-c71f71eef123",
+      "track_mbid": "fa45d43e-c059-4b03-aed2-c71f71eef123",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 177000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:fa45d43e-c059-4b03-aed2-c71f71eef123",
+  "identity": {
+    "album": "Rise and Fall, Rage and Grace",
+    "album_id": "album:79b95cc1fc546c2180c2",
+    "artist": "The Offspring",
+    "artist_id": "mbid:23a03e33-a603-404e-bcbf-2c00159d7067",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "fa45d43e-c059-4b03-aed2-c71f71eef123",
+    "source_track_id": "mbid:fa45d43e-c059-4b03-aed2-c71f71eef123",
+    "spotify_id": null,
+    "title": "You're Gonna Go Far, Kid",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 51,
+    "first_scrobble": "2023-08-10T03:39:39+00:00",
+    "last_scrobble": "2026-07-20T03:01:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Rise and Fall, Rage and Grace",
+        "scrobbles": 51
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-79b95cc1fc546c2180c2/album.json",
+    "artist_path": "artists/mb/mbid-23a03e33-a603-404e-bcbf-2c00159d7067/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "identity_mismatch"
+    }
+  }
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:0a25a51e-96c4-47ec-986f-d811f33529fe","duration_ms":191000,"duration_source":"Last.fm track.getInfo","track_id":"track:bd670bf58c2b49bc"}},"id":"source:bd670bf58c2b49bc","identity":{"album":"Emerald - The Orpheus Index: Vol I","album_id":"album:b8917b6298922e34e5c0","artist":"Adriel Genet","artist_id":"mbid:0a25a51e-96c4-47ec-986f-d811f33529fe","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:bd670bf58c2b49bc","spotify_id":null,"title":"Esmeralda","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2024-04-11T03:38:43+00:00","last_scrobble":"2024-04-14T20:52:06+00:00","observed_albums":[{"album":"Emerald - The Orpheus Index: Vol I","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b8917b6298922e34e5c0/album.json","artist_path":"artists/mb/mbid-0a25a51e-96c4-47ec-986f-d811f33529fe/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:0a25a51e-96c4-47ec-986f-d811f33529fe",
+      "duration_ms": 191000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:bd670bf58c2b49bc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 191000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:bd670bf58c2b49bc",
+  "identity": {
+    "album": "Emerald - The Orpheus Index: Vol I",
+    "album_id": "album:b8917b6298922e34e5c0",
+    "artist": "Adriel Genet",
+    "artist_id": "mbid:0a25a51e-96c4-47ec-986f-d811f33529fe",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:bd670bf58c2b49bc",
+    "spotify_id": null,
+    "title": "Esmeralda",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2024-04-11T03:38:43+00:00",
+    "last_scrobble": "2024-04-14T20:52:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Emerald - The Orpheus Index: Vol I",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b8917b6298922e34e5c0/album.json",
+    "artist_path": "artists/mb/mbid-0a25a51e-96c4-47ec-986f-d811f33529fe/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

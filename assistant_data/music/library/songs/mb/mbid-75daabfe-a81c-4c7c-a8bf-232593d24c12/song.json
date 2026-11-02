@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:9e2282b90ff89d0d","duration_ms":114000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:75daabfe-a81c-4c7c-a8bf-232593d24c12","track_mbid":"75daabfe-a81c-4c7c-a8bf-232593d24c12"}},"id":"mbid:75daabfe-a81c-4c7c-a8bf-232593d24c12","identity":{"album":"Unity","album_id":"album:1e9c8c1d4c7231f251f0","artist":"Joost","artist_id":"name:9e2282b90ff89d0d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"75daabfe-a81c-4c7c-a8bf-232593d24c12","source_track_id":"mbid:75daabfe-a81c-4c7c-a8bf-232593d24c12","spotify_id":null,"title":"Filthy Dog","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-22T22:13:06+00:00","last_scrobble":"2026-04-22T22:13:06+00:00","observed_albums":[{"album":"Unity","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1e9c8c1d4c7231f251f0/album.json","artist_path":"artists/na/name-9e2282b90ff89d0d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:9e2282b90ff89d0d",
+      "duration_ms": 114000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:75daabfe-a81c-4c7c-a8bf-232593d24c12",
+      "track_mbid": "75daabfe-a81c-4c7c-a8bf-232593d24c12",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 114000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:75daabfe-a81c-4c7c-a8bf-232593d24c12",
+  "identity": {
+    "album": "Unity",
+    "album_id": "album:1e9c8c1d4c7231f251f0",
+    "artist": "Joost",
+    "artist_id": "name:9e2282b90ff89d0d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "75daabfe-a81c-4c7c-a8bf-232593d24c12",
+    "source_track_id": "mbid:75daabfe-a81c-4c7c-a8bf-232593d24c12",
+    "spotify_id": null,
+    "title": "Filthy Dog",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-22T22:13:06+00:00",
+    "last_scrobble": "2026-04-22T22:13:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Unity",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1e9c8c1d4c7231f251f0/album.json",
+    "artist_path": "artists/na/name-9e2282b90ff89d0d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

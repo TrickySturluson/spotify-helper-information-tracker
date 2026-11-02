@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b4f76441-4a26-4833-b818-f5f234f2fdde","duration_ms":283000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9a9c46d2-9e3b-43de-8ac8-b482c565cc06","track_mbid":"9a9c46d2-9e3b-43de-8ac8-b482c565cc06"}},"id":"mbid:9a9c46d2-9e3b-43de-8ac8-b482c565cc06","identity":{"album":"OUCH!","album_id":"album:dd4ff813a6097ab6b559","artist":"Matt Watson","artist_id":"mbid:b4f76441-4a26-4833-b818-f5f234f2fdde","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9a9c46d2-9e3b-43de-8ac8-b482c565cc06","source_track_id":"mbid:9a9c46d2-9e3b-43de-8ac8-b482c565cc06","spotify_id":null,"title":"Margie","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-04T17:11:00+00:00","last_scrobble":"2024-11-04T17:11:00+00:00","observed_albums":[{"album":"OUCH!","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-dd4ff813a6097ab6b559/album.json","artist_path":"artists/mb/mbid-b4f76441-4a26-4833-b818-f5f234f2fdde/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b4f76441-4a26-4833-b818-f5f234f2fdde",
+      "duration_ms": 283000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9a9c46d2-9e3b-43de-8ac8-b482c565cc06",
+      "track_mbid": "9a9c46d2-9e3b-43de-8ac8-b482c565cc06",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 283000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9a9c46d2-9e3b-43de-8ac8-b482c565cc06",
+  "identity": {
+    "album": "OUCH!",
+    "album_id": "album:dd4ff813a6097ab6b559",
+    "artist": "Matt Watson",
+    "artist_id": "mbid:b4f76441-4a26-4833-b818-f5f234f2fdde",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9a9c46d2-9e3b-43de-8ac8-b482c565cc06",
+    "source_track_id": "mbid:9a9c46d2-9e3b-43de-8ac8-b482c565cc06",
+    "spotify_id": null,
+    "title": "Margie",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-04T17:11:00+00:00",
+    "last_scrobble": "2024-11-04T17:11:00+00:00",
+    "observed_albums": [
+      {
+        "album": "OUCH!",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-dd4ff813a6097ab6b559/album.json",
+    "artist_path": "artists/mb/mbid-b4f76441-4a26-4833-b818-f5f234f2fdde/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

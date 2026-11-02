@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e94d59fd-177a-4a79-85ba-0632207b134b","duration_ms":247000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7562621f-3560-45b6-9b26-75a2db1151c9","track_mbid":"7562621f-3560-45b6-9b26-75a2db1151c9"}},"id":"mbid:7562621f-3560-45b6-9b26-75a2db1151c9","identity":{"album":"Save Charlie","album_id":"album:e158b6e70903bf26ad54","artist":"Rubblebucket","artist_id":"mbid:e94d59fd-177a-4a79-85ba-0632207b134b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7562621f-3560-45b6-9b26-75a2db1151c9","source_track_id":"mbid:7562621f-3560-45b6-9b26-75a2db1151c9","spotify_id":null,"title":"What a Fool Believes","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2023-02-20T00:32:06+00:00","last_scrobble":"2024-01-28T14:07:51+00:00","observed_albums":[{"album":"Save Charlie","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e158b6e70903bf26ad54/album.json","artist_path":"artists/mb/mbid-e94d59fd-177a-4a79-85ba-0632207b134b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e94d59fd-177a-4a79-85ba-0632207b134b",
+      "duration_ms": 247000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7562621f-3560-45b6-9b26-75a2db1151c9",
+      "track_mbid": "7562621f-3560-45b6-9b26-75a2db1151c9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 247000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7562621f-3560-45b6-9b26-75a2db1151c9",
+  "identity": {
+    "album": "Save Charlie",
+    "album_id": "album:e158b6e70903bf26ad54",
+    "artist": "Rubblebucket",
+    "artist_id": "mbid:e94d59fd-177a-4a79-85ba-0632207b134b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7562621f-3560-45b6-9b26-75a2db1151c9",
+    "source_track_id": "mbid:7562621f-3560-45b6-9b26-75a2db1151c9",
+    "spotify_id": null,
+    "title": "What a Fool Believes",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2023-02-20T00:32:06+00:00",
+    "last_scrobble": "2024-01-28T14:07:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Save Charlie",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e158b6e70903bf26ad54/album.json",
+    "artist_path": "artists/mb/mbid-e94d59fd-177a-4a79-85ba-0632207b134b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

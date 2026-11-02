@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e2a46258-612f-48d6-88bd-3251de017c40","duration_ms":343000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0c3ae93d-46d1-37a6-aa1a-fc4943f85681","track_mbid":"0c3ae93d-46d1-37a6-aa1a-fc4943f85681"}},"id":"mbid:0c3ae93d-46d1-37a6-aa1a-fc4943f85681","identity":{"album":"あらためまして、はじめまして、ミドリです。","album_id":"album:8bd78ee641f49979428e","artist":"ミドリ","artist_id":"mbid:e2a46258-612f-48d6-88bd-3251de017c40","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0c3ae93d-46d1-37a6-aa1a-fc4943f85681","source_track_id":"mbid:0c3ae93d-46d1-37a6-aa1a-fc4943f85681","spotify_id":null,"title":"無欲の無力","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2023-05-15T10:30:43+00:00","last_scrobble":"2023-05-19T18:14:30+00:00","observed_albums":[{"album":"あらためまして、はじめまして、ミドリです。","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8bd78ee641f49979428e/album.json","artist_path":"artists/mb/mbid-e2a46258-612f-48d6-88bd-3251de017c40/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e2a46258-612f-48d6-88bd-3251de017c40",
+      "duration_ms": 343000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0c3ae93d-46d1-37a6-aa1a-fc4943f85681",
+      "track_mbid": "0c3ae93d-46d1-37a6-aa1a-fc4943f85681",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 343000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0c3ae93d-46d1-37a6-aa1a-fc4943f85681",
+  "identity": {
+    "album": "あらためまして、はじめまして、ミドリです。",
+    "album_id": "album:8bd78ee641f49979428e",
+    "artist": "ミドリ",
+    "artist_id": "mbid:e2a46258-612f-48d6-88bd-3251de017c40",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0c3ae93d-46d1-37a6-aa1a-fc4943f85681",
+    "source_track_id": "mbid:0c3ae93d-46d1-37a6-aa1a-fc4943f85681",
+    "spotify_id": null,
+    "title": "無欲の無力",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2023-05-15T10:30:43+00:00",
+    "last_scrobble": "2023-05-19T18:14:30+00:00",
+    "observed_albums": [
+      {
+        "album": "あらためまして、はじめまして、ミドリです。",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8bd78ee641f49979428e/album.json",
+    "artist_path": "artists/mb/mbid-e2a46258-612f-48d6-88bd-3251de017c40/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

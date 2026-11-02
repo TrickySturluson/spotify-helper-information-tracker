@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:2437980f-513a-44fc-80f1-b90d9d7fcf8f","duration_ms":176000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5eae1017-8a35-4327-a206-ab2117cbeae1","track_mbid":"5eae1017-8a35-4327-a206-ab2117cbeae1"}},"id":"mbid:5eae1017-8a35-4327-a206-ab2117cbeae1","identity":{"album":"Bing's Gold Records - The Original Decca Recordings","album_id":"album:ebe2e51975f53cc9fa5b","artist":"Bing Crosby","artist_id":"mbid:2437980f-513a-44fc-80f1-b90d9d7fcf8f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5eae1017-8a35-4327-a206-ab2117cbeae1","source_track_id":"mbid:5eae1017-8a35-4327-a206-ab2117cbeae1","spotify_id":null,"title":"I'll Be Home For Christmas - Single Version","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2024-11-09T06:03:54+00:00","last_scrobble":"2024-11-11T06:52:54+00:00","observed_albums":[{"album":"Bing's Gold Records - The Original Decca Recordings","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ebe2e51975f53cc9fa5b/album.json","artist_path":"artists/mb/mbid-2437980f-513a-44fc-80f1-b90d9d7fcf8f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:2437980f-513a-44fc-80f1-b90d9d7fcf8f",
+      "duration_ms": 176000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5eae1017-8a35-4327-a206-ab2117cbeae1",
+      "track_mbid": "5eae1017-8a35-4327-a206-ab2117cbeae1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 176000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5eae1017-8a35-4327-a206-ab2117cbeae1",
+  "identity": {
+    "album": "Bing's Gold Records - The Original Decca Recordings",
+    "album_id": "album:ebe2e51975f53cc9fa5b",
+    "artist": "Bing Crosby",
+    "artist_id": "mbid:2437980f-513a-44fc-80f1-b90d9d7fcf8f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5eae1017-8a35-4327-a206-ab2117cbeae1",
+    "source_track_id": "mbid:5eae1017-8a35-4327-a206-ab2117cbeae1",
+    "spotify_id": null,
+    "title": "I'll Be Home For Christmas - Single Version",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2024-11-09T06:03:54+00:00",
+    "last_scrobble": "2024-11-11T06:52:54+00:00",
+    "observed_albums": [
+      {
+        "album": "Bing's Gold Records - The Original Decca Recordings",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ebe2e51975f53cc9fa5b/album.json",
+    "artist_path": "artists/mb/mbid-2437980f-513a-44fc-80f1-b90d9d7fcf8f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

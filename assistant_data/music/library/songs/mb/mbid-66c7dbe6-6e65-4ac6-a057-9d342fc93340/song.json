@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9","duration_ms":300000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:66c7dbe6-6e65-4ac6-a057-9d342fc93340","track_mbid":"66c7dbe6-6e65-4ac6-a057-9d342fc93340"}},"id":"mbid:66c7dbe6-6e65-4ac6-a057-9d342fc93340","identity":{"album":"GREAT SHAKES (REMASTERED EDITION)","album_id":"album:93a43071b0c71fa01dc1","artist":"Whitey","artist_id":"mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"66c7dbe6-6e65-4ac6-a057-9d342fc93340","source_track_id":"mbid:66c7dbe6-6e65-4ac6-a057-9d342fc93340","spotify_id":null,"title":"Sweet Words for the Sour","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-11-27T04:16:31+00:00","last_scrobble":"2024-11-27T04:16:31+00:00","observed_albums":[{"album":"GREAT SHAKES (REMASTERED EDITION)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-93a43071b0c71fa01dc1/album.json","artist_path":"artists/mb/mbid-007a084b-f435-4d78-be2a-3f9dd552ebc9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9",
+      "duration_ms": 300000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:66c7dbe6-6e65-4ac6-a057-9d342fc93340",
+      "track_mbid": "66c7dbe6-6e65-4ac6-a057-9d342fc93340",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 300000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:66c7dbe6-6e65-4ac6-a057-9d342fc93340",
+  "identity": {
+    "album": "GREAT SHAKES (REMASTERED EDITION)",
+    "album_id": "album:93a43071b0c71fa01dc1",
+    "artist": "Whitey",
+    "artist_id": "mbid:007a084b-f435-4d78-be2a-3f9dd552ebc9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "66c7dbe6-6e65-4ac6-a057-9d342fc93340",
+    "source_track_id": "mbid:66c7dbe6-6e65-4ac6-a057-9d342fc93340",
+    "spotify_id": null,
+    "title": "Sweet Words for the Sour",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-11-27T04:16:31+00:00",
+    "last_scrobble": "2024-11-27T04:16:31+00:00",
+    "observed_albums": [
+      {
+        "album": "GREAT SHAKES (REMASTERED EDITION)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-93a43071b0c71fa01dc1/album.json",
+    "artist_path": "artists/mb/mbid-007a084b-f435-4d78-be2a-3f9dd552ebc9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

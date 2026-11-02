@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:55c03773-59ea-4d4e-9057-87c2ecab005d","duration_ms":200000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ddbc344f-d20a-4359-996c-8052cb320eb5","track_mbid":"ddbc344f-d20a-4359-996c-8052cb320eb5"}},"id":"mbid:ddbc344f-d20a-4359-996c-8052cb320eb5","identity":{"album":"Love Heart Cheat Code","album_id":"album:8a6b5e204af8a4a2afb0","artist":"Hiatus Kaiyote","artist_id":"mbid:55c03773-59ea-4d4e-9057-87c2ecab005d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ddbc344f-d20a-4359-996c-8052cb320eb5","source_track_id":"mbid:ddbc344f-d20a-4359-996c-8052cb320eb5","spotify_id":null,"title":"Cinnamon Temple","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-07-12T23:23:13+00:00","last_scrobble":"2026-07-12T23:23:13+00:00","observed_albums":[{"album":"Love Heart Cheat Code","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8a6b5e204af8a4a2afb0/album.json","artist_path":"artists/mb/mbid-55c03773-59ea-4d4e-9057-87c2ecab005d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:55c03773-59ea-4d4e-9057-87c2ecab005d",
+      "duration_ms": 200000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ddbc344f-d20a-4359-996c-8052cb320eb5",
+      "track_mbid": "ddbc344f-d20a-4359-996c-8052cb320eb5",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 200000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ddbc344f-d20a-4359-996c-8052cb320eb5",
+  "identity": {
+    "album": "Love Heart Cheat Code",
+    "album_id": "album:8a6b5e204af8a4a2afb0",
+    "artist": "Hiatus Kaiyote",
+    "artist_id": "mbid:55c03773-59ea-4d4e-9057-87c2ecab005d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ddbc344f-d20a-4359-996c-8052cb320eb5",
+    "source_track_id": "mbid:ddbc344f-d20a-4359-996c-8052cb320eb5",
+    "spotify_id": null,
+    "title": "Cinnamon Temple",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-07-12T23:23:13+00:00",
+    "last_scrobble": "2026-07-12T23:23:13+00:00",
+    "observed_albums": [
+      {
+        "album": "Love Heart Cheat Code",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8a6b5e204af8a4a2afb0/album.json",
+    "artist_path": "artists/mb/mbid-55c03773-59ea-4d4e-9057-87c2ecab005d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

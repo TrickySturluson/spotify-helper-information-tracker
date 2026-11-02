@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:1882fe91-cdd9-49c9-9956-8e06a3810bd4","duration_ms":171000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1026b368-00b8-4f0d-b29b-b845e5e6e62c","track_mbid":"1026b368-00b8-4f0d-b29b-b845e5e6e62c"}},"id":"mbid:1026b368-00b8-4f0d-b29b-b845e5e6e62c","identity":{"album":"Short n' Sweet","album_id":"album:fd55fce08043c1159cb8","artist":"Sabrina Carpenter","artist_id":"mbid:1882fe91-cdd9-49c9-9956-8e06a3810bd4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1026b368-00b8-4f0d-b29b-b845e5e6e62c","source_track_id":"mbid:1026b368-00b8-4f0d-b29b-b845e5e6e62c","spotify_id":null,"title":"Bed Chem","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-29T07:42:14+00:00","last_scrobble":"2025-11-29T07:42:14+00:00","observed_albums":[{"album":"Short n' Sweet","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fd55fce08043c1159cb8/album.json","artist_path":"artists/mb/mbid-1882fe91-cdd9-49c9-9956-8e06a3810bd4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:1882fe91-cdd9-49c9-9956-8e06a3810bd4",
+      "duration_ms": 171000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1026b368-00b8-4f0d-b29b-b845e5e6e62c",
+      "track_mbid": "1026b368-00b8-4f0d-b29b-b845e5e6e62c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 171000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1026b368-00b8-4f0d-b29b-b845e5e6e62c",
+  "identity": {
+    "album": "Short n' Sweet",
+    "album_id": "album:fd55fce08043c1159cb8",
+    "artist": "Sabrina Carpenter",
+    "artist_id": "mbid:1882fe91-cdd9-49c9-9956-8e06a3810bd4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1026b368-00b8-4f0d-b29b-b845e5e6e62c",
+    "source_track_id": "mbid:1026b368-00b8-4f0d-b29b-b845e5e6e62c",
+    "spotify_id": null,
+    "title": "Bed Chem",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-29T07:42:14+00:00",
+    "last_scrobble": "2025-11-29T07:42:14+00:00",
+    "observed_albums": [
+      {
+        "album": "Short n' Sweet",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fd55fce08043c1159cb8/album.json",
+    "artist_path": "artists/mb/mbid-1882fe91-cdd9-49c9-9956-8e06a3810bd4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

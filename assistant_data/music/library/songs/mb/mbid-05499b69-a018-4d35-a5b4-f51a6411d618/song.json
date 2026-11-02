@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:338f5d97-3133-4bf8-a58e-068ff9b5405d","duration_ms":222000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:28:00.507406+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T14:28:01.282626+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:05499b69-a018-4d35-a5b4-f51a6411d618","track_mbid":"05499b69-a018-4d35-a5b4-f51a6411d618"}},"id":"mbid:05499b69-a018-4d35-a5b4-f51a6411d618","identity":{"album":"一途","album_id":"album:abaed97a38ccf4b6cb74","artist":"King Gnu","artist_id":"mbid:338f5d97-3133-4bf8-a58e-068ff9b5405d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"05499b69-a018-4d35-a5b4-f51a6411d618","source_track_id":"mbid:05499b69-a018-4d35-a5b4-f51a6411d618","spotify_id":null,"title":"一途","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-11-30T21:16:10+00:00","last_scrobble":"2026-10-30T09:24:23+00:00","observed_albums":[{"album":"一途","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-abaed97a38ccf4b6cb74/album.json","artist_path":"artists/mb/mbid-338f5d97-3133-4bf8-a58e-068ff9b5405d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:338f5d97-3133-4bf8-a58e-068ff9b5405d",
+      "duration_ms": 222000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:28:00.507406+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T14:28:01.282626+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:05499b69-a018-4d35-a5b4-f51a6411d618",
+      "track_mbid": "05499b69-a018-4d35-a5b4-f51a6411d618",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 222000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:05499b69-a018-4d35-a5b4-f51a6411d618",
+  "identity": {
+    "album": "一途",
+    "album_id": "album:abaed97a38ccf4b6cb74",
+    "artist": "King Gnu",
+    "artist_id": "mbid:338f5d97-3133-4bf8-a58e-068ff9b5405d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "05499b69-a018-4d35-a5b4-f51a6411d618",
+    "source_track_id": "mbid:05499b69-a018-4d35-a5b4-f51a6411d618",
+    "spotify_id": null,
+    "title": "一途",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-11-30T21:16:10+00:00",
+    "last_scrobble": "2026-10-30T09:24:23+00:00",
+    "observed_albums": [
+      {
+        "album": "一途",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-abaed97a38ccf4b6cb74/album.json",
+    "artist_path": "artists/mb/mbid-338f5d97-3133-4bf8-a58e-068ff9b5405d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

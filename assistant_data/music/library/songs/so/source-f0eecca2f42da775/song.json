@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:19575766-5af8-4ba5-a564-31ce506a586e","duration_ms":204000,"duration_source":"Last.fm track.getInfo","track_id":"track:f0eecca2f42da775"}},"id":"source:f0eecca2f42da775","identity":{"album":"God-ish","album_id":"album:6b2d7bd3406657f7e8d1","artist":"Will Stetson","artist_id":"mbid:19575766-5af8-4ba5-a564-31ce506a586e","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:f0eecca2f42da775","spotify_id":null,"title":"God-Ish","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2025-01-24T17:34:35+00:00","last_scrobble":"2025-01-25T05:53:53+00:00","observed_albums":[{"album":"God-ish","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6b2d7bd3406657f7e8d1/album.json","artist_path":"artists/mb/mbid-19575766-5af8-4ba5-a564-31ce506a586e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:19575766-5af8-4ba5-a564-31ce506a586e",
+      "duration_ms": 204000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:f0eecca2f42da775",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 204000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:f0eecca2f42da775",
+  "identity": {
+    "album": "God-ish",
+    "album_id": "album:6b2d7bd3406657f7e8d1",
+    "artist": "Will Stetson",
+    "artist_id": "mbid:19575766-5af8-4ba5-a564-31ce506a586e",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:f0eecca2f42da775",
+    "spotify_id": null,
+    "title": "God-Ish",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2025-01-24T17:34:35+00:00",
+    "last_scrobble": "2025-01-25T05:53:53+00:00",
+    "observed_albums": [
+      {
+        "album": "God-ish",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6b2d7bd3406657f7e8d1/album.json",
+    "artist_path": "artists/mb/mbid-19575766-5af8-4ba5-a564-31ce506a586e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

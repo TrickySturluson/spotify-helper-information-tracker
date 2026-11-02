@@ -1,1 +1,107 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5f6a7827-04f8-4ad1-8b9d-a2488d4fbbb3","duration_ms":129000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:03:01.125201+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T09:03:01.761901+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","priority_playlist_ids":["4diIlnF8BlgoJrwUfejf49"],"retry_after":0,"track_id":"mbid:a70f7cdd-9152-32b0-b273-8584724a0315","track_mbid":"a70f7cdd-9152-32b0-b273-8584724a0315"}},"id":"mbid:a70f7cdd-9152-32b0-b273-8584724a0315","identity":{"album":"Red Dead Redemption: Undead Nightmare Original Soundtrack","album_id":"album:5df9edfa91d65747bcd9","artist":"Kreeps","artist_id":"mbid:5f6a7827-04f8-4ad1-8b9d-a2488d4fbbb3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a70f7cdd-9152-32b0-b273-8584724a0315","source_track_id":"track:b5f6986ea0a2149c","spotify_id":null,"title":"Dead Sled","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-10-30T18:16:01+00:00","last_scrobble":"2026-10-31T03:57:24+00:00","observed_albums":[{"album":"Red Dead Redemption: Undead Nightmare Original Soundtrack","scrobbles":2}],"priority_playlist_ids":["4diIlnF8BlgoJrwUfejf49"],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5df9edfa91d65747bcd9/album.json","artist_path":"artists/mb/mbid-5f6a7827-04f8-4ad1-8b9d-a2488d4fbbb3/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5f6a7827-04f8-4ad1-8b9d-a2488d4fbbb3",
+      "duration_ms": 129000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:03:01.125201+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T09:03:01.761901+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "priority_playlist_ids": [
+        "4diIlnF8BlgoJrwUfejf49"
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:a70f7cdd-9152-32b0-b273-8584724a0315",
+      "track_mbid": "a70f7cdd-9152-32b0-b273-8584724a0315",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-31T06:56:37+00:00",
+          "status": "matched",
+          "duration_ms": 129000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a70f7cdd-9152-32b0-b273-8584724a0315",
+  "identity": {
+    "album": "Red Dead Redemption: Undead Nightmare Original Soundtrack",
+    "album_id": "album:5df9edfa91d65747bcd9",
+    "artist": "Kreeps",
+    "artist_id": "mbid:5f6a7827-04f8-4ad1-8b9d-a2488d4fbbb3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a70f7cdd-9152-32b0-b273-8584724a0315",
+    "source_track_id": "track:b5f6986ea0a2149c",
+    "spotify_id": null,
+    "title": "Dead Sled",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-10-30T18:16:01+00:00",
+    "last_scrobble": "2026-10-31T03:57:24+00:00",
+    "observed_albums": [
+      {
+        "album": "Red Dead Redemption: Undead Nightmare Original Soundtrack",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [
+      "4diIlnF8BlgoJrwUfejf49"
+    ],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5df9edfa91d65747bcd9/album.json",
+    "artist_path": "artists/mb/mbid-5f6a7827-04f8-4ad1-8b9d-a2488d4fbbb3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

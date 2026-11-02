@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":180000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:26:40.105011+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T14:26:40.836529+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:ddd6181c-8083-4dd3-b24c-13d30765934b","track_mbid":"ddd6181c-8083-4dd3-b24c-13d30765934b"}},"id":"mbid:ddd6181c-8083-4dd3-b24c-13d30765934b","identity":{"album":"Spooky Hook","album_id":"album:719309a713c971e7e95f","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ddd6181c-8083-4dd3-b24c-13d30765934b","source_track_id":"mbid:ddd6181c-8083-4dd3-b24c-13d30765934b","spotify_id":null,"title":"rock it","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2023-04-15T04:00:34+00:00","last_scrobble":"2026-10-15T04:29:42+00:00","observed_albums":[{"album":"Spooky Hook","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-719309a713c971e7e95f/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 180000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:26:40.105011+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T14:26:40.836529+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:ddd6181c-8083-4dd3-b24c-13d30765934b",
+      "track_mbid": "ddd6181c-8083-4dd3-b24c-13d30765934b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 180000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ddd6181c-8083-4dd3-b24c-13d30765934b",
+  "identity": {
+    "album": "Spooky Hook",
+    "album_id": "album:719309a713c971e7e95f",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ddd6181c-8083-4dd3-b24c-13d30765934b",
+    "source_track_id": "mbid:ddd6181c-8083-4dd3-b24c-13d30765934b",
+    "spotify_id": null,
+    "title": "rock it",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2023-04-15T04:00:34+00:00",
+    "last_scrobble": "2026-10-15T04:29:42+00:00",
+    "observed_albums": [
+      {
+        "album": "Spooky Hook",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-719309a713c971e7e95f/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

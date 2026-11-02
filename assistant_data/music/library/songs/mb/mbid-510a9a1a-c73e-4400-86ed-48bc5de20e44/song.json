@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:03c051c5-d424-419f-8cce-1d9f7aa12175","duration_ms":169000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:510a9a1a-c73e-4400-86ed-48bc5de20e44","track_mbid":"510a9a1a-c73e-4400-86ed-48bc5de20e44"}},"id":"mbid:510a9a1a-c73e-4400-86ed-48bc5de20e44","identity":{"album":"Harlem Shuffle","album_id":"album:01c35a96fc7af964ce99","artist":"Bob & Earl","artist_id":"mbid:03c051c5-d424-419f-8cce-1d9f7aa12175","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"510a9a1a-c73e-4400-86ed-48bc5de20e44","source_track_id":"mbid:510a9a1a-c73e-4400-86ed-48bc5de20e44","spotify_id":null,"title":"Harlem Shuffle","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-01-15T18:51:02+00:00","last_scrobble":"2026-01-15T18:51:02+00:00","observed_albums":[{"album":"Harlem Shuffle","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-01c35a96fc7af964ce99/album.json","artist_path":"artists/mb/mbid-03c051c5-d424-419f-8cce-1d9f7aa12175/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:03c051c5-d424-419f-8cce-1d9f7aa12175",
+      "duration_ms": 169000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:510a9a1a-c73e-4400-86ed-48bc5de20e44",
+      "track_mbid": "510a9a1a-c73e-4400-86ed-48bc5de20e44",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 169000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:510a9a1a-c73e-4400-86ed-48bc5de20e44",
+  "identity": {
+    "album": "Harlem Shuffle",
+    "album_id": "album:01c35a96fc7af964ce99",
+    "artist": "Bob & Earl",
+    "artist_id": "mbid:03c051c5-d424-419f-8cce-1d9f7aa12175",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "510a9a1a-c73e-4400-86ed-48bc5de20e44",
+    "source_track_id": "mbid:510a9a1a-c73e-4400-86ed-48bc5de20e44",
+    "spotify_id": null,
+    "title": "Harlem Shuffle",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-01-15T18:51:02+00:00",
+    "last_scrobble": "2026-01-15T18:51:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Harlem Shuffle",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-01c35a96fc7af964ce99/album.json",
+    "artist_path": "artists/mb/mbid-03c051c5-d424-419f-8cce-1d9f7aa12175/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

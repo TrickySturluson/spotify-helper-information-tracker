@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:827ba6fc-3e37-4c17-ad56-65757bf674eb","duration_ms":190000,"duration_source":"Last.fm track.getInfo","track_id":"track:fdcd7c6ee7b57b8d"}},"id":"source:fdcd7c6ee7b57b8d","identity":{"album":"American Psycho (Original London Cast Recording)","album_id":"album:f6ab1df3b7bf30ffad43","artist":"Matt Smith","artist_id":"mbid:827ba6fc-3e37-4c17-ad56-65757bf674eb","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:fdcd7c6ee7b57b8d","spotify_id":null,"title":"Not a Common Man","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-03-31T21:41:54+00:00","last_scrobble":"2025-04-06T02:26:18+00:00","observed_albums":[{"album":"American Psycho (Original London Cast Recording)","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f6ab1df3b7bf30ffad43/album.json","artist_path":"artists/mb/mbid-827ba6fc-3e37-4c17-ad56-65757bf674eb/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:827ba6fc-3e37-4c17-ad56-65757bf674eb",
+      "duration_ms": 190000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:fdcd7c6ee7b57b8d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 190000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:fdcd7c6ee7b57b8d",
+  "identity": {
+    "album": "American Psycho (Original London Cast Recording)",
+    "album_id": "album:f6ab1df3b7bf30ffad43",
+    "artist": "Matt Smith",
+    "artist_id": "mbid:827ba6fc-3e37-4c17-ad56-65757bf674eb",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:fdcd7c6ee7b57b8d",
+    "spotify_id": null,
+    "title": "Not a Common Man",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-03-31T21:41:54+00:00",
+    "last_scrobble": "2025-04-06T02:26:18+00:00",
+    "observed_albums": [
+      {
+        "album": "American Psycho (Original London Cast Recording)",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f6ab1df3b7bf30ffad43/album.json",
+    "artist_path": "artists/mb/mbid-827ba6fc-3e37-4c17-ad56-65757bf674eb/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

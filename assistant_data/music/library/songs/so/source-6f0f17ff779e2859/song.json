@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:76968b7bc6def6a8","duration_ms":154000,"duration_source":"Last.fm track.getInfo","track_id":"track:6f0f17ff779e2859"}},"id":"source:6f0f17ff779e2859","identity":{"album":"Still Alive","album_id":"album:3bf4279f351ad21e9b11","artist":"makruzyy","artist_id":"name:76968b7bc6def6a8","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:6f0f17ff779e2859","spotify_id":null,"title":"Still Alive","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2024-06-11T12:07:06+00:00","last_scrobble":"2024-12-18T22:37:37+00:00","observed_albums":[{"album":"Still Alive","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3bf4279f351ad21e9b11/album.json","artist_path":"artists/na/name-76968b7bc6def6a8/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:76968b7bc6def6a8",
+      "duration_ms": 154000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:6f0f17ff779e2859",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 154000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:6f0f17ff779e2859",
+  "identity": {
+    "album": "Still Alive",
+    "album_id": "album:3bf4279f351ad21e9b11",
+    "artist": "makruzyy",
+    "artist_id": "name:76968b7bc6def6a8",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:6f0f17ff779e2859",
+    "spotify_id": null,
+    "title": "Still Alive",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2024-06-11T12:07:06+00:00",
+    "last_scrobble": "2024-12-18T22:37:37+00:00",
+    "observed_albums": [
+      {
+        "album": "Still Alive",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3bf4279f351ad21e9b11/album.json",
+    "artist_path": "artists/na/name-76968b7bc6def6a8/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

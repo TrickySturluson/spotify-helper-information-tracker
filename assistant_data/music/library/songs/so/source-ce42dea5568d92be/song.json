@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:eb3c021d-e056-42d6-8fad-064205a90527","duration_ms":116000,"duration_source":"Last.fm track.getInfo","track_id":"track:ce42dea5568d92be"}},"id":"source:ce42dea5568d92be","identity":{"album":"LOVESICK, CANNIBAL!","album_id":"album:6993144e19f00913e0fc","artist":"femtanyl","artist_id":"mbid:eb3c021d-e056-42d6-8fad-064205a90527","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:ce42dea5568d92be","spotify_id":null,"title":"LOVESICK, CANNIBAL!","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-02-14T01:54:43+00:00","last_scrobble":"2025-02-14T06:25:24+00:00","observed_albums":[{"album":"LOVESICK, CANNIBAL!","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6993144e19f00913e0fc/album.json","artist_path":"artists/mb/mbid-eb3c021d-e056-42d6-8fad-064205a90527/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:eb3c021d-e056-42d6-8fad-064205a90527",
+      "duration_ms": 116000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:ce42dea5568d92be",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 116000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:ce42dea5568d92be",
+  "identity": {
+    "album": "LOVESICK, CANNIBAL!",
+    "album_id": "album:6993144e19f00913e0fc",
+    "artist": "femtanyl",
+    "artist_id": "mbid:eb3c021d-e056-42d6-8fad-064205a90527",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:ce42dea5568d92be",
+    "spotify_id": null,
+    "title": "LOVESICK, CANNIBAL!",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-02-14T01:54:43+00:00",
+    "last_scrobble": "2025-02-14T06:25:24+00:00",
+    "observed_albums": [
+      {
+        "album": "LOVESICK, CANNIBAL!",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6993144e19f00913e0fc/album.json",
+    "artist_path": "artists/mb/mbid-eb3c021d-e056-42d6-8fad-064205a90527/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

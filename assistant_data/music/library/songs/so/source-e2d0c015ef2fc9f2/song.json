@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d616b606-cf6a-4b6e-ab0f-e253b8db6610","duration_ms":254000,"duration_source":"Last.fm track.getInfo","track_id":"track:e2d0c015ef2fc9f2"}},"id":"source:e2d0c015ef2fc9f2","identity":{"album":"DiCaprio 2","album_id":"album:2de28123db029e3b812d","artist":"JID","artist_id":"mbid:d616b606-cf6a-4b6e-ab0f-e253b8db6610","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:e2d0c015ef2fc9f2","spotify_id":null,"title":"Despacito Too","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-03-04T16:55:22+00:00","last_scrobble":"2023-03-04T16:55:22+00:00","observed_albums":[{"album":"DiCaprio 2","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2de28123db029e3b812d/album.json","artist_path":"artists/mb/mbid-d616b606-cf6a-4b6e-ab0f-e253b8db6610/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d616b606-cf6a-4b6e-ab0f-e253b8db6610",
+      "duration_ms": 254000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:e2d0c015ef2fc9f2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 254000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:e2d0c015ef2fc9f2",
+  "identity": {
+    "album": "DiCaprio 2",
+    "album_id": "album:2de28123db029e3b812d",
+    "artist": "JID",
+    "artist_id": "mbid:d616b606-cf6a-4b6e-ab0f-e253b8db6610",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:e2d0c015ef2fc9f2",
+    "spotify_id": null,
+    "title": "Despacito Too",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-03-04T16:55:22+00:00",
+    "last_scrobble": "2023-03-04T16:55:22+00:00",
+    "observed_albums": [
+      {
+        "album": "DiCaprio 2",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2de28123db029e3b812d/album.json",
+    "artist_path": "artists/mb/mbid-d616b606-cf6a-4b6e-ab0f-e253b8db6610/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

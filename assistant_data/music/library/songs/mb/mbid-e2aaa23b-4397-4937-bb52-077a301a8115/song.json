@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7e380eea-04e0-40dd-873d-901a2ed500a3","duration_ms":214000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e2aaa23b-4397-4937-bb52-077a301a8115","track_mbid":"e2aaa23b-4397-4937-bb52-077a301a8115"}},"id":"mbid:e2aaa23b-4397-4937-bb52-077a301a8115","identity":{"album":"Aquarium (Special Edition)","album_id":"album:fe7adfd0347a2b157bac","artist":"Aqua","artist_id":"mbid:7e380eea-04e0-40dd-873d-901a2ed500a3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e2aaa23b-4397-4937-bb52-077a301a8115","source_track_id":"mbid:e2aaa23b-4397-4937-bb52-077a301a8115","spotify_id":null,"title":"Calling You","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-01-09T05:31:42+00:00","last_scrobble":"2024-01-09T14:02:13+00:00","observed_albums":[{"album":"Aquarium (Special Edition)","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fe7adfd0347a2b157bac/album.json","artist_path":"artists/mb/mbid-7e380eea-04e0-40dd-873d-901a2ed500a3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7e380eea-04e0-40dd-873d-901a2ed500a3",
+      "duration_ms": 214000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e2aaa23b-4397-4937-bb52-077a301a8115",
+      "track_mbid": "e2aaa23b-4397-4937-bb52-077a301a8115",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 214000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e2aaa23b-4397-4937-bb52-077a301a8115",
+  "identity": {
+    "album": "Aquarium (Special Edition)",
+    "album_id": "album:fe7adfd0347a2b157bac",
+    "artist": "Aqua",
+    "artist_id": "mbid:7e380eea-04e0-40dd-873d-901a2ed500a3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e2aaa23b-4397-4937-bb52-077a301a8115",
+    "source_track_id": "mbid:e2aaa23b-4397-4937-bb52-077a301a8115",
+    "spotify_id": null,
+    "title": "Calling You",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-01-09T05:31:42+00:00",
+    "last_scrobble": "2024-01-09T14:02:13+00:00",
+    "observed_albums": [
+      {
+        "album": "Aquarium (Special Edition)",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fe7adfd0347a2b157bac/album.json",
+    "artist_path": "artists/mb/mbid-7e380eea-04e0-40dd-873d-901a2ed500a3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

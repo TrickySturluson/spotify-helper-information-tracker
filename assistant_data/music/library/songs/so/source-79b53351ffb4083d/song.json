@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:4a502f348f45dcd5","duration_ms":156000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:18:44.738058+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:79b53351ffb4083d"}},"id":"source:79b53351ffb4083d","identity":{"album":"Weezer 2 (Getting Left Behind by Fred Durst)","album_id":"album:674af4eb0d160bcb81eb","artist":"B. Fraser","artist_id":"name:4a502f348f45dcd5","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:79b53351ffb4083d","spotify_id":null,"title":"Acab for Cutie","track_number":null},"listening_context":{"all_time_plays":128,"first_scrobble":"2024-05-14T20:18:50+00:00","last_scrobble":"2026-10-03T08:00:35+00:00","observed_albums":[{"album":"Weezer 2 (Getting Left Behind by Fred Durst)","scrobbles":128}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-674af4eb0d160bcb81eb/album.json","artist_path":"artists/na/name-4a502f348f45dcd5/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:4a502f348f45dcd5",
+      "duration_ms": 156000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:18:44.738058+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:79b53351ffb4083d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 156000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:79b53351ffb4083d",
+  "identity": {
+    "album": "Weezer 2 (Getting Left Behind by Fred Durst)",
+    "album_id": "album:674af4eb0d160bcb81eb",
+    "artist": "B. Fraser",
+    "artist_id": "name:4a502f348f45dcd5",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:79b53351ffb4083d",
+    "spotify_id": null,
+    "title": "Acab for Cutie",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 128,
+    "first_scrobble": "2024-05-14T20:18:50+00:00",
+    "last_scrobble": "2026-10-03T08:00:35+00:00",
+    "observed_albums": [
+      {
+        "album": "Weezer 2 (Getting Left Behind by Fred Durst)",
+        "scrobbles": 128
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-674af4eb0d160bcb81eb/album.json",
+    "artist_path": "artists/na/name-4a502f348f45dcd5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

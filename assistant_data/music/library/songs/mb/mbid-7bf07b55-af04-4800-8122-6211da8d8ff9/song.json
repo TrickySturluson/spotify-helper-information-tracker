@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:73ed3b2f-6d5e-46c6-8f75-952c383f6b33","duration_ms":213000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7bf07b55-af04-4800-8122-6211da8d8ff9","track_mbid":"7bf07b55-af04-4800-8122-6211da8d8ff9"}},"id":"mbid:7bf07b55-af04-4800-8122-6211da8d8ff9","identity":{"album":"Skull","album_id":"album:05ef6b66a842e0d5e855","artist":"GosT","artist_id":"mbid:73ed3b2f-6d5e-46c6-8f75-952c383f6b33","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7bf07b55-af04-4800-8122-6211da8d8ff9","source_track_id":"mbid:7bf07b55-af04-4800-8122-6211da8d8ff9","spotify_id":null,"title":"Cursed","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-09T01:25:50+00:00","last_scrobble":"2026-05-09T01:25:50+00:00","observed_albums":[{"album":"Skull","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-05ef6b66a842e0d5e855/album.json","artist_path":"artists/mb/mbid-73ed3b2f-6d5e-46c6-8f75-952c383f6b33/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:73ed3b2f-6d5e-46c6-8f75-952c383f6b33",
+      "duration_ms": 213000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7bf07b55-af04-4800-8122-6211da8d8ff9",
+      "track_mbid": "7bf07b55-af04-4800-8122-6211da8d8ff9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 213000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7bf07b55-af04-4800-8122-6211da8d8ff9",
+  "identity": {
+    "album": "Skull",
+    "album_id": "album:05ef6b66a842e0d5e855",
+    "artist": "GosT",
+    "artist_id": "mbid:73ed3b2f-6d5e-46c6-8f75-952c383f6b33",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7bf07b55-af04-4800-8122-6211da8d8ff9",
+    "source_track_id": "mbid:7bf07b55-af04-4800-8122-6211da8d8ff9",
+    "spotify_id": null,
+    "title": "Cursed",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-09T01:25:50+00:00",
+    "last_scrobble": "2026-05-09T01:25:50+00:00",
+    "observed_albums": [
+      {
+        "album": "Skull",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-05ef6b66a842e0d5e855/album.json",
+    "artist_path": "artists/mb/mbid-73ed3b2f-6d5e-46c6-8f75-952c383f6b33/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d7af8379-3066-4055-8217-a99e47f54704","duration_ms":120000,"duration_source":"Last.fm track.getInfo","track_id":"track:f227e057553aa4e4"}},"id":"source:f227e057553aa4e4","identity":{"album":"Until the End","album_id":"album:ea04f00a42496ed33abe","artist":"Saba Lou","artist_id":"mbid:d7af8379-3066-4055-8217-a99e47f54704","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:f227e057553aa4e4","spotify_id":null,"title":"Good Habits (and Bad)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-03-12T15:58:17+00:00","last_scrobble":"2024-03-12T15:58:17+00:00","observed_albums":[{"album":"Until the End","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ea04f00a42496ed33abe/album.json","artist_path":"artists/mb/mbid-d7af8379-3066-4055-8217-a99e47f54704/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d7af8379-3066-4055-8217-a99e47f54704",
+      "duration_ms": 120000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:f227e057553aa4e4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 120000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:f227e057553aa4e4",
+  "identity": {
+    "album": "Until the End",
+    "album_id": "album:ea04f00a42496ed33abe",
+    "artist": "Saba Lou",
+    "artist_id": "mbid:d7af8379-3066-4055-8217-a99e47f54704",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:f227e057553aa4e4",
+    "spotify_id": null,
+    "title": "Good Habits (and Bad)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-03-12T15:58:17+00:00",
+    "last_scrobble": "2024-03-12T15:58:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Until the End",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ea04f00a42496ed33abe/album.json",
+    "artist_path": "artists/mb/mbid-d7af8379-3066-4055-8217-a99e47f54704/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

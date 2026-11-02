@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":215000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-02T00:02:22.117974+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-02T00:02:22.676741+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:1415a0e5-94cc-41e7-a6b6-43bc4328258a","track_mbid":"1415a0e5-94cc-41e7-a6b6-43bc4328258a"}},"id":"mbid:1415a0e5-94cc-41e7-a6b6-43bc4328258a","identity":{"album":"Café Sputnik","album_id":"album:5b4dc99d03a38beefc90","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1415a0e5-94cc-41e7-a6b6-43bc4328258a","source_track_id":"mbid:1415a0e5-94cc-41e7-a6b6-43bc4328258a","spotify_id":null,"title":"Tchaikovsky Beat","track_number":null},"listening_context":{"all_time_plays":16,"first_scrobble":"2023-04-13T19:40:47+00:00","last_scrobble":"2025-07-03T14:38:37+00:00","observed_albums":[{"album":"Café Sputnik","scrobbles":16}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5b4dc99d03a38beefc90/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 215000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-02T00:02:22.117974+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-02T00:02:22.676741+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:1415a0e5-94cc-41e7-a6b6-43bc4328258a",
+      "track_mbid": "1415a0e5-94cc-41e7-a6b6-43bc4328258a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 215000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1415a0e5-94cc-41e7-a6b6-43bc4328258a",
+  "identity": {
+    "album": "Café Sputnik",
+    "album_id": "album:5b4dc99d03a38beefc90",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1415a0e5-94cc-41e7-a6b6-43bc4328258a",
+    "source_track_id": "mbid:1415a0e5-94cc-41e7-a6b6-43bc4328258a",
+    "spotify_id": null,
+    "title": "Tchaikovsky Beat",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 16,
+    "first_scrobble": "2023-04-13T19:40:47+00:00",
+    "last_scrobble": "2025-07-03T14:38:37+00:00",
+    "observed_albums": [
+      {
+        "album": "Café Sputnik",
+        "scrobbles": 16
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5b4dc99d03a38beefc90/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

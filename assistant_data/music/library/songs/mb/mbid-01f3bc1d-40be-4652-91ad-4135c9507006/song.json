@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b2c8ff02-6078-4e9a-b2d7-267451925394","duration_ms":236000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:01f3bc1d-40be-4652-91ad-4135c9507006","track_mbid":"01f3bc1d-40be-4652-91ad-4135c9507006"}},"id":"mbid:01f3bc1d-40be-4652-91ad-4135c9507006","identity":{"album":"Dead Man's Bones","album_id":"album:9d961b8620e430587b99","artist":"Dead Man's Bones","artist_id":"mbid:b2c8ff02-6078-4e9a-b2d7-267451925394","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"01f3bc1d-40be-4652-91ad-4135c9507006","source_track_id":"mbid:01f3bc1d-40be-4652-91ad-4135c9507006","spotify_id":null,"title":"In the Room Where You Sleep","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-05-30T18:31:44+00:00","last_scrobble":"2024-05-31T15:28:58+00:00","observed_albums":[{"album":"Dead Man's Bones","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9d961b8620e430587b99/album.json","artist_path":"artists/mb/mbid-b2c8ff02-6078-4e9a-b2d7-267451925394/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b2c8ff02-6078-4e9a-b2d7-267451925394",
+      "duration_ms": 236000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:01f3bc1d-40be-4652-91ad-4135c9507006",
+      "track_mbid": "01f3bc1d-40be-4652-91ad-4135c9507006",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 236000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:01f3bc1d-40be-4652-91ad-4135c9507006",
+  "identity": {
+    "album": "Dead Man's Bones",
+    "album_id": "album:9d961b8620e430587b99",
+    "artist": "Dead Man's Bones",
+    "artist_id": "mbid:b2c8ff02-6078-4e9a-b2d7-267451925394",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "01f3bc1d-40be-4652-91ad-4135c9507006",
+    "source_track_id": "mbid:01f3bc1d-40be-4652-91ad-4135c9507006",
+    "spotify_id": null,
+    "title": "In the Room Where You Sleep",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-05-30T18:31:44+00:00",
+    "last_scrobble": "2024-05-31T15:28:58+00:00",
+    "observed_albums": [
+      {
+        "album": "Dead Man's Bones",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9d961b8620e430587b99/album.json",
+    "artist_path": "artists/mb/mbid-b2c8ff02-6078-4e9a-b2d7-267451925394/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

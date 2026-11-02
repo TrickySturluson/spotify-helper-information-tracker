@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5a0160c9-5713-48db-b2c1-ab152da2a7e6","duration_ms":265000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3e6f9518-6dad-4a3d-943c-425d36a5a827","track_mbid":"3e6f9518-6dad-4a3d-943c-425d36a5a827"}},"id":"mbid:3e6f9518-6dad-4a3d-943c-425d36a5a827","identity":{"album":"Another Light","album_id":"album:1dfebaea4468b028ce86","artist":"Red Vox","artist_id":"mbid:5a0160c9-5713-48db-b2c1-ab152da2a7e6","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3e6f9518-6dad-4a3d-943c-425d36a5a827","source_track_id":"mbid:3e6f9518-6dad-4a3d-943c-425d36a5a827","spotify_id":null,"title":"From The Stars","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2023-07-18T00:14:21+00:00","last_scrobble":"2023-07-22T08:28:39+00:00","observed_albums":[{"album":"Another Light","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1dfebaea4468b028ce86/album.json","artist_path":"artists/mb/mbid-5a0160c9-5713-48db-b2c1-ab152da2a7e6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5a0160c9-5713-48db-b2c1-ab152da2a7e6",
+      "duration_ms": 265000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3e6f9518-6dad-4a3d-943c-425d36a5a827",
+      "track_mbid": "3e6f9518-6dad-4a3d-943c-425d36a5a827",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 265000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3e6f9518-6dad-4a3d-943c-425d36a5a827",
+  "identity": {
+    "album": "Another Light",
+    "album_id": "album:1dfebaea4468b028ce86",
+    "artist": "Red Vox",
+    "artist_id": "mbid:5a0160c9-5713-48db-b2c1-ab152da2a7e6",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3e6f9518-6dad-4a3d-943c-425d36a5a827",
+    "source_track_id": "mbid:3e6f9518-6dad-4a3d-943c-425d36a5a827",
+    "spotify_id": null,
+    "title": "From The Stars",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2023-07-18T00:14:21+00:00",
+    "last_scrobble": "2023-07-22T08:28:39+00:00",
+    "observed_albums": [
+      {
+        "album": "Another Light",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1dfebaea4468b028ce86/album.json",
+    "artist_path": "artists/mb/mbid-5a0160c9-5713-48db-b2c1-ab152da2a7e6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:84ca8fa4-7cca-4948-a90a-cb44db29853d","duration_ms":132000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6e0ee411-258a-4122-b6d0-6ccf14185b81","track_mbid":"6e0ee411-258a-4122-b6d0-6ccf14185b81"}},"id":"mbid:6e0ee411-258a-4122-b6d0-6ccf14185b81","identity":{"album":"CLPPNG","album_id":"album:f4794626c6bfa7f77983","artist":"clipping.","artist_id":"mbid:84ca8fa4-7cca-4948-a90a-cb44db29853d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6e0ee411-258a-4122-b6d0-6ccf14185b81","source_track_id":"mbid:6e0ee411-258a-4122-b6d0-6ccf14185b81","spotify_id":null,"title":"Story 2","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-03-06T18:19:06+00:00","last_scrobble":"2023-03-07T06:05:49+00:00","observed_albums":[{"album":"CLPPNG","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f4794626c6bfa7f77983/album.json","artist_path":"artists/mb/mbid-84ca8fa4-7cca-4948-a90a-cb44db29853d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:84ca8fa4-7cca-4948-a90a-cb44db29853d",
+      "duration_ms": 132000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6e0ee411-258a-4122-b6d0-6ccf14185b81",
+      "track_mbid": "6e0ee411-258a-4122-b6d0-6ccf14185b81",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 132000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6e0ee411-258a-4122-b6d0-6ccf14185b81",
+  "identity": {
+    "album": "CLPPNG",
+    "album_id": "album:f4794626c6bfa7f77983",
+    "artist": "clipping.",
+    "artist_id": "mbid:84ca8fa4-7cca-4948-a90a-cb44db29853d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6e0ee411-258a-4122-b6d0-6ccf14185b81",
+    "source_track_id": "mbid:6e0ee411-258a-4122-b6d0-6ccf14185b81",
+    "spotify_id": null,
+    "title": "Story 2",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-03-06T18:19:06+00:00",
+    "last_scrobble": "2023-03-07T06:05:49+00:00",
+    "observed_albums": [
+      {
+        "album": "CLPPNG",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f4794626c6bfa7f77983/album.json",
+    "artist_path": "artists/mb/mbid-84ca8fa4-7cca-4948-a90a-cb44db29853d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

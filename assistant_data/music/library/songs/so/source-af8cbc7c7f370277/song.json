@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:a40d34c0fbdec34f","duration_ms":201000,"duration_source":"Last.fm track.getInfo","track_id":"track:af8cbc7c7f370277"}},"id":"source:af8cbc7c7f370277","identity":{"album":"The Suns Up","album_id":"album:9ce1b2c5227ebb768c4f","artist":"Twin Suns","artist_id":"name:a40d34c0fbdec34f","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:af8cbc7c7f370277","spotify_id":null,"title":"The Hermit","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-03-13T07:28:46+00:00","last_scrobble":"2025-03-13T07:28:46+00:00","observed_albums":[{"album":"The Suns Up","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9ce1b2c5227ebb768c4f/album.json","artist_path":"artists/na/name-a40d34c0fbdec34f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:a40d34c0fbdec34f",
+      "duration_ms": 201000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:af8cbc7c7f370277",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 201000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:af8cbc7c7f370277",
+  "identity": {
+    "album": "The Suns Up",
+    "album_id": "album:9ce1b2c5227ebb768c4f",
+    "artist": "Twin Suns",
+    "artist_id": "name:a40d34c0fbdec34f",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:af8cbc7c7f370277",
+    "spotify_id": null,
+    "title": "The Hermit",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-03-13T07:28:46+00:00",
+    "last_scrobble": "2025-03-13T07:28:46+00:00",
+    "observed_albums": [
+      {
+        "album": "The Suns Up",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9ce1b2c5227ebb768c4f/album.json",
+    "artist_path": "artists/na/name-a40d34c0fbdec34f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

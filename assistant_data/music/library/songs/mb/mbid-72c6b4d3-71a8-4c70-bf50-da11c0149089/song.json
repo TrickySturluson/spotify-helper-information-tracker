@@ -1,1 +1,355 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Love":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alt rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative pop/rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"alternative rock":{"confidence":"high","reason":"corroborated by independent source families","source_families":["lastfm_community","musicbrainz_community"]},"alternative/indie rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"beautiful":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"british":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"electronic":{"confidence":"high","reason":"corroborated by independent source families","source_families":["lastfm_community","musicbrainz_community"]},"experimental":{"confidence":"high","reason":"corroborated by independent source families","source_families":["lastfm_community","musicbrainz_community"]},"experimental rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"pop/rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"radiohead":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"high","reason":"corroborated by independent source families","source_families":["lastfm_community","musicbrainz_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711","duration_ms":282000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:37:59.373065+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":78,"source":"Last.fm track.getTopTags","tag":"alternative rock"},{"count":42,"source":"Last.fm track.getTopTags","tag":"radiohead"},{"count":38,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":17,"source":"Last.fm track.getTopTags","tag":"british"},{"count":10,"source":"Last.fm track.getTopTags","tag":"indie"},{"count":9,"source":"Last.fm track.getTopTags","tag":"beautiful"},{"count":2,"source":"Last.fm track.getTopTags","tag":"electronic"},{"count":2,"source":"Last.fm track.getTopTags","tag":"experimental"},{"count":2,"source":"Last.fm track.getTopTags","tag":"Love"}],"musicbrainz_checked_at":"2026-11-01T22:38:00.061765+00:00","musicbrainz_genres":[{"count":4,"source":"MusicBrainz recording genre","tag":"alternative rock"},{"count":1,"source":"MusicBrainz recording genre","tag":"electronic"},{"count":1,"source":"MusicBrainz recording genre","tag":"experimental"},{"count":1,"source":"MusicBrainz recording genre","tag":"experimental rock"},{"count":1,"source":"MusicBrainz recording genre","tag":"indie rock"},{"count":4,"source":"MusicBrainz recording genre","tag":"rock"}],"musicbrainz_retry_after":0,"musicbrainz_status":"matched","musicbrainz_tags":[{"count":2,"source":"MusicBrainz recording tag","tag":"alt rock"},{"count":2,"source":"MusicBrainz recording tag","tag":"alternative pop/rock"},{"count":4,"source":"MusicBrainz recording tag","tag":"alternative rock"},{"count":1,"source":"MusicBrainz recording tag","tag":"alternative/indie rock"},{"count":1,"source":"MusicBrainz recording tag","tag":"electronic"},{"count":1,"source":"MusicBrainz recording tag","tag":"experimental"},{"count":1,"source":"MusicBrainz recording tag","tag":"experimental rock"},{"count":1,"source":"MusicBrainz recording tag","tag":"indie rock"},{"count":1,"source":"MusicBrainz recording tag","tag":"pop/rock"},{"count":4,"source":"MusicBrainz recording tag","tag":"rock"}],"retry_after":0,"track_id":"mbid:72c6b4d3-71a8-4c70-bf50-da11c0149089","track_mbid":"72c6b4d3-71a8-4c70-bf50-da11c0149089"}},"id":"mbid:72c6b4d3-71a8-4c70-bf50-da11c0149089","identity":{"album":"In Rainbows","album_id":"album:0e165cc272108c8b7779","artist":"Radiohead","artist_id":"mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"72c6b4d3-71a8-4c70-bf50-da11c0149089","source_track_id":"mbid:72c6b4d3-71a8-4c70-bf50-da11c0149089","spotify_id":null,"title":"All I Need","track_number":null},"listening_context":{"all_time_plays":29,"first_scrobble":"2025-10-26T18:54:03+00:00","last_scrobble":"2026-07-22T14:44:09+00:00","observed_albums":[{"album":"In Rainbows","scrobbles":29}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0e165cc272108c8b7779/album.json","artist_path":"artists/mb/mbid-a74b1b7f-71a5-4011-9441-d0b5e4122711/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"matched"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Love": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alt rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative pop/rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "high",
+          "reason": "corroborated by independent source families",
+          "source_families": [
+            "lastfm_community",
+            "musicbrainz_community"
+          ]
+        },
+        "alternative/indie rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "beautiful": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "british": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "electronic": {
+          "confidence": "high",
+          "reason": "corroborated by independent source families",
+          "source_families": [
+            "lastfm_community",
+            "musicbrainz_community"
+          ]
+        },
+        "experimental": {
+          "confidence": "high",
+          "reason": "corroborated by independent source families",
+          "source_families": [
+            "lastfm_community",
+            "musicbrainz_community"
+          ]
+        },
+        "experimental rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "pop/rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "radiohead": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "high",
+          "reason": "corroborated by independent source families",
+          "source_families": [
+            "lastfm_community",
+            "musicbrainz_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711",
+      "duration_ms": 282000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:37:59.373065+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 78,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 42,
+          "source": "Last.fm track.getTopTags",
+          "tag": "radiohead"
+        },
+        {
+          "count": 38,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 17,
+          "source": "Last.fm track.getTopTags",
+          "tag": "british"
+        },
+        {
+          "count": 10,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        },
+        {
+          "count": 9,
+          "source": "Last.fm track.getTopTags",
+          "tag": "beautiful"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "electronic"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "experimental"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Love"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T22:38:00.061765+00:00",
+      "musicbrainz_genres": [
+        {
+          "count": 4,
+          "source": "MusicBrainz recording genre",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "electronic"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "experimental"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "experimental rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "indie rock"
+        },
+        {
+          "count": 4,
+          "source": "MusicBrainz recording genre",
+          "tag": "rock"
+        }
+      ],
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "matched",
+      "musicbrainz_tags": [
+        {
+          "count": 2,
+          "source": "MusicBrainz recording tag",
+          "tag": "alt rock"
+        },
+        {
+          "count": 2,
+          "source": "MusicBrainz recording tag",
+          "tag": "alternative pop/rock"
+        },
+        {
+          "count": 4,
+          "source": "MusicBrainz recording tag",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "alternative/indie rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "electronic"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "experimental"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "experimental rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "indie rock"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "pop/rock"
+        },
+        {
+          "count": 4,
+          "source": "MusicBrainz recording tag",
+          "tag": "rock"
+        }
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:72c6b4d3-71a8-4c70-bf50-da11c0149089",
+      "track_mbid": "72c6b4d3-71a8-4c70-bf50-da11c0149089",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 282000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:72c6b4d3-71a8-4c70-bf50-da11c0149089",
+  "identity": {
+    "album": "In Rainbows",
+    "album_id": "album:0e165cc272108c8b7779",
+    "artist": "Radiohead",
+    "artist_id": "mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "72c6b4d3-71a8-4c70-bf50-da11c0149089",
+    "source_track_id": "mbid:72c6b4d3-71a8-4c70-bf50-da11c0149089",
+    "spotify_id": null,
+    "title": "All I Need",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 29,
+    "first_scrobble": "2025-10-26T18:54:03+00:00",
+    "last_scrobble": "2026-07-22T14:44:09+00:00",
+    "observed_albums": [
+      {
+        "album": "In Rainbows",
+        "scrobbles": 29
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0e165cc272108c8b7779/album.json",
+    "artist_path": "artists/mb/mbid-a74b1b7f-71a5-4011-9441-d0b5e4122711/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:bec6b28b-68be-443b-a3c3-b370ea9b5ce5","duration_ms":276000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9e7c0a1a-20a2-4188-a604-2a25bf4eddcb","track_mbid":"9e7c0a1a-20a2-4188-a604-2a25bf4eddcb"}},"id":"mbid:9e7c0a1a-20a2-4188-a604-2a25bf4eddcb","identity":{"album":"DEADBOLT","album_id":"album:74aa332b79464aa99aee","artist":"Chris Christodoulou","artist_id":"mbid:bec6b28b-68be-443b-a3c3-b370ea9b5ce5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9e7c0a1a-20a2-4188-a604-2a25bf4eddcb","source_track_id":"mbid:9e7c0a1a-20a2-4188-a604-2a25bf4eddcb","spotify_id":null,"title":"The Way of the Dodo","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-11-29T19:45:12+00:00","last_scrobble":"2023-11-29T19:45:12+00:00","observed_albums":[{"album":"DEADBOLT","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-74aa332b79464aa99aee/album.json","artist_path":"artists/mb/mbid-bec6b28b-68be-443b-a3c3-b370ea9b5ce5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:bec6b28b-68be-443b-a3c3-b370ea9b5ce5",
+      "duration_ms": 276000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9e7c0a1a-20a2-4188-a604-2a25bf4eddcb",
+      "track_mbid": "9e7c0a1a-20a2-4188-a604-2a25bf4eddcb",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 276000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9e7c0a1a-20a2-4188-a604-2a25bf4eddcb",
+  "identity": {
+    "album": "DEADBOLT",
+    "album_id": "album:74aa332b79464aa99aee",
+    "artist": "Chris Christodoulou",
+    "artist_id": "mbid:bec6b28b-68be-443b-a3c3-b370ea9b5ce5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9e7c0a1a-20a2-4188-a604-2a25bf4eddcb",
+    "source_track_id": "mbid:9e7c0a1a-20a2-4188-a604-2a25bf4eddcb",
+    "spotify_id": null,
+    "title": "The Way of the Dodo",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-11-29T19:45:12+00:00",
+    "last_scrobble": "2023-11-29T19:45:12+00:00",
+    "observed_albums": [
+      {
+        "album": "DEADBOLT",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-74aa332b79464aa99aee/album.json",
+    "artist_path": "artists/mb/mbid-bec6b28b-68be-443b-a3c3-b370ea9b5ce5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

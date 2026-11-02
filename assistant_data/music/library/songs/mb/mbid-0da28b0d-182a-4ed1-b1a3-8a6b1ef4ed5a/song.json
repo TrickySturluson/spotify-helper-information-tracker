@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:7d92c00c33c3111a","duration_ms":197000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a","track_mbid":"0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a"}},"id":"mbid:0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a","identity":{"album":"Fear of the Unknown","album_id":"album:e2defa5bc31174d4cabb","artist":"Jfarrari","artist_id":"name:7d92c00c33c3111a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a","source_track_id":"mbid:0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a","spotify_id":null,"title":"The Unknowing","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2025-07-21T22:34:37+00:00","last_scrobble":"2025-07-27T21:27:35+00:00","observed_albums":[{"album":"Fear of the Unknown","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e2defa5bc31174d4cabb/album.json","artist_path":"artists/na/name-7d92c00c33c3111a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:7d92c00c33c3111a",
+      "duration_ms": 197000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a",
+      "track_mbid": "0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 197000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a",
+  "identity": {
+    "album": "Fear of the Unknown",
+    "album_id": "album:e2defa5bc31174d4cabb",
+    "artist": "Jfarrari",
+    "artist_id": "name:7d92c00c33c3111a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a",
+    "source_track_id": "mbid:0da28b0d-182a-4ed1-b1a3-8a6b1ef4ed5a",
+    "spotify_id": null,
+    "title": "The Unknowing",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2025-07-21T22:34:37+00:00",
+    "last_scrobble": "2025-07-27T21:27:35+00:00",
+    "observed_albums": [
+      {
+        "album": "Fear of the Unknown",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e2defa5bc31174d4cabb/album.json",
+    "artist_path": "artists/na/name-7d92c00c33c3111a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

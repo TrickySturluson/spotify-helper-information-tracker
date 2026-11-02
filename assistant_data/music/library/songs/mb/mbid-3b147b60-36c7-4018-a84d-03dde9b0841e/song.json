@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:166bc1cb-a2b7-412d-bcd5-5f439d2cf5f1","duration_ms":322000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3b147b60-36c7-4018-a84d-03dde9b0841e","track_mbid":"3b147b60-36c7-4018-a84d-03dde9b0841e"}},"id":"mbid:3b147b60-36c7-4018-a84d-03dde9b0841e","identity":{"album":"Good for Your Soul","album_id":"album:34a87f6782ac10c72e1f","artist":"Oingo Boingo","artist_id":"mbid:166bc1cb-a2b7-412d-bcd5-5f439d2cf5f1","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3b147b60-36c7-4018-a84d-03dde9b0841e","source_track_id":"mbid:3b147b60-36c7-4018-a84d-03dde9b0841e","spotify_id":null,"title":"No Spill Blood","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-03-25T19:00:11+00:00","last_scrobble":"2023-03-25T19:00:11+00:00","observed_albums":[{"album":"Good for Your Soul","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-34a87f6782ac10c72e1f/album.json","artist_path":"artists/mb/mbid-166bc1cb-a2b7-412d-bcd5-5f439d2cf5f1/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:166bc1cb-a2b7-412d-bcd5-5f439d2cf5f1",
+      "duration_ms": 322000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3b147b60-36c7-4018-a84d-03dde9b0841e",
+      "track_mbid": "3b147b60-36c7-4018-a84d-03dde9b0841e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 322000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3b147b60-36c7-4018-a84d-03dde9b0841e",
+  "identity": {
+    "album": "Good for Your Soul",
+    "album_id": "album:34a87f6782ac10c72e1f",
+    "artist": "Oingo Boingo",
+    "artist_id": "mbid:166bc1cb-a2b7-412d-bcd5-5f439d2cf5f1",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3b147b60-36c7-4018-a84d-03dde9b0841e",
+    "source_track_id": "mbid:3b147b60-36c7-4018-a84d-03dde9b0841e",
+    "spotify_id": null,
+    "title": "No Spill Blood",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-03-25T19:00:11+00:00",
+    "last_scrobble": "2023-03-25T19:00:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Good for Your Soul",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-34a87f6782ac10c72e1f/album.json",
+    "artist_path": "artists/mb/mbid-166bc1cb-a2b7-412d-bcd5-5f439d2cf5f1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

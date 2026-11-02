@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:bca46a0c-25c9-42ca-98c2-e64c8a5e337e","duration_ms":196000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4d6c962c-173c-495a-8c32-1d77a23b5501","track_mbid":"4d6c962c-173c-495a-8c32-1d77a23b5501"}},"id":"mbid:4d6c962c-173c-495a-8c32-1d77a23b5501","identity":{"album":"Actual Life 2 (February 2 - October 15 2021)","album_id":"album:d226eea0d086b0c88fc5","artist":"Fred again..","artist_id":"mbid:bca46a0c-25c9-42ca-98c2-e64c8a5e337e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4d6c962c-173c-495a-8c32-1d77a23b5501","source_track_id":"mbid:4d6c962c-173c-495a-8c32-1d77a23b5501","spotify_id":null,"title":"Hannah (The Sun)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-27T07:02:40+00:00","last_scrobble":"2025-10-27T07:02:40+00:00","observed_albums":[{"album":"Actual Life 2 (February 2 - October 15 2021)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d226eea0d086b0c88fc5/album.json","artist_path":"artists/mb/mbid-bca46a0c-25c9-42ca-98c2-e64c8a5e337e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:bca46a0c-25c9-42ca-98c2-e64c8a5e337e",
+      "duration_ms": 196000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4d6c962c-173c-495a-8c32-1d77a23b5501",
+      "track_mbid": "4d6c962c-173c-495a-8c32-1d77a23b5501",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 196000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4d6c962c-173c-495a-8c32-1d77a23b5501",
+  "identity": {
+    "album": "Actual Life 2 (February 2 - October 15 2021)",
+    "album_id": "album:d226eea0d086b0c88fc5",
+    "artist": "Fred again..",
+    "artist_id": "mbid:bca46a0c-25c9-42ca-98c2-e64c8a5e337e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4d6c962c-173c-495a-8c32-1d77a23b5501",
+    "source_track_id": "mbid:4d6c962c-173c-495a-8c32-1d77a23b5501",
+    "spotify_id": null,
+    "title": "Hannah (The Sun)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-27T07:02:40+00:00",
+    "last_scrobble": "2025-10-27T07:02:40+00:00",
+    "observed_albums": [
+      {
+        "album": "Actual Life 2 (February 2 - October 15 2021)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d226eea0d086b0c88fc5/album.json",
+    "artist_path": "artists/mb/mbid-bca46a0c-25c9-42ca-98c2-e64c8a5e337e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

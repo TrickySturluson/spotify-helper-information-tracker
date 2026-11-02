@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9feec315-e045-4216-8131-1e0da660c7ca","duration_ms":230000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T09:04:06.133223+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T09:04:11.481759+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:2ca71e83-3d08-401d-8a9d-3fc645216aab","track_mbid":"2ca71e83-3d08-401d-8a9d-3fc645216aab"}},"id":"mbid:2ca71e83-3d08-401d-8a9d-3fc645216aab","identity":{"album":"Already Out Of Time","album_id":"album:c57bab75b11dbfdb9bcd","artist":"Stoop Kids","artist_id":"mbid:9feec315-e045-4216-8131-1e0da660c7ca","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2ca71e83-3d08-401d-8a9d-3fc645216aab","source_track_id":"mbid:2ca71e83-3d08-401d-8a9d-3fc645216aab","spotify_id":null,"title":"Happy Birthday","track_number":null},"listening_context":{"all_time_plays":103,"first_scrobble":"2023-02-15T05:35:24+00:00","last_scrobble":"2026-10-09T02:12:31+00:00","observed_albums":[{"album":"Already Out Of Time","scrobbles":103}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c57bab75b11dbfdb9bcd/album.json","artist_path":"artists/mb/mbid-9feec315-e045-4216-8131-1e0da660c7ca/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9feec315-e045-4216-8131-1e0da660c7ca",
+      "duration_ms": 230000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T09:04:06.133223+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T09:04:11.481759+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:2ca71e83-3d08-401d-8a9d-3fc645216aab",
+      "track_mbid": "2ca71e83-3d08-401d-8a9d-3fc645216aab",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 230000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2ca71e83-3d08-401d-8a9d-3fc645216aab",
+  "identity": {
+    "album": "Already Out Of Time",
+    "album_id": "album:c57bab75b11dbfdb9bcd",
+    "artist": "Stoop Kids",
+    "artist_id": "mbid:9feec315-e045-4216-8131-1e0da660c7ca",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2ca71e83-3d08-401d-8a9d-3fc645216aab",
+    "source_track_id": "mbid:2ca71e83-3d08-401d-8a9d-3fc645216aab",
+    "spotify_id": null,
+    "title": "Happy Birthday",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 103,
+    "first_scrobble": "2023-02-15T05:35:24+00:00",
+    "last_scrobble": "2026-10-09T02:12:31+00:00",
+    "observed_albums": [
+      {
+        "album": "Already Out Of Time",
+        "scrobbles": 103
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c57bab75b11dbfdb9bcd/album.json",
+    "artist_path": "artists/mb/mbid-9feec315-e045-4216-8131-1e0da660c7ca/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

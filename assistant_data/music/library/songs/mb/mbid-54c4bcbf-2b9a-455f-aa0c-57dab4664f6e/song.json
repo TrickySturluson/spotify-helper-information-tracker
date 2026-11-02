@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e039dd53-7fa2-48eb-a79e-ee2c359d3831","duration_ms":91000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:54c4bcbf-2b9a-455f-aa0c-57dab4664f6e","track_mbid":"54c4bcbf-2b9a-455f-aa0c-57dab4664f6e"}},"id":"mbid:54c4bcbf-2b9a-455f-aa0c-57dab4664f6e","identity":{"album":"Exhilarating News","album_id":"album:de2f77ab71fa5d2fd5b4","artist":"The Taxpayers","artist_id":"mbid:e039dd53-7fa2-48eb-a79e-ee2c359d3831","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"54c4bcbf-2b9a-455f-aa0c-57dab4664f6e","source_track_id":"mbid:54c4bcbf-2b9a-455f-aa0c-57dab4664f6e","spotify_id":null,"title":"Medicines","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-07-13T08:35:32+00:00","last_scrobble":"2023-07-13T08:35:32+00:00","observed_albums":[{"album":"Exhilarating News","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-de2f77ab71fa5d2fd5b4/album.json","artist_path":"artists/mb/mbid-e039dd53-7fa2-48eb-a79e-ee2c359d3831/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e039dd53-7fa2-48eb-a79e-ee2c359d3831",
+      "duration_ms": 91000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:54c4bcbf-2b9a-455f-aa0c-57dab4664f6e",
+      "track_mbid": "54c4bcbf-2b9a-455f-aa0c-57dab4664f6e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 91000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:54c4bcbf-2b9a-455f-aa0c-57dab4664f6e",
+  "identity": {
+    "album": "Exhilarating News",
+    "album_id": "album:de2f77ab71fa5d2fd5b4",
+    "artist": "The Taxpayers",
+    "artist_id": "mbid:e039dd53-7fa2-48eb-a79e-ee2c359d3831",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "54c4bcbf-2b9a-455f-aa0c-57dab4664f6e",
+    "source_track_id": "mbid:54c4bcbf-2b9a-455f-aa0c-57dab4664f6e",
+    "spotify_id": null,
+    "title": "Medicines",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-07-13T08:35:32+00:00",
+    "last_scrobble": "2023-07-13T08:35:32+00:00",
+    "observed_albums": [
+      {
+        "album": "Exhilarating News",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-de2f77ab71fa5d2fd5b4/album.json",
+    "artist_path": "artists/mb/mbid-e039dd53-7fa2-48eb-a79e-ee2c359d3831/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

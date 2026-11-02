@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a70aae4c-a295-4965-9e75-5e9b5d89d9c2","duration_ms":172000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:59910c49-37eb-4157-b237-e10babe6c2c2","track_mbid":"59910c49-37eb-4157-b237-e10babe6c2c2"}},"id":"mbid:59910c49-37eb-4157-b237-e10babe6c2c2","identity":{"album":"Here Lies Graveyardguy","album_id":"album:aaa534f631c453626738","artist":"Graveyardguy","artist_id":"mbid:a70aae4c-a295-4965-9e75-5e9b5d89d9c2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"59910c49-37eb-4157-b237-e10babe6c2c2","source_track_id":"mbid:59910c49-37eb-4157-b237-e10babe6c2c2","spotify_id":null,"title":"Chainsaw","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-05-05T22:19:06+00:00","last_scrobble":"2025-05-05T22:19:06+00:00","observed_albums":[{"album":"Here Lies Graveyardguy","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-aaa534f631c453626738/album.json","artist_path":"artists/mb/mbid-a70aae4c-a295-4965-9e75-5e9b5d89d9c2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a70aae4c-a295-4965-9e75-5e9b5d89d9c2",
+      "duration_ms": 172000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:59910c49-37eb-4157-b237-e10babe6c2c2",
+      "track_mbid": "59910c49-37eb-4157-b237-e10babe6c2c2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 172000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:59910c49-37eb-4157-b237-e10babe6c2c2",
+  "identity": {
+    "album": "Here Lies Graveyardguy",
+    "album_id": "album:aaa534f631c453626738",
+    "artist": "Graveyardguy",
+    "artist_id": "mbid:a70aae4c-a295-4965-9e75-5e9b5d89d9c2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "59910c49-37eb-4157-b237-e10babe6c2c2",
+    "source_track_id": "mbid:59910c49-37eb-4157-b237-e10babe6c2c2",
+    "spotify_id": null,
+    "title": "Chainsaw",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-05-05T22:19:06+00:00",
+    "last_scrobble": "2025-05-05T22:19:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Here Lies Graveyardguy",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-aaa534f631c453626738/album.json",
+    "artist_path": "artists/mb/mbid-a70aae4c-a295-4965-9e75-5e9b5d89d9c2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

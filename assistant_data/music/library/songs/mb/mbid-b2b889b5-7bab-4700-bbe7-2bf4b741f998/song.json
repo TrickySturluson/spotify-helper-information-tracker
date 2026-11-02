@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:811d893d-90be-41bd-a70c-9387042e07a9","duration_ms":141000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b2b889b5-7bab-4700-bbe7-2bf4b741f998","track_mbid":"b2b889b5-7bab-4700-bbe7-2bf4b741f998"}},"id":"mbid:b2b889b5-7bab-4700-bbe7-2bf4b741f998","identity":{"album":"Ultrakill: Infinite Hyperdeath (Original Game Soundtrack)","album_id":"album:0aa0236a0322a571ddb1","artist":"Heaven Pierce Her","artist_id":"mbid:811d893d-90be-41bd-a70c-9387042e07a9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b2b889b5-7bab-4700-bbe7-2bf4b741f998","source_track_id":"mbid:b2b889b5-7bab-4700-bbe7-2bf4b741f998","spotify_id":null,"title":"Cerberus","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-10-21T02:35:08+00:00","last_scrobble":"2023-10-21T04:38:50+00:00","observed_albums":[{"album":"Ultrakill: Infinite Hyperdeath (Original Game Soundtrack)","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0aa0236a0322a571ddb1/album.json","artist_path":"artists/mb/mbid-811d893d-90be-41bd-a70c-9387042e07a9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:811d893d-90be-41bd-a70c-9387042e07a9",
+      "duration_ms": 141000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b2b889b5-7bab-4700-bbe7-2bf4b741f998",
+      "track_mbid": "b2b889b5-7bab-4700-bbe7-2bf4b741f998",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 141000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b2b889b5-7bab-4700-bbe7-2bf4b741f998",
+  "identity": {
+    "album": "Ultrakill: Infinite Hyperdeath (Original Game Soundtrack)",
+    "album_id": "album:0aa0236a0322a571ddb1",
+    "artist": "Heaven Pierce Her",
+    "artist_id": "mbid:811d893d-90be-41bd-a70c-9387042e07a9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b2b889b5-7bab-4700-bbe7-2bf4b741f998",
+    "source_track_id": "mbid:b2b889b5-7bab-4700-bbe7-2bf4b741f998",
+    "spotify_id": null,
+    "title": "Cerberus",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-10-21T02:35:08+00:00",
+    "last_scrobble": "2023-10-21T04:38:50+00:00",
+    "observed_albums": [
+      {
+        "album": "Ultrakill: Infinite Hyperdeath (Original Game Soundtrack)",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0aa0236a0322a571ddb1/album.json",
+    "artist_path": "artists/mb/mbid-811d893d-90be-41bd-a70c-9387042e07a9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

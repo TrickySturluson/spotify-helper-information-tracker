@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ab47e94c-1106-4c02-964a-8014bcbb5a8a","duration_ms":211000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:910985bf-224b-4ae9-87fe-530b23aef808","track_mbid":"910985bf-224b-4ae9-87fe-530b23aef808"}},"id":"mbid:910985bf-224b-4ae9-87fe-530b23aef808","identity":{"album":"HUH!","album_id":"album:879a0867dfc630d58958","artist":"minimall","artist_id":"mbid:ab47e94c-1106-4c02-964a-8014bcbb5a8a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"910985bf-224b-4ae9-87fe-530b23aef808","source_track_id":"mbid:910985bf-224b-4ae9-87fe-530b23aef808","spotify_id":null,"title":"Static","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2024-04-15T20:43:08+00:00","last_scrobble":"2024-04-18T16:59:51+00:00","observed_albums":[{"album":"HUH!","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-879a0867dfc630d58958/album.json","artist_path":"artists/mb/mbid-ab47e94c-1106-4c02-964a-8014bcbb5a8a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ab47e94c-1106-4c02-964a-8014bcbb5a8a",
+      "duration_ms": 211000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:910985bf-224b-4ae9-87fe-530b23aef808",
+      "track_mbid": "910985bf-224b-4ae9-87fe-530b23aef808",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 211000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:910985bf-224b-4ae9-87fe-530b23aef808",
+  "identity": {
+    "album": "HUH!",
+    "album_id": "album:879a0867dfc630d58958",
+    "artist": "minimall",
+    "artist_id": "mbid:ab47e94c-1106-4c02-964a-8014bcbb5a8a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "910985bf-224b-4ae9-87fe-530b23aef808",
+    "source_track_id": "mbid:910985bf-224b-4ae9-87fe-530b23aef808",
+    "spotify_id": null,
+    "title": "Static",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2024-04-15T20:43:08+00:00",
+    "last_scrobble": "2024-04-18T16:59:51+00:00",
+    "observed_albums": [
+      {
+        "album": "HUH!",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-879a0867dfc630d58958/album.json",
+    "artist_path": "artists/mb/mbid-ab47e94c-1106-4c02-964a-8014bcbb5a8a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

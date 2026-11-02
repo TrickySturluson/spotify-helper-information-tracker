@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a62e22e0-df7e-441b-8da2-9a212fc52c00","duration_ms":209000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3","track_mbid":"d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3"}},"id":"mbid:d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3","identity":{"album":"s/t","album_id":"album:2c7beb62468adec19daf","artist":"FUCKING WEREWOLF ASSO","artist_id":"mbid:a62e22e0-df7e-441b-8da2-9a212fc52c00","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3","source_track_id":"mbid:d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3","spotify_id":null,"title":"HELEN TIGER","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-09-03T03:36:23+00:00","last_scrobble":"2025-09-03T06:17:25+00:00","observed_albums":[{"album":"s/t","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2c7beb62468adec19daf/album.json","artist_path":"artists/mb/mbid-a62e22e0-df7e-441b-8da2-9a212fc52c00/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a62e22e0-df7e-441b-8da2-9a212fc52c00",
+      "duration_ms": 209000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3",
+      "track_mbid": "d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 209000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3",
+  "identity": {
+    "album": "s/t",
+    "album_id": "album:2c7beb62468adec19daf",
+    "artist": "FUCKING WEREWOLF ASSO",
+    "artist_id": "mbid:a62e22e0-df7e-441b-8da2-9a212fc52c00",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3",
+    "source_track_id": "mbid:d436e5f6-8fec-4ded-9ce8-bb0f13c97fb3",
+    "spotify_id": null,
+    "title": "HELEN TIGER",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-09-03T03:36:23+00:00",
+    "last_scrobble": "2025-09-03T06:17:25+00:00",
+    "observed_albums": [
+      {
+        "album": "s/t",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2c7beb62468adec19daf/album.json",
+    "artist_path": "artists/mb/mbid-a62e22e0-df7e-441b-8da2-9a212fc52c00/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

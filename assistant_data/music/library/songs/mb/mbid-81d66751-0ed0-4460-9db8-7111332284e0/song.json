@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5e23e428-d9f5-4679-bd7c-8254d6f0a437","duration_ms":171000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:81d66751-0ed0-4460-9db8-7111332284e0","track_mbid":"81d66751-0ed0-4460-9db8-7111332284e0"}},"id":"mbid:81d66751-0ed0-4460-9db8-7111332284e0","identity":{"album":"Ö","album_id":"album:76973ee4d43c9f3b157c","artist":"Fcukers","artist_id":"mbid:5e23e428-d9f5-4679-bd7c-8254d6f0a437","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"81d66751-0ed0-4460-9db8-7111332284e0","source_track_id":"mbid:81d66751-0ed0-4460-9db8-7111332284e0","spotify_id":null,"title":"If You Wanna Party, Come Over to My House","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2026-04-22T21:45:12+00:00","last_scrobble":"2026-07-01T15:20:56+00:00","observed_albums":[{"album":"Ö","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-76973ee4d43c9f3b157c/album.json","artist_path":"artists/mb/mbid-5e23e428-d9f5-4679-bd7c-8254d6f0a437/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5e23e428-d9f5-4679-bd7c-8254d6f0a437",
+      "duration_ms": 171000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:81d66751-0ed0-4460-9db8-7111332284e0",
+      "track_mbid": "81d66751-0ed0-4460-9db8-7111332284e0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 171000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:81d66751-0ed0-4460-9db8-7111332284e0",
+  "identity": {
+    "album": "Ö",
+    "album_id": "album:76973ee4d43c9f3b157c",
+    "artist": "Fcukers",
+    "artist_id": "mbid:5e23e428-d9f5-4679-bd7c-8254d6f0a437",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "81d66751-0ed0-4460-9db8-7111332284e0",
+    "source_track_id": "mbid:81d66751-0ed0-4460-9db8-7111332284e0",
+    "spotify_id": null,
+    "title": "If You Wanna Party, Come Over to My House",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2026-04-22T21:45:12+00:00",
+    "last_scrobble": "2026-07-01T15:20:56+00:00",
+    "observed_albums": [
+      {
+        "album": "Ö",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-76973ee4d43c9f3b157c/album.json",
+    "artist_path": "artists/mb/mbid-5e23e428-d9f5-4679-bd7c-8254d6f0a437/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:bc0a3a57-94bf-4e17-aa42-677ccd5a8250","duration_ms":223000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:04:03.183872+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:04:03.910382+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:11638936-41b3-44bd-ba7a-43bedaee5478","track_mbid":"11638936-41b3-44bd-ba7a-43bedaee5478"}},"id":"mbid:11638936-41b3-44bd-ba7a-43bedaee5478","identity":{"album":"The Make It All Show","album_id":"album:71f76a22b0355af28f48","artist":"Skating Polly","artist_id":"mbid:bc0a3a57-94bf-4e17-aa42-677ccd5a8250","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"11638936-41b3-44bd-ba7a-43bedaee5478","source_track_id":"mbid:11638936-41b3-44bd-ba7a-43bedaee5478","spotify_id":null,"title":"They're Cheap (I'm Free)","track_number":null},"listening_context":{"all_time_plays":107,"first_scrobble":"2024-05-14T20:47:23+00:00","last_scrobble":"2026-10-30T01:04:08+00:00","observed_albums":[{"album":"The Make It All Show","scrobbles":107}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-71f76a22b0355af28f48/album.json","artist_path":"artists/mb/mbid-bc0a3a57-94bf-4e17-aa42-677ccd5a8250/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:bc0a3a57-94bf-4e17-aa42-677ccd5a8250",
+      "duration_ms": 223000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:04:03.183872+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:04:03.910382+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:11638936-41b3-44bd-ba7a-43bedaee5478",
+      "track_mbid": "11638936-41b3-44bd-ba7a-43bedaee5478",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 223000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:11638936-41b3-44bd-ba7a-43bedaee5478",
+  "identity": {
+    "album": "The Make It All Show",
+    "album_id": "album:71f76a22b0355af28f48",
+    "artist": "Skating Polly",
+    "artist_id": "mbid:bc0a3a57-94bf-4e17-aa42-677ccd5a8250",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "11638936-41b3-44bd-ba7a-43bedaee5478",
+    "source_track_id": "mbid:11638936-41b3-44bd-ba7a-43bedaee5478",
+    "spotify_id": null,
+    "title": "They're Cheap (I'm Free)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 107,
+    "first_scrobble": "2024-05-14T20:47:23+00:00",
+    "last_scrobble": "2026-10-30T01:04:08+00:00",
+    "observed_albums": [
+      {
+        "album": "The Make It All Show",
+        "scrobbles": 107
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-71f76a22b0355af28f48/album.json",
+    "artist_path": "artists/mb/mbid-bc0a3a57-94bf-4e17-aa42-677ccd5a8250/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

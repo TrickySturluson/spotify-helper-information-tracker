@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d389b186-b591-451d-9e58-b472fcbb3ca3","duration_ms":231000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d","track_mbid":"1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d"}},"id":"mbid:1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d","identity":{"album":"The Royal THey","album_id":"album:dd45aeb5ea8d2d06cbd8","artist":"The Royal They","artist_id":"mbid:d389b186-b591-451d-9e58-b472fcbb3ca3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d","source_track_id":"mbid:1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d","spotify_id":null,"title":"Kamikaze","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2024-04-15T16:00:04+00:00","last_scrobble":"2026-05-29T00:00:46+00:00","observed_albums":[{"album":"The Royal THey","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-dd45aeb5ea8d2d06cbd8/album.json","artist_path":"artists/mb/mbid-d389b186-b591-451d-9e58-b472fcbb3ca3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d389b186-b591-451d-9e58-b472fcbb3ca3",
+      "duration_ms": 231000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d",
+      "track_mbid": "1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 231000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d",
+  "identity": {
+    "album": "The Royal THey",
+    "album_id": "album:dd45aeb5ea8d2d06cbd8",
+    "artist": "The Royal They",
+    "artist_id": "mbid:d389b186-b591-451d-9e58-b472fcbb3ca3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d",
+    "source_track_id": "mbid:1e9ef1e9-0f6f-43f6-9c1d-0ddfc1e3157d",
+    "spotify_id": null,
+    "title": "Kamikaze",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2024-04-15T16:00:04+00:00",
+    "last_scrobble": "2026-05-29T00:00:46+00:00",
+    "observed_albums": [
+      {
+        "album": "The Royal THey",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-dd45aeb5ea8d2d06cbd8/album.json",
+    "artist_path": "artists/mb/mbid-d389b186-b591-451d-9e58-b472fcbb3ca3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

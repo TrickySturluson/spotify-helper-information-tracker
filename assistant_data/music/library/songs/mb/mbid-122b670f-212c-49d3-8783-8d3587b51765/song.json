@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:14401efe-0d98-43ff-aa22-afa629406049","duration_ms":172000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:122b670f-212c-49d3-8783-8d3587b51765","track_mbid":"122b670f-212c-49d3-8783-8d3587b51765"}},"id":"mbid:122b670f-212c-49d3-8783-8d3587b51765","identity":{"album":"Polka's Not Dead","album_id":"album:99b6d5036828ed87eeed","artist":"The Dreadnoughts","artist_id":"mbid:14401efe-0d98-43ff-aa22-afa629406049","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"122b670f-212c-49d3-8783-8d3587b51765","source_track_id":"mbid:122b670f-212c-49d3-8783-8d3587b51765","spotify_id":null,"title":"Gintlemen’s Club","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-08-07T20:54:44+00:00","last_scrobble":"2024-08-07T20:54:44+00:00","observed_albums":[{"album":"Polka's Not Dead","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-99b6d5036828ed87eeed/album.json","artist_path":"artists/mb/mbid-14401efe-0d98-43ff-aa22-afa629406049/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:14401efe-0d98-43ff-aa22-afa629406049",
+      "duration_ms": 172000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:122b670f-212c-49d3-8783-8d3587b51765",
+      "track_mbid": "122b670f-212c-49d3-8783-8d3587b51765",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 172000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:122b670f-212c-49d3-8783-8d3587b51765",
+  "identity": {
+    "album": "Polka's Not Dead",
+    "album_id": "album:99b6d5036828ed87eeed",
+    "artist": "The Dreadnoughts",
+    "artist_id": "mbid:14401efe-0d98-43ff-aa22-afa629406049",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "122b670f-212c-49d3-8783-8d3587b51765",
+    "source_track_id": "mbid:122b670f-212c-49d3-8783-8d3587b51765",
+    "spotify_id": null,
+    "title": "Gintlemen’s Club",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-08-07T20:54:44+00:00",
+    "last_scrobble": "2024-08-07T20:54:44+00:00",
+    "observed_albums": [
+      {
+        "album": "Polka's Not Dead",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-99b6d5036828ed87eeed/album.json",
+    "artist_path": "artists/mb/mbid-14401efe-0d98-43ff-aa22-afa629406049/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,103 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fe3b6ed4-9601-426b-8fe5-1d11684ee47e","duration_ms":250000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:18:30.960153+00:00","lastfm_error":"{}","lastfm_status":"http_400","musicbrainz_checked_at":"2026-10-31T07:26:59.195903+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":1796019496,"track_id":"mbid:2d7309c7-f0f6-4078-a32d-283fca76f202","track_mbid":"2d7309c7-f0f6-4078-a32d-283fca76f202"}},"id":"mbid:2d7309c7-f0f6-4078-a32d-283fca76f202","identity":{"album":"The Magic","album_id":"album:19f710cdde693dec3b27","artist":"Lola Blanc","artist_id":"mbid:fe3b6ed4-9601-426b-8fe5-1d11684ee47e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"2d7309c7-f0f6-4078-a32d-283fca76f202","source_track_id":"mbid:2d7309c7-f0f6-4078-a32d-283fca76f202","spotify_id":null,"title":"Real Boy","track_number":null},"listening_context":{"all_time_plays":158,"first_scrobble":"2025-01-09T07:22:14+00:00","last_scrobble":"2026-07-10T00:39:58+00:00","observed_albums":[{"album":"The Magic","scrobbles":158}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-19f710cdde693dec3b27/album.json","artist_path":"artists/mb/mbid-fe3b6ed4-9601-426b-8fe5-1d11684ee47e/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"http_400"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fe3b6ed4-9601-426b-8fe5-1d11684ee47e",
+      "duration_ms": 250000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:18:30.960153+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "http_400",
+      "musicbrainz_checked_at": "2026-10-31T07:26:59.195903+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 1796019496,
+      "track_id": "mbid:2d7309c7-f0f6-4078-a32d-283fca76f202",
+      "track_mbid": "2d7309c7-f0f6-4078-a32d-283fca76f202",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:24:56+00:00",
+          "status": "matched",
+          "duration_ms": 250000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:2d7309c7-f0f6-4078-a32d-283fca76f202",
+  "identity": {
+    "album": "The Magic",
+    "album_id": "album:19f710cdde693dec3b27",
+    "artist": "Lola Blanc",
+    "artist_id": "mbid:fe3b6ed4-9601-426b-8fe5-1d11684ee47e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "2d7309c7-f0f6-4078-a32d-283fca76f202",
+    "source_track_id": "mbid:2d7309c7-f0f6-4078-a32d-283fca76f202",
+    "spotify_id": null,
+    "title": "Real Boy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 158,
+    "first_scrobble": "2025-01-09T07:22:14+00:00",
+    "last_scrobble": "2026-07-10T00:39:58+00:00",
+    "observed_albums": [
+      {
+        "album": "The Magic",
+        "scrobbles": 158
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-19f710cdde693dec3b27/album.json",
+    "artist_path": "artists/mb/mbid-fe3b6ed4-9601-426b-8fe5-1d11684ee47e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "http_400"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:17b4b22f-d60a-4824-9edf-11f41dea7bc1","duration_ms":314000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:38:24.148313+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:499a661e983edde2"}},"id":"source:499a661e983edde2","identity":{"album":"Glass Jaw","album_id":"album:345a4fabc2775fe1a0a6","artist":"Chokecherry","artist_id":"mbid:17b4b22f-d60a-4824-9edf-11f41dea7bc1","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:499a661e983edde2","spotify_id":null,"title":"Glass Jaw","track_number":null},"listening_context":{"all_time_plays":27,"first_scrobble":"2023-06-14T10:33:39+00:00","last_scrobble":"2024-10-29T21:44:07+00:00","observed_albums":[{"album":"Glass Jaw","scrobbles":27}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-345a4fabc2775fe1a0a6/album.json","artist_path":"artists/mb/mbid-17b4b22f-d60a-4824-9edf-11f41dea7bc1/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:17b4b22f-d60a-4824-9edf-11f41dea7bc1",
+      "duration_ms": 314000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:38:24.148313+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:499a661e983edde2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 314000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:499a661e983edde2",
+  "identity": {
+    "album": "Glass Jaw",
+    "album_id": "album:345a4fabc2775fe1a0a6",
+    "artist": "Chokecherry",
+    "artist_id": "mbid:17b4b22f-d60a-4824-9edf-11f41dea7bc1",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:499a661e983edde2",
+    "spotify_id": null,
+    "title": "Glass Jaw",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 27,
+    "first_scrobble": "2023-06-14T10:33:39+00:00",
+    "last_scrobble": "2024-10-29T21:44:07+00:00",
+    "observed_albums": [
+      {
+        "album": "Glass Jaw",
+        "scrobbles": 27
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-345a4fabc2775fe1a0a6/album.json",
+    "artist_path": "artists/mb/mbid-17b4b22f-d60a-4824-9edf-11f41dea7bc1/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

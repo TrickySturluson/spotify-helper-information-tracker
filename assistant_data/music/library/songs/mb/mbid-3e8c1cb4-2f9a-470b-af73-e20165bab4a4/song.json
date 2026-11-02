@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4332dc29-35a4-406f-855f-8df891462993","duration_ms":152000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3e8c1cb4-2f9a-470b-af73-e20165bab4a4","track_mbid":"3e8c1cb4-2f9a-470b-af73-e20165bab4a4"}},"id":"mbid:3e8c1cb4-2f9a-470b-af73-e20165bab4a4","identity":{"album":"All Change - EP","album_id":"album:84f9f5f933f20d6f62b1","artist":"Francis of Delirium","artist_id":"mbid:4332dc29-35a4-406f-855f-8df891462993","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3e8c1cb4-2f9a-470b-af73-e20165bab4a4","source_track_id":"mbid:3e8c1cb4-2f9a-470b-af73-e20165bab4a4","spotify_id":null,"title":"Quit Fucking Around","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2023-05-07T23:57:54+00:00","last_scrobble":"2024-02-06T21:00:42+00:00","observed_albums":[{"album":"All Change - EP","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-84f9f5f933f20d6f62b1/album.json","artist_path":"artists/mb/mbid-4332dc29-35a4-406f-855f-8df891462993/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4332dc29-35a4-406f-855f-8df891462993",
+      "duration_ms": 152000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3e8c1cb4-2f9a-470b-af73-e20165bab4a4",
+      "track_mbid": "3e8c1cb4-2f9a-470b-af73-e20165bab4a4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 152000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3e8c1cb4-2f9a-470b-af73-e20165bab4a4",
+  "identity": {
+    "album": "All Change - EP",
+    "album_id": "album:84f9f5f933f20d6f62b1",
+    "artist": "Francis of Delirium",
+    "artist_id": "mbid:4332dc29-35a4-406f-855f-8df891462993",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3e8c1cb4-2f9a-470b-af73-e20165bab4a4",
+    "source_track_id": "mbid:3e8c1cb4-2f9a-470b-af73-e20165bab4a4",
+    "spotify_id": null,
+    "title": "Quit Fucking Around",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2023-05-07T23:57:54+00:00",
+    "last_scrobble": "2024-02-06T21:00:42+00:00",
+    "observed_albums": [
+      {
+        "album": "All Change - EP",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-84f9f5f933f20d6f62b1/album.json",
+    "artist_path": "artists/mb/mbid-4332dc29-35a4-406f-855f-8df891462993/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

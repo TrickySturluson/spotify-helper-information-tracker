@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11","duration_ms":248000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1e65f3f5-d089-4695-9b25-d5e52b1edd8e","track_mbid":"1e65f3f5-d089-4695-9b25-d5e52b1edd8e"}},"id":"mbid:1e65f3f5-d089-4695-9b25-d5e52b1edd8e","identity":{"album":"Last Chance To Make Amends (2006 Debut Remixed)","album_id":"album:95dca28b8dde46cc5e52","artist":"Ice Nine Kills","artist_id":"mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1e65f3f5-d089-4695-9b25-d5e52b1edd8e","source_track_id":"mbid:1e65f3f5-d089-4695-9b25-d5e52b1edd8e","spotify_id":null,"title":"I Do and I Don't","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-08-15T20:32:31+00:00","last_scrobble":"2025-08-15T20:32:31+00:00","observed_albums":[{"album":"Last Chance To Make Amends (2006 Debut Remixed)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-95dca28b8dde46cc5e52/album.json","artist_path":"artists/mb/mbid-d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11",
+      "duration_ms": 248000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1e65f3f5-d089-4695-9b25-d5e52b1edd8e",
+      "track_mbid": "1e65f3f5-d089-4695-9b25-d5e52b1edd8e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 248000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1e65f3f5-d089-4695-9b25-d5e52b1edd8e",
+  "identity": {
+    "album": "Last Chance To Make Amends (2006 Debut Remixed)",
+    "album_id": "album:95dca28b8dde46cc5e52",
+    "artist": "Ice Nine Kills",
+    "artist_id": "mbid:d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1e65f3f5-d089-4695-9b25-d5e52b1edd8e",
+    "source_track_id": "mbid:1e65f3f5-d089-4695-9b25-d5e52b1edd8e",
+    "spotify_id": null,
+    "title": "I Do and I Don't",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-08-15T20:32:31+00:00",
+    "last_scrobble": "2025-08-15T20:32:31+00:00",
+    "observed_albums": [
+      {
+        "album": "Last Chance To Make Amends (2006 Debut Remixed)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-95dca28b8dde46cc5e52/album.json",
+    "artist_path": "artists/mb/mbid-d8f0f6ac-a0a7-47bd-9786-f9106d7bdd11/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

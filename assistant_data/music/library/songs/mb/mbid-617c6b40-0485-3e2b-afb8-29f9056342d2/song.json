@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:0383dadf-2a4e-4d10-a46a-e9e041da8eb3","duration_ms":299000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:617c6b40-0485-3e2b-afb8-29f9056342d2","track_mbid":"617c6b40-0485-3e2b-afb8-29f9056342d2"}},"id":"mbid:617c6b40-0485-3e2b-afb8-29f9056342d2","identity":{"album":"Stone Cold Classics","album_id":"album:c89ce0e52673388b7e55","artist":"Queen","artist_id":"mbid:0383dadf-2a4e-4d10-a46a-e9e041da8eb3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"617c6b40-0485-3e2b-afb8-29f9056342d2","source_track_id":"mbid:617c6b40-0485-3e2b-afb8-29f9056342d2","spotify_id":null,"title":"Bohemian Rhapsody","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2024-01-17T16:28:27+00:00","last_scrobble":"2024-01-17T16:40:17+00:00","observed_albums":[{"album":"Stone Cold Classics","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c89ce0e52673388b7e55/album.json","artist_path":"artists/mb/mbid-0383dadf-2a4e-4d10-a46a-e9e041da8eb3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+      "duration_ms": 299000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:617c6b40-0485-3e2b-afb8-29f9056342d2",
+      "track_mbid": "617c6b40-0485-3e2b-afb8-29f9056342d2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 299000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:617c6b40-0485-3e2b-afb8-29f9056342d2",
+  "identity": {
+    "album": "Stone Cold Classics",
+    "album_id": "album:c89ce0e52673388b7e55",
+    "artist": "Queen",
+    "artist_id": "mbid:0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "617c6b40-0485-3e2b-afb8-29f9056342d2",
+    "source_track_id": "mbid:617c6b40-0485-3e2b-afb8-29f9056342d2",
+    "spotify_id": null,
+    "title": "Bohemian Rhapsody",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2024-01-17T16:28:27+00:00",
+    "last_scrobble": "2024-01-17T16:40:17+00:00",
+    "observed_albums": [
+      {
+        "album": "Stone Cold Classics",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c89ce0e52673388b7e55/album.json",
+    "artist_path": "artists/mb/mbid-0383dadf-2a4e-4d10-a46a-e9e041da8eb3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

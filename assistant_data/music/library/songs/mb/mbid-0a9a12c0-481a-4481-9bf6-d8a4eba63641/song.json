@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3c6bce1d-d82e-4251-a3de-05da6e78b1e4","duration_ms":225000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0a9a12c0-481a-4481-9bf6-d8a4eba63641","track_mbid":"0a9a12c0-481a-4481-9bf6-d8a4eba63641"}},"id":"mbid:0a9a12c0-481a-4481-9bf6-d8a4eba63641","identity":{"album":"Fluorescent Youth","album_id":"album:c707c8aa26f526bff083","artist":"Conditions","artist_id":"mbid:3c6bce1d-d82e-4251-a3de-05da6e78b1e4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0a9a12c0-481a-4481-9bf6-d8a4eba63641","source_track_id":"mbid:0a9a12c0-481a-4481-9bf6-d8a4eba63641","spotify_id":null,"title":"Better Life","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-04-12T07:53:11+00:00","last_scrobble":"2025-04-12T07:53:11+00:00","observed_albums":[{"album":"Fluorescent Youth","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c707c8aa26f526bff083/album.json","artist_path":"artists/mb/mbid-3c6bce1d-d82e-4251-a3de-05da6e78b1e4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3c6bce1d-d82e-4251-a3de-05da6e78b1e4",
+      "duration_ms": 225000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0a9a12c0-481a-4481-9bf6-d8a4eba63641",
+      "track_mbid": "0a9a12c0-481a-4481-9bf6-d8a4eba63641",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 225000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0a9a12c0-481a-4481-9bf6-d8a4eba63641",
+  "identity": {
+    "album": "Fluorescent Youth",
+    "album_id": "album:c707c8aa26f526bff083",
+    "artist": "Conditions",
+    "artist_id": "mbid:3c6bce1d-d82e-4251-a3de-05da6e78b1e4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0a9a12c0-481a-4481-9bf6-d8a4eba63641",
+    "source_track_id": "mbid:0a9a12c0-481a-4481-9bf6-d8a4eba63641",
+    "spotify_id": null,
+    "title": "Better Life",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-04-12T07:53:11+00:00",
+    "last_scrobble": "2025-04-12T07:53:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Fluorescent Youth",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c707c8aa26f526bff083/album.json",
+    "artist_path": "artists/mb/mbid-3c6bce1d-d82e-4251-a3de-05da6e78b1e4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

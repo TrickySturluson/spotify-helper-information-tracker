@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b2274e6d-10e8-4068-9dd2-eb55d4a144b5","duration_ms":309000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:489b6fcd-013f-49cf-8f5a-ce5b003eb616","track_mbid":"489b6fcd-013f-49cf-8f5a-ce5b003eb616"}},"id":"mbid:489b6fcd-013f-49cf-8f5a-ce5b003eb616","identity":{"album":"The New Romance (20th Anniversary Edition)","album_id":"album:ee572529b3d22350d4e6","artist":"Pretty Girls Make Graves","artist_id":"mbid:b2274e6d-10e8-4068-9dd2-eb55d4a144b5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"489b6fcd-013f-49cf-8f5a-ce5b003eb616","source_track_id":"mbid:489b6fcd-013f-49cf-8f5a-ce5b003eb616","spotify_id":null,"title":"Something Bigger, Something Brighter","track_number":null},"listening_context":{"all_time_plays":13,"first_scrobble":"2023-06-05T06:35:15+00:00","last_scrobble":"2026-04-05T06:11:19+00:00","observed_albums":[{"album":"The New Romance (20th Anniversary Edition)","scrobbles":8},{"album":"The New Romance","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ee572529b3d22350d4e6/album.json","artist_path":"artists/mb/mbid-b2274e6d-10e8-4068-9dd2-eb55d4a144b5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b2274e6d-10e8-4068-9dd2-eb55d4a144b5",
+      "duration_ms": 309000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:489b6fcd-013f-49cf-8f5a-ce5b003eb616",
+      "track_mbid": "489b6fcd-013f-49cf-8f5a-ce5b003eb616",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 309000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:489b6fcd-013f-49cf-8f5a-ce5b003eb616",
+  "identity": {
+    "album": "The New Romance (20th Anniversary Edition)",
+    "album_id": "album:ee572529b3d22350d4e6",
+    "artist": "Pretty Girls Make Graves",
+    "artist_id": "mbid:b2274e6d-10e8-4068-9dd2-eb55d4a144b5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "489b6fcd-013f-49cf-8f5a-ce5b003eb616",
+    "source_track_id": "mbid:489b6fcd-013f-49cf-8f5a-ce5b003eb616",
+    "spotify_id": null,
+    "title": "Something Bigger, Something Brighter",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 13,
+    "first_scrobble": "2023-06-05T06:35:15+00:00",
+    "last_scrobble": "2026-04-05T06:11:19+00:00",
+    "observed_albums": [
+      {
+        "album": "The New Romance (20th Anniversary Edition)",
+        "scrobbles": 8
+      },
+      {
+        "album": "The New Romance",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ee572529b3d22350d4e6/album.json",
+    "artist_path": "artists/mb/mbid-b2274e6d-10e8-4068-9dd2-eb55d4a144b5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

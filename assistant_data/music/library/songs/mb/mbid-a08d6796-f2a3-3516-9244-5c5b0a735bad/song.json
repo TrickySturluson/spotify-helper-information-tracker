@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:01bb4b3a-3f0f-4533-ae4c-07381e6833da","duration_ms":173000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:a08d6796-f2a3-3516-9244-5c5b0a735bad","track_mbid":"a08d6796-f2a3-3516-9244-5c5b0a735bad"}},"id":"mbid:a08d6796-f2a3-3516-9244-5c5b0a735bad","identity":{"album":"Islands Disappear","album_id":"album:f80c69742d7815950f01","artist":"Said the Whale","artist_id":"mbid:01bb4b3a-3f0f-4533-ae4c-07381e6833da","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a08d6796-f2a3-3516-9244-5c5b0a735bad","source_track_id":"mbid:a08d6796-f2a3-3516-9244-5c5b0a735bad","spotify_id":null,"title":"Black Day in December","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2023-08-15T23:39:45+00:00","last_scrobble":"2026-02-25T22:14:21+00:00","observed_albums":[{"album":"Islands Disappear","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f80c69742d7815950f01/album.json","artist_path":"artists/mb/mbid-01bb4b3a-3f0f-4533-ae4c-07381e6833da/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:01bb4b3a-3f0f-4533-ae4c-07381e6833da",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:a08d6796-f2a3-3516-9244-5c5b0a735bad",
+      "track_mbid": "a08d6796-f2a3-3516-9244-5c5b0a735bad",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a08d6796-f2a3-3516-9244-5c5b0a735bad",
+  "identity": {
+    "album": "Islands Disappear",
+    "album_id": "album:f80c69742d7815950f01",
+    "artist": "Said the Whale",
+    "artist_id": "mbid:01bb4b3a-3f0f-4533-ae4c-07381e6833da",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a08d6796-f2a3-3516-9244-5c5b0a735bad",
+    "source_track_id": "mbid:a08d6796-f2a3-3516-9244-5c5b0a735bad",
+    "spotify_id": null,
+    "title": "Black Day in December",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2023-08-15T23:39:45+00:00",
+    "last_scrobble": "2026-02-25T22:14:21+00:00",
+    "observed_albums": [
+      {
+        "album": "Islands Disappear",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f80c69742d7815950f01/album.json",
+    "artist_path": "artists/mb/mbid-01bb4b3a-3f0f-4533-ae4c-07381e6833da/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3ab3f4d5-0282-460d-85b6-cf68a471af09","duration_ms":274000,"duration_source":"Last.fm track.getInfo","track_id":"track:a511712988c617a2"}},"id":"source:a511712988c617a2","identity":{"album":"I Can Treat You Better","album_id":"album:f8216b7333aad19333b4","artist":"Part Time","artist_id":"mbid:3ab3f4d5-0282-460d-85b6-cf68a471af09","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:a511712988c617a2","spotify_id":null,"title":"I Can Treat You Better","track_number":null},"listening_context":{"all_time_plays":13,"first_scrobble":"2023-03-12T20:17:14+00:00","last_scrobble":"2025-02-13T09:43:06+00:00","observed_albums":[{"album":"I Can Treat You Better","scrobbles":13}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f8216b7333aad19333b4/album.json","artist_path":"artists/mb/mbid-3ab3f4d5-0282-460d-85b6-cf68a471af09/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3ab3f4d5-0282-460d-85b6-cf68a471af09",
+      "duration_ms": 274000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:a511712988c617a2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 274000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:a511712988c617a2",
+  "identity": {
+    "album": "I Can Treat You Better",
+    "album_id": "album:f8216b7333aad19333b4",
+    "artist": "Part Time",
+    "artist_id": "mbid:3ab3f4d5-0282-460d-85b6-cf68a471af09",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:a511712988c617a2",
+    "spotify_id": null,
+    "title": "I Can Treat You Better",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 13,
+    "first_scrobble": "2023-03-12T20:17:14+00:00",
+    "last_scrobble": "2025-02-13T09:43:06+00:00",
+    "observed_albums": [
+      {
+        "album": "I Can Treat You Better",
+        "scrobbles": 13
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f8216b7333aad19333b4/album.json",
+    "artist_path": "artists/mb/mbid-3ab3f4d5-0282-460d-85b6-cf68a471af09/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:61a1fdeb-0ea1-46a1-b647-c6ff7fbd4253","duration_ms":236000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9","track_mbid":"9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9"}},"id":"mbid:9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9","identity":{"album":"The Second","album_id":"album:63e12f321969884e4546","artist":"Forrest Day","artist_id":"mbid:61a1fdeb-0ea1-46a1-b647-c6ff7fbd4253","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9","source_track_id":"mbid:9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9","spotify_id":null,"title":"Years","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-22T06:24:28+00:00","last_scrobble":"2026-05-22T06:24:28+00:00","observed_albums":[{"album":"The Second","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-63e12f321969884e4546/album.json","artist_path":"artists/mb/mbid-61a1fdeb-0ea1-46a1-b647-c6ff7fbd4253/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:61a1fdeb-0ea1-46a1-b647-c6ff7fbd4253",
+      "duration_ms": 236000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9",
+      "track_mbid": "9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 236000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9",
+  "identity": {
+    "album": "The Second",
+    "album_id": "album:63e12f321969884e4546",
+    "artist": "Forrest Day",
+    "artist_id": "mbid:61a1fdeb-0ea1-46a1-b647-c6ff7fbd4253",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9",
+    "source_track_id": "mbid:9d4e533d-6f36-40c9-b39a-4d1ee89fbfe9",
+    "spotify_id": null,
+    "title": "Years",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-22T06:24:28+00:00",
+    "last_scrobble": "2026-05-22T06:24:28+00:00",
+    "observed_albums": [
+      {
+        "album": "The Second",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-63e12f321969884e4546/album.json",
+    "artist_path": "artists/mb/mbid-61a1fdeb-0ea1-46a1-b647-c6ff7fbd4253/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

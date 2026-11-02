@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:92de1f8d-833e-47d0-ba85-02a03c81848a","duration_ms":135000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:600a7119-c312-4c19-8cfa-ab33fbb1d502","track_mbid":"600a7119-c312-4c19-8cfa-ab33fbb1d502"}},"id":"mbid:600a7119-c312-4c19-8cfa-ab33fbb1d502","identity":{"album":"Kiss Yr Frenemies","album_id":"album:3632fcebd25c08ef3963","artist":"illuminati hotties","artist_id":"mbid:92de1f8d-833e-47d0-ba85-02a03c81848a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"600a7119-c312-4c19-8cfa-ab33fbb1d502","source_track_id":"mbid:600a7119-c312-4c19-8cfa-ab33fbb1d502","spotify_id":null,"title":"Pressed 2 Death","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-06-03T20:46:42+00:00","last_scrobble":"2023-06-04T06:39:29+00:00","observed_albums":[{"album":"Kiss Yr Frenemies","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3632fcebd25c08ef3963/album.json","artist_path":"artists/mb/mbid-92de1f8d-833e-47d0-ba85-02a03c81848a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:92de1f8d-833e-47d0-ba85-02a03c81848a",
+      "duration_ms": 135000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:600a7119-c312-4c19-8cfa-ab33fbb1d502",
+      "track_mbid": "600a7119-c312-4c19-8cfa-ab33fbb1d502",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 135000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:600a7119-c312-4c19-8cfa-ab33fbb1d502",
+  "identity": {
+    "album": "Kiss Yr Frenemies",
+    "album_id": "album:3632fcebd25c08ef3963",
+    "artist": "illuminati hotties",
+    "artist_id": "mbid:92de1f8d-833e-47d0-ba85-02a03c81848a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "600a7119-c312-4c19-8cfa-ab33fbb1d502",
+    "source_track_id": "mbid:600a7119-c312-4c19-8cfa-ab33fbb1d502",
+    "spotify_id": null,
+    "title": "Pressed 2 Death",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-06-03T20:46:42+00:00",
+    "last_scrobble": "2023-06-04T06:39:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Kiss Yr Frenemies",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3632fcebd25c08ef3963/album.json",
+    "artist_path": "artists/mb/mbid-92de1f8d-833e-47d0-ba85-02a03c81848a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

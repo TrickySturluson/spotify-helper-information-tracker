@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f12833c3-4821-480d-bba2-1920a02aefd2","duration_ms":181000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:92726c52-0a87-4322-9e54-f67bdd661e9c","track_mbid":"92726c52-0a87-4322-9e54-f67bdd661e9c"}},"id":"mbid:92726c52-0a87-4322-9e54-f67bdd661e9c","identity":{"album":"Love Songs for No One","album_id":"album:3885cd8414971602488a","artist":"Austin Weber","artist_id":"mbid:f12833c3-4821-480d-bba2-1920a02aefd2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"92726c52-0a87-4322-9e54-f67bdd661e9c","source_track_id":"mbid:92726c52-0a87-4322-9e54-f67bdd661e9c","spotify_id":null,"title":"Love Songs for No One","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-03-19T19:18:25+00:00","last_scrobble":"2026-03-19T19:18:25+00:00","observed_albums":[{"album":"Love Songs for No One","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3885cd8414971602488a/album.json","artist_path":"artists/mb/mbid-f12833c3-4821-480d-bba2-1920a02aefd2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f12833c3-4821-480d-bba2-1920a02aefd2",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:92726c52-0a87-4322-9e54-f67bdd661e9c",
+      "track_mbid": "92726c52-0a87-4322-9e54-f67bdd661e9c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:92726c52-0a87-4322-9e54-f67bdd661e9c",
+  "identity": {
+    "album": "Love Songs for No One",
+    "album_id": "album:3885cd8414971602488a",
+    "artist": "Austin Weber",
+    "artist_id": "mbid:f12833c3-4821-480d-bba2-1920a02aefd2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "92726c52-0a87-4322-9e54-f67bdd661e9c",
+    "source_track_id": "mbid:92726c52-0a87-4322-9e54-f67bdd661e9c",
+    "spotify_id": null,
+    "title": "Love Songs for No One",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-03-19T19:18:25+00:00",
+    "last_scrobble": "2026-03-19T19:18:25+00:00",
+    "observed_albums": [
+      {
+        "album": "Love Songs for No One",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3885cd8414971602488a/album.json",
+    "artist_path": "artists/mb/mbid-f12833c3-4821-480d-bba2-1920a02aefd2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

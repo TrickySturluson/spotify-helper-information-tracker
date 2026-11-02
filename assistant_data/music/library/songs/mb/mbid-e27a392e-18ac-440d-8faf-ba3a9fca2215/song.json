@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7230b2f8-96da-4242-8d57-2a8c1c3d71e4","duration_ms":326000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e27a392e-18ac-440d-8faf-ba3a9fca2215","track_mbid":"e27a392e-18ac-440d-8faf-ba3a9fca2215"}},"id":"mbid:e27a392e-18ac-440d-8faf-ba3a9fca2215","identity":{"album":"Wicked City","album_id":"album:c65428ae7d3392aee0ed","artist":"Jockstrap","artist_id":"mbid:7230b2f8-96da-4242-8d57-2a8c1c3d71e4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e27a392e-18ac-440d-8faf-ba3a9fca2215","source_track_id":"mbid:e27a392e-18ac-440d-8faf-ba3a9fca2215","spotify_id":null,"title":"City Hell","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-03-29T06:09:47+00:00","last_scrobble":"2023-03-30T02:59:08+00:00","observed_albums":[{"album":"Wicked City","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c65428ae7d3392aee0ed/album.json","artist_path":"artists/mb/mbid-7230b2f8-96da-4242-8d57-2a8c1c3d71e4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7230b2f8-96da-4242-8d57-2a8c1c3d71e4",
+      "duration_ms": 326000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e27a392e-18ac-440d-8faf-ba3a9fca2215",
+      "track_mbid": "e27a392e-18ac-440d-8faf-ba3a9fca2215",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 326000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e27a392e-18ac-440d-8faf-ba3a9fca2215",
+  "identity": {
+    "album": "Wicked City",
+    "album_id": "album:c65428ae7d3392aee0ed",
+    "artist": "Jockstrap",
+    "artist_id": "mbid:7230b2f8-96da-4242-8d57-2a8c1c3d71e4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e27a392e-18ac-440d-8faf-ba3a9fca2215",
+    "source_track_id": "mbid:e27a392e-18ac-440d-8faf-ba3a9fca2215",
+    "spotify_id": null,
+    "title": "City Hell",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-03-29T06:09:47+00:00",
+    "last_scrobble": "2023-03-30T02:59:08+00:00",
+    "observed_albums": [
+      {
+        "album": "Wicked City",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c65428ae7d3392aee0ed/album.json",
+    "artist_path": "artists/mb/mbid-7230b2f8-96da-4242-8d57-2a8c1c3d71e4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

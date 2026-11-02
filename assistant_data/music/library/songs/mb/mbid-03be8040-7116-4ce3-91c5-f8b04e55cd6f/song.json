@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:003ca7a0-60ef-4c4b-a4d6-f8e33256577e","duration_ms":243000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:03be8040-7116-4ce3-91c5-f8b04e55cd6f","track_mbid":"03be8040-7116-4ce3-91c5-f8b04e55cd6f"}},"id":"mbid:03be8040-7116-4ce3-91c5-f8b04e55cd6f","identity":{"album":"Dance Moves","album_id":"album:3cf363cee4f8a7ccccaf","artist":"Franc Moody","artist_id":"mbid:003ca7a0-60ef-4c4b-a4d6-f8e33256577e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"03be8040-7116-4ce3-91c5-f8b04e55cd6f","source_track_id":"mbid:03be8040-7116-4ce3-91c5-f8b04e55cd6f","spotify_id":null,"title":"Dopamine","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-21T18:02:19+00:00","last_scrobble":"2025-10-21T18:02:19+00:00","observed_albums":[{"album":"Dance Moves","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3cf363cee4f8a7ccccaf/album.json","artist_path":"artists/mb/mbid-003ca7a0-60ef-4c4b-a4d6-f8e33256577e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:003ca7a0-60ef-4c4b-a4d6-f8e33256577e",
+      "duration_ms": 243000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:03be8040-7116-4ce3-91c5-f8b04e55cd6f",
+      "track_mbid": "03be8040-7116-4ce3-91c5-f8b04e55cd6f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 243000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:03be8040-7116-4ce3-91c5-f8b04e55cd6f",
+  "identity": {
+    "album": "Dance Moves",
+    "album_id": "album:3cf363cee4f8a7ccccaf",
+    "artist": "Franc Moody",
+    "artist_id": "mbid:003ca7a0-60ef-4c4b-a4d6-f8e33256577e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "03be8040-7116-4ce3-91c5-f8b04e55cd6f",
+    "source_track_id": "mbid:03be8040-7116-4ce3-91c5-f8b04e55cd6f",
+    "spotify_id": null,
+    "title": "Dopamine",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-21T18:02:19+00:00",
+    "last_scrobble": "2025-10-21T18:02:19+00:00",
+    "observed_albums": [
+      {
+        "album": "Dance Moves",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3cf363cee4f8a7ccccaf/album.json",
+    "artist_path": "artists/mb/mbid-003ca7a0-60ef-4c4b-a4d6-f8e33256577e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

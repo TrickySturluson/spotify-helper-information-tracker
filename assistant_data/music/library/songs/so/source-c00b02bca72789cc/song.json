@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711","duration_ms":263000,"duration_source":"Last.fm track.getInfo","track_id":"track:c00b02bca72789cc"}},"id":"source:c00b02bca72789cc","identity":{"album":"OK Computer","album_id":"album:96a3360f58ca2227e923","artist":"Radiohead","artist_id":"mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:c00b02bca72789cc","spotify_id":null,"title":"Karma Police","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-07-16T21:44:03+00:00","last_scrobble":"2025-07-16T21:44:03+00:00","observed_albums":[{"album":"OK Computer","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-96a3360f58ca2227e923/album.json","artist_path":"artists/mb/mbid-a74b1b7f-71a5-4011-9441-d0b5e4122711/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711",
+      "duration_ms": 263000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:c00b02bca72789cc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 263000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:c00b02bca72789cc",
+  "identity": {
+    "album": "OK Computer",
+    "album_id": "album:96a3360f58ca2227e923",
+    "artist": "Radiohead",
+    "artist_id": "mbid:a74b1b7f-71a5-4011-9441-d0b5e4122711",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:c00b02bca72789cc",
+    "spotify_id": null,
+    "title": "Karma Police",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-07-16T21:44:03+00:00",
+    "last_scrobble": "2025-07-16T21:44:03+00:00",
+    "observed_albums": [
+      {
+        "album": "OK Computer",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-96a3360f58ca2227e923/album.json",
+    "artist_path": "artists/mb/mbid-a74b1b7f-71a5-4011-9441-d0b5e4122711/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

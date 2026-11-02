@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ea5493df-b8d9-4c89-bd5b-6c4aeba7a0ac","duration_ms":334000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T23:58:49.346770+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T23:58:49.901742+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:07f96c0f-da45-44a6-8e13-186236c36396","track_mbid":"07f96c0f-da45-44a6-8e13-186236c36396"}},"id":"mbid:07f96c0f-da45-44a6-8e13-186236c36396","identity":{"album":"Black Lagoon","album_id":"album:fa69bd9b507cc30cfb03","artist":"Still Corners","artist_id":"mbid:ea5493df-b8d9-4c89-bd5b-6c4aeba7a0ac","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"07f96c0f-da45-44a6-8e13-186236c36396","source_track_id":"mbid:07f96c0f-da45-44a6-8e13-186236c36396","spotify_id":null,"title":"Black Lagoon","track_number":null},"listening_context":{"all_time_plays":18,"first_scrobble":"2023-03-02T14:17:52+00:00","last_scrobble":"2025-12-15T23:18:54+00:00","observed_albums":[{"album":"Black Lagoon","scrobbles":18}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fa69bd9b507cc30cfb03/album.json","artist_path":"artists/mb/mbid-ea5493df-b8d9-4c89-bd5b-6c4aeba7a0ac/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ea5493df-b8d9-4c89-bd5b-6c4aeba7a0ac",
+      "duration_ms": 334000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T23:58:49.346770+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T23:58:49.901742+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:07f96c0f-da45-44a6-8e13-186236c36396",
+      "track_mbid": "07f96c0f-da45-44a6-8e13-186236c36396",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 334000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:07f96c0f-da45-44a6-8e13-186236c36396",
+  "identity": {
+    "album": "Black Lagoon",
+    "album_id": "album:fa69bd9b507cc30cfb03",
+    "artist": "Still Corners",
+    "artist_id": "mbid:ea5493df-b8d9-4c89-bd5b-6c4aeba7a0ac",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "07f96c0f-da45-44a6-8e13-186236c36396",
+    "source_track_id": "mbid:07f96c0f-da45-44a6-8e13-186236c36396",
+    "spotify_id": null,
+    "title": "Black Lagoon",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 18,
+    "first_scrobble": "2023-03-02T14:17:52+00:00",
+    "last_scrobble": "2025-12-15T23:18:54+00:00",
+    "observed_albums": [
+      {
+        "album": "Black Lagoon",
+        "scrobbles": 18
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fa69bd9b507cc30cfb03/album.json",
+    "artist_path": "artists/mb/mbid-ea5493df-b8d9-4c89-bd5b-6c4aeba7a0ac/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

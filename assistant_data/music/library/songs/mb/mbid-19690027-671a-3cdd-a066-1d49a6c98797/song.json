@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e45cc18b-8cda-423b-8763-91e0303614e3","duration_ms":234000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T06:00:11.936526+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T06:00:12.613892+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:19690027-671a-3cdd-a066-1d49a6c98797","track_mbid":"19690027-671a-3cdd-a066-1d49a6c98797"}},"id":"mbid:19690027-671a-3cdd-a066-1d49a6c98797","identity":{"album":"Cathedral","album_id":"album:028ed7125bc25c015f2e","artist":"Castanets","artist_id":"mbid:e45cc18b-8cda-423b-8763-91e0303614e3","identity_quality":"verified_recording","recording_mbid":"19690027-671a-3cdd-a066-1d49a6c98797","source_track_id":"mbid:19690027-671a-3cdd-a066-1d49a6c98797","spotify_id":null,"title":"You Are The Blood"},"listening_context":{"all_time_plays":18,"first_scrobble":"2026-03-09T15:42:58+00:00","last_scrobble":"2026-10-29T05:42:05+00:00","observed_albums":[{"album":"Cathedral","scrobbles":18}],"priority_playlist_ids":[],"recent_plays":17,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-028ed7125bc25c015f2e/album.json","artist_path":"artists/mb/mbid-e45cc18b-8cda-423b-8763-91e0303614e3/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e45cc18b-8cda-423b-8763-91e0303614e3",
+      "duration_ms": 234000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T06:00:11.936526+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T06:00:12.613892+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:19690027-671a-3cdd-a066-1d49a6c98797",
+      "track_mbid": "19690027-671a-3cdd-a066-1d49a6c98797",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 234000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:19690027-671a-3cdd-a066-1d49a6c98797",
+  "identity": {
+    "album": "Cathedral",
+    "album_id": "album:028ed7125bc25c015f2e",
+    "artist": "Castanets",
+    "artist_id": "mbid:e45cc18b-8cda-423b-8763-91e0303614e3",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "19690027-671a-3cdd-a066-1d49a6c98797",
+    "source_track_id": "mbid:19690027-671a-3cdd-a066-1d49a6c98797",
+    "spotify_id": null,
+    "title": "You Are The Blood"
+  },
+  "listening_context": {
+    "all_time_plays": 18,
+    "first_scrobble": "2026-03-09T15:42:58+00:00",
+    "last_scrobble": "2026-10-29T05:42:05+00:00",
+    "observed_albums": [
+      {
+        "album": "Cathedral",
+        "scrobbles": 18
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 17,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-028ed7125bc25c015f2e/album.json",
+    "artist_path": "artists/mb/mbid-e45cc18b-8cda-423b-8763-91e0303614e3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

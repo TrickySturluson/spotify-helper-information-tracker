@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:49eeea2f9334595f","duration_ms":242000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:28:36.572018+00:00","lastfm_status":"no_tags","retry_after":0,"track_id":"track:d9479b960394018c"}},"id":"source:d9479b960394018c","identity":{"album":"Aches","album_id":"album:222c6618099300544d9c","artist":"aisagasu eye shadow","artist_id":"name:49eeea2f9334595f","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:d9479b960394018c","spotify_id":null,"title":"ex;curse velvet - 2026 Ver","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-10-27T18:11:56+00:00","last_scrobble":"2026-10-27T18:11:56+00:00","observed_albums":[{"album":"Aches","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-222c6618099300544d9c/album.json","artist_path":"artists/na/name-49eeea2f9334595f/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:49eeea2f9334595f",
+      "duration_ms": 242000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:28:36.572018+00:00",
+      "lastfm_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "track:d9479b960394018c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 242000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:d9479b960394018c",
+  "identity": {
+    "album": "Aches",
+    "album_id": "album:222c6618099300544d9c",
+    "artist": "aisagasu eye shadow",
+    "artist_id": "name:49eeea2f9334595f",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:d9479b960394018c",
+    "spotify_id": null,
+    "title": "ex;curse velvet - 2026 Ver",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-10-27T18:11:56+00:00",
+    "last_scrobble": "2026-10-27T18:11:56+00:00",
+    "observed_albums": [
+      {
+        "album": "Aches",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-222c6618099300544d9c/album.json",
+    "artist_path": "artists/na/name-49eeea2f9334595f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    }
+  }
+}

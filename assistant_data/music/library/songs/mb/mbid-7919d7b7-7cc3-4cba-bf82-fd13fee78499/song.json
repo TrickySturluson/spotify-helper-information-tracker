@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4f7de154-4b18-4b1a-a185-6fcca61da057","duration_ms":161000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7919d7b7-7cc3-4cba-bf82-fd13fee78499","track_mbid":"7919d7b7-7cc3-4cba-bf82-fd13fee78499"}},"id":"mbid:7919d7b7-7cc3-4cba-bf82-fd13fee78499","identity":{"album":"Work of A.R.T.","album_id":"album:6f51cbee7f3e3bd8d74d","artist":"Cure For Paranoia","artist_id":"mbid:4f7de154-4b18-4b1a-a185-6fcca61da057","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7919d7b7-7cc3-4cba-bf82-fd13fee78499","source_track_id":"mbid:7919d7b7-7cc3-4cba-bf82-fd13fee78499","spotify_id":null,"title":"No Brainer","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-07T18:38:27+00:00","last_scrobble":"2026-04-07T18:38:27+00:00","observed_albums":[{"album":"Work of A.R.T.","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6f51cbee7f3e3bd8d74d/album.json","artist_path":"artists/mb/mbid-4f7de154-4b18-4b1a-a185-6fcca61da057/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4f7de154-4b18-4b1a-a185-6fcca61da057",
+      "duration_ms": 161000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7919d7b7-7cc3-4cba-bf82-fd13fee78499",
+      "track_mbid": "7919d7b7-7cc3-4cba-bf82-fd13fee78499",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 161000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7919d7b7-7cc3-4cba-bf82-fd13fee78499",
+  "identity": {
+    "album": "Work of A.R.T.",
+    "album_id": "album:6f51cbee7f3e3bd8d74d",
+    "artist": "Cure For Paranoia",
+    "artist_id": "mbid:4f7de154-4b18-4b1a-a185-6fcca61da057",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7919d7b7-7cc3-4cba-bf82-fd13fee78499",
+    "source_track_id": "mbid:7919d7b7-7cc3-4cba-bf82-fd13fee78499",
+    "spotify_id": null,
+    "title": "No Brainer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-07T18:38:27+00:00",
+    "last_scrobble": "2026-04-07T18:38:27+00:00",
+    "observed_albums": [
+      {
+        "album": "Work of A.R.T.",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6f51cbee7f3e3bd8d74d/album.json",
+    "artist_path": "artists/mb/mbid-4f7de154-4b18-4b1a-a185-6fcca61da057/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

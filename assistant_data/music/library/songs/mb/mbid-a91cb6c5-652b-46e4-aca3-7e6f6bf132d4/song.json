@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:d270e06806a80430","duration_ms":152000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T23:59:31.637320+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T23:59:33.216711+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:a91cb6c5-652b-46e4-aca3-7e6f6bf132d4","track_mbid":"a91cb6c5-652b-46e4-aca3-7e6f6bf132d4"}},"id":"mbid:a91cb6c5-652b-46e4-aca3-7e6f6bf132d4","identity":{"album":"secret princess","album_id":"album:de8ae7ed084176ab6e21","artist":"Nova One","artist_id":"name:d270e06806a80430","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a91cb6c5-652b-46e4-aca3-7e6f6bf132d4","source_track_id":"mbid:a91cb6c5-652b-46e4-aca3-7e6f6bf132d4","spotify_id":null,"title":"Where You Are","track_number":null},"listening_context":{"all_time_plays":17,"first_scrobble":"2023-05-06T19:23:58+00:00","last_scrobble":"2025-12-17T19:38:12+00:00","observed_albums":[{"album":"secret princess","scrobbles":17}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-de8ae7ed084176ab6e21/album.json","artist_path":"artists/na/name-d270e06806a80430/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:d270e06806a80430",
+      "duration_ms": 152000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T23:59:31.637320+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T23:59:33.216711+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:a91cb6c5-652b-46e4-aca3-7e6f6bf132d4",
+      "track_mbid": "a91cb6c5-652b-46e4-aca3-7e6f6bf132d4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 152000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a91cb6c5-652b-46e4-aca3-7e6f6bf132d4",
+  "identity": {
+    "album": "secret princess",
+    "album_id": "album:de8ae7ed084176ab6e21",
+    "artist": "Nova One",
+    "artist_id": "name:d270e06806a80430",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a91cb6c5-652b-46e4-aca3-7e6f6bf132d4",
+    "source_track_id": "mbid:a91cb6c5-652b-46e4-aca3-7e6f6bf132d4",
+    "spotify_id": null,
+    "title": "Where You Are",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 17,
+    "first_scrobble": "2023-05-06T19:23:58+00:00",
+    "last_scrobble": "2025-12-17T19:38:12+00:00",
+    "observed_albums": [
+      {
+        "album": "secret princess",
+        "scrobbles": 17
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-de8ae7ed084176ab6e21/album.json",
+    "artist_path": "artists/na/name-d270e06806a80430/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

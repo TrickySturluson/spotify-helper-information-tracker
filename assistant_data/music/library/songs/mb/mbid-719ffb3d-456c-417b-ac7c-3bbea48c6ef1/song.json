@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:507a63d3-2efb-4657-958c-bc9457131f01","duration_ms":378000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:719ffb3d-456c-417b-ac7c-3bbea48c6ef1","track_mbid":"719ffb3d-456c-417b-ac7c-3bbea48c6ef1"}},"id":"mbid:719ffb3d-456c-417b-ac7c-3bbea48c6ef1","identity":{"album":"West of Eden","album_id":"album:7774ccf79396a0589398","artist":"HMLTD","artist_id":"mbid:507a63d3-2efb-4657-958c-bc9457131f01","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"719ffb3d-456c-417b-ac7c-3bbea48c6ef1","source_track_id":"mbid:719ffb3d-456c-417b-ac7c-3bbea48c6ef1","spotify_id":null,"title":"Satan, Luella & I","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-07-12T00:39:59+00:00","last_scrobble":"2023-07-23T22:36:13+00:00","observed_albums":[{"album":"West of Eden","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7774ccf79396a0589398/album.json","artist_path":"artists/mb/mbid-507a63d3-2efb-4657-958c-bc9457131f01/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:507a63d3-2efb-4657-958c-bc9457131f01",
+      "duration_ms": 378000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:719ffb3d-456c-417b-ac7c-3bbea48c6ef1",
+      "track_mbid": "719ffb3d-456c-417b-ac7c-3bbea48c6ef1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 378000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:719ffb3d-456c-417b-ac7c-3bbea48c6ef1",
+  "identity": {
+    "album": "West of Eden",
+    "album_id": "album:7774ccf79396a0589398",
+    "artist": "HMLTD",
+    "artist_id": "mbid:507a63d3-2efb-4657-958c-bc9457131f01",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "719ffb3d-456c-417b-ac7c-3bbea48c6ef1",
+    "source_track_id": "mbid:719ffb3d-456c-417b-ac7c-3bbea48c6ef1",
+    "spotify_id": null,
+    "title": "Satan, Luella & I",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-07-12T00:39:59+00:00",
+    "last_scrobble": "2023-07-23T22:36:13+00:00",
+    "observed_albums": [
+      {
+        "album": "West of Eden",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7774ccf79396a0589398/album.json",
+    "artist_path": "artists/mb/mbid-507a63d3-2efb-4657-958c-bc9457131f01/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

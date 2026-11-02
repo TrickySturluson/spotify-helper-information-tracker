@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:4dcd3145817cff42","duration_ms":153000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1f8fc434-3e09-41bc-9490-ed89b5d6c53e","track_mbid":"1f8fc434-3e09-41bc-9490-ed89b5d6c53e"}},"id":"mbid:1f8fc434-3e09-41bc-9490-ed89b5d6c53e","identity":{"album":"GOT UR NUMB3R (v2)","album_id":"album:4fcff45373723caacb9f","artist":"bugcried","artist_id":"name:4dcd3145817cff42","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1f8fc434-3e09-41bc-9490-ed89b5d6c53e","source_track_id":"mbid:1f8fc434-3e09-41bc-9490-ed89b5d6c53e","spotify_id":null,"title":"Got Ur Numb3r (v2)","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2024-12-31T23:14:37+00:00","last_scrobble":"2025-01-01T02:23:26+00:00","observed_albums":[{"album":"GOT UR NUMB3R (v2)","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4fcff45373723caacb9f/album.json","artist_path":"artists/na/name-4dcd3145817cff42/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:4dcd3145817cff42",
+      "duration_ms": 153000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1f8fc434-3e09-41bc-9490-ed89b5d6c53e",
+      "track_mbid": "1f8fc434-3e09-41bc-9490-ed89b5d6c53e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 153000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1f8fc434-3e09-41bc-9490-ed89b5d6c53e",
+  "identity": {
+    "album": "GOT UR NUMB3R (v2)",
+    "album_id": "album:4fcff45373723caacb9f",
+    "artist": "bugcried",
+    "artist_id": "name:4dcd3145817cff42",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1f8fc434-3e09-41bc-9490-ed89b5d6c53e",
+    "source_track_id": "mbid:1f8fc434-3e09-41bc-9490-ed89b5d6c53e",
+    "spotify_id": null,
+    "title": "Got Ur Numb3r (v2)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2024-12-31T23:14:37+00:00",
+    "last_scrobble": "2025-01-01T02:23:26+00:00",
+    "observed_albums": [
+      {
+        "album": "GOT UR NUMB3R (v2)",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4fcff45373723caacb9f/album.json",
+    "artist_path": "artists/na/name-4dcd3145817cff42/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

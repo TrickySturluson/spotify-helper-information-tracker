@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:20244d07-534f-4eff-b4d4-930878889970","duration_ms":58000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f7f6fb88-e5b8-49aa-ad11-75f5416bad56","track_mbid":"f7f6fb88-e5b8-49aa-ad11-75f5416bad56"}},"id":"mbid:f7f6fb88-e5b8-49aa-ad11-75f5416bad56","identity":{"album":"Lover","album_id":"album:2d6500ed66b13e58df1a","artist":"Taylor Swift","artist_id":"mbid:20244d07-534f-4eff-b4d4-930878889970","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f7f6fb88-e5b8-49aa-ad11-75f5416bad56","source_track_id":"mbid:f7f6fb88-e5b8-49aa-ad11-75f5416bad56","spotify_id":null,"title":"Cruel Summer","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-23T16:07:40+00:00","last_scrobble":"2025-10-23T16:07:40+00:00","observed_albums":[{"album":"Lover","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2d6500ed66b13e58df1a/album.json","artist_path":"artists/mb/mbid-20244d07-534f-4eff-b4d4-930878889970/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:20244d07-534f-4eff-b4d4-930878889970",
+      "duration_ms": 58000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f7f6fb88-e5b8-49aa-ad11-75f5416bad56",
+      "track_mbid": "f7f6fb88-e5b8-49aa-ad11-75f5416bad56",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 58000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f7f6fb88-e5b8-49aa-ad11-75f5416bad56",
+  "identity": {
+    "album": "Lover",
+    "album_id": "album:2d6500ed66b13e58df1a",
+    "artist": "Taylor Swift",
+    "artist_id": "mbid:20244d07-534f-4eff-b4d4-930878889970",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f7f6fb88-e5b8-49aa-ad11-75f5416bad56",
+    "source_track_id": "mbid:f7f6fb88-e5b8-49aa-ad11-75f5416bad56",
+    "spotify_id": null,
+    "title": "Cruel Summer",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-23T16:07:40+00:00",
+    "last_scrobble": "2025-10-23T16:07:40+00:00",
+    "observed_albums": [
+      {
+        "album": "Lover",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2d6500ed66b13e58df1a/album.json",
+    "artist_path": "artists/mb/mbid-20244d07-534f-4eff-b4d4-930878889970/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

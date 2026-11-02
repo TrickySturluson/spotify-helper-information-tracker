@@ -1,1 +1,104 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:683dd81d21c97285","duration_ms":289000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T05:59:06.521623+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T05:59:07.381271+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f","track_mbid":"11960fa0-c0c4-404a-aaa8-adec49eda06f"}},"id":"mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f","identity":{"album":"MOON E.P.","album_id":"album:e9cf566aa20a4b5663f4","artist":"M|O|O|N","artist_id":"name:683dd81d21c97285","identity_quality":"verified_recording","recording_mbid":"11960fa0-c0c4-404a-aaa8-adec49eda06f","source_track_id":"mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f","spotify_id":null,"title":"Hydrogen"},"listening_context":{"all_time_plays":22,"first_scrobble":"2023-03-13T23:05:36+00:00","last_scrobble":"2026-10-29T04:26:12+00:00","observed_albums":[{"album":"MOON E.P.","scrobbles":20},{"album":"Moon - EP","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":20,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e9cf566aa20a4b5663f4/album.json","artist_path":"artists/na/name-683dd81d21c97285/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:683dd81d21c97285",
+      "duration_ms": 289000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T05:59:06.521623+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T05:59:07.381271+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f",
+      "track_mbid": "11960fa0-c0c4-404a-aaa8-adec49eda06f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 289000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f",
+  "identity": {
+    "album": "MOON E.P.",
+    "album_id": "album:e9cf566aa20a4b5663f4",
+    "artist": "M|O|O|N",
+    "artist_id": "name:683dd81d21c97285",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "11960fa0-c0c4-404a-aaa8-adec49eda06f",
+    "source_track_id": "mbid:11960fa0-c0c4-404a-aaa8-adec49eda06f",
+    "spotify_id": null,
+    "title": "Hydrogen"
+  },
+  "listening_context": {
+    "all_time_plays": 22,
+    "first_scrobble": "2023-03-13T23:05:36+00:00",
+    "last_scrobble": "2026-10-29T04:26:12+00:00",
+    "observed_albums": [
+      {
+        "album": "MOON E.P.",
+        "scrobbles": 20
+      },
+      {
+        "album": "Moon - EP",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 20,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e9cf566aa20a4b5663f4/album.json",
+    "artist_path": "artists/na/name-683dd81d21c97285/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:75f30e15-549a-440d-b9b9-3d08daadef9d","duration_ms":221000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4b128629-3db8-4b32-bb97-bc771c24c964","track_mbid":"4b128629-3db8-4b32-bb97-bc771c24c964"}},"id":"mbid:4b128629-3db8-4b32-bb97-bc771c24c964","identity":{"album":"The Color Spectrum: The Complete Collection","album_id":"album:d6e4f9a753d8640182a8","artist":"The Dear Hunter","artist_id":"mbid:75f30e15-549a-440d-b9b9-3d08daadef9d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4b128629-3db8-4b32-bb97-bc771c24c964","source_track_id":"mbid:4b128629-3db8-4b32-bb97-bc771c24c964","spotify_id":null,"title":"Look Away","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2025-12-01T18:24:33+00:00","last_scrobble":"2026-06-15T22:04:10+00:00","observed_albums":[{"album":"The Color Spectrum: The Complete Collection","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d6e4f9a753d8640182a8/album.json","artist_path":"artists/mb/mbid-75f30e15-549a-440d-b9b9-3d08daadef9d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:75f30e15-549a-440d-b9b9-3d08daadef9d",
+      "duration_ms": 221000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4b128629-3db8-4b32-bb97-bc771c24c964",
+      "track_mbid": "4b128629-3db8-4b32-bb97-bc771c24c964",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 221000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4b128629-3db8-4b32-bb97-bc771c24c964",
+  "identity": {
+    "album": "The Color Spectrum: The Complete Collection",
+    "album_id": "album:d6e4f9a753d8640182a8",
+    "artist": "The Dear Hunter",
+    "artist_id": "mbid:75f30e15-549a-440d-b9b9-3d08daadef9d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4b128629-3db8-4b32-bb97-bc771c24c964",
+    "source_track_id": "mbid:4b128629-3db8-4b32-bb97-bc771c24c964",
+    "spotify_id": null,
+    "title": "Look Away",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2025-12-01T18:24:33+00:00",
+    "last_scrobble": "2026-06-15T22:04:10+00:00",
+    "observed_albums": [
+      {
+        "album": "The Color Spectrum: The Complete Collection",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d6e4f9a753d8640182a8/album.json",
+    "artist_path": "artists/mb/mbid-75f30e15-549a-440d-b9b9-3d08daadef9d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

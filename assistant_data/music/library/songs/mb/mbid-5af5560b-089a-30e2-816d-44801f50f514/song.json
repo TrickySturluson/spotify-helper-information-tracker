@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2","duration_ms":134000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5af5560b-089a-30e2-816d-44801f50f514","track_mbid":"5af5560b-089a-30e2-816d-44801f50f514"}},"id":"mbid:5af5560b-089a-30e2-816d-44801f50f514","identity":{"album":"Michel Poiccard","album_id":"album:9c9a76a5691f9e4df039","artist":"The Death Set","artist_id":"mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5af5560b-089a-30e2-816d-44801f50f514","source_track_id":"mbid:5af5560b-089a-30e2-816d-44801f50f514","spotify_id":null,"title":"A Problem Is a Problem It Don't Matter Where You From","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-02-19T22:03:35+00:00","last_scrobble":"2026-05-09T00:22:52+00:00","observed_albums":[{"album":"Michel Poiccard","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9c9a76a5691f9e4df039/album.json","artist_path":"artists/mb/mbid-7ec4f94d-bd26-408d-a81b-4df4cae674f2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2",
+      "duration_ms": 134000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5af5560b-089a-30e2-816d-44801f50f514",
+      "track_mbid": "5af5560b-089a-30e2-816d-44801f50f514",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 134000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5af5560b-089a-30e2-816d-44801f50f514",
+  "identity": {
+    "album": "Michel Poiccard",
+    "album_id": "album:9c9a76a5691f9e4df039",
+    "artist": "The Death Set",
+    "artist_id": "mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5af5560b-089a-30e2-816d-44801f50f514",
+    "source_track_id": "mbid:5af5560b-089a-30e2-816d-44801f50f514",
+    "spotify_id": null,
+    "title": "A Problem Is a Problem It Don't Matter Where You From",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-02-19T22:03:35+00:00",
+    "last_scrobble": "2026-05-09T00:22:52+00:00",
+    "observed_albums": [
+      {
+        "album": "Michel Poiccard",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9c9a76a5691f9e4df039/album.json",
+    "artist_path": "artists/mb/mbid-7ec4f94d-bd26-408d-a81b-4df4cae674f2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:01866d31a13ac0be","duration_ms":181000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7dc505f4-503d-42a8-a867-b6f257e9be3e","track_mbid":"7dc505f4-503d-42a8-a867-b6f257e9be3e"}},"id":"mbid:7dc505f4-503d-42a8-a867-b6f257e9be3e","identity":{"album":"World War Lullaby","album_id":"album:113a54a6faa8af97caf0","artist":"moussalangelo","artist_id":"name:01866d31a13ac0be","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7dc505f4-503d-42a8-a867-b6f257e9be3e","source_track_id":"mbid:7dc505f4-503d-42a8-a867-b6f257e9be3e","spotify_id":null,"title":"If it don't suit me","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-01-29T17:31:32+00:00","last_scrobble":"2026-01-29T17:31:32+00:00","observed_albums":[{"album":"World War Lullaby","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-113a54a6faa8af97caf0/album.json","artist_path":"artists/na/name-01866d31a13ac0be/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:01866d31a13ac0be",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7dc505f4-503d-42a8-a867-b6f257e9be3e",
+      "track_mbid": "7dc505f4-503d-42a8-a867-b6f257e9be3e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7dc505f4-503d-42a8-a867-b6f257e9be3e",
+  "identity": {
+    "album": "World War Lullaby",
+    "album_id": "album:113a54a6faa8af97caf0",
+    "artist": "moussalangelo",
+    "artist_id": "name:01866d31a13ac0be",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7dc505f4-503d-42a8-a867-b6f257e9be3e",
+    "source_track_id": "mbid:7dc505f4-503d-42a8-a867-b6f257e9be3e",
+    "spotify_id": null,
+    "title": "If it don't suit me",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-01-29T17:31:32+00:00",
+    "last_scrobble": "2026-01-29T17:31:32+00:00",
+    "observed_albums": [
+      {
+        "album": "World War Lullaby",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-113a54a6faa8af97caf0/album.json",
+    "artist_path": "artists/na/name-01866d31a13ac0be/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

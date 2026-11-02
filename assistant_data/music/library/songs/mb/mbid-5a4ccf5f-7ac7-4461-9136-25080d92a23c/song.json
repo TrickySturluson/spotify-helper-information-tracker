@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c413e699-3acc-422d-af6d-d548df3ea99a","duration_ms":272000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5a4ccf5f-7ac7-4461-9136-25080d92a23c","track_mbid":"5a4ccf5f-7ac7-4461-9136-25080d92a23c"}},"id":"mbid:5a4ccf5f-7ac7-4461-9136-25080d92a23c","identity":{"album":"GUILTY GEAR -STRIVE- ORIGINAL SOUND TRACK VOL.1","album_id":"album:0d1b3c622c8a24264122","artist":"Naoki","artist_id":"mbid:c413e699-3acc-422d-af6d-d548df3ea99a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5a4ccf5f-7ac7-4461-9136-25080d92a23c","source_track_id":"mbid:5a4ccf5f-7ac7-4461-9136-25080d92a23c","spotify_id":null,"title":"Alone Infection","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-09-26T16:02:03+00:00","last_scrobble":"2024-09-26T16:02:03+00:00","observed_albums":[{"album":"GUILTY GEAR -STRIVE- ORIGINAL SOUND TRACK VOL.1","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-0d1b3c622c8a24264122/album.json","artist_path":"artists/mb/mbid-c413e699-3acc-422d-af6d-d548df3ea99a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c413e699-3acc-422d-af6d-d548df3ea99a",
+      "duration_ms": 272000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5a4ccf5f-7ac7-4461-9136-25080d92a23c",
+      "track_mbid": "5a4ccf5f-7ac7-4461-9136-25080d92a23c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 272000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5a4ccf5f-7ac7-4461-9136-25080d92a23c",
+  "identity": {
+    "album": "GUILTY GEAR -STRIVE- ORIGINAL SOUND TRACK VOL.1",
+    "album_id": "album:0d1b3c622c8a24264122",
+    "artist": "Naoki",
+    "artist_id": "mbid:c413e699-3acc-422d-af6d-d548df3ea99a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5a4ccf5f-7ac7-4461-9136-25080d92a23c",
+    "source_track_id": "mbid:5a4ccf5f-7ac7-4461-9136-25080d92a23c",
+    "spotify_id": null,
+    "title": "Alone Infection",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-09-26T16:02:03+00:00",
+    "last_scrobble": "2024-09-26T16:02:03+00:00",
+    "observed_albums": [
+      {
+        "album": "GUILTY GEAR -STRIVE- ORIGINAL SOUND TRACK VOL.1",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-0d1b3c622c8a24264122/album.json",
+    "artist_path": "artists/mb/mbid-c413e699-3acc-422d-af6d-d548df3ea99a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

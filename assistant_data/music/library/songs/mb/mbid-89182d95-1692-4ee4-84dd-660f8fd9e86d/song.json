@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d9c4eb25-e5b3-4f70-b042-c277a5d58f55","duration_ms":98000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:89182d95-1692-4ee4-84dd-660f8fd9e86d","track_mbid":"89182d95-1692-4ee4-84dd-660f8fd9e86d"}},"id":"mbid:89182d95-1692-4ee4-84dd-660f8fd9e86d","identity":{"album":"二次元コンプレックス 2D Complex","album_id":"album:407e6548f964e2c8f477","artist":"Dehumanizing Itatrain Worship","artist_id":"mbid:d9c4eb25-e5b3-4f70-b042-c277a5d58f55","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"89182d95-1692-4ee4-84dd-660f8fd9e86d","source_track_id":"mbid:89182d95-1692-4ee4-84dd-660f8fd9e86d","spotify_id":null,"title":"Utsushiyo","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-07-12T02:28:36+00:00","last_scrobble":"2026-07-12T05:22:34+00:00","observed_albums":[{"album":"二次元コンプレックス 2D Complex","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-407e6548f964e2c8f477/album.json","artist_path":"artists/mb/mbid-d9c4eb25-e5b3-4f70-b042-c277a5d58f55/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d9c4eb25-e5b3-4f70-b042-c277a5d58f55",
+      "duration_ms": 98000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:89182d95-1692-4ee4-84dd-660f8fd9e86d",
+      "track_mbid": "89182d95-1692-4ee4-84dd-660f8fd9e86d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 98000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:89182d95-1692-4ee4-84dd-660f8fd9e86d",
+  "identity": {
+    "album": "二次元コンプレックス 2D Complex",
+    "album_id": "album:407e6548f964e2c8f477",
+    "artist": "Dehumanizing Itatrain Worship",
+    "artist_id": "mbid:d9c4eb25-e5b3-4f70-b042-c277a5d58f55",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "89182d95-1692-4ee4-84dd-660f8fd9e86d",
+    "source_track_id": "mbid:89182d95-1692-4ee4-84dd-660f8fd9e86d",
+    "spotify_id": null,
+    "title": "Utsushiyo",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-07-12T02:28:36+00:00",
+    "last_scrobble": "2026-07-12T05:22:34+00:00",
+    "observed_albums": [
+      {
+        "album": "二次元コンプレックス 2D Complex",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-407e6548f964e2c8f477/album.json",
+    "artist_path": "artists/mb/mbid-d9c4eb25-e5b3-4f70-b042-c277a5d58f55/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

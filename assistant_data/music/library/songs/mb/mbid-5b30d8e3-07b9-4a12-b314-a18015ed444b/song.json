@@ -1,1 +1,136 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"life is strange":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{"analyzed_at":"2026-11-01T22:46:12.897197+00:00","artist":"Big Joanie","average_loudness":0.976070284843,"beats_count":null,"bpm_first_peak":null,"bpm_second_peak":null,"danceability":null,"dynamic_complexity":2.41501832008,"measurement_note":"AcousticBrainz average_loudness is not LUFS; no within-track loudness envelope is supplied by this endpoint. Multiple submissions are summarized by median; disagreement is retained.","onset_rate":null,"recording_mbid":"5b30d8e3-07b9-4a12-b314-a18015ed444b","replay_gain_db":-12.7564029694,"source":"AcousticBrainz low-level","source_license":"CC0","submission_count":1,"submission_policy":"median of all returned submissions; spread retained","tempo_bpm":null,"track":"Fall Asleep"},"lyrics":null,"track_metadata":{"artist_id":"mbid:6764d1b3-2d27-41d6-960d-d3d2866b605d","duration_ms":181000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:39:15.779395+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:39:16.929244+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"matched","musicbrainz_tags":[{"count":1,"source":"MusicBrainz recording tag","tag":"life is strange"}],"retry_after":0,"track_id":"mbid:5b30d8e3-07b9-4a12-b314-a18015ed444b","track_mbid":"5b30d8e3-07b9-4a12-b314-a18015ed444b"}},"id":"mbid:5b30d8e3-07b9-4a12-b314-a18015ed444b","identity":{"album":"Sistahs","album_id":"album:721e4c8cec1664e5deb1","artist":"Big Joanie","artist_id":"mbid:6764d1b3-2d27-41d6-960d-d3d2866b605d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5b30d8e3-07b9-4a12-b314-a18015ed444b","source_track_id":"mbid:5b30d8e3-07b9-4a12-b314-a18015ed444b","spotify_id":null,"title":"Fall Asleep","track_number":null},"listening_context":{"all_time_plays":25,"first_scrobble":"2026-01-29T18:17:19+00:00","last_scrobble":"2026-02-02T03:53:41+00:00","observed_albums":[{"album":"Sistahs","scrobbles":25}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-721e4c8cec1664e5deb1/album.json","artist_path":"artists/mb/mbid-6764d1b3-2d27-41d6-960d-d3d2866b605d/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"matched"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "life is strange": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {
+      "analyzed_at": "2026-11-01T22:46:12.897197+00:00",
+      "artist": "Big Joanie",
+      "average_loudness": 0.976070284843,
+      "beats_count": null,
+      "bpm_first_peak": null,
+      "bpm_second_peak": null,
+      "danceability": null,
+      "dynamic_complexity": 2.41501832008,
+      "measurement_note": "AcousticBrainz average_loudness is not LUFS; no within-track loudness envelope is supplied by this endpoint. Multiple submissions are summarized by median; disagreement is retained.",
+      "onset_rate": null,
+      "recording_mbid": "5b30d8e3-07b9-4a12-b314-a18015ed444b",
+      "replay_gain_db": -12.7564029694,
+      "source": "AcousticBrainz low-level",
+      "source_license": "CC0",
+      "submission_count": 1,
+      "submission_policy": "median of all returned submissions; spread retained",
+      "tempo_bpm": null,
+      "track": "Fall Asleep"
+    },
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6764d1b3-2d27-41d6-960d-d3d2866b605d",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:39:15.779395+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:39:16.929244+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "matched",
+      "musicbrainz_tags": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "life is strange"
+        }
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:5b30d8e3-07b9-4a12-b314-a18015ed444b",
+      "track_mbid": "5b30d8e3-07b9-4a12-b314-a18015ed444b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5b30d8e3-07b9-4a12-b314-a18015ed444b",
+  "identity": {
+    "album": "Sistahs",
+    "album_id": "album:721e4c8cec1664e5deb1",
+    "artist": "Big Joanie",
+    "artist_id": "mbid:6764d1b3-2d27-41d6-960d-d3d2866b605d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5b30d8e3-07b9-4a12-b314-a18015ed444b",
+    "source_track_id": "mbid:5b30d8e3-07b9-4a12-b314-a18015ed444b",
+    "spotify_id": null,
+    "title": "Fall Asleep",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 25,
+    "first_scrobble": "2026-01-29T18:17:19+00:00",
+    "last_scrobble": "2026-02-02T03:53:41+00:00",
+    "observed_albums": [
+      {
+        "album": "Sistahs",
+        "scrobbles": 25
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-721e4c8cec1664e5deb1/album.json",
+    "artist_path": "artists/mb/mbid-6764d1b3-2d27-41d6-960d-d3d2866b605d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  }
+}

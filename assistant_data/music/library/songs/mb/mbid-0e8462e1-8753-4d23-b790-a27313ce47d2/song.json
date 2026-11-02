@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:a22c6d14e31f61eb","duration_ms":261000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0e8462e1-8753-4d23-b790-a27313ce47d2","track_mbid":"0e8462e1-8753-4d23-b790-a27313ce47d2"}},"id":"mbid:0e8462e1-8753-4d23-b790-a27313ce47d2","identity":{"album":"2000 - 2004","album_id":"album:db28696d4484b5dd5c1f","artist":"Frakkur","artist_id":"name:a22c6d14e31f61eb","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0e8462e1-8753-4d23-b790-a27313ce47d2","source_track_id":"mbid:0e8462e1-8753-4d23-b790-a27313ce47d2","spotify_id":null,"title":"PP1","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2024-07-25T17:44:14+00:00","last_scrobble":"2024-07-27T03:15:57+00:00","observed_albums":[{"album":"2000 - 2004","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-db28696d4484b5dd5c1f/album.json","artist_path":"artists/na/name-a22c6d14e31f61eb/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:a22c6d14e31f61eb",
+      "duration_ms": 261000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0e8462e1-8753-4d23-b790-a27313ce47d2",
+      "track_mbid": "0e8462e1-8753-4d23-b790-a27313ce47d2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 261000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0e8462e1-8753-4d23-b790-a27313ce47d2",
+  "identity": {
+    "album": "2000 - 2004",
+    "album_id": "album:db28696d4484b5dd5c1f",
+    "artist": "Frakkur",
+    "artist_id": "name:a22c6d14e31f61eb",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0e8462e1-8753-4d23-b790-a27313ce47d2",
+    "source_track_id": "mbid:0e8462e1-8753-4d23-b790-a27313ce47d2",
+    "spotify_id": null,
+    "title": "PP1",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2024-07-25T17:44:14+00:00",
+    "last_scrobble": "2024-07-27T03:15:57+00:00",
+    "observed_albums": [
+      {
+        "album": "2000 - 2004",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-db28696d4484b5dd5c1f/album.json",
+    "artist_path": "artists/na/name-a22c6d14e31f61eb/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

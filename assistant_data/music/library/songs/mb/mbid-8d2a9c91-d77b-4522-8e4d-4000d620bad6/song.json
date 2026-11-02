@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f4abc0b5-3f7a-4eff-8f78-ac078dbce533","duration_ms":222000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:8d2a9c91-d77b-4522-8e4d-4000d620bad6","track_mbid":"8d2a9c91-d77b-4522-8e4d-4000d620bad6"}},"id":"mbid:8d2a9c91-d77b-4522-8e4d-4000d620bad6","identity":{"album":"What Was I Made For? [From the Motion Picture \"Barbie\"]","album_id":"album:8b172bde46687badd7c8","artist":"Billie Eilish","artist_id":"mbid:f4abc0b5-3f7a-4eff-8f78-ac078dbce533","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"8d2a9c91-d77b-4522-8e4d-4000d620bad6","source_track_id":"mbid:8d2a9c91-d77b-4522-8e4d-4000d620bad6","spotify_id":null,"title":"What Was I Made For? [From the Motion Picture \"Barbie\"]","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-01-06T06:17:21+00:00","last_scrobble":"2024-01-06T06:17:21+00:00","observed_albums":[{"album":"What Was I Made For? [From the Motion Picture \"Barbie\"]","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8b172bde46687badd7c8/album.json","artist_path":"artists/mb/mbid-f4abc0b5-3f7a-4eff-8f78-ac078dbce533/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f4abc0b5-3f7a-4eff-8f78-ac078dbce533",
+      "duration_ms": 222000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:8d2a9c91-d77b-4522-8e4d-4000d620bad6",
+      "track_mbid": "8d2a9c91-d77b-4522-8e4d-4000d620bad6",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 222000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:8d2a9c91-d77b-4522-8e4d-4000d620bad6",
+  "identity": {
+    "album": "What Was I Made For? [From the Motion Picture \"Barbie\"]",
+    "album_id": "album:8b172bde46687badd7c8",
+    "artist": "Billie Eilish",
+    "artist_id": "mbid:f4abc0b5-3f7a-4eff-8f78-ac078dbce533",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "8d2a9c91-d77b-4522-8e4d-4000d620bad6",
+    "source_track_id": "mbid:8d2a9c91-d77b-4522-8e4d-4000d620bad6",
+    "spotify_id": null,
+    "title": "What Was I Made For? [From the Motion Picture \"Barbie\"]",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-01-06T06:17:21+00:00",
+    "last_scrobble": "2024-01-06T06:17:21+00:00",
+    "observed_albums": [
+      {
+        "album": "What Was I Made For? [From the Motion Picture \"Barbie\"]",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8b172bde46687badd7c8/album.json",
+    "artist_path": "artists/mb/mbid-f4abc0b5-3f7a-4eff-8f78-ac078dbce533/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3a6cf55f-f94e-40d7-ac3e-aeb99223c96a","duration_ms":222000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d8153055-6527-45f5-895d-eb369c5f43b0","track_mbid":"d8153055-6527-45f5-895d-eb369c5f43b0"}},"id":"mbid:d8153055-6527-45f5-895d-eb369c5f43b0","identity":{"album":"Egg","album_id":"album:e79fe844b516d0acb2b6","artist":"Shoe","artist_id":"mbid:3a6cf55f-f94e-40d7-ac3e-aeb99223c96a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d8153055-6527-45f5-895d-eb369c5f43b0","source_track_id":"mbid:d8153055-6527-45f5-895d-eb369c5f43b0","spotify_id":null,"title":"Egg","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2023-04-05T02:47:58+00:00","last_scrobble":"2025-12-01T23:06:11+00:00","observed_albums":[{"album":"Egg","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e79fe844b516d0acb2b6/album.json","artist_path":"artists/mb/mbid-3a6cf55f-f94e-40d7-ac3e-aeb99223c96a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3a6cf55f-f94e-40d7-ac3e-aeb99223c96a",
+      "duration_ms": 222000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d8153055-6527-45f5-895d-eb369c5f43b0",
+      "track_mbid": "d8153055-6527-45f5-895d-eb369c5f43b0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 222000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d8153055-6527-45f5-895d-eb369c5f43b0",
+  "identity": {
+    "album": "Egg",
+    "album_id": "album:e79fe844b516d0acb2b6",
+    "artist": "Shoe",
+    "artist_id": "mbid:3a6cf55f-f94e-40d7-ac3e-aeb99223c96a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d8153055-6527-45f5-895d-eb369c5f43b0",
+    "source_track_id": "mbid:d8153055-6527-45f5-895d-eb369c5f43b0",
+    "spotify_id": null,
+    "title": "Egg",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2023-04-05T02:47:58+00:00",
+    "last_scrobble": "2025-12-01T23:06:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Egg",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e79fe844b516d0acb2b6/album.json",
+    "artist_path": "artists/mb/mbid-3a6cf55f-f94e-40d7-ac3e-aeb99223c96a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

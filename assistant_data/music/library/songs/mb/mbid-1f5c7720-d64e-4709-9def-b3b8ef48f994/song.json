@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:1edd13da-435b-4fb1-a0df-cf0d14eefc0c","duration_ms":243000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:06:57.198243+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:06:57.884630+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:1f5c7720-d64e-4709-9def-b3b8ef48f994","track_mbid":"1f5c7720-d64e-4709-9def-b3b8ef48f994"}},"id":"mbid:1f5c7720-d64e-4709-9def-b3b8ef48f994","identity":{"album":"Gravedigging","album_id":"album:4fb3a98d4cf375fb9afd","artist":"The Buttertones","artist_id":"mbid:1edd13da-435b-4fb1-a0df-cf0d14eefc0c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1f5c7720-d64e-4709-9def-b3b8ef48f994","source_track_id":"mbid:1f5c7720-d64e-4709-9def-b3b8ef48f994","spotify_id":null,"title":"Gravediggin'","track_number":null},"listening_context":{"all_time_plays":31,"first_scrobble":"2025-11-03T20:08:00+00:00","last_scrobble":"2026-10-29T20:33:22+00:00","observed_albums":[{"album":"Gravedigging","scrobbles":31}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4fb3a98d4cf375fb9afd/album.json","artist_path":"artists/mb/mbid-1edd13da-435b-4fb1-a0df-cf0d14eefc0c/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:1edd13da-435b-4fb1-a0df-cf0d14eefc0c",
+      "duration_ms": 243000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:06:57.198243+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:06:57.884630+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:1f5c7720-d64e-4709-9def-b3b8ef48f994",
+      "track_mbid": "1f5c7720-d64e-4709-9def-b3b8ef48f994",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 243000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1f5c7720-d64e-4709-9def-b3b8ef48f994",
+  "identity": {
+    "album": "Gravedigging",
+    "album_id": "album:4fb3a98d4cf375fb9afd",
+    "artist": "The Buttertones",
+    "artist_id": "mbid:1edd13da-435b-4fb1-a0df-cf0d14eefc0c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1f5c7720-d64e-4709-9def-b3b8ef48f994",
+    "source_track_id": "mbid:1f5c7720-d64e-4709-9def-b3b8ef48f994",
+    "spotify_id": null,
+    "title": "Gravediggin'",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 31,
+    "first_scrobble": "2025-11-03T20:08:00+00:00",
+    "last_scrobble": "2026-10-29T20:33:22+00:00",
+    "observed_albums": [
+      {
+        "album": "Gravedigging",
+        "scrobbles": 31
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4fb3a98d4cf375fb9afd/album.json",
+    "artist_path": "artists/mb/mbid-1edd13da-435b-4fb1-a0df-cf0d14eefc0c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

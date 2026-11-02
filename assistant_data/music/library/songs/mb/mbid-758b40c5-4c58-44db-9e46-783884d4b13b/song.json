@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9bd61217-cf25-4baf-90a8-28866a000a99","duration_ms":151000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:758b40c5-4c58-44db-9e46-783884d4b13b","track_mbid":"758b40c5-4c58-44db-9e46-783884d4b13b"}},"id":"mbid:758b40c5-4c58-44db-9e46-783884d4b13b","identity":{"album":"Dishonored 2 (Deluxe Original Game Soundtrack)","album_id":"album:9736f93a4ebbdc8dd0b9","artist":"Daniel Licht","artist_id":"mbid:9bd61217-cf25-4baf-90a8-28866a000a99","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"758b40c5-4c58-44db-9e46-783884d4b13b","source_track_id":"mbid:758b40c5-4c58-44db-9e46-783884d4b13b","spotify_id":null,"title":"Streets of Karnaca (Ambient)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-12-24T04:38:59+00:00","last_scrobble":"2025-12-24T04:38:59+00:00","observed_albums":[{"album":"Dishonored 2 (Deluxe Original Game Soundtrack)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9736f93a4ebbdc8dd0b9/album.json","artist_path":"artists/mb/mbid-9bd61217-cf25-4baf-90a8-28866a000a99/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9bd61217-cf25-4baf-90a8-28866a000a99",
+      "duration_ms": 151000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:758b40c5-4c58-44db-9e46-783884d4b13b",
+      "track_mbid": "758b40c5-4c58-44db-9e46-783884d4b13b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 151000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:758b40c5-4c58-44db-9e46-783884d4b13b",
+  "identity": {
+    "album": "Dishonored 2 (Deluxe Original Game Soundtrack)",
+    "album_id": "album:9736f93a4ebbdc8dd0b9",
+    "artist": "Daniel Licht",
+    "artist_id": "mbid:9bd61217-cf25-4baf-90a8-28866a000a99",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "758b40c5-4c58-44db-9e46-783884d4b13b",
+    "source_track_id": "mbid:758b40c5-4c58-44db-9e46-783884d4b13b",
+    "spotify_id": null,
+    "title": "Streets of Karnaca (Ambient)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-12-24T04:38:59+00:00",
+    "last_scrobble": "2025-12-24T04:38:59+00:00",
+    "observed_albums": [
+      {
+        "album": "Dishonored 2 (Deluxe Original Game Soundtrack)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9736f93a4ebbdc8dd0b9/album.json",
+    "artist_path": "artists/mb/mbid-9bd61217-cf25-4baf-90a8-28866a000a99/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

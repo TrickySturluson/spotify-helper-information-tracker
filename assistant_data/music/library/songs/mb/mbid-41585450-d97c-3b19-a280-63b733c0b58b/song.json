@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:e175955dac48408f","duration_ms":250000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:41585450-d97c-3b19-a280-63b733c0b58b","track_mbid":"41585450-d97c-3b19-a280-63b733c0b58b"}},"id":"mbid:41585450-d97c-3b19-a280-63b733c0b58b","identity":{"album":"Enter The Wu-Tang (36 Chambers) [Expanded Edition]","album_id":"album:ed7f169fe10ef705b091","artist":"Wu-Tang Clan","artist_id":"name:e175955dac48408f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"41585450-d97c-3b19-a280-63b733c0b58b","source_track_id":"mbid:41585450-d97c-3b19-a280-63b733c0b58b","spotify_id":null,"title":"Bring da Ruckus","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-23T08:05:28+00:00","last_scrobble":"2026-04-23T08:05:28+00:00","observed_albums":[{"album":"Enter The Wu-Tang (36 Chambers) [Expanded Edition]","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ed7f169fe10ef705b091/album.json","artist_path":"artists/na/name-e175955dac48408f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:e175955dac48408f",
+      "duration_ms": 250000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:41585450-d97c-3b19-a280-63b733c0b58b",
+      "track_mbid": "41585450-d97c-3b19-a280-63b733c0b58b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 250000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:41585450-d97c-3b19-a280-63b733c0b58b",
+  "identity": {
+    "album": "Enter The Wu-Tang (36 Chambers) [Expanded Edition]",
+    "album_id": "album:ed7f169fe10ef705b091",
+    "artist": "Wu-Tang Clan",
+    "artist_id": "name:e175955dac48408f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "41585450-d97c-3b19-a280-63b733c0b58b",
+    "source_track_id": "mbid:41585450-d97c-3b19-a280-63b733c0b58b",
+    "spotify_id": null,
+    "title": "Bring da Ruckus",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-23T08:05:28+00:00",
+    "last_scrobble": "2026-04-23T08:05:28+00:00",
+    "observed_albums": [
+      {
+        "album": "Enter The Wu-Tang (36 Chambers) [Expanded Edition]",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ed7f169fe10ef705b091/album.json",
+    "artist_path": "artists/na/name-e175955dac48408f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

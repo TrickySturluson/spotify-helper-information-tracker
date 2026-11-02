@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:61750ee6-6dad-45e4-b994-7d5a03046719","duration_ms":231000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T15:04:04.234717+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T15:04:07.198861+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:1f0eab3e-7ca3-4b35-89e4-51764f619949","track_mbid":"1f0eab3e-7ca3-4b35-89e4-51764f619949"}},"id":"mbid:1f0eab3e-7ca3-4b35-89e4-51764f619949","identity":{"album":"BONES UK","album_id":"album:3ab4e2bc0641f15135f8","artist":"Bones UK","artist_id":"mbid:61750ee6-6dad-45e4-b994-7d5a03046719","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1f0eab3e-7ca3-4b35-89e4-51764f619949","source_track_id":"mbid:1f0eab3e-7ca3-4b35-89e4-51764f619949","spotify_id":null,"title":"Beautiful Is Boring","track_number":null},"listening_context":{"all_time_plays":64,"first_scrobble":"2025-01-07T17:37:46+00:00","last_scrobble":"2026-07-11T01:33:34+00:00","observed_albums":[{"album":"BONES UK","scrobbles":64}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-3ab4e2bc0641f15135f8/album.json","artist_path":"artists/mb/mbid-61750ee6-6dad-45e4-b994-7d5a03046719/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:61750ee6-6dad-45e4-b994-7d5a03046719",
+      "duration_ms": 231000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T15:04:04.234717+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T15:04:07.198861+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:1f0eab3e-7ca3-4b35-89e4-51764f619949",
+      "track_mbid": "1f0eab3e-7ca3-4b35-89e4-51764f619949",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 231000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1f0eab3e-7ca3-4b35-89e4-51764f619949",
+  "identity": {
+    "album": "BONES UK",
+    "album_id": "album:3ab4e2bc0641f15135f8",
+    "artist": "Bones UK",
+    "artist_id": "mbid:61750ee6-6dad-45e4-b994-7d5a03046719",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1f0eab3e-7ca3-4b35-89e4-51764f619949",
+    "source_track_id": "mbid:1f0eab3e-7ca3-4b35-89e4-51764f619949",
+    "spotify_id": null,
+    "title": "Beautiful Is Boring",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 64,
+    "first_scrobble": "2025-01-07T17:37:46+00:00",
+    "last_scrobble": "2026-07-11T01:33:34+00:00",
+    "observed_albums": [
+      {
+        "album": "BONES UK",
+        "scrobbles": 64
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-3ab4e2bc0641f15135f8/album.json",
+    "artist_path": "artists/mb/mbid-61750ee6-6dad-45e4-b994-7d5a03046719/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

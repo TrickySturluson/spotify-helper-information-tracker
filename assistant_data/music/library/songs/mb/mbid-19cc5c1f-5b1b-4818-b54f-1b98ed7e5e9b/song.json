@@ -1,1 +1,103 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:68124ca4-3a7c-4176-84b9-83f2de649bba","duration_ms":128000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:18:35.410482+00:00","lastfm_error":"{}","lastfm_status":"http_400","musicbrainz_checked_at":"2026-10-31T07:27:23.099748+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":1796019496,"track_id":"mbid:19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b","track_mbid":"19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b"}},"id":"mbid:19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b","identity":{"album":"LISA: THE PAINFUL Chapter 1 (Game Soundtrack)","album_id":"album:9304b4f3264fbc57234a","artist":"Widdly 2 Diddly","artist_id":"mbid:68124ca4-3a7c-4176-84b9-83f2de649bba","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b","source_track_id":"mbid:19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b","spotify_id":null,"title":"All Hail the Fishmen","track_number":null},"listening_context":{"all_time_plays":146,"first_scrobble":"2023-10-30T20:24:04+00:00","last_scrobble":"2026-10-03T06:52:19+00:00","observed_albums":[{"album":"LISA: THE PAINFUL Chapter 1 (Game Soundtrack)","scrobbles":146}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9304b4f3264fbc57234a/album.json","artist_path":"artists/mb/mbid-68124ca4-3a7c-4176-84b9-83f2de649bba/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"http_400"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:68124ca4-3a7c-4176-84b9-83f2de649bba",
+      "duration_ms": 128000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:18:35.410482+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "http_400",
+      "musicbrainz_checked_at": "2026-10-31T07:27:23.099748+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 1796019496,
+      "track_id": "mbid:19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b",
+      "track_mbid": "19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:24:56+00:00",
+          "status": "matched",
+          "duration_ms": 128000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b",
+  "identity": {
+    "album": "LISA: THE PAINFUL Chapter 1 (Game Soundtrack)",
+    "album_id": "album:9304b4f3264fbc57234a",
+    "artist": "Widdly 2 Diddly",
+    "artist_id": "mbid:68124ca4-3a7c-4176-84b9-83f2de649bba",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b",
+    "source_track_id": "mbid:19cc5c1f-5b1b-4818-b54f-1b98ed7e5e9b",
+    "spotify_id": null,
+    "title": "All Hail the Fishmen",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 146,
+    "first_scrobble": "2023-10-30T20:24:04+00:00",
+    "last_scrobble": "2026-10-03T06:52:19+00:00",
+    "observed_albums": [
+      {
+        "album": "LISA: THE PAINFUL Chapter 1 (Game Soundtrack)",
+        "scrobbles": 146
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9304b4f3264fbc57234a/album.json",
+    "artist_path": "artists/mb/mbid-68124ca4-3a7c-4176-84b9-83f2de649bba/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "http_400"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

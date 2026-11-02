@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e230ef03-b1b3-4f0d-a86a-d18b9e791fb4","duration_ms":132000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:7a59328f-54e6-4af7-a596-27cd6a9696bc","track_mbid":"7a59328f-54e6-4af7-a596-27cd6a9696bc"}},"id":"mbid:7a59328f-54e6-4af7-a596-27cd6a9696bc","identity":{"album":"何でも無い凶器","album_id":"album:c52d03881952f377b129","artist":"惑星アブノーマル","artist_id":"mbid:e230ef03-b1b3-4f0d-a86a-d18b9e791fb4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"7a59328f-54e6-4af7-a596-27cd6a9696bc","source_track_id":"mbid:7a59328f-54e6-4af7-a596-27cd6a9696bc","spotify_id":null,"title":"フラレ唄","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-12-01T18:31:25+00:00","last_scrobble":"2025-12-04T18:25:30+00:00","observed_albums":[{"album":"何でも無い凶器","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c52d03881952f377b129/album.json","artist_path":"artists/mb/mbid-e230ef03-b1b3-4f0d-a86a-d18b9e791fb4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e230ef03-b1b3-4f0d-a86a-d18b9e791fb4",
+      "duration_ms": 132000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:7a59328f-54e6-4af7-a596-27cd6a9696bc",
+      "track_mbid": "7a59328f-54e6-4af7-a596-27cd6a9696bc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 132000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:7a59328f-54e6-4af7-a596-27cd6a9696bc",
+  "identity": {
+    "album": "何でも無い凶器",
+    "album_id": "album:c52d03881952f377b129",
+    "artist": "惑星アブノーマル",
+    "artist_id": "mbid:e230ef03-b1b3-4f0d-a86a-d18b9e791fb4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "7a59328f-54e6-4af7-a596-27cd6a9696bc",
+    "source_track_id": "mbid:7a59328f-54e6-4af7-a596-27cd6a9696bc",
+    "spotify_id": null,
+    "title": "フラレ唄",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-12-01T18:31:25+00:00",
+    "last_scrobble": "2025-12-04T18:25:30+00:00",
+    "observed_albums": [
+      {
+        "album": "何でも無い凶器",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c52d03881952f377b129/album.json",
+    "artist_path": "artists/mb/mbid-e230ef03-b1b3-4f0d-a86a-d18b9e791fb4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

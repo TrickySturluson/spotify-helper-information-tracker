@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:1ab75d23891766ea","duration_ms":453000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e2a7af84-27e7-4428-a2af-e669cfb022b8","track_mbid":"e2a7af84-27e7-4428-a2af-e669cfb022b8"}},"id":"mbid:e2a7af84-27e7-4428-a2af-e669cfb022b8","identity":{"album":"Freshman Year","album_id":"album:142dc66dfd0d22c42c77","artist":"Hop Along, Queen Ansleis","artist_id":"name:1ab75d23891766ea","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e2a7af84-27e7-4428-a2af-e669cfb022b8","source_track_id":"mbid:e2a7af84-27e7-4428-a2af-e669cfb022b8","spotify_id":null,"title":"the goose & the wren","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-07-29T15:46:22+00:00","last_scrobble":"2024-07-29T15:46:22+00:00","observed_albums":[{"album":"Freshman Year","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-142dc66dfd0d22c42c77/album.json","artist_path":"artists/na/name-1ab75d23891766ea/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:1ab75d23891766ea",
+      "duration_ms": 453000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e2a7af84-27e7-4428-a2af-e669cfb022b8",
+      "track_mbid": "e2a7af84-27e7-4428-a2af-e669cfb022b8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 453000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e2a7af84-27e7-4428-a2af-e669cfb022b8",
+  "identity": {
+    "album": "Freshman Year",
+    "album_id": "album:142dc66dfd0d22c42c77",
+    "artist": "Hop Along, Queen Ansleis",
+    "artist_id": "name:1ab75d23891766ea",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e2a7af84-27e7-4428-a2af-e669cfb022b8",
+    "source_track_id": "mbid:e2a7af84-27e7-4428-a2af-e669cfb022b8",
+    "spotify_id": null,
+    "title": "the goose & the wren",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-07-29T15:46:22+00:00",
+    "last_scrobble": "2024-07-29T15:46:22+00:00",
+    "observed_albums": [
+      {
+        "album": "Freshman Year",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-142dc66dfd0d22c42c77/album.json",
+    "artist_path": "artists/na/name-1ab75d23891766ea/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

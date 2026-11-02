@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:afc4631d-4bca-467f-8b8a-faeb1cc1a724","duration_ms":168000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c2ddb0a7-938d-4dc2-8aae-89e916a670d9","track_mbid":"c2ddb0a7-938d-4dc2-8aae-89e916a670d9"}},"id":"mbid:c2ddb0a7-938d-4dc2-8aae-89e916a670d9","identity":{"album":"The Second Coming","album_id":"album:c9988365b009d21317e1","artist":"King Strang","artist_id":"mbid:afc4631d-4bca-467f-8b8a-faeb1cc1a724","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c2ddb0a7-938d-4dc2-8aae-89e916a670d9","source_track_id":"mbid:c2ddb0a7-938d-4dc2-8aae-89e916a670d9","spotify_id":null,"title":"The Second Coming","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2026-03-31T16:12:28+00:00","last_scrobble":"2026-04-05T05:05:57+00:00","observed_albums":[{"album":"The Second Coming","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c9988365b009d21317e1/album.json","artist_path":"artists/mb/mbid-afc4631d-4bca-467f-8b8a-faeb1cc1a724/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:afc4631d-4bca-467f-8b8a-faeb1cc1a724",
+      "duration_ms": 168000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c2ddb0a7-938d-4dc2-8aae-89e916a670d9",
+      "track_mbid": "c2ddb0a7-938d-4dc2-8aae-89e916a670d9",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 168000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c2ddb0a7-938d-4dc2-8aae-89e916a670d9",
+  "identity": {
+    "album": "The Second Coming",
+    "album_id": "album:c9988365b009d21317e1",
+    "artist": "King Strang",
+    "artist_id": "mbid:afc4631d-4bca-467f-8b8a-faeb1cc1a724",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c2ddb0a7-938d-4dc2-8aae-89e916a670d9",
+    "source_track_id": "mbid:c2ddb0a7-938d-4dc2-8aae-89e916a670d9",
+    "spotify_id": null,
+    "title": "The Second Coming",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2026-03-31T16:12:28+00:00",
+    "last_scrobble": "2026-04-05T05:05:57+00:00",
+    "observed_albums": [
+      {
+        "album": "The Second Coming",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c9988365b009d21317e1/album.json",
+    "artist_path": "artists/mb/mbid-afc4631d-4bca-467f-8b8a-faeb1cc1a724/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

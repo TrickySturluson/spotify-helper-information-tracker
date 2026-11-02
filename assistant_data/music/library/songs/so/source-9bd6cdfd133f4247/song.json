@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:40036bd6-ef5d-4a90-ad53-7ed46f4513c8","duration_ms":137000,"duration_source":"Last.fm track.getInfo","track_id":"track:9bd6cdfd133f4247"}},"id":"source:9bd6cdfd133f4247","identity":{"album":"Forensic Files","album_id":"album:a1c4dd341a9eb0649d1d","artist":"Jack the Stripper","artist_id":"mbid:40036bd6-ef5d-4a90-ad53-7ed46f4513c8","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:9bd6cdfd133f4247","spotify_id":null,"title":"Forensic Files","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-10-16T19:17:04+00:00","last_scrobble":"2023-10-16T20:55:44+00:00","observed_albums":[{"album":"Forensic Files","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a1c4dd341a9eb0649d1d/album.json","artist_path":"artists/mb/mbid-40036bd6-ef5d-4a90-ad53-7ed46f4513c8/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:40036bd6-ef5d-4a90-ad53-7ed46f4513c8",
+      "duration_ms": 137000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:9bd6cdfd133f4247",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 137000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:9bd6cdfd133f4247",
+  "identity": {
+    "album": "Forensic Files",
+    "album_id": "album:a1c4dd341a9eb0649d1d",
+    "artist": "Jack the Stripper",
+    "artist_id": "mbid:40036bd6-ef5d-4a90-ad53-7ed46f4513c8",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:9bd6cdfd133f4247",
+    "spotify_id": null,
+    "title": "Forensic Files",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-10-16T19:17:04+00:00",
+    "last_scrobble": "2023-10-16T20:55:44+00:00",
+    "observed_albums": [
+      {
+        "album": "Forensic Files",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a1c4dd341a9eb0649d1d/album.json",
+    "artist_path": "artists/mb/mbid-40036bd6-ef5d-4a90-ad53-7ed46f4513c8/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:78521eaf-dd2f-4e8c-90b9-0ea6385db097","duration_ms":129000,"duration_source":"Last.fm track.getInfo","track_id":"track:849d216362ed2c41"}},"id":"source:849d216362ed2c41","identity":{"album":"Pezcatarian","album_id":"album:c98da5416df04f19a09b","artist":"The Pezheads","artist_id":"mbid:78521eaf-dd2f-4e8c-90b9-0ea6385db097","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:849d216362ed2c41","spotify_id":null,"title":"Sophisticated Girl","track_number":null},"listening_context":{"all_time_plays":7,"first_scrobble":"2024-04-15T15:55:02+00:00","last_scrobble":"2024-04-18T18:22:49+00:00","observed_albums":[{"album":"Pezcatarian","scrobbles":7}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c98da5416df04f19a09b/album.json","artist_path":"artists/mb/mbid-78521eaf-dd2f-4e8c-90b9-0ea6385db097/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:78521eaf-dd2f-4e8c-90b9-0ea6385db097",
+      "duration_ms": 129000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:849d216362ed2c41",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 129000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:849d216362ed2c41",
+  "identity": {
+    "album": "Pezcatarian",
+    "album_id": "album:c98da5416df04f19a09b",
+    "artist": "The Pezheads",
+    "artist_id": "mbid:78521eaf-dd2f-4e8c-90b9-0ea6385db097",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:849d216362ed2c41",
+    "spotify_id": null,
+    "title": "Sophisticated Girl",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 7,
+    "first_scrobble": "2024-04-15T15:55:02+00:00",
+    "last_scrobble": "2024-04-18T18:22:49+00:00",
+    "observed_albums": [
+      {
+        "album": "Pezcatarian",
+        "scrobbles": 7
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c98da5416df04f19a09b/album.json",
+    "artist_path": "artists/mb/mbid-78521eaf-dd2f-4e8c-90b9-0ea6385db097/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

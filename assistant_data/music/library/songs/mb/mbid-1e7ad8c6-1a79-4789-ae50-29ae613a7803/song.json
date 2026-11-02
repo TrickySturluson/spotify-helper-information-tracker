@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":154000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1e7ad8c6-1a79-4789-ae50-29ae613a7803","track_mbid":"1e7ad8c6-1a79-4789-ae50-29ae613a7803"}},"id":"mbid:1e7ad8c6-1a79-4789-ae50-29ae613a7803","identity":{"album":"The Voice of Zombierella","album_id":"album:4a96d5440289eff32c54","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1e7ad8c6-1a79-4789-ae50-29ae613a7803","source_track_id":"mbid:1e7ad8c6-1a79-4789-ae50-29ae613a7803","spotify_id":null,"title":"Rockin' Zombie","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2023-04-15T02:06:57+00:00","last_scrobble":"2025-07-10T21:10:36+00:00","observed_albums":[{"album":"The Voice of Zombierella","scrobbles":4},{"album":"Spook-O-Rama - The Best Of Messer Chups","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4a96d5440289eff32c54/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 154000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1e7ad8c6-1a79-4789-ae50-29ae613a7803",
+      "track_mbid": "1e7ad8c6-1a79-4789-ae50-29ae613a7803",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 154000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1e7ad8c6-1a79-4789-ae50-29ae613a7803",
+  "identity": {
+    "album": "The Voice of Zombierella",
+    "album_id": "album:4a96d5440289eff32c54",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1e7ad8c6-1a79-4789-ae50-29ae613a7803",
+    "source_track_id": "mbid:1e7ad8c6-1a79-4789-ae50-29ae613a7803",
+    "spotify_id": null,
+    "title": "Rockin' Zombie",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2023-04-15T02:06:57+00:00",
+    "last_scrobble": "2025-07-10T21:10:36+00:00",
+    "observed_albums": [
+      {
+        "album": "The Voice of Zombierella",
+        "scrobbles": 4
+      },
+      {
+        "album": "Spook-O-Rama - The Best Of Messer Chups",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4a96d5440289eff32c54/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

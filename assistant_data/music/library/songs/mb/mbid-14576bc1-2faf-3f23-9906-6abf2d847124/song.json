@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f2eef649-a6d5-4114-afba-e50ab26254d2","duration_ms":218000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:14576bc1-2faf-3f23-9906-6abf2d847124","track_mbid":"14576bc1-2faf-3f23-9906-6abf2d847124"}},"id":"mbid:14576bc1-2faf-3f23-9906-6abf2d847124","identity":{"album":"Chuck","album_id":"album:946d13a9aa3ee0c35f6a","artist":"Sum 41","artist_id":"mbid:f2eef649-a6d5-4114-afba-e50ab26254d2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"14576bc1-2faf-3f23-9906-6abf2d847124","source_track_id":"mbid:14576bc1-2faf-3f23-9906-6abf2d847124","spotify_id":null,"title":"We're All to Blame","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-04-30T00:47:54+00:00","last_scrobble":"2025-04-30T00:47:54+00:00","observed_albums":[{"album":"Chuck","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-946d13a9aa3ee0c35f6a/album.json","artist_path":"artists/mb/mbid-f2eef649-a6d5-4114-afba-e50ab26254d2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f2eef649-a6d5-4114-afba-e50ab26254d2",
+      "duration_ms": 218000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:14576bc1-2faf-3f23-9906-6abf2d847124",
+      "track_mbid": "14576bc1-2faf-3f23-9906-6abf2d847124",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 218000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:14576bc1-2faf-3f23-9906-6abf2d847124",
+  "identity": {
+    "album": "Chuck",
+    "album_id": "album:946d13a9aa3ee0c35f6a",
+    "artist": "Sum 41",
+    "artist_id": "mbid:f2eef649-a6d5-4114-afba-e50ab26254d2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "14576bc1-2faf-3f23-9906-6abf2d847124",
+    "source_track_id": "mbid:14576bc1-2faf-3f23-9906-6abf2d847124",
+    "spotify_id": null,
+    "title": "We're All to Blame",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-04-30T00:47:54+00:00",
+    "last_scrobble": "2025-04-30T00:47:54+00:00",
+    "observed_albums": [
+      {
+        "album": "Chuck",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-946d13a9aa3ee0c35f6a/album.json",
+    "artist_path": "artists/mb/mbid-f2eef649-a6d5-4114-afba-e50ab26254d2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

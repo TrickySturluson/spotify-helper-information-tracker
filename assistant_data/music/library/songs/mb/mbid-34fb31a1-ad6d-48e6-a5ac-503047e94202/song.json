@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:17f7d39e-14be-4d49-8c5e-f1bc7005aebd","duration_ms":151000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:34fb31a1-ad6d-48e6-a5ac-503047e94202","track_mbid":"34fb31a1-ad6d-48e6-a5ac-503047e94202"}},"id":"mbid:34fb31a1-ad6d-48e6-a5ac-503047e94202","identity":{"album":"Hear Me Out","album_id":"album:6ee885b0d4e0aa0c49ce","artist":"Reignwolf","artist_id":"mbid:17f7d39e-14be-4d49-8c5e-f1bc7005aebd","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"34fb31a1-ad6d-48e6-a5ac-503047e94202","source_track_id":"mbid:34fb31a1-ad6d-48e6-a5ac-503047e94202","spotify_id":null,"title":"Wanna Don't Wanna","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-07-20T09:10:25+00:00","last_scrobble":"2024-08-01T01:28:49+00:00","observed_albums":[{"album":"Hear Me Out","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6ee885b0d4e0aa0c49ce/album.json","artist_path":"artists/mb/mbid-17f7d39e-14be-4d49-8c5e-f1bc7005aebd/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:17f7d39e-14be-4d49-8c5e-f1bc7005aebd",
+      "duration_ms": 151000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:34fb31a1-ad6d-48e6-a5ac-503047e94202",
+      "track_mbid": "34fb31a1-ad6d-48e6-a5ac-503047e94202",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 151000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:34fb31a1-ad6d-48e6-a5ac-503047e94202",
+  "identity": {
+    "album": "Hear Me Out",
+    "album_id": "album:6ee885b0d4e0aa0c49ce",
+    "artist": "Reignwolf",
+    "artist_id": "mbid:17f7d39e-14be-4d49-8c5e-f1bc7005aebd",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "34fb31a1-ad6d-48e6-a5ac-503047e94202",
+    "source_track_id": "mbid:34fb31a1-ad6d-48e6-a5ac-503047e94202",
+    "spotify_id": null,
+    "title": "Wanna Don't Wanna",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-07-20T09:10:25+00:00",
+    "last_scrobble": "2024-08-01T01:28:49+00:00",
+    "observed_albums": [
+      {
+        "album": "Hear Me Out",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6ee885b0d4e0aa0c49ce/album.json",
+    "artist_path": "artists/mb/mbid-17f7d39e-14be-4d49-8c5e-f1bc7005aebd/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

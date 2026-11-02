@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7362d39c-e22b-4ece-9663-dc6a6a15335e","duration_ms":109000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4df8fd86-601d-4d40-8b86-3b9220033dc8","track_mbid":"4df8fd86-601d-4d40-8b86-3b9220033dc8"}},"id":"mbid:4df8fd86-601d-4d40-8b86-3b9220033dc8","identity":{"album":"Reddishness","album_id":"album:830022d4d8da05a1859c","artist":"Girls Rituals","artist_id":"mbid:7362d39c-e22b-4ece-9663-dc6a6a15335e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4df8fd86-601d-4d40-8b86-3b9220033dc8","source_track_id":"mbid:4df8fd86-601d-4d40-8b86-3b9220033dc8","spotify_id":null,"title":"Goddess","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2025-05-14T15:18:17+00:00","last_scrobble":"2025-05-17T00:56:25+00:00","observed_albums":[{"album":"Reddishness","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-830022d4d8da05a1859c/album.json","artist_path":"artists/mb/mbid-7362d39c-e22b-4ece-9663-dc6a6a15335e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7362d39c-e22b-4ece-9663-dc6a6a15335e",
+      "duration_ms": 109000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4df8fd86-601d-4d40-8b86-3b9220033dc8",
+      "track_mbid": "4df8fd86-601d-4d40-8b86-3b9220033dc8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 109000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4df8fd86-601d-4d40-8b86-3b9220033dc8",
+  "identity": {
+    "album": "Reddishness",
+    "album_id": "album:830022d4d8da05a1859c",
+    "artist": "Girls Rituals",
+    "artist_id": "mbid:7362d39c-e22b-4ece-9663-dc6a6a15335e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4df8fd86-601d-4d40-8b86-3b9220033dc8",
+    "source_track_id": "mbid:4df8fd86-601d-4d40-8b86-3b9220033dc8",
+    "spotify_id": null,
+    "title": "Goddess",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2025-05-14T15:18:17+00:00",
+    "last_scrobble": "2025-05-17T00:56:25+00:00",
+    "observed_albums": [
+      {
+        "album": "Reddishness",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-830022d4d8da05a1859c/album.json",
+    "artist_path": "artists/mb/mbid-7362d39c-e22b-4ece-9663-dc6a6a15335e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

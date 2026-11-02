@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:e987bce0b731b0e1","duration_ms":205000,"duration_source":"Last.fm track.getInfo","track_id":"track:8f59bd0987ce7d48"}},"id":"source:8f59bd0987ce7d48","identity":{"album":"Dirty Little Animals (From the series Arcane League of Legends)","album_id":"album:5c62a6d4484ec3d9c014","artist":"Bones UK","artist_id":"mbid:61750ee6-6dad-45e4-b994-7d5a03046719","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:8f59bd0987ce7d48","spotify_id":null,"title":"Dirty Little Animals (From the series Arcane League of Legends)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-12-19T18:24:37+00:00","last_scrobble":"2025-12-19T18:24:37+00:00","observed_albums":[{"album":"Dirty Little Animals (From the series Arcane League of Legends)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5c62a6d4484ec3d9c014/album.json","artist_path":"artists/mb/mbid-61750ee6-6dad-45e4-b994-7d5a03046719/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:e987bce0b731b0e1",
+      "duration_ms": 205000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:8f59bd0987ce7d48",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 205000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:8f59bd0987ce7d48",
+  "identity": {
+    "album": "Dirty Little Animals (From the series Arcane League of Legends)",
+    "album_id": "album:5c62a6d4484ec3d9c014",
+    "artist": "Bones UK",
+    "artist_id": "mbid:61750ee6-6dad-45e4-b994-7d5a03046719",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:8f59bd0987ce7d48",
+    "spotify_id": null,
+    "title": "Dirty Little Animals (From the series Arcane League of Legends)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-12-19T18:24:37+00:00",
+    "last_scrobble": "2025-12-19T18:24:37+00:00",
+    "observed_albums": [
+      {
+        "album": "Dirty Little Animals (From the series Arcane League of Legends)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5c62a6d4484ec3d9c014/album.json",
+    "artist_path": "artists/mb/mbid-61750ee6-6dad-45e4-b994-7d5a03046719/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

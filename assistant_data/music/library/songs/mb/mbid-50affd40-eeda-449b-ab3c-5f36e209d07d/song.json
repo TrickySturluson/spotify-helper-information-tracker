@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":136000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:50affd40-eeda-449b-ab3c-5f36e209d07d","track_mbid":"50affd40-eeda-449b-ab3c-5f36e209d07d"}},"id":"mbid:50affd40-eeda-449b-ab3c-5f36e209d07d","identity":{"album":"The Voice of Zombierella","album_id":"album:4a96d5440289eff32c54","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"50affd40-eeda-449b-ab3c-5f36e209d07d","source_track_id":"mbid:50affd40-eeda-449b-ab3c-5f36e209d07d","spotify_id":null,"title":"Christopher Lee Vs. Bruce Lee","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2023-04-14T23:40:56+00:00","last_scrobble":"2023-05-24T02:05:11+00:00","observed_albums":[{"album":"The Voice of Zombierella","scrobbles":3},{"album":"Spook-O-Rama - The Best Of Messer Chups","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4a96d5440289eff32c54/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 136000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:50affd40-eeda-449b-ab3c-5f36e209d07d",
+      "track_mbid": "50affd40-eeda-449b-ab3c-5f36e209d07d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 136000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:50affd40-eeda-449b-ab3c-5f36e209d07d",
+  "identity": {
+    "album": "The Voice of Zombierella",
+    "album_id": "album:4a96d5440289eff32c54",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "50affd40-eeda-449b-ab3c-5f36e209d07d",
+    "source_track_id": "mbid:50affd40-eeda-449b-ab3c-5f36e209d07d",
+    "spotify_id": null,
+    "title": "Christopher Lee Vs. Bruce Lee",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2023-04-14T23:40:56+00:00",
+    "last_scrobble": "2023-05-24T02:05:11+00:00",
+    "observed_albums": [
+      {
+        "album": "The Voice of Zombierella",
+        "scrobbles": 3
+      },
+      {
+        "album": "Spook-O-Rama - The Best Of Messer Chups",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4a96d5440289eff32c54/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

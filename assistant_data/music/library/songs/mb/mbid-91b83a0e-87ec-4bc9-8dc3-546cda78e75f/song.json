@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:b5d177c8-a3bf-47ab-8e66-aae394b380cc","duration_ms":200000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:91b83a0e-87ec-4bc9-8dc3-546cda78e75f","track_mbid":"91b83a0e-87ec-4bc9-8dc3-546cda78e75f"}},"id":"mbid:91b83a0e-87ec-4bc9-8dc3-546cda78e75f","identity":{"album":"Fuzzy Logic","album_id":"album:1dbec5f1f5cfafa466de","artist":"Jerry Paper","artist_id":"mbid:b5d177c8-a3bf-47ab-8e66-aae394b380cc","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"91b83a0e-87ec-4bc9-8dc3-546cda78e75f","source_track_id":"mbid:91b83a0e-87ec-4bc9-8dc3-546cda78e75f","spotify_id":null,"title":"Reprogram Ourselves","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-03-16T07:37:32+00:00","last_scrobble":"2023-03-16T07:37:32+00:00","observed_albums":[{"album":"Fuzzy Logic","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1dbec5f1f5cfafa466de/album.json","artist_path":"artists/mb/mbid-b5d177c8-a3bf-47ab-8e66-aae394b380cc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:b5d177c8-a3bf-47ab-8e66-aae394b380cc",
+      "duration_ms": 200000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:91b83a0e-87ec-4bc9-8dc3-546cda78e75f",
+      "track_mbid": "91b83a0e-87ec-4bc9-8dc3-546cda78e75f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 200000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:91b83a0e-87ec-4bc9-8dc3-546cda78e75f",
+  "identity": {
+    "album": "Fuzzy Logic",
+    "album_id": "album:1dbec5f1f5cfafa466de",
+    "artist": "Jerry Paper",
+    "artist_id": "mbid:b5d177c8-a3bf-47ab-8e66-aae394b380cc",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "91b83a0e-87ec-4bc9-8dc3-546cda78e75f",
+    "source_track_id": "mbid:91b83a0e-87ec-4bc9-8dc3-546cda78e75f",
+    "spotify_id": null,
+    "title": "Reprogram Ourselves",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-03-16T07:37:32+00:00",
+    "last_scrobble": "2023-03-16T07:37:32+00:00",
+    "observed_albums": [
+      {
+        "album": "Fuzzy Logic",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1dbec5f1f5cfafa466de/album.json",
+    "artist_path": "artists/mb/mbid-b5d177c8-a3bf-47ab-8e66-aae394b380cc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

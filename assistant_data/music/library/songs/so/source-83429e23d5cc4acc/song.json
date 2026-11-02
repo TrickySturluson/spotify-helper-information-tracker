@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3cf53892-d906-47d0-af4f-95f594ca8f7b","duration_ms":147000,"duration_source":"Last.fm track.getInfo","track_id":"track:83429e23d5cc4acc"}},"id":"source:83429e23d5cc4acc","identity":{"album":"The Modern Goal","album_id":"album:6edf2d89760e9ba572cf","artist":"The DNC","artist_id":"mbid:3cf53892-d906-47d0-af4f-95f594ca8f7b","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:83429e23d5cc4acc","spotify_id":null,"title":"Gary Come Home","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-11-13T16:59:06+00:00","last_scrobble":"2024-05-30T21:25:34+00:00","observed_albums":[{"album":"The Modern Goal","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6edf2d89760e9ba572cf/album.json","artist_path":"artists/mb/mbid-3cf53892-d906-47d0-af4f-95f594ca8f7b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3cf53892-d906-47d0-af4f-95f594ca8f7b",
+      "duration_ms": 147000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:83429e23d5cc4acc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 147000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:83429e23d5cc4acc",
+  "identity": {
+    "album": "The Modern Goal",
+    "album_id": "album:6edf2d89760e9ba572cf",
+    "artist": "The DNC",
+    "artist_id": "mbid:3cf53892-d906-47d0-af4f-95f594ca8f7b",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:83429e23d5cc4acc",
+    "spotify_id": null,
+    "title": "Gary Come Home",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-11-13T16:59:06+00:00",
+    "last_scrobble": "2024-05-30T21:25:34+00:00",
+    "observed_albums": [
+      {
+        "album": "The Modern Goal",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6edf2d89760e9ba572cf/album.json",
+    "artist_path": "artists/mb/mbid-3cf53892-d906-47d0-af4f-95f594ca8f7b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

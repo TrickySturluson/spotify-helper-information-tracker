@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:697645c4-c8c6-4e21-a52d-ff60453b6482","duration_ms":263000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:3cacea64-9beb-4df3-b90c-d65c6bf417af","track_mbid":"3cacea64-9beb-4df3-b90c-d65c6bf417af"}},"id":"mbid:3cacea64-9beb-4df3-b90c-d65c6bf417af","identity":{"album":"The Eldritch Dark","album_id":"album:7a215bc9f022036f50a0","artist":"Blood Ceremony","artist_id":"mbid:697645c4-c8c6-4e21-a52d-ff60453b6482","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3cacea64-9beb-4df3-b90c-d65c6bf417af","source_track_id":"mbid:3cacea64-9beb-4df3-b90c-d65c6bf417af","spotify_id":null,"title":"Goodbye Gemini","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-03T20:03:57+00:00","last_scrobble":"2025-11-03T20:03:57+00:00","observed_albums":[{"album":"The Eldritch Dark","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7a215bc9f022036f50a0/album.json","artist_path":"artists/mb/mbid-697645c4-c8c6-4e21-a52d-ff60453b6482/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:697645c4-c8c6-4e21-a52d-ff60453b6482",
+      "duration_ms": 263000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:3cacea64-9beb-4df3-b90c-d65c6bf417af",
+      "track_mbid": "3cacea64-9beb-4df3-b90c-d65c6bf417af",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 263000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3cacea64-9beb-4df3-b90c-d65c6bf417af",
+  "identity": {
+    "album": "The Eldritch Dark",
+    "album_id": "album:7a215bc9f022036f50a0",
+    "artist": "Blood Ceremony",
+    "artist_id": "mbid:697645c4-c8c6-4e21-a52d-ff60453b6482",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3cacea64-9beb-4df3-b90c-d65c6bf417af",
+    "source_track_id": "mbid:3cacea64-9beb-4df3-b90c-d65c6bf417af",
+    "spotify_id": null,
+    "title": "Goodbye Gemini",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-03T20:03:57+00:00",
+    "last_scrobble": "2025-11-03T20:03:57+00:00",
+    "observed_albums": [
+      {
+        "album": "The Eldritch Dark",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7a215bc9f022036f50a0/album.json",
+    "artist_path": "artists/mb/mbid-697645c4-c8c6-4e21-a52d-ff60453b6482/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

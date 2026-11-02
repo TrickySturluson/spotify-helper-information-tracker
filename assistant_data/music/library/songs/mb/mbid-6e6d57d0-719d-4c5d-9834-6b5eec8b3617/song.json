@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","duration_ms":104000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6e6d57d0-719d-4c5d-9834-6b5eec8b3617","track_mbid":"6e6d57d0-719d-4c5d-9834-6b5eec8b3617"}},"id":"mbid:6e6d57d0-719d-4c5d-9834-6b5eec8b3617","identity":{"album":"The Land Is Inhospitable and So Are We","album_id":"album:71765843b3793185b25d","artist":"Mitski","artist_id":"mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6e6d57d0-719d-4c5d-9834-6b5eec8b3617","source_track_id":"mbid:6e6d57d0-719d-4c5d-9834-6b5eec8b3617","spotify_id":null,"title":"When Memories Snow","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-03-16T03:39:51+00:00","last_scrobble":"2024-04-01T10:53:45+00:00","observed_albums":[{"album":"The Land Is Inhospitable and So Are We","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-71765843b3793185b25d/album.json","artist_path":"artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+      "duration_ms": 104000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6e6d57d0-719d-4c5d-9834-6b5eec8b3617",
+      "track_mbid": "6e6d57d0-719d-4c5d-9834-6b5eec8b3617",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 104000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6e6d57d0-719d-4c5d-9834-6b5eec8b3617",
+  "identity": {
+    "album": "The Land Is Inhospitable and So Are We",
+    "album_id": "album:71765843b3793185b25d",
+    "artist": "Mitski",
+    "artist_id": "mbid:fa58cf24-0e44-421d-8519-8bf461dcfaa5",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6e6d57d0-719d-4c5d-9834-6b5eec8b3617",
+    "source_track_id": "mbid:6e6d57d0-719d-4c5d-9834-6b5eec8b3617",
+    "spotify_id": null,
+    "title": "When Memories Snow",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-03-16T03:39:51+00:00",
+    "last_scrobble": "2024-04-01T10:53:45+00:00",
+    "observed_albums": [
+      {
+        "album": "The Land Is Inhospitable and So Are We",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-71765843b3793185b25d/album.json",
+    "artist_path": "artists/mb/mbid-fa58cf24-0e44-421d-8519-8bf461dcfaa5/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

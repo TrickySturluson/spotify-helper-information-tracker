@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4f86ce01-a09f-48c9-a844-e404db553d56","duration_ms":186000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6a53efe2-a493-477a-961b-44f8945bc141","track_mbid":"6a53efe2-a493-477a-961b-44f8945bc141"}},"id":"mbid:6a53efe2-a493-477a-961b-44f8945bc141","identity":{"album":"Toss Up","album_id":"album:d0479c0d6ebb6204858b","artist":"Kevin Krauter","artist_id":"mbid:4f86ce01-a09f-48c9-a844-e404db553d56","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6a53efe2-a493-477a-961b-44f8945bc141","source_track_id":"mbid:6a53efe2-a493-477a-961b-44f8945bc141","spotify_id":null,"title":"Lonely Boogie","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2023-05-06T23:18:21+00:00","last_scrobble":"2025-12-17T20:21:12+00:00","observed_albums":[{"album":"Toss Up","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d0479c0d6ebb6204858b/album.json","artist_path":"artists/mb/mbid-4f86ce01-a09f-48c9-a844-e404db553d56/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4f86ce01-a09f-48c9-a844-e404db553d56",
+      "duration_ms": 186000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6a53efe2-a493-477a-961b-44f8945bc141",
+      "track_mbid": "6a53efe2-a493-477a-961b-44f8945bc141",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 186000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6a53efe2-a493-477a-961b-44f8945bc141",
+  "identity": {
+    "album": "Toss Up",
+    "album_id": "album:d0479c0d6ebb6204858b",
+    "artist": "Kevin Krauter",
+    "artist_id": "mbid:4f86ce01-a09f-48c9-a844-e404db553d56",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6a53efe2-a493-477a-961b-44f8945bc141",
+    "source_track_id": "mbid:6a53efe2-a493-477a-961b-44f8945bc141",
+    "spotify_id": null,
+    "title": "Lonely Boogie",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2023-05-06T23:18:21+00:00",
+    "last_scrobble": "2025-12-17T20:21:12+00:00",
+    "observed_albums": [
+      {
+        "album": "Toss Up",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d0479c0d6ebb6204858b/album.json",
+    "artist_path": "artists/mb/mbid-4f86ce01-a09f-48c9-a844-e404db553d56/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

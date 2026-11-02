@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c995a379-60b9-404b-bd97-a7e2de0751d3","duration_ms":190000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:28:17.072195+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T14:28:17.794915+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5","track_mbid":"0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5"}},"id":"mbid:0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5","identity":{"album":"The Sinister Urge","album_id":"album:98a4f200add23886efe2","artist":"Rob Zombie","artist_id":"mbid:c995a379-60b9-404b-bd97-a7e2de0751d3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5","source_track_id":"mbid:0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5","spotify_id":null,"title":"Never Gonna Stop (The Red, Red Kroovy)","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-04-30T06:11:32+00:00","last_scrobble":"2026-10-31T04:55:59+00:00","observed_albums":[{"album":"The Sinister Urge","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-98a4f200add23886efe2/album.json","artist_path":"artists/mb/mbid-c995a379-60b9-404b-bd97-a7e2de0751d3/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c995a379-60b9-404b-bd97-a7e2de0751d3",
+      "duration_ms": 190000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:28:17.072195+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T14:28:17.794915+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5",
+      "track_mbid": "0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 190000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5",
+  "identity": {
+    "album": "The Sinister Urge",
+    "album_id": "album:98a4f200add23886efe2",
+    "artist": "Rob Zombie",
+    "artist_id": "mbid:c995a379-60b9-404b-bd97-a7e2de0751d3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5",
+    "source_track_id": "mbid:0e9a53ae-35c0-4a4e-ba62-c7e7e43c63c5",
+    "spotify_id": null,
+    "title": "Never Gonna Stop (The Red, Red Kroovy)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-04-30T06:11:32+00:00",
+    "last_scrobble": "2026-10-31T04:55:59+00:00",
+    "observed_albums": [
+      {
+        "album": "The Sinister Urge",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-98a4f200add23886efe2/album.json",
+    "artist_path": "artists/mb/mbid-c995a379-60b9-404b-bd97-a7e2de0751d3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

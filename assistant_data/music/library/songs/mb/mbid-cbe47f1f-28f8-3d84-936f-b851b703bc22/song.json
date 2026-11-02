@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"90s":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"FUCKING AWESOME":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Power metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"groove metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"heavy metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"pantera":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"thrash":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"thrash metal":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c","duration_ms":315000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:27:09.714322+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"thrash metal"},{"count":93,"source":"Last.fm track.getTopTags","tag":"metal"},{"count":53,"source":"Last.fm track.getTopTags","tag":"groove metal"},{"count":36,"source":"Last.fm track.getTopTags","tag":"heavy metal"},{"count":13,"source":"Last.fm track.getTopTags","tag":"pantera"},{"count":5,"source":"Last.fm track.getTopTags","tag":"Power metal"},{"count":4,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":1,"source":"Last.fm track.getTopTags","tag":"90s"},{"count":1,"source":"Last.fm track.getTopTags","tag":"FUCKING AWESOME"},{"count":1,"source":"Last.fm track.getTopTags","tag":"thrash"}],"musicbrainz_checked_at":"2026-11-01T14:27:10.435290+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:cbe47f1f-28f8-3d84-936f-b851b703bc22","track_mbid":"cbe47f1f-28f8-3d84-936f-b851b703bc22"}},"id":"mbid:cbe47f1f-28f8-3d84-936f-b851b703bc22","identity":{"album":"Vulgar Display of Power","album_id":"album:c9a4e8f57860d1c3e1ab","artist":"Pantera","artist_id":"mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"cbe47f1f-28f8-3d84-936f-b851b703bc22","source_track_id":"mbid:cbe47f1f-28f8-3d84-936f-b851b703bc22","spotify_id":null,"title":"Walk","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-07-04T02:40:31+00:00","last_scrobble":"2026-10-07T18:28:04+00:00","observed_albums":[{"album":"Vulgar Display of Power","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c9a4e8f57860d1c3e1ab/album.json","artist_path":"artists/mb/mbid-541f16f5-ad7a-428e-af89-9fa1b16d3c9c/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "90s": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "FUCKING AWESOME": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Power metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "groove metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "heavy metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "pantera": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "thrash": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "thrash metal": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c",
+      "duration_ms": 315000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:27:09.714322+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "thrash metal"
+        },
+        {
+          "count": 93,
+          "source": "Last.fm track.getTopTags",
+          "tag": "metal"
+        },
+        {
+          "count": 53,
+          "source": "Last.fm track.getTopTags",
+          "tag": "groove metal"
+        },
+        {
+          "count": 36,
+          "source": "Last.fm track.getTopTags",
+          "tag": "heavy metal"
+        },
+        {
+          "count": 13,
+          "source": "Last.fm track.getTopTags",
+          "tag": "pantera"
+        },
+        {
+          "count": 5,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Power metal"
+        },
+        {
+          "count": 4,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "90s"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "FUCKING AWESOME"
+        },
+        {
+          "count": 1,
+          "source": "Last.fm track.getTopTags",
+          "tag": "thrash"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T14:27:10.435290+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:cbe47f1f-28f8-3d84-936f-b851b703bc22",
+      "track_mbid": "cbe47f1f-28f8-3d84-936f-b851b703bc22",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 315000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:cbe47f1f-28f8-3d84-936f-b851b703bc22",
+  "identity": {
+    "album": "Vulgar Display of Power",
+    "album_id": "album:c9a4e8f57860d1c3e1ab",
+    "artist": "Pantera",
+    "artist_id": "mbid:541f16f5-ad7a-428e-af89-9fa1b16d3c9c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "cbe47f1f-28f8-3d84-936f-b851b703bc22",
+    "source_track_id": "mbid:cbe47f1f-28f8-3d84-936f-b851b703bc22",
+    "spotify_id": null,
+    "title": "Walk",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-07-04T02:40:31+00:00",
+    "last_scrobble": "2026-10-07T18:28:04+00:00",
+    "observed_albums": [
+      {
+        "album": "Vulgar Display of Power",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c9a4e8f57860d1c3e1ab/album.json",
+    "artist_path": "artists/mb/mbid-541f16f5-ad7a-428e-af89-9fa1b16d3c9c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

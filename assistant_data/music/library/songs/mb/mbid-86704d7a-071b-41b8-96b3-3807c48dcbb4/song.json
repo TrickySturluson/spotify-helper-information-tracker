@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9b4f5b14-6a84-4340-b290-194212716380","duration_ms":210000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T14:27:32.357542+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T14:27:33.082343+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:86704d7a-071b-41b8-96b3-3807c48dcbb4","track_mbid":"86704d7a-071b-41b8-96b3-3807c48dcbb4"}},"id":"mbid:86704d7a-071b-41b8-96b3-3807c48dcbb4","identity":{"album":"Scary World","album_id":"album:01b94ddcfb2c61f5aae9","artist":"Night Club","artist_id":"mbid:9b4f5b14-6a84-4340-b290-194212716380","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"86704d7a-071b-41b8-96b3-3807c48dcbb4","source_track_id":"mbid:86704d7a-071b-41b8-96b3-3807c48dcbb4","spotify_id":null,"title":"Candy Coated Suicide","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2023-11-30T20:16:31+00:00","last_scrobble":"2026-10-30T18:00:57+00:00","observed_albums":[{"album":"Scary World","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-01b94ddcfb2c61f5aae9/album.json","artist_path":"artists/mb/mbid-9b4f5b14-6a84-4340-b290-194212716380/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9b4f5b14-6a84-4340-b290-194212716380",
+      "duration_ms": 210000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T14:27:32.357542+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T14:27:33.082343+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:86704d7a-071b-41b8-96b3-3807c48dcbb4",
+      "track_mbid": "86704d7a-071b-41b8-96b3-3807c48dcbb4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 210000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:86704d7a-071b-41b8-96b3-3807c48dcbb4",
+  "identity": {
+    "album": "Scary World",
+    "album_id": "album:01b94ddcfb2c61f5aae9",
+    "artist": "Night Club",
+    "artist_id": "mbid:9b4f5b14-6a84-4340-b290-194212716380",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "86704d7a-071b-41b8-96b3-3807c48dcbb4",
+    "source_track_id": "mbid:86704d7a-071b-41b8-96b3-3807c48dcbb4",
+    "spotify_id": null,
+    "title": "Candy Coated Suicide",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2023-11-30T20:16:31+00:00",
+    "last_scrobble": "2026-10-30T18:00:57+00:00",
+    "observed_albums": [
+      {
+        "album": "Scary World",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-01b94ddcfb2c61f5aae9/album.json",
+    "artist_path": "artists/mb/mbid-9b4f5b14-6a84-4340-b290-194212716380/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

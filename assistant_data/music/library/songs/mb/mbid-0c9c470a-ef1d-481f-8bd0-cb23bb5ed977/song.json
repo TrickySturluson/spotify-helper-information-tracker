@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4e024037-14b7-4aea-99ad-c6ace63b9620","duration_ms":133000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0c9c470a-ef1d-481f-8bd0-cb23bb5ed977","track_mbid":"0c9c470a-ef1d-481f-8bd0-cb23bb5ed977"}},"id":"mbid:0c9c470a-ef1d-481f-8bd0-cb23bb5ed977","identity":{"album":"Madvillainy","album_id":"album:c37f1b531d7843630edf","artist":"Madvillain","artist_id":"mbid:4e024037-14b7-4aea-99ad-c6ace63b9620","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0c9c470a-ef1d-481f-8bd0-cb23bb5ed977","source_track_id":"mbid:0c9c470a-ef1d-481f-8bd0-cb23bb5ed977","spotify_id":null,"title":"All Caps","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-11-05T06:31:00+00:00","last_scrobble":"2023-11-05T06:31:00+00:00","observed_albums":[{"album":"Madvillainy","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c37f1b531d7843630edf/album.json","artist_path":"artists/mb/mbid-4e024037-14b7-4aea-99ad-c6ace63b9620/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4e024037-14b7-4aea-99ad-c6ace63b9620",
+      "duration_ms": 133000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0c9c470a-ef1d-481f-8bd0-cb23bb5ed977",
+      "track_mbid": "0c9c470a-ef1d-481f-8bd0-cb23bb5ed977",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 133000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0c9c470a-ef1d-481f-8bd0-cb23bb5ed977",
+  "identity": {
+    "album": "Madvillainy",
+    "album_id": "album:c37f1b531d7843630edf",
+    "artist": "Madvillain",
+    "artist_id": "mbid:4e024037-14b7-4aea-99ad-c6ace63b9620",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0c9c470a-ef1d-481f-8bd0-cb23bb5ed977",
+    "source_track_id": "mbid:0c9c470a-ef1d-481f-8bd0-cb23bb5ed977",
+    "spotify_id": null,
+    "title": "All Caps",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-11-05T06:31:00+00:00",
+    "last_scrobble": "2023-11-05T06:31:00+00:00",
+    "observed_albums": [
+      {
+        "album": "Madvillainy",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c37f1b531d7843630edf/album.json",
+    "artist_path": "artists/mb/mbid-4e024037-14b7-4aea-99ad-c6ace63b9620/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

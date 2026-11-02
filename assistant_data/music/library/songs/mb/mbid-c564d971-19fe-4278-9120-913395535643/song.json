@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:48e192d4-3d0a-4c3e-b3b0-2c42f50e0db9","duration_ms":131000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c564d971-19fe-4278-9120-913395535643","track_mbid":"c564d971-19fe-4278-9120-913395535643"}},"id":"mbid:c564d971-19fe-4278-9120-913395535643","identity":{"album":"german error message","album_id":"album:9607470dc2b5eaf77af1","artist":"German Error Message","artist_id":"mbid:48e192d4-3d0a-4c3e-b3b0-2c42f50e0db9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c564d971-19fe-4278-9120-913395535643","source_track_id":"mbid:c564d971-19fe-4278-9120-913395535643","spotify_id":null,"title":"now/before","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-04-15T04:18:43+00:00","last_scrobble":"2026-04-15T04:18:43+00:00","observed_albums":[{"album":"german error message","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9607470dc2b5eaf77af1/album.json","artist_path":"artists/mb/mbid-48e192d4-3d0a-4c3e-b3b0-2c42f50e0db9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:48e192d4-3d0a-4c3e-b3b0-2c42f50e0db9",
+      "duration_ms": 131000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c564d971-19fe-4278-9120-913395535643",
+      "track_mbid": "c564d971-19fe-4278-9120-913395535643",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 131000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c564d971-19fe-4278-9120-913395535643",
+  "identity": {
+    "album": "german error message",
+    "album_id": "album:9607470dc2b5eaf77af1",
+    "artist": "German Error Message",
+    "artist_id": "mbid:48e192d4-3d0a-4c3e-b3b0-2c42f50e0db9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c564d971-19fe-4278-9120-913395535643",
+    "source_track_id": "mbid:c564d971-19fe-4278-9120-913395535643",
+    "spotify_id": null,
+    "title": "now/before",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-04-15T04:18:43+00:00",
+    "last_scrobble": "2026-04-15T04:18:43+00:00",
+    "observed_albums": [
+      {
+        "album": "german error message",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9607470dc2b5eaf77af1/album.json",
+    "artist_path": "artists/mb/mbid-48e192d4-3d0a-4c3e-b3b0-2c42f50e0db9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

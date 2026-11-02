@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c677e0c5-77b2-48a8-aeb4-7dfabb1cd9fa","duration_ms":225000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e5c86bc8-9b0d-4078-827b-04bcb46c2567","track_mbid":"e5c86bc8-9b0d-4078-827b-04bcb46c2567"}},"id":"mbid:e5c86bc8-9b0d-4078-827b-04bcb46c2567","identity":{"album":"Night of the Hunt","album_id":"album:ed0d0454a9f83850cabc","artist":"Alex Roe","artist_id":"mbid:c677e0c5-77b2-48a8-aeb4-7dfabb1cd9fa","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e5c86bc8-9b0d-4078-827b-04bcb46c2567","source_track_id":"mbid:e5c86bc8-9b0d-4078-827b-04bcb46c2567","spotify_id":null,"title":"Dance Of The Blood-Drunk","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-09-18T00:57:53+00:00","last_scrobble":"2025-09-22T02:34:25+00:00","observed_albums":[{"album":"Night of the Hunt","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ed0d0454a9f83850cabc/album.json","artist_path":"artists/mb/mbid-c677e0c5-77b2-48a8-aeb4-7dfabb1cd9fa/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c677e0c5-77b2-48a8-aeb4-7dfabb1cd9fa",
+      "duration_ms": 225000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e5c86bc8-9b0d-4078-827b-04bcb46c2567",
+      "track_mbid": "e5c86bc8-9b0d-4078-827b-04bcb46c2567",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 225000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e5c86bc8-9b0d-4078-827b-04bcb46c2567",
+  "identity": {
+    "album": "Night of the Hunt",
+    "album_id": "album:ed0d0454a9f83850cabc",
+    "artist": "Alex Roe",
+    "artist_id": "mbid:c677e0c5-77b2-48a8-aeb4-7dfabb1cd9fa",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e5c86bc8-9b0d-4078-827b-04bcb46c2567",
+    "source_track_id": "mbid:e5c86bc8-9b0d-4078-827b-04bcb46c2567",
+    "spotify_id": null,
+    "title": "Dance Of The Blood-Drunk",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-09-18T00:57:53+00:00",
+    "last_scrobble": "2025-09-22T02:34:25+00:00",
+    "observed_albums": [
+      {
+        "album": "Night of the Hunt",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ed0d0454a9f83850cabc/album.json",
+    "artist_path": "artists/mb/mbid-c677e0c5-77b2-48a8-aeb4-7dfabb1cd9fa/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

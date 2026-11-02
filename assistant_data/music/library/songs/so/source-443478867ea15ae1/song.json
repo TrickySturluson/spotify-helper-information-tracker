@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:122d63fc-8671-43e4-9752-34e846d62a9c","duration_ms":235000,"duration_source":"Last.fm track.getInfo","track_id":"track:443478867ea15ae1"}},"id":"source:443478867ea15ae1","identity":{"album":"Teenage Dream","album_id":"album:ec339291c06ba5441670","artist":"Katy Perry","artist_id":"mbid:122d63fc-8671-43e4-9752-34e846d62a9c","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:443478867ea15ae1","spotify_id":null,"title":"California Gurls (feat. Snoop Dogg)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-24T16:23:15+00:00","last_scrobble":"2025-10-24T16:23:15+00:00","observed_albums":[{"album":"Teenage Dream","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-ec339291c06ba5441670/album.json","artist_path":"artists/mb/mbid-122d63fc-8671-43e4-9752-34e846d62a9c/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:122d63fc-8671-43e4-9752-34e846d62a9c",
+      "duration_ms": 235000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:443478867ea15ae1",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 235000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:443478867ea15ae1",
+  "identity": {
+    "album": "Teenage Dream",
+    "album_id": "album:ec339291c06ba5441670",
+    "artist": "Katy Perry",
+    "artist_id": "mbid:122d63fc-8671-43e4-9752-34e846d62a9c",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:443478867ea15ae1",
+    "spotify_id": null,
+    "title": "California Gurls (feat. Snoop Dogg)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-24T16:23:15+00:00",
+    "last_scrobble": "2025-10-24T16:23:15+00:00",
+    "observed_albums": [
+      {
+        "album": "Teenage Dream",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-ec339291c06ba5441670/album.json",
+    "artist_path": "artists/mb/mbid-122d63fc-8671-43e4-9752-34e846d62a9c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

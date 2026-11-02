@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4b93ee9e-e39d-4036-9527-551b2236f5af","duration_ms":247000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:05:45.094522+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T08:05:45.889018+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"no_tags","retry_after":0,"track_id":"mbid:e8495eb6-734e-45ce-96a8-2c89abcb47a8","track_mbid":"e8495eb6-734e-45ce-96a8-2c89abcb47a8"}},"id":"mbid:e8495eb6-734e-45ce-96a8-2c89abcb47a8","identity":{"album":"Blue Velvet","album_id":"album:df1054e38e084ed11de2","artist":"Princess Nokia","artist_id":"mbid:4b93ee9e-e39d-4036-9527-551b2236f5af","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e8495eb6-734e-45ce-96a8-2c89abcb47a8","source_track_id":"mbid:e8495eb6-734e-45ce-96a8-2c89abcb47a8","spotify_id":null,"title":"Blue Velvet","track_number":null},"listening_context":{"all_time_plays":66,"first_scrobble":"2025-09-18T01:05:06+00:00","last_scrobble":"2026-10-06T15:33:46+00:00","observed_albums":[{"album":"Blue Velvet","scrobbles":66}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-df1054e38e084ed11de2/album.json","artist_path":"artists/mb/mbid-4b93ee9e-e39d-4036-9527-551b2236f5af/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"no_tags"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4b93ee9e-e39d-4036-9527-551b2236f5af",
+      "duration_ms": 247000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:05:45.094522+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T08:05:45.889018+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "no_tags",
+      "retry_after": 0,
+      "track_id": "mbid:e8495eb6-734e-45ce-96a8-2c89abcb47a8",
+      "track_mbid": "e8495eb6-734e-45ce-96a8-2c89abcb47a8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 247000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e8495eb6-734e-45ce-96a8-2c89abcb47a8",
+  "identity": {
+    "album": "Blue Velvet",
+    "album_id": "album:df1054e38e084ed11de2",
+    "artist": "Princess Nokia",
+    "artist_id": "mbid:4b93ee9e-e39d-4036-9527-551b2236f5af",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e8495eb6-734e-45ce-96a8-2c89abcb47a8",
+    "source_track_id": "mbid:e8495eb6-734e-45ce-96a8-2c89abcb47a8",
+    "spotify_id": null,
+    "title": "Blue Velvet",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 66,
+    "first_scrobble": "2025-09-18T01:05:06+00:00",
+    "last_scrobble": "2026-10-06T15:33:46+00:00",
+    "observed_albums": [
+      {
+        "album": "Blue Velvet",
+        "scrobbles": 66
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-df1054e38e084ed11de2/album.json",
+    "artist_path": "artists/mb/mbid-4b93ee9e-e39d-4036-9527-551b2236f5af/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "no_tags"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:3f8fcdfe5d41410e","duration_ms":187000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:9fdee16b-3458-40d0-a0ec-c347422d95db","track_mbid":"9fdee16b-3458-40d0-a0ec-c347422d95db"}},"id":"mbid:9fdee16b-3458-40d0-a0ec-c347422d95db","identity":{"album":"You By Me, Vol. 2","album_id":"album:fdb567acaea24e672b2e","artist":"Toh Kay","artist_id":"name:3f8fcdfe5d41410e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"9fdee16b-3458-40d0-a0ec-c347422d95db","source_track_id":"mbid:9fdee16b-3458-40d0-a0ec-c347422d95db","spotify_id":null,"title":"The Man With The Skeleton Arms","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-12-26T19:12:38+00:00","last_scrobble":"2023-12-26T19:12:38+00:00","observed_albums":[{"album":"You By Me, Vol. 2","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-fdb567acaea24e672b2e/album.json","artist_path":"artists/na/name-3f8fcdfe5d41410e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:3f8fcdfe5d41410e",
+      "duration_ms": 187000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:9fdee16b-3458-40d0-a0ec-c347422d95db",
+      "track_mbid": "9fdee16b-3458-40d0-a0ec-c347422d95db",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 187000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9fdee16b-3458-40d0-a0ec-c347422d95db",
+  "identity": {
+    "album": "You By Me, Vol. 2",
+    "album_id": "album:fdb567acaea24e672b2e",
+    "artist": "Toh Kay",
+    "artist_id": "name:3f8fcdfe5d41410e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "9fdee16b-3458-40d0-a0ec-c347422d95db",
+    "source_track_id": "mbid:9fdee16b-3458-40d0-a0ec-c347422d95db",
+    "spotify_id": null,
+    "title": "The Man With The Skeleton Arms",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-12-26T19:12:38+00:00",
+    "last_scrobble": "2023-12-26T19:12:38+00:00",
+    "observed_albums": [
+      {
+        "album": "You By Me, Vol. 2",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-fdb567acaea24e672b2e/album.json",
+    "artist_path": "artists/na/name-3f8fcdfe5d41410e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

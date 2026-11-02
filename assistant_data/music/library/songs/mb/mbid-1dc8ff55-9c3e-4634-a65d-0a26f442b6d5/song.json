@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:6d84407aa09083b4","duration_ms":279000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:1dc8ff55-9c3e-4634-a65d-0a26f442b6d5","track_mbid":"1dc8ff55-9c3e-4634-a65d-0a26f442b6d5"}},"id":"mbid:1dc8ff55-9c3e-4634-a65d-0a26f442b6d5","identity":{"album":"Rockland","album_id":"album:9cafa8672a3948113b7a","artist":"Katzenjammer","artist_id":"name:6d84407aa09083b4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"1dc8ff55-9c3e-4634-a65d-0a26f442b6d5","source_track_id":"mbid:1dc8ff55-9c3e-4634-a65d-0a26f442b6d5","spotify_id":null,"title":"Old de Spain","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-05-28T21:01:28+00:00","last_scrobble":"2024-05-28T21:01:28+00:00","observed_albums":[{"album":"Rockland","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9cafa8672a3948113b7a/album.json","artist_path":"artists/na/name-6d84407aa09083b4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:6d84407aa09083b4",
+      "duration_ms": 279000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:1dc8ff55-9c3e-4634-a65d-0a26f442b6d5",
+      "track_mbid": "1dc8ff55-9c3e-4634-a65d-0a26f442b6d5",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 279000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:1dc8ff55-9c3e-4634-a65d-0a26f442b6d5",
+  "identity": {
+    "album": "Rockland",
+    "album_id": "album:9cafa8672a3948113b7a",
+    "artist": "Katzenjammer",
+    "artist_id": "name:6d84407aa09083b4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "1dc8ff55-9c3e-4634-a65d-0a26f442b6d5",
+    "source_track_id": "mbid:1dc8ff55-9c3e-4634-a65d-0a26f442b6d5",
+    "spotify_id": null,
+    "title": "Old de Spain",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-05-28T21:01:28+00:00",
+    "last_scrobble": "2024-05-28T21:01:28+00:00",
+    "observed_albums": [
+      {
+        "album": "Rockland",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9cafa8672a3948113b7a/album.json",
+    "artist_path": "artists/na/name-6d84407aa09083b4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:afcd292c-3c1e-4708-af4a-991aadf957e4","duration_ms":293000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd","track_mbid":"0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd"}},"id":"mbid:0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd","identity":{"album":"Remedy","album_id":"album:9df96baa848635a4c19a","artist":"Son Lux","artist_id":"mbid:afcd292c-3c1e-4708-af4a-991aadf957e4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd","source_track_id":"mbid:0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd","spotify_id":null,"title":"Dangerous","track_number":null},"listening_context":{"all_time_plays":4,"first_scrobble":"2025-02-14T01:47:11+00:00","last_scrobble":"2025-02-14T17:41:54+00:00","observed_albums":[{"album":"Remedy","scrobbles":4}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-9df96baa848635a4c19a/album.json","artist_path":"artists/mb/mbid-afcd292c-3c1e-4708-af4a-991aadf957e4/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:afcd292c-3c1e-4708-af4a-991aadf957e4",
+      "duration_ms": 293000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd",
+      "track_mbid": "0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 293000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd",
+  "identity": {
+    "album": "Remedy",
+    "album_id": "album:9df96baa848635a4c19a",
+    "artist": "Son Lux",
+    "artist_id": "mbid:afcd292c-3c1e-4708-af4a-991aadf957e4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd",
+    "source_track_id": "mbid:0fb7c66d-6fcc-4f3a-8e0f-308bcdd439cd",
+    "spotify_id": null,
+    "title": "Dangerous",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 4,
+    "first_scrobble": "2025-02-14T01:47:11+00:00",
+    "last_scrobble": "2025-02-14T17:41:54+00:00",
+    "observed_albums": [
+      {
+        "album": "Remedy",
+        "scrobbles": 4
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-9df96baa848635a4c19a/album.json",
+    "artist_path": "artists/mb/mbid-afcd292c-3c1e-4708-af4a-991aadf957e4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

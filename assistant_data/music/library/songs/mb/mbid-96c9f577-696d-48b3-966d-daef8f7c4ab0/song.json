@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6c74516f-b42d-49c9-bd01-ab16b4391fee","duration_ms":200000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:96c9f577-696d-48b3-966d-daef8f7c4ab0","track_mbid":"96c9f577-696d-48b3-966d-daef8f7c4ab0"}},"id":"mbid:96c9f577-696d-48b3-966d-daef8f7c4ab0","identity":{"album":"By the Lamplight","album_id":"album:2aa5f58304f293436604","artist":"Larry and His Flask","artist_id":"mbid:6c74516f-b42d-49c9-bd01-ab16b4391fee","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"96c9f577-696d-48b3-966d-daef8f7c4ab0","source_track_id":"mbid:96c9f577-696d-48b3-966d-daef8f7c4ab0","spotify_id":null,"title":"Pandemonium","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-02-27T17:20:35+00:00","last_scrobble":"2025-12-01T23:37:54+00:00","observed_albums":[{"album":"By the Lamplight","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2aa5f58304f293436604/album.json","artist_path":"artists/mb/mbid-6c74516f-b42d-49c9-bd01-ab16b4391fee/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6c74516f-b42d-49c9-bd01-ab16b4391fee",
+      "duration_ms": 200000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:96c9f577-696d-48b3-966d-daef8f7c4ab0",
+      "track_mbid": "96c9f577-696d-48b3-966d-daef8f7c4ab0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 200000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:96c9f577-696d-48b3-966d-daef8f7c4ab0",
+  "identity": {
+    "album": "By the Lamplight",
+    "album_id": "album:2aa5f58304f293436604",
+    "artist": "Larry and His Flask",
+    "artist_id": "mbid:6c74516f-b42d-49c9-bd01-ab16b4391fee",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "96c9f577-696d-48b3-966d-daef8f7c4ab0",
+    "source_track_id": "mbid:96c9f577-696d-48b3-966d-daef8f7c4ab0",
+    "spotify_id": null,
+    "title": "Pandemonium",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-02-27T17:20:35+00:00",
+    "last_scrobble": "2025-12-01T23:37:54+00:00",
+    "observed_albums": [
+      {
+        "album": "By the Lamplight",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2aa5f58304f293436604/album.json",
+    "artist_path": "artists/mb/mbid-6c74516f-b42d-49c9-bd01-ab16b4391fee/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a3316f31-b5e6-45e2-b85d-e8b8650d5ab9","duration_ms":277000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e88169b6-b63b-4f47-836e-82b44f861b19","track_mbid":"e88169b6-b63b-4f47-836e-82b44f861b19"}},"id":"mbid:e88169b6-b63b-4f47-836e-82b44f861b19","identity":{"album":"Upright, Love","album_id":"album:58de5372c36ca2881a92","artist":"Blue Kid","artist_id":"mbid:a3316f31-b5e6-45e2-b85d-e8b8650d5ab9","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e88169b6-b63b-4f47-836e-82b44f861b19","source_track_id":"mbid:e88169b6-b63b-4f47-836e-82b44f861b19","spotify_id":null,"title":"The Dismemberment Song","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-04-01T11:38:23+00:00","last_scrobble":"2023-04-01T11:38:23+00:00","observed_albums":[{"album":"Upright, Love","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-58de5372c36ca2881a92/album.json","artist_path":"artists/mb/mbid-a3316f31-b5e6-45e2-b85d-e8b8650d5ab9/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a3316f31-b5e6-45e2-b85d-e8b8650d5ab9",
+      "duration_ms": 277000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e88169b6-b63b-4f47-836e-82b44f861b19",
+      "track_mbid": "e88169b6-b63b-4f47-836e-82b44f861b19",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 277000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e88169b6-b63b-4f47-836e-82b44f861b19",
+  "identity": {
+    "album": "Upright, Love",
+    "album_id": "album:58de5372c36ca2881a92",
+    "artist": "Blue Kid",
+    "artist_id": "mbid:a3316f31-b5e6-45e2-b85d-e8b8650d5ab9",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e88169b6-b63b-4f47-836e-82b44f861b19",
+    "source_track_id": "mbid:e88169b6-b63b-4f47-836e-82b44f861b19",
+    "spotify_id": null,
+    "title": "The Dismemberment Song",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-04-01T11:38:23+00:00",
+    "last_scrobble": "2023-04-01T11:38:23+00:00",
+    "observed_albums": [
+      {
+        "album": "Upright, Love",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-58de5372c36ca2881a92/album.json",
+    "artist_path": "artists/mb/mbid-a3316f31-b5e6-45e2-b85d-e8b8650d5ab9/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

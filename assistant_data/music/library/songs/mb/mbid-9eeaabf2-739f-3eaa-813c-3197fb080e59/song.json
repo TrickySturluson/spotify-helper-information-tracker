@@ -1,1 +1,100 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135","duration_ms":134000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T05:58:59.595802+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T05:59:00.738997+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59","track_mbid":"9eeaabf2-739f-3eaa-813c-3197fb080e59"}},"id":"mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59","identity":{"album":"Hotline Miami: The Takedown EP","album_id":"album:18085c0585384fafd66b","artist":"Scattle","artist_id":"mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135","identity_quality":"verified_recording","recording_mbid":"9eeaabf2-739f-3eaa-813c-3197fb080e59","source_track_id":"mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59","spotify_id":null,"title":"Flatline"},"listening_context":{"all_time_plays":43,"first_scrobble":"2023-05-20T20:51:44+00:00","last_scrobble":"2026-10-29T06:55:06+00:00","observed_albums":[{"album":"Hotline Miami: The Takedown EP","scrobbles":43}],"priority_playlist_ids":[],"recent_plays":20,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-18085c0585384fafd66b/album.json","artist_path":"artists/mb/mbid-ba73fdc5-17e4-4d5b-b652-65a224c96135/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135",
+      "duration_ms": 134000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T05:58:59.595802+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T05:59:00.738997+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+      "track_mbid": "9eeaabf2-739f-3eaa-813c-3197fb080e59",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 134000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+  "identity": {
+    "album": "Hotline Miami: The Takedown EP",
+    "album_id": "album:18085c0585384fafd66b",
+    "artist": "Scattle",
+    "artist_id": "mbid:ba73fdc5-17e4-4d5b-b652-65a224c96135",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "9eeaabf2-739f-3eaa-813c-3197fb080e59",
+    "source_track_id": "mbid:9eeaabf2-739f-3eaa-813c-3197fb080e59",
+    "spotify_id": null,
+    "title": "Flatline"
+  },
+  "listening_context": {
+    "all_time_plays": 43,
+    "first_scrobble": "2023-05-20T20:51:44+00:00",
+    "last_scrobble": "2026-10-29T06:55:06+00:00",
+    "observed_albums": [
+      {
+        "album": "Hotline Miami: The Takedown EP",
+        "scrobbles": 43
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 20,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-18085c0585384fafd66b/album.json",
+    "artist_path": "artists/mb/mbid-ba73fdc5-17e4-4d5b-b652-65a224c96135/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

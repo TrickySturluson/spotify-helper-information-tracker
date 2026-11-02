@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:52c0e20be5c4108d","duration_ms":192000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:25fe13e0-d1f9-425e-8bbe-a5986308846c","track_mbid":"25fe13e0-d1f9-425e-8bbe-a5986308846c"}},"id":"mbid:25fe13e0-d1f9-425e-8bbe-a5986308846c","identity":{"album":"Rew","album_id":"album:5e24b3b16e9bbbd004ce","artist":"rew","artist_id":"name:52c0e20be5c4108d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"25fe13e0-d1f9-425e-8bbe-a5986308846c","source_track_id":"mbid:25fe13e0-d1f9-425e-8bbe-a5986308846c","spotify_id":null,"title":"yung and writhing","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-04-11T03:17:11+00:00","last_scrobble":"2024-04-13T06:04:02+00:00","observed_albums":[{"album":"Rew","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5e24b3b16e9bbbd004ce/album.json","artist_path":"artists/na/name-52c0e20be5c4108d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:52c0e20be5c4108d",
+      "duration_ms": 192000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:25fe13e0-d1f9-425e-8bbe-a5986308846c",
+      "track_mbid": "25fe13e0-d1f9-425e-8bbe-a5986308846c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 192000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:25fe13e0-d1f9-425e-8bbe-a5986308846c",
+  "identity": {
+    "album": "Rew",
+    "album_id": "album:5e24b3b16e9bbbd004ce",
+    "artist": "rew",
+    "artist_id": "name:52c0e20be5c4108d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "25fe13e0-d1f9-425e-8bbe-a5986308846c",
+    "source_track_id": "mbid:25fe13e0-d1f9-425e-8bbe-a5986308846c",
+    "spotify_id": null,
+    "title": "yung and writhing",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-04-11T03:17:11+00:00",
+    "last_scrobble": "2024-04-13T06:04:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Rew",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5e24b3b16e9bbbd004ce/album.json",
+    "artist_path": "artists/na/name-52c0e20be5c4108d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

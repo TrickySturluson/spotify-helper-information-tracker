@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:274a5c1f6179109a","duration_ms":204000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:512c895d-ef7f-41ae-9ed2-1137a777c198","track_mbid":"512c895d-ef7f-41ae-9ed2-1137a777c198"}},"id":"mbid:512c895d-ef7f-41ae-9ed2-1137a777c198","identity":{"album":"Would You Rather","album_id":"album:c095c7bb6724fdb7958f","artist":"Crusher-P","artist_id":"name:274a5c1f6179109a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"512c895d-ef7f-41ae-9ed2-1137a777c198","source_track_id":"mbid:512c895d-ef7f-41ae-9ed2-1137a777c198","spotify_id":null,"title":"Would You Rather","track_number":null},"listening_context":{"all_time_plays":11,"first_scrobble":"2025-01-28T17:14:08+00:00","last_scrobble":"2025-02-03T03:02:31+00:00","observed_albums":[{"album":"Would You Rather","scrobbles":11}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-c095c7bb6724fdb7958f/album.json","artist_path":"artists/na/name-274a5c1f6179109a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:274a5c1f6179109a",
+      "duration_ms": 204000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:512c895d-ef7f-41ae-9ed2-1137a777c198",
+      "track_mbid": "512c895d-ef7f-41ae-9ed2-1137a777c198",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 204000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:512c895d-ef7f-41ae-9ed2-1137a777c198",
+  "identity": {
+    "album": "Would You Rather",
+    "album_id": "album:c095c7bb6724fdb7958f",
+    "artist": "Crusher-P",
+    "artist_id": "name:274a5c1f6179109a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "512c895d-ef7f-41ae-9ed2-1137a777c198",
+    "source_track_id": "mbid:512c895d-ef7f-41ae-9ed2-1137a777c198",
+    "spotify_id": null,
+    "title": "Would You Rather",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 11,
+    "first_scrobble": "2025-01-28T17:14:08+00:00",
+    "last_scrobble": "2025-02-03T03:02:31+00:00",
+    "observed_albums": [
+      {
+        "album": "Would You Rather",
+        "scrobbles": 11
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-c095c7bb6724fdb7958f/album.json",
+    "artist_path": "artists/na/name-274a5c1f6179109a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

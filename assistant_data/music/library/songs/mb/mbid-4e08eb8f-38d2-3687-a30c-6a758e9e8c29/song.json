@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f86acb2e-03fa-4992-957a-6f7d0155b34e","duration_ms":94000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4e08eb8f-38d2-3687-a30c-6a758e9e8c29","track_mbid":"4e08eb8f-38d2-3687-a30c-6a758e9e8c29"}},"id":"mbid:4e08eb8f-38d2-3687-a30c-6a758e9e8c29","identity":{"album":"VS4","album_id":"album:07e7d530d073010635d5","artist":"Jack Conte","artist_id":"mbid:f86acb2e-03fa-4992-957a-6f7d0155b34e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4e08eb8f-38d2-3687-a30c-6a758e9e8c29","source_track_id":"mbid:4e08eb8f-38d2-3687-a30c-6a758e9e8c29","spotify_id":null,"title":"Mister Money Bags","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-03-12T18:24:07+00:00","last_scrobble":"2023-03-12T18:52:59+00:00","observed_albums":[{"album":"VS4","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-07e7d530d073010635d5/album.json","artist_path":"artists/mb/mbid-f86acb2e-03fa-4992-957a-6f7d0155b34e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f86acb2e-03fa-4992-957a-6f7d0155b34e",
+      "duration_ms": 94000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4e08eb8f-38d2-3687-a30c-6a758e9e8c29",
+      "track_mbid": "4e08eb8f-38d2-3687-a30c-6a758e9e8c29",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 94000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4e08eb8f-38d2-3687-a30c-6a758e9e8c29",
+  "identity": {
+    "album": "VS4",
+    "album_id": "album:07e7d530d073010635d5",
+    "artist": "Jack Conte",
+    "artist_id": "mbid:f86acb2e-03fa-4992-957a-6f7d0155b34e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4e08eb8f-38d2-3687-a30c-6a758e9e8c29",
+    "source_track_id": "mbid:4e08eb8f-38d2-3687-a30c-6a758e9e8c29",
+    "spotify_id": null,
+    "title": "Mister Money Bags",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-03-12T18:24:07+00:00",
+    "last_scrobble": "2023-03-12T18:52:59+00:00",
+    "observed_albums": [
+      {
+        "album": "VS4",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-07e7d530d073010635d5/album.json",
+    "artist_path": "artists/mb/mbid-f86acb2e-03fa-4992-957a-6f7d0155b34e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:272989c8-5535-492d-a25c-9f58803e027f","duration_ms":203000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:17894247-e585-4c97-83ea-de7047df7639","track_mbid":"17894247-e585-4c97-83ea-de7047df7639"}},"id":"mbid:17894247-e585-4c97-83ea-de7047df7639","identity":{"album":"SOS","album_id":"album:bf15756d708bfacc8d49","artist":"SZA","artist_id":"mbid:272989c8-5535-492d-a25c-9f58803e027f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"17894247-e585-4c97-83ea-de7047df7639","source_track_id":"mbid:17894247-e585-4c97-83ea-de7047df7639","spotify_id":null,"title":"Seek & Destroy","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-10-23T18:54:21+00:00","last_scrobble":"2025-10-23T18:54:21+00:00","observed_albums":[{"album":"SOS","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bf15756d708bfacc8d49/album.json","artist_path":"artists/mb/mbid-272989c8-5535-492d-a25c-9f58803e027f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:272989c8-5535-492d-a25c-9f58803e027f",
+      "duration_ms": 203000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:17894247-e585-4c97-83ea-de7047df7639",
+      "track_mbid": "17894247-e585-4c97-83ea-de7047df7639",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 203000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:17894247-e585-4c97-83ea-de7047df7639",
+  "identity": {
+    "album": "SOS",
+    "album_id": "album:bf15756d708bfacc8d49",
+    "artist": "SZA",
+    "artist_id": "mbid:272989c8-5535-492d-a25c-9f58803e027f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "17894247-e585-4c97-83ea-de7047df7639",
+    "source_track_id": "mbid:17894247-e585-4c97-83ea-de7047df7639",
+    "spotify_id": null,
+    "title": "Seek & Destroy",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-10-23T18:54:21+00:00",
+    "last_scrobble": "2025-10-23T18:54:21+00:00",
+    "observed_albums": [
+      {
+        "album": "SOS",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bf15756d708bfacc8d49/album.json",
+    "artist_path": "artists/mb/mbid-272989c8-5535-492d-a25c-9f58803e027f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

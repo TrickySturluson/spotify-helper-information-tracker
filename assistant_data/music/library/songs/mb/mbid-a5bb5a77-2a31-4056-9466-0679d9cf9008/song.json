@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:f53e7546-8af6-4b44-8fc9-ce6b3e26b441","duration_ms":215000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:a5bb5a77-2a31-4056-9466-0679d9cf9008","track_mbid":"a5bb5a77-2a31-4056-9466-0679d9cf9008"}},"id":"mbid:a5bb5a77-2a31-4056-9466-0679d9cf9008","identity":{"album":"Emefe","album_id":"album:48cb7c294948231b38ff","artist":"EMEFE","artist_id":"mbid:f53e7546-8af6-4b44-8fc9-ce6b3e26b441","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a5bb5a77-2a31-4056-9466-0679d9cf9008","source_track_id":"mbid:a5bb5a77-2a31-4056-9466-0679d9cf9008","spotify_id":null,"title":"Sun Spat","track_number":null},"listening_context":{"all_time_plays":10,"first_scrobble":"2025-08-25T08:59:50+00:00","last_scrobble":"2025-08-27T04:03:41+00:00","observed_albums":[{"album":"Emefe","scrobbles":10}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-48cb7c294948231b38ff/album.json","artist_path":"artists/mb/mbid-f53e7546-8af6-4b44-8fc9-ce6b3e26b441/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:f53e7546-8af6-4b44-8fc9-ce6b3e26b441",
+      "duration_ms": 215000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:a5bb5a77-2a31-4056-9466-0679d9cf9008",
+      "track_mbid": "a5bb5a77-2a31-4056-9466-0679d9cf9008",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 215000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a5bb5a77-2a31-4056-9466-0679d9cf9008",
+  "identity": {
+    "album": "Emefe",
+    "album_id": "album:48cb7c294948231b38ff",
+    "artist": "EMEFE",
+    "artist_id": "mbid:f53e7546-8af6-4b44-8fc9-ce6b3e26b441",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a5bb5a77-2a31-4056-9466-0679d9cf9008",
+    "source_track_id": "mbid:a5bb5a77-2a31-4056-9466-0679d9cf9008",
+    "spotify_id": null,
+    "title": "Sun Spat",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 10,
+    "first_scrobble": "2025-08-25T08:59:50+00:00",
+    "last_scrobble": "2025-08-27T04:03:41+00:00",
+    "observed_albums": [
+      {
+        "album": "Emefe",
+        "scrobbles": 10
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-48cb7c294948231b38ff/album.json",
+    "artist_path": "artists/mb/mbid-f53e7546-8af6-4b44-8fc9-ce6b3e26b441/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

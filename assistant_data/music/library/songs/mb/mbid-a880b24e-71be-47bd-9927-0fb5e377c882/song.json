@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd","duration_ms":210000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:35:39.989978+00:00","lastfm_error":"{}","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-10-31T06:35:41.504665+00:00","musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:a880b24e-71be-47bd-9927-0fb5e377c882","track_mbid":"a880b24e-71be-47bd-9927-0fb5e377c882"}},"id":"mbid:a880b24e-71be-47bd-9927-0fb5e377c882","identity":{"album":"Everywhere at the end of time (Stage 1)","album_id":"album:989ad5bc33d26919fd2b","artist":"The Caretaker","artist_id":"mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a880b24e-71be-47bd-9927-0fb5e377c882","source_track_id":"mbid:a880b24e-71be-47bd-9927-0fb5e377c882","spotify_id":null,"title":"A2 - We don't have many days","track_number":null},"listening_context":{"all_time_plays":243,"first_scrobble":"2024-04-12T01:11:14+00:00","last_scrobble":"2026-10-03T10:00:12+00:00","observed_albums":[{"album":"Everywhere at the end of time (Stage 1)","scrobbles":243}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-989ad5bc33d26919fd2b/album.json","artist_path":"artists/mb/mbid-82c770d1-8c62-4f4d-9021-7bd8a097f7dd/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd",
+      "duration_ms": 210000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:35:39.989978+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-10-31T06:35:41.504665+00:00",
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:a880b24e-71be-47bd-9927-0fb5e377c882",
+      "track_mbid": "a880b24e-71be-47bd-9927-0fb5e377c882",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:24:56+00:00",
+          "status": "matched",
+          "duration_ms": 210000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a880b24e-71be-47bd-9927-0fb5e377c882",
+  "identity": {
+    "album": "Everywhere at the end of time (Stage 1)",
+    "album_id": "album:989ad5bc33d26919fd2b",
+    "artist": "The Caretaker",
+    "artist_id": "mbid:82c770d1-8c62-4f4d-9021-7bd8a097f7dd",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a880b24e-71be-47bd-9927-0fb5e377c882",
+    "source_track_id": "mbid:a880b24e-71be-47bd-9927-0fb5e377c882",
+    "spotify_id": null,
+    "title": "A2 - We don't have many days",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 243,
+    "first_scrobble": "2024-04-12T01:11:14+00:00",
+    "last_scrobble": "2026-10-03T10:00:12+00:00",
+    "observed_albums": [
+      {
+        "album": "Everywhere at the end of time (Stage 1)",
+        "scrobbles": 243
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-989ad5bc33d26919fd2b/album.json",
+    "artist_path": "artists/mb/mbid-82c770d1-8c62-4f4d-9021-7bd8a097f7dd/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

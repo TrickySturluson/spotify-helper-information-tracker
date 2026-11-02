@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:a1dd9574f7a5889a","duration_ms":200000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b47c9358-07fb-39ea-91d1-89492673c96f","track_mbid":"b47c9358-07fb-39ea-91d1-89492673c96f"}},"id":"mbid:b47c9358-07fb-39ea-91d1-89492673c96f","identity":{"album":"Torch This Place","album_id":"album:5c65c7e249303ab88ade","artist":"Atomic Fireballs","artist_id":"name:a1dd9574f7a5889a","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b47c9358-07fb-39ea-91d1-89492673c96f","source_track_id":"mbid:b47c9358-07fb-39ea-91d1-89492673c96f","spotify_id":null,"title":"Lover Lies","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-11-13T19:01:18+00:00","last_scrobble":"2026-05-21T21:36:36+00:00","observed_albums":[{"album":"Torch This Place","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5c65c7e249303ab88ade/album.json","artist_path":"artists/na/name-a1dd9574f7a5889a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:a1dd9574f7a5889a",
+      "duration_ms": 200000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b47c9358-07fb-39ea-91d1-89492673c96f",
+      "track_mbid": "b47c9358-07fb-39ea-91d1-89492673c96f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 200000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b47c9358-07fb-39ea-91d1-89492673c96f",
+  "identity": {
+    "album": "Torch This Place",
+    "album_id": "album:5c65c7e249303ab88ade",
+    "artist": "Atomic Fireballs",
+    "artist_id": "name:a1dd9574f7a5889a",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b47c9358-07fb-39ea-91d1-89492673c96f",
+    "source_track_id": "mbid:b47c9358-07fb-39ea-91d1-89492673c96f",
+    "spotify_id": null,
+    "title": "Lover Lies",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-11-13T19:01:18+00:00",
+    "last_scrobble": "2026-05-21T21:36:36+00:00",
+    "observed_albums": [
+      {
+        "album": "Torch This Place",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5c65c7e249303ab88ade/album.json",
+    "artist_path": "artists/na/name-a1dd9574f7a5889a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

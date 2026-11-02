@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:50180e57-a3bd-430f-85ad-6b6193b8930a","duration_ms":188000,"duration_source":"Last.fm track.getInfo","track_id":"track:84b08433bcbb08d6"}},"id":"source:84b08433bcbb08d6","identity":{"album":"Sad but Happy","album_id":"album:4723f8319afa93fd6a6e","artist":"PromiseLand","artist_id":"mbid:50180e57-a3bd-430f-85ad-6b6193b8930a","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:84b08433bcbb08d6","spotify_id":null,"title":"Take Down the House","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2026-05-09T02:52:57+00:00","last_scrobble":"2026-05-09T02:52:57+00:00","observed_albums":[{"album":"Sad but Happy","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4723f8319afa93fd6a6e/album.json","artist_path":"artists/mb/mbid-50180e57-a3bd-430f-85ad-6b6193b8930a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:50180e57-a3bd-430f-85ad-6b6193b8930a",
+      "duration_ms": 188000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:84b08433bcbb08d6",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 188000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:84b08433bcbb08d6",
+  "identity": {
+    "album": "Sad but Happy",
+    "album_id": "album:4723f8319afa93fd6a6e",
+    "artist": "PromiseLand",
+    "artist_id": "mbid:50180e57-a3bd-430f-85ad-6b6193b8930a",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:84b08433bcbb08d6",
+    "spotify_id": null,
+    "title": "Take Down the House",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2026-05-09T02:52:57+00:00",
+    "last_scrobble": "2026-05-09T02:52:57+00:00",
+    "observed_albums": [
+      {
+        "album": "Sad but Happy",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4723f8319afa93fd6a6e/album.json",
+    "artist_path": "artists/mb/mbid-50180e57-a3bd-430f-85ad-6b6193b8930a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

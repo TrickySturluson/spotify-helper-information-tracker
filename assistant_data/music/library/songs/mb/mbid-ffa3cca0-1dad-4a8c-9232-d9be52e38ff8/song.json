@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7bbd2f4c-b5b3-4ed1-92ce-53aef244f00d","duration_ms":222000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ffa3cca0-1dad-4a8c-9232-d9be52e38ff8","track_mbid":"ffa3cca0-1dad-4a8c-9232-d9be52e38ff8"}},"id":"mbid:ffa3cca0-1dad-4a8c-9232-d9be52e38ff8","identity":{"album":"1929, Pt. 1 (Altermixes)","album_id":"album:055a296b8de9dd1572b5","artist":"KONGOS","artist_id":"mbid:7bbd2f4c-b5b3-4ed1-92ce-53aef244f00d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ffa3cca0-1dad-4a8c-9232-d9be52e38ff8","source_track_id":"mbid:ffa3cca0-1dad-4a8c-9232-d9be52e38ff8","spotify_id":null,"title":"Everything Must Go (Altermix)","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-10-30T01:20:53+00:00","last_scrobble":"2023-10-30T01:20:53+00:00","observed_albums":[{"album":"1929, Pt. 1 (Altermixes)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-055a296b8de9dd1572b5/album.json","artist_path":"artists/mb/mbid-7bbd2f4c-b5b3-4ed1-92ce-53aef244f00d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7bbd2f4c-b5b3-4ed1-92ce-53aef244f00d",
+      "duration_ms": 222000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ffa3cca0-1dad-4a8c-9232-d9be52e38ff8",
+      "track_mbid": "ffa3cca0-1dad-4a8c-9232-d9be52e38ff8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 222000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ffa3cca0-1dad-4a8c-9232-d9be52e38ff8",
+  "identity": {
+    "album": "1929, Pt. 1 (Altermixes)",
+    "album_id": "album:055a296b8de9dd1572b5",
+    "artist": "KONGOS",
+    "artist_id": "mbid:7bbd2f4c-b5b3-4ed1-92ce-53aef244f00d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ffa3cca0-1dad-4a8c-9232-d9be52e38ff8",
+    "source_track_id": "mbid:ffa3cca0-1dad-4a8c-9232-d9be52e38ff8",
+    "spotify_id": null,
+    "title": "Everything Must Go (Altermix)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-10-30T01:20:53+00:00",
+    "last_scrobble": "2023-10-30T01:20:53+00:00",
+    "observed_albums": [
+      {
+        "album": "1929, Pt. 1 (Altermixes)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-055a296b8de9dd1572b5/album.json",
+    "artist_path": "artists/mb/mbid-7bbd2f4c-b5b3-4ed1-92ce-53aef244f00d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

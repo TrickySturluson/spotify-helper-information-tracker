@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:59b98497-deb6-4198-b42f-381e015fb450","duration_ms":258000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:78a655c9-7619-48b4-ae37-da94706fca74","track_mbid":"78a655c9-7619-48b4-ae37-da94706fca74"}},"id":"mbid:78a655c9-7619-48b4-ae37-da94706fca74","identity":{"album":"Space","album_id":"album:25a7bc4963d74a4a4604","artist":"EX-LYD","artist_id":"mbid:59b98497-deb6-4198-b42f-381e015fb450","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"78a655c9-7619-48b4-ae37-da94706fca74","source_track_id":"mbid:78a655c9-7619-48b4-ae37-da94706fca74","spotify_id":null,"title":"Space Fractal","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-09-18T18:28:13+00:00","last_scrobble":"2023-09-18T18:28:13+00:00","observed_albums":[{"album":"Space","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-25a7bc4963d74a4a4604/album.json","artist_path":"artists/mb/mbid-59b98497-deb6-4198-b42f-381e015fb450/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:59b98497-deb6-4198-b42f-381e015fb450",
+      "duration_ms": 258000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:78a655c9-7619-48b4-ae37-da94706fca74",
+      "track_mbid": "78a655c9-7619-48b4-ae37-da94706fca74",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 258000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:78a655c9-7619-48b4-ae37-da94706fca74",
+  "identity": {
+    "album": "Space",
+    "album_id": "album:25a7bc4963d74a4a4604",
+    "artist": "EX-LYD",
+    "artist_id": "mbid:59b98497-deb6-4198-b42f-381e015fb450",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "78a655c9-7619-48b4-ae37-da94706fca74",
+    "source_track_id": "mbid:78a655c9-7619-48b4-ae37-da94706fca74",
+    "spotify_id": null,
+    "title": "Space Fractal",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-09-18T18:28:13+00:00",
+    "last_scrobble": "2023-09-18T18:28:13+00:00",
+    "observed_albums": [
+      {
+        "album": "Space",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-25a7bc4963d74a4a4604/album.json",
+    "artist_path": "artists/mb/mbid-59b98497-deb6-4198-b42f-381e015fb450/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

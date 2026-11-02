@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c7caf86a-cf4d-41d3-b68a-eaeab80da4b8","duration_ms":149000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4e17b46c-c8e5-3e80-9242-226a89657c77","track_mbid":"4e17b46c-c8e5-3e80-9242-226a89657c77"}},"id":"mbid:4e17b46c-c8e5-3e80-9242-226a89657c77","identity":{"album":"Best Hits of the 5.6.7.8's","album_id":"album:b90d46f8b631a0389b5d","artist":"The 5.6.7.8's","artist_id":"mbid:c7caf86a-cf4d-41d3-b68a-eaeab80da4b8","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4e17b46c-c8e5-3e80-9242-226a89657c77","source_track_id":"mbid:4e17b46c-c8e5-3e80-9242-226a89657c77","spotify_id":null,"title":"I'm Blue","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-03-31T15:55:05+00:00","last_scrobble":"2026-04-04T05:07:53+00:00","observed_albums":[{"album":"Best Hits of the 5.6.7.8's","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b90d46f8b631a0389b5d/album.json","artist_path":"artists/mb/mbid-c7caf86a-cf4d-41d3-b68a-eaeab80da4b8/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c7caf86a-cf4d-41d3-b68a-eaeab80da4b8",
+      "duration_ms": 149000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4e17b46c-c8e5-3e80-9242-226a89657c77",
+      "track_mbid": "4e17b46c-c8e5-3e80-9242-226a89657c77",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 149000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4e17b46c-c8e5-3e80-9242-226a89657c77",
+  "identity": {
+    "album": "Best Hits of the 5.6.7.8's",
+    "album_id": "album:b90d46f8b631a0389b5d",
+    "artist": "The 5.6.7.8's",
+    "artist_id": "mbid:c7caf86a-cf4d-41d3-b68a-eaeab80da4b8",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4e17b46c-c8e5-3e80-9242-226a89657c77",
+    "source_track_id": "mbid:4e17b46c-c8e5-3e80-9242-226a89657c77",
+    "spotify_id": null,
+    "title": "I'm Blue",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-03-31T15:55:05+00:00",
+    "last_scrobble": "2026-04-04T05:07:53+00:00",
+    "observed_albums": [
+      {
+        "album": "Best Hits of the 5.6.7.8's",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b90d46f8b631a0389b5d/album.json",
+    "artist_path": "artists/mb/mbid-c7caf86a-cf4d-41d3-b68a-eaeab80da4b8/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3bdcd49d-212e-4f4f-877a-eac1e4a2bddc","duration_ms":422000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:495bf34c-0f1c-4bbb-a87b-fceb4c10e29a","track_mbid":"495bf34c-0f1c-4bbb-a87b-fceb4c10e29a"}},"id":"mbid:495bf34c-0f1c-4bbb-a87b-fceb4c10e29a","identity":{"album":"Poverty's Paradise (25th Anniversary - Remastered)","album_id":"album:8362578d0ecf5d9667b3","artist":"Naughty By Nature","artist_id":"mbid:3bdcd49d-212e-4f4f-877a-eac1e4a2bddc","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"495bf34c-0f1c-4bbb-a87b-fceb4c10e29a","source_track_id":"mbid:495bf34c-0f1c-4bbb-a87b-fceb4c10e29a","spotify_id":null,"title":"Shout Out","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-12-16T02:29:02+00:00","last_scrobble":"2025-12-16T02:29:02+00:00","observed_albums":[{"album":"Poverty's Paradise (25th Anniversary - Remastered)","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-8362578d0ecf5d9667b3/album.json","artist_path":"artists/mb/mbid-3bdcd49d-212e-4f4f-877a-eac1e4a2bddc/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3bdcd49d-212e-4f4f-877a-eac1e4a2bddc",
+      "duration_ms": 422000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:495bf34c-0f1c-4bbb-a87b-fceb4c10e29a",
+      "track_mbid": "495bf34c-0f1c-4bbb-a87b-fceb4c10e29a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 422000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:495bf34c-0f1c-4bbb-a87b-fceb4c10e29a",
+  "identity": {
+    "album": "Poverty's Paradise (25th Anniversary - Remastered)",
+    "album_id": "album:8362578d0ecf5d9667b3",
+    "artist": "Naughty By Nature",
+    "artist_id": "mbid:3bdcd49d-212e-4f4f-877a-eac1e4a2bddc",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "495bf34c-0f1c-4bbb-a87b-fceb4c10e29a",
+    "source_track_id": "mbid:495bf34c-0f1c-4bbb-a87b-fceb4c10e29a",
+    "spotify_id": null,
+    "title": "Shout Out",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-12-16T02:29:02+00:00",
+    "last_scrobble": "2025-12-16T02:29:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Poverty's Paradise (25th Anniversary - Remastered)",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-8362578d0ecf5d9667b3/album.json",
+    "artist_path": "artists/mb/mbid-3bdcd49d-212e-4f4f-877a-eac1e4a2bddc/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

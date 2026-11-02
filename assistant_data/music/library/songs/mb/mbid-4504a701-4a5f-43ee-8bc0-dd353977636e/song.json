@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:8849da42-cbf6-452b-9220-95c7c691014b","duration_ms":168000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:4504a701-4a5f-43ee-8bc0-dd353977636e","track_mbid":"4504a701-4a5f-43ee-8bc0-dd353977636e"}},"id":"mbid:4504a701-4a5f-43ee-8bc0-dd353977636e","identity":{"album":"T H E","album_id":"album:b12f03a7e06f8d38c0e2","artist":"tricot","artist_id":"mbid:8849da42-cbf6-452b-9220-95c7c691014b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"4504a701-4a5f-43ee-8bc0-dd353977636e","source_track_id":"mbid:4504a701-4a5f-43ee-8bc0-dd353977636e","spotify_id":null,"title":"おちゃんせんすぅす","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2023-08-29T00:04:48+00:00","last_scrobble":"2023-09-03T03:52:47+00:00","observed_albums":[{"album":"T H E","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-b12f03a7e06f8d38c0e2/album.json","artist_path":"artists/mb/mbid-8849da42-cbf6-452b-9220-95c7c691014b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:8849da42-cbf6-452b-9220-95c7c691014b",
+      "duration_ms": 168000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:4504a701-4a5f-43ee-8bc0-dd353977636e",
+      "track_mbid": "4504a701-4a5f-43ee-8bc0-dd353977636e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 168000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:4504a701-4a5f-43ee-8bc0-dd353977636e",
+  "identity": {
+    "album": "T H E",
+    "album_id": "album:b12f03a7e06f8d38c0e2",
+    "artist": "tricot",
+    "artist_id": "mbid:8849da42-cbf6-452b-9220-95c7c691014b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "4504a701-4a5f-43ee-8bc0-dd353977636e",
+    "source_track_id": "mbid:4504a701-4a5f-43ee-8bc0-dd353977636e",
+    "spotify_id": null,
+    "title": "おちゃんせんすぅす",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2023-08-29T00:04:48+00:00",
+    "last_scrobble": "2023-09-03T03:52:47+00:00",
+    "observed_albums": [
+      {
+        "album": "T H E",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-b12f03a7e06f8d38c0e2/album.json",
+    "artist_path": "artists/mb/mbid-8849da42-cbf6-452b-9220-95c7c691014b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

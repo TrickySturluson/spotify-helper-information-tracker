@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:2c31570c-abc0-443c-8594-6ce77d30833d","duration_ms":186000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6f57c082-5501-491c-8ad1-2811a3cac211","track_mbid":"6f57c082-5501-491c-8ad1-2811a3cac211"}},"id":"mbid:6f57c082-5501-491c-8ad1-2811a3cac211","identity":{"album":"II","album_id":"album:7f166c740dbda49a2d19","artist":"Dear Sherlock","artist_id":"mbid:2c31570c-abc0-443c-8594-6ce77d30833d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6f57c082-5501-491c-8ad1-2811a3cac211","source_track_id":"mbid:6f57c082-5501-491c-8ad1-2811a3cac211","spotify_id":null,"title":"Hell","track_number":null},"listening_context":{"all_time_plays":5,"first_scrobble":"2025-03-10T15:36:08+00:00","last_scrobble":"2026-02-02T22:49:56+00:00","observed_albums":[{"album":"II","scrobbles":5}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-7f166c740dbda49a2d19/album.json","artist_path":"artists/mb/mbid-2c31570c-abc0-443c-8594-6ce77d30833d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:2c31570c-abc0-443c-8594-6ce77d30833d",
+      "duration_ms": 186000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6f57c082-5501-491c-8ad1-2811a3cac211",
+      "track_mbid": "6f57c082-5501-491c-8ad1-2811a3cac211",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 186000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6f57c082-5501-491c-8ad1-2811a3cac211",
+  "identity": {
+    "album": "II",
+    "album_id": "album:7f166c740dbda49a2d19",
+    "artist": "Dear Sherlock",
+    "artist_id": "mbid:2c31570c-abc0-443c-8594-6ce77d30833d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6f57c082-5501-491c-8ad1-2811a3cac211",
+    "source_track_id": "mbid:6f57c082-5501-491c-8ad1-2811a3cac211",
+    "spotify_id": null,
+    "title": "Hell",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 5,
+    "first_scrobble": "2025-03-10T15:36:08+00:00",
+    "last_scrobble": "2026-02-02T22:49:56+00:00",
+    "observed_albums": [
+      {
+        "album": "II",
+        "scrobbles": 5
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-7f166c740dbda49a2d19/album.json",
+    "artist_path": "artists/mb/mbid-2c31570c-abc0-443c-8594-6ce77d30833d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

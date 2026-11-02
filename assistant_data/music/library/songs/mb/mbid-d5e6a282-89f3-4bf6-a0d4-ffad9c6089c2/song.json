@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2","duration_ms":212000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2","track_mbid":"d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2"}},"id":"mbid:d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2","identity":{"album":"Haunted Things","album_id":"album:6e413e9a7dc497d22baa","artist":"Shayfer James","artist_id":"mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2","source_track_id":"mbid:d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2","spotify_id":null,"title":"Tiny Gods","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2024-04-11T03:01:27+00:00","last_scrobble":"2024-04-14T20:48:43+00:00","observed_albums":[{"album":"Haunted Things","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-6e413e9a7dc497d22baa/album.json","artist_path":"artists/mb/mbid-53d2ae18-de31-4fd2-b368-82e6c1cebeb2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2",
+      "track_mbid": "d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2",
+  "identity": {
+    "album": "Haunted Things",
+    "album_id": "album:6e413e9a7dc497d22baa",
+    "artist": "Shayfer James",
+    "artist_id": "mbid:53d2ae18-de31-4fd2-b368-82e6c1cebeb2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2",
+    "source_track_id": "mbid:d5e6a282-89f3-4bf6-a0d4-ffad9c6089c2",
+    "spotify_id": null,
+    "title": "Tiny Gods",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2024-04-11T03:01:27+00:00",
+    "last_scrobble": "2024-04-14T20:48:43+00:00",
+    "observed_albums": [
+      {
+        "album": "Haunted Things",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-6e413e9a7dc497d22baa/album.json",
+    "artist_path": "artists/mb/mbid-53d2ae18-de31-4fd2-b368-82e6c1cebeb2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:4efff420ee711701","duration_ms":137000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:b997c322-26db-4070-a08f-61d69d854078","track_mbid":"b997c322-26db-4070-a08f-61d69d854078"}},"id":"mbid:b997c322-26db-4070-a08f-61d69d854078","identity":{"album":"Varra II","album_id":"album:e78df19a2124e28d464e","artist":"VARRA","artist_id":"name:4efff420ee711701","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"b997c322-26db-4070-a08f-61d69d854078","source_track_id":"mbid:b997c322-26db-4070-a08f-61d69d854078","spotify_id":null,"title":"BIRDO II","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-08-14T02:59:35+00:00","last_scrobble":"2025-08-14T02:59:35+00:00","observed_albums":[{"album":"Varra II","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e78df19a2124e28d464e/album.json","artist_path":"artists/na/name-4efff420ee711701/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:4efff420ee711701",
+      "duration_ms": 137000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:b997c322-26db-4070-a08f-61d69d854078",
+      "track_mbid": "b997c322-26db-4070-a08f-61d69d854078",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 137000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b997c322-26db-4070-a08f-61d69d854078",
+  "identity": {
+    "album": "Varra II",
+    "album_id": "album:e78df19a2124e28d464e",
+    "artist": "VARRA",
+    "artist_id": "name:4efff420ee711701",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "b997c322-26db-4070-a08f-61d69d854078",
+    "source_track_id": "mbid:b997c322-26db-4070-a08f-61d69d854078",
+    "spotify_id": null,
+    "title": "BIRDO II",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-08-14T02:59:35+00:00",
+    "last_scrobble": "2025-08-14T02:59:35+00:00",
+    "observed_albums": [
+      {
+        "album": "Varra II",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e78df19a2124e28d464e/album.json",
+    "artist_path": "artists/na/name-4efff420ee711701/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

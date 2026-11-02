@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:94d648bb-b207-4133-a632-9303e5c9fc65","duration_ms":265000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:e49e5b52-54e3-4951-977a-84e58ff1e3b0","track_mbid":"e49e5b52-54e3-4951-977a-84e58ff1e3b0"}},"id":"mbid:e49e5b52-54e3-4951-977a-84e58ff1e3b0","identity":{"album":"LOTERIA TRIBAL","album_id":"album:5b813cd0a4f87a1c5c3b","artist":"Thee Commons","artist_id":"mbid:94d648bb-b207-4133-a632-9303e5c9fc65","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e49e5b52-54e3-4951-977a-84e58ff1e3b0","source_track_id":"mbid:e49e5b52-54e3-4951-977a-84e58ff1e3b0","spotify_id":null,"title":"Wampiro","track_number":null},"listening_context":{"all_time_plays":6,"first_scrobble":"2025-07-01T15:03:54+00:00","last_scrobble":"2025-07-06T11:34:54+00:00","observed_albums":[{"album":"LOTERIA TRIBAL","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-5b813cd0a4f87a1c5c3b/album.json","artist_path":"artists/mb/mbid-94d648bb-b207-4133-a632-9303e5c9fc65/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:94d648bb-b207-4133-a632-9303e5c9fc65",
+      "duration_ms": 265000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:e49e5b52-54e3-4951-977a-84e58ff1e3b0",
+      "track_mbid": "e49e5b52-54e3-4951-977a-84e58ff1e3b0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 265000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e49e5b52-54e3-4951-977a-84e58ff1e3b0",
+  "identity": {
+    "album": "LOTERIA TRIBAL",
+    "album_id": "album:5b813cd0a4f87a1c5c3b",
+    "artist": "Thee Commons",
+    "artist_id": "mbid:94d648bb-b207-4133-a632-9303e5c9fc65",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e49e5b52-54e3-4951-977a-84e58ff1e3b0",
+    "source_track_id": "mbid:e49e5b52-54e3-4951-977a-84e58ff1e3b0",
+    "spotify_id": null,
+    "title": "Wampiro",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 6,
+    "first_scrobble": "2025-07-01T15:03:54+00:00",
+    "last_scrobble": "2025-07-06T11:34:54+00:00",
+    "observed_albums": [
+      {
+        "album": "LOTERIA TRIBAL",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-5b813cd0a4f87a1c5c3b/album.json",
+    "artist_path": "artists/mb/mbid-94d648bb-b207-4133-a632-9303e5c9fc65/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:c21c9d38-4a4e-4ef5-8a9d-96c0232c597a","duration_ms":278000,"duration_source":"Last.fm track.getInfo","track_id":"track:c1da58f93f568831"}},"id":"source:c1da58f93f568831","identity":{"album":"Music for an Empty Metropolis","album_id":"album:a2e249ee150fddb12ffa","artist":"Ørdop Wolkenscheidt","artist_id":"mbid:c21c9d38-4a4e-4ef5-8a9d-96c0232c597a","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:c1da58f93f568831","spotify_id":null,"title":"Acid Rain on Broken Rooftops","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2023-03-16T07:54:15+00:00","last_scrobble":"2023-03-16T07:54:15+00:00","observed_albums":[{"album":"Music for an Empty Metropolis","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a2e249ee150fddb12ffa/album.json","artist_path":"artists/mb/mbid-c21c9d38-4a4e-4ef5-8a9d-96c0232c597a/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:c21c9d38-4a4e-4ef5-8a9d-96c0232c597a",
+      "duration_ms": 278000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:c1da58f93f568831",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 278000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:c1da58f93f568831",
+  "identity": {
+    "album": "Music for an Empty Metropolis",
+    "album_id": "album:a2e249ee150fddb12ffa",
+    "artist": "Ørdop Wolkenscheidt",
+    "artist_id": "mbid:c21c9d38-4a4e-4ef5-8a9d-96c0232c597a",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:c1da58f93f568831",
+    "spotify_id": null,
+    "title": "Acid Rain on Broken Rooftops",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2023-03-16T07:54:15+00:00",
+    "last_scrobble": "2023-03-16T07:54:15+00:00",
+    "observed_albums": [
+      {
+        "album": "Music for an Empty Metropolis",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a2e249ee150fddb12ffa/album.json",
+    "artist_path": "artists/mb/mbid-c21c9d38-4a4e-4ef5-8a9d-96c0232c597a/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

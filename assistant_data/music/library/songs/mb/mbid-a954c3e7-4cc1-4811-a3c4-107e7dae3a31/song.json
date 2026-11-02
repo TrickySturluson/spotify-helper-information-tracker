@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:8625edf98728fb1e","duration_ms":228000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:a954c3e7-4cc1-4811-a3c4-107e7dae3a31","track_mbid":"a954c3e7-4cc1-4811-a3c4-107e7dae3a31"}},"id":"mbid:a954c3e7-4cc1-4811-a3c4-107e7dae3a31","identity":{"album":"Ado's Best Adobum","album_id":"album:be57c907dbec16424230","artist":"Ado","artist_id":"name:8625edf98728fb1e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a954c3e7-4cc1-4811-a3c4-107e7dae3a31","source_track_id":"mbid:a954c3e7-4cc1-4811-a3c4-107e7dae3a31","spotify_id":null,"title":"Bouquet for Me","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-09-01T03:14:45+00:00","last_scrobble":"2025-09-01T03:14:45+00:00","observed_albums":[{"album":"Ado's Best Adobum","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-be57c907dbec16424230/album.json","artist_path":"artists/na/name-8625edf98728fb1e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:8625edf98728fb1e",
+      "duration_ms": 228000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:a954c3e7-4cc1-4811-a3c4-107e7dae3a31",
+      "track_mbid": "a954c3e7-4cc1-4811-a3c4-107e7dae3a31",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 228000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a954c3e7-4cc1-4811-a3c4-107e7dae3a31",
+  "identity": {
+    "album": "Ado's Best Adobum",
+    "album_id": "album:be57c907dbec16424230",
+    "artist": "Ado",
+    "artist_id": "name:8625edf98728fb1e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a954c3e7-4cc1-4811-a3c4-107e7dae3a31",
+    "source_track_id": "mbid:a954c3e7-4cc1-4811-a3c4-107e7dae3a31",
+    "spotify_id": null,
+    "title": "Bouquet for Me",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-09-01T03:14:45+00:00",
+    "last_scrobble": "2025-09-01T03:14:45+00:00",
+    "observed_albums": [
+      {
+        "album": "Ado's Best Adobum",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-be57c907dbec16424230/album.json",
+    "artist_path": "artists/na/name-8625edf98728fb1e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

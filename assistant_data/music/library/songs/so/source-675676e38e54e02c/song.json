@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:32673e42-5ba2-4528-b3fe-a000a0c606e3","duration_ms":207000,"duration_source":"Last.fm track.getInfo","track_id":"track:675676e38e54e02c"}},"id":"source:675676e38e54e02c","identity":{"album":"The Singles","album_id":"album:a4ba3da190a1a6254137","artist":"Corey Hart","artist_id":"mbid:32673e42-5ba2-4528-b3fe-a000a0c606e3","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:675676e38e54e02c","spotify_id":null,"title":"Sunglasses at Night","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-06-26T16:33:54+00:00","last_scrobble":"2024-06-26T16:39:14+00:00","observed_albums":[{"album":"The Singles","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a4ba3da190a1a6254137/album.json","artist_path":"artists/mb/mbid-32673e42-5ba2-4528-b3fe-a000a0c606e3/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:32673e42-5ba2-4528-b3fe-a000a0c606e3",
+      "duration_ms": 207000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:675676e38e54e02c",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 207000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:675676e38e54e02c",
+  "identity": {
+    "album": "The Singles",
+    "album_id": "album:a4ba3da190a1a6254137",
+    "artist": "Corey Hart",
+    "artist_id": "mbid:32673e42-5ba2-4528-b3fe-a000a0c606e3",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:675676e38e54e02c",
+    "spotify_id": null,
+    "title": "Sunglasses at Night",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-06-26T16:33:54+00:00",
+    "last_scrobble": "2024-06-26T16:39:14+00:00",
+    "observed_albums": [
+      {
+        "album": "The Singles",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a4ba3da190a1a6254137/album.json",
+    "artist_path": "artists/mb/mbid-32673e42-5ba2-4528-b3fe-a000a0c606e3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

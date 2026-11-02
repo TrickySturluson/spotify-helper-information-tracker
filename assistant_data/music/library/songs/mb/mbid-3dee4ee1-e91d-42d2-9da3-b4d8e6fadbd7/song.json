@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:e3207b63-ab05-42bc-924e-b1299b89c406","duration_ms":125000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T07:33:59.087281+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-10-31T07:33:59.942554+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7","track_mbid":"3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7"}},"id":"mbid:3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7","identity":{"album":"T.S.O.L. / Weathered Statues","album_id":"album:e550b124fa52177ef746","artist":"T.S.O.L.","artist_id":"mbid:e3207b63-ab05-42bc-924e-b1299b89c406","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7","source_track_id":"mbid:3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7","spotify_id":null,"title":"Abolish Government/Silent Majority","track_number":null},"listening_context":{"all_time_plays":109,"first_scrobble":"2023-02-17T00:19:45+00:00","last_scrobble":"2026-07-03T19:01:44+00:00","observed_albums":[{"album":"T.S.O.L. / Weathered Statues","scrobbles":109}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e550b124fa52177ef746/album.json","artist_path":"artists/mb/mbid-e3207b63-ab05-42bc-924e-b1299b89c406/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:e3207b63-ab05-42bc-924e-b1299b89c406",
+      "duration_ms": 125000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T07:33:59.087281+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-10-31T07:33:59.942554+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7",
+      "track_mbid": "3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 125000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7",
+  "identity": {
+    "album": "T.S.O.L. / Weathered Statues",
+    "album_id": "album:e550b124fa52177ef746",
+    "artist": "T.S.O.L.",
+    "artist_id": "mbid:e3207b63-ab05-42bc-924e-b1299b89c406",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7",
+    "source_track_id": "mbid:3dee4ee1-e91d-42d2-9da3-b4d8e6fadbd7",
+    "spotify_id": null,
+    "title": "Abolish Government/Silent Majority",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 109,
+    "first_scrobble": "2023-02-17T00:19:45+00:00",
+    "last_scrobble": "2026-07-03T19:01:44+00:00",
+    "observed_albums": [
+      {
+        "album": "T.S.O.L. / Weathered Statues",
+        "scrobbles": 109
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e550b124fa52177ef746/album.json",
+    "artist_path": "artists/mb/mbid-e3207b63-ab05-42bc-924e-b1299b89c406/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

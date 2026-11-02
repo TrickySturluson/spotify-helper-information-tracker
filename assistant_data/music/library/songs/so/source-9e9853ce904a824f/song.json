@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:850a8b03-98a7-4fd3-afbd-5e5520b4ef5f","duration_ms":198000,"duration_source":"Last.fm track.getInfo","track_id":"track:9e9853ce904a824f"}},"id":"source:9e9853ce904a824f","identity":{"album":"Kid Krow","album_id":"album:e9fcb9d604700f612b50","artist":"Conan Gray","artist_id":"mbid:850a8b03-98a7-4fd3-afbd-5e5520b4ef5f","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:9e9853ce904a824f","spotify_id":null,"title":"Heather","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-01-06T04:41:08+00:00","last_scrobble":"2024-12-04T19:52:41+00:00","observed_albums":[{"album":"Kid Krow","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e9fcb9d604700f612b50/album.json","artist_path":"artists/mb/mbid-850a8b03-98a7-4fd3-afbd-5e5520b4ef5f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:850a8b03-98a7-4fd3-afbd-5e5520b4ef5f",
+      "duration_ms": 198000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:9e9853ce904a824f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 198000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:9e9853ce904a824f",
+  "identity": {
+    "album": "Kid Krow",
+    "album_id": "album:e9fcb9d604700f612b50",
+    "artist": "Conan Gray",
+    "artist_id": "mbid:850a8b03-98a7-4fd3-afbd-5e5520b4ef5f",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:9e9853ce904a824f",
+    "spotify_id": null,
+    "title": "Heather",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-01-06T04:41:08+00:00",
+    "last_scrobble": "2024-12-04T19:52:41+00:00",
+    "observed_albums": [
+      {
+        "album": "Kid Krow",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e9fcb9d604700f612b50/album.json",
+    "artist_path": "artists/mb/mbid-850a8b03-98a7-4fd3-afbd-5e5520b4ef5f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

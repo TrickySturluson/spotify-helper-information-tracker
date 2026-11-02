@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:38f0c7ac-46eb-49ca-b3ab-c785ccd05a60","duration_ms":214000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3","track_mbid":"a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3"}},"id":"mbid:a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3","identity":{"album":"French Exit","album_id":"album:a77f1e64acf0f263d031","artist":"TV Girl","artist_id":"mbid:38f0c7ac-46eb-49ca-b3ab-c785ccd05a60","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3","source_track_id":"mbid:a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3","spotify_id":null,"title":"Hate Yourself","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-01-15T19:32:40+00:00","last_scrobble":"2024-01-15T19:32:40+00:00","observed_albums":[{"album":"French Exit","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a77f1e64acf0f263d031/album.json","artist_path":"artists/mb/mbid-38f0c7ac-46eb-49ca-b3ab-c785ccd05a60/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:38f0c7ac-46eb-49ca-b3ab-c785ccd05a60",
+      "duration_ms": 214000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3",
+      "track_mbid": "a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 214000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3",
+  "identity": {
+    "album": "French Exit",
+    "album_id": "album:a77f1e64acf0f263d031",
+    "artist": "TV Girl",
+    "artist_id": "mbid:38f0c7ac-46eb-49ca-b3ab-c785ccd05a60",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3",
+    "source_track_id": "mbid:a90b82e0-6c2e-4c76-a8ca-aeb0252e9cc3",
+    "spotify_id": null,
+    "title": "Hate Yourself",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-01-15T19:32:40+00:00",
+    "last_scrobble": "2024-01-15T19:32:40+00:00",
+    "observed_albums": [
+      {
+        "album": "French Exit",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a77f1e64acf0f263d031/album.json",
+    "artist_path": "artists/mb/mbid-38f0c7ac-46eb-49ca-b3ab-c785ccd05a60/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

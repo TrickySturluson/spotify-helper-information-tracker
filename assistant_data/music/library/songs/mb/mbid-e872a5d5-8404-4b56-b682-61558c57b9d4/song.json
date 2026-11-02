@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:f26251ff24fa6728","duration_ms":263000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T22:40:04.927392+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T22:40:06.985036+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"identity_mismatch","retry_after":0,"track_id":"mbid:e872a5d5-8404-4b56-b682-61558c57b9d4","track_mbid":"e872a5d5-8404-4b56-b682-61558c57b9d4"}},"id":"mbid:e872a5d5-8404-4b56-b682-61558c57b9d4","identity":{"album":"Bojack Horseman (Music from the Netflix Original Series)","album_id":"album:f7afcd620eeef3757260","artist":"Patrick Carney","artist_id":"name:f26251ff24fa6728","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"e872a5d5-8404-4b56-b682-61558c57b9d4","source_track_id":"mbid:e872a5d5-8404-4b56-b682-61558c57b9d4","spotify_id":null,"title":"Bojack's Theme (Full Length)","track_number":null},"listening_context":{"all_time_plays":24,"first_scrobble":"2023-05-15T11:20:37+00:00","last_scrobble":"2023-10-10T07:58:11+00:00","observed_albums":[{"album":"Bojack Horseman (Music from the Netflix Original Series)","scrobbles":24}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f7afcd620eeef3757260/album.json","artist_path":"artists/na/name-f26251ff24fa6728/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"identity_mismatch"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:f26251ff24fa6728",
+      "duration_ms": 263000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T22:40:04.927392+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T22:40:06.985036+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "identity_mismatch",
+      "retry_after": 0,
+      "track_id": "mbid:e872a5d5-8404-4b56-b682-61558c57b9d4",
+      "track_mbid": "e872a5d5-8404-4b56-b682-61558c57b9d4",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 263000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:e872a5d5-8404-4b56-b682-61558c57b9d4",
+  "identity": {
+    "album": "Bojack Horseman (Music from the Netflix Original Series)",
+    "album_id": "album:f7afcd620eeef3757260",
+    "artist": "Patrick Carney",
+    "artist_id": "name:f26251ff24fa6728",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "e872a5d5-8404-4b56-b682-61558c57b9d4",
+    "source_track_id": "mbid:e872a5d5-8404-4b56-b682-61558c57b9d4",
+    "spotify_id": null,
+    "title": "Bojack's Theme (Full Length)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 24,
+    "first_scrobble": "2023-05-15T11:20:37+00:00",
+    "last_scrobble": "2023-10-10T07:58:11+00:00",
+    "observed_albums": [
+      {
+        "album": "Bojack Horseman (Music from the Netflix Original Series)",
+        "scrobbles": 24
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f7afcd620eeef3757260/album.json",
+    "artist_path": "artists/na/name-f26251ff24fa6728/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "identity_mismatch"
+    }
+  }
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9ec4fe28-da98-4e53-84b3-840793360b5f","duration_ms":118000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:aab4ec2f-8072-4269-b755-2a12e154fd2b","track_mbid":"aab4ec2f-8072-4269-b755-2a12e154fd2b"}},"id":"mbid:aab4ec2f-8072-4269-b755-2a12e154fd2b","identity":{"album":"~ fleeting moments ~","album_id":"album:eb9593a5381ec293ff41","artist":"Vince Kaichan","artist_id":"mbid:9ec4fe28-da98-4e53-84b3-840793360b5f","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"aab4ec2f-8072-4269-b755-2a12e154fd2b","source_track_id":"mbid:aab4ec2f-8072-4269-b755-2a12e154fd2b","spotify_id":null,"title":"birb","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-06-02T05:29:20+00:00","last_scrobble":"2025-06-02T17:16:07+00:00","observed_albums":[{"album":"~ fleeting moments ~","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-eb9593a5381ec293ff41/album.json","artist_path":"artists/mb/mbid-9ec4fe28-da98-4e53-84b3-840793360b5f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9ec4fe28-da98-4e53-84b3-840793360b5f",
+      "duration_ms": 118000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:aab4ec2f-8072-4269-b755-2a12e154fd2b",
+      "track_mbid": "aab4ec2f-8072-4269-b755-2a12e154fd2b",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 118000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:aab4ec2f-8072-4269-b755-2a12e154fd2b",
+  "identity": {
+    "album": "~ fleeting moments ~",
+    "album_id": "album:eb9593a5381ec293ff41",
+    "artist": "Vince Kaichan",
+    "artist_id": "mbid:9ec4fe28-da98-4e53-84b3-840793360b5f",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "aab4ec2f-8072-4269-b755-2a12e154fd2b",
+    "source_track_id": "mbid:aab4ec2f-8072-4269-b755-2a12e154fd2b",
+    "spotify_id": null,
+    "title": "birb",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-06-02T05:29:20+00:00",
+    "last_scrobble": "2025-06-02T17:16:07+00:00",
+    "observed_albums": [
+      {
+        "album": "~ fleeting moments ~",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-eb9593a5381ec293ff41/album.json",
+    "artist_path": "artists/mb/mbid-9ec4fe28-da98-4e53-84b3-840793360b5f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

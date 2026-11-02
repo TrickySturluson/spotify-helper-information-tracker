@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","duration_ms":168000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:ed73b307-1b22-4814-bb0c-1063329e90cc","track_mbid":"ed73b307-1b22-4814-bb0c-1063329e90cc"}},"id":"mbid:ed73b307-1b22-4814-bb0c-1063329e90cc","identity":{"album":"Church of Reverb","album_id":"album:95083fe3ac244bf15629","artist":"Messer Chups","artist_id":"mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ed73b307-1b22-4814-bb0c-1063329e90cc","source_track_id":"mbid:ed73b307-1b22-4814-bb0c-1063329e90cc","spotify_id":null,"title":"Human Jungle","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2023-05-21T00:02:27+00:00","last_scrobble":"2023-05-24T01:21:16+00:00","observed_albums":[{"album":"Church of Reverb","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-95083fe3ac244bf15629/album.json","artist_path":"artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+      "duration_ms": 168000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:ed73b307-1b22-4814-bb0c-1063329e90cc",
+      "track_mbid": "ed73b307-1b22-4814-bb0c-1063329e90cc",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 168000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ed73b307-1b22-4814-bb0c-1063329e90cc",
+  "identity": {
+    "album": "Church of Reverb",
+    "album_id": "album:95083fe3ac244bf15629",
+    "artist": "Messer Chups",
+    "artist_id": "mbid:050c59c3-12d7-4d7e-b890-9ebcf0caa85d",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ed73b307-1b22-4814-bb0c-1063329e90cc",
+    "source_track_id": "mbid:ed73b307-1b22-4814-bb0c-1063329e90cc",
+    "spotify_id": null,
+    "title": "Human Jungle",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2023-05-21T00:02:27+00:00",
+    "last_scrobble": "2023-05-24T01:21:16+00:00",
+    "observed_albums": [
+      {
+        "album": "Church of Reverb",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-95083fe3ac244bf15629/album.json",
+    "artist_path": "artists/mb/mbid-050c59c3-12d7-4d7e-b890-9ebcf0caa85d/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

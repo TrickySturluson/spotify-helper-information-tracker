@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","duration_ms":231000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:6199a4e5-1e0f-3076-91b6-b9272c4db6da","track_mbid":"6199a4e5-1e0f-3076-91b6-b9272c4db6da"}},"id":"mbid:6199a4e5-1e0f-3076-91b6-b9272c4db6da","identity":{"album":"The Crow Original Motion Picture Soundtrack","album_id":"album:945bfee7527f5d90cf71","artist":"Rage Against the Machine","artist_id":"mbid:3798b104-01cb-484c-a3b0-56adc6399b80","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6199a4e5-1e0f-3076-91b6-b9272c4db6da","source_track_id":"mbid:6199a4e5-1e0f-3076-91b6-b9272c4db6da","spotify_id":null,"title":"Darkness","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2026-03-10T18:55:08+00:00","last_scrobble":"2026-03-13T01:03:01+00:00","observed_albums":[{"album":"The Crow Original Motion Picture Soundtrack","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-945bfee7527f5d90cf71/album.json","artist_path":"artists/mb/mbid-3798b104-01cb-484c-a3b0-56adc6399b80/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3798b104-01cb-484c-a3b0-56adc6399b80",
+      "duration_ms": 231000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:6199a4e5-1e0f-3076-91b6-b9272c4db6da",
+      "track_mbid": "6199a4e5-1e0f-3076-91b6-b9272c4db6da",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 231000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6199a4e5-1e0f-3076-91b6-b9272c4db6da",
+  "identity": {
+    "album": "The Crow Original Motion Picture Soundtrack",
+    "album_id": "album:945bfee7527f5d90cf71",
+    "artist": "Rage Against the Machine",
+    "artist_id": "mbid:3798b104-01cb-484c-a3b0-56adc6399b80",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6199a4e5-1e0f-3076-91b6-b9272c4db6da",
+    "source_track_id": "mbid:6199a4e5-1e0f-3076-91b6-b9272c4db6da",
+    "spotify_id": null,
+    "title": "Darkness",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2026-03-10T18:55:08+00:00",
+    "last_scrobble": "2026-03-13T01:03:01+00:00",
+    "observed_albums": [
+      {
+        "album": "The Crow Original Motion Picture Soundtrack",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-945bfee7527f5d90cf71/album.json",
+    "artist_path": "artists/mb/mbid-3798b104-01cb-484c-a3b0-56adc6399b80/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

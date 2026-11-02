@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:dd2ae026-4144-4ee3-a7b4-09434a465c34","duration_ms":218000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:5a85555d-8fe4-4cfb-97ca-b06ec79577c0","track_mbid":"5a85555d-8fe4-4cfb-97ca-b06ec79577c0"}},"id":"mbid:5a85555d-8fe4-4cfb-97ca-b06ec79577c0","identity":{"album":"my time (an optimistic rebuttal)","album_id":"album:f9c59437513ed0575318","artist":"Rav","artist_id":"mbid:dd2ae026-4144-4ee3-a7b4-09434a465c34","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"5a85555d-8fe4-4cfb-97ca-b06ec79577c0","source_track_id":"mbid:5a85555d-8fe4-4cfb-97ca-b06ec79577c0","spotify_id":null,"title":"my time (an optimistic rebuttal)","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-04-07T18:34:04+00:00","last_scrobble":"2025-04-09T12:00:23+00:00","observed_albums":[{"album":"my time (an optimistic rebuttal)","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-f9c59437513ed0575318/album.json","artist_path":"artists/mb/mbid-dd2ae026-4144-4ee3-a7b4-09434a465c34/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:dd2ae026-4144-4ee3-a7b4-09434a465c34",
+      "duration_ms": 218000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:5a85555d-8fe4-4cfb-97ca-b06ec79577c0",
+      "track_mbid": "5a85555d-8fe4-4cfb-97ca-b06ec79577c0",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 218000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:5a85555d-8fe4-4cfb-97ca-b06ec79577c0",
+  "identity": {
+    "album": "my time (an optimistic rebuttal)",
+    "album_id": "album:f9c59437513ed0575318",
+    "artist": "Rav",
+    "artist_id": "mbid:dd2ae026-4144-4ee3-a7b4-09434a465c34",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "5a85555d-8fe4-4cfb-97ca-b06ec79577c0",
+    "source_track_id": "mbid:5a85555d-8fe4-4cfb-97ca-b06ec79577c0",
+    "spotify_id": null,
+    "title": "my time (an optimistic rebuttal)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-04-07T18:34:04+00:00",
+    "last_scrobble": "2025-04-09T12:00:23+00:00",
+    "observed_albums": [
+      {
+        "album": "my time (an optimistic rebuttal)",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-f9c59437513ed0575318/album.json",
+    "artist_path": "artists/mb/mbid-dd2ae026-4144-4ee3-a7b4-09434a465c34/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

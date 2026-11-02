@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:afae231f-6679-4a62-801b-ccb2a259fb3f","duration_ms":228000,"duration_source":"Last.fm track.getInfo","track_id":"track:1db074a3a1d58dcd"}},"id":"source:1db074a3a1d58dcd","identity":{"album":"Tethered","album_id":"album:d1fa412d4d94f4f38068","artist":"Deux Visages","artist_id":"mbid:afae231f-6679-4a62-801b-ccb2a259fb3f","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:1db074a3a1d58dcd","spotify_id":null,"title":"Tethered","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-06-26T21:23:02+00:00","last_scrobble":"2025-06-27T05:38:51+00:00","observed_albums":[{"album":"Tethered","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-d1fa412d4d94f4f38068/album.json","artist_path":"artists/mb/mbid-afae231f-6679-4a62-801b-ccb2a259fb3f/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:afae231f-6679-4a62-801b-ccb2a259fb3f",
+      "duration_ms": 228000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:1db074a3a1d58dcd",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 228000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:1db074a3a1d58dcd",
+  "identity": {
+    "album": "Tethered",
+    "album_id": "album:d1fa412d4d94f4f38068",
+    "artist": "Deux Visages",
+    "artist_id": "mbid:afae231f-6679-4a62-801b-ccb2a259fb3f",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:1db074a3a1d58dcd",
+    "spotify_id": null,
+    "title": "Tethered",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-06-26T21:23:02+00:00",
+    "last_scrobble": "2025-06-27T05:38:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Tethered",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-d1fa412d4d94f4f38068/album.json",
+    "artist_path": "artists/mb/mbid-afae231f-6679-4a62-801b-ccb2a259fb3f/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

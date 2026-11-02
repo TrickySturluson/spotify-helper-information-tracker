@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:3452b346-690b-418a-8230-e6eaee381cdf","duration_ms":173000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T23:58:01.911048+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T23:58:02.477183+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:ca053f77-4793-479d-8c7f-0eee7bc4f863","track_mbid":"ca053f77-4793-479d-8c7f-0eee7bc4f863"}},"id":"mbid:ca053f77-4793-479d-8c7f-0eee7bc4f863","identity":{"album":"Don't All Look Up At Once","album_id":"album:cdec8d353b3987a58a5d","artist":"Ezra Bell","artist_id":"mbid:3452b346-690b-418a-8230-e6eaee381cdf","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"ca053f77-4793-479d-8c7f-0eee7bc4f863","source_track_id":"mbid:ca053f77-4793-479d-8c7f-0eee7bc4f863","spotify_id":null,"title":"Goat's Milk","track_number":null},"listening_context":{"all_time_plays":18,"first_scrobble":"2025-06-02T05:24:12+00:00","last_scrobble":"2025-06-05T00:53:01+00:00","observed_albums":[{"album":"Don't All Look Up At Once","scrobbles":18}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-cdec8d353b3987a58a5d/album.json","artist_path":"artists/mb/mbid-3452b346-690b-418a-8230-e6eaee381cdf/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:3452b346-690b-418a-8230-e6eaee381cdf",
+      "duration_ms": 173000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T23:58:01.911048+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T23:58:02.477183+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:ca053f77-4793-479d-8c7f-0eee7bc4f863",
+      "track_mbid": "ca053f77-4793-479d-8c7f-0eee7bc4f863",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 173000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:ca053f77-4793-479d-8c7f-0eee7bc4f863",
+  "identity": {
+    "album": "Don't All Look Up At Once",
+    "album_id": "album:cdec8d353b3987a58a5d",
+    "artist": "Ezra Bell",
+    "artist_id": "mbid:3452b346-690b-418a-8230-e6eaee381cdf",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "ca053f77-4793-479d-8c7f-0eee7bc4f863",
+    "source_track_id": "mbid:ca053f77-4793-479d-8c7f-0eee7bc4f863",
+    "spotify_id": null,
+    "title": "Goat's Milk",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 18,
+    "first_scrobble": "2025-06-02T05:24:12+00:00",
+    "last_scrobble": "2025-06-05T00:53:01+00:00",
+    "observed_albums": [
+      {
+        "album": "Don't All Look Up At Once",
+        "scrobbles": 18
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-cdec8d353b3987a58a5d/album.json",
+    "artist_path": "artists/mb/mbid-3452b346-690b-418a-8230-e6eaee381cdf/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

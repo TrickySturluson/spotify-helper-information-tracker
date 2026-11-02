@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2","duration_ms":98000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:c45abf80-70c7-4061-8830-770fcba10131","track_mbid":"c45abf80-70c7-4061-8830-770fcba10131"}},"id":"mbid:c45abf80-70c7-4061-8830-770fcba10131","identity":{"album":"How To Tune A Parrot","album_id":"album:a8cdcdc175119620a938","artist":"The Death Set","artist_id":"mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"c45abf80-70c7-4061-8830-770fcba10131","source_track_id":"mbid:c45abf80-70c7-4061-8830-770fcba10131","spotify_id":null,"title":"Fall Down","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2024-11-27T05:36:12+00:00","last_scrobble":"2026-05-09T02:00:01+00:00","observed_albums":[{"album":"How To Tune A Parrot","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-a8cdcdc175119620a938/album.json","artist_path":"artists/mb/mbid-7ec4f94d-bd26-408d-a81b-4df4cae674f2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2",
+      "duration_ms": 98000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:c45abf80-70c7-4061-8830-770fcba10131",
+      "track_mbid": "c45abf80-70c7-4061-8830-770fcba10131",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 98000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:c45abf80-70c7-4061-8830-770fcba10131",
+  "identity": {
+    "album": "How To Tune A Parrot",
+    "album_id": "album:a8cdcdc175119620a938",
+    "artist": "The Death Set",
+    "artist_id": "mbid:7ec4f94d-bd26-408d-a81b-4df4cae674f2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "c45abf80-70c7-4061-8830-770fcba10131",
+    "source_track_id": "mbid:c45abf80-70c7-4061-8830-770fcba10131",
+    "spotify_id": null,
+    "title": "Fall Down",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2024-11-27T05:36:12+00:00",
+    "last_scrobble": "2026-05-09T02:00:01+00:00",
+    "observed_albums": [
+      {
+        "album": "How To Tune A Parrot",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-a8cdcdc175119620a938/album.json",
+    "artist_path": "artists/mb/mbid-7ec4f94d-bd26-408d-a81b-4df4cae674f2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

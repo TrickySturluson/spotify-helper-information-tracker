@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5a1a146d-9170-4cae-b980-9a5a352decc7","duration_ms":238000,"duration_source":"Last.fm track.getInfo","track_id":"track:e3f3b2c1dc441ace"}},"id":"source:e3f3b2c1dc441ace","identity":{"album":"Something About Her Smile","album_id":"album:377b853e702f33eeb0a6","artist":"6th Street Jazz","artist_id":"mbid:5a1a146d-9170-4cae-b980-9a5a352decc7","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:e3f3b2c1dc441ace","spotify_id":null,"title":"Tip Your Hat","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-11-27T20:16:10+00:00","last_scrobble":"2025-11-27T20:16:10+00:00","observed_albums":[{"album":"Something About Her Smile","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-377b853e702f33eeb0a6/album.json","artist_path":"artists/mb/mbid-5a1a146d-9170-4cae-b980-9a5a352decc7/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5a1a146d-9170-4cae-b980-9a5a352decc7",
+      "duration_ms": 238000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:e3f3b2c1dc441ace",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 238000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:e3f3b2c1dc441ace",
+  "identity": {
+    "album": "Something About Her Smile",
+    "album_id": "album:377b853e702f33eeb0a6",
+    "artist": "6th Street Jazz",
+    "artist_id": "mbid:5a1a146d-9170-4cae-b980-9a5a352decc7",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:e3f3b2c1dc441ace",
+    "spotify_id": null,
+    "title": "Tip Your Hat",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-11-27T20:16:10+00:00",
+    "last_scrobble": "2025-11-27T20:16:10+00:00",
+    "observed_albums": [
+      {
+        "album": "Something About Her Smile",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-377b853e702f33eeb0a6/album.json",
+    "artist_path": "artists/mb/mbid-5a1a146d-9170-4cae-b980-9a5a352decc7/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

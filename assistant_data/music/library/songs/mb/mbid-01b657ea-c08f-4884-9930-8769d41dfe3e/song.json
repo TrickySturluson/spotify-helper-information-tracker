@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:407d7ae0-c297-491c-bd19-4185e2b12ef2","duration_ms":84000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:01b657ea-c08f-4884-9930-8769d41dfe3e","track_mbid":"01b657ea-c08f-4884-9930-8769d41dfe3e"}},"id":"mbid:01b657ea-c08f-4884-9930-8769d41dfe3e","identity":{"album":"Marvin's Marvelous Mechanical Museum","album_id":"album:e2c2a90a660b32b6b3fa","artist":"Tally Hall","artist_id":"mbid:407d7ae0-c297-491c-bd19-4185e2b12ef2","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"01b657ea-c08f-4884-9930-8769d41dfe3e","source_track_id":"mbid:01b657ea-c08f-4884-9930-8769d41dfe3e","spotify_id":null,"title":"Hidden In The Sand","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-12-04T22:22:02+00:00","last_scrobble":"2024-12-04T22:22:02+00:00","observed_albums":[{"album":"Marvin's Marvelous Mechanical Museum","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-e2c2a90a660b32b6b3fa/album.json","artist_path":"artists/mb/mbid-407d7ae0-c297-491c-bd19-4185e2b12ef2/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:407d7ae0-c297-491c-bd19-4185e2b12ef2",
+      "duration_ms": 84000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:01b657ea-c08f-4884-9930-8769d41dfe3e",
+      "track_mbid": "01b657ea-c08f-4884-9930-8769d41dfe3e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 84000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:01b657ea-c08f-4884-9930-8769d41dfe3e",
+  "identity": {
+    "album": "Marvin's Marvelous Mechanical Museum",
+    "album_id": "album:e2c2a90a660b32b6b3fa",
+    "artist": "Tally Hall",
+    "artist_id": "mbid:407d7ae0-c297-491c-bd19-4185e2b12ef2",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "01b657ea-c08f-4884-9930-8769d41dfe3e",
+    "source_track_id": "mbid:01b657ea-c08f-4884-9930-8769d41dfe3e",
+    "spotify_id": null,
+    "title": "Hidden In The Sand",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-12-04T22:22:02+00:00",
+    "last_scrobble": "2024-12-04T22:22:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Marvin's Marvelous Mechanical Museum",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-e2c2a90a660b32b6b3fa/album.json",
+    "artist_path": "artists/mb/mbid-407d7ae0-c297-491c-bd19-4185e2b12ef2/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:1e1b8366-680d-4072-9c85-7f3a277af0d6","duration_ms":206000,"duration_source":"Last.fm track.getInfo","track_id":"track:8663851f0b36fc93"}},"id":"source:8663851f0b36fc93","identity":{"album":"The Normal Album","album_id":"album:26198ff5649d78a72f24","artist":"Will Wood","artist_id":"mbid:1e1b8366-680d-4072-9c85-7f3a277af0d6","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:8663851f0b36fc93","spotify_id":null,"title":"2econd 2ight 2eer (that was fun, goodbye.)","track_number":null},"listening_context":{"all_time_plays":9,"first_scrobble":"2024-01-22T17:46:04+00:00","last_scrobble":"2024-01-26T16:59:03+00:00","observed_albums":[{"album":"The Normal Album","scrobbles":9}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-26198ff5649d78a72f24/album.json","artist_path":"artists/mb/mbid-1e1b8366-680d-4072-9c85-7f3a277af0d6/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:1e1b8366-680d-4072-9c85-7f3a277af0d6",
+      "duration_ms": 206000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:8663851f0b36fc93",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 206000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:8663851f0b36fc93",
+  "identity": {
+    "album": "The Normal Album",
+    "album_id": "album:26198ff5649d78a72f24",
+    "artist": "Will Wood",
+    "artist_id": "mbid:1e1b8366-680d-4072-9c85-7f3a277af0d6",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:8663851f0b36fc93",
+    "spotify_id": null,
+    "title": "2econd 2ight 2eer (that was fun, goodbye.)",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 9,
+    "first_scrobble": "2024-01-22T17:46:04+00:00",
+    "last_scrobble": "2024-01-26T16:59:03+00:00",
+    "observed_albums": [
+      {
+        "album": "The Normal Album",
+        "scrobbles": 9
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-26198ff5649d78a72f24/album.json",
+    "artist_path": "artists/mb/mbid-1e1b8366-680d-4072-9c85-7f3a277af0d6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

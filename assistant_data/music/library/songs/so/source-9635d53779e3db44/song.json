@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:06a39e71-ec89-453f-b6c9-a6b97decc889","duration_ms":137000,"duration_source":"Last.fm track.getInfo","track_id":"track:9635d53779e3db44"}},"id":"source:9635d53779e3db44","identity":{"album":"Over & Over","album_id":"album:cca991ca301188ff5a8e","artist":"Jackie Hayes","artist_id":"mbid:06a39e71-ec89-453f-b6c9-a6b97decc889","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:9635d53779e3db44","spotify_id":null,"title":"Bite Me","track_number":null},"listening_context":{"all_time_plays":15,"first_scrobble":"2026-01-08T02:41:47+00:00","last_scrobble":"2026-01-11T10:35:02+00:00","observed_albums":[{"album":"Over & Over","scrobbles":15}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-cca991ca301188ff5a8e/album.json","artist_path":"artists/mb/mbid-06a39e71-ec89-453f-b6c9-a6b97decc889/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:06a39e71-ec89-453f-b6c9-a6b97decc889",
+      "duration_ms": 137000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:9635d53779e3db44",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 137000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:9635d53779e3db44",
+  "identity": {
+    "album": "Over & Over",
+    "album_id": "album:cca991ca301188ff5a8e",
+    "artist": "Jackie Hayes",
+    "artist_id": "mbid:06a39e71-ec89-453f-b6c9-a6b97decc889",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:9635d53779e3db44",
+    "spotify_id": null,
+    "title": "Bite Me",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 15,
+    "first_scrobble": "2026-01-08T02:41:47+00:00",
+    "last_scrobble": "2026-01-11T10:35:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Over & Over",
+        "scrobbles": 15
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-cca991ca301188ff5a8e/album.json",
+    "artist_path": "artists/mb/mbid-06a39e71-ec89-453f-b6c9-a6b97decc889/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

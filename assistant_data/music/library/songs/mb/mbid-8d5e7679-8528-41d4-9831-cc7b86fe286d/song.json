@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a223958d-5c56-4b2c-a30a-87e357bc121b","duration_ms":75000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:8d5e7679-8528-41d4-9831-cc7b86fe286d","track_mbid":"8d5e7679-8528-41d4-9831-cc7b86fe286d"}},"id":"mbid:8d5e7679-8528-41d4-9831-cc7b86fe286d","identity":{"album":"不能說的秘密電影原聲帶","album_id":"album:bcb9cb57108871733a32","artist":"周杰倫","artist_id":"mbid:a223958d-5c56-4b2c-a30a-87e357bc121b","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"8d5e7679-8528-41d4-9831-cc7b86fe286d","source_track_id":"mbid:8d5e7679-8528-41d4-9831-cc7b86fe286d","spotify_id":null,"title":"小雨寫立可白 I","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-09-18T17:33:16+00:00","last_scrobble":"2025-09-18T17:33:16+00:00","observed_albums":[{"album":"不能說的秘密電影原聲帶","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bcb9cb57108871733a32/album.json","artist_path":"artists/mb/mbid-a223958d-5c56-4b2c-a30a-87e357bc121b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a223958d-5c56-4b2c-a30a-87e357bc121b",
+      "duration_ms": 75000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:8d5e7679-8528-41d4-9831-cc7b86fe286d",
+      "track_mbid": "8d5e7679-8528-41d4-9831-cc7b86fe286d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 75000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:8d5e7679-8528-41d4-9831-cc7b86fe286d",
+  "identity": {
+    "album": "不能說的秘密電影原聲帶",
+    "album_id": "album:bcb9cb57108871733a32",
+    "artist": "周杰倫",
+    "artist_id": "mbid:a223958d-5c56-4b2c-a30a-87e357bc121b",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "8d5e7679-8528-41d4-9831-cc7b86fe286d",
+    "source_track_id": "mbid:8d5e7679-8528-41d4-9831-cc7b86fe286d",
+    "spotify_id": null,
+    "title": "小雨寫立可白 I",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-09-18T17:33:16+00:00",
+    "last_scrobble": "2025-09-18T17:33:16+00:00",
+    "observed_albums": [
+      {
+        "album": "不能說的秘密電影原聲帶",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bcb9cb57108871733a32/album.json",
+    "artist_path": "artists/mb/mbid-a223958d-5c56-4b2c-a30a-87e357bc121b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

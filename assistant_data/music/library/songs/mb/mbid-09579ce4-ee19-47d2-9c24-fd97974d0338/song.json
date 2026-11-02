@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:09197af4-197a-4092-9c1d-76a1b1902505","duration_ms":163000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:09579ce4-ee19-47d2-9c24-fd97974d0338","track_mbid":"09579ce4-ee19-47d2-9c24-fd97974d0338"}},"id":"mbid:09579ce4-ee19-47d2-9c24-fd97974d0338","identity":{"album":"Discernation","album_id":"album:1b2ceb48eb106bf8529f","artist":"Victory Kid","artist_id":"mbid:09197af4-197a-4092-9c1d-76a1b1902505","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"09579ce4-ee19-47d2-9c24-fd97974d0338","source_track_id":"mbid:09579ce4-ee19-47d2-9c24-fd97974d0338","spotify_id":null,"title":"Clownin'","track_number":null},"listening_context":{"all_time_plays":2,"first_scrobble":"2025-03-10T15:20:50+00:00","last_scrobble":"2025-03-12T21:44:51+00:00","observed_albums":[{"album":"Discernation","scrobbles":2}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-1b2ceb48eb106bf8529f/album.json","artist_path":"artists/mb/mbid-09197af4-197a-4092-9c1d-76a1b1902505/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:09197af4-197a-4092-9c1d-76a1b1902505",
+      "duration_ms": 163000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:09579ce4-ee19-47d2-9c24-fd97974d0338",
+      "track_mbid": "09579ce4-ee19-47d2-9c24-fd97974d0338",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 163000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:09579ce4-ee19-47d2-9c24-fd97974d0338",
+  "identity": {
+    "album": "Discernation",
+    "album_id": "album:1b2ceb48eb106bf8529f",
+    "artist": "Victory Kid",
+    "artist_id": "mbid:09197af4-197a-4092-9c1d-76a1b1902505",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "09579ce4-ee19-47d2-9c24-fd97974d0338",
+    "source_track_id": "mbid:09579ce4-ee19-47d2-9c24-fd97974d0338",
+    "spotify_id": null,
+    "title": "Clownin'",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 2,
+    "first_scrobble": "2025-03-10T15:20:50+00:00",
+    "last_scrobble": "2025-03-12T21:44:51+00:00",
+    "observed_albums": [
+      {
+        "album": "Discernation",
+        "scrobbles": 2
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-1b2ceb48eb106bf8529f/album.json",
+    "artist_path": "artists/mb/mbid-09197af4-197a-4092-9c1d-76a1b1902505/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

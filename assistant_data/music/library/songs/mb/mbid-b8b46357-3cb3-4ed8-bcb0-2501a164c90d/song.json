@@ -1,1 +1,209 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"darksynth":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"electro house":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"electronic":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"french electro":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"synthwave":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{"analyzed_at":"2026-11-01T15:07:53.981874+00:00","artist":"Carpenter Brut","average_loudness":0.971034884453,"beats_count":null,"bpm_first_peak":null,"bpm_second_peak":null,"danceability":null,"dynamic_complexity":1.60811960697,"measurement_note":"AcousticBrainz average_loudness is not LUFS; no within-track loudness envelope is supplied by this endpoint. Multiple submissions are summarized by median; disagreement is retained.","onset_rate":null,"recording_mbid":"b8b46357-3cb3-4ed8-bcb0-2501a164c90d","replay_gain_db":-8.46171760559,"source":"AcousticBrainz low-level","source_license":"CC0","submission_count":1,"submission_policy":"median of all returned submissions; spread retained","tempo_bpm":null,"track":"Le Perv"},"lyrics":null,"track_metadata":{"artist_id":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","duration_ms":256000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T05:58:16.383859+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T05:58:17.264654+00:00","musicbrainz_genres":[{"count":1,"source":"MusicBrainz recording genre","tag":"darksynth"},{"count":1,"source":"MusicBrainz recording genre","tag":"electro house"},{"count":3,"source":"MusicBrainz recording genre","tag":"electronic"},{"count":1,"source":"MusicBrainz recording genre","tag":"french electro"},{"count":1,"source":"MusicBrainz recording genre","tag":"synthwave"}],"musicbrainz_retry_after":0,"musicbrainz_status":"matched","musicbrainz_tags":[{"count":1,"source":"MusicBrainz recording tag","tag":"darksynth"},{"count":1,"source":"MusicBrainz recording tag","tag":"electro house"},{"count":3,"source":"MusicBrainz recording tag","tag":"electronic"},{"count":1,"source":"MusicBrainz recording tag","tag":"french electro"},{"count":1,"source":"MusicBrainz recording tag","tag":"synthwave"}],"retry_after":0,"track_id":"mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d","track_mbid":"b8b46357-3cb3-4ed8-bcb0-2501a164c90d"}},"id":"mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d","identity":{"album":"Trilogy","album_id":"album:bf8f3cc3981a7942150c","artist":"Carpenter Brut","artist_id":"mbid:303abdee-ffca-4685-a582-6aaaefd81b01","identity_quality":"verified_recording","recording_mbid":"b8b46357-3cb3-4ed8-bcb0-2501a164c90d","source_track_id":"mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d","spotify_id":null,"title":"Le Perv"},"listening_context":{"all_time_plays":54,"first_scrobble":"2023-03-13T22:06:28+00:00","last_scrobble":"2026-10-31T04:13:02+00:00","observed_albums":[{"album":"Trilogy","scrobbles":54}],"priority_playlist_ids":[],"recent_plays":42,"source":"Last.fm scrobble archive","window_days":90},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bf8f3cc3981a7942150c/album.json","artist_path":"artists/mb/mbid-303abdee-ffca-4685-a582-6aaaefd81b01/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"matched"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "darksynth": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "electro house": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "electronic": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "french electro": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "synthwave": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {
+      "analyzed_at": "2026-11-01T15:07:53.981874+00:00",
+      "artist": "Carpenter Brut",
+      "average_loudness": 0.971034884453,
+      "beats_count": null,
+      "bpm_first_peak": null,
+      "bpm_second_peak": null,
+      "danceability": null,
+      "dynamic_complexity": 1.60811960697,
+      "measurement_note": "AcousticBrainz average_loudness is not LUFS; no within-track loudness envelope is supplied by this endpoint. Multiple submissions are summarized by median; disagreement is retained.",
+      "onset_rate": null,
+      "recording_mbid": "b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+      "replay_gain_db": -8.46171760559,
+      "source": "AcousticBrainz low-level",
+      "source_license": "CC0",
+      "submission_count": 1,
+      "submission_policy": "median of all returned submissions; spread retained",
+      "tempo_bpm": null,
+      "track": "Le Perv"
+    },
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
+      "duration_ms": 256000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T05:58:16.383859+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T05:58:17.264654+00:00",
+      "musicbrainz_genres": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "darksynth"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "electro house"
+        },
+        {
+          "count": 3,
+          "source": "MusicBrainz recording genre",
+          "tag": "electronic"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "french electro"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "synthwave"
+        }
+      ],
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "matched",
+      "musicbrainz_tags": [
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "darksynth"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "electro house"
+        },
+        {
+          "count": 3,
+          "source": "MusicBrainz recording tag",
+          "tag": "electronic"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "french electro"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "synthwave"
+        }
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+      "track_mbid": "b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 256000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+  "identity": {
+    "album": "Trilogy",
+    "album_id": "album:bf8f3cc3981a7942150c",
+    "artist": "Carpenter Brut",
+    "artist_id": "mbid:303abdee-ffca-4685-a582-6aaaefd81b01",
+    "identity_quality": "verified_recording",
+    "recording_mbid": "b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+    "source_track_id": "mbid:b8b46357-3cb3-4ed8-bcb0-2501a164c90d",
+    "spotify_id": null,
+    "title": "Le Perv"
+  },
+  "listening_context": {
+    "all_time_plays": 54,
+    "first_scrobble": "2023-03-13T22:06:28+00:00",
+    "last_scrobble": "2026-10-31T04:13:02+00:00",
+    "observed_albums": [
+      {
+        "album": "Trilogy",
+        "scrobbles": 54
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 42,
+    "source": "Last.fm scrobble archive",
+    "window_days": 90
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bf8f3cc3981a7942150c/album.json",
+    "artist_path": "artists/mb/mbid-303abdee-ffca-4685-a582-6aaaefd81b01/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  }
+}

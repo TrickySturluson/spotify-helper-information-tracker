@@ -1,1 +1,103 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:6c3260a3-2ec7-440c-bd2c-df93fc2f484c","duration_ms":212000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-10-31T06:18:47.486790+00:00","lastfm_error":"{}","lastfm_status":"http_400","musicbrainz_checked_at":"2026-10-31T07:29:09.028472+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":1796019496,"track_id":"mbid:aa775387-4aad-37c6-bb90-d06be6594d6f","track_mbid":"aa775387-4aad-37c6-bb90-d06be6594d6f"}},"id":"mbid:aa775387-4aad-37c6-bb90-d06be6594d6f","identity":{"album":"Lamplighter","album_id":"album:59cc0ef821bb6e98fe41","artist":"Eleisha Eagle","artist_id":"mbid:6c3260a3-2ec7-440c-bd2c-df93fc2f484c","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"aa775387-4aad-37c6-bb90-d06be6594d6f","source_track_id":"mbid:aa775387-4aad-37c6-bb90-d06be6594d6f","spotify_id":null,"title":"Broken Shoestring","track_number":null},"listening_context":{"all_time_plays":126,"first_scrobble":"2023-02-15T06:29:06+00:00","last_scrobble":"2026-10-08T15:18:32+00:00","observed_albums":[{"album":"Lamplighter","scrobbles":126}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-59cc0ef821bb6e98fe41/album.json","artist_path":"artists/mb/mbid-6c3260a3-2ec7-440c-bd2c-df93fc2f484c/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"http_400"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:6c3260a3-2ec7-440c-bd2c-df93fc2f484c",
+      "duration_ms": 212000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-10-31T06:18:47.486790+00:00",
+      "lastfm_error": "{}",
+      "lastfm_status": "http_400",
+      "musicbrainz_checked_at": "2026-10-31T07:29:09.028472+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 1796019496,
+      "track_id": "mbid:aa775387-4aad-37c6-bb90-d06be6594d6f",
+      "track_mbid": "aa775387-4aad-37c6-bb90-d06be6594d6f",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 212000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:aa775387-4aad-37c6-bb90-d06be6594d6f",
+  "identity": {
+    "album": "Lamplighter",
+    "album_id": "album:59cc0ef821bb6e98fe41",
+    "artist": "Eleisha Eagle",
+    "artist_id": "mbid:6c3260a3-2ec7-440c-bd2c-df93fc2f484c",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "aa775387-4aad-37c6-bb90-d06be6594d6f",
+    "source_track_id": "mbid:aa775387-4aad-37c6-bb90-d06be6594d6f",
+    "spotify_id": null,
+    "title": "Broken Shoestring",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 126,
+    "first_scrobble": "2023-02-15T06:29:06+00:00",
+    "last_scrobble": "2026-10-08T15:18:32+00:00",
+    "observed_albums": [
+      {
+        "album": "Lamplighter",
+        "scrobbles": 126
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-59cc0ef821bb6e98fe41/album.json",
+    "artist_path": "artists/mb/mbid-6c3260a3-2ec7-440c-bd2c-df93fc2f484c/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "http_400"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

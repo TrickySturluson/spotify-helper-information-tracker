@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:68c261d5-48c8-4ea9-9466-9fc908dc79bb","duration_ms":236000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:42070cda-6242-4985-94a8-90146b8a0b1d","track_mbid":"42070cda-6242-4985-94a8-90146b8a0b1d"}},"id":"mbid:42070cda-6242-4985-94a8-90146b8a0b1d","identity":{"album":"A Little Rhythm and a Wicked Feeling","album_id":"album:27e23ebf4eca8477947f","artist":"Magdalena Bay","artist_id":"mbid:68c261d5-48c8-4ea9-9466-9fc908dc79bb","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"42070cda-6242-4985-94a8-90146b8a0b1d","source_track_id":"mbid:42070cda-6242-4985-94a8-90146b8a0b1d","spotify_id":null,"title":"Killshot","track_number":null},"listening_context":{"all_time_plays":8,"first_scrobble":"2024-01-15T21:28:31+00:00","last_scrobble":"2024-01-19T20:16:42+00:00","observed_albums":[{"album":"A Little Rhythm and a Wicked Feeling","scrobbles":8}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-27e23ebf4eca8477947f/album.json","artist_path":"artists/mb/mbid-68c261d5-48c8-4ea9-9466-9fc908dc79bb/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:68c261d5-48c8-4ea9-9466-9fc908dc79bb",
+      "duration_ms": 236000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:42070cda-6242-4985-94a8-90146b8a0b1d",
+      "track_mbid": "42070cda-6242-4985-94a8-90146b8a0b1d",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 236000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:42070cda-6242-4985-94a8-90146b8a0b1d",
+  "identity": {
+    "album": "A Little Rhythm and a Wicked Feeling",
+    "album_id": "album:27e23ebf4eca8477947f",
+    "artist": "Magdalena Bay",
+    "artist_id": "mbid:68c261d5-48c8-4ea9-9466-9fc908dc79bb",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "42070cda-6242-4985-94a8-90146b8a0b1d",
+    "source_track_id": "mbid:42070cda-6242-4985-94a8-90146b8a0b1d",
+    "spotify_id": null,
+    "title": "Killshot",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 8,
+    "first_scrobble": "2024-01-15T21:28:31+00:00",
+    "last_scrobble": "2024-01-19T20:16:42+00:00",
+    "observed_albums": [
+      {
+        "album": "A Little Rhythm and a Wicked Feeling",
+        "scrobbles": 8
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-27e23ebf4eca8477947f/album.json",
+    "artist_path": "artists/mb/mbid-68c261d5-48c8-4ea9-9466-9fc908dc79bb/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:7b926afc385b3f21","duration_ms":184000,"duration_source":"Last.fm track.getInfo","track_id":"track:928dbc3a3a38819e"}},"id":"source:928dbc3a3a38819e","identity":{"album":"Holy Wood","album_id":"album:2f9d8bc76bc9141efc55","artist":"Marilyn Manson","artist_id":"name:7b926afc385b3f21","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:928dbc3a3a38819e","spotify_id":null,"title":"The Fight Song","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-06-30T10:35:36+00:00","last_scrobble":"2026-03-13T02:23:12+00:00","observed_albums":[{"album":"Holy Wood","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-2f9d8bc76bc9141efc55/album.json","artist_path":"artists/na/name-7b926afc385b3f21/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:7b926afc385b3f21",
+      "duration_ms": 184000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:928dbc3a3a38819e",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 184000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:928dbc3a3a38819e",
+  "identity": {
+    "album": "Holy Wood",
+    "album_id": "album:2f9d8bc76bc9141efc55",
+    "artist": "Marilyn Manson",
+    "artist_id": "name:7b926afc385b3f21",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:928dbc3a3a38819e",
+    "spotify_id": null,
+    "title": "The Fight Song",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-06-30T10:35:36+00:00",
+    "last_scrobble": "2026-03-13T02:23:12+00:00",
+    "observed_albums": [
+      {
+        "album": "Holy Wood",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-2f9d8bc76bc9141efc55/album.json",
+    "artist_path": "artists/na/name-7b926afc385b3f21/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

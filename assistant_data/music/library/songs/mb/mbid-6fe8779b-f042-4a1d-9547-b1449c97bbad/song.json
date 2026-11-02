@@ -1,1 +1,225 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"Muse":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Progressive rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"Soundtrack":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"alternative rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"british":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"indie":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"rock":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"sexy":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]},"twilight":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090","duration_ms":296000,"duration_source":"Last.fm track.getInfo","lastfm_checked_at":"2026-11-01T08:06:04.040625+00:00","lastfm_status":"matched","lastfm_tags":[{"count":100,"source":"Last.fm track.getTopTags","tag":"alternative rock"},{"count":77,"source":"Last.fm track.getTopTags","tag":"rock"},{"count":37,"source":"Last.fm track.getTopTags","tag":"alternative"},{"count":32,"source":"Last.fm track.getTopTags","tag":"british"},{"count":14,"source":"Last.fm track.getTopTags","tag":"Muse"},{"count":9,"source":"Last.fm track.getTopTags","tag":"twilight"},{"count":6,"source":"Last.fm track.getTopTags","tag":"sexy"},{"count":2,"source":"Last.fm track.getTopTags","tag":"indie"},{"count":2,"source":"Last.fm track.getTopTags","tag":"Progressive rock"},{"count":2,"source":"Last.fm track.getTopTags","tag":"Soundtrack"}],"musicbrainz_checked_at":"2026-11-01T08:06:04.807825+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:6fe8779b-f042-4a1d-9547-b1449c97bbad","track_mbid":"6fe8779b-f042-4a1d-9547-b1449c97bbad"}},"id":"mbid:6fe8779b-f042-4a1d-9547-b1449c97bbad","identity":{"album":"Black Holes and Revelations","album_id":"album:cd2af3e3875b46ae9c2f","artist":"Muse","artist_id":"mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"6fe8779b-f042-4a1d-9547-b1449c97bbad","source_track_id":"mbid:6fe8779b-f042-4a1d-9547-b1449c97bbad","spotify_id":null,"title":"Supermassive Black Hole","track_number":null},"listening_context":{"all_time_plays":58,"first_scrobble":"2025-01-21T20:57:39+00:00","last_scrobble":"2026-10-08T21:55:01+00:00","observed_albums":[{"album":"Black Holes and Revelations","scrobbles":58}],"priority_playlist_ids":[],"recent_plays":2,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-cd2af3e3875b46ae9c2f/album.json","artist_path":"artists/mb/mbid-9c9f1380-2516-4fc9-a3e6-f9f61941d090/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"matched"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "Muse": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Progressive rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "Soundtrack": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "alternative rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "british": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "indie": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "rock": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "sexy": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        },
+        "twilight": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "lastfm_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+      "duration_ms": 296000,
+      "duration_source": "Last.fm track.getInfo",
+      "lastfm_checked_at": "2026-11-01T08:06:04.040625+00:00",
+      "lastfm_status": "matched",
+      "lastfm_tags": [
+        {
+          "count": 100,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative rock"
+        },
+        {
+          "count": 77,
+          "source": "Last.fm track.getTopTags",
+          "tag": "rock"
+        },
+        {
+          "count": 37,
+          "source": "Last.fm track.getTopTags",
+          "tag": "alternative"
+        },
+        {
+          "count": 32,
+          "source": "Last.fm track.getTopTags",
+          "tag": "british"
+        },
+        {
+          "count": 14,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Muse"
+        },
+        {
+          "count": 9,
+          "source": "Last.fm track.getTopTags",
+          "tag": "twilight"
+        },
+        {
+          "count": 6,
+          "source": "Last.fm track.getTopTags",
+          "tag": "sexy"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "indie"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Progressive rock"
+        },
+        {
+          "count": 2,
+          "source": "Last.fm track.getTopTags",
+          "tag": "Soundtrack"
+        }
+      ],
+      "musicbrainz_checked_at": "2026-11-01T08:06:04.807825+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:6fe8779b-f042-4a1d-9547-b1449c97bbad",
+      "track_mbid": "6fe8779b-f042-4a1d-9547-b1449c97bbad",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 296000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:6fe8779b-f042-4a1d-9547-b1449c97bbad",
+  "identity": {
+    "album": "Black Holes and Revelations",
+    "album_id": "album:cd2af3e3875b46ae9c2f",
+    "artist": "Muse",
+    "artist_id": "mbid:9c9f1380-2516-4fc9-a3e6-f9f61941d090",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "6fe8779b-f042-4a1d-9547-b1449c97bbad",
+    "source_track_id": "mbid:6fe8779b-f042-4a1d-9547-b1449c97bbad",
+    "spotify_id": null,
+    "title": "Supermassive Black Hole",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 58,
+    "first_scrobble": "2025-01-21T20:57:39+00:00",
+    "last_scrobble": "2026-10-08T21:55:01+00:00",
+    "observed_albums": [
+      {
+        "album": "Black Holes and Revelations",
+        "scrobbles": 58
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 2,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-cd2af3e3875b46ae9c2f/album.json",
+    "artist_path": "artists/mb/mbid-9c9f1380-2516-4fc9-a3e6-f9f61941d090/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "matched"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

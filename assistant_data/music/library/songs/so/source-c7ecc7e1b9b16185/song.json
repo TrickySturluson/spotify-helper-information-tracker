@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:4d1f3b04-b12b-4351-bc77-1faf595d559e","duration_ms":188000,"duration_source":"Last.fm track.getInfo","track_id":"track:c7ecc7e1b9b16185"}},"id":"source:c7ecc7e1b9b16185","identity":{"album":"Trauma Portfolio","album_id":"album:bff28bd0393ea05c4803","artist":"Feral","artist_id":"mbid:4d1f3b04-b12b-4351-bc77-1faf595d559e","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:c7ecc7e1b9b16185","spotify_id":null,"title":"Fuck The Bourgeoisie","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2024-02-29T20:54:23+00:00","last_scrobble":"2024-02-29T20:54:23+00:00","observed_albums":[{"album":"Trauma Portfolio","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-bff28bd0393ea05c4803/album.json","artist_path":"artists/mb/mbid-4d1f3b04-b12b-4351-bc77-1faf595d559e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:4d1f3b04-b12b-4351-bc77-1faf595d559e",
+      "duration_ms": 188000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:c7ecc7e1b9b16185",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 188000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:c7ecc7e1b9b16185",
+  "identity": {
+    "album": "Trauma Portfolio",
+    "album_id": "album:bff28bd0393ea05c4803",
+    "artist": "Feral",
+    "artist_id": "mbid:4d1f3b04-b12b-4351-bc77-1faf595d559e",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:c7ecc7e1b9b16185",
+    "spotify_id": null,
+    "title": "Fuck The Bourgeoisie",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2024-02-29T20:54:23+00:00",
+    "last_scrobble": "2024-02-29T20:54:23+00:00",
+    "observed_albums": [
+      {
+        "album": "Trauma Portfolio",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-bff28bd0393ea05c4803/album.json",
+    "artist_path": "artists/mb/mbid-4d1f3b04-b12b-4351-bc77-1faf595d559e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5457d441-1d51-4421-b35a-5020581f9cfd","duration_ms":181000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:f2f94937-eaa0-3510-9505-3da42815ce41","track_mbid":"f2f94937-eaa0-3510-9505-3da42815ce41"}},"id":"mbid:f2f94937-eaa0-3510-9505-3da42815ce41","identity":{"album":"Reckless Summer","album_id":"album:38179f4437174883d7a0","artist":"Vampire Beach Babes","artist_id":"mbid:5457d441-1d51-4421-b35a-5020581f9cfd","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"f2f94937-eaa0-3510-9505-3da42815ce41","source_track_id":"mbid:f2f94937-eaa0-3510-9505-3da42815ce41","spotify_id":null,"title":"Gothmobile","track_number":null},"listening_context":{"all_time_plays":3,"first_scrobble":"2025-06-26T21:13:59+00:00","last_scrobble":"2025-06-27T05:35:48+00:00","observed_albums":[{"album":"Reckless Summer","scrobbles":3}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-38179f4437174883d7a0/album.json","artist_path":"artists/mb/mbid-5457d441-1d51-4421-b35a-5020581f9cfd/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5457d441-1d51-4421-b35a-5020581f9cfd",
+      "duration_ms": 181000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:f2f94937-eaa0-3510-9505-3da42815ce41",
+      "track_mbid": "f2f94937-eaa0-3510-9505-3da42815ce41",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 181000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:f2f94937-eaa0-3510-9505-3da42815ce41",
+  "identity": {
+    "album": "Reckless Summer",
+    "album_id": "album:38179f4437174883d7a0",
+    "artist": "Vampire Beach Babes",
+    "artist_id": "mbid:5457d441-1d51-4421-b35a-5020581f9cfd",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "f2f94937-eaa0-3510-9505-3da42815ce41",
+    "source_track_id": "mbid:f2f94937-eaa0-3510-9505-3da42815ce41",
+    "spotify_id": null,
+    "title": "Gothmobile",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 3,
+    "first_scrobble": "2025-06-26T21:13:59+00:00",
+    "last_scrobble": "2025-06-27T05:35:48+00:00",
+    "observed_albums": [
+      {
+        "album": "Reckless Summer",
+        "scrobbles": 3
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-38179f4437174883d7a0/album.json",
+    "artist_path": "artists/mb/mbid-5457d441-1d51-4421-b35a-5020581f9cfd/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

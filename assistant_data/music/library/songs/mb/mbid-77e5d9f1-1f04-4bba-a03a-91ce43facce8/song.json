@@ -1,1 +1,96 @@
-{"confidence":{"identity":"high","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:a9044915-8be3-4c7e-b11f-9e2d2ea0a91e","duration_ms":227000,"duration_source":"Last.fm track.getInfo","track_id":"mbid:77e5d9f1-1f04-4bba-a03a-91ce43facce8","track_mbid":"77e5d9f1-1f04-4bba-a03a-91ce43facce8"}},"id":"mbid:77e5d9f1-1f04-4bba-a03a-91ce43facce8","identity":{"album":"Hidden Treasures","album_id":"album:913a82e30833eecb422b","artist":"Megadeth","artist_id":"mbid:a9044915-8be3-4c7e-b11f-9e2d2ea0a91e","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"77e5d9f1-1f04-4bba-a03a-91ce43facce8","source_track_id":"mbid:77e5d9f1-1f04-4bba-a03a-91ce43facce8","spotify_id":null,"title":"Angry Again","track_number":null},"listening_context":{"all_time_plays":1,"first_scrobble":"2025-07-04T16:14:13+00:00","last_scrobble":"2025-07-04T16:14:13+00:00","observed_albums":[{"album":"Hidden Treasures","scrobbles":1}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-913a82e30833eecb422b/album.json","artist_path":"artists/mb/mbid-a9044915-8be3-4c7e-b11f-9e2d2ea0a91e/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:a9044915-8be3-4c7e-b11f-9e2d2ea0a91e",
+      "duration_ms": 227000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "mbid:77e5d9f1-1f04-4bba-a03a-91ce43facce8",
+      "track_mbid": "77e5d9f1-1f04-4bba-a03a-91ce43facce8",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 227000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:77e5d9f1-1f04-4bba-a03a-91ce43facce8",
+  "identity": {
+    "album": "Hidden Treasures",
+    "album_id": "album:913a82e30833eecb422b",
+    "artist": "Megadeth",
+    "artist_id": "mbid:a9044915-8be3-4c7e-b11f-9e2d2ea0a91e",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "77e5d9f1-1f04-4bba-a03a-91ce43facce8",
+    "source_track_id": "mbid:77e5d9f1-1f04-4bba-a03a-91ce43facce8",
+    "spotify_id": null,
+    "title": "Angry Again",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 1,
+    "first_scrobble": "2025-07-04T16:14:13+00:00",
+    "last_scrobble": "2025-07-04T16:14:13+00:00",
+    "observed_albums": [
+      {
+        "album": "Hidden Treasures",
+        "scrobbles": 1
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-913a82e30833eecb422b/album.json",
+    "artist_path": "artists/mb/mbid-a9044915-8be3-4c7e-b11f-9e2d2ea0a91e/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}

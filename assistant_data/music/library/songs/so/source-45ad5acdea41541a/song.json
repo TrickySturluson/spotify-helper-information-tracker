@@ -1,1 +1,95 @@
-{"confidence":{"identity":"low","metadata":{"duration":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["lastfm_catalog"]},"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:1f3f2f86-9f0b-49dd-b5f9-8fde4fd7fa6b","duration_ms":213000,"duration_source":"Last.fm track.getInfo","track_id":"track:45ad5acdea41541a"}},"id":"source:45ad5acdea41541a","identity":{"album":"Show Me Your Mind","album_id":"album:eb65431946c08a9ec525","artist":"Sunken","artist_id":"mbid:1f3f2f86-9f0b-49dd-b5f9-8fde4fd7fa6b","disc_number":null,"identity_quality":"source_track_id","isrc":null,"recording_mbid":null,"source_track_id":"track:45ad5acdea41541a","spotify_id":null,"title":"Show Me Your Mind","track_number":null},"listening_context":{"all_time_plays":14,"first_scrobble":"2023-10-30T20:16:25+00:00","last_scrobble":"2024-05-13T04:37:56+00:00","observed_albums":[{"album":"Show Me Your Mind","scrobbles":14}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-eb65431946c08a9ec525/album.json","artist_path":"artists/mb/mbid-1f3f2f86-9f0b-49dd-b5f9-8fde4fd7fa6b/artist.json"},"schema_version":1,"sources":{}}
+{
+  "confidence": {
+    "identity": "low",
+    "metadata": {
+      "duration": {
+        "confidence": "low",
+        "reason": "single source family; corroboration unavailable",
+        "source_families": [
+          "lastfm_catalog"
+        ]
+      },
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:1f3f2f86-9f0b-49dd-b5f9-8fde4fd7fa6b",
+      "duration_ms": 213000,
+      "duration_source": "Last.fm track.getInfo",
+      "track_id": "track:45ad5acdea41541a",
+      "duration_observations": [
+        {
+          "provider": "lastfm",
+          "checked_at": "2026-10-30T01:37:26+00:00",
+          "status": "matched",
+          "duration_ms": 213000,
+          "source": "Last.fm track.getInfo",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "source:45ad5acdea41541a",
+  "identity": {
+    "album": "Show Me Your Mind",
+    "album_id": "album:eb65431946c08a9ec525",
+    "artist": "Sunken",
+    "artist_id": "mbid:1f3f2f86-9f0b-49dd-b5f9-8fde4fd7fa6b",
+    "disc_number": null,
+    "identity_quality": "source_track_id",
+    "isrc": null,
+    "recording_mbid": null,
+    "source_track_id": "track:45ad5acdea41541a",
+    "spotify_id": null,
+    "title": "Show Me Your Mind",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 14,
+    "first_scrobble": "2023-10-30T20:16:25+00:00",
+    "last_scrobble": "2024-05-13T04:37:56+00:00",
+    "observed_albums": [
+      {
+        "album": "Show Me Your Mind",
+        "scrobbles": 14
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-eb65431946c08a9ec525/album.json",
+    "artist_path": "artists/mb/mbid-1f3f2f86-9f0b-49dd-b5f9-8fde4fd7fa6b/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {}
+}
