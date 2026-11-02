@@ -2,7 +2,7 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-02 (after PR #87/#88 merges and issue #90 freshness baseline)  
+**Last reviewed:** 2026-11-02 (after issue #92 verification and weekly maintenance-preview enhancement)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
 ## Critical path
@@ -35,7 +35,7 @@ This is the cross-project register of known unfinished work discovered from the 
 
 ### New Library reliability requirements (2026-11-02)
 
-- [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): full-catalogue identity audit is clean (identity confidence drift 0); PR #88 merged and now separates missing stored confidence from genuine mismatches. Issue #92 requests a fresh post-merge breakdown. Gold-set/manual false-match review remains open.
+- [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): full-catalogue identity audit is clean (identity confidence drift 0); PR #88 merged and now separates missing stored confidence from genuine mismatches. Issue #92/run 41372492615 completed: identity drift 0; metadata differences are 1,582 missing stored duration confidence and 0 genuine mismatches. Gold-set/manual false-match review remains open.
 - [Library health checker & maintainer](goals/library-health-maintenance/README.md): read-only checker is merged and full-catalogue clean. PR #80 maintainer is merged; issue #85 full-catalogue preview confirmed 13,005/6,386/7,861 records, zero errors/warnings, all aliases reconstructable, no repair needed. PR #87 merged and adds market-aware playability observation semantic validation. Issue #92 is the post-merge full-catalogue verification.
 - [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): PR #81 planner and PR #86 native CLI/weekly read-only review workflow are merged. Manual issue #90 completed: 13,005 songs, 6,386 artists, 7,861 albums; 8,799 fresh, 0 stale/due, 42,158 missing field/provider timestamps, 1,184 cooldown skips; 0 provider requests and 0 writes. The 42,158 missing timestamps are not proven stale and are not scheduled. Generic provider-backed executor remains unimplemented.
 - [Spotify playability](goals/spotify-playability/README.md): PRs #72 and #78 merged. Offline backfill run #82 updated 3,305 observations across 1,856 song records (3,250 playable, 55 unplayable) from saved snapshots; zero API requests and playlist writes. The song schema stores append-only, market-scoped observations under `evidence.spotify_playability`. Live refresh is a separate bounded Get Track path (25 default, max 50, 90-day TTL, dry-run by default, explicit execute confirmation); no live refresh has yet been executed.
