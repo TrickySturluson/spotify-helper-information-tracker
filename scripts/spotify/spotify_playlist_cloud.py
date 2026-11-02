@@ -509,6 +509,14 @@ def main():
             ("Zombina & The Skeletones", "Nobody Likes You (When You're Dead)"),
             ("The Fuzztones", "She's Wicked"),
             ("Tiger Army", "Rose Of The Devil's Garden"),
+            ("The Creepshow", "Creatures of the Night"),
+            ("The Creepshow", "The Devil's Son"),
+            ("Koffin Kats", "Witch in the Woods"),
+            ("Koffin Kats", "Graveyard Tree"),
+            ("The Ghastly Ones", "Diabolo's Theme"),
+            ("Los Straitjackets", "Rockula"),
+            ("Deadbolt", "Psychic Voodoo Doll"),
+            ("45 Grave", "Evil"),
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
@@ -560,7 +568,7 @@ def main():
             ]
             lines.extend(f'FOUND: {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
             lines.extend(f'SKIPPED: {row}' for row in skipped)
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
         else:
             intake = append_candidates(
                 [{
