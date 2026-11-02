@@ -188,10 +188,9 @@ class Spotify:
         out=[]
         if market is not None and market != "from_token" and not re.fullmatch(r"[A-Z]{2}", str(market)):
             raise ManagerError("Invalid Spotify market; use an ISO country code or from_token.")
-        params={"limit":50,"additional_types":"track,episode"}
+        url=f"/playlists/{pid}/items?limit=50&additional_types=track,episode"
         if market is not None:
-            params["market"]=market
-        url=f"/playlists/{pid}/items?{urllib.parse.urlencode(params)}"
+            url += f"&market={market}"
         while url:
             p=self.call("GET",url); out+=p.get("items",[]); url=p.get("next","")
             if url: url=url.replace(API,"")
