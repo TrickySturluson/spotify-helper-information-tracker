@@ -6,8 +6,10 @@ from pathlib import Path
 class BoozeFitCandidateSnapshotTests(unittest.TestCase):
     def test_booze_candidates_are_identity_only_and_match_saved_playlist_snapshot(self):
         root = Path(__file__).resolve().parents[1]
-        snapshot = json.loads((root / "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json").read_text(encoding="utf-8"))
         candidates = json.loads((root / "assistant_data/spotify/playlist_fit_booze_candidates_20261102.json").read_text(encoding="utf-8"))
+        history_dir = root / "assistant_data/spotify/history/4diIlnF8BlgoJrwUfejf49"
+        history = [json.loads(path.read_text(encoding="utf-8")) for path in history_dir.glob("*.json")]
+        snapshot = next(row for row in history if row.get("snapshot_id") == candidates["source_snapshot_id"])
         self.assertEqual(candidates["source_playlist_id"], snapshot["id"])
         self.assertEqual(candidates["source_snapshot_id"], snapshot["snapshot_id"])
         snapshot_uris = [row["uri"] for row in snapshot["items"] if row.get("type") == "track" and row.get("uri")]
