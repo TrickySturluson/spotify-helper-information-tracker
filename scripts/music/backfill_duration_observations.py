@@ -82,10 +82,15 @@ def _resolve_song_id(track, index):
     return found[0] if len(found) == 1 else None, len(found) > 1
 
 
-def _latest_observation(observations, provider):
+def _latest_observation(observations, provider, duration_ms, source):
+    source_key = str(source or "").strip().casefold()
     rows = [
         row for row in observations
-        if isinstance(row, dict) and row.get("provider") == provider and row.get("checked_at")
+        if isinstance(row, dict)
+        and row.get("provider") == provider
+        and row.get("checked_at")
+        and row.get("duration_ms") == duration_ms
+        and str(row.get("source") or "").strip().casefold() == source_key
     ]
     return max(rows, key=lambda row: str(row.get("checked_at") or "")) if rows else None
 
@@ -219,8 +224,8 @@ def build_plan(library_root=DEFAULT_LIBRARY_ROOT, music_root=DEFAULT_MUSIC_ROOT)
                 if signature in existing_signatures:
                     counts["already_present"] += 1
                     continue
-                current = _latest_observation(observations, provider)
-                if current and str(current.get("checked_at") or "") > checked_at:
+                current = _latest_observation(observations, provider, legacy_duration, legacy_source)
+                if current and str(current.get("checked_at") or "") >= checked_at:
                     counts["already_present"] += 1
                     continue
                 candidates.setdefault(song_id, {
@@ -267,7 +272,7 @@ def build_plan(library_root=DEFAULT_LIBRARY_ROOT, music_root=DEFAULT_MUSIC_ROOT)
         "canonical_song_count": len(index.get("songs") or {}),
         "counts": counts,
         "songs_to_update": len(changes),
-        "safe_to_apply": counts["duration_mismatch"] == 0 and counts["source_mismatch"] == 0 and counts["ambiguous_alias"] == 0,
+        "safe_to_apply": counts["ambiguous_alias"] == 0 and counts["duplicate_legacy_rows"] == 0,
         "provider_requests": 0,
         "writes": 0,
         "spotify_playlist_writes": 0,
@@ -279,6 +284,8 @@ def build_plan(library_root=DEFAULT_LIBRARY_ROOT, music_root=DEFAULT_MUSIC_ROOT)
 def apply_plan(changes, library_root=DEFAULT_LIBRARY_ROOT, music_root=DEFAULT_MUSIC_ROOT, health_check=True):
     library_root = Path(library_root)
     music_root = Path(music_root)
+    if not changes:
+        return {"backup_root": None, "changed_files": 0, "writes": 0}
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     backup_root = music_root / f"library.backup-duration-observations-{stamp}"
     manifest = {"created_at": datetime.now(timezone.utc).isoformat(), "files": []}
