@@ -195,6 +195,7 @@ def sync(sp):
                         "isrc": (item.get("external_ids") or {}).get("isrc"),
                         "spotify_playability_observation": ({
                             "status": (
+                                "restricted" if (item.get("restrictions") or {}).get("reason") else
                                 "playable" if item.get("is_playable") is True else
                                 "unplayable" if item.get("is_playable") is False else
                                 "unknown"
@@ -410,7 +411,9 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers. Run: python spotify_reference_library.py sync The command reads every playlist returned by the authorized Spotify account and writes dated snapshots. It never changes Spotify playlists.
+# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
+# Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
+# Safety: Snapshot ingestion never changes Spotify playlists; playability is stored as a timestamped observation.
 # Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
