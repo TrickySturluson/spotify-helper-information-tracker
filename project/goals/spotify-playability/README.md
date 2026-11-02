@@ -53,7 +53,7 @@ A song without a Spotify ID has no Spotify playability observation; do not assig
 
 ## Current status
 
-**Specification / design stage.** Existing Library records preserve Spotify IDs and general metadata; no verified per-market playability field or dedicated checker has been confirmed.
+**Implementation in draft branch; CI not yet verified.** Read-only Spotify playlist snapshot ingestion now carries explicit `is_playable`, restriction details, relinking IDs, source context and an observation timestamp into the canonical song record under `evidence.spotify_playability`. Observations are retained by market, with `unknown` used when the snapshot does not identify a market. This is not yet a market-specific API check, and the change is not merged.
 
 ## Resume
 
