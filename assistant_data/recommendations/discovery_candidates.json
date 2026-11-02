@@ -312,6 +312,32 @@
     }
   },
   {
+    "spotify_id": "39MVn4QM8RVfaEWPPJW8yV",
+    "spotify_uri": "spotify:track:39MVn4QM8RVfaEWPPJW8yV",
+    "artist": "Misfits",
+    "track": "Horror Business",
+    "album": "Collection",
+    "duration_ms": 165866,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:21:36.762071+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0mWwoJf3MLLZtnHH1VlxPM",
     "spotify_uri": "spotify:track:0mWwoJf3MLLZtnHH1VlxPM",
     "artist": "Misfits",
@@ -324,6 +350,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1Qxdyb5Rb7f9RGHQRSU4Nd",
+    "spotify_uri": "spotify:track:1Qxdyb5Rb7f9RGHQRSU4Nd",
+    "artist": "Misfits",
+    "track": "Vampira",
+    "album": "Collection",
+    "duration_ms": 81466,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:21:36.762071+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -402,6 +454,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3Ero9C3m7RlEf1xu5XhFDC",
+    "spotify_uri": "spotify:track:3Ero9C3m7RlEf1xu5XhFDC",
+    "artist": "Nekromantix",
+    "track": "Who Killed The Cheerleader",
+    "album": "Return Of The Loving Dead",
+    "duration_ms": 249200,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:21:36.762071+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -636,6 +714,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4e74QB4MF5ei1UlzmOZKSI",
+    "spotify_uri": "spotify:track:4e74QB4MF5ei1UlzmOZKSI",
+    "artist": "The Cramps",
+    "track": "I Was A Teenage Werewolf",
+    "album": "Stranger Things: Soundtrack from the Netflix Series, Season 4",
+    "duration_ms": 183520,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:21:36.762071+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",

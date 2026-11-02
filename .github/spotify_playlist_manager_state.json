@@ -290,6 +290,30 @@
     "wednesday13|iwalkedwithazombie": {
       "name": "I Walked with a Zombie",
       "uri": "spotify:track:1sh9C3fQEAQ5NLJjUluPhG"
+    },
+    "thecramps|iwasateenagewerewolf": {
+      "name": "I Was A Teenage Werewolf",
+      "uri": "spotify:track:4e74QB4MF5ei1UlzmOZKSI",
+      "album": "Stranger Things: Soundtrack from the Netflix Series, Season 4",
+      "duration_ms": 183520
+    },
+    "nekromantix|whokilledthecheerleader": {
+      "name": "Who Killed The Cheerleader",
+      "uri": "spotify:track:3Ero9C3m7RlEf1xu5XhFDC",
+      "album": "Return Of The Loving Dead",
+      "duration_ms": 249200
+    },
+    "misfits|vampira": {
+      "name": "Vampira",
+      "uri": "spotify:track:1Qxdyb5Rb7f9RGHQRSU4Nd",
+      "album": "Collection",
+      "duration_ms": 81466
+    },
+    "misfits|horrorbusiness": {
+      "name": "Horror Business",
+      "uri": "spotify:track:39MVn4QM8RVfaEWPPJW8yV",
+      "album": "Collection",
+      "duration_ms": 165866
     }
   }
 }

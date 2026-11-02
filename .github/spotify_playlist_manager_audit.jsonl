@@ -147,3 +147,4 @@
 {"at": "2026-11-02T07:50:21.585819+00:00", "event": "booze20_candidates_persisted", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "input_rows": 20, "new_candidates": 20, "unique_candidates": 20}
 {"at": "2026-11-02T07:50:21.586310+00:00", "event": "booze20_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 20}
 {"at": "2026-11-02T08:00:59.435755+00:00", "event": "booze20_candidates_persisted", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "input_rows": 11, "new_candidates": 11, "unique_candidates": 31}
+{"at": "2026-11-02T08:21:36.763236+00:00", "event": "booze15_candidates_persisted", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "input_rows": 14, "new_candidates": 4, "unique_candidates": 35}
