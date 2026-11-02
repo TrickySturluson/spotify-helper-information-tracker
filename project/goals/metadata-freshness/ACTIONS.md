@@ -1,3 +1,14 @@
+## 2026-11-02 — Merge field-level freshness planner; add CLI and weekly review
+
+- PR #81 merged to main as `570598fe95bc0c2314324c8f4565023ff3a2382b`.
+- The planner now consumes canonical song evidence, market-specific playability, `track_profiles.json`, `artist_profiles.json`, `album_profiles.json`, canonical alias maps, and provider cooldowns.
+- Full-catalogue CI scanned 13,005 songs, 6,386 artists, and 7,861 albums; cache coverage included 1,778 track profiles, 3,998 artist profiles, and 400 album profiles. It selected 0 due tasks after the playability backfill. 335 tests and 131 module compilations passed.
+- Added native CLI `python shit.py library freshness --limit 25 --market from_token` on branch `feature/library-freshness-automation`.
+- Added a weekly read-only workflow on that branch: Sunday 09:17 UTC; runs health, confidence and freshness; uploads JSON reports for 30 days; no provider requests, Library writes, or playlist writes.
+- PR #86/CI pending at time of entry. No provider-backed periodic executor is enabled.
+- Missing timestamps remain explicitly unscheduled; do not infer age from file modification time. TTLs are initial configurable defaults, not provider mandates.
+- Next: review PR #86 and run the first scheduled/manual weekly report; only then design a bounded executor tied to provider retry/cooldown state.
+
 ## 2026-11-02 — Implement initial read-only field freshness planner
 
 - Added `scripts/music/metadata_freshness.py` with deterministic bounded planning for market-specific Spotify playability and explicit field/provider observation timestamps.
