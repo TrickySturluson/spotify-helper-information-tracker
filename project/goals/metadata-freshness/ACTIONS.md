@@ -1,3 +1,12 @@
+## 2026-11-02 — Merge native freshness CLI and weekly read-only review
+
+- PR #86 merged to main as `e4ae9b535a74d745b2adb29aed57f7af0afacbe7`.
+- Added `python shit.py library freshness --limit 25 --market from_token`.
+- Added `.github/workflows/library-freshness-review.yml`: Sundays 09:17 UTC, or manual dispatch; runs health, confidence, and freshness reports; validates read-only behavior; uploads JSON artifacts for 30 days.
+- Full PR CI and secret scan passed. The workflow does not call providers or mutate Library/playlists.
+- Added a manual `freshness-review` command to the Great Migration issue workflow. Issue #89 is queued to run the planner against current main and report entity/cache counts and due-task breakdown.
+- No provider-backed periodic executor is enabled. A weekly plan identifies due work; it does not perform lookups.
+
 ## 2026-11-02 — Merge field-level freshness planner; add CLI and weekly review
 
 - PR #81 merged to main as `570598fe95bc0c2314324c8f4565023ff3a2382b`.
