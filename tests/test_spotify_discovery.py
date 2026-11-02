@@ -71,6 +71,53 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertIn("spotify:track:b", liked)
         self.assertEqual(sp.call.call_count, 2)
 
+    def test_playlist_removed_track_is_blocked_but_artist_removal_is_soft(self):
+        feedback = {
+            "negative_keys": {"artist|removed song"},
+            "negative_uris": {"spotify:track:removed"},
+            "negative_artists": {"artist": 1},
+        }
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Artist", "Removed Song", "spotify:track:other", feedback
+        ))
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Artist", "Different Song", "spotify:track:removed", feedback
+        ))
+        self.assertFalse(discovery.is_playlist_candidate_blocked(
+            "Artist", "Different Song", "spotify:track:other", feedback
+        ))
+
+    def test_readded_removed_track_is_whitelisted_by_current_playlist_membership(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "removed.json"
+            history.write_text(
+                '{"playlists":{"playlist":{"removed":[{"artist":"Artist","name":"Song","uri":"spotify:track:song"}]}}}',
+                encoding="utf-8",
+            )
+            feedback = discovery.load_playlist_feedback(
+                [{"name": "Song", "artists": [{"name": "Artist"}], "uri": "spotify:track:song"}],
+                "playlist",
+                history,
+            )
+        self.assertEqual(feedback["whitelisted_count"], 1)
+        self.assertEqual(feedback["removed_count"], 0)
+        self.assertFalse(discovery.is_playlist_candidate_blocked(
+            "Artist", "Song", "spotify:track:song", feedback
+        ))
+
+    def test_removed_track_stays_blocked_when_not_in_current_playlist(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "removed.json"
+            history.write_text(
+                '{"playlists":{"playlist":{"removed":[{"artist":"Artist","name":"Song","uri":"spotify:track:song"}]}}}',
+                encoding="utf-8",
+            )
+            feedback = discovery.load_playlist_feedback([], "playlist", history)
+        self.assertEqual(feedback["removed_count"], 1)
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Artist", "Song", "spotify:track:song", feedback
+        ))
+
     def test_lyric_theme_affinity_rewards_playlist_theme_overlap(self):
         playlist_themes = {"vampire": 3, "murder_slasher": 2, "nightlife_clubbing": 1}
         aligned = {"themes": {"vampire": {"count": 1}, "nightlife_clubbing": {"count": 2}}}
