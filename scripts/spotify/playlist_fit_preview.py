@@ -206,6 +206,75 @@ def resolve_item_record(item: dict, records: dict, cache_by_song: dict, name_alb
     return (exact, "spotify_track_id") if exact else (None, "unmatched")
 
 
+def _source_family(source: Any, fallback: str) -> str:
+    value = str(source or fallback).casefold()
+    if "musicbrainz" in value:
+        return "musicbrainz"
+    if "last.fm" in value or "lastfm" in value:
+        return "lastfm"
+    if "discogs" in value:
+        return "discogs"
+    return value
+
+
+def _related_record(record: dict, relation_key: str, library_root: Path, cache: dict) -> dict:
+    relations = record.get("relations") if isinstance(record.get("relations"), dict) else {}
+    relative = relations.get(relation_key)
+    if not relative:
+        return {}
+    relative = str(relative)
+    if relative in cache:
+        return cache[relative]
+    path = Path(relative)
+    if path.is_absolute() or ".." in path.parts:
+        cache[relative] = {}
+        return {}
+    value = read_json(library_root / path) if (library_root / path).is_file() else {}
+    cache[relative] = value if isinstance(value, dict) else {}
+    return cache[relative]
+
+
+def attach_context_dimensions(track: dict, record: dict, library_root: Path | None, cache: dict) -> dict:
+    """Add only explicit artist/release genre and mood as down-weighted context."""
+    if library_root is None:
+        return track
+    dimensions = track.setdefault("dimensions", {})
+    confidence = record.get("confidence") if isinstance(record.get("confidence"), dict) else {}
+    track_identity_tier = confidence.get("identity", "unknown")
+
+    for relation_key, scope, verified in (
+        ("artist_path", "artist", "artist"),
+        ("album_path", "release", "release"),
+    ):
+        related = _related_record(record, relation_key, library_root, cache)
+        if not related:
+            continue
+        evidence = related.get("evidence") if isinstance(related.get("evidence"), dict) else {}
+        related_identity = related.get("identity") if isinstance(related.get("identity"), dict) else {}
+        if verified == "artist":
+            identity_verified = bool(related_identity.get("artist_mbid")) or related_identity.get("identity_quality") == "verified"
+        else:
+            identity_verified = bool(related_identity.get("album_mbid") or evidence.get("album_mbid")
+                                     or evidence.get("identity_verified"))
+        context_identity = track_identity_tier if identity_verified else "low"
+        family = _source_family(evidence.get("source"), f"{scope}_context")
+        for value in evidence.get("genres") or []:
+            label = value.get("tag") or value.get("name") if isinstance(value, dict) else value
+            if label:
+                dimensions.setdefault("genre", []).append({
+                    "value": label, "source_family": family, "scope": scope,
+                    "identity_confidence": context_identity,
+                })
+        for value in evidence.get("moods") or []:
+            label = value.get("tag") or value.get("name") if isinstance(value, dict) else value
+            if label:
+                dimensions.setdefault("mood", []).append({
+                    "value": label, "source_family": family, "scope": scope,
+                    "identity_confidence": context_identity,
+                })
+    return track
+
+
 def load_reference_targets(spotify_root: Path) -> dict:
     roles = read_json(spotify_root / "playlist_roles.json")
     if not isinstance(roles, dict) or not isinstance(roles.get("playlists"), dict):
@@ -243,10 +312,11 @@ def load_reference_targets(spotify_root: Path) -> dict:
     return targets
 
 
-def build_preview(candidates: list[dict], targets: dict, records: dict, cache: dict, name_album_index: dict | None = None) -> dict:
+def build_preview(candidates: list[dict], targets: dict, records: dict, cache: dict, name_album_index: dict | None = None, library_root: Path | None = None) -> dict:
     heldout = {candidate["uri"] for candidate in candidates}
     candidate_resolutions = []
     heldout_record_ids = set()
+    related_cache = {}
     for candidate in candidates:
         item = {
             "uri": candidate["uri"], "name": candidate.get("title"), "artist": candidate.get("artist"),
@@ -274,6 +344,7 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
             if record_id:
                 seen_record_ids.add(record_id)
             adapted = track_from_library_record(record, accepted_profile_for_record(record, cache))
+            attach_context_dimensions(adapted, record, library_root, related_cache)
             adapted["uri"] = uri
             tracks.append(adapted)
             resolution_counts[method] = resolution_counts.get(method, 0) + 1
@@ -290,9 +361,14 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
             "identity_resolution_counts": reference_resolution_counts[playlist_id],
             "profile_track_count": profile["track_count"],
             "excluded_candidate_count": profile["excluded_candidate_and_holdout_count"],
-            "coverage": profile["coverage"], "profile_confidence": profile["profile_confidence"],
+            "coverage": profile["coverage"], "context_coverage": profile["context_coverage"],
+            "profile_confidence": profile["profile_confidence"],
             "dimension_coverage": {dim: profile["dimensions"][dim]["track_count"]
                                    for dim in profile["dimensions"]},
+            "direct_dimension_coverage": {dim: profile["dimensions"][dim]["direct_track_count"]
+                                          for dim in profile["dimensions"]},
+            "context_dimension_coverage": {dim: profile["dimensions"][dim]["context_track_count"]
+                                           for dim in profile["dimensions"]},
             "profile": profile,
         }
 
@@ -301,6 +377,8 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
         track = (track_from_library_record(record, accepted_profile_for_record(record, cache))
                  if record else {"uri": candidate["uri"], "title": candidate["title"],
                                  "artist": candidate["artist"], "dimensions": {}})
+        if record:
+            attach_context_dimensions(track, record, library_root, related_cache)
         track["uri"] = candidate["uri"]
         scores = {}
         for playlist_id, target in targets.items():
@@ -320,15 +398,23 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
             "scores_by_target": scores,
         })
     usable_profiles = sum(1 for target in target_profiles.values() if target["coverage"] > 0)
-    block_reasons = [] if usable_profiles else [
-        "No target profile has usable evidence in any dimension; all candidate fit scores are withheld."
-    ]
+    context_profiles = sum(1 for target in target_profiles.values() if target["context_coverage"] > 0)
+    if usable_profiles:
+        block_reasons = []
+        status = "read_only_preview_not_for_sorting"
+    elif context_profiles:
+        block_reasons = ["Target profiles contain context-only evidence; all fit values remain low-confidence and are not production decisions."]
+        status = "context_only_preview_not_for_sorting"
+    else:
+        block_reasons = ["No target profile has usable evidence in any dimension; all candidate fit scores are withheld."]
+        status = "blocked_insufficient_reference_evidence"
     return {
         "schema_version": 1, "model_version": MODEL_VERSION,
-        "status": "read_only_preview_not_for_sorting" if usable_profiles else "blocked_insufficient_reference_evidence",
+        "status": status,
         "human_ratings_read": False, "spotify_api_calls": 0, "playlist_writes": 0,
         "candidate_count": len(candidates), "heldout_batch_excluded_from_all_profiles": True,
-        "usable_target_profile_count": usable_profiles, "block_reasons": block_reasons,
+        "usable_target_profile_count": usable_profiles, "context_only_target_profile_count": context_profiles,
+        "block_reasons": block_reasons,
         "targets": target_profiles, "results": results,
         "limitations": [
             "Stable Spotify/MBID/source IDs are preferred. A fallback is accepted only for exact artist + title + album and duration within 2 seconds; it is marked medium identity confidence.",
@@ -352,7 +438,8 @@ def main() -> None:
     candidates = load_candidate_identities(args.candidates)
     records, cache, name_album_index = load_library_records(args.library, args.music_data)
     targets = load_reference_targets(args.spotify_data)
-    result = build_preview(candidates, targets, records, cache, name_album_index=name_album_index)
+    result = build_preview(candidates, targets, records, cache, name_album_index=name_album_index,
+                           library_root=args.library)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({
@@ -360,6 +447,8 @@ def main() -> None:
         "target_count": len(result["targets"]),
         "library_matched_candidates": sum(row["library_record_found"] for row in result["results"]),
         "target_profile_counts": {name: row["profile_track_count"] for name, row in result["targets"].items()},
+        "target_direct_coverage": {name: row["coverage"] for name, row in result["targets"].items()},
+        "target_context_coverage": {name: row["context_coverage"] for name, row in result["targets"].items()},
         "human_ratings_read": False, "spotify_api_calls": 0, "playlist_writes": 0,
     }, indent=2))
 
