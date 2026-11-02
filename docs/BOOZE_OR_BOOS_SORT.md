@@ -22,3 +22,8 @@ Set the open issue titled SHIT — Playlist Control to this JSON body:
 The GitHub Actions workflow posts the live proposed order and a one-time confirmation code. Review the full sequence before submitting a separate confirm command. The playlist must remain unlocked and unchanged between preview and confirmation.
 
 Section assignments in assistant_data/spotify/booze_or_boos_sections.json are keyed by Spotify track URI. If the playlist gains new tracks, the preview reports them as unassigned so they can be categorized before applying the sort.
+
+
+## Five-axis cross-reference audit
+
+The playlist-fit preview workflow now runs an additional read-only audit over the saved Booze or Boos! snapshot. The identity-only candidate manifest is `assistant_data/spotify/playlist_fit_booze_candidates_20261102.json`. It scores current Booze tracks against the five independent calibration-target profiles, excluding the entire Booze candidate batch from those profiles to avoid candidate leakage. This indicates broader musical affinity and evidence gaps; it does **not** certify that a track is Halloween-related. Use explicit recording-level theme/lyric evidence and the party brief for that judgment. The current saved snapshot has 64 tracks; regenerate the manifest if the source snapshot changes. No playlist writes are performed by this workflow.
