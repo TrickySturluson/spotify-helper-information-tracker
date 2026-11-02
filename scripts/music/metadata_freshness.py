@@ -363,6 +363,12 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None, inclu
 
     tasks = _dedupe_tasks(tasks)
     baseline_candidates = _dedupe_tasks(baseline_candidates)
+    # A task with a known stale timestamp takes precedence over the same
+    # entity/provider/field appearing as an unknown-age baseline candidate.
+    due_keys = {row["task_key"] for row in tasks}
+    baseline_candidates = [
+        row for row in baseline_candidates if row["task_key"] not in due_keys
+    ]
 
     # Oldest observations first; stable task hash breaks ties.
     tasks.sort(key=lambda row: (
