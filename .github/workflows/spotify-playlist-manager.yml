@@ -90,7 +90,27 @@ jobs:
           if [ -f assistant_data/recommendations/discovery_candidates.json ]; then git add assistant_data/recommendations/discovery_candidates.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update Spotify playlist manager state"
-            git push
+            published=false
+            for attempt in 1 2 3 4 5; do
+              echo "Safe state publication attempt $attempt/5"
+              git fetch origin main
+              if ! git rebase origin/main; then
+                echo "Rebase conflict; aborting without overwriting concurrent repository changes."
+                git rebase --abort || true
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                published=true
+                echo "Playlist manager state published on attempt $attempt."
+                break
+              fi
+              echo "Push raced with another main update; retrying after fetch/rebase."
+              if [ "$attempt" -lt 5 ]; then sleep 2; fi
+            done
+            if [ "$published" != "true" ]; then
+              echo "Could not safely publish playlist manager state after five attempts."
+              exit 1
+            fi
           fi
       - name: Report result
         if: steps.command.outcome == 'success'
