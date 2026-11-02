@@ -609,6 +609,61 @@
         "value": null
       },
       "usage": "human calibration label only; do not treat as listening/play/like/removal/acceptance event"
+    },
+    {
+      "rating_id": "human-of-lacking-spectacle-20261102",
+      "track": {
+        "name": "Of Lacking Spectacle",
+        "artist": "Gus Dapperton"
+      },
+      "audition_playlist": {
+        "id": "4aLdllLgRPh5vKOznkC97D",
+        "name": "SHITting Grounds"
+      },
+      "reference_membership": {
+        "playlist_id": "4HzqY9iy04M1EVSF5kcD64",
+        "playlist_name": ". . .",
+        "basis": "selected reference playlist for this survey track"
+      },
+      "human_fit_ratings": [
+        {
+          "playlist_id": "5meDjtqrqOe5oHpvZGWRMz",
+          "playlist_name": "To 11",
+          "score": 0
+        },
+        {
+          "playlist_id": "7L2rSp4SuohBEyNxEtAurx",
+          "playlist_name": "Somber Party",
+          "score": 74
+        },
+        {
+          "playlist_id": "4HzqY9iy04M1EVSF5kcD64",
+          "playlist_name": ". . .",
+          "score": 100
+        },
+        {
+          "playlist_id": "0O9ojSstxwa5vQy2V7pO2x",
+          "playlist_name": "=^=",
+          "score": 0
+        },
+        {
+          "playlist_id": "2ICCklgbF6cg0q5p4xAHKi",
+          "playlist_name": "Smooth",
+          "score": 60
+        }
+      ],
+      "notes": "",
+      "source": "explicit_user_slider_survey",
+      "model_prediction": {
+        "status": "not_attached",
+        "fit_scores": null,
+        "model_version": null
+      },
+      "evidence_confidence": {
+        "status": "not_attached",
+        "value": null
+      },
+      "usage": "human calibration label only; do not treat as listening/play/like/removal/acceptance event"
     }
   ]
 }
