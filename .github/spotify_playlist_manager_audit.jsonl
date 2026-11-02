@@ -178,3 +178,4 @@
 {"at": "2026-11-02T16:44:43.319808+00:00", "event": "permission_changed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "name": "Booze or Boos!", "state": "locked"}
 {"at": "2026-11-02T22:37:22.360251+00:00", "event": "booze10_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 10, "candidates_persisted": 61}
 {"at": "2026-11-02T22:43:02.226699+00:00", "event": "booze20_uri_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 10}
+{"at": "2026-11-02T22:51:45.560835+00:00", "event": "booze20_uri_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 10}
