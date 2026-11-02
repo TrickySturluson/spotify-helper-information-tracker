@@ -53,18 +53,12 @@ A song without a Spotify ID has no Spotify playability observation; do not assig
 
 ## Current status
 
-**Initial snapshot persistence is merged in PR #72.** Canonical song records store append-only playability observations under `evidence.spotify_playability`, including raw nullable `is_playable`, restrictions, timestamps, playlist/source context, and requested/returned/relinked IDs. Unknown market remains explicit; missing `is_playable` is not false.
+**Implemented and merged.** PR #72 added append-only snapshot observation persistence. PR #78 then added market-aware refresh, offline backfill, and a bounded stale-only refresh plan; merged commit `e12b72e`.
 
-**Market-aware refresh and offline backfill are in PR #78** (open; draft). The current implementation:
-- Uses authenticated-user market context (`market=from_token`) and the individual Spotify Get Track endpoint.
-- Preserves requested and relinked Spotify IDs without merging replacement metadata into the original song identity.
-- Provides offline backfill from saved playlist snapshots.
-- Adds a stale-only planner (default 25 songs, 90-day interval, maximum 50 requests per run); dry-run is default and live requests require explicit execute flags.
-- Treats absent `is_playable` and 404 as unknown/not-found rather than unplayable.
-- Has no playlist write path.
+**Offline backfill completed in run #82:** 1,856 canonical song records now contain 3,305 timestamped observations from saved Spotify playlist snapshots. The observations report 3,250 playable and 55 unplayable in the authenticated user's market context (`from_token`). Sixteen of 57 saved snapshots were inaccessible; two items could not be matched to a canonical song. The run made zero Spotify API requests and zero playlist writes. Backup artifact #13108782697 was retained; backup files were not committed to the canonical Library.
 
-The first complete compile and data audits passed on the latest PR revision; the unit suite previously exposed a missing `datetime/timezone` import in a new planner test. That test import has been fixed and a new CI run is queued/in progress. Do not merge or execute live refresh until the latest full CI run passes and the API request semantics are reviewed.
+These are **snapshot-time observations**, not a guarantee of current playback availability. A later bounded refresh should recheck stale records. The refresh planner defaults to 25 songs, uses a 90-day freshness interval, caps at 50 individual Get Track requests, and is dry-run by default. Live requests require explicit execute confirmation.
 
 ## Resume
 
-Read [ACTIONS.md](ACTIONS.md), inspect PR #78 and its final CI result; merge only after all checks pass. Then run the offline backfill from saved snapshots, audit the affected song files, and only afterward consider the bounded stale-only API refresh.
+Read [ACTIONS.md](ACTIONS.md), Run a post-backfill audit/health/confidence check on published main. Then inspect the bounded stale-only refresh plan and current account-market behavior before executing any live Spotify requests.
