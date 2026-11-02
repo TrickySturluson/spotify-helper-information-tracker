@@ -193,6 +193,7 @@ jobs:
           path: |
             assistant_data/music/
             shit-library-run.log
+            freshness-branch-plan.json
           if-no-files-found: ignore
           retention-days: 30
 
@@ -314,4 +315,4 @@ jobs:
 #           backfill-playability reads saved Spotify snapshots only and publishes song evidence.
 # Safety: owner validation, allow-listed operations, serialized runs, latest-main checkout, tests first,
 #         rollback backup artifact, no Spotify playlist writes, generated-data-only commits.
-# Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py.
+# Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py; freshness baseline PR validation.
