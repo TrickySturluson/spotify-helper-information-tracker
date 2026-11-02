@@ -213,3 +213,12 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Lessons learned / decision changes:**
 - **Next action:**
 - **References:**
+
+
+## 2026-11-02 — Duration provenance recovery fully applied in two passes
+
+- Issue #107 published 8,121 exact Last.fm duration observations with legacy check timestamps. The first pass made no provider requests and no playlist writes.
+- The parser was then extended to accept timezone-qualified ISO-8601 timestamps from legacy MusicBrainz metadata while rejecting timezone-naive timestamps.
+- Issue #113 preview found 8,172 exact timestamped rows: 8,121 already present and 51 additional MusicBrainz observations safe to add. All alias, file, duration, source, status, timestamp, and duplicate conflict counts were zero; 2,958 unrecognized-provider rows skipped; provider_requests=0 and writes=0.
+- Issue #114 apply reported success with 51 changed song files, timestamped backup, post-write health success, provider_requests=0, and Spotify playlist writes=0. A canonical song file fetched from published main contains the new MusicBrainz observation, independently confirming the output reached the repository.
+- Fresh post-backfill read-only checks were queued: #115 audit, #116 health, #117 freshness, #118 combined audit/health/confidence. Do not start provider refresh until those results are inspected. Retry-queue implementation is tracked in #119; duplicate entity audit remains tracked in #102.
