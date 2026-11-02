@@ -51,7 +51,7 @@ Names/flags are proposals until implemented and tested. Existing `status` and `a
 
 ## Current status
 
-**Read-only health checker implemented on draft branch; CI pending.** `scripts/music/library_health.py` scans JSON records, stable IDs/shards, index targets, aliases, and entity relationships without constructing `MusicLibrary` (whose constructor can rebuild/write an index). The CLI exposes `python shit.py library health [--json]`. A separate safe maintainer/repair workflow is still only specified and must not be conflated with this read-only checker.
+**Read-only health checker merged in PR #73.** `scripts/music/library_health.py` scans JSON records, stable IDs/shards, index targets, aliases, and entity relationships without constructing `MusicLibrary` (whose constructor can rebuild/write an index). The CLI exposes `python shit.py library health [--json]`. CI ran it against the full published catalogue: 13,005 songs, 6,386 artists, 7,861 albums, zero errors and zero warnings. A separate safe maintainer/repair workflow is still only specified and must not be conflated with this read-only checker.
 
 ## Resume
 
