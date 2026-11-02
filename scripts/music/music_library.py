@@ -300,6 +300,38 @@ class MusicLibrary:
             "confidence": confidence, "metadata_confidence": (record.get("confidence") or {}).get("metadata", {}),
             "candidate_ids": [key], "reason": "resolved by " + matched_by.replace("_", " "), "record": record}
 
+    def add_spotify_playability_observation(self, spotify_id, observation):
+        """Append one market-scoped Spotify observation to an existing song only."""
+        if not isinstance(observation, dict):
+            return {"status": "invalid_observation", "song_id": None, "updated": False}
+        match = self.lookup_song(spotify_id=spotify_id)
+        if match.get("status") != "matched":
+            return {
+                "status": "unmatched",
+                "song_id": None,
+                "updated": False,
+                "reason": match.get("reason"),
+            }
+        song_id = match["song_id"]
+        record = match["record"]
+        evidence = record.setdefault("evidence", {})
+        previous = evidence.get("spotify_playability")
+        updated = merge_spotify_playability(previous, observation)
+        changed = updated != previous
+        if changed:
+            evidence["spotify_playability"] = updated
+            entry = (self.index.get("songs") or {}).get(song_id) or {}
+            path = self.root / entry.get("path", "")
+            if not entry.get("path") or not path.is_file():
+                return {"status": "record_missing", "song_id": song_id, "updated": False}
+            write_json(path, record)
+        return {
+            "status": "updated" if changed else "unchanged",
+            "song_id": song_id,
+            "updated": changed,
+            "market": observation.get("market") or "unknown",
+        }
+
     def get_song(self, spotify_id=None, recording_mbid=None, artist=None, track=None, album=None,
                  isrc=None, source_track_id=None, release_mbid=None, track_number=None, disc_number=None):
         """Return a song bundle with an inspectable lookup explanation."""
