@@ -137,3 +137,10 @@ Before handing off, update this file and the project log with:
 - Issue #114 apply reported success: 51 song files changed, backup created, post-write health passed, zero provider requests and zero Spotify playlist writes. Independent verification of published `songs/so/source-3e2d305ebc76ea39/song.json` confirms a MusicBrainz duration observation (139,000 ms, exact source and timestamp) is on main.
 - Fresh read-only post-publication checks are queued: #115 audit, #116 health, #117 freshness review, #118 combined audit/health/confidence. Inspect issue comments and Actions status before treating them as complete.
 - Next gate: use the fresh freshness report to quantify remaining unknown-age duration candidates; then complete the read-only duplicate-entity audit and implement/verify the provider-aware retry queue per [`RETRY_QUEUE_SPEC.md`](RETRY_QUEUE_SPEC.md). Provider calls stay disabled until the report demonstrates eligibility and retry budgets/cooldowns are clear. Sorter remains gated on these checks.
+
+
+## New active work — sorter evaluation + listening ingestion watchdog
+
+- **Sorter:** do not wait for total metadata coverage. The existing sequencer is already evidence-aware; continue with deterministic offline evaluation and targeted fixes using [OFFLINE_EVALUATION.md](goals/playlist-intelligence/OFFLINE_EVALUATION.md). First run current tests and evaluate baseline vs sequence, coverage, confidence, uncertainty and peak variants. No provider calls or Spotify playlist writes.
+- **Listening ingestion watchdog:** implement the read-only design in [INGESTION_WATCHDOG.md](goals/listening-analytics/INGESTION_WATCHDOG.md). Last.fm importer checkpoint and newest scrobble timestamp are separate signals; Spotify local playback tracker is independently optional and only expected when explicitly enabled. Calibrate thresholds against actual schedules before enabling alerts.
+- Keep PR #120 (incremental Library enrichment policy) distinct; it remains a draft and is not merged.

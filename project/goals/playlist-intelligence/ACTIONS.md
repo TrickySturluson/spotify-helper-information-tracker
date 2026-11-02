@@ -33,3 +33,18 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Lessons learned / decision changes:**
 - **Next action:**
 - **References:**
+
+
+
+## 2026-11-02 — Offline evaluation work resumed
+
+- **Purpose:** advance the existing evidence-aware sequencer without waiting for complete metadata coverage or making live playlist changes.
+- **Changes / files:** added [OFFLINE_EVALUATION.md](OFFLINE_EVALUATION.md), defining baseline-vs-sequenced comparison, evidence coverage, confidence, uncertainty, transition diagnostics, peak-position variants, determinism, and performance reporting.
+- **Execution:** branch `codex/sorter-evaluation-ingestion-watchdog`.
+- **Verification:** existing implementation and tests inspected; test suite has not yet been executed in this environment. No evaluation report has yet been generated.
+- **Outcome:** partial; evaluation contract documented, runtime evaluation pending.
+- **Failed or abandoned approaches:** none.
+- **Performance / provider limits:** evaluation is offline; no provider requests.
+- **Lessons learned / decision changes:** metadata completeness is not a prerequisite for useful sorter development; unknown evidence must remain visible and must not be treated as a mismatch.
+- **Next action:** execute sequencer tests, inspect preview CLI, generate deterministic real-snapshot evaluation report, fix concrete failures.
+- **References:** [OFFLINE_EVALUATION.md](OFFLINE_EVALUATION.md).
