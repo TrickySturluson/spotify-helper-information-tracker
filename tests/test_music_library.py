@@ -272,6 +272,35 @@ class MusicLibraryTests(unittest.TestCase):
             song = MusicLibrary(temp).get_song(spotify_id="abc")["song"]
             self.assertEqual(len(song["evidence"]["spotify_playability"]["observations"]), 1)
 
+
+    def test_add_spotify_playability_observation_updates_existing_song_only(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            lib.put_catalogue([{
+                "track_id": "spotify:track:abc", "spotify_id": "abc",
+                "artist": "Artist", "track": "Song",
+            }])
+            observation = {
+                "status": "unplayable", "is_playable": False,
+                "market": "from_token", "checked_at": "2026-11-02T10:00:00+00:00",
+                "requested_spotify_id": "abc", "returned_spotify_id": "abc",
+            }
+            first = lib.add_spotify_playability_observation("abc", observation)
+            second = lib.add_spotify_playability_observation("abc", observation)
+            self.assertEqual(first["status"], "updated")
+            self.assertEqual(second["status"], "unchanged")
+            song = MusicLibrary(temp).get_song(spotify_id="abc")["song"]
+            self.assertEqual(len(song["evidence"]["spotify_playability"]["observations"]), 1)
+
+    def test_add_spotify_playability_observation_does_not_create_unknown_song(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lib = MusicLibrary(temp)
+            result = lib.add_spotify_playability_observation("missing", {
+                "status": "playable", "is_playable": True, "market": "from_token",
+            })
+            self.assertEqual(result["status"], "unmatched")
+            self.assertEqual(MusicLibrary(temp).status()["songs"], 0)
+
 if __name__ == "__main__": unittest.main()
 
 # FILE OVERVIEW
