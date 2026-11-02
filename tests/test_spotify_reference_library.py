@@ -53,6 +53,50 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_backfill_playability_from_saved_snapshots_is_offline_and_backup_protected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            library_root = root / "music" / "library"
+            playlist_dir = root / "playlists"
+            playlist_dir.mkdir()
+            music_library = library.MusicLibrary(library_root)
+            music_library.put_catalogue([{
+                "track_id": "spotify:track:abc", "spotify_id": "abc",
+                "artist": "Artist", "track": "Song",
+            }])
+            snapshot = {
+                "id": "playlist-1", "snapshot_id": "snapshot-1",
+                "items_accessible": True,
+                "last_items_accessible_at": "2026-11-02T10:00:00+00:00",
+                "items": [{
+                    "type": "track", "id": "abc", "name": "Song",
+                    "artists": ["Artist"], "is_playable": False,
+                    "restrictions": {"reason": "market"},
+                }],
+            }
+            (playlist_dir / "playlist-1.json").write_text(json.dumps(snapshot), encoding="utf-8")
+            result = library.backfill_playability_from_snapshots(playlist_dir, library_root)
+            self.assertEqual(result["provider_requests"], 0)
+            self.assertEqual(result["spotify_playlist_writes"], 0)
+            self.assertEqual(result["updated"], 1)
+            self.assertTrue(Path(result["backup_path"]).is_dir())
+            song = library.MusicLibrary(library_root).get_song(spotify_id="abc")["song"]
+            observation = song["evidence"]["spotify_playability"]["observations"][0]
+            self.assertEqual(observation["market"], "from_token")
+            self.assertEqual(observation["status"], "restricted")
+            self.assertEqual(observation["checked_at"], "2026-11-02T10:00:00+00:00")
+
+    def test_relinked_playability_uses_original_requested_id(self):
+        observation = library.playability_observation({
+            "id": "replacement", "linked_from": "spotify:track:original",
+            "is_playable": True, "is_playable_present": True,
+            "playability_market": "from_token",
+        }, "playlist", "snapshot", "2026-11-02T10:00:00+00:00")
+        self.assertEqual(observation["requested_spotify_id"], "original")
+        self.assertEqual(observation["returned_spotify_id"], "replacement")
+        self.assertEqual(observation["linked_from_spotify_id"], "original")
+        self.assertEqual(observation["market"], "from_token")
+
     def test_playability_observation_distinguishes_unplayable_and_restricted(self):
         unplayable = library.playability_observation({
             "id": "requested", "is_playable": False,
@@ -129,6 +173,7 @@ class ReferenceLibraryIntegrityTests(unittest.TestCase):
         self.assertEqual(record["items"], cached["items"])
         self.assertEqual(record["items_snapshot_id"], "same-snapshot")
         self.assertTrue(record["items_accessible"])
+        self.assertEqual(record["playability_market"], "from_token")
 
     def test_item_endpoint_404_is_recorded_as_inaccessible(self):
         sp = Mock()
@@ -143,6 +188,7 @@ class ReferenceLibraryIntegrityTests(unittest.TestCase):
         self.assertEqual(record["items"], [])
         self.assertIn("HTTP 404", record["items_error"])
         self.assertIsNone(record["items_snapshot_id"])
+        sp.items.assert_called_once_with("restricted", market="from_token")
 
     def test_inaccessible_playlist_preserves_last_known_tracklist(self):
         with tempfile.TemporaryDirectory() as directory:
