@@ -1,3 +1,9 @@
+## 2026-11-02 — Merge initial snapshot playability persistence
+
+- PR #72 merged to main: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/72
+- Existing read-only Spotify snapshot ingestion now stores explicit `is_playable`, restrictions, timestamps, and relinking identifiers under song evidence.
+- Initial version intentionally left market as unknown and did not backfill old snapshots. Follow-up PR #75 adds explicit `market=from_token`, correct original-vs-returned ID handling, and backup-protected offline backfill.
+- No live sync or backfill has been run yet; no playlist writes.
 ## 2026-11-02 — Capture playability from existing read-only Spotify snapshots
 
 - Inspected `scripts/spotify/spotify_reference_library.py`: `item_record()` already captured `is_playable` and `linked_from`, but `sync()` did not pass those fields into the canonical Library.
