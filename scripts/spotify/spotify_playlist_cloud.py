@@ -239,7 +239,7 @@ def main():
     # status and single-playlist inspections, accelerating app-wide quota
     # exhaustion. Fetch the profile only when the selected command needs it;
     # enumerate the full collection only for lock_all.
-    me = sp.me() if action not in {"status", "booze20_resolve_sources"} else None
+    me = sp.me() if action != "booze20_resolve_sources" else None
     result = ""
 
     if action == "lock_all":
@@ -350,7 +350,7 @@ def main():
         if action == "unlock":
             try: manager.assert_managed(command["playlist_id"])
             except manager.ManagerError as error: fail(str(error))
-        p = owned_playlist/(sp, command["playlist_id"], me)
+        p = owned_playlist(sp, command["playlist_id"], me)
         state = "locked" if action == "lock" else "unlocked"
         prior = config["playlists"].get(p["id"], {})
         config["playlists"][p["id"]] = {
@@ -1127,6 +1127,10 @@ def main():
         manager.audit(event="status_requested")
         result = "Playlist status:"
 
+    if action == "status":
+        playlists = sp.playlists()
+    elif action in {"lock", "unlock"}:
+        playlists = [p]
     if action in {"status", "lock_all", "lock", "unlock"}:
         lines = [result, "", "| Playlist | Items | Lock | Auto-cleanup | ID |", "|---|---:|---|---|---|"]
         for p in playlists:
