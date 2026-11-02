@@ -1,3 +1,15 @@
+## 2026-11-02 — Merge weekly rotating unknown-age freshness baseline (PR #100)
+
+- PR #100 merged to main as `61cc5c0b108559746443a4ad8d83bf2ec2ca97d8`.
+- Full PR CI passed: 344 unit tests, compile, generated-data audit, full-catalogue health/confidence checks, freshness planner, and documentation checks. Public repository Gitleaks scan passed.
+- Clean rebased branch validation via issue #101 also passed 344 tests and ran the native CLI against the full catalogue.
+- Full-catalogue planner result: 13,005 songs, 6,386 artists, 7,861 albums; 8,621 fresh; 0 stale; 0 missing playability observations; 6,613 data-bearing unknown-age observations; 33,689 fields with no data; 1,856 missing duration provenance; 1,362 cooldown skips; 0 invalid timestamps; 0 blocked tasks.
+- The baseline sample contained 6,613 candidates and selected 25; all 25 were Last.fm duration tasks labelled `baseline_required`. No due tasks existed. Known stale tasks take priority; duplicate due/baseline task keys are deduplicated. Selection is deterministic within the ISO week and rotates between weeks.
+- Planner is read-only: provider_requests=0, writes=0. Weekly review and manual freshness-review now include the rotating baseline; no automatic provider refresh is enabled.
+- Missing provenance (1,856 duration values) is kept separate and excluded from blind scheduling. Missing metadata/no-data fields are also not treated as stale.
+- PRs #95 and #97 were closed as superseded by the clean rebased PR #100. The earlier duplicate argparse flag and temporary validation-wrapper heredoc failures are resolved; final validation passed.
+- Next: implement a separate explicit, bounded provider-backed executor. Start with the 25 Last.fm duration baseline candidates as an opt-in pilot, persist checkpoints/results, and re-run the planner after writes. Do not automatically enable weekly provider calls yet.
+
 ## 2026-11-02 — Add weekly maintenance preview and unknown-age baseline rotation
 
 - The weekly read-only workflow was extended to run `python shit.py library maintain --json` and preserve `library-maintenance-plan.json` alongside health, confidence and freshness reports. It validates `mode=preview`, `changed=false`, zero provider requests and zero playlist writes; it never applies repairs. Commit `cb3adf2`; its push CI and public security scan both passed.
