@@ -53,6 +53,34 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_playability_observation_distinguishes_unplayable_and_restricted(self):
+        unplayable = library.playability_observation({
+            "id": "requested", "is_playable": False,
+            "is_playable_present": True, "playability_checked_at": "2026-11-02T10:00:00+00:00",
+        }, "playlist", "snapshot")
+        restricted = library.playability_observation({
+            "id": "requested", "is_playable": False,
+            "is_playable_present": True, "restrictions": {"reason": "market"},
+            "linked_from": "spotify:track:original",
+            "playability_checked_at": "2026-11-02T11:00:00+00:00",
+        }, "playlist", "snapshot")
+        self.assertEqual(unplayable["status"], "unplayable")
+        self.assertEqual(restricted["status"], "restricted")
+        self.assertEqual(restricted["market"], "unknown")
+        self.assertEqual(restricted["linked_from_spotify_id"], "original")
+        self.assertEqual(restricted["restrictions_reason"], "market")
+
+    def test_playability_observation_ignores_missing_field_and_keeps_unknown_market(self):
+        self.assertIsNone(library.playability_observation({
+            "id": "requested", "is_playable": None, "is_playable_present": False,
+        }, "playlist", "snapshot"))
+        observation = library.playability_observation({
+            "id": "requested", "is_playable": None, "is_playable_present": True,
+        }, "playlist", "snapshot", "2026-11-02T12:00:00+00:00")
+        self.assertEqual(observation["status"], "unknown")
+        self.assertEqual(observation["market"], "unknown")
+        self.assertEqual(observation["checked_at"], "2026-11-02T12:00:00+00:00")
+
     def test_item_record_preserves_explicit_unplayable_state_and_restriction(self):
         row = library.item_record({
             "item": {
