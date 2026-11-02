@@ -519,6 +519,8 @@ def main():
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED. Unlock it explicitly before resolving the 15-track batch.")
         current = manager.snapshot(sp, p)
+        import spotify_discovery as daily
+        feedback = daily.load_playlist_feedback(current["items"], pid)
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
@@ -581,6 +583,9 @@ def main():
                     manager.write(STATE, config)
             if not match:
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
+                continue
+            if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
+                skipped.append(f"{artist} — {title} (blocked by this playlist's removal history)")
                 continue
             if match["uri"] in existing:
                 already_present.append(f"{artist} — {match['name']}")
@@ -702,6 +707,8 @@ def main():
         if not manager.unlocked(pid):
             fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing edits.")
         current = manager.snapshot(sp, p)
+        import spotify_discovery as daily
+        feedback = daily.load_playlist_feedback(current["items"], pid)
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
@@ -838,6 +845,9 @@ def main():
             ), None)
             if not match:
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
+                continue
+            if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
+                skipped.append(f"{artist} — {title} (blocked by this playlist's removal history)")
                 continue
             if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
                 skipped.append(f"{artist} — {title} (already in playlist or duplicate)")
