@@ -66,8 +66,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 
 ## 2026-11-02 — Removal polling and post-cycle snapshots wired into Actions
 
-- Playlist-control workflow now polls every accessible owned playlist after each successful control command and commits both the baseline and removal history with the existing state publication step.
-- Tricky Daily's scheduled workflow now polls all accessible playlists after the daily cycle, then persists the baseline/removal data with cycle state.
+- Initial implementation polled every accessible playlist after every control command and from the Tricky Daily cycle. This was subsequently replaced by a lower-cost design: control commands poll only their target playlist; the scheduled reference-library workflow owns the daily account-wide poll.
 - Tricky Daily now saves and audits a post-mutation snapshot in addition to its pre-change recovery snapshot. Both workflows upload the complete `playlist_backups/` directory as run artifacts (30-day retention).
 - Polling is interval-based, not event-driven: a manual Spotify removal that is undone before the next poll cannot be inferred from Spotify's current playlist snapshot. Repeated removals that persist until a poll are captured.
 
