@@ -21,6 +21,7 @@ on:
           - verify
           - backfill-playability
           - verify-catalogue
+          - maintain-preview
 
 permissions:
   contents: write
@@ -47,7 +48,7 @@ jobs:
         run: |
           python - <<'PY'
           import json, os
-          allowed = {"status", "preview", "migrate", "prepare", "audit", "health", "verify", "backfill-playability", "verify-catalogue"}
+          allowed = {"status", "preview", "migrate", "prepare", "audit", "health", "verify", "backfill-playability", "verify-catalogue", "maintain-preview"}
           if os.environ["EVENT_NAME"] == "workflow_dispatch":
               command = os.environ.get("DISPATCH_COMMAND", "").strip().lower()
           else:
@@ -114,6 +115,7 @@ jobs:
             audit)   python shit.py library audit ;;
             health)  python shit.py library health --json ;;
             backfill-playability) python scripts/spotify/spotify_reference_library.py backfill-playability ;;
+            maintain-preview) python shit.py library maintain --json ;;
             verify-catalogue)
               python shit.py library audit
               python shit.py library health --json
