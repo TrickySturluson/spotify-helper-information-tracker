@@ -1,3 +1,11 @@
+## 2026-11-02 — Verify maintainer against the published catalogue
+
+- Issue #85 full-catalogue `maintain-preview` succeeded after fixing direct-script imports in `library_maintenance.py`.
+- Read-only health was clean: 13,005 songs, 6,386 artists, 7,861 albums; zero errors and zero warnings.
+- Proposed index counts exactly matched current counts. All existing entity IDs and aliases were reconstructable; no records or aliases would be lost; `safe_to_rebuild=true`.
+- `repair_needed=false`; no repair, backup, provider request, or playlist write occurred.
+- This confirms the current canonical index is healthy and the maintainer can preview the entire catalogue without mutation.
+
 ## 2026-11-02 — Publish offline Spotify playability backfill
 
 - Merged PR #78 (`e12b72e`) for market-aware playability observations, offline backfill, and bounded stale-only refresh.
