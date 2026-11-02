@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "purpose": "Durable semantic roles and canonical links for playlists used by SHIT. Playlist contents and current snapshot metadata remain in playlists.json and playlists/<playlist_id>.json; this file adds stable human/project roles without overwriting Spotify metadata.",
+  "generated_or_curated_at": "2026-11-01",
+  "playlists": {
+    "5meDjtqrqOe5oHpvZGWRMz": {
+      "name": "To 11",
+      "spotify_url": "https://open.spotify.com/playlist/5meDjtqrqOe5oHpvZGWRMz",
+      "role": "sorter_calibration_target",
+      "description": "Tear  it up",
+      "theme_notes": "User-designated strongly themed reference playlist. Use its actual tracklist as the source of truth; do not infer a narrower theme from its title alone.",
+      "snapshot_record": "assistant_data/spotify/playlists/5meDjtqrqOe5oHpvZGWRMz.json",
+      "snapshot_accessible": true
+    },
+    "7L2rSp4SuohBEyNxEtAurx": {
+      "name": "Somber Party",
+      "spotify_url": "https://open.spotify.com/playlist/7L2rSp4SuohBEyNxEtAurx",
+      "role": "sorter_calibration_target",
+      "description": "",
+      "theme_notes": "User-designated strongly themed reference playlist. Name suggests a somber-party contrast, but tracklist is authoritative.",
+      "snapshot_record": "assistant_data/spotify/playlists/7L2rSp4SuohBEyNxEtAurx.json",
+      "snapshot_accessible": true
+    },
+    "4HzqY9iy04M1EVSF5kcD64": {
+      "name": ". . .",
+      "spotify_url": "https://open.spotify.com/playlist/4HzqY9iy04M1EVSF5kcD64",
+      "role": "sorter_calibration_target",
+      "description": "",
+      "theme_notes": "User-designated strongly themed reference playlist. Title is non-descriptive; derive theme from the stored tracklist and user feedback.",
+      "snapshot_record": "assistant_data/spotify/playlists/4HzqY9iy04M1EVSF5kcD64.json",
+      "snapshot_accessible": true
+    },
+    "0O9ojSstxwa5vQy2V7pO2x": {
+      "name": "=^=",
+      "spotify_url": "https://open.spotify.com/playlist/0O9ojSstxwa5vQy2V7pO2x",
+      "role": "sorter_calibration_target",
+      "description": "",
+      "theme_notes": "User-designated strongly themed reference playlist. Title is non-descriptive; derive theme from the stored tracklist and user feedback.",
+      "snapshot_record": "assistant_data/spotify/playlists/0O9ojSstxwa5vQy2V7pO2x.json",
+      "snapshot_accessible": true
+    },
+    "2ICCklgbF6cg0q5p4xAHKi": {
+      "name": "Smooth",
+      "spotify_url": "https://open.spotify.com/playlist/2ICCklgbF6cg0q5p4xAHKi",
+      "role": "sorter_calibration_target",
+      "description": "",
+      "theme_notes": "User-designated strongly themed reference playlist. Use its actual tracklist and user feedback to calibrate the intended smoothness.",
+      "snapshot_record": "assistant_data/spotify/playlists/2ICCklgbF6cg0q5p4xAHKi.json",
+      "snapshot_accessible": true
+    },
+    "4aLdllLgRPh5vKOznkC97D": {
+      "name": "SHITting Grounds",
+      "spotify_url": "https://open.spotify.com/playlist/4aLdllLgRPh5vKOznkC97D",
+      "role": "sorter_audition_destination",
+      "description": "User-created playlist for auditioning candidate tracks and evaluating sorter fit.",
+      "theme_notes": "Intended destination for the listening/calibration batch. Not present in the current 57-playlist reference snapshot; requires next Spotify reference sync before its contents can be treated as retrieved. No playlist writes are implied by this registry entry.",
+      "snapshot_record": null,
+      "snapshot_accessible": null,
+      "sync_status": "not_yet_in_reference_snapshot"
+    },
+    "6ZsqAs5OnRMVudhfB2QzTx": {
+      "name": "All Time",
+      "spotify_url": "https://open.spotify.com/playlist/6ZsqAs5OnRMVudhfB2QzTx",
+      "role": "broad_taste_reference",
+      "description": "The cream of the crop, only the key songs through the years with a variety of genres, play without shuffle to escalate from calm - relaxing gaining more energy then a dip into mellow sad rising up to some angry - loud.",
+      "theme_notes": "Broad, diverse, multi-genre smooth listening reference. It is not one of the five narrow calibration targets and should not be treated as a single genre/theme classifier.",
+      "snapshot_record": "assistant_data/spotify/playlists/6ZsqAs5OnRMVudhfB2QzTx.json",
+      "snapshot_accessible": true
+    },
+    "3XQz9AyZP6ADcr9i8iBaVx": {
+      "name": "Hell",
+      "spotify_url": "https://open.spotify.com/playlist/3XQz9AyZP6ADcr9i8iBaVx",
+      "role": "broad_taste_reference",
+      "description": "",
+      "theme_notes": "Broad collection of music the user has listened to and enjoyed since its last update. It is not one of the five narrow calibration targets.",
+      "snapshot_record": "assistant_data/spotify/playlists/3XQz9AyZP6ADcr9i8iBaVx.json",
+      "snapshot_accessible": true
+    },
+    "4diIlnF8BlgoJrwUfejf49": {
+      "name": "Booze or Boos!",
+      "spotify_url": "https://open.spotify.com/playlist/4diIlnF8BlgoJrwUfejf49",
+      "role": "managed_generated_playlist",
+      "description": "Killer tracks, monster grooves, and tunes to die for.",
+      "theme_notes": "Halloween party playlist; energetic, playful, dark, campy and strongly Halloween-relevant. Existing playlist-management permissions are defined separately in managed_playlists.json.",
+      "snapshot_record": "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json",
+      "snapshot_accessible": true
+    },
+    "4yUVHSMQySfWeEowfIMcx7": {
+      "name": "Tricky Daily",
+      "spotify_url": "https://open.spotify.com/playlist/4yUVHSMQySfWeEowfIMcx7",
+      "role": "managed_daily_playlist",
+      "description": "Familiar names. Unexpected detours",
+      "theme_notes": "Daily shuffle playlist. Fresh tracks prioritized; liked tracks softly down-ranked, never excluded solely for being liked. Permission exception is defined separately in managed_playlists.json.",
+      "snapshot_record": "assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json",
+      "snapshot_accessible": true
+    }
+  },
+  "role_order": [
+    "sorter_calibration_target",
+    "sorter_audition_destination",
+    "broad_taste_reference",
+    "managed_generated_playlist",
+    "managed_daily_playlist"
+  ],
+  "safety_note": "This registry is descriptive, not an authorization source. Playlist write permissions must continue to come exclusively from assistant_data/spotify/managed_playlists.json. A playlist's presence here never grants edit permission."
+}
