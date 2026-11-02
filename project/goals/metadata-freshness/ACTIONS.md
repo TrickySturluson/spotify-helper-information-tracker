@@ -1,3 +1,12 @@
+## 2026-11-02 — Discover and implement duration timestamp provenance recovery
+
+- The full-catalogue unknown-age baseline (6,613 duration candidates) was traced to at least one migration gap: At the Gates — Slaughter of the Soul has exact `metadata_checked_at=1793324246` in legacy shard 18 with `metadata_status=matched`, `duration_ms=183000`, `duration_source=Last.fm track.getInfo`, but the canonical song record omitted that timestamp.
+- This means unknown-age does not necessarily mean unverified. Do not issue provider lookups for these records until legacy check timestamps have been carried into canonical evidence.
+- Added `scripts/music/backfill_duration_observations.py` and `python shit.py library duration-evidence`. It resolves by exact canonical aliases, requires exact duration/source and matched status, writes append-only `duration_observations` only on explicit `--apply --yes`, creates a backup, writes atomically, and rolls back if post-write health fails.
+- Updated freshness planning to use the latest observation matching the current duration/source/provider; Last.fm tag timestamps remain separate. Updated health validation for duration observation schema.
+- Tests cover exact match, mismatched duration/source, non-matched status, existing/newer observations, duplicate legacy IDs, malformed timestamps, preview no-write, backup and rollback. Workflow issue #104 runs the read-only full-catalogue preview; result pending.
+- No provider requests or canonical data writes have occurred.
+
 ## 2026-11-02 — Merge weekly rotating unknown-age freshness baseline (PR #100)
 
 - PR #100 merged to main as `61cc5c0b108559746443a4ad8d83bf2ec2ca97d8`.
