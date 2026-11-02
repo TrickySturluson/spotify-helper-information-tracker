@@ -77,10 +77,10 @@ def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
                     {"uri": uri, "positions": indexes[1:]}
                     for uri, indexes in duplicates.items()
                 ]
-                sp.call("DELETE", f"/playlists/{pid}/items", {
-                    "items": items,
-                    "snapshot_id": fresh_playlist.get("snapshot_id"),
-                })
+                manager.mutate_with_snapshots(
+                    sp,pid,lambda: sp.call("DELETE", f"/playlists/{pid}/items", {
+                        "items": items, "snapshot_id": manager.find(sp,pid).get("snapshot_id"),
+                    }),event="removal_tracker_dedupe",removed_occurrences=extra_count)
                 manager.audit(event="deduplicated", playlist_id=pid, name=name,
                               removed_occurrences=extra_count, backup=backup)
                 print(f"  DEDUPED {extra_count} surplus occurrence(s); recovery snapshot: {backup}")
