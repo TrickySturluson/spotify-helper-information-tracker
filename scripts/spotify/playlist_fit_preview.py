@@ -8,14 +8,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.spotify.playlist_fit_model import (
     MODEL_VERSION, build_reference_profile, score_track, track_from_library_record,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_LIBRARY = REPO_ROOT / "assistant_data/music/library"
 DEFAULT_MUSIC = REPO_ROOT / "assistant_data/music"
 DEFAULT_SPOTIFY = REPO_ROOT / "assistant_data/spotify"
