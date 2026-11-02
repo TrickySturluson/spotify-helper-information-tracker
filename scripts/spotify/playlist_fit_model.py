@@ -120,15 +120,21 @@ def build_reference_profile(
                 "min": min(values) if values else None, "max": max(values) if values else None,
                 "p10": round(percentile(0.10), 3) if values else None,
                 "p90": round(percentile(0.90), 3) if values else None,
-                "track_count": len(values), "source_families": sorted(families),
+                "track_count": len(values), "direct_track_count": len(values),
+                "context_track_count": 0, "source_families": sorted(families),
             }
         else:
             counts, families, track_count = Counter(), set(), 0
+            direct_track_count = context_track_count = 0
             for track in included:
                 rows = _usable(_observations(track, dim))
                 if not rows:
                     continue
                 track_count += 1
+                if any(row["scope"] in {"recording", "lyrics", "audio"} for row in rows):
+                    direct_track_count += 1
+                if any(row["scope"] in {"release", "artist"} for row in rows):
+                    context_track_count += 1
                 per_family = {}
                 track_tokens = set()
                 for row in rows:
@@ -140,17 +146,19 @@ def build_reference_profile(
                     counts[token] += 1
             dimensions[dim] = {
                 "prevalence": {k: round(v / max(1, track_count), 4) for k, v in counts.items()},
-                "track_count": track_count, "source_families": sorted(families),
+                "track_count": track_count, "direct_track_count": direct_track_count,
+                "context_track_count": context_track_count, "source_families": sorted(families),
             }
-    coverage = sum(bool(dimensions[d]["track_count"]) for d in DIMENSIONS) / len(DIMENSIONS)
+    direct_coverage = sum(bool(dimensions[d]["direct_track_count"]) for d in DIMENSIONS) / len(DIMENSIONS)
+    context_coverage = sum(bool(dimensions[d]["context_track_count"]) for d in DIMENSIONS) / len(DIMENSIONS)
     n = len(included)
-    profile_confidence = "high" if n >= 20 and coverage >= 0.8 else (
-        "medium" if n >= 8 and coverage >= 0.6 else "low" if n else "unknown")
+    profile_confidence = "high" if n >= 20 and direct_coverage >= 0.8 else (
+        "medium" if n >= 8 and direct_coverage >= 0.6 else "low" if n else "unknown")
     return {
         "model_version": MODEL_VERSION, "track_count": n,
         "excluded_candidate_and_holdout_count": len(excluded),
-        "coverage": round(coverage, 3), "profile_confidence": profile_confidence,
-        "dimensions": dimensions,
+        "coverage": round(direct_coverage, 3), "context_coverage": round(context_coverage, 3),
+        "profile_confidence": profile_confidence, "dimensions": dimensions,
     }
 
 
