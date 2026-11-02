@@ -412,8 +412,37 @@ def main():
         # Staging is read-only and allowed while locked; confirmation enforces unlock.
         current = manager.snapshot(sp, p)
         import spotify_playlist_sequencer as sequencer
-        artists = sequencer.index_artists(manager.read(sequencer.ARTIST_PROFILES, {}))
-        tracks = sequencer.index_tracks(manager.read(sequencer.TRACK_PROFILES, {}))
+        # Use the canonical Library as the first-choice source for each playlist
+        # recording, then fill only missing records from legacy caches. The old
+        # cloud preview omitted audio_profiles and album_profiles entirely, so
+        # its "smooth" order was effectively running without acoustic evidence.
+        legacy_artists = sequencer.index_artists(manager.read(sequencer.ARTIST_PROFILES, {}))
+        legacy_tracks = sequencer.index_tracks(manager.read(sequencer.TRACK_PROFILES, {}))
+        legacy_audio_rows = manager.read(sequencer.AUDIO_PROFILES, {})
+        legacy_audio = sequencer.index_audio_profiles(
+            legacy_audio_rows.get("tracks", legacy_audio_rows)
+            if isinstance(legacy_audio_rows, dict) else {}
+        )
+        legacy_album_rows = manager.read(sequencer.ALBUM_PROFILES, {})
+        legacy_albums = {
+            (sequencer.norm(row.get("artist")), sequencer.norm(row.get("album"))): row
+            for row in (legacy_album_rows.values() if isinstance(legacy_album_rows, dict) else [])
+            if isinstance(row, dict) and row.get("artist") and row.get("album")
+        }
+        library_profiles = sequencer.load_library_profiles(current["items"])
+        if library_profiles is not None:
+            artists, tracks, audio_profiles, album_profiles = library_profiles
+            for key, row in legacy_artists.items():
+                artists.setdefault(key, row)
+            for key, row in legacy_tracks.items():
+                tracks.setdefault(key, row)
+            for key, row in legacy_audio.items():
+                audio_profiles.setdefault(key, row)
+            for key, row in legacy_albums.items():
+                album_profiles.setdefault(key, row)
+        else:
+            artists, tracks = legacy_artists, legacy_tracks
+            audio_profiles, album_profiles = legacy_audio, legacy_albums
         tracks = sequencer.merge_lyric_features(
             tracks, manager.read(sequencer.LYRIC_FEATURES, [])
         )
@@ -425,11 +454,13 @@ def main():
             current["items"], artists, tracks,
             mode="smooth", journey="rising", peak_position=85,
             peak_shape="gradual", genre_strength=0.2, theme_strength=0.25,
-            sections=sections,
+            sections=sections, audio_profiles=audio_profiles,
+            album_profiles=album_profiles,
         )
         plan = sequencer.make_plan(current, scored)
         summary = sequencer.transition_summary(scored)
         confidence = sequencer.confidence_summary(scored)
+        coverage = sequencer.evidence_coverage_summary(scored)
         unassigned = sum(row.get("section_index") is None for row in scored)
         confirmation = secrets.token_urlsafe(12)
         operations = plan["operations"]
@@ -459,6 +490,17 @@ def main():
             f'Transitions: {summary["gentle"]} gentle; {summary["moderate"]} moderate; '
             f'{summary["potential_jumps"]} potential jumps; limited evidence={summary["limited_evidence"]}.',
             "Confidence: " + ", ".join(f"{label}={count}" for label, count in confidence.items()),
+            "Acoustic evidence: " + ", ".join(
+                f"{label}={count}" for label, count in coverage["acoustic_confidence"].items()
+            ),
+            "Audio sources: " + (
+                ", ".join(f"{source}={count}" for source, count in coverage["acoustic_source_coverage"].items())
+                or "none recorded"
+            ),
+            "Tempo sources: " + (
+                ", ".join(f"{source}={count}" for source, count in coverage["tempo_sources"].items())
+                or "none recorded"
+            ),
             f'Section assignment: {len(scored) - unassigned}/{len(scored)} tracks; '
             f'{unassigned} unassigned (new or uncategorized tracks).',
             "No Spotify changes have been made.",
