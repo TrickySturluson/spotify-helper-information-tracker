@@ -180,8 +180,46 @@ class MetadataFreshnessTests(unittest.TestCase):
             report = build_plan(root, market="from_token", now=datetime(2026, 11, 2, tzinfo=timezone.utc))
             self.assertEqual(report["selected"][0]["status"], "missing_observation")
             self.assertEqual(report["selected"][0]["market"], "from_token")
-            self.assertGreater(report["counts"]["missing_timestamp"], 0)
+            self.assertGreater(report["counts"]["no_data"], 0)
             self.assertEqual(report["provider_requests"], 0)
+
+    def test_missing_timestamp_counts_only_data_bearing_fields(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_song(root, "empty-song", {
+                "id": "empty-song", "identity": {"artist": "Artist", "title": "Song"},
+                "evidence": {"track_metadata": {}},
+            })
+            report = build_plan(root, limit=10, now=datetime(2026, 11, 2, tzinfo=timezone.utc))
+            self.assertEqual(report["counts"]["missing_timestamp"], 0)
+            self.assertGreater(report["counts"]["no_data"], 0)
+            self.assertEqual(report["baseline_candidate_count"], 0)
+
+    def test_unknown_age_baseline_sample_rotates_deterministically_by_week(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for song_id in ("song-one", "song-two"):
+                self.write_song(root, song_id, {
+                    "id": song_id,
+                    "identity": {"artist": "Artist", "title": song_id},
+                    "evidence": {"track_metadata": {
+                        "lastfm_tags": [{"tag": "shoegaze"}],
+                        "lastfm_status": "matched",
+                    }},
+                })
+            week_one = datetime(2026, 11, 2, tzinfo=timezone.utc)
+            week_two = datetime(2026, 11, 9, tzinfo=timezone.utc)
+            first = build_plan(root, limit=1, now=week_one, include_unknown_age=True)
+            repeat = build_plan(root, limit=1, now=week_one, include_unknown_age=True)
+            next_week = build_plan(root, limit=1, now=week_two, include_unknown_age=True)
+            self.assertEqual(first["due_task_count"], 0)
+            self.assertEqual(first["baseline_candidate_count"], 2)
+            self.assertEqual(first["selected_baseline_count"], 1)
+            self.assertEqual(first["selected"], repeat["selected"])
+            self.assertNotEqual(first["selected"][0]["task_key"], next_week["selected"][0]["task_key"])
+            self.assertEqual(first["selected"][0]["status"], "baseline_required")
+            self.assertEqual(first["provider_requests"], 0)
+            self.assertEqual(first["writes"], 0)
 
     def test_planning_is_deterministic_bounded_and_does_not_write(self):
         with tempfile.TemporaryDirectory() as directory:
