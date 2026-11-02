@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "batch_id": "five-playlist-fit-heldout-20261102",
+  "purpose": "Identity-only held-out batch for the native read-only five-axis preview runner. The 24 playable audition tracks were resolved to unique Spotify track IDs from the five saved target snapshots; the unplayable Dog — Floating Room entry was excluded.",
+  "selection_rules": [
+    "Spotify track IDs only; no artist/title-only joins are performed by the scorer.",
+    "The full batch is excluded from every target profile.",
+    "No human slider scores, model fit predictions, confidence values, or comparison fields are included."
+  ],
+  "tracks": [
+    {
+      "uri": "spotify:track:6V0A3jkb9ntudO0kmcJ1xd",
+      "title": "Figure It Out",
+      "artist": "Royal Blood"
+    },
+    {
+      "uri": "spotify:track:1wsRitfRRtWyEapl0q22o8",
+      "title": "Guerrilla Radio",
+      "artist": "Rage Against The Machine"
+    },
+    {
+      "uri": "spotify:track:5cZqsjVs6MevCnAkasbEOX",
+      "title": "Break Stuff",
+      "artist": "Limp Bizkit"
+    },
+    {
+      "uri": "spotify:track:5mpUKTdskZea0gStWzeHUZ",
+      "title": "Unsainted",
+      "artist": "Slipknot"
+    },
+    {
+      "uri": "spotify:track:7CpbhqKUedOIrcvc94p60Y",
+      "title": "Bodies",
+      "artist": "Drowning Pool"
+    },
+    {
+      "uri": "spotify:track:28kOpVf1aCgL0LSFfuKV4w",
+      "title": "Oom Sha La La",
+      "artist": "Haley Heynderickx"
+    },
+    {
+      "uri": "spotify:track:2WJWtj8xlMRMddPBQwftTY",
+      "title": "when the devil falls in love",
+      "artist": "Hakdo"
+    },
+    {
+      "uri": "spotify:track:6f2zLLNAyxzD3WLG2IR40l",
+      "title": "MARBLE HALLS",
+      "artist": "Masayoshi Takanaka"
+    },
+    {
+      "uri": "spotify:track:6KKtTJAgNLCW7LAtuI9Dwy",
+      "title": "Wharf (ii)",
+      "artist": "Horsey"
+    },
+    {
+      "uri": "spotify:track:3ZGV8p5oWaj1oIy6OVVVae",
+      "title": "Armchair",
+      "artist": "yungatita"
+    },
+    {
+      "uri": "spotify:track:1jQyc3hZdalk3jCIfgTdcn",
+      "title": "Don't Come Home Today",
+      "artist": "Good Morning"
+    },
+    {
+      "uri": "spotify:track:3EdMkS9YsVyEFUGwVJBjZB",
+      "title": "Of Lacking Spectacle",
+      "artist": "Gus Dapperton"
+    },
+    {
+      "uri": "spotify:track:4C4nM20DS3oEdaq1WWl4ru",
+      "title": "Running Up That Hill",
+      "artist": "Chromatics"
+    },
+    {
+      "uri": "spotify:track:7vptmeNwSEVkcwDdqk7UQO",
+      "title": "Lauren",
+      "artist": "Men I Trust"
+    },
+    {
+      "uri": "spotify:track:7kKLHjFif3r0HG5YyBTv6d",
+      "title": "I'm a Wanted Man",
+      "artist": "Royal Deluxe"
+    },
+    {
+      "uri": "spotify:track:0mHSePRiFnTy7qYPsIeIJ8",
+      "title": "Where the Devil Don't Go",
+      "artist": "Elle King"
+    },
+    {
+      "uri": "spotify:track:3nGWzFBJ5tMzHWAgs16fK6",
+      "title": "What Makes A Good Man?",
+      "artist": "The Heavy"
+    },
+    {
+      "uri": "spotify:track:7JOizhmt3HlBgQyJEa0AgK",
+      "title": "Short Change Hero",
+      "artist": "The Heavy"
+    },
+    {
+      "uri": "spotify:track:0ZPMI8Gnz7p6omBBIOwiO9",
+      "title": "A Little Wicked",
+      "artist": "Valerie Broussard"
+    },
+    {
+      "uri": "spotify:track:4e6tEXni2K0cZYFmku6Htf",
+      "title": "Flatline",
+      "artist": "Scattle"
+    },
+    {
+      "uri": "spotify:track:1hGRe4d3LJCg1VszAU8Cy1",
+      "title": "Daisuke",
+      "artist": "El Huervo"
+    },
+    {
+      "uri": "spotify:track:2uA9EGy7KifPvk2F342IvR",
+      "title": "Rust",
+      "artist": "El Huervo"
+    },
+    {
+      "uri": "spotify:track:6rne7RR7YOkAuRYeNP9GQT",
+      "title": "Deep Cover",
+      "artist": "Sun Araw"
+    },
+    {
+      "uri": "spotify:track:2HsgJD03dwYszo0G1NcEgD",
+      "title": "Fantasy Trash Wave",
+      "artist": "TOBACCO"
+    }
+  ]
+}
