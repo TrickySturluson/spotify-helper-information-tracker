@@ -332,7 +332,7 @@ def refresh_playability_from_spotify(library_root=None, limit=25, stale_days=90,
     due = []
     spotify_ids_available = 0
     songs = library.index.get("songs") or {}
-    for song_id, entry in songs.items()
+    for song_id, entry in songs.items():
         path = library.root / (entry.get("path") or "")
         record = manager.read(path, None)
         if not isinstance(record, dict):
