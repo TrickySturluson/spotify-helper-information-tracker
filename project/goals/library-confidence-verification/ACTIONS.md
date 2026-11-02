@@ -1,3 +1,14 @@
+## 2026-11-02 — Re-run confidence audit with missing-vs-mismatch classification (issue #92)
+
+- Latest-main run [41372492615](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41372492615) succeeded; report scanned all 13,005 songs.
+- Identity confidence: 7,525 high, 5,480 low; methods: 5,669 recording MBIDs, 5,480 source-track IDs, 1,856 Spotify IDs. Identity confidence drift=0.
+- Aggregate metadata confidence drift=1,582, now classified as **1,582 missing stored duration confidence** and **0 genuine mismatches**. Missing-by-field: duration=1,582; mismatch-by-field empty.
+- Existing duration coverage=10,028; track-tag coverage=179 (34 high, 1,483 low); audio-feature coverage=36; Spotify playability evidence=1,856.
+- Missing duration provenance count=1,856. This is a separate gap from missing stored duration confidence: do not invent provenance for values whose source is unknown.
+- Legacy source coverage remains complete: 11,130/11,130 track-index IDs and 5,358/5,358 artist names represented. No errors.
+- The report is read-only. No confidence values or source metadata were rewritten.
+- Next: inspect a representative sample of missing-duration-provenance records and a sample of the 1,582 duration-confidence omissions. Consider a backup-protected, missing-only confidence materialization only after confirming it uses the exact shared confidence helper and preserves all existing fields; then build the curated identity gold set.
+
 ## 2026-11-02 — Merge missing-vs-mismatch confidence classification
 
 - PR #88 merged to main as `67ab44f17a1c94093e4a71328abded6b80d66455`.
