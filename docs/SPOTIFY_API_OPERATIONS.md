@@ -26,9 +26,31 @@ Playlist control, reference-library refresh, and other supported cloud operation
 
 A feature meets this requirement when its GitHub-hosted workflow has been exercised with the user's PC off, uses only repository-hosted code and authorized secrets, persists required state centrally, and reports success or actionable failure through GitHub. No feature should be described as always-on until this evidence exists.
 
-### Current authorization gap
+### Secure refresh-token rotation
 
-The playlist manager's OAuth callback currently listens on `127.0.0.1:8888`, and first authorization or reauthorization currently creates a local token cache that must be synchronized to the repository secret. This is a setup/credential-maintenance dependency, not an acceptable runtime dependency. The long-term design should provide a centralized, secure authorization and token-rotation path so routine recovery does not depend on the user's PC or repeated manual secret copying. Until that exists, document this limitation and never assume the local token cache and GitHub Actions secret are synchronized.
+Spotify may return a replacement refresh token during a refresh-token exchange. A GitHub Actions runner is temporary, so saving the replacement only to `.spotify_playlist_token.json` is not durable and leaves the next run holding a stale credential. SHIT now persists a replacement immediately to the repository Actions secret before continuing the API operation.
+
+This requires a narrowly scoped GitHub App installed on this repository:
+
+1. Create a GitHub App for this repository (webhook not required) and grant only the repository permission **Secrets: write**.
+2. Install it on `TrickySturluson/spotify-helper-information-tracker` only.
+3. Add repository variable `SHIT_GITHUB_APP_CLIENT_ID` containing the App Client ID.
+4. Add repository secret `SHIT_GITHUB_APP_PRIVATE_KEY` containing the generated private key.
+5. After the workflow change is merged, Actions mints a short-lived installation token scoped to this repository and `Secrets: write`. The token is passed only to the Spotify-authenticated steps; the refresh token itself is sent to `gh secret set` through stdin and is never logged or committed.
+
+If the App token is unavailable, cloud refresh fails closed **before contacting Spotify**, preventing an unpersisted token rotation. The shared Spotify client retries the secret update up to three times and stops if GitHub does not confirm persistence. Local development remains independent of this GitHub App.
+
+### Initial reauthorization (one-time recovery)
+
+The current repository secret has been rejected by Spotify (`invalid_grant`), so token-rotation persistence cannot repair it retroactively. Reauthorize the Spotify playlist manager once, then manually bootstrap the new token into GitHub Actions:
+
+1. In the trusted local/Codespaces checkout, stop any other process using port `8888` and delete `.spotify_playlist_token.json`.
+2. Set `SPOTIFY_CLIENT_ID`, then run `python compat/spotify_playlist_manager.py list` and approve the requested scopes.
+3. If using Codespaces, forward port `8888` and ensure the Spotify app's redirect URI matches the callback URL used by the OAuth flow; the previous local-only callback caused the browser callback mismatch.
+4. Run `python compat/spotify_playlist_manager.py export-refresh-token` and update the repository Actions secret `SPOTIFY_REFRESH_TOKEN` directly in GitHub Settings. Never paste it into an issue, chat, commit, or log.
+5. Run the read-only credential verification and playlist `status` command. Confirm a second independent Actions run succeeds; this proves the secret survives runner disposal.
+
+The manual secret update is required only for initial recovery. Once the App and workflow are installed, cloud token rotation is automatic and PC-independent.
 
 ## Safe diagnostic sequence
 
