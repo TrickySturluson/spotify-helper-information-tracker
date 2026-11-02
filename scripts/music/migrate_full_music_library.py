@@ -17,6 +17,61 @@ def load(path, fallback):
     try: return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError, TypeError): return fallback
 
+def _normalise_name(value):
+    return " ".join(str(value or "").casefold().split())
+
+
+def legacy_archive_coverage(music_root, library_index):
+    """Compare legacy unique-track/artist indexes with canonical identity aliases."""
+    music_root = Path(music_root)
+    source_tracks = load(music_root / "indexes" / "tracks.json", {})
+    source_artists = load(music_root / "indexes" / "artists.json", {})
+    source_tracks = source_tracks if isinstance(source_tracks, dict) else {}
+    source_artists = source_artists if isinstance(source_artists, dict) else {}
+    index = library_index if isinstance(library_index, dict) else {}
+    song_ids = set((index.get("songs") or index.get("recordings") or {}).keys())
+    artist_index = index.get("artists") if isinstance(index.get("artists"), dict) else {}
+    source_ids = index.get("source_track_ids") if isinstance(index.get("source_track_ids"), dict) else {}
+    mbid_ids = index.get("recording_mbids") if isinstance(index.get("recording_mbids"), dict) else {}
+    track_methods = {"source_track_id": 0, "recording_mbid": 0}
+    missing_tracks = []
+    for source_id in source_tracks:
+        value = str(source_id).casefold()
+        target = None
+        if value.startswith("mbid:"):
+            target = mbid_ids.get(value) or mbid_ids.get(value[5:])
+            if target in song_ids:
+                track_methods["recording_mbid"] += 1
+                continue
+        target = source_ids.get(value)
+        if target in song_ids:
+            track_methods["source_track_id"] += 1
+            continue
+        missing_tracks.append(source_id)
+
+    artist_names = {
+        _normalise_name(row.get("name") or row.get("artist"))
+        for row in artist_index.values() if isinstance(row, dict)
+    }
+    missing_artists = []
+    for artist_id, row in source_artists.items():
+        name = _normalise_name(row.get("artist")) if isinstance(row, dict) else ""
+        if artist_id not in artist_index and (not name or name not in artist_names):
+            missing_artists.append({"id": artist_id, "name": row.get("artist") if isinstance(row, dict) else None})
+
+    return {
+        "source_track_index_total": len(source_tracks),
+        "source_track_index_resolved": len(source_tracks) - len(missing_tracks),
+        "source_track_index_unresolved": len(missing_tracks),
+        "track_resolution_methods": track_methods,
+        "unresolved_track_id_examples": missing_tracks[:25],
+        "source_artist_index_total": len(source_artists),
+        "source_artist_index_represented": len(source_artists) - len(missing_artists),
+        "source_artist_index_unrepresented": len(missing_artists),
+        "unrepresented_artist_examples": missing_artists[:25],
+    }
+
+
 def collect_playlist_rows():
     """Collect one row per Spotify recording and retain every playlist membership."""
     rows_by_id, stats = {}, {
@@ -122,6 +177,7 @@ def main():
     existing_index = load(args.root / "library_index.json", {})
     existing_index = existing_index if isinstance(existing_index, dict) else {}
     report = {
+        "legacy_archive_coverage": legacy_archive_coverage(ROOT, existing_index),
         "existing_library_records": {
             "songs": len(existing_index.get("songs") or {}),
             "artists": len(existing_index.get("artists") or {}),
@@ -153,10 +209,14 @@ def main():
         report["status"] = "failed: post-migration Library audit errors"
     else:
         report["status"] = "migrated stored profiles and accessible playlist snapshots; library audit passed"
+    # Re-read the published index after merging so coverage reflects the final catalogue.
+    final_index = load(args.root / "library_index.json", {})
+    report["legacy_archive_coverage"] = legacy_archive_coverage(ROOT, final_index)
     report["limitations"] = [
-        "Raw Last.fm scrobbles absent from track_profiles.json are not included.",
-        "Inaccessible playlist snapshots are skipped and counted.",
-        "No provider metadata is fetched; missing recording-level mood evidence stays unknown.",
+        "This offline pass ingests stored track profiles and accessible Spotify playlist snapshots; it does not create one Library row per raw scrobble event.",
+        "The raw Last.fm scrobble event archive remains separate; unique legacy track-index coverage is reported above.",
+        "Inaccessible Spotify playlist snapshots are skipped and counted, not treated as empty.",
+        "No provider metadata is fetched by this offline migration; missing recording-level mood evidence stays unknown.",
     ]
     target = args.root / "migration_report.json"
     target.parent.mkdir(parents=True, exist_ok=True)
