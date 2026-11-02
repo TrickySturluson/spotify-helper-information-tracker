@@ -87,6 +87,7 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
     human_pairs_by_target = {name: 0 for name in target_names.values()}
     matched_ratings = unmatched = ambiguous = unknown = 0
     match_methods = {"spotify_uri": 0, "unique_exact_title_artist_display_join": 0}
+    unmatched_details, ambiguous_details = [], []
     confidence_counts = {"low": 0, "medium": 0, "high": 0, "unknown": 0}
 
     ratings = ratings_doc.get("ratings") if isinstance(ratings_doc.get("ratings"), list) else []
@@ -103,9 +104,13 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
                 match_methods["unique_exact_title_artist_display_join"] += 1
             elif len(matches) > 1:
                 ambiguous += 1
+                ambiguous_details.append({"title": track.get("name"), "artist": track.get("artist"),
+                                          "candidate_count": len(matches)})
                 continue
         if candidate is None:
             unmatched += 1
+            unmatched_details.append({"title": track.get("name"), "artist": track.get("artist"),
+                                      "rating_id": rating.get("rating_id")})
             continue
         matched_ratings += 1
         score_rows = candidate.get("scores_by_target") if isinstance(candidate.get("scores_by_target"), dict) else {}
@@ -157,6 +162,8 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
         "matched_human_rating_tracks": matched_ratings,
         "unmatched_human_rating_tracks": unmatched,
         "ambiguous_human_rating_tracks": ambiguous,
+        "unmatched_human_tracks": unmatched_details,
+        "ambiguous_human_tracks": ambiguous_details,
         "unknown_model_score_pairs": unknown,
         "match_methods": match_methods,
         "confidence_counts_on_matched_pairs": confidence_counts,
