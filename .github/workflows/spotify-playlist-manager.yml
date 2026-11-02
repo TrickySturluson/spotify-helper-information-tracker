@@ -50,6 +50,16 @@ jobs:
               output.write("playlist_id=" + str(playlist_id) + "\n")
           PY
       - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        if: >-
+          steps.parse-command.outputs.command == 'booze5_preview' ||
+          steps.parse-command.outputs.command == 'booze10_preview' ||
+          steps.parse-command.outputs.command == 'booze20_preview' ||
+          steps.parse-command.outputs.command == 'booze20_uri_preview' ||
+          steps.parse-command.outputs.command == 'horror_preview' ||
+          steps.parse-command.outputs.command == 'daily_preview' ||
+          (steps.parse-command.outputs.command == 'confirm' &&
+          contains(fromJSON('["booze5","booze10","booze20","horror_expansion","daily"]'),
+          steps.parse-command.outputs.pending_kind))
         id: spotify-secret-writer
         uses: actions/create-github-app-token@v3
         with:
