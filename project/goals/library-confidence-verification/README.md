@@ -47,7 +47,7 @@ These rules are in `scripts/music/music_evidence.py`. Do not silently reinterpre
 
 ## Current status
 
-**Read-only confidence audit implemented on draft branch; full-library CI result pending.** The new command recomputes stored identity and metadata confidence from canonical IDs/evidence, measures legacy source-index coverage, counts field coverage/provenance gaps, and reports drift without rewriting any record. A curated gold-set evaluation remains outstanding.
+**Read-only confidence audit is merged and passes full-catalogue CI.** `python shit.py library confidence --json` recomputes stored identity and metadata confidence from canonical IDs/evidence, measures legacy source-index coverage, counts field coverage/provenance gaps, and reports drift without rewriting records. The main-branch run that also health-checked the full catalogue passed the confidence audit and all 314 regression tests. A curated gold-set evaluation and manual review of low-confidence/ambiguous records remain outstanding.
 
 ## Resume
 
