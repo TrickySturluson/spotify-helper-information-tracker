@@ -204,3 +204,12 @@ Before handing off, update this file and the project log with:
 - Commit `f5d9b7a` corrects the audit output to report the Library's `songs` metric. The sync step fails closed if the canonical Library audit is not `ok`.
 - Prior code/data tests on commit `6666be0` passed: compile, generated-data audit, full Library health/confidence checks, freshness-plan and unit tests. The integration workflow itself is now awaiting its first run; do not claim end-to-end verified until that run completes.
 - Next: validate the workflow run and inspect its summary/artifact to confirm discovery-only records landed; then add a small regression test for discovery sync and confirm the post-add live sequence preview path. Do not change Spotify playlists during ingestion.
+
+## 2026-11-02 — Recommendation blacklist/whitelist audit
+
+- Found and fixed a real bypass: Tricky Daily's scoring path loaded playlist-scoped removal history, but hand-curated Booze/horror recommendation previews did not consult it and could re-suggest an exact removed track.
+- Commits: `92f86c7` adds exact playlist-local block helper; `ea97b6c` applies it to curated Booze and horror previews; `7196fdd` adds regression tests for exact track/URI block and current-membership whitelist.
+- Semantics: Daily recommendation removals remain soft ranking penalties (artist-level removals are not a blanket artist ban); curated manual batches hard-skip an exact previously removed track. A track currently present in that same playlist overrides its old removal and is whitelisted.
+- Current Booze removal history has 3 records (Shakira “She Wolf”; The Prodigy “Voodoo People - Pendulum Mix”; Yeah Yeah Yeahs “Heads Will Roll - A-Trak Remix”). None overlaps the 15 additions in the last batch. The earlier batch predated this guard, so do not imply it was filtered at add time.
+- CI triggered on commits above; verify final run #41415730381 before marking complete. Next: run current read-only feedback report / preview and inspect live removal + whitelist counts.
+
