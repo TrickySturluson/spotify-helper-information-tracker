@@ -1,3 +1,12 @@
+## 2026-11-02 — Implement read-only confidence audit (draft)
+
+- Added `scripts/music/library_confidence_audit.py` and exposed `python shit.py library confidence [--json]`.
+- Reports stored identity confidence tiers, resolution methods, identity-quality labels, recomputed-vs-stored identity drift, per-field metadata confidence, metadata confidence drift, duration/tag/audio/mood/lyrics/playability coverage, missing duration provenance, ambiguous aliases, and legacy source-index coverage.
+- Uses the same `identity_confidence()` and `track_metadata_confidence()` helpers as the canonical library. It does not promote or rewrite confidence.
+- Added fixture tests for correct high/low tiers, legacy track/artist coverage, ambiguous aliases, confidence drift, and no-write behavior.
+- Added a CI step to run the audit over the complete published catalogue, not just fixtures.
+- Branch: `feature/library-confidence-audit`; not merged. Awaiting CI output.
+- Next: inspect full-library report; investigate stored-vs-recomputed drift and low-confidence populations; build curated gold set before changing any confidence policy.
 # Actions — Library Identity & Metadata Confidence Verification
 
 ## 2026-11-02 — Initialize confidence verification workspace
