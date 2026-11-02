@@ -1,3 +1,12 @@
+## 2026-11-02 — Classify missing confidence separately from mismatches
+
+- PR #88 merged to main as `67ab44f17a1c94093e4a71328abded6b80d66455`.
+- The read-only confidence audit retains `metadata_confidence_drift_count` for compatibility and now reports separate missing-stored-confidence and genuine-mismatch counts, per-field counts, and examples.
+- Missing means the field has recomputable evidence but no stored confidence object. Mismatch means a stored confidence object differs from recomputation.
+- No confidence values are written, recalibrated, or automatically promoted.
+- Fixture tests cover both categories. Full CI and secret scan passed.
+- Issue #90 is running post-merge full-catalogue `audit`, `health`, and `confidence` to quantify the actual breakdown.
+
 ## 2026-11-02 — Post-playability-backfill full-catalogue confidence verification
 
 - Read-only operation issue #83 completed successfully: https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/83
