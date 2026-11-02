@@ -1,3 +1,13 @@
+## 2026-11-02 — Merge missing-vs-mismatch confidence classification
+
+- PR #88 merged to main as `67ab44f17a1c94093e4a71328abded6b80d66455`.
+- Confidence audit retains the aggregate drift count for compatibility and now separates missing stored field confidence from genuine stored/recomputed mismatches, including per-field counts and examples.
+- This is diagnostic only: it does not write confidence values, promote evidence, or alter scoring rules.
+- PR head passed full CI and the public repository security scan before merge.
+- Issue #92 requests a new full-catalogue report on latest main; inspect the missing/mismatch split before planning any backfill.
+- Existing baseline from issue #83: identity drift 0; aggregate metadata drift 1,582; duration coverage 10,028; track-tag coverage 179; audio-feature coverage 36; playability observations on 1,856 songs. Legacy source coverage 11,130/11,130 tracks and 5,358/5,358 artists.
+- Next: build a curated gold set and manually review ambiguous/source-track-ID identities before any confidence recalibration or sorter integration.
+
 ## 2026-11-02 — Classify missing confidence separately from mismatches
 
 - PR #88 merged to main as `67ab44f17a1c94093e4a71328abded6b80d66455`.
