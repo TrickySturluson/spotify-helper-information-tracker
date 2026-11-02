@@ -143,3 +143,15 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Root cause:** direct execution places scripts/spotify/ rather than the repository root on sys.path; importing the scorer as scripts.spotify.playlist_fit_model therefore worked in tests but not in the CLI entry point.
 - **Fix:** the runner now inserts its repository root into sys.path before importing the scorer. No data/schema or scoring behavior changed.
 - **Next verification:** rerun the dedicated preview workflow against the 24-track identity-only held-out batch; inspect the generated artifact and then record exact coverage/results. Do not treat the initial failed run as a scoring failure.
+
+
+### Reference evidence coverage diagnostic and identity-bridge refinement — 2026-11-02
+
+- **First full-data result:** workflow run 41401858727 successfully produced a 24-candidate / 5-target artifact, but all five target profiles had zero dimension coverage and every fit score was null. This was a correct insufficient-evidence outcome, not a scoring failure.
+- **Identity-layer diagnosis:** Spotify-only canonical song records and Last.fm source-track records are sometimes separate records even when the same recording is represented. Direct Spotify ID resolution therefore found the playlist record but did not reach the separate source-track profile row. The Library's alias index correctly maps the cache row to its source record, but no shared stable ID exists between the two records in those cases.
+- **Safe bridge:** the preview now tries exact Spotify ID first, then only a Library exact artist + title + album lookup with an additional duration check within 2,000 ms. The fallback is explicitly marked medium identity confidence. It never uses fuzzy text matching or artist/title alone. It does not mutate canonical records.
+- **Leakage guard:** candidate resolution occurs before profile construction; the entire held-out batch is excluded by Spotify URI and by resolved canonical record ID. Reference profiles deduplicate resolved canonical records so relinked/duplicate Spotify IDs cannot overweight a recording.
+- **Candidate metadata:** the 24-track held-out identity file now includes exact album, duration and ISRC from saved Spotify snapshots; no human scores, fit scores or confidence values are present.
+- **Fail-closed status:** when all five profiles have zero usable evidence, output status is blocked_insufficient_reference_evidence and all fit scores remain null.
+- **Regression tests:** added coverage for exact album/duration fallback, medium identity confidence without mutating the Library record, duration mismatch rejection, canonical-record holdout exclusion, and blocked zero-evidence output.
+- **Verification pending:** focused and full CI plus a fresh real-data artifact must pass after this adapter change. No Spotify API calls or playlist writes.
