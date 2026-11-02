@@ -1,1 +1,247 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{"east coast hip hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"east coast rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"gangsta rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"hardcore hip hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"hardcore rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"hip hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"hip hop rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"hip-hop":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"pop-rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]},"rap":{"confidence":"low","reason":"single source family; corroboration unavailable","source_families":["musicbrainz_community"]}}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:d5d97b2b-b83b-4976-814a-056d9076c8c3","duration_ms":170213,"duration_source":"MusicBrainz recording","lastfm_checked_at":"2026-11-01T09:04:14.835874+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T09:04:16.085482+00:00","musicbrainz_genres":[{"count":2,"source":"MusicBrainz recording genre","tag":"east coast hip hop"},{"count":5,"source":"MusicBrainz recording genre","tag":"gangsta rap"},{"count":1,"source":"MusicBrainz recording genre","tag":"hardcore hip hop"},{"count":6,"source":"MusicBrainz recording genre","tag":"hip hop"}],"musicbrainz_retry_after":0,"musicbrainz_status":"matched","musicbrainz_tags":[{"count":2,"source":"MusicBrainz recording tag","tag":"east coast hip hop"},{"count":1,"source":"MusicBrainz recording tag","tag":"east coast rap"},{"count":5,"source":"MusicBrainz recording tag","tag":"gangsta rap"},{"count":1,"source":"MusicBrainz recording tag","tag":"hardcore hip hop"},{"count":2,"source":"MusicBrainz recording tag","tag":"hardcore rap"},{"count":6,"source":"MusicBrainz recording tag","tag":"hip hop"},{"count":3,"source":"MusicBrainz recording tag","tag":"hip hop rap"},{"count":1,"source":"MusicBrainz recording tag","tag":"hip-hop"},{"count":1,"source":"MusicBrainz recording tag","tag":"pop-rap"},{"count":2,"source":"MusicBrainz recording tag","tag":"rap"}],"retry_after":0,"track_id":"mbid:126f140b-5392-44f1-ba84-e3a963d0e132","track_mbid":"126f140b-5392-44f1-ba84-e3a963d0e132"}},"id":"mbid:126f140b-5392-44f1-ba84-e3a963d0e132","identity":{"album":"Ready to Die (The Remaster; 2015 Remaster)","album_id":"album:4bdcb6609fb24677288f","artist":"The Notorious B.I.G.","artist_id":"mbid:d5d97b2b-b83b-4976-814a-056d9076c8c3","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"126f140b-5392-44f1-ba84-e3a963d0e132","source_track_id":"mbid:126f140b-5392-44f1-ba84-e3a963d0e132","spotify_id":null,"title":"Suicidal Thoughts - 2005 Remaster","track_number":null},"listening_context":{"all_time_plays":102,"first_scrobble":"2023-12-25T14:34:58+00:00","last_scrobble":"2026-10-04T19:32:03+00:00","observed_albums":[{"album":"Ready to Die (The Remaster; 2015 Remaster)","scrobbles":102}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4bdcb6609fb24677288f/album.json","artist_path":"artists/mb/mbid-d5d97b2b-b83b-4976-814a-056d9076c8c3/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"matched"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {
+        "east coast hip hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "east coast rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "gangsta rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "hardcore hip hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "hardcore rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "hip hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "hip hop rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "hip-hop": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "pop-rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        },
+        "rap": {
+          "confidence": "low",
+          "reason": "single source family; corroboration unavailable",
+          "source_families": [
+            "musicbrainz_community"
+          ]
+        }
+      }
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:d5d97b2b-b83b-4976-814a-056d9076c8c3",
+      "duration_ms": 170213,
+      "duration_source": "MusicBrainz recording",
+      "lastfm_checked_at": "2026-11-01T09:04:14.835874+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T09:04:16.085482+00:00",
+      "musicbrainz_genres": [
+        {
+          "count": 2,
+          "source": "MusicBrainz recording genre",
+          "tag": "east coast hip hop"
+        },
+        {
+          "count": 5,
+          "source": "MusicBrainz recording genre",
+          "tag": "gangsta rap"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording genre",
+          "tag": "hardcore hip hop"
+        },
+        {
+          "count": 6,
+          "source": "MusicBrainz recording genre",
+          "tag": "hip hop"
+        }
+      ],
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "matched",
+      "musicbrainz_tags": [
+        {
+          "count": 2,
+          "source": "MusicBrainz recording tag",
+          "tag": "east coast hip hop"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "east coast rap"
+        },
+        {
+          "count": 5,
+          "source": "MusicBrainz recording tag",
+          "tag": "gangsta rap"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "hardcore hip hop"
+        },
+        {
+          "count": 2,
+          "source": "MusicBrainz recording tag",
+          "tag": "hardcore rap"
+        },
+        {
+          "count": 6,
+          "source": "MusicBrainz recording tag",
+          "tag": "hip hop"
+        },
+        {
+          "count": 3,
+          "source": "MusicBrainz recording tag",
+          "tag": "hip hop rap"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "hip-hop"
+        },
+        {
+          "count": 1,
+          "source": "MusicBrainz recording tag",
+          "tag": "pop-rap"
+        },
+        {
+          "count": 2,
+          "source": "MusicBrainz recording tag",
+          "tag": "rap"
+        }
+      ],
+      "retry_after": 0,
+      "track_id": "mbid:126f140b-5392-44f1-ba84-e3a963d0e132",
+      "track_mbid": "126f140b-5392-44f1-ba84-e3a963d0e132",
+      "duration_observations": [
+        {
+          "provider": "musicbrainz",
+          "checked_at": "2026-11-01T07:59:47.134746+00:00",
+          "status": "matched",
+          "duration_ms": 170213,
+          "source": "MusicBrainz recording",
+          "match_type": "exact_mbid",
+          "confidence": "high",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:126f140b-5392-44f1-ba84-e3a963d0e132",
+  "identity": {
+    "album": "Ready to Die (The Remaster; 2015 Remaster)",
+    "album_id": "album:4bdcb6609fb24677288f",
+    "artist": "The Notorious B.I.G.",
+    "artist_id": "mbid:d5d97b2b-b83b-4976-814a-056d9076c8c3",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "126f140b-5392-44f1-ba84-e3a963d0e132",
+    "source_track_id": "mbid:126f140b-5392-44f1-ba84-e3a963d0e132",
+    "spotify_id": null,
+    "title": "Suicidal Thoughts - 2005 Remaster",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 102,
+    "first_scrobble": "2023-12-25T14:34:58+00:00",
+    "last_scrobble": "2026-10-04T19:32:03+00:00",
+    "observed_albums": [
+      {
+        "album": "Ready to Die (The Remaster; 2015 Remaster)",
+        "scrobbles": 102
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4bdcb6609fb24677288f/album.json",
+    "artist_path": "artists/mb/mbid-d5d97b2b-b83b-4976-814a-056d9076c8c3/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "matched"
+    }
+  }
+}

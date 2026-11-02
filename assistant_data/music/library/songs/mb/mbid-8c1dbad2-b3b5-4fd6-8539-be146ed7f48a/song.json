@@ -1,1 +1,102 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"name:6d84407aa09083b4","duration_ms":355000,"duration_source":"MusicBrainz recording","lastfm_checked_at":"2026-11-01T15:04:40.414643+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-11-01T15:04:42.494295+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:8c1dbad2-b3b5-4fd6-8539-be146ed7f48a","track_mbid":"8c1dbad2-b3b5-4fd6-8539-be146ed7f48a"}},"id":"mbid:8c1dbad2-b3b5-4fd6-8539-be146ed7f48a","identity":{"album":"Le Pop","album_id":"album:4dcbd85388eb3905dcc3","artist":"Katzenjammer","artist_id":"name:6d84407aa09083b4","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"8c1dbad2-b3b5-4fd6-8539-be146ed7f48a","source_track_id":"mbid:8c1dbad2-b3b5-4fd6-8539-be146ed7f48a","spotify_id":null,"title":"Mother Superior","track_number":null},"listening_context":{"all_time_plays":56,"first_scrobble":"2023-03-10T15:42:22+00:00","last_scrobble":"2026-07-08T16:11:29+00:00","observed_albums":[{"album":"Le Pop","scrobbles":56}],"priority_playlist_ids":[],"recent_plays":0,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-4dcbd85388eb3905dcc3/album.json","artist_path":"artists/na/name-6d84407aa09083b4/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "name:6d84407aa09083b4",
+      "duration_ms": 355000,
+      "duration_source": "MusicBrainz recording",
+      "lastfm_checked_at": "2026-11-01T15:04:40.414643+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-11-01T15:04:42.494295+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:8c1dbad2-b3b5-4fd6-8539-be146ed7f48a",
+      "track_mbid": "8c1dbad2-b3b5-4fd6-8539-be146ed7f48a",
+      "duration_observations": [
+        {
+          "provider": "musicbrainz",
+          "checked_at": "2026-11-01T14:58:37.611903+00:00",
+          "status": "matched",
+          "duration_ms": 355000,
+          "source": "MusicBrainz recording",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:8c1dbad2-b3b5-4fd6-8539-be146ed7f48a",
+  "identity": {
+    "album": "Le Pop",
+    "album_id": "album:4dcbd85388eb3905dcc3",
+    "artist": "Katzenjammer",
+    "artist_id": "name:6d84407aa09083b4",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "8c1dbad2-b3b5-4fd6-8539-be146ed7f48a",
+    "source_track_id": "mbid:8c1dbad2-b3b5-4fd6-8539-be146ed7f48a",
+    "spotify_id": null,
+    "title": "Mother Superior",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 56,
+    "first_scrobble": "2023-03-10T15:42:22+00:00",
+    "last_scrobble": "2026-07-08T16:11:29+00:00",
+    "observed_albums": [
+      {
+        "album": "Le Pop",
+        "scrobbles": 56
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 0,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-4dcbd85388eb3905dcc3/album.json",
+    "artist_path": "artists/na/name-6d84407aa09083b4/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}

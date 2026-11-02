@@ -1,1 +1,106 @@
-{"confidence":{"identity":"high","metadata":{"track_tags":{}}},"coverage":{},"derived":{},"evidence":{"audio":{},"lyrics":null,"track_metadata":{"artist_id":"mbid:5fee3020-513b-48c2-b1f7-4681b01db0c6","duration_ms":175413,"duration_source":"MusicBrainz recording","lastfm_checked_at":"2026-10-31T07:31:59.727253+00:00","lastfm_status":"no_tags","musicbrainz_checked_at":"2026-10-31T07:32:00.448623+00:00","musicbrainz_retry_after":0,"musicbrainz_status":"not_found","retry_after":0,"track_id":"mbid:0e60c246-67b9-3421-b9a3-9f05465e8731","track_mbid":"0e60c246-67b9-3421-b9a3-9f05465e8731"}},"id":"mbid:0e60c246-67b9-3421-b9a3-9f05465e8731","identity":{"album":"Lungs (Deluxe Version)","album_id":"album:45141f378f79fa529538","artist":"Florence + the Machine","artist_id":"mbid:5fee3020-513b-48c2-b1f7-4681b01db0c6","disc_number":null,"identity_quality":"verified_recording","isrc":null,"recording_mbid":"0e60c246-67b9-3421-b9a3-9f05465e8731","source_track_id":"mbid:0e60c246-67b9-3421-b9a3-9f05465e8731","spotify_id":null,"title":"Bird Song","track_number":null},"listening_context":{"all_time_plays":113,"first_scrobble":"2023-07-25T06:38:53+00:00","last_scrobble":"2026-10-08T12:48:26+00:00","observed_albums":[{"album":"Lungs (Deluxe Version)","scrobbles":107},{"album":"Lungs (Deluxe Edition)","scrobbles":6}],"priority_playlist_ids":[],"recent_plays":1,"source":"Last.fm scrobble archive"},"mood":{"album_context":{"confidence":"none","evidence_refs":[],"moods":[]},"artist_context":{"confidence":"none","evidence_refs":[],"moods":[]},"last_assessed_at":null,"recording_level":{"confidence":"none","evidence_refs":[],"method":null,"moods":[]},"status":"not_assessed"},"relations":{"album_path":"albums/al/album-45141f378f79fa529538/album.json","artist_path":"artists/mb/mbid-5fee3020-513b-48c2-b1f7-4681b01db0c6/artist.json"},"schema_version":1,"sources":{"lastfm_status":{"status":"no_tags"},"musicbrainz_status":{"status":"not_found"}}}
+{
+  "confidence": {
+    "identity": "high",
+    "metadata": {
+      "track_tags": {}
+    }
+  },
+  "coverage": {},
+  "derived": {},
+  "evidence": {
+    "audio": {},
+    "lyrics": null,
+    "track_metadata": {
+      "artist_id": "mbid:5fee3020-513b-48c2-b1f7-4681b01db0c6",
+      "duration_ms": 175413,
+      "duration_source": "MusicBrainz recording",
+      "lastfm_checked_at": "2026-10-31T07:31:59.727253+00:00",
+      "lastfm_status": "no_tags",
+      "musicbrainz_checked_at": "2026-10-31T07:32:00.448623+00:00",
+      "musicbrainz_retry_after": 0,
+      "musicbrainz_status": "not_found",
+      "retry_after": 0,
+      "track_id": "mbid:0e60c246-67b9-3421-b9a3-9f05465e8731",
+      "track_mbid": "0e60c246-67b9-3421-b9a3-9f05465e8731",
+      "duration_observations": [
+        {
+          "provider": "musicbrainz",
+          "checked_at": "2026-11-01T05:56:59.718644+00:00",
+          "status": "matched",
+          "duration_ms": 175413,
+          "source": "MusicBrainz recording",
+          "match_type": "exact_artist_title",
+          "confidence": "medium",
+          "retry_after": 0,
+          "provenance": "legacy_music_metadata_shard"
+        }
+      ]
+    }
+  },
+  "id": "mbid:0e60c246-67b9-3421-b9a3-9f05465e8731",
+  "identity": {
+    "album": "Lungs (Deluxe Version)",
+    "album_id": "album:45141f378f79fa529538",
+    "artist": "Florence + the Machine",
+    "artist_id": "mbid:5fee3020-513b-48c2-b1f7-4681b01db0c6",
+    "disc_number": null,
+    "identity_quality": "verified_recording",
+    "isrc": null,
+    "recording_mbid": "0e60c246-67b9-3421-b9a3-9f05465e8731",
+    "source_track_id": "mbid:0e60c246-67b9-3421-b9a3-9f05465e8731",
+    "spotify_id": null,
+    "title": "Bird Song",
+    "track_number": null
+  },
+  "listening_context": {
+    "all_time_plays": 113,
+    "first_scrobble": "2023-07-25T06:38:53+00:00",
+    "last_scrobble": "2026-10-08T12:48:26+00:00",
+    "observed_albums": [
+      {
+        "album": "Lungs (Deluxe Version)",
+        "scrobbles": 107
+      },
+      {
+        "album": "Lungs (Deluxe Edition)",
+        "scrobbles": 6
+      }
+    ],
+    "priority_playlist_ids": [],
+    "recent_plays": 1,
+    "source": "Last.fm scrobble archive"
+  },
+  "mood": {
+    "album_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "artist_context": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "moods": []
+    },
+    "last_assessed_at": null,
+    "recording_level": {
+      "confidence": "none",
+      "evidence_refs": [],
+      "method": null,
+      "moods": []
+    },
+    "status": "not_assessed"
+  },
+  "relations": {
+    "album_path": "albums/al/album-45141f378f79fa529538/album.json",
+    "artist_path": "artists/mb/mbid-5fee3020-513b-48c2-b1f7-4681b01db0c6/artist.json"
+  },
+  "schema_version": 1,
+  "sources": {
+    "lastfm_status": {
+      "status": "no_tags"
+    },
+    "musicbrainz_status": {
+      "status": "not_found"
+    }
+  }
+}
