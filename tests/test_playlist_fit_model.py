@@ -194,6 +194,20 @@ class PlaylistFitModelTests(unittest.TestCase):
 
 
 
+
+    def test_track_profile_cache_accepts_exact_spotify_track_id(self):
+        record = {
+            "id": "spotify:track:1234567890123456789012",
+            "identity": {"artist": "Example", "title": "Track",
+                         "spotify_id": "1234567890123456789012"},
+            "confidence": {"identity": "high"},
+            "evidence": {},
+        }
+        profile = {"track_id": "spotify:track:1234567890123456789012",
+                   "musicbrainz_genres": [{"tag": "shoegaze", "source": "MusicBrainz recording tag"}]}
+        adapted = track_from_library_record(record, profile)
+        self.assertEqual(adapted["dimensions"]["genre"][0]["value"], "shoegaze")
+
     def test_empty_canonical_tag_fields_do_not_erase_cache_evidence(self):
         record = {
             "id": "mbid:recording-2",
