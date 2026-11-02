@@ -23,18 +23,18 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 ## Current Library reliability work
 
 - **Health checker:** merged in PR #73. Full-catalogue read-only scan passed. See [health-maintenance goal](goals/library-health-maintenance/README.md).
-- **Data maintainer:** draft PR #80 adds read-only preview and explicit, backup-protected, alias-preserving index rebuild with rollback. Its latest tests and security scan passed; inspect PR and run fixture checks before marking complete. It changes only the derived index.
-- **Metadata freshness:** still at specification stage. Build a read-only field/provider-specific due planner first; reuse retry/provider state, avoid fields with no reliable observation timestamp, and do not perform live lookups until the plan is deterministic and budgeted.
+- **Data maintainer:** PR #80 merged. `python shit.py library maintain` previews deterministic index repairs; apply requires `--apply --repair-index`, alias-preservation proof, backup, atomic replacement, and post-repair health validation/rollback. No real repair has been applied; test on a disposable full-catalogue copy before using apply.
+- **Metadata freshness:** draft PR #81 adds a read-only field/provider planner. CI scanned all 13,005 songs and selected 25 of 1,856 due playability tasks (pre-backfill); 318 tests and secret scan passed. Generic metadata still lacks field-level timestamps in existing records; reconcile with provider checkpoints/retry queue before executor or schedule.
 - **Spotify playability:** initial snapshot persistence merged in PR #72. Draft PR #78 adds market-aware Get Track checks, offline snapshot backfill, and stale-only bounded refresh. Latest full CI and security scan passed after fixing a missing test import; keep it unmerged until final review. No live refresh has been executed.
 - **Confidence:** read-only confidence audit is merged and passes full-catalogue CI. Remaining work is gold-set/manual false-match review and confidence distribution analysis.
 
 ## Immediate priorities
 
-1. Review/complete PR #78 and PR #80 without enabling live provider polling.
-2. Backfill playability from saved snapshots offline; audit market/unknown/relink observations and confirm playlist-addability remains separate.
-3. Build the field-level freshness planner and bounded rotating partial lookup worker, reusing existing provider checkpoints/retry queue.
-4. Complete the broader safe maintainer only after index-only repair has passed tests on a disposable copy of the real catalogue; do not auto-edit song identities or evidence.
-5. Produce fresh coverage and provider-gap reports from published main, then complete the confidence gold set.
+1. Confirm issue #83's post-backfill audit, health, and confidence report against published main.
+2. Reconcile/complete PR #81 freshness planner on latest main; validate the post-backfill plan and integrate explicit field timestamps into metadata ingestion.
+3. Add the bounded partial lookup executor only after provider checkpoint/retry semantics, rate limits, budgets, and cooldown behavior are proven.
+4. Validate `library maintain` preview on a disposable full-catalogue copy; only apply if the proposed index preserves every existing alias and the post-repair health audit passes.
+5. Produce fresh metadata coverage/provider-gap reports and complete the confidence gold set.
 6. Only after these gates, return to sorter evaluation against the new Library.
 
 ## Immediate expanded Library requirements
