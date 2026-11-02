@@ -49,6 +49,10 @@ These rules are in `scripts/music/music_evidence.py`. Do not silently reinterpre
 
 **Read-only confidence audit is merged and passes full-catalogue CI.** Post-playability-backfill verification in run #83 scanned 13,005 songs: identity confidence high 7,525 and low 5,480; methods were 5,669 recording MBIDs, 1,856 Spotify IDs, and 5,480 source-track IDs. Identity confidence drift was zero. Metadata confidence drift was 1,582, with examples showing duration evidence present but no stored field-confidence object. PR #88 now separates missing stored confidence from genuine mismatches while retaining the total drift count; the full-catalogue breakdown is pending post-merge run #90. The report counted duration coverage 10,028, track tags 179, audio features 36, and Spotify playability on 1,856 songs. Legacy coverage remained complete (11,130/11,130 tracks and 5,358/5,358 artists). Health and integrity audits were clean; metadata confidence drift and missing duration provenance require follow-up, not automatic rewriting. A curated gold-set evaluation and manual false-match review remain outstanding.
 
+## Real-data identity review set
+
+Read [IDENTITY_REVIEW_SET.md](IDENTITY_REVIEW_SET.md) before changing confidence or entity relationships. It records verified MBID and Spotify-ID examples, a low-confidence source-track-only example, and a concrete Candy Claws artist/album duplicate candidate. The duplicate is evidence for a read-only duplicate-entity audit; it is **not** authorized for automatic merge.
+
 ## Resume
 
 Read `ACTIONS.md`, inspect `scripts/music/music_evidence.py`, `MusicLibrary.lookup_song()`, and the published Library. Implement a read-only confidence report before changing any confidence scoring.
