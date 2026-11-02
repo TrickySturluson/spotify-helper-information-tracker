@@ -155,7 +155,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ "${{ steps.request.outputs.command }}" = "backfill-playability" ]; then
+          if [ "${{ steps.request.outputs.command }}" = "backfill-playability" ] || [ "${{ steps.request.outputs.command }}" = "duration-evidence-apply" ]; then
             git add assistant_data/music/library/
           else
             git add assistant_data/music/
@@ -163,10 +163,28 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated Library or metadata changes to commit."
           else
-            git commit -m "Run SHIT Great Migration and library enrichment"
-            git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
+            git commit -m "Run SHIT Library operation: ${{ steps.request.outputs.command }}"
+            published=false
+            for attempt in 1 2 3 4 5; do
+              echo "Safe publication attempt $attempt/5"
+              git fetch origin main
+              if ! git rebase origin/main; then
+                echo "Rebase conflict detected; aborting without resolving or overwriting concurrent data."
+                git rebase --abort || true
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                published=true
+                echo "Published successfully on attempt $attempt."
+                break
+              fi
+              echo "Push raced with another main update; refetching and retrying."
+              if [ "$attempt" -lt 5 ]; then sleep 2; fi
+            done
+            if [ "$published" != "true" ]; then
+              echo "Could not publish after five safe attempts; backup and artifact remain available."
+              exit 1
+            fi
           fi
 
       - name: Upload rollback backup and run log
