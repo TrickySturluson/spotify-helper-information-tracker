@@ -1,3 +1,12 @@
+## 2026-11-02 — Add bounded current playability refresh
+
+- Added a stale-only refresh planner over canonical Spotify IDs. It defaults to 25 tracks per run, a 90-day freshness interval, and caps a run at 50 individual lookups.
+- Uses `GET /tracks/{id}?market=from_token`; does not use deprecated bulk `GET /tracks`. The official Spotify Track Relinking guide confirms `from_token` uses the user's account country, `is_playable=false` means no playable relink was found, and `linked_from` identifies the original recording when returned.
+- A direct check records requested ID (the path ID), returned/relinked ID, market, status, restrictions, response code, source and check time. Missing `is_playable` or a 404 is recorded as unknown, not false.
+- The planner skips recent observations and always rechecks when the latest playlist snapshot is inaccessible. Execute mode creates a backup of affected song files before updates; dry-run is the default and provider requests require both `--execute --yes`.
+- Added tests for bounded planning, recent-check skipping, relinked ID preservation, backup creation and 404-as-unknown.
+- PR #78 remains draft; CI pending. No provider calls have been made.
+- References: [Get Track](https://developer.spotify.com/documentation/web-api/reference/get-track), [Track Relinking](https://developer.spotify.com/documentation/web-api/concepts/track-relinking), [Get Several Tracks](https://developer.spotify.com/documentation/web-api/reference/get-several-tracks) (deprecated; not used).
 ## 2026-11-02 — Market-aware playability and offline backfill implementation (PR #78)
 
 - Added optional market support to Spotify playlist item reads; the reference-library sync explicitly requests market=from_token while other playlist-manager callers retain their existing default request behavior.
