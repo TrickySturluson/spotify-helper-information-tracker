@@ -140,3 +140,21 @@ For every item, record status as **not started / in progress / blocked / ready f
 - Issue #114 apply reported success and 51 changed song files, a backup, post-write health success, zero provider requests, and zero playlist writes. Independent read of a published song JSON confirmed a new MusicBrainz duration observation is on `main`.
 - Fresh post-publication checks queued: #115 audit, #116 health, #117 freshness review, #118 combined audit/health/confidence. Results are pending; don't infer completion from issue creation.
 - Remaining work: inspect the fresh unknown-age baseline; audit duplicate artist/album/song candidates (especially the Candy Claws exact Spotify-album cross-link); implement the provider-aware durable retry queue in `assistant_data/music/retry_queue.json` per [`RETRY_QUEUE_SPEC.md`](RETRY_QUEUE_SPEC.md); then review provider coverage and only execute eligible bounded enrichment. Sorter evaluation remains gated. No provider or playlist writes are authorized by these read-only tasks.
+
+
+## Listening ingestion watchdog — NEW REQUIREMENT (implementation pending)
+
+- Prevent another multi-month listening-history gap by detecting stale Last.fm ingestion and independently monitoring optional Spotify local playback tracking.
+- Specification: [INGESTION_WATCHDOG.md](goals/listening-analytics/INGESTION_WATCHDOG.md).
+- Must compare Last.fm importer checkpoint freshness with newest actual scrobble timestamp; a successful empty poll resets poll failure but does not reset scrobble inactivity age.
+- Spotify local tracker freshness is only actionable when continuous tracking is explicitly enabled; empty/missing segments otherwise remain unknown/not configured, not a disconnected account.
+- Keep OAuth/API health distinct from playback capture. Classify auth-required, rate-limit, provider outage, transient error, stale sync, stale scrobble, and tracker-not-running separately.
+- First deliverable: deterministic read-only report, configurable thresholds, unit tests, then integrate with scheduled health workflow and alert on state changes. No automatic reconnect, token changes, network scraping, Library writes, or playlist writes.
+- Initial thresholds (36h Last.fm check, 72h newest scrobble, 36h opted-in local tracker) are proposals requiring calibration to real workflow cadence before alert activation.
+
+## Sorter offline evaluation — ACTIVE
+
+- Existing sequencer is substantial and must be extended, not rebuilt: `scripts/spotify/spotify_playlist_sequencer.py`.
+- Evaluation contract: [OFFLINE_EVALUATION.md](goals/playlist-intelligence/OFFLINE_EVALUATION.md).
+- Next: run current regression suite, inspect CLI preview/compare output, produce deterministic report against available playlist snapshots and Library profiles, then fix measured shortcomings. Keep all work offline/read-only.
+- No Spotify playlist writes are authorized.
