@@ -173,7 +173,7 @@ class PlaylistFitPreviewTests(unittest.TestCase):
             "id": "source:heldout-1",
             "identity": {"artist": "Artist", "title": "Held Out", "album": "Album",
                          "spotify_id": None, "source_track_id": "track:heldout-1"},
-            "confidence": {"identity": "low"}, "evidence": {},
+            "confidence": {"identity": "low"}, "evidence": {"track_metadata": {"duration_ms": 100000}},
         }
         index = {name_album_key("Artist", "Held Out", "Album"): [source]}
         uri = "spotify:track:1234567890123456789012"
