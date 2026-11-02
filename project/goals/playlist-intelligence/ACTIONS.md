@@ -162,3 +162,13 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Workflow run 41403433459 failed one new regression fixture because the fake Last.fm source record omitted its duration; the implementation correctly refused the fallback and retained the exact Spotify record. The fixture now supplies the required matching 100,000 ms duration. No production logic was weakened.
 - The bridge is now implemented as a read-only index over canonical song records rather than calling the Library's mutating fallback repair paths. It selects exactly one non-Spotify source record with normalized exact artist/title/album and duration within 2,000 ms; zero or multiple matches are rejected.
 - Latest verification is pending for the corrected fixture and the full real-data preview.
+
+
+### Explicit context adapter and confidence boundary — 2026-11-02
+
+- The preview now reads canonical artist/album relation records by their stored relative paths and adds only explicit genre fields plus explicit mood fields as context. Artist genre remains artist-scoped; release genre remains release-scoped; explicit moods retain the same scope. No artist tag is promoted to track mood, and no context is used for sound, energy or lyrics-derived theme.
+- Existing scorer scope weights remain unchanged: artist 0.15, release 0.35, direct recording/audio/lyrics 1.0.
+- Profile output now separates direct and contextual track counts per dimension. Primary coverage and profile confidence use direct evidence only; contextual coverage is reported separately. Context-only output cannot promote a profile to medium/high confidence.
+- Model version bumped to five-axis-fit-v0.3 for the new direct/context confidence semantics.
+- Added tests proving contextual-only data does not raise direct profile confidence and explicit artist/release context stays in its proper dimensions.
+- Latest preview/full CI/security runs are in progress; inspect the resulting artifact before interpreting scores.
