@@ -2,63 +2,56 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-02 (after issue #92 verification and weekly maintenance-preview enhancement)  
+**Last reviewed:** 2026-11-02 (after PR #100 freshness baseline, duration provenance recovery work, and issue #105 preview trigger)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
 
-- Run #18 successfully published enrichment commit `c55012f`; current main index: 13,005 songs, 6,386 artists, 7,861 albums.
-- Legacy source-index comparison resolves all 11,130/11,130 track IDs via source-track or recording-MBID aliases and represents all 5,358/5,358 legacy artist names.
-- Run #21 completed runner-side prepare/audit but failed publication because it used stale issue-event SHA `b892f3b`; artifact #13107866614 preserves output/backup and none of its generated state was published.
-- Workflow fix `21cc2ed` now checks out latest `main` before migration, avoiding stale checkpoints and redundant enrichment.
-- Independent full-catalogue health run #22 passed: 13,005 songs, 6,386 artists, 7,861 albums; zero errors and zero warnings. Main-branch confidence audit and 314-test regression suite also passed.
-- PR #79 permanent source-index coverage reporting is merged and main CI passed.
-- Remaining: re-measure provider/field coverage from a fresh report; continue only eligible checkpointed enrichment; inspect current provider errors before retries. Last published run measured approx. 91.1% duration coverage, 115 audio profiles, and zero lyric features. These are historical run #18 values, not current measurements.
+- Per-recording Library structure merged in PR #49. Full canonical catalogue is published on `main`: 13,005 songs, 6,386 artists, 7,861 albums.
+- Legacy source coverage: 11,130/11,130 track IDs resolve through source-track/recording-MBID aliases; 5,358/5,358 legacy artist names represented.
+- Run #18 published enrichment commit `c55012f`. Run #21 later used stale issue-event SHA `b892f3b`, repeated work from stale checkpoints, and failed publication; its output was not pushed. Workflow fix `21cc2ed` checks out latest `main` before migration.
+- Issue #92 / run 41372492615 passed canonical audit and full structural health: zero errors/warnings. It also validated the merged playability checks.
+- Latest enrichment coverage still needs a fresh measurement. Historical run #18: approx. 91.1% duration coverage, 115 audio profiles, 1,778 track profiles, 3,998 artist profiles, 400 album profiles, zero lyric features. MusicBrainz had rate-limit/503 issues; Last.fm tag lookups returned HTTP 400; Discogs/GetSongBPM credentials absent.
 - No Spotify playlist writes. Do not start concurrent migration writers or force-push generated data.
 
-### 2. Read-only coverage planner — PR #65, tests failing
-- PR: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65 (open draft).
-- Observed checks: compile, generated-data audit, and maintained-documentation check passed; unit-test step failed. Secret-history scan passed.
-- Failure details have not yet been diagnosed. Do not assume the planner is valid or schema-compatible.
-- Next: inspect failing unit-test output, repair, verify deterministic/read-only behavior and real Library/checkpoint schemas, then regenerate and inspect report output.
-- The retry queue remains a specification, not an implemented/executed queue.
+### 2. Library health checker and data maintainer — AUTOMATED READ-ONLY MONITORING
 
-### 3. Recommendation intake — PR #60, tests and secret scan failing
-- PR: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60 (open, not merged).
-- Observed checks: compile, generated-data audit, and maintained-documentation check passed; unit-test step failed. Full-history secret scan also failed.
-- Failure details and whether the secret finding is real, historical, or a false positive are not yet diagnosed. Do not suppress findings without investigation.
-- Next: inspect sanitized test output and redacted secret-scan findings; fix tests and resolve any real secret exposure safely; re-run both checks; review candidate deduplication, canonical identity linkage, provenance, and separation from listening evidence.
+- PR #73 health checker merged; PR #80 index-only maintainer merged. Full-catalogue preview #85 and issue #93 both found no repair needed, no alias loss, zero errors/warnings, zero writes.
+- PR #87 merged market-aware playability validation. Issue #92 passed full catalogue with zero health errors/warnings.
+- Weekly Sunday workflow now runs health, confidence, read-only maintenance preview, and freshness planning; reports retained as 30-day artifacts. Maintenance is preview-only; no automatic repairs.
+- Repair scope remains derived-index-only and requires explicit apply, alias-preservation proof, backup, atomic write and post-repair health/rollback.
 
-## Metadata and canonical Library
+### 3. Metadata freshness and partial revalidation — BASELINE ROTATION MERGED; PROVENANCE RECOVERY IN PROGRESS
 
-### New Library reliability requirements (2026-11-02)
+- PR #81 planner, PR #86 CLI/weekly workflow, and PR #100 unknown-age baseline rotation are merged. PR #100 passed full CI/security (344 tests); issue #101 validated full-catalogue planning.
+- Baseline result before duration provenance recovery: 6,613 data-bearing unknown-age observations, 25 selected weekly (all Last.fm duration); 0 stale/due; 33,689 no-data fields; 1,856 missing duration provenance; 1,362 cooldown skips. Planning is read-only: provider_requests=0, writes=0. Unknown age is not automatically stale.
+- **Provenance gap found:** At the Gates — Slaughter of the Soul has duration 183,000 ms and source Last.fm track.getInfo in canonical song JSON but no timestamp. Exact legacy shard row has `metadata_checked_at=1793324246`, `metadata_status=matched`, `retry_after=0` (2026-10-30T01:37:26Z). At least some of the 6,613 unknown-age candidates are migration omissions, not overdue lookups.
+- Issue #103 tracks exact legacy timestamp recovery. Added `scripts/music/backfill_duration_observations.py`, `python shit.py library duration-evidence` (preview default), freshness-planner support for matching duration observations, and health validation for the new evidence. Apply requires `--apply --yes`, exact ID/duration/source/matched status, backup, atomic writes and post-write health/rollback.
+- Issue #104 preview failed because the CLI action had not yet been registered; fixed in commit `46fc6ad`. Issue #105 is the retrying read-only preview; result pending. Do not apply until exact-match/conflict counts are reviewed.
+- No generic provider-backed freshness executor is enabled. Do not execute the 25-item baseline refresh until existing timestamps have been recovered and the remaining genuinely unknown-age set is measured.
 
-- [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): full-catalogue identity audit is clean (identity confidence drift 0); PR #88 merged and now separates missing stored confidence from genuine mismatches. Issue #92/run 41372492615 completed: identity drift 0; metadata differences are 1,582 missing stored duration confidence and 0 genuine mismatches. Gold-set/manual false-match review remains open.
-- [Library health checker & maintainer](goals/library-health-maintenance/README.md): read-only checker is merged and full-catalogue clean. PR #80 maintainer is merged; issue #85 full-catalogue preview confirmed 13,005/6,386/7,861 records, zero errors/warnings, all aliases reconstructable, no repair needed. PR #87 merged and adds market-aware playability observation semantic validation. Issue #92 is the post-merge full-catalogue verification.
-- [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): PR #81 planner and PR #86 native CLI/weekly read-only review workflow are merged. Manual issue #90 completed: 13,005 songs, 6,386 artists, 7,861 albums; 8,799 fresh, 0 stale/due, 42,158 missing field/provider timestamps, 1,184 cooldown skips; 0 provider requests and 0 writes. The 42,158 missing timestamps are not proven stale and are not scheduled. Generic provider-backed executor remains unimplemented.
-- [Spotify playability](goals/spotify-playability/README.md): PRs #72 and #78 merged. Offline backfill run #82 updated 3,305 observations across 1,856 song records (3,250 playable, 55 unplayable) from saved snapshots; zero API requests and playlist writes. The song schema stores append-only, market-scoped observations under `evidence.spotify_playability`. Live refresh is a separate bounded Get Track path (25 default, max 50, 90-day TTL, dry-run by default, explicit execute confirmation); no live refresh has yet been executed.
-- **Next:** inspect issue #92; classify missing metadata vs present-but-undated evidence vs provider no-result/negative-cache/cooldown states; propagate trustworthy source timestamps from existing caches/checkpoints; only then design a bounded provider-backed partial executor. Keep sorter on hold until confidence/gold-set checks pass.
+### 4. Confidence verification and duplicate-entity review
 
-### 4. Finish post-migration enrichment and coverage measurement
-- No fresh, post-publication coverage report has been verified.
-- Historical conversational estimates included artist 1,587; track 9,778; album 6,384; unresolved duration 2,919, but these are stale/unverified snapshots and must not be presented as current counts.
-- Prior known gaps: lyrics unpopulated; MusicBrainz experienced 503/rate-limit failures; Discogs and GetSongBPM depend on optional credentials; AcousticBrainz required timeout-resilience work.
-- Next: after migration publication, run read-only coverage by entity and field; distinguish populated, pending, ambiguous, unavailable, low-confidence, transient failure, and credential-blocked. Record provider usability from actual recent runs, not assumptions.
-- Never repeatedly fetch unavailable providers or treat transient errors as definitive not-found.
+- PR #88 merged missing-vs-mismatch confidence classification. Issue #92: identity confidence drift 0; metadata differences are 1,582 missing stored duration confidence and 0 genuine mismatches.
+- Curated [identity review set](goals/library-confidence-verification/IDENTITY_REVIEW_SET.md) includes a verified recording-MBID song, a high-confidence Spotify-ID song with market-scoped playability, and a low-confidence source-track-only song.
+- Concrete duplicate candidate: Candy Claws has a verified MBID artist and an empty name-fallback artist; the same album has enriched and empty fallback records. Spotify track `spotify:0lw2mlzncwftftvdojdysg` carries the enriched album's exact Spotify album ID but points to the fallback album.
+- Issue #102 tracks a read-only duplicate artist/album/song audit. Do not merge on name alone or delete records. Preserve release editions, references, source IDs, listening context, playability history and provenance.
 
-### 5. Provider-aware retry queue
-- Spec: `project/RETRY_QUEUE_SPEC.md`; intended machine path: `assistant_data/music/retry_queue.json`.
-- Still to implement/verify: one task per recording + provider + data family; deterministic planner; no network or mutation in planning mode; bounded executor only after planner passes.
-- Preserve separate statuses for eligible, retry_wait, not_found, ambiguous, complete, blocked, invalid. Track attempts, cooldown/next-eligible time, reason, priority, evidence and confidence.
-- A provider failure must not block independent providers. Transient timeout/rate-limit/network/parse/provider outages are not definitive not-found.
+### 5. Spotify playability — SNAPSHOT BACKFILL AND HEALTH VALIDATED
 
-### 6. Enrichment content still to build out
-- Recording IDs/MBIDs and alias resolution; duration; audio/acoustic features; track-level tags, mood and themes; album tracklists/descriptions/release context; artist profiles/genres; artwork references where useful.
-- User requested song-level mood/theme rather than assigning an artist's identity to every track.
-- Lyrics-derived enrichment should use permitted compact tags/features and source provenance, never store full copyrighted lyrics. User previously wanted multiple lyric sources plus local lookup considered; availability/coverage and source policy still need assessment.
-- Preserve field-level source, confidence, timestamp and evidence. Unknown stays unknown. Keep recording, album and artist as separate entities.
+- PRs #72 and #78 merged. Offline snapshot backfill run #82 stored 3,305 market-scoped observations across 1,856 song records: 3,250 playable and 55 unplayable; zero API requests and playlist writes.
+- Observations live under `evidence.spotify_playability` and preserve market, checked_at, requested/returned/relinked IDs and status. They are snapshot-time evidence, not a timeless boolean.
+- PR #87 health checks validate observation shape, status/raw boolean, market, timestamp, identity/relink continuity and latest-by-market. Issue #92 passed.
+- Live Get Track refresh is separate: 25 default, max 50, 90-day TTL, dry-run by default, explicit execute confirmation. No live playability refresh has been executed.
+
+### 6. Remaining enrichment and provider-aware retry queue
+
+- No fresh post-publication provider-coverage report has been verified. Re-measure duration, track tags, artist/album profiles, acoustic/audio features, lyrics-derived compact tags, and provider availability after the provenance backfill.
+- Do not repeat Last.fm HTTP 400, MusicBrainz 503/rate-limit, or credential-blocked Discogs/GetSongBPM requests without changed inputs, expired cooldown, or confirmed provider recovery.
+- Retry queue spec: `project/RETRY_QUEUE_SPEC.md`; intended path `assistant_data/music/retry_queue.json`. Still to implement/verify: one task per recording + provider + data family; deterministic read-only planner; separate eligible, retry_wait, not_found, ambiguous, complete, blocked, invalid; attempt history and next-eligible timestamps.
+- A failure at one provider must not block independent providers. Transient errors are not definitive not-found. Keep all provider budgets and checkpoints durable.
 
 ## Listening analytics
 
