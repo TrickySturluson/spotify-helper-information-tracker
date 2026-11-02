@@ -98,7 +98,8 @@ def _make_task(entity_type, entity_id, record, field, provider, market,
 
 def _consider(tasks, counts, entity_type, entity_id, record, field, provider,
               observed_at, policy, now, market=None, next_check_after=None,
-              provider_status=None):
+              provider_status=None, baseline_candidates=None, include_unknown_age=False,
+              has_data=True):
     """Count and optionally schedule one explicit field/provider observation."""
     if _cooldown_active(next_check_after, observed_at, now):
         counts["cooldown"] += 1
@@ -112,7 +113,15 @@ def _consider(tasks, counts, entity_type, entity_id, record, field, provider,
         counts["invalid_timestamp"] += 1
         return
     if parsed is None:
+        if not has_data:
+            counts["no_data"] += 1
+            return
         counts["missing_timestamp"] += 1
+        if include_unknown_age and baseline_candidates is not None:
+            baseline_candidates.append(_make_task(
+                entity_type, entity_id, record, field, provider, market,
+                None, policy, now, "baseline_required"
+            ))
         return
     age = (now - parsed).total_seconds() / 86400
     if age >= policy["ttl_days"]:
@@ -123,7 +132,23 @@ def _consider(tasks, counts, entity_type, entity_id, record, field, provider,
         counts["fresh"] += 1
 
 
-def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
+def _dedupe_tasks(rows):
+    """Collapse duplicate provider/field tasks, preferring the newest known observation."""
+    by_key = {}
+    for row in rows:
+        key = row["task_key"]
+        prior = by_key.get(key)
+        if prior is None:
+            by_key[key] = row
+            continue
+        if prior.get("status") == "baseline_required" and row.get("status") != "baseline_required":
+            by_key[key] = row
+        elif row.get("observed_at") and str(row["observed_at"]) > str(prior.get("observed_at") or ""):
+            by_key[key] = row
+    return list(by_key.values())
+
+
+def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None, include_unknown_age=False):
     """Build a deterministic, network-free plan from field-specific evidence."""
     root = Path(root)
     if not 1 <= int(limit) <= 100:
@@ -137,7 +162,7 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
         now = now.replace(tzinfo=timezone.utc)
     now = now.astimezone(timezone.utc)
 
-    tasks, errors = [], []
+    tasks, baseline_candidates, errors = [], [], []
     music_root = root.parent
     track_cache_raw, _ = _read(music_root / "track_profiles.json")
     artist_cache_raw, _ = _read(music_root / "artist_profiles.json")
@@ -179,7 +204,7 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
     counts = {
         "songs_scanned": 0, "artists_scanned": 0, "albums_scanned": 0,
         "spotify_ids": 0, "fresh": 0, "stale": 0,
-        "missing_observation": 0, "missing_timestamp": 0,
+        "missing_observation": 0, "missing_timestamp": 0, "no_data": 0, "missing_provenance": 0,
         "invalid_timestamp": 0, "cooldown": 0, "blocked": 0,
         "track_profile_cache_rows": len(track_cache_raw), "track_profile_cache_unmatched": unmatched_track_profiles,
         "artist_profile_cache_rows": len(artist_cache_raw), "album_profile_cache_rows": len(album_cache_raw),
@@ -224,13 +249,20 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             source_row = max(candidates, key=lambda row: str(row.get(timestamp_key) or "")) if candidates else metadata
             observed_at = source_row.get(timestamp_key)
             provider_status = source_row.get(status_key)
-            if observed_at or provider_status:
+            tags_key = "lastfm_tags" if provider == "lastfm" else "musicbrainz_tags"
+            has_data = bool(
+                source_row.get(tags_key)
+                or (provider == "musicbrainz" and source_row.get("musicbrainz_genres"))
+                or provider_status
+            )
+            if observed_at or provider_status or has_data:
                 _consider(tasks, counts, "song", song_id, record, "track_tags",
                           provider, observed_at, POLICIES[field], now,
-                          next_check_after=source_row.get(retry_key, source_row.get("retry_after")),
-                          provider_status=provider_status)
+                          next_check_after=source_row.get(retry_key) or source_row.get("retry_after"),
+                          provider_status=provider_status, baseline_candidates=baseline_candidates,
+                          include_unknown_age=include_unknown_age, has_data=has_data)
             else:
-                counts["missing_timestamp"] += 1
+                counts["no_data"] += 1
 
         # Duration freshness follows the provider that actually supplied the duration.
         duration_source = str(metadata.get("duration_source") or "").casefold()
@@ -244,10 +276,11 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             if provider:
                 _consider(tasks, counts, "song", song_id, record, "duration",
                           provider, checked, POLICIES["duration"], now,
-                          next_check_after=metadata.get(provider + "_retry_after", metadata.get("retry_after")),
-                          provider_status=metadata.get(provider + "_status"))
+                          next_check_after=metadata.get(provider + "_retry_after") or metadata.get("retry_after"),
+                          provider_status=metadata.get(provider + "_status"), baseline_candidates=baseline_candidates,
+                          include_unknown_age=include_unknown_age, has_data=True)
             else:
-                counts["missing_timestamp"] += 1
+                counts["missing_provenance"] += 1
 
         # Newer ingestion paths may provide normalized explicit field observations.
         observations = _nested(record, "freshness", "observations") or {}
@@ -263,7 +296,9 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
                 policy = POLICIES.get(field, {"ttl_days": 180, "priority": 20})
                 _consider(tasks, counts, "song", song_id, record, field, provider,
                           row.get("observed_at"), policy, now,
-                          next_check_after=row.get("next_check_after"), provider_status=row.get("status"))
+                          next_check_after=row.get("next_check_after"), provider_status=row.get("status"),
+                          baseline_candidates=baseline_candidates, include_unknown_age=include_unknown_age,
+                          has_data=True)
 
     for path in sorted((root / "artists").rglob("artist.json")):
         record, problem = _read(path)
@@ -277,13 +312,20 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
         source = str(cached_artist.get("source") or evidence.get("source") or "").casefold()
         provider = "lastfm" if "last.fm" in source or "lastfm" in source else None
         checked_at = cached_artist.get("checked_at") or evidence.get("checked_at")
-        if provider and checked_at:
+        has_profile_data = bool(
+            cached_artist
+            or evidence.get("tags") or evidence.get("genres") or evidence.get("themes")
+            or (provider and evidence.get("status"))
+        )
+        if provider and (checked_at or has_profile_data):
             _consider(tasks, counts, "artist", artist_id, record, "artist_profile",
                       provider, checked_at, POLICIES["artist_profile"], now,
                       next_check_after=cached_artist.get("retry_after"),
-                      provider_status=cached_artist.get("status") or evidence.get("status"))
+                      provider_status=cached_artist.get("status") or evidence.get("status"),
+                      baseline_candidates=baseline_candidates, include_unknown_age=include_unknown_age,
+                      has_data=has_profile_data)
         else:
-            counts["missing_timestamp"] += 1
+            counts["no_data"] += 1
 
     for path in sorted((root / "albums").rglob("album.json")):
         record, problem = _read(path)
@@ -301,43 +343,74 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             or evidence.get("checked_at") or evidence.get("lastfm_checked_at")
         )
         global_album_cooldown = album_state.get("provider_retry_after")
-        if provider and observed_at:
+        has_profile_data = bool(
+            cached_album
+            or evidence.get("lastfm_tracklist") or evidence.get("lastfm_summary")
+            or evidence.get("lastfm_info_tags") or evidence.get("lastfm_artwork_url")
+        )
+        if provider and (observed_at or has_profile_data):
             _consider(tasks, counts, "album", album_id, record, "album_profile",
                       provider, observed_at, POLICIES["album_profile"], now,
                       next_check_after=max(
                           int(cached_album.get("lastfm_info_retry_after", 0) or 0),
                           int(global_album_cooldown or 0),
                       ),
-                      provider_status=cached_album.get("lastfm_info_status") or cached_album.get("status") or evidence.get("status"))
+                      provider_status=cached_album.get("lastfm_info_status") or cached_album.get("status") or evidence.get("status"),
+                      baseline_candidates=baseline_candidates, include_unknown_age=include_unknown_age,
+                      has_data=has_profile_data)
         else:
-            counts["missing_timestamp"] += 1
+            counts["no_data"] += 1
 
-    # Oldest observations first; stable task hash breaks ties and makes repeat plans identical.
+    tasks = _dedupe_tasks(tasks)
+    baseline_candidates = _dedupe_tasks(baseline_candidates)
+    # A task with a known stale timestamp takes precedence over the same
+    # entity/provider/field appearing as an unknown-age baseline candidate.
+    due_keys = {row["task_key"] for row in tasks}
+    baseline_candidates = [
+        row for row in baseline_candidates if row["task_key"] not in due_keys
+    ]
+
+    # Oldest observations first; stable task hash breaks ties.
     tasks.sort(key=lambda row: (
         row["observed_at"] or "",
         -row["priority"],
         hashlib.sha256(row["task_key"].encode("utf-8")).hexdigest(),
     ))
-    selected = tasks[:int(limit)]
+    baseline_candidates.sort(key=lambda row: row["task_key"])
+    selected_due = tasks[:int(limit)]
+    selected = list(selected_due)
+    rotation_week = now.isocalendar().year * 53 + now.isocalendar().week - 1
+    if include_unknown_age and len(selected) < int(limit) and baseline_candidates:
+        offset = (rotation_week * int(limit)) % len(baseline_candidates)
+        rotated = baseline_candidates[offset:] + baseline_candidates[:offset]
+        selected.extend(rotated[:int(limit) - len(selected)])
+    selected_baseline_count = sum(row["status"] == "baseline_required" for row in selected)
     return {
         "schema_version": 1,
         "generated_at": now.isoformat(),
         "mode": "read_only_plan",
         "market": market,
         "limit": int(limit),
+        "include_unknown_age": bool(include_unknown_age),
+        "baseline_rotation_week": rotation_week,
         "policies": POLICIES,
         "counts": counts,
         "due_task_count": len(tasks),
+        "baseline_candidate_count": len(baseline_candidates),
+        "selected_due_count": len(selected_due),
+        "selected_baseline_count": selected_baseline_count,
         "selected_task_count": len(selected),
         "selected": selected,
-        "unselected_due_count": max(0, len(tasks) - len(selected)),
+        "unselected_due_count": max(0, len(tasks) - len(selected_due)),
+        "unselected_baseline_count": max(0, len(baseline_candidates) - selected_baseline_count),
         "errors": errors[:50],
         "provider_requests": 0,
         "writes": 0,
         "notes": [
             "Only explicit field/provider observation timestamps are eligible for stale metadata refresh.",
             "Record modified times are not used as metadata observation times.",
-            "Missing field timestamps are reported, not automatically fetched.",
+            "Missing timestamps are counted only for fields with existing data; absent fields are reported separately as no_data.",
+            "When enabled, unknown-age baseline candidates are rotated deterministically by ISO week; this still only plans and never fetches.",
             "Spotify playability is evaluated separately for the requested market; unknown-market evidence is not treated as current-market confirmation.",
             "Artist and album profile freshness uses only source-stamped evidence; records without a field timestamp remain unscheduled.",
             "This planner does not execute lookups or mutate the Library.",
@@ -351,8 +424,9 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, default=25)
     parser.add_argument("--market", default="from_token")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--include-unknown-age", action="store_true", help="include a deterministic rotating sample of fields with data but no observation timestamp")
     args = parser.parse_args(argv)
-    report = build_plan(args.root, args.limit, args.market)
+    report = build_plan(args.root, args.limit, args.market, include_unknown_age=args.include_unknown_age)
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 0 if not report["errors"] else 2
 
