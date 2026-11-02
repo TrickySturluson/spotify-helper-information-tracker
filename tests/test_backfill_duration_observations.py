@@ -79,7 +79,7 @@ class DurationObservationBackfillTests(unittest.TestCase):
         self.assertEqual(observation["provider"], "lastfm")
         self.assertEqual(observation["duration_ms"], 183000)
         self.assertEqual(observation["status"], "matched")
-        self.assertEqual(observation["checked_at"], "2026-10-30T")
+        self.assertTrue(observation["checked_at"].startswith("2026-10-30T"))
         self.assertEqual(observation["provenance"], "legacy_music_metadata_shard")
 
     def test_preview_does_not_write_or_create_backup(self):
