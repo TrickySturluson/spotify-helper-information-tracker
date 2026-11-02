@@ -97,6 +97,11 @@ def inspect_confidence(root=DEFAULT_ROOT, music_root=MUSIC_ROOT):
             elif isinstance(detail, dict):
                 metadata_tiers.setdefault(field, Counter())[detail.get("confidence", "unknown")] += 1
         for field, detail in recomputed_metadata.items():
+            # Empty helper outputs represent no field evidence, not a missing stored score.
+            if field == "track_tags" and not detail:
+                continue
+            if field == "duration" and not (track_metadata.get("duration_ms") or track_metadata.get("duration")):
+                continue
             if stored_metadata.get(field) != detail:
                 metadata_drift.append({
                     "song_id": song_id, "field": field,
