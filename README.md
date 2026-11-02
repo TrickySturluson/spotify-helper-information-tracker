@@ -334,7 +334,7 @@ Spotify HTTP 429 responses are treated as a hard cooldown, not retried. The mana
 
 ### GitHub Actions control panel
 
-After this branch is merged into `main`, add these repository Actions settings:
+Add these repository Actions settings:
 
 - Variable: `SPOTIFY_CLIENT_ID` (the Spotify app Client ID)
 - Secret: `SPOTIFY_REFRESH_TOKEN` (the playlist-manager refresh token; never commit or paste it into an issue)
