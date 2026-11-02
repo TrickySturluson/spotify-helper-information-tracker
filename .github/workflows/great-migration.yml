@@ -65,6 +65,7 @@ jobs:
 
       - uses: actions/checkout@v7
         with:
+          ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v7
@@ -263,6 +264,6 @@ jobs:
 # Trigger: Daily provider credential check at 09:17 UTC; owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare|audit|verify>.
 # Commands: status/preview are read-only; migrate is offline; prepare runs migration
 #           followed by bounded, checkpointed metadata enrichment and final audit.
-# Safety: owner validation, allow-listed operations, serialized runs, tests first,
+# Safety: owner validation, allow-listed operations, serialized runs, latest-main checkout, tests first,
 #         rollback backup artifact, no Spotify playlist writes, generated-data-only commits.
 # Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py.
