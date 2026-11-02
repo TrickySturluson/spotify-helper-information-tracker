@@ -8,7 +8,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 ## Immediate resume point — Great Migration
 
-**State: full canonical track catalogue is published on main; run #18 successfully enriched/reconciled and published; run #21 follow-up is in progress. A full post-publish audit is still required before declaring the Library fully verified.**
+**State: full canonical track catalogue is published on main; run #18 successfully enriched/reconciled and published. Run #21 completed prepare/audit but failed publication due stale issue-event checkout; latest-main checkout fix is committed. A full post-publish audit is still required.**
 
 - Run #17 completed prepare, enrichment and a final integrity audit: 13,005 songs, 6,382 artists, 7,861 albums, zero audit errors. Duration coverage was 91.1%; 93 acoustic profiles were stored.
 - Publication failed because the workflow refreshed/staged Spotify playlist snapshots with the generated Library, causing rebase conflicts. Its artifact contained only the backup and log, not the generated Library.
