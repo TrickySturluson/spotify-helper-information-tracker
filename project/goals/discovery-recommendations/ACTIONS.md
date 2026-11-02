@@ -52,3 +52,13 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Verification:** Daily curator CI runs #41415718003, #41415724736 and #41415730381 were triggered by the three sequential commits and were still in progress at documentation time. Do not call the fix CI-verified until the final run completes successfully.
 - **Next:** inspect the final Actions run; then run a read-only preview against current playlist data when available and confirm the removal/whitelist counts. Keep the distinction clear: Tricky Daily uses soft scoring penalties; curated playlist batches hard-skip only exact removed tracks; a current re-addition is the explicit whitelist signal.
 
+
+
+## 2026-11-02 — Sticky playlist removals and mutation snapshots
+
+- User reported repeated re-additions after removing The Cramps — “Human Fly” and Misfits — “Halloween” / “Halloween II”. Added their exact Spotify URIs to Booze or Boos! removal history, sourced as user-reported repeated removals.
+- Root cause: the feedback loader treated current playlist membership as implicit approval, allowing automation to erase its own negative evidence.
+- Changed removal handling so records remain active even if the track is currently present. Only an explicit playlist-local `whitelisted` entry overrides a removal. Other playlists are unaffected; artist-wide evidence remains soft.
+- Replaced the implicit-membership whitelist regression with sticky-removal coverage and explicit-whitelist override coverage.
+- Snapshot hooks: local manager saves pre/post snapshots for edits and an initial snapshot on creation; cloud playlist edits save post-change snapshots, including partial failures; dedupe saves a post-change snapshot. Snapshot paths are recorded in the audit log.
+- Remaining operational work: wire the removal poll into playlist mutation workflows and a recurring Actions schedule, and ensure snapshots persist as workflow artifacts/committed state. These are not claimed live until verified.
