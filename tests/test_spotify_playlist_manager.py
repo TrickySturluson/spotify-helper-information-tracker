@@ -95,6 +95,16 @@ class PlaylistManagerTests(unittest.TestCase):
         )
         self.assertEqual(endpoint, "/playlists/{id}/items")
 
+    def test_single_track_lookup_supports_explicit_market(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        seen = []
+        spotify.call = lambda method, url: (seen.append((method, url)) or {"id": "1234567890123456789012"})
+        result = spotify.track("1234567890123456789012", market="from_token")
+        self.assertEqual(result["id"], "1234567890123456789012")
+        self.assertEqual(seen, [("GET", "/tracks/1234567890123456789012?market=from_token")])
+        with self.assertRaises(manager.ManagerError):
+            spotify.track("not-a-track-id", market="from_token")
+
     def test_playlist_items_use_current_api_page_limit(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.call = lambda method, path: {"items": [], "next": None, "requested": path}
