@@ -89,7 +89,7 @@ def verify_spotify():
     detail = "Refresh-token exchange and read-only GET /me succeeded; " + account + "."
     status = "passed"
     if rotated:
-        if os.environ.get("GITHUB_ACTIONS") == "true":
+        if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") == "1":
             try:
                 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[2] / "compat"))
                 import spotify_playlist_manager as manager
