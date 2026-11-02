@@ -7,12 +7,12 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-from scripts.music.music_evidence import identity_confidence, track_metadata_confidence
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ROOT = REPO_ROOT / "assistant_data" / "music" / "library"
 MUSIC_ROOT = REPO_ROOT / "assistant_data" / "music"
 sys.path.insert(0, str(REPO_ROOT))
+
+from scripts.music.music_evidence import identity_confidence, track_metadata_confidence
 
 
 def _read(path):
