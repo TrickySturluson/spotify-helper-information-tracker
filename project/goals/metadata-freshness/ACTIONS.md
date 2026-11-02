@@ -1,3 +1,15 @@
+## 2026-11-02 — Implement initial read-only field freshness planner
+
+- Added `scripts/music/metadata_freshness.py` with deterministic bounded planning for market-specific Spotify playability and explicit field/provider observation timestamps.
+- Policies are field-specific: Spotify playability 90 days, track tags 180 days, artist/album profiles 365 days, and duration 730 days. These are initial configurable defaults for planning, not a live provider schedule; review provider policy before enabling execution.
+- Planner uses `evidence.spotify_playability.latest_by_market` for market-scoped checks and `freshness.observations` for other field families.
+- Unknown-market playability does not satisfy a requested market. Missing field timestamps are reported and skipped; record modification time is never treated as metadata freshness.
+- Oldest due observations are selected first, with stable task-key hashing as tie-breaker. The run limit is capped at 100.
+- No provider executor, scheduler, CLI integration, or state mutation has been added. Planning is strictly no-network/no-write.
+- Added tests for stale vs fresh fields, market separation, future cooldowns, missing timestamps, deterministic bounded selection, and no-write behavior.
+- Branch: `feature/metadata-freshness-planner`; PR/CI pending at time of this entry.
+- **Next:** inspect CI, validate schema against real saved evidence/checkpoints, align with PR #78 and `RETRY_QUEUE_SPEC.md`, then add CLI integration and a single bounded executor only after plan correctness is established.
+
 # Actions — Metadata Freshness & Partial Revalidation
 
 ## 2026-11-02 — Initial design and boundaries
