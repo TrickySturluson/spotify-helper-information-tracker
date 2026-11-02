@@ -196,6 +196,16 @@ class Spotify:
             if url: url=url.replace(API,"")
         return out
 
+    def track(self,track_id,market=None):
+        if not re.fullmatch(r"[A-Za-z0-9]{22}", str(track_id or "")):
+            raise ManagerError("Invalid Spotify track ID.")
+        if market is not None and market != "from_token" and not re.fullmatch(r"[A-Z]{2}", str(market)):
+            raise ManagerError("Invalid Spotify market; use an ISO country code or from_token.")
+        url=f"/tracks/{track_id}"
+        if market is not None:
+            url += f"?market={market}"
+        return self.call("GET",url)
+
 def config():
     c=read(CONFIG,{"version":1,"playlists":{}})
     if not isinstance(c,dict) or not isinstance(c.get("playlists"),dict): raise ManagerError("Invalid permission config; refusing edits.")
