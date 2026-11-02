@@ -656,7 +656,7 @@ def main():
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
-        resolved, skipped = [], []
+        resolved, skipped, blocked = [], [], []
         for artist, title in candidates:
             if len(resolved) >= 10:
                 break
@@ -679,7 +679,7 @@ def main():
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
                 continue
             if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
-                skipped.append(f"{artist} — {title} (blocked by playlist removal history)")
+                blocked.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
                 continue
             if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
                 skipped.append(f"{artist} — {title} (already present or duplicate)")
@@ -691,12 +691,19 @@ def main():
             })
         if len(resolved) != 10:
             lines = [
-                f'TEN-TRACK HALLOWEEN BATCH NOT STAGED — {p.get("name")} [{pid}]',
-                f'Eligible new tracks: {len(resolved)}/10. No playlist changes have been made.',
+                f'TEN-TRACK HALLOWEEN STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: BLOCKED — incomplete batch; nothing is staged for confirmation.",
+                f'Eligible: {len(resolved)}/10 | Blacklist blocked: {len(blocked)} | Other exclusions: {len(skipped)}.',
+                "Spotify changes: NONE.",
+                "",
+                "ELIGIBLE (passed exact removal, duplicate and Spotify identity checks):",
             ]
-            lines.extend(f'FOUND: {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
-            lines.extend(f'SKIPPED: {row}' for row in skipped)
-            result = "\n".join(lines)
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
+            lines.append("BLACKLISTED (sticky removal; explicit whitelist required):")
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in blocked)
+            lines.append("OTHER EXCLUSIONS:")
+            lines.extend(f'  {row}' for row in skipped)
+            result = "\\n".join(lines)
         else:
             intake = append_candidates(
                 [{
@@ -720,14 +727,20 @@ def main():
                 candidates_persisted=intake["unique_candidates"],
             )
             lines = [
-                f'TEN-TRACK HALLOWEEN PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; additions: 10; after confirmation: {len(current["items"]) + 10}.',
+                f'TEN-TRACK HALLOWEEN STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: READY FOR REVIEW — no Spotify changes have been made.",
+                f'Current items: {len(current["items"])} | Staged additions: 10 | After confirmation: {len(current["items"]) + 10}.',
+                f'Blacklist blocked: {len(blocked)} | Other exclusions: {len(skipped)}.',
                 f'New candidates saved to the SHIT discovery library: {intake["unique_candidates"]}.',
-                "No Spotify changes have been made.",
                 "",
+                "STAGED (all passed exact removal, duplicate and Spotify identity checks):",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
-            lines.extend(["", "To add these exact ten tracks, submit confirm with this one-time code:", confirmation])
+            lines.append("BLACKLISTED (not eligible; sticky removal requires explicit whitelist):")
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in blocked)
+            lines.append("OTHER EXCLUSIONS:")
+            lines.extend(f'  {row}' for row in skipped)
+            lines.extend(["", "To add only these exact ten staged tracks, submit confirm with this one-time code:", confirmation])
             result = "\\n".join(lines)
     elif action == "booze20_preview":
         # Resolve the strict 15-track Halloween-themed batch through Spotify's catalogue.
