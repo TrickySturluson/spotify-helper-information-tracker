@@ -22,11 +22,11 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 ## Current Library reliability work
 
-- **Health checker:** merged in PR #73. Full-catalogue read-only scan passed. Draft PR #87 adds market-aware playability observation semantic checks (status/raw value, market/latest map, requested/relinked IDs). See [health-maintenance goal](goals/library-health-maintenance/README.md).
+- **Health checker:** merged in PR #73; PR #87 now validates market-aware playability evidence semantics (status/raw value, timestamp, market/latest map, requested/relinked IDs). Full post-merge verification is running in issue #90. See [health-maintenance goal](goals/library-health-maintenance/README.md).
 - **Data maintainer:** PR #80 merged. `python shit.py library maintain` previews deterministic index repairs; apply requires `--apply --repair-index`, alias-preservation proof, backup, atomic replacement, and post-repair health validation/rollback. Full-catalogue preview issue #85 passed: safe to rebuild, zero aliases/records lost, zero errors/warnings, no repair needed. No real repair has been applied.
 - **Metadata freshness:** PR #81 merged. Read-only planner scans 13,005 songs, 6,386 artists, 7,861 albums and 1,778/3,998/400 track/artist/album profile cache rows; post-backfill plan selected 0 due tasks. Draft PR #86 adds native CLI and weekly read-only review workflow; no provider executor/schedule is enabled.
 - **Spotify playability:** initial snapshot persistence merged in PR #72. Draft PR #78 adds market-aware Get Track checks, offline snapshot backfill, and stale-only bounded refresh. Latest full CI and security scan passed after fixing a missing test import; keep it unmerged until final review. No live refresh has been executed.
-- **Confidence:** read-only confidence audit is merged and passes full-catalogue CI. Draft PR #88 separates missing stored confidence from genuine mismatches so the 1,582 previous differences can be quantified correctly. Remaining work is gold-set/manual false-match review and confidence distribution analysis.
+- **Confidence:** read-only confidence audit is merged; PR #88 now separates missing stored confidence from genuine mismatches. Issue #90 is running a full-catalogue post-merge breakdown of the 1,582 previous differences. Remaining work is gold-set/manual false-match review and confidence distribution analysis.
 
 ## Immediate priorities
 
