@@ -53,7 +53,9 @@ A song without a Spotify ID has no Spotify playability observation; do not assig
 
 ## Current status
 
-**Market-aware implementation in draft branch; CI pending.** Reference-library playlist reads now request `market=from_token` (Spotify's authenticated user's account country), preserve `is_playable` and restrictions, distinguish requested original ID from returned/relinked ID, and append observations only to an existing canonical song. A backup-protected offline backfill imports saved snapshots without provider requests. It is not yet merged or run against production snapshots.
+**Initial observation persistence merged in PR #72.** Snapshot ingestion stores playability observations in song files, preserving history and distinguishing unknown from false. Market-aware requests, correct relinking behavior, and offline backfill are being refined in PR #75.
+
+Spotify's Web API accepts `market=from_token` to use the authenticated user's country. When Track Relinking returns a replacement, `linked_from` identifies the originally requested recording; the replacement ID must not overwrite the original song identity. An absent `is_playable` value is unknown, not playable or unplayable. See [Get Playlist Items](https://developer.spotify.com/documentation/web-api/reference/get-playlists-items) and [Track Relinking](https://developer.spotify.com/documentation/web-api/concepts/track-relinking). Read-only Spotify playlist snapshot ingestion now carries explicit `is_playable`, restriction details, relinking IDs, source context and an observation timestamp into the canonical song record under `evidence.spotify_playability`. Observations are retained by market, with `unknown` used when the snapshot does not identify a market. This is not yet a market-specific API check, and the change is not merged.
 
 ## Resume
 
