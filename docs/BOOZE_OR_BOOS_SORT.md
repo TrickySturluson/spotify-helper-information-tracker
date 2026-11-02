@@ -27,3 +27,8 @@ Section assignments in assistant_data/spotify/booze_or_boos_sections.json are ke
 ## Five-axis cross-reference audit
 
 The playlist-fit preview workflow now runs an additional read-only audit over the saved Booze or Boos! snapshot. The identity-only candidate manifest is `assistant_data/spotify/playlist_fit_booze_candidates_20261102.json`. It scores current Booze tracks against the five independent calibration-target profiles, excluding the entire Booze candidate batch from those profiles to avoid candidate leakage. This indicates broader musical affinity and evidence gaps; it does **not** certify that a track is Halloween-related. Use explicit recording-level theme/lyric evidence and the party brief for that judgment. The current saved snapshot has 64 tracks; regenerate the manifest if the source snapshot changes. No playlist writes are performed by this workflow.
+
+
+## Current metadata coverage finding (2026-11-02)
+
+The 64-track saved snapshot resolves to canonical Library records, but the five-axis cross-reference is not yet a safe automatic sorting signal: only 32/64 tracks score against each target, all low-confidence and one-axis; 31/32 rely on artist-scope genre context, only one track has direct Genre evidence, and 32/64 remain unknown. Sound/Energy/Mood/Theme direct evidence is absent in the reference profiles. The local cache check found 64 track-profile rows but only 2 Last.fm-tagged tracks and no lyric-theme, direct track-mood or recognized energy rows for Booze. Treat missing data as unknown, not as a negative or neutral musical trait. The immediate work is recording-level evidence enrichment and a separate Halloween-theme audit; don't rank additions from the current cross-reference scores.
