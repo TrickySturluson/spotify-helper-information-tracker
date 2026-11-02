@@ -540,7 +540,8 @@ if __name__ == "__main__":
 # FILE OVERVIEW
 # Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
 # Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
-# Safety: Snapshot ingestion never changes Spotify playlists; playability is stored as a timestamped observation.
+# Safety: Snapshot ingestion never changes playlists; offline backfill makes a song-file backup before appending observations.
+# Playability: Requests use market=from_token; relinked IDs stay distinct from original requested IDs.
 # Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
