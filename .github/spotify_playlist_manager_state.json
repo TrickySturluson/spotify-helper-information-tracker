@@ -52,296 +52,32 @@
     "kind": "edit"
   },
   "pending": {
-    "kind": "sequence",
     "playlist_id": "4diIlnF8BlgoJrwUfejf49",
     "operations": [
       {
-        "action": "reorder",
-        "range_start": 20,
-        "insert_before": 0,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 21,
-        "insert_before": 1,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 19,
-        "insert_before": 3,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 22,
-        "insert_before": 4,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 10,
-        "insert_before": 5,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 24,
-        "insert_before": 6,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 12,
-        "insert_before": 7,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 16,
-        "insert_before": 8,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 15,
-        "insert_before": 9,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 16,
-        "insert_before": 10,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 16,
-        "insert_before": 11,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 22,
-        "insert_before": 12,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 23,
-        "insert_before": 13,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 24,
-        "insert_before": 14,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 25,
-        "insert_before": 15,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 22,
-        "insert_before": 16,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 22,
-        "insert_before": 17,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 33,
-        "insert_before": 32,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 35,
-        "insert_before": 34,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 54,
-        "insert_before": 35,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 38,
-        "insert_before": 36,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 48,
-        "insert_before": 37,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 42,
-        "insert_before": 38,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 43,
-        "insert_before": 39,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 44,
-        "insert_before": 40,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 45,
-        "insert_before": 41,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 46,
-        "insert_before": 42,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 47,
-        "insert_before": 43,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 47,
-        "insert_before": 44,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 47,
-        "insert_before": 45,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 48,
-        "insert_before": 46,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 58,
-        "insert_before": 47,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 50,
-        "insert_before": 48,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 57,
-        "insert_before": 49,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 56,
-        "insert_before": 50,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 55,
-        "insert_before": 51,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 53,
-        "insert_before": 52,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 55,
-        "insert_before": 54,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 58,
-        "insert_before": 56,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 60,
-        "insert_before": 57,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 60,
-        "insert_before": 58,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 60,
-        "insert_before": 59,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 61,
-        "insert_before": 60,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 69,
-        "insert_before": 64,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 70,
-        "insert_before": 67,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 69,
-        "insert_before": 68,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 71,
-        "insert_before": 69,
-        "range_length": 1
-      },
-      {
-        "action": "reorder",
-        "range_start": 71,
-        "insert_before": 70,
-        "range_length": 1
+        "action": "add",
+        "uris": [
+          "spotify:track:5EuQzakrNyaOLsVS4pi1Az",
+          "spotify:track:2EFHXO4zJRitZLpE1ztsWO",
+          "spotify:track:743DaI0d44SpwV2ArTPGmy",
+          "spotify:track:4j3sD1EcYquM2ltqNH19ec",
+          "spotify:track:7i6J0GFdjVKrHVKreT3Mev",
+          "spotify:track:1qpVGPQyd18YJhuY2NeS7e",
+          "spotify:track:0UzhQhSjlIiNHqozH0tKHl",
+          "spotify:track:2idmlkd8oUaQvYEtINpLBX",
+          "spotify:track:1ljtQrsf55VCwjqXjro7Po",
+          "spotify:track:1AWdTY4hPU1U5q5ceJ26yg",
+          "spotify:track:2VOomzT6VavJOGBeySqaMc",
+          "spotify:track:4SSnFejRGlZikf02HLewEF",
+          "spotify:track:5DSi7heBC8eTIFROBvttnp",
+          "spotify:track:1zyGFId8xHOcRmCmehrwlc",
+          "spotify:track:3JTMWdhcJPiegDSe7SvZS3",
+          "spotify:track:4l9fZ75WzPZlAIkqJIWlo8",
+          "spotify:track:2h47SG8bNphmicAll4H9RV",
+          "spotify:track:6ewN9MaFbi78oDLT9wYDgn",
+          "spotify:track:5Ng6UbryNd3eds2zQk9MUf",
+          "spotify:track:5uGsG0LfotfWDq6hql4h53"
+        ]
       }
     ],
     "snapshot_id": "AAAA/ScPSXp0d8nmx/aBsb0KprHk94Wa",
@@ -419,6 +155,89 @@
       "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
       "spotify:track:2VDqNzRGI49PkXKlhpinmJ"
     ],
-    "confirmation": "Akw0FC-orau8R42z"
+    "confirmation": "ma2IAjPw41EaDgFG",
+    "kind": "booze20"
+  },
+  "track_uri_cache": {
+    "djjazzyjeffthefreshprince|anightmareonmystreet": {
+      "name": "A Nightmare On My Street",
+      "uri": "spotify:track:5EuQzakrNyaOLsVS4pi1Az"
+    },
+    "outkast|draculaswedding": {
+      "name": "Dracula's Wedding (feat. Kelis)",
+      "uri": "spotify:track:2EFHXO4zJRitZLpE1ztsWO"
+    },
+    "whodini|freakscomeoutatnight": {
+      "name": "Freaks Come Out at Night",
+      "uri": "spotify:track:743DaI0d44SpwV2ArTPGmy"
+    },
+    "getoboys|mindplayingtricksonme": {
+      "name": "Mind Playing Tricks on Me",
+      "uri": "spotify:track:4j3sD1EcYquM2ltqNH19ec"
+    },
+    "gnarlsbarkley|theboogiemonster": {
+      "name": "The Boogie Monster",
+      "uri": "spotify:track:7i6J0GFdjVKrHVKreT3Mev"
+    },
+    "nas|blackmagic": {
+      "name": "Black Magic",
+      "uri": "spotify:track:1qpVGPQyd18YJhuY2NeS7e"
+    },
+    "theprodigy|voodoopeople": {
+      "name": "Voodoo People",
+      "uri": "spotify:track:0UzhQhSjlIiNHqozH0tKHl"
+    },
+    "yeahyeahyeahs|headswillrollatrakremix": {
+      "name": "Heads Will Roll - A-Trak Remix",
+      "uri": "spotify:track:2idmlkd8oUaQvYEtINpLBX"
+    },
+    "pinkpantheress|anotherlife": {
+      "name": "Another life (feat. Rema)",
+      "uri": "spotify:track:1ljtQrsf55VCwjqXjro7Po"
+    },
+    "strafe|setitoff": {
+      "name": "Set It Off (Vocal)",
+      "uri": "spotify:track:1AWdTY4hPU1U5q5ceJ26yg"
+    },
+    "rihanna|disturbia": {
+      "name": "Disturbia",
+      "uri": "spotify:track:2VOomzT6VavJOGBeySqaMc"
+    },
+    "billieeilish|buryafriend": {
+      "name": "bury a friend",
+      "uri": "spotify:track:4SSnFejRGlZikf02HLewEF"
+    },
+    "lanadelrey|seasonofthewitch": {
+      "name": "Season Of The Witch",
+      "uri": "spotify:track:5DSi7heBC8eTIFROBvttnp"
+    },
+    "scissorsisters|icantdecide": {
+      "name": "I Can't Decide",
+      "uri": "spotify:track:1zyGFId8xHOcRmCmehrwlc"
+    },
+    "kesha|cannibal": {
+      "name": "Cannibal",
+      "uri": "spotify:track:3JTMWdhcJPiegDSe7SvZS3"
+    },
+    "shakira|shewolf": {
+      "name": "She Wolf",
+      "uri": "spotify:track:4l9fZ75WzPZlAIkqJIWlo8"
+    },
+    "oingoboingo|deadmansparty": {
+      "name": "Dead Man's Party",
+      "uri": "spotify:track:2h47SG8bNphmicAll4H9RV"
+    },
+    "thespecials|ghosttown": {
+      "name": "Ghost Town",
+      "uri": "spotify:track:6ewN9MaFbi78oDLT9wYDgn"
+    },
+    "siouxsieandthebanshees|spellbound": {
+      "name": "Spellbound",
+      "uri": "spotify:track:5Ng6UbryNd3eds2zQk9MUf"
+    },
+    "godsmack|voodoo": {
+      "name": "Voodoo",
+      "uri": "spotify:track:5uGsG0LfotfWDq6hql4h53"
+    }
   }
 }

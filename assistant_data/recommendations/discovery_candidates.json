@@ -1,1 +1,522 @@
-[]
+[
+  {
+    "spotify_id": "4SSnFejRGlZikf02HLewEF",
+    "spotify_uri": "spotify:track:4SSnFejRGlZikf02HLewEF",
+    "artist": "Billie Eilish",
+    "track": "bury a friend",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5EuQzakrNyaOLsVS4pi1Az",
+    "spotify_uri": "spotify:track:5EuQzakrNyaOLsVS4pi1Az",
+    "artist": "DJ Jazzy Jeff & The Fresh Prince",
+    "track": "A Nightmare On My Street",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4j3sD1EcYquM2ltqNH19ec",
+    "spotify_uri": "spotify:track:4j3sD1EcYquM2ltqNH19ec",
+    "artist": "Geto Boys",
+    "track": "Mind Playing Tricks on Me",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7i6J0GFdjVKrHVKreT3Mev",
+    "spotify_uri": "spotify:track:7i6J0GFdjVKrHVKreT3Mev",
+    "artist": "Gnarls Barkley",
+    "track": "The Boogie Monster",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5uGsG0LfotfWDq6hql4h53",
+    "spotify_uri": "spotify:track:5uGsG0LfotfWDq6hql4h53",
+    "artist": "Godsmack",
+    "track": "Voodoo",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3JTMWdhcJPiegDSe7SvZS3",
+    "spotify_uri": "spotify:track:3JTMWdhcJPiegDSe7SvZS3",
+    "artist": "Kesha",
+    "track": "Cannibal",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5DSi7heBC8eTIFROBvttnp",
+    "spotify_uri": "spotify:track:5DSi7heBC8eTIFROBvttnp",
+    "artist": "Lana Del Rey",
+    "track": "Season Of The Witch",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1qpVGPQyd18YJhuY2NeS7e",
+    "spotify_uri": "spotify:track:1qpVGPQyd18YJhuY2NeS7e",
+    "artist": "Nas",
+    "track": "Black Magic",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2h47SG8bNphmicAll4H9RV",
+    "spotify_uri": "spotify:track:2h47SG8bNphmicAll4H9RV",
+    "artist": "Oingo Boingo",
+    "track": "Dead Man's Party",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2EFHXO4zJRitZLpE1ztsWO",
+    "spotify_uri": "spotify:track:2EFHXO4zJRitZLpE1ztsWO",
+    "artist": "OutKast",
+    "track": "Dracula's Wedding (feat. Kelis)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1ljtQrsf55VCwjqXjro7Po",
+    "spotify_uri": "spotify:track:1ljtQrsf55VCwjqXjro7Po",
+    "artist": "PinkPantheress",
+    "track": "Another life (feat. Rema)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2VOomzT6VavJOGBeySqaMc",
+    "spotify_uri": "spotify:track:2VOomzT6VavJOGBeySqaMc",
+    "artist": "Rihanna",
+    "track": "Disturbia",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1zyGFId8xHOcRmCmehrwlc",
+    "spotify_uri": "spotify:track:1zyGFId8xHOcRmCmehrwlc",
+    "artist": "Scissor Sisters",
+    "track": "I Can't Decide",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4l9fZ75WzPZlAIkqJIWlo8",
+    "spotify_uri": "spotify:track:4l9fZ75WzPZlAIkqJIWlo8",
+    "artist": "Shakira",
+    "track": "She Wolf",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5Ng6UbryNd3eds2zQk9MUf",
+    "spotify_uri": "spotify:track:5Ng6UbryNd3eds2zQk9MUf",
+    "artist": "Siouxsie and the Banshees",
+    "track": "Spellbound",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1AWdTY4hPU1U5q5ceJ26yg",
+    "spotify_uri": "spotify:track:1AWdTY4hPU1U5q5ceJ26yg",
+    "artist": "Strafe",
+    "track": "Set It Off (Vocal)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0UzhQhSjlIiNHqozH0tKHl",
+    "spotify_uri": "spotify:track:0UzhQhSjlIiNHqozH0tKHl",
+    "artist": "The Prodigy",
+    "track": "Voodoo People",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6ewN9MaFbi78oDLT9wYDgn",
+    "spotify_uri": "spotify:track:6ewN9MaFbi78oDLT9wYDgn",
+    "artist": "The Specials",
+    "track": "Ghost Town",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "743DaI0d44SpwV2ArTPGmy",
+    "spotify_uri": "spotify:track:743DaI0d44SpwV2ArTPGmy",
+    "artist": "Whodini",
+    "track": "Freaks Come Out at Night",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2idmlkd8oUaQvYEtINpLBX",
+    "spotify_uri": "spotify:track:2idmlkd8oUaQvYEtINpLBX",
+    "artist": "Yeah Yeah Yeahs",
+    "track": "Heads Will Roll - A-Trak Remix",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  }
+]
