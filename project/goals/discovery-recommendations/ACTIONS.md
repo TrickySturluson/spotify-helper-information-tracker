@@ -94,3 +94,13 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - The refresh successfully generated the 58-playlist catalog, 42 initial baselines and two new dated history snapshots in the runner, but its first publication attempt raced with concurrent commits. The retry logic was added afterward; rerun the reference sync and verify that the resulting catalog/baseline commit is present before calling persistence complete.
 - Regression tests now cover baseline seeding, inaccessible-snapshot exclusion, sticky removal comparison, and exact-ID pre/post snapshot reads.
 - Next verification: ensure CI passes on the latest commit; trigger the reference-library workflow again; verify the baseline and all 58 catalog entries are committed, Booze is current, and the workflow ends green. Confirm the playlist-control workflow polls only the selected playlist.
+
+
+## 2026-11-02 — Recover two Booze removals from the confirmed post-add state
+
+- Compared the persisted `last_completed.after_uris` from the successful Booze 15-track confirmation (87 tracks; snapshot `AAAA/ScPSXp0d8nmx/aBsb0KprHk94Wa`) with the fresh Spotify reference snapshot (82 tracks; snapshot `AAABA/dKtho948buIMKTHoeoPu5L57D5`).
+- Five URIs were absent from the current playlist. Three were already sticky removal records: The Cramps — Human Fly; Misfits — Halloween; Misfits — Halloween II. Two were new: Creature Feature — The Greatest Show Unearthed (`spotify:track:5YEkxfNMTHkfoYlh4d1Y7b`) and Creature Feature — The Netherworld (`spotify:track:62EKjHgJEMoBkL2uhCVHKr`).
+- Added the two Creature Feature tracks to Booze's playlist-local removal history with exact URIs and both snapshot IDs as evidence. They now feed the same sticky negative filter as the previous removals.
+- Root cause of the three known removals being present in the confirmed batch: that batch was previewed/confirmed at 08:31 UTC, before the sticky-removal fix was committed later that morning. The current curated preview code checks playlist-local removals before staging candidates; the new two records are now covered as well.
+- Fixed the Booze candidate audit test to resolve its source snapshot by ID from immutable playlist history rather than comparing a dated audit fixture against the mutable live playlist. Preserved the original 64-track snapshot in history, and changed reference-library sync to preserve each previous complete snapshot before replacing the current pointer.
+- Verification: baseline/reference sync is committed; CI for the removal-history and history-preservation changes is running. The read-only control inspection was blocked by the stale live-snapshot test before it could reach the command; rerun it after CI is green.
