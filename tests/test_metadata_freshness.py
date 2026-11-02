@@ -41,6 +41,49 @@ class MetadataFreshnessTests(unittest.TestCase):
             self.assertEqual(report["provider_requests"], 0)
             self.assertEqual(report["writes"], 0)
 
+    def test_existing_track_metadata_timestamps_and_provider_sources_are_used(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            now = datetime(2026, 11, 2, tzinfo=timezone.utc)
+            self.write_song(root, "song-three", {
+                "id": "song-three",
+                "identity": {"artist": "Artist", "title": "Song"},
+                "evidence": {"track_metadata": {
+                    "duration_ms": 210000,
+                    "duration_source": "Last.fm track.getInfo",
+                    "lastfm_checked_at": "2025-01-01T00:00:00Z",
+                    "lastfm_status": "no_tags",
+                    "musicbrainz_checked_at": "2026-10-30T00:00:00Z",
+                    "musicbrainz_status": "matched",
+                }},
+            })
+            report = build_plan(root, limit=10, now=now)
+            selected = {(row["field_family"], row["provider"]) for row in report["selected"]}
+            self.assertIn(("track_tags", "lastfm"), selected)
+            self.assertIn(("duration", "lastfm"), selected)
+            self.assertNotIn(("track_tags", "musicbrainz"), selected)
+
+    def test_source_stamped_artist_and_album_profiles_are_scheduled(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            now = datetime(2026, 11, 2, tzinfo=timezone.utc)
+            artist = root / "artists" / "ar" / "artist-one" / "artist.json"
+            artist.parent.mkdir(parents=True)
+            artist.write_text(json.dumps({
+                "id": "artist-one", "artist": "Artist",
+                "evidence": {"source": "Last.fm artist.getTopTags", "checked_at": "2025-01-01T00:00:00Z"},
+            }), encoding="utf-8")
+            album = root / "albums" / "al" / "album-one" / "album.json"
+            album.parent.mkdir(parents=True)
+            album.write_text(json.dumps({
+                "id": "album-one", "album": "Album", "artist": "Artist",
+                "evidence": {"source": "Last.fm album.getInfo", "checked_at": "2025-01-01T00:00:00Z"},
+            }), encoding="utf-8")
+            report = build_plan(root, limit=10, now=now)
+            selected = {(row["entity_type"], row["field_family"], row["provider"]) for row in report["selected"]}
+            self.assertIn(("artist", "artist_profile", "lastfm"), selected)
+            self.assertIn(("album", "album_profile", "lastfm"), selected)
+
     def test_unknown_market_is_not_treated_as_fresh_and_missing_timestamps_are_not_fetched(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
