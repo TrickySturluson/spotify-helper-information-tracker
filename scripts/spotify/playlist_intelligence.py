@@ -301,7 +301,7 @@ def recommendation_reasons(row):
     if row.get("removed_exact"):
         reasons.append("this exact track was previously removed")
     if row.get("whitelisted"):
-        reasons.append("re-added track is whitelisted by current membership")
+        reasons.append("this exact track is explicitly whitelisted for this playlist")
     if row.get("plays", 0) == 0:
         reasons.append("unheard in the Last.fm archive")
     elif row.get("plays", 0) <= 2:
