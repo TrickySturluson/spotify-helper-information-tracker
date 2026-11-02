@@ -316,7 +316,7 @@ def track_from_library_record(record: dict, track_profile: dict | None = None) -
             provider = str(provider).casefold()
             if "musicbrainz" in provider:
                 provider = "musicbrainz"
-            elif "lastfm" in provider:
+            elif "lastfm" in provider or "last.fm" in provider:
                 provider = "lastfm"
             elif "discogs" in provider:
                 provider = "discogs"
