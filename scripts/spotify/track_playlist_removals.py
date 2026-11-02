@@ -84,7 +84,11 @@ def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
                 manager.audit(event="deduplicated", playlist_id=pid, name=name,
                               removed_occurrences=extra_count, backup=backup)
                 print(f"  DEDUPED {extra_count} surplus occurrence(s); recovery snapshot: {backup}")
-                rows = manager.tracks(sp, manager.find(sp, pid))
+                deduped_playlist = manager.find(sp, pid)
+                rows = manager.tracks(sp, deduped_playlist)
+                after_snapshot = manager.save_snapshot(manager.snapshot(sp, deduped_playlist))
+                manager.audit(event="dedupe_post_snapshot_saved", playlist_id=pid,
+                              snapshot=after_snapshot, removed_occurrences=extra_count)
     else:
         print(f'OK        {name}: no duplicate track URIs')
 
