@@ -2,6 +2,13 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-02 — Parallelize sorter development with incremental data enrichment
+
+- Decision: do not make complete metadata coverage a prerequisite for all sorter development. Use the current canonical Library and existing profile exports to build offline evaluation and confidence-aware fallbacks while read-only health/freshness monitoring continues.
+- Required behavior: missing BPM/energy/mood/theme must be explicit; do not fabricate or silently inherit artist-level mood. Prefer high-confidence measured evidence; expose lower-confidence estimates and unknown coverage in previews.
+- Safety: development/evaluation is read-only. No playlist writes are authorized by this change. Before any live application, verify current playlist state, deduplication/removal blacklist, ownership/lock state, preview freshness, and explicit authorization.
+- Next: inspect the actual scripts/spotify/spotify_playlist_sequencer.py implementation and its tests; define a deterministic transition-quality evaluation using real available data, report coverage and confidence, then improve the algorithm before any live playlist changes.
+
 ## 2026-11-01 — Goal workspace initialized
 
 - **Action:** established this goal's dedicated documentation and action-history location.
