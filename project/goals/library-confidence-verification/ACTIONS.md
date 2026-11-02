@@ -69,3 +69,12 @@
 - This confirms catalogue coverage, not confidence quality. Full confidence distribution, provenance audit, false-match review, and gold-set testing remain outstanding.
 - No confidence scoring changes or Library writes performed in this documentation pass.
 - Next: build a read-only report with identity-quality counts, per-field confidence coverage, missing provenance, ambiguous candidates, and recomputed-vs-stored confidence drift; then define a curated gold set.
+
+
+## 2026-11-02 — Post-second-backfill audit/health/confidence verification (issue #118)
+
+- Fresh latest-main `verify-catalogue` completed successfully after issue #114. Canonical audit: `ok=true`, 13,005 songs, 6,386 artists, 7,861 albums, no errors. Health: `ok=true`, indexed counts match canonical counts, alias counts include 1,856 Spotify IDs, 11,338 recording MBIDs, 1,816 ISRCs, 13,003 source-track IDs, and 11,529 name-candidate keys; zero health errors and warnings.
+- Identity confidence drift remains 0 across 13,005 songs (7,525 high / 5,480 low; 5,669 recording-MBID, 5,480 source-track, 1,856 Spotify-track identity methods).
+- Metadata confidence drift is 1,582 missing stored duration-confidence entries and **0 genuine mismatches**. Do not bulk-rewrite confidence; the audit classifies these as missing entries, not incorrect confidence.
+- Reported evidence coverage remains duration 10,028, track tags 179, audio features 36, and Spotify playability 1,856. Legacy track coverage is 11,130/11,130; artist-name coverage is 5,358/5,358. The freshness planner's post-second-pass unknown-age count is still pending issue #117.
+- Duplicate entity audit issue #102 remains open. No merges or canonical record rewrites were performed.
