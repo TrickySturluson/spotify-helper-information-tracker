@@ -68,6 +68,7 @@ class PlaylistManagerTests(unittest.TestCase):
         spotify = __import__("unittest").mock.Mock()
         spotify.me.return_value = {"id": "user123"}
         spotify.call.return_value = {"id": "new-playlist", "name": "SHIT Test"}
+        spotify.items.return_value = []
         with patch.object(manager, "register_created") as register, patch.object(
             manager, "CONFIG", Path(tempfile.gettempdir()) / "shit-manager-test-config.json"
         ), patch.object(manager, "audit"), patch.object(manager, "write"):
