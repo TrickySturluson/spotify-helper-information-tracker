@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "verification_id": "playlist-fit-vibe-verification-20261102",
+  "created_at": "2026-11-02",
+  "purpose": "Independent evidence-based verification of the 25-track SHITting Grounds audition batch against the five reference playlist identities.",
+  "prediction_artifact": "assistant_data/spotify/playlist_fit_model_predictions.json",
+  "human_ratings_accessed": false,
+  "blind_status": "This pass did not inspect human slider values. It corrects an important limitation in the prior prediction pass: audition tracks were visible in the reference playlist snapshots. This verification excludes all 25 audition tracks when defining reference playlist identities, so membership itself is not treated as evidence of fit.",
+  "methodology": [
+    "Define each reference playlist from its remaining non-audition tracks only.",
+    "Use track-specific sources first: artist pages, album notes, reviews, track descriptions and lyric/meaning evidence where relevant.",
+    "Separate musical sound from lyrical theme and from artist-level identity.",
+    "Do not infer a recording's vibe from artist genre alone.",
+    "Use a provisional verdict rather than inventing certainty when track-level evidence is missing.",
+    "No audio waveform analysis, Spotify audio-feature retrieval or direct playback was available in this pass."
+  ],
+  "reference_profile_notes": {
+    "To 11": "After excluding audition tracks, remaining tracks still strongly represent aggressive rap-metal, nu-metal, hard rock, heavy riffs, forceful drums and mosh-ready energy.",
+    "Somber Party": "Only three non-audition tracks remain in the current snapshot. Its eclectic/introspective identity is therefore weakly sampled; conclusions here need lower confidence.",
+    ". . .": "A large remaining collection still supports a broad hazy, wistful, melodic indie / bedroom-pop / dream-pop identity.",
+    "=^=": "The remaining songs support gritty, swaggering alternative/garage/blues rock, groove, attitude and cinematic rock energy.",
+    "Smooth": "Only six non-audition tracks remain. They support a distinctive lo-fi electronic, synthwave, ambient, soundtrack and dub/psych palette, not generic relaxed music."
+  },
+  "overall_findings": [
+    "The original To 11 classifications are strongly supported by track-level descriptions and the remaining reference profile.",
+    "Oom Sha La La and Wharf (ii) are especially good examples of Somber Party's unusual blend of emotional weight, playfulness and stylistic left turns.",
+    "The first pass overestimated certainty for Hakdo and MARBLE HALLS because track-specific sonic evidence is incomplete.",
+    "Running Up That Hill (Chromatics) is better understood as vocal-led dreamy synth-pop / indie atmosphere than as a direct match for Smooth's more soundtrack-oriented electronic core.",
+    "Armchair and A Little Wicked should be treated as boundary cases rather than near-certain matches.",
+    "Smooth is a coherent but small reference set. Flatline, Daisuke, Rust, Deep Cover and Fantasy Trash Wave need to be distinguished by their own textures: melancholic synthwave, retro electronic soundtrack, ambient beats, dub-psych ambience and warped breakbeat electronics respectively."
+  ],
+  "tracks": [
+    {
+      "track": "Figure It Out",
+      "artist": "Royal Blood",
+      "target": "To 11",
+      "verdict": "strong_support",
+      "fit": "The dry, muscular garage-rock production, distorted bass riff, tight drums and double-time mosh-out align strongly with the remaining high-impact rock/metal identity. It also has swagger overlap with =^=.",
+      "adjustment": "Keep To 11 clearly first; retain substantial =^= crossover.",
+      "sources": [
+        "https://drownedinsound.com/in_depth/4148134-royal-bloods-track-by-track-guide-to-their-debut-album",
+        "https://themixreview.org/reviews/figure-it-out/"
+      ]
+    },
+    {
+      "track": "Guerrilla Radio",
+      "artist": "Rage Against The Machine",
+      "target": "To 11",
+      "verdict": "strong_support",
+      "fit": "Hard-driving rap-rock/rap-metal with political urgency and aggressive momentum. Its riff and rhythmic attack are central To 11 traits, with some shared hard-rock force in =^=.",
+      "adjustment": "Keep To 11 dominant; moderate =^= secondary fit.",
+      "sources": [
+        "https://rapchive.com/news/rage-against-the-machine-mount-all-out-guerrilla-radio-campaign/",
+        "https://www.allmusic.com/album/guerilla-radio-mw0000252697"
+      ]
+    },
+    {
+      "track": "Break Stuff",
+      "artist": "Limp Bizkit",
+      "target": "To 11",
+      "verdict": "strong_support",
+      "fit": "A direct nu-metal anger-release track with a heavy, simple groove and crowd-response energy. Very close to the remaining To 11 rap-metal/nu-metal center.",
+      "adjustment": "Keep To 11 dominant; low fit elsewhere.",
+      "sources": [
+        "https://www.theguardian.com/music/2023/aug/13/limp-bizkit-review-piece-hall-halifax-nu-metal"
+      ]
+    },
+    {
+      "track": "Unsainted",
+      "artist": "Slipknot",
+      "target": "To 11",
+      "verdict": "strong_support",
+      "fit": "Ominous choir opening, abrasive verses, percussive assault, distorted riffs and a huge singalong chorus. The melodic hook adds accessibility but doesn't dilute the heavy identity.",
+      "adjustment": "Keep To 11 dominant; allow a modest anthemic-rock crossover.",
+      "sources": [
+        "https://www.revolvermag.com/music/review-slipknots-new-song-unsainted-showcases-band-catchy-best",
+        "https://www.nme.com/reviews/slipknot-we-are-not-your-kind-review-2534063"
+      ]
+    },
+    {
+      "track": "Bodies",
+      "artist": "Drowning Pool",
+      "target": "To 11",
+      "verdict": "strong_support",
+      "fit": "Nu-metal/groove-metal mosh anthem built around a blunt, heavy riff and collective release. It is one of the clearest To 11 archetypes.",
+      "adjustment": "Keep To 11 dominant; some gritty-rock overlap is plausible.",
+      "sources": [
+        "https://pocketmags.com/us/metal-hammer-magazine/issue-356/articles/bodies-by-drowning-pool",
+        "https://en.wikipedia.org/wiki/Bodies_%28Drowning_Pool_song%29"
+      ]
+    },
+    {
+      "track": "Oom Sha La La",
+      "artist": "Haley Heynderickx",
+      "target": "Somber Party",
+      "verdict": "strong_support",
+      "fit": "A quirky folk/rock song whose playful doo-wop chorus masks self-doubt and existential uncertainty; it moves from intimate strumming to a cathartic, louder ending. This contrast is a particularly good Somber Party fit, with secondary indie-list compatibility.",
+      "adjustment": "Somber Party should lead; lower the broad indie (. . .) estimate relative to the original pass.",
+      "sources": [
+        "https://www.wdiy.org/music/2017-10-24/haley-heynderickx-searches-for-meaning-in-life-with-oom-sha-la-la",
+        "https://kexp.org/read/2017/11/9/song-of-the-day-haley-heynderickx-oom-sha-la-la/",
+        "https://pitchfork.com/reviews/albums/haley-heynderickx-i-need-to-start-a-garden/"
+      ]
+    },
+    {
+      "track": "when the devil falls in love",
+      "artist": "Hakdo",
+      "target": "Somber Party",
+      "verdict": "partial_support_low_confidence",
+      "fit": "The recording is a very short piano-led composition, catalogued as New Age / Pop-Rock. That supports an intimate, reflective role more than the initial title-based assumption of a lyrical, melancholic song; it has no confirmed lyric evidence in this pass.",
+      "adjustment": "Do not retain a 90-point fit on title inference alone. Treat Somber Party as a tentative placement pending direct listening.",
+      "sources": [
+        "https://www.hakdo.org/product-page/sheet-music-when-the-devil-falls-in-love",
+        "https://www.qobuz.com/us-en/album/when-the-devil-falls-in-love-hakdo/v3u4ngr8r5ugb",
+        "https://www.youtube.com/watch?v=RrO2D_4_KUs"
+      ]
+    },
+    {
+      "track": "MARBLE HALLS",
+      "artist": "Masayoshi Takanaka",
+      "target": "Somber Party",
+      "verdict": "insufficient_track_specific_evidence",
+      "fit": "The official discography confirms the track title and release context, but the sources retrieved do not establish this recording's arrangement, energy or mood. Inferring jazz-fusion fit from the artist alone would repeat the artist-identity shortcut we want to avoid.",
+      "adjustment": "Keep the original estimate provisional; do not call the vibe verified until track-level audio or a reliable review is available.",
+      "sources": [
+        "https://takanaka.com/en/discography-2/"
+      ]
+    },
+    {
+      "track": "Wharf (ii)",
+      "artist": "Horsey",
+      "target": "Somber Party",
+      "verdict": "strong_support",
+      "fit": "The two-part slow burn begins with washed-out guitar and turns into an off-kilter, jazzy, slightly chaotic vocal section. Reviews describe the mood as elegant before it breaks into an unsettling fever-dream quality. Strong fit for Somber Party's unusual, wistful, emotionally uneven character.",
+      "adjustment": "Keep Somber Party first; reduce confidence in Smooth and broad indie as competing fits.",
+      "sources": [
+        "https://beatsperminute.com/album-review-horsey-debonair/",
+        "https://everythingisnoise.net/features/inter-claus-3-imagine-a-cool-christmas-pun-here/"
+      ]
+    },
+    {
+      "track": "Armchair",
+      "artist": "yungatita",
+      "target": "Somber Party",
+      "verdict": "partial_support",
+      "fit": "The artist's own release page tags it alternative, indie rock, lo-fi rock and pop rock, with a full band arrangement including guitars, bass, drums and synth. This is less clearly soft bedroom-pop than the first pass assumed; it may sit between the indie reference and Somber Party's offbeat character.",
+      "adjustment": "Reduce the . . . estimate from near-certain to moderate; Somber Party crossover is plausible.",
+      "sources": [
+        "https://yungatita.bandcamp.com/track/armchair"
+      ]
+    },
+    {
+      "track": "Don't Come Home Today",
+      "artist": "Good Morning",
+      "target": ". . .",
+      "verdict": "strong_support",
+      "fit": "The Shawcross context is consistently described as slow, hazy, vintage indie/psychedelic pop. Track-specific reviews identify it as establishing the album's laid-back, hazy tone. Strong fit for the broad indie reference.",
+      "adjustment": "Keep . . . dominant; Somber Party is a secondary mood overlap.",
+      "sources": [
+        "https://www.albumoftheyear.org/user/sam-ottosen/album/50066-shawcross/",
+        "https://www.albumoftheyear.org/user/iris65/album/50066-shawcross/"
+      ]
+    },
+    {
+      "track": "Of Lacking Spectacle",
+      "artist": "Gus Dapperton",
+      "target": ". . .",
+      "verdict": "strong_support",
+      "fit": "Lo-fi ascending keys, bedroom-pop production and an infectious groove. The live review specifically notes the song's danceable keyboard and bass parts, which support a melodic, quirky indie identity rather than a heavy or ambient-electronic one.",
+      "adjustment": "Keep . . . dominant; do not confuse groove with the Smooth playlist's soundtrack/electronic identity.",
+      "sources": [
+        "https://www.theedgesusu.co.uk/live/reviews/2019/02/26/review-gus-dapperton-at-engine-rooms-southampton/"
+      ]
+    },
+    {
+      "track": "Running Up That Hill",
+      "artist": "Chromatics",
+      "target": ". . .",
+      "verdict": "revise_primary_target",
+      "fit": "The Chromatics version is an airy, dreamy, haunting synth-pop cover with distant vocals and a restrained, elegant arrangement. It has real atmospheric overlap with Smooth, but the vocal-led dream-pop structure makes the indie reference a better primary fit than the original Smooth-first estimate.",
+      "adjustment": "Promote . . . over Smooth; keep Smooth as a secondary atmosphere match, not a 90-point primary.",
+      "sources": [
+        "https://www.kqed.org/arts/20083/chromatics_night_drive",
+        "https://popcultureexperiment.com/2016/02/15/cover-songs-uncovered-running-up-that-hill/",
+        "https://www.nylon.com/entertainment/running-up-that-hill-kate-bush-covers"
+      ]
+    },
+    {
+      "track": "Dog",
+      "artist": "Floating Room",
+      "target": ". . .",
+      "verdict": "partial_support_with_energy_caveat",
+      "fit": "The track opens False Baptism, whose review describes lush walls of sound and intensely personal, painful writing. Its emotional weight and noisier edge can fit the indie reference, but it is not simply dreamy background indie; the sound may carry more bite and tension than the first estimate acknowledged.",
+      "adjustment": "Keep . . . as a plausible lead, raise uncertainty and allow a stronger Somber Party / energetic-indie crossover.",
+      "sources": [
+        "https://www.albumoftheyear.org/user/dustincoda/album/110925-false-baptism/"
+      ]
+    },
+    {
+      "track": "Lauren",
+      "artist": "Men I Trust",
+      "target": ". . .",
+      "verdict": "strong_support",
+      "fit": "A buoyant bassline, shimmering guitar, skittering programmed drums and airy R&B vocals create a woozy, synth-washed dream-pop atmosphere. This is a strong . . . fit; Smooth overlap exists, but the vocal-led indie-pop structure separates it from the reference's instrumental soundtrack/electronic core.",
+      "adjustment": "Keep . . . first; reduce Smooth crossover slightly.",
+      "sources": [
+        "https://exclaim.ca/music/article/men_i_trust-m_for_montreal_montreal_qc_november_15",
+        "https://joyofviolentmovement.com/tag/video-review-men-i-trust-lauren/"
+      ]
+    },
+    {
+      "track": "I'm a Wanted Man",
+      "artist": "Royal Deluxe",
+      "target": "=^=",
+      "verdict": "moderate_support",
+      "fit": "Catalogued as indie rock at 82 BPM. Its low-midtempo rock profile is compatible with the swaggering, gritty =^= reference, but the sources retrieved do not independently substantiate all the blues/soul swagger details asserted in the first pass.",
+      "adjustment": "Keep =^= first but lower confidence until the recording itself is checked.",
+      "sources": [
+        "https://www.beatport.com/track/im-a-wanted-man/30850131"
+      ]
+    },
+    {
+      "track": "Where the Devil Don't Go",
+      "artist": "Elle King",
+      "target": "=^=",
+      "verdict": "strong_support",
+      "fit": "The official lyrics are defiant, irreverent and steeped in devil/fire imagery, with a rebellious stance against religious authority. That thematic attitude supports =^=; its bluesy roots-rock characterization should still be checked against the recording rather than inferred from lyrics alone.",
+      "adjustment": "Keep =^= dominant; treat To 11 overlap as energy-dependent.",
+      "sources": [
+        "https://www.youtube.com/watch?v=LNwHm3FS5HQ"
+      ]
+    },
+    {
+      "track": "What Makes A Good Man?",
+      "artist": "The Heavy",
+      "target": "=^=",
+      "verdict": "strong_support",
+      "fit": "A swaggering riff, hard-rock guitar, neo-soul/gospel energy and a forceful choir-led chorus. This is almost a defining example of the gritty, groove-led =^= sound, while the band's punchy rock side gives it some To 11 crossover.",
+      "adjustment": "Keep =^= dominant with meaningful To 11 secondary fit.",
+      "sources": [
+        "https://diffuser.fm/the-heavy-what-makes-a-good-man/",
+        "https://music.apple.com/us/album/what-makes-a-good-man/554174466?i=554174692"
+      ]
+    },
+    {
+      "track": "Short Change Hero",
+      "artist": "The Heavy",
+      "target": "=^=",
+      "verdict": "very_strong_support",
+      "fit": "The band explicitly built the song around a Western-cinematic, Morricone-like entrance, with blues-rock, neo-soul and trip-hop shading. Its swagger is deliberate and narrative, not simply loud; that is a particularly strong =^= match and a weak To 11 match.",
+      "adjustment": "Keep =^= very high; reduce To 11 unless the playlist is intentionally broad enough to include slower cinematic rock.",
+      "sources": [
+        "https://www.whathifi.com/streaming-entertainment/music-streaming/now-playing-discover-the-6-test-room-bangers-soundtracking-our-march",
+        "https://volt.fm/track/1840068/short-change-hero-by-the-heavy",
+        "https://en.wikipedia.org/wiki/Short_Change_Hero"
+      ]
+    },
+    {
+      "track": "A Little Wicked",
+      "artist": "Valerie Broussard",
+      "target": "=^=",
+      "verdict": "partial_support",
+      "fit": "The strongest track-specific description is seductive cinematic pop with soulful, raw vocals and foot-stomping, tempestuous moments. It has attitude and darkness, but its core is cinematic pop rather than the riff-led blues/garage rock that anchors =^=.",
+      "adjustment": "Lower the 75-point =^= fit to a moderate crossover unless listening confirms more rock weight than the reviews suggest.",
+      "sources": [
+        "https://www.stereofox.com/valerie-broussard-a-little-wicked/"
+      ]
+    },
+    {
+      "track": "Flatline",
+      "artist": "Scattle",
+      "target": "Smooth",
+      "verdict": "strong_support",
+      "fit": "The artist's own page tags the recording electronic, synthwave, lo-fi, hip-hop and midtempo. A soundtrack review specifically describes it as melancholic and atmospheric, tied to a non-combat hospital scene. That combination is highly consistent with the remaining Smooth soundtrack/ambient-electronic identity.",
+      "adjustment": "Keep Smooth dominant, but distinguish its melancholic atmosphere from dancefloor energy.",
+      "sources": [
+        "https://scattle.bandcamp.com/track/flatline",
+        "https://vgmonline.net/hotlinemiami/"
+      ]
+    },
+    {
+      "track": "Daisuke",
+      "artist": "El Huervo",
+      "target": "Smooth",
+      "verdict": "strong_support",
+      "fit": "El Huervo's own account places the track within the Hotline Miami sound world and says the developers selected it for the scenes featuring the game's friendly character. It belongs to the soundtrack's retro electronic palette, supporting Smooth; exact mood/energy should be assessed at recording level.",
+      "adjustment": "Keep Smooth first; moderate confidence until direct track-level audio analysis is available.",
+      "sources": [
+        "https://www.vice.com/sv/article/an-interview-with-hotline-miami-artist-and-musician-niklas-kerblad-000/",
+        "https://blackscreenrecords.com/collections/new-collection/products/hotline-miami-1-2-the-complete-collection"
+      ]
+    },
+    {
+      "track": "Rust",
+      "artist": "El Huervo",
+      "target": "Smooth",
+      "verdict": "strong_support",
+      "fit": "The artist's Bandcamp tags explicitly include beats, electronic, ambient and Hotline Miami. This is closely aligned with the remaining Smooth electronic/lo-fi soundtrack palette.",
+      "adjustment": "Keep Smooth dominant; the track's atmospheric character is more important than any assumed dance energy.",
+      "sources": [
+        "https://elhuervo.bandcamp.com/track/rust"
+      ]
+    },
+    {
+      "track": "Deep Cover",
+      "artist": "Sun Araw",
+      "target": "Smooth",
+      "verdict": "support_with_overstatement",
+      "fit": "The On Patrol album is described as sleepy tropical funk, dub-infused loops, analog effects and peripheral ambience; Deep Cover is specifically noted as rhythmically heavier while retaining the album's ambient, hypnotic character. Smooth is plausible, but the track is more organic and dub-psych than straightforward synthwave.",
+      "adjustment": "Keep Smooth first but lower the original 92-point certainty; Somber Party / hazy mood crossover is plausible.",
+      "sources": [
+        "https://music.apple.com/us/album/on-patrol/371406019",
+        "https://sunaraw.bandcamp.com/track/deep-cover"
+      ]
+    },
+    {
+      "track": "Fantasy Trash Wave",
+      "artist": "TOBACCO",
+      "target": "Smooth",
+      "verdict": "strong_support_with_intensity_caveat",
+      "fit": "Track-specific coverage describes warped synth rhythms, broken/tampered textures, slippery breakbeats and a dark, dense, sinister electronic palette. This is a good match for Smooth's unusual electronic/lo-fi soundtrack identity, though it is more abrasive and rhythmically unstable than the word 'Smooth' might suggest.",
+      "adjustment": "Keep Smooth as the strongest fit, but distinguish textural/electronic compatibility from calmness or low energy.",
+      "sources": [
+        "https://exclaim.ca/music/article/tobacco-sweatbox_dynasty",
+        "https://www.theskinny.co.uk/music/reviews/albums/tobacco-sweatbox-dynasty",
+        "https://first-avenue.com/performer/tobacco/"
+      ]
+    }
+  ]
+}
