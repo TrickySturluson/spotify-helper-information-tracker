@@ -496,7 +496,7 @@ def main():
         ])
         result = "\n".join(lines)
     elif action == "booze20_preview":
-        # Resolve the user's 20-track dark/playful/chaotic party batch through Spotify's catalogue.
+        # Resolve the strict 15-track Halloween-themed batch through Spotify's catalogue.
         candidates = [
             ("Nekromantix", "Trick or Treat"),
             ("HorrorPops", "Walk Like a Zombie"),
@@ -517,7 +517,7 @@ def main():
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
         if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before resolving the 20-track batch.")
+            fail("Blocked: playlist is LOCKED. Unlock it explicitly before resolving the 15-track batch.")
         current = manager.snapshot(sp, p)
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
@@ -541,6 +541,8 @@ def main():
                 match = {
                     "name": cached["name"], "uri": cached["uri"],
                     "artists": [{"name": artist}],
+                    "album": {"name": cached.get("album")},
+                    "duration_ms": cached.get("duration_ms"),
                 }
             else:
                 time.sleep(1.0)
@@ -571,7 +573,11 @@ def main():
                         and track["uri"].startswith("spotify:track:")
                     ), None)
                 if match:
-                    track_cache[cache_key] = {"name": match["name"], "uri": match["uri"]}
+                    track_cache[cache_key] = {
+                        "name": match["name"], "uri": match["uri"],
+                        "album": (match.get("album") or {}).get("name"),
+                        "duration_ms": match.get("duration_ms"),
+                    }
                     manager.write(STATE, config)
             if not match:
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
@@ -582,15 +588,22 @@ def main():
             if any(row["uri"] == match["uri"] for row in resolved):
                 skipped.append(f"{artist} — {title} (duplicate in requested batch)")
                 continue
-            resolved.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
+            resolved.append({
+                "artist": artist, "track": match["name"], "uri": match["uri"],
+                "album": (match.get("album") or {}).get("name"),
+                "duration_ms": match.get("duration_ms"),
+            })
         if resolved:
             intake = append_candidates(
-                [{"uri": row["uri"], "artist": row["artist"], "track": row["track"]} for row in resolved],
+                [{
+                    "uri": row["uri"], "artist": row["artist"], "track": row["track"],
+                    "album": row.get("album"), "duration_ms": row.get("duration_ms"),
+                } for row in resolved],
                 source="booze20_recommendation_preview",
                 context={"playlist_id": pid, "playlist_name": p.get("name"), "preview_date": manager.stamp()[:10]},
             )
             manager.audit(
-                event="booze20_candidates_persisted",
+                event="booze15_candidates_persisted",
                 playlist_id=pid,
                 input_rows=intake["input_rows"],
                 new_candidates=intake["new_candidates"],
@@ -617,7 +630,7 @@ def main():
                 "confirmation": confirmation, "kind": "booze20",
             }
             manager.write(STATE, config)
-            manager.audit(event="booze20_previewed", playlist_id=pid, added_count=len(resolved))
+            manager.audit(event="booze15_previewed", playlist_id=pid, added_count=len(resolved))
             lines = [
                 f'15-TRACK HALLOWEEN-THEME PREVIEW — {p.get("name")} [{pid}]',
                 f'Current items: {len(current["items"])}; additions: {len(resolved)}; already present: {len(already_present)}; after confirmation: {len(current["items"]) + len(resolved)}.',
