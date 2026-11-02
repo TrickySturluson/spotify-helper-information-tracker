@@ -7,14 +7,16 @@ This is the cross-project register of known unfinished work discovered from the 
 
 ## Critical path
 
-### 1. Great Migration — FULL CATALOGUE PUBLISHED; LATEST PREPARE NEEDS REPUBLISH
-- Run #18 successfully published enrichment commit c55012f; final runner-side audit passed with zero errors.
-- Current main index: 13,005 songs, 6,386 artists, 7,861 albums; 1,856 Spotify IDs, 11,338 recording MBID aliases, 1,816 ISRCs, 13,003 source-track aliases, 1,428 ambiguous name-candidate aliases.
-- Direct source-index comparison: all 11,130 legacy track-index IDs resolve via source-track ID or recording MBID; all 5,358 legacy artist names are represented.
-- Run #21 prepare and final audit passed but publication failed: it checked out stale issue-event SHA b892f3b, then conflicted while rebasing over run #18's newer song records/checkpoints. Artifact #13107866614 preserves output/backup; no run #21 data was published.
-- Workflow fix committed: 21cc2ed explicitly checks out latest main before running, preventing stale checkpoints and reducing repeated provider work.
-- Next: complete migration coverage-report PR, then run one fresh prepare from latest main and a separate post-publish audit/health check.
-- Provider gaps remain: MusicBrainz rate limits/503s, Last.fm HTTP 400s, optional credentials absent; do not retry blindly. No Spotify playlist writes.
+### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
+
+- Run #18 successfully published enrichment commit `c55012f`; current main index: 13,005 songs, 6,386 artists, 7,861 albums.
+- Legacy source-index comparison resolves all 11,130/11,130 track IDs via source-track or recording-MBID aliases and represents all 5,358/5,358 legacy artist names.
+- Run #21 completed runner-side prepare/audit but failed publication because it used stale issue-event SHA `b892f3b`; artifact #13107866614 preserves output/backup and none of its generated state was published.
+- Workflow fix `21cc2ed` now checks out latest `main` before migration, avoiding stale checkpoints and redundant enrichment.
+- Independent full-catalogue health run #22 passed: 13,005 songs, 6,386 artists, 7,861 albums; zero errors and zero warnings. Main-branch confidence audit and 314-test regression suite also passed.
+- PR #79 permanent source-index coverage reporting is merged and main CI passed.
+- Remaining: re-measure provider/field coverage from a fresh report; continue only eligible checkpointed enrichment; inspect current provider errors before retries. Last published run measured approx. 91.1% duration coverage, 115 audio profiles, and zero lyric features. These are historical run #18 values, not current measurements.
+- No Spotify playlist writes. Do not start concurrent migration writers or force-push generated data.
 
 ### 2. Read-only coverage planner — PR #65, tests failing
 - PR: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65 (open draft).
