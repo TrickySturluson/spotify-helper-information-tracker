@@ -421,8 +421,10 @@ def main():
                 config.pop("pending", None)
                 manager.write(STATE, config)
         lines = [
-            f'SEQUENCE PREVIEW — {p.get("name")} [{pid}]',
-            f'Tracks: {len(scored)}; reorder operations: {len(operations)}.',
+            f'STAGING REPORT — {p.get("name")} [{pid}]',
+            f'STATUS: {"READY FOR REVIEW" if operations else "NO CHANGE NEEDED"}',
+            f'Operation: reorder | Tracks reviewed: {len(scored)} | Reorder operations: {len(operations)}.',
+            "Spotify changes: NONE — confirmation is required before execution.",
             "Journey: rising, gradual build, sustained high-energy finale.",
             f'Transitions: {summary["gentle"]} gentle; {summary["moderate"]} moderate; '
             f'{summary["potential_jumps"]} potential jumps; limited evidence={summary["limited_evidence"]}.',
@@ -476,7 +478,7 @@ def main():
         }
         manager.write(STATE, config)
         manager.audit(event="change_previewed", playlist_id=pid, operations=operations)
-        lines = [f'PREVIEW — {p.get("name")} [{pid}]', "No playlist changes have been made."]
+        lines = [f'STAGING REPORT — {p.get("name")} [{pid}]', "STATUS: READY FOR REVIEW", "Spotify changes: NONE — confirmation is required before execution."]
         for op in operations:
             if op["action"] in {"add", "remove", "replace"}:
                 lines.append(f'{op["action"].upper()}: {len(op["uris"])} track URI(s)')
@@ -571,11 +573,16 @@ def main():
             })
         if len(resolved) != 5:
             lines = [
-                f'FIVE-TRACK HALLOWEEN BATCH NOT STAGED — {p.get("name")} [{pid}]',
-                f'Eligible new tracks: {len(resolved)}/5. No playlist changes have been made.',
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: BLOCKED — incomplete batch; nothing is staged for confirmation.",
+                f'Eligible: {len(resolved)}/5 | Blacklist blocked: 0 | Other exclusions: {len(skipped)}.',
+                "Spotify changes: NONE.",
+                "ELIGIBLE:",
             ]
-            lines.extend(f'FOUND: {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
-            lines.extend(f'SKIPPED: {row}' for row in skipped)
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
+            lines.append("BLACKLISTED: none identified.")
+            lines.append("OTHER EXCLUSIONS:")
+            lines.extend(f'  {row}' for row in skipped)
             result = "\n".join(lines)
         else:
             intake = append_candidates(
@@ -600,15 +607,16 @@ def main():
                 candidates_persisted=intake["unique_candidates"],
             )
             lines = [
-                f'FIVE-TRACK HALLOWEEN PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; additions: 5; after confirmation: {len(current["items"]) + 5}.',
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: READY FOR REVIEW",
+                f'Current items: {len(current["items"])} | Staged additions: 5 | After confirmation: {len(current["items"]) + 5}.',
                 f'New candidates saved to the SHIT discovery library: {intake["unique_candidates"]}.',
-                "No Spotify changes have been made.",
+                "Spotify changes: NONE — confirmation is required.",
                 "",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
             lines.extend(["", "To add these exact five tracks, submit confirm with this one-time code:", confirmation])
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
     elif action == "booze10_preview":
         # Resolve ten fresh, high-specificity Halloween party tracks. Every
         # candidate is checked against current playlist membership and sticky
@@ -861,16 +869,19 @@ def main():
                 new_candidates=intake["new_candidates"],
                 unique_candidates=intake["unique_candidates"],
             )
-        if skipped:
+        if len(resolved) != 15 or skipped:
             lines = [
-                f'15-TRACK HALLOWEEN-THEME BATCH NOT STAGED — {p.get("name")} [{pid}]',
-                f'New Spotify matches: {len(resolved)}/15; already present: {len(already_present)}; unmatched/duplicate: {len(skipped)}.',
-                "No playlist changes have been made. Review the exceptions before staging.",
-                "",
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: BLOCKED — batch incomplete or exclusions require review.",
+                f'Eligible: {len(resolved)}/15 | Already present: {len(already_present)} | Other exclusions: {len(skipped)}.',
+                "Spotify changes: NONE.",
+                "ELIGIBLE:",
             ]
-            lines.extend(f"FOUND: {row['artist']} — {row['track']}" for row in resolved)
+            lines.extend(f"  {row['artist']} — {row['track']} [{row['uri']}]" for row in resolved)
+            lines.append("BLACKLISTED: included in other exclusions when removal history matched.")
             lines.extend(f"ALREADY PRESENT: {row}" for row in already_present)
-            lines.extend(f"SKIPPED: {row}" for row in skipped)
+            lines.append("OTHER EXCLUSIONS:")
+            lines.extend(f"  {row}" for row in skipped)
             result = "\n".join(lines)
         else:
             operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
@@ -884,9 +895,10 @@ def main():
             manager.write(STATE, config)
             manager.audit(event="booze15_previewed", playlist_id=pid, added_count=len(resolved))
             lines = [
-                f'15-TRACK HALLOWEEN-THEME PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; additions: {len(resolved)}; already present: {len(already_present)}; after confirmation: {len(current["items"]) + len(resolved)}.',
-                "No playlist changes have been made.",
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: READY FOR REVIEW",
+                f'Current items: {len(current["items"])} | Staged additions: {len(resolved)} | After confirmation: {len(current["items"]) + len(resolved)}.',
+                "Spotify changes: NONE — confirmation is required.",
                 "",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
