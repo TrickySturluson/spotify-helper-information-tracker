@@ -51,3 +51,17 @@ The preview may add explicit artist and release **genres** and explicitly suppli
 ## Current limitation
 
 The Library's track-profile cache is the only legacy cache currently joined. Sound, energy, mood and theme remain unknown unless the canonical song record itself contains correctly scoped evidence. The legacy AcousticBrainz cache currently exposes low-level loudness/complexity values but not a validated playlist-energy or sound descriptor; BPM is not a substitute. The next enrichment work should add validated recording-level evidence before broadening the adapter.
+
+
+## Post-hoc human reference diagnostic
+
+After the preview JSON is written, a separate script may compare its frozen scores with the exploratory slider labels:
+
+```bash
+python scripts/spotify/compare_playlist_fit_human_reference.py \\
+  --preview assistant_data/spotify/playlist_fit_preview.json \\
+  --ratings assistant_data/spotify/playlist_human_fit_ratings.json \\
+  --output assistant_data/spotify/playlist_fit_human_reference_comparison.json
+```
+
+This script is not imported by the scorer or preview builder. It reports MAE, signed bias, Pearson/Spearman correlations, score coverage and confidence strata. It does not impute unknown scores, train or tune the model, or make playlist decisions. When a human rating lacks a Spotify URI, it permits a unique exact normalized title+artist display join solely between the two evaluation records; this is not canonical Library identity evidence.
