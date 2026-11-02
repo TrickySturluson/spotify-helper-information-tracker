@@ -1,0 +1,133 @@
+name: SHIT — Spotify Auth Health Check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: spotify-auth-health-check
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify Spotify refresh authentication
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate required Spotify configuration
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || { echo "::error::Repository variable SPOTIFY_CLIENT_ID is missing."; exit 1; }
+          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "::error::Repository secret SPOTIFY_REFRESH_TOKEN is missing."; exit 1; }
+          echo "Required Spotify configuration is present."
+
+      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        id: spotify-secret-writer
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
+          permission-secrets: write
+
+      - name: Refresh Spotify access and verify the current account
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import base64
+          import json
+          import os
+          import subprocess
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          client_id = os.environ["SPOTIFY_CLIENT_ID"].strip()
+          refresh_token = os.environ["SPOTIFY_REFRESH_TOKEN"].strip()
+          if not client_id or not refresh_token:
+              raise SystemExit("Required Spotify credentials are missing.")
+
+          def request(url, data=None, headers=None):
+              req = urllib.request.Request(url, data=data, headers=headers or {})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      return response.status, response.read()
+              except urllib.error.HTTPError as exc:
+                  # Never print response bodies: authentication endpoints can echo sensitive context.
+                  raise RuntimeError(f"Spotify request failed with HTTP {exc.code}.") from None
+              except urllib.error.URLError:
+                  raise RuntimeError("Could not reach Spotify; check runner network connectivity.") from None
+
+          basic = base64.b64encode(
+              (client_id + ":" + os.environ.get("SPOTIFY_CLIENT_SECRET", "")).encode()
+          ).decode()
+          # Spotify's current app configuration uses a client ID and refresh token.
+          # Public clients omit the client secret; confidential clients may provide it.
+          fields = {"grant_type": "refresh_token", "refresh_token": refresh_token}
+          secret = os.environ.get("SPOTIFY_CLIENT_SECRET", "").strip()
+          if secret:
+              basic = base64.b64encode((client_id + ":" + secret).encode()).decode()
+              headers = {"Authorization": "Basic " + basic}
+          else:
+              fields["client_id"] = client_id
+              headers = {"Content-Type": "application/x-www-form-urlencoded"}
+          status, body = request(
+              "https://accounts.spotify.com/api/token",
+              urllib.parse.urlencode(fields).encode(),
+              headers,
+          )
+          if status != 200:
+              raise SystemExit("Spotify token refresh did not return HTTP 200.")
+          token_data = json.loads(body)
+          access_token = token_data.get("access_token")
+          if not access_token:
+              raise SystemExit("Spotify token response did not contain an access token.")
+          print(f"::add-mask::{access_token}")
+
+          status, _ = request(
+              "https://api.spotify.com/v1/me",
+              headers={"Authorization": "Bearer " + access_token},
+          )
+          if status != 200:
+              raise SystemExit("Spotify account verification did not return HTTP 200.")
+          print("Spotify refresh-token exchange succeeded.")
+          print("Spotify /v1/me authenticated successfully.")
+
+          rotated = token_data.get("refresh_token")
+          if rotated and rotated != refresh_token:
+              print(f"::add-mask::{rotated}")
+              try:
+                  subprocess.run(
+                      ["gh", "secret", "set", "SPOTIFY_REFRESH_TOKEN",
+                       "--repo", os.environ["GITHUB_REPOSITORY"]],
+                      input=rotated,
+                      text=True,
+                      check=True,
+                      stdout=subprocess.DEVNULL,
+                      stderr=subprocess.PIPE,
+                  )
+              except subprocess.CalledProcessError:
+                  raise SystemExit(
+                      "Spotify authentication succeeded, but rotated-token persistence failed."
+                  ) from None
+              print("A rotated Spotify refresh token was securely saved to the repository.")
+          else:
+              print("No refresh-token rotation was returned; the existing repository secret remains valid.")
+          PY
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Manually verify Spotify refresh-token authentication without touching
+#          playlists, library data, or repository contents.
+# Trigger: workflow_dispatch only.
+# Safety: Uses a GitHub App token scoped to repository Secrets write solely so a
+#         rotated Spotify refresh token can be persisted. No token values are logged.
+# -----------------------------------------------------------------------------
