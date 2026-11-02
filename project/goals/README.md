@@ -25,5 +25,6 @@ See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification block
 - [Library Health Checker & Data Maintainer](library-health-maintenance/README.md)
 - [Metadata Freshness & Partial Revalidation](metadata-freshness/README.md)
 - [Spotify Track Playability & Availability](spotify-playability/README.md)
+- [Library Identity & Metadata Confidence Verification](library-confidence-verification/README.md)
 
 Every goal folder must contain `README.md` and `ACTIONS.md`. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here.
