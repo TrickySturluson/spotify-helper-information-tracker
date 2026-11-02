@@ -81,3 +81,17 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - If a multi-request operation fails partway through, the helper attempts to save and audit the partial live state before re-raising the original error.
 - Applied to local manager add/remove/replace/reorder operations; cloud add/remove/replace/reorder/details operations; undo/restore page writes; daily description edits; duplicate cleanup in cloud workflows and the removal tracker. Daily bulk replacement inherits per-page snapshots from the shared restore/replacement helper.
 - Batch-level before/after snapshots remain as additional recovery checkpoints. Snapshot files retain the full ordered item list and Spotify snapshot ID.
+
+
+## 2026-11-02 — All-playlist baseline and sustainable removal polling
+
+- Added a pre-refresh baseline seed from the previous complete canonical playlist snapshots. It seeds only missing playlist IDs and refuses to treat inaccessible, incomplete or missing snapshots as empty.
+- The reference-library workflow now performs this order: seed from the prior saved state → refresh the full Spotify playlist catalog and tracklists → compare the refreshed snapshots against the seeded baseline → commit snapshots, baseline and playlist-local removal feedback together.
+- Added an offline --from-reference-library tracker mode so the daily full scan reuses the reference sync's fresh results instead of making a second account-wide Spotify pass.
+- Added --seed-from-reference-library for one-time baseline creation without Spotify requests. The first baseline is intentionally non-retroactive for playlists without a prior complete snapshot.
+- Reduced API load: a control command polls only its target playlist; the full account-wide poll belongs to the daily reference-library refresh. Per-write snapshot bracketing now fetches the exact playlist ID before and after each mutation instead of rescanning /me/playlists.
+- The reference sync now retries publication with fetch/rebase and bounded retries, preserving concurrent main commits instead of failing on a push race.
+- Live refresh evidence from run 41429176153: 58 playlists enumerated; 42 complete item lists; 16 inaccessible/incomplete; Booze or Boos! freshly reported 82 tracks. The comparison found no missing URI among the prior 64-track Booze snapshot, so it did not identify the two user-reported removals. This cannot rule out tracks added and removed between snapshots or tracks absent from the previous baseline.
+- The refresh successfully generated the 58-playlist catalog, 42 initial baselines and two new dated history snapshots in the runner, but its first publication attempt raced with concurrent commits. The retry logic was added afterward; rerun the reference sync and verify that the resulting catalog/baseline commit is present before calling persistence complete.
+- Regression tests now cover baseline seeding, inaccessible-snapshot exclusion, sticky removal comparison, and exact-ID pre/post snapshot reads.
+- Next verification: ensure CI passes on the latest commit; trigger the reference-library workflow again; verify the baseline and all 58 catalog entries are committed, Booze is current, and the workflow ends green. Confirm the playlist-control workflow polls only the selected playlist.
