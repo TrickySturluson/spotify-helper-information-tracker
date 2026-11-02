@@ -8,14 +8,24 @@ Safely migrate existing metadata into the canonical Music Library, preserve enti
 
 Scope: prepare/dry-run; backup/checkpoint; offline import; identities, relationships, aliases, indexes and manifests; artifact recovery; publication and post-publish audit. Migration itself must not modify Spotify playlists or invent missing provider metadata.
 
-**Status: RECOVERY READY / rerun required.** Run #17 completed migration, bounded enrichment, and a final integrity audit on the runner (13,005 songs; 6,382 artists; 7,861 albums; zero audit errors), but publication failed because the workflow refreshed and staged Spotify playlist snapshots alongside the Library. The uploaded artifact contains the rollback backup and run log, not the completed generated Library. A workflow fix is now on `main`: prepare skips Spotify snapshot refresh, publishes only `assistant_data/music/`, and retains generated music data plus backup in the artifact. The migration is not complete until a new run publishes and a fresh audit passes on `main`.
+**Status: FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH AND CONFIDENCE CI PASSED.** The canonical Library is published on `main` with 13,005 songs, 6,386 artists, and 7,861 albums. Run #18 successfully published enrichment commit `c55012f1d9707d9059be9096d0be88dbf50b1bcb`. Run #21 later completed runner-side prepare/audit but failed publication because it checked out stale issue-event SHA `b892f3b`; its generated output was not published. The workflow fix `21cc2ed` explicitly checks out latest `main` before running to avoid stale checkpoint/rebase conflicts.
 
-Run #17: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
+**Independent verification:** read-only health run [#22](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41367899566) passed against the full catalogue: 13,005 songs, 6,386 artists, 7,861 albums; index counts matched; zero errors and zero warnings. Main-branch confidence audit and regression workflow [run](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41368125489) passed, including 314 tests.
 
-**Resume:** run `[SHIT LIBRARY] prepare` using the fixed workflow; inspect the new run's steps and artifact; confirm the generated Library and enrichment checkpoints publish to `main`; run `[SHIT LIBRARY] audit` and `status` against the published branch. Never force-push or blindly resolve conflicts.
+**Legacy source coverage:** all 11,130 unique legacy track-index IDs resolve through canonical source-track-ID or recording-MBID aliases; all 5,358 legacy artist names are represented. PR #79 merged permanent source-index coverage reporting. Raw Last.fm scrobble events remain in the separate event archive; they are not duplicated into one row per scrobble in the entity catalogue.
 
-Commands: `python shit.py library status`, `preview`, `migrate`, `audit`.
+**Remaining work:** provider enrichment is incomplete. The published run #18 report measured duration coverage at approximately 91.1%, track profiles 1,778, artist profiles 3,998, album profiles 400, audio profiles 115, and lyric features 0. MusicBrainz encountered rate limits/503s, Last.fm track-tag requests returned HTTP 400, and Discogs/GetSongBPM credentials were absent. Treat these as the last measured run values, not fresh live counts; re-measure after the next safe enrichment pass. Continue only from durable checkpoints and avoid blind retries.
+
+Run #17: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889  
+Run #18 successful publication: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298  
+Run #21 stale-checkout failure: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364361982
+
+## Resume
+
+Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. Before another enrichment pass, inspect current provider checkpoints and PR #78 playability work; submit only one serialized prepare operation at a time. Run a fresh post-enrichment audit, health check, and status against published `main`. Never force-push or blindly resolve conflicts.
+
+Commands: `python shit.py library status`, `preview`, `migrate`, `prepare`, `audit`, `health`, `confidence`.
 
 ## Documentation and resume
 
-Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
+After each meaningful action, update [ACTIONS.md](ACTIONS.md) with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
