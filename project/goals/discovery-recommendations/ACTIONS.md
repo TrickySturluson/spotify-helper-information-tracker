@@ -123,3 +123,14 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Fail-closed behavior:** malformed/unreadable removal feedback now stops recommendation generation rather than silently treating the blacklist as empty.
 - **Regression tests added:** general recommender cannot select an exact removed track; explicit whitelist increases exact-track score and clears its matching removal; corrupt feedback blocks recommendation generation.
 - **Scope:** playlist-local only. No playlist mutation or live addition performed by this audit.
+
+
+## 2026-11-02 — Standardized playlist staging reports
+
+- Commit `1b96563` introduced an explicit Booze ten-track staging report with READY/BLOCKED status, eligible tracks, blacklist rejections, other exclusions, and no-write disclosure.
+- Commit `5f9ba9b` standardized report headings and status language across sequence previews, generic playlist edit previews, Booze five-track previews, and the 15-track Halloween preview.
+- Commit `2c0e9ab` removed the unnecessary unlock requirement from read-only staging previews. A locked playlist can now be inspected and staged without changing its lock; the separate confirmation/write path still requires explicit unlock.
+- Staging contract: show the target playlist and operation; current count and projected count where applicable; READY only when the complete requested batch passes validation; otherwise BLOCKED with eligible, blacklisted, already-present, duplicate, and unresolved candidates separated; state plainly that Spotify has not changed; show a one-time confirmation only for a complete READY stage.
+- Historical discovery-library entries are intake history, not an eligibility queue. Every candidate must pass current exact-URI / normalized artist-title playlist removal checks and current membership checks before being staged.
+- No Spotify playlist changes are made by staging. Confirmation remains a separate explicit operation, and must reject stale playlist snapshots or locked targets.
+- Follow-up: bring any remaining preview-like command paths into this same report contract, then add regression tests for READY/BLOCKED reports and locked read-only staging.
