@@ -1,3 +1,22 @@
+## 2026-11-02 — Publish offline Spotify playability backfill
+
+- Merged PR #78 (`e12b72e`) for market-aware playability observations, offline backfill, and bounded stale-only refresh.
+- Added `backfill-playability` and `verify-catalogue` operations to `.github/workflows/great-migration.yml`.
+- Issue #82 triggered successful run [41369906166](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41369906166).
+- Backfill read 57 saved playlist snapshots (16 inaccessible), scanned 3,308 items, found 3,308 observations, matched 3,306, updated 3,305 observations across 1,856 canonical song records; 2 items unmatched and 0 already present.
+- Snapshot statuses: 3,250 playable, 55 unplayable; all 3,305 observations were tagged `market=from_token`. No restriction reasons or relinked IDs occurred in this batch. These are snapshot-time observations, not live current availability guarantees.
+- Provider requests: 0. Spotify playlist writes: 0. Timestamped backup directory was preserved in artifact #13108782697 and excluded from the canonical Library commit.
+- Published commit: `3316dbe9f8ccd5d668b71d730016befeabdd8502` (1,856 song files changed).
+- Run #82's final job was successful and its issue comment reported the exact backfill summary. A separate post-backfill `audit`, `health`, and `confidence` verification is queued as issue #83; do not call post-backfill verification complete until that run finishes.
+- No live Spotify playability refresh was executed.
+
+## 2026-11-02 — Merge Library maintainer and add freshness planner
+
+- PR #80 merged to main as `f74e8ba3de296da8b9fe14e3f7f357d8247bc1d4`; adds read-only maintenance preview and explicit backup-protected index-only repair. No real Library repair was applied.
+- PR #81 adds a read-only field-level freshness planner on draft branch `feature/metadata-freshness-planner`. Full CI ran the planner against all 13,005 songs, selected 25 of 1,856 due playability tasks, passed all 318 tests, and passed the secret scan. This was before the offline playability backfill; the plan should be re-run against post-backfill main after integration.
+- Planner uses explicit observation timestamps, field-specific TTL defaults, cooldowns, stable tie-breaks, and no network/write behavior. Generic field observation timestamps are not yet populated by existing enrichers; do not enable generic provider polling until the schema is reconciled with real provider checkpoints and retry queue.
+- Next: verify issue #83; review/merge freshness planner only after integrating current-main changes and validating the post-backfill due plan; continue with field-level freshness ingestion and bounded execution.
+
 ## 2026-11-02 — Permanent legacy archive coverage report (PR #79)
 
 - Adds source-index coverage measurements to migration_report.json: all legacy unique track IDs must resolve to canonical source-track or recording-MBID aliases; artist identities resolve by stable ID or exact normalized name.
