@@ -256,6 +256,71 @@ def score_track(
     }
 
 
+
+def track_from_library_record(record: dict) -> dict:
+    """Adapt only recording-scoped canonical song evidence; never artist/album context."""
+    if not isinstance(record, dict):
+        raise TypeError("record must be a song record object")
+    identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
+    evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+    metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
+    audio = evidence.get("audio") if isinstance(evidence.get("audio"), dict) else {}
+    mood = record.get("mood") if isinstance(record.get("mood"), dict) else {}
+    recording_mood = mood.get("recording_level") if isinstance(mood.get("recording_level"), dict) else {}
+    confidence = record.get("confidence") if isinstance(record.get("confidence"), dict) else {}
+    identity_tier = confidence.get("identity", "unknown")
+    if identity_tier not in CONFIDENCE_RANK:
+        identity_tier = "unknown"
+    dimensions = {name: [] for name in DIMENSIONS}
+
+    for field in ("musicbrainz_genres", "musicbrainz_tags", "lastfm_tags", "discogs_styles", "discogs_genres"):
+        values = metadata.get(field) or []
+        for row in values if isinstance(values, list) else []:
+            value = row.get("tag") or row.get("name") if isinstance(row, dict) else row
+            provider = row.get("provider") or row.get("source") or field if isinstance(row, dict) else field
+            if value:
+                dimensions["genre"].append({"value": value, "source_family": str(provider).casefold(),
+                                            "scope": "recording", "identity_confidence": identity_tier})
+
+    for value in recording_mood.get("moods") or []:
+        dimensions["mood"].append({"value": value, "source_family": "recording_mood_analysis",
+                                   "scope": "recording", "identity_confidence": identity_tier})
+
+    lyric = evidence.get("lyrics")
+    if isinstance(lyric, dict):
+        themes = lyric.get("themes") or lyric.get("theme_tags") or lyric.get("topics") or []
+        for value in themes:
+            dimensions["theme"].append({"value": value, "source_family": "lyrics_analysis",
+                                        "scope": "lyrics", "identity_confidence": identity_tier})
+
+    # Tempo, genre and mood are never substituted for measured energy.
+    for key in ("energy_score", "perceived_energy", "spotify_energy", "energy"):
+        try:
+            number = float(audio.get(key)) if audio.get(key) is not None else None
+        except (TypeError, ValueError):
+            number = None
+        if number is not None:
+            if key == "spotify_energy" or (key == "energy" and 0 <= number <= 1):
+                number *= 100
+            if 0 <= number <= 100:
+                dimensions["energy"].append({"value": number, "source_family": str(audio.get("source") or "audio_analysis"),
+                                             "scope": "audio", "identity_confidence": identity_tier})
+                break
+
+    for field in ("sound_descriptors", "timbre_tags", "instrumentation", "production_tags"):
+        values = audio.get(field) or []
+        for row in values if isinstance(values, list) else []:
+            value = row.get("tag") or row.get("name") if isinstance(row, dict) else row
+            if value:
+                dimensions["sound"].append({"value": value, "source_family": "audio_analysis",
+                                            "scope": "audio", "identity_confidence": identity_tier})
+
+    return {"uri": identity.get("spotify_id") or record.get("id"),
+            "recording_mbid": identity.get("recording_mbid"),
+            "artist": identity.get("artist"), "title": identity.get("title"),
+            "dimensions": dimensions}
+
+
 # FILE OVERVIEW
 # Purpose: Read-only five-axis playlist-fit scorer. It deliberately does not read
 #          the exploratory human-rating file or perform Spotify writes.
