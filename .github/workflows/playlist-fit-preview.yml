@@ -1,0 +1,48 @@
+name: Playlist fit read-only preview
+
+on:
+  pull_request:
+    paths:
+      - "scripts/spotify/playlist_fit_model.py"
+      - "scripts/spotify/playlist_fit_preview.py"
+      - "assistant_data/spotify/playlist_roles.json"
+      - "assistant_data/spotify/playlists/**"
+      - "assistant_data/spotify/playlist_fit_heldout_candidates_20261102.json"
+      - "tests/test_playlist_fit_model.py"
+      - "tests/test_playlist_fit_preview.py"
+      - ".github/workflows/playlist-fit-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run focused regression tests
+        run: python -m unittest tests.test_playlist_fit_model tests.test_playlist_fit_preview -v
+      - name: Build five-target held-out preview (read-only)
+        run: |
+          python scripts/spotify/playlist_fit_preview.py \
+            --candidates assistant_data/spotify/playlist_fit_heldout_candidates_20261102.json \
+            --output artifacts/playlist_fit_preview.json
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: playlist-fit-heldout-preview
+          path: artifacts/playlist_fit_preview.json
+          if-no-files-found: error
+          retention-days: 14
+
+# FILE OVERVIEW
+# Purpose: Run the real-data five-target playlist-fit preview without Spotify credentials or write access.
+# Safety: Read-only repository inputs; no Spotify API calls, human-score imports, or playlist writes.
+# Output: A 14-day GitHub Actions artifact containing the auditable held-out preview JSON.
