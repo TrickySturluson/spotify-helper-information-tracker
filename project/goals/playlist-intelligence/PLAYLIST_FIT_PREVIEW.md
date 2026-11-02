@@ -6,12 +6,12 @@
 
 ## Run
 
-Create an identity-only JSON file containing a list of candidate tracks or an object with a `tracks` list. Each row needs a Spotify track URI, Spotify track URL, or 22-character Spotify track ID:
+Create an identity-only JSON file containing a list of candidate tracks or an object with a `tracks` list. Each row needs a Spotify track URI, Spotify track URL, or 22-character Spotify track ID. Include exact title, primary artist, album and duration when available; the corroborated fallback uses all four fields:
 
 ```json
 {
   "tracks": [
-    {"uri": "spotify:track:0123456789012345678901"}
+    {"uri": "spotify:track:0123456789012345678901", "title": "Track", "artist": "Artist", "album": "Album", "duration_ms": 180000}
   ]
 }
 ```
@@ -32,9 +32,9 @@ Optional `--library`, `--music-data`, and `--spotify-data` arguments support alt
 
 - Exactly five playlists with role `sorter_calibration_target` must be registered.
 - Every target snapshot must be accessible, have a matching playlist ID, and have reported/fetched counts consistent with its item list. An inaccessible or incomplete target aborts the run; it is never interpreted as an empty playlist.
-- Candidate identities are extracted only. Extra fields in the candidate file (including scores) are ignored.
-- The entire candidate batch is excluded from every target profile, not just one candidate at a time.
-- Canonical song records are resolved by exact Spotify track ID. Track-profile cache rows are joined only by exact source-track ID, recording MBID, or Spotify ID. Artist/title fuzzy matching is prohibited.
+- Candidate identity fields only are extracted: Spotify URI/ID, title, artist, album, duration and ISRC. Extra fields (including any scores or confidence values) are ignored.
+- The entire candidate batch is excluded from every target profile, not just one candidate at a time. Exclusion also follows a candidate's resolved canonical source-record ID so a Spotify-only record and its exact corroborated Last.fm source record cannot leak into the same profile.
+- Canonical song records are resolved by exact Spotify track ID first. Legacy track-profile rows are joined to canonical records through the Library's exact source-track/recording-MBID/Spotify-ID alias maps. If the Spotify record has no fit evidence, a fallback may use the Library's exact artist + title + album lookup only when the canonical source duration is within 2,000 ms of the Spotify snapshot duration. This fallback is marked medium identity confidence and is never a fuzzy or artist/title-only match.
 - Missing Library records or dimensions remain unknown. No fabricated zeros, genre-to-sound inference, tempo-to-energy inference, or artist/album mood promotion.
 - AcousticBrainz `average_loudness` and `dynamic_complexity` are not converted into perceived energy or sound labels. Those fields require a separately validated mapping before use.
 - Human slider data is not an input. The runner does not import the human-rating or comparison files.
