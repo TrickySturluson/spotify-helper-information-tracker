@@ -46,6 +46,8 @@ jobs:
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
               output.write("command=" + str(command.get("command", "")) + "\n")
               output.write("pending_kind=" + str(pending_kind) + "\n")
+              playlist_id = command.get("playlist_id") or (state.get("pending") or {}).get("playlist_id", "")
+              output.write("playlist_id=" + str(playlist_id) + "\n")
           PY
       - name: Download prior recovery snapshot for undo
         if: >-
@@ -69,12 +71,13 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python compat/spotify_playlist_cloud.py
-      - name: Capture playlist removals after every control operation
-        if: steps.command.outcome == 'success'
+      - name: Capture removals for the playlist touched by this control operation
+        if: steps.command.outcome == 'success' && steps.parse-command.outputs.playlist_id != ''
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-        run: python compat/track_playlist_removals.py
+          PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
+        run: python compat/track_playlist_removals.py "$PLAYLIST_ID"
       - name: Preserve playlist snapshots
         if: always() && hashFiles('playlist_backups/**') != ''
         uses: actions/upload-artifact@v7.0.2
