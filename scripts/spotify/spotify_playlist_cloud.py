@@ -206,6 +206,7 @@ def main():
         "daily_preview": {"command", "playlist_id"},
         "horror_preview": {"command", "playlist_id"},
         "booze20_preview": {"command", "playlist_id"},
+        "booze5_preview": {"command", "playlist_id"},
         "booze20_uri_preview": {"command", "playlist_id", "tracks"},
         "booze20_resolve_sources": {"command", "sources"},
         "sequence_preview": {"command", "playlist_id"},
@@ -214,7 +215,7 @@ def main():
     }
     if not isinstance(action, str) or action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze20_uri_preview", "sequence_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze5_preview", "booze20_uri_preview", "sequence_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -493,6 +494,105 @@ def main():
             "The playlist must remain unlocked and unchanged until confirmation.",
         ])
         result = "\n".join(lines)
+    elif action == "booze5_preview":
+        # Resolve five fresh, high-specificity Halloween party tracks. Every
+        # candidate is checked against current playlist membership and sticky
+        # playlist-local removals before it can be staged.
+        candidates = [
+            ("The Creepshow", "Grave Diggers"),
+            ("Horrorpops", "Psychobitches Outta Hell"),
+            ("Koffin Kats", "Chainsaw Massacre"),
+            ("45 Grave", "Partytime"),
+            ("The Meteors", "Psycho for Your Love"),
+            ("The Ghastly Ones", "Haulin' Hearse"),
+            ("Calabrese", "Midnight Spookshow"),
+            ("Zombina & The Skeletones", "Nobody Likes You (When You're Dead)"),
+            ("The Fuzztones", "She's Wicked"),
+            ("Tiger Army", "Rose Of The Devil's Garden"),
+        ]
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        if not manager.unlocked(pid):
+            fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing additions.")
+        current = manager.snapshot(sp, p)
+        import spotify_discovery as daily
+        feedback = daily.load_playlist_feedback(current["items"], pid)
+        existing = {item.get("uri") for item in current["items"] if item.get("uri")}
+        def music_key(value):
+            return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
+        resolved, skipped = [], []
+        for artist, title in candidates:
+            if len(resolved) >= 5:
+                break
+            time.sleep(1.0)
+            query = urllib.parse.urlencode({
+                "type": "track", "limit": 10,
+                "q": f'artist:"{artist}" track:"{title}"',
+            })
+            page = sp.call("GET", "/search?" + query)
+            matches = ((page or {}).get("tracks") or {}).get("items") or []
+            target_artist, target_title = music_key(artist), music_key(title)
+            match = next((
+                track for track in matches
+                if music_key(track.get("name")) == target_title
+                and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
+                and isinstance(track.get("uri"), str)
+                and track["uri"].startswith("spotify:track:")
+            ), None)
+            if not match:
+                skipped.append(f"{artist} — {title} (no exact Spotify match)")
+                continue
+            if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
+                skipped.append(f"{artist} — {title} (blocked by playlist removal history)")
+                continue
+            if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
+                skipped.append(f"{artist} — {title} (already present or duplicate)")
+                continue
+            resolved.append({
+                "artist": artist, "track": match["name"], "uri": match["uri"],
+                "album": (match.get("album") or {}).get("name"),
+                "duration_ms": match.get("duration_ms"),
+            })
+        if len(resolved) != 5:
+            lines = [
+                f'FIVE-TRACK HALLOWEEN BATCH NOT STAGED — {p.get("name")} [{pid}]',
+                f'Eligible new tracks: {len(resolved)}/5. No playlist changes have been made.',
+            ]
+            lines.extend(f'FOUND: {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
+            lines.extend(f'SKIPPED: {row}' for row in skipped)
+            result = "\\n".join(lines)
+        else:
+            intake = append_candidates(
+                [{
+                    "uri": row["uri"], "artist": row["artist"], "track": row["track"],
+                    "album": row.get("album"), "duration_ms": row.get("duration_ms"),
+                } for row in resolved],
+                source="booze5_recommendation_preview",
+                context={"playlist_id": pid, "playlist_name": p.get("name"), "preview_date": manager.stamp()[:10]},
+            )
+            operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
+            confirmation = secrets.token_urlsafe(12)
+            config["pending"] = {
+                "playlist_id": pid, "operations": operations,
+                "snapshot_id": p.get("snapshot_id"),
+                "expected_uris": snapshot_uris(current),
+                "confirmation": confirmation, "kind": "booze5",
+            }
+            manager.write(STATE, config)
+            manager.audit(
+                event="booze5_previewed", playlist_id=pid, added_count=5,
+                candidates_persisted=intake["unique_candidates"],
+            )
+            lines = [
+                f'FIVE-TRACK HALLOWEEN PREVIEW — {p.get("name")} [{pid}]',
+                f'Current items: {len(current["items"])}; additions: 5; after confirmation: {len(current["items"]) + 5}.',
+                f'New candidates saved to the SHIT discovery library: {intake["unique_candidates"]}.',
+                "No Spotify changes have been made.",
+                "",
+            ]
+            lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
+            lines.extend(["", "To add these exact five tracks, submit confirm with this one-time code:", confirmation])
+            result = "\\n".join(lines)
     elif action == "booze20_preview":
         # Resolve the strict 15-track Halloween-themed batch through Spotify's catalogue.
         candidates = [
