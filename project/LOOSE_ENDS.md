@@ -5,6 +5,14 @@ This is the cross-project register of known unfinished work discovered from the 
 **Last reviewed:** 2026-11-02 (after PR #100 freshness baseline, duration provenance recovery work, and issue #105 preview trigger)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
+## Incremental Library strategy — feature work is no longer blocked on full enrichment
+
+- Decision (2026-11-02): keep scheduled read-only health/confidence/freshness monitoring and daily credential checks running, but pursue feature work in parallel against the current canonical Library.
+- Resolve data on demand: canonical record → existing local evidence/cache → provider checkpoint/cooldown eligibility → bounded verified lookup → provenance-preserving merge → health check. Missing fields remain unknown until supported.
+- Newly encountered songs/recommendations should be recorded as candidates with source/context; they are not listening events or confirmed preferences.
+- Sorter development may proceed offline/read-only with confidence-aware fallbacks and explicit uncertainty. Playlist writes remain gated by preview, lock/ownership, generated-playlist scope and explicit authorization.
+- Background monitoring is not a general metadata-filling worker. Retry queue and bounded execution are still unfinished; weekly health/freshness checks are read-only.
+
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
