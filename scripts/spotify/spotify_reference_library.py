@@ -88,7 +88,7 @@ def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=
         "is_playable": playable,
         "market": market,
         "market_context": market_context,
-        "snapshot_items_accessible": bool(snapshot_accessible),
+        "latest_snapshot_accessible": bool(snapshot_accessible),
         "checked_at": item.get("playability_checked_at") or fallback_checked_at,
         "provider": "Spotify",
         "source": "read_only_playlist_snapshot",
@@ -183,6 +183,7 @@ def sync(sp):
     index_tracks, index_artists = defaultdict(list), defaultdict(list)
     changed = 0
     library_rows = []
+    playability_observations = []
     seen_ids = set()
     for playlist in sp.playlists():
         # Spotify pagination can occasionally repeat a playlist across pages.
@@ -232,6 +233,19 @@ def sync(sp):
                 index_artists[artist.casefold()].append(pid)
             if item.get("type") == "track" and item.get("name") and item.get("artists"):
                 spotify_id = item.get("id") or (uri.rsplit(":", 1)[-1] if uri else None)
+                observation = playability_observation(
+                    item, pid, record.get("snapshot_id"),
+                    item.get("playability_checked_at") or record.get("last_items_accessible_at") or record.get("captured_at"),
+                    fallback_market=record.get("playability_market") or "from_token",
+                    snapshot_accessible=record.get("items_accessible", True),
+                )
+                if observation and observation.get("requested_spotify_id"):
+                    playability_observations.append(observation)
+                # A relinked response describes the replacement recording, while
+                # linked_from identifies the originally requested playlist track.
+                # Do not merge replacement metadata into that original song.
+                if item.get("linked_from"):
+                    continue
                 if spotify_id:
                     library_rows.append({
                         "track_id": uri or ("spotify:track:" + str(spotify_id)),
@@ -243,10 +257,6 @@ def sync(sp):
                         "spotify_album_id": item.get("album_id"),
                         "duration_ms": item.get("duration_ms"),
                         "isrc": (item.get("external_ids") or {}).get("isrc"),
-                        "spotify_playability_observation": playability_observation(
-                            item, pid, record.get("snapshot_id"),
-                            item.get("playability_checked_at") or record.get("last_items_accessible_at") or record.get("captured_at"),
-                        ),
                         "playlist_sources": [pid],
                         "playlist_positions": [{
                             "playlist_id": pid, "position": item.get("position"),
@@ -264,6 +274,19 @@ def sync(sp):
               f"{library_result['songs']:,} songs, "
               f"{library_result['artists']:,} artists, "
               f"{library_result['albums']:,} albums.")
+    playability_updated = playability_unmatched = 0
+    if playability_observations:
+        library = MusicLibrary()
+        for observation in playability_observations:
+            result = library.add_spotify_playability_observation(
+                observation["requested_spotify_id"], observation
+            )
+            if result.get("status") == "updated":
+                playability_updated += 1
+            elif result.get("status") == "unmatched":
+                playability_unmatched += 1
+    print(f"Spotify playability observations: {len(playability_observations)} collected; "
+          f"{playability_updated} song records updated; {playability_unmatched} unmatched.")
     catalog.sort(key=lambda row: (row["name"] or "").casefold())
     manager.write(CATALOG, {"version": 1, "captured_at": stamp(), "playlist_count": len(catalog), "playlists": catalog})
     manager.write(INDEX, {
