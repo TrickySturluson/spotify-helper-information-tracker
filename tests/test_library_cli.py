@@ -17,6 +17,10 @@ def test_library_cli_parses_safe_and_write_commands(tmp_path):
     assert parser.parse_args(["library", "sync"]).action == "sync"
     freshness = parser.parse_args(["library", "freshness", "--limit", "7", "--market", "US", "--include-unknown-age"])
     assert freshness.action == "freshness" and freshness.limit == 7 and freshness.market == "US" and freshness.include_unknown_age
+    duration_preview = parser.parse_args(["library", "duration-evidence", "--json"])
+    assert duration_preview.action == "duration-evidence" and duration_preview.json
+    duration_apply = parser.parse_args(["library", "duration-evidence", "--apply", "--yes"])
+    assert duration_apply.action == "duration-evidence" and duration_apply.apply and duration_apply.yes
     assert parser.parse_args(["migration", "status"]).action == "status"
     assert parser.parse_args(["migration", "run", "--yes"]).action == "run"
     assert parser.parse_args(["migration", "resume", "--yes"]).action == "resume"
