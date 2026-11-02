@@ -121,7 +121,7 @@ jobs:
           inputs = report.get("inputs", {})
           audit = report.get("audit", {})
           print("Discovery candidates:", inputs.get("valid_discovery_candidates", 0))
-          print("Canonical Library audit:", audit.get("ok"), "tracks:", audit.get("tracks"))
+          print("Canonical Library audit:", audit.get("ok"), "tracks:", audit.get("songs"))
           if not audit.get("ok"):
               raise SystemExit("Canonical Library audit failed after discovery sync.")
           PY
