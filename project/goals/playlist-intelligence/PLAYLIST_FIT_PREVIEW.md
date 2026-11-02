@@ -16,6 +16,8 @@ Create an identity-only JSON file containing a list of candidate tracks or an ob
 }
 ```
 
+The current identity-only 24-track held-out batch is stored at `assistant_data/spotify/playlist_fit_heldout_candidates_20261102.json`. It excludes the unplayable Dog — Floating Room item and contains no human scores or model outputs.
+
 Then run from the repository root:
 
 ```bash
