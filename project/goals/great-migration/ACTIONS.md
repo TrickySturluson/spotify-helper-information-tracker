@@ -1,3 +1,10 @@
+## 2026-11-02 — Permanent legacy archive coverage report (PR #79)
+
+- Adds source-index coverage measurements to migration_report.json: all legacy unique track IDs must resolve to canonical source-track or recording-MBID aliases; artist identities resolve by stable ID or exact normalized name.
+- Replaces the misleading limitation text with the correct boundary: the Library stores normalized song entities; raw Last.fm scrobble events remain in the separate event archive.
+- Adds fixture tests for MBID aliases, source-track aliases, and artist ID/name matching.
+- PR #74 is now merged, so current-base CI includes the full-catalogue confidence audit.
+- Branch: feature/migration-coverage-report-v2; CI pending.
 ## 2026-11-02 — Diagnose failed checkpoint-resuming run #21 and fix stale checkout
 
 - **Run #21:** [41364361982](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364361982) completed the requested prepare operation and final runner-side audit successfully (13,005 songs, 6,386 artists, 7,861 albums; zero audit errors), but the publish step failed during rebase. Artifact #13107866614 uploaded (47,678,297 bytes; 54,558 files), preserving the generated state and backup.
