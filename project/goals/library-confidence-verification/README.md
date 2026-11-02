@@ -47,7 +47,7 @@ These rules are in `scripts/music/music_evidence.py`. Do not silently reinterpre
 
 ## Current status
 
-**Verification plan established; full-library confidence distribution and gold-set evaluation still outstanding.** Current source-index coverage is complete, but that alone does not prove every record has strong identity confidence or complete metadata.
+**Read-only confidence audit implemented on draft branch; full-library CI result pending.** The new command recomputes stored identity and metadata confidence from canonical IDs/evidence, measures legacy source-index coverage, counts field coverage/provenance gaps, and reports drift without rewriting any record. A curated gold-set evaluation remains outstanding.
 
 ## Resume
 
