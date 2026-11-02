@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "sorter-five-playlist-v1-blind-20261102",
+  "created_at": "2026-11-02",
+  "status": "predictions_frozen_before_human_score_comparison",
+  "method": "Independent per-track SHIT-style assessment against each of the five registered playlist reference snapshots. Scores are 0-100 fit estimates; confidence_by_target is the model's independent confidence in each estimate, not a human rating.",
+  "target_order": [
+    "To 11",
+    "Somber Party",
+    ". . .",
+    "=^=",
+    "Smooth"
+  ],
+  "reference_playlist_ids": {
+    "To 11": "5meDjtqrqOe5oHpvZGWRMz",
+    "Somber Party": "7L2rSp4SuohBEyNxEtAurx",
+    ". . .": "4HzqY9iy04M1EVSF5kcD64",
+    "=^=": "0O9ojSstxwa5vQy2V7pO2x",
+    "Smooth": "2ICCklgbF6cg0q5p4xAHKi"
+  },
+  "audition_playlist_id": "4aLdllLgRPh5vKOznkC97D",
+  "human_labels_used": false,
+  "limitations": [
+    "This is a model assessment record, not evidence that a repository-native five-target classifier was executed.",
+    "No fresh audio analysis or track-by-track playback was performed in this pass; confidence reflects clarity of known musical/style evidence and available reference context.",
+    "Human slider scores and rating values were not used in generating these predictions."
+  ],
+  "predictions": [
+    {
+      "track": {
+        "title": "Figure It Out",
+        "artist": "Royal Blood"
+      },
+      "scores": {
+        "To 11": 96,
+        "Somber Party": 5,
+        ". . .": 8,
+        "=^=": 85,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 96,
+        "Somber Party": 85,
+        ". . .": 90,
+        "=^=": 90,
+        "Smooth": 90
+      },
+      "rationale": "Heavy, riff-driven bass rock; direct match for To 11, with some swagger overlap into =^=."
+    },
+    {
+      "track": {
+        "title": "Guerrilla Radio",
+        "artist": "Rage Against The Machine"
+      },
+      "scores": {
+        "To 11": 99,
+        "Somber Party": 0,
+        ". . .": 3,
+        "=^=": 75,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 99,
+        "Somber Party": 92,
+        ". . .": 90,
+        "=^=": 86,
+        "Smooth": 95
+      },
+      "rationale": "Explosive rap-metal protest rock; strong To 11 match, secondary riff-led swagger."
+    },
+    {
+      "track": {
+        "title": "Break Stuff",
+        "artist": "Limp Bizkit"
+      },
+      "scores": {
+        "To 11": 98,
+        "Somber Party": 0,
+        ". . .": 1,
+        "=^=": 55,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 99,
+        "Somber Party": 95,
+        ". . .": 92,
+        "=^=": 78,
+        "Smooth": 95
+      },
+      "rationale": "Aggressive nu-metal and groove; almost entirely To 11, with limited garage-rock overlap."
+    },
+    {
+      "track": {
+        "title": "Unsainted",
+        "artist": "Slipknot"
+      },
+      "scores": {
+        "To 11": 94,
+        "Somber Party": 0,
+        ". . .": 2,
+        "=^=": 70,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 96,
+        "Somber Party": 93,
+        ". . .": 90,
+        "=^=": 82,
+        "Smooth": 95
+      },
+      "rationale": "High-impact modern metal with anthemic chorus; To 11 first, some dark hard-rock adjacency."
+    },
+    {
+      "track": {
+        "title": "Bodies",
+        "artist": "Drowning Pool"
+      },
+      "scores": {
+        "To 11": 99,
+        "Somber Party": 0,
+        ". . .": 1,
+        "=^=": 55,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 99,
+        "Somber Party": 95,
+        ". . .": 92,
+        "=^=": 78,
+        "Smooth": 95
+      },
+      "rationale": "Canonical nu-metal aggression and chant-driven heaviness; very clear To 11 fit."
+    },
+    {
+      "track": {
+        "title": "Oom Sha La La",
+        "artist": "Haley Heynderickx"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 94,
+        ". . .": 70,
+        "=^=": 10,
+        "Smooth": 20
+      },
+      "confidence_by_target": {
+        "To 11": 98,
+        "Somber Party": 90,
+        ". . .": 82,
+        "=^=": 75,
+        "Smooth": 65
+      },
+      "rationale": "Quirky, intimate indie-folk with a playful edge; strong Somber Party fit and some indie-list adjacency."
+    },
+    {
+      "track": {
+        "title": "when the devil falls in love",
+        "artist": "Hakdo"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 90,
+        ". . .": 40,
+        "=^=": 5,
+        "Smooth": 25
+      },
+      "confidence_by_target": {
+        "To 11": 78,
+        "Somber Party": 65,
+        ". . .": 60,
+        "=^=": 55,
+        "Smooth": 55
+      },
+      "rationale": "Title/artist context points toward intimate, melancholic songwriting, but recording-level evidence is comparatively thin."
+    },
+    {
+      "track": {
+        "title": "MARBLE HALLS",
+        "artist": "Masayoshi Takanaka"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 86,
+        ". . .": 30,
+        "=^=": 10,
+        "Smooth": 75
+      },
+      "confidence_by_target": {
+        "To 11": 95,
+        "Somber Party": 88,
+        ". . .": 80,
+        "=^=": 72,
+        "Smooth": 90
+      },
+      "rationale": "Instrumental jazz-fusion color and musicianship fit the eclectic Somber Party outlier and have some Smooth overlap."
+    },
+    {
+      "track": {
+        "title": "Wharf (ii)",
+        "artist": "Horsey"
+      },
+      "scores": {
+        "To 11": 10,
+        "Somber Party": 82,
+        ". . .": 65,
+        "=^=": 25,
+        "Smooth": 35
+      },
+      "confidence_by_target": {
+        "To 11": 85,
+        "Somber Party": 82,
+        ". . .": 80,
+        "=^=": 65,
+        "Smooth": 70
+      },
+      "rationale": "Off-kilter art-pop/indie with an unusual, slightly wistful character; Somber Party strongest, adjacent to the indie set."
+    },
+    {
+      "track": {
+        "title": "Armchair",
+        "artist": "yungatita"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 75,
+        ". . .": 90,
+        "=^=": 5,
+        "Smooth": 40
+      },
+      "confidence_by_target": {
+        "To 11": 90,
+        "Somber Party": 78,
+        ". . .": 85,
+        "=^=": 70,
+        "Smooth": 78
+      },
+      "rationale": "Soft, intimate bedroom-pop/indie texture; strongest in the broad dreamy indie target, with Somber Party crossover."
+    },
+    {
+      "track": {
+        "title": "Don't Come Home Today",
+        "artist": "Good Morning"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 55,
+        ". . .": 95,
+        "=^=": 8,
+        "Smooth": 35
+      },
+      "confidence_by_target": {
+        "To 11": 95,
+        "Somber Party": 82,
+        ". . .": 95,
+        "=^=": 75,
+        "Smooth": 78
+      },
+      "rationale": "Relaxed, jangly indie-pop; very strong match for the broad indie/dream-pop reference."
+    },
+    {
+      "track": {
+        "title": "Of Lacking Spectacle",
+        "artist": "Gus Dapperton"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 45,
+        ". . .": 93,
+        "=^=": 12,
+        "Smooth": 35
+      },
+      "confidence_by_target": {
+        "To 11": 90,
+        "Somber Party": 80,
+        ". . .": 90,
+        "=^=": 72,
+        "Smooth": 75
+      },
+      "rationale": "Quirky melodic indie-pop with soft-edged production; clear broad indie-list fit."
+    },
+    {
+      "track": {
+        "title": "Running Up That Hill",
+        "artist": "Chromatics"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 55,
+        ". . .": 85,
+        "=^=": 30,
+        "Smooth": 90
+      },
+      "confidence_by_target": {
+        "To 11": 94,
+        "Somber Party": 82,
+        ". . .": 88,
+        "=^=": 76,
+        "Smooth": 92
+      },
+      "rationale": "Dark, atmospheric synth-pop/dream-pop; overlaps the indie reference but its strongest sound match is Smooth."
+    },
+    {
+      "track": {
+        "title": "Dog",
+        "artist": "Floating Room"
+      },
+      "scores": {
+        "To 11": 10,
+        "Somber Party": 55,
+        ". . .": 90,
+        "=^=": 20,
+        "Smooth": 20
+      },
+      "confidence_by_target": {
+        "To 11": 88,
+        "Somber Party": 78,
+        ". . .": 86,
+        "=^=": 70,
+        "Smooth": 65
+      },
+      "rationale": "Dreamy, hazy indie with a rougher edge; strong broad indie match, some Somber Party adjacency."
+    },
+    {
+      "track": {
+        "title": "Lauren",
+        "artist": "Men I Trust"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 65,
+        ". . .": 96,
+        "=^=": 8,
+        "Smooth": 75
+      },
+      "confidence_by_target": {
+        "To 11": 97,
+        "Somber Party": 88,
+        ". . .": 95,
+        "=^=": 78,
+        "Smooth": 90
+      },
+      "rationale": "Bass-led, understated dream-pop; very strong broad indie fit with substantial Smooth overlap."
+    },
+    {
+      "track": {
+        "title": "I'm a Wanted Man",
+        "artist": "Royal Deluxe"
+      },
+      "scores": {
+        "To 11": 55,
+        "Somber Party": 0,
+        ". . .": 5,
+        "=^=": 96,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 90,
+        "Somber Party": 82,
+        ". . .": 78,
+        "=^=": 94,
+        "Smooth": 92
+      },
+      "rationale": "Swaggering, stomping blues-rock/soul-rock; strong =^= match and some To 11 energy overlap."
+    },
+    {
+      "track": {
+        "title": "Where the Devil Don't Go",
+        "artist": "Elle King"
+      },
+      "scores": {
+        "To 11": 35,
+        "Somber Party": 10,
+        ". . .": 15,
+        "=^=": 95,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 88,
+        "Somber Party": 78,
+        ". . .": 76,
+        "=^=": 94,
+        "Smooth": 90
+      },
+      "rationale": "Bluesy, gritty, attitude-forward rock with a dark lyrical edge; strong =^= fit."
+    },
+    {
+      "track": {
+        "title": "What Makes A Good Man?",
+        "artist": "The Heavy"
+      },
+      "scores": {
+        "To 11": 80,
+        "Somber Party": 0,
+        ". . .": 10,
+        "=^=": 99,
+        "Smooth": 0
+      },
+      "confidence_by_target": {
+        "To 11": 98,
+        "Somber Party": 92,
+        ". . .": 82,
+        "=^=": 97,
+        "Smooth": 95
+      },
+      "rationale": "Punchy soul/garage rock with a huge groove; highly characteristic of =^= and partly To 11."
+    },
+    {
+      "track": {
+        "title": "Short Change Hero",
+        "artist": "The Heavy"
+      },
+      "scores": {
+        "To 11": 40,
+        "Somber Party": 25,
+        ". . .": 10,
+        "=^=": 98,
+        "Smooth": 5
+      },
+      "confidence_by_target": {
+        "To 11": 98,
+        "Somber Party": 90,
+        ". . .": 84,
+        "=^=": 97,
+        "Smooth": 92
+      },
+      "rationale": "Cinematic, bluesy swagger-rock; an exceptionally clear =^= fit, with some mellow dramatic shading."
+    },
+    {
+      "track": {
+        "title": "A Little Wicked",
+        "artist": "Valerie Broussard"
+      },
+      "scores": {
+        "To 11": 15,
+        "Somber Party": 35,
+        ". . .": 45,
+        "=^=": 75,
+        "Smooth": 5
+      },
+      "confidence_by_target": {
+        "To 11": 83,
+        "Somber Party": 78,
+        ". . .": 80,
+        "=^=": 84,
+        "Smooth": 88
+      },
+      "rationale": "Dark, dramatic alt-pop rather than riff-driven rock; partial =^= mood fit, but weaker stylistic certainty."
+    },
+    {
+      "track": {
+        "title": "Flatline",
+        "artist": "Scattle"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 20,
+        ". . .": 25,
+        "=^=": 15,
+        "Smooth": 98
+      },
+      "confidence_by_target": {
+        "To 11": 97,
+        "Somber Party": 75,
+        ". . .": 80,
+        "=^=": 75,
+        "Smooth": 98
+      },
+      "rationale": "Electronic, retro-game/synthwave energy; very clear Smooth match."
+    },
+    {
+      "track": {
+        "title": "Daisuke",
+        "artist": "El Huervo"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 15,
+        ". . .": 25,
+        "=^=": 5,
+        "Smooth": 98
+      },
+      "confidence_by_target": {
+        "To 11": 98,
+        "Somber Party": 75,
+        ". . .": 80,
+        "=^=": 75,
+        "Smooth": 98
+      },
+      "rationale": "Atmospheric electronic/synthwave instrumental; near-direct Smooth fit."
+    },
+    {
+      "track": {
+        "title": "Rust",
+        "artist": "El Huervo"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 20,
+        ". . .": 20,
+        "=^=": 5,
+        "Smooth": 95
+      },
+      "confidence_by_target": {
+        "To 11": 95,
+        "Somber Party": 75,
+        ". . .": 78,
+        "=^=": 75,
+        "Smooth": 96
+      },
+      "rationale": "Muted, atmospheric electronic instrumental; strong Smooth fit."
+    },
+    {
+      "track": {
+        "title": "Deep Cover",
+        "artist": "Sun Araw"
+      },
+      "scores": {
+        "To 11": 0,
+        "Somber Party": 50,
+        ". . .": 35,
+        "=^=": 15,
+        "Smooth": 92
+      },
+      "confidence_by_target": {
+        "To 11": 91,
+        "Somber Party": 85,
+        ". . .": 78,
+        "=^=": 75,
+        "Smooth": 93
+      },
+      "rationale": "Psychedelic, hazy, dubby instrumental groove; Smooth first, with some Somber Party mood overlap."
+    },
+    {
+      "track": {
+        "title": "Fantasy Trash Wave",
+        "artist": "TOBACCO"
+      },
+      "scores": {
+        "To 11": 5,
+        "Somber Party": 15,
+        ". . .": 30,
+        "=^=": 30,
+        "Smooth": 90
+      },
+      "confidence_by_target": {
+        "To 11": 92,
+        "Somber Party": 75,
+        ". . .": 82,
+        "=^=": 75,
+        "Smooth": 91
+      },
+      "rationale": "Warped psychedelic electronic texture and pulsing groove; strongest Smooth match, with some darker indie/garage-adjacent character."
+    }
+  ]
+}
