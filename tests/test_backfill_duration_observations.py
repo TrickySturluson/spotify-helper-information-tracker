@@ -146,6 +146,32 @@ class DurationObservationBackfillTests(unittest.TestCase):
         self.assertEqual(report["counts"]["duplicate_legacy_rows"], 1)
         self.assertFalse(report["safe_to_apply"])
 
+    def test_musicbrainz_iso_timestamp_is_normalized_and_backfilled(self):
+        self.song["evidence"]["track_metadata"]["duration_source"] = "MusicBrainz recording"
+        self.write_json(self.song_path, self.song)
+        self.legacy_track.update({
+            "duration_source": "MusicBrainz recording",
+            "musicbrainz_checked_at": "2026-11-01T05:56:59.718644+00:00",
+            "musicbrainz_retry_after": 0,
+        })
+        self.write_legacy([self.legacy_track])
+        report, changes = self.plan()
+        self.assertEqual(report["counts"]["candidate_observations"], 1)
+        observation = next(iter(changes.values()))["evidence"]["track_metadata"]["duration_observations"][0]
+        self.assertEqual(observation["provider"], "musicbrainz")
+        self.assertEqual(observation["checked_at"], "2026-11-01T05:56:59.718644+00:00")
+        self.assertEqual(observation["source"], "MusicBrainz recording")
+
+    def test_naive_iso_timestamp_is_rejected_without_guessing_timezone(self):
+        self.legacy_track.update({
+            "duration_source": "MusicBrainz recording",
+            "musicbrainz_checked_at": "2026-11-01T05:56:59.718644",
+        })
+        self.write_legacy([self.legacy_track])
+        report, changes = self.plan()
+        self.assertEqual(report["counts"]["invalid_timestamp"], 1)
+        self.assertFalse(changes)
+
     def test_malformed_timestamp_is_skipped(self):
         self.legacy_track["metadata_checked_at"] = "not-an-epoch"
         self.write_legacy([self.legacy_track])
