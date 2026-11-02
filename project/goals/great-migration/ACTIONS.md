@@ -1,3 +1,15 @@
+## 2026-11-02 — Duration provenance preview passed; exact backfill queued
+
+- Issue #105 `duration-evidence-preview` completed successfully on latest main (workflow run 41375146233).
+- Scanned all 32 legacy artist shards and 13,005 canonical song records; 11,130 legacy rows.
+- 8,121 rows had valid timestamps and matched canonical songs exactly by alias, duration value, and duration source with `metadata_status=matched`. The plan would add 8,121 append-only duration observations across 8,121 song files.
+- Conflicts: 0 missing aliases, 0 ambiguous aliases, 0 missing song files, 0 duration mismatches, 0 source mismatches, 0 non-matched statuses, 0 conflicting duplicate legacy IDs.
+- Skipped safely: 2,958 unrecognized-provider rows and 51 invalid/missing timestamps. No guesses.
+- `safe_to_apply=true`; provider_requests=0, writes=0, spotify_playlist_writes=0. Preview created no backup and changed no files.
+- Added workflow operation `duration-evidence-apply` to require `--apply --yes`, preserve backup artifact, run post-write health/rollback, and publish only `assistant_data/music/library/`.
+- Issue #106 is queued to apply the 8,121 exact matches. At this entry, no canonical song files have yet been modified.
+- Next: confirm #106 commits successfully and the backup artifact is present; then run independent health/audit and freshness review to measure how many of the 6,613 unknown-age baseline candidates remain. Do not run provider refresh until that post-backfill plan is inspected.
+
 ## 2026-11-02 — Add exact legacy duration-observation provenance recovery
 
 - Investigation of the 6,613 unknown-age duration candidates found a canonical/legacy mismatch: At the Gates — Slaughter of the Soul (`mbid:14c4ff34-27e4-491d-8c65-c1773a1bea46`) has duration 183,000 ms and source `Last.fm track.getInfo` in its canonical song file but no check timestamp; the exact legacy row in `assistant_data/music/artists/shard-18.json` has the same duration/source, `metadata_checked_at=1793324246`, `metadata_status=matched`, `retry_after=0` (2026-10-30T01:37:26Z).
