@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.spotify.playlist_fit_preview import (
-    accepted_profile_for_record, build_preview, index_profiles_by_song, load_candidate_identities, name_album_key, profile_for_record, profile_matches_record, resolve_item_record, spotify_uri,
+    accepted_profile_for_record, attach_context_dimensions, build_preview, index_profiles_by_song, load_candidate_identities, name_album_key, profile_for_record, profile_matches_record, resolve_item_record, spotify_uri,
 )
 
 
@@ -208,6 +208,38 @@ class PlaylistFitPreviewTests(unittest.TestCase):
         cache = {record["id"]: wrong_profile}
         self.assertFalse(profile_matches_record(record, wrong_profile))
         self.assertIsNone(accepted_profile_for_record(record, cache))
+
+
+    def test_artist_and_release_context_stays_scoped_and_separate_from_sound(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "artists").mkdir()
+            (root / "albums").mkdir()
+            (root / "artists" / "artist.json").write_text(json.dumps({
+                "identity": {"artist_mbid": "mbid:artist-1", "identity_quality": "verified"},
+                "evidence": {"source": "Last.fm artist.getTopTags",
+                             "genres": ["garage rock"], "moods": []},
+            }), encoding="utf-8")
+            (root / "albums" / "album.json").write_text(json.dumps({
+                "identity": {"album_mbid": "mbid:album-1"},
+                "evidence": {"source": "Last.fm album.getTopTags",
+                             "album_mbid": "album-1", "identity_verified": True,
+                             "genres": ["blues rock"], "moods": ["brooding"]},
+            }), encoding="utf-8")
+            record = {
+                "id": "source:one",
+                "identity": {"artist": "Artist", "title": "Song", "album": "Album"},
+                "confidence": {"identity": "medium"},
+                "relations": {"artist_path": "artists/artist.json", "album_path": "albums/album.json"},
+            }
+            track = {"dimensions": {"genre": [], "sound": [], "energy": [], "mood": [], "theme": []}}
+            adapted = attach_context_dimensions(track, record, root, {})
+        self.assertEqual([row["scope"] for row in adapted["dimensions"]["genre"]], ["artist", "release"])
+        self.assertEqual(adapted["dimensions"]["genre"][0]["source_family"], "lastfm")
+        self.assertEqual(adapted["dimensions"]["mood"][0]["scope"], "release")
+        self.assertEqual(adapted["dimensions"]["sound"], [])
+        self.assertEqual(adapted["dimensions"]["energy"], [])
+        self.assertEqual(adapted["dimensions"]["theme"], [])
 
 
 if __name__ == "__main__":
