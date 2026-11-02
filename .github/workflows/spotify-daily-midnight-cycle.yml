@@ -39,15 +39,25 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
           test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
           test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
           test -n "$LASTFM_API_KEY" || { echo "Missing LASTFM_API_KEY" >&2; exit 1; }
+      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        id: spotify-secret-writer
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
+          permission-secrets: write
+
       - name: Prepare Spotify token
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
         run: |
           python - <<'PY'
           import os
@@ -67,6 +77,7 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ inputs.force }}
         run: |
