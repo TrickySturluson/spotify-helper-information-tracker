@@ -122,7 +122,7 @@ jobs:
             maintain-preview) python shit.py library maintain --json ;;
             freshness-review) python shit.py library freshness --json --limit 25 --market from_token ;;
             validate-freshness-branch)
-              git fetch origin feature/freshness-baseline-rotation-ci
+              git fetch origin feature/freshness-baseline-rotation-final
               git checkout FETCH_HEAD
               python -m compileall -q scripts compat shit.py
               python -m unittest discover -s tests -t . -v
