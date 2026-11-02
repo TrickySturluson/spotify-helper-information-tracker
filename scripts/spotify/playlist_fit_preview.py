@@ -207,11 +207,16 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
             "artist": track.get("artist") or candidate["artist"],
             "library_record_found": record is not None, "scores_by_target": scores,
         })
+    usable_profiles = sum(1 for target in target_profiles.values() if target["coverage"] > 0)
+    block_reasons = [] if usable_profiles else [
+        "No target profile has usable evidence in any dimension; all candidate fit scores are withheld."
+    ]
     return {
         "schema_version": 1, "model_version": MODEL_VERSION,
-        "status": "read_only_preview_not_for_sorting",
+        "status": "read_only_preview_not_for_sorting" if usable_profiles else "blocked_insufficient_reference_evidence",
         "human_ratings_read": False, "spotify_api_calls": 0, "playlist_writes": 0,
         "candidate_count": len(candidates), "heldout_batch_excluded_from_all_profiles": True,
+        "usable_target_profile_count": usable_profiles, "block_reasons": block_reasons,
         "targets": target_profiles, "results": results,
         "limitations": [
             "Only canonical recording-scoped evidence and exact stable-ID track-profile cache rows are used.",
