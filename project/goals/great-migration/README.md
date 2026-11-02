@@ -24,7 +24,7 @@ Run #21 stale-checkout failure: https://github.com/TrickySturluson/spotify-helpe
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. Before another enrichment pass, inspect current provider checkpoints and PR #78 playability work; submit only one serialized prepare operation at a time. Run a fresh post-enrichment audit, health check, and status against published `main`. Never force-push or blindly resolve conflicts.
 
-Commands: `python shit.py library status`, `preview`, `migrate`, `prepare`, `audit`, `health`, `confidence`.
+Commands: `python shit.py library status`, `preview`, `migrate`, `prepare`, `audit`, `health`, `confidence`. The GitHub issue workflow also exposes `[SHIT LIBRARY] prepare-preview`, which runs `python shit.py library prepare --skip-spotify-refresh` without `--execute`; it is a read-only preflight.
 
 ## Documentation and resume
 
