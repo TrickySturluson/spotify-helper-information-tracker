@@ -105,6 +105,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
           GETSONGBPM_API_KEY: ${{ secrets.GETSONGBPM_API_KEY }}
