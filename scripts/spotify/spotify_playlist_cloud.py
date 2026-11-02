@@ -498,26 +498,21 @@ def main():
     elif action == "booze20_preview":
         # Resolve the user's 20-track dark/playful/chaotic party batch through Spotify's catalogue.
         candidates = [
-            ("DJ Jazzy Jeff & The Fresh Prince", "A Nightmare on My Street"),
-            ("OutKast", "Dracula's Wedding"),
-            ("Whodini", "Freaks Come Out at Night"),
-            ("Geto Boys", "Mind Playing Tricks on Me"),
-            ("Gnarls Barkley", "The Boogie Monster"),
-            ("Nas", "Black Magic"),
-            ("The Prodigy", "Voodoo People"),
-            ("Yeah Yeah Yeahs", "Heads Will Roll - A-Trak Remix"),
-            ("PinkPantheress", "Another Life"),
-            ("Strafe", "Set It Off"),
-            ("Rihanna", "Disturbia"),
-            ("Billie Eilish", "Bury a Friend"),
-            ("Lana Del Rey", "Season of the Witch"),
-            ("Scissor Sisters", "I Can't Decide"),
-            ("Kesha", "Cannibal"),
-            ("Shakira", "She Wolf"),
-            ("Oingo Boingo", "Dead Man's Party"),
-            ("The Specials", "Ghost Town"),
-            ("Siouxsie and the Banshees", "Spellbound"),
-            ("Godsmack", "Voodoo"),
+            ("Nekromantix", "Trick or Treat"),
+            ("HorrorPops", "Walk Like a Zombie"),
+            ("Koffin Kats", "Vampire's Curse"),
+            ("The Creepshow", "Zombies Ate Her Brain"),
+            ("The Cramps", "Human Fly"),
+            ("The Cramps", "Surfin' Dead"),
+            ("Misfits", "Halloween"),
+            ("Misfits", "Halloween II"),
+            ("Creature Feature", "The Greatest Show Unearthed"),
+            ("Creature Feature", "The Netherworld"),
+            ("Reverend Horton Heat", "The Halloween Dance"),
+            ("Nekromantix", "Haunted Cathouse"),
+            ("Misfits", "Return of the Fly"),
+            ("Wednesday 13", "I Walked with a Zombie"),
+            ("Mad Marge and the Stonecutters", "Dial Z for Zombies"),
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
@@ -603,8 +598,8 @@ def main():
             )
         if skipped:
             lines = [
-                f'20-TRACK BATCH NOT STAGED — {p.get("name")} [{pid}]',
-                f'New Spotify matches: {len(resolved)}/20; already present: {len(already_present)}; unmatched/duplicate: {len(skipped)}.',
+                f'15-TRACK HALLOWEEN-THEME BATCH NOT STAGED — {p.get("name")} [{pid}]',
+                f'New Spotify matches: {len(resolved)}/15; already present: {len(already_present)}; unmatched/duplicate: {len(skipped)}.',
                 "No playlist changes have been made. Review the exceptions before staging.",
                 "",
             ]
@@ -624,7 +619,7 @@ def main():
             manager.write(STATE, config)
             manager.audit(event="booze20_previewed", playlist_id=pid, added_count=len(resolved))
             lines = [
-                f'20-TRACK BATCH PREVIEW — {p.get("name")} [{pid}]',
+                f'15-TRACK HALLOWEEN-THEME PREVIEW — {p.get("name")} [{pid}]',
                 f'Current items: {len(current["items"])}; additions: {len(resolved)}; already present: {len(already_present)}; after confirmation: {len(current["items"]) + len(resolved)}.',
                 "No playlist changes have been made.",
                 "",
