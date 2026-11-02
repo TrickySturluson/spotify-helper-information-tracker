@@ -169,3 +169,12 @@ For every item, record status as **not started / in progress / blocked / ready f
 - Run #41408232279 failed in `booze20_preview` due to `NameError: time is not defined`; fixed by importing `time` in `scripts/spotify/spotify_playlist_cloud.py` (commit `5730e78`). No playlist write occurred.
 - Resolved Booze candidates now get persisted to `assistant_data/recommendations/discovery_candidates.json` via `append_candidates`, with a source/context event and audit count. This is discovery evidence, not a claim that the track was listened to or that the canonical Library has completed enrichment.
 - Verify with a fresh live `booze20_preview` run, then inspect candidate rows and compare all proposed additions against the live playlist and removed-track blacklist. Follow any confirmed addition with a new live sequence preview; do not automatically apply reorder operations while confidence remains low.
+
+
+### 2026-11-02 — Discovery-to-Library automation wired; first run pending
+
+- `.github/workflows/enrich-music-metadata.yml` now runs canonical Library sync after metadata enrichment and before summary/analytics generation. It triggers on changes to discovery intake, ingestion, sync code, or its own workflow; the daily scheduled enrichment also includes the merge.
+- `scripts/music/sync_music_library.py` merges Spotify-ID candidates into the canonical Library via `MusicLibrary.put_catalogue`, preserving `discovery_only` and separate discovery evidence; it does not create plays/scrobbles or inferred likes.
+- Sync is audit-gated (`audit.ok` must be true). Initial implementation commits: `0703e77`, metric correction `f5d9b7a`.
+- The baseline test run for `6666be0` passed, but the new workflow integration still needs a live Actions run. Inspect it before calling this complete.
+- Remaining gap: candidate metadata enrichment is bounded by existing provider jobs and may not enrich every discovery-only record in the same cycle. Add explicit coverage reporting/retry queue for discovery-only rows with missing album, duration, tags, lyrics/theme or mood evidence. Do not falsely mark unavailable provider fields as complete.
