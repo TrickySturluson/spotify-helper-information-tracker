@@ -1,3 +1,11 @@
+## 2026-11-02 — Switch to incremental enrichment and parallel feature work
+
+- Decision: the Library is structurally sound enough to support feature development while metadata completeness continues to improve in the background/on demand. Do not block the sorter on filling every field for every song.
+- Execution path: lookup canonical evidence first; reuse local evidence; consult provider-specific retry/cooldown state; make bounded lookups only when eligible; merge with provenance and confidence; re-audit. Keep unknowns explicit.
+- Candidate intake: songs discovered through recommendations or feature use should be captured with source/context and resolved/enriched incrementally, without counting them as plays or explicit preferences.
+- Boundaries: daily credential check and weekly read-only health/freshness monitoring are not automatic metadata enrichment. Retry queue/executor remain unfinished. No Spotify playlist writes authorized.
+- Next: record fresh post-backfill coverage; inspect and evaluate sequencer offline using existing audio/profile/theme data; add tests for missing-data fallback and confidence visibility; implement retry queue separately.
+
 # Canonical Library Enrichment — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
