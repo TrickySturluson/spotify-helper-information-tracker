@@ -34,6 +34,25 @@ jobs:
         run: python shit.py library health --json
       - name: Confidence-audit the full canonical Library (read-only)
         run: python shit.py library confidence --json
+      - name: Plan a bounded freshness sample against the full Library (read-only)
+        run: |
+          python scripts/music/metadata_freshness.py --json --limit 25 > /tmp/metadata-freshness-plan.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("/tmp/metadata-freshness-plan.json").read_text(encoding="utf-8"))
+          assert report["mode"] == "read_only_plan"
+          assert report["provider_requests"] == 0
+          assert report["writes"] == 0
+          assert report["selected_task_count"] <= 25
+          assert not report["errors"], report["errors"][:5]
+          counts = report["counts"]
+          print("Freshness planner scanned", counts["songs_scanned"], "songs,",
+                counts["artists_scanned"], "artists, and", counts["albums_scanned"], "albums;",
+                "profile caches:", counts["track_profile_cache_rows"], "track,",
+                counts["artist_profile_cache_rows"], "artist,", counts["album_profile_cache_rows"], "album;",
+                "selected", report["selected_task_count"], "of", report["due_task_count"], "due tasks.")
+          PY
       - name: Check maintained file documentation
         run: python -m unittest tests.test_script_layout -v
       - name: Run unit tests

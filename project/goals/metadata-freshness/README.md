@@ -43,8 +43,8 @@ A global `freshness_state.json` may track per-provider cursor, last successful p
 
 ## Current status
 
-**Specification / design stage.** Existing enrichment scripts use bounded lookups and checkpoints, but a unified field-level freshness planner and scheduled partial refresh system have not been verified.
+**Read-only planner implemented on draft branch `feature/metadata-freshness-planner`; CI pending.** `scripts/music/metadata_freshness.py` builds a deterministic bounded plan for market-specific Spotify playability and field/provider observations recorded under existing `evidence.track_metadata` check timestamps and the optional `freshness.observations` extension. It reads existing song-level Last.fm/MusicBrainz checked timestamps and duration source, the saved `track_profiles.json`, `artist_profiles.json`, and `album_profiles.json` provider caches (resolved back to canonical entity IDs), source/check timestamps on artist and album evidence, and market-specific Spotify playability. It also respects per-profile retry timestamps and the album-profile provider-wide cooldown. It applies per-field TTLs, skips fresh observations and provider cooldowns (including relative retry-after seconds and Unix retry epochs), reports missing/invalid timestamps rather than inferring freshness from record modification time, and makes no provider requests or writes. It is not yet wired into the native CLI and has no provider executor. Existing PR #78 contains a separate stale-only Spotify playability refresh path; the two must be reconciled before enabling scheduled execution.
 
 ## Resume
 
-Read [ACTIONS.md](ACTIONS.md), inspect provider state/checkpoint formats, and align the freshness planner with the metadata coverage/retry queue rather than creating a competing retry system.
+Read [ACTIONS.md](ACTIONS.md), inspect CI, then align the planner's field observation schema with real provider checkpoint state and the retry queue. Add CLI integration only after validation. Keep planning read-only; build one bounded provider executor only after its plan is deterministic and tests cover cooldowns, budgets, and preserved evidence.
