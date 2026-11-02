@@ -2,18 +2,18 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-01  
+**Last reviewed:** 2026-11-02  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
 ## Critical path
 
-### 1. Great Migration run #17 recovery — RERUN REQUIRED
-- Run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
-- Verified: migration, enrichment pipeline and final runner-side audit completed (13,005 songs; 6,382 artists; 7,861 albums; zero audit errors). Duration coverage 91.1%; 93 acoustic profiles. Publication failed on conflicts in refreshed Spotify playlist snapshots/reference index.
-- Artifact #13104699873 was inspected: rollback backup and run log only; generated Library output was not retained.
-- Fix committed to `main` (`bdf75f7`): prepare skips Spotify snapshot refresh, stages only `assistant_data/music/`, and uploads generated music data/checkpoints with backup and log.
-- Next: trigger a fresh `[SHIT LIBRARY] prepare`; verify publication to `main`; run post-publish audit/status; continue bounded enrichment from durable checkpoints.
-- Safety: no Spotify playlist writes, force-push, or blind conflict resolution.
+### 1. Great Migration — FULL CATALOGUE PUBLISHED; POST-PUBLISH AUDIT PENDING
+- Successful enrichment/publication run #18: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298 (commit c55012f); final runner-side audit passed with zero errors.
+- Current main index: 13,005 songs, 6,386 artists, 7,861 albums; 1,856 Spotify IDs, 11,338 recording MBID aliases, 1,816 ISRCs, 13,003 source-track aliases, 1,428 ambiguous name-candidate aliases.
+- Direct source-index comparison: all 11,130 legacy track-index IDs resolve via source-track ID or recording MBID; all 5,358 legacy artist names are represented. Earlier commits c0f48e9 and 3510953 expanded the PR #49 sample.
+- Run #21 checkpoint-resuming follow-up is in progress: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364361982. Runs #19/#20 were cancelled by the shared one-pending concurrency group.
+- Remaining: wait for #21, then run a separate audit/status against published main; make the legacy source-index coverage check permanent; resolve provider gaps (MusicBrainz rate limits/503s, Last.fm HTTP 400s, optional credentials absent, no lyric features).
+- The run #17 publication failure is superseded by successful #18 publication. No Spotify playlist writes, force-pushes, or blind conflict resolution.
 
 ### 2. Read-only coverage planner — PR #65, tests failing
 - PR: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65 (open draft).
