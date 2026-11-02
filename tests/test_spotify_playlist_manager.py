@@ -109,7 +109,7 @@ class PlaylistManagerTests(unittest.TestCase):
         self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50&additional_types=track,episode")])
         seen.clear()
         self.assertEqual(spotify.items("playlist123", market="from_token"), [])
-        self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50&additional_types=track%2Cepisode&market=from_token")])
+        self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50&additional_types=track,episode&market=from_token")])
         with self.assertRaises(manager.ManagerError):
             spotify.items("playlist123", market="not-a-market")
 
