@@ -1,3 +1,12 @@
+## 2026-11-02 — Validate maintainer against full published catalogue
+
+- Issue #84 preview attempt exposed a direct-script import bug (`ModuleNotFoundError: No module named 'scripts'`); fixed in main commit `86c23e4` by supporting both package and direct-script import contexts.
+- Retried as issue #85; full-catalogue preview passed: `health_ok=true`, 0 health errors, 0 warnings; current/proposed counts match at 13,005 songs, 6,386 artists, 7,861 albums.
+- Existing entity IDs and aliases were all reconstructable: `safe_to_rebuild=true`, `aliases_or_records_that_would_be_lost={}`, no blocking record findings.
+- `repair_needed=false`; no repair was applied, no backup created, no provider requests, no Spotify playlist writes.
+- This validates the maintainer preview against the published full catalogue without mutating it. An actual `--apply --repair-index` remains unnecessary while the current index is healthy.
+- Next: extend health validation to market-aware playability observation consistency and retain preview-only default.
+
 ## 2026-11-02 — Merge safe derived-index maintainer
 
 - PR #80 merged to `main`: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/80
