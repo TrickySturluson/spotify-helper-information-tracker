@@ -8,7 +8,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
 CID=os.environ.get("SPOTIFY_CLIENT_ID","").strip()
-REDIRECT="http://127.0.0.1:8888/callback"
+REDIRECT=os.environ.get("SPOTIFY_REDIRECT_URI", "http://127.0.0.1:8888/callback").strip()
+CALLBACK_HOST=os.environ.get("SPOTIFY_CALLBACK_HOST", "127.0.0.1").strip()
 SCOPES="user-read-private user-library-read playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public"
 TOKEN=Path(".spotify_playlist_token.json")
 CONFIG=Path(".spotify_playlist_manager.json")
@@ -88,7 +89,7 @@ def token_post(data):
         except (ValueError, UnicodeDecodeError):
             detail={}
         if data.get("grant_type")=="refresh_token" and detail.get("error")=="invalid_grant":
-            raise ManagerError("Spotify refresh token is expired, revoked, or invalid. Reauthorize the playlist manager locally, then update the SPOTIFY_REFRESH_TOKEN GitHub Actions secret. Spotify refresh tokens expire after six months; refreshing an access token does not extend that lifetime.") from e
+            raise ManagerError("Spotify rejected the refresh token (invalid_grant). It may be expired, revoked, or an older token invalidated by refresh-token rotation. Reauthorize the playlist manager and update the SPOTIFY_REFRESH_TOKEN GitHub Actions secret; do not repeatedly retry this credential.") from e
         reason=detail.get("error_description") or detail.get("error") or "unknown token error"
         raise ManagerError(f"Spotify token request failed (HTTP {e.code}): {reason}") from e
 def authorize():
@@ -107,7 +108,7 @@ def authorize():
             self.send_response(200 if "code" in result else 400); self.end_headers()
             self.wfile.write(b"Spotify authorization received. You may close this window.")
         def log_message(self,*a): pass
-    try: server=HTTPServer(("127.0.0.1",8888),Callback)
+    try: server=HTTPServer((CALLBACK_HOST,8888),Callback)
     except OSError as e: raise ManagerError("Port 8888 is busy. Stop the playback tracker and retry.") from e
     server.timeout=180; url="https://accounts.spotify.com/authorize?"+q
     print("Opening Spotify authorization:",url); webbrowser.open(url); server.handle_request(); server.server_close()
