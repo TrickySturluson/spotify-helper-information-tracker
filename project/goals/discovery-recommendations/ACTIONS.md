@@ -62,3 +62,11 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Replaced the implicit-membership whitelist regression with sticky-removal coverage and explicit-whitelist override coverage.
 - Snapshot hooks: local manager saves pre/post snapshots for edits and an initial snapshot on creation; cloud playlist edits save post-change snapshots, including partial failures; dedupe saves a post-change snapshot. Snapshot paths are recorded in the audit log.
 - Remaining operational work: wire the removal poll into playlist mutation workflows and a recurring Actions schedule, and ensure snapshots persist as workflow artifacts/committed state. These are not claimed live until verified.
+
+
+## 2026-11-02 — Removal polling and post-cycle snapshots wired into Actions
+
+- Playlist-control workflow now polls every accessible owned playlist after each successful control command and commits both the baseline and removal history with the existing state publication step.
+- Tricky Daily's scheduled workflow now polls all accessible playlists after the daily cycle, then persists the baseline/removal data with cycle state.
+- Tricky Daily now saves and audits a post-mutation snapshot in addition to its pre-change recovery snapshot. Both workflows upload the complete `playlist_backups/` directory as run artifacts (30-day retention).
+- Polling is interval-based, not event-driven: a manual Spotify removal that is undone before the next poll cannot be inferred from Spotify's current playlist snapshot. Repeated removals that persist until a poll are captured.
