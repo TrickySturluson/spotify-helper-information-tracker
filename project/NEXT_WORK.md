@@ -8,12 +8,14 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 ## Immediate resume point — Great Migration
 
-**State: RUNNER-SIDE MIGRATION VERIFIED; PUBLICATION STILL UNVERIFIED. Do not call the migration complete yet.**
+**State: Library structure merged; issue-triggered run #18 is in progress; publication still unverified. Do not call the migration complete yet.**
 
 - Run #17 completed prepare, enrichment and a final integrity audit: 13,005 songs, 6,382 artists, 7,861 albums, zero audit errors. Duration coverage was 91.1%; 93 acoustic profiles were stored.
 - Publication failed because the workflow refreshed/staged Spotify playlist snapshots with the generated Library, causing rebase conflicts. Its artifact contained only the backup and log, not the generated Library.
 - Workflow fix committed to `main` (`bdf75f7`): skip Spotify snapshot refresh, publish only `assistant_data/music/`, and retain generated music data/checkpoints in the artifact.
-- Run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
+- Latest run: [#18](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298) is currently in progress. Validation, checkout, compile and full regression tests passed; Library prepare is still running; publication/artifact steps have not started.
+- Queue warning: runs #19 and #20 were cancelled; #21 is pending. The shared concurrency group retains only one pending run, so submit only one issue-triggered request at a time.
+- Previous failed run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
 - **Next actions:** trigger a fresh `[SHIT LIBRARY] prepare`; inspect the new run/artifact; confirm generated Library and checkpoints publish; run a separate post-publish `audit` and `status`; continue bounded enrichment.
 - No Spotify playlist writes, force-pushes, or blind generated-data conflict resolution.
 
