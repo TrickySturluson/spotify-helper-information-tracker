@@ -26,7 +26,7 @@ These five user-selected playlists are the strong, specific theme references for
 | =^= | [Open playlist](https://open.spotify.com/playlist/0O9ojSstxwa5vQy2V7pO2x) | `playlists/0O9ojSstxwa5vQy2V7pO2x.json` |
 | Smooth | [Open playlist](https://open.spotify.com/playlist/2ICCklgbF6cg0q5p4xAHKi) | `playlists/2ICCklgbF6cg0q5p4xAHKi.json` |
 
-Use these as separate classification targets. Do not collapse them into one general taste profile. User slider ratings against these targets are calibration labels and should be stored with playlist ID, track identity, rating, timestamp and calibration-set version.
+Use these as separate classification targets. Do not collapse them into one general taste profile. Build profiles from current track-level evidence and exclude each candidate (or the entire held-out evaluation batch) from its target profile to prevent membership leakage. The 25-track SHITting Grounds human sliders are exploratory sanity-check observations only: they are not production labels, ground truth, sorting instructions, or training/calibration targets. Keep them in a separate immutable reference file and never feed them into production profile construction or scoring. See [the production playlist-fit model contract](../../project/goals/playlist-intelligence/PLAYLIST_FIT_MODEL.md).
 
 ### Sorter audition destination
 
