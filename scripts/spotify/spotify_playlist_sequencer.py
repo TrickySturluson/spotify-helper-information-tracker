@@ -643,7 +643,8 @@ def transition_report(left, right):
     confidence = "supported" if evidence_count >= 2 and energy_known else "limited"
     label = ("uncertain" if evidence_count == 0 else
              "provisional" if confidence == "limited" else
-             "provisional" if confidence == "limited" else "gentle" if cost < 0.34 else "moderate" if cost < 0.52 else "potential jump")
+             "gentle" if cost < 0.34 else
+             "moderate" if cost < 0.52 else "potential jump")
     return {"cost": round(cost, 4), "label": label,
             "confidence": confidence, "evidence_count": evidence_count,
             "energy_gap": round(gap, 3) if gap is not None else None,
