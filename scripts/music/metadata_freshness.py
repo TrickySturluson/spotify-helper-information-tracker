@@ -200,6 +200,7 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             if provider:
                 _consider(tasks, counts, "song", song_id, record, "duration",
                           provider, checked, POLICIES["duration"], now,
+                          next_check_after=metadata.get(provider + "_retry_after", metadata.get("retry_after")),
                           provider_status=metadata.get(provider + "_status"))
             else:
                 counts["missing_timestamp"] += 1
