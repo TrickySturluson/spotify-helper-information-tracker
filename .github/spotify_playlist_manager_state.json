@@ -238,6 +238,58 @@
     "godsmack|voodoo": {
       "name": "Voodoo",
       "uri": "spotify:track:5uGsG0LfotfWDq6hql4h53"
+    },
+    "nekromantix|trickortreat": {
+      "name": "Trick Or treat",
+      "uri": "spotify:track:3Q9G213iOuM72OWIu86oJH"
+    },
+    "horrorpops|walklikeazombie": {
+      "name": "Walk Like A Zombie",
+      "uri": "spotify:track:0F56U0Bvvjh0QcqG21USyO"
+    },
+    "koffinkats|vampirescurse": {
+      "name": "Vampire's Curse (Acoustic Version)",
+      "uri": "spotify:track:1Vzi0GvTiGWKhLpJP8q314"
+    },
+    "thecreepshow|zombiesateherbrain": {
+      "name": "Zombies Ate Her Brain",
+      "uri": "spotify:track:0O36zwwlB2LxMXvBSC4qec"
+    },
+    "thecramps|humanfly": {
+      "name": "Human Fly",
+      "uri": "spotify:track:0ElRzK07sc9eszyk1ea9Ab"
+    },
+    "thecramps|surfindead": {
+      "name": "Surfin' Dead",
+      "uri": "spotify:track:79Txj2AEYK7Spv3275ZgPk"
+    },
+    "misfits|halloween": {
+      "name": "Halloween",
+      "uri": "spotify:track:5h5reMGNpL19vdn5wMkbNn"
+    },
+    "misfits|halloweenii": {
+      "name": "Halloween II",
+      "uri": "spotify:track:4AYUejlbusnbZY7s2z2C9G"
+    },
+    "creaturefeature|thegreatestshowunearthed": {
+      "name": "The Greatest Show Unearthed",
+      "uri": "spotify:track:5YEkxfNMTHkfoYlh4d1Y7b"
+    },
+    "creaturefeature|thenetherworld": {
+      "name": "The Netherworld",
+      "uri": "spotify:track:62EKjHgJEMoBkL2uhCVHKr"
+    },
+    "nekromantix|hauntedcathouse": {
+      "name": "Haunted Cathouse",
+      "uri": "spotify:track:1WAFh6Q2IVs2OgnAIQFjjC"
+    },
+    "misfits|returnofthefly": {
+      "name": "Return Of The Fly",
+      "uri": "spotify:track:0mWwoJf3MLLZtnHH1VlxPM"
+    },
+    "wednesday13|iwalkedwithazombie": {
+      "name": "I Walked with a Zombie",
+      "uri": "spotify:track:1sh9C3fQEAQ5NLJjUluPhG"
     }
   }
 }

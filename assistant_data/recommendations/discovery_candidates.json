@@ -26,6 +26,58 @@
     }
   },
   {
+    "spotify_id": "5YEkxfNMTHkfoYlh4d1Y7b",
+    "spotify_uri": "spotify:track:5YEkxfNMTHkfoYlh4d1Y7b",
+    "artist": "Creature Feature",
+    "track": "The Greatest Show Unearthed",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "62EKjHgJEMoBkL2uhCVHKr",
+    "spotify_uri": "spotify:track:62EKjHgJEMoBkL2uhCVHKr",
+    "artist": "Creature Feature",
+    "track": "The Netherworld",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "5EuQzakrNyaOLsVS4pi1Az",
     "spotify_uri": "spotify:track:5EuQzakrNyaOLsVS4pi1Az",
     "artist": "DJ Jazzy Jeff & The Fresh Prince",
@@ -156,6 +208,32 @@
     }
   },
   {
+    "spotify_id": "1Vzi0GvTiGWKhLpJP8q314",
+    "spotify_uri": "spotify:track:1Vzi0GvTiGWKhLpJP8q314",
+    "artist": "Koffin Kats",
+    "track": "Vampire's Curse (Acoustic Version)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "5DSi7heBC8eTIFROBvttnp",
     "spotify_uri": "spotify:track:5DSi7heBC8eTIFROBvttnp",
     "artist": "Lana Del Rey",
@@ -182,6 +260,84 @@
     }
   },
   {
+    "spotify_id": "5h5reMGNpL19vdn5wMkbNn",
+    "spotify_uri": "spotify:track:5h5reMGNpL19vdn5wMkbNn",
+    "artist": "Misfits",
+    "track": "Halloween",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4AYUejlbusnbZY7s2z2C9G",
+    "spotify_uri": "spotify:track:4AYUejlbusnbZY7s2z2C9G",
+    "artist": "Misfits",
+    "track": "Halloween II",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0mWwoJf3MLLZtnHH1VlxPM",
+    "spotify_uri": "spotify:track:0mWwoJf3MLLZtnHH1VlxPM",
+    "artist": "Misfits",
+    "track": "Return Of The Fly",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1qpVGPQyd18YJhuY2NeS7e",
     "spotify_uri": "spotify:track:1qpVGPQyd18YJhuY2NeS7e",
     "artist": "Nas",
@@ -194,6 +350,58 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1WAFh6Q2IVs2OgnAIQFjjC",
+    "spotify_uri": "spotify:track:1WAFh6Q2IVs2OgnAIQFjjC",
+    "artist": "Nekromantix",
+    "track": "Haunted Cathouse",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3Q9G213iOuM72OWIu86oJH",
+    "spotify_uri": "spotify:track:3Q9G213iOuM72OWIu86oJH",
+    "artist": "Nekromantix",
+    "track": "Trick Or treat",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -416,6 +624,58 @@
     }
   },
   {
+    "spotify_id": "0ElRzK07sc9eszyk1ea9Ab",
+    "spotify_uri": "spotify:track:0ElRzK07sc9eszyk1ea9Ab",
+    "artist": "The Cramps",
+    "track": "Human Fly",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "79Txj2AEYK7Spv3275ZgPk",
+    "spotify_uri": "spotify:track:79Txj2AEYK7Spv3275ZgPk",
+    "artist": "The Cramps",
+    "track": "Surfin' Dead",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0UzhQhSjlIiNHqozH0tKHl",
     "spotify_uri": "spotify:track:0UzhQhSjlIiNHqozH0tKHl",
     "artist": "The Prodigy",
@@ -454,6 +714,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1sh9C3fQEAQ5NLJjUluPhG",
+    "spotify_uri": "spotify:track:1sh9C3fQEAQ5NLJjUluPhG",
+    "artist": "Wednesday 13",
+    "track": "I Walked with a Zombie",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze20_recommendation_preview",
+        "observed_at": "2026-11-02T08:00:59.434679+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
