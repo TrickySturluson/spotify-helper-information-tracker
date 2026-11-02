@@ -36,15 +36,20 @@ class CloudExecutorTests(unittest.TestCase):
 
     def test_add_operation_uses_manager_batch_helper(self):
         operation = [{"action": "add", "uris": ["spotify:track:abc"]}]
+        sp = Mock()
+        sp.playlists.return_value = [{"id": "playlist123", "name": "Test"}]
+        sp.items.return_value = []
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True), patch.object(
             manager, "add"
         ) as add:
-            cloud.execute(object(), "playlist123", operation)
+            cloud.execute(sp, "playlist123", operation)
         add.assert_called_once_with(unittest.mock.ANY, "playlist123", ["spotify:track:abc"])
 
     def test_restore_replaces_first_page_and_appends_remaining_items(self):
         uris = ["spotify:track:" + str(i) for i in range(205)]
         sp = Mock()
+        sp.playlists.return_value = [{"id": "playlist123", "name": "Test"}]
+        sp.items.return_value = []
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True):
             cloud.replace_playlist(sp, "playlist123", uris)
         sp.call.assert_any_call("PUT", "/playlists/playlist123/items", {"uris": uris[:100]})
@@ -63,10 +68,13 @@ class CloudExecutorTests(unittest.TestCase):
 
     def test_remove_operation_uses_manager_batch_helper(self):
         operation = [{"action": "remove", "uris": ["spotify:track:abc"]}]
+        sp = Mock()
+        sp.playlists.return_value = [{"id": "playlist123", "name": "Test"}]
+        sp.items.return_value = []
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True), patch.object(
             manager, "remove"
         ) as remove:
-            cloud.execute(object(), "playlist123", operation)
+            cloud.execute(sp, "playlist123", operation)
         remove.assert_called_once_with(unittest.mock.ANY, "playlist123", ["spotify:track:abc"])
 
 
