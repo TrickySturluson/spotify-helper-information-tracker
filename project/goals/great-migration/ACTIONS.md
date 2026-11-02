@@ -1,3 +1,19 @@
+## 2026-11-02 — Merge playability health validation and confidence drift classification; run freshness baseline
+
+- PR #87 merged to `main` as `6c9fe067a8af6bc504548bc45e715ed27aa0cea8`. The read-only health checker now validates market-scoped Spotify playability history: observation shape, status/raw boolean consistency, timestamps, market keys, requested/canonical identity, relink continuity, and latest-by-market consistency. Missing playability remains optional; malformed present evidence is an error.
+- PR #88 merged to `main` as `67ab44f17a1c94093e4a71328abded6b80d66455`. Confidence audit now separates missing stored metadata confidence from genuine stored/recomputed mismatches, with per-field counts/examples. It remains read-only.
+- Both PR heads passed the full Daily curator CI (compile, generated-data audit, full-catalogue health/confidence/freshness steps, documentation checks, and tests) and the public repository security scan before merge.
+- Issue #90 `freshness-review` completed successfully on main. It scanned 13,005 songs, 6,386 artists, and 7,861 albums; recognized 1,856 Spotify IDs; saw 1,778 track-profile rows, 3,998 artist-profile rows, and 400 album-profile rows. Results: 8,799 fresh observations, 0 stale/due tasks, 0 missing playability observations, 42,158 missing field/provider timestamps, 1,184 cooldown skips, 0 invalid timestamps, 0 blocked tasks, and 0 errors. The bounded selection was 0/25; provider requests=0 and writes=0.
+- Interpretation: the 42,158 missing-timestamp count is **not** 42,158 confirmed stale fields. Missing/undated evidence is deliberately not aged from file modification times and is not scheduled blindly. The next improvement is to distinguish absent metadata, present-but-undated metadata, and provider attempts with no usable result, then backfill trustworthy observation timestamps from existing checkpoints/cache evidence where possible.
+- Weekly read-only freshness workflow is merged (PR #86); the manual `freshness-review` operation also works. No provider-backed generic metadata executor is enabled.
+- Issue #92 was opened after both merges for a fresh full-catalogue audit/health/confidence verification including the new playability semantic checks and missing-vs-mismatch confidence breakdown. At the time of this entry it had no result comment; completion is not claimed.
+- Spotify playability is stored per song under `evidence.spotify_playability`, market-scoped and append-only. Offline backfill run #82 recorded 3,250 playable and 55 unplayable observations across 1,856 canonical song records from saved snapshots; these are snapshot-time results, not current live availability.
+- No Spotify playlist writes, live provider refreshes, Library repairs, or confidence rewrites were performed in this entry.
+
+**Next:** inspect issue #92; classify undated field coverage and confidence missing/mismatch counts; only then implement a bounded provider-backed executor that consumes durable provider cooldowns/checkpoints. Keep live Spotify playability refresh separately capped (25 default, max 50, 90-day TTL, explicit execute confirmation).
+
+---
+
 ## 2026-11-02 — Verify maintainer against the published catalogue
 
 - Issue #85 full-catalogue `maintain-preview` succeeded after fixing direct-script imports in `library_maintenance.py`.
