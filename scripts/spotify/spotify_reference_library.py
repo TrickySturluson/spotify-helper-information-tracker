@@ -300,6 +300,78 @@ def sync(sp):
     print(f"Catalog: {CATALOG}; history: {HISTORY_DIR}")
 
 
+def backfill_playability_from_snapshots(playlist_dir=None, library_root=None):
+    """Backfill timestamped playability from saved snapshots; makes no Spotify requests."""
+    playlist_dir = Path(playlist_dir or PLAYLIST_DIR)
+    library = MusicLibrary(library_root) if library_root else MusicLibrary()
+    candidates = []
+    stats = {
+        "snapshots": 0, "inaccessible_snapshots": 0, "items_scanned": 0,
+        "observations_found": 0, "already_present": 0, "unmatched": 0,
+        "updated": 0, "backup_path": None, "provider_requests": 0,
+        "spotify_playlist_writes": 0,
+    }
+    for path in sorted(playlist_dir.glob("*.json")):
+        snapshot = manager.read(path, None)
+        if not isinstance(snapshot, dict):
+            continue
+        stats["snapshots"] += 1
+        if snapshot.get("items_accessible") is False:
+            stats["inaccessible_snapshots"] += 1
+        items = snapshot.get("items")
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            stats["items_scanned"] += 1
+            if not isinstance(item, dict) or item.get("type") not in (None, "track"):
+                continue
+            observation = playability_observation(
+                item, snapshot.get("id") or path.stem, snapshot.get("items_snapshot_id") or snapshot.get("snapshot_id"),
+                item.get("playability_checked_at") or snapshot.get("last_items_accessible_at") or snapshot.get("captured_at"),
+                fallback_market=snapshot.get("playability_market") or "from_token",
+                snapshot_accessible=snapshot.get("items_accessible", True),
+            )
+            if not observation or not observation.get("requested_spotify_id"):
+                continue
+            stats["observations_found"] += 1
+            match = library.lookup_song(spotify_id=observation["requested_spotify_id"])
+            if match.get("status") != "matched":
+                stats["unmatched"] += 1
+                continue
+            song_id = match["song_id"]
+            existing = (match.get("record", {}).get("evidence") or {}).get("spotify_playability") or {}
+            if observation in (existing.get("observations") or []):
+                stats["already_present"] += 1
+                continue
+            entry = (library.index.get("songs") or {}).get(song_id) or {}
+            if entry.get("path"):
+                candidates.append((song_id, observation, library.root / entry["path"]))
+
+    if not candidates:
+        return stats
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f")
+    backup_root = library.root.with_name(library.root.name + ".playability-backup-" + timestamp)
+    backed_up = set()
+    for song_id, observation, source_path in candidates:
+        if song_id in backed_up:
+            continue
+        relative = source_path.relative_to(library.root)
+        target = backup_root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_path, target)
+        backed_up.add(song_id)
+    stats["backup_path"] = str(backup_root)
+
+    for song_id, observation, source_path in candidates:
+        result = library.add_spotify_playability_observation(
+            observation["requested_spotify_id"], observation
+        )
+        if result.get("status") == "updated":
+            stats["updated"] += 1
+    return stats
+
+
 def build_health_report(catalog=None, index_tracks=None, index_artists=None):
     """Summarize reference-library completeness and observed feedback coverage."""
     catalog = catalog if catalog is not None else manager.read(CATALOG, {"playlists": []}).get("playlists", [])
