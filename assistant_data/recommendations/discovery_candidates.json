@@ -26,6 +26,58 @@
     }
   },
   {
+    "spotify_id": "6KTXHrliiM0il8gq7AkQPC",
+    "spotify_uri": "spotify:track:6KTXHrliiM0il8gq7AkQPC",
+    "artist": "AFI",
+    "track": "Fall Children",
+    "album": "All Hallows EP",
+    "duration_ms": 192626,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3SckfIVpVUzxajKpTyz1lz",
+    "spotify_uri": "spotify:track:3SckfIVpVUzxajKpTyz1lz",
+    "artist": "Alien Sex Fiend",
+    "track": "Now I'm Feeling Zombiefied",
+    "album": "The Best of Alien Sex Fiend",
+    "duration_ms": 317706,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4SSnFejRGlZikf02HLewEF",
     "spotify_uri": "spotify:track:4SSnFejRGlZikf02HLewEF",
     "artist": "Billie Eilish",
@@ -38,6 +90,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5t4sUPylyiRocqLG7lG2jc",
+    "spotify_uri": "spotify:track:5t4sUPylyiRocqLG7lG2jc",
+    "artist": "Coffin Carousel",
+    "track": "March Of The Dead",
+    "album": "Order Of The Bat",
+    "duration_ms": 177026,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -90,6 +168,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T08:00:59.434679+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "30SIHI5BlW9QjfgGdtjigD",
+    "spotify_uri": "spotify:track:30SIHI5BlW9QjfgGdtjigD",
+    "artist": "Demented Are Go",
+    "track": "Brand New Corpse",
+    "album": "Tangenital Madness",
+    "duration_ms": 156893,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -208,6 +312,32 @@
     }
   },
   {
+    "spotify_id": "4pbhZVYcPpKfksYzmLlvWf",
+    "spotify_uri": "spotify:track:4pbhZVYcPpKfksYzmLlvWf",
+    "artist": "Harley Poe",
+    "track": "Gorehound",
+    "album": "Pagan Holiday",
+    "duration_ms": 216608,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "3JTMWdhcJPiegDSe7SvZS3",
     "spotify_uri": "spotify:track:3JTMWdhcJPiegDSe7SvZS3",
     "artist": "Kesha",
@@ -220,6 +350,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3Auu9Qn6SJtj3m2pSXDvRn",
+    "spotify_uri": "spotify:track:3Auu9Qn6SJtj3m2pSXDvRn",
+    "artist": "Kid Congo & The Pink Monkey Birds",
+    "track": "Haunted Head",
+    "album": "Haunted Head",
+    "duration_ms": 229746,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -272,6 +428,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2aQPNm5EtLWBHsqzNuAdcq",
+    "spotify_uri": "spotify:track:2aQPNm5EtLWBHsqzNuAdcq",
+    "artist": "Love and Rockets",
+    "track": "Haunted When the Minutes Drag",
+    "album": "Seventh Dream of Teenage Heaven",
+    "duration_ms": 481560,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -1092,6 +1274,32 @@
     }
   },
   {
+    "spotify_id": "4TwRAkQUQ3gc3uzO60jXqn",
+    "spotify_uri": "spotify:track:4TwRAkQUQ3gc3uzO60jXqn",
+    "artist": "The Deathtones",
+    "track": "All Hallows Eve",
+    "album": "The American Invasion (Redux)",
+    "duration_ms": 215586,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "54kGnwVw5c1fh9XciEurwT",
     "spotify_uri": "spotify:track:54kGnwVw5c1fh9XciEurwT",
     "artist": "The Fuzztones",
@@ -1104,6 +1312,32 @@
       {
         "source": "booze5_recommendation_preview",
         "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2kYcEUoIa394Bvdi1J916I",
+    "spotify_uri": "spotify:track:2kYcEUoIa394Bvdi1J916I",
+    "artist": "The Hellfreaks",
+    "track": "Boogieman",
+    "album": "Hell Sweet Hell",
+    "duration_ms": 182282,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -1208,6 +1442,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6MUw29wzA834p6Zcs1DSXi",
+    "spotify_uri": "spotify:track:6MUw29wzA834p6Zcs1DSXi",
+    "artist": "The Ruined",
+    "track": "She Must Die",
+    "album": "Hear Lies",
+    "duration_ms": 185600,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T22:37:22.357625+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
