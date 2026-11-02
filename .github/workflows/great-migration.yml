@@ -17,6 +17,7 @@ on:
           - migrate
           - prepare
           - audit
+          - health
           - verify
 
 permissions:
@@ -44,7 +45,7 @@ jobs:
         run: |
           python - <<'PY'
           import json, os
-          allowed = {"status", "preview", "migrate", "prepare", "audit", "verify"}
+          allowed = {"status", "preview", "migrate", "prepare", "audit", "health", "verify"}
           if os.environ["EVENT_NAME"] == "workflow_dispatch":
               command = os.environ.get("DISPATCH_COMMAND", "").strip().lower()
           else:
@@ -108,6 +109,7 @@ jobs:
             migrate) python shit.py library migrate --yes ;;
             prepare) python shit.py library prepare --execute --yes --skip-spotify-refresh ;;
             audit)   python shit.py library audit ;;
+            health)  python shit.py library health --json ;;
           esac 2>&1 | tee shit-library-run.log
           {
             printf '%s\n' '## SHIT Library operation'
