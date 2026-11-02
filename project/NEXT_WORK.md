@@ -195,3 +195,12 @@ Before handing off, update this file and the project log with:
 - Default after any playlist addition: refresh the actual live playlist, verify duplicates/blacklist and identity, run the sequencer preview against the post-add contents, and review the sequence. Sorting is a required follow-through step, but automatic playlist reordering remains confirmation-gated; do not blindly write when transition evidence is low.
 - Booze batch preview now records resolved tracks through `append_candidates` before staging, with an audit event. Fixed a missing `time` import that caused `booze20_preview` to fail before resolution. Needs a fresh workflow run and tests to verify end-to-end.
 - First 15-track recommendation set is being assembled as a review batch; do not assume any item is absent until compared with a fresh live playlist snapshot.
+
+
+## 2026-11-02 — Discovery-to-Library integration wired
+
+- Commit `0703e77` adds a canonical Library sync step to `.github/workflows/enrich-music-metadata.yml` after the metadata enrichment stages and before summary/analytics rebuilds. It runs `scripts/music/sync_music_library.py`, which merges `discovery_candidates.json` into `MusicLibrary.put_catalogue` as `discovery_only` records and preserves the distinction from listening evidence.
+- The workflow now triggers when discovery intake, its ingestion helper, the canonical sync script, or the workflow itself changes. This makes new discovery intake automatically schedule the normal enrichment workflow; the scheduled daily run also refreshes the canonical merge.
+- Commit `f5d9b7a` corrects the audit output to report the Library's `songs` metric. The sync step fails closed if the canonical Library audit is not `ok`.
+- Prior code/data tests on commit `6666be0` passed: compile, generated-data audit, full Library health/confidence checks, freshness-plan and unit tests. The integration workflow itself is now awaiting its first run; do not claim end-to-end verified until that run completes.
+- Next: validate the workflow run and inspect its summary/artifact to confirm discovery-only records landed; then add a small regression test for discovery sync and confirm the post-add live sequence preview path. Do not change Spotify playlists during ingestion.
