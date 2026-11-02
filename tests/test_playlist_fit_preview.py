@@ -39,13 +39,13 @@ class PlaylistFitPreviewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "candidates.json"
             path.write_text(json.dumps({"tracks": [
-                {"uri": "spotify:track:1234567890123456789012", "title": "One", "human_score": 99},
+                {"uri": "spotify:track:1234567890123456789012", "title": "One", "album": "Album", "duration_ms": 180000, "isrc": "USABC2600001", "human_score": 99},
                 {"spotify_id": "1234567890123456789012", "title": "Duplicate"},
                 {"name": "No stable ID", "artist": "Unknown"},
             ]}), encoding="utf-8")
             candidates = load_candidate_identities(path)
         self.assertEqual(len(candidates), 1)
-        self.assertEqual(set(candidates[0]), {"uri", "title", "artist"})
+        self.assertEqual(set(candidates[0]), {"uri", "title", "artist", "album", "duration_ms", "isrc"})
         self.assertNotIn("human_score", candidates[0])
 
     def test_track_cache_joins_through_exact_library_aliases(self):
