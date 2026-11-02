@@ -1,3 +1,13 @@
+## 2026-11-02 — Run first manual read-only freshness review
+
+- Issue #90 `[SHIT LIBRARY] freshness-review` completed successfully against the then-current main branch.
+- Scanned 13,005 songs, 6,386 artists, 7,861 albums; 1,856 Spotify IDs; cache rows: 1,778 track, 3,998 artist, 400 album profiles.
+- Plan: 8,799 fresh, 0 stale, 0 missing playability observations, 42,158 missing field/provider timestamps, 1,184 cooldown skips, 0 invalid timestamps, 0 blocked tasks, 0 errors; 0 selected from the 25-task limit.
+- Explicit side-effect counters: provider_requests=0, writes=0. This was a plan/report only, not an actual provider refresh.
+- The large missing-timestamp count is ambiguous: it includes fields/records without explicit observation timestamps and is not proof they are stale. Current code correctly avoids inferring age from file mtimes, but reporting should split missing metadata, present-but-undated values, provider checks with no data, and retry/negative-cache states.
+- Existing track-profile cache rows have explicit `lastfm_checked_at` on all 1,778 rows; 1,180 rows also have `musicbrainz_checked_at`. The planner should preserve these source-specific timestamps when mapping into canonical song evidence.
+- No provider requests or Library writes were made.
+
 ## 2026-11-02 — Merge native freshness CLI and weekly read-only review
 
 - PR #86 merged to main as `e4ae9b535a74d745b2adb29aed57f7af0afacbe7`.
