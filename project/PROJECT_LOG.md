@@ -53,3 +53,11 @@ Chronological handoff record for substantial project work. New entries go at the
 - **Outcome:** complete / partial / blocked
 - **Next action:**
 - **References:** PRs, commits, workflow runs, issues
+
+
+## 2026-11-02 — GitHub-hosted, PC-independent product requirement
+
+- **User direction:** SHIT is intended to be a feature-rich conversational ChatGPT–Spotify experience that remains available with the user's PC powered off. GitHub is to remain the central project and operations home; local-PC development is not to be used unless explicitly requested.
+- **Documentation:** added the target architecture, central source-of-truth rules, PC-independence acceptance criteria, and current OAuth/token synchronization gap to the Spotify operations guide and project control center.
+- **Verified current boundary:** the playlist-control workflow runs on GitHub Actions. The manager's OAuth callback still uses `127.0.0.1:8888`, and optional playback tracking depends on a local process; these are setup/local-only limits and must not be represented as always-on cloud features.
+- **Decision:** use GitHub branches, pull requests, and Actions as the canonical path for code and remote operations. Treat the local token file as a cache only, never as the Actions credential source of truth. Do not build on the user's PC unless explicitly requested.
