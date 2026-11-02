@@ -8,13 +8,14 @@ This directory contains ID-sharded song records.
 
 ## Spotify playability evidence
 
-When a read-only Spotify snapshot includes playability data, the song record stores it under `evidence.spotify_playability`:
+When a Spotify playlist snapshot includes playability data, the song record stores it under `evidence.spotify_playability`:
 - `observations` preserves timestamped source observations.
-- `latest_by_market` is a convenience view keyed by market; `UNKNOWN` means the response did not establish a market.
-- Each observation can include `is_playable`, status, restriction reason, requested/returned Spotify IDs, relinking information, playlist/source context, and check time.
+- `latest_by_market` is a convenience view keyed by market; `FROM_TOKEN` means Spotify used the authenticated user's account country.
+- Each observation includes `is_playable`, status, restriction reason, requested/returned Spotify IDs, relinking information, playlist/source context, and check time.
+- Status distinguishes `playable`, `unplayable`, `restricted`, and `unknown`. A missing `is_playable` field remains unknown, never false.
+- `linked_from` identifies the originally requested track when Spotify relinks it to another playable recording. The original song record receives the observation; replacement metadata is not merged into the original identity.
+- A saved snapshot that was inaccessible at a later refresh retains its last known observation and timestamp. It is not represented as a fresh successful check.
 
-Playlist addability is not proof of playability. Missing `is_playable` is not false. Results are time-sensitive and market-scoped; never treat an unknown-market observation as a universal availability guarantee.
+Playlist addability is not proof of playback. Playability is market- and time-dependent; a result for the authenticated user's market is not a universal availability guarantee. The reference-library sync explicitly requests `market=from_token`. The offline `backfill-playability` command imports existing snapshot evidence without provider requests and backs up affected song files first.
 
-Stable IDs and aliases are resolved conservatively. Name collisions remain
-candidate lists. Album/artist context never becomes track-specific acoustic
-evidence.
+Stable IDs and aliases are resolved conservatively. Name collisions remain candidate lists. Album/artist context never becomes track-specific acoustic evidence.
