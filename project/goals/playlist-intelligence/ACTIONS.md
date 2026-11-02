@@ -135,3 +135,11 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Execution workflow:** Added `.github/workflows/playlist-fit-preview.yml` to run focused tests and the real-data preview without Spotify credentials, then retain the JSON artifact for 14 days. It runs on relevant PR changes or manual dispatch.
 - **CI:** Main repository PR workflow run `41401453395` passed all stages and **389 unit tests**. The dedicated real-data preview workflow was added after that run and is now awaiting its own result. The public-repository secret-history scan `41401453357` was still running at the last check.
 - **Next:** Verify the dedicated preview workflow and inspect its artifact: candidate-to-Library match rate, per-target profile counts/coverage, confidence tiers and unknown dimensions. Then perform an independent evidence review of the largest boundary errors before any human-score comparison. Keep human scores out of the scoring path and Spotify writes disabled.
+
+
+### Preview workflow diagnostic — 2026-11-02
+
+- **First real-data workflow:** run 41401744033 — focused regression tests passed (20/20), but the preview CLI failed immediately with ModuleNotFoundError: No module named 'scripts'.
+- **Root cause:** direct execution places scripts/spotify/ rather than the repository root on sys.path; importing the scorer as scripts.spotify.playlist_fit_model therefore worked in tests but not in the CLI entry point.
+- **Fix:** the runner now inserts its repository root into sys.path before importing the scorer. No data/schema or scoring behavior changed.
+- **Next verification:** rerun the dedicated preview workflow against the 24-track identity-only held-out batch; inspect the generated artifact and then record exact coverage/results. Do not treat the initial failed run as a scoring failure.
