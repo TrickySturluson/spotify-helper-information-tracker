@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:11.121199+00:00",
+  "captured_at": "2026-11-02T03:58:25.013769+00:00",
   "id": "388CR6TFu3pZZGlMsAXlEy",
   "name": "Social anxiety",
   "description": "",
@@ -1370,5 +1370,7 @@
       },
       "available_markets_count": 0
     }
-  ]
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
 }

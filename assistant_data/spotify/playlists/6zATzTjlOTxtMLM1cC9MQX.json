@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:08.927477+00:00",
+  "captured_at": "2026-11-02T03:58:23.501319+00:00",
   "id": "6zATzTjlOTxtMLM1cC9MQX",
   "name": "Wrapped 2024",
   "description": "",
@@ -2550,5 +2550,7 @@
       },
       "available_markets_count": 0
     }
-  ]
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
 }

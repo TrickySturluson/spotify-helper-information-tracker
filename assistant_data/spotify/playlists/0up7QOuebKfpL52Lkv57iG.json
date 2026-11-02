@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:11.134386+00:00",
+  "captured_at": "2026-11-02T03:58:25.031249+00:00",
   "id": "0up7QOuebKfpL52Lkv57iG",
   "name": "beach tunes ",
   "description": "pog beach music  💪😎👊",
@@ -453,5 +453,7 @@
       },
       "available_markets_count": 0
     }
-  ]
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
 }

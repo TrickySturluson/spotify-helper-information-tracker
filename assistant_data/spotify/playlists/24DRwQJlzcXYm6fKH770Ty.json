@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:09.901195+00:00",
+  "captured_at": "2026-11-02T03:58:24.155856+00:00",
   "id": "24DRwQJlzcXYm6fKH770Ty",
   "name": "This.",
   "description": "",
@@ -17,5 +17,7 @@
   "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
   "last_items_accessible_at": "2026-10-31T09:04:32.897417+00:00",
   "items_snapshot_id": "AAABu432sRyPYFMQKHJu3aY1qx6UilnW",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
   "items": []
 }

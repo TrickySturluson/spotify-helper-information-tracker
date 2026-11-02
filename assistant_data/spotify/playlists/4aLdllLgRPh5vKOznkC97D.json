@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-02T03:58:22.398715+00:00",
+  "id": "4aLdllLgRPh5vKOznkC97D",
+  "name": "SHITting grounds",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAA9FfyfZctmk3RVyZC4ryLH0hsu93",
+  "total_items_reported": 0,
+  "item_count_fetched": 0,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-02T03:58:22.398731+00:00",
+  "items_snapshot_id": "AAAAA9FfyfZctmk3RVyZC4ryLH0hsu93",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
+  "items": []
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:11.122859+00:00",
+  "captured_at": "2026-11-02T03:58:25.015774+00:00",
   "id": "2B3Ie8mcurQaou0BxPBuFe",
   "name": "JUNKER Q",
   "description": "",
@@ -428,5 +428,7 @@
       },
       "available_markets_count": 0
     }
-  ]
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
 }

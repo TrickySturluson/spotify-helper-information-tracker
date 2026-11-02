@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:08.044324+00:00",
+  "captured_at": "2026-11-02T03:58:22.786925+00:00",
   "id": "4yUVHSMQySfWeEowfIMcx7",
   "name": "Tricky Daily",
   "description": "Familiar names. Unexpected detours",
@@ -778,5 +778,7 @@
       },
       "available_markets_count": 0
     }
-  ]
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
 }

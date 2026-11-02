@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:08.042862+00:00",
+  "captured_at": "2026-11-02T03:58:22.783034+00:00",
   "id": "4diIlnF8BlgoJrwUfejf49",
   "name": "Booze or Boos!",
   "description": "Killer tracks, monster grooves, and tunes to die for.",
@@ -10,13 +10,15 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAAA8HFz2aJswRAgysY6EgGA040D6cmB",
-  "total_items_reported": 65,
-  "item_count_fetched": 65,
+  "snapshot_id": "AAAA8bx0/IayXwvWXBdkeCowLo32i5oU",
+  "total_items_reported": 64,
+  "item_count_fetched": 64,
   "items_accessible": true,
   "items_error": null,
-  "last_items_accessible_at": "2026-11-01T14:58:06.369200+00:00",
-  "items_snapshot_id": "AAAA8HFz2aJswRAgysY6EgGA040D6cmB",
+  "last_items_accessible_at": "2026-11-02T03:58:22.783039+00:00",
+  "items_snapshot_id": "AAAA8bx0/IayXwvWXBdkeCowLo32i5oU",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
   "items": [
     {
       "position": 0,
@@ -37,6 +39,10 @@
       "duration_ms": 140320,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782647+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011101794"
@@ -62,6 +68,10 @@
       "duration_ms": 182386,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782667+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "US33X1715406"
@@ -87,6 +97,10 @@
       "duration_ms": 158680,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782674+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "US6X81100096"
@@ -114,6 +128,10 @@
       "duration_ms": 119280,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782681+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "QZMEP2034357"
@@ -139,6 +157,10 @@
       "duration_ms": 284293,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782687+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USSM19912832"
@@ -166,6 +188,10 @@
       "duration_ms": 129063,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782694+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "CALVP2462374"
@@ -191,6 +217,10 @@
       "duration_ms": 158320,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782724+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011101790"
@@ -216,6 +246,10 @@
       "duration_ms": 191960,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782734+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011201869"
@@ -241,6 +275,10 @@
       "duration_ms": 100013,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782741+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USCRB1210019"
@@ -266,6 +304,10 @@
       "duration_ms": 179486,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782747+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011502133"
@@ -291,6 +333,10 @@
       "duration_ms": 123000,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782752+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW010901662"
@@ -316,6 +362,10 @@
       "duration_ms": 175500,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782757+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "QZHN81940640"
@@ -341,6 +391,10 @@
       "duration_ms": 144000,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782761+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011602191"
@@ -366,6 +420,10 @@
       "duration_ms": 167995,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782765+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011201878"
@@ -397,6 +455,10 @@
       "duration_ms": 198049,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782771+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USA371435763"
@@ -422,6 +484,10 @@
       "duration_ms": 221466,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782775+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBF068125080"
@@ -447,6 +513,10 @@
       "duration_ms": 150117,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782784+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW011502123"
@@ -472,6 +542,10 @@
       "duration_ms": 164373,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782789+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "DEW010901660"
@@ -497,6 +571,10 @@
       "duration_ms": 212306,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782794+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USRH11000018"
@@ -524,6 +602,10 @@
       "duration_ms": 142580,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782799+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "TCABA1155345"
@@ -549,6 +631,10 @@
       "duration_ms": 146935,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782803+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19816702"
@@ -574,6 +660,10 @@
       "duration_ms": 142000,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782809+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19816706"
@@ -599,6 +689,10 @@
       "duration_ms": 166333,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782813+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USY1R0001302"
@@ -624,6 +718,10 @@
       "duration_ms": 134293,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782818+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19821415"
@@ -649,6 +747,10 @@
       "duration_ms": 174026,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782822+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19821411"
@@ -674,6 +776,10 @@
       "duration_ms": 127573,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782827+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19816710"
@@ -699,6 +805,10 @@
       "duration_ms": 213219,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782834+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBKPL1808540"
@@ -726,6 +836,10 @@
       "duration_ms": 258084,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782840+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USQE92300060"
@@ -751,6 +865,10 @@
       "duration_ms": 190827,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782846+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBKPL1808545"
@@ -776,6 +894,10 @@
       "duration_ms": 188430,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782853+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "QMFMG2318791"
@@ -801,6 +923,10 @@
       "duration_ms": 205306,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782858+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "AUUM71101239"
@@ -809,31 +935,6 @@
     },
     {
       "position": 31,
-      "added_at": "2026-10-30T20:11:20Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "45qSKVb3rk0CyKCDRqKHga",
-      "uri": "spotify:track:45qSKVb3rk0CyKCDRqKHga",
-      "name": "I Walked with a Zombie",
-      "artists": [
-        "Roky Erickson"
-      ],
-      "artist_ids": [
-        "7hCsRnXtcbez8msLPfjbkz"
-      ],
-      "album": "The Evil One",
-      "album_id": "1zwJz3mlnwjcpxMIXaJerw",
-      "duration_ms": 166160,
-      "is_local": false,
-      "is_playable": true,
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USDEA1309702"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 32,
       "added_at": "2026-10-30T18:12:39Z",
       "added_by": "",
       "type": "track",
@@ -851,6 +952,10 @@
       "duration_ms": 129546,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782862+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "TCAAS1088136"
@@ -858,7 +963,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 33,
+      "position": 32,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -876,6 +981,10 @@
       "duration_ms": 257373,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782866+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USDEA1309703"
@@ -883,7 +992,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 34,
+      "position": 33,
       "added_at": "2026-10-30T18:12:39Z",
       "added_by": "",
       "type": "track",
@@ -903,6 +1012,10 @@
       "duration_ms": 49037,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782871+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "ushm82248953"
@@ -910,7 +1023,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 35,
+      "position": 34,
       "added_at": "2026-10-30T19:36:54Z",
       "added_by": "a_thought",
       "type": "track",
@@ -928,6 +1041,10 @@
       "duration_ms": 176412,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782875+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USQY50967105"
@@ -935,7 +1052,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 36,
+      "position": 35,
       "added_at": "2026-10-30T19:11:09Z",
       "added_by": "a_thought",
       "type": "track",
@@ -953,6 +1070,10 @@
       "duration_ms": 115840,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782880+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USIR38900038"
@@ -960,7 +1081,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 37,
+      "position": 36,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -978,6 +1099,10 @@
       "duration_ms": 172826,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782886+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USRS72919002"
@@ -985,7 +1110,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 38,
+      "position": 37,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1003,6 +1128,10 @@
       "duration_ms": 114546,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782891+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "US25T0611320"
@@ -1010,7 +1139,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 39,
+      "position": 38,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1028,6 +1157,10 @@
       "duration_ms": 127293,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782896+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "TCACM1675461"
@@ -1035,7 +1168,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 40,
+      "position": 39,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1053,6 +1186,10 @@
       "duration_ms": 225093,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782900+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "TCADC1756799"
@@ -1060,7 +1197,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 41,
+      "position": 40,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1078,6 +1215,10 @@
       "duration_ms": 89920,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782907+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "CASE11500160"
@@ -1085,7 +1226,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 42,
+      "position": 41,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1103,6 +1244,10 @@
       "duration_ms": 247053,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782944+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0506109"
@@ -1110,7 +1255,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 43,
+      "position": 42,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1128,6 +1273,10 @@
       "duration_ms": 162506,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782949+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "CASE11500154"
@@ -1135,7 +1284,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 44,
+      "position": 43,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1153,6 +1302,10 @@
       "duration_ms": 126640,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782952+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0329103"
@@ -1160,7 +1313,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 45,
+      "position": 44,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1178,6 +1331,10 @@
       "duration_ms": 169493,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782955+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USEY91302902"
@@ -1185,7 +1342,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 46,
+      "position": 45,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1203,6 +1360,10 @@
       "duration_ms": 192560,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782959+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0329108"
@@ -1210,7 +1371,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 47,
+      "position": 46,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1228,6 +1389,10 @@
       "duration_ms": 196680,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782968+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USEY91202310"
@@ -1235,7 +1400,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 48,
+      "position": 47,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1253,6 +1418,10 @@
       "duration_ms": 180826,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782972+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0329106"
@@ -1260,7 +1429,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 49,
+      "position": 48,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1278,6 +1447,10 @@
       "duration_ms": 172333,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782975+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "US25T0611355"
@@ -1285,7 +1458,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 50,
+      "position": 49,
       "added_at": "2026-10-30T18:15:06Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1305,6 +1478,10 @@
       "duration_ms": 118960,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782979+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USCN38000003"
@@ -1312,7 +1489,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 51,
+      "position": 50,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1330,6 +1507,10 @@
       "duration_ms": 173506,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782982+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USRS72919010"
@@ -1337,7 +1518,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 52,
+      "position": 51,
       "added_at": "2026-10-30T18:15:06Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1357,6 +1538,10 @@
       "duration_ms": 131333,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782986+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USCN38000006"
@@ -1364,7 +1549,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 53,
+      "position": 52,
       "added_at": "2026-10-30T18:12:39Z",
       "added_by": "",
       "type": "track",
@@ -1382,6 +1567,10 @@
       "duration_ms": 234826,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782989+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USA2Z1610843"
@@ -1389,7 +1578,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 54,
+      "position": 53,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1407,6 +1596,10 @@
       "duration_ms": 118400,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782993+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USRS72919009"
@@ -1414,7 +1607,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 55,
+      "position": 54,
       "added_at": "2026-10-30T19:36:54Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1432,6 +1625,10 @@
       "duration_ms": 241440,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.782998+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBAJE8300246"
@@ -1439,7 +1636,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 56,
+      "position": 55,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1457,6 +1654,10 @@
       "duration_ms": 124482,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783002+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBLEF0500002"
@@ -1464,7 +1665,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 57,
+      "position": 56,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1482,6 +1683,10 @@
       "duration_ms": 168080,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783007+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBBLY0604979"
@@ -1489,7 +1694,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 58,
+      "position": 57,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1507,6 +1712,10 @@
       "duration_ms": 236266,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783010+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0402106"
@@ -1514,7 +1723,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 59,
+      "position": 58,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1532,6 +1741,10 @@
       "duration_ms": 151293,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783014+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "GBBLY8800038"
@@ -1539,7 +1752,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 60,
+      "position": 59,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1557,6 +1770,10 @@
       "duration_ms": 185226,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783017+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0402109"
@@ -1564,7 +1781,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 61,
+      "position": 60,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1582,6 +1799,10 @@
       "duration_ms": 221733,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783021+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19821414"
@@ -1589,7 +1810,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 62,
+      "position": 61,
       "added_at": "2026-10-30T20:11:20Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1607,6 +1828,10 @@
       "duration_ms": 130226,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783024+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USHEL0325101"
@@ -1614,7 +1839,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 63,
+      "position": 62,
       "added_at": "2026-10-31T04:05:39Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1632,6 +1857,10 @@
       "duration_ms": 201960,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783027+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USWU30006502"
@@ -1639,7 +1868,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 64,
+      "position": 63,
       "added_at": "2026-10-31T04:07:29Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1657,6 +1886,10 @@
       "duration_ms": 193400,
       "is_local": false,
       "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T03:58:22.783031+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
       "linked_from": null,
       "external_ids": {
         "isrc": "USGF19821209"

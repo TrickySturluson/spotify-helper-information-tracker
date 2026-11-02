@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:10.142414+00:00",
+  "captured_at": "2026-11-02T03:58:24.324580+00:00",
   "id": "0VdggmUS2v9YwRvbL2wJb8",
   "name": "Serving Cunt",
   "description": "",
@@ -17,5 +17,7 @@
   "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
   "last_items_accessible_at": "2026-10-31T09:04:33.143296+00:00",
   "items_snapshot_id": "AAAAeypkJ36cTXxGgEePgpE7teMYbY3y",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
   "items": []
 }

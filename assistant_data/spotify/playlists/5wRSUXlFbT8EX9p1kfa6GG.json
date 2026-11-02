@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-01T22:33:09.637663+00:00",
+  "captured_at": "2026-11-02T03:58:23.972100+00:00",
   "id": "5wRSUXlFbT8EX9p1kfa6GG",
   "name": "FUCK YOU",
   "description": "",
@@ -551,5 +551,7 @@
       },
       "available_markets_count": 0
     }
-  ]
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
 }
