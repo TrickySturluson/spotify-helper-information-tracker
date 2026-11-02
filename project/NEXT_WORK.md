@@ -2,6 +2,19 @@
 
 This is the authoritative session handoff. Read this file first when resuming work, then read [LOOSE_ENDS.md](LOOSE_ENDS.md), [PROJECT_LOG.md](PROJECT_LOG.md), and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
 
+## Current execution strategy — incremental Library, parallel feature work (2026-11-02)
+
+**Decision:** do not block all feature development on completing every metadata field for every recording. The canonical Library's structural baseline is healthy, but metadata coverage/freshness is incomplete. Continue scheduled read-only health/confidence/freshness monitoring and credential checks in the background; pursue feature development in parallel using existing evidence and explicit field-confidence gates.
+
+- For any song/artist/album a feature actually needs, resolve from the canonical Library first. If the requested field is absent or unusable, check local caches/exports and provider-specific retry/cooldown state; fetch only when a suitable provider is available and the match can be verified.
+- Persist successful results with source, checked-at timestamp, match method, status, and confidence through the canonical writer. Failed lookups must not erase good evidence or reset cooldowns.
+- New songs and recommendations enter as candidates with origin/context and identity-resolution state. Do not treat a recommendation as a play, like, or preference signal.
+- Work on the sorter now in offline/read-only mode: inspect its existing implementation, build deterministic evaluation fixtures, measure transition quality and field-confidence behavior, and test with available profiles. Missing data should produce explicit uncertainty/fallbacks, not invented values.
+- This does not authorize playlist writes. Generated-playlist-only scope, lock/ownership checks, preview-before-apply, and explicit authorization remain. Tricky Daily's exception is not blanket permission.
+- Background monitoring is not an automatic enrichment executor: the daily scheduled workflow checks provider credentials; the weekly health workflow is read-only. The retry queue and bounded execution remain separate implementation work.
+
+Immediate parallel work: (1) obtain outstanding post-backfill freshness/health reports, (2) audit and test the current sequencer against existing data, (3) implement the deterministic provider-aware retry queue, and (4) integrate candidate intake with the canonical Library. Do not rerun the Great Migration merely to improve completeness.
+
 ## Cross-project loose-ends register
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
