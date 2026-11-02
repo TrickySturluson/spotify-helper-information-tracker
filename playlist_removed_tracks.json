@@ -29,9 +29,33 @@
           ],
           "album": "",
           "source": "user-confirmed manual removal"
+        },
+        {
+          "name": "Human Fly",
+          "artists": [
+            "The Cramps"
+          ],
+          "uri": "spotify:track:0ElRzK07sc9eszyk1ea9Ab",
+          "source": "user-reported repeated manual removal"
+        },
+        {
+          "name": "Halloween",
+          "artists": [
+            "Misfits"
+          ],
+          "uri": "spotify:track:5h5reMGNpL19vdn5wMkbNn",
+          "source": "user-reported repeated manual removal"
+        },
+        {
+          "name": "Halloween II",
+          "artists": [
+            "Misfits"
+          ],
+          "uri": "spotify:track:4AYUejlbusnbZY7s2z2C9G",
+          "source": "user-reported repeated manual removal"
         }
       ],
-      "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback."
+      "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required."
     }
   }
 }
