@@ -178,3 +178,12 @@ For every item, record status as **not started / in progress / blocked / ready f
 - Sync is audit-gated (`audit.ok` must be true). Initial implementation commits: `0703e77`, metric correction `f5d9b7a`.
 - The baseline test run for `6666be0` passed, but the new workflow integration still needs a live Actions run. Inspect it before calling this complete.
 - Remaining gap: candidate metadata enrichment is bounded by existing provider jobs and may not enrich every discovery-only record in the same cycle. Add explicit coverage reporting/retry queue for discovery-only rows with missing album, duration, tags, lyrics/theme or mood evidence. Do not falsely mark unavailable provider fields as complete.
+
+### Recommendation removal feedback — fix published, CI pending
+
+- **Fixed:** exact playlist-local removed-track filtering is now applied to both curated Booze and legacy horror previews. The discovery helper checks exact artist/title key or Spotify URI. A track currently present in that same playlist is whitelisted before filtering.
+- **Preserved semantics:** Tricky Daily still treats removals as soft scoring penalties; artist-only removal is not a blanket artist blacklist. Curated manual candidate batches hard-skip only exact track/URI removals.
+- **Commits:** `92f86c7`, `ea97b6c`, `7196fdd`. Regression tests cover exact block, URI block, whitelist after re-add, and block while absent.
+- **Data:** Booze has 3 removal records; none match the 15-track batch already added. That earlier batch was resolved before this guard existed; no retroactive filtering claim.
+- **Status:** ready for verification; CI runs #41415718003/#41415724736/#41415730381 pending at last check. Next: inspect final CI, then use a fresh read-only preview to verify live feedback counts.
+
