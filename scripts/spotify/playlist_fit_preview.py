@@ -75,7 +75,18 @@ def load_library_records(root: Path, music_root: Path) -> tuple[dict, dict]:
     cache = read_json(music_root / "track_profiles.json")
     if not isinstance(cache, dict):
         raise ValueError("track_profiles.json must contain an object")
-    return records, cache
+    return records, index_track_profiles(cache)
+
+
+def index_track_profiles(cache: dict) -> dict:
+    """Index cache rows once by their stable recording/source ID."""
+    indexed = {}
+    for key, row in cache.items():
+        if isinstance(row, dict):
+            stable_id = str(row.get("track_id") or key).casefold()
+            if stable_id:
+                indexed[stable_id] = row
+    return indexed
 
 
 def profile_for_record(record: dict, cache: dict) -> dict | None:
@@ -87,11 +98,9 @@ def profile_for_record(record: dict, cache: dict) -> dict | None:
         candidates.append("mbid:" + str(identity["recording_mbid"]).casefold().removeprefix("mbid:"))
     if identity.get("spotify_id"):
         candidates.append("spotify:track:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
-    for key, row in cache.items():
-        if not isinstance(row, dict):
-            continue
-        stable = str(row.get("track_id") or key).casefold()
-        if stable in candidates:
+    for stable in candidates:
+        row = cache.get(stable)
+        if isinstance(row, dict) and str(row.get("track_id") or stable).casefold() == stable:
             return row
     return None
 
@@ -105,13 +114,13 @@ def load_reference_targets(spotify_root: Path) -> dict:
         if not isinstance(role, dict) or role.get("role") != "sorter_calibration_target":
             continue
         relative = role.get("snapshot_record")
-        if not relative:
-            raise ValueError(f"target {playlist_id} has no snapshot path")
-        path = REPO_ROOT / relative
-        # Respect a custom data root when the normal repository-relative path is used.
-        if not path.exists():
-            path = spotify_root / "playlists" / f"{playlist_id}.json"
+        expected_name = f"{playlist_id}.json"
+        if not relative or Path(str(relative)).name != expected_name:
+            raise ValueError(f"target {playlist_id} has an invalid snapshot path")
+        path = spotify_root / "playlists" / expected_name
         snapshot = read_json(path)
+        if str(snapshot.get("id") or "") != playlist_id:
+            raise ValueError(f"snapshot identity mismatch for target {playlist_id}")
         items = snapshot.get("items") if isinstance(snapshot, dict) else None
         reported = snapshot.get("total_items_reported")
         fetched = snapshot.get("item_count_fetched")
