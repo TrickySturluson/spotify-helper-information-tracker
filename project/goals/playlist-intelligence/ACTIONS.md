@@ -61,3 +61,16 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Limitations:** No direct playback, audio waveform analysis, or Spotify audio-feature retrieval was available in this pass. The report uses cited external textual evidence and existing library metadata; it is not a claim of having listened to the recordings.
 - **Human labels:** Not accessed during this verification pass. Original predictions and human rating records were not modified. No Spotify playlist contents were changed.
 - **Next action:** Obtain track-level audio evidence for Hakdo, MARBLE HALLS and other boundary cases; then run a genuinely held-out blind batch with test tracks removed from reference profiles before making any calibration changes.
+
+
+## 2026-11-02 — Production playlist-fit model contract and human-score separation
+
+- **Purpose:** Turn the five-axis model recommendations into a durable production contract and correct the status of the first human-rating experiment.
+- **Decision:** The 25 SHITting Grounds human slider ratings are exploratory sanity-check observations only. They are not ground truth, production labels, training data, a sorting recipe, or a calibration target. The original rating and comparison artifacts remain preserved and must not be imported into production scoring/profile construction.
+- **New specification:** `project/goals/playlist-intelligence/PLAYLIST_FIT_MODEL.md`. Defines independent Genre / Sound / Energy / Mood / Theme dimensions; default starting blend (explicitly untrained); profile distributions and candidate exclusion; field/scope/source provenance; independent confidence and missing-data treatment; decision boundaries; 15 production acceptance tests; implementation sequence.
+- **Reference guide correction:** `assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md` now states that human scores are exploratory observations and that candidates/held-out batches must be excluded from reference profiles.
+- **Goal handoff:** `project/goals/playlist-intelligence/README.md` links the contract and explicitly distinguishes current sequencer infrastructure from the not-yet-implemented five-axis fit classifier.
+- **Repository inspection:** Existing `scripts/spotify/spotify_playlist_sequencer.py` already separates acoustic energy, semantic score, mood scope, genre/theme groups and transition confidence. It does not yet implement per-target five-axis playlist-fit scoring. Existing `playlist_feedback_calibration.py` is a separate, conservative feedback ledger and must not ingest the exploratory slider dataset.
+- **Outcome:** Documentation and methodology guardrails committed. No classifier code or weights changed; no human ratings modified; no Spotify playlist reads/writes performed in this step.
+- **Next action:** Implement the profile builder and five-axis scorer as a separate read-only module; add synthetic regression tests for dimension isolation, missingness, duplicate sources, identity ambiguity, contradictions, candidate/holdout leakage, thin profiles, instrumental tracks, determinism and human-score non-import. Then run held-out evidence evaluation before enabling preview recommendations.
+- **Commits:** model contract `f6f996cedc5bd212505715c441d66576a512697c`; reference guide `c3786ad2c0507fdd1d43247fe8d85769c748686f`; goal README `b2315b4cc05a3b719b88c18b59b74a00e84deaa0`.
