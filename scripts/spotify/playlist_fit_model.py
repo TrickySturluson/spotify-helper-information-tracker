@@ -22,8 +22,17 @@ CONFIDENCE_RANK = {"unknown": 0, "low": 1, "medium": 2, "high": 3}
 
 
 def _identity(track: dict) -> str:
-    return str(track.get("uri") or track.get("recording_mbid") or
-               f"{track.get('artist', '').casefold()}|{track.get('title', '').casefold()}")
+    raw = str(track.get("uri") or track.get("recording_mbid") or "")
+    value = raw.strip().casefold()
+    if value.startswith("spotify:track:"):
+        return "spotify:" + value.rsplit(":", 1)[-1]
+    if value.startswith("http") and "open.spotify.com/track/" in value:
+        return "spotify:" + value.split("/track/", 1)[1].split("?", 1)[0]
+    if value.startswith("mbid:"):
+        return value
+    if value and len(value) == 22 and value.isalnum():
+        return "spotify:" + value
+    return value or f"{track.get('artist', '').casefold()}|{track.get('title', '').casefold()}"
 
 
 def _observations(track: dict, dimension: str) -> list[dict]:
