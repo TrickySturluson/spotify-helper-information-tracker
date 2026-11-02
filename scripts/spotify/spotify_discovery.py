@@ -264,7 +264,17 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
             playlist_feedback = (payload.get("playlists") or {}).get(playlist_id, {})
+            if not isinstance(payload, dict) or not isinstance(payload.get("playlists", {}), dict):
+                raise ValueError("invalid playlist removal feedback schema")
+            if not isinstance(playlist_feedback, dict):
+                raise ValueError("invalid playlist feedback entry")
             whitelist_rows = playlist_feedback.get("whitelisted") or []
+            records = playlist_feedback.get("removed") or []
+            if not isinstance(whitelist_rows, list) or not isinstance(records, list):
+                raise ValueError("removed/whitelisted feedback must be lists")
+            # An explicit whitelist is positive, playlist-local evidence. It is
+            # stronger than mere artist representation and can clear only the
+            # matching removal identity.
             whitelist_uris = {
                 row.get("uri") for row in whitelist_rows
                 if isinstance(row, dict) and row.get("uri")
@@ -278,7 +288,6 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
                 name = row.get("name") or row.get("track", "")
                 if artist and name:
                     whitelist_keys.add(track_key(artist, name))
-            records = playlist_feedback.get("removed") or []
             for row in records:
                 if not isinstance(row, dict):
                     continue
@@ -295,9 +304,12 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
                         "uri": uri, "key": key, "artist": norm(artist),
                         "name": norm(name),
                     })
-        except (OSError, ValueError, TypeError):
-            removed = []
-            whitelisted_count = 0
+        except (OSError, ValueError, TypeError) as error:
+            # Never silently disable the blacklist because its source is corrupt.
+            raise RuntimeError(
+                f"Playlist removal feedback is unreadable or invalid ({path}); "
+                "recommendation generation stopped rather than ignoring exclusions."
+            ) from error
 
     daily_evidence = {}
     daily_path = Path("assistant_data/spotify/daily_feedback.json")
@@ -333,6 +345,8 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
         "current_uris": current_uris,
         "current_keys": current_keys,
         "positive_artists": positive_artists,
+        "positive_keys": whitelist_keys if path.is_file() and playlist_id else set(),
+        "positive_uris": whitelist_uris if path.is_file() and playlist_id else set(),
         "negative_artists": negative_artists,
         "negative_keys": negative_keys,
         "negative_uris": negative_uris,
@@ -372,7 +386,13 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
         (weights["exact_removal"] if removed_exact or removed_uri else 0.0)
         + min(removed_artist_count, weights["artist_removal_cap"]) * weights["artist_removal"],
     )
+    explicit_positive = (
+        track_key(artist, name) in feedback.get("positive_keys", set())
+        or (uri and uri in feedback.get("positive_uris", set()))
+    )
     feedback_bonus = min(weights["positive_cap"], positive_artist_count * weights["positive_artist"])
+    if explicit_positive:
+        feedback_bonus += weights.get("exact_whitelist", 0.10)
     post_add_saved = daily.get("liked") is True and daily.get("liked_at_add") is False
     if post_add_saved:
         feedback_bonus += 0.06
@@ -443,6 +463,10 @@ def build_discovery_recommendations(
             uri = track.get("uri")
             if not isinstance(uri, str) or not uri.startswith("spotify:track:") or uri in existing_uris:
                 continue
+            # Exact manual removals are hard exclusions in every discovery
+            # path, not merely a score penalty that a strong similarity can beat.
+            if is_playlist_candidate_blocked(artist, track["name"], uri, feedback):
+                continue
             key = track_key(artist, track["name"])
             score, plays, last, is_liked = candidate_score(
                 track, artist_row["similarity"], familiarity, liked_keys, today, feedback
@@ -483,7 +507,9 @@ def build_discovery_recommendations(
                 "popularity": track.get("popularity"),
                 "positive_artist_count": feedback.get("positive_artists", {}).get(norm(artist), 0),
                 "removed_artist_count": feedback.get("negative_artists", {}).get(norm(artist), 0),
-                "removed_exact": key in feedback.get("negative_keys", set()) or uri in feedback.get("negative_uris", set()),
+                "removed_exact": False,
+                "whitelisted": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
+                "positive_exact": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
             }
             row["confidence"] = intelligence.recommendation_confidence(
                 row["similarity"], row["supporting_seeds"]
