@@ -67,6 +67,27 @@ class LibraryConfidenceAuditTests(unittest.TestCase):
             self.assertEqual(report["field_coverage"]["duration"], 1)
             self.assertEqual(before, after)
 
+    def test_missing_confidence_is_separated_from_incorrect_stored_confidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "library"
+            music = Path(directory) / "music"
+            (music / "indexes").mkdir(parents=True)
+            metadata = {"duration_ms": 1800, "duration_source": "lastfm"}
+            write_song(root, "source:missing", "source_track_id", metadata, stored_metadata={})
+            write_song(root, "source:mismatch", "source_track_id", metadata,
+                       stored_metadata={"duration": {"confidence": "high"}})
+            (root / "library_index.json").write_text(json.dumps({
+                "artists": {}, "name_candidates": {},
+            }), encoding="utf-8")
+            (music / "indexes" / "tracks.json").write_text("{}", encoding="utf-8")
+            (music / "indexes" / "artists.json").write_text("{}", encoding="utf-8")
+            report = inspect_confidence(root, music)
+            self.assertEqual(report["metadata_confidence_drift_count"], 2)
+            self.assertEqual(report["metadata_confidence_missing_count"], 1)
+            self.assertEqual(report["metadata_confidence_missing_by_field"], {"duration": 1})
+            self.assertEqual(report["metadata_confidence_mismatch_count"], 1)
+            self.assertEqual(report["metadata_confidence_mismatch_by_field"], {"duration": 1})
+
     def test_confidence_drift_is_reported_not_rewritten(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "library"
