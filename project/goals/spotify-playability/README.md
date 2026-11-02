@@ -59,6 +59,10 @@ A song without a Spotify ID has no Spotify playability observation; do not assig
 
 These are **snapshot-time observations**, not a guarantee of current playback availability. A later bounded refresh should recheck stale records. The refresh planner defaults to 25 songs, uses a 90-day freshness interval, caps at 50 individual Get Track requests, and is dry-run by default. Live requests require explicit execute confirmation.
 
+
+
+**Post-backfill validation:** PR #87 merged the health-check rules for playability observation shape, market keys, status/raw boolean consistency, timestamps, requested/relinked IDs, and latest-by-market pointers. Issue #92 validated the full published catalogue with zero health errors/warnings; the populated 3,305-observation history passed. The song-level observation remains snapshot-time evidence and is never treated as a timeless boolean. The bounded live Get Track refresh is available as a dry-run-first planner (25 default, max 50, 90-day TTL), but no live playability API refresh has yet been executed.
+
 ## Resume
 
 Read [ACTIONS.md](ACTIONS.md), Run a post-backfill audit/health/confidence check on published main. Then inspect the bounded stale-only refresh plan and current account-market behavior before executing any live Spotify requests.
