@@ -134,3 +134,13 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Historical discovery-library entries are intake history, not an eligibility queue. Every candidate must pass current exact-URI / normalized artist-title playlist removal checks and current membership checks before being staged.
 - No Spotify playlist changes are made by staging. Confirmation remains a separate explicit operation, and must reject stale playlist snapshots or locked targets.
 - Follow-up: bring any remaining preview-like command paths into this same report contract, then add regression tests for READY/BLOCKED reports and locked read-only staging.
+
+
+## 2026-11-02 — Refresh removal history before staging and confirmation
+
+- **Root cause confirmed from the GitHub Actions state diff:** the Booze ten-track operation added *Where Eagles Dare* at 16:42 UTC; the post-command removal poll then observed the item missing and added its exact URI to `playlist_removed_tracks.json`. Later staging could use an out-of-date removal file because removal polling ran only after command execution.
+- **Workflow correction:** strict recommendation previews now poll the exact target playlist before candidate resolution. Targeted polling fails the workflow if that playlist cannot be read, so a stale blacklist cannot silently pass.
+- **Confirmation correction:** pending recommendation adds retain exact artist/title/URI metadata and are checked against freshly refreshed removal history again before the first Spotify write. Legacy pending previews without metadata fail closed and require a new stage.
+- **Consistency correction:** Booze URI, horror-expansion, and Tricky Daily read-only previews are usable while locked; the separate confirmation path still requires unlock. Remaining preview reports now use the shared staging headings and disclose blacklist results.
+- **Regression coverage:** the current Booze history must reject the exact *Where Eagles Dare* URI; pending confirmation rejects new removal conflicts; targeted refresh fails when the exact playlist is unavailable.
+- **Scope:** staging remains read-only with respect to Spotify. No playlist write was performed by this fix.

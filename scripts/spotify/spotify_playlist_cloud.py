@@ -22,6 +22,7 @@ from scripts.music.discovery_ingestion import append_candidates
 STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
 CONTROL_ISSUE_TITLE = "SHIT — Playlist Control"
+REMOVAL_GUARDED_KINDS = {"booze5", "booze10", "booze20", "horror_expansion", "daily"}
 
 DAILY_DESCRIPTIONS = [
     "Could be worse. Could be quiet.",
@@ -87,6 +88,27 @@ def pending_state_matches(playlist, pending, current_snapshot=None):
             and snapshot_uris(current_snapshot) == pending.get("expected_uris")
         )
     return playlist.get("snapshot_id") == pending.get("snapshot_id")
+
+
+def pending_removal_conflicts(pending, feedback):
+    """Return pending hard-blacklisted candidates that must not be added."""
+    import spotify_discovery as discovery
+    candidates = pending.get("candidate_tracks")
+    if not isinstance(candidates, list) or not candidates:
+        return ["pending preview has no candidate metadata; stage it again"]
+    conflicts = []
+    for row in candidates:
+        if not isinstance(row, dict):
+            conflicts.append("invalid pending candidate metadata; stage it again")
+            continue
+        artist = row.get("artist")
+        title = row.get("title") or row.get("track")
+        uri = row.get("uri")
+        if not all(isinstance(value, str) and value for value in (artist, title, uri)):
+            conflicts.append("incomplete pending candidate metadata; stage it again")
+        elif discovery.is_playlist_candidate_blocked(artist, title, uri, feedback):
+            conflicts.append(f"{artist} — {title} [{uri}]")
+    return conflicts
 
 
 def completed_state_matches(playlist, completed, current_snapshot):
@@ -535,7 +557,7 @@ def main():
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
-        resolved, skipped = [], []
+        resolved, skipped, blocked = [], [], []
         for artist, title in candidates:
             if len(resolved) >= 5:
                 break
@@ -558,7 +580,7 @@ def main():
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
                 continue
             if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
-                skipped.append(f"{artist} — {title} (blocked by playlist removal history)")
+                blocked.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
                 continue
             if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
                 skipped.append(f"{artist} — {title} (already present or duplicate)")
@@ -572,12 +594,13 @@ def main():
             lines = [
                 f'STAGING REPORT — {p.get("name")} [{pid}]',
                 "STATUS: BLOCKED — incomplete batch; nothing is staged for confirmation.",
-                f'Eligible: {len(resolved)}/5 | Blacklist blocked: 0 | Other exclusions: {len(skipped)}.',
+                f'Eligible: {len(resolved)}/5 | Blacklist blocked: {len(blocked)} | Other exclusions: {len(skipped)}.',
                 "Spotify changes: NONE.",
                 "ELIGIBLE:",
             ]
             lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in resolved)
-            lines.append("BLACKLISTED: none identified.")
+            lines.append("BLACKLISTED (sticky removal; explicit whitelist required):")
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in blocked)
             lines.append("OTHER EXCLUSIONS:")
             lines.extend(f'  {row}' for row in skipped)
             result = "\n".join(lines)
@@ -597,6 +620,10 @@ def main():
                 "snapshot_id": p.get("snapshot_id"),
                 "expected_uris": snapshot_uris(current),
                 "confirmation": confirmation, "kind": "booze5",
+                "candidate_tracks": [
+                    {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                    for row in resolved
+                ],
             }
             manager.write(STATE, config)
             manager.audit(
@@ -608,10 +635,15 @@ def main():
                 "STATUS: READY FOR REVIEW",
                 f'Current items: {len(current["items"])} | Staged additions: 5 | After confirmation: {len(current["items"]) + 5}.',
                 f'New candidates saved to the SHIT discovery library: {intake["unique_candidates"]}.',
+                f'Blacklist blocked: {len(blocked)} | Other exclusions: {len(skipped)}.',
                 "Spotify changes: NONE — confirmation is required.",
                 "",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
+            lines.append("BLACKLISTED (sticky removal; explicit whitelist required):")
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in blocked)
+            lines.append("OTHER EXCLUSIONS:")
+            lines.extend(f'  {row}' for row in skipped)
             lines.extend(["", "To add these exact five tracks, submit confirm with this one-time code:", confirmation])
             result = "\n".join(lines)
     elif action == "booze10_preview":
@@ -724,6 +756,10 @@ def main():
                 "snapshot_id": p.get("snapshot_id"),
                 "expected_uris": snapshot_uris(current),
                 "confirmation": confirmation, "kind": "booze10",
+                "candidate_tracks": [
+                    {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                    for row in resolved
+                ],
             }
             manager.write(STATE, config)
             manager.audit(
@@ -886,6 +922,10 @@ def main():
                 "snapshot_id": p.get("snapshot_id"),
                 "expected_uris": snapshot_uris(current),
                 "confirmation": confirmation, "kind": "booze20",
+                "candidate_tracks": [
+                    {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                    for row in resolved
+                ],
             }
             manager.write(STATE, config)
             manager.audit(event="booze15_previewed", playlist_id=pid, added_count=len(resolved))
@@ -958,15 +998,14 @@ def main():
             fail("Rejected: tracks must be a non-empty list of at most 50 track records.")
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing edits.")
+        # This is a read-only stage; the separate confirmation path enforces unlock.
         current = manager.snapshot(sp, p)
         import spotify_discovery as daily
         feedback = daily.load_playlist_feedback(current["items"], pid)
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
-        resolved, already_present, seen = [], [], set()
+        resolved, already_present, blocked, seen = [], [], [], set()
         for row in tracks:
             if not isinstance(row, dict) or set(row) != {"artist", "title", "uri"}:
                 fail("Rejected: each track must contain exactly artist, title, and uri.")
@@ -990,11 +1029,25 @@ def main():
                     f"Spotify returned {', '.join(a.get('name', '') for a in metadata.get('artists', []))} "
                     f"— {metadata.get('name')}."
                 )
+            if daily.is_playlist_candidate_blocked(artist, metadata.get("name"), uri, feedback):
+                blocked.append({"artist": artist, "track": metadata.get("name"), "uri": uri})
+                continue
             if uri in existing:
                 already_present.append(f"{artist} — {metadata.get('name')}")
             else:
                 resolved.append({"artist": artist, "track": metadata.get("name"), "uri": uri})
-        if not resolved:
+        if blocked:
+            lines = [
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: BLOCKED — at least one requested track is in sticky removal history; nothing is staged.",
+                f'Eligible: 0/{len(tracks)} | Blacklist blocked: {len(blocked)} | Already present: {len(already_present)}.',
+                "Spotify changes: NONE.",
+                "BLACKLISTED (sticky removal; explicit whitelist required):",
+            ]
+            lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in blocked)
+            lines.extend(f"ALREADY PRESENT: {row}" for row in already_present)
+            result = "\n".join(lines)
+        elif not resolved:
             result = f'URI BATCH CHECKED — {p.get("name")} [{pid}]\nAll verified tracks are already present; no changes were staged.'
         else:
             operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
@@ -1004,20 +1057,29 @@ def main():
                 "snapshot_id": p.get("snapshot_id"),
                 "expected_uris": snapshot_uris(current),
                 "confirmation": confirmation, "kind": "booze20",
+                "candidate_tracks": [
+                    {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                    for row in resolved
+                ],
             }
             manager.write(STATE, config)
             manager.audit(event="booze20_uri_previewed", playlist_id=pid, added_count=len(resolved))
             lines = [
-                f'URI BATCH PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; verified additions: {len(resolved)}; already present: {len(already_present)}; after confirmation: {len(current["items"]) + len(resolved)}.',
-                "No playlist changes have been made.",
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: READY FOR REVIEW",
+                f'Current items: {len(current["items"])} | Staged additions: {len(resolved)} | After confirmation: {len(current["items"]) + len(resolved)}.',
+                f'Already present: {len(already_present)} | Blacklist blocked: 0 | Other exclusions: 0.',
+                "Spotify changes: NONE — confirmation is required.",
                 "",
+                "STAGED (verified exact Spotify identity and removal history):",
             ]
             lines.extend(
                 f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]'
                 for index, row in enumerate(resolved, 1)
             )
-            lines.extend(f"Already present: {row}" for row in already_present)
+            lines.append("BLACKLISTED (sticky removal; explicit whitelist required): none.")
+            lines.append("OTHER EXCLUSIONS:")
+            lines.extend(f"  Already present: {row}" for row in already_present)
             lines.extend([
                 "",
                 "To add these exact verified tracks, submit confirm with this one-time code:",
@@ -1075,13 +1137,14 @@ def main():
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before requesting the horror expansion.")
+        # Preview is read-only; confirmation still requires an unlocked playlist.
         current = manager.snapshot(sp, p)
+        import spotify_discovery as daily
+        feedback = daily.load_playlist_feedback(current["items"], pid)
         existing = {item.get("uri") for item in current["items"] if item.get("uri")}
         def music_key(value):
             return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
-        resolved, skipped = [], []
+        resolved, skipped, blocked = [], [], []
         for artist, title in candidates:
             query = urllib.parse.urlencode({
                 "type": "track", "limit": 10,
@@ -1101,7 +1164,7 @@ def main():
                 skipped.append(f"{artist} — {title} (no exact Spotify match)")
                 continue
             if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
-                skipped.append(f"{artist} — {title} (blocked by this playlist's removal history)")
+                blocked.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
                 continue
             if match["uri"] in existing or any(row["uri"] == match["uri"] for row in resolved):
                 skipped.append(f"{artist} — {title} (already in playlist or duplicate)")
@@ -1111,10 +1174,12 @@ def main():
             lines = [
                 f'HORROR EXPANSION NOT STAGED — {p.get("name")} [{pid}]',
                 f'Exact Spotify matches: {len(resolved)}/{len(candidates)}; existing/duplicate/unmatched: {len(skipped)}.',
+                f'Blacklist blocked: {len(blocked)}.',
                 "No playlist changes have been made. The expansion requires all requested tracks to resolve cleanly.",
                 "",
             ]
             lines.extend(f"FOUND: {row['artist']} — {row['track']}" for row in resolved)
+            lines.extend(f"BLACKLISTED: {row['artist']} — {row['track']} [{row['uri']}]" for row in blocked)
             lines.extend(f"SKIPPED: {row}" for row in skipped)
             result = "\n".join(lines)
         else:
@@ -1125,16 +1190,25 @@ def main():
                 "snapshot_id": p.get("snapshot_id"),
                 "expected_uris": snapshot_uris(current),
                 "confirmation": confirmation, "kind": "horror_expansion",
+                "candidate_tracks": [
+                    {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                    for row in resolved
+                ],
             }
             manager.write(STATE, config)
             manager.audit(event="horror_expansion_previewed", playlist_id=pid, added_count=len(resolved))
             lines = [
-                f'HORROR EXPANSION PREVIEW — {p.get("name")} [{pid}]',
-                f'Current items: {len(current["items"])}; additions: {len(resolved)}; after confirmation: {len(current["items"]) + len(resolved)}.',
-                "No playlist changes have been made.",
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: READY FOR REVIEW",
+                f'Current items: {len(current["items"])} | Staged additions: {len(resolved)} | After confirmation: {len(current["items"]) + len(resolved)}.',
+                f'Blacklist blocked: 0 | Other exclusions: 0.',
+                "Spotify changes: NONE — confirmation is required.",
                 "",
+                "STAGED (passed exact removal, duplicate and Spotify identity checks):",
             ]
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
+            lines.append("BLACKLISTED (sticky removal; explicit whitelist required): none.")
+            lines.append("OTHER EXCLUSIONS: none.")
             lines.extend(["", "To add these exact tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
             result = "\n".join(lines)
     elif action == "daily_preview":
@@ -1143,8 +1217,7 @@ def main():
         p = owned_playlist(sp, pid, me)
         if p.get("name", "").strip().casefold() != "tricky daily":
             fail("Blocked: daily_preview is restricted to the playlist named Tricky Daily.")
-        if not manager.unlocked(pid):
-            fail("Blocked: Tricky Daily is LOCKED. Unlock it explicitly before requesting a daily preview.")
+        # Preview is read-only; confirmation still requires an unlocked playlist.
         current = manager.snapshot(sp, p)
         recommendations, skipped = daily.build_discovery_recommendations(
             sp, current["items"], playlist_id=pid
@@ -1180,6 +1253,10 @@ def main():
         config["pending"] = {
             "playlist_id": pid, "operations": operations, "liked_at_add": liked_baseline,
             "daily_track_metadata": daily_track_metadata,
+            "candidate_tracks": [
+                {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                for row in recommendations
+            ],
             "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
             "confirmation": confirmation, "recommendation_date": manager.stamp(), "kind": "daily",
         }
@@ -1204,7 +1281,10 @@ def main():
         profile = intelligence.build_playlist_profile(current["items"], feedback)
         confidence_counts = {level: sum(1 for row in recommendations if row.get("confidence") == level) for level in ("strong fit", "promising", "wildcard")}
         lines = [
-            f'DAILY DISCOVERY PREVIEW — {p.get("name")} [{pid}]',
+            f'STAGING REPORT — {p.get("name")} [{pid}]',
+            "STATUS: READY FOR REVIEW",
+            f'Current items: {len(current["items"])} | Replacement recommendations: {len(recommendations)}.',
+            "Spotify changes: NONE — confirmation is required.",
             f'Recommended tracks: {len(recommendations)}; current items: {len(current["items"])}',
             f'Mix: {tier_counts["discovery"]} unheard tracks, {tier_counts["rediscovery"]} lightly heard tracks, {tier_counts["familiar"]} familiar tracks.',
             f'{liked_count} already-Liked track(s) survived a strong ranking penalty; prior scrobbles were penalized by frequency and recency, never hard-excluded.',
@@ -1288,6 +1368,17 @@ def main():
                 else "Playlist changed after preview. Preview it again before confirming."
             )
             fail(message)
+        if kind in REMOVAL_GUARDED_KINDS:
+            import spotify_discovery as daily
+            feedback = daily.load_playlist_feedback(before["items"], pid)
+            conflicts = pending_removal_conflicts(pending, feedback)
+            if conflicts:
+                fail(
+                    "Blocked: playlist removal history now excludes a staged track, "
+                    "or this older preview lacks recheck metadata. Nothing was added; "
+                    "refresh the removal history and stage again. "
+                    + "; ".join(conflicts)
+                )
         backup = manager.save_snapshot(before)
         if kind == "undo":
             manager.audit(event="undo_started", playlist_id=pid, redo_snapshot=backup, recovery_snapshot=pending["backup"])

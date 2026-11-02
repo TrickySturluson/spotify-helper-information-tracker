@@ -1,4 +1,5 @@
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,6 +9,21 @@ import track_playlist_removals as removals
 
 
 class RemovalBaselineTests(unittest.TestCase):
+    def test_targeted_refresh_fails_when_playlist_cannot_be_read(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.object(removals, "BASELINE", root / "baseline.json"), patch.object(
+                removals, "BLACKLIST", root / "blacklist.json"
+            ), patch.object(sys, "argv", ["track_playlist_removals.py", "playlist"]), patch.object(
+                removals.manager, "Spotify", return_value=object()
+            ), patch.object(
+                removals.manager, "fetch_playlist", return_value={"id": "playlist", "name": "Booze"}
+            ), patch.object(
+                removals, "process_playlist", side_effect=removals.manager.ManagerError("temporary API failure")
+            ):
+                with self.assertRaisesRegex(SystemExit, "Could not refresh removal history for Booze"):
+                    removals.main()
+
     def test_seed_uses_only_complete_accessible_reference_snapshots(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
