@@ -57,7 +57,7 @@ def audit(**event):
     except OSError: pass
 def persist_refresh_token(refresh_token):
     """Persist a rotated Spotify refresh token to the repository secret in cloud runs."""
-    if os.environ.get("GITHUB_ACTIONS") != "true":
+    if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") != "1":
         return
     gh_token = os.environ.get("GH_TOKEN", "").strip()
     repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
@@ -141,7 +141,7 @@ class Spotify:
     def bearer(self):
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
-            if os.environ.get("GITHUB_ACTIONS") == "true" and (not os.environ.get("GH_TOKEN", "").strip() or not os.environ.get("GITHUB_REPOSITORY", "").strip()):
+            if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") == "1" and (not os.environ.get("GH_TOKEN", "").strip() or not os.environ.get("GITHUB_REPOSITORY", "").strip()):
                 raise ManagerError("Cloud Spotify refresh blocked before contacting Spotify: configure the SHIT GitHub App secret writer (Secrets: write) so rotated refresh tokens can be persisted safely between workflow runs.")
             self.t=token_post({"client_id":CID,"grant_type":"refresh_token","refresh_token":old["refresh_token"]})
             replacement=self.t.get("refresh_token")
