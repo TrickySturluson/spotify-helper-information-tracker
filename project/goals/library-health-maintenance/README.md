@@ -51,7 +51,7 @@ Names/flags are proposals until implemented and tested. Existing `status` and `a
 
 ## Current status
 
-**Specification / design stage.** Existing `MusicLibrary.audit()` and `library status` provide a foundation, but a full health report and guarded maintainer have not yet been implemented or validated.
+**Read-only health checker implemented on draft branch; CI pending.** `scripts/music/library_health.py` scans JSON records, stable IDs/shards, index targets, aliases, and entity relationships without constructing `MusicLibrary` (whose constructor can rebuild/write an index). The CLI exposes `python shit.py library health [--json]`. A separate safe maintainer/repair workflow is still only specified and must not be conflated with this read-only checker.
 
 ## Resume
 
