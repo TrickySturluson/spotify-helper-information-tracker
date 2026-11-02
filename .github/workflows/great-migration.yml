@@ -110,14 +110,14 @@ jobs:
             audit)   python shit.py library audit ;;
           esac 2>&1 | tee shit-library-run.log
           {
-            echo "## SHIT Library operation"
-            echo
-            echo "- Operation: `$COMMAND`"
-            echo "- Result: completed"
-            echo
-            echo "```text"
+            printf '%s\n' '## SHIT Library operation'
+            printf '\n'
+            printf '%s\n' "- Operation: $COMMAND"
+            printf '%s\n' "- Result: completed"
+            printf '\n'
+            printf '%s\n' '~~~text'
             tail -n 160 shit-library-run.log
-            echo "```"
+            printf '%s\n' '~~~'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish canonical Library and enrichment data
