@@ -59,6 +59,10 @@ Issue #90 completed a read-only plan against the 13,005-song catalogue. It scann
 
 **Interpretation:** zero due tasks does not mean every Library field has been recently verified. The 42,158 missing-timestamp observations are not proven stale; missing and undated evidence is deliberately not scheduled. Existing track-profile cache rows do have source timestamps (1,778 Last.fm check times; 1,180 MusicBrainz check times). Next work is to classify missing metadata vs present-but-undated evidence vs provider no-result/negative-cache states, and propagate trustworthy timestamps from caches/checkpoints into the canonical evidence model where possible. Only then should a provider-backed partial executor be enabled.
 
+
+
+**Unknown-age baseline rotation (PR #95, under review):** the next planner revision separates `no_data` from fields that contain data but lack a trustworthy timestamp, reports missing duration provenance independently, and can select a deterministic weekly rotating baseline sample of up to 25 unknown-age observations. These are labelled `baseline_required`, never `stale`; the planner remains read-only and performs no provider calls. The first CI run caught a duplicate argparse declaration for `--include-unknown-age`; the duplicate was removed on the PR branch, but a passing post-fix CI run has not yet been verified. Do not merge or enable provider execution until CI passes and the full-catalogue output is reviewed.
+
 ## Resume
 
 Read [ACTIONS.md](ACTIONS.md), review PR #86 and its scheduled workflow, then inspect the completed manual baseline in ACTIONS.md and let the weekly report run. Reconcile missing field timestamps and retry queue state before enabling any provider-backed execution. Keep planning read-only; build one bounded executor only after tests prove provider budgets, cooldowns, and evidence preservation.
