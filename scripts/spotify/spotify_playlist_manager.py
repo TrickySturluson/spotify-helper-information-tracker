@@ -184,8 +184,13 @@ class Spotify:
             p=self.call("GET",url); out+=p.get("items",[]); url=p.get("next","")
             if url: url=url.replace("https://api.spotify.com/v1","")
         return out
-    def items(self,pid):
-        out=[]; url=f"/playlists/{pid}/items?limit=50&additional_types=track,episode"
+    def items(self,pid,market=None):
+        out=[]
+        if market is not None and market != "from_token" and not re.fullmatch(r"[A-Z]{2}", str(market)):
+            raise ManagerError("Invalid Spotify market; use an ISO country code or from_token.")
+        url=f"/playlists/{pid}/items?limit=50&additional_types=track,episode"
+        if market is not None:
+            url += f"&market={market}"
         while url:
             p=self.call("GET",url); out+=p.get("items",[]); url=p.get("next","")
             if url: url=url.replace(API,"")
