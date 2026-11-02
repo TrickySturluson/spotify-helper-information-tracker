@@ -23,6 +23,19 @@
         "add",
         "reorder"
       ]
+    },
+    "4aLdllLgRPh5vKOznkC97D": {
+      "name": "SHITting Grounds",
+      "reason": "Explicitly approved by the user for full SHIT playlist management access as the sorter audition destination.",
+      "permissions": [
+        "add",
+        "remove",
+        "replace",
+        "reorder",
+        "details",
+        "cleanup",
+        "undo"
+      ]
     }
   },
   "note": "Account ownership and unlock state do not establish permission. Unknown playlists remain read-only. New playlists created by SHIT are registered automatically."
