@@ -258,6 +258,28 @@ def snapshot(sp,p):
 def save_snapshot(s):
     BACKUPS.mkdir(exist_ok=True); path=BACKUPS/(datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")+"_"+s["playlist"]["id"]+".json")
     write(path,s); return str(path)
+def mutate_with_snapshots(sp,pid,mutation,event="playlist_mutation",**details):
+    """Bracket one Spotify write with fresh before/after snapshots."""
+    before_playlist=find(sp,pid)
+    before_path=save_snapshot(snapshot(sp,before_playlist))
+    audit(event=event+"_started",playlist_id=pid,before_snapshot=before_path,**details)
+    try:
+        result=mutation()
+    except Exception as operation_error:
+        try:
+            partial_playlist=find(sp,pid)
+            partial_path=save_snapshot(snapshot(sp,partial_playlist))
+            audit(event=event+"_partial",playlist_id=pid,before_snapshot=before_path,
+                  after_snapshot=partial_path,error_type=type(operation_error).__name__,**details)
+        except Exception as snapshot_error:
+            audit(event=event+"_partial_snapshot_failed",playlist_id=pid,
+                  before_snapshot=before_path,error_type=type(snapshot_error).__name__,**details)
+        raise
+    after_playlist=find(sp,pid)
+    after_path=save_snapshot(snapshot(sp,after_playlist))
+    audit(event=event+"_completed",playlist_id=pid,before_snapshot=before_path,
+          after_snapshot=after_path,**details)
+    return result, before_path, after_path
 def list_playlists(sp):
     for p in sp.playlists():
         state="UNLOCKED" if unlocked(p["id"]) else "LOCKED"
@@ -350,16 +372,19 @@ def apply(sp,path):
     backup=save_snapshot(before)
     audit(event="change_started",playlist_id=pid,name=p2.get("name"),operations=ops,backup=backup,user_id=me.get("id"))
     try:
-        for op in ops:
+        for op_index,op in enumerate(ops):
             if not unlocked(pid): raise ManagerError("Playlist was locked during the operation; remaining changes stopped.")
             a=op["action"]
-            if a=="add": add(sp,pid,op["uris"])
-            elif a=="remove": remove(sp,pid,op["uris"])
-            elif a=="replace":
-                current=[x["uri"] for x in tracks(sp,find(sp,pid)) if x.get("uri")]
-                if current: remove(sp,pid,current)
-                add(sp,pid,op["uris"])
-            else: sp.call("PUT",f"/playlists/{pid}/items",{**{k:op[k] for k in ("range_start","insert_before","range_length")},"snapshot_id":find(sp,pid).get("snapshot_id")})
+            def perform_operation():
+                if a=="add": return add(sp,pid,op["uris"])
+                if a=="remove": return remove(sp,pid,op["uris"])
+                if a=="replace":
+                    current=[x["uri"] for x in tracks(sp,find(sp,pid)) if x.get("uri")]
+                    if current: remove(sp,pid,current)
+                    return add(sp,pid,op["uris"])
+                return sp.call("PUT",f"/playlists/{pid}/items",{**{k:op[k] for k in ("range_start","insert_before","range_length")},"snapshot_id":find(sp,pid).get("snapshot_id")})
+            mutate_with_snapshots(sp,pid,perform_operation,event="manager_operation",
+                                  operation_index=op_index,action=a)
     except Exception:
         try:
             partial_snapshot = save_snapshot(snapshot(sp, find(sp, pid)))
