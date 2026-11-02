@@ -61,7 +61,7 @@ Issue #90 completed a read-only plan against the 13,005-song catalogue. It scann
 
 
 
-**Unknown-age baseline rotation (PR #95, under review):** the next planner revision separates `no_data` from fields that contain data but lack a trustworthy timestamp, reports missing duration provenance independently, and can select a deterministic weekly rotating baseline sample of up to 25 unknown-age observations. These are labelled `baseline_required`, never `stale`; the planner remains read-only and performs no provider calls. The first CI run caught a duplicate argparse declaration for `--include-unknown-age`; the duplicate was removed on the PR branch, but a passing post-fix CI run has not yet been verified. Do not merge or enable provider execution until CI passes and the full-catalogue output is reviewed.
+**Unknown-age baseline rotation merged in PR #100** (`61cc5c0`). The planner separates `no_data` from data-bearing fields with missing timestamps, reports missing duration provenance independently, and selects a deterministic weekly rotating sample of up to 25 unknown-age observations. These are labelled `baseline_required`, never `stale`; due tasks take priority and duplicate task keys are removed across due/baseline groups. Full CI and public security scan passed (344 tests); issue #101 also validated the full-catalogue CLI plan. Baseline report: 6,613 candidates, 25 selected (all Last.fm duration), 0 due/stale, 33,689 no-data fields, 1,856 missing duration provenance, 1,362 cooldown skips. This remains a read-only plan with zero provider requests and writes. No provider-backed executor is enabled yet.
 
 ## Resume
 
