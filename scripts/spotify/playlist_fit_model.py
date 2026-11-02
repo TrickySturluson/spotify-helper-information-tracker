@@ -10,7 +10,7 @@ from collections import Counter
 from statistics import mean, pstdev
 from typing import Any
 
-MODEL_VERSION = "five-axis-fit-v0.2"
+MODEL_VERSION = "five-axis-fit-v0.3"
 DIMENSIONS = ("genre", "sound", "energy", "mood", "theme")
 DEFAULT_WEIGHTS = {
     "genre": 0.15, "sound": 0.25, "energy": 0.20,
