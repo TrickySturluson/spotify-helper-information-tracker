@@ -46,6 +46,9 @@ Keep the repository public only if you are comfortable publishing this listening
 | `assistant_data/months/YYYY-MM.json` | Full monthly summary, daily counts, new artists and rankings |
 | `assistant_data/advanced/` | MBID-aware artist timelines, discovery/rediscovery, rolling rankings, inferred sessions and monthly diversity |
 | `assistant_data/playback/` | Measured Spotify playback hours, artist/track totals and daily/monthly listening time (only for intervals captured by the local tracker) |
+| `assistant_data/spotify/playlists.json` and `playlists/` | Generated playlist catalog and dated per-playlist snapshots with ordered track metadata |
+| `assistant_data/spotify/playlist_roles.json` | Curated playlist roles, canonical Spotify links, calibration targets, broad taste references and audition destination |
+| `assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md` | Playlist lookup, completeness checks, reference roles and update rules |
 | `assistant_data/music/` | Cached track metadata, durations, confidence/provenance, artist-sharded dictionaries, artist genre/mood/theme profiles, and independently sourced track-level tag profiles |
 | `assistant_data/recommendations/` | Recommendation-ready artist/track features plus monthly and yearly duration trends |
 
