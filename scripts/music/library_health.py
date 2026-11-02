@@ -6,6 +6,7 @@ This checker never repairs files, rebuilds indexes, calls providers, or edits pl
 """
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -21,10 +22,10 @@ COLLECTIONS = {
 def _safe_id(value):
     value = str(value or "").strip().casefold()
     if value.startswith("mbid:"):
-        return "mbid-" + "".join(c for c in value[5:] if c.isalnum() or c == "-")
+        return "mbid-" + re.sub(r"[^a-z0-9-]", "", value[5:])
     if value.startswith("spotify:"):
-        return "spotify-" + "".join(c for c in value.split(":")[-1] if c.isalnum())
-    return "".join(c if c.isalnum() or c in "_-" else "-" for c in value).strip("-") or "unknown"
+        return "spotify-" + re.sub(r"[^a-z0-9]", "", value.split(":")[-1])
+    return re.sub(r"[^a-z0-9_-]", "-", value).strip("-") or "unknown"
 
 
 def _read_json(path):
