@@ -272,7 +272,7 @@ def score_track(
 
 
 
-def track_from_library_record(record: dict) -> dict:
+def track_from_library_record(record: dict, track_profile: dict | None = None) -> dict:
     """Adapt only recording-scoped canonical song evidence; never artist/album context."""
     if not isinstance(record, dict):
         raise TypeError("record must be a song record object")
@@ -280,6 +280,18 @@ def track_from_library_record(record: dict) -> dict:
     evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
     metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
     audio = evidence.get("audio") if isinstance(evidence.get("audio"), dict) else {}
+    profile = track_profile if isinstance(track_profile, dict) else {}
+    # A profile cache row is accepted only when its stable source/recording ID
+    # agrees with the canonical song identity. Never attach by artist/title alone.
+    expected_ids = {str(identity.get("source_track_id") or "").casefold()}
+    if identity.get("recording_mbid"):
+        expected_ids.add("mbid:" + str(identity["recording_mbid"]).casefold().removeprefix("mbid:"))
+    if identity.get("spotify_id"):
+        expected_ids.add("spotify:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
+    profile_id = str(profile.get("track_id") or "").casefold()
+    if profile and (not profile_id or profile_id not in expected_ids):
+        profile = {}
+    metadata = {**profile, **metadata}
     mood = record.get("mood") if isinstance(record.get("mood"), dict) else {}
     recording_mood = mood.get("recording_level") if isinstance(mood.get("recording_level"), dict) else {}
     confidence = record.get("confidence") if isinstance(record.get("confidence"), dict) else {}
@@ -293,8 +305,15 @@ def track_from_library_record(record: dict) -> dict:
         for row in values if isinstance(values, list) else []:
             value = row.get("tag") or row.get("name") if isinstance(row, dict) else row
             provider = row.get("provider") or row.get("source") or field if isinstance(row, dict) else field
+            provider = str(provider).casefold()
+            if "musicbrainz" in provider:
+                provider = "musicbrainz"
+            elif "lastfm" in provider:
+                provider = "lastfm"
+            elif "discogs" in provider:
+                provider = "discogs"
             if value:
-                dimensions["genre"].append({"value": value, "source_family": str(provider).casefold(),
+                dimensions["genre"].append({"value": value, "source_family": provider,
                                             "scope": "recording", "identity_confidence": identity_tier})
 
     for value in recording_mood.get("moods") or []:
