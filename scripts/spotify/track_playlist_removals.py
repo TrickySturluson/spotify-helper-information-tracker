@@ -95,12 +95,60 @@ def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
     baseline_data.setdefault("playlists", {})[pid] = rows
 
 
+def seed_from_reference_library(baseline_data):
+    """Seed a missing baseline from the last known complete snapshots before refresh.
+
+    This deliberately runs BEFORE the live reference-library sync so removals
+    made since the previous sync are still detectable in the subsequent poll.
+    Inaccessible or incomplete snapshots are never treated as empty playlists.
+    """
+    root = Path("assistant_data/spotify")
+    catalog = read_json(root / "playlists.json", {"playlists": []})
+    seeded = 0
+    skipped = 0
+    rows_by_id = baseline_data.setdefault("playlists", {})
+    for entry in catalog.get("playlists", []):
+        pid = entry.get("id")
+        if not pid or pid in rows_by_id:
+            continue
+        path = root / "playlists" / f"{pid}.json"
+        if not path.is_file():
+            skipped += 1
+            continue
+        record = read_json(path, {})
+        items = record.get("items") or []
+        reported = record.get("total_items_reported")
+        fetched = record.get("item_count_fetched")
+        if (not record.get("items_accessible") or not isinstance(reported, int)
+                or reported != fetched or len(items) != fetched):
+            skipped += 1
+            continue
+        rows_by_id[pid] = [{
+            "uri": item.get("uri"), "name": item.get("name"),
+            "artists": item.get("artists") or [], "album": item.get("album") or "",
+        } for item in items]
+        seeded += 1
+    baseline_data["version"] = max(1, int(baseline_data.get("version", 1)))
+    baseline_data["seeded_from_reference_library_at"] = manager.stamp()
+    baseline_data["seeded_playlist_count"] = seeded
+    save_state(baseline_data, read_json(BLACKLIST, {"version": 1, "playlists": {}}))
+    print(f"Seeded {seeded} playlist baselines from prior complete reference snapshots; skipped {skipped} missing/incomplete snapshots.")
+    return seeded, skipped
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("playlist_id", nargs="?", help="Optional: process only this playlist")
     parser.add_argument("--dedupe", action="store_true",
                         help="Remove extra copies of duplicate tracks from unlocked playlists")
+    parser.add_argument("--seed-from-reference-library", action="store_true",
+                        help="Seed only missing baselines from prior complete reference snapshots; make no Spotify requests")
     args = parser.parse_args()
+
+    if args.seed_from_reference_library:
+        baseline_data = read_json(BASELINE, {"version": 1, "playlists": {}})
+        seed_from_reference_library(baseline_data)
+        return
 
     sp = manager.Spotify()
     playlists = sp.playlists()
