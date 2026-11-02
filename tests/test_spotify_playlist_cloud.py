@@ -69,8 +69,8 @@ class CloudExecutorTests(unittest.TestCase):
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True), patch.object(
             manager, "tracks", return_value=[{"uri": "spotify:track:a"}]
         ), patch.object(manager, "find", return_value={"id": "playlist123"}), patch.object(
-            manager, "remove"
-        ) as remove:
+            manager, "fetch_playlist", return_value={"id": "playlist123", "name": "Test", "snapshot_id": "snapshot"}
+        ), patch.object(manager, "remove") as remove:
             cloud.replace_playlist(sp, "playlist123", [])
         remove.assert_called_once_with(sp, "playlist123", ["spotify:track:a"])
 
