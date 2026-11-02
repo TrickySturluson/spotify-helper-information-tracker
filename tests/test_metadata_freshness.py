@@ -63,6 +63,26 @@ class MetadataFreshnessTests(unittest.TestCase):
             self.assertIn(("duration", "lastfm"), selected)
             self.assertNotIn(("track_tags", "musicbrainz"), selected)
 
+    def test_relative_provider_retry_cooldown_blocks_stale_field(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            now = datetime(2026, 11, 2, tzinfo=timezone.utc)
+            observed = (now - timedelta(hours=1)).isoformat()
+            self.write_song(root, "song-cooldown", {
+                "id": "song-cooldown",
+                "identity": {"artist": "Artist", "title": "Song"},
+                "evidence": {"track_metadata": {
+                    "duration_ms": 200000,
+                    "duration_source": "Last.fm track.getInfo",
+                    "lastfm_checked_at": observed,
+                    "lastfm_status": "no_tags",
+                    "lastfm_retry_after": 7200,
+                }},
+            })
+            report = build_plan(root, limit=10, now=now)
+            self.assertFalse(any(row["provider"] == "lastfm" for row in report["selected"]))
+            self.assertGreaterEqual(report["counts"]["cooldown"], 2)
+
     def test_source_stamped_artist_and_album_profiles_are_scheduled(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
