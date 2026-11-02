@@ -160,6 +160,39 @@ class CloudExecutorTests(unittest.TestCase):
 
 
 class UndoSnapshotValidationTests(unittest.TestCase):
+    def test_pending_recommendation_confirmation_rechecks_removal_history(self):
+        pending = {
+            "kind": "booze10",
+            "candidate_tracks": [{
+                "artist": "Misfits", "title": "Where Eagles Dare",
+                "uri": "spotify:track:5LgiqEgpK54OfXC6947wbU",
+            }],
+        }
+        feedback = {
+            "negative_keys": {"misfits|where eagles dare"},
+            "negative_uris": {"spotify:track:5LgiqEgpK54OfXC6947wbU"},
+        }
+        self.assertEqual(
+            cloud.pending_removal_conflicts(pending, feedback),
+            ["Misfits — Where Eagles Dare [spotify:track:5LgiqEgpK54OfXC6947wbU]"],
+        )
+
+    def test_legacy_pending_recommendation_without_metadata_fails_closed(self):
+        self.assertEqual(
+            cloud.pending_removal_conflicts({"kind": "booze10"}, {}),
+            ["pending preview has no candidate metadata; stage it again"],
+        )
+
+    def test_workflow_refreshes_removal_history_before_preview_or_confirmation(self):
+        workflow = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "spotify-playlist-manager.yml").read_text(encoding="utf-8")
+        refresh = workflow.index("Refresh playlist removal history before protected staging or confirmation")
+        execute = workflow.index("Execute owner command")
+        self.assertLess(refresh, execute)
+        self.assertIn("steps.parse-command.outputs.command == 'booze10_preview'", workflow)
+        self.assertIn("steps.parse-command.outputs.command == 'daily_preview'", workflow)
+        self.assertIn('"daily"', workflow[refresh:execute])
+        self.assertIn("steps.parse-command.outputs.command == 'confirm'", workflow[refresh:execute])
+
     def test_undo_accepts_same_ordered_items_even_if_snapshot_id_differs(self):
         pending = {
             "kind": "undo",

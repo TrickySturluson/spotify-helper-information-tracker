@@ -216,6 +216,13 @@ def main():
             print(f'UNAVAILABLE {playlist.get("name", playlist.get("id", "unknown"))}: {exc}')
             continue
 
+    # A targeted refresh is a safety precondition for staging and confirmation.
+    # Do not return success when that exact playlist could not be read, or the
+    # caller could continue with a stale removal blacklist.
+    if args.playlist_id and failed:
+        name, error = failed[0]
+        raise SystemExit(f"Could not refresh removal history for {name}: {error}")
+
     save_state(baseline_data, blacklist_data)
     print(f"\nSaved baselines/removal history for {processed} accessible playlist(s).")
     if failed:

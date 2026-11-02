@@ -117,6 +117,13 @@ class DiscoveryScoringTests(unittest.TestCase):
             "spotify:track:62EKjHgJEMoBkL2uhCVHKr", feedback
         ))
 
+    def test_where_eagles_dare_is_loaded_from_booze_removal_history(self):
+        feedback = discovery.load_playlist_feedback([], "4diIlnF8BlgoJrwUfejf49")
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Misfits", "Where Eagles Dare",
+            "spotify:track:5LgiqEgpK54OfXC6947wbU", feedback
+        ))
+
     def test_explicit_playlist_whitelist_overrides_removal(self):
         with tempfile.TemporaryDirectory() as directory:
             history = Path(directory) / "removed.json"
