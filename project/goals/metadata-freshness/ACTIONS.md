@@ -1,3 +1,13 @@
+## 2026-11-02 — Refine unknown-age accounting and rotating baseline sample (PR #95)
+
+- The first full-catalogue review reported 42,158 missing timestamps, but this included absent fields with no metadata to refresh. PR #95 corrects the accounting: `no_data` is separate from data-bearing fields that lack a field/provider timestamp.
+- Duration values with no known provider/source are counted as missing provenance, not scheduled for blind lookup.
+- Added an optional rotating baseline sample of data-bearing unknown-age fields. It is labelled `baseline_required`, not stale; stale/due tasks take priority; remaining capacity is filled from a deterministic ISO-week rotation, bounded by the same limit.
+- Same-week plans are deterministic; the sample rotates in the following week without writing cursor state.
+- Added the option to the CLI, weekly workflow, manual freshness-review command, and full-catalogue CI.
+- Tests cover absent-data classification, unknown-age sample selection, same-week determinism, week-to-week rotation, and CLI argument wiring.
+- PR #95 CI pending at time of entry. No provider requests or Library writes are enabled.
+
 ## 2026-11-02 — Run first manual read-only freshness review
 
 - Issue #90 `[SHIT LIBRARY] freshness-review` completed successfully against the then-current main branch.
