@@ -956,7 +956,7 @@ def main():
             f'{liked_count} already-Liked track(s) survived a strong ranking penalty; prior scrobbles were penalized by frequency and recency, never hard-excluded.',
             f'Confidence: {confidence_counts["strong fit"]} strong fit, {confidence_counts["promising"]} promising, {confidence_counts["wildcard"]} wildcard.',
             f'Playlist identity: {profile["artist_count"]} primary artists; metadata coverage {profile["metadata_coverage"]:.0%}; top genre signals: {", ".join(row["tag"] for row in profile["genres"][:5]) or "unavailable"}.',
-            f'Playlist feedback: {feedback["removed_count"]} prior removals currently count as negative evidence; {feedback["whitelisted_count"]} re-added track(s) are whitelisted by current membership.',
+            f'Playlist feedback: {feedback["removed_count"]} prior removals currently count as negative evidence; {feedback["whitelisted_count"]} re-added track(s) have explicit whitelist entries.',
             "Current playlist artists provide positive evidence; removals from this playlist only provide soft negative evidence here.",
             "Candidates come from similar artists outside the scrobble archive, resolved against Spotify; max two tracks per artist.",
             "No playlist changes have been made.",
