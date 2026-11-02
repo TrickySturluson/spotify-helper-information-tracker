@@ -748,4 +748,4 @@ class MusicLibrary:
 # - Uses MusicBrainz/Spotify IDs, ISRCs and verified release positions before safe name aliases.
 # - Explains lookup paths and confidence; ambiguous artist/title candidates are never guessed.
 # - Does not invent album records when the source has no release context.
-# - Preserves metadata, listening context, audio, lyrics, derived fields, and provenance.
+# - Preserves metadata, listening context, audio, lyrics, derived fields, provenance, and timestamped Spotify playability observations.
