@@ -209,10 +209,15 @@ def sync(sp):
                             "requested_spotify_id": item.get("id") or spotify_id,
                             "returned_spotify_id": item.get("id") or spotify_id,
                             "linked_from_spotify_uri": item.get("linked_from"),
+                            "linked_from_spotify_id": (
+                                item.get("linked_from").rsplit(":", 1)[-1]
+                                if item.get("linked_from") else None
+                            ),
+                            "restrictions": item.get("restrictions") or {},
                             "restrictions_reason": (item.get("restrictions") or {}).get("reason"),
                             "is_local": item.get("is_local"),
                             "available_markets_count": item.get("available_markets_count"),
-                        } if item.get("is_playable_present") or item.get("restrictions") else None),
+                        } if item.get("is_playable_present") or isinstance(item.get("is_playable"), bool) or item.get("restrictions") else None),
                         "playlist_sources": [pid],
                         "playlist_positions": [{
                             "playlist_id": pid, "position": item.get("position"),
