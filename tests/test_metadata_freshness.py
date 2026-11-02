@@ -51,7 +51,7 @@ class MetadataFreshnessTests(unittest.TestCase):
                 "evidence": {"track_metadata": {
                     "duration_ms": 210000,
                     "duration_source": "Last.fm track.getInfo",
-                    "lastfm_checked_at": "2025-01-01T00:00:00Z",
+                    "lastfm_checked_at": "2024-01-01T00:00:00Z",
                     "lastfm_status": "no_tags",
                     "musicbrainz_checked_at": "2026-10-30T00:00:00Z",
                     "musicbrainz_status": "matched",
