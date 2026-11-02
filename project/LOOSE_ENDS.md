@@ -154,3 +154,11 @@ For every item, record status as **not started / in progress / blocked / ready f
 - Fresh post-publication checks queued: #115 audit, #116 health, #117 freshness review, #118 combined audit/health/confidence. Results are pending; don't infer completion from issue creation.
 - Remaining work: inspect the fresh unknown-age baseline; audit duplicate artist/album/song candidates (especially the Candy Claws exact Spotify-album cross-link); implement the provider-aware durable retry queue in `assistant_data/music/retry_queue.json` per [`RETRY_QUEUE_SPEC.md`](RETRY_QUEUE_SPEC.md); then review provider coverage and only execute eligible bounded enrichment. Sorter evaluation remains gated. No provider or playlist writes are authorized by these read-only tasks.
 - Automatic playlist descriptions: generator and tests are present, but periodic/cloud invocation is not yet wired. Manual descriptions must remain untouched; next work is safe preview/confirmation and bounded scheduling for managed playlists only.
+
+
+### Booze five-axis integration — AUDIT MERGED; LIVE SORT BLOCKED ON EVIDENCE
+
+- PR #127 merged (`ad391369`); read-only five-axis audit artifact 13124415230 (expires 2026-11-16). Saved snapshot has 64 tracks; current live preview has 72, so refresh/persist snapshot and regenerate candidate manifest before using the audit as a current baseline.
+- Current model evidence is insufficient for automatic decisions: 32/64 tracks score per calibration target, all low-confidence and one-axis; 31/32 are artist-context genre only; 32/64 unknown. Only 2/64 Booze track-profile rows have Last.fm tags; zero lyrics, direct mood, recognized energy; one sparse audio-profile match.
+- Live sequence preview run #41407486669: 72 tracks; 48 reorder operations; 8 unassigned; 0 gentle/moderate/supported potential jumps; 71 transitions limited-evidence; 62 low-confidence, 10 unknown. No Spotify changes made. Do not confirm this sequence.
+- Next: refresh snapshot; bounded provider-aware recording-level enrichment; explicit Halloween-theme review; substantial verified additions; rerun and inspect the full sequence; only then consider confirmation-gated sorting.
