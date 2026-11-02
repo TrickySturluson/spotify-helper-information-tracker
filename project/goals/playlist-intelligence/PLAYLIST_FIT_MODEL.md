@@ -75,7 +75,7 @@ Return at least:
 Confidence must not be copied from the fit score. A high fit with one weak source is low-confidence; a moderate fit supported by multiple independent recording-level sources may be medium/high confidence.
 
 Confidence gates:
-- **High:** strong recording identity; at least 4 of 5 dimensions supported; at least 2 independent source families across the decisive dimensions; no unresolved material contradiction; target profile sufficiently sampled.
+- **High:** strong recording identity; all 5 dimensions supported, with at least 4 backed by direct recording-level evidence; at least 2 independent source families across the decisive dimensions; no unresolved material contradiction; target profile sufficiently sampled.
 - **Medium:** at least 3 dimensions supported, or 2 strong independent dimensions with clear direct evidence; identity is at least medium; no critical ambiguity.
 - **Low:** only 1–2 dimensions, artist/album fallback dominates, target profile is weak, or material disagreement remains.
 - **Unknown:** identity unresolved or no usable evidence. Do not invent a score from title/artist alone.
