@@ -33,3 +33,18 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Lessons learned / decision changes:**
 - **Next action:**
 - **References:**
+
+
+## 2026-11-02 — Blind five-playlist audition evaluation and human comparison
+
+- **Purpose:** Run the 25 SHITting Grounds audition tracks independently against all five registered calibration targets, then compare frozen model predictions with the separate human slider labels.
+- **Blind procedure:** Read the audition track identities and the five reference playlist snapshots. Human slider values were not read or used until the prediction artifact was committed. The existing human-label file was accessed in an identity-only pass to recover the 25 track names; score fields and model_prediction fields were explicitly excluded from that pass.
+- **Prediction artifact:** `assistant_data/spotify/playlist_fit_model_predictions.json` (25 tracks × 5 target scores, independent confidence by target, per-track rationale). Commit: `b21de5bd95d6891ece4503c0f7c996266bc0585f`.
+- **Comparison artifact:** `assistant_data/spotify/playlist_fit_model_comparison_20261102.json` (125 paired scores, per-target MAE/bias/correlation, per-track errors and top-target agreement). Commit: `3f5608d010b52646f9f91826f101ea624398f67c`.
+- **Execution qualification:** This pass was an independent SHIT-style model assessment using the current reference snapshots and available track/style knowledge. It was not a repository-native five-target classifier execution, and it did not perform fresh audio analysis or track-by-track playback. Confidence reflects the clarity of the available musical/style evidence, not a calibrated probability.
+- **Headline result:** 25 tracks / 125 slider comparisons; MAE 14.14 points; Pearson r 0.844; 70/125 scores within 10 points; top-target agreement 19/24 excluding the all-50 Dog response.
+- **Per-target:** To 11 MAE 8.04 (r=.941); Somber Party 11.44 (r=.897); . . . 19.44 (r=.786); =^= 10.40 (r=.951); Smooth 21.36 (r=.681).
+- **Key findings:** Strongest alignment is To 11 and =^=. Smooth is the largest weakness, especially overestimating synthwave/psychedelic/instrumental fit for MARBLE HALLS, Running Up That Hill, Deep Cover and Fantasy Trash Wave. The . . . target is also over-predicted for Oom Sha La La and Armchair, where the human ratings lean Somber Party. Dog was rated 50 on all five targets and is non-discriminative.
+- **Confidence check:** 90+ confidence scores had MAE 9.3, but there were still notable high-confidence misses (e.g. MARBLE HALLS/Smooth, Running Up That Hill/Smooth, Deep Cover/Smooth, Fantasy Trash Wave/Smooth). Confidence is independent of the human labels but is not yet statistically calibrated.
+- **Outcome:** Blind predictions frozen before comparison; comparison generated and committed. No Spotify playlist contents were changed.
+- **Next action:** Improve boundary discrimination between Smooth and . . . / Somber Party; review track-level evidence for instrumental, psychedelic and dream-pop cases; collect another blind batch before changing weights or calibration. Keep the prediction file immutable as the original blind run and append future runs as new versioned artifacts.
