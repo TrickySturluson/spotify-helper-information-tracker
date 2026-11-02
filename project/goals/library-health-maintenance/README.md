@@ -38,7 +38,7 @@ Keep the canonical per-recording Library structurally sound, internally consiste
 - `python shit.py library maintain --apply` — apply only allow-listed deterministic repairs after backup.
 - `python shit.py library maintain --apply --repair-index` — explicit derived-index repair.
 
-The `maintain` command is being implemented in draft PR #80. Its first repair scope is deliberately limited to rebuilding `library_index.json`; it requires `--apply --repair-index`, proves existing aliases are reconstructable, creates a timestamped backup, performs atomic replacement, and runs a post-repair health check with rollback on failure. It does not repair song/artist/album records.
+The `maintain` command is implemented in PR #80. Its first repair scope is deliberately limited to rebuilding `library_index.json`; it requires `--apply --repair-index`, proves existing aliases are reconstructable, creates a timestamped backup, performs atomic replacement, and runs a post-repair health check with rollback on failure. It does not repair song/artist/album records.
 
 ## Acceptance criteria
 
@@ -51,8 +51,8 @@ The `maintain` command is being implemented in draft PR #80. Its first repair sc
 
 ## Current status
 
-**Read-only health checker merged in PR #73.** `scripts/music/library_health.py` scans JSON records, stable IDs/shards, index targets, aliases, and entity relationships without constructing `MusicLibrary` (whose constructor can rebuild/write an index). The CLI exposes `python shit.py library health [--json]`. CI ran it against the full published catalogue: 13,005 songs, 6,386 artists, 7,861 albums, zero errors and zero warnings. The safe derived-index maintainer is under CI review in [PR #80](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/80); it is not merged or available on main yet. Broader record repair, evidence normalization, and repair-journal support remain out of scope until separately designed and tested.
+**Read-only health checker merged in PR #73.** `scripts/music/library_health.py` scans JSON records, stable IDs/shards, index targets, aliases, and entity relationships without constructing `MusicLibrary` (whose constructor can rebuild/write an index). The CLI exposes `python shit.py library health [--json]`. CI ran it against the full published catalogue: 13,005 songs, 6,386 artists, 7,861 albums, zero errors and zero warnings. The safe derived-index maintainer was merged in [PR #80](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/80). Its tests cover read-only preview, explicit apply, backup creation, missing-index recovery, and refusal when aliases would be lost. Broader record repair, evidence normalization, and repair-journal support remain out of scope until separately designed and tested.
 
 ## Resume
 
-Read [ACTIONS.md](ACTIONS.md), inspect PR #80's CI and safety logic, then extend only after the index-only repair is validated on fixtures and a disposable copy of the real catalogue.
+Read [ACTIONS.md](ACTIONS.md), inspect the merged index-only repair implementation, and validate it against a disposable copy of the full catalogue before any real repair. Keep future record/evidence repairs separately scoped.
