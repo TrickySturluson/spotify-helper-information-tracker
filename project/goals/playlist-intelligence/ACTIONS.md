@@ -172,3 +172,13 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Model version bumped to five-axis-fit-v0.3 for the new direct/context confidence semantics.
 - Added tests proving contextual-only data does not raise direct profile confidence and explicit artist/release context stays in its proper dimensions.
 - Latest preview/full CI/security runs are in progress; inspect the resulting artifact before interpreting scores.
+
+
+### Frozen preview and separate human-reference diagnostic — 2026-11-02
+
+- Latest full real-data preview workflow run 41404493636 succeeded and uploaded artifact 13122518748. It used model version five-axis-fit-v0.3, 24 candidate tracks, five target snapshots, no human ratings in scoring, zero Spotify API calls and zero playlist writes.
+- Direct profile coverage remains sparse: To 11 0.2, Somber Party 0.0, . . . 0.2, =^= 0.2, Smooth 0.0. Context coverage is 0.2, 0.2, 0.4, 0.4, 0.0 respectively. Only Genre has direct coverage (3, 0, 3, 4, 0 tracks); Sound and Energy have no evidence; Mood has three/one context-only observations in . . . and =^=; Theme has no evidence. Profile confidence remains low across all targets.
+- Exact identity resolution for the 24 held-out tracks: 16 exact artist/title/album+duration corroborated source-record fallbacks, 8 exact Spotify-ID records. No fuzzy matching.
+- Fifteen tracks receive low-confidence genre-only scores against To 11, Somber Party, . . . and =^=; nine remain unknown. Smooth has no comparable profile evidence. No candidate receives medium/high confidence. These are provisional evidence-limited scores, not production decisions.
+- Added scripts/spotify/compare_playlist_fit_human_reference.py and tests/test_playlist_fit_human_reference_comparison.py. The comparison is a separate post-hoc step after preview generation, with unknown scores left missing and human labels excluded from model training/scoring. It reports error, bias, correlation, coverage and confidence strata. The preview workflow now uploads a second diagnostic artifact.
+- Full repository CI/security and latest focused preview tests are pending for the final v0.3 + comparison workflow changes. Keep preview-only and no Spotify writes.
