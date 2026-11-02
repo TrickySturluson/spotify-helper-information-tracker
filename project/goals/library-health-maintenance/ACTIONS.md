@@ -1,3 +1,14 @@
+## 2026-11-02 — Merge safe derived-index maintainer
+
+- PR #80 merged to `main`: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/80
+- Added `scripts/music/library_maintenance.py` and `python shit.py library maintain`.
+- Default mode is read-only. Apply requires both `--apply --repair-index`.
+- Preview builds the proposed index in a temporary workspace over the canonical records, compares existing song/artist/album keys and all alias maps, and refuses if anything would be lost or if record-level health findings are present.
+- Apply creates a timestamped backup of the old index, atomically replaces only `library_index.json`, runs the read-only health check, and rolls back if post-repair errors or warnings remain.
+- Tests cover preview no-write behavior, unindexed records, missing index recovery, explicit apply, backup creation, and refusal to drop aliases. Full CI and secret scan passed on the final PR head.
+- Scope is intentionally narrow: it does not rewrite song identities, metadata evidence, provider observations, or playlist state. No real Library repair was applied; this was implementation/test work only.
+- Next: validate the preview on a disposable copy of the full canonical Library before using apply against main. Broader maintenance remains separately scoped.
+
 ## 2026-11-02 — Merge and run health checker against full catalogue
 
 - PR #73 merged to main: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/73
