@@ -187,13 +187,34 @@ jobs:
             fi
           fi
 
-      - name: Upload rollback backup and run log
-        if: always()
+      - name: Upload generated Library and rollback backup
+        if: >-
+          always() &&
+          (steps.request.outputs.command == 'migrate' ||
+           steps.request.outputs.command == 'prepare' ||
+           steps.request.outputs.command == 'duration-evidence-apply' ||
+           steps.request.outputs.command == 'backfill-playability')
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: shit-library-run-${{ github.run_id }}
+          name: shit-library-data-${{ github.run_id }}
           path: |
             assistant_data/music/
+            shit-library-run.log
+            freshness-branch-plan.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Upload read-only operation report
+        if: >-
+          always() &&
+          !(steps.request.outputs.command == 'migrate' ||
+            steps.request.outputs.command == 'prepare' ||
+            steps.request.outputs.command == 'duration-evidence-apply' ||
+            steps.request.outputs.command == 'backfill-playability')
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: shit-library-report-${{ github.run_id }}
+          path: |
             shit-library-run.log
             freshness-branch-plan.json
           if-no-files-found: ignore
