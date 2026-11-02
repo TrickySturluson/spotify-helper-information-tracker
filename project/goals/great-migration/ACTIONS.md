@@ -1,3 +1,17 @@
+## 2026-11-02 — Add exact legacy duration-observation provenance recovery
+
+- Investigation of the 6,613 unknown-age duration candidates found a canonical/legacy mismatch: At the Gates — Slaughter of the Soul (`mbid:14c4ff34-27e4-491d-8c65-c1773a1bea46`) has duration 183,000 ms and source `Last.fm track.getInfo` in its canonical song file but no check timestamp; the exact legacy row in `assistant_data/music/artists/shard-18.json` has the same duration/source, `metadata_checked_at=1793324246`, `metadata_status=matched`, `retry_after=0` (2026-10-30T01:37:26Z).
+- This indicates freshness provenance was dropped during migration for at least some rows. The 6,613 unknown-age candidates must not be treated as stale or re-fetched until this provenance is recovered.
+- Issue #103 records the required exact-ID/value/source match and safe backfill.
+- Added `scripts/music/backfill_duration_observations.py`: read-only by default; resolves legacy rows through canonical source-track/recording-MBID aliases; requires exact duration and source match plus a successful matched status; adds append-only `evidence.track_metadata.duration_observations`; skips conflicts; apply requires `--apply --yes`, timestamped backup, atomic writes, and post-write health check.
+- Updated `metadata_freshness.py` to age duration from the latest matching provider/duration/source observation, separate from Last.fm tag timestamps.
+- Updated `library_health.py` to validate duration observation structure/provider/source/timestamp/value/retry fields.
+- Exposed CLI `python shit.py library duration-evidence` (preview default) and added tests for exact matches, mismatch/duplicate handling, newer observations, no-write preview, backup and rollback.
+- Added workflow command `[SHIT LIBRARY] duration-evidence-preview`; issue #104 is running a full-catalogue read-only preview. At this entry, no apply has been run and no canonical song files have been changed.
+- No provider requests or Spotify playlist writes.
+
+**Next:** inspect issue #104's full preview report. If exact match coverage is high and conflicting duplicate/ambiguous alias counts are zero, run the backup-protected missing-only backfill, then verify health and freshness baseline reduction. Do not run the weekly baseline executor until after timestamp recovery.
+
 ## 2026-11-02 — Merge rotating freshness baseline and verify clean branch
 
 - PR #100 merged to main as `61cc5c0b108559746443a4ad8d83bf2ec2ca97d8`; superseded PRs #95 and #97 were closed.
