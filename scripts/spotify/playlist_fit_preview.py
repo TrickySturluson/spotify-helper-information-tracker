@@ -79,34 +79,45 @@ def load_library_records(root: Path, music_root: Path) -> tuple[dict, dict]:
     cache = read_json(music_root / "track_profiles.json")
     if not isinstance(cache, dict):
         raise ValueError("track_profiles.json must contain an object")
-    return records, index_track_profiles(cache)
+    library_index = read_json(root / "library_index.json")
+    if not isinstance(library_index, dict):
+        raise ValueError("library_index.json must contain an object")
+    return records, index_profiles_by_song(cache, library_index)
 
 
-def index_track_profiles(cache: dict) -> dict:
-    """Index cache rows once by their stable recording/source ID."""
+def index_profiles_by_song(cache: dict, library_index: dict) -> dict:
+    """Resolve legacy cache rows to canonical song IDs through exact Library aliases."""
+    recording_aliases = library_index.get("recording_mbids") if isinstance(library_index.get("recording_mbids"), dict) else {}
+    source_aliases = library_index.get("source_track_ids") if isinstance(library_index.get("source_track_ids"), dict) else {}
+    spotify_aliases = library_index.get("spotify_ids") if isinstance(library_index.get("spotify_ids"), dict) else {}
     indexed = {}
-    for key, row in cache.items():
-        if isinstance(row, dict):
-            stable_id = str(row.get("track_id") or key).casefold()
-            if stable_id:
-                indexed[stable_id] = row
+    for profile_key, profile in cache.items():
+        if not isinstance(profile, dict):
+            continue
+        song_id = None
+        mbid = str(profile.get("track_mbid") or "").strip().casefold()
+        if mbid:
+            song_id = recording_aliases.get(mbid) or recording_aliases.get("mbid:" + mbid)
+        track_id = str(profile.get("track_id") or profile_key).strip().casefold()
+        if not song_id and track_id.startswith("mbid:"):
+            song_id = recording_aliases.get(track_id) or recording_aliases.get(track_id[5:])
+        if not song_id and track_id.startswith("track:"):
+            song_id = source_aliases.get(track_id)
+        if not song_id and track_id.startswith("spotify:track:"):
+            song_id = spotify_aliases.get(track_id.rsplit(":", 1)[-1])
+        if not song_id:
+            continue
+        prior = indexed.get(song_id)
+        if prior is None or str(profile.get("lastfm_checked_at") or "") >= str(prior.get("lastfm_checked_at") or ""):
+            indexed[song_id] = profile
     return indexed
 
 
-def profile_for_record(record: dict, cache: dict) -> dict | None:
-    identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
-    candidates = []
-    if identity.get("source_track_id"):
-        candidates.append(str(identity["source_track_id"]).casefold())
-    if identity.get("recording_mbid"):
-        candidates.append("mbid:" + str(identity["recording_mbid"]).casefold().removeprefix("mbid:"))
-    if identity.get("spotify_id"):
-        candidates.append("spotify:track:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
-    for stable in candidates:
-        row = cache.get(stable)
-        if isinstance(row, dict) and str(row.get("track_id") or stable).casefold() == stable:
-            return row
-    return None
+def profile_for_record(record: dict, cache_by_song: dict) -> dict | None:
+    """Return only the cache row whose exact alias resolves to this canonical song ID."""
+    song_id = str(record.get("id") or "")
+    row = cache_by_song.get(song_id)
+    return row if isinstance(row, dict) else None
 
 
 def load_reference_targets(spotify_root: Path) -> dict:
