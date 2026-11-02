@@ -117,7 +117,7 @@ jobs:
             health)  python shit.py library health --json ;;
             backfill-playability) python scripts/spotify/spotify_reference_library.py backfill-playability ;;
             maintain-preview) python shit.py library maintain --json ;;
-            freshness-review) python shit.py library freshness --json --limit 25 --market from_token ;;
+            freshness-review) python shit.py library freshness --json --limit 25 --market from_token --include-unknown-age ;;
             verify-catalogue)
               python shit.py library audit
               python shit.py library health --json
