@@ -212,7 +212,10 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
                 row = observations.get(field)
                 if not isinstance(row, dict):
                     continue
-                provider = str(row.get("provider") or POLICIES[field]["provider"])
+                provider = str(row.get("provider") or "").strip()
+                if not provider:
+                    counts["blocked"] += 1
+                    continue
                 policy = POLICIES.get(field, {"ttl_days": 180, "priority": 20})
                 _consider(tasks, counts, "song", song_id, record, field, provider,
                           row.get("observed_at"), policy, now,
