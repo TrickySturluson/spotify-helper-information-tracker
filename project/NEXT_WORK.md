@@ -129,3 +129,11 @@ Before handing off, update this file and the project log with:
 - Current counts/coverage only when freshly measured, with source and timestamp.
 - Remaining gaps, blockers, retry/cooldown state, and the single next concrete action.
 - Any user decision or constraint that future work must preserve.
+
+
+## 2026-11-02 — Latest verified checkpoint: both duration provenance passes
+
+- The timezone-aware ISO-8601 timestamp parser is published on `main`. Issue #113 preview passed: 8,172 legacy rows had valid timestamps and exact canonical ID/duration/source/matched-status alignment; 8,121 observations already existed and 51 MusicBrainz observations remained to add. Zero alias, file, duration, source, status, timestamp, or duplicate conflicts; 2,958 unknown-provider rows skipped; no provider requests or preview writes.
+- Issue #114 apply reported success: 51 song files changed, backup created, post-write health passed, zero provider requests and zero Spotify playlist writes. Independent verification of published `songs/so/source-3e2d305ebc76ea39/song.json` confirms a MusicBrainz duration observation (139,000 ms, exact source and timestamp) is on main.
+- Fresh read-only post-publication checks are queued: #115 audit, #116 health, #117 freshness review, #118 combined audit/health/confidence. Inspect issue comments and Actions status before treating them as complete.
+- Next gate: use the fresh freshness report to quantify remaining unknown-age duration candidates; then complete the read-only duplicate-entity audit and implement/verify the provider-aware retry queue per [`RETRY_QUEUE_SPEC.md`](RETRY_QUEUE_SPEC.md). Provider calls stay disabled until the report demonstrates eligibility and retry budgets/cooldowns are clear. Sorter remains gated on these checks.
