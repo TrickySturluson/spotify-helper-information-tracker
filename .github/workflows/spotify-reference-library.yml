@@ -58,24 +58,29 @@ jobs:
           })
           PY
           python compat/spotify_reference_library.py sync
-      - name: Verify priority playlist snapshot is complete and current
+      - name: Verify priority and sorter audition playlist snapshots are complete and current
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          path = Path("assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json")
-          if not path.is_file():
-              raise SystemExit("Booze or Boos! snapshot is missing; refusing to publish.")
-          data = json.loads(path.read_text(encoding="utf-8"))
-          if not data.get("items_accessible"):
-              raise SystemExit("Booze or Boos! items were inaccessible; refusing to publish a stale snapshot.")
-          reported = data.get("total_items_reported")
-          fetched = data.get("item_count_fetched")
-          if not isinstance(reported, int) or reported != fetched:
-              raise SystemExit(f"Booze or Boos! snapshot is incomplete: Spotify reports {reported}, fetched {fetched}.")
-          if len(data.get("items", [])) != fetched:
-              raise SystemExit("Booze or Boos! item list length does not match fetched count.")
-          print(f"Verified Booze or Boos!: {fetched} items; Spotify snapshot {data.get('snapshot_id')}; captured {data.get('captured_at')}.")
+          targets = {
+              "4diIlnF8BlgoJrwUfejf49": "Booze or Boos!",
+              "4aLdllLgRPh5vKOznkC97D": "SHITting Grounds",
+          }
+          for playlist_id, name in targets.items():
+              path = Path(f"assistant_data/spotify/playlists/{playlist_id}.json")
+              if not path.is_file():
+                  raise SystemExit(f"{name} snapshot is missing; refusing to publish.")
+              data = json.loads(path.read_text(encoding="utf-8"))
+              if not data.get("items_accessible"):
+                  raise SystemExit(f"{name} items were inaccessible; refusing to publish a stale snapshot.")
+              reported = data.get("total_items_reported")
+              fetched = data.get("item_count_fetched")
+              if not isinstance(reported, int) or reported != fetched:
+                  raise SystemExit(f"{name} snapshot is incomplete: Spotify reports {reported}, fetched {fetched}.")
+              if len(data.get("items", [])) != fetched:
+                  raise SystemExit(f"{name} item list length does not match fetched count.")
+              print(f"Verified {name}: {fetched} items; Spotify snapshot {data.get('snapshot_id')}; captured {data.get('captured_at')}.")
           PY
       - name: Audit refreshed project data
         run: python compat/audit_project.py
