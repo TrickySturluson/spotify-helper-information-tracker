@@ -31,7 +31,7 @@ def stamp():
     return datetime.now(timezone.utc).isoformat()
 
 
-def item_record(entry, position):
+def item_record(entry, position, market=None):
     item = entry.get("item") or entry.get("track") or entry.get("episode") or {}
     artists = item.get("artists") or []
     album = item.get("album") or {}
@@ -52,6 +52,7 @@ def item_record(entry, position):
         "is_playable": item.get("is_playable"),
         "is_playable_present": "is_playable" in item,
         "playability_checked_at": stamp() if "is_playable" in item else None,
+        "playability_market": market if "is_playable" in item else None,
         "restrictions": item.get("restrictions") or {},
         "linked_from": (item.get("linked_from") or {}).get("uri"),
         "external_ids": item.get("external_ids") or {},
@@ -59,7 +60,7 @@ def item_record(entry, position):
     }
 
 
-def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=None):
+def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=None, fallback_market="unknown", snapshot_accessible=True):
     """Convert explicit Spotify response fields into a provenance-rich observation."""
     if not isinstance(item, dict):
         return None
@@ -70,6 +71,13 @@ def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=
     playable = item.get("is_playable")
     reason = restrictions.get("reason") if isinstance(restrictions, dict) else None
     linked_uri = item.get("linked_from")
+    market = item.get("playability_market") or fallback_market or "unknown"
+    market_context = (
+        "spotify_user_account_country" if market == "from_token" else
+        "explicit_country_market" if market != "unknown" else
+        "market_not_established"
+    )
+    requested_id = linked_uri.rsplit(":", 1)[-1] if linked_uri else item.get("id")
     return {
         "status": (
             "restricted" if reason else
@@ -78,14 +86,15 @@ def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=
             "unknown"
         ),
         "is_playable": playable,
-        "market": "unknown",
-        "market_context": "playlist_items_response_market_not_explicit",
+        "market": market,
+        "market_context": market_context,
+        "snapshot_items_accessible": bool(snapshot_accessible),
         "checked_at": item.get("playability_checked_at") or fallback_checked_at,
         "provider": "Spotify",
         "source": "read_only_playlist_snapshot",
         "playlist_id": playlist_id,
         "playlist_snapshot_id": snapshot_id,
-        "requested_spotify_id": item.get("id"),
+        "requested_spotify_id": requested_id,
         "returned_spotify_id": item.get("id"),
         "linked_from_spotify_uri": linked_uri,
         "linked_from_spotify_id": linked_uri.rsplit(":", 1)[-1] if linked_uri else None,
@@ -121,12 +130,14 @@ def playlist_record(sp, playlist, cached=None):
             "items_accessible": True,
             "items_error": None,
             "items_snapshot_id": playlist.get("snapshot_id"),
+            "playability_market": cached.get("playability_market") or "from_token",
+            "playability_market_context": "spotify_user_account_country",
         }
 
     items_accessible = True
     items_error = None
     try:
-        entries = sp.items(playlist["id"])
+        entries = sp.items(playlist["id"], market="from_token")
     except manager.ManagerError as error:
         message = str(error)
         status = next((code for code in ("HTTP 403", "HTTP 404") if code in message), None)
@@ -138,7 +149,7 @@ def playlist_record(sp, playlist, cached=None):
             f"Spotify API returned {status} while fetching playlist items; "
             "contents are unavailable and are not treated as an empty playlist."
         )
-    rows = [item_record(entry, i) for i, entry in enumerate(entries)]
+    rows = [item_record(entry, i, market="from_token") for i, entry in enumerate(entries)]
     owner = playlist.get("owner") or {}
     return {
         "schema_version": 1,
@@ -156,6 +167,8 @@ def playlist_record(sp, playlist, cached=None):
         "items_error": items_error,
         "last_items_accessible_at": stamp() if items_accessible else None,
         "items_snapshot_id": playlist.get("snapshot_id") if items_accessible else None,
+        "playability_market": "from_token",
+        "playability_market_context": "spotify_user_account_country",
         "items": rows,
     }
 
