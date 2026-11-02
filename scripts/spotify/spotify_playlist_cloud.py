@@ -508,7 +508,7 @@ def main():
             ("Misfits", "Halloween II"),
             ("Creature Feature", "The Greatest Show Unearthed"),
             ("Creature Feature", "The Netherworld"),
-            ("Misfits", "Astro Zombies"),
+            ("The Cramps", "Zombie Dance"),
             ("Nekromantix", "Haunted Cathouse"),
             ("Misfits", "Return of the Fly"),
             ("Wednesday 13", "I Walked with a Zombie"),
