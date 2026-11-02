@@ -19,6 +19,7 @@ SYNCER = REPO_ROOT / "scripts" / "music" / "sync_music_library.py"
 HEALTH_CHECKER = REPO_ROOT / "scripts" / "music" / "library_health.py"
 MAINTAINER = REPO_ROOT / "scripts" / "music" / "library_maintenance.py"
 CONFIDENCE_AUDIT = REPO_ROOT / "scripts" / "music" / "library_confidence_audit.py"
+FRESHNESS_PLANNER = REPO_ROOT / "scripts" / "music" / "metadata_freshness.py"
 
 
 def _index(root):
@@ -102,6 +103,14 @@ def run_maintenance(args):
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
 
+def run_freshness(args):
+    command = [
+        sys.executable, str(FRESHNESS_PLANNER), "--root", str(args.root),
+        "--limit", str(args.limit), "--market", args.market, "--json",
+    ]
+    return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
+
+
 def run_confidence(args):
     command = [sys.executable, str(CONFIDENCE_AUDIT), "--root", str(args.root)]
     if args.json:
@@ -130,6 +139,7 @@ def build_parser():
         ("health", "Run comprehensive read-only structural and referential health checks"),
         ("maintain", "Preview or apply backup-protected deterministic index repairs"),
         ("confidence", "Audit identity and field-level metadata confidence without modifying records"),
+        ("freshness", "Plan a bounded read-only field/provider freshness review"),
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
         ("sync", "Merge existing enrichment exports into the canonical library"),
         ("verify", "Verify configured provider credentials without changing data"),
@@ -138,8 +148,11 @@ def build_parser():
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
         if name in {"migrate", "run", "resume"}:
             sub.add_argument("--yes", action="store_true", help="Skip migration confirmation")
-        if name in {"health", "confidence", "maintain"}:
+        if name in {"health", "confidence", "maintain", "freshness"}:
             sub.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+        if name == "freshness":
+            sub.add_argument("--limit", type=int, default=25, help="Maximum due observations to include (1-100)")
+            sub.add_argument("--market", default="from_token", help="Spotify market code or from_token")
         if name == "maintain":
             sub.add_argument("--apply", action="store_true", help="Apply a safe repair after creating a backup")
             sub.add_argument("--repair-index", action="store_true", help="Explicitly allow rebuilding the derived index")
@@ -165,6 +178,8 @@ def main(argv=None):
         return run_maintenance(args)
     if args.action == "confidence":
         return run_confidence(args)
+    if args.action == "freshness":
+        return run_freshness(args)
     if args.action == "preview":
         return run_migration(args.root, dry_run=True)
     if args.action in {"migrate", "run", "resume"}:
@@ -190,7 +205,7 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Native command interface for the canonical per-recording music library.
-# Commands: status, preview, migrate, audit, health, maintain, confidence, prepare, sync, verify.
+# Commands: status, preview, migrate, audit, health, maintain, confidence, freshness, prepare, sync, verify.
 # Health is a separate read-only scan and does not instantiate the auto-rebuilding resolver.
 # Prepare defaults to a read-only preflight; --execute runs migration and bounded
 # provider enrichment. Sync merges existing durable exports into the canonical store.

@@ -1,0 +1,90 @@
+name: SHIT — Library Freshness Review
+
+on:
+  schedule:
+    - cron: "17 9 * * 0"
+  workflow_dispatch:
+    inputs:
+      market:
+        description: Spotify market or from_token
+        required: false
+        default: from_token
+        type: string
+      limit:
+        description: Maximum due observations to report
+        required: false
+        default: "25"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shit-library-freshness-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Run read-only Library health check
+        run: python shit.py library health --json > library-health.json
+
+      - name: Run read-only confidence audit
+        run: python shit.py library confidence --json > library-confidence.json
+
+      - name: Build bounded field-level freshness plan
+        env:
+          MARKET: ${{ inputs.market || 'from_token' }}
+          LIMIT: ${{ inputs.limit || '25' }}
+        run: python shit.py library freshness --market "$MARKET" --limit "$LIMIT" > library-freshness-plan.json
+
+      - name: Validate read-only reports
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          health = json.loads(Path("library-health.json").read_text(encoding="utf-8"))
+          confidence = json.loads(Path("library-confidence.json").read_text(encoding="utf-8"))
+          freshness = json.loads(Path("library-freshness-plan.json").read_text(encoding="utf-8"))
+          assert health.get("ok") is True, health.get("errors", [])[:10]
+          assert confidence.get("ok") is True, confidence.get("errors", [])[:10]
+          assert freshness.get("mode") == "read_only_plan"
+          assert freshness.get("provider_requests") == 0
+          assert freshness.get("writes") == 0
+          assert not freshness.get("errors"), freshness.get("errors", [])[:10]
+          print("Library health:", health.get("counts"))
+          print("Confidence drift:", confidence.get("metadata_confidence_drift_count"))
+          print("Freshness scanned:", freshness.get("counts"))
+          print("Due tasks:", freshness.get("due_task_count"),
+                "selected:", freshness.get("selected_task_count"))
+          PY
+
+      - name: Preserve weekly review reports
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: shit-library-freshness-review-${{ github.run_id }}
+          path: |
+            library-health.json
+            library-confidence.json
+            library-freshness-plan.json
+          retention-days: 30
+          if-no-files-found: error
+
+# FILE OVERVIEW
+# Purpose: Weekly, read-only structural health, confidence and metadata freshness review.
+# Schedule: Sundays at 09:17 UTC; can also be dispatched manually with a market and batch limit.
+# Outputs: Health, confidence and bounded freshness JSON reports as a 30-day workflow artifact.
+# Safety: No provider requests, Library writes, playlist writes, or automatic repairs.
+# Related: shit.py library health|confidence|freshness and project/goals/metadata-freshness/.
