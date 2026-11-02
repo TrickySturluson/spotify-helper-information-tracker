@@ -1,3 +1,12 @@
+## 2026-11-02 — Merge rotating freshness baseline and verify clean branch
+
+- PR #100 merged to main as `61cc5c0b108559746443a4ad8d83bf2ec2ca97d8`; superseded PRs #95 and #97 were closed.
+- PR CI passed: 344 tests, compile, generated-data audit, full Library health/confidence/freshness checks, documentation tests; public repository security scan passed.
+- Issue #101 validated the clean rebased branch on latest main: full compile and 344 tests passed; native freshness CLI accepted `--include-unknown-age`; full catalogue 13,005 songs / 6,386 artists / 7,861 albums.
+- Freshness baseline: 6,613 data-bearing unknown-age candidates; 25 selected (all Last.fm duration); 0 stale/due; 33,689 no-data fields; 1,856 missing duration provenance; 1,362 cooldown skips; 0 invalid timestamps; 0 blocked; provider_requests=0, writes=0.
+- Weekly workflow now includes the read-only maintenance preview and unknown-age baseline plan. No provider-backed refresh executor is enabled; no provider requests or Library writes occurred.
+- New issue #102 tracks a read-only duplicate artist/album/song audit after identifying a Candy Claws name-fallback artist/album pair that is internally consistent but likely duplicates the verified MBID/Spotify-ID entities. No records were merged or changed.
+
 ## 2026-11-02 — Verify safe maintainer preview and add prepare preflight command
 
 - Issue #93 `maintain-preview` completed successfully on latest main: health clean (0 errors/warnings); current and proposed counts match at 13,005 songs, 6,386 artists, 7,861 albums; `repair_needed=false`; `safe_to_rebuild=true`; no IDs/aliases would be lost; `changed=false`; provider_requests=0; spotify_playlist_writes=0. No repair or backup was created.
