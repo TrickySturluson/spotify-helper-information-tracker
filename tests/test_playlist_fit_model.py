@@ -222,6 +222,22 @@ class PlaylistFitModelTests(unittest.TestCase):
         self.assertEqual(adapted["dimensions"]["genre"][0]["source_family"], "musicbrainz")
 
 
+    def test_context_only_coverage_does_not_raise_profile_confidence(self):
+        tracks = [{
+            "uri": f"spotify:track:{i:022d}",
+            "dimensions": {"genre": [{
+                "value": "garage rock", "source_family": "lastfm",
+                "scope": "artist", "identity_confidence": "high",
+            }]},
+        } for i in range(24)]
+        profile = build_reference_profile(tracks)
+        self.assertEqual(profile["coverage"], 0.0)
+        self.assertEqual(profile["context_coverage"], 0.2)
+        self.assertEqual(profile["dimensions"]["genre"]["direct_track_count"], 0)
+        self.assertEqual(profile["dimensions"]["genre"]["context_track_count"], 24)
+        self.assertEqual(profile["profile_confidence"], "low")
+
+
 if __name__ == "__main__":
     unittest.main()
 
