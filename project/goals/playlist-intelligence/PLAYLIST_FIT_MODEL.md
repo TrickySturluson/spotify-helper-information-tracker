@@ -177,6 +177,8 @@ A production implementation is not ready until the following regression tests pa
 
 A read-only integration runner now exists at `scripts/spotify/playlist_fit_preview.py`. It validates the five saved target snapshots, resolves canonical song records by exact Spotify ID, joins the legacy track-profile cache only by exact stable IDs, excludes the full supplied candidate batch from every target profile, and emits per-target scores with confidence and coverage. See [PLAYLIST_FIT_PREVIEW.md](PLAYLIST_FIT_PREVIEW.md) for the CLI and input contract. It deliberately does not read human ratings, make Spotify API calls, or write playlists. It is not yet integrated into the sequencer.
 
+Explicit artist/release genre and explicit mood fields may be included as context only, with their source scope preserved and reduced weights (artist 0.15, release 0.35). Artist genre must never be used as mood; artist/release context must never fill sound, energy, or lyric theme. Profile confidence is based on direct recording/audio/lyrics coverage, with contextual coverage reported separately.
+
 The current AcousticBrainz cache contains `average_loudness` and `dynamic_complexity`, but these values are not a validated perceived-energy or sound scale. Do not convert them into playlist-fit evidence without a separate validated mapping. Unsupported dimensions remain unknown.
 
 
