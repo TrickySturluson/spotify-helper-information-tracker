@@ -74,3 +74,15 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Outcome:** Documentation and methodology guardrails committed. No classifier code or weights changed; no human ratings modified; no Spotify playlist reads/writes performed in this step.
 - **Next action:** Implement the profile builder and five-axis scorer as a separate read-only module; add synthetic regression tests for dimension isolation, missingness, duplicate sources, identity ambiguity, contradictions, candidate/holdout leakage, thin profiles, instrumental tracks, determinism and human-score non-import. Then run held-out evidence evaluation before enabling preview recommendations.
 - **Commits:** model contract `f6f996cedc5bd212505715c441d66576a512697c`; reference guide `c3786ad2c0507fdd1d43247fe8d85769c748686f`; goal README `b2315b4cc05a3b719b88c18b59b74a00e84deaa0`.
+
+
+## 2026-11-02 — Five-axis scorer prototype and regression suite
+
+- **Purpose:** Move the production contract from documentation into an executable, read-only scoring prototype.
+- **Implementation:** `scripts/spotify/playlist_fit_model.py` adds deterministic per-target scoring across Genre, Sound, Energy, Mood and Theme. It keeps missing dimensions unknown, separates fit from confidence, weights evidence scope, counts independent source families, requires recording-level evidence for energy, and supports candidate/held-out exclusion from reference profiles. It does not import human ratings, call Spotify, or write playlists.
+- **Tests:** `tests/test_playlist_fit_model.py` covers candidate exclusion, held-out batch exclusion, strong multi-source evidence, missingness, artist-only context, duplicate/single-source evidence, unresolved identity, independent target scores and no-evidence behavior.
+- **Documentation:** Updated the model contract and goal README to distinguish this scorer prototype from production integration. The scorer is not yet wired to canonical Library evidence or the sequencer.
+- **Verification:** Code and tests were committed to main. The repository's normal GitHub Actions workflow compiles all Python modules and runs full unittest discovery; this entry does not claim that workflow passed. Await the actual run result before treating tests as verified.
+- **Outcome:** Prototype and regression cases committed; production status remains preview-only / not enabled.
+- **Next action:** Check Actions for compile/test results. Fix any failures. Then add a tested adapter from canonical Library records to the five-axis evidence schema, profile coverage/snapshot provenance, per-target output and an end-to-end read-only preview. Run a genuinely held-out candidate batch with the whole batch excluded from profiles and independent evidence review frozen before comparison.
+- **Commits:** scorer `86c5c715ffb8182261d501a56fb4a1357fe12d9a`; tests `b780903d95cf74657e5b1b9cf450f645895dd7c7`; status updates `d147efa5da40998b280cfb7d08c8426457c040b0`, `5e64e5853314e651c2080fdf660e34b5211794ed`.
