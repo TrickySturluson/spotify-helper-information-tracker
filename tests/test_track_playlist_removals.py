@@ -68,3 +68,13 @@ class RemovalBaselineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Verify safe baseline seeding and playlist-local manual-removal feedback.
+# Coverage: Complete-snapshot filtering, no false empty-list baselines, and sticky
+#           URI-based removal records after a playlist changes.
+# Related: scripts/spotify/track_playlist_removals.py and the Spotify reference
+#          library workflow.
+# -----------------------------------------------------------------------------
