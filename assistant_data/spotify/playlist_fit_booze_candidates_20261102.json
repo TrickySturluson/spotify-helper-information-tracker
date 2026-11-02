@@ -1,0 +1,522 @@
+{
+  "schema_version": 1,
+  "description": "Identity-only candidate batch from the saved Booze or Boos! playlist snapshot. Used to audit current playlist tracks against the five calibration profiles; contains no scores or human ratings.",
+  "source_playlist_id": "4diIlnF8BlgoJrwUfejf49",
+  "source_playlist_name": "Booze or Boos!",
+  "source_snapshot_id": "AAAA8bx0/IayXwvWXBdkeCowLo32i5oU",
+  "captured_at": "2026-11-02T03:58:22.783034+00:00",
+  "tracks": [
+    {
+      "uri": "spotify:track:7KEGIroxrVnh40lYTfOVYY",
+      "title": "Hollywood Devils",
+      "artist": "Messer Chups",
+      "album": "Surf Riders from the Swamp Lagoon",
+      "duration_ms": 140320,
+      "isrc": "DEW011101794"
+    },
+    {
+      "uri": "spotify:track:2zMltFX7IerjrXLSt1P0WG",
+      "title": "Witch Stomp",
+      "artist": "Guantanamo Baywatch",
+      "album": "Desert Center",
+      "duration_ms": 182386,
+      "isrc": "US33X1715406"
+    },
+    {
+      "uri": "spotify:track:18k49mXvNPtKlcT6Ky39pe",
+      "title": "The Witch",
+      "artist": "The Sonics",
+      "album": "Introducing The Sonics",
+      "duration_ms": 158680,
+      "isrc": "US6X81100096"
+    },
+    {
+      "uri": "spotify:track:7F6B0eGSuPpDin9yCK6Zh7",
+      "title": "Hex Girl",
+      "artist": "Dreadlight, Maiah Wynne",
+      "album": "Hex Girl",
+      "duration_ms": 119280,
+      "isrc": "QZMEP2034357"
+    },
+    {
+      "uri": "spotify:track:2l0Z9fY1E8Bep8opmhmDhq",
+      "title": "Frankenstein",
+      "artist": "The Edgar Winter Group",
+      "album": "They Only Come Out At Night",
+      "duration_ms": 284293,
+      "isrc": "USSM19912832"
+    },
+    {
+      "uri": "spotify:track:7vKWix5Csqu54sC0EmvB3Z",
+      "title": "Killers Walk",
+      "artist": "Alden Derck, Shannon Sheridan",
+      "album": "What's Your Favorite Scary Movie?",
+      "duration_ms": 129063,
+      "isrc": "CALVP2462374"
+    },
+    {
+      "uri": "spotify:track:22rVn6AqjJJCBzMXaRfhfU",
+      "title": "Chupacabra Twist",
+      "artist": "Messer Chups",
+      "album": "Surf Riders from the Swamp Lagoon",
+      "duration_ms": 158320,
+      "isrc": "DEW011101790"
+    },
+    {
+      "uri": "spotify:track:6QjHD0Sc1oW29NqWs9x7nJ",
+      "title": "Cemetery Beach",
+      "artist": "Messer Chups",
+      "album": "Church of Reverb",
+      "duration_ms": 191960,
+      "isrc": "DEW011201869"
+    },
+    {
+      "uri": "spotify:track:1aLa8Bb1QdK39uDB8R0XN8",
+      "title": "The Devil's Rumble",
+      "artist": "Davie Allan & The Arrows",
+      "album": "Devil's Rumble: Anthology '64-'68",
+      "duration_ms": 100013,
+      "isrc": "USCRB1210019"
+    },
+    {
+      "uri": "spotify:track:0wHwJLCxCCO4BORXEPGCRZ",
+      "title": "Tomb Sweet Tomb",
+      "artist": "Messer Chups",
+      "album": "The Incredible Crocotiger",
+      "duration_ms": 179486,
+      "isrc": "DEW011502133"
+    },
+    {
+      "uri": "spotify:track:1BE4EFEuVLLPbwyzJWDmdO",
+      "title": "Munster Theme",
+      "artist": "Messer Chups",
+      "album": "Spooky Hook",
+      "duration_ms": 123000,
+      "isrc": "DEW010901662"
+    },
+    {
+      "uri": "spotify:track:6dkAXLDKALkULFcWcJUlba",
+      "title": "Zombie Catchers",
+      "artist": "The Eyeberries",
+      "album": "Zombie Catchers",
+      "duration_ms": 175500,
+      "isrc": "QZHN81940640"
+    },
+    {
+      "uri": "spotify:track:1ipGbUPMdwmO7Ajk6iMDQu",
+      "title": "Fast Food Diablo",
+      "artist": "Messer Chups",
+      "album": "Spooky Hook",
+      "duration_ms": 144000,
+      "isrc": "DEW011602191"
+    },
+    {
+      "uri": "spotify:track:5mguQw289MoZ8Jm75yhRr2",
+      "title": "Dracula Hates Photoshoots",
+      "artist": "Messer Chups",
+      "album": "Church of Reverb",
+      "duration_ms": 167995,
+      "isrc": "DEW011201878"
+    },
+    {
+      "uri": "spotify:track:3SLRpaxbk4b4cXPvX7xsRJ",
+      "title": "The Time Warp",
+      "artist": "Richard O'Brien, Patricia Quinn, Nell Campbell, The Rocky Horror Picture Show",
+      "album": "The Rocky Horror Picture Show: Absolute Treasures (The Complete Soundtrack from the Original Movie)",
+      "duration_ms": 198049,
+      "isrc": "USA371435763"
+    },
+    {
+      "uri": "spotify:track:3lM9UdOYvDIs5PSY8aBEl2",
+      "title": "Halloween",
+      "artist": "Siouxsie and the Banshees",
+      "album": "Juju",
+      "duration_ms": 221466,
+      "isrc": "GBF068125080"
+    },
+    {
+      "uri": "spotify:track:1mmsMMDhZARJuzBsZ9NDrh",
+      "title": "Ghost Party",
+      "artist": "Messer Chups",
+      "album": "The Incredible Crocotiger",
+      "duration_ms": 150117,
+      "isrc": "DEW011502123"
+    },
+    {
+      "uri": "spotify:track:5x48N9IiNNnbZ7J4IFoccq",
+      "title": "Spooky Tiki",
+      "artist": "Messer Chups",
+      "album": "Heretic Channel",
+      "duration_ms": 164373,
+      "isrc": "DEW010901660"
+    },
+    {
+      "uri": "spotify:track:2rzafMh8q10vQGixcHupCh",
+      "title": "Back From The Dead",
+      "artist": "House Of Pain",
+      "album": "Same As It Ever Was",
+      "duration_ms": 212306,
+      "isrc": "USRH11000018"
+    },
+    {
+      "uri": "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
+      "title": "Who Do You Voodoo (From Dead Island)",
+      "artist": "Josef \"J7\" Lord, Christopher H. Knight",
+      "album": "Who Do You Voodoo (From Dead Island)",
+      "duration_ms": 142580,
+      "isrc": "TCABA1155345"
+    },
+    {
+      "uri": "spotify:track:4mUm3GB285Na6WQZ2UgEUg",
+      "title": "Ghastly Stomp",
+      "artist": "The Ghastly Ones",
+      "album": "A-Haunting We Will Go-Go",
+      "duration_ms": 146935,
+      "isrc": "USGF19816702"
+    },
+    {
+      "uri": "spotify:track:4A9dMvwGlocF9gxVesArPR",
+      "title": "Haulin' Hearse",
+      "artist": "The Ghastly Ones",
+      "album": "A-Haunting We Will Go-Go",
+      "duration_ms": 142000,
+      "isrc": "USGF19816706"
+    },
+    {
+      "uri": "spotify:track:5ykjrPyJXKivUqoRcJTl17",
+      "title": "Rockula",
+      "artist": "Los Straitjackets",
+      "album": "The Velvet Touch of Los Straitjackets",
+      "duration_ms": 166333,
+      "isrc": "USY1R0001302"
+    },
+    {
+      "uri": "spotify:track:252s9AdYVzDJ8jAQ8G5Iws",
+      "title": "Banshee Beach",
+      "artist": "The Ghastly Ones",
+      "album": "Halloween Hootenanny",
+      "duration_ms": 134293,
+      "isrc": "USGF19821415"
+    },
+    {
+      "uri": "spotify:track:6cRltrjAMIXBO20lYzGGhE",
+      "title": "\"The Munsters\" Theme",
+      "artist": "Los Straitjackets",
+      "album": "Halloween Hootenanny",
+      "duration_ms": 174026,
+      "isrc": "USGF19821411"
+    },
+    {
+      "uri": "spotify:track:0Pz6mAKZ4iNWy3jyFfEG9z",
+      "title": "Diabolo's Theme",
+      "artist": "The Ghastly Ones",
+      "album": "A-Haunting We Will Go-Go",
+      "duration_ms": 127573,
+      "isrc": "USGF19816710"
+    },
+    {
+      "uri": "spotify:track:1E5lJ3PRYAmOwv2Zlqj8FT",
+      "title": "Vampires",
+      "artist": "Night Club",
+      "album": "Scary World",
+      "duration_ms": 213219,
+      "isrc": "GBKPL1808540"
+    },
+    {
+      "uri": "spotify:track:0MK6lVnmhVulpP62vkZBWV",
+      "title": "Locals (Girls like us) [with gabby start]",
+      "artist": "underscores, gabby start",
+      "album": "Wallsocket",
+      "duration_ms": 258084,
+      "isrc": "USQE92300060"
+    },
+    {
+      "uri": "spotify:track:1XWSE59E3X8T2AHE4v11Hu",
+      "title": "Scary World",
+      "artist": "Night Club",
+      "album": "Scary World",
+      "duration_ms": 190827,
+      "isrc": "GBKPL1808545"
+    },
+    {
+      "uri": "spotify:track:51T9xt361Nm8IyUPoAlCPt",
+      "title": "Crime Scene",
+      "artist": "Night Club",
+      "album": "Masochist",
+      "duration_ms": 188430,
+      "isrc": "QMFMG2318791"
+    },
+    {
+      "uri": "spotify:track:2m17BTWlZq0wtS9cpJsCfM",
+      "title": "Kill Of The Night",
+      "artist": "Gin Wigmore",
+      "album": "Gravel & Wine",
+      "duration_ms": 205306,
+      "isrc": "AUUM71101239"
+    },
+    {
+      "uri": "spotify:track:1bPgyV3er2BP0ON7EEEMYf",
+      "title": "Dead Sled",
+      "artist": "Kreeps",
+      "album": "Red Dead Redemption: Undead Nightmare Original Soundtrack",
+      "duration_ms": 129546,
+      "isrc": "TCAAS1088136"
+    },
+    {
+      "uri": "spotify:track:5DDrJgKXx1L7Hd4z7Xlyau",
+      "title": "Night of the Vampire",
+      "artist": "Roky Erickson",
+      "album": "The Evil One",
+      "duration_ms": 257373,
+      "isrc": "USDEA1309703"
+    },
+    {
+      "uri": "spotify:track:1Am0XWDLxOEs9rtv6mxv3c",
+      "title": "Broken Skulls",
+      "artist": "Dominic J Buckley, Kreeps",
+      "album": "Long Gone Gulch (Original Soundtrack)",
+      "duration_ms": 49037,
+      "isrc": "ushm82248953"
+    },
+    {
+      "uri": "spotify:track:7jocE0sVmK2fTudE5pC9fe",
+      "title": "Ghost on the Highway",
+      "artist": "The Gun Club",
+      "album": "Early Warning",
+      "duration_ms": 176412,
+      "isrc": "USQY50967105"
+    },
+    {
+      "uri": "spotify:track:1EK6EP11eJfvaPDHmfFEGJ",
+      "title": "Zombie Dance - Remastered 1989",
+      "artist": "The Cramps",
+      "album": "Halloween's Gravest Hits",
+      "duration_ms": 115840,
+      "isrc": "USIR38900038"
+    },
+    {
+      "uri": "spotify:track:2nBCXzLuyPD6nYopKqYFwH",
+      "title": "Evil",
+      "artist": "45 Grave",
+      "album": "Sleep In Safety",
+      "duration_ms": 172826,
+      "isrc": "USRS72919002"
+    },
+    {
+      "uri": "spotify:track:2ji2uByd9KuqWzEy7zyXa3",
+      "title": "Chainsaw Massacre",
+      "artist": "Koffin Kats",
+      "album": "Inhumane",
+      "duration_ms": 114546,
+      "isrc": "US25T0611320"
+    },
+    {
+      "uri": "spotify:track:6BVvbbgWtthQQRObyHkBO8",
+      "title": "Midnight Spookshow",
+      "artist": "Calabrese",
+      "album": "13 Halloweens",
+      "duration_ms": 127293,
+      "isrc": "TCACM1675461"
+    },
+    {
+      "uri": "spotify:track:0wNxW9B75cpXYLuzz8UE8S",
+      "title": "Witch in the Woods",
+      "artist": "Koffin Kats",
+      "album": "Party Time in the End Times",
+      "duration_ms": 225093,
+      "isrc": "TCADC1756799"
+    },
+    {
+      "uri": "spotify:track:0O36zwwlB2LxMXvBSC4qec",
+      "title": "Zombies Ate Her Brain",
+      "artist": "The Creepshow",
+      "album": "Sell Your Soul",
+      "duration_ms": 89920,
+      "isrc": "CASE11500160"
+    },
+    {
+      "uri": "spotify:track:0F56U0Bvvjh0QcqG21USyO",
+      "title": "Walk Like A Zombie",
+      "artist": "Horrorpops",
+      "album": "Bring It On!",
+      "duration_ms": 247053,
+      "isrc": "USHEL0506109"
+    },
+    {
+      "uri": "spotify:track:4arnjokDz9Yq2Y6Ezhle2n",
+      "title": "Creatures of the Night",
+      "artist": "The Creepshow",
+      "album": "Sell Your Soul",
+      "duration_ms": 162506,
+      "isrc": "CASE11500154"
+    },
+    {
+      "uri": "spotify:track:3XEFPu7v1FNl8LOGphjhXi",
+      "title": "Ghouls",
+      "artist": "Horrorpops",
+      "album": "Hell Yeah!",
+      "duration_ms": 126640,
+      "isrc": "USHEL0329103"
+    },
+    {
+      "uri": "spotify:track:0YA1w64rtqWVgU4XKNsMIK",
+      "title": "The Devil's Son",
+      "artist": "The Creepshow",
+      "album": "Life After Death",
+      "duration_ms": 169493,
+      "isrc": "USEY91302902"
+    },
+    {
+      "uri": "spotify:track:47APqKrXaywGEKHHJO1g6G",
+      "title": "Psychobitches Outta Hell",
+      "artist": "Horrorpops",
+      "album": "Hell Yeah!",
+      "duration_ms": 192560,
+      "isrc": "USHEL0329108"
+    },
+    {
+      "uri": "spotify:track:1R9GowEpMThnBGAAonp4fV",
+      "title": "The Bottle Called",
+      "artist": "Koffin Kats",
+      "album": "Our Way & The Highway",
+      "duration_ms": 196680,
+      "isrc": "USEY91202310"
+    },
+    {
+      "uri": "spotify:track:7JlJCLbSHCKEqkHEnA7zjg",
+      "title": "Where They Wander",
+      "artist": "Horrorpops",
+      "album": "Hell Yeah!",
+      "duration_ms": 180826,
+      "isrc": "USHEL0329106"
+    },
+    {
+      "uri": "spotify:track:4UfNj1K76NqCWhmEwNVSLY",
+      "title": "Graveyard Tree",
+      "artist": "Koffin Kats",
+      "album": "Koffin Kats",
+      "duration_ms": 172333,
+      "isrc": "US25T0611355"
+    },
+    {
+      "uri": "spotify:track:3n75gL3WU5tAwwAgssRI9j",
+      "title": "Skulls",
+      "artist": "Misfits, Glenn Danzig",
+      "album": "Collection",
+      "duration_ms": 118960,
+      "isrc": "USCN38000003"
+    },
+    {
+      "uri": "spotify:track:1Khz3jzqOomoHt8JgREX0S",
+      "title": "Riboflavin",
+      "artist": "45 Grave",
+      "album": "Sleep In Safety",
+      "duration_ms": 173506,
+      "isrc": "USRS72919010"
+    },
+    {
+      "uri": "spotify:track:7dWyBjRr6F6Ap2N6xNNXf2",
+      "title": "Astro Zombies",
+      "artist": "Misfits, Glenn Danzig",
+      "album": "Collection",
+      "duration_ms": 131333,
+      "isrc": "USCN38000006"
+    },
+    {
+      "uri": "spotify:track:18Cs5wC3kOk7k79myWe1Hw",
+      "title": "Welcome to Hell",
+      "artist": "Crocodiles",
+      "album": "Dreamless",
+      "duration_ms": 234826,
+      "isrc": "USA2Z1610843"
+    },
+    {
+      "uri": "spotify:track:1oN0o0h1YRyzCZHpspvnYZ",
+      "title": "Surf Bat",
+      "artist": "45 Grave",
+      "album": "Sleep In Safety",
+      "duration_ms": 118400,
+      "isrc": "USRS72919009"
+    },
+    {
+      "uri": "spotify:track:1A7bPjB30GZ4ENZ4txW00L",
+      "title": "Phantom of the Opera",
+      "artist": "The Meteors",
+      "album": "Wreckin' Crew (Bonus Track Edition)",
+      "duration_ms": 241440,
+      "isrc": "GBAJE8300246"
+    },
+    {
+      "uri": "spotify:track:1eAiNGFpK7gRzNXHZD8xFa",
+      "title": "Nobody Likes You (When You're Dead)",
+      "artist": "Zombina & The Skeletones",
+      "album": "Taste The Blood Of...",
+      "duration_ms": 124482,
+      "isrc": "GBLEF0500002"
+    },
+    {
+      "uri": "spotify:track:1monuK5GiBdPoUQOpFvHZN",
+      "title": "Bad Moon Rising",
+      "artist": "The Meteors",
+      "album": "Monkey's Breath (Deluxe)",
+      "duration_ms": 168080,
+      "isrc": "GBBLY0604979"
+    },
+    {
+      "uri": "spotify:track:6niPlWUTeb6MZFFpadCw0J",
+      "title": "Rose Of The Devil's Garden",
+      "artist": "Tiger Army",
+      "album": "III: Ghost Tigers Rise",
+      "duration_ms": 236266,
+      "isrc": "USHEL0402106"
+    },
+    {
+      "uri": "spotify:track:3SyAr7p4vnQLgCvLP6k6V4",
+      "title": "Wreckin' Crew",
+      "artist": "The Meteors",
+      "album": "Monster Psychobilly Hits",
+      "duration_ms": 151293,
+      "isrc": "GBBLY8800038"
+    },
+    {
+      "uri": "spotify:track:04wmRk6OTKydthiFXR8D0E",
+      "title": "Through The Darkness",
+      "artist": "Tiger Army",
+      "album": "III: Ghost Tigers Rise",
+      "duration_ms": 185226,
+      "isrc": "USHEL0402109"
+    },
+    {
+      "uri": "spotify:track:7uB82W1hgkVbuKnvdaQCLD",
+      "title": "Psychic Voodoo Doll",
+      "artist": "Deadbolt",
+      "album": "Halloween Hootenanny",
+      "duration_ms": 221733,
+      "isrc": "USGF19821414"
+    },
+    {
+      "uri": "spotify:track:0gJHlqVTW4BCdSoXx1lYcx",
+      "title": "Temptation",
+      "artist": "Tiger Army",
+      "album": "Early Years EP",
+      "duration_ms": 130226,
+      "isrc": "USHEL0325101"
+    },
+    {
+      "uri": "spotify:track:7CpbhqKUedOIrcvc94p60Y",
+      "title": "Bodies",
+      "artist": "Drowning Pool",
+      "album": "Sinner",
+      "duration_ms": 201960,
+      "isrc": "USWU30006502"
+    },
+    {
+      "uri": "spotify:track:64J18bwOzZAUmuFxn5l6Ss",
+      "title": "Meet The Creeper",
+      "artist": "Rob Zombie",
+      "album": "Hellbilly Deluxe",
+      "duration_ms": 193400,
+      "isrc": "USGF19821209"
+    }
+  ]
+}
