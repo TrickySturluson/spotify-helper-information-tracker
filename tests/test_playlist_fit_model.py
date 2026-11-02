@@ -238,6 +238,19 @@ class PlaylistFitModelTests(unittest.TestCase):
         self.assertEqual(profile["profile_confidence"], "low")
 
 
+    def test_dotted_lastfm_provider_labels_share_one_source_family(self):
+        record = {
+            "id": "spotify:one",
+            "identity": {"artist": "Example", "title": "Track", "spotify_id": "1234567890123456789012"},
+            "confidence": {"identity": "high"},
+            "evidence": {"track_metadata": {
+                "lastfm_tags": [{"tag": "garage rock", "source": "Last.fm track.getTopTags"}],
+            }},
+        }
+        adapted = track_from_library_record(record)
+        self.assertEqual(adapted["dimensions"]["genre"][0]["source_family"], "lastfm")
+
+
 if __name__ == "__main__":
     unittest.main()
 
