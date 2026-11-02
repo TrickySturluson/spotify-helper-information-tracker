@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.spotify.playlist_fit_preview import (
-    build_preview, index_profiles_by_song, load_candidate_identities, name_album_key, profile_for_record, resolve_item_record, spotify_uri,
+    accepted_profile_for_record, build_preview, index_profiles_by_song, load_candidate_identities, name_album_key, profile_for_record, profile_matches_record, resolve_item_record, spotify_uri,
 )
 
 
@@ -195,6 +195,19 @@ class PlaylistFitPreviewTests(unittest.TestCase):
         self.assertEqual(result["results"][0]["identity_resolution"], "exact_artist_title_album_duration")
         self.assertEqual(result["targets"]["target-0"]["profile_track_count"], 0)
         self.assertTrue(result["heldout_batch_excluded_from_all_profiles"])
+
+
+    def test_mismatched_cache_alias_is_not_treated_as_recording_evidence(self):
+        record = {
+            "id": "spotify:6v0a3jkb9ntudo0kmcj1xd",
+            "identity": {"spotify_id": "6v0a3jkb9ntudO0kmcJ1xd", "source_track_id": None,
+                         "recording_mbid": None},
+        }
+        wrong_profile = {"track_id": "track:source-915938f640ce44f6",
+                         "lastfm_tags": [{"tag": "rock"}]}
+        cache = {record["id"]: wrong_profile}
+        self.assertFalse(profile_matches_record(record, wrong_profile))
+        self.assertIsNone(accepted_profile_for_record(record, cache))
 
 
 if __name__ == "__main__":
