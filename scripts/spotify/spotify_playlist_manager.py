@@ -349,16 +349,27 @@ def apply(sp,path):
     if p2.get("snapshot_id")!=p.get("snapshot_id"): raise ManagerError("Playlist changed after preview. Re-run to review the latest state.")
     backup=save_snapshot(before)
     audit(event="change_started",playlist_id=pid,name=p2.get("name"),operations=ops,backup=backup,user_id=me.get("id"))
-    for op in ops:
-        if not unlocked(pid): raise ManagerError("Playlist was locked during the operation; remaining changes stopped.")
-        a=op["action"]
-        if a=="add": add(sp,pid,op["uris"])
-        elif a=="remove": remove(sp,pid,op["uris"])
-        elif a=="replace":
-            current=[x["uri"] for x in tracks(sp,find(sp,pid)) if x.get("uri")]
-            if current: remove(sp,pid,current)
-            add(sp,pid,op["uris"])
-        else: sp.call("PUT",f"/playlists/{pid}/items",{**{k:op[k] for k in ("range_start","insert_before","range_length")},"snapshot_id":find(sp,pid).get("snapshot_id")})
+    try:
+        for op in ops:
+            if not unlocked(pid): raise ManagerError("Playlist was locked during the operation; remaining changes stopped.")
+            a=op["action"]
+            if a=="add": add(sp,pid,op["uris"])
+            elif a=="remove": remove(sp,pid,op["uris"])
+            elif a=="replace":
+                current=[x["uri"] for x in tracks(sp,find(sp,pid)) if x.get("uri")]
+                if current: remove(sp,pid,current)
+                add(sp,pid,op["uris"])
+            else: sp.call("PUT",f"/playlists/{pid}/items",{**{k:op[k] for k in ("range_start","insert_before","range_length")},"snapshot_id":find(sp,pid).get("snapshot_id")})
+    except Exception:
+        try:
+            partial_snapshot = save_snapshot(snapshot(sp, find(sp, pid)))
+            audit(event="change_interrupted_snapshot_saved",playlist_id=pid,
+                  backup=backup,after_snapshot=partial_snapshot,operations=ops)
+            print("Partial-change snapshot:",partial_snapshot)
+        except Exception as snapshot_error:
+            audit(event="change_interrupted_snapshot_failed",playlist_id=pid,
+                  backup=backup,error_type=type(snapshot_error).__name__)
+        raise
     after_snapshot = save_snapshot(snapshot(sp, find(sp, pid)))
     audit(event="change_completed",playlist_id=pid,backup=backup,after_snapshot=after_snapshot,operations=ops)
     print("Done. Pre-change snapshot:",backup)
