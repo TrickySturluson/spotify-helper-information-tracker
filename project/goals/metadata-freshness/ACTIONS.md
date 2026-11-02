@@ -1,3 +1,12 @@
+## 2026-11-02 — Add weekly maintenance preview and unknown-age baseline rotation
+
+- The weekly read-only workflow was extended to run `python shit.py library maintain --json` and preserve `library-maintenance-plan.json` alongside health, confidence and freshness reports. It validates `mode=preview`, `changed=false`, zero provider requests and zero playlist writes; it never applies repairs. Commit `cb3adf2`; its push CI and public security scan both passed.
+- Issue #93 full-catalogue maintainer preview independently passed: 13,005 songs, 6,386 artists, 7,861 albums; health errors/warnings=0; `repair_needed=false`; `safe_to_rebuild=true`; no IDs/aliases lost; no writes.
+- PR #95 (`feature/freshness-baseline-rotation`) introduces separate counts for `no_data`, data-bearing fields with `missing_timestamp`, and `missing_provenance`; it also adds a deterministic weekly rotating unknown-age sample (up to the existing 25-item cap), clearly labelled `baseline_required`, not stale. It exposes `--include-unknown-age` in CLI and weekly/manual workflows.
+- Initial PR CI failed before tests because the new argparse option was accidentally declared twice. The duplicate declaration has been removed on the PR branch (commit `e7b2bac`, followed by a documentation update). No passing post-fix CI run has yet been observed; keep PR #95 open until the full test and security workflows pass.
+- This design is still read-only: baseline selection makes no provider requests and does not mutate a cursor or Library state. It gives us a deterministic rotating sample to inspect unknown-age data without claiming that it is stale.
+- Next: obtain passing CI for PR #95, then run its full-catalogue planner against main and inspect baseline candidate counts before designing a bounded provider-backed executor.
+
 ## 2026-11-02 — Run first manual read-only freshness review
 
 - Issue #90 `[SHIT LIBRARY] freshness-review` completed successfully against the then-current main branch.
