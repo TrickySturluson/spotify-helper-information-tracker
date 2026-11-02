@@ -251,6 +251,34 @@ class MetadataFreshnessTests(unittest.TestCase):
             self.assertEqual(report["selected_baseline_count"], 0)
             self.assertEqual(report["selected"][0]["status"], "stale")
 
+    def test_musicbrainz_duration_observation_timestamp_is_fresh(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_song(root, "musicbrainz-duration", {
+                "id": "musicbrainz-duration",
+                "identity": {"artist": "Brick + Mortar", "title": "No Money To Love You"},
+                "evidence": {"track_metadata": {
+                    "duration_ms": 209000,
+                    "duration_source": "MusicBrainz recording",
+                    "duration_observations": [{
+                        "provider": "musicbrainz",
+                        "checked_at": "2026-11-01T05:56:59.718644+00:00",
+                        "status": "matched",
+                        "duration_ms": 209000,
+                        "source": "MusicBrainz recording",
+                        "retry_after": 0,
+                    }],
+                }},
+            })
+            report = build_plan(
+                root, limit=25, now=datetime(2026, 11, 2, tzinfo=timezone.utc),
+                include_unknown_age=True,
+            )
+            self.assertEqual(report["due_task_count"], 0)
+            self.assertEqual(report["baseline_candidate_count"], 0)
+            self.assertEqual(report["selected_task_count"], 0)
+            self.assertEqual(report["counts"]["fresh"], 1)
+
     def test_duration_observation_timestamp_prevents_false_unknown_age_candidate(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
