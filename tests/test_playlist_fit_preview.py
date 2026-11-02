@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.spotify.playlist_fit_preview import (
-    build_preview, index_profiles_by_song, load_candidate_identities, profile_for_record, spotify_uri,
+    build_preview, index_profiles_by_song, load_candidate_identities, profile_for_record, resolve_item_record, spotify_uri,
 )
 
 
@@ -144,6 +144,63 @@ class PlaylistFitPreviewTests(unittest.TestCase):
         for score in result["results"][0]["scores_by_target"].values():
             self.assertIsNone(score["fit_score"])
             self.assertEqual(score["confidence"], "unknown")
+
+
+    def test_exact_album_and_duration_fallback_is_medium_and_non_mutating(self):
+        source = {
+            "id": "source:recording-1",
+            "identity": {"artist": "Royal Blood", "title": "Figure It Out", "album": "Royal Blood",
+                         "spotify_id": None, "source_track_id": "track:source-1"},
+            "confidence": {"identity": "low"},
+            "evidence": {"track_metadata": {"duration_ms": 184000,
+                        "musicbrainz_genres": [{"tag": "garage rock", "source": "MusicBrainz recording tag"}]}},
+        }
+        class FakeLibrary:
+            def lookup_song(self, **kwargs):
+                if kwargs == {"artist": "Royal Blood", "track": "Figure It Out", "album": "Royal Blood"}:
+                    return {"status": "matched", "confidence": "medium", "record": source}
+                return {"status": "not_found"}
+        item = {"uri": "spotify:track:1234567890123456789012", "name": "Figure It Out",
+                "artists": ["Royal Blood"], "album": "Royal Blood", "duration_ms": 183602}
+        record, method = resolve_item_record(item, {}, {}, FakeLibrary())
+        self.assertEqual(method, "exact_artist_title_album_duration")
+        self.assertEqual(record["id"], "source:recording-1")
+        self.assertEqual(record["confidence"]["identity"], "medium")
+        self.assertEqual(source["confidence"]["identity"], "low")
+        wrong_version = dict(item, duration_ms=190000)
+        record, method = resolve_item_record(wrong_version, {}, {}, FakeLibrary())
+        self.assertIsNone(record)
+        self.assertEqual(method, "unmatched")
+
+    def test_candidate_alias_resolution_cannot_leak_back_into_reference_profile(self):
+        source = {
+            "id": "source:heldout-1",
+            "identity": {"artist": "Artist", "title": "Held Out", "album": "Album",
+                         "spotify_id": None, "source_track_id": "track:heldout-1"},
+            "confidence": {"identity": "low"}, "evidence": {},
+        }
+        class FakeLibrary:
+            def lookup_song(self, **kwargs):
+                return {"status": "matched", "confidence": "medium", "record": source}
+        uri = "spotify:track:1234567890123456789012"
+        candidate = {"uri": uri, "title": "Held Out", "artist": "Artist",
+                     "album": "Album", "duration_ms": 100000}
+        targets = {
+            f"target-{i}": {"name": f"Target {i}", "snapshot_id": f"snap-{i}",
+                            "captured_at": "2026-11-02",
+                            "items": [{"uri": uri, "name": "Held Out", "artists": ["Artist"],
+                                       "album": "Album", "duration_ms": 100000}]}
+            for i in range(5)
+        }
+        spotify_record = {
+            "id": uri, "identity": {"spotify_id": uri, "artist": "Artist", "title": "Held Out",
+                                    "album": "Album"},
+            "confidence": {"identity": "high"}, "evidence": {},
+        }
+        result = build_preview([candidate], targets, {uri: spotify_record}, {}, library=FakeLibrary())
+        self.assertEqual(result["results"][0]["identity_resolution"], "exact_artist_title_album_duration")
+        self.assertEqual(result["targets"]["target-0"]["profile_track_count"], 0)
+        self.assertTrue(result["heldout_batch_excluded_from_all_profiles"])
 
 
 if __name__ == "__main__":
