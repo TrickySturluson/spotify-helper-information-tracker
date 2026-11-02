@@ -37,3 +37,15 @@ Report which source is stale, the last successful check, newest event timestamp,
 ## Relationship to other project work
 
 This watchdog is distinct from metadata freshness planning and provider retry queues. It verifies that listening ingestion is alive; it does not fetch song metadata. It complements Library health checks and should be documented under the listening-analytics goal.
+
+
+## Listening-habit context and alert copy
+
+The watchdog should attach a compact, source-labelled listening context snapshot to alerts so a reconnect gap can be understood against the user's actual patterns:
+
+- **Current habits:** rolling 30-day and 90-day scrobble counts, top artists/tracks, active-day cadence, and most recent actual scrobble. Refresh from the canonical Last.fm archive after successful imports; do not use stale generated rankings without showing their generation time.
+- **Deep reference:** all-time rankings and artist/track recurrence as a stable historical baseline. This is context, not an expectation that the user must listen at their all-time average every day.
+- **Expected activity:** estimate a personal cadence from active days and rolling windows, but never assume silence alone proves disconnection. Distinguish user inactivity from a failed importer by checking the importer checkpoint and auth/API status.
+- **Alert display:** show current vs usual cadence and the all-time reference only where useful; always identify each source and its data-through timestamp. A 30-day shift in taste must update the current profile without overwriting the all-time reference.
+- **Humour:** when a verified connection/feed failure is detected, append a light status line such as: `Tricky appears to have died (or the connection did). The music stopped reporting in; please reconnect the affected service.` For uncertain inactivity use a softer variant: `Tricky may simply be taking a break. The tracker hasn't heard from you lately.` Do not use the death joke for normal inactivity, unconfigured tracking, or an unverified provider outage. Keep the actionable diagnosis prominent and the joke secondary.
+- The joke is a user-requested notification flourish, not a health inference and not a substitute for clear reconnect instructions.
