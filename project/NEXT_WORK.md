@@ -6,6 +6,29 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## Current active task — Playlist intelligence five-axis fit model
+
+**State: read-only preview pipeline merged to main** (PR #126, squash commit `2f84924b8e76510a1648bfc3e4e369935aa2bdf0`). Model version `five-axis-fit-v0.3`. Read [playlist-intelligence README](goals/playlist-intelligence/README.md), [model contract](goals/playlist-intelligence/PLAYLIST_FIT_MODEL.md), [preview runner guide](goals/playlist-intelligence/PLAYLIST_FIT_PREVIEW.md), and [ACTIONS.md](goals/playlist-intelligence/ACTIONS.md) before continuing.
+
+- Full repository CI: 398 tests passed; focused preview/comparison tests: 29 passed; full-history Gitleaks scan passed. Real-data preview workflow #35 passed: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41405523394.
+- The five strongly themed calibration targets are To 11 (`5meDjtqrqOe5oHpvZGWRMz`), Somber Party (`7L2rSp4SuohBEyNxEtAurx`), . . . (`4HzqY9iy04M1EVSF5kcD64`), =^= (`0O9ojSstxwa5vQy2V7pO2x`), and Smooth (`2ICCklgbF6cg0q5p4xAHKi`). All Time (`6ZsqAs5OnRMVudhfB2QzTx`) and Hell (`3XQz9AyZP6ADcr9i8iBaVx`) are broad taste references, not narrow theme targets. SHITting Grounds (`4aLdllLgRPh5vKOznkC97D`) is the separate audition destination; its current contents are not yet in the reference snapshot.
+- The 24-track held-out identity batch excludes the unplayable Dog — Floating Room. The whole batch is excluded from every target profile by Spotify URI and resolved canonical record ID. Human labels are not read by the scorer; a separate post-hoc diagnostic compares frozen predictions.
+- Direct profile coverage by target: To 11 0.2, Somber Party 0.0, . . . 0.2, =^= 0.2, Smooth 0.0. Context coverage: 0.2, 0.2, 0.4, 0.4, 0.0. Only Genre has direct evidence (3, 0, 3, 4, 0 tracks). Sound and Energy have no evidence; Mood has only 3/1 contextual observations in . . . and =^=; Theme has no evidence. Every target profile remains low confidence.
+- 15 candidates receive scores against the first four targets; 9 remain unknown per target; Smooth has no scores. All 60 scored human-reference pairs are low confidence, support exactly one dimension, and 12/15 per target are context-only. No medium/high prediction exists.
+- Human-reference diagnostic: 24/25 tracks matched; the unmatched item is Dog — Floating Room. Across 60 scored pairs: MAE 26.85, median absolute error 16.79, mean bias -17.63, median bias 0.00, Pearson 0.4473, Spearman 0.4862. To 11 and =^= show stronger rank alignment (Spearman 0.8333 / 0.7094), but these are low-confidence genre/context-only signals, not validation or training targets.
+- Preview and diagnostic artifacts from run #35: 13122763665 and 13122659752 (expire 2026-11-16). No Spotify API calls or playlist writes.
+
+### Next work — evidence enrichment, not weight tuning
+
+1. Raise **direct recording-level Genre** coverage across the five target playlists. Context genres remain down-weighted and cannot substitute for track tags.
+2. Build/validate direct **Sound** descriptors. Do not turn AcousticBrainz average_loudness/dynamic_complexity or BPM into perceived sound or energy.
+3. Build/validate direct **Energy** evidence using an actual calibrated energy measure; tempo alone is not energy.
+4. Populate **recording-level Mood** separately from artist identity. Only explicit track-scoped mood evidence may count as direct.
+5. Add **lyric-derived Theme** evidence with recording identity, provider, retrieval timestamp and provenance; do not infer track theme from artist/album identity.
+6. Inspect current provider failures/cooldowns and credential availability before any enrichment requests. Historical blockers include MusicBrainz 503/rate limits, Last.fm HTTP 400 and missing optional Discogs/GetSongBPM credentials. No blind retry batches.
+7. Expand the held-out sample only after the five target profiles have materially better direct coverage. Keep the human diagnostic post-hoc and descriptive; never train/tune to the initial extreme slider labels.
+8. Keep the scorer disconnected from the sequencer and all Spotify writes until the direct-coverage, confidence, boundary-error and smooth-transition gates pass. Do not promote low/context-only estimates to production.
+
 ## Immediate resume point — Library reliability, enrichment and confidence
 
 **State: full canonical Library is published on main; structural health and identity confidence checks have passed.** Latest verified index: 13,005 songs, 6,386 artists, 7,861 albums. Legacy source coverage: 11,130/11,130 legacy track IDs resolve via source-track or recording-MBID aliases; 5,358/5,358 legacy artist names are represented.
