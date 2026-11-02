@@ -8,6 +8,9 @@ on:
     paths:
       - ".github/workflows/enrich-music-metadata.yml"
       - "scripts/music/build_track_profiles.py"
+      - "scripts/music/sync_music_library.py"
+      - "scripts/music/discovery_ingestion.py"
+      - "assistant_data/recommendations/discovery_candidates.json"
       - "scripts/music/build_album_profiles.py"
       - "compat/build_album_profiles.py"
       - "compat/build_track_profiles.py"
@@ -108,6 +111,20 @@ jobs:
           else
             echo "DISCOGS_USER_TOKEN is not configured; optional Discogs enrichment skipped."
           fi
+      - name: Merge discovery intake and fresh metadata into canonical Library
+        run: |
+          python scripts/music/sync_music_library.py | tee canonical-library-discovery-sync.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("canonical-library-discovery-sync.json").read_text(encoding="utf-8"))
+          inputs = report.get("inputs", {})
+          audit = report.get("audit", {})
+          print("Discovery candidates:", inputs.get("valid_discovery_candidates", 0))
+          print("Canonical Library audit:", audit.get("ok"), "tracks:", audit.get("tracks"))
+          if not audit.get("ok"):
+              raise SystemExit("Canonical Library audit failed after discovery sync.")
+          PY
       - name: Rebuild metadata summaries
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
