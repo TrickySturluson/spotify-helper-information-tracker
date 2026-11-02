@@ -378,8 +378,7 @@ def main():
         except manager.ManagerError as error:
             fail(str(error))
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before requesting a sequence preview.")
+        # Staging is read-only and allowed while locked; confirmation enforces unlock.
         current = manager.snapshot(sp, p)
         import spotify_playlist_sequencer as sequencer
         artists = sequencer.index_artists(manager.read(sequencer.ARTIST_PROFILES, {}))
@@ -465,8 +464,7 @@ def main():
             "playlist_id": command["playlist_id"], "operations": command["operations"]
         })
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing edits.")
+        # Staging is read-only and allowed while locked; confirmation enforces unlock.
         preview_snapshot = manager.snapshot(sp, p)
         confirmation = secrets.token_urlsafe(12)
         config["pending"] = {
@@ -530,8 +528,7 @@ def main():
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing additions.")
+        # Staging is read-only and allowed while locked; confirmation enforces unlock.
         current = manager.snapshot(sp, p)
         import spotify_discovery as daily
         feedback = daily.load_playlist_feedback(current["items"], pid)
@@ -656,8 +653,7 @@ def main():
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before previewing additions.")
+        # Staging is read-only and allowed while locked; confirmation enforces unlock.
         current = manager.snapshot(sp, p)
         import spotify_discovery as daily
         feedback = daily.load_playlist_feedback(current["items"], pid)
@@ -771,8 +767,7 @@ def main():
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
-        if not manager.unlocked(pid):
-            fail("Blocked: playlist is LOCKED. Unlock it explicitly before resolving the 15-track batch.")
+        # Staging is read-only and allowed while locked; confirmation enforces unlock.
         current = manager.snapshot(sp, p)
         import spotify_discovery as daily
         feedback = daily.load_playlist_feedback(current["items"], pid)
