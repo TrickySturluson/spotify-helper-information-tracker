@@ -138,6 +138,61 @@ class LibraryHealthTests(unittest.TestCase):
             report = inspect_library(root)
             self.assertTrue(any("latest_by_market keys" in error for error in report["errors"]))
 
+    def add_duration_observation(self, root, observation=None):
+        index = json.loads((root / "library_index.json").read_text(encoding="utf-8"))
+        song_path = root / index["songs"]["song-id"]["path"]
+        song = json.loads(song_path.read_text(encoding="utf-8"))
+        row = {
+            "provider": "lastfm",
+            "checked_at": "2026-10-30T01:37:26+00:00",
+            "status": "matched",
+            "duration_ms": 183000,
+            "source": "Last.fm track.getInfo",
+            "retry_after": 0,
+            "provenance": "legacy_music_metadata_shard",
+        }
+        if observation:
+            row.update(observation)
+        song.setdefault("evidence", {}).setdefault("track_metadata", {}).update({
+            "duration_ms": 183000,
+            "duration_source": "Last.fm track.getInfo",
+            "duration_observations": [row],
+        })
+        song_path.write_text(json.dumps(song), encoding="utf-8")
+
+    def test_valid_duration_observation_passes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.build_valid_library(root)
+            self.add_duration_observation(root)
+            report = inspect_library(root)
+            self.assertTrue(report["ok"], report["errors"])
+
+    def test_duration_observation_rejects_bad_timestamp_and_source_provider_mismatch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.build_valid_library(root)
+            self.add_duration_observation(root, {
+                "provider": "lastfm",
+                "checked_at": "not-a-date",
+                "source": "MusicBrainz recording",
+            })
+            report = inspect_library(root)
+            self.assertTrue(any("invalid checked_at" in error for error in report["errors"]))
+            self.assertTrue(any("source/provider mismatch" in error for error in report["errors"]))
+
+    def test_duration_observations_must_be_a_list(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.build_valid_library(root)
+            index = json.loads((root / "library_index.json").read_text(encoding="utf-8"))
+            song_path = root / index["songs"]["song-id"]["path"]
+            song = json.loads(song_path.read_text(encoding="utf-8"))
+            song.setdefault("evidence", {}).setdefault("track_metadata", {})["duration_observations"] = {}
+            song_path.write_text(json.dumps(song), encoding="utf-8")
+            report = inspect_library(root)
+            self.assertTrue(any("duration_observations must be a list" in error for error in report["errors"]))
+
     def test_index_path_traversal_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
