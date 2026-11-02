@@ -138,11 +138,51 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
     now = now.astimezone(timezone.utc)
 
     tasks, errors = [], []
+    music_root = root.parent
+    track_cache_raw, _ = _read(music_root / "track_profiles.json")
+    artist_cache_raw, _ = _read(music_root / "artist_profiles.json")
+    album_cache_raw, _ = _read(music_root / "album_profiles.json")
+    album_state, _ = _read(music_root / "album_profile_state.json")
+    track_cache_raw = track_cache_raw if isinstance(track_cache_raw, dict) else {}
+    artist_cache_raw = artist_cache_raw if isinstance(artist_cache_raw, dict) else {}
+    album_cache_raw = album_cache_raw if isinstance(album_cache_raw, dict) else {}
+    album_state = album_state if isinstance(album_state, dict) else {}
+    library_index, _ = _read(root / "library_index.json")
+    library_index = library_index if isinstance(library_index, dict) else {}
+    recording_aliases = library_index.get("recording_mbids") if isinstance(library_index.get("recording_mbids"), dict) else {}
+    source_aliases = library_index.get("source_track_ids") if isinstance(library_index.get("source_track_ids"), dict) else {}
+    spotify_aliases = library_index.get("spotify_ids") if isinstance(library_index.get("spotify_ids"), dict) else {}
+
+    track_cache_by_song = {}
+    unmatched_track_profiles = 0
+    for profile_key, profile in track_cache_raw.items():
+        if not isinstance(profile, dict):
+            continue
+        song_id = None
+        mbid = str(profile.get("track_mbid") or "").strip().casefold()
+        if mbid:
+            song_id = recording_aliases.get(mbid) or recording_aliases.get("mbid:" + mbid)
+        track_id = str(profile.get("track_id") or profile_key).strip().casefold()
+        if not song_id and track_id.startswith("mbid:"):
+            song_id = recording_aliases.get(track_id) or recording_aliases.get(track_id[5:])
+        if not song_id and track_id.startswith("track:"):
+            song_id = source_aliases.get(track_id)
+        if not song_id and track_id.startswith("spotify:track:"):
+            song_id = spotify_aliases.get(track_id.rsplit(":", 1)[-1])
+        if song_id:
+            prior = track_cache_by_song.get(song_id)
+            if prior is None or str(profile.get("lastfm_checked_at") or "") >= str(prior.get("lastfm_checked_at") or ""):
+                track_cache_by_song[song_id] = profile
+        else:
+            unmatched_track_profiles += 1
+
     counts = {
         "songs_scanned": 0, "artists_scanned": 0, "albums_scanned": 0,
         "spotify_ids": 0, "fresh": 0, "stale": 0,
         "missing_observation": 0, "missing_timestamp": 0,
         "invalid_timestamp": 0, "cooldown": 0, "blocked": 0,
+        "track_profile_cache_rows": len(track_cache_raw), "track_profile_cache_unmatched": unmatched_track_profiles,
+        "artist_profile_cache_rows": len(artist_cache_raw), "album_profile_cache_rows": len(album_cache_raw),
     }
 
     for path in sorted((root / "songs").rglob("song.json")):
@@ -174,17 +214,21 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
                           "spotify", observed_at, POLICIES["spotify_playability"], now,
                           market=market, provider_status=latest.get("status"))
 
-        # Track tags can be checked independently at Last.fm and MusicBrainz.
+        # Prefer the newest per-provider timestamp from canonical evidence or the saved profile cache.
+        cached_track = track_cache_by_song.get(song_id) or {}
         for provider, timestamp_key, status_key, retry_key, field in (
             ("lastfm", "lastfm_checked_at", "lastfm_status", "lastfm_retry_after", "lastfm_track_tags"),
             ("musicbrainz", "musicbrainz_checked_at", "musicbrainz_status", "musicbrainz_retry_after", "musicbrainz_track_tags"),
         ):
-            observed_at = metadata.get(timestamp_key)
-            provider_status = metadata.get(status_key)
+            candidates = [row for row in (metadata, cached_track) if row.get(timestamp_key)]
+            source_row = max(candidates, key=lambda row: str(row.get(timestamp_key) or "")) if candidates else metadata
+            observed_at = source_row.get(timestamp_key)
+            provider_status = source_row.get(status_key)
             if observed_at or provider_status:
                 _consider(tasks, counts, "song", song_id, record, "track_tags",
                           provider, observed_at, POLICIES[field], now,
-                          next_check_after=metadata.get(retry_key, metadata.get("retry_after")), provider_status=provider_status)
+                          next_check_after=source_row.get(retry_key, source_row.get("retry_after")),
+                          provider_status=provider_status)
             else:
                 counts["missing_timestamp"] += 1
 
@@ -228,12 +272,16 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             continue
         counts["artists_scanned"] += 1
         evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
-        source = str(evidence.get("source") or "").casefold()
+        artist_id = record.get("id") or path.parent.name
+        cached_artist = artist_cache_raw.get(artist_id) or {}
+        source = str(cached_artist.get("source") or evidence.get("source") or "").casefold()
         provider = "lastfm" if "last.fm" in source or "lastfm" in source else None
-        if provider and evidence.get("checked_at"):
-            _consider(tasks, counts, "artist", record.get("id") or path.parent.name,
-                      record, "artist_profile", provider, evidence.get("checked_at"),
-                      POLICIES["artist_profile"], now, provider_status=evidence.get("status"))
+        checked_at = cached_artist.get("checked_at") or evidence.get("checked_at")
+        if provider and checked_at:
+            _consider(tasks, counts, "artist", artist_id, record, "artist_profile",
+                      provider, checked_at, POLICIES["artist_profile"], now,
+                      next_check_after=cached_artist.get("retry_after"),
+                      provider_status=cached_artist.get("status") or evidence.get("status"))
         else:
             counts["missing_timestamp"] += 1
 
@@ -244,13 +292,23 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             continue
         counts["albums_scanned"] += 1
         evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
-        source = str(evidence.get("source") or "").casefold()
+        album_id = record.get("id") or path.parent.name
+        cached_album = album_cache_raw.get(album_id) or {}
+        source = str(cached_album.get("source") or evidence.get("source") or "").casefold()
         provider = "lastfm" if "last.fm" in source or "lastfm" in source else None
-        observed_at = evidence.get("checked_at") or evidence.get("lastfm_checked_at")
+        observed_at = (
+            cached_album.get("lastfm_info_checked_at") or cached_album.get("checked_at")
+            or evidence.get("checked_at") or evidence.get("lastfm_checked_at")
+        )
+        global_album_cooldown = album_state.get("provider_retry_after")
         if provider and observed_at:
-            _consider(tasks, counts, "album", record.get("id") or path.parent.name,
-                      record, "album_profile", provider, observed_at,
-                      POLICIES["album_profile"], now, provider_status=evidence.get("status"))
+            _consider(tasks, counts, "album", album_id, record, "album_profile",
+                      provider, observed_at, POLICIES["album_profile"], now,
+                      next_check_after=max(
+                          int(cached_album.get("lastfm_info_retry_after", 0) or 0),
+                          int(global_album_cooldown or 0),
+                      ),
+                      provider_status=cached_album.get("lastfm_info_status") or cached_album.get("status") or evidence.get("status"))
         else:
             counts["missing_timestamp"] += 1
 
