@@ -1,6 +1,6 @@
 # Playlist-fit model — production contract
 
-**Status:** specification / acceptance contract. This file does not claim the five-axis playlist-fit classifier is already implemented or production-enabled.
+**Status:** production contract plus read-only scorer prototype. The scorer and synthetic regression tests now exist, but target-profile integration, broader source adapters, full regression execution and held-out evaluation are still required before production enablement.
 
 ## 1. Purpose and decision boundary
 
