@@ -30,6 +30,8 @@ jobs:
           PY
       - name: Audit generated project data
         run: python compat/audit_project.py
+      - name: Health-check the full canonical Library (read-only)
+        run: python shit.py library health --json
       - name: Check maintained file documentation
         run: python -m unittest tests.test_script_layout -v
       - name: Run unit tests

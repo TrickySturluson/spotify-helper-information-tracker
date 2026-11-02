@@ -16,6 +16,7 @@ DEFAULT_ROOT = REPO_ROOT / "assistant_data" / "music" / "library"
 MIGRATOR = REPO_ROOT / "scripts" / "music" / "migrate_full_music_library.py"
 PREPARER = REPO_ROOT / "scripts" / "music" / "prepare_music_library.py"
 SYNCER = REPO_ROOT / "scripts" / "music" / "sync_music_library.py"
+HEALTH_CHECKER = REPO_ROOT / "scripts" / "music" / "library_health.py"
 
 
 def _index(root):
@@ -81,6 +82,13 @@ def sync_library():
     return subprocess.run([sys.executable, str(SYNCER)], cwd=REPO_ROOT, check=False).returncode
 
 
+def run_health(args):
+    command = [sys.executable, str(HEALTH_CHECKER), "--root", str(args.root)]
+    if args.json:
+        command.append("--json")
+    return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="shit",
@@ -99,6 +107,7 @@ def build_parser():
         ("run", "Run the Great Migration (alias for migrate)"),
         ("resume", "Resume the idempotent Great Migration"),
         ("audit", "Validate canonical records, relations and lookup aliases"),
+        ("health", "Run comprehensive read-only structural and referential health checks"),
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
         ("sync", "Merge existing enrichment exports into the canonical library"),
         ("verify", "Verify configured provider credentials without changing data"),
@@ -107,6 +116,8 @@ def build_parser():
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
         if name in {"migrate", "run", "resume"}:
             sub.add_argument("--yes", action="store_true", help="Skip migration confirmation")
+        if name == "health":
+            sub.add_argument("--json", action="store_true", help="emit machine-readable JSON")
         if name == "prepare":
             sub.add_argument("--execute", action="store_true", help="Run migration and enrichment; default is read-only preflight")
             sub.add_argument("--yes", action="store_true", help="Skip confirmation (requires --execute)")
@@ -123,6 +134,8 @@ def main(argv=None):
         return 0
     if args.action == "audit":
         return audit(args.root)
+    if args.action == "health":
+        return run_health(args)
     if args.action == "preview":
         return run_migration(args.root, dry_run=True)
     if args.action in {"migrate", "run", "resume"}:
@@ -148,7 +161,8 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Native command interface for the canonical per-recording music library.
-# Commands: status, preview, migrate, audit, prepare, sync.
+# Commands: status, preview, migrate, audit, health, prepare, sync, verify.
+# Health is a separate read-only scan and does not instantiate the auto-rebuilding resolver.
 # Prepare defaults to a read-only preflight; --execute runs migration and bounded
 # provider enrichment. Sync merges existing durable exports into the canonical store.
 # Offline migration creates a timestamped backup and makes no provider requests.
