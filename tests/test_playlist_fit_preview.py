@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.spotify.playlist_fit_preview import (
-    build_preview, load_candidate_identities, profile_for_record, spotify_uri,
+    build_preview, index_profiles_by_song, load_candidate_identities, profile_for_record, spotify_uri,
 )
 
 
@@ -48,15 +48,34 @@ class PlaylistFitPreviewTests(unittest.TestCase):
         self.assertEqual(set(candidates[0]), {"uri", "title", "artist"})
         self.assertNotIn("human_score", candidates[0])
 
-    def test_track_cache_requires_exact_recording_id(self):
-        record = library_record("spotify:track:1234567890123456789012")
-        record["identity"]["recording_mbid"] = "recording-1"
+    def test_track_cache_joins_through_exact_library_aliases(self):
+        canonical_id = "spotify:6v0a3jkb9ntudo0kmcj1xd"
         cache = {
-            "mbid:other": {"track_id": "mbid:other", "musicbrainz_genres": [{"tag": "country"}]},
-            "mbid:recording-1": {"track_id": "mbid:recording-1", "musicbrainz_genres": [{"tag": "shoegaze"}]},
+            "track:source-1": {
+                "track_id": "track:source-1", "lastfm_checked_at": "2026-10-01T00:00:00Z",
+                "lastfm_tags": [{"tag": "rock"}],
+            },
+            "mbid:recording-1": {
+                "track_id": "mbid:recording-1", "track_mbid": "recording-1",
+                "lastfm_checked_at": "2026-10-02T00:00:00Z",
+                "musicbrainz_genres": [{"tag": "shoegaze"}],
+            },
+            "track:unrelated": {
+                "track_id": "track:unrelated", "artist": "Same Artist",
+                "track": "Same Title", "lastfm_tags": [{"tag": "country"}],
+            },
         }
-        row = profile_for_record(record, cache)
+        library_index = {
+            "source_track_ids": {"track:source-1": canonical_id, "track:unrelated": "source:other"},
+            "recording_mbids": {"recording-1": canonical_id},
+            "spotify_ids": {},
+        }
+        indexed = index_profiles_by_song(cache, library_index)
+        record = {"id": canonical_id, "identity": {"artist": "Same Artist", "title": "Same Title"}}
+        row = profile_for_record(record, indexed)
         self.assertEqual(row["track_id"], "mbid:recording-1")
+        self.assertIsNone(profile_for_record({"id": "source:other-2", "identity": record["identity"]}, indexed))
+
 
     def test_preview_excludes_whole_candidate_batch_and_never_claims_writes(self):
         references = []
