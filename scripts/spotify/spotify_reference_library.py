@@ -7,6 +7,7 @@ writes dated snapshots. It never changes Spotify playlists.
 """
 import argparse
 import json
+import shutil
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -514,6 +515,7 @@ def main():
     sub.add_parser("sync", help="Read Spotify and refresh the reference library")
     sub.add_parser("list", help="List saved reference playlists")
     sub.add_parser("health", help="Show reference-library and feedback coverage health")
+    sub.add_parser("backfill-playability", help="Backfill song playability from saved snapshots without Spotify requests")
     search = sub.add_parser("lookup", help="Search saved playlists, tracks, artists and albums")
     search.add_argument("query")
     args = parser.parse_args()
@@ -521,6 +523,8 @@ def main():
         sync(manager.Spotify())
     elif args.command == "health":
         print_health_report()
+    elif args.command == "backfill-playability":
+        print(json.dumps(backfill_playability_from_snapshots(), indent=2))
     elif args.command == "list":
         for row in manager.read(CATALOG, {"playlists": []}).get("playlists", []):
             print(f'{row.get("name")} | {row.get("item_count")} items | {row.get("id")}')
