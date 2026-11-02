@@ -18,6 +18,7 @@ PREPARER = REPO_ROOT / "scripts" / "music" / "prepare_music_library.py"
 SYNCER = REPO_ROOT / "scripts" / "music" / "sync_music_library.py"
 HEALTH_CHECKER = REPO_ROOT / "scripts" / "music" / "library_health.py"
 CONFIDENCE_AUDIT = REPO_ROOT / "scripts" / "music" / "library_confidence_audit.py"
+MAINTAINER = REPO_ROOT / "scripts" / "music" / "library_maintainer.py"
 
 
 def _index(root):
