@@ -132,6 +132,22 @@ def _consider(tasks, counts, entity_type, entity_id, record, field, provider,
         counts["fresh"] += 1
 
 
+def _dedupe_tasks(rows):
+    """Collapse duplicate provider/field tasks, preferring the newest known observation."""
+    by_key = {}
+    for row in rows:
+        key = row["task_key"]
+        prior = by_key.get(key)
+        if prior is None:
+            by_key[key] = row
+            continue
+        if prior.get("status") == "baseline_required" and row.get("status") != "baseline_required":
+            by_key[key] = row
+        elif row.get("observed_at") and str(row["observed_at"]) > str(prior.get("observed_at") or ""):
+            by_key[key] = row
+    return list(by_key.values())
+
+
 def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None, include_unknown_age=False):
     """Build a deterministic, network-free plan from field-specific evidence."""
     root = Path(root)
@@ -345,6 +361,9 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None, inclu
         else:
             counts["no_data"] += 1
 
+    tasks = _dedupe_tasks(tasks)
+    baseline_candidates = _dedupe_tasks(baseline_candidates)
+
     # Oldest observations first; stable task hash breaks ties.
     tasks.sort(key=lambda row: (
         row["observed_at"] or "",
@@ -399,6 +418,7 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, default=25)
     parser.add_argument("--market", default="from_token")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--include-unknown-age", action="store_true", help="include a deterministic rotating sample of fields with data but no observation timestamp")
     parser.add_argument("--include-unknown-age", action="store_true", help="include a deterministic rotating sample of fields with data but no observation timestamp")
     args = parser.parse_args(argv)
     report = build_plan(args.root, args.limit, args.market, include_unknown_age=args.include_unknown_age)
