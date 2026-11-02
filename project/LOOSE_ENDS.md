@@ -7,13 +7,14 @@ This is the cross-project register of known unfinished work discovered from the 
 
 ## Critical path
 
-### 1. Great Migration — FULL CATALOGUE PUBLISHED; POST-PUBLISH AUDIT PENDING
-- Successful enrichment/publication run #18: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298 (commit c55012f); final runner-side audit passed with zero errors.
+### 1. Great Migration — FULL CATALOGUE PUBLISHED; LATEST PREPARE NEEDS REPUBLISH
+- Run #18 successfully published enrichment commit c55012f; final runner-side audit passed with zero errors.
 - Current main index: 13,005 songs, 6,386 artists, 7,861 albums; 1,856 Spotify IDs, 11,338 recording MBID aliases, 1,816 ISRCs, 13,003 source-track aliases, 1,428 ambiguous name-candidate aliases.
-- Direct source-index comparison: all 11,130 legacy track-index IDs resolve via source-track ID or recording MBID; all 5,358 legacy artist names are represented. Earlier commits c0f48e9 and 3510953 expanded the PR #49 sample.
-- Run #21 checkpoint-resuming follow-up is in progress: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364361982. Runs #19/#20 were cancelled by the shared one-pending concurrency group.
-- Remaining: wait for #21, then run a separate audit/status against published main; make the legacy source-index coverage check permanent; resolve provider gaps (MusicBrainz rate limits/503s, Last.fm HTTP 400s, optional credentials absent, no lyric features).
-- The run #17 publication failure is superseded by successful #18 publication. No Spotify playlist writes, force-pushes, or blind conflict resolution.
+- Direct source-index comparison: all 11,130 legacy track-index IDs resolve via source-track ID or recording MBID; all 5,358 legacy artist names are represented.
+- Run #21 prepare and final audit passed but publication failed: it checked out stale issue-event SHA b892f3b, then conflicted while rebasing over run #18's newer song records/checkpoints. Artifact #13107866614 preserves output/backup; no run #21 data was published.
+- Workflow fix committed: 21cc2ed explicitly checks out latest main before running, preventing stale checkpoints and reducing repeated provider work.
+- Next: complete migration coverage-report PR, then run one fresh prepare from latest main and a separate post-publish audit/health check.
+- Provider gaps remain: MusicBrainz rate limits/503s, Last.fm HTTP 400s, optional credentials absent; do not retry blindly. No Spotify playlist writes.
 
 ### 2. Read-only coverage planner — PR #65, tests failing
 - PR: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65 (open draft).
