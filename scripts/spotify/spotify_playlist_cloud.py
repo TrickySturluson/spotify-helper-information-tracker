@@ -5,6 +5,7 @@ import os
 import re
 import secrets
 import sys
+import time
 import urllib.error
 import urllib.parse
 from pathlib import Path
@@ -587,6 +588,19 @@ def main():
                 skipped.append(f"{artist} — {title} (duplicate in requested batch)")
                 continue
             resolved.append({"artist": artist, "track": match["name"], "uri": match["uri"]})
+        if resolved:
+            intake = append_candidates(
+                [{"uri": row["uri"], "artist": row["artist"], "track": row["track"]} for row in resolved],
+                source="booze20_recommendation_preview",
+                context={"playlist_id": pid, "playlist_name": p.get("name"), "preview_date": manager.stamp()[:10]},
+            )
+            manager.audit(
+                event="booze20_candidates_persisted",
+                playlist_id=pid,
+                input_rows=intake["input_rows"],
+                new_candidates=intake["new_candidates"],
+                unique_candidates=intake["unique_candidates"],
+            )
         if skipped:
             lines = [
                 f'20-TRACK BATCH NOT STAGED — {p.get("name")} [{pid}]',
