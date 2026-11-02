@@ -32,3 +32,10 @@ The playlist-fit preview workflow now runs an additional read-only audit over th
 ## Current metadata coverage finding (2026-11-02)
 
 The 64-track saved snapshot resolves to canonical Library records, but the five-axis cross-reference is not yet a safe automatic sorting signal: only 32/64 tracks score against each target, all low-confidence and one-axis; 31/32 rely on artist-scope genre context, only one track has direct Genre evidence, and 32/64 remain unknown. Sound/Energy/Mood/Theme direct evidence is absent in the reference profiles. The local cache check found 64 track-profile rows but only 2 Last.fm-tagged tracks and no lyric-theme, direct track-mood or recognized energy rows for Booze. Treat missing data as unknown, not as a negative or neutral musical trait. The immediate work is recording-level evidence enrichment and a separate Halloween-theme audit; don't rank additions from the current cross-reference scores.
+
+
+## Live preview evidence loading — 2026-11-02
+
+The GitHub control-issue `sequence_preview` path now loads per-recording audio and album evidence from the canonical Library, then fills missing records from the legacy audio/album caches. Previously this cloud-only path omitted both inputs even though the local sequencer supported them, which understated available acoustic evidence. The staging report now prints acoustic-confidence counts and the source/tempo coverage actually used. Semantic genre/theme similarity remains provisional and cannot be presented as measured acoustic smoothness; when recording-level evidence is absent, the sorter must say so rather than invent energy or tempo.
+
+The ten currently staged additions have URI-based section assignments prepared: Kid Congo in the campy opener, Alien Sex Fiend in dark club/rave, and the remaining horror-punk/psychobilly tracks in the heavy finale. These assignments become active when the tracks are actually added; they do not change the Spotify playlist by themselves.
