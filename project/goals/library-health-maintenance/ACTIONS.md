@@ -1,3 +1,12 @@
+## 2026-11-02 — Merge market-aware playability evidence validation
+
+- PR #87 merged to main as `6c9fe067a8af6bc504548bc45e715ed27aa0cea8`.
+- The read-only health checker now validates any present `evidence.spotify_playability`: observation object/list shape, allowed status values, boolean/status consistency, timestamp validity, market keys, requested Spotify ID against canonical identity, and relinked-ID continuity.
+- It also verifies `latest_by_market` matches the newest append-only observation for each market.
+- Missing playability evidence remains optional; malformed present evidence is an error. No playability state is rewritten.
+- Fixture tests cover valid observations, mismatched status/value, relinked identity mismatch, and latest-market index mismatch. Full CI and secret scan passed.
+- Next: verify full main catalogue after merge with `[SHIT LIBRARY] verify-catalogue`.
+
 ## 2026-11-02 — Validate maintainer against full published catalogue
 
 - Issue #84 preview attempt exposed a direct-script import bug (`ModuleNotFoundError: No module named 'scripts'`); fixed in main commit `86c23e4` by supporting both package and direct-script import contexts.
