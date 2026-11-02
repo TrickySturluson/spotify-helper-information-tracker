@@ -1,3 +1,13 @@
+## 2026-11-02 — Full duration timestamp recovery preview passed (issue #105)
+
+- The read-only backfill scanned 32 legacy shards and 11,130 rows; 8,121 rows had valid Last.fm timestamps and exact canonical ID/duration/source matches with `matched` status.
+- Planned changes: 8,121 song files, one append-only `duration_observations` entry each.
+- All conflict counts were zero: missing/ambiguous aliases, missing files, duration/source mismatch, non-matched status, and conflicting duplicate legacy IDs.
+- Skipped 2,958 unrecognized-provider rows and 51 invalid/missing timestamps; no source or timestamp was guessed.
+- `safe_to_apply=true`; provider_requests=0, writes=0. Preview made no changes.
+- Issue #106 queued the backup-protected apply. After it publishes, rerun freshness planner; expect the unknown-age duration baseline to shrink substantially, but measure rather than assume.
+- Keep scheduled provider lookups disabled until the post-backfill baseline is reviewed.
+
 ## 2026-11-02 — Discover and implement duration timestamp provenance recovery
 
 - The full-catalogue unknown-age baseline (6,613 duration candidates) was traced to at least one migration gap: At the Gates — Slaughter of the Soul has exact `metadata_checked_at=1793324246` in legacy shard 18 with `metadata_status=matched`, `duration_ms=183000`, `duration_source=Last.fm track.getInfo`, but the canonical song record omitted that timestamp.
