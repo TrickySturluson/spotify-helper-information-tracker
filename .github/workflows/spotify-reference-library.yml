@@ -38,6 +38,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
         run: |
           test -n "$SPOTIFY_CLIENT_ID" || (echo "Missing repository variable SPOTIFY_CLIENT_ID"; exit 1)
           test -n "$SPOTIFY_REFRESH_TOKEN" || (echo "Missing repository secret SPOTIFY_REFRESH_TOKEN"; exit 1)
@@ -56,6 +57,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
         run: |
           python - <<'PY'
           import os
