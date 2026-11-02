@@ -419,7 +419,6 @@ def main(argv=None):
     parser.add_argument("--market", default="from_token")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--include-unknown-age", action="store_true", help="include a deterministic rotating sample of fields with data but no observation timestamp")
-    parser.add_argument("--include-unknown-age", action="store_true", help="include a deterministic rotating sample of fields with data but no observation timestamp")
     args = parser.parse_args(argv)
     report = build_plan(args.root, args.limit, args.market, include_unknown_age=args.include_unknown_age)
     print(json.dumps(report, indent=2, ensure_ascii=False))
