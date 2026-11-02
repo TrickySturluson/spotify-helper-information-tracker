@@ -156,6 +156,24 @@ class PlaylistFitModelTests(unittest.TestCase):
         self.assertEqual(result["dimension_scores"]["energy"]["score"], 100.0)
 
 
+
+    def test_duplicate_provider_tags_count_once_per_reference_track(self):
+        tracks = [make_track(i) for i in range(10)]
+        for track in tracks:
+            track["dimensions"]["genre"] = [
+                evidence("dream pop", "musicbrainz"),
+                evidence("dream pop", "lastfm"),
+                evidence("dream pop", "discogs"),
+            ]
+        profile = build_reference_profile(tracks)
+        prevalence = profile["dimensions"]["genre"]["prevalence"]["dream pop"]
+        self.assertEqual(prevalence, 1.0)
+        candidate = make_track(300, "spotify:track:dup-test")
+        candidate["dimensions"]["genre"] = [evidence("dream pop", "musicbrainz")]
+        result = score_track(candidate, profile)
+        self.assertLessEqual(result["dimension_scores"]["genre"]["score"], 100.0)
+
+
 if __name__ == "__main__":
     unittest.main()
 
