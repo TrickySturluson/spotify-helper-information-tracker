@@ -11,6 +11,7 @@ Run: python scripts/music/metadata_freshness.py [--limit 25] [--market from_toke
 import argparse
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -85,9 +86,10 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
     root = Path(root)
     if not 1 <= int(limit) <= 100:
         raise ValueError("limit must be between 1 and 100")
-    if market != "from_token" and (len(str(market)) != 2 or not str(market).isalpha()):
-        raise ValueError("market must be from_token or a two-letter country code")
-    market_key = str(market).upper()
+    market = "from_token" if str(market).casefold() == "from_token" else str(market).upper()
+    if market != "from_token" and not re.fullmatch(r"[A-Z]{2}", market):
+        raise ValueError("market must be from_token or a two-letter ISO country code")
+    market_key = market.upper()
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None:
         now = now.replace(tzinfo=timezone.utc)
