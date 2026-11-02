@@ -500,7 +500,7 @@ def main():
         candidates = [
             ("Nekromantix", "Trick or Treat"),
             ("The Cramps", "I Was a Teenage Werewolf"),
-            ("Koffin Kats", "Vampire's Curse"),
+            ("Nekromantix", "Who Killed the Cheerleader?"),
             ("Misfits", "Vampira"),
             ("The Cramps", "Human Fly"),
             ("The Cramps", "Surfin' Dead"),
@@ -508,7 +508,7 @@ def main():
             ("Misfits", "Halloween II"),
             ("Creature Feature", "The Greatest Show Unearthed"),
             ("Creature Feature", "The Netherworld"),
-            ("HorrorPops", "Ghouls"),
+            ("The Creepshow", "Halloween"),
             ("Nekromantix", "Haunted Cathouse"),
             ("Misfits", "Return of the Fly"),
             ("Wednesday 13", "I Walked with a Zombie"),
