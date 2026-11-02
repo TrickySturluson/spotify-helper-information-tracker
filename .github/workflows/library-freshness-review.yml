@@ -48,7 +48,7 @@ jobs:
         env:
           MARKET: ${{ inputs.market || 'from_token' }}
           LIMIT: ${{ inputs.limit || '25' }}
-        run: python shit.py library freshness --market "$MARKET" --limit "$LIMIT" > library-freshness-plan.json
+        run: python shit.py library freshness --market "$MARKET" --limit "$LIMIT" --include-unknown-age > library-freshness-plan.json
 
       - name: Validate read-only reports
         run: |
@@ -68,7 +68,9 @@ jobs:
           print("Confidence drift:", confidence.get("metadata_confidence_drift_count"))
           print("Freshness scanned:", freshness.get("counts"))
           print("Due tasks:", freshness.get("due_task_count"),
-                "selected:", freshness.get("selected_task_count"))
+                "baseline candidates:", freshness.get("baseline_candidate_count"),
+                "selected due:", freshness.get("selected_due_count"),
+                "selected baseline:", freshness.get("selected_baseline_count"))
           PY
 
       - name: Preserve weekly review reports
