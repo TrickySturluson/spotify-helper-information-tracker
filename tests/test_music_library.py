@@ -299,7 +299,7 @@ class MusicLibraryTests(unittest.TestCase):
                 "status": "playable", "is_playable": True, "market": "from_token",
             })
             self.assertEqual(result["status"], "unmatched")
-            self.assertEqual(MusicLibrary(temp).status()["songs"], 0)
+            self.assertEqual(len(MusicLibrary(temp).index["songs"]), 0)
 
 if __name__ == "__main__": unittest.main()
 
