@@ -64,7 +64,24 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
-        run: python compat/track_playlist_removals.py "$PLAYLIST_ID"
+        run: |
+          # The removal tracker uses the shared Spotify manager, which reads
+          # its token cache from disk. Seed that cache from the repository
+          # secret before the first authenticated step in this fresh runner.
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          token = os.environ.get("SPOTIFY_REFRESH_TOKEN", "").strip()
+          if not token:
+              raise SystemExit("Missing repository secret SPOTIFY_REFRESH_TOKEN")
+          path = Path(".spotify_playlist_token.json")
+          path.write_text(json.dumps({"refresh_token": token, "obtained_at": 0, "expires_in": 0}), encoding="utf-8")
+          try:
+              path.chmod(0o600)
+          except OSError:
+              pass
+          PY
+          python compat/track_playlist_removals.py "$PLAYLIST_ID"
       - name: Download prior recovery snapshot for undo
         if: >-
           steps.parse-command.outputs.command == 'undo' ||

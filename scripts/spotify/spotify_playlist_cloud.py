@@ -248,12 +248,21 @@ def main():
     manager.CONFIG = STATE
     manager.AUDIT = Path(".github/spotify_playlist_manager_audit.jsonl")
     manager.BACKUPS = Path("playlist_backups")
-    manager.write(manager.TOKEN, {
-        "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-        "obtained_at": 0,
-        "expires_in": 0,
-    })
+    # A preceding workflow step may have already exchanged the repository
+    # refresh token and persisted a replacement in this runner's token cache.
+    # Preserve that refreshed cache instead of overwriting it with the now
+    # potentially invalid original secret. A fresh runner still seeds from the
+    # repository secret as before.
+    if not manager.TOKEN.is_file():
+        manager.write(manager.TOKEN, {
+            "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+            "obtained_at": 0,
+            "expires_in": 0,
+        })
     sp = manager.Spotify()
+    sp.refresh_token_rotated = (
+        sp.t.get("refresh_token") != os.environ["SPOTIFY_REFRESH_TOKEN"]
+    )
     config = manager.config()
     manager.write(STATE, config)
 
