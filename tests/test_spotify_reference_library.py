@@ -54,6 +54,49 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_changed_snapshot_preserves_previous_complete_snapshot_in_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "assistant_data" / "spotify"
+            playlists = root / "playlists"
+            playlists.mkdir(parents=True)
+            old = {
+                "schema_version": 1, "captured_at": "2026-11-01T12:00:00+00:00",
+                "id": "p1", "name": "Playlist", "snapshot_id": "old-snapshot",
+                "total_items_reported": 1, "item_count_fetched": 1,
+                "items_accessible": True,
+                "items": [{"uri": "spotify:track:old", "name": "Old",
+                           "artists": ["Artist"], "type": "track"}],
+            }
+            (playlists / "p1.json").write_text(json.dumps(old), encoding="utf-8")
+            sp = Mock()
+            sp.playlists.return_value = [{
+                "id": "p1", "name": "Playlist", "owner": {"id": "owner"},
+                "snapshot_id": "new-snapshot", "items": {"total": 1},
+                "public": True, "collaborative": False,
+            }]
+            sp.items.return_value = [{
+                "item": {"id": "new", "uri": "spotify:track:new", "name": "New",
+                         "artists": [{"name": "Artist", "id": "artist"}],
+                         "album": {"name": "Album"}, "duration_ms": 1000},
+                "added_at": None,
+            }]
+            with patch.object(library, "ROOT", root), \
+                 patch.object(library, "CATALOG", root / "playlists.json"), \
+                 patch.object(library, "PLAYLIST_DIR", playlists), \
+                 patch.object(library, "HISTORY_DIR", root / "history"), \
+                 patch.object(library, "INDEX", root / "reference_index.json"), \
+                 patch.object(library, "MusicLibrary") as music_library:
+                music_library.return_value.put_catalogue.return_value = {
+                    "songs": 1, "artists": 1, "albums": 1,
+                }
+                library.sync(sp)
+            history = list((root / "history" / "p1").glob("*.json"))
+            records = [json.loads(path.read_text(encoding="utf-8")) for path in history]
+            self.assertTrue(any(row.get("snapshot_id") == "old-snapshot" for row in records))
+            self.assertTrue(any(row.get("snapshot_id") == "new-snapshot" for row in records))
+            current = json.loads((playlists / "p1.json").read_text(encoding="utf-8"))
+            self.assertEqual(current["snapshot_id"], "new-snapshot")
+
     def test_playability_refresh_plan_is_bounded_and_skips_recent_market_observations(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
