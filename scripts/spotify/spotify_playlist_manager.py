@@ -236,6 +236,12 @@ def find(sp,pid):
     p=next((x for x in sp.playlists() if x.get("id")==pid),None)
     if not p: raise ManagerError("Playlist not found in your Spotify playlist collection.")
     return p
+def fetch_playlist(sp,pid):
+    """Fetch one exact playlist without scanning the account-wide playlist catalog."""
+    p=sp.call("GET",f"/playlists/{pid}")
+    if not isinstance(p,dict) or p.get("id") != pid:
+        raise ManagerError("Spotify did not return the exact requested playlist.")
+    return p
 def owned(sp,pid):
     me=sp.me(); p=find(sp,pid)
     if (p.get("owner") or {}).get("id")!=me.get("id"): raise ManagerError("Only playlists owned by this account can be edited.")
@@ -260,14 +266,14 @@ def save_snapshot(s):
     write(path,s); return str(path)
 def mutate_with_snapshots(sp,pid,mutation,event="playlist_mutation",**details):
     """Bracket one Spotify write with fresh before/after snapshots."""
-    before_playlist=find(sp,pid)
+    before_playlist=fetch_playlist(sp,pid)
     before_path=save_snapshot(snapshot(sp,before_playlist))
     audit(event=event+"_started",playlist_id=pid,before_snapshot=before_path,**details)
     try:
         result=mutation()
     except Exception as operation_error:
         try:
-            partial_playlist=find(sp,pid)
+            partial_playlist=fetch_playlist(sp,pid)
             partial_path=save_snapshot(snapshot(sp,partial_playlist))
             audit(event=event+"_partial",playlist_id=pid,before_snapshot=before_path,
                   after_snapshot=partial_path,error_type=type(operation_error).__name__,**details)
@@ -275,7 +281,7 @@ def mutate_with_snapshots(sp,pid,mutation,event="playlist_mutation",**details):
             audit(event=event+"_partial_snapshot_failed",playlist_id=pid,
                   before_snapshot=before_path,error_type=type(snapshot_error).__name__,**details)
         raise
-    after_playlist=find(sp,pid)
+    after_playlist=fetch_playlist(sp,pid)
     after_path=save_snapshot(snapshot(sp,after_playlist))
     audit(event=event+"_completed",playlist_id=pid,before_snapshot=before_path,
           after_snapshot=after_path,**details)
