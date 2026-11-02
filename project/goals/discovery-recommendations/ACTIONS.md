@@ -73,3 +73,11 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 
 - Follow-up hardening: local manager edits now also attempt a post-failure snapshot when a multi-step operation raises after partial writes. Snapshot failure is separately audited without masking the original operation error.
 - Verification status: repository writes are confirmed. No Actions run was returned for these main-branch commits, so compile/unit-test and live Spotify polling results remain pending.
+
+
+## 2026-11-02 — Snapshot each individual playlist mutation
+
+- Tightened the rule from batch-level snapshots to per-operation snapshots. The shared manager helper captures a fresh playlist state immediately before each write and refreshes/saves the actual Spotify state immediately after it.
+- If a multi-request operation fails partway through, the helper attempts to save and audit the partial live state before re-raising the original error.
+- Applied to local manager add/remove/replace/reorder operations; cloud add/remove/replace/reorder/details operations; undo/restore page writes; daily description edits; duplicate cleanup in cloud workflows and the removal tracker. Daily bulk replacement inherits per-page snapshots from the shared restore/replacement helper.
+- Batch-level before/after snapshots remain as additional recovery checkpoints. Snapshot files retain the full ordered item list and Spotify snapshot ID.
