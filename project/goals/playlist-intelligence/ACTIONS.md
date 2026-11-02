@@ -48,3 +48,15 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Lessons learned / decision changes:** metadata completeness is not a prerequisite for useful sorter development; unknown evidence must remain visible and must not be treated as a mismatch.
 - **Next action:** execute sequencer tests, inspect preview CLI, generate deterministic real-snapshot evaluation report, fix concrete failures.
 - **References:** [OFFLINE_EVALUATION.md](OFFLINE_EVALUATION.md).
+
+
+## 2026-11-02 — Real-snapshot offline evaluation harness added
+
+- **Purpose:** test the sequencer against the user's broad taste references rather than relying only on synthetic fixtures or assuming playlist titles define narrow themes.
+- **Changes / files:** added `tests/test_spotify_playlist_reference_evaluation.py` on `codex/sorter-evaluation-ingestion-watchdog`. It reads the checked-in All Time (51/51) and Hell (1,388/1,388) snapshots, loads Library-first metadata with the sequencer's legacy per-record fallback, reports full-catalogue field/confidence coverage, compares original-order and sequenced transitions, and summarizes track theme/genre groups.
+- **Evaluation scope:** All Time is fully ordered; Hell's full catalogue is scored and its deterministic 192-track evenly-spaced sample is ordered to keep the optimizer bounded. Both are explicitly treated as broad taste references, not single-theme labels.
+- **Safety:** snapshot-only, offline and read-only. No Spotify authorization, provider calls, playlist changes, or Library writes. The test asserts exact URI preservation and zero write/request counters.
+- **Verification:** test file committed as `8b71a1536cebe65285b3e2a2ec8a95586e8cf6ba`. GitHub Actions run lookup has not yet returned an associated run; runtime outcome is pending and must not be reported as passed until logs confirm it.
+- **Outcome:** implementation added; CI/runtime verification pending.
+- **Next action:** inspect the pull-request test run and its emitted `OFFLINE_PLAYLIST_REFERENCE_EVALUATION` JSON; diagnose any failures, then decide whether to expand peak-position comparisons and add a compact report artifact.
+- **References:** [All Time](https://open.spotify.com/playlist/6ZsqAs5OnRMVudhfB2QzTx), [Hell](https://open.spotify.com/playlist/3XQz9AyZP6ADcr9i8iBaVx), `tests/test_spotify_playlist_reference_evaluation.py`.
