@@ -113,3 +113,13 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Regression coverage verifies the two newly detected Creature Feature removals are loaded as permanent Booze-specific blocks. The test suite passed on commit 0e0661ac3b93972d861b7fe4adef7d12afc41de8; the additional explicit two-track blocking test is running on commit 6276cbacea29fcd341666540abb4bafbd733945e.
 - The reference-library sync now retains the previous complete snapshot in per-playlist history before replacing the live pointer. The original 64-track Booze snapshot was restored into immutable history so the existing identity-only audit fixture remains tied to its actual source snapshot.
 - Operating cadence: daily full catalog/snapshot/removal comparison via the reference-library workflow; targeted exact-ID poll after a successful playlist-control command; per-write pre/post snapshots for all actual playlist mutations; inaccessible playlists never count as empty; no webhook claim is made because Spotify playlist changes are detected by polling.
+
+
+## 2026-11-02 — Recommendation feedback enforcement audit and correction
+
+- **Audit finding:** the general discovery recommender loaded playlist-local exact removals but applied only a score penalty; a sufficiently strong similarity score could still surface a manually rejected track. The curated Booze/Horror preview paths already hard-skipped exact removals. This was inconsistent and unsafe.
+- **Correction:** general discovery now hard-excludes exact track-key and Spotify-URI removals before scoring/selection. Explicit playlist-local whitelist records remain the only override; artist-level removals remain soft negative evidence and do not ban an entire artist.
+- **Positive feedback:** explicit whitelists now provide a bounded exact-track positive score bonus. Artist representation in the playlist remains a small capped affinity prior, not an assertion that every track by that artist is liked. Tricky Daily post-add likes and measured plays continue as separate positive evidence.
+- **Fail-closed behavior:** malformed/unreadable removal feedback now stops recommendation generation rather than silently treating the blacklist as empty.
+- **Regression tests added:** general recommender cannot select an exact removed track; explicit whitelist increases exact-track score and clears its matching removal; corrupt feedback blocks recommendation generation.
+- **Scope:** playlist-local only. No playlist mutation or live addition performed by this audit.
