@@ -1,3 +1,9 @@
+## 2026-11-02 — Merge and run health checker against full catalogue
+
+- PR #73 merged to main: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/73
+- CI ran `python shit.py library health --json` against the full published Library.
+- Result: `ok: true`; 13,005 songs, 6,386 artists, 7,861 albums; index counts match exactly; 1,856 Spotify IDs, 11,338 recording MBIDs, 1,816 ISRCs, 13,003 source-track IDs, 11,529 name-candidate aliases; zero errors and zero warnings.
+- This is a read-only scan; it does not rebuild or repair records. The separate data maintainer remains unimplemented.
 ## 2026-11-02 — Implement read-only structural health checker (draft)
 
 - Added `scripts/music/library_health.py` with a standalone, read-only scanner. It deliberately avoids `MusicLibrary()` because the resolver constructor can rebuild and write the index.
