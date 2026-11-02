@@ -12,7 +12,7 @@ import argparse
 import hashlib
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[2] / "assistant_data/music/library"
@@ -54,6 +54,23 @@ def _nested(value, *keys):
     return current
 
 
+def _cooldown_active(value, observed_at, now):
+    """Respect ISO next-check times, Unix epochs, and relative retry-after seconds."""
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        if value <= 0:
+            return False
+        if value > 1_000_000_000:
+            try:
+                return datetime.fromtimestamp(value, timezone.utc) > now
+            except (OverflowError, OSError, ValueError):
+                return True
+        base = _parse_time(observed_at)
+        # If a relative cooldown lacks a timestamp anchor, fail closed.
+        return base is None or base + timedelta(seconds=value) > now
+    parsed = _parse_time(value)
+    return bool(parsed and parsed > now)
+
+
 def _make_task(entity_type, entity_id, record, field, provider, market,
                observed_at, policy, now, status):
     parsed = _parse_time(observed_at)
@@ -83,8 +100,7 @@ def _consider(tasks, counts, entity_type, entity_id, record, field, provider,
               observed_at, policy, now, market=None, next_check_after=None,
               provider_status=None):
     """Count and optionally schedule one explicit field/provider observation."""
-    next_check = _parse_time(next_check_after)
-    if next_check and next_check > now:
+    if _cooldown_active(next_check_after, observed_at, now):
         counts["cooldown"] += 1
         return
     status = str(provider_status or "").casefold()
@@ -168,7 +184,7 @@ def build_plan(root=DEFAULT_ROOT, limit=25, market="from_token", now=None):
             if observed_at or provider_status:
                 _consider(tasks, counts, "song", song_id, record, "track_tags",
                           provider, observed_at, POLICIES[field], now,
-                          next_check_after=metadata.get(retry_key), provider_status=provider_status)
+                          next_check_after=metadata.get(retry_key, metadata.get("retry_after")), provider_status=provider_status)
             else:
                 counts["missing_timestamp"] += 1
 
