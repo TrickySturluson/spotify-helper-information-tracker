@@ -6,45 +6,41 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
-## Immediate resume point — Library reliability and final enrichment
+## Immediate resume point — Library reliability, enrichment and confidence
 
-**State: full canonical Library is published on main.** The latest verified main index contains 13,005 songs, 6,386 artists, and 7,861 albums. Run #18 successfully published enrichment commit `c55012f`; run #21 later repeated work from stale checkpoints and failed publication, so none of #21's generated output was pushed. Workflow fix `21cc2ed` now explicitly checks out latest `main` before migration. The independent read-only health check on the full catalogue passed with zero errors and zero warnings; the confidence audit and 314-test main-branch regression suite also passed.
+**State: full canonical Library is published on main; structural health and identity confidence checks have passed.** Latest verified index: 13,005 songs, 6,386 artists, 7,861 albums. Legacy source coverage: 11,130/11,130 legacy track IDs resolve via source-track or recording-MBID aliases; 5,358/5,358 legacy artist names are represented.
 
-- Run #18: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41364145298
-- Run #21 stale-checkout failure and artifact diagnosis: see [Great Migration ACTIONS](goals/great-migration/ACTIONS.md).
-- Full catalogue/source coverage: 11,130/11,130 legacy track-index IDs resolve via source-track or recording-MBID aliases; all 5,358/5,358 legacy artist names are represented.
-- Run #22 health operation: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41367899566 (read-only, successful; 13,005/6,386/7,861; zero errors/warnings).
-- Main-branch full CI including confidence audit: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41368125489 (314 tests passed).
-- Latest main enrichment metadata remains incomplete: approx. 91.1% duration coverage; lyric features 0; audio profiles 115; artist profiles 3,998; album profiles 400; track profiles 1,778 in the published run #18 report. Provider limitations include MusicBrainz rate limits/503s, Last.fm HTTP 400s, and absent optional Discogs/GetSongBPM credentials. Re-measure before quoting as current.
-- PR #79 (legacy archive coverage reporting) is merged. Its latest main compile/regression and security workflows passed.
-- Do not run another full prepare until current playability work and the next targeted enrichment plan are reconciled with durable checkpoints. Run one serialized operation at a time; no concurrent migration writers.
-- No Spotify playlist writes, force-pushes, or blind conflict resolution.
+- Run #18 successfully published enrichment commit `c55012f`; run #21 later repeated work from stale checkpoints and failed publication. Its generated output was not pushed. Workflow fix `21cc2ed` now checks out latest `main` before migration.
+- Run #22 independent health check: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41367899566 — 13,005/6,386/7,861; zero errors/warnings.
+- Main-branch full CI including confidence audit: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41368125489 — 314 tests passed.
+- Issue #83 post-playability verification: audit/health clean; identity confidence drift 0; initial metadata confidence drift 1,582; duration coverage 10,028; track tags 179; audio features 36; playability evidence on 1,856 songs; legacy source coverage complete.
+- Issue #85 maintainer preview: full catalogue clean, proposed index matches current, all aliases reconstructable, no repair needed, zero writes.
+- PR #87 merged (`6c9fe06`): health checker now validates market-scoped playability evidence history, status/value semantics, timestamps, IDs/relinking, and latest-by-market index.
+- PR #88 merged (`67ab44f`): confidence audit separates missing stored confidence from genuine mismatches, per field; read-only.
+- Issue #90 freshness baseline: 13,005 songs / 6,386 artists / 7,861 albums; 8,799 fresh, 0 stale/due tasks, 0 missing playability observations, 42,158 missing field/provider timestamps, 1,184 cooldown skips, 0 invalid timestamps/errors; selected 0/25; provider requests=0, writes=0. The 42,158 count is not a stale count; missing/undated fields are deliberately not scheduled.
+- PR #86 merged: native `python shit.py library freshness` CLI and weekly Sunday read-only health/confidence/freshness report workflow (30-day artifacts). No provider-backed generic freshness executor is enabled.
+- PR #78 merged and offline playability backfill run #82 published: 3,305 observations across 1,856 song records, 3,250 playable and 55 unplayable in `from_token` context from saved snapshots; zero API requests and playlist writes. Snapshot-time results, not live availability guarantees.
+- Issue #92 was created after PR #87/#88 merges for a fresh audit/health/confidence verification against latest main; result pending at this checkpoint.
+- Latest published enrichment coverage still needs fresh measurement. Historical run #18 report: approx. 91.1% duration coverage; 115 audio profiles; zero lyric features; 1,778 track profiles; 3,998 artist profiles; 400 album profiles. MusicBrainz had rate limits/503s, Last.fm tag lookups returned HTTP 400, and optional Discogs/GetSongBPM credentials were absent.
+- No Spotify playlist writes, force-pushes, blind conflict resolution, or confidence rewrites.
 
 ## Current Library reliability work
 
-- **Health checker:** merged in PR #73; PR #87 now validates market-aware playability evidence semantics (status/raw value, timestamp, market/latest map, requested/relinked IDs). Full post-merge verification is running in issue #90. See [health-maintenance goal](goals/library-health-maintenance/README.md).
-- **Data maintainer:** PR #80 merged. `python shit.py library maintain` previews deterministic index repairs; apply requires `--apply --repair-index`, alias-preservation proof, backup, atomic replacement, and post-repair health validation/rollback. Full-catalogue preview issue #85 passed: safe to rebuild, zero aliases/records lost, zero errors/warnings, no repair needed. No real repair has been applied.
-- **Metadata freshness:** PR #81 merged. Read-only planner scans 13,005 songs, 6,386 artists, 7,861 albums and 1,778/3,998/400 track/artist/album profile cache rows; post-backfill plan selected 0 due tasks. Draft PR #86 adds native CLI and weekly read-only review workflow; no provider executor/schedule is enabled.
-- **Spotify playability:** initial snapshot persistence merged in PR #72. Draft PR #78 adds market-aware Get Track checks, offline snapshot backfill, and stale-only bounded refresh. Latest full CI and security scan passed after fixing a missing test import; keep it unmerged until final review. No live refresh has been executed.
-- **Confidence:** read-only confidence audit is merged; PR #88 now separates missing stored confidence from genuine mismatches. Issue #90 is running a full-catalogue post-merge breakdown of the 1,582 previous differences. Remaining work is gold-set/manual false-match review and confidence distribution analysis.
+- **Health checker:** merged PR #73; full-catalogue scan clean. PR #87 adds semantic playability checks. Issue #92 is the post-merge verification.
+- **Data maintainer:** PR #80 merged. `python shit.py library maintain` previews deterministic index rebuilds; apply requires `--apply --repair-index`, alias-preservation proof, backup, atomic replacement, and post-repair health validation/rollback. Full-catalogue preview #85 found no repair needed. Current repair scope is index-only; it does not rewrite song/artist/album records or evidence.
+- **Metadata freshness:** PR #81 planner and PR #86 CLI/weekly review merged. Manual issue #90 plan selected 0 tasks; 42,158 fields/records lacked explicit timestamps and need classification. Planner is read-only; no generic provider executor yet.
+- **Spotify playability:** PR #72/#78 merged. Each song stores append-only market-scoped observations under `evidence.spotify_playability`; snapshot backfill covered 1,856 records. A separate Get Track refresh planner defaults to 25, maximum 50, 90-day TTL, dry-run by default, and requires explicit `--execute --yes`; it is not yet exposed through the scheduled weekly workflow. Do not infer playability from playlist addability.
+- **Confidence:** read-only audit merged; PR #88 classifies missing vs mismatched confidence. Identity drift baseline is zero. Need fresh post-merge breakdown, then gold-set/manual false-match review. Do not bulk-rewrite confidence.
+- **Migration:** full entity catalogue is published. Continue enrichment only from durable checkpoints, one serialized writer at a time; do not repeat provider batches merely because a runner-side operation failed publication.
 
 ## Immediate priorities
 
-1. Complete review/CI for PR #86 (native freshness CLI and weekly read-only review) and PR #87 (playability evidence health validation).
-2. Run the first manual weekly freshness review on main after PR #86 merges; preserve the report and verify no network/write side effects.
-3. Classify the 1,582 metadata-confidence differences and 1,856 missing duration provenance entries; build a curated gold set before any confidence backfill.
-4. Design a bounded provider-backed freshness executor using existing retry/checkpoint state; no blind polling. Spotify playability live refresh remains separate and explicit.
-5. Continue field coverage/provider gap reporting, then complete confidence verification.
-6. Only after these gates, return to sorter evaluation against the new Library.
-
-## Immediate expanded Library requirements
-
-Three new goal workspaces were added on 2026-11-02:
-- [Library health checker and data maintainer](goals/library-health-maintenance/README.md): read-only health diagnostics first; safe, backup-protected, idempotent repairs only.
-- [Metadata freshness and partial revalidation](goals/metadata-freshness/README.md): field/provider-specific staleness, deterministic rotating partial samples, bounded requests, reuse retry queue/checkpoints.
-- [Spotify playability and availability](goals/spotify-playability/README.md): market-scoped, timestamped playability observations distinct from playlist addability; preserve restrictions and relinking IDs.
-
-These are now required Library foundations before sorter confidence verification is considered complete. The [Library confidence verification workspace](goals/library-confidence-verification/README.md) defines the next gate: validate identity and field-level confidence across the full catalogue, inspect ambiguous/weak matches, and test retrieval against a curated gold set before sorter integration. Do not block migration publication on building all three; document and implement in parallel only when safe and non-conflicting.
+1. **Complete issue #92 verification** against latest main: confirm the new playability semantic health checks pass over all 3,305 observations and inspect missing-vs-mismatch confidence breakdown.
+2. **Improve freshness evidence classification:** distinguish absent metadata, present-but-undated values, fresh no-result/negative cache, provider transient failure, cooldown, and genuinely stale observations. Propagate trustworthy source timestamps from existing caches/checkpoints; never infer from file mtimes.
+3. **Design a bounded partial refresh executor** that consumes the existing provider checkpoints/retry state, advances a deterministic rotating sample, respects per-provider budgets/cooldowns, preserves old evidence on failure, and has preview-only default. Keep Spotify playability refresh separately market-aware and capped.
+4. **Re-measure provider coverage** from current published data; continue only eligible enrichment. Diagnose Last.fm HTTP 400 and MusicBrainz 503/rate-limit behavior before retries; do not repeat no-result requests without cache expiry or changed query evidence.
+5. **Finish confidence verification:** use PR #88's missing/mismatch split, inspect missing duration provenance, and build a curated gold set spanning exact IDs, source IDs, ambiguous same-title tracks, remasters/live versions, and conflicts.
+6. **Return to sorter evaluation only after gates 1–5:** test retrieval, field-specific confidence gating, unknown handling, and smooth transitions against real generated playlists before any playlist write.
 
 ## Priority order
 
