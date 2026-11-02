@@ -53,6 +53,34 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_item_record_preserves_explicit_unplayable_state_and_restriction(self):
+        row = library.item_record({
+            "item": {
+                "id": "spotify-id", "uri": "spotify:track:spotify-id",
+                "type": "track", "name": "Unavailable Song",
+                "artists": [{"id": "artist-id", "name": "Artist"}],
+                "is_playable": False,
+                "restrictions": {"reason": "market"},
+                "linked_from": {"uri": "spotify:track:original-id"},
+            }
+        }, 0)
+        self.assertFalse(row["is_playable"])
+        self.assertTrue(row["is_playable_present"])
+        self.assertEqual(row["restrictions"]["reason"], "market")
+        self.assertEqual(row["linked_from"], "spotify:track:original-id")
+        self.assertIsNotNone(row["playability_checked_at"])
+
+    def test_item_record_does_not_turn_missing_playability_into_false(self):
+        row = library.item_record({
+            "item": {
+                "id": "spotify-id", "type": "track", "name": "Unknown Song",
+                "artists": [{"name": "Artist"}],
+            }
+        }, 0)
+        self.assertIsNone(row["is_playable"])
+        self.assertFalse(row["is_playable_present"])
+        self.assertIsNone(row["playability_checked_at"])
+
     def test_unchanged_snapshot_reuses_cached_items_without_spotify_item_request(self):
         cached = {
             "id": "playlist123", "name": "Cached",
