@@ -1,3 +1,15 @@
+## 2026-11-02 — Post-playability-backfill full-catalogue confidence verification
+
+- Read-only operation issue #83 completed successfully: https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/83
+- Full Library integrity audit: `ok=true`, 13,005 songs, 6,386 artists, 7,861 albums; zero errors.
+- Structural health: `ok=true`, index counts match entity counts, zero errors, zero warnings. Alias counts: 1,856 Spotify IDs, 11,338 recording MBIDs, 1,816 ISRCs, 13,003 source-track IDs, 11,529 name candidates.
+- Confidence report scanned 13,005 songs. Identity confidence: 7,525 high, 5,480 low; resolution methods: 5,669 recording MBIDs, 1,856 Spotify IDs, 5,480 source-track IDs. Identity confidence drift: 0.
+- Metadata confidence drift: 1,582. First examples show stored duration confidence missing while recomputation finds single-source `lastfm_catalog` evidence and correctly assigns low confidence. This should be separated into missing stored confidence vs genuine conflicting/incorrect confidence before any bulk update.
+- Field coverage: duration 10,028; track tags 179 (34 high, 1,483 low); audio features 36; Spotify playability 1,856. Missing duration provenance count: 1,856. Legacy source coverage remains complete: 11,130/11,130 track IDs and 5,358/5,358 artist names.
+- All audits are read-only; no provider calls or Spotify playlist writes.
+- Full regression suite: 327 tests passed.
+- Next: classify the 1,582 confidence differences, inspect missing duration provenance, and build a curated gold set. Do not bulk-rewrite confidence until the difference taxonomy is validated.
+
 ## 2026-11-02 — Implement read-only confidence audit (draft)
 
 - Added `scripts/music/library_confidence_audit.py` and exposed `python shit.py library confidence [--json]`.
