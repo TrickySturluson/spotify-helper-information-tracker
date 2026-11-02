@@ -15,6 +15,8 @@ def test_library_cli_parses_safe_and_write_commands(tmp_path):
     prepare = parser.parse_args(["library", "prepare", "--execute", "--skip-discogs"])
     assert prepare.action == "prepare" and prepare.execute and prepare.skip_discogs
     assert parser.parse_args(["library", "sync"]).action == "sync"
+    freshness = parser.parse_args(["library", "freshness", "--limit", "7", "--market", "US"])
+    assert freshness.action == "freshness" and freshness.limit == 7 and freshness.market == "US"
     assert parser.parse_args(["migration", "status"]).action == "status"
     assert parser.parse_args(["migration", "run", "--yes"]).action == "run"
     assert parser.parse_args(["migration", "resume", "--yes"]).action == "resume"
