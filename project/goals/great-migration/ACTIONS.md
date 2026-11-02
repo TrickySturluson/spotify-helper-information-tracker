@@ -1,3 +1,16 @@
+## 2026-11-02 — Verify safe maintainer preview and add prepare preflight command
+
+- Issue #93 `maintain-preview` completed successfully on latest main: health clean (0 errors/warnings); current and proposed counts match at 13,005 songs, 6,386 artists, 7,861 albums; `repair_needed=false`; `safe_to_rebuild=true`; no IDs/aliases would be lost; `changed=false`; provider_requests=0; spotify_playlist_writes=0. No repair or backup was created.
+- Added `prepare-preview` to `.github/workflows/great-migration.yml`. It invokes `python shit.py library prepare --skip-spotify-refresh` without `--execute` or `--yes`, so it is a safe read-only preflight distinct from the provider-running `prepare` operation. Commit `f69f64c`.
+- Issue #94 `prepare-preview` completed successfully. It confirmed legacy archive coverage 11,130/11,130 track IDs and 5,358/5,358 artist names; existing Library 13,005 songs / 6,386 artists / 7,861 albums; 1,778 track profiles, 3,998 artist profiles, 400 album profiles, 115 audio profiles, zero lyric features; 57 snapshots with 16 inaccessible; 3,306 playlist occurrences / 1,856 unique Spotify IDs; combined input rows 3,634. Provider caps were reported; optional Discogs/GetSongBPM credentials remain absent. Provider requests=0, writes=0, Spotify playlist writes=0.
+- This preflight does not yet provide a per-provider due-task count, so it is not sufficient by itself to justify another full prepare. It does establish that the existing source and checkpoint data are present and the current catalogue remains intact.
+- PR #95 (`feature/freshness-baseline-rotation`) adds the next freshness improvement: distinguish no-data from data-bearing-but-undated fields, report missing duration provenance separately, and rotate a deterministic 25-item unknown-age baseline weekly without treating it as stale. Its first CI run failed because `--include-unknown-age` was declared twice in argparse; the duplicate declaration was removed in branch commit `e7b2bac` and a follow-up docs commit is on the branch. No passing post-fix CI run has been observed yet; do not merge until full tests and security scan pass.
+- No migration/enrichment run, provider lookup, Spotify snapshot refresh, Library write, or playlist write was performed by issues #93/#94.
+
+**Next:** obtain a passing CI run for PR #95; inspect the post-fix freshness planner's full-catalogue output (due vs unknown-age baseline vs no-data vs missing provenance); only then consider a small provider-backed executor. Keep full prepare paused until provider due-work is demonstrated.
+
+---
+
 ## 2026-11-02 — Post-merge full-catalogue verification passed (issue #92)
 
 - Latest-main workflow run [#30](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41372492615) completed successfully after PR #87 and #88 merged.
