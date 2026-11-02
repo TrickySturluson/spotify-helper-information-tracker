@@ -226,3 +226,15 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Recommendation/playlist candidates are now expected to enter discovery-library intake at preview time with source and playlist context; canonical Library enrichment follows through the existing intake/migration process. Listening evidence stays separate.
 - Every confirmed addition must trigger a fresh live snapshot, duplicate/blacklist check, and sequence preview. Sequencer writes remain separately confirmed while direct track-level Sound/Energy/Mood/Theme evidence is insufficient.
 - Fixed missing `time` import in `scripts/spotify/spotify_playlist_cloud.py`; added idempotent candidate intake/audit to `booze20_preview`. Re-run workflow and focused tests before treating this path as verified.
+
+
+## 2026-11-02 — live Booze sorter and Spotify auth recovery
+
+- Diagnosed the cloud `sequence_preview` implementation: unlike the local sequencer, it omitted canonical Library audio profiles and album profiles from `sequence_tracks`. That caused the live report to understate available recording-level evidence.
+- Updated `scripts/spotify/spotify_playlist_cloud.py` to load per-recording Library profiles first and fill missing artist, track, audio, and album records from legacy caches. The preview now reports acoustic-confidence counts, audio-source coverage, and tempo-source coverage.
+- Removed a redundant duplicate conditional in transition classification. Limited metadata remains explicitly provisional; no guessed acoustic measurements are introduced.
+- Added URI-based section assignments for the pending ten-track Booze batch so new additions won't be left unassigned after they are actually added.
+- Updated `docs/BOOZE_OR_BOOS_SORT.md` with the cloud evidence-loading behavior and limits.
+- Fixed the playlist workflow so it mints the GitHub App secret-writer token for Spotify control operations. The token mint succeeded, but the live unlock then failed with Spotify `invalid_grant`: the repository's `SPOTIFY_REFRESH_TOKEN` secret is stale/revoked or was invalidated by refresh-token rotation.
+- The playlist remains locked; no Spotify playlist edit or reorder occurred. The ten-track preview remains staged with confirmation code `UBiP2nOo2rxVppmt` and a 92-item expected snapshot. Do not retry this old credential. Required recovery: locally reauthorize the playlist manager, export the new refresh token, and replace the GitHub Actions secret before any further Spotify command.
+- Verification: compile and generated-data/library audit steps passed in the latest CI run; unit tests were still running at the time of this entry. A fresh live preview remains blocked until OAuth is restored.
