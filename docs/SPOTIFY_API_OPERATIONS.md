@@ -46,7 +46,7 @@ The current repository secret has been rejected by Spotify (`invalid_grant`), so
 
 1. In the trusted local/Codespaces checkout, stop any other process using port `8888` and delete `.spotify_playlist_token.json`.
 2. Set `SPOTIFY_CLIENT_ID`, then run `python compat/spotify_playlist_manager.py list` and approve the requested scopes.
-3. If using Codespaces, forward port `8888` and ensure the Spotify app's redirect URI matches the callback URL used by the OAuth flow; the previous local-only callback caused the browser callback mismatch.
+3. For a local checkout, the default callback is `http://127.0.0.1:8888/callback`. For Codespaces, forward port `8888`, set `SPOTIFY_CALLBACK_HOST=0.0.0.0`, and set `SPOTIFY_REDIRECT_URI` to the exact HTTPS forwarded URL ending in `/callback`; register that exact URI in the Spotify Developer Dashboard before authorizing.
 4. Run `python compat/spotify_playlist_manager.py export-refresh-token` and update the repository Actions secret `SPOTIFY_REFRESH_TOKEN` directly in GitHub Settings. Never paste it into an issue, chat, commit, or log.
 5. Run the read-only credential verification and playlist `status` command. Confirm a second independent Actions run succeeds; this proves the secret survives runner disposal.
 
