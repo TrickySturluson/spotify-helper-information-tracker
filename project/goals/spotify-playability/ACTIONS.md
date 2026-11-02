@@ -1,3 +1,26 @@
+## 2026-11-02 — Add bounded current playability refresh
+
+- Added a stale-only refresh planner over canonical Spotify IDs. It defaults to 25 tracks per run, a 90-day freshness interval, and caps a run at 50 individual lookups.
+- Uses `GET /tracks/{id}?market=from_token`; does not use deprecated bulk `GET /tracks`. The official Spotify Track Relinking guide confirms `from_token` uses the user's account country, `is_playable=false` means no playable relink was found, and `linked_from` identifies the original recording when returned.
+- A direct check records requested ID (the path ID), returned/relinked ID, market, status, restrictions, response code, source and check time. Missing `is_playable` or a 404 is recorded as unknown, not false.
+- The planner skips recent observations and always rechecks when the latest playlist snapshot is inaccessible. Execute mode creates a backup of affected song files before updates; dry-run is the default and provider requests require both `--execute --yes`.
+- Added tests for bounded planning, recent-check skipping, relinked ID preservation, backup creation and 404-as-unknown.
+- PR #78 remains draft; CI pending. No provider calls have been made.
+- References: [Get Track](https://developer.spotify.com/documentation/web-api/reference/get-track), [Track Relinking](https://developer.spotify.com/documentation/web-api/concepts/track-relinking), [Get Several Tracks](https://developer.spotify.com/documentation/web-api/reference/get-several-tracks) (deprecated; not used).
+## 2026-11-02 — Market-aware playability and offline backfill implementation (PR #78)
+
+- Added optional market support to Spotify playlist item reads; the reference-library sync explicitly requests market=from_token while other playlist-manager callers retain their existing default request behavior.
+- Spotify documents from_token as the authenticated user's country. The API response's is_playable is market-specific and appears when Track Relinking is applied; linked_from identifies the originally requested track when a replacement is returned.
+- Updated observations to store market context, status, restrictions, check timestamp, requested original Spotify ID, returned/relinked Spotify ID, linked_from ID, playlist/snapshot context, and latest snapshot accessibility.
+- Relinked replacement metadata is not merged into the original song identity. The playability observation is attached to the existing original song record; unknown IDs are skipped rather than creating new records.
+- Added an append-only MusicLibrary.add_spotify_playability_observation() method that preserves history and deduplicates exact repeats.
+- Added backfill_playability_from_snapshots() / CLI backfill-playability: reads saved playlist JSON only, makes no Spotify requests, backs up affected song files, and appends observations to existing song records.
+- Added tests for market query behavior, explicit unknown vs false, restricted state, relinking IDs, append-only updates, no accidental record creation, and offline backup-protected backfill.
+- Updated song-record guide and file overviews.
+- PR #74 (confidence audit) is merged, so the base-branch CI workflow includes its confidence-report step.
+- Branch: feature/market-aware-playability-v2; not merged; CI pending. No live sync or backfill has been run.
+- Next: run PR CI, fix failures, merge only after checks pass; then run offline backfill once against saved snapshots and inspect counts/backup. Afterward perform a bounded live reference-library sync to refresh current playability with latest main/checkpoints, recording inaccessible playlists as stale rather than empty.
+
 ## 2026-11-02 — Merge initial snapshot playability persistence
 
 - PR #72 merged to main: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/72

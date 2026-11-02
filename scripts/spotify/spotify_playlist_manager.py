@@ -184,12 +184,27 @@ class Spotify:
             p=self.call("GET",url); out+=p.get("items",[]); url=p.get("next","")
             if url: url=url.replace("https://api.spotify.com/v1","")
         return out
-    def items(self,pid):
-        out=[]; url=f"/playlists/{pid}/items?limit=50&additional_types=track,episode"
+    def items(self,pid,market=None):
+        out=[]
+        if market is not None and market != "from_token" and not re.fullmatch(r"[A-Z]{2}", str(market)):
+            raise ManagerError("Invalid Spotify market; use an ISO country code or from_token.")
+        url=f"/playlists/{pid}/items?limit=50&additional_types=track,episode"
+        if market is not None:
+            url += f"&market={market}"
         while url:
             p=self.call("GET",url); out+=p.get("items",[]); url=p.get("next","")
             if url: url=url.replace(API,"")
         return out
+
+    def track(self,track_id,market=None):
+        if not re.fullmatch(r"[A-Za-z0-9]{22}", str(track_id or "")):
+            raise ManagerError("Invalid Spotify track ID.")
+        if market is not None and market != "from_token" and not re.fullmatch(r"[A-Z]{2}", str(market)):
+            raise ManagerError("Invalid Spotify market; use an ISO country code or from_token.")
+        url=f"/tracks/{track_id}"
+        if market is not None:
+            url += f"?market={market}"
+        return self.call("GET",url)
 
 def config():
     c=read(CONFIG,{"version":1,"playlists":{}})
