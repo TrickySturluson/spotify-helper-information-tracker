@@ -53,6 +53,89 @@ class DailyFeedbackObservationTests(unittest.TestCase):
 
 
 class ReferenceLibraryIntegrityTests(unittest.TestCase):
+    def test_playability_refresh_plan_is_bounded_and_skips_recent_market_observations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            lib = library.MusicLibrary(root / "library")
+            ids = ["1234567890123456789012", "2345678901234567890123", "3456789012345678901234"]
+            lib.put_catalogue([{
+                "track_id": "spotify:track:" + spotify_id, "spotify_id": spotify_id,
+                "artist": "Artist", "track": "Song " + str(i),
+            } for i, spotify_id in enumerate(ids)])
+            lib.add_spotify_playability_observation(ids[0], {
+                "status": "playable", "is_playable": True, "market": "from_token",
+                "checked_at": datetime.now(timezone.utc).isoformat(),
+                "requested_spotify_id": ids[0],
+            })
+            plan = library.refresh_playability_from_spotify(
+                library_root=root / "library", limit=2, stale_days=90, execute=False,
+            )
+            self.assertEqual(plan["provider_requests"], 0)
+            self.assertEqual(plan["selected_count"], 2)
+            self.assertNotIn(ids[0], [row["spotify_id"] for row in plan["selected"]])
+
+    def test_playability_refresh_records_relink_result_on_requested_song(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            original = "1234567890123456789012"
+            replacement = "2345678901234567890123"
+            lib = library.MusicLibrary(root / "library")
+            lib.put_catalogue([{
+                "track_id": "spotify:track:" + original, "spotify_id": original,
+                "artist": "Artist", "track": "Song",
+            }])
+
+            class FakeSpotify:
+                def __init__(self):
+                    self.calls = []
+                def track(self, spotify_id, market=None):
+                    self.calls.append((spotify_id, market))
+                    return {
+                        "id": replacement, "is_playable": True,
+                        "linked_from": {"id": original, "uri": "spotify:track:" + original},
+                        "restrictions": {},
+                    }
+
+            fake = FakeSpotify()
+            result = library.refresh_playability_from_spotify(
+                library_root=root / "library", limit=1, stale_days=90,
+                market="from_token", sp=fake, execute=True, sleep_seconds=0,
+            )
+            self.assertEqual(fake.calls, [(original, "from_token")])
+            self.assertEqual(result["provider_requests"], 1)
+            self.assertEqual(result["updated"], 1)
+            self.assertTrue(Path(result["backup_path"]).is_dir())
+            song = library.MusicLibrary(root / "library").get_song(spotify_id=original)["song"]
+            observation = song["evidence"]["spotify_playability"]["observations"][0]
+            self.assertEqual(observation["requested_spotify_id"], original)
+            self.assertEqual(observation["returned_spotify_id"], replacement)
+            self.assertEqual(observation["status"], "playable")
+
+    def test_playability_refresh_records_404_as_unknown_not_false(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            spotify_id = "1234567890123456789012"
+            lib = library.MusicLibrary(root / "library")
+            lib.put_catalogue([{
+                "track_id": "spotify:track:" + spotify_id, "spotify_id": spotify_id,
+                "artist": "Artist", "track": "Song",
+            }])
+
+            class MissingSpotify:
+                def track(self, requested_id, market=None):
+                    raise library.manager.ManagerError("Spotify API request failed: HTTP 404")
+
+            result = library.refresh_playability_from_spotify(
+                library_root=root / "library", limit=1, stale_days=90,
+                sp=MissingSpotify(), execute=True, sleep_seconds=0,
+            )
+            self.assertEqual(result["not_found_or_unavailable"], 1)
+            song = library.MusicLibrary(root / "library").get_song(spotify_id=spotify_id)["song"]
+            observation = song["evidence"]["spotify_playability"]["observations"][0]
+            self.assertEqual(observation["status"], "unknown")
+            self.assertIsNone(observation["is_playable"])
+            self.assertEqual(observation["response_status"], 404)
+
     def test_backfill_playability_from_saved_snapshots_is_offline_and_backup_protected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
