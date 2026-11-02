@@ -1,12 +1,23 @@
-## 2026-11-02 — Refine unknown-age accounting and rotating baseline sample (PR #95)
+## 2026-11-02 — Validate rotating unknown-age baseline on full catalogue (issue #99)
 
-- The first full-catalogue review reported 42,158 missing timestamps, but this included absent fields with no metadata to refresh. PR #95 corrects the accounting: `no_data` is separate from data-bearing fields that lack a field/provider timestamp.
-- Duration values with no known provider/source are counted as missing provenance, not scheduled for blind lookup.
-- Added an optional rotating baseline sample of data-bearing unknown-age fields. It is labelled `baseline_required`, not stale; stale/due tasks take priority; remaining capacity is filled from a deterministic ISO-week rotation, bounded by the same limit.
-- Same-week plans are deterministic; the sample rotates in the following week without writing cursor state.
-- Added the option to the CLI, weekly workflow, manual freshness-review command, and full-catalogue CI.
-- Tests cover absent-data classification, unknown-age sample selection, same-week determinism, week-to-week rotation, and CLI argument wiring.
-- PR #95 CI pending at time of entry. No provider requests or Library writes are enabled.
+- The corrected PR branch `feature/freshness-baseline-rotation-ci` was checked out by the dedicated Great Migration validation command.
+- Full compile and **344 unit tests passed**, including deterministic weekly rotation, due-task priority, due/baseline cross-list deduplication, no-data vs missing-timestamp classification, and CLI flag wiring.
+- Full-catalogue read-only planner: 13,005 songs, 6,386 artists, 7,861 albums; 8,621 fresh, 0 stale, 0 missing playability observations, 6,613 data-bearing unknown-age duration observations, 33,689 no-data fields, 1,856 missing duration provenance, 1,362 cooldown skips, 0 invalid timestamps and 0 blocked tasks.
+- Baseline candidates: 6,613; selected 25 of 25. All 25 selected tasks were Last.fm duration refresh candidates, labelled `baseline_required`; no stale/due tasks were present. Selection is deterministic within an ISO week and rotates between weeks.
+- provider_requests=0 and writes=0. This is a planning sample only; no provider calls or Library writes occurred.
+- The 1,856 duration values without source provenance are excluded from provider scheduling; do not blindly query them until their source is resolved.
+- Initial PR CI failed due to a duplicate argparse option; issue #98 then passed the 340-test main suite but its temporary wrapper failed from heredoc indentation. The wrapper was fixed; issue #99 then passed the branch-specific 344-test suite and full-catalogue planner.
+- The original PR #95 still has failed historical CI attached to its pre-fix head. PR #97 contains the corrected branch plus the new regression tests; rebase its workflow/docs files onto latest main before merge. Public security scan passed on the original PR branch; changes after that scan are limited to removing a duplicate CLI option and adding tests/docs/workflow flag wiring.
+- No provider calls, Library writes, or playlist writes.
+
+## 2026-11-02 — Add weekly maintenance preview and unknown-age baseline rotation
+
+- The weekly read-only workflow was extended to run `python shit.py library maintain --json` and preserve `library-maintenance-plan.json` alongside health, confidence and freshness reports. It validates `mode=preview`, `changed=false`, zero provider requests and zero playlist writes; it never applies repairs. Commit `cb3adf2`; its push CI and public security scan both passed.
+- Issue #93 full-catalogue maintainer preview independently passed: 13,005 songs, 6,386 artists, 7,861 albums; health errors/warnings=0; `repair_needed=false`; `safe_to_rebuild=true`; no IDs/aliases lost; no writes.
+- PR #95 (`feature/freshness-baseline-rotation`) introduces separate counts for `no_data`, data-bearing fields with `missing_timestamp`, and `missing_provenance`; it also adds a deterministic weekly rotating unknown-age sample (up to the existing 25-item cap), clearly labelled `baseline_required`, not stale. It exposes `--include-unknown-age` in CLI and weekly/manual workflows.
+- Initial PR CI failed before tests because the new argparse option was accidentally declared twice. The duplicate declaration has been removed on the PR branch (commit `e7b2bac`, followed by a documentation update). No passing post-fix CI run has yet been observed; keep PR #95 open until the full test and security workflows pass.
+- This design is still read-only: baseline selection makes no provider requests and does not mutate a cursor or Library state. It gives us a deterministic rotating sample to inspect unknown-age data without claiming that it is stale.
+- Next: obtain passing CI for PR #95, then run its full-catalogue planner against main and inspect baseline candidate counts before designing a bounded provider-backed executor.
 
 ## 2026-11-02 — Run first manual read-only freshness review
 
