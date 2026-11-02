@@ -72,6 +72,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
         run: |
           # The removal tracker uses the shared Spotify manager, which reads
@@ -111,6 +112,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python compat/spotify_playlist_cloud.py
@@ -120,6 +122,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
         run: python compat/track_playlist_removals.py "$PLAYLIST_ID"
       - name: Preserve playlist snapshots
