@@ -107,11 +107,43 @@ class PlaylistFitPreviewTests(unittest.TestCase):
         result = build_preview([{"uri": candidate_uri, "title": "Candidate", "artist": "Example"}],
                                targets, records, {})
         self.assertTrue(result["heldout_batch_excluded_from_all_profiles"])
+        self.assertEqual(result["status"], "read_only_preview_not_for_sorting")
+        self.assertGreater(result["usable_target_profile_count"], 0)
         self.assertEqual(result["targets"]["target-0"]["profile_track_count"], 12)
         self.assertFalse(result["human_ratings_read"])
         self.assertEqual(result["spotify_api_calls"], 0)
         self.assertEqual(result["playlist_writes"], 0)
         self.assertFalse(result["results"][0]["scores_by_target"]["Target 0"]["human_ratings_used"])
+
+
+    def test_zero_evidence_profiles_block_all_candidate_scores(self):
+        candidates = [{"uri": "spotify:track:9999999999999999999999", "title": "Candidate", "artist": "Example"}]
+        targets = {
+            f"target-{i}": {"name": f"Target {i}", "snapshot_id": f"snap-{i}",
+                            "captured_at": "2026-11-02",
+                            "items": [{"uri": f"spotify:track:{j:022d}"} for j in range(8)]}
+            for i in range(5)
+        }
+        records = {
+            f"spotify:track:{j:022d}": {
+                "id": f"spotify:{j:022d}",
+                "identity": {"spotify_id": f"{j:022d}", "artist": "Example", "title": f"Reference {j}"},
+                "confidence": {"identity": "high"}, "evidence": {}, "mood": {},
+            }
+            for j in range(8)
+        }
+        records[candidates[0]["uri"]] = {
+            "id": candidates[0]["uri"],
+            "identity": {"spotify_id": candidates[0]["uri"], "artist": "Example", "title": "Candidate"},
+            "confidence": {"identity": "high"}, "evidence": {}, "mood": {},
+        }
+        result = build_preview(candidates, targets, records, {})
+        self.assertEqual(result["status"], "blocked_insufficient_reference_evidence")
+        self.assertEqual(result["usable_target_profile_count"], 0)
+        self.assertTrue(result["block_reasons"])
+        for score in result["results"][0]["scores_by_target"].values():
+            self.assertIsNone(score["fit_score"])
+            self.assertEqual(score["confidence"], "unknown")
 
 
 if __name__ == "__main__":
