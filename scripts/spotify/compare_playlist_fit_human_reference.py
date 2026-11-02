@@ -12,6 +12,7 @@ import json
 import math
 import re
 from pathlib import Path
+from statistics import median
 
 
 def read_json(path: Path) -> dict:
@@ -52,7 +53,8 @@ def ranks(values: list[float]) -> list[float]:
 
 def metrics(pairs: list[dict]) -> dict:
     if not pairs:
-        return {"n": 0, "mae": None, "mean_bias_model_minus_human": None,
+        return {"n": 0, "mae": None, "median_absolute_error": None,
+                "mean_bias_model_minus_human": None, "median_bias_model_minus_human": None,
                 "pearson_r": None, "spearman_r": None, "mean_human": None, "mean_model": None}
     human = [float(row["human_score"]) for row in pairs]
     model = [float(row["model_score"]) for row in pairs]
@@ -60,7 +62,9 @@ def metrics(pairs: list[dict]) -> dict:
     return {
         "n": len(pairs),
         "mae": round(sum(abs(x) for x in errors) / len(errors), 2),
+        "median_absolute_error": round(median(abs(x) for x in errors), 2),
         "mean_bias_model_minus_human": round(sum(errors) / len(errors), 2),
+        "median_bias_model_minus_human": round(median(errors), 2),
         "pearson_r": pearson(model, human),
         "spearman_r": pearson(ranks(model), ranks(human)),
         "mean_human": round(sum(human) / len(human), 2),
@@ -155,12 +159,12 @@ def compare(preview: dict, ratings_doc: dict) -> dict:
         "ambiguous_human_rating_tracks": ambiguous,
         "unknown_model_score_pairs": unknown,
         "match_methods": match_methods,
-        "confidence_counts_on_scored_pairs": confidence_counts,
+        "confidence_counts_on_matched_pairs": confidence_counts,
         "overall": metrics(all_pairs),
         "targets": target_reports,
         "interpretation": [
             "Human sliders are exploratory reference observations, not ground truth, model training data, listening events, or playlist membership decisions.",
-            "The comparison is descriptive only. It must not tune scoring weights or enable sorting.",
+            "The comparison is descriptive only. The human slider scale is known to be somewhat endpoint-heavy; interpret MAE alongside median error and rank correlation rather than treating endpoint distance as a precise calibration target. It must not tune scoring weights or enable sorting.",
             "Low-confidence and context-only predictions are included but remain visibly stratified; unknown model scores are not imputed as zero.",
             "The current reference set is small and the model may have sparse evidence coverage; correlations and errors are not production validation.",
             "Where a human track lacks a Spotify URI, matching uses a unique exact normalized title+artist display key only for joining the separate evaluation records; it is not used as model identity evidence.",
