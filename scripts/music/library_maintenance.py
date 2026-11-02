@@ -112,7 +112,7 @@ def plan_maintenance(root):
         "health_errors": len(errors),
         "health_warnings": len(health.get("warnings", [])),
         "repair_type": "derived_index_rebuild",
-        "repair_needed": bool(findings) and not non_index_findings,
+        "repair_needed": bool(findings or missing) and not non_index_findings,
         "safe_to_rebuild": bool(expected is not None and not missing and not non_index_findings),
         "blocking_record_findings": non_index_findings[:25],
         "aliases_or_records_that_would_be_lost": missing,
