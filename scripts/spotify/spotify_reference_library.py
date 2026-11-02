@@ -219,6 +219,24 @@ def sync(sp):
         if changed_now or (not old and record["items_accessible"]):
             history = HISTORY_DIR / pid
             history.mkdir(parents=True, exist_ok=True)
+            # Preserve the previous complete snapshot before replacing the live
+            # pointer. Historical candidate audits must remain resolvable after
+            # the current playlist changes.
+            if old and old.get("items_accessible"):
+                old_items = old.get("items") or []
+                old_reported = old.get("total_items_reported")
+                old_fetched = old.get("item_count_fetched")
+                if (isinstance(old_reported, int) and old_reported == old_fetched
+                        and len(old_items) == old_fetched and old.get("snapshot_id")):
+                    old_stamp = old.get("captured_at")
+                    try:
+                        old_dt = datetime.fromisoformat(str(old_stamp).replace("Z", "+00:00"))
+                        old_name = old_dt.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + ".json"
+                    except (TypeError, ValueError):
+                        old_name = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "_prior.json"
+                    old_history = history / old_name
+                    if not old_history.exists():
+                        manager.write(old_history, old)
             manager.write(history / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + ".json"), record)
         # Always persist access status, even when retaining an older content snapshot.
         manager.write(path, record)
