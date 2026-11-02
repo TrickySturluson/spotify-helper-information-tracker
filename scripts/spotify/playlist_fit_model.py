@@ -10,7 +10,7 @@ from collections import Counter
 from statistics import mean, pstdev
 from typing import Any
 
-MODEL_VERSION = "five-axis-fit-v0.2"
+MODEL_VERSION = "five-axis-fit-v0.3"
 DIMENSIONS = ("genre", "sound", "energy", "mood", "theme")
 DEFAULT_WEIGHTS = {
     "genre": 0.15, "sound": 0.25, "energy": 0.20,
@@ -120,15 +120,21 @@ def build_reference_profile(
                 "min": min(values) if values else None, "max": max(values) if values else None,
                 "p10": round(percentile(0.10), 3) if values else None,
                 "p90": round(percentile(0.90), 3) if values else None,
-                "track_count": len(values), "source_families": sorted(families),
+                "track_count": len(values), "direct_track_count": len(values),
+                "context_track_count": 0, "source_families": sorted(families),
             }
         else:
             counts, families, track_count = Counter(), set(), 0
+            direct_track_count = context_track_count = 0
             for track in included:
                 rows = _usable(_observations(track, dim))
                 if not rows:
                     continue
                 track_count += 1
+                if any(row["scope"] in {"recording", "lyrics", "audio"} for row in rows):
+                    direct_track_count += 1
+                if any(row["scope"] in {"release", "artist"} for row in rows):
+                    context_track_count += 1
                 per_family = {}
                 track_tokens = set()
                 for row in rows:
@@ -140,17 +146,19 @@ def build_reference_profile(
                     counts[token] += 1
             dimensions[dim] = {
                 "prevalence": {k: round(v / max(1, track_count), 4) for k, v in counts.items()},
-                "track_count": track_count, "source_families": sorted(families),
+                "track_count": track_count, "direct_track_count": direct_track_count,
+                "context_track_count": context_track_count, "source_families": sorted(families),
             }
-    coverage = sum(bool(dimensions[d]["track_count"]) for d in DIMENSIONS) / len(DIMENSIONS)
+    direct_coverage = sum(bool(dimensions[d]["direct_track_count"]) for d in DIMENSIONS) / len(DIMENSIONS)
+    context_coverage = sum(bool(dimensions[d]["context_track_count"]) for d in DIMENSIONS) / len(DIMENSIONS)
     n = len(included)
-    profile_confidence = "high" if n >= 20 and coverage >= 0.8 else (
-        "medium" if n >= 8 and coverage >= 0.6 else "low" if n else "unknown")
+    profile_confidence = "high" if n >= 20 and direct_coverage >= 0.8 else (
+        "medium" if n >= 8 and direct_coverage >= 0.6 else "low" if n else "unknown")
     return {
         "model_version": MODEL_VERSION, "track_count": n,
         "excluded_candidate_and_holdout_count": len(excluded),
-        "coverage": round(coverage, 3), "profile_confidence": profile_confidence,
-        "dimensions": dimensions,
+        "coverage": round(direct_coverage, 3), "context_coverage": round(context_coverage, 3),
+        "profile_confidence": profile_confidence, "dimensions": dimensions,
     }
 
 
@@ -287,7 +295,7 @@ def track_from_library_record(record: dict, track_profile: dict | None = None) -
     if identity.get("recording_mbid"):
         expected_ids.add("mbid:" + str(identity["recording_mbid"]).casefold().removeprefix("mbid:"))
     if identity.get("spotify_id"):
-        expected_ids.add("spotify:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
+        expected_ids.add("spotify:track:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
     profile_id = str(profile.get("track_id") or "").casefold()
     if profile and (not profile_id or profile_id not in expected_ids):
         profile = {}
@@ -308,7 +316,7 @@ def track_from_library_record(record: dict, track_profile: dict | None = None) -
             provider = str(provider).casefold()
             if "musicbrainz" in provider:
                 provider = "musicbrainz"
-            elif "lastfm" in provider:
+            elif "lastfm" in provider or "last.fm" in provider:
                 provider = "lastfm"
             elif "discogs" in provider:
                 provider = "discogs"

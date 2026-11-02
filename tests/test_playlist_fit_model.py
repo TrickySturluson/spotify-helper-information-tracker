@@ -194,6 +194,20 @@ class PlaylistFitModelTests(unittest.TestCase):
 
 
 
+
+    def test_track_profile_cache_accepts_exact_spotify_track_id(self):
+        record = {
+            "id": "spotify:track:1234567890123456789012",
+            "identity": {"artist": "Example", "title": "Track",
+                         "spotify_id": "1234567890123456789012"},
+            "confidence": {"identity": "high"},
+            "evidence": {},
+        }
+        profile = {"track_id": "spotify:track:1234567890123456789012",
+                   "musicbrainz_genres": [{"tag": "shoegaze", "source": "MusicBrainz recording tag"}]}
+        adapted = track_from_library_record(record, profile)
+        self.assertEqual(adapted["dimensions"]["genre"][0]["value"], "shoegaze")
+
     def test_empty_canonical_tag_fields_do_not_erase_cache_evidence(self):
         record = {
             "id": "mbid:recording-2",
@@ -206,6 +220,35 @@ class PlaylistFitModelTests(unittest.TestCase):
         adapted = track_from_library_record(record, profile)
         self.assertEqual(adapted["dimensions"]["genre"][0]["value"], "shoegaze")
         self.assertEqual(adapted["dimensions"]["genre"][0]["source_family"], "musicbrainz")
+
+
+    def test_context_only_coverage_does_not_raise_profile_confidence(self):
+        tracks = [{
+            "uri": f"spotify:track:{i:022d}",
+            "dimensions": {"genre": [{
+                "value": "garage rock", "source_family": "lastfm",
+                "scope": "artist", "identity_confidence": "high",
+            }]},
+        } for i in range(24)]
+        profile = build_reference_profile(tracks)
+        self.assertEqual(profile["coverage"], 0.0)
+        self.assertEqual(profile["context_coverage"], 0.2)
+        self.assertEqual(profile["dimensions"]["genre"]["direct_track_count"], 0)
+        self.assertEqual(profile["dimensions"]["genre"]["context_track_count"], 24)
+        self.assertEqual(profile["profile_confidence"], "low")
+
+
+    def test_dotted_lastfm_provider_labels_share_one_source_family(self):
+        record = {
+            "id": "spotify:one",
+            "identity": {"artist": "Example", "title": "Track", "spotify_id": "1234567890123456789012"},
+            "confidence": {"identity": "high"},
+            "evidence": {"track_metadata": {
+                "lastfm_tags": [{"tag": "garage rock", "source": "Last.fm track.getTopTags"}],
+            }},
+        }
+        adapted = track_from_library_record(record)
+        self.assertEqual(adapted["dimensions"]["genre"][0]["source_family"], "lastfm")
 
 
 if __name__ == "__main__":

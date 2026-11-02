@@ -119,3 +119,66 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Current state:** read-only scorer and exact-ID track-profile adapter are green. The separate legacy cache has 1,778 track rows while canonical song records report only 179 with track tags; integrating that cache safely is important to avoid throwing away existing useful evidence. The lyric export is empty and direct recording mood coverage was not reported in the current audit, so those dimensions must remain unknown until enriched.
 - **Next:** add exact-ID audio-profile cache ingestion only for fields that genuinely support the relevant dimension; then build and test a read-only target-profile/held-out preview using the saved five playlist snapshots. Keep human scores out of scoring and keep Spotify writes disabled.
 - **Commits:** cache merge fix `00a3d8c19c16ee2438fd70a276a6c3737b4f0775`; cache regression test `f3f89bd631688e4000749ca159fc90f1004f5ee5`.
+
+
+## 2026-11-02 — Read-only five-target profile and preview integration
+
+- **Purpose:** Connect the five-axis scorer to canonical SHIT records and saved reference snapshots without using human labels or changing Spotify.
+- **Implementation:** Added `scripts/spotify/playlist_fit_preview.py`. It validates the five registered target snapshots, checks snapshot identity and reported/fetched counts, resolves playlist items to canonical song records by exact Spotify ID, joins legacy track-profile cache rows only by exact stable source/recording/Spotify ID, builds per-target profiles, and scores an identity-only candidate batch.
+- **Leakage control:** The complete candidate batch is excluded from every target profile. Human score fields are never loaded; candidate parsing extracts only track identity/title/artist. No artist/title joins, Spotify API calls or playlist writes.
+- **Conservative evidence handling:** The runner does not turn AcousticBrainz loudness/complexity or BPM into energy/sound descriptors. Unsupported dimensions remain unknown. It emits profile sizes, per-dimension coverage, snapshot provenance, per-target scores, confidence reasons and explicit no-write flags.
+- **Tests added:** `tests/test_playlist_fit_preview.py` covers strict Spotify ID parsing, identity-only candidate extraction/deduplication, exact cache joins, whole-batch exclusion and read-only output flags.
+- **Documentation:** Added `PLAYLIST_FIT_PREVIEW.md` and updated the goal README.
+- **Verification:** Implementation and tests are committed to the isolated branch. CI has not yet been observed for this branch; do not treat tests as passed until Actions reports success. The real-data preview has not yet been run.
+- **Outcome:** Integration prototype implemented; still preview-only and not connected to the sequencer.
+- **Held-out batch:** Added `assistant_data/spotify/playlist_fit_heldout_candidates_20261102.json` with 24 playable candidate identities resolved to unique Spotify IDs from the saved target snapshots. The unplayable Dog — Floating Room track is excluded. No score or confidence fields are present. The full 24-track batch is excluded from every target profile.
+- **Execution workflow:** Added `.github/workflows/playlist-fit-preview.yml` to run focused tests and the real-data preview without Spotify credentials, then retain the JSON artifact for 14 days. It runs on relevant PR changes or manual dispatch.
+- **CI:** Main repository PR workflow run `41401453395` passed all stages and **389 unit tests**. The dedicated real-data preview workflow was added after that run and is now awaiting its own result. The public-repository secret-history scan `41401453357` was still running at the last check.
+- **Next:** Verify the dedicated preview workflow and inspect its artifact: candidate-to-Library match rate, per-target profile counts/coverage, confidence tiers and unknown dimensions. Then perform an independent evidence review of the largest boundary errors before any human-score comparison. Keep human scores out of the scoring path and Spotify writes disabled.
+
+
+### Preview workflow diagnostic — 2026-11-02
+
+- **First real-data workflow:** run 41401744033 — focused regression tests passed (20/20), but the preview CLI failed immediately with ModuleNotFoundError: No module named 'scripts'.
+- **Root cause:** direct execution places scripts/spotify/ rather than the repository root on sys.path; importing the scorer as scripts.spotify.playlist_fit_model therefore worked in tests but not in the CLI entry point.
+- **Fix:** the runner now inserts its repository root into sys.path before importing the scorer. No data/schema or scoring behavior changed.
+- **Next verification:** rerun the dedicated preview workflow against the 24-track identity-only held-out batch; inspect the generated artifact and then record exact coverage/results. Do not treat the initial failed run as a scoring failure.
+
+
+### Reference evidence coverage diagnostic and identity-bridge refinement — 2026-11-02
+
+- **First full-data result:** workflow run 41401858727 successfully produced a 24-candidate / 5-target artifact, but all five target profiles had zero dimension coverage and every fit score was null. This was a correct insufficient-evidence outcome, not a scoring failure.
+- **Identity-layer diagnosis:** Spotify-only canonical song records and Last.fm source-track records are sometimes separate records even when the same recording is represented. Direct Spotify ID resolution therefore found the playlist record but did not reach the separate source-track profile row. The Library's alias index correctly maps the cache row to its source record, but no shared stable ID exists between the two records in those cases.
+- **Safe bridge:** the preview now tries exact Spotify ID first, then only a Library exact artist + title + album lookup with an additional duration check within 2,000 ms. The fallback is explicitly marked medium identity confidence. It never uses fuzzy text matching or artist/title alone. It does not mutate canonical records.
+- **Leakage guard:** candidate resolution occurs before profile construction; the entire held-out batch is excluded by Spotify URI and by resolved canonical record ID. Reference profiles deduplicate resolved canonical records so relinked/duplicate Spotify IDs cannot overweight a recording.
+- **Candidate metadata:** the 24-track held-out identity file now includes exact album, duration and ISRC from saved Spotify snapshots; no human scores, fit scores or confidence values are present.
+- **Fail-closed status:** when all five profiles have zero usable evidence, output status is blocked_insufficient_reference_evidence and all fit scores remain null.
+- **Regression tests:** added coverage for exact album/duration fallback, medium identity confidence without mutating the Library record, duration mismatch rejection, canonical-record holdout exclusion, and blocked zero-evidence output.
+- **Verification pending:** focused and full CI plus a fresh real-data artifact must pass after this adapter change. No Spotify API calls or playlist writes.
+
+
+### Exact identity bridge test correction — 2026-11-02
+
+- Workflow run 41403433459 failed one new regression fixture because the fake Last.fm source record omitted its duration; the implementation correctly refused the fallback and retained the exact Spotify record. The fixture now supplies the required matching 100,000 ms duration. No production logic was weakened.
+- The bridge is now implemented as a read-only index over canonical song records rather than calling the Library's mutating fallback repair paths. It selects exactly one non-Spotify source record with normalized exact artist/title/album and duration within 2,000 ms; zero or multiple matches are rejected.
+- Latest verification is pending for the corrected fixture and the full real-data preview.
+
+
+### Explicit context adapter and confidence boundary — 2026-11-02
+
+- The preview now reads canonical artist/album relation records by their stored relative paths and adds only explicit genre fields plus explicit mood fields as context. Artist genre remains artist-scoped; release genre remains release-scoped; explicit moods retain the same scope. No artist tag is promoted to track mood, and no context is used for sound, energy or lyrics-derived theme.
+- Existing scorer scope weights remain unchanged: artist 0.15, release 0.35, direct recording/audio/lyrics 1.0.
+- Profile output now separates direct and contextual track counts per dimension. Primary coverage and profile confidence use direct evidence only; contextual coverage is reported separately. Context-only output cannot promote a profile to medium/high confidence.
+- Model version bumped to five-axis-fit-v0.3 for the new direct/context confidence semantics.
+- Added tests proving contextual-only data does not raise direct profile confidence and explicit artist/release context stays in its proper dimensions.
+- Latest preview/full CI/security runs are in progress; inspect the resulting artifact before interpreting scores.
+
+
+### Frozen preview and separate human-reference diagnostic — 2026-11-02
+
+- Latest full real-data preview workflow run 41404493636 succeeded and uploaded artifact 13122518748. It used model version five-axis-fit-v0.3, 24 candidate tracks, five target snapshots, no human ratings in scoring, zero Spotify API calls and zero playlist writes.
+- Direct profile coverage remains sparse: To 11 0.2, Somber Party 0.0, . . . 0.2, =^= 0.2, Smooth 0.0. Context coverage is 0.2, 0.2, 0.4, 0.4, 0.0 respectively. Only Genre has direct coverage (3, 0, 3, 4, 0 tracks); Sound and Energy have no evidence; Mood has three/one context-only observations in . . . and =^=; Theme has no evidence. Profile confidence remains low across all targets.
+- Exact identity resolution for the 24 held-out tracks: 16 exact artist/title/album+duration corroborated source-record fallbacks, 8 exact Spotify-ID records. No fuzzy matching.
+- Fifteen tracks receive low-confidence genre-only scores against To 11, Somber Party, . . . and =^=; nine remain unknown. Smooth has no comparable profile evidence. No candidate receives medium/high confidence. These are provisional evidence-limited scores, not production decisions.
+- Added scripts/spotify/compare_playlist_fit_human_reference.py and tests/test_playlist_fit_human_reference_comparison.py. The comparison is a separate post-hoc step after preview generation, with unknown scores left missing and human labels excluded from model training/scoring. It reports error, bias, correlation, coverage and confidence strata. The preview workflow now uploads a second diagnostic artifact.
+- Full repository CI/security and latest focused preview tests are pending for the final v0.3 + comparison workflow changes. Keep preview-only and no Spotify writes.

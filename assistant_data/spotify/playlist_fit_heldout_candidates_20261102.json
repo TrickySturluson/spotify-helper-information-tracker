@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "batch_id": "five-playlist-fit-heldout-20261102",
+  "purpose": "Identity-only held-out batch for the native read-only five-axis preview runner. The 24 playable audition tracks were resolved to unique Spotify track IDs from the five saved target snapshots; the unplayable Dog — Floating Room entry was excluded.",
+  "selection_rules": [
+    "Spotify track IDs only; no artist/title-only joins are performed by the scorer.",
+    "The full batch is excluded from every target profile.",
+    "No human slider scores, model fit predictions, confidence values, or comparison fields are included."
+  ],
+  "tracks": [
+    {
+      "uri": "spotify:track:6V0A3jkb9ntudO0kmcJ1xd",
+      "title": "Figure It Out",
+      "artist": "Royal Blood",
+      "album": "Royal Blood",
+      "duration_ms": 183602,
+      "isrc": "GBAHT1400222"
+    },
+    {
+      "uri": "spotify:track:1wsRitfRRtWyEapl0q22o8",
+      "title": "Guerrilla Radio",
+      "artist": "Rage Against The Machine",
+      "album": "The Battle Of Los Angeles",
+      "duration_ms": 206200,
+      "isrc": "USSM19919500"
+    },
+    {
+      "uri": "spotify:track:5cZqsjVs6MevCnAkasbEOX",
+      "title": "Break Stuff",
+      "artist": "Limp Bizkit",
+      "album": "Significant Other",
+      "duration_ms": 166706,
+      "isrc": "USIR19902309"
+    },
+    {
+      "uri": "spotify:track:5mpUKTdskZea0gStWzeHUZ",
+      "title": "Unsainted",
+      "artist": "Slipknot",
+      "album": "We Are Not Your Kind",
+      "duration_ms": 260773,
+      "isrc": "NLA321900089"
+    },
+    {
+      "uri": "spotify:track:7CpbhqKUedOIrcvc94p60Y",
+      "title": "Bodies",
+      "artist": "Drowning Pool",
+      "album": "Sinner",
+      "duration_ms": 201960,
+      "isrc": "USWU30006502"
+    },
+    {
+      "uri": "spotify:track:28kOpVf1aCgL0LSFfuKV4w",
+      "title": "Oom Sha La La",
+      "artist": "Haley Heynderickx",
+      "album": "I Need to Start a Garden",
+      "duration_ms": 177339,
+      "isrc": "QMFW91700128"
+    },
+    {
+      "uri": "spotify:track:2WJWtj8xlMRMddPBQwftTY",
+      "title": "when the devil falls in love",
+      "artist": "Hakdo",
+      "album": "when the devil falls in love",
+      "duration_ms": 100677,
+      "isrc": "USA2P2443373"
+    },
+    {
+      "uri": "spotify:track:6f2zLLNAyxzD3WLG2IR40l",
+      "title": "MARBLE HALLS",
+      "artist": "Masayoshi Takanaka",
+      "album": "Hunpluged",
+      "duration_ms": 217213,
+      "isrc": "QM4TW2557423"
+    },
+    {
+      "uri": "spotify:track:6KKtTJAgNLCW7LAtuI9Dwy",
+      "title": "Wharf (ii)",
+      "artist": "Horsey",
+      "album": "Debonair",
+      "duration_ms": 265879,
+      "isrc": "UKQC92140012"
+    },
+    {
+      "uri": "spotify:track:3ZGV8p5oWaj1oIy6OVVVae",
+      "title": "Armchair",
+      "artist": "yungatita",
+      "album": "Armchair",
+      "duration_ms": 270784,
+      "isrc": "QZNWU2294827"
+    },
+    {
+      "uri": "spotify:track:1jQyc3hZdalk3jCIfgTdcn",
+      "title": "Don't Come Home Today",
+      "artist": "Good Morning",
+      "album": "Shawcross",
+      "duration_ms": 188906,
+      "isrc": "UST8K1403965"
+    },
+    {
+      "uri": "spotify:track:3EdMkS9YsVyEFUGwVJBjZB",
+      "title": "Of Lacking Spectacle",
+      "artist": "Gus Dapperton",
+      "album": "13 Reasons Why (Season 2)",
+      "duration_ms": 204586,
+      "isrc": "USUG11800878"
+    },
+    {
+      "uri": "spotify:track:4C4nM20DS3oEdaq1WWl4ru",
+      "title": "Running Up That Hill",
+      "artist": "Chromatics",
+      "album": "Night Drive",
+      "duration_ms": 366680,
+      "isrc": "USL841010036"
+    },
+    {
+      "uri": "spotify:track:7vptmeNwSEVkcwDdqk7UQO",
+      "title": "Lauren",
+      "artist": "Men I Trust",
+      "album": "Lauren",
+      "duration_ms": 218210,
+      "isrc": "USDY41650617"
+    },
+    {
+      "uri": "spotify:track:7kKLHjFif3r0HG5YyBTv6d",
+      "title": "I'm a Wanted Man",
+      "artist": "Royal Deluxe",
+      "album": "Born for This",
+      "duration_ms": 228986,
+      "isrc": "US43C1601053"
+    },
+    {
+      "uri": "spotify:track:0mHSePRiFnTy7qYPsIeIJ8",
+      "title": "Where the Devil Don't Go",
+      "artist": "Elle King",
+      "album": "Love Stuff",
+      "duration_ms": 181480,
+      "isrc": "USRC11402892"
+    },
+    {
+      "uri": "spotify:track:3nGWzFBJ5tMzHWAgs16fK6",
+      "title": "What Makes A Good Man?",
+      "artist": "The Heavy",
+      "album": "The Glorious Dead",
+      "duration_ms": 226380,
+      "isrc": "GBCFB1200102"
+    },
+    {
+      "uri": "spotify:track:7JOizhmt3HlBgQyJEa0AgK",
+      "title": "Short Change Hero",
+      "artist": "The Heavy",
+      "album": "The House That Dirt Built",
+      "duration_ms": 322266,
+      "isrc": "GBCFB0901504"
+    },
+    {
+      "uri": "spotify:track:0ZPMI8Gnz7p6omBBIOwiO9",
+      "title": "A Little Wicked",
+      "artist": "Valerie Broussard",
+      "album": "A Little Wicked",
+      "duration_ms": 210274,
+      "isrc": "QMPKX1645089"
+    },
+    {
+      "uri": "spotify:track:4e6tEXni2K0cZYFmku6Htf",
+      "title": "Flatline",
+      "artist": "Scattle",
+      "album": "Hotline Miami: The Takedown EP",
+      "duration_ms": 134400,
+      "isrc": "SEYOK1405015"
+    },
+    {
+      "uri": "spotify:track:1hGRe4d3LJCg1VszAU8Cy1",
+      "title": "Daisuke",
+      "artist": "El Huervo",
+      "album": "Do Not Lay Waste To Homes...",
+      "duration_ms": 161932,
+      "isrc": "USSEV1200005"
+    },
+    {
+      "uri": "spotify:track:2uA9EGy7KifPvk2F342IvR",
+      "title": "Rust",
+      "artist": "El Huervo",
+      "album": "Rust B/W Ghost",
+      "duration_ms": 297473,
+      "isrc": "QM6P41552908"
+    },
+    {
+      "uri": "spotify:track:6rne7RR7YOkAuRYeNP9GQT",
+      "title": "Deep Cover",
+      "artist": "Sun Araw",
+      "album": "On Patrol",
+      "duration_ms": 482933,
+      "isrc": "USA2Z1010521"
+    },
+    {
+      "uri": "spotify:track:2HsgJD03dwYszo0G1NcEgD",
+      "title": "Fantasy Trash Wave",
+      "artist": "TOBACCO",
+      "album": "Sweatbox Dynasty",
+      "duration_ms": 167146,
+      "isrc": "US2J71607410"
+    }
+  ]
+}
