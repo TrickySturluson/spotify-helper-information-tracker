@@ -6,6 +6,30 @@ SHIT uses the Spotify Web API through the GitHub Actions secret `SPOTIFY_REFRESH
 
 Spotify's February 2026 Web API migration changed playlist item endpoints from `/tracks` to `/items`. Full playlist item reads are available only when the authenticated user owns the playlist or is a collaborator. A public playlist being visible in Spotify does not imply that its full item list is readable through the Web API.
 
+## Product requirement: GitHub-hosted and PC-independent operation
+
+SHIT's product goal is a feature-rich, conversational ChatGPT–Spotify experience. GitHub is the central source of truth for this repository's code, configuration, durable workflow state, and documentation. GitHub Actions or another managed cloud runtime must perform all supported scheduled and on-demand SHIT operations. The user's personal PC must be allowed to stay off without stopping those operations.
+
+The current GitHub Actions playlist-control workflow already runs remotely. The repository's broader ChatGPT-to-SHIT feature surface is a product goal; document a feature as available only after its GitHub-hosted path and user-facing integration have been implemented and verified.
+
+### Centralization rules
+
+- Make source and documentation changes on GitHub branches and pull requests. A local clone is optional and is not the deployment source of truth.
+- Run scheduled and on-demand features from GitHub Actions or another managed service. Do not require a local PowerShell window, Python process, local checkout, or local cache for normal operation.
+- Keep durable state, audit trails, and recovery artifacts in their established GitHub repository or workflow-artifact locations. Cloud jobs must resume from that state after a runner is discarded.
+- Keep runtime credentials in GitHub Actions secrets/variables. Never commit them.
+- Treat `.spotify_playlist_token.json` as an optional local authorization cache only. It is not the cloud credential source of truth. If a local refresh changes a token, cloud operations must not silently continue with a stale GitHub secret; use one explicit, documented synchronization path and verify the next read-only cloud run.
+
+### Feature boundaries and acceptance
+
+Playlist control, reference-library refresh, and other supported cloud operations must complete while the user's PC is off. A feature that depends on continuous polling from a personal device, such as the optional local playback tracker, is not PC-independent: migrate it to a permitted cloud data source or label it as local-only and exclude it from the always-on guarantee.
+
+A feature meets this requirement when its GitHub-hosted workflow has been exercised with the user's PC off, uses only repository-hosted code and authorized secrets, persists required state centrally, and reports success or actionable failure through GitHub. No feature should be described as always-on until this evidence exists.
+
+### Current authorization gap
+
+The playlist manager's OAuth callback currently listens on `127.0.0.1:8888`, and first authorization or reauthorization currently creates a local token cache that must be synchronized to the repository secret. This is a setup/credential-maintenance dependency, not an acceptable runtime dependency. The long-term design should provide a centralized, secure authorization and token-rotation path so routine recovery does not depend on the user's PC or repeated manual secret copying. Until that exists, document this limitation and never assume the local token cache and GitHub Actions secret are synchronized.
+
 ## Safe diagnostic sequence
 
 1. Run the repository test workflow and security scan.

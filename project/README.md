@@ -4,6 +4,14 @@ This folder is the human-readable control desk and durable memory for ongoing wo
 
 It is deliberately separate from `assistant_data/music/library/`: project plans and notes are not music records, provider evidence, or listening history.
 
+## Architecture direction: GitHub-hosted and PC-independent
+
+The product goal is a feature-rich conversational ChatGPT–Spotify experience that continues to operate when the user's PC is off. GitHub is the canonical home for this repository's source, operational configuration, durable workflow state, and documentation; GitHub Actions or another managed service runs supported jobs. Local PowerShell sessions, checkouts, and token caches are not part of normal runtime.
+
+Current GitHub issue commands and Actions workflows provide a remote playlist-control path. Do not represent the broader ChatGPT-to-SHIT feature surface as complete until each feature has a verified GitHub-hosted execution path and a verified user-facing integration. Optional features that inherently poll a personal device must be migrated to a cloud-accessible source or clearly marked local-only.
+
+See [GitHub-hosted operation requirements](../docs/SPOTIFY_API_OPERATIONS.md#product-requirement-github-hosted-and-pc-independent-operation) for source-of-truth rules, acceptance criteria, and the current OAuth setup gap. Code and documentation changes should be made on GitHub branches and pull requests; use a local clone only when the user explicitly requests local work.
+
 ## Start here when resuming work
 
 1. Read [NEXT_WORK.md](NEXT_WORK.md) first. It is the authoritative current handoff: active blocker, priorities, constraints, open work, and the next concrete action.
@@ -25,6 +33,7 @@ Each major objective has its own folder under [`goals/`](goals/README.md). Read 
 - [PROJECT_LOG.md](PROJECT_LOG.md) — chronological record of meaningful work, decisions, tests, failures, and handoffs.
 - [LOOSE_ENDS.md](LOOSE_ENDS.md) — cross-project index of unfinished work, known failures, deferred requirements, and next verification steps.
 - [RETRY_QUEUE_SPEC.md](RETRY_QUEUE_SPEC.md) — contract for the machine-maintained metadata retry queue.
+- [GitHub-hosted operation requirements](../docs/SPOTIFY_API_OPERATIONS.md#product-requirement-github-hosted-and-pc-independent-operation) — PC-independent runtime, centralized state, and OAuth/token setup boundaries.
 
 ## Project goals tracked here
 
