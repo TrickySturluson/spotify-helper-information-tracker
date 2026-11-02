@@ -174,6 +174,25 @@ class PlaylistFitModelTests(unittest.TestCase):
         self.assertLessEqual(result["dimension_scores"]["genre"]["score"], 100.0)
 
 
+
+    def test_track_profile_cache_requires_exact_recording_identity(self):
+        record = {
+            "id": "mbid:recording-1",
+            "identity": {"artist": "Example", "title": "Track", "recording_mbid": "recording-1"},
+            "confidence": {"identity": "high"},
+            "evidence": {},
+        }
+        matching = {"track_id": "mbid:recording-1", "musicbrainz_genres": [
+            {"tag": "shoegaze", "source": "MusicBrainz recording genre"}]}
+        wrong = {"track_id": "mbid:other-recording", "musicbrainz_genres": [
+            {"tag": "country", "source": "MusicBrainz recording genre"}]}
+        adapted = track_from_library_record(record, matching)
+        rejected = track_from_library_record(record, wrong)
+        self.assertEqual(adapted["dimensions"]["genre"][0]["value"], "shoegaze")
+        self.assertEqual(adapted["dimensions"]["genre"][0]["source_family"], "musicbrainz")
+        self.assertEqual(rejected["dimensions"]["genre"], [])
+
+
 if __name__ == "__main__":
     unittest.main()
 
