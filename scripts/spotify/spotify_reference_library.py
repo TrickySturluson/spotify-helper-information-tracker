@@ -59,6 +59,43 @@ def item_record(entry, position):
     }
 
 
+def playability_observation(item, playlist_id, snapshot_id, fallback_checked_at=None):
+    """Convert explicit Spotify response fields into a provenance-rich observation."""
+    if not isinstance(item, dict):
+        return None
+    restrictions = item.get("restrictions") or {}
+    explicit = item.get("is_playable_present") or isinstance(item.get("is_playable"), bool) or bool(restrictions)
+    if not explicit:
+        return None
+    playable = item.get("is_playable")
+    reason = restrictions.get("reason") if isinstance(restrictions, dict) else None
+    linked_uri = item.get("linked_from")
+    return {
+        "status": (
+            "restricted" if reason else
+            "playable" if playable is True else
+            "unplayable" if playable is False else
+            "unknown"
+        ),
+        "is_playable": playable,
+        "market": "unknown",
+        "market_context": "playlist_items_response_market_not_explicit",
+        "checked_at": item.get("playability_checked_at") or fallback_checked_at,
+        "provider": "Spotify",
+        "source": "read_only_playlist_snapshot",
+        "playlist_id": playlist_id,
+        "playlist_snapshot_id": snapshot_id,
+        "requested_spotify_id": item.get("id"),
+        "returned_spotify_id": item.get("id"),
+        "linked_from_spotify_uri": linked_uri,
+        "linked_from_spotify_id": linked_uri.rsplit(":", 1)[-1] if linked_uri else None,
+        "restrictions": restrictions,
+        "restrictions_reason": reason,
+        "is_local": item.get("is_local"),
+        "available_markets_count": item.get("available_markets_count"),
+    }
+
+
 def playlist_record(sp, playlist, cached=None):
     # Reuse complete local item pages while Spotify's snapshot_id is unchanged.
     # This avoids re-downloading every page for every playlist on each sync.
@@ -193,32 +230,10 @@ def sync(sp):
                         "spotify_album_id": item.get("album_id"),
                         "duration_ms": item.get("duration_ms"),
                         "isrc": (item.get("external_ids") or {}).get("isrc"),
-                        "spotify_playability_observation": ({
-                            "status": (
-                                "restricted" if (item.get("restrictions") or {}).get("reason") else
-                                "playable" if item.get("is_playable") is True else
-                                "unplayable" if item.get("is_playable") is False else
-                                "unknown"
-                            ),
-                            "is_playable": item.get("is_playable"),
-                            "market": "unknown",
-                            "checked_at": item.get("playability_checked_at") or record.get("last_items_accessible_at") or record.get("captured_at"),
-                            "provider": "Spotify",
-                            "source": "read_only_playlist_snapshot",
-                            "playlist_id": pid,
-                            "playlist_snapshot_id": record.get("snapshot_id"),
-                            "requested_spotify_id": item.get("id") or spotify_id,
-                            "returned_spotify_id": item.get("id") or spotify_id,
-                            "linked_from_spotify_uri": item.get("linked_from"),
-                            "linked_from_spotify_id": (
-                                item.get("linked_from").rsplit(":", 1)[-1]
-                                if item.get("linked_from") else None
-                            ),
-                            "restrictions": item.get("restrictions") or {},
-                            "restrictions_reason": (item.get("restrictions") or {}).get("reason"),
-                            "is_local": item.get("is_local"),
-                            "available_markets_count": item.get("available_markets_count"),
-                        } if item.get("is_playable_present") or isinstance(item.get("is_playable"), bool) or item.get("restrictions") else None),
+                        "spotify_playability_observation": playability_observation(
+                            item, pid, record.get("snapshot_id"),
+                            item.get("playability_checked_at") or record.get("last_items_accessible_at") or record.get("captured_at"),
+                        ),
                         "playlist_sources": [pid],
                         "playlist_positions": [{
                             "playlist_id": pid, "position": item.get("position"),
