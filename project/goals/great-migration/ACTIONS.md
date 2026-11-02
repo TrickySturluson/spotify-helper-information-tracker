@@ -1,3 +1,14 @@
+## 2026-11-02 — Post-merge full-catalogue verification passed (issue #92)
+
+- Latest-main workflow run [#30](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41372492615) completed successfully after PR #87 and #88 merged.
+- Compile and full regression suite passed; canonical integrity audit: 13,005 songs, 6,386 artists, 7,861 albums, zero errors.
+- Structural health: 13,005 song/6,386 artist/7,861 album records; index counts match; 1,856 Spotify IDs, 11,338 recording MBIDs, 1,816 ISRCs, 13,003 source-track IDs, 11,529 name-candidate aliases; zero errors and zero warnings. New playability-history semantic checks passed across the populated catalogue.
+- Confidence: identity high 7,525 / low 5,480; methods 5,669 recording MBIDs, 5,480 source-track IDs, 1,856 Spotify IDs; identity drift 0.
+- Metadata confidence: 1,582 differences are all **missing stored duration confidence**; genuine mismatches=0. This confirms no existing stored metadata confidence disagrees with recomputation in this report.
+- Field coverage: duration 10,028; track tags 179; audio features 36; Spotify playability 1,856. Missing duration provenance count 1,856. Legacy source coverage remains 11,130/11,130 tracks and 5,358/5,358 artists. No errors.
+- Read-only operation; no provider requests, repairs, confidence writes, or Spotify playlist writes.
+- The full-catalogue health and identity confidence baseline is now verified after the new checks. Remaining confidence work is to understand missing duration provenance and decide whether safe missing-only confidence materialization is worthwhile, then perform curated gold-set review.
+
 ## 2026-11-02 — Merge playability health validation and confidence drift classification; run freshness baseline
 
 - PR #87 merged to `main` as `6c9fe067a8af6bc504548bc45e715ed27aa0cea8`. The read-only health checker now validates market-scoped Spotify playability history: observation shape, status/raw boolean consistency, timestamps, market keys, requested/canonical identity, relink continuity, and latest-by-market consistency. Missing playability remains optional; malformed present evidence is an error.
