@@ -17,6 +17,7 @@ MIGRATOR = REPO_ROOT / "scripts" / "music" / "migrate_full_music_library.py"
 PREPARER = REPO_ROOT / "scripts" / "music" / "prepare_music_library.py"
 SYNCER = REPO_ROOT / "scripts" / "music" / "sync_music_library.py"
 HEALTH_CHECKER = REPO_ROOT / "scripts" / "music" / "library_health.py"
+MAINTAINER = REPO_ROOT / "scripts" / "music" / "library_maintenance.py"
 CONFIDENCE_AUDIT = REPO_ROOT / "scripts" / "music" / "library_confidence_audit.py"
 
 
@@ -90,6 +91,17 @@ def run_health(args):
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
 
+def run_maintenance(args):
+    command = [sys.executable, str(MAINTAINER), "--root", str(args.root)]
+    if args.json:
+        command.append("--json")
+    if args.apply:
+        command.append("--apply")
+    if args.repair_index:
+        command.append("--repair-index")
+    return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
+
+
 def run_confidence(args):
     command = [sys.executable, str(CONFIDENCE_AUDIT), "--root", str(args.root)]
     if args.json:
@@ -116,6 +128,7 @@ def build_parser():
         ("resume", "Resume the idempotent Great Migration"),
         ("audit", "Validate canonical records, relations and lookup aliases"),
         ("health", "Run comprehensive read-only structural and referential health checks"),
+        ("maintain", "Preview or apply backup-protected deterministic index repairs"),
         ("confidence", "Audit identity and field-level metadata confidence without modifying records"),
         ("prepare", "Preflight or run migration plus bounded metadata enrichment"),
         ("sync", "Merge existing enrichment exports into the canonical library"),
@@ -125,8 +138,11 @@ def build_parser():
         sub.add_argument("--root", type=Path, default=DEFAULT_ROOT)
         if name in {"migrate", "run", "resume"}:
             sub.add_argument("--yes", action="store_true", help="Skip migration confirmation")
-        if name in {"health", "confidence"}:
+        if name in {"health", "confidence", "maintain"}:
             sub.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+        if name == "maintain":
+            sub.add_argument("--apply", action="store_true", help="Apply a safe repair after creating a backup")
+            sub.add_argument("--repair-index", action="store_true", help="Explicitly allow rebuilding the derived index")
         if name == "prepare":
             sub.add_argument("--execute", action="store_true", help="Run migration and enrichment; default is read-only preflight")
             sub.add_argument("--yes", action="store_true", help="Skip confirmation (requires --execute)")
@@ -145,6 +161,8 @@ def main(argv=None):
         return audit(args.root)
     if args.action == "health":
         return run_health(args)
+    if args.action == "maintain":
+        return run_maintenance(args)
     if args.action == "confidence":
         return run_confidence(args)
     if args.action == "preview":
@@ -172,7 +190,7 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Native command interface for the canonical per-recording music library.
-# Commands: status, preview, migrate, audit, health, confidence, prepare, sync, verify.
+# Commands: status, preview, migrate, audit, health, maintain, confidence, prepare, sync, verify.
 # Health is a separate read-only scan and does not instantiate the auto-rebuilding resolver.
 # Prepare defaults to a read-only preflight; --execute runs migration and bounded
 # provider enrichment. Sync merges existing durable exports into the canonical store.
