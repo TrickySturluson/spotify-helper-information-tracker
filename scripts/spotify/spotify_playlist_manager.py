@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Local Spotify playlist manager. Playlists are locked unless explicitly unlocked."""
-import argparse, base64, hashlib, json, os, re, secrets, sys, time, urllib.error
+import argparse, base64, hashlib, json, os, re, secrets, subprocess, sys, time, urllib.error
 from collections import Counter
 import urllib.parse, urllib.request, webbrowser
 from datetime import datetime, timezone, timedelta
@@ -55,6 +55,28 @@ def audit(**event):
     with AUDIT.open("a",encoding="utf-8") as f: f.write(json.dumps({"at":stamp(),**event})+"\n")
     try: AUDIT.chmod(0o600)
     except OSError: pass
+def persist_refresh_token(refresh_token):
+    """Persist a rotated Spotify refresh token to the repository secret in cloud runs."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return
+    gh_token = os.environ.get("GH_TOKEN", "").strip()
+    repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    if not gh_token or not repository:
+        raise ManagerError("Cloud Spotify refresh is blocked: the narrowly scoped GitHub App secret-writer token is unavailable. Configure SHIT_GITHUB_APP_CLIENT_ID and SHIT_GITHUB_APP_PRIVATE_KEY before retrying; no refresh request was sent.")
+    env = os.environ.copy()
+    env["GH_TOKEN"] = gh_token
+    last_error = None
+    for attempt in range(3):
+        try:
+            subprocess.run(["gh", "secret", "set", "SPOTIFY_REFRESH_TOKEN", "--repo", repository], input=refresh_token, text=True, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, env=env)
+            return
+        except (OSError, subprocess.CalledProcessError) as error:
+            last_error = error
+            if attempt < 2:
+                time.sleep(2 ** attempt)
+    raise ManagerError("Spotify issued a replacement refresh token, but GitHub did not confirm that SPOTIFY_REFRESH_TOKEN was updated after three attempts. The workflow stopped to avoid continuing with a stale repository secret.") from last_error
+
+
 def token_post(data):
     req=urllib.request.Request("https://accounts.spotify.com/api/token",data=urllib.parse.urlencode(data).encode(),headers={"Content-Type":"application/x-www-form-urlencoded"})
     try:
@@ -119,11 +141,15 @@ class Spotify:
     def bearer(self):
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
+            if os.environ.get("GITHUB_ACTIONS") == "true" and (not os.environ.get("GH_TOKEN", "").strip() or not os.environ.get("GITHUB_REPOSITORY", "").strip()):
+                raise ManagerError("Cloud Spotify refresh blocked before contacting Spotify: configure the SHIT GitHub App secret writer (Secrets: write) so rotated refresh tokens can be persisted safely between workflow runs.")
             self.t=token_post({"client_id":CID,"grant_type":"refresh_token","refresh_token":old["refresh_token"]})
             replacement=self.t.get("refresh_token")
             self.refresh_token_rotated=bool(replacement and replacement!=old["refresh_token"])
             self.t["refresh_token"]=replacement or old["refresh_token"]
             self.t["obtained_at"]=time.time(); write(TOKEN,self.t)
+            if self.refresh_token_rotated:
+                persist_refresh_token(self.t["refresh_token"])
         return self.t["access_token"]
     def call(self,method,path,body=None,retry=True):
         # Re-check before every request, not only client construction. This also
