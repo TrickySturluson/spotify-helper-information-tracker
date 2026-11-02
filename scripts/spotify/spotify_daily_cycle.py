@@ -136,6 +136,9 @@ def main():
     # If a later observation fails, a rerun cannot accidentally rotate twice.
     updated = sp.call("GET", f"/playlists/{DAILY_ID}")
     updated_snapshot = manager.snapshot(sp, updated)
+    after_snapshot = manager.save_snapshot(updated_snapshot)
+    manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
+                  snapshot=after_snapshot, cycle_date_eastern=cycle_date)
     config = manager.config()
     config["daily_cycle"] = {
         "last_cycle_date_eastern": cycle_date,
