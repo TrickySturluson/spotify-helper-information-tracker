@@ -2,7 +2,7 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-02 (after PR #100 freshness baseline, duration provenance recovery work, and issue #105 preview trigger)  
+**Last reviewed:** 2026-11-02 (after PR #126 playlist-intelligence preview merge and post-hoc reference comparison)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
 ## Critical path
@@ -52,6 +52,19 @@ This is the cross-project register of known unfinished work discovered from the 
 - Do not repeat Last.fm HTTP 400, MusicBrainz 503/rate-limit, or credential-blocked Discogs/GetSongBPM requests without changed inputs, expired cooldown, or confirmed provider recovery.
 - Retry queue spec: `project/RETRY_QUEUE_SPEC.md`; intended path `assistant_data/music/retry_queue.json`. Still to implement/verify: one task per recording + provider + data family; deterministic read-only planner; separate eligible, retry_wait, not_found, ambiguous, complete, blocked, invalid; attempt history and next-eligible timestamps.
 - A failure at one provider must not block independent providers. Transient errors are not definitive not-found. Keep all provider budgets and checkpoints durable.
+
+
+### 6A. Playlist intelligence and five-axis fit model — PREVIEW PIPELINE MERGED; PRODUCTION BLOCKED
+
+- PR #126 merged to main as `2f84924`. It adds the read-only five-target preview pipeline, exact-ID / duration-corroborated identity bridge, explicit scoped artist/release context, and a separate post-hoc human-reference diagnostic. Model version: `five-axis-fit-v0.3`.
+- Full CI passed 398 tests; focused preview/comparison tests passed 29; full-history Gitleaks passed. Preview workflow #35 passed: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41405523394.
+- Five calibration targets: To 11, Somber Party, . . ., =^=, Smooth. All Time and Hell remain broad taste references; SHITting Grounds is the separate audition destination and is not in the current reference snapshot.
+- 24-track held-out identity batch; Dog — Floating Room was unplayable and excluded. Full batch excluded from all target profiles by Spotify URI and resolved canonical record ID. Human slider ratings are never read by the scorer; the separate comparison runs after frozen prediction generation.
+- Direct profile coverage: To 11 0.2, Somber Party 0.0, . . . 0.2, =^= 0.2, Smooth 0.0. Context coverage: 0.2, 0.2, 0.4, 0.4, 0.0. Only Genre has direct evidence (3, 0, 3, 4, 0 tracks). Sound/Energy/Theme are absent; Mood has only sparse context-only evidence. All target profiles remain low confidence.
+- 15 candidate tracks score against each of the first four targets; 9 are unknown per target; Smooth has no comparable scores. All 60 scored pairs are low confidence and support only one dimension; 12/15 are context-only. No medium/high prediction exists.
+- Human-reference diagnostic: 24/25 tracks matched (unmatched: Dog — Floating Room). Across 60 scored pairs: MAE 26.85, median absolute error 16.79, Pearson 0.4473, Spearman 0.4862. To 11 and =^= have higher rank alignment, but these remain low-confidence genre/context signals, not validation. Human labels are exploratory reference only, not ground truth/training data.
+- Preview and diagnostic artifacts: 13122763665 and 13122659752 (expire 2026-11-16). No Spotify API calls or playlist writes.
+- **Next:** increase direct recording-level evidence for all five dimensions, especially sound, energy, recording-level mood and lyric-derived theme; improve direct genre coverage. Preserve context scopes and down-weighting. Inspect provider cooldowns/failures before retries. Keep scorer disconnected from sequencer and Spotify writes until coverage/confidence gates pass.
 
 ## Listening analytics
 
