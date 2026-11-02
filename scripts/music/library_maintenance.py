@@ -90,7 +90,8 @@ def plan_maintenance(root):
     else:
         missing = _subset_preserved(old_index, expected)
 
-    findings = list(health.get("errors", [])) + list(health.get("warnings", []))
+    errors = health.get("errors", [])
+    findings = list(errors) + list(health.get("warnings", []))
     def index_related(message):
         value = str(message).casefold()
         return (
