@@ -32,3 +32,12 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Lessons learned / decision changes:**
 - **Next action:**
 - **References:**
+
+
+## 2026-11-02 — Canonical Library integration
+
+- Wired `.github/workflows/enrich-music-metadata.yml` to run `scripts/music/sync_music_library.py` after enrichment and before summary/analytics generation.
+- Workflow push paths now include `scripts/music/sync_music_library.py`, `scripts/music/discovery_ingestion.py`, and `assistant_data/recommendations/discovery_candidates.json`, so a new discovery intake triggers the integration workflow. Daily schedule remains a backstop.
+- The sync uses the canonical `MusicLibrary.put_catalogue` writer, preserving `discovery_only` status and discovery evidence separately from Last.fm scrobbles, Spotify playback, saved/liked status and preference feedback. Audit failure stops the workflow.
+- Commits: `0703e77` integration; `f5d9b7a` audit metric correction. Baseline tests on `6666be0` passed; integration runtime verification pending.
+- Next: inspect first integration run, verify the new candidate records in the canonical Library, then implement a discovery-only enrichment coverage/retry report and post-add sequencing verification.
