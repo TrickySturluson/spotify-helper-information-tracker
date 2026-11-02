@@ -5,7 +5,7 @@
     "albums": 7861,
     "preservation": "existing indexed records and accumulated evidence are merged, not replaced"
   },
-  "track_profile_rows": 1391,
+  "track_profile_rows": 1580,
   "playlist_snapshot_stats": {
     "snapshots": 57,
     "inaccessible": 16,
@@ -17,14 +17,14 @@
   },
   "playlist_track_occurrences": 3306,
   "unique_playlist_spotify_ids": 1856,
-  "combined_input_rows": 3247,
-  "artist_profiles": 3798,
-  "album_profiles": 200,
-  "audio_profiles": 57,
+  "combined_input_rows": 3436,
+  "artist_profiles": 3898,
+  "album_profiles": 300,
+  "audio_profiles": 93,
   "lyric_features": 0,
   "provider_requests": 0,
   "spotify_playlist_writes": 0,
-  "backup_path": "/home/runner/work/spotify-helper-information-tracker/spotify-helper-information-tracker/assistant_data/music/library.backup-20261101-223249-418960",
+  "backup_path": "/home/runner/work/spotify-helper-information-tracker/spotify-helper-information-tracker/assistant_data/music/library.backup-20261101-235213-057442",
   "migration_result": {
     "artists": 6382,
     "albums": 7861,
