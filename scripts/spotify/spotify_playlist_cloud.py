@@ -499,9 +499,9 @@ def main():
         # Resolve the strict 15-track Halloween-themed batch through Spotify's catalogue.
         candidates = [
             ("Nekromantix", "Trick or Treat"),
-            ("HorrorPops", "Walk Like a Zombie"),
+            ("The Cramps", "I Was a Teenage Werewolf"),
             ("Koffin Kats", "Vampire's Curse"),
-            ("The Creepshow", "Zombies Ate Her Brain"),
+            ("Misfits", "Vampira"),
             ("The Cramps", "Human Fly"),
             ("The Cramps", "Surfin' Dead"),
             ("Misfits", "Halloween"),
