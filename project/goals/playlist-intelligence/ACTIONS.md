@@ -219,3 +219,10 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Current live list differs from the saved snapshot (72 vs 64); refresh and persist the reference snapshot before further fit evaluation.
 - Cross-reference fit artifact is useful as a data-gap report, not as a sorter input: only one direct genre observation, no direct Sound/Energy/Mood/Theme evidence, and only 2/64 Last.fm-tagged Booze tracks. Do not confirm the current sequence.
 - Next: provider-aware bounded recording-level enrichment with cooldowns and per-run caps; classify the 8 unassigned tracks using evidence; prepare a substantial addition batch with explicit Halloween relevance; rerun five-axis audit and sequence preview; inspect complete order; then confirmation-gated sort.
+
+
+## 2026-11-02 — New-song default operation
+
+- Recommendation/playlist candidates are now expected to enter discovery-library intake at preview time with source and playlist context; canonical Library enrichment follows through the existing intake/migration process. Listening evidence stays separate.
+- Every confirmed addition must trigger a fresh live snapshot, duplicate/blacklist check, and sequence preview. Sequencer writes remain separately confirmed while direct track-level Sound/Energy/Mood/Theme evidence is insufficient.
+- Fixed missing `time` import in `scripts/spotify/spotify_playlist_cloud.py`; added idempotent candidate intake/audit to `booze20_preview`. Re-run workflow and focused tests before treating this path as verified.
