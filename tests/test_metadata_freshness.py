@@ -251,6 +251,34 @@ class MetadataFreshnessTests(unittest.TestCase):
             self.assertEqual(report["selected_baseline_count"], 0)
             self.assertEqual(report["selected"][0]["status"], "stale")
 
+    def test_duration_observation_timestamp_prevents_false_unknown_age_candidate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.write_song(root, "duration-song", {
+                "id": "duration-song",
+                "identity": {"artist": "At the Gates", "title": "Slaughter of the Soul"},
+                "evidence": {"track_metadata": {
+                    "duration_ms": 183000,
+                    "duration_source": "Last.fm track.getInfo",
+                    "duration_observations": [{
+                        "provider": "lastfm",
+                        "checked_at": "2026-10-30T01:37:26+00:00",
+                        "status": "matched",
+                        "duration_ms": 183000,
+                        "source": "Last.fm track.getInfo",
+                        "retry_after": 0,
+                    }],
+                }},
+            })
+            report = build_plan(
+                root, limit=25, now=datetime(2026, 11, 2, tzinfo=timezone.utc),
+                include_unknown_age=True,
+            )
+            self.assertEqual(report["due_task_count"], 0)
+            self.assertEqual(report["baseline_candidate_count"], 0)
+            self.assertEqual(report["selected_task_count"], 0)
+            self.assertEqual(report["counts"]["fresh"], 1)
+
     def test_due_tasks_take_priority_and_baseline_fills_only_remaining_slots(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
