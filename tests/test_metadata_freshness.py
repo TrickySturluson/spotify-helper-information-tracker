@@ -104,6 +104,68 @@ class MetadataFreshnessTests(unittest.TestCase):
             self.assertIn(("artist", "artist_profile", "lastfm"), selected)
             self.assertIn(("album", "album_profile", "lastfm"), selected)
 
+    def test_profile_caches_supply_artist_and_album_freshness(self):
+        with tempfile.TemporaryDirectory() as directory:
+            music = Path(directory) / "music"
+            root = music / "library"
+            (root / "artists" / "ar" / "artist-one").mkdir(parents=True)
+            (root / "albums" / "al" / "album-one").mkdir(parents=True)
+            (root / "artists" / "ar" / "artist-one" / "artist.json").write_text(json.dumps({
+                "id": "artist-one", "artist": "Artist",
+                "evidence": {"source": "Last.fm scrobble archive"},
+            }), encoding="utf-8")
+            (root / "albums" / "al" / "album-one" / "album.json").write_text(json.dumps({
+                "id": "album-one", "album": "Album", "artist": "Artist",
+                "evidence": {"source": "Last.fm scrobble archive"},
+            }), encoding="utf-8")
+            (music / "artist_profiles.json").write_text(json.dumps({
+                "artist-one": {"artist_id": "artist-one", "artist": "Artist",
+                               "source": "Last.fm artist.getTopTags", "status": "matched",
+                               "checked_at": "2025-01-01T00:00:00Z", "retry_after": 0}
+            }), encoding="utf-8")
+            (music / "album_profiles.json").write_text(json.dumps({
+                "album-one": {"album_id": "album-one", "album": "Album", "artist": "Artist",
+                              "source": "Last.fm album.getInfo", "lastfm_info_status": "matched",
+                              "lastfm_info_checked_at": "2025-01-01T00:00:00Z",
+                              "lastfm_info_retry_after": 0}
+            }), encoding="utf-8")
+            now = datetime(2026, 11, 2, tzinfo=timezone.utc)
+            report = build_plan(root, limit=10, now=now)
+            selected = {(row["entity_type"], row["field_family"], row["provider"]) for row in report["selected"]}
+            self.assertIn(("artist", "artist_profile", "lastfm"), selected)
+            self.assertIn(("album", "album_profile", "lastfm"), selected)
+
+    def test_track_profile_cache_resolves_through_recording_alias(self):
+        with tempfile.TemporaryDirectory() as directory:
+            music = Path(directory) / "music"
+            root = music / "library"
+            song_path = root / "songs" / "so" / "song-one" / "song.json"
+            song_path.parent.mkdir(parents=True)
+            (root / "artists").mkdir()
+            (root / "albums").mkdir()
+            song_path.write_text(json.dumps({
+                "id": "song-one", "identity": {"artist": "Artist", "title": "Song",
+                    "recording_mbid": "12345678-1234-1234-1234-123456789abc"},
+                "evidence": {"track_metadata": {}},
+            }), encoding="utf-8")
+            (root / "library_index.json").write_text(json.dumps({
+                "recording_mbids": {"12345678-1234-1234-1234-123456789abc": "song-one"},
+                "source_track_ids": {}, "spotify_ids": {},
+            }), encoding="utf-8")
+            (music / "track_profiles.json").write_text(json.dumps({
+                "mbid:12345678-1234-1234-1234-123456789abc": {
+                    "track_id": "mbid:12345678-1234-1234-1234-123456789abc",
+                    "track_mbid": "12345678-1234-1234-1234-123456789abc",
+                    "lastfm_checked_at": "2025-01-01T00:00:00Z",
+                    "lastfm_status": "no_tags",
+                    "musicbrainz_checked_at": "2026-10-30T00:00:00Z",
+                    "musicbrainz_status": "matched",
+                }
+            }), encoding="utf-8")
+            report = build_plan(root, limit=10, now=datetime(2026, 11, 2, tzinfo=timezone.utc))
+            self.assertTrue(any(row["song_id"] == "song-one" and row["field_family"] == "track_tags"
+                                and row["provider"] == "lastfm" for row in report["selected"]))
+
     def test_unknown_market_is_not_treated_as_fresh_and_missing_timestamps_are_not_fetched(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
