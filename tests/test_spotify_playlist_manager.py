@@ -75,6 +75,30 @@ class PlaylistManagerTests(unittest.TestCase):
             manager.create(spotify, "SHIT Test", "", False)
         register.assert_called_once_with("new-playlist", "SHIT Test")
 
+    def test_mutation_snapshots_use_exact_playlist_lookup_not_account_scan(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            spotify = __import__("unittest").mock.Mock()
+            spotify.call.side_effect = lambda method, path, body=None: (
+                {"id": "playlist123", "name": "Test", "snapshot_id": "before"}
+                if method == "GET" else {"snapshot_id": "after"}
+            )
+            spotify.items.return_value = []
+            with patch.object(manager, "BACKUPS", root / "backups"), patch.object(
+                manager, "AUDIT", root / "audit.jsonl"
+            ):
+                manager.mutate_with_snapshots(
+                    spotify, "playlist123",
+                    lambda: spotify.call("PUT", "/playlists/playlist123/items", {"uris": []}),
+                    event="test_mutation",
+                )
+            spotify.playlists.assert_not_called()
+            self.assertEqual(
+                [call.args[:2] for call in spotify.call.call_args_list],
+                [("GET", "/playlists/playlist123"), ("PUT", "/playlists/playlist123/items"),
+                 ("GET", "/playlists/playlist123")],
+            )
+
     def test_request_metrics_count_endpoint_status_and_latency(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.request_metrics = {
