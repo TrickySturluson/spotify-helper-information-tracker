@@ -43,6 +43,20 @@ def track_key(artist, track):
     return norm(artist) + "|" + norm(track)
 
 
+def is_playlist_candidate_blocked(artist, title, uri, feedback):
+    """Return True only for an exact track explicitly removed from this playlist.
+
+    Current membership is resolved by load_playlist_feedback first, so a
+    re-added track is whitelisted and no longer appears in the negative sets.
+    Artist-level removals remain ranking penalties, not hard exclusions.
+    """
+    feedback = feedback or {}
+    return (
+        track_key(artist, title) in feedback.get("negative_keys", set())
+        or (uri and uri in feedback.get("negative_uris", set()))
+    )
+
+
 def parse_date(value):
     try:
         if isinstance(value, (int, float)):
