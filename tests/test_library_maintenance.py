@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.music.library_maintenance import maintain, plan_maintenance
-from tests.test_library_health import LibraryHealthTests, write_record
+from tests.test_library_health import write_record
 
 
 class LibraryMaintenanceTests(unittest.TestCase):
@@ -34,7 +34,9 @@ class LibraryMaintenanceTests(unittest.TestCase):
 
     def test_preview_is_read_only_and_detects_unindexed_record(self):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            base = Path(directory)
+            root = base / "library"
+            root.mkdir()
             self.build_library(root)
             extra_id = "song-extra"
             artist_path = next(root.glob("artists/**/artist.json")).relative_to(root).as_posix()
@@ -50,7 +52,7 @@ class LibraryMaintenanceTests(unittest.TestCase):
             self.assertTrue(report["repair_needed"])
             self.assertEqual(report["proposed_counts"]["songs"], 2)
             self.assertEqual(before, after)
-            self.assertFalse(list(root.parent.glob("library.backup-maintenance-*")))
+            self.assertFalse(list(base.glob("library.backup-maintenance-*")))
 
     def test_apply_requires_explicit_repair_and_creates_backup(self):
         with tempfile.TemporaryDirectory() as directory:
