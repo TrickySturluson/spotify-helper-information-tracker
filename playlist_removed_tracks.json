@@ -56,6 +56,170 @@
         }
       ],
       "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required."
+    },
+    "4HzqY9iy04M1EVSF5kcD64": {
+      "name": ". . .",
+      "removed": []
+    },
+    "34ZLWdJxp6U7HfFfu7DJu1": {
+      "name": "24/06/26",
+      "removed": []
+    },
+    "70s94R5XfF7EHJ7T9cF4Hz": {
+      "name": ";ljk ;",
+      "removed": []
+    },
+    "0O9ojSstxwa5vQy2V7pO2x": {
+      "name": "=^=",
+      "removed": []
+    },
+    "6ZsqAs5OnRMVudhfB2QzTx": {
+      "name": "All Time",
+      "removed": []
+    },
+    "0up7QOuebKfpL52Lkv57iG": {
+      "name": "beach tunes ",
+      "removed": []
+    },
+    "4tn53u9giOW4exRSHM9S2Q": {
+      "name": "Begining",
+      "removed": []
+    },
+    "09xTFE86ySsLDlUor57oxj": {
+      "name": "Combustion",
+      "removed": []
+    },
+    "5ldEH1DIttBpwfDHCK0cH9": {
+      "name": "DnD",
+      "removed": []
+    },
+    "5wRSUXlFbT8EX9p1kfa6GG": {
+      "name": "FUCK YOU",
+      "removed": []
+    },
+    "2VV3P1FkFgPloylv3FVN75": {
+      "name": "Girly Pop ✨",
+      "removed": []
+    },
+    "2ObNqlwaAvu4VpUVydWlYW": {
+      "name": "Happy Together – The Turtles",
+      "removed": []
+    },
+    "5uekshuTjqgJ0A6AVNfhgP": {
+      "name": "Hated",
+      "removed": []
+    },
+    "5STPnvDqoU9Uc0qtlQsBRE": {
+      "name": "Headache Headspace",
+      "removed": []
+    },
+    "4b8bnocxVCRuPNFKIfffCU": {
+      "name": "Hear Me",
+      "removed": []
+    },
+    "3XQz9AyZP6ADcr9i8iBaVx": {
+      "name": "Hell",
+      "removed": []
+    },
+    "3tyyzePtZplN4Ezifl9Zyc": {
+      "name": "I am the",
+      "removed": []
+    },
+    "3QOXoyzMgmR11E3uApwAXV": {
+      "name": "I'll kill you",
+      "removed": []
+    },
+    "4PlyPb9mptoHrMTb6KSka1": {
+      "name": "IDON'TWANTTODIEYET",
+      "removed": []
+    },
+    "2B3Ie8mcurQaou0BxPBuFe": {
+      "name": "JUNKER Q",
+      "removed": []
+    },
+    "0hdqYliqXPsvGEvlC63VnR": {
+      "name": "Keep Hearing",
+      "removed": []
+    },
+    "1Da4M4osxPQ9Undfxz7KOh": {
+      "name": "Killer songs to Slay/Die to",
+      "removed": []
+    },
+    "3N0CIzW2q9EQ7K3wdBRjPv": {
+      "name": "Kiss Up",
+      "removed": []
+    },
+    "0SM5JuDrYQMPIcOM5CGrHo": {
+      "name": "Liked from Radio",
+      "removed": []
+    },
+    "43GBDM9QGiRColXN05iHal": {
+      "name": "Living in this Life",
+      "removed": []
+    },
+    "1aG27IbNdaUcyAkkfpwpMn": {
+      "name": "Nathan's Christmas Vol. ∞",
+      "removed": []
+    },
+    "27W6XAOB0y8rOVs1sEM1qU": {
+      "name": "Nowhere",
+      "removed": []
+    },
+    "0XybIFtyBNGcPQV4hKpjrl": {
+      "name": "Recs",
+      "removed": []
+    },
+    "4aLdllLgRPh5vKOznkC97D": {
+      "name": "SHITting grounds",
+      "removed": []
+    },
+    "36yV3rN8VqwAKm8ZBp28Zb": {
+      "name": "Shock and Awe",
+      "removed": []
+    },
+    "2ICCklgbF6cg0q5p4xAHKi": {
+      "name": "Smooth",
+      "removed": []
+    },
+    "388CR6TFu3pZZGlMsAXlEy": {
+      "name": "Social anxiety",
+      "removed": []
+    },
+    "7L2rSp4SuohBEyNxEtAurx": {
+      "name": "Somber Party",
+      "removed": []
+    },
+    "5meDjtqrqOe5oHpvZGWRMz": {
+      "name": "To 11",
+      "removed": []
+    },
+    "3Py0bGiIJQHtirIbhwLpdG": {
+      "name": "TRICK& 131",
+      "removed": []
+    },
+    "7ktZCiqIBwsOPWShhqLzRi": {
+      "name": "Tricky 2023 Wrapped",
+      "removed": []
+    },
+    "4yUVHSMQySfWeEowfIMcx7": {
+      "name": "Tricky Daily",
+      "removed": []
+    },
+    "1C6heonV5mxcBwNpmOGMjC": {
+      "name": "uh",
+      "removed": []
+    },
+    "6zATzTjlOTxtMLM1cC9MQX": {
+      "name": "Wrapped 2024",
+      "removed": []
+    },
+    "4lwoL79floIi7Yptos6Xt8": {
+      "name": "|",
+      "removed": []
+    },
+    "2dXmAFyjrI8TMmea1OILCX": {
+      "name": "",
+      "removed": []
     }
   }
 }

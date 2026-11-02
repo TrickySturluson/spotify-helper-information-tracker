@@ -1,0 +1,751 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-02T10:39:07.431220+00:00",
+  "id": "4aLdllLgRPh5vKOznkC97D",
+  "name": "SHITting grounds",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAABKl5iY20PaP/J24KSSeWLfYIUaNS",
+  "total_items_reported": 25,
+  "item_count_fetched": 25,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-02T10:39:07.431225+00:00",
+  "items_snapshot_id": "AAAABKl5iY20PaP/J24KSSeWLfYIUaNS",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6V0A3jkb9ntudO0kmcJ1xd",
+      "uri": "spotify:track:6V0A3jkb9ntudO0kmcJ1xd",
+      "name": "Figure It Out",
+      "artists": [
+        "Royal Blood"
+      ],
+      "artist_ids": [
+        "2S5hlvw4CMtMGswFtfdK15"
+      ],
+      "album": "Royal Blood",
+      "album_id": "76fT51C9WtCgCcRJlt3PnG",
+      "duration_ms": 183602,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431135+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBAHT1400222"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1wsRitfRRtWyEapl0q22o8",
+      "uri": "spotify:track:1wsRitfRRtWyEapl0q22o8",
+      "name": "Guerrilla Radio",
+      "artists": [
+        "Rage Against The Machine"
+      ],
+      "artist_ids": [
+        "2d0hyoQ5ynDBnkvAbJKORj"
+      ],
+      "album": "The Battle Of Los Angeles",
+      "album_id": "2eia0myWFgoHuttJytCxgX",
+      "duration_ms": 206200,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431154+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM19919500"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5cZqsjVs6MevCnAkasbEOX",
+      "uri": "spotify:track:5cZqsjVs6MevCnAkasbEOX",
+      "name": "Break Stuff",
+      "artists": [
+        "Limp Bizkit"
+      ],
+      "artist_ids": [
+        "165ZgPlLkK7bf5bDoFc6Sb"
+      ],
+      "album": "Significant Other",
+      "album_id": "3HCCUaRSjHSFOe4fqE0BiP",
+      "duration_ms": 166706,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431157+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USIR19902309"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5mpUKTdskZea0gStWzeHUZ",
+      "uri": "spotify:track:5mpUKTdskZea0gStWzeHUZ",
+      "name": "Unsainted",
+      "artists": [
+        "Slipknot"
+      ],
+      "artist_ids": [
+        "05fG473iIaoy82BF1aGhL8"
+      ],
+      "album": "We Are Not Your Kind",
+      "album_id": "754RY5WpZ2LTUZsk8kDBju",
+      "duration_ms": 260773,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431160+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLA321900089"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7CpbhqKUedOIrcvc94p60Y",
+      "uri": "spotify:track:7CpbhqKUedOIrcvc94p60Y",
+      "name": "Bodies",
+      "artists": [
+        "Drowning Pool"
+      ],
+      "artist_ids": [
+        "1E4r4z7ivGUcSAnCbINJ9v"
+      ],
+      "album": "Sinner",
+      "album_id": "089oyV5caclve3ap934iRw",
+      "duration_ms": 201960,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431163+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USWU30006502"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "28kOpVf1aCgL0LSFfuKV4w",
+      "uri": "spotify:track:28kOpVf1aCgL0LSFfuKV4w",
+      "name": "Oom Sha La La",
+      "artists": [
+        "Haley Heynderickx"
+      ],
+      "artist_ids": [
+        "73MDShZzdL4vUGMkmXOG6X"
+      ],
+      "album": "I Need to Start a Garden",
+      "album_id": "4I8BEAiq1kPqRRlvWLTo5B",
+      "duration_ms": 177339,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431166+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMFW91700128"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2WJWtj8xlMRMddPBQwftTY",
+      "uri": "spotify:track:2WJWtj8xlMRMddPBQwftTY",
+      "name": "when the devil falls in love",
+      "artists": [
+        "Hakdo"
+      ],
+      "artist_ids": [
+        "28UeK3YHrGAtpcL4NS8gow"
+      ],
+      "album": "when the devil falls in love",
+      "album_id": "7mLi5kP5z7nqv3w74c1Hj4",
+      "duration_ms": 100677,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431168+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2443373"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6f2zLLNAyxzD3WLG2IR40l",
+      "uri": "spotify:track:6f2zLLNAyxzD3WLG2IR40l",
+      "name": "MARBLE HALLS",
+      "artists": [
+        "Masayoshi Takanaka"
+      ],
+      "artist_ids": [
+        "2Ex4vjQ6mSh5woTlDWto6d"
+      ],
+      "album": "Hunpluged",
+      "album_id": "57XwUR66RBKqgIcQCffHfI",
+      "duration_ms": 217213,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431174+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM4TW2557423"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6KKtTJAgNLCW7LAtuI9Dwy",
+      "uri": "spotify:track:6KKtTJAgNLCW7LAtuI9Dwy",
+      "name": "Wharf (ii)",
+      "artists": [
+        "Horsey"
+      ],
+      "artist_ids": [
+        "3ey9OSASkq8HNPh0u7jjfO"
+      ],
+      "album": "Debonair",
+      "album_id": "1z6VwFw428tUIrrEqKktEn",
+      "duration_ms": 265879,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431178+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "UKQC92140012"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3ZGV8p5oWaj1oIy6OVVVae",
+      "uri": "spotify:track:3ZGV8p5oWaj1oIy6OVVVae",
+      "name": "Armchair",
+      "artists": [
+        "yungatita"
+      ],
+      "artist_ids": [
+        "2fswC3Le1wbUHa9AYEhRyi"
+      ],
+      "album": "Armchair",
+      "album_id": "4MNlUlviYPt9Cwb7KrW6BQ",
+      "duration_ms": 270784,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431181+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWU2294827"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1jQyc3hZdalk3jCIfgTdcn",
+      "uri": "spotify:track:1jQyc3hZdalk3jCIfgTdcn",
+      "name": "Don't Come Home Today",
+      "artists": [
+        "Good Morning"
+      ],
+      "artist_ids": [
+        "2kMzxA8edU05hvMFU493zJ"
+      ],
+      "album": "Shawcross",
+      "album_id": "5CsiKKVYjYSu7yQqqxW5Wi",
+      "duration_ms": 188906,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431185+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "UST8K1403965"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3EdMkS9YsVyEFUGwVJBjZB",
+      "uri": "spotify:track:3EdMkS9YsVyEFUGwVJBjZB",
+      "name": "Of Lacking Spectacle",
+      "artists": [
+        "Gus Dapperton"
+      ],
+      "artist_ids": [
+        "6sHCvZe1PHrOAuYlwTLNH4"
+      ],
+      "album": "13 Reasons Why (Season 2)",
+      "album_id": "4RpgjxgSxcRwGNuWnImneN",
+      "duration_ms": 204586,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431188+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG11800878"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4C4nM20DS3oEdaq1WWl4ru",
+      "uri": "spotify:track:4C4nM20DS3oEdaq1WWl4ru",
+      "name": "Running Up That Hill",
+      "artists": [
+        "Chromatics"
+      ],
+      "artist_ids": [
+        "4tOVIRjlWWfR1RrAxyRqTE"
+      ],
+      "album": "Night Drive",
+      "album_id": "5YlMpQlClO0A2EoR9DPgD5",
+      "duration_ms": 366680,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431190+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USL841010036"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1fYwDfJ9sp3R9krBbQetux",
+      "uri": "spotify:track:1fYwDfJ9sp3R9krBbQetux",
+      "name": "Dog",
+      "artists": [
+        "Floating Room"
+      ],
+      "artist_ids": [
+        "2DUfd0UuNnH7OocxX4gzHj"
+      ],
+      "album": "Dog",
+      "album_id": "2mAMVdZouQk8JrlNsX7HEx",
+      "duration_ms": 177962,
+      "is_local": false,
+      "is_playable": false,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431192+00:00",
+      "playability_market": "from_token",
+      "restrictions": {
+        "reason": "market"
+      },
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM4TW1886542"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7vptmeNwSEVkcwDdqk7UQO",
+      "uri": "spotify:track:7vptmeNwSEVkcwDdqk7UQO",
+      "name": "Lauren",
+      "artists": [
+        "Men I Trust"
+      ],
+      "artist_ids": [
+        "3zmfs9cQwzJl575W1ZYXeT"
+      ],
+      "album": "Lauren",
+      "album_id": "3rlpbpAzZUayIquPKgqpfX",
+      "duration_ms": 218210,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431194+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USDY41650617"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7kKLHjFif3r0HG5YyBTv6d",
+      "uri": "spotify:track:7kKLHjFif3r0HG5YyBTv6d",
+      "name": "I'm a Wanted Man",
+      "artists": [
+        "Royal Deluxe"
+      ],
+      "artist_ids": [
+        "54OEro9sWZ3mVfMdlz2CIt"
+      ],
+      "album": "Born for This",
+      "album_id": "1JQGANnIP7VAYpecgkCCsT",
+      "duration_ms": 228986,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431196+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US43C1601053"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0mHSePRiFnTy7qYPsIeIJ8",
+      "uri": "spotify:track:0mHSePRiFnTy7qYPsIeIJ8",
+      "name": "Where the Devil Don't Go",
+      "artists": [
+        "Elle King"
+      ],
+      "artist_ids": [
+        "3bhu7P5PfngueRHiB9hjcx"
+      ],
+      "album": "Love Stuff",
+      "album_id": "0B4eikFaUJcf3hc6DaSVov",
+      "duration_ms": 181480,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431198+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRC11402892"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3nGWzFBJ5tMzHWAgs16fK6",
+      "uri": "spotify:track:3nGWzFBJ5tMzHWAgs16fK6",
+      "name": "What Makes A Good Man?",
+      "artists": [
+        "The Heavy"
+      ],
+      "artist_ids": [
+        "0bZCak2tcRMY1dzEIuwF42"
+      ],
+      "album": "The Glorious Dead",
+      "album_id": "5MmMomspau1V5YpXjHYJRy",
+      "duration_ms": 226380,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431200+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCFB1200102"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7JOizhmt3HlBgQyJEa0AgK",
+      "uri": "spotify:track:7JOizhmt3HlBgQyJEa0AgK",
+      "name": "Short Change Hero",
+      "artists": [
+        "The Heavy"
+      ],
+      "artist_ids": [
+        "0bZCak2tcRMY1dzEIuwF42"
+      ],
+      "album": "The House That Dirt Built",
+      "album_id": "0sKcuounq52lm9hmFwEZN5",
+      "duration_ms": 322266,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431202+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCFB0901504"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0ZPMI8Gnz7p6omBBIOwiO9",
+      "uri": "spotify:track:0ZPMI8Gnz7p6omBBIOwiO9",
+      "name": "A Little Wicked",
+      "artists": [
+        "Valerie Broussard"
+      ],
+      "artist_ids": [
+        "6eVWXmKBW7Iltub01D9R1c"
+      ],
+      "album": "A Little Wicked",
+      "album_id": "1RG2EZlhtK8fPJF0bKAVwT",
+      "duration_ms": 210274,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431206+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMPKX1645089"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4e6tEXni2K0cZYFmku6Htf",
+      "uri": "spotify:track:4e6tEXni2K0cZYFmku6Htf",
+      "name": "Flatline",
+      "artists": [
+        "Scattle"
+      ],
+      "artist_ids": [
+        "31tVXduq7FmEznjanEBQJA"
+      ],
+      "album": "Hotline Miami: The Takedown EP",
+      "album_id": "4ynYSjDmlRH6tc7hNWuv7J",
+      "duration_ms": 134400,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431209+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SEYOK1405015"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1hGRe4d3LJCg1VszAU8Cy1",
+      "uri": "spotify:track:1hGRe4d3LJCg1VszAU8Cy1",
+      "name": "Daisuke",
+      "artists": [
+        "El Huervo"
+      ],
+      "artist_ids": [
+        "2gG1LfmQPkHZNptgVpYlpr"
+      ],
+      "album": "Do Not Lay Waste To Homes...",
+      "album_id": "1eESiSc0bEFLSmavuwc9aN",
+      "duration_ms": 161932,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431211+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSEV1200005"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2uA9EGy7KifPvk2F342IvR",
+      "uri": "spotify:track:2uA9EGy7KifPvk2F342IvR",
+      "name": "Rust",
+      "artists": [
+        "El Huervo"
+      ],
+      "artist_ids": [
+        "2gG1LfmQPkHZNptgVpYlpr"
+      ],
+      "album": "Rust B/W Ghost",
+      "album_id": "10sWEyUUMMS1i26Iaw94lk",
+      "duration_ms": 297473,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431214+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6P41552908"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6rne7RR7YOkAuRYeNP9GQT",
+      "uri": "spotify:track:6rne7RR7YOkAuRYeNP9GQT",
+      "name": "Deep Cover",
+      "artists": [
+        "Sun Araw"
+      ],
+      "artist_ids": [
+        "0A8iR5hxyyISL6XMkMhpRn"
+      ],
+      "album": "On Patrol",
+      "album_id": "0H5hKfayOXuRJQYwg97vyf",
+      "duration_ms": 482933,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431216+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2Z1010521"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2026-11-02T04:50:14Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2HsgJD03dwYszo0G1NcEgD",
+      "uri": "spotify:track:2HsgJD03dwYszo0G1NcEgD",
+      "name": "Fantasy Trash Wave",
+      "artists": [
+        "TOBACCO"
+      ],
+      "artist_ids": [
+        "3ikKyCOrsMeANi0d5u8BCR"
+      ],
+      "album": "Sweatbox Dynasty",
+      "album_id": "3EHGnNCyJDcOU1X9ca9aOr",
+      "duration_ms": 167146,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-02T10:39:07.431218+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US2J71607410"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}
