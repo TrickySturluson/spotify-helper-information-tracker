@@ -1105,6 +1105,9 @@ def main():
             try:
                 interrupted = owned_playlist(sp, pid, me)
                 interrupted_snapshot = manager.snapshot(sp, interrupted)
+                interrupted_snapshot_path = manager.save_snapshot(interrupted_snapshot)
+                manager.audit(event="partial_change_snapshot_saved", playlist_id=pid,
+                              snapshot=interrupted_snapshot_path, kind=kind)
                 config["last_completed"] = {
                     "playlist_id": pid,
                     "backup": backup,
@@ -1130,6 +1133,9 @@ def main():
                 )
             raise
         updated_snapshot = manager.snapshot(sp, updated)
+        after_snapshot_path = manager.save_snapshot(updated_snapshot)
+        manager.audit(event="post_change_snapshot_saved", playlist_id=pid,
+                      snapshot=after_snapshot_path, kind=kind)
         config["last_completed"] = {
             "playlist_id": pid, "backup": backup,
             "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
