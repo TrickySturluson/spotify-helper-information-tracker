@@ -119,3 +119,16 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Current state:** read-only scorer and exact-ID track-profile adapter are green. The separate legacy cache has 1,778 track rows while canonical song records report only 179 with track tags; integrating that cache safely is important to avoid throwing away existing useful evidence. The lyric export is empty and direct recording mood coverage was not reported in the current audit, so those dimensions must remain unknown until enriched.
 - **Next:** add exact-ID audio-profile cache ingestion only for fields that genuinely support the relevant dimension; then build and test a read-only target-profile/held-out preview using the saved five playlist snapshots. Keep human scores out of scoring and keep Spotify writes disabled.
 - **Commits:** cache merge fix `00a3d8c19c16ee2438fd70a276a6c3737b4f0775`; cache regression test `f3f89bd631688e4000749ca159fc90f1004f5ee5`.
+
+
+## 2026-11-02 — Read-only five-target profile and preview integration
+
+- **Purpose:** Connect the five-axis scorer to canonical SHIT records and saved reference snapshots without using human labels or changing Spotify.
+- **Implementation:** Added `scripts/spotify/playlist_fit_preview.py`. It validates the five registered target snapshots, checks snapshot identity and reported/fetched counts, resolves playlist items to canonical song records by exact Spotify ID, joins legacy track-profile cache rows only by exact stable source/recording/Spotify ID, builds per-target profiles, and scores an identity-only candidate batch.
+- **Leakage control:** The complete candidate batch is excluded from every target profile. Human score fields are never loaded; candidate parsing extracts only track identity/title/artist. No artist/title joins, Spotify API calls or playlist writes.
+- **Conservative evidence handling:** The runner does not turn AcousticBrainz loudness/complexity or BPM into energy/sound descriptors. Unsupported dimensions remain unknown. It emits profile sizes, per-dimension coverage, snapshot provenance, per-target scores, confidence reasons and explicit no-write flags.
+- **Tests added:** `tests/test_playlist_fit_preview.py` covers strict Spotify ID parsing, identity-only candidate extraction/deduplication, exact cache joins, whole-batch exclusion and read-only output flags.
+- **Documentation:** Added `PLAYLIST_FIT_PREVIEW.md` and updated the goal README.
+- **Verification:** Implementation and tests are committed to the isolated branch. CI has not yet been observed for this branch; do not treat tests as passed until Actions reports success. The real-data preview has not yet been run.
+- **Outcome:** Integration prototype implemented; still preview-only and not connected to the sequencer.
+- **Next:** Open PR, run the complete CI suite, fix any failures, then run the preview against the canonical data using an identity-only candidate file. Inspect target profile coverage before interpreting any fit values. Keep human scores out of the scoring path and Spotify writes disabled.
