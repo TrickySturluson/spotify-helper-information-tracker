@@ -287,7 +287,7 @@ def track_from_library_record(record: dict, track_profile: dict | None = None) -
     if identity.get("recording_mbid"):
         expected_ids.add("mbid:" + str(identity["recording_mbid"]).casefold().removeprefix("mbid:"))
     if identity.get("spotify_id"):
-        expected_ids.add("spotify:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
+        expected_ids.add("spotify:track:" + str(identity["spotify_id"]).casefold().rsplit(":", 1)[-1])
     profile_id = str(profile.get("track_id") or "").casefold()
     if profile and (not profile_id or profile_id not in expected_ids):
         profile = {}
