@@ -47,7 +47,7 @@ These rules are in `scripts/music/music_evidence.py`. Do not silently reinterpre
 
 ## Current status
 
-**Read-only confidence audit is merged and passes full-catalogue CI.** `python shit.py library confidence --json` recomputes stored identity and metadata confidence from canonical IDs/evidence, measures legacy source-index coverage, counts field coverage/provenance gaps, and reports drift without rewriting records. The main-branch run that also health-checked the full catalogue passed the confidence audit and all 314 regression tests. A curated gold-set evaluation and manual review of low-confidence/ambiguous records remain outstanding.
+**Read-only confidence audit is merged and passes full-catalogue CI.** Post-playability-backfill verification in run #83 scanned 13,005 songs: identity confidence high 7,525 and low 5,480; methods were 5,669 recording MBIDs, 1,856 Spotify IDs, and 5,480 source-track IDs. Identity confidence drift was zero. Metadata confidence drift was 1,582, with examples showing duration evidence present but no stored field-confidence object; 6,590 durations and 1,483 track-tag entries had low confidence, while 34 track-tag entries had high confidence. The report counted duration coverage 10,028, track tags 179, audio features 36, and Spotify playability on 1,856 songs. Legacy coverage remained complete (11,130/11,130 tracks and 5,358/5,358 artists). Health and integrity audits were clean; metadata confidence drift and missing duration provenance require follow-up, not automatic rewriting. A curated gold-set evaluation and manual false-match review remain outstanding.
 
 ## Resume
 
