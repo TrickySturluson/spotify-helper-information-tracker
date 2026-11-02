@@ -96,8 +96,28 @@ jobs:
           if [ -f playlist_removal_baseline.json ]; then git add playlist_removal_baseline.json; fi
           if [ -f playlist_removed_tracks.json ]; then git add playlist_removed_tracks.json; fi
           if ! git diff --cached --quiet; then
-            git commit -m "Refresh Spotify reference library"
-            git push
+            git commit -m "Refresh Spotify reference library and removal feedback"
+            published=false
+            for attempt in 1 2 3 4 5; do
+              echo "Safe reference-library publication attempt $attempt/5"
+              git fetch origin main
+              if ! git rebase origin/main; then
+                echo "Rebase conflict; refusing to overwrite concurrent project changes."
+                git rebase --abort || true
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                published=true
+                echo "Reference library and removal baseline published."
+                break
+              fi
+              echo "Push raced with another main update; retrying after fetch/rebase."
+              if [ "$attempt" -lt 5 ]; then sleep 2; fi
+            done
+            if [ "$published" != "true" ]; then
+              echo "Could not safely publish reference snapshots after five attempts."
+              exit 1
+            fi
           fi
 
 
