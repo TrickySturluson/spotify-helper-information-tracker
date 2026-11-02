@@ -26,7 +26,7 @@ Three new goal workspaces were added on 2026-11-02:
 - [Metadata freshness and partial revalidation](goals/metadata-freshness/README.md): field/provider-specific staleness, deterministic rotating partial samples, bounded requests, reuse retry queue/checkpoints.
 - [Spotify playability and availability](goals/spotify-playability/README.md): market-scoped, timestamped playability observations distinct from playlist addability; preserve restrictions and relinking IDs.
 
-These are now required Library foundations before sorter confidence verification is considered complete. Do not block migration publication on building all three; document and implement in parallel only when safe and non-conflicting.
+These are now required Library foundations before sorter confidence verification is considered complete. The [Library confidence verification workspace](goals/library-confidence-verification/README.md) defines the next gate: validate identity and field-level confidence across the full catalogue, inspect ambiguous/weak matches, and test retrieval against a curated gold set before sorter integration. Do not block migration publication on building all three; document and implement in parallel only when safe and non-conflicting.
 
 ## Priority order
 
@@ -58,12 +58,19 @@ These are now required Library foundations before sorter confidence verification
    - Keep candidate/recommendation evidence separate from Last.fm scrobbles, Spotify playback, explicit likes/saves, and confirmed preferences. A recommendation is never a play or a preference by itself.
    - Review and verify PR #60: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60
 
-5. **Library coverage planner**
+5. **Identity and metadata confidence verification — sorter gate**
+   - Read [the confidence verification goal](goals/library-confidence-verification/README.md) and report identity-confidence distribution by match method.
+   - Recompute field-level confidence from independent source-family evidence; detect missing provenance, conflicts, stale observations, and stored-vs-recomputed drift.
+   - Validate the 11,130 legacy track IDs and 5,358 artist-name matches as permanent regression coverage, not just a one-off comparison.
+   - Build a curated gold set for verified IDs, same-title collisions, remasters/live versions, ambiguous names, and false-match traps; manually inspect representative high/medium/low/unknown records.
+   - Verify lookup_song/get_song retrieval and sorter input confidence gates; no silent auto-upgrades of confidence.
+
+6. **Library coverage planner**
    - Review PR #65 CI and code against actual canonical record/checkpoint schemas.
    - Verify read-only behavior, deterministic output, correct priority ordering, and separation of transient failures from definitive negatives.
    - Do not mark complete based only on PR description; inspect CI and run tests.
 
-6. **Playlist intelligence and safety**
+7. **Playlist intelligence and safety**
    - Continue sorter work only against generated playlists unless explicitly authorized otherwise; preserve locked-by-default behavior and explicit unlock requirements.
    - Smooth transitions are the primary sorting objective; avoid jarring adjacent tracks. Support controllable progression/peak placement, energy/BPM/loudness, mood/theme/genre sections, and gradual resolution.
    - Use track-level mood/theme evidence rather than assuming an artist has one mood. Lyrics-derived themes may use compact tags/features and provenance; do not store full copyrighted lyrics.
@@ -71,7 +78,7 @@ These are now required Library foundations before sorter confidence verification
    - Preserve removal blacklists, deduplication, audit/state files, playlist exceptions (including Tricky Daily), and preview/test-before-write workflows.
    - No playlist writes during migration recovery.
 
-7. **Maintainability and documentation**
+8. **Maintainability and documentation**
    - Every project script/module should explain its purpose, inputs/outputs, side effects, safety boundaries, and how it fits into SHIT.
    - Keep a top-level project overview and a concise per-file overview in scripts.
    - Keep this handoff and the chronological log updated as work proceeds.
