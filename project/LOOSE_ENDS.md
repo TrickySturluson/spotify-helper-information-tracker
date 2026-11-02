@@ -36,9 +36,9 @@ This is the cross-project register of known unfinished work discovered from the 
 ### New Library reliability requirements (2026-11-02)
 - [Identity and metadata confidence verification](goals/library-confidence-verification/README.md): catalogue coverage is verified, but full confidence distribution, field evidence consistency, and gold-set false-match evaluation are not complete.
 
-- [Library health checker & maintainer](goals/library-health-maintenance/README.md): current audit/status are a foundation, but comprehensive health reporting and safe repair workflow remain to be implemented.
-- [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): no unified field-level freshness planner verified; must reuse existing provider caches/retry queue and avoid full-catalogue polling.
-- [Spotify playability](goals/spotify-playability/README.md): song files need market-scoped, timestamped playability observations, restriction reasons, and requested/returned/relinked Spotify IDs. Playlist addability must not be treated as proof of playback.
+- [Library health checker & maintainer](goals/library-health-maintenance/README.md): read-only checker is merged and full-catalogue clean. Draft PR #80 adds a backup-protected index-only repair preview/apply path; broader evidence/record repairs remain intentionally unimplemented.
+- [Metadata freshness & partial revalidation](goals/metadata-freshness/README.md): draft PR #81 adds a read-only bounded field/provider planner using explicit observation timestamps. It is not yet wired into the CLI or executor; align its schema with real provider checkpoints and the retry queue before enabling periodic lookups.
+- [Spotify playability](goals/spotify-playability/README.md): initial timestamped observation persistence is merged in PR #72. Draft PR #78 adds market-aware Get Track refresh, offline snapshot backfill, and bounded stale-only checks; latest CI passed after a test-import fix. Review/merge before running offline backfill; do not infer playability from playlist addability.
 
 ### 4. Finish post-migration enrichment and coverage measurement
 - No fresh, post-publication coverage report has been verified.
