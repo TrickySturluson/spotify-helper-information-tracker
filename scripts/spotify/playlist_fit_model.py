@@ -85,8 +85,8 @@ def build_reference_profile(
     heldout_uris: set[str] | None = None,
 ) -> dict:
     """Build one target profile, excluding candidate and held-out batch members."""
-    heldout = {str(x) for x in (heldout_uris or set())}
-    excluded = heldout | ({str(candidate_uri)} if candidate_uri else set())
+    heldout = {_identity({"uri": str(x)}) for x in (heldout_uris or set())}
+    excluded = heldout | ({_identity({"uri": str(candidate_uri)})} if candidate_uri else set())
     included = [t for t in tracks if isinstance(t, dict) and _identity(t) not in excluded]
     dimensions = {}
     for dim in DIMENSIONS:
