@@ -331,7 +331,7 @@ def main():
         ]
         for row in health["duplicate_uri_groups"]:
             lines.append(f'DUPLICATE: {row["uri"]} appears {row["count"]} times ({row["surplus"]} surplus).' )
-        result = "\\n".join(lines)
+        result = "\n".join(lines)
     elif action == "cleanup_check":
         p = owned_playlist(sp, command["playlist_id"], me)
         current = manager.snapshot(sp, p)
@@ -508,11 +508,11 @@ def main():
             ("Misfits", "Halloween II"),
             ("Creature Feature", "The Greatest Show Unearthed"),
             ("Creature Feature", "The Netherworld"),
-            ("Reverend Horton Heat", "The Halloween Dance"),
+            ("HorrorPops", "Ghouls"),
             ("Nekromantix", "Haunted Cathouse"),
             ("Misfits", "Return of the Fly"),
             ("Wednesday 13", "I Walked with a Zombie"),
-            ("Mad Marge and the Stonecutters", "Dial Z for Zombies"),
+            ("Misfits", "Horror Business"),
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
@@ -619,7 +619,7 @@ def main():
             lines.extend(f"FOUND: {row['artist']} — {row['track']}" for row in resolved)
             lines.extend(f"ALREADY PRESENT: {row}" for row in already_present)
             lines.extend(f"SKIPPED: {row}" for row in skipped)
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
         else:
             operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
             confirmation = secrets.token_urlsafe(12)
@@ -640,7 +640,7 @@ def main():
             lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]' for index, row in enumerate(resolved, 1))
             lines.extend(f"Already present: {row}" for row in already_present)
             lines.extend(["", "To add these exact new tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
     elif action == "booze20_resolve_sources":
         # Read exact track URIs from known Spotify albums/playlists; no catalogue search.
         sources = command["sources"]
@@ -691,7 +691,7 @@ def main():
                 lines.append(f"AMBIGUOUS: {artist} — {title} ({len(matches)} exact entries)")
             else:
                 lines.append(f"NOT FOUND: {artist} — {title} in {kind} {source_id}")
-        result = "\\n".join(lines)
+        result = "\n".join(lines)
     elif action == "booze20_uri_preview":
         # Stage a pre-resolved batch without calling the catalogue search endpoint.
         tracks = command["tracks"]
@@ -763,7 +763,7 @@ def main():
                 confirmation,
                 "The playlist must remain unlocked and unchanged until confirmation.",
             ])
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
     elif action == "horror_preview":
         # Resolve a hand-curated 46-track Halloween expansion through Spotify's
         # own catalogue, then stage it for the existing one-time confirmation flow.
