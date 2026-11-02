@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only verification of SHIT provider credentials and API connectivity.
 
-Never prints, persists, or returns credential values. Optional providers are
+Never prints or returns credential values. A replacement Spotify refresh token is persisted only\nthrough the narrowly scoped GitHub App token in authenticated cloud runs. Optional providers are
 reported as skipped when unconfigured; required providers fail the command.
 """
 import json
