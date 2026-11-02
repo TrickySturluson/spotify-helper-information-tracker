@@ -137,3 +137,8 @@ Before handing off, update this file and the project log with:
 - Issue #114 apply reported success: 51 song files changed, backup created, post-write health passed, zero provider requests and zero Spotify playlist writes. Independent verification of published `songs/so/source-3e2d305ebc76ea39/song.json` confirms a MusicBrainz duration observation (139,000 ms, exact source and timestamp) is on main.
 - Fresh read-only post-publication checks are queued: #115 audit, #116 health, #117 freshness review, #118 combined audit/health/confidence. Inspect issue comments and Actions status before treating them as complete.
 - Next gate: use the fresh freshness report to quantify remaining unknown-age duration candidates; then complete the read-only duplicate-entity audit and implement/verify the provider-aware retry queue per [`RETRY_QUEUE_SPEC.md`](RETRY_QUEUE_SPEC.md). Provider calls stay disabled until the report demonstrates eligibility and retry budgets/cooldowns are clear. Sorter remains gated on these checks.
+
+## Automatic playlist descriptions
+- Implemented the deterministic profile-based description generator and regression tests in `scripts/spotify/spotify_playlist_descriptions.py` and `tests/test_spotify_playlist_descriptions.py`.
+- Next: wire preview/confirmation into the playlist cloud controller, then schedule a bounded refresh for eligible managed playlists only. Preserve non-empty manual descriptions; require explicit `details` permission and unlock for writes; skip unchanged signatures; respect Spotify cooldown.
+- Do not auto-edit personal playlists merely because their description is blank.
