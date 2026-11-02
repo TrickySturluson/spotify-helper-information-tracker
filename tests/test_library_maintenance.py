@@ -72,6 +72,19 @@ class LibraryMaintenanceTests(unittest.TestCase):
             self.assertTrue(Path(result["backup_path"]).is_file())
             self.assertEqual(result["post_repair_counts"]["songs"], 2)
 
+    def test_missing_index_can_be_rebuilt_from_canonical_records(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "library"
+            root.mkdir()
+            self.build_library(root)
+            (root / "library_index.json").unlink()
+            report = plan_maintenance(root)
+            self.assertTrue(report["safe_to_rebuild"], report)
+            result = maintain(root, apply=True, repair_index=True)
+            self.assertTrue(result["changed"], result)
+            self.assertTrue(result["post_repair_health_ok"])
+            self.assertTrue((root / "library_index.json").is_file())
+
     def test_rebuild_refuses_to_drop_existing_aliases(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
