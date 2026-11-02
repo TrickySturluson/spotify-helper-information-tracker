@@ -1,0 +1,1544 @@
+{
+  "schema_version": 1,
+  "comparison_id": "sorter-five-playlist-v1-comparison-20261102",
+  "created_at": "2026-11-02",
+  "prediction_file": "assistant_data/spotify/playlist_fit_model_predictions.json",
+  "human_label_file": "assistant_data/spotify/playlist_human_fit_ratings.json",
+  "separation_note": "Predictions were frozen and committed before this comparison was generated. Human scores were not available to the prediction pass.",
+  "summary": {
+    "track_count": 25,
+    "score_count": 125,
+    "overall_mae": 14.14,
+    "overall_pearson_r": 0.844,
+    "within_10_points": 70,
+    "within_10_pct": 56,
+    "top_target_agreement_excluding_all_50_tie": "19/24"
+  },
+  "by_target": [
+    {
+      "target": "To 11",
+      "count": 25,
+      "mae": 8.04,
+      "mean_bias_model_minus_human": -3.16,
+      "pearson_r": 0.941
+    },
+    {
+      "target": "Somber Party",
+      "count": 25,
+      "mae": 11.44,
+      "mean_bias_model_minus_human": -4,
+      "pearson_r": 0.897
+    },
+    {
+      "target": ". . .",
+      "count": 25,
+      "mae": 19.44,
+      "mean_bias_model_minus_human": 5.84,
+      "pearson_r": 0.786
+    },
+    {
+      "target": "=^=",
+      "count": 25,
+      "mae": 10.4,
+      "mean_bias_model_minus_human": 4.32,
+      "pearson_r": 0.951
+    },
+    {
+      "target": "Smooth",
+      "count": 25,
+      "mae": 21.36,
+      "mean_bias_model_minus_human": 1.44,
+      "pearson_r": 0.681
+    }
+  ],
+  "top_target_comparison": [
+    {
+      "track": "Figure It Out",
+      "human_top_targets": [
+        "To 11"
+      ],
+      "model_top_targets": [
+        "To 11"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Guerrilla Radio",
+      "human_top_targets": [
+        "To 11"
+      ],
+      "model_top_targets": [
+        "To 11"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Break Stuff",
+      "human_top_targets": [
+        "To 11"
+      ],
+      "model_top_targets": [
+        "To 11"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Unsainted",
+      "human_top_targets": [
+        "To 11"
+      ],
+      "model_top_targets": [
+        "To 11"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Bodies",
+      "human_top_targets": [
+        "To 11"
+      ],
+      "model_top_targets": [
+        "To 11"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Oom Sha La La",
+      "human_top_targets": [
+        ". . ."
+      ],
+      "model_top_targets": [
+        "Somber Party"
+      ],
+      "agreement": false
+    },
+    {
+      "track": "when the devil falls in love",
+      "human_top_targets": [
+        "Somber Party"
+      ],
+      "model_top_targets": [
+        "Somber Party"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "MARBLE HALLS",
+      "human_top_targets": [
+        ". . ."
+      ],
+      "model_top_targets": [
+        "Somber Party"
+      ],
+      "agreement": false
+    },
+    {
+      "track": "Wharf (ii)",
+      "human_top_targets": [
+        "Smooth"
+      ],
+      "model_top_targets": [
+        "Somber Party"
+      ],
+      "agreement": false
+    },
+    {
+      "track": "Armchair",
+      "human_top_targets": [
+        "Somber Party"
+      ],
+      "model_top_targets": [
+        ". . ."
+      ],
+      "agreement": false
+    },
+    {
+      "track": "Don't Come Home Today",
+      "human_top_targets": [
+        ". . ."
+      ],
+      "model_top_targets": [
+        ". . ."
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Of Lacking Spectacle",
+      "human_top_targets": [
+        ". . ."
+      ],
+      "model_top_targets": [
+        ". . ."
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Running Up That Hill",
+      "human_top_targets": [
+        ". . ."
+      ],
+      "model_top_targets": [
+        "Smooth"
+      ],
+      "agreement": false
+    },
+    {
+      "track": "Dog",
+      "human_top_targets": [
+        "To 11",
+        "Somber Party",
+        ". . .",
+        "=^=",
+        "Smooth"
+      ],
+      "model_top_targets": [
+        ". . ."
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Lauren",
+      "human_top_targets": [
+        ". . ."
+      ],
+      "model_top_targets": [
+        ". . ."
+      ],
+      "agreement": true
+    },
+    {
+      "track": "I'm a Wanted Man",
+      "human_top_targets": [
+        "=^="
+      ],
+      "model_top_targets": [
+        "=^="
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Where the Devil Don't Go",
+      "human_top_targets": [
+        "=^="
+      ],
+      "model_top_targets": [
+        "=^="
+      ],
+      "agreement": true
+    },
+    {
+      "track": "What Makes A Good Man?",
+      "human_top_targets": [
+        "=^="
+      ],
+      "model_top_targets": [
+        "=^="
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Short Change Hero",
+      "human_top_targets": [
+        "=^="
+      ],
+      "model_top_targets": [
+        "=^="
+      ],
+      "agreement": true
+    },
+    {
+      "track": "A Little Wicked",
+      "human_top_targets": [
+        "=^="
+      ],
+      "model_top_targets": [
+        "=^="
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Flatline",
+      "human_top_targets": [
+        "Smooth"
+      ],
+      "model_top_targets": [
+        "Smooth"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Daisuke",
+      "human_top_targets": [
+        "Smooth"
+      ],
+      "model_top_targets": [
+        "Smooth"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Rust",
+      "human_top_targets": [
+        "Smooth"
+      ],
+      "model_top_targets": [
+        "Smooth"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Deep Cover",
+      "human_top_targets": [
+        "Smooth"
+      ],
+      "model_top_targets": [
+        "Smooth"
+      ],
+      "agreement": true
+    },
+    {
+      "track": "Fantasy Trash Wave",
+      "human_top_targets": [
+        "Smooth"
+      ],
+      "model_top_targets": [
+        "Smooth"
+      ],
+      "agreement": true
+    }
+  ],
+  "tracks": [
+    {
+      "track": {
+        "title": "Figure It Out",
+        "artist": "Royal Blood"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 96,
+          "human_score": 85,
+          "error": 11,
+          "absolute_error": 11,
+          "model_confidence": 96
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 5,
+          "human_score": 5,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 85
+        },
+        {
+          "target": ". . .",
+          "prediction": 8,
+          "human_score": 0,
+          "error": 8,
+          "absolute_error": 8,
+          "model_confidence": 90
+        },
+        {
+          "target": "=^=",
+          "prediction": 85,
+          "human_score": 80,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 90
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 20,
+          "error": -20,
+          "absolute_error": 20,
+          "model_confidence": 90
+        }
+      ],
+      "mean_absolute_error": 8.8
+    },
+    {
+      "track": {
+        "title": "Guerrilla Radio",
+        "artist": "Rage Against The Machine"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 99,
+          "human_score": 100,
+          "error": -1,
+          "absolute_error": 1,
+          "model_confidence": 99
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 92
+        },
+        {
+          "target": ". . .",
+          "prediction": 3,
+          "human_score": 0,
+          "error": 3,
+          "absolute_error": 3,
+          "model_confidence": 90
+        },
+        {
+          "target": "=^=",
+          "prediction": 75,
+          "human_score": 69,
+          "error": 6,
+          "absolute_error": 6,
+          "model_confidence": 86
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 23,
+          "error": -23,
+          "absolute_error": 23,
+          "model_confidence": 95
+        }
+      ],
+      "mean_absolute_error": 6.6
+    },
+    {
+      "track": {
+        "title": "Break Stuff",
+        "artist": "Limp Bizkit"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 98,
+          "human_score": 90,
+          "error": 8,
+          "absolute_error": 8,
+          "model_confidence": 99
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 95
+        },
+        {
+          "target": ". . .",
+          "prediction": 1,
+          "human_score": 0,
+          "error": 1,
+          "absolute_error": 1,
+          "model_confidence": 92
+        },
+        {
+          "target": "=^=",
+          "prediction": 55,
+          "human_score": 60,
+          "error": -5,
+          "absolute_error": 5,
+          "model_confidence": 78
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 9,
+          "error": -9,
+          "absolute_error": 9,
+          "model_confidence": 95
+        }
+      ],
+      "mean_absolute_error": 4.6
+    },
+    {
+      "track": {
+        "title": "Unsainted",
+        "artist": "Slipknot"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 94,
+          "human_score": 86,
+          "error": 8,
+          "absolute_error": 8,
+          "model_confidence": 96
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 93
+        },
+        {
+          "target": ". . .",
+          "prediction": 2,
+          "human_score": 0,
+          "error": 2,
+          "absolute_error": 2,
+          "model_confidence": 90
+        },
+        {
+          "target": "=^=",
+          "prediction": 70,
+          "human_score": 67,
+          "error": 3,
+          "absolute_error": 3,
+          "model_confidence": 82
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 7,
+          "error": -7,
+          "absolute_error": 7,
+          "model_confidence": 95
+        }
+      ],
+      "mean_absolute_error": 4
+    },
+    {
+      "track": {
+        "title": "Bodies",
+        "artist": "Drowning Pool"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 99,
+          "human_score": 100,
+          "error": -1,
+          "absolute_error": 1,
+          "model_confidence": 99
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 95
+        },
+        {
+          "target": ". . .",
+          "prediction": 1,
+          "human_score": 0,
+          "error": 1,
+          "absolute_error": 1,
+          "model_confidence": 92
+        },
+        {
+          "target": "=^=",
+          "prediction": 55,
+          "human_score": 82,
+          "error": -27,
+          "absolute_error": 27,
+          "model_confidence": 78
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 95
+        }
+      ],
+      "mean_absolute_error": 5.8
+    },
+    {
+      "track": {
+        "title": "Oom Sha La La",
+        "artist": "Haley Heynderickx"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 98
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 94,
+          "human_score": 88,
+          "error": 6,
+          "absolute_error": 6,
+          "model_confidence": 90
+        },
+        {
+          "target": ". . .",
+          "prediction": 70,
+          "human_score": 97,
+          "error": -27,
+          "absolute_error": 27,
+          "model_confidence": 82
+        },
+        {
+          "target": "=^=",
+          "prediction": 10,
+          "human_score": 0,
+          "error": 10,
+          "absolute_error": 10,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 20,
+          "human_score": 38,
+          "error": -18,
+          "absolute_error": 18,
+          "model_confidence": 65
+        }
+      ],
+      "mean_absolute_error": 12.2
+    },
+    {
+      "track": {
+        "title": "when the devil falls in love",
+        "artist": "Hakdo"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 78
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 90,
+          "human_score": 100,
+          "error": -10,
+          "absolute_error": 10,
+          "model_confidence": 65
+        },
+        {
+          "target": ". . .",
+          "prediction": 40,
+          "human_score": 0,
+          "error": 40,
+          "absolute_error": 40,
+          "model_confidence": 60
+        },
+        {
+          "target": "=^=",
+          "prediction": 5,
+          "human_score": 0,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 55
+        },
+        {
+          "target": "Smooth",
+          "prediction": 25,
+          "human_score": 6,
+          "error": 19,
+          "absolute_error": 19,
+          "model_confidence": 55
+        }
+      ],
+      "mean_absolute_error": 14.8
+    },
+    {
+      "track": {
+        "title": "MARBLE HALLS",
+        "artist": "Masayoshi Takanaka"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 95
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 86,
+          "human_score": 79,
+          "error": 7,
+          "absolute_error": 7,
+          "model_confidence": 88
+        },
+        {
+          "target": ". . .",
+          "prediction": 30,
+          "human_score": 90,
+          "error": -60,
+          "absolute_error": 60,
+          "model_confidence": 80
+        },
+        {
+          "target": "=^=",
+          "prediction": 10,
+          "human_score": 0,
+          "error": 10,
+          "absolute_error": 10,
+          "model_confidence": 72
+        },
+        {
+          "target": "Smooth",
+          "prediction": 75,
+          "human_score": 0,
+          "error": 75,
+          "absolute_error": 75,
+          "model_confidence": 90
+        }
+      ],
+      "mean_absolute_error": 30.4
+    },
+    {
+      "track": {
+        "title": "Wharf (ii)",
+        "artist": "Horsey"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 10,
+          "human_score": 6,
+          "error": 4,
+          "absolute_error": 4,
+          "model_confidence": 85
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 82,
+          "human_score": 75,
+          "error": 7,
+          "absolute_error": 7,
+          "model_confidence": 82
+        },
+        {
+          "target": ". . .",
+          "prediction": 65,
+          "human_score": 28,
+          "error": 37,
+          "absolute_error": 37,
+          "model_confidence": 80
+        },
+        {
+          "target": "=^=",
+          "prediction": 25,
+          "human_score": 17,
+          "error": 8,
+          "absolute_error": 8,
+          "model_confidence": 65
+        },
+        {
+          "target": "Smooth",
+          "prediction": 35,
+          "human_score": 90,
+          "error": -55,
+          "absolute_error": 55,
+          "model_confidence": 70
+        }
+      ],
+      "mean_absolute_error": 22.2
+    },
+    {
+      "track": {
+        "title": "Armchair",
+        "artist": "yungatita"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 90
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 75,
+          "human_score": 61,
+          "error": 14,
+          "absolute_error": 14,
+          "model_confidence": 78
+        },
+        {
+          "target": ". . .",
+          "prediction": 90,
+          "human_score": 52,
+          "error": 38,
+          "absolute_error": 38,
+          "model_confidence": 85
+        },
+        {
+          "target": "=^=",
+          "prediction": 5,
+          "human_score": 0,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 70
+        },
+        {
+          "target": "Smooth",
+          "prediction": 40,
+          "human_score": 22,
+          "error": 18,
+          "absolute_error": 18,
+          "model_confidence": 78
+        }
+      ],
+      "mean_absolute_error": 15
+    },
+    {
+      "track": {
+        "title": "Don't Come Home Today",
+        "artist": "Good Morning"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 95
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 55,
+          "human_score": 81,
+          "error": -26,
+          "absolute_error": 26,
+          "model_confidence": 82
+        },
+        {
+          "target": ". . .",
+          "prediction": 95,
+          "human_score": 100,
+          "error": -5,
+          "absolute_error": 5,
+          "model_confidence": 95
+        },
+        {
+          "target": "=^=",
+          "prediction": 8,
+          "human_score": 0,
+          "error": 8,
+          "absolute_error": 8,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 35,
+          "human_score": 53,
+          "error": -18,
+          "absolute_error": 18,
+          "model_confidence": 78
+        }
+      ],
+      "mean_absolute_error": 11.4
+    },
+    {
+      "track": {
+        "title": "Of Lacking Spectacle",
+        "artist": "Gus Dapperton"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 90
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 45,
+          "human_score": 74,
+          "error": -29,
+          "absolute_error": 29,
+          "model_confidence": 80
+        },
+        {
+          "target": ". . .",
+          "prediction": 93,
+          "human_score": 100,
+          "error": -7,
+          "absolute_error": 7,
+          "model_confidence": 90
+        },
+        {
+          "target": "=^=",
+          "prediction": 12,
+          "human_score": 0,
+          "error": 12,
+          "absolute_error": 12,
+          "model_confidence": 72
+        },
+        {
+          "target": "Smooth",
+          "prediction": 35,
+          "human_score": 60,
+          "error": -25,
+          "absolute_error": 25,
+          "model_confidence": 75
+        }
+      ],
+      "mean_absolute_error": 14.6
+    },
+    {
+      "track": {
+        "title": "Running Up That Hill",
+        "artist": "Chromatics"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 94
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 55,
+          "human_score": 71,
+          "error": -16,
+          "absolute_error": 16,
+          "model_confidence": 82
+        },
+        {
+          "target": ". . .",
+          "prediction": 85,
+          "human_score": 100,
+          "error": -15,
+          "absolute_error": 15,
+          "model_confidence": 88
+        },
+        {
+          "target": "=^=",
+          "prediction": 30,
+          "human_score": 0,
+          "error": 30,
+          "absolute_error": 30,
+          "model_confidence": 76
+        },
+        {
+          "target": "Smooth",
+          "prediction": 90,
+          "human_score": 33,
+          "error": 57,
+          "absolute_error": 57,
+          "model_confidence": 92
+        }
+      ],
+      "mean_absolute_error": 23.6
+    },
+    {
+      "track": {
+        "title": "Dog",
+        "artist": "Floating Room"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 10,
+          "human_score": 50,
+          "error": -40,
+          "absolute_error": 40,
+          "model_confidence": 88
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 55,
+          "human_score": 50,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 78
+        },
+        {
+          "target": ". . .",
+          "prediction": 90,
+          "human_score": 50,
+          "error": 40,
+          "absolute_error": 40,
+          "model_confidence": 86
+        },
+        {
+          "target": "=^=",
+          "prediction": 20,
+          "human_score": 50,
+          "error": -30,
+          "absolute_error": 30,
+          "model_confidence": 70
+        },
+        {
+          "target": "Smooth",
+          "prediction": 20,
+          "human_score": 50,
+          "error": -30,
+          "absolute_error": 30,
+          "model_confidence": 65
+        }
+      ],
+      "mean_absolute_error": 29
+    },
+    {
+      "track": {
+        "title": "Lauren",
+        "artist": "Men I Trust"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 97
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 65,
+          "human_score": 72,
+          "error": -7,
+          "absolute_error": 7,
+          "model_confidence": 88
+        },
+        {
+          "target": ". . .",
+          "prediction": 96,
+          "human_score": 100,
+          "error": -4,
+          "absolute_error": 4,
+          "model_confidence": 95
+        },
+        {
+          "target": "=^=",
+          "prediction": 8,
+          "human_score": 0,
+          "error": 8,
+          "absolute_error": 8,
+          "model_confidence": 78
+        },
+        {
+          "target": "Smooth",
+          "prediction": 75,
+          "human_score": 61,
+          "error": 14,
+          "absolute_error": 14,
+          "model_confidence": 90
+        }
+      ],
+      "mean_absolute_error": 6.6
+    },
+    {
+      "track": {
+        "title": "I'm a Wanted Man",
+        "artist": "Royal Deluxe"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 55,
+          "human_score": 73,
+          "error": -18,
+          "absolute_error": 18,
+          "model_confidence": 90
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 0,
+          "human_score": 18,
+          "error": -18,
+          "absolute_error": 18,
+          "model_confidence": 82
+        },
+        {
+          "target": ". . .",
+          "prediction": 5,
+          "human_score": 0,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 78
+        },
+        {
+          "target": "=^=",
+          "prediction": 96,
+          "human_score": 100,
+          "error": -4,
+          "absolute_error": 4,
+          "model_confidence": 94
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 10,
+          "error": -10,
+          "absolute_error": 10,
+          "model_confidence": 92
+        }
+      ],
+      "mean_absolute_error": 11
+    },
+    {
+      "track": {
+        "title": "Where the Devil Don't Go",
+        "artist": "Elle King"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 35,
+          "human_score": 69,
+          "error": -34,
+          "absolute_error": 34,
+          "model_confidence": 88
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 10,
+          "human_score": 14,
+          "error": -4,
+          "absolute_error": 4,
+          "model_confidence": 78
+        },
+        {
+          "target": ". . .",
+          "prediction": 15,
+          "human_score": 0,
+          "error": 15,
+          "absolute_error": 15,
+          "model_confidence": 76
+        },
+        {
+          "target": "=^=",
+          "prediction": 95,
+          "human_score": 100,
+          "error": -5,
+          "absolute_error": 5,
+          "model_confidence": 94
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 5,
+          "error": -5,
+          "absolute_error": 5,
+          "model_confidence": 90
+        }
+      ],
+      "mean_absolute_error": 12.6
+    },
+    {
+      "track": {
+        "title": "What Makes A Good Man?",
+        "artist": "The Heavy"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 80,
+          "human_score": 60,
+          "error": 20,
+          "absolute_error": 20,
+          "model_confidence": 98
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 0,
+          "human_score": 19,
+          "error": -19,
+          "absolute_error": 19,
+          "model_confidence": 92
+        },
+        {
+          "target": ". . .",
+          "prediction": 10,
+          "human_score": 0,
+          "error": 10,
+          "absolute_error": 10,
+          "model_confidence": 82
+        },
+        {
+          "target": "=^=",
+          "prediction": 99,
+          "human_score": 93,
+          "error": 6,
+          "absolute_error": 6,
+          "model_confidence": 97
+        },
+        {
+          "target": "Smooth",
+          "prediction": 0,
+          "human_score": 11,
+          "error": -11,
+          "absolute_error": 11,
+          "model_confidence": 95
+        }
+      ],
+      "mean_absolute_error": 13.2
+    },
+    {
+      "track": {
+        "title": "Short Change Hero",
+        "artist": "The Heavy"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 40,
+          "human_score": 35,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 98
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 25,
+          "human_score": 23,
+          "error": 2,
+          "absolute_error": 2,
+          "model_confidence": 90
+        },
+        {
+          "target": ". . .",
+          "prediction": 10,
+          "human_score": 0,
+          "error": 10,
+          "absolute_error": 10,
+          "model_confidence": 84
+        },
+        {
+          "target": "=^=",
+          "prediction": 98,
+          "human_score": 92,
+          "error": 6,
+          "absolute_error": 6,
+          "model_confidence": 97
+        },
+        {
+          "target": "Smooth",
+          "prediction": 5,
+          "human_score": 18,
+          "error": -13,
+          "absolute_error": 13,
+          "model_confidence": 92
+        }
+      ],
+      "mean_absolute_error": 7.2
+    },
+    {
+      "track": {
+        "title": "A Little Wicked",
+        "artist": "Valerie Broussard"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 15,
+          "human_score": 38,
+          "error": -23,
+          "absolute_error": 23,
+          "model_confidence": 83
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 35,
+          "human_score": 14,
+          "error": 21,
+          "absolute_error": 21,
+          "model_confidence": 78
+        },
+        {
+          "target": ". . .",
+          "prediction": 45,
+          "human_score": 0,
+          "error": 45,
+          "absolute_error": 45,
+          "model_confidence": 80
+        },
+        {
+          "target": "=^=",
+          "prediction": 75,
+          "human_score": 80,
+          "error": -5,
+          "absolute_error": 5,
+          "model_confidence": 84
+        },
+        {
+          "target": "Smooth",
+          "prediction": 5,
+          "human_score": 10,
+          "error": -5,
+          "absolute_error": 5,
+          "model_confidence": 88
+        }
+      ],
+      "mean_absolute_error": 19.8
+    },
+    {
+      "track": {
+        "title": "Flatline",
+        "artist": "Scattle"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 17,
+          "error": -17,
+          "absolute_error": 17,
+          "model_confidence": 97
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 20,
+          "human_score": 28,
+          "error": -8,
+          "absolute_error": 8,
+          "model_confidence": 75
+        },
+        {
+          "target": ". . .",
+          "prediction": 25,
+          "human_score": 41,
+          "error": -16,
+          "absolute_error": 16,
+          "model_confidence": 80
+        },
+        {
+          "target": "=^=",
+          "prediction": 15,
+          "human_score": 0,
+          "error": 15,
+          "absolute_error": 15,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 98,
+          "human_score": 88,
+          "error": 10,
+          "absolute_error": 10,
+          "model_confidence": 98
+        }
+      ],
+      "mean_absolute_error": 13.2
+    },
+    {
+      "track": {
+        "title": "Daisuke",
+        "artist": "El Huervo"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 4,
+          "error": -4,
+          "absolute_error": 4,
+          "model_confidence": 98
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 15,
+          "human_score": 33,
+          "error": -18,
+          "absolute_error": 18,
+          "model_confidence": 75
+        },
+        {
+          "target": ". . .",
+          "prediction": 25,
+          "human_score": 19,
+          "error": 6,
+          "absolute_error": 6,
+          "model_confidence": 80
+        },
+        {
+          "target": "=^=",
+          "prediction": 5,
+          "human_score": 0,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 98,
+          "human_score": 83,
+          "error": 15,
+          "absolute_error": 15,
+          "model_confidence": 98
+        }
+      ],
+      "mean_absolute_error": 9.6
+    },
+    {
+      "track": {
+        "title": "Rust",
+        "artist": "El Huervo"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 2,
+          "error": -2,
+          "absolute_error": 2,
+          "model_confidence": 95
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 20,
+          "human_score": 58,
+          "error": -38,
+          "absolute_error": 38,
+          "model_confidence": 75
+        },
+        {
+          "target": ". . .",
+          "prediction": 20,
+          "human_score": 56,
+          "error": -36,
+          "absolute_error": 36,
+          "model_confidence": 78
+        },
+        {
+          "target": "=^=",
+          "prediction": 5,
+          "human_score": 5,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 95,
+          "human_score": 95,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 96
+        }
+      ],
+      "mean_absolute_error": 15.2
+    },
+    {
+      "track": {
+        "title": "Deep Cover",
+        "artist": "Sun Araw"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 0,
+          "human_score": 0,
+          "error": 0,
+          "absolute_error": 0,
+          "model_confidence": 91
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 50,
+          "human_score": 34,
+          "error": 16,
+          "absolute_error": 16,
+          "model_confidence": 85
+        },
+        {
+          "target": ". . .",
+          "prediction": 35,
+          "human_score": 0,
+          "error": 35,
+          "absolute_error": 35,
+          "model_confidence": 78
+        },
+        {
+          "target": "=^=",
+          "prediction": 15,
+          "human_score": 0,
+          "error": 15,
+          "absolute_error": 15,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 92,
+          "human_score": 46,
+          "error": 46,
+          "absolute_error": 46,
+          "model_confidence": 93
+        }
+      ],
+      "mean_absolute_error": 22.4
+    },
+    {
+      "track": {
+        "title": "Fantasy Trash Wave",
+        "artist": "TOBACCO"
+      },
+      "comparisons": [
+        {
+          "target": "To 11",
+          "prediction": 5,
+          "human_score": 0,
+          "error": 5,
+          "absolute_error": 5,
+          "model_confidence": 92
+        },
+        {
+          "target": "Somber Party",
+          "prediction": 15,
+          "human_score": 0,
+          "error": 15,
+          "absolute_error": 15,
+          "model_confidence": 75
+        },
+        {
+          "target": ". . .",
+          "prediction": 30,
+          "human_score": 10,
+          "error": 20,
+          "absolute_error": 20,
+          "model_confidence": 82
+        },
+        {
+          "target": "=^=",
+          "prediction": 30,
+          "human_score": 3,
+          "error": 27,
+          "absolute_error": 27,
+          "model_confidence": 75
+        },
+        {
+          "target": "Smooth",
+          "prediction": 90,
+          "human_score": 59,
+          "error": 31,
+          "absolute_error": 31,
+          "model_confidence": 91
+        }
+      ],
+      "mean_absolute_error": 19.6
+    }
+  ],
+  "interpretation": [
+    "Strongest alignment was To 11 and =^=; broad score correlation is high, but this is a small, hand-evaluated sample rather than a validated calibration benchmark.",
+    "Largest misses cluster around the boundaries between the dream-pop/indie target and Smooth, and around unusual instrumental/psychedelic tracks.",
+    "The model appears to overgeneralize synthwave/psychedelic instrumentation as Smooth fit: MARBLE HALLS, Running Up That Hill, Deep Cover and Fantasy Trash Wave were the clearest examples.",
+    "The model also overgeneralized dreamy indie texture as . . . fit for Oom Sha La La and Armchair; the human ratings separate Somber Party more strongly.",
+    "Dog was rated 50 on every target, so its top-target classification is intentionally non-discriminative."
+  ]
+}
