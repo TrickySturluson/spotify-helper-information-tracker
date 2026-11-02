@@ -330,8 +330,9 @@ def refresh_playability_from_spotify(library_root=None, limit=25, stale_days=90,
     library = MusicLibrary(library_root) if library_root else MusicLibrary()
     now = datetime.now(timezone.utc)
     due = []
+    spotify_ids_available = 0
     songs = library.index.get("songs") or {}
-    for song_id, entry in songs.items():
+    for song_id, entry in songs.items()
         path = library.root / (entry.get("path") or "")
         record = manager.read(path, None)
         if not isinstance(record, dict):
@@ -340,6 +341,7 @@ def refresh_playability_from_spotify(library_root=None, limit=25, stale_days=90,
         spotify_id = identity.get("spotify_id")
         if not isinstance(spotify_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_id):
             continue
+        spotify_ids_available += 1
         evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
         playability = evidence.get("spotify_playability") if isinstance(evidence.get("spotify_playability"), dict) else {}
         latest = (playability.get("latest_by_market") or {}).get(str(market).upper())
@@ -360,10 +362,7 @@ def refresh_playability_from_spotify(library_root=None, limit=25, stale_days=90,
         "market": market,
         "stale_days": int(stale_days),
         "limit": int(limit),
-        "spotify_ids_available": len([
-            1 for song_id, entry in songs.items()
-            if isinstance(entry, dict) and entry.get("path")
-        ]),
+        "spotify_ids_available": spotify_ids_available,
         "due_count": len(due),
         "selected_count": len(selected),
         "selected": selected,
@@ -691,6 +690,12 @@ def main():
     sub.add_parser("list", help="List saved reference playlists")
     sub.add_parser("health", help="Show reference-library and feedback coverage health")
     sub.add_parser("backfill-playability", help="Backfill song playability from saved snapshots without Spotify requests")
+    refresh = sub.add_parser("refresh-playability", help="Plan or execute a bounded, stale-only Spotify playability refresh")
+    refresh.add_argument("--limit", type=int, default=25, help="Maximum tracks to check (1-50)")
+    refresh.add_argument("--stale-days", type=int, default=90, help="Recheck observations older than this many days")
+    refresh.add_argument("--market", default="from_token", help="Spotify market code or from_token")
+    refresh.add_argument("--execute", action="store_true", help="Perform Spotify lookups; default is read-only plan")
+    refresh.add_argument("--yes", action="store_true", help="Confirm provider requests when using --execute")
     search = sub.add_parser("lookup", help="Search saved playlists, tracks, artists and albums")
     search.add_argument("query")
     args = parser.parse_args()
@@ -700,6 +705,15 @@ def main():
         print_health_report()
     elif args.command == "backfill-playability":
         print(json.dumps(backfill_playability_from_snapshots(), indent=2))
+    elif args.command == "refresh-playability":
+        if args.execute and not args.yes:
+            parser.error("refresh-playability --execute also requires --yes.")
+        client = manager.Spotify() if args.execute else None
+        result = refresh_playability_from_spotify(
+            limit=args.limit, stale_days=args.stale_days, market=args.market,
+            sp=client, execute=args.execute,
+        )
+        print(json.dumps(result, indent=2))
     elif args.command == "list":
         for row in manager.read(CATALOG, {"playlists": []}).get("playlists", []):
             print(f'{row.get("name")} | {row.get("item_count")} items | {row.get("id")}')
@@ -716,7 +730,7 @@ if __name__ == "__main__":
 # Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
 # Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
 # Safety: Snapshot ingestion never changes playlists; offline backfill makes a song-file backup before appending observations.
-# Playability: Requests use market=from_token; relinked IDs stay distinct from original requested IDs.
+# Playability: Use bounded stale-only GET /tracks/{id}?market=from_token checks; relinked IDs stay distinct from requested IDs.
 # Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
 # Data flow: Uses the canonical archives and/or generated project data; consult
 #            this module's configuration and command options for exact paths.
