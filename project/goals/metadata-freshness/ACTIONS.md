@@ -90,3 +90,12 @@
 - Initial cadence concept: local health checks daily/on publish; small provider-backed partial refresh weekly/monthly or targeted on demand. Actual intervals remain configurable and must be grounded in provider policies.
 - No provider requests or data mutations performed in this documentation pass.
 - Next: inspect existing state schemas and retry queue specification; define stable planner output and due rules before implementing.
+
+
+## 2026-11-02 — Second duration provenance pass published (issues #113–#114)
+
+- Updated `epoch_iso()` to accept timezone-qualified ISO-8601 timestamps as well as positive Unix epochs; timezone-naive timestamps remain rejected rather than guessed.
+- Issue #113 read-only preview passed against 32 legacy shards / 11,130 rows and 13,005 canonical songs. It found 8,172 exact timestamped rows: 8,121 observations were already present from the Last.fm pass and 51 additional MusicBrainz observations were safe to add.
+- Preview conflicts were all zero: missing/ambiguous aliases, missing files, duration/source mismatches, non-matched statuses, invalid timestamps, and conflicting duplicate legacy IDs. 2,958 unknown-provider rows were skipped. `safe_to_apply=true`, provider_requests=0, writes=0, playlist writes=0.
+- Issue #114 apply reported success, 51 changed song files, a timestamped backup, and post-write health success; provider requests=0 and Spotify playlist writes=0. Independently fetched published canonical song `source:3e2d305ebc76ea39` (Supermega — Brand New Shirt) and confirmed its MusicBrainz duration observation is present with exact 139,000 ms value, source, and 2026-10-31T07:22:42.965634+00:00 timestamp.
+- Next: fresh audit, health, freshness, and confidence verification are queued as issues #115–#118. Do not start provider refresh until their reports establish the true remaining gap.
