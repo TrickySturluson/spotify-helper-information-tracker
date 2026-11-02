@@ -9,6 +9,7 @@ from tests.test_library_health import write_record
 
 class LibraryMaintenanceTests(unittest.TestCase):
     def build_library(self, root):
+        (root / "albums").mkdir(parents=True, exist_ok=True)
         artist_id, song_id = "artist-id", "song-id"
         artist_path = write_record(root, "artists", artist_id, "artist.json", {
             "schema_version": 1, "id": artist_id, "artist": "Artist", "album_ids": [],
