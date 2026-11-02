@@ -45,6 +45,109 @@ def _inside_root(root, path):
         return False
 
 
+PLAYABILITY_STATUSES = {"playable", "unplayable", "restricted", "unknown", "not_found"}
+
+
+def _spotify_track_id(value):
+    return str(value or "").strip().rsplit(":", 1)[-1].casefold()
+
+
+def _parse_observation_time(value):
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return parsed.astimezone(timezone.utc)
+    except ValueError:
+        return None
+
+
+def _validate_playability(song_id, song, errors, warnings):
+    """Validate optional market-scoped playability evidence without changing it."""
+    evidence = song.get("evidence") if isinstance(song.get("evidence"), dict) else {}
+    playability = evidence.get("spotify_playability")
+    if playability is None:
+        return
+    if not isinstance(playability, dict):
+        errors.append(f"song Spotify playability evidence must be an object: {song_id}")
+        return
+
+    observations = playability.get("observations")
+    latest_by_market = playability.get("latest_by_market")
+    if not isinstance(observations, list):
+        errors.append(f"song Spotify playability observations must be a list: {song_id}")
+        return
+    if not isinstance(latest_by_market, dict):
+        errors.append(f"song Spotify playability latest_by_market must be an object: {song_id}")
+        return
+
+    identity = song.get("identity") if isinstance(song.get("identity"), dict) else {}
+    canonical_spotify_id = _spotify_track_id(identity.get("spotify_id"))
+    expected_latest = {}
+    seen = set()
+    for position, observation in enumerate(observations):
+        label = f"{song_id} observation[{position}]"
+        if not isinstance(observation, dict):
+            errors.append(f"Spotify playability observation must be an object: {label}")
+            continue
+        encoded = json.dumps(observation, sort_keys=True, ensure_ascii=False)
+        if encoded in seen:
+            warnings.append(f"duplicate Spotify playability observation: {label}")
+        seen.add(encoded)
+
+        market = observation.get("market")
+        if not isinstance(market, str) or not market.strip():
+            errors.append(f"Spotify playability observation has no market: {label}")
+            continue
+        market_key = market.upper()
+        status = observation.get("status")
+        if status not in PLAYABILITY_STATUSES:
+            errors.append(f"Spotify playability observation has invalid status {status!r}: {label}")
+        playable = observation.get("is_playable")
+        if playable is not None and not isinstance(playable, bool):
+            errors.append(f"Spotify playability is_playable must be boolean or null: {label}")
+        if status == "playable" and playable is not True:
+            errors.append(f"playable observation does not have is_playable=true: {label}")
+        elif status == "unplayable" and playable is not False:
+            errors.append(f"unplayable observation does not have is_playable=false: {label}")
+        elif status == "restricted" and not (
+            observation.get("restrictions_reason") or observation.get("restrictions")
+        ):
+            errors.append(f"restricted observation has no restriction evidence: {label}")
+        elif status in {"unknown", "not_found"} and playable is not None:
+            errors.append(f"indeterminate playability observation has a boolean is_playable: {label}")
+
+        checked_at = observation.get("checked_at")
+        parsed_time = _parse_observation_time(checked_at)
+        if parsed_time is None:
+            errors.append(f"Spotify playability observation has missing/invalid checked_at: {label}")
+
+        requested_id = _spotify_track_id(observation.get("requested_spotify_id"))
+        returned_id = _spotify_track_id(observation.get("returned_spotify_id"))
+        linked_id = _spotify_track_id(observation.get("linked_from_spotify_id"))
+        if not requested_id:
+            errors.append(f"Spotify playability observation has no requested Spotify ID: {label}")
+        if canonical_spotify_id and requested_id and requested_id != canonical_spotify_id:
+            errors.append(f"Spotify playability requested ID does not match song identity: {label}")
+        if returned_id and requested_id and returned_id != requested_id and linked_id != requested_id:
+            errors.append(f"Spotify relinked ID lacks matching linked_from identity: {label}")
+
+        prior = expected_latest.get(market_key)
+        if prior is None or str(checked_at or "") >= str(prior.get("checked_at") or ""):
+            expected_latest[market_key] = observation
+
+    if set(latest_by_market) != set(expected_latest):
+        errors.append(f"Spotify playability latest_by_market keys do not match observations: {song_id}")
+    for market_key, expected in expected_latest.items():
+        actual = latest_by_market.get(market_key)
+        if not isinstance(actual, dict):
+            errors.append(f"Spotify playability latest market entry is missing/malformed: {song_id} [{market_key}]")
+        elif actual != expected:
+            errors.append(f"Spotify playability latest market entry is stale or inconsistent: {song_id} [{market_key}]")
+
+
 def inspect_library(root=DEFAULT_ROOT):
     """Return a read-only health report; never instantiate the mutating lazy resolver."""
     root = Path(root)
@@ -165,6 +268,7 @@ def inspect_library(root=DEFAULT_ROOT):
 
     for song_id, song in records["songs"].items():
         identity = song.get("identity") if isinstance(song.get("identity"), dict) else {}
+        _validate_playability(song_id, song, errors, warnings)
         if not identity.get("artist") or not identity.get("title"):
             errors.append(f"song identity is missing artist/title: {song_id}")
         relations = song.get("relations") if isinstance(song.get("relations"), dict) else {}
