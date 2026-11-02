@@ -1,3 +1,16 @@
+## 2026-11-02 — Merge market-aware refresh and backfill saved observations
+
+- PR #78 merged to `main` as `e12b72ee24f1440115961282cd7baf7879ebeec8`.
+- Adds authenticated-user market context (`from_token`), individual Spotify Get Track lookups, requested/relinked ID preservation, offline snapshot backfill, and a bounded stale-only refresh planner (default 25, 90-day freshness, maximum 50 requests per run).
+- CI and full-history security scan passed on the final PR head. The missing `datetime/timezone` import in the planner test was fixed before merge.
+- Added the `backfill-playability` operation to the Great Migration workflow. It stages only canonical song records; backups are preserved in the workflow artifact. It does not refresh Spotify snapshots or write playlists.
+- **Offline backfill run #82:** [workflow run](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41369906166), issue #82. Published commit `3316dbe9f8ccd5d668b71d730016befeabdd8502`; 1,856 canonical song files changed.
+- Backfill scanned 57 saved snapshots (16 inaccessible), 3,308 playlist items, found 3,308 observations, matched 3,306 items to canonical songs, and updated 3,305 observations across 1,856 song records. Two items were unmatched; none were already present.
+- Snapshot observations: 3,250 playable and 55 unplayable, all under `market=from_token`; zero restriction-reason records and zero relinked-ID cases in this batch. These are snapshot-time observations, not a claim that all songs remain playable now.
+- Provider requests: 0. Spotify playlist writes: 0. Backups are in artifact #13108782697; the backup directory was not committed into the canonical Library.
+- Next: run post-backfill `audit`, `health`, and `confidence` against published main; then run a bounded live refresh only for stale records, after checking the current Spotify account market and rate-limit behavior.
+- No live playability API refresh has been executed.
+
 ## 2026-11-02 — Add bounded current playability refresh
 
 - Added a stale-only refresh planner over canonical Spotify IDs. It defaults to 25 tracks per run, a 90-day freshness interval, and caps a run at 50 individual lookups.
