@@ -38,6 +38,10 @@ class CloudExecutorTests(unittest.TestCase):
         operation = [{"action": "add", "uris": ["spotify:track:abc"]}]
         sp = Mock()
         sp.playlists.return_value = [{"id": "playlist123", "name": "Test"}]
+        sp.call.side_effect = lambda method, path, body=None: (
+            {"id": "playlist123", "name": "Test", "snapshot_id": "snapshot"}
+            if method == "GET" else {"snapshot_id": "after"}
+        )
         sp.items.return_value = []
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True), patch.object(
             manager, "add"
@@ -49,6 +53,10 @@ class CloudExecutorTests(unittest.TestCase):
         uris = ["spotify:track:" + str(i) for i in range(205)]
         sp = Mock()
         sp.playlists.return_value = [{"id": "playlist123", "name": "Test"}]
+        sp.call.side_effect = lambda method, path, body=None: (
+            {"id": "playlist123", "name": "Test", "snapshot_id": "snapshot"}
+            if method == "GET" else {"snapshot_id": "after"}
+        )
         sp.items.return_value = []
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True):
             cloud.replace_playlist(sp, "playlist123", uris)
@@ -70,6 +78,10 @@ class CloudExecutorTests(unittest.TestCase):
         operation = [{"action": "remove", "uris": ["spotify:track:abc"]}]
         sp = Mock()
         sp.playlists.return_value = [{"id": "playlist123", "name": "Test"}]
+        sp.call.side_effect = lambda method, path, body=None: (
+            {"id": "playlist123", "name": "Test", "snapshot_id": "snapshot"}
+            if method == "GET" else {"snapshot_id": "after"}
+        )
         sp.items.return_value = []
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True), patch.object(
             manager, "remove"
