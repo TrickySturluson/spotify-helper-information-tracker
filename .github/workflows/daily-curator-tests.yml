@@ -46,8 +46,12 @@ jobs:
           assert report["writes"] == 0
           assert report["selected_task_count"] <= 25
           assert not report["errors"], report["errors"][:5]
-          print("Freshness planner scanned", report["counts"]["songs_scanned"], "songs and selected",
-                report["selected_task_count"], "of", report["due_task_count"], "due tasks.")
+          counts = report["counts"]
+          print("Freshness planner scanned", counts["songs_scanned"], "songs,",
+                counts["artists_scanned"], "artists, and", counts["albums_scanned"], "albums;",
+                "profile caches:", counts["track_profile_cache_rows"], "track,",
+                counts["artist_profile_cache_rows"], "artist,", counts["album_profile_cache_rows"], "album;",
+                "selected", report["selected_task_count"], "of", report["due_task_count"], "due tasks.")
           PY
       - name: Check maintained file documentation
         run: python -m unittest tests.test_script_layout -v
