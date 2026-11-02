@@ -97,6 +97,22 @@ def run_confidence(args):
         command.append("--json")
     return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
 
+def run_maintainer(args):
+    if args.apply and not args.yes:
+        raise SystemExit("--apply requires --yes")
+    command = [
+        sys.executable, str(MAINTAINER),
+        "--root", str(args.root),
+        "--music-root", str(DEFAULT_ROOT.parent),
+    ]
+    if args.apply:
+        command.append("--apply")
+    if args.yes:
+        command.append("--yes")
+    if args.json:
+        command.append("--json")
+    return subprocess.run(command, cwd=REPO_ROOT, check=False).returncode
+
 
 def build_parser():
     parser = argparse.ArgumentParser(
