@@ -19,6 +19,7 @@ if str(REPO_ROOT) not in sys.path:
 from scripts.spotify.playlist_fit_model import (
     MODEL_VERSION, build_reference_profile, score_track, track_from_library_record,
 )
+from scripts.music.music_library import MusicLibrary, norm as library_norm
 
 DEFAULT_LIBRARY = REPO_ROOT / "assistant_data/music/library"
 DEFAULT_MUSIC = REPO_ROOT / "assistant_data/music"
@@ -57,8 +58,11 @@ def load_candidate_identities(path: Path) -> list[dict]:
         if not uri or uri in seen:
             continue
         seen.add(uri)
-        candidates.append({"uri": uri, "title": str(row.get("title") or row.get("name") or ""),
-                           "artist": str(row.get("artist") or "")})
+        candidates.append({
+            "uri": uri, "title": str(row.get("title") or row.get("name") or ""),
+            "artist": str(row.get("artist") or ""), "album": str(row.get("album") or ""),
+            "duration_ms": row.get("duration_ms"), "isrc": str(row.get("isrc") or ""),
+        })
     if not candidates:
         raise ValueError("candidate file contains no valid Spotify track IDs")
     return candidates
@@ -120,6 +124,63 @@ def profile_for_record(record: dict, cache_by_song: dict) -> dict | None:
     return row if isinstance(row, dict) else None
 
 
+def has_recording_fit_evidence(record: dict, profile: dict | None = None) -> bool:
+    evidence = record.get("evidence") if isinstance(record.get("evidence"), dict) else {}
+    metadata = evidence.get("track_metadata") if isinstance(evidence.get("track_metadata"), dict) else {}
+    metadata = {**(profile or {}), **metadata}
+    tag_fields = ("musicbrainz_genres", "musicbrainz_tags", "lastfm_tags", "discogs_styles", "discogs_genres")
+    if any(metadata.get(field) for field in tag_fields):
+        return True
+    audio = evidence.get("audio") if isinstance(evidence.get("audio"), dict) else {}
+    if any(audio.get(field) is not None for field in ("energy_score", "perceived_energy", "spotify_energy", "energy")):
+        return True
+    if any(audio.get(field) for field in ("sound_descriptors", "timbre_tags", "instrumentation", "production_tags")):
+        return True
+    lyrics = evidence.get("lyrics")
+    if isinstance(lyrics, dict) and any(lyrics.get(field) for field in ("themes", "theme_tags", "topics")):
+        return True
+    mood = record.get("mood") if isinstance(record.get("mood"), dict) else {}
+    recording = mood.get("recording_level") if isinstance(mood.get("recording_level"), dict) else {}
+    return bool(recording.get("moods"))
+
+
+def resolve_item_record(item: dict, records: dict, cache_by_song: dict, library=None):
+    """Resolve by Spotify ID first; fallback requires exact artist/title/album plus duration."""
+    uri = spotify_uri(item.get("uri") or item.get("id"))
+    exact = records.get(uri) if uri else None
+    if exact and has_recording_fit_evidence(exact, profile_for_record(exact, cache_by_song)):
+        return exact, "spotify_track_id"
+
+    artists = item.get("artists") or []
+    artist = artists[0] if isinstance(artists, list) and artists else item.get("artist")
+    title = item.get("name") or item.get("title")
+    album = item.get("album")
+    spotify_duration = item.get("duration_ms")
+    if library is not None and artist and title and album and spotify_duration not in (None, ""):
+        match = library.lookup_song(artist=artist, track=title, album=album)
+        if match.get("status") == "matched":
+            record = match.get("record") or {}
+            identity = record.get("identity") if isinstance(record.get("identity"), dict) else {}
+            metadata = (record.get("evidence") or {}).get("track_metadata") or {}
+            source_duration = metadata.get("duration_ms")
+            exact_names = (
+                library_norm(identity.get("artist")) == library_norm(artist)
+                and library_norm(identity.get("title")) == library_norm(title)
+                and library_norm(identity.get("album")) == library_norm(album)
+            )
+            try:
+                duration_match = source_duration is not None and abs(int(source_duration) - int(spotify_duration)) <= 2000
+            except (TypeError, ValueError):
+                duration_match = False
+            if exact_names and duration_match:
+                copied = dict(record)
+                confidence = dict(record.get("confidence") or {})
+                confidence["identity"] = match.get("confidence") or "medium"
+                copied["confidence"] = confidence
+                return copied, "exact_artist_title_album_duration"
+    return (exact, "spotify_track_id") if exact else (None, "unmatched")
+
+
 def load_reference_targets(spotify_root: Path) -> dict:
     roles = read_json(spotify_root / "playlist_roles.json")
     if not isinstance(roles, dict) or not isinstance(roles.get("playlists"), dict):
@@ -157,18 +218,42 @@ def load_reference_targets(spotify_root: Path) -> dict:
     return targets
 
 
-def build_preview(candidates: list[dict], targets: dict, records: dict, cache: dict) -> dict:
+def build_preview(candidates: list[dict], targets: dict, records: dict, cache: dict, library=None) -> dict:
     heldout = {candidate["uri"] for candidate in candidates}
+    candidate_resolutions = []
+    heldout_record_ids = set()
+    for candidate in candidates:
+        item = {
+            "uri": candidate["uri"], "name": candidate.get("title"), "artist": candidate.get("artist"),
+            "artists": [candidate.get("artist")] if candidate.get("artist") else [],
+            "album": candidate.get("album"), "duration_ms": candidate.get("duration_ms"),
+        }
+        record, method = resolve_item_record(item, records, cache, library)
+        candidate_resolutions.append((candidate, record, method))
+        if record and record.get("id"):
+            heldout_record_ids.add(str(record["id"]))
+
     reference_tracks = {}
+    reference_resolution_counts = {}
     for playlist_id, target in targets.items():
-        tracks = []
+        tracks, seen_record_ids = [], set()
+        resolution_counts = {}
         for item in target["items"]:
             uri = spotify_uri(item.get("uri") or item.get("id"))
-            record = records.get(uri)
+            record, method = resolve_item_record(item, records, cache, library)
             if record is None:
                 continue
-            tracks.append(track_from_library_record(record, profile_for_record(record, cache)))
+            record_id = str(record.get("id") or "")
+            if record_id and (record_id in heldout_record_ids or record_id in seen_record_ids):
+                continue
+            if record_id:
+                seen_record_ids.add(record_id)
+            adapted = track_from_library_record(record, profile_for_record(record, cache))
+            adapted["uri"] = uri
+            tracks.append(adapted)
+            resolution_counts[method] = resolution_counts.get(method, 0) + 1
         reference_tracks[playlist_id] = tracks
+        reference_resolution_counts[playlist_id] = resolution_counts
 
     target_profiles = {}
     for playlist_id, target in targets.items():
@@ -177,6 +262,7 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
             "name": target["name"], "snapshot_id": target["snapshot_id"],
             "captured_at": target["captured_at"], "snapshot_track_count": len(target["items"]),
             "library_matched_count": len(reference_tracks[playlist_id]),
+            "identity_resolution_counts": reference_resolution_counts[playlist_id],
             "profile_track_count": profile["track_count"],
             "excluded_candidate_count": profile["excluded_candidate_and_holdout_count"],
             "coverage": profile["coverage"], "profile_confidence": profile["profile_confidence"],
@@ -186,11 +272,11 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
         }
 
     results = []
-    for candidate in candidates:
-        record = records.get(candidate["uri"])
+    for candidate, record, method in candidate_resolutions:
         track = (track_from_library_record(record, profile_for_record(record, cache))
                  if record else {"uri": candidate["uri"], "title": candidate["title"],
                                  "artist": candidate["artist"], "dimensions": {}})
+        track["uri"] = candidate["uri"]
         scores = {}
         for playlist_id, target in targets.items():
             scored = score_track(track, target_profiles[playlist_id]["profile"])
@@ -205,7 +291,8 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
         results.append({
             "uri": candidate["uri"], "title": track.get("title") or candidate["title"],
             "artist": track.get("artist") or candidate["artist"],
-            "library_record_found": record is not None, "scores_by_target": scores,
+            "library_record_found": record is not None, "identity_resolution": method,
+            "scores_by_target": scores,
         })
     usable_profiles = sum(1 for target in target_profiles.values() if target["coverage"] > 0)
     block_reasons = [] if usable_profiles else [
@@ -219,8 +306,8 @@ def build_preview(candidates: list[dict], targets: dict, records: dict, cache: d
         "usable_target_profile_count": usable_profiles, "block_reasons": block_reasons,
         "targets": target_profiles, "results": results,
         "limitations": [
-            "Only canonical recording-scoped evidence and exact stable-ID track-profile cache rows are used.",
-            "No artist/title-only joins are allowed; unmatched recordings remain unscored.",
+            "Stable Spotify/MBID/source IDs are preferred. A fallback is accepted only for exact artist + title + album and duration within 2 seconds; it is marked medium identity confidence.",
+            "No fuzzy or artist/title-only joins are allowed; ambiguous or duration-mismatched recordings remain unscored.",
             "AcousticBrainz loudness/complexity and tempo are not converted into perceived energy or sound labels.",
             "A missing dimension remains unknown, never a zero or a negative fit.",
             "Scores and confidence are evidence summaries, not calibrated probabilities or production decisions.",
@@ -240,7 +327,8 @@ def main() -> None:
     candidates = load_candidate_identities(args.candidates)
     records, cache = load_library_records(args.library, args.music_data)
     targets = load_reference_targets(args.spotify_data)
-    result = build_preview(candidates, targets, records, cache)
+    library = MusicLibrary(args.library)
+    result = build_preview(candidates, targets, records, cache, library=library)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({
