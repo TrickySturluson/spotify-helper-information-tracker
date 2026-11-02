@@ -34,6 +34,8 @@ jobs:
         run: python shit.py library health --json
       - name: Confidence-audit the full canonical Library (read-only)
         run: python shit.py library confidence --json
+      - name: Plan safe Library maintenance (read-only)
+        run: python shit.py library maintain --json
       - name: Check maintained file documentation
         run: python -m unittest tests.test_script_layout -v
       - name: Run unit tests
