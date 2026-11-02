@@ -50,6 +50,8 @@ def item_record(entry, position):
         "duration_ms": item.get("duration_ms"),
         "is_local": bool(item.get("is_local")),
         "is_playable": item.get("is_playable"),
+        "is_playable_present": "is_playable" in item,
+        "restrictions": item.get("restrictions") or {},
         "linked_from": (item.get("linked_from") or {}).get("uri"),
         "external_ids": item.get("external_ids") or {},
         "available_markets_count": len(item.get("available_markets") or []),
@@ -190,6 +192,26 @@ def sync(sp):
                         "spotify_album_id": item.get("album_id"),
                         "duration_ms": item.get("duration_ms"),
                         "isrc": (item.get("external_ids") or {}).get("isrc"),
+                        "spotify_playability_observation": ({
+                            "status": (
+                                "playable" if item.get("is_playable") is True else
+                                "unplayable" if item.get("is_playable") is False else
+                                "unknown"
+                            ),
+                            "is_playable": item.get("is_playable"),
+                            "market": "unknown",
+                            "checked_at": record.get("captured_at"),
+                            "provider": "Spotify",
+                            "source": "read_only_playlist_snapshot",
+                            "playlist_id": pid,
+                            "playlist_snapshot_id": record.get("snapshot_id"),
+                            "requested_spotify_id": item.get("id") or spotify_id,
+                            "returned_spotify_id": item.get("id") or spotify_id,
+                            "linked_from_spotify_uri": item.get("linked_from"),
+                            "restrictions_reason": (item.get("restrictions") or {}).get("reason"),
+                            "is_local": item.get("is_local"),
+                            "available_markets_count": item.get("available_markets_count"),
+                        } if item.get("is_playable_present") or item.get("restrictions") else None),
                         "playlist_sources": [pid],
                         "playlist_positions": [{
                             "playlist_id": pid, "position": item.get("position"),
