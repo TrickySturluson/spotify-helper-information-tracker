@@ -127,27 +127,7 @@ jobs:
               python -m compileall -q scripts compat shit.py
               python -m unittest discover -s tests -t . -v
               python shit.py library freshness --json --limit 25 --market from_token --include-unknown-age > freshness-branch-plan.json
-              python - <<'PY'
-              import json
-              from pathlib import Path
-              report = json.loads(Path("freshness-branch-plan.json").read_text(encoding="utf-8"))
-              assert report.get("mode") == "read_only_plan", report
-              assert report.get("provider_requests") == 0, report
-              assert report.get("writes") == 0, report
-              assert report.get("selected_task_count", 0) <= 25, report
-              assert report.get("selected_due_count", 0) <= 25, report
-              assert report.get("selected_baseline_count", 0) <= 25, report
-              assert report.get("selected_task_count") == report.get("selected_due_count", 0) + report.get("selected_baseline_count", 0), report
-              assert not report.get("errors"), report.get("errors", [])[:10]
-              counts = report.get("counts", {})
-              print("Freshness branch full-catalogue plan:")
-              print("songs/artists/albums:", counts.get("songs_scanned"), counts.get("artists_scanned"), counts.get("albums_scanned"))
-              print("due/baseline candidates:", report.get("due_task_count"), report.get("baseline_candidate_count"))
-              print("selected due/baseline:", report.get("selected_due_count"), report.get("selected_baseline_count"))
-              print("no data/missing timestamp/missing provenance:",
-                    counts.get("no_data"), counts.get("missing_timestamp"), counts.get("missing_provenance"))
-              print("provider_requests=0 writes=0")
-              PY
+              python -c 'import json; r=json.load(open("freshness-branch-plan.json", encoding="utf-8")); assert r.get("mode") == "read_only_plan", r; assert r.get("provider_requests") == 0, r; assert r.get("writes") == 0, r; assert r.get("selected_task_count", 0) <= 25, r; assert r.get("selected_due_count", 0) <= 25, r; assert r.get("selected_baseline_count", 0) <= 25, r; assert r.get("selected_task_count") == r.get("selected_due_count", 0) + r.get("selected_baseline_count", 0), r; assert not r.get("errors"), r.get("errors", [])[:10]; c=r.get("counts", {}); print("Freshness branch full-catalogue plan:", c.get("songs_scanned"), c.get("artists_scanned"), c.get("albums_scanned")); print("due/baseline candidates:", r.get("due_task_count"), r.get("baseline_candidate_count")); print("selected due/baseline:", r.get("selected_due_count"), r.get("selected_baseline_count")); print("no data/missing timestamp/missing provenance:", c.get("no_data"), c.get("missing_timestamp"), c.get("missing_provenance")); print("provider_requests=0 writes=0")'
               ;;
             verify-catalogue)
               python shit.py library audit
