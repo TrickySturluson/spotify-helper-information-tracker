@@ -142,6 +142,55 @@
             "The Fuzztones"
           ],
           "album": "The Coolest Songs in the World! Vol. 4"
+        },
+        {
+          "uri": "spotify:track:5LgiqEgpK54OfXC6947wbU",
+          "name": "Where Eagles Dare",
+          "artists": [
+            "Misfits",
+            "Glenn Danzig"
+          ],
+          "album": "Collection"
+        },
+        {
+          "uri": "spotify:track:7fRcZOf8Vy9lz4kXAgBFjP",
+          "name": "Bikini Girls with Machine Guns",
+          "artists": [
+            "The Cramps"
+          ],
+          "album": "Stay Sick!"
+        },
+        {
+          "uri": "spotify:track:6bpCGfeHL1ieBEPJlZrS1A",
+          "name": "Grimly Fiendish",
+          "artists": [
+            "The Damned"
+          ],
+          "album": "Phantasmagoria"
+        },
+        {
+          "uri": "spotify:track:6cxU2pWVkqoBfuBsKGma62",
+          "name": "Neat Neat Neat",
+          "artists": [
+            "The Damned"
+          ],
+          "album": "Damned Damned Damned (Bonus Tracks Version)"
+        },
+        {
+          "uri": "spotify:track:3lSjQ34gfKDT9P5iFuSrwe",
+          "name": "Plan 9 Channel 7",
+          "artists": [
+            "The Damned"
+          ],
+          "album": "Machine Gun Etiquette"
+        },
+        {
+          "uri": "spotify:track:5drBYtUe4dKZEIxqeVFALT",
+          "name": "Mutant Rock",
+          "artists": [
+            "The Meteors"
+          ],
+          "album": "Best Of"
         }
       ],
       "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required. Two additional Creature Feature tracks were detected missing by comparing the confirmed 87-track post-add state against the fresh 82-track Spotify snapshot on 2026-11-02; their exact URIs are now sticky playlist-local removals."
