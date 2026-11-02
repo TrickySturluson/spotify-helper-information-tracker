@@ -70,3 +70,6 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Tricky Daily's scheduled workflow now polls all accessible playlists after the daily cycle, then persists the baseline/removal data with cycle state.
 - Tricky Daily now saves and audits a post-mutation snapshot in addition to its pre-change recovery snapshot. Both workflows upload the complete `playlist_backups/` directory as run artifacts (30-day retention).
 - Polling is interval-based, not event-driven: a manual Spotify removal that is undone before the next poll cannot be inferred from Spotify's current playlist snapshot. Repeated removals that persist until a poll are captured.
+
+- Follow-up hardening: local manager edits now also attempt a post-failure snapshot when a multi-step operation raises after partial writes. Snapshot failure is separately audited without masking the original operation error.
+- Verification status: repository writes are confirmed. No Actions run was returned for these main-branch commits, so compile/unit-test and live Spotify polling results remain pending.
