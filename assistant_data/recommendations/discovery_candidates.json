@@ -416,6 +416,32 @@
     }
   },
   {
+    "spotify_id": "5LgiqEgpK54OfXC6947wbU",
+    "spotify_uri": "spotify:track:5LgiqEgpK54OfXC6947wbU",
+    "artist": "Misfits",
+    "track": "Where Eagles Dare",
+    "album": "Collection",
+    "duration_ms": 128426,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1qpVGPQyd18YJhuY2NeS7e",
     "spotify_uri": "spotify:track:1qpVGPQyd18YJhuY2NeS7e",
     "artist": "Nas",
@@ -428,6 +454,32 @@
       {
         "source": "booze20_recommendation_preview",
         "observed_at": "2026-11-02T07:50:21.585055+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7HtSPzWtfn0PWY2NkWGYvq",
+    "spotify_uri": "spotify:track:7HtSPzWtfn0PWY2NkWGYvq",
+    "artist": "Nekromantix",
+    "track": "Gargoyles Over Copenhagen",
+    "album": "Return Of The Loving Dead",
+    "duration_ms": 236933,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -650,6 +702,32 @@
     }
   },
   {
+    "spotify_id": "64GqJk8Cv2X53aC53HWxZt",
+    "spotify_uri": "spotify:track:64GqJk8Cv2X53aC53HWxZt",
+    "artist": "Screaming Lord Sutch",
+    "track": "Jack The Ripper",
+    "album": "Til The Following Night",
+    "duration_ms": 166200,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4l9fZ75WzPZlAIkqJIWlo8",
     "spotify_uri": "spotify:track:4l9fZ75WzPZlAIkqJIWlo8",
     "artist": "Shakira",
@@ -740,6 +818,32 @@
       {
         "source": "booze5_recommendation_preview",
         "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7fRcZOf8Vy9lz4kXAgBFjP",
+    "spotify_uri": "spotify:track:7fRcZOf8Vy9lz4kXAgBFjP",
+    "artist": "The Cramps",
+    "track": "Bikini Girls with Machine Guns",
+    "album": "Stay Sick!",
+    "duration_ms": 197773,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
@@ -884,6 +988,110 @@
     }
   },
   {
+    "spotify_id": "6LDQAitG4HGw2mfVghNrnw",
+    "spotify_uri": "spotify:track:6LDQAitG4HGw2mfVghNrnw",
+    "artist": "The Creepshow",
+    "track": "Shake",
+    "album": "Sell Your Soul",
+    "duration_ms": 218333,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6bpCGfeHL1ieBEPJlZrS1A",
+    "spotify_uri": "spotify:track:6bpCGfeHL1ieBEPJlZrS1A",
+    "artist": "The Damned",
+    "track": "Grimly Fiendish",
+    "album": "Phantasmagoria",
+    "duration_ms": 229600,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6cxU2pWVkqoBfuBsKGma62",
+    "spotify_uri": "spotify:track:6cxU2pWVkqoBfuBsKGma62",
+    "artist": "The Damned",
+    "track": "Neat Neat Neat",
+    "album": "Damned Damned Damned (Bonus Tracks Version)",
+    "duration_ms": 163346,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3lSjQ34gfKDT9P5iFuSrwe",
+    "spotify_uri": "spotify:track:3lSjQ34gfKDT9P5iFuSrwe",
+    "artist": "The Damned",
+    "track": "Plan 9 Channel 7",
+    "album": "Machine Gun Etiquette",
+    "duration_ms": 308586,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "54kGnwVw5c1fh9XciEurwT",
     "spotify_uri": "spotify:track:54kGnwVw5c1fh9XciEurwT",
     "artist": "The Fuzztones",
@@ -896,6 +1104,58 @@
       {
         "source": "booze5_recommendation_preview",
         "observed_at": "2026-11-02T11:17:07.455428+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4gQP59lYowoVb9hlYMKboc",
+    "spotify_uri": "spotify:track:4gQP59lYowoVb9hlYMKboc",
+    "artist": "The Horrors",
+    "track": "Sheena Is A Parasite",
+    "album": "Strange House",
+    "duration_ms": 102440,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
+        "context": {
+          "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+          "playlist_name": "Booze or Boos!",
+          "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5drBYtUe4dKZEIxqeVFALT",
+    "spotify_uri": "spotify:track:5drBYtUe4dKZEIxqeVFALT",
+    "artist": "The Meteors",
+    "track": "Mutant Rock",
+    "album": "Best Of",
+    "duration_ms": 141306,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "booze10_recommendation_preview",
+        "observed_at": "2026-11-02T16:28:42.369059+00:00",
         "context": {
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",

@@ -110,6 +110,38 @@
             "The Cramps"
           ],
           "album": "Smell of Female"
+        },
+        {
+          "uri": "spotify:track:3ORmOghS8xkXCF25PblMiz",
+          "name": "Partytime",
+          "artists": [
+            "45 Grave"
+          ],
+          "album": "Sleep In Safety"
+        },
+        {
+          "uri": "spotify:track:2CVsEpXpqU8ZEafa5SzIGI",
+          "name": "Release The Bats",
+          "artists": [
+            "The Birthday Party"
+          ],
+          "album": "Junkyard"
+        },
+        {
+          "uri": "spotify:track:1cjtVHPJsrMBVf0JCKYJAn",
+          "name": "Grave Diggers",
+          "artists": [
+            "The Creepshow"
+          ],
+          "album": "Sell Your Soul"
+        },
+        {
+          "uri": "spotify:track:54kGnwVw5c1fh9XciEurwT",
+          "name": "She's Wicked",
+          "artists": [
+            "The Fuzztones"
+          ],
+          "album": "The Coolest Songs in the World! Vol. 4"
         }
       ],
       "notes": "Playlist-specific manual removals. Track URIs were not available for these three historical entries; artist+track identity is used for recommendation feedback. Human Fly, Halloween and Halloween II were added as sticky negative evidence based on the user's report of repeated removals. Presence in the playlist does not clear these records; an explicit whitelist entry is required. Two additional Creature Feature tracks were detected missing by comparing the confirmed 87-track post-add state against the fresh 82-track Spotify snapshot on 2026-11-02; their exact URIs are now sticky playlist-local removals."

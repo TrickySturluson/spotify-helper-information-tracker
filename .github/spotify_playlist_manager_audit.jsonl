@@ -165,3 +165,4 @@
 {"at": "2026-11-02T11:18:07.590284+00:00", "event": "cloud_operation_completed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "before_snapshot": "playlist_backups/20261102T111804417450Z_4diIlnF8BlgoJrwUfejf49.json", "after_snapshot": "playlist_backups/20261102T111807589510Z_4diIlnF8BlgoJrwUfejf49.json", "operation_index": 0, "action": "add"}
 {"at": "2026-11-02T11:18:08.323621+00:00", "event": "post_change_snapshot_saved", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "snapshot": "playlist_backups/20261102T111808322871Z_4diIlnF8BlgoJrwUfejf49.json", "kind": "booze5"}
 {"at": "2026-11-02T11:18:08.324379+00:00", "event": "change_completed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "backup": "playlist_backups/20261102T111803710022Z_4diIlnF8BlgoJrwUfejf49.json", "kind": "booze5"}
+{"at": "2026-11-02T16:28:42.370986+00:00", "event": "booze10_previewed", "playlist_id": "4diIlnF8BlgoJrwUfejf49", "added_count": 10, "candidates_persisted": 51}
