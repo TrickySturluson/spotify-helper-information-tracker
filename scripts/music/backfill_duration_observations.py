@@ -44,11 +44,25 @@ def sha256(path):
 
 
 def epoch_iso(value):
+    """Normalize Unix epoch or timezone-qualified ISO-8601 timestamps to UTC."""
+    if value is None:
+        return None
     try:
         number = int(value)
         if number <= 0:
             return None
         return datetime.fromtimestamp(number, timezone.utc).isoformat()
+    except (TypeError, ValueError, OverflowError, OSError):
+        pass
+    try:
+        text = str(value).strip()
+        if text.endswith("Z"):
+            text = text[:-1] + "+00:00"
+        parsed = datetime.fromisoformat(text)
+        # A naive timestamp has no reliable timezone; do not guess one.
+        if parsed.tzinfo is None:
+            return None
+        return parsed.astimezone(timezone.utc).isoformat()
     except (TypeError, ValueError, OverflowError, OSError):
         return None
 
@@ -206,7 +220,10 @@ def build_plan(library_root=DEFAULT_LIBRARY_ROOT, music_root=DEFAULT_MUSIC_ROOT)
                     "source": str(track.get("duration_source") or ""),
                     "match_type": track.get("match_type"),
                     "confidence": track.get("confidence"),
-                    "retry_after": int(track.get("retry_after") or 0),
+                    "retry_after": int(
+                        (track.get("musicbrainz_retry_after") if provider == "musicbrainz" else track.get("retry_after"))
+                        or track.get("retry_after") or 0
+                    ),
                     "provenance": "legacy_music_metadata_shard",
                 }
                 observations = metadata.get("duration_observations")
