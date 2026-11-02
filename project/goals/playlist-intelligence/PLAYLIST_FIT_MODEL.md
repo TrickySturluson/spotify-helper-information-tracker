@@ -116,6 +116,20 @@ The initial comparison can be reported as a descriptive sanity check only, with 
 3. real playlist outcomes with clear provenance (explicit accept/reject, not ignored exposure);
 4. transition-quality checks as a separate sequencing evaluation.
 
+
+## 6.1 Interpreting the initial human slider style
+
+The user has clarified that their initial SHITting Grounds scores tend somewhat toward the extremes. Preserve the raw ratings exactly, but do not interpret their numeric distance as a neutral, evenly calibrated measurement.
+
+For descriptive comparison only, read the values primarily as ordinal/severity bands:
+- 0–20: emphatic mismatch
+- 21–40: leaning mismatch
+- 41–59: uncertain / mixed / middle
+- 60–79: leaning fit
+- 80–100: emphatic or standout fit
+
+Use rank/order agreement, broad band agreement and notable reversals before raw point error. Do not apply a fixed shrinkage coefficient without additional observations. Do not transform the stored values, use them as production labels, or tune production weights against them. The scores are a small, user-style-specific reference sample, not a universal scale. Future comparisons should preserve both the raw value and this explicitly derived ordinal interpretation.
+
 ## 7. Production decision policy
 
 Fit scoring is one input to a later decision layer:
