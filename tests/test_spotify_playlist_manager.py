@@ -107,6 +107,11 @@ class PlaylistManagerTests(unittest.TestCase):
         spotify.call = fake_call
         self.assertEqual(spotify.items("playlist123"), [])
         self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50&additional_types=track,episode")])
+        seen.clear()
+        self.assertEqual(spotify.items("playlist123", market="from_token"), [])
+        self.assertEqual(seen, [("GET", "/playlists/playlist123/items?limit=50&additional_types=track,episode&market=from_token")])
+        with self.assertRaises(manager.ManagerError):
+            spotify.items("playlist123", market="not-a-market")
 
     def test_valid_add_plan(self):
         playlist_id, operations = manager.validate({
