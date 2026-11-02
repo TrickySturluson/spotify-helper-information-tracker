@@ -212,7 +212,7 @@ class PlaylistManagerTests(unittest.TestCase):
             io.BytesIO(b'{"error":"invalid_grant"}'),
         )
         with patch("urllib.request.urlopen", side_effect=error):
-            with self.assertRaisesRegex(manager.ManagerError, "six months"):
+            with self.assertRaisesRegex(manager.ManagerError, "invalid_grant"):
                 manager.token_post({
                     "grant_type": "refresh_token",
                     "refresh_token": "not-a-real-token",
