@@ -132,3 +132,11 @@ This is the cross-project register of known unfinished work discovered from the 
 
 ## Review discipline
 For every item, record status as **not started / in progress / blocked / ready for verification / verified / deferred**. Link evidence. Do not mark a task verified based only on a PR description, stale conversation count, successful compile, or artifact that has not been published and audited.
+
+
+## 2026-11-02 — Latest checkpoint after second duration provenance pass
+
+- The ISO-8601 timestamp parser now accepts timezone-qualified strings and still rejects timezone-naive values. Issue #113 preview found 8,172 exact timestamped matches across 32 shards / 11,130 rows; 8,121 were already backfilled and 51 additional MusicBrainz observations were eligible. All alias, file, duration, source, status, timestamp, and duplicate conflict counts were zero; 2,958 unknown-provider rows skipped; no network calls or preview writes.
+- Issue #114 apply reported success and 51 changed song files, a backup, post-write health success, zero provider requests, and zero playlist writes. Independent read of a published song JSON confirmed a new MusicBrainz duration observation is on `main`.
+- Fresh post-publication checks queued: #115 audit, #116 health, #117 freshness review, #118 combined audit/health/confidence. Results are pending; don't infer completion from issue creation.
+- Remaining work: inspect the fresh unknown-age baseline; audit duplicate artist/album/song candidates (especially the Candy Claws exact Spotify-album cross-link); implement the provider-aware durable retry queue in `assistant_data/music/retry_queue.json` per [`RETRY_QUEUE_SPEC.md`](RETRY_QUEUE_SPEC.md); then review provider coverage and only execute eligible bounded enrichment. Sorter evaluation remains gated. No provider or playlist writes are authorized by these read-only tasks.
