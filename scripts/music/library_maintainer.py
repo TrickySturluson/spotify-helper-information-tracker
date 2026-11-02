@@ -126,10 +126,6 @@ def apply_maintenance(root=DEFAULT_ROOT, music_root=DEFAULT_MUSIC_ROOT):
     """Apply only safe planned repairs after backing up each affected song file."""
     root, music_root = Path(root), Path(music_root)
     plan = plan_maintenance(root)
-    actions_by_path = {}
-    for action in plan["action_examples"]:
-        actions_by_path.setdefault(action["path"], []).append(action)
-    # Rebuild the complete action list, not only the bounded examples.
     all_actions = []
     for path in sorted((root / "songs").rglob("song.json")):
         record, problem = _read(path)
@@ -154,13 +150,14 @@ def apply_maintenance(root=DEFAULT_ROOT, music_root=DEFAULT_MUSIC_ROOT):
         if stored_metadata.get("duration") is None and recomputed is not None:
             actions.append("fill_missing_duration_confidence")
         if actions:
-            all_actions.append((path, actions, proposed_source, recomputed))
+            all_actions.append((path, actions, proposed_source))
 
     if not all_actions:
         return {
             "mode": "apply", "updated_records": 0, "actions_applied": 0,
             "backup_path": None, "journal_path": None,
-            "remaining_plan": plan["counts"],
+            "remaining_plan": plan["counts"], "remaining_action_count": 0,
+            "ok": plan["ok"], "errors": plan["errors"],
         }
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f")
@@ -168,53 +165,51 @@ def apply_maintenance(root=DEFAULT_ROOT, music_root=DEFAULT_MUSIC_ROOT):
     journal_path = music_root / "maintenance" / "repair_journal.jsonl"
     journal_path.parent.mkdir(parents=True, exist_ok=True)
     updated_records = actions_applied = 0
-    journal_rows = []
-    for path, actions, proposed_source, recomputed in all_actions:
-        record, problem = _read(path)
-        if problem or not isinstance(record, dict):
-            continue
-        before_hash = _hash(path)
-        relative = path.relative_to(root)
-        backup_path = backup_root / relative
-        backup_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(path, backup_path)
+    with journal_path.open("a", encoding="utf-8") as journal:
+        for path, actions, proposed_source in all_actions:
+            record, problem = _read(path)
+            if problem or not isinstance(record, dict):
+                continue
+            before_hash = _hash(path)
+            relative = path.relative_to(root)
+            backup_path = backup_root / relative
+            backup_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(path, backup_path)
 
-        evidence = record.setdefault("evidence", {})
-        metadata = evidence.setdefault("track_metadata", {})
-        confidence = record.setdefault("confidence", {})
-        stored_metadata = confidence.setdefault("metadata", {})
-        applied = []
-        if "add_duration_provenance" in actions and not metadata.get("duration_source") and proposed_source:
-            metadata["duration_source"] = proposed_source
-            metadata["duration_provider"] = "spotify"
-            applied.append("add_duration_provenance")
-        if "fill_missing_duration_confidence" in actions and stored_metadata.get("duration") is None:
-            current = track_metadata_confidence(metadata).get("duration")
-            if current is not None:
-                stored_metadata["duration"] = current
-                applied.append("fill_missing_duration_confidence")
-        if not applied:
-            backup_path.unlink(missing_ok=True)
-            continue
+            evidence = record.setdefault("evidence", {})
+            metadata = evidence.setdefault("track_metadata", {})
+            confidence = record.setdefault("confidence", {})
+            stored_metadata = confidence.setdefault("metadata", {})
+            applied = []
+            if "add_duration_provenance" in actions and not metadata.get("duration_source") and proposed_source:
+                metadata["duration_source"] = proposed_source
+                metadata["duration_provider"] = "spotify"
+                applied.append("add_duration_provenance")
+            if "fill_missing_duration_confidence" in actions and stored_metadata.get("duration") is None:
+                current = track_metadata_confidence(metadata).get("duration")
+                if current is not None:
+                    stored_metadata["duration"] = current
+                    applied.append("fill_missing_duration_confidence")
+            if not applied:
+                backup_path.unlink(missing_ok=True)
+                continue
 
-        _atomic_json(path, record)
-        after_hash = _hash(path)
-        journal_rows.append({
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "song_id": record.get("id"),
-            "record_path": str(relative),
-            "actions": applied,
-            "backup_path": str(backup_path),
-            "before_sha256": before_hash,
-            "after_sha256": after_hash,
-        })
-        updated_records += 1
-        actions_applied += len(applied)
+            _atomic_json(path, record)
+            after_hash = _hash(path)
+            row = {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "song_id": record.get("id"),
+                "record_path": str(relative),
+                "actions": applied,
+                "backup_path": str(backup_path),
+                "before_sha256": before_hash,
+                "after_sha256": after_hash,
+            }
+            journal.write(json.dumps(row, ensure_ascii=False) + "\n")
+            journal.flush()
+            updated_records += 1
+            actions_applied += len(applied)
 
-    if journal_rows:
-        with journal_path.open("a", encoding="utf-8") as handle:
-            for row in journal_rows:
-                handle.write(json.dumps(row, ensure_ascii=False) + "\n")
     remaining = plan_maintenance(root)
     return {
         "mode": "apply",
@@ -224,8 +219,9 @@ def apply_maintenance(root=DEFAULT_ROOT, music_root=DEFAULT_MUSIC_ROOT):
         "journal_path": str(journal_path),
         "remaining_plan": remaining["counts"],
         "remaining_action_count": remaining["action_count"],
+        "ok": remaining["ok"],
+        "errors": remaining["errors"],
     }
-
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
