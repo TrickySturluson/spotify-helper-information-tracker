@@ -92,5 +92,43 @@
       "spotify:track:64J18bwOzZAUmuFxn5l6Ss"
     ],
     "kind": "sequence"
+  },
+  "pending": {
+    "playlist_id": "4aLdllLgRPh5vKOznkC97D",
+    "operations": [
+      {
+        "action": "add",
+        "uris": [
+          "spotify:track:6V0A3jkb9ntudO0kmcJ1xd",
+          "spotify:track:1wsRitfRRtWyEapl0q22o8",
+          "spotify:track:5cZqsjVs6MevCnAkasbEOX",
+          "spotify:track:5mpUKTdskZea0gStWzeHUZ",
+          "spotify:track:7CpbhqKUedOIrcvc94p60Y",
+          "spotify:track:28kOpVf1aCgL0LSFfuKV4w",
+          "spotify:track:2WJWtj8xlMRMddPBQwftTY",
+          "spotify:track:6f2zLLNAyxzD3WLG2IR40l",
+          "spotify:track:6KKtTJAgNLCW7LAtuI9Dwy",
+          "spotify:track:3ZGV8p5oWaj1oIy6OVVVae",
+          "spotify:track:1jQyc3hZdalk3jCIfgTdcn",
+          "spotify:track:3EdMkS9YsVyEFUGwVJBjZB",
+          "spotify:track:4C4nM20DS3oEdaq1WWl4ru",
+          "spotify:track:1fYwDfJ9sp3R9krBbQetux",
+          "spotify:track:7vptmeNwSEVkcwDdqk7UQO",
+          "spotify:track:7kKLHjFif3r0HG5YyBTv6d",
+          "spotify:track:0mHSePRiFnTy7qYPsIeIJ8",
+          "spotify:track:3nGWzFBJ5tMzHWAgs16fK6",
+          "spotify:track:7JOizhmt3HlBgQyJEa0AgK",
+          "spotify:track:0ZPMI8Gnz7p6omBBIOwiO9",
+          "spotify:track:4e6tEXni2K0cZYFmku6Htf",
+          "spotify:track:1hGRe4d3LJCg1VszAU8Cy1",
+          "spotify:track:2uA9EGy7KifPvk2F342IvR",
+          "spotify:track:6rne7RR7YOkAuRYeNP9GQT",
+          "spotify:track:2HsgJD03dwYszo0G1NcEgD"
+        ]
+      }
+    ],
+    "snapshot_id": "AAAAA9FfyfZctmk3RVyZC4ryLH0hsu93",
+    "expected_uris": [],
+    "confirmation": "KsNn29gUU409Q-q6"
   }
 }
