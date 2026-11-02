@@ -105,6 +105,18 @@ class DiscoveryScoringTests(unittest.TestCase):
             "Artist", "Song", "spotify:track:song", feedback
         ))
 
+    def test_new_booze_removals_are_loaded_as_permanent_playlist_local_blocks(self):
+        feedback = discovery.load_playlist_feedback([], "4diIlnF8BlgoJrwUfejf49")
+        self.assertGreaterEqual(feedback["removed_count"], 8)
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Creature Feature", "The Greatest Show Unearthed",
+            "spotify:track:5YEkxfNMTHkfoYlh4d1Y7b", feedback
+        ))
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Creature Feature", "The Netherworld",
+            "spotify:track:62EKjHgJEMoBkL2uhCVHKr", feedback
+        ))
+
     def test_explicit_playlist_whitelist_overrides_removal(self):
         with tempfile.TemporaryDirectory() as directory:
             history = Path(directory) / "removed.json"
