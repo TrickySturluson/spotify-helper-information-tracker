@@ -75,12 +75,6 @@ jobs:
           else
             python compat/spotify_daily_cycle.py
           fi
-      - name: Poll all playlists for user removals
-        if: success()
-        env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-        run: python compat/track_playlist_removals.py
       - name: Preserve recovery snapshots
         if: always() && hashFiles('playlist_backups/**') != ''
         uses: actions/upload-artifact@v4
