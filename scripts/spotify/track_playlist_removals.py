@@ -97,6 +97,9 @@ def process_playlist(sp, playlist, baseline_data, blacklist_data, dedupe):
     else:
         print(f'OK        {name}: no duplicate track URIs')
 
+    # Persist the post-dedupe state so cleanup is not classified as user feedback.
+    baseline_data.setdefault("playlists", {})[pid] = rows
+
 
 
 def seed_from_reference_library(baseline_data):
