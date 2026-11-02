@@ -57,26 +57,20 @@
       {
         "action": "add",
         "uris": [
-          "spotify:track:5EuQzakrNyaOLsVS4pi1Az",
-          "spotify:track:2EFHXO4zJRitZLpE1ztsWO",
-          "spotify:track:743DaI0d44SpwV2ArTPGmy",
-          "spotify:track:4j3sD1EcYquM2ltqNH19ec",
-          "spotify:track:7i6J0GFdjVKrHVKreT3Mev",
-          "spotify:track:1qpVGPQyd18YJhuY2NeS7e",
-          "spotify:track:0UzhQhSjlIiNHqozH0tKHl",
-          "spotify:track:2idmlkd8oUaQvYEtINpLBX",
-          "spotify:track:1ljtQrsf55VCwjqXjro7Po",
-          "spotify:track:1AWdTY4hPU1U5q5ceJ26yg",
-          "spotify:track:2VOomzT6VavJOGBeySqaMc",
-          "spotify:track:4SSnFejRGlZikf02HLewEF",
-          "spotify:track:5DSi7heBC8eTIFROBvttnp",
-          "spotify:track:1zyGFId8xHOcRmCmehrwlc",
-          "spotify:track:3JTMWdhcJPiegDSe7SvZS3",
-          "spotify:track:4l9fZ75WzPZlAIkqJIWlo8",
-          "spotify:track:2h47SG8bNphmicAll4H9RV",
-          "spotify:track:6ewN9MaFbi78oDLT9wYDgn",
-          "spotify:track:5Ng6UbryNd3eds2zQk9MUf",
-          "spotify:track:5uGsG0LfotfWDq6hql4h53"
+          "spotify:track:3Q9G213iOuM72OWIu86oJH",
+          "spotify:track:4e74QB4MF5ei1UlzmOZKSI",
+          "spotify:track:3Ero9C3m7RlEf1xu5XhFDC",
+          "spotify:track:1Qxdyb5Rb7f9RGHQRSU4Nd",
+          "spotify:track:0ElRzK07sc9eszyk1ea9Ab",
+          "spotify:track:79Txj2AEYK7Spv3275ZgPk",
+          "spotify:track:5h5reMGNpL19vdn5wMkbNn",
+          "spotify:track:4AYUejlbusnbZY7s2z2C9G",
+          "spotify:track:5YEkxfNMTHkfoYlh4d1Y7b",
+          "spotify:track:62EKjHgJEMoBkL2uhCVHKr",
+          "spotify:track:1WAFh6Q2IVs2OgnAIQFjjC",
+          "spotify:track:0mWwoJf3MLLZtnHH1VlxPM",
+          "spotify:track:1sh9C3fQEAQ5NLJjUluPhG",
+          "spotify:track:39MVn4QM8RVfaEWPPJW8yV"
         ]
       }
     ],
@@ -155,7 +149,7 @@
       "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
       "spotify:track:2VDqNzRGI49PkXKlhpinmJ"
     ],
-    "confirmation": "ma2IAjPw41EaDgFG",
+    "confirmation": "I_zKw1fKpYgF9rl_",
     "kind": "booze20"
   },
   "track_uri_cache": {
@@ -314,6 +308,12 @@
       "uri": "spotify:track:39MVn4QM8RVfaEWPPJW8yV",
       "album": "Collection",
       "duration_ms": 165866
+    },
+    "misfits|astrozombies": {
+      "name": "Astro Zombies",
+      "uri": "spotify:track:7dWyBjRr6F6Ap2N6xNNXf2",
+      "album": "Collection",
+      "duration_ms": 131333
     }
   }
 }
