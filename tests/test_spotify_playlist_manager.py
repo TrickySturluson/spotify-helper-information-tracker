@@ -9,6 +9,21 @@ import spotify_playlist_manager as manager
 
 
 class PlaylistManagerTests(unittest.TestCase):
+    def test_cloud_refresh_persists_rotated_token_to_repository_secret(self):
+        with patch.dict("os.environ", {"GITHUB_ACTIONS": "true", "GH_TOKEN": "short-lived-app-token", "GITHUB_REPOSITORY": "TrickySturluson/spotify-helper-information-tracker"}, clear=True), patch.object(manager.subprocess, "run") as run:
+            manager.persist_refresh_token("rotated-refresh-token")
+        self.assertEqual(run.call_args.args[0], ["gh", "secret", "set", "SPOTIFY_REFRESH_TOKEN", "--repo", "TrickySturluson/spotify-helper-information-tracker"])
+        self.assertEqual(run.call_args.kwargs["input"], "rotated-refresh-token")
+        self.assertNotIn("rotated-refresh-token", repr(run.call_args.args[0]))
+
+    def test_cloud_refresh_fails_closed_before_spotify_request_without_secret_writer(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.t = {"refresh_token": "existing", "obtained_at": 0, "expires_in": 0}
+        with patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}, clear=True), patch.object(manager, "token_post") as token_post:
+            with self.assertRaisesRegex(manager.ManagerError, "blocked before contacting Spotify"):
+                spotify.bearer()
+        token_post.assert_not_called()
+
     def test_unknown_playlists_are_locked_by_default(self):
         with tempfile.TemporaryDirectory() as directory:
             config_path = Path(directory) / "permissions.json"
