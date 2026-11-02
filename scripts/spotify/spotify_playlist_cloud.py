@@ -104,15 +104,19 @@ def replace_playlist(sp, pid, uris):
         raise manager.ManagerError("Playlist is LOCKED; undo was stopped before restoration.")
     first = uris[:100]
     if first:
-        sp.call("PUT", f"/playlists/{pid}/items", {"uris": first})
+        manager.mutate_with_snapshots(sp,pid,lambda: sp.call("PUT", f"/playlists/{pid}/items", {"uris": first}),
+                                      event="restore_replace_first_page",item_count=len(first))
         for offset in range(100, len(uris), 100):
             if not manager.unlocked(pid):
                 raise manager.ManagerError("Playlist locked during undo; remaining restoration stopped.")
-            sp.call("POST", f"/playlists/{pid}/items", {"uris": uris[offset:offset + 100]})
+            batch=uris[offset:offset + 100]
+            manager.mutate_with_snapshots(sp,pid,lambda batch=batch: sp.call("POST", f"/playlists/{pid}/items", {"uris": batch}),
+                                          event="restore_append_page",offset=offset,item_count=len(batch))
     else:
         current = [item.get("uri") for item in manager.tracks(sp, manager.find(sp, pid)) if item.get("uri")]
         if current:
-            manager.remove(sp, pid, current)
+            manager.mutate_with_snapshots(sp,pid,lambda: manager.remove(sp,pid,current),
+                                          event="restore_clear_playlist",item_count=len(current))
 
 
 def cleanup_duplicates(sp, pid):
@@ -136,9 +140,9 @@ def cleanup_duplicates(sp, pid):
     if not manager.unlocked(pid):
         raise manager.ManagerError("Playlist locked before duplicate removal; cleanup stopped.")
     items = [{"uri": uri, "positions": indexes} for uri, indexes in duplicates.items()]
-    sp.call("DELETE", f"/playlists/{pid}/items", {
-        "items": items, "snapshot_id": playlist.get("snapshot_id")
-    })
+    manager.mutate_with_snapshots(sp,pid,lambda: sp.call("DELETE", f"/playlists/{pid}/items", {
+        "items": items, "snapshot_id": manager.find(sp,pid).get("snapshot_id")
+    }),event="duplicate_cleanup",duplicate_uri_count=len(duplicates),surplus_count=surplus)
     manager.audit(
         event="duplicate_cleanup", playlist_id=pid,
         duplicate_uri_count=len(duplicates), surplus_count=surplus,
@@ -148,32 +152,26 @@ def cleanup_duplicates(sp, pid):
 
 def execute(sp, pid, operations):
     manager.assert_managed(pid)
-    for op in operations:
+    for index,op in enumerate(operations):
         if not manager.unlocked(pid):
             raise manager.ManagerError("Playlist locked during execution; remaining changes stopped.")
         action = op["action"]
-        if action == "add":
-            manager.add(sp, pid, op["uris"])
-        elif action == "remove":
-            manager.remove(sp, pid, op["uris"])
-        elif action == "replace":
-            current = [x["uri"] for x in manager.tracks(sp, manager.find(sp, pid)) if x.get("uri")]
-            if current:
-                manager.remove(sp, pid, current)
-            manager.add(sp, pid, op["uris"])
-        elif action == "reorder":
-            current = manager.find(sp, pid)
-            sp.call("PUT", f"/playlists/{pid}/items", {
-                "range_start": op["range_start"],
-                "insert_before": op["insert_before"],
-                "range_length": op["range_length"],
-                "snapshot_id": current.get("snapshot_id"),
-            })
-        elif action == "details":
-            sp.call("PUT", f"/playlists/{pid}", {
-                "name": op["name"],
-                "description": op["description"],
-            })
+        def perform_operation():
+            if action == "add": return manager.add(sp, pid, op["uris"])
+            if action == "remove": return manager.remove(sp, pid, op["uris"])
+            if action == "replace":
+                current = [x["uri"] for x in manager.tracks(sp, manager.find(sp, pid)) if x.get("uri")]
+                if current: manager.remove(sp, pid, current)
+                return manager.add(sp, pid, op["uris"])
+            if action == "reorder":
+                current = manager.find(sp, pid)
+                return sp.call("PUT", f"/playlists/{pid}/items", {
+                    "range_start": op["range_start"], "insert_before": op["insert_before"],
+                    "range_length": op["range_length"], "snapshot_id": current.get("snapshot_id")})
+            if action == "details":
+                return sp.call("PUT", f"/playlists/{pid}", {"name": op["name"], "description": op["description"]})
+        manager.mutate_with_snapshots(sp,pid,perform_operation,event="cloud_operation",
+                                      operation_index=index,action=action)
 
 
 def main():
@@ -1092,7 +1090,9 @@ def main():
                     if not choices:
                         raise manager.ManagerError("No alternate Tricky Daily description is available.")
                     new_description = secrets.choice(choices)
-                    sp.call("PUT", f"/playlists/{pid}", {"description": new_description})
+                    manager.mutate_with_snapshots(
+                        sp,pid,lambda: sp.call("PUT", f"/playlists/{pid}", {"description": new_description}),
+                        event="daily_description_update")
                     manager.audit(
                         event="daily_description_updated",
                         playlist_id=pid,
