@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-02T21:38:41.884998+00:00",
+  "captured_at": "2026-11-03T14:16:32.387307+00:00",
   "id": "5oaemzgKQVvRm044eoELf8",
   "name": "For Stream",
   "description": "Relaxed Stream vibes &lt;3",
@@ -10,8 +10,8 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAANyEqDEbSLSkf5XGkSypx017n3VmUX",
-  "total_items_reported": 3420,
+  "snapshot_id": "AAANygerNMq43CrzmbSiM9Hpue9ECAA7",
+  "total_items_reported": 3422,
   "item_count_fetched": 0,
   "items_accessible": false,
   "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
