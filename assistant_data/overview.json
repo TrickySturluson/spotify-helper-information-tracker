@@ -41,7 +41,7 @@
   "top_10_track_share": 0.072406,
   "listening_time": {
     "schema_version": 1,
-    "generated_at": "2026-11-03T16:26:58.806457+00:00",
+    "generated_at": "2026-11-04T16:32:12.815571+00:00",
     "source_scrobbles": 152005,
     "primary_estimate": {
       "method": "legacy_average_duration",
