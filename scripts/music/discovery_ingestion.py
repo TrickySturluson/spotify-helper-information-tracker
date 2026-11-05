@@ -58,10 +58,20 @@ def append_candidates(rows, *, source="shit_discovery", context=None, observed_a
             by_key[spotify_id] = current
             added += 1
         evidence = current.setdefault("discovery_evidence", [])
+        recommendation_fields = (
+            "tier", "daily_mix_bucket", "score", "similarity",
+            "supporting_seeds", "confidence", "liked",
+            "daily_trend_affinity", "daily_trend_confidence",
+        )
+        recommendation = {
+            field: row[field] for field in recommendation_fields
+            if field in row and row[field] is not None
+        }
         event = {
             "source": source,
             "observed_at": stamp,
             "context": context or {},
+            "recommendation": recommendation,
         }
         # Retry-safe dedupe ignores observation timestamp but retains distinct
         # contexts (for example, different daily cycles or source surfaces).

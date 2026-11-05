@@ -213,6 +213,150 @@ class DiscoveryScoringTests(unittest.TestCase):
                     )
 
 
+    def test_daily_exposure_history_is_playlist_scoped_and_decays(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "candidates.json"
+            history.write_text(
+                '[{"spotify_id":"daily1","spotify_uri":"spotify:track:daily1",'
+                '"discovery_evidence":['
+                '{"source":"tricky_daily_recommendations","observed_at":"2026-11-04T05:00:00+00:00",'
+                '"context":{"playlist_id":"4yUVHSMQySfWeEowfIMcx7","cycle_date_eastern":"2026-11-04"}},'
+                '{"source":"booze_recommendation","observed_at":"2026-11-05T05:00:00+00:00",'
+                '"context":{"playlist_id":"4diIlnF8BlgoJrwUfejf49"}}]},'
+                '{"spotify_id":"booze1","spotify_uri":"spotify:track:booze1",'
+                '"discovery_evidence":[{"observed_at":"2026-11-05T05:00:00+00:00",'
+                '"context":{"playlist_id":"4diIlnF8BlgoJrwUfejf49"}}]}]',
+                encoding="utf-8",
+            )
+            recent = discovery.load_daily_discovery_exposure(date(2026, 11, 5), history)
+            older = discovery.load_daily_discovery_exposure(date(2026, 11, 20), history)
+        self.assertIn("spotify:track:daily1", recent)
+        self.assertEqual(recent["spotify:track:daily1"]["events_30d"], 1)
+        self.assertNotIn("spotify:track:booze1", recent)
+        self.assertLess(
+            older["spotify:track:daily1"]["penalty"],
+            recent["spotify:track:daily1"]["penalty"],
+        )
+
+    def test_daily_exposure_ignores_malformed_history_context(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "candidates.json"
+            history.write_text(
+                '[{"spotify_id":"daily1","spotify_uri":"spotify:track:daily1",'
+                '"discovery_evidence":[{"context":"not-an-object",'
+                '"observed_at":"2026-11-04T05:00:00+00:00"}]}]',
+                encoding="utf-8",
+            )
+            exposure = discovery.load_daily_discovery_exposure(date(2026, 11, 5), history)
+        self.assertEqual(exposure, {})
+
+    def test_daily_exposure_uses_eastern_cycle_date_over_utc_timestamp(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "candidates.json"
+            history.write_text(
+                '[{"spotify_id":"daily1","spotify_uri":"spotify:track:daily1",'
+                '"discovery_evidence":[{"observed_at":"2026-11-06T04:30:00+00:00",'
+                '"context":{"playlist_id":"4yUVHSMQySfWeEowfIMcx7",'
+                '"cycle_date_eastern":"2026-11-05"}}]}]',
+                encoding="utf-8",
+            )
+            exposure = discovery.load_daily_discovery_exposure(date(2026, 11, 6), history)
+        self.assertEqual(exposure["spotify:track:daily1"]["latest_days_ago"], 1)
+
+    def test_daily_exposure_penalty_is_soft_and_positive_outcomes_override(self):
+        track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
+        exposure = {"discovery_exposure": {"spotify:track:daily1": {"penalty": 0.10}}}
+        plain, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), {})
+        exposed, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), exposure)
+        saved_feedback = {
+            **exposure,
+            "daily_evidence": {"spotify:track:daily1": {"liked": True, "liked_at_add": False}},
+        }
+        saved, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), saved_feedback)
+        self.assertLess(exposed, plain)
+        self.assertAlmostEqual(saved, plain + 0.06, places=5)
+
+    def test_measured_listening_reduces_daily_exposure_penalty(self):
+        track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
+        exposure = {"discovery_exposure": {"spotify:track:daily1": {"penalty": 0.10}}}
+        unobserved, *_ = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 5), exposure
+        )
+        played_feedback = {
+            **exposure,
+            "daily_evidence": {
+                "spotify:track:daily1": {
+                    "measured_plays": 2,
+                    "lastfm_plays": 0,
+                    "liked": False,
+                    "liked_at_add": False,
+                }
+            },
+        }
+        played, *_ = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 5), played_feedback
+        )
+        self.assertGreater(played, unobserved)
+
+    def test_non_daily_feedback_does_not_apply_discovery_exposure(self):
+        track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
+        plain, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), {})
+        other_playlist = {"discovery_exposure": {}}
+        unchanged, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), other_playlist)
+        self.assertEqual(unchanged, plain)
+
+
+    def test_daily_mix_uses_freshness_quotas_and_artist_cap(self):
+        ranked = []
+        for tier, count in (("familiar", 20), ("rediscovery", 20), ("discovery", 20)):
+            for index in range(count):
+                ranked.append({
+                    "uri": f"spotify:track:{tier}{index}",
+                    "artist": f"{tier} artist {index // 2}",
+                    "track": f"{tier} track {index}",
+                    "tier": tier,
+                    "score": 1.0 - index / 1000,
+                })
+        ranked.sort(key=lambda row: (-row["score"], row["artist"], row["track"]))
+        selected = discovery.select_daily_mix(ranked, target_size=20, per_artist=2)
+        counts = {}
+        for row in selected:
+            counts[row["tier"]] = counts.get(row["tier"], 0) + 1
+        self.assertEqual(len(selected), 20)
+        self.assertEqual(counts, {"discovery": 9, "rediscovery": 6, "familiar": 5})
+        self.assertEqual(
+            [row["score"] for row in selected],
+            sorted((row["score"] for row in selected), reverse=True),
+        )
+        self.assertLessEqual(max(
+            sum(1 for row in selected if row["artist"] == artist)
+            for artist in {row["artist"] for row in selected}
+        ), 2)
+
+    def test_daily_mix_backfills_short_tiers_by_global_rank(self):
+        ranked = [
+            {"uri": "spotify:track:d1", "artist": "D1", "tier": "discovery", "score": 0.9},
+            {"uri": "spotify:track:r1", "artist": "R1", "tier": "rediscovery", "score": 0.8},
+            {"uri": "spotify:track:f1", "artist": "F1", "tier": "familiar", "score": 0.7},
+            {"uri": "spotify:track:f2", "artist": "F2", "tier": "familiar", "score": 0.6},
+            {"uri": "spotify:track:f3", "artist": "F3", "tier": "familiar", "score": 0.5},
+        ]
+        selected = discovery.select_daily_mix(ranked, target_size=5, per_artist=2)
+        self.assertEqual(len(selected), 5)
+        self.assertEqual({row["uri"] for row in selected}, {row["uri"] for row in ranked})
+
+    def test_daily_mix_is_deterministic_and_does_not_mutate_candidates(self):
+        ranked = [
+            {"uri": f"spotify:track:{tier}", "artist": tier, "tier": tier, "score": 1.0}
+            for tier in ("discovery", "rediscovery", "familiar")
+        ]
+        before = [dict(row) for row in ranked]
+        first = discovery.select_daily_mix(ranked, target_size=3)
+        second = discovery.select_daily_mix(ranked, target_size=3)
+        self.assertEqual(first, second)
+        self.assertEqual(ranked, before)
+
+
 if __name__ == "__main__":
     unittest.main()
 

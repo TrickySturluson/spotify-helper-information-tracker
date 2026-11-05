@@ -34,6 +34,15 @@ SIMILAR_PER_SEED = 20
 DISCOVERY_ARTISTS = 36
 TRACKS_PER_ARTIST = 10
 
+# Soft composition targets for Tricky Daily. These are quotas, not filters:
+# after the preferred mix is filled, the highest-ranked remaining candidates
+# backfill any shortfall. This keeps quality and minimum-pool safeguards intact.
+DAILY_MIX_TARGETS = {
+    "discovery": 0.45,   # no Last.fm scrobbles
+    "rediscovery": 0.30, # one or two scrobbles
+    "familiar": 0.25,   # three or more scrobbles
+}
+
 
 def norm(value):
     return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
@@ -87,6 +96,71 @@ def build_familiarity_index(tracks):
         for row in tracks
         if isinstance(row, dict) and row.get("artist") and row.get("track")
     }
+
+
+def load_daily_discovery_exposure(today=None, path=Path("assistant_data/recommendations/discovery_candidates.json")):
+    """Return recent, Daily-only discovery exposure; this is not listening evidence.
+
+    Only events explicitly scoped to Tricky Daily count. Malformed timestamps,
+    other playlists, and events older than 30 days are ignored. The penalty is
+    soft and decays with age so a surfaced-but-unheard track can return later.
+    """
+    today = today or date.today()
+    path = Path(path)
+    if not path.is_file():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        rows = payload.get("tracks", []) if isinstance(payload, dict) else payload
+        if not isinstance(rows, list):
+            return {}
+    except (OSError, ValueError, TypeError):
+        return {}
+
+    exposure = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        spotify_id = str(row.get("spotify_id") or "").strip()
+        uri = row.get("spotify_uri") or ("spotify:track:" + spotify_id if spotify_id else "")
+        if not isinstance(uri, str) or not uri.startswith("spotify:track:"):
+            continue
+        recent_days = []
+        for event in row.get("discovery_evidence") or []:
+            if not isinstance(event, dict):
+                continue
+            context = event.get("context") or {}
+            if not isinstance(context, dict):
+                continue
+            if context.get("playlist_id") != "4yUVHSMQySfWeEowfIMcx7":
+                continue
+            observed = event.get("observed_at")
+            try:
+                # The Daily cycle date is already recorded in Eastern time and
+                # is authoritative around UTC midnight / DST boundaries.
+                cycle_day = context.get("cycle_date_eastern")
+                event_day = date.fromisoformat(cycle_day) if cycle_day else None
+                if event_day is None:
+                    when = datetime.fromisoformat(str(observed).replace("Z", "+00:00"))
+                    event_day = when.date()
+                age = (today - event_day).days
+            except (TypeError, ValueError, OverflowError):
+                continue
+            if 0 <= age <= 30:
+                recent_days.append(age)
+        if not recent_days:
+            continue
+        latest_age = min(recent_days)
+        # Repeated resurfacing adds a modest increment; age remains the
+        # dominant factor. The maximum raw penalty is bounded at 0.12.
+        repeat_factor = min(1.0, 0.70 + 0.15 * (len(recent_days) - 1))
+        penalty = 0.12 * math.exp(-latest_age / 12.0) * repeat_factor
+        exposure[uri] = {
+            "events_30d": len(recent_days),
+            "latest_days_ago": latest_age,
+            "penalty": round(penalty, 6),
+        }
+    return exposure
 
 
 def lyric_theme_affinity(analysis, playlist_theme_counts):
@@ -368,6 +442,8 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     # A removed track/artist is a soft negative, never a global blacklist.
     feedback = feedback or {}
     daily = feedback.get("daily_evidence", {}).get(uri, {})
+    exposure = feedback.get("discovery_exposure", {}).get(uri, {})
+    exposure_penalty = max(0.0, float(exposure.get("penalty") or 0.0))
     removed_exact = track_key(artist, name) in feedback.get("negative_keys", set())
     removed_uri = uri in feedback.get("negative_uris", set())
     # A Daily removal is not negative evidence unless meaningful listening exposure was observed.
@@ -400,12 +476,78 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
         feedback_bonus += min(0.08, 0.025 * math.log1p(daily["measured_plays"]))
     if daily.get("lastfm_plays") is not None and daily.get("lastfm_plays") > 0:
         feedback_bonus += min(0.025, 0.008 * math.log1p(daily["lastfm_plays"]))
+    # Actual positive outcomes counteract exposure fatigue. Missing coverage and
+    # unplayed tracks remain neutral; a save after addition fully clears it.
+    if post_add_saved:
+        exposure_penalty = 0.0
+    elif (daily.get("measured_plays") or 0) > 0 or (daily.get("lastfm_plays") or 0) > 0:
+        exposure_penalty *= 0.35
     # Spotify removed the popularity field from some Development Mode API
     # responses in 2026. Do not interpret a missing field as popularity zero.
-    score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty + feedback_bonus
+    score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty - exposure_penalty + feedback_bonus
     if is_liked and not post_add_saved:
         score -= weights["liked_penalty"]
     return score, plays, known.get("last_scrobble"), is_liked
+
+
+def select_daily_mix(ranked, target_size=TARGET_SIZE, per_artist=2, targets=None):
+    """Select a freshness-balanced Daily set, then backfill by score.
+
+    Tier quotas are soft. Candidate ranking remains authoritative within each
+    tier, artist caps preserve variety, and shortages fall back to the global
+    score order rather than lowering the recommendation minimum.
+    """
+    targets = targets or DAILY_MIX_TARGETS
+    if not ranked or target_size <= 0:
+        return []
+    tiers = ("discovery", "rediscovery", "familiar")
+    weights = {tier: max(0.0, float(targets.get(tier, 0.0))) for tier in tiers}
+    total_weight = sum(weights.values())
+    if total_weight <= 0:
+        weights = {tier: 1.0 / len(tiers) for tier in tiers}
+    else:
+        weights = {tier: value / total_weight for tier, value in weights.items()}
+
+    # Largest-remainder allocation ensures integer quotas sum to target_size.
+    raw = {tier: weights[tier] * target_size for tier in tiers}
+    quotas = {tier: int(math.floor(raw[tier])) for tier in tiers}
+    remainder = target_size - sum(quotas.values())
+    for tier in sorted(tiers, key=lambda item: (-(raw[item] - quotas[item]), tiers.index(item)))[:remainder]:
+        quotas[tier] += 1
+
+    selected, selected_ids, artist_counts = [], set(), defaultdict(int)
+
+    def add(row):
+        identity = row.get("uri") or track_key(row.get("artist"), row.get("track"))
+        artist = norm(row.get("artist"))
+        if identity in selected_ids or artist_counts[artist] >= per_artist:
+            return False
+        selected.append(dict(row))
+        selected_ids.add(identity)
+        artist_counts[artist] += 1
+        return True
+
+    for tier in tiers:
+        count = 0
+        for row in ranked:
+            if row.get("tier") != tier:
+                continue
+            if add(row):
+                count += 1
+                if count >= quotas[tier]:
+                    break
+    # Soft quota fallback: preserve global ranking if any tier is undersupplied
+    # or artist caps prevented its target from being met.
+    for row in ranked:
+        if len(selected) >= target_size:
+            break
+        add(row)
+    # Quotas choose membership, not playlist ordering. Restore the global score
+    # order so the mix is not artificially segmented into tier blocks.
+    return [
+        dict(row) for row in ranked
+        if (row.get("uri") or track_key(row.get("artist"), row.get("track"))) in selected_ids
+    ][:target_size]
 
 
 def build_discovery_recommendations(
@@ -424,7 +566,12 @@ def build_discovery_recommendations(
     if not isinstance(profiles, dict) or not profiles or not isinstance(archive, list):
         raise RuntimeError("Music taste/familiarity data is empty or invalid.")
     familiarity = build_familiarity_index(archive)
+    is_daily = playlist_id == "4yUVHSMQySfWeEowfIMcx7"
     feedback = load_playlist_feedback(playlist_items, playlist_id)
+    feedback["discovery_exposure"] = (
+        load_daily_discovery_exposure(today)
+        if is_daily else {}
+    )
     # Daily receives user-wide momentum as a soft signal, never a fixed mood target.
     trends_report = {}
     trends_path = Path("assistant_data/spotify/listening_trends.json")
@@ -508,6 +655,10 @@ def build_discovery_recommendations(
                 "positive_artist_count": feedback.get("positive_artists", {}).get(norm(artist), 0),
                 "removed_artist_count": feedback.get("negative_artists", {}).get(norm(artist), 0),
                 "removed_exact": False,
+                "daily_exposure_penalty": (
+                    feedback.get("discovery_exposure", {}).get(uri, {}).get("penalty", 0.0)
+                    if is_daily else None
+                ),
                 "whitelisted": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
                 "positive_exact": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
             }
@@ -524,17 +675,23 @@ def build_discovery_recommendations(
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
         time.sleep(0.08)
-    # Deterministic ordering; cap artists to preserve range across the 30.
+    # Deterministic ordering. Daily uses soft freshness quotas with score-based
+    # backfill; other generated playlists retain the original score-only policy.
     ranked = sorted(candidates.values(), key=lambda row: (-row["score"], norm(row["artist"]), norm(row["track"])))
-    selected, artist_counts = [], defaultdict(int)
-    for row in ranked:
-        if len(selected) >= target_size:
-            break
-        key = norm(row["artist"])
-        if artist_counts[key] >= 2:
-            continue
-        selected.append(row)
-        artist_counts[key] += 1
+    if is_daily:
+        selected = select_daily_mix(ranked, target_size=target_size, per_artist=2)
+        for row in selected:
+            row["daily_mix_bucket"] = row.get("tier")
+    else:
+        selected, artist_counts = [], defaultdict(int)
+        for row in ranked:
+            if len(selected) >= target_size:
+                break
+            key = norm(row["artist"])
+            if artist_counts[key] >= 2:
+                continue
+            selected.append(row)
+            artist_counts[key] += 1
     if len(selected) < min(MIN_MATCHES, target_size):
         raise RuntimeError(
             f"Only {len(selected)} discovery candidates were found; at least "
