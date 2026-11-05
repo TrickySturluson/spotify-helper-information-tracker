@@ -227,12 +227,31 @@ def liked_track_keys(sp):
 
 
 def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST, offset=0):
+    """Search Spotify with bounded retries for transient transport/server errors.
+
+    Authentication, permission and rate-limit responses are not retried here:
+    the manager owns token refresh and Spotify's Retry-After cooldown policy.
+    """
     query = f'artist:"{artist}"'
     endpoint = "/search?" + urllib.parse.urlencode({
         "type": "track", "limit": limit, "offset": offset, "q": query,
     })
-    response = sp.call("GET", endpoint)
-    return ((response or {}).get("tracks") or {}).get("items") or []
+    for attempt in range(3):
+        try:
+            response = sp.call("GET", endpoint)
+            return ((response or {}).get("tracks") or {}).get("items") or []
+        except Exception as error:
+            message = str(error)
+            if any(code in message for code in ("HTTP 401", "HTTP 403", "HTTP 429")):
+                raise
+            transient = (
+                any(code in message for code in ("HTTP 500", "HTTP 502", "HTTP 503", "HTTP 504"))
+                or isinstance(error, (TimeoutError, ConnectionError, urllib.error.URLError))
+            )
+            if not transient or attempt == 2:
+                raise
+            time.sleep(2 ** attempt)
+    return []
 
 
 def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_removed_tracks.json")):
