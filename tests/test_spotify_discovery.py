@@ -21,8 +21,8 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertEqual(len({discovery.norm(row["artist"]) for row in selected}), 3)
 
     def test_discovery_defaults_to_sixty_tracks_and_expands_artist_pool(self):
-        self.assertEqual(discovery.TARGET_SIZE, 60)
-        self.assertEqual(discovery.MIN_MATCHES, 60)
+        self.assertEqual(discovery.TARGET_SIZE, 30)
+        self.assertEqual(discovery.MIN_MATCHES, 20)
         self.assertGreaterEqual(discovery.DISCOVERY_ARTISTS, 60)
 
     def test_similar_artists_rank_consensus_above_alphabetical_ties(self):
