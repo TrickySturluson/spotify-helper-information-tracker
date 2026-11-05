@@ -130,6 +130,8 @@ def load_daily_discovery_exposure(today=None, path=Path("assistant_data/recommen
             if not isinstance(event, dict):
                 continue
             context = event.get("context") or {}
+            if not isinstance(context, dict):
+                continue
             if context.get("playlist_id") != "4yUVHSMQySfWeEowfIMcx7":
                 continue
             observed = event.get("observed_at")
