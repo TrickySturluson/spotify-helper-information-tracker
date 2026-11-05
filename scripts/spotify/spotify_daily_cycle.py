@@ -56,7 +56,7 @@ def set_action_output(name, value):
     output_path = os.environ.get("GITHUB_OUTPUT")
     if output_path:
         with open(output_path, "a", encoding="utf-8") as handle:
-            handle.write(f"{name}={value}\\n")
+            handle.write(f"{name}={value}\n")
 
 
 def configure():
