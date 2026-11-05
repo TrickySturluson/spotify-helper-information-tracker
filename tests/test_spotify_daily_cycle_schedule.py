@@ -75,20 +75,22 @@ class DailyCycleScheduleTests(unittest.TestCase):
         spotify.assert_not_called()
 
 
-    def test_daily_verifies_sixty_distinct_artists_after_spotify_readback(self):
+    def test_daily_verifies_sixty_tracks_after_spotify_readback_without_artist_ceiling(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         self.assertIn('verified_items = updated_snapshot["items"]', source)
         self.assertIn("len(verified_items) != DAILY_TARGET_SIZE", source)
-        self.assertIn("False", source)
+        self.assertIn("len(verified_items) != DAILY_TARGET_SIZE", source)
+        self.assertNotIn("count > 2 for count in verified_artist_counts.values()", source)
         self.assertIn('event="daily_post_change_validation_failed"', source)
 
-    def test_daily_requires_sixty_tracks_and_caps_artists_at_two(self):
+    def test_daily_requires_sixty_tracks_and_valid_primary_artists(self):
         self.assertEqual(daily_cycle.DAILY_TARGET_SIZE, 60)
         self.assertEqual(daily_cycle.MINIMUM_RECOMMENDATIONS, 60)
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         self.assertIn("len(recommendations) != DAILY_TARGET_SIZE", source)
         self.assertIn("not artist for artist in artist_keys", source)
         self.assertIn("daily_artist_diversity_fallback_used", source)
+        self.assertNotIn("count > 2 for count in artist_counts.values()", source)
 
     def test_daily_description_pool_keeps_all_originally_discussed_lines(self):
         expected = {
