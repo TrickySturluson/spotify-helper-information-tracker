@@ -51,6 +51,14 @@ def should_run_cycle(local_now, force=False, event_name=None):
     return local_now.hour == 0 and local_now.minute < 30
 
 
+def cycle_already_completed(config, cycle_date):
+    """Return whether the Eastern date has already been claimed by a cycle."""
+    state = config.get("daily_cycle", {})
+    if not isinstance(state, dict):
+        raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing a duplicate rotation.")
+    return state.get("last_cycle_date_eastern") == cycle_date
+
+
 def set_action_output(name, value):
     """Publish a GitHub Actions step output when running inside Actions."""
     output_path = os.environ.get("GITHUB_OUTPUT")
@@ -85,6 +93,14 @@ def main():
     cycle_date = local_now.date().isoformat()
 
     configure()
+    # Check the persisted date before opening Spotify. Backup cron entries and
+    # delayed duplicate deliveries should be cheap local no-ops after success.
+    config = manager.config()
+    if cycle_already_completed(config, cycle_date):
+        print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
+        set_action_output("cycled", "false")
+        return 0
+
     manager.check_spotify_cooldown()
     sp = manager.Spotify()
     me = sp.me()
@@ -99,9 +115,10 @@ def main():
     if not manager.unlocked(DAILY_ID):
         raise manager.ManagerError("Tricky Daily is locked; automatic rotation will not override the lock.")
 
+    # Re-read immediately before planning/mutation in case state changed after
+    # startup. The workflow concurrency group also serializes cycle executions.
     config = manager.config()
-    cycle_state = config.setdefault("daily_cycle", {})
-    if cycle_state.get("last_cycle_date_eastern") == cycle_date:
+    if cycle_already_completed(config, cycle_date):
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
@@ -159,8 +176,25 @@ def main():
     )
     cloud.replace_playlist(sp, DAILY_ID, uris)
 
-    # Persist the per-day guard immediately after Spotify accepts the replacement.
-    # If a later observation fails, a rerun cannot accidentally rotate twice.
+    # The playlist replacement has been accepted. Persist the idempotency guard
+    # and publish the output immediately, so the workflow can preserve this state
+    # even if post-change verification or feedback collection later fails.
+    config = manager.config()
+    config["daily_cycle"] = {
+        "last_cycle_date_eastern": cycle_date,
+        "last_cycle_at": manager.stamp(),
+        "playlist_id": DAILY_ID,
+        "status": "replacement_accepted_pending_verification",
+    }
+    manager.write(manager.CONFIG, config)
+    manager.audit(
+        event="daily_cycle_replacement_accepted",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        backup=backup,
+    )
+    set_action_output("cycled", "true")
+
     updated = sp.call("GET", f"/playlists/{DAILY_ID}")
     updated_snapshot = manager.snapshot(sp, updated)
     after_snapshot = manager.save_snapshot(updated_snapshot)
@@ -171,6 +205,7 @@ def main():
         "last_cycle_date_eastern": cycle_date,
         "last_cycle_at": manager.stamp(),
         "playlist_id": DAILY_ID,
+        "status": "completed",
     }
     config["last_completed"] = {
         "playlist_id": DAILY_ID,
@@ -213,7 +248,6 @@ def main():
     except Exception as error:
         manager.audit(event="daily_lastfm_observation_failed", error_type=type(error).__name__)
 
-    set_action_output("cycled", "true")
     print(
         f"Tricky Daily cycled for {cycle_date} Eastern: {len(recommendations)} tracks; "
         f"{len(old_uris - new_uris)} tracks rotated out neutrally. "
