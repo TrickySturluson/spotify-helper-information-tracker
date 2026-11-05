@@ -134,8 +134,13 @@ def load_daily_discovery_exposure(today=None, path=Path("assistant_data/recommen
                 continue
             observed = event.get("observed_at")
             try:
-                when = datetime.fromisoformat(str(observed).replace("Z", "+00:00"))
-                event_day = when.date()
+                # The Daily cycle date is already recorded in Eastern time and
+                # is authoritative around UTC midnight / DST boundaries.
+                cycle_day = context.get("cycle_date_eastern")
+                event_day = date.fromisoformat(cycle_day) if cycle_day else None
+                if event_day is None:
+                    when = datetime.fromisoformat(str(observed).replace("Z", "+00:00"))
+                    event_day = when.date()
                 age = (today - event_day).days
             except (TypeError, ValueError, OverflowError):
                 continue
