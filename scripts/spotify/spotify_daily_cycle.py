@@ -9,7 +9,7 @@ import json
 import os
 import secrets
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -110,6 +110,7 @@ def configure():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--force", action="store_true", help="Allow a manually dispatched run outside midnight.")
+    parser.add_argument("--description-only", action="store_true", help="Rotate and verify only the Tricky Daily description; leave tracks untouched.")
     args = parser.parse_args()
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
@@ -141,6 +142,44 @@ def main():
     manager.assert_managed(DAILY_ID)
     if not manager.unlocked(DAILY_ID):
         raise manager.ManagerError("Tricky Daily is locked; automatic rotation will not override the lock.")
+
+    if args.description_only:
+        next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
+        sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": next_description})
+        config = manager.config()
+        daily_state = config.setdefault("daily_cycle", {})
+        daily_state.update({
+            "playlist_id": DAILY_ID,
+            "description": next_description,
+            "last_description_date_eastern": cycle_date,
+            "description_status": "accepted_pending_verification",
+        })
+        manager.write(manager.CONFIG, config)
+        set_action_output("description_updated", "true")
+        manager.audit(
+            event="daily_description_update_accepted",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            description=next_description,
+        )
+        verified = sp.call("GET", f"/playlists/{DAILY_ID}")
+        if (verified.get("description") or "") != next_description:
+            raise manager.ManagerError("Spotify did not confirm the new Tricky Daily description on read-back.")
+        config = manager.config()
+        config.setdefault("daily_cycle", {}).update({
+            "description": next_description,
+            "last_description_date_eastern": cycle_date,
+            "description_status": "completed",
+        })
+        manager.write(manager.CONFIG, config)
+        manager.audit(
+            event="daily_description_update_completed",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            description=next_description,
+        )
+        print(f"Tricky Daily description updated and verified: {next_description}")
+        return 0
 
     # Re-read immediately before planning/mutation in case state changed after
     # startup. The workflow concurrency group also serializes cycle executions.
