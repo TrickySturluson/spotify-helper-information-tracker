@@ -218,7 +218,13 @@ def observe(sp=None, *, catalog_path=CATALOG, playlist_dir=PLAYLIST_DIR,
 
 
 def main():
-    observe()
+    try:
+        observe()
+    except RuntimeError as error:
+        # Do not break the account-wide reference sync when Spotify does not
+        # expose Discover Weekly in the user playlist catalog. Emit an explicit
+        # warning; never manufacture an empty baseline.
+        print(f"::warning::Discover Weekly observation skipped: {error}")
 
 
 if __name__ == "__main__":
