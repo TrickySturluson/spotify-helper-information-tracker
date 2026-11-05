@@ -46,6 +46,26 @@ class DiscoveryScoringTests(unittest.TestCase):
         discovery.spotify_artist_tracks(sp, "Artist", offset=10)
         self.assertIn("offset=10", sp.call.call_args.args[1])
 
+    def test_spotify_artist_search_retries_transient_server_errors(self):
+        sp = Mock()
+        sp.call.side_effect = [
+            RuntimeError("Spotify API GET /search: HTTP 503"),
+            {"tracks": {"items": [{"uri": "spotify:track:ok"}]}},
+        ]
+        with patch.object(discovery.time, "sleep"):
+            rows = discovery.spotify_artist_tracks(sp, "Artist")
+        self.assertEqual(rows[0]["uri"], "spotify:track:ok")
+        self.assertEqual(sp.call.call_count, 2)
+
+    def test_spotify_artist_search_does_not_retry_rate_limits(self):
+        sp = Mock()
+        sp.call.side_effect = RuntimeError("Spotify API quota/rate limit reached (HTTP 429)")
+        with patch.object(discovery.time, "sleep") as sleep:
+            with self.assertRaisesRegex(RuntimeError, "429"):
+                discovery.spotify_artist_tracks(sp, "Artist")
+        self.assertEqual(sp.call.call_count, 1)
+        sleep.assert_not_called()
+
     def test_general_discovery_defaults_remain_unchanged_and_artist_pool_is_expanded(self):
         self.assertEqual(discovery.TARGET_SIZE, 30)
         self.assertEqual(discovery.MIN_MATCHES, 20)
