@@ -398,11 +398,9 @@
   },
   "daily_cycle": {
     "last_cycle_date_eastern": "2026-11-05",
-    "last_cycle_at": "2026-11-05T19:50:05.289021+00:00",
+    "last_cycle_at": "2026-11-05T22:28:55.203703+00:00",
     "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "status": "completed",
-    "description": "No skips promised. Good luck.",
-    "last_description_date_eastern": "2026-11-05",
-    "description_status": "completed"
+    "description": "Today's detour starts here.",
+    "status": "replacement_accepted_pending_verification"
   }
 }
