@@ -238,6 +238,18 @@ class DiscoveryScoringTests(unittest.TestCase):
             recent["spotify:track:daily1"]["penalty"],
         )
 
+    def test_daily_exposure_ignores_malformed_history_context(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "candidates.json"
+            history.write_text(
+                '[{"spotify_id":"daily1","spotify_uri":"spotify:track:daily1",'
+                '"discovery_evidence":[{"context":"not-an-object",'
+                '"observed_at":"2026-11-04T05:00:00+00:00"}]}]',
+                encoding="utf-8",
+            )
+            exposure = discovery.load_daily_discovery_exposure(date(2026, 11, 5), history)
+        self.assertEqual(exposure, {})
+
     def test_daily_exposure_uses_eastern_cycle_date_over_utc_timestamp(self):
         with tempfile.TemporaryDirectory() as directory:
             history = Path(directory) / "candidates.json"
