@@ -74,6 +74,30 @@ class DailyCycleScheduleTests(unittest.TestCase):
             self.assertEqual(daily_cycle.main(), 0)
         spotify.assert_not_called()
 
+    def test_daily_description_rotates_deterministically_and_never_repeats_current(self):
+        current = daily_cycle.DAILY_DESCRIPTIONS[0]
+        first = daily_cycle.choose_daily_description("2026-11-05", current)
+        second = daily_cycle.choose_daily_description("2026-11-05", current)
+        self.assertEqual(first, second)
+        self.assertNotEqual(first, current)
+        self.assertIn(first, daily_cycle.DAILY_DESCRIPTIONS)
+        self.assertLessEqual(len(first), 300)
+
+    def test_daily_description_selection_changes_for_next_cycle(self):
+        first = daily_cycle.choose_daily_description("2026-11-05")
+        second = daily_cycle.choose_daily_description("2026-11-06", first)
+        self.assertNotEqual(first, second)
+
+    def test_description_update_precedes_readback_and_is_verified(self):
+        source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
+        description_at = source.index('sp.call("PUT", f"/playlists/{DAILY_ID}"', replace_at)
+        verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', description_at)
+        assertion_at = source.index('if (updated.get("description") or "") != next_description:', verify_at)
+        self.assertLess(replace_at, description_at)
+        self.assertLess(description_at, verify_at)
+        self.assertLess(verify_at, assertion_at)
+
     def test_replacement_state_is_persisted_before_post_change_read(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
