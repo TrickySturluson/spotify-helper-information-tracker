@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from datetime import date
@@ -133,6 +134,64 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertIn("x|a", liked)
         self.assertIn("spotify:track:b", liked)
         self.assertEqual(sp.call.call_count, 2)
+
+    def test_daily_live_reconciliation_records_only_missing_tracks_and_honors_whitelist(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            baseline = root / "baseline.json"
+            blacklist = root / "removed.json"
+            keep_uri = "spotify:track:keep"
+            removed_uri = "spotify:track:removed"
+            baseline.write_text(json.dumps({
+                "version": 1,
+                "daily_cycle_marker": "cycle-1",
+                "playlists": {discovery.DAILY_PLAYLIST_ID: [
+                    {"uri": keep_uri, "name": "Keep", "artists": ["Artist"]},
+                    {"uri": removed_uri, "name": "Removed", "artists": ["Artist"]},
+                ]},
+            }), encoding="utf-8")
+            blacklist.write_text(json.dumps({
+                "version": 1,
+                "playlists": {discovery.DAILY_PLAYLIST_ID: {
+                    "name": "Tricky Daily", "removed": [],
+                    "whitelisted": [{"uri": keep_uri, "name": "Keep", "artists": ["Artist"]}],
+                }},
+            }), encoding="utf-8")
+            result = discovery.reconcile_daily_manual_removals(
+                [{"uri": keep_uri, "name": "Keep", "artists": ["Artist"]}],
+                "cycle-1", baseline, blacklist, detected_at="2026-11-05T00:00:00Z",
+            )
+            saved = json.loads(blacklist.read_text(encoding="utf-8"))
+            removed_rows = saved["playlists"][discovery.DAILY_PLAYLIST_ID]["removed"]
+            self.assertEqual(result["newly_removed"], 1)
+            self.assertEqual([row["uri"] for row in removed_rows], [removed_uri])
+            feedback = discovery.load_playlist_feedback([], discovery.DAILY_PLAYLIST_ID, blacklist)
+            self.assertTrue(discovery.is_playlist_candidate_blocked(
+                "Artist", "Removed", removed_uri, feedback
+            ))
+            self.assertFalse(discovery.is_playlist_candidate_blocked(
+                "Artist", "Keep", keep_uri, feedback
+            ))
+
+    def test_daily_live_reconciliation_skips_unaligned_stale_baseline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            baseline = root / "baseline.json"
+            blacklist = root / "removed.json"
+            baseline.write_text(json.dumps({
+                "version": 1, "daily_cycle_marker": "old-cycle",
+                "playlists": {discovery.DAILY_PLAYLIST_ID: [
+                    {"uri": "spotify:track:stale", "name": "Stale", "artists": ["Artist"]},
+                ]},
+            }), encoding="utf-8")
+            blacklist.write_text(json.dumps({"version": 1, "playlists": {}}), encoding="utf-8")
+            result = discovery.reconcile_daily_manual_removals(
+                [], "new-cycle", baseline, blacklist,
+            )
+            self.assertEqual(result["status"], "skipped")
+            self.assertEqual(result["reason"], "baseline_not_aligned")
+            saved = json.loads(blacklist.read_text(encoding="utf-8"))
+            self.assertEqual(saved["playlists"], {})
 
     def test_playlist_removed_track_is_blocked_but_artist_removal_is_soft(self):
         feedback = {
