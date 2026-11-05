@@ -36,11 +36,11 @@ The command defaults to preview-only. Applying requires both:
 1. the playlist is registered as SHIT-managed or an explicitly approved exception; and
 2. the playlist is explicitly unlocked, plus the caller supplies `--apply`.
 
-This intentionally means personal playlists with blank descriptions are discoverable/previewable but remain read-only unless explicitly approved. Registering a playlist in the reference-role registry is not edit permission. Tricky Daily's existing rotating description is preserved as a non-empty user-authored description unless it is deliberately migrated to generated-description ownership.
+This intentionally means personal playlists with blank descriptions are discoverable/previewable but remain read-only unless explicitly approved. Registering a playlist in the reference-role registry is not edit permission. Tricky Daily is an explicit exception: its dedicated midnight cycle owns a separate short editorial description rotation, documented in `docs/TRICKY_DAILY_CYCLE.md`. This generic metadata generator does not overwrite or claim ownership of that editorial description.
 
 ## Automation status / next integration
 
-The generator and safeguards exist, but periodic automatic invocation is not yet wired into the playlist cloud workflow. The next integration step is a preview/confirmation command in the cloud control workflow, followed by a bounded scheduled refresh for eligible managed playlists. That scheduler must:
+The generic metadata generator and safeguards exist, but periodic automatic invocation for general managed playlists is not yet wired into the playlist cloud workflow. Tricky Daily's separate editorial description rotation is already integrated into its midnight cycle; it is not a generic metadata refresh. The next integration step for other eligible managed playlists is a preview/confirmation command in the cloud control workflow, followed by a bounded scheduled refresh. That scheduler must:
 - refresh only eligible SHIT-managed playlists (and explicit exceptions whose permissions include `details`);
 - skip manual descriptions;
 - compare signatures and make no API write when unchanged;
