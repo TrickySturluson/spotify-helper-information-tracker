@@ -10,9 +10,11 @@ on:
         type: choice
         options: ["false", "true"]
   schedule:
-    # Midnight Eastern is 04:00 UTC during EDT and 05:00 UTC during EST.
-    # The script's America/New_York gate makes exactly one of these runs active.
+    # Primary EST/EDT midnight entries, plus a 15-minute recovery delivery.
+    # Script gate skips 23:xx EST pre-midnight entries; date guard makes
+    # duplicate deliveries cheap no-ops after the first accepted rotation.
     - cron: "0 4,5 * * *"
+    - cron: "15 4,5 * * *"
 
 permissions:
   contents: write
@@ -24,6 +26,7 @@ concurrency:
 jobs:
   cycle:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,8 +42,6 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
           test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
@@ -99,7 +100,10 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
       - name: Persist cycle state and feedback
-        if: success() && steps.daily-cycle.outputs.cycled == 'true'
+        # The cycle script sets cycled=true immediately after Spotify accepts
+        # replacement. Persist the idempotency marker even if later verification
+        # fails, so a retry cannot rotate the playlist a second time that day.
+        if: always() && steps.daily-cycle.outputs.cycled == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -114,7 +118,7 @@ jobs:
             fi
           done
           if ! git diff --cached --quiet; then
-            git commit -m "Cycle Tricky Daily playlist"
+            git commit -m "Cycle Tricky Daily playlist state"
             git push
           fi
       - name: Preserve surfaced candidates even if rotation fails
@@ -132,8 +136,10 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Automatically rotate Tricky Daily at midnight America/New_York.
-# Schedule: Dual UTC cron entries plus an IANA timezone gate handle EST/EDT.
-# Safety: Requires configured Spotify credentials, existing playlist ownership,
-#         explicit unlocked state, a minimum recommendation count, and a
-#         pre-change recovery artifact before any playlist mutation.
+# Schedule: Dual EST/EDT cron entries with a 15-minute recovery delivery;
+#           the script gate and per-date guard make delayed/duplicate runs safe.
+# Safety: Requires credentials, exact playlist ownership, managed-playlist
+#         permission, explicit unlock, 20 valid recommendations, and a backup.
+# Recovery: Accepted replacements publish cycled=true and persist the daily
+#           idempotency state even if post-change verification later fails.
 # -----------------------------------------------------------------------------
