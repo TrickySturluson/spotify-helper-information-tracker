@@ -1,0 +1,52 @@
+name: SHIT — Tricky Daily Live Preflight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/test-triggers/tricky-daily-test.json"
+      - "scripts/spotify/spotify_daily_preflight.py"
+      - ".github/workflows/spotify-daily-live-preflight.yml"
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tricky-daily-live-preflight
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile preflight and manager
+        run: python -m py_compile scripts/spotify/spotify_daily_preflight.py scripts/spotify/spotify_playlist_manager.py
+      - name: Verify live Spotify authentication and Tricky Daily access (read-only)
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
+          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
+          python scripts/spotify/spotify_daily_preflight.py
+      - name: Confirm no playlist mutation is permitted
+        run: |
+          ! grep -Eq 'sp\.call\("(POST|PUT|DELETE|PATCH)"|replace_playlist|add_tracks|remove_tracks' scripts/spotify/spotify_daily_preflight.py
+          echo "Preflight contains read-only Spotify operations only."
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Periodically validate live Spotify auth and Tricky Daily access.
+# Trigger: Push of the dedicated test trigger, manual dispatch, and every six hours.
+# Safety: Read-only Spotify GET requests; contents:read; never changes playlists.
+# -----------------------------------------------------------------------------
