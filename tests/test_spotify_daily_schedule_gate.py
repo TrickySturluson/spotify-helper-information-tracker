@@ -1,3 +1,5 @@
+"""Regression tests for Tricky Daily's DST-aware scheduled-run gate."""
+
 import unittest
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -20,3 +22,12 @@ class DailyScheduleGateTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Verify Tricky Daily only accepts the scheduled UTC cron matching
+#          the current America/New_York daylight/standard-time offset.
+# Coverage: EDT and EST acceptance plus rejection of the stale counterpart.
+# Related: scripts/spotify/spotify_daily_cycle.py
+# -----------------------------------------------------------------------------
