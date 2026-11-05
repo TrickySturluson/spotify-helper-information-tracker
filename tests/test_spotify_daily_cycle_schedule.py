@@ -1,4 +1,4 @@
-"""Regression tests for Tricky Daily scheduled-run timing and outputs."""
+""""Regression tests for Tricky Daily scheduled-run timing and outputs."""
 import os
 import sys
 import tempfile
@@ -18,11 +18,15 @@ EASTERN = ZoneInfo("America/New_York")
 class DailyCycleScheduleTests(unittest.TestCase):
     def test_delayed_scheduled_run_catches_up_during_same_eastern_day(self):
         delayed = datetime(2026, 11, 5, 6, 47, tzinfo=EASTERN)
-        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
+        self.assertTrue(daily_cycle.should_run_cycle(
+            delayed, event_name="schedule", schedule_cron="0 5 * * *"
+        ))
 
     def test_standard_time_early_cron_before_midnight_is_ignored(self):
         early_cron = datetime(2026, 11, 4, 23, 0, tzinfo=EASTERN)
-        self.assertFalse(daily_cycle.should_run_cycle(early_cron, event_name="schedule"))
+        self.assertFalse(daily_cycle.should_run_cycle(
+            early_cron, event_name="schedule", schedule_cron="0 4 * * *"
+        ))
 
     def test_manual_dispatch_remains_midnight_gated_without_force(self):
         daytime = datetime(2026, 11, 5, 6, 47, tzinfo=EASTERN)
@@ -41,7 +45,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
             output = Path(directory) / "github-output"
             with patch.dict(os.environ, {"GITHUB_OUTPUT": str(output)}):
                 daily_cycle.set_action_output("cycled", "true")
-            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\n")
+            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\\n")
 
 
 if __name__ == "__main__":
