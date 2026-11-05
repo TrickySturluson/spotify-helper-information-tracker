@@ -79,10 +79,12 @@ class DailyCycleScheduleTests(unittest.TestCase):
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
         persist_at = source.index("manager.write(manager.CONFIG, config)", replace_at)
         output_at = source.index('set_action_output("cycled", "true")', persist_at)
-        verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', output_at)
+        audit_at = source.index('event="daily_cycle_replacement_accepted"', output_at)
+        verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', audit_at)
         self.assertLess(replace_at, persist_at)
         self.assertLess(persist_at, output_at)
-        self.assertLess(output_at, verify_at)
+        self.assertLess(output_at, audit_at)
+        self.assertLess(audit_at, verify_at)
 
     def test_workflow_persists_accepted_replacement_even_after_later_step_failure(self):
         workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
