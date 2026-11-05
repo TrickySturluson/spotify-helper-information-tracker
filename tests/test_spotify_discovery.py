@@ -8,6 +8,23 @@ import spotify_discovery as discovery
 
 
 class DiscoveryScoringTests(unittest.TestCase):
+    def test_artist_diversity_selector_keeps_only_one_track_per_artist(self):
+        candidates = [
+            {"artist": "Artist A", "track": "Lower score", "score": 0.7},
+            {"artist": "Artist B", "track": "Track B", "score": 0.8},
+            {"artist": " artist   a ", "track": "Higher score", "score": 0.9},
+            {"artist": "Artist C", "track": "Track C", "score": 0.6},
+        ]
+        selected = discovery.select_unique_artist_candidates(candidates, target_size=3)
+        self.assertEqual(len(selected), 3)
+        self.assertEqual(selected[0]["track"], "Higher score")
+        self.assertEqual(len({discovery.norm(row["artist"]) for row in selected}), 3)
+
+    def test_discovery_defaults_to_sixty_tracks_and_expands_artist_pool(self):
+        self.assertEqual(discovery.TARGET_SIZE, 60)
+        self.assertEqual(discovery.MIN_MATCHES, 60)
+        self.assertGreaterEqual(discovery.DISCOVERY_ARTISTS, 60)
+
     def test_similar_artists_rank_consensus_above_alphabetical_ties(self):
         profiles = {
             "a": {"artist": "Seed A", "plays": 100, "status": "matched", "genres": ["rock"]},
