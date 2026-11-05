@@ -540,28 +540,30 @@ def build_discovery_recommendations(
                     candidates[uri] = row
             time.sleep(0.08)
 
-    # First pass: aim for 60 distinct artists.
     collect_artist_candidates(similar, offset=0)
-    unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
     fallback_used = False
-
-    # Retry a different Spotify search page before relaxing the artist rule.
-    if len(unique_selection) < target_size:
-        collect_artist_candidates(similar, offset=TRACKS_PER_ARTIST)
+    if is_daily:
+        # Daily first aims for 60 distinct artists. If short, retry a different
+        # Spotify search page before allowing a second track from any artist.
         unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
-
-    # Only after the alternate-track retry may a second track from an artist
-    # be used. Hard ceiling: two tracks per primary artist.
-    if len(unique_selection) < target_size:
-        fallback_used = True
-        selected = select_unique_artist_candidates(candidates.values(), target_size, max_per_artist=2)
+        if len(unique_selection) < target_size:
+            collect_artist_candidates(similar, offset=TRACKS_PER_ARTIST)
+            unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
+        if len(unique_selection) < target_size:
+            fallback_used = True
+            selected = select_unique_artist_candidates(candidates.values(), target_size, max_per_artist=2)
+        else:
+            selected = unique_selection
+        required = target_size
     else:
-        selected = unique_selection
+        # Preserve the established general-discovery behavior for other playlists.
+        selected = select_unique_artist_candidates(candidates.values(), target_size, max_per_artist=2)
+        required = min(MIN_MATCHES, target_size)
 
-    if len(selected) < target_size:
+    if len(selected) < required:
         raise RuntimeError(
-            f"Only {len(selected)} discovery candidates were found after the alternate-track retry "
-            f"and two-per-artist fallback; {target_size} are required. Playlist was not changed."
+            f"Only {len(selected)} discovery candidates were found; {required} are required. "
+            "Playlist was not changed."
         )
     if fallback_used:
         for row in selected:
