@@ -5,6 +5,7 @@ This is a dedicated discovery workflow, not a playlist-fit feedback event.
 Tracks removed by a scheduled rotation are recorded as neutral curator rotation.
 """
 import argparse
+import html
 import json
 import os
 import secrets
@@ -313,7 +314,7 @@ def main():
     )
 
     updated = sp.call("GET", f"/playlists/{DAILY_ID}")
-    if (updated.get("description") or "") != next_description:
+    if html.unescape(updated.get("description") or "") != next_description:
         raise manager.ManagerError(
             "Tricky Daily tracks were replaced, but Spotify read-back did not confirm "
             "the new playlist description; cycle remains pending verification."
