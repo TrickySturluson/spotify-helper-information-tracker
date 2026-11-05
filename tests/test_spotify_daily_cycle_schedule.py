@@ -46,3 +46,13 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression tests for Tricky Daily scheduled-run timing and outputs.
+# Coverage: Delayed schedule catch-up, EST midnight boundary, manual dispatch
+#           gating, explicit force behavior, and GitHub Actions step outputs.
+# Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
+# Related: scripts/spotify/spotify_daily_cycle.py and the midnight-cycle workflow.
+# -----------------------------------------------------------------------------
