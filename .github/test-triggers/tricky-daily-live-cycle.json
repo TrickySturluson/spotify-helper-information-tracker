@@ -1,5 +1,5 @@
 {
-  "action": "cycle",
+  "action": "verify-only",
   "force": true,
-  "reason": "Fresh 60-track rotation after 24 exact user removals were persisted; live blacklist and explicit whitelist are checked before candidate selection; forced description update is retried and verified. 2026-11-05T18:07:00-05:00"
+  "reason": "Read-only verification of the accepted 60-track replacement, exact-track blacklist/whitelist enforcement, unique URIs, and normalized live description after Spotify returned HTML-encoded apostrophe on first read-back."
 }
