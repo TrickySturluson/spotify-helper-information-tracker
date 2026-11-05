@@ -16,6 +16,18 @@ The project combines Spotify's live playlist and playback interfaces with Last.f
 
 The durable project handoff lives in [`project/`](project/). When resuming work, read [`project/NEXT_WORK.md`](project/NEXT_WORK.md) first for the current blocker, priorities, constraints, and next action; then consult the [chronological project log](project/PROJECT_LOG.md). Project plans and decisions belong there rather than being left only in chat history.
 
+## Tricky Daily
+
+[Tricky Daily documentation](docs/TRICKY_DAILY.md) covers the daily discovery rotation, freshness-balanced recommendation mix, repeat-exposure handling, feedback evidence boundaries, and read-only quality report. The cycle targets 45% discovery, 30% rediscovery, and 25% familiar tracks, with score-ranked backfill when a tier is short. Spotify playback-tracker observations and Last.fm scrobbles remain separate.
+
+Run the local quality report from the repository root:
+
+```bash
+python scripts/spotify/spotify_daily_report.py
+```
+
+The report is read-only; it does not call Spotify or modify playlist state.
+
 ## Source of truth
 
 - `data/scrobbles.json` is the canonical, chronological archive. It retains Last.fm identifiers (MBIDs), timestamps, names and URLs.
