@@ -1,4 +1,4 @@
-""""Regression tests for Tricky Daily scheduled-run timing and outputs."""
+"""Regression tests for Tricky Daily scheduled-run timing and outputs."""
 import os
 import sys
 import tempfile
@@ -45,7 +45,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
             output = Path(directory) / "github-output"
             with patch.dict(os.environ, {"GITHUB_OUTPUT": str(output)}):
                 daily_cycle.set_action_output("cycled", "true")
-            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\\n")
+            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\n")
 
 
 if __name__ == "__main__":
