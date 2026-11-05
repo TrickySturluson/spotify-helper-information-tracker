@@ -47,7 +47,7 @@ python scripts/spotify/spotify_daily_report.py \
 
 The report includes:
 - Current unique track records and addition events.
-- Liked status rate among tracks with an actual liked-status observation.
+- Current liked status and post-add save conversion, with denominators restricted to observed tracks with an explicit unliked baseline.
 - Playback-positive rate and measured sessions among tracks with playback observations.
 - Post-add Last.fm scrobbles as a separate measure.
 - Historical Daily discovery mix surfaced by tier, with unique track counts and feedback coverage.
