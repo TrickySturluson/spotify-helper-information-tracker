@@ -226,10 +226,10 @@ def liked_track_keys(sp):
     return liked
 
 
-def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST):
+def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST, offset=0):
     query = f'artist:"{artist}"'
     endpoint = "/search?" + urllib.parse.urlencode({
-        "type": "track", "limit": limit, "q": query,
+        "type": "track", "limit": limit, "offset": offset, "q": query,
     })
     response = sp.call("GET", endpoint)
     return ((response or {}).get("tracks") or {}).get("items") or []
@@ -408,21 +408,21 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     return score, plays, known.get("last_scrobble"), is_liked
 
 
-def select_unique_artist_candidates(candidates, target_size=TARGET_SIZE):
-    """Select highest-ranked tracks while allowing only one per primary artist."""
+def select_unique_artist_candidates(candidates, target_size=TARGET_SIZE, max_per_artist=1):
+    """Select highest-ranked tracks with a configurable per-artist ceiling."""
     ranked = sorted(
         candidates,
         key=lambda row: (-row.get("score", 0), norm(row.get("artist")), norm(row.get("track"))),
     )
-    selected, seen_artists = [], set()
+    selected, artist_counts = [], defaultdict(int)
     for row in ranked:
         if len(selected) >= target_size:
             break
         artist_key = norm(row.get("artist"))
-        if not artist_key or artist_key in seen_artists:
+        if not artist_key or artist_counts[artist_key] >= max_per_artist:
             continue
         selected.append(row)
-        seen_artists.add(artist_key)
+        artist_counts[artist_key] += 1
     return selected
 
 
@@ -464,93 +464,110 @@ def build_discovery_recommendations(
         liked_keys = liked_track_keys(sp)
     similar = similar_artist_rows if similar_artist_rows is not None else discover_similar_artists(profiles, api_key, today)
     candidates = {}
-    for artist_row in similar:
-        artist = artist_row["artist"]
-        try:
-            items = spotify_artist_tracks(sp, artist)
-        except Exception as error:
-            # A single unavailable artist should not abort an otherwise healthy
-            # discovery pass; Spotify auth/rate-limit errors still propagate.
-            if "HTTP 401" in str(error) or "HTTP 403" in str(error) or "HTTP 429" in str(error):
-                raise
-            continue
-        for track in items:
-            artists = track.get("artists") or []
-            if not track.get("name") or not artists or norm(artists[0].get("name")) != norm(artist):
+
+    def collect_artist_candidates(artist_rows, offset=0):
+        """Search one Spotify catalogue page per artist and merge scored tracks."""
+        for artist_row in artist_rows:
+            artist = artist_row["artist"]
+            try:
+                items = spotify_artist_tracks(sp, artist, offset=offset)
+            except Exception as error:
+                if any(code in str(error) for code in ("HTTP 401", "HTTP 403", "HTTP 429")):
+                    raise
                 continue
-            uri = track.get("uri")
-            if not isinstance(uri, str) or not uri.startswith("spotify:track:") or uri in existing_uris:
-                continue
-            # Exact manual removals are hard exclusions in every discovery
-            # path, not merely a score penalty that a strong similarity can beat.
-            if is_playlist_candidate_blocked(artist, track["name"], uri, feedback):
-                continue
-            key = track_key(artist, track["name"])
-            score, plays, last, is_liked = candidate_score(
-                track, artist_row["similarity"], familiarity, liked_keys, today, feedback
-            )
-            lyric_analysis = (track_metadata.get((intelligence.track_norm(artist), intelligence.track_norm(track["name"])), {}) or {}).get("lyric_analysis") or {}
-            theme_affinity = lyric_theme_affinity(lyric_analysis, playlist_theme_counts)
-            # Themed playlists retain lyric-theme affinity. Daily ignores
-            # playlist themes and gets only a small, confidence-gated trend nudge.
-            trend_affinity, trend_confidence, trend_reasons = (
-                listening_trends.candidate_affinity(
-                    artist, trends_report,
-                    next((listening_trends.tags_of(profile) for profile in profiles.values()
-                          if isinstance(profile, dict)
-                          and norm(profile.get("artist") or profile.get("name")) == norm(artist)), []),
+            for track in items:
+                artists = track.get("artists") or []
+                if not track.get("name") or not artists or norm(artists[0].get("name")) != norm(artist):
+                    continue
+                uri = track.get("uri")
+                if not isinstance(uri, str) or not uri.startswith("spotify:track:") or uri in existing_uris:
+                    continue
+                if is_playlist_candidate_blocked(artist, track["name"], uri, feedback):
+                    continue
+                key = track_key(artist, track["name"])
+                score, plays, last, is_liked = candidate_score(
+                    track, artist_row["similarity"], familiarity, liked_keys, today, feedback
                 )
-                if is_daily and trends_report.get("coverage", {}).get("status") == "available"
-                else (0.0, "low", [])
-            )
-            if is_daily:
-                if trend_confidence in ("medium", "high"):
-                    score += 0.03 * trend_affinity
-            else:
-                score += 0.06 * theme_affinity
-            row = {
-                "uri": uri, "artist": artist, "track": track["name"],
-                "plays": plays, "last_scrobble": last, "score": round(score, 6),
-                "lyric_theme_affinity": None if is_daily else theme_affinity,
-                "daily_trend_affinity": trend_affinity if is_daily else None,
-                "daily_trend_confidence": trend_confidence if is_daily else None,
-                "lyric_themes": sorted((lyric_analysis.get("themes") or {}).keys()),
-                "lyric_horror_relevance": lyric_analysis.get("horror_relevance"),
-                "lyric_assessment": lyric_analysis.get("assessment"),
-                "lyric_source_count": lyric_analysis.get("source_count", 0),
-                "similarity": artist_row["similarity"],
-                "supporting_seeds": artist_row.get("supporting_seeds", 0),
-                "liked": is_liked,
-                "tier": "discovery" if plays == 0 else ("rediscovery" if plays <= 2 else "familiar"),
-                "popularity": track.get("popularity"),
-                "positive_artist_count": feedback.get("positive_artists", {}).get(norm(artist), 0),
-                "removed_artist_count": feedback.get("negative_artists", {}).get(norm(artist), 0),
-                "removed_exact": False,
-                "whitelisted": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
-                "positive_exact": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
-            }
-            row["confidence"] = intelligence.recommendation_confidence(
-                row["similarity"], row["supporting_seeds"]
-            )
-            row["why"] = intelligence.recommendation_reasons(row)
-            if is_daily and trend_reasons:
-                row["why"].insert(0, trend_reasons[0])
-                row["why"] = row["why"][:4]
-            elif not is_daily and theme_affinity >= 0.2:
-                row["why"].insert(0, "lyrics share themes with this playlist")
-                row["why"] = row["why"][:4]
-            if key not in candidates or row["score"] > candidates[key]["score"]:
-                candidates[key] = row
-        time.sleep(0.08)
-    # Daily is deliberately artist-diverse: one highest-ranked track per artist.
-    selected = select_unique_artist_candidates(candidates.values(), target_size)
-    required = min(MIN_MATCHES, target_size)
-    if len(selected) < required:
+                lyric_analysis = (track_metadata.get((intelligence.track_norm(artist), intelligence.track_norm(track["name"])), {}) or {}).get("lyric_analysis") or {}
+                theme_affinity = lyric_theme_affinity(lyric_analysis, playlist_theme_counts)
+                trend_affinity, trend_confidence, trend_reasons = (
+                    listening_trends.candidate_affinity(
+                        artist, trends_report,
+                        next((listening_trends.tags_of(profile) for profile in profiles.values()
+                              if isinstance(profile, dict)
+                              and norm(profile.get("artist") or profile.get("name")) == norm(artist)), []),
+                    )
+                    if is_daily and trends_report.get("coverage", {}).get("status") == "available"
+                    else (0.0, "low", [])
+                )
+                if is_daily:
+                    if trend_confidence in ("medium", "high"):
+                        score += 0.03 * trend_affinity
+                else:
+                    score += 0.06 * theme_affinity
+                row = {
+                    "uri": uri, "artist": artist, "track": track["name"],
+                    "plays": plays, "last_scrobble": last, "score": round(score, 6),
+                    "lyric_theme_affinity": None if is_daily else theme_affinity,
+                    "daily_trend_affinity": trend_affinity if is_daily else None,
+                    "daily_trend_confidence": trend_confidence if is_daily else None,
+                    "lyric_themes": sorted((lyric_analysis.get("themes") or {}).keys()),
+                    "lyric_horror_relevance": lyric_analysis.get("horror_relevance"),
+                    "lyric_assessment": lyric_analysis.get("assessment"),
+                    "lyric_source_count": lyric_analysis.get("source_count", 0),
+                    "similarity": artist_row["similarity"],
+                    "supporting_seeds": artist_row.get("supporting_seeds", 0),
+                    "liked": is_liked,
+                    "tier": "discovery" if plays == 0 else ("rediscovery" if plays <= 2 else "familiar"),
+                    "popularity": track.get("popularity"),
+                    "positive_artist_count": feedback.get("positive_artists", {}).get(norm(artist), 0),
+                    "removed_artist_count": feedback.get("negative_artists", {}).get(norm(artist), 0),
+                    "removed_exact": False,
+                    "whitelisted": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
+                    "positive_exact": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
+                }
+                row["confidence"] = intelligence.recommendation_confidence(
+                    row["similarity"], row["supporting_seeds"]
+                )
+                row["why"] = intelligence.recommendation_reasons(row)
+                if is_daily and trend_reasons:
+                    row["why"].insert(0, trend_reasons[0])
+                    row["why"] = row["why"][:4]
+                elif not is_daily and theme_affinity >= 0.2:
+                    row["why"].insert(0, "lyrics share themes with this playlist")
+                    row["why"] = row["why"][:4]
+                if uri not in candidates or row["score"] > candidates[uri]["score"]:
+                    candidates[uri] = row
+            time.sleep(0.08)
+
+    # First pass: aim for 60 distinct artists.
+    collect_artist_candidates(similar, offset=0)
+    unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
+    fallback_used = False
+
+    # Retry a different Spotify search page before relaxing the artist rule.
+    if len(unique_selection) < target_size:
+        collect_artist_candidates(similar, offset=TRACKS_PER_ARTIST)
+        unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
+
+    # Only after the alternate-track retry may a second track from an artist
+    # be used. Hard ceiling: two tracks per primary artist.
+    if len(unique_selection) < target_size:
+        fallback_used = True
+        selected = select_unique_artist_candidates(candidates.values(), target_size, max_per_artist=2)
+    else:
+        selected = unique_selection
+
+    if len(selected) < target_size:
         raise RuntimeError(
-            f"Only {len(selected)} discovery candidates from unique artists were found; "
-            f"{required} are required. Playlist was not changed."
+            f"Only {len(selected)} discovery candidates were found after the alternate-track retry "
+            f"and two-per-artist fallback; {target_size} are required. Playlist was not changed."
         )
+    if fallback_used:
+        for row in selected:
+            row["artist_diversity_fallback"] = True
     return selected, []
+
 
 
 if __name__ == "__main__":
