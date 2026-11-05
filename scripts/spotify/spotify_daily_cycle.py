@@ -133,6 +133,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--force", action="store_true", help="Allow a manually dispatched run outside midnight.")
     parser.add_argument("--description-only", action="store_true", help="Rotate and verify only the Tricky Daily description; leave tracks untouched.")
+    parser.add_argument("--verify-only", action="store_true", help="Verify the live Daily playlist without changing tracks or description.")
     args = parser.parse_args()
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
@@ -198,6 +199,44 @@ def main():
             description=next_description,
         )
         print(f"Tricky Daily description updated and verified: {next_description}")
+        return 0
+
+    if args.verify_only:
+        snapshot = manager.snapshot(sp, playlist)
+        items = snapshot["items"]
+        uris = [row.get("uri") for row in items]
+        if len(items) != DAILY_TARGET_SIZE:
+            raise manager.ManagerError(
+                f"Live Tricky Daily has {len(items)} tracks; expected exactly {DAILY_TARGET_SIZE}."
+            )
+        if len(set(uris)) != len(uris):
+            raise manager.ManagerError("Live Tricky Daily contains duplicate track URIs.")
+        feedback = discovery.load_playlist_feedback([], DAILY_ID)
+        blocked = [
+            row for row in items
+            if discovery.is_playlist_candidate_blocked(
+                (row.get("artists") or [""])[0],
+                row.get("name") or row.get("track") or "",
+                row.get("uri"),
+                feedback,
+            )
+        ]
+        if blocked:
+            raise manager.ManagerError(
+                f"Live Tricky Daily contains {len(blocked)} blacklisted tracks: "
+                + ", ".join(f"{(row.get('artists') or [''])[0]} — {row.get('name') or row.get('track')}" for row in blocked[:8])
+            )
+        expected_description = (config.get("daily_cycle") or {}).get("description", "")
+        live_description = html.unescape(playlist.get("description") or "")
+        if expected_description and live_description != expected_description:
+            raise manager.ManagerError(
+                f"Live description mismatch: expected {expected_description!r}, got {live_description!r}."
+            )
+        print(
+            f"Tricky Daily live verification passed: {len(items)} unique tracks; "
+            f"0 blacklisted; description={live_description!r}; "
+            f"snapshot_id={playlist.get('snapshot_id')}"
+        )
         return 0
 
     # Re-read immediately before planning/mutation in case state changed after
