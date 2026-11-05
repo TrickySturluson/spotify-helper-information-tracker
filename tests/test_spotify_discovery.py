@@ -238,6 +238,19 @@ class DiscoveryScoringTests(unittest.TestCase):
             recent["spotify:track:daily1"]["penalty"],
         )
 
+    def test_daily_exposure_uses_eastern_cycle_date_over_utc_timestamp(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "candidates.json"
+            history.write_text(
+                '[{"spotify_id":"daily1","spotify_uri":"spotify:track:daily1",'
+                '"discovery_evidence":[{"observed_at":"2026-11-06T04:30:00+00:00",'
+                '"context":{"playlist_id":"4yUVHSMQySfWeEowfIMcx7",'
+                '"cycle_date_eastern":"2026-11-05"}}]}]',
+                encoding="utf-8",
+            )
+            exposure = discovery.load_daily_discovery_exposure(date(2026, 11, 6), history)
+        self.assertEqual(exposure["spotify:track:daily1"]["latest_days_ago"], 1)
+
     def test_daily_exposure_penalty_is_soft_and_positive_outcomes_override(self):
         track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
         exposure = {"discovery_exposure": {"spotify:track:daily1": {"penalty": 0.10}}}
