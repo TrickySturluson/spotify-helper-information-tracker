@@ -89,7 +89,12 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
         run: |
-          if [ "$FORCE_CYCLE" = "true" ]; then
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            # A one-shot test-trigger file deletion runs the description-only
+            # path so the live description can be verified without a second
+            # track rotation on the same Eastern date.
+            python compat/spotify_daily_cycle.py --force --description-only
+          elif [ "$FORCE_CYCLE" = "true" ]; then
             python compat/spotify_daily_cycle.py --force
           else
             python compat/spotify_daily_cycle.py
@@ -103,10 +108,9 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
       - name: Persist cycle state and feedback
-        # The cycle script sets cycled=true immediately after Spotify accepts
-        # replacement. Persist the idempotency marker even if later verification
-        # fails, so a retry cannot rotate the playlist a second time that day.
-        if: always() && steps.daily-cycle.outputs.cycled == 'true'
+        # Persist accepted track replacements or description updates even if
+        # their subsequent read-back fails, so a retry cannot blindly repeat writes.
+        if: always() && (steps.daily-cycle.outputs.cycled == 'true' || steps.daily-cycle.outputs.description_updated == 'true')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
