@@ -246,7 +246,6 @@ def main():
     # The description is intentionally owned by this dedicated Daily workflow,
     # not by the generic metadata generator (which protects manual descriptions).
     next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
-    sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": next_description})
 
     # The playlist replacement has been accepted. Persist the idempotency guard
     # and publish the output immediately, so the workflow can preserve this state
@@ -263,6 +262,9 @@ def main():
     # Publish immediately after the durable local guard; if audit append fails,
     # the workflow still knows Spotify accepted the playlist replacement.
     set_action_output("cycled", "true")
+    # The track mutation is now durably guarded. A description API failure from
+    # this point onward cannot cause a second same-day track replacement.
+    sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": next_description})
     manager.audit(
         event="daily_cycle_replacement_accepted",
         playlist_id=DAILY_ID,
