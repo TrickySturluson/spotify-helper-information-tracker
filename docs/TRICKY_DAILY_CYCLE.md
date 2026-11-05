@@ -57,6 +57,21 @@ it compiles modules and runs tests without contacting Spotify or changing a
 playlist.
 
 
+## Rotating description
+
+Every successful full cycle also updates the short editorial description using
+a deterministic daily rotation of concise lines. It is separate from the
+metadata-driven description generator: Tricky Daily has an explicit user-
+approved editorial rotation, while the generic generator continues to protect
+non-empty manual descriptions on other playlists.
+
+The description PUT is followed by a fresh playlist GET. The cycle is only
+marked fully completed when Spotify returns the exact new description. The
+accepted description and its verification status are persisted independently
+from the track-cycle date guard. A description-only mode is available for a
+one-shot live verification; it updates and reads back the description without
+replacing tracks.
+
 ## Live preflight
 
 `.github/workflows/spotify-daily-live-preflight.yml` runs on updates to the
