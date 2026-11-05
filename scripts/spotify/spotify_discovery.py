@@ -254,6 +254,143 @@ def spotify_artist_tracks(sp, artist, limit=TRACKS_PER_ARTIST, offset=0):
     return []
 
 
+DAILY_PLAYLIST_ID = "4yUVHSMQySfWeEowfIMcx7"
+
+
+def reconcile_daily_manual_removals(
+    playlist_items,
+    cycle_marker,
+    baseline_path=Path("playlist_removal_baseline.json"),
+    blacklist_path=Path("playlist_removed_tracks.json"),
+    detected_at=None,
+):
+    """Persist exact manual removals since the last accepted Daily cycle.
+
+    The baseline is trusted only when its marker matches the last accepted
+    cycle. This prevents stale historical snapshots from being mistaken for
+    current user removals after a failed or interrupted rotation.
+    """
+    if not cycle_marker or not baseline_path.is_file():
+        return {"status": "skipped", "reason": "missing_cycle_marker_or_baseline", "newly_removed": 0}
+    try:
+        baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+        if not isinstance(baseline, dict) or not isinstance(baseline.get("playlists"), dict):
+            raise ValueError("invalid playlist removal baseline schema")
+        if baseline.get("daily_cycle_marker") != cycle_marker:
+            return {"status": "skipped", "reason": "baseline_not_aligned", "newly_removed": 0}
+        previous = baseline["playlists"].get(DAILY_PLAYLIST_ID)
+        if not isinstance(previous, list):
+            raise ValueError("Daily removal baseline is missing or invalid")
+        blacklist = json.loads(blacklist_path.read_text(encoding="utf-8")) if blacklist_path.is_file() else {"version": 1, "playlists": {}}
+        if not isinstance(blacklist, dict) or not isinstance(blacklist.get("playlists", {}), dict):
+            raise ValueError("invalid playlist removal blacklist schema")
+        daily = blacklist.setdefault("playlists", {}).setdefault(
+            DAILY_PLAYLIST_ID, {"name": "Tricky Daily", "removed": [], "whitelisted": []}
+        )
+        if not isinstance(daily, dict):
+            raise ValueError("invalid Tricky Daily blacklist entry")
+        removed_rows = daily.setdefault("removed", [])
+        whitelist_rows = daily.setdefault("whitelisted", [])
+        if not isinstance(removed_rows, list) or not isinstance(whitelist_rows, list):
+            raise ValueError("Daily removed/whitelisted values must be lists")
+        current_uris = {
+            row.get("uri") for row in playlist_items
+            if isinstance(row, dict) and isinstance(row.get("uri"), str)
+        }
+        whitelist_uris = {
+            row.get("uri") for row in whitelist_rows
+            if isinstance(row, dict) and row.get("uri")
+        }
+        whitelist_keys = set()
+        for row in whitelist_rows:
+            if not isinstance(row, dict):
+                continue
+            artists = row.get("artists") or []
+            artist = artists[0] if artists else row.get("artist", "")
+            name = row.get("name") or row.get("track", "")
+            if artist and name:
+                whitelist_keys.add(track_key(artist, name))
+        existing_uris = {row.get("uri") for row in removed_rows if isinstance(row, dict)}
+        existing_keys = set()
+        for row in removed_rows:
+            if not isinstance(row, dict):
+                continue
+            artists = row.get("artists") or []
+            artist = artists[0] if artists else row.get("artist", "")
+            name = row.get("name") or row.get("track", "")
+            if artist and name:
+                existing_keys.add(track_key(artist, name))
+        detected_at = detected_at or datetime.now().astimezone().isoformat()
+        newly_removed = []
+        for row in previous:
+            if not isinstance(row, dict):
+                raise ValueError("invalid row in Daily removal baseline")
+            uri = row.get("uri")
+            if not isinstance(uri, str) or not uri.startswith("spotify:track:") or uri in current_uris:
+                continue
+            artists = row.get("artists") or []
+            artist = artists[0] if artists else row.get("artist", "")
+            name = row.get("name") or row.get("track", "")
+            key = track_key(artist, name) if artist and name else ""
+            if uri in whitelist_uris or (key and key in whitelist_keys):
+                continue
+            if uri in existing_uris or (key and key in existing_keys):
+                continue
+            entry = {
+                "uri": uri, "name": name, "artists": artists or ([artist] if artist else []),
+                "album": row.get("album") or "",
+                "source": "manual removal detected by Tricky Daily live reconciliation",
+                "detected_at": detected_at, "last_present_cycle": cycle_marker,
+            }
+            removed_rows.append(entry)
+            newly_removed.append(entry)
+            existing_uris.add(uri)
+            if key:
+                existing_keys.add(key)
+        if newly_removed:
+            temp = blacklist_path.with_suffix(blacklist_path.suffix + ".tmp")
+            temp.write_text(json.dumps(blacklist, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            temp.replace(blacklist_path)
+        return {
+            "status": "checked", "reason": "baseline_aligned",
+            "newly_removed": len(newly_removed), "removed_total": len(removed_rows),
+            "whitelist_count": len(whitelist_rows),
+        }
+    except (OSError, ValueError, TypeError) as error:
+        raise RuntimeError(
+            "Tricky Daily removal reconciliation failed closed; refusing to generate "
+            "recommendations from an unreadable baseline or blacklist."
+        ) from error
+
+
+def write_daily_removal_baseline(
+    playlist_items,
+    cycle_marker,
+    baseline_path=Path("playlist_removal_baseline.json"),
+):
+    """Save the exact accepted Daily contents as the next removal-detection baseline."""
+    if not cycle_marker:
+        raise ValueError("A Daily cycle marker is required for the removal baseline.")
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8")) if baseline_path.is_file() else {"version": 1, "playlists": {}}
+    if not isinstance(baseline, dict) or not isinstance(baseline.get("playlists", {}), dict):
+        raise ValueError("Daily playlist removal baseline is malformed.")
+    baseline.setdefault("playlists", {})[DAILY_PLAYLIST_ID] = [
+        {
+            "uri": row.get("uri"), "name": row.get("name") or row.get("track"),
+            "artists": row.get("artists") or ([row.get("artist")] if row.get("artist") else []),
+            "album": row.get("album") or "",
+        }
+        for row in playlist_items
+        if isinstance(row, dict) and isinstance(row.get("uri"), str)
+    ]
+    baseline["daily_cycle_marker"] = cycle_marker
+    baseline["daily_cycle_playlist_id"] = DAILY_PLAYLIST_ID
+    temp = baseline_path.with_suffix(baseline_path.suffix + ".tmp")
+    temp.write_text(json.dumps(baseline, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    temp.replace(baseline_path)
+    return len(baseline["playlists"][DAILY_PLAYLIST_ID])
+
+
 def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_removed_tracks.json")):
     """Build playlist-scoped evidence; only explicit whitelist records clear removals.
 
