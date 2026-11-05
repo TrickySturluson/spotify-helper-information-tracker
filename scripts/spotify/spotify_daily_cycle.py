@@ -287,6 +287,27 @@ def main():
             "the new playlist description; cycle remains pending verification."
         )
     updated_snapshot = manager.snapshot(sp, updated)
+    verified_items = updated_snapshot["items"]
+    verified_artists = [
+        discovery.norm((row.get("artists") or [""])[0])
+        for row in verified_items
+    ]
+    if (
+        len(verified_items) != DAILY_TARGET_SIZE
+        or any(not artist for artist in verified_artists)
+        or len(set(verified_artists)) != DAILY_TARGET_SIZE
+    ):
+        manager.audit(
+            event="daily_post_change_validation_failed",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            observed_track_count=len(verified_items),
+            distinct_primary_artist_count=len(set(filter(None, verified_artists))),
+        )
+        raise manager.ManagerError(
+            "Spotify read-back did not confirm exactly 60 tracks from 60 distinct "
+            "primary artists; cycle remains pending verification."
+        )
     after_snapshot = manager.save_snapshot(updated_snapshot)
     manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
                   snapshot=after_snapshot, cycle_date_eastern=cycle_date)
