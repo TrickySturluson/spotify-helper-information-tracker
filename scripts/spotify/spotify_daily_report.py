@@ -6,6 +6,7 @@ Unknown coverage is reported as unknown, never converted to zero engagement.
 """
 import argparse
 import json
+from datetime import datetime
 from pathlib import Path
 
 DEFAULT_DATA = Path("assistant_data/spotify/daily_feedback.json")
@@ -16,6 +17,7 @@ def build_report(payload, candidates=None):
         raise ValueError("Daily feedback must contain a tracks object.")
     tracks = payload["tracks"]
     liked_observed = liked_positive = 0
+    post_add_like_observed = post_add_like_positive = 0
     playback_observed = playback_positive = playback_sessions = 0
     lastfm_observed = lastfm_scrobbles = 0
     removal_events = curator_rotations = explicit_removals = 0
@@ -24,12 +26,28 @@ def build_report(payload, candidates=None):
     for row in tracks.values():
         if not isinstance(row, dict):
             continue
-        additions += len(row.get("additions") or [])
+        addition_rows = row.get("additions") or []
+        additions += len(addition_rows)
         liked_rows = row.get("liked_observations") or []
-        if liked_rows:
+        if liked_rows and isinstance(liked_rows[-1].get("liked"), bool):
             liked_observed += 1
-            if liked_rows[-1].get("liked") is True:
+            if liked_rows[-1]["liked"]:
                 liked_positive += 1
+        # A post-add save is only measurable when the latest addition recorded
+        # an explicit not-liked baseline and a later liked observation exists.
+        if addition_rows and liked_rows:
+            latest_add = addition_rows[-1]
+            latest_like = liked_rows[-1]
+            if latest_add.get("liked_at_add") is False:
+                try:
+                    added_at = datetime.fromisoformat(str(latest_add["at"]).replace("Z", "+00:00"))
+                    observed_at = datetime.fromisoformat(str(latest_like["at"]).replace("Z", "+00:00"))
+                    if observed_at >= added_at and isinstance(latest_like.get("liked"), bool):
+                        post_add_like_observed += 1
+                        if latest_like["liked"]:
+                            post_add_like_positive += 1
+                except (KeyError, TypeError, ValueError):
+                    pass
 
         playback_rows = row.get("playback_observations") or []
         if playback_rows:
@@ -98,6 +116,13 @@ def build_report(payload, candidates=None):
             "currently_liked_tracks": liked_positive,
             "positive_rate_among_observed": rate(liked_positive, liked_observed),
             "coverage": coverage.get("liked_songs", "unknown"),
+        },
+        "liked_after_add": {
+            "observed_tracks": post_add_like_observed,
+            "tracks_saved_after_add": post_add_like_positive,
+            "save_rate_among_tracks_with_unliked_baseline": rate(
+                post_add_like_positive, post_add_like_observed
+            ),
         },
         "spotify_playback_tracker": {
             "observed_tracks": playback_observed,
