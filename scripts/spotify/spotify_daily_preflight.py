@@ -47,6 +47,7 @@ def validate_live_playlist(sp):
 def main():
     manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
     manager.TOKEN = Path(".spotify_daily_preflight_token.json")
+    manager.CONFIG = Path(".github/spotify_playlist_manager_state.json")
     manager.write(manager.TOKEN, {
         "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
         "obtained_at": 0,
