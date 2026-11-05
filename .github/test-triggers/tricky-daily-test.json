@@ -3,6 +3,6 @@
   "mode": "safe-test-only",
   "playlist_mutation": false,
   "requested_by": "ChatGPT-assisted project maintenance",
-  "verification_revision": "automation-smoke-2026-11-05T19:45:00Z",
-  "note": "Push-triggered safe verification run. Compile, full unit suite, and focused schedule regression tests only; no Spotify API calls and no playlist mutation."
+  "verification_revision": "live-readback-after-cycle-2026-11-05T17:32:00-05:00",
+  "note": "Read-only live Spotify preflight after the accepted 60-track Tricky Daily replacement. Confirm exact playlist identity, ownership, unlock state, and item count; do not mutate playlist."
 }
