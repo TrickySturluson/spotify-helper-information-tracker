@@ -52,6 +52,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         config = {"daily_cycle": {"last_cycle_date_eastern": "2026-11-05"}}
         self.assertTrue(daily_cycle.cycle_already_completed(config, "2026-11-05"))
         self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-06"))
+        self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-05", force=True))
 
     def test_cycle_date_guard_rejects_malformed_state(self):
         with self.assertRaises(daily_cycle.manager.ManagerError):
