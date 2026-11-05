@@ -89,6 +89,64 @@ def build_familiarity_index(tracks):
     }
 
 
+def load_daily_discovery_exposure(today=None, path=Path("assistant_data/recommendations/discovery_candidates.json")):
+    """Return recent, Daily-only discovery exposure; this is not listening evidence.
+
+    Only events explicitly scoped to Tricky Daily count. Malformed timestamps,
+    other playlists, and events older than 30 days are ignored. The penalty is
+    soft and decays with age so a surfaced-but-unheard track can return later.
+    """
+    today = today or date.today()
+    path = Path(path)
+    if not path.is_file():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        rows = payload.get("tracks", []) if isinstance(payload, dict) else payload
+        if not isinstance(rows, list):
+            return {}
+    except (OSError, ValueError, TypeError):
+        return {}
+
+    exposure = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        spotify_id = str(row.get("spotify_id") or "").strip()
+        uri = row.get("spotify_uri") or ("spotify:track:" + spotify_id if spotify_id else "")
+        if not isinstance(uri, str) or not uri.startswith("spotify:track:"):
+            continue
+        recent_days = []
+        for event in row.get("discovery_evidence") or []:
+            if not isinstance(event, dict):
+                continue
+            context = event.get("context") or {}
+            if context.get("playlist_id") != "4yUVHSMQySfWeEowfIMcx7":
+                continue
+            observed = event.get("observed_at")
+            try:
+                when = datetime.fromisoformat(str(observed).replace("Z", "+00:00"))
+                event_day = when.date()
+                age = (today - event_day).days
+            except (TypeError, ValueError, OverflowError):
+                continue
+            if 0 <= age <= 30:
+                recent_days.append(age)
+        if not recent_days:
+            continue
+        latest_age = min(recent_days)
+        # Repeated resurfacing adds a modest increment; age remains the
+        # dominant factor. The maximum raw penalty is bounded at 0.12.
+        repeat_factor = min(1.0, 0.70 + 0.15 * (len(recent_days) - 1))
+        penalty = 0.12 * math.exp(-latest_age / 12.0) * repeat_factor
+        exposure[uri] = {
+            "events_30d": len(recent_days),
+            "latest_days_ago": latest_age,
+            "penalty": round(penalty, 6),
+        }
+    return exposure
+
+
 def lyric_theme_affinity(analysis, playlist_theme_counts):
     """Measure overlap with this playlist's observed lyric themes (0..1)."""
     candidate_themes = set((analysis or {}).get("themes") or {})
@@ -368,6 +426,8 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     # A removed track/artist is a soft negative, never a global blacklist.
     feedback = feedback or {}
     daily = feedback.get("daily_evidence", {}).get(uri, {})
+    exposure = feedback.get("discovery_exposure", {}).get(uri, {})
+    exposure_penalty = max(0.0, float(exposure.get("penalty") or 0.0))
     removed_exact = track_key(artist, name) in feedback.get("negative_keys", set())
     removed_uri = uri in feedback.get("negative_uris", set())
     # A Daily removal is not negative evidence unless meaningful listening exposure was observed.
@@ -400,9 +460,15 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
         feedback_bonus += min(0.08, 0.025 * math.log1p(daily["measured_plays"]))
     if daily.get("lastfm_plays") is not None and daily.get("lastfm_plays") > 0:
         feedback_bonus += min(0.025, 0.008 * math.log1p(daily["lastfm_plays"]))
+    # Actual positive outcomes counteract exposure fatigue. Missing coverage and
+    # unplayed tracks remain neutral; a save after addition fully clears it.
+    if post_add_saved:
+        exposure_penalty = 0.0
+    elif (daily.get("measured_plays") or 0) > 0 or (daily.get("lastfm_plays") or 0) > 0:
+        exposure_penalty *= 0.35
     # Spotify removed the popularity field from some Development Mode API
     # responses in 2026. Do not interpret a missing field as popularity zero.
-    score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty + feedback_bonus
+    score = weights["similarity"] * similarity + weights["familiarity"] * (1.0 - penalty) - feedback_penalty - exposure_penalty + feedback_bonus
     if is_liked and not post_add_saved:
         score -= weights["liked_penalty"]
     return score, plays, known.get("last_scrobble"), is_liked
@@ -424,7 +490,12 @@ def build_discovery_recommendations(
     if not isinstance(profiles, dict) or not profiles or not isinstance(archive, list):
         raise RuntimeError("Music taste/familiarity data is empty or invalid.")
     familiarity = build_familiarity_index(archive)
+    is_daily = playlist_id == "4yUVHSMQySfWeEowfIMcx7"
     feedback = load_playlist_feedback(playlist_items, playlist_id)
+    feedback["discovery_exposure"] = (
+        load_daily_discovery_exposure(today)
+        if is_daily else {}
+    )
     # Daily receives user-wide momentum as a soft signal, never a fixed mood target.
     trends_report = {}
     trends_path = Path("assistant_data/spotify/listening_trends.json")
@@ -508,6 +579,10 @@ def build_discovery_recommendations(
                 "positive_artist_count": feedback.get("positive_artists", {}).get(norm(artist), 0),
                 "removed_artist_count": feedback.get("negative_artists", {}).get(norm(artist), 0),
                 "removed_exact": False,
+                "daily_exposure_penalty": (
+                    feedback.get("discovery_exposure", {}).get(uri, {}).get("penalty", 0.0)
+                    if is_daily else None
+                ),
                 "whitelisted": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
                 "positive_exact": key in feedback.get("positive_keys", set()) or uri in feedback.get("positive_uris", set()),
             }
