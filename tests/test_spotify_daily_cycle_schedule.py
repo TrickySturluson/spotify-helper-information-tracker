@@ -57,12 +57,44 @@ class DailyCycleScheduleTests(unittest.TestCase):
         with self.assertRaises(daily_cycle.manager.ManagerError):
             daily_cycle.cycle_already_completed({"daily_cycle": []}, "2026-11-05")
 
+    def test_duplicate_schedule_delivery_exits_before_spotify_api(self):
+        class FrozenDateTime:
+            @staticmethod
+            def now(tz):
+                return datetime(2026, 11, 5, 6, 47, tzinfo=tz)
+
+        completed = {"daily_cycle": {"last_cycle_date_eastern": "2026-11-05"}}
+        with patch.object(daily_cycle, "datetime", FrozenDateTime), \
+             patch.object(daily_cycle, "configure"), \
+             patch.object(daily_cycle.manager, "config", return_value=completed), \
+             patch.object(daily_cycle.manager, "Spotify") as spotify, \
+             patch.object(daily_cycle, "set_action_output"), \
+             patch.dict(os.environ, {"GITHUB_EVENT_NAME": "schedule"}), \
+             patch.object(sys, "argv", ["spotify_daily_cycle.py"]):
+            self.assertEqual(daily_cycle.main(), 0)
+        spotify.assert_not_called()
+
+    def test_replacement_state_is_persisted_before_post_change_read(self):
+        source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
+        persist_at = source.index("manager.write(manager.CONFIG, config)", replace_at)
+        output_at = source.index('set_action_output("cycled", "true")', persist_at)
+        verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', output_at)
+        self.assertLess(replace_at, persist_at)
+        self.assertLess(persist_at, output_at)
+        self.assertLess(output_at, verify_at)
+
+    def test_workflow_persists_accepted_replacement_even_after_later_step_failure(self):
+        workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
+        self.assertIn('- cron: "15 4,5 * * *"', workflow)
+        self.assertIn("if: always() && steps.daily-cycle.outputs.cycled == 'true'", workflow)
+
     def test_action_output_is_written_as_a_real_newline_delimited_value(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "github-output"
             with patch.dict(os.environ, {"GITHUB_OUTPUT": str(output)}):
                 daily_cycle.set_action_output("cycled", "true")
-            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\n")
+            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\\n")
 
 
 if __name__ == "__main__":
@@ -72,8 +104,8 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Regression tests for Tricky Daily scheduled-run timing and outputs.
-# Coverage: Delayed catch-up, EST cron boundary, manual dispatch gating, force,
-#           date idempotency, malformed state, and Actions step outputs.
+# Coverage: Delayed catch-up, EST cron boundary, manual dispatch, force, early
+#           duplicate no-op, accepted-mutation persistence, and Actions outputs.
 # Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
 # Related: scripts/spotify/spotify_daily_cycle.py and the midnight-cycle workflow.
 # -----------------------------------------------------------------------------
