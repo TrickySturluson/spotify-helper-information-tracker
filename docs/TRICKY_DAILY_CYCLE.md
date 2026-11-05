@@ -1,6 +1,11 @@
 # Tricky Daily listening trends
 
 Tricky Daily is a rotating discovery queue, not a fixed mood/theme playlist.
+Each successful rotation replaces it with exactly 60 tracks from 60 distinct
+primary artists. The discovery pool is expanded to provide enough artist
+candidates; selection keeps only the highest-ranked track for each artist.
+If 60 distinct artists cannot be resolved, the cycle fails safely before the
+playlist is changed rather than repeating an artist or publishing a short list.
 Its discovery engine keeps established taste and Last.fm similarity as the
 foundation, uses recent listening momentum as a small soft nudge, and retains
 room for exploration outside current patterns.
