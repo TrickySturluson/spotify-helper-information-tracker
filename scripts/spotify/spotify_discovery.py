@@ -540,7 +540,12 @@ def select_daily_mix(ranked, target_size=TARGET_SIZE, per_artist=2, targets=None
         if len(selected) >= target_size:
             break
         add(row)
-    return selected[:target_size]
+    # Quotas choose membership, not playlist ordering. Restore the global score
+    # order so the mix is not artificially segmented into tier blocks.
+    return [
+        dict(row) for row in ranked
+        if (row.get("uri") or track_key(row.get("artist"), row.get("track"))) in selected_ids
+    ][:target_size]
 
 
 def build_discovery_recommendations(
