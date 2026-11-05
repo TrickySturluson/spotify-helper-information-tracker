@@ -76,6 +76,7 @@ jobs:
           })
           PY
       - name: Cycle Tricky Daily
+        id: daily-cycle
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
@@ -98,14 +99,20 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
       - name: Persist cycle state and feedback
-        if: success()
+        if: success() && steps.daily-cycle.outputs.cycled == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/spotify_playlist_manager_state.json .github/spotify_playlist_manager_audit.jsonl assistant_data/spotify/daily_feedback.json assistant_data/spotify/listening_trends.json
-          if [ -f playlist_removal_baseline.json ]; then git add playlist_removal_baseline.json; fi
-          if [ -f playlist_removed_tracks.json ]; then git add playlist_removed_tracks.json; fi
-          if [ -f assistant_data/recommendations/discovery_candidates.json ]; then git add assistant_data/recommendations/discovery_candidates.json; fi
+          test -f .github/spotify_playlist_manager_state.json || { echo "Missing required playlist manager state" >&2; exit 1; }
+          test -f .github/spotify_playlist_manager_audit.jsonl || { echo "Missing required playlist manager audit" >&2; exit 1; }
+          git add -- .github/spotify_playlist_manager_state.json .github/spotify_playlist_manager_audit.jsonl
+          for path in assistant_data/spotify/daily_feedback.json assistant_data/spotify/listening_trends.json playlist_removal_baseline.json playlist_removed_tracks.json assistant_data/recommendations/discovery_candidates.json; do
+            if [ -f "$path" ]; then
+              git add -- "$path"
+            else
+              echo "Optional cycle output not present; skipping: $path"
+            fi
+          done
           if ! git diff --cached --quiet; then
             git commit -m "Cycle Tricky Daily playlist"
             git push
