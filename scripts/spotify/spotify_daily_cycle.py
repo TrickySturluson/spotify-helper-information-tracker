@@ -187,7 +187,7 @@ def main():
     # Re-read immediately before planning/mutation in case state changed after
     # startup. The workflow concurrency group also serializes cycle executions.
     config = manager.config()
-    if cycle_already_completed(config, cycle_date):
+    if cycle_already_completed(config, cycle_date, force=args.force):
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
