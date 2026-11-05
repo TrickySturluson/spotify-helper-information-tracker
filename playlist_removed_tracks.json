@@ -349,7 +349,259 @@
     },
     "4yUVHSMQySfWeEowfIMcx7": {
       "name": "Tricky Daily",
-      "removed": []
+      "removed": [
+        {
+          "uri": "spotify:track:2mijcmCvkvig8SkNCgYZC5",
+          "name": "Bitter Water",
+          "artists": [
+            "The Oh Hellos"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:7g3MdW9vvunaniaNq4C8Fe",
+          "name": "Constellations",
+          "artists": [
+            "The Oh Hellos"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:0f2489MzoisF9pKduawvce",
+          "name": "Autumn In New York",
+          "artists": [
+            "Ella Fitzgerald"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:5TNpCThzzXHEipXGKgNG8T",
+          "name": "Cheek To Cheek",
+          "artists": [
+            "Ella Fitzgerald"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:1p80LdxRV74UKvL8gnD7ky",
+          "name": "Blank Space",
+          "artists": [
+            "Taylor Swift"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:4lIxdJw6W3Fg4vUIYCB0S5",
+          "name": "Style",
+          "artists": [
+            "Taylor Swift"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:7pFibnxpBbPhCtA3VthLAS",
+          "name": "Choking",
+          "artists": [
+            "The Velveteers"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:13m5qv9bHI7Q7J9ScWcZd8",
+          "name": "RGB",
+          "artists": [
+            "Scattle"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:2JsxDf1X8gJVC5vNyWZCdy",
+          "name": "Set In Stone",
+          "artists": [
+            "Scattle"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:0Tyi56S51KsufCIcqRHWCN",
+          "name": "2am",
+          "artists": [
+            "Foals"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:04caEZhAsQKnWqKsMwk9ud",
+          "name": "My Number",
+          "artists": [
+            "Foals"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:6Ze4Z6TcASPtGhwOnnGKjF",
+          "name": "BLAME IT ON THE KIDS",
+          "artists": [
+            "Aviva"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:62dgdKzqyD2JYLekL8sO21",
+          "name": "GRRRLS",
+          "artists": [
+            "Aviva"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:5wbg8kepMFoMzHOEuxiI0q",
+          "name": "Close To You",
+          "artists": [
+            "Gracie Abrams"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:61Oyg0lrAOMjBpEStqfOZ1",
+          "name": "Hit the Wall",
+          "artists": [
+            "Gracie Abrams"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:6q4KiZlnYaANNBQOVIIW4a",
+          "name": "Buckeye",
+          "artists": [
+            "Friends in Real Life"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:1xGX9AdNu5IX0EjPIPEqH2",
+          "name": "Failed Careers",
+          "artists": [
+            "Friends in Real Life"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:6MlnXU2iJW8XITOM9W8VL8",
+          "name": "100 bpm",
+          "artists": [
+            "Juan Arenosa"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:78jqdo7usNziiqeH8aJxqS",
+          "name": "21 g",
+          "artists": [
+            "Juan Arenosa"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:1g9o6MNw8DQEFGmKQwbyYa",
+          "name": "God Knows",
+          "artists": [
+            "Tunde Adebimpe"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:3ffpAgPusYqOoQJmKWtnbW",
+          "name": "Magnetic",
+          "artists": [
+            "Tunde Adebimpe"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:7uGD7HQMi8zFj1JEvYK1ot",
+          "name": "Big Cloud",
+          "artists": [
+            "Radiator Hospital"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:2RxGyOGoU0vsdxMwJrkCwT",
+          "name": "Do You Remember",
+          "artists": [
+            "Radiator Hospital"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:5G2f63n7IPVPPjfNIGih7Q",
+          "name": "Taste",
+          "artists": [
+            "Sabrina Carpenter"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        },
+        {
+          "uri": "spotify:track:2WRaoxkEvEbDMKhvJdjXcH",
+          "name": "Bad for Good",
+          "artists": [
+            "Skull Fist"
+          ],
+          "album": "",
+          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
+          "detected_at": "2026-11-05T22:25:31.658417+00:00"
+        }
+      ],
+      "whitelisted": []
     },
     "1C6heonV5mxcBwNpmOGMjC": {
       "name": "uh",
