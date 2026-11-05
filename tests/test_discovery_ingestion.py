@@ -24,6 +24,25 @@ class DiscoveryIngestionTests(unittest.TestCase):
             self.assertEqual(len(saved), 1)
             self.assertEqual(len(saved[0]["discovery_evidence"]), 2)
 
+    def test_recommendation_quality_context_is_saved_separately_from_listening(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "candidates.json"
+            append_candidates([{
+                "uri": "spotify:track:abc123", "artist": "Artist", "name": "Song",
+                "tier": "discovery", "daily_mix_bucket": "discovery",
+                "score": 0.83, "similarity": 0.91, "supporting_seeds": 4,
+                "confidence": "high", "liked": False,
+            }], source="tricky_daily_recommendations",
+                context={"playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+                         "cycle_date_eastern": "2026-11-05"}, path=path)
+            saved = json.loads(path.read_text(encoding="utf-8"))[0]
+            event = saved["discovery_evidence"][0]
+            self.assertEqual(event["recommendation"]["tier"], "discovery")
+            self.assertEqual(event["recommendation"]["daily_mix_bucket"], "discovery")
+            self.assertEqual(event["recommendation"]["score"], 0.83)
+            self.assertEqual(saved["listening_evidence"],
+                             {"plays": None, "scrobbles": None, "saved": None})
+
     def test_discovery_does_not_infer_listening_or_preference(self):
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "candidates.json"
