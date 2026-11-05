@@ -411,16 +411,6 @@
           "detected_at": "2026-11-05T22:25:31.658417+00:00"
         },
         {
-          "uri": "spotify:track:7pFibnxpBbPhCtA3VthLAS",
-          "name": "Choking",
-          "artists": [
-            "The Velveteers"
-          ],
-          "album": "",
-          "source": "user manual removal detected against the 2026-11-05 pre-cycle live Spotify snapshot",
-          "detected_at": "2026-11-05T22:25:31.658417+00:00"
-        },
-        {
           "uri": "spotify:track:13m5qv9bHI7Q7J9ScWcZd8",
           "name": "RGB",
           "artists": [
