@@ -124,7 +124,7 @@ def main():
     # Check the persisted date before opening Spotify. Backup cron entries and
     # delayed duplicate deliveries should be cheap local no-ops after success.
     config = manager.config()
-    if cycle_already_completed(config, cycle_date):
+    if not args.description_only and cycle_already_completed(config, cycle_date):
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
