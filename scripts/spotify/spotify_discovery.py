@@ -27,11 +27,11 @@ import spotify_listening_trends as listening_trends
 PROFILES = Path("assistant_data/music/artist_profiles.json")
 FEATURES = Path("assistant_data/recommendations/track_features.json")
 LASTFM_URL = "https://ws.audioscrobbler.com/2.0/"
-TARGET_SIZE = 30
-MIN_MATCHES = 20
+TARGET_SIZE = 60
+MIN_MATCHES = 60
 SEED_ARTISTS = 24
 SIMILAR_PER_SEED = 20
-DISCOVERY_ARTISTS = 36
+DISCOVERY_ARTISTS = 120
 TRACKS_PER_ARTIST = 10
 
 
@@ -524,21 +524,23 @@ def build_discovery_recommendations(
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
         time.sleep(0.08)
-    # Deterministic ordering; cap artists to preserve range across the 30.
+    # One track per primary artist: Daily is deliberately artist-diverse.
+    # Deterministic ordering keeps the highest-scoring track for each artist.
     ranked = sorted(candidates.values(), key=lambda row: (-row["score"], norm(row["artist"]), norm(row["track"])))
-    selected, artist_counts = [], defaultdict(int)
+    selected, seen_artists = [], set()
     for row in ranked:
         if len(selected) >= target_size:
             break
-        key = norm(row["artist"])
-        if artist_counts[key] >= 2:
+        artist_key = norm(row.get("artist"))
+        if not artist_key or artist_key in seen_artists:
             continue
         selected.append(row)
-        artist_counts[key] += 1
-    if len(selected) < min(MIN_MATCHES, target_size):
+        seen_artists.add(artist_key)
+    required = min(MIN_MATCHES, target_size)
+    if len(selected) < required:
         raise RuntimeError(
-            f"Only {len(selected)} discovery candidates were found; at least "
-            f"{min(MIN_MATCHES, target_size)} are required. Playlist was not changed."
+            f"Only {len(selected)} unique-artist discovery candidates were found; "
+            f"{required} are required. Playlist was not changed."
         )
     return selected, []
 
