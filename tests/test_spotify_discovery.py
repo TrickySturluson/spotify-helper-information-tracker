@@ -311,6 +311,10 @@ class DiscoveryScoringTests(unittest.TestCase):
             counts[row["tier"]] = counts.get(row["tier"], 0) + 1
         self.assertEqual(len(selected), 20)
         self.assertEqual(counts, {"discovery": 9, "rediscovery": 6, "familiar": 5})
+        self.assertEqual(
+            [row["score"] for row in selected],
+            sorted((row["score"] for row in selected), reverse=True),
+        )
         self.assertLessEqual(max(
             sum(1 for row in selected if row["artist"] == artist)
             for artist in {row["artist"] for row in selected}
