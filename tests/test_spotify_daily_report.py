@@ -43,6 +43,25 @@ class DailyReportTests(unittest.TestCase):
         self.assertEqual(report["spotify_playback_tracker"]["coverage"], "available")
         self.assertIn("separately", report["interpretation"]["listening_sources"])
 
+    def test_report_summarizes_daily_mix_by_tier_without_cross_playlist_leakage(self):
+        feedback = {"tracks": {"spotify:track:a": {"additions": []}}, "coverage": {}}
+        candidates = [
+            {"spotify_uri": "spotify:track:a", "discovery_evidence": [
+                {"context": {"playlist_id": "4yUVHSMQySfWeEowfIMcx7"},
+                 "recommendation": {"daily_mix_bucket": "discovery"}}]},
+            {"spotify_uri": "spotify:track:b", "discovery_evidence": [
+                {"context": {"playlist_id": "4yUVHSMQySfWeEowfIMcx7"},
+                 "recommendation": {"daily_mix_bucket": "rediscovery"}}]},
+            {"spotify_uri": "spotify:track:c", "discovery_evidence": [
+                {"context": {"playlist_id": "4diIlnF8BlgoJrwUfejf49"},
+                 "recommendation": {"daily_mix_bucket": "familiar"}}]},
+        ]
+        report = build_report(feedback, candidates)
+        self.assertEqual(report["discovery_mix"]["surfaced_tracks"], 2)
+        self.assertEqual(report["discovery_mix"]["by_tier"]["discovery"]["tracks_with_feedback"], 1)
+        self.assertEqual(report["discovery_mix"]["by_tier"]["rediscovery"]["unique_tracks"], 1)
+        self.assertNotIn("familiar", report["discovery_mix"]["by_tier"])
+
     def test_empty_report_has_null_rates_not_zero_rates(self):
         report = build_report({"tracks": {}, "coverage": {}})
         self.assertEqual(report["track_count"], 0)
