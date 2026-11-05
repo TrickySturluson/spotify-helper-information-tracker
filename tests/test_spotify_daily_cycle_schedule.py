@@ -48,6 +48,15 @@ class DailyCycleScheduleTests(unittest.TestCase):
         daytime = datetime(2026, 11, 5, 14, 0, tzinfo=EASTERN)
         self.assertTrue(daily_cycle.should_run_cycle(daytime, force=True, event_name="workflow_dispatch"))
 
+    def test_cycle_date_guard_skips_already_completed_eastern_date(self):
+        config = {"daily_cycle": {"last_cycle_date_eastern": "2026-11-05"}}
+        self.assertTrue(daily_cycle.cycle_already_completed(config, "2026-11-05"))
+        self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-06"))
+
+    def test_cycle_date_guard_rejects_malformed_state(self):
+        with self.assertRaises(daily_cycle.manager.ManagerError):
+            daily_cycle.cycle_already_completed({"daily_cycle": []}, "2026-11-05")
+
     def test_action_output_is_written_as_a_real_newline_delimited_value(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "github-output"
@@ -64,7 +73,7 @@ if __name__ == "__main__":
 # FILE OVERVIEW
 # Purpose: Regression tests for Tricky Daily scheduled-run timing and outputs.
 # Coverage: Delayed catch-up, EST cron boundary, manual dispatch gating, force,
-#           and GitHub Actions step outputs.
+#           date idempotency, malformed state, and Actions step outputs.
 # Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
 # Related: scripts/spotify/spotify_daily_cycle.py and the midnight-cycle workflow.
 # -----------------------------------------------------------------------------
