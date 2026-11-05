@@ -1,0 +1,37 @@
+name: SHIT — Tricky Daily Remote Verification
+
+on:
+  push:
+    paths:
+      - ".github/test-triggers/tricky-daily-test.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tricky-daily-remote-verification
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile Tricky Daily modules
+        run: |
+          python -m py_compile compat/spotify_daily_cycle.py compat/spotify_playlist_manager.py compat/spotify_discovery.py compat/spotify_daily_feedback.py compat/spotify_listening_trends.py
+      - name: Run complete test suite
+        run: python -m unittest discover -s tests -t . -v
+      - name: Confirm schedule gate regression coverage
+        run: |
+          python -m unittest tests.test_spotify_daily_cycle_schedule -v
+      - name: Report safe verification mode
+        run: |
+          echo "Remote verification passed its configured checks."
+          echo "This workflow does not connect to Spotify or mutate any playlist."
