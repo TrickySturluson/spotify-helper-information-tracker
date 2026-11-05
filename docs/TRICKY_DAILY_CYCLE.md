@@ -4,10 +4,12 @@ Tricky Daily is a rotating discovery queue, not a fixed mood/theme playlist.
 Each successful rotation replaces it with exactly 60 tracks. Selection first
 tries to use 60 distinct primary artists. If that falls short, discovery retries
 Spotify's next search-results page for alternate tracks before relaxing the
-diversity rule. Only after that retry may a primary artist appear twice, and
-never more than twice. This fallback is audited. If 60 tracks still cannot be
-resolved, the cycle fails safely before the playlist is changed rather than
-publishing a short list or exceeding the two-track artist ceiling.
+diversity rule. If 60 distinct artists still cannot be found, it searches progressively deeper
+catalogue pages and expands the artist pool before allowing repeated artists.
+The per-artist ceiling is relaxed progressively as a last resort; track URIs
+remain unique and playlist removals remain blocked. The fallback is audited.
+The cycle stages and pushes a full 60-track set rather than abandoning a rotation
+solely because artist diversity is limited.
 Its discovery engine keeps established taste and Last.fm similarity as the
 foundation, uses recent listening momentum as a small soft nudge, and retains
 room for exploration outside current patterns.
