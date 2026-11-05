@@ -53,6 +53,8 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertTrue(daily_cycle.cycle_already_completed(config, "2026-11-05"))
         self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-06"))
         self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-05", force=True))
+        source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        self.assertEqual(source.count("cycle_already_completed(config, cycle_date, force=args.force)"), 2)
 
     def test_cycle_date_guard_rejects_malformed_state(self):
         with self.assertRaises(daily_cycle.manager.ManagerError):
