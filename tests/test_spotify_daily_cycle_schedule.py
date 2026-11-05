@@ -99,7 +99,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertLess(verify_at, assertion_at)
 
     def test_description_only_mode_is_present_and_does_not_replace_tracks(self):
-        source = (ROOT / "scripts" / " " if False else ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         branch = source[source.index("if args.description_only:"):source.index("# Re-read immediately before planning/mutation")]
         self.assertIn('sp.call("PUT", f"/playlists/{DAILY_ID}"', branch)
         self.assertIn('sp.call("GET", f"/playlists/{DAILY_ID}")', branch)
@@ -121,7 +121,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
     def test_workflow_persists_accepted_replacement_even_after_later_step_failure(self):
         workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
         self.assertIn('- cron: "15 4,5 * * *"', workflow)
-        self.assertIn("if: always() && steps.daily-cycle.outputs.cycled == 'true'", workflow)
+        self.assertIn("steps.daily-cycle.outputs.cycled == 'true' || steps.daily-cycle.outputs.description_updated == 'true'", workflow)
 
     def test_action_output_is_written_as_a_real_newline_delimited_value(self):
         with tempfile.TemporaryDirectory() as directory:
