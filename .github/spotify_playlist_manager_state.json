@@ -400,7 +400,9 @@
     "last_cycle_date_eastern": "2026-11-05",
     "last_cycle_at": "2026-11-05T22:28:55.203703+00:00",
     "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
-    "description": "Today's detour starts here.",
-    "status": "replacement_accepted_pending_verification"
+    "description": "No skips promised. Good luck.",
+    "status": "replacement_accepted_pending_verification",
+    "last_description_date_eastern": "2026-11-05",
+    "description_status": "completed"
   }
 }
