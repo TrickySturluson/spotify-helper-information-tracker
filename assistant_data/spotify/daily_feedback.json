@@ -1,0 +1,769 @@
+{
+  "version": 1,
+  "tracks": {
+    "spotify:track:1Tqhk16VUBc4h3C4DYy1W9": {
+      "uri": "spotify:track:1Tqhk16VUBc4h3C4DYy1W9",
+      "artist": "Sound of Ceres",
+      "track": "Side A",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010119+00:00"
+    },
+    "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr": {
+      "uri": "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr",
+      "artist": "Sound of Ceres",
+      "track": "My Spiral Arm",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010145+00:00"
+    },
+    "spotify:track:2mijcmCvkvig8SkNCgYZC5": {
+      "uri": "spotify:track:2mijcmCvkvig8SkNCgYZC5",
+      "artist": "The Oh Hellos",
+      "track": "Bitter Water",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010147+00:00"
+    },
+    "spotify:track:7g3MdW9vvunaniaNq4C8Fe": {
+      "uri": "spotify:track:7g3MdW9vvunaniaNq4C8Fe",
+      "artist": "The Oh Hellos",
+      "track": "Constellations",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010150+00:00"
+    },
+    "spotify:track:0f2489MzoisF9pKduawvce": {
+      "uri": "spotify:track:0f2489MzoisF9pKduawvce",
+      "artist": "Ella Fitzgerald",
+      "track": "Autumn In New York",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010152+00:00"
+    },
+    "spotify:track:5TNpCThzzXHEipXGKgNG8T": {
+      "uri": "spotify:track:5TNpCThzzXHEipXGKgNG8T",
+      "artist": "Ella Fitzgerald",
+      "track": "Cheek To Cheek",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010153+00:00"
+    },
+    "spotify:track:1p80LdxRV74UKvL8gnD7ky": {
+      "uri": "spotify:track:1p80LdxRV74UKvL8gnD7ky",
+      "artist": "Taylor Swift",
+      "track": "Blank Space",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010154+00:00"
+    },
+    "spotify:track:4lIxdJw6W3Fg4vUIYCB0S5": {
+      "uri": "spotify:track:4lIxdJw6W3Fg4vUIYCB0S5",
+      "artist": "Taylor Swift",
+      "track": "Style",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010156+00:00"
+    },
+    "spotify:track:7pFibnxpBbPhCtA3VthLAS": {
+      "uri": "spotify:track:7pFibnxpBbPhCtA3VthLAS",
+      "artist": "The Velveteers",
+      "track": "Choking",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010157+00:00"
+    },
+    "spotify:track:0Bv29HnwIu7l3YYsh9TQWk": {
+      "uri": "spotify:track:0Bv29HnwIu7l3YYsh9TQWk",
+      "artist": "The Velveteers",
+      "track": "Death Hex",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010158+00:00"
+    },
+    "spotify:track:13m5qv9bHI7Q7J9ScWcZd8": {
+      "uri": "spotify:track:13m5qv9bHI7Q7J9ScWcZd8",
+      "artist": "Scattle",
+      "track": "RGB",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010160+00:00"
+    },
+    "spotify:track:2JsxDf1X8gJVC5vNyWZCdy": {
+      "uri": "spotify:track:2JsxDf1X8gJVC5vNyWZCdy",
+      "artist": "Scattle",
+      "track": "Set In Stone",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010161+00:00"
+    },
+    "spotify:track:0Tyi56S51KsufCIcqRHWCN": {
+      "uri": "spotify:track:0Tyi56S51KsufCIcqRHWCN",
+      "artist": "Foals",
+      "track": "2am",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010162+00:00"
+    },
+    "spotify:track:04caEZhAsQKnWqKsMwk9ud": {
+      "uri": "spotify:track:04caEZhAsQKnWqKsMwk9ud",
+      "artist": "Foals",
+      "track": "My Number",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010164+00:00"
+    },
+    "spotify:track:6Ze4Z6TcASPtGhwOnnGKjF": {
+      "uri": "spotify:track:6Ze4Z6TcASPtGhwOnnGKjF",
+      "artist": "Aviva",
+      "track": "BLAME IT ON THE KIDS",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010165+00:00"
+    },
+    "spotify:track:62dgdKzqyD2JYLekL8sO21": {
+      "uri": "spotify:track:62dgdKzqyD2JYLekL8sO21",
+      "artist": "Aviva",
+      "track": "GRRRLS",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010166+00:00"
+    },
+    "spotify:track:5wbg8kepMFoMzHOEuxiI0q": {
+      "uri": "spotify:track:5wbg8kepMFoMzHOEuxiI0q",
+      "artist": "Gracie Abrams",
+      "track": "Close To You",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010167+00:00"
+    },
+    "spotify:track:61Oyg0lrAOMjBpEStqfOZ1": {
+      "uri": "spotify:track:61Oyg0lrAOMjBpEStqfOZ1",
+      "artist": "Gracie Abrams",
+      "track": "Hit the Wall",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010168+00:00"
+    },
+    "spotify:track:6q4KiZlnYaANNBQOVIIW4a": {
+      "uri": "spotify:track:6q4KiZlnYaANNBQOVIIW4a",
+      "artist": "Friends in Real Life",
+      "track": "Buckeye",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010169+00:00"
+    },
+    "spotify:track:1xGX9AdNu5IX0EjPIPEqH2": {
+      "uri": "spotify:track:1xGX9AdNu5IX0EjPIPEqH2",
+      "artist": "Friends in Real Life",
+      "track": "Failed Careers",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010170+00:00"
+    },
+    "spotify:track:6MlnXU2iJW8XITOM9W8VL8": {
+      "uri": "spotify:track:6MlnXU2iJW8XITOM9W8VL8",
+      "artist": "Juan Arenosa",
+      "track": "100 bpm",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010171+00:00"
+    },
+    "spotify:track:78jqdo7usNziiqeH8aJxqS": {
+      "uri": "spotify:track:78jqdo7usNziiqeH8aJxqS",
+      "artist": "Juan Arenosa",
+      "track": "21 g",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010172+00:00"
+    },
+    "spotify:track:1g9o6MNw8DQEFGmKQwbyYa": {
+      "uri": "spotify:track:1g9o6MNw8DQEFGmKQwbyYa",
+      "artist": "Tunde Adebimpe",
+      "track": "God Knows",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010173+00:00"
+    },
+    "spotify:track:3ffpAgPusYqOoQJmKWtnbW": {
+      "uri": "spotify:track:3ffpAgPusYqOoQJmKWtnbW",
+      "artist": "Tunde Adebimpe",
+      "track": "Magnetic",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010174+00:00"
+    },
+    "spotify:track:7uGD7HQMi8zFj1JEvYK1ot": {
+      "uri": "spotify:track:7uGD7HQMi8zFj1JEvYK1ot",
+      "artist": "Radiator Hospital",
+      "track": "Big Cloud",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010175+00:00"
+    },
+    "spotify:track:2RxGyOGoU0vsdxMwJrkCwT": {
+      "uri": "spotify:track:2RxGyOGoU0vsdxMwJrkCwT",
+      "artist": "Radiator Hospital",
+      "track": "Do You Remember",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010176+00:00"
+    },
+    "spotify:track:4SRShYMtFIGgnOU7iBicMH": {
+      "uri": "spotify:track:4SRShYMtFIGgnOU7iBicMH",
+      "artist": "Sabrina Carpenter",
+      "track": "Nobody’s Son",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010177+00:00"
+    },
+    "spotify:track:5G2f63n7IPVPPjfNIGih7Q": {
+      "uri": "spotify:track:5G2f63n7IPVPPjfNIGih7Q",
+      "artist": "Sabrina Carpenter",
+      "track": "Taste",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010178+00:00"
+    },
+    "spotify:track:2WRaoxkEvEbDMKhvJdjXcH": {
+      "uri": "spotify:track:2WRaoxkEvEbDMKhvJdjXcH",
+      "artist": "Skull Fist",
+      "track": "Bad for Good",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010179+00:00"
+    },
+    "spotify:track:3yt7Gk7g0bfuNMEx6UHzNk": {
+      "uri": "spotify:track:3yt7Gk7g0bfuNMEx6UHzNk",
+      "artist": "Skull Fist",
+      "track": "Chasing the Dream",
+      "first_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "additions": [
+        {
+          "at": "2026-11-05T19:50:05.289503+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-05T19:50:05.291500+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-05T19:50:06.010181+00:00"
+    }
+  },
+  "coverage": {
+    "playback_tracker": "unknown",
+    "lastfm": "available",
+    "liked_songs": "observed",
+    "playback_tracker_detail": {
+      "status": "unknown",
+      "reason": "segment_file_missing",
+      "segment_count": 0,
+      "latest_segment_at": null,
+      "observed_at": "2026-11-05T19:50:05.494242+00:00",
+      "file_present": false
+    }
+  },
+  "updated_at": "2026-11-05T19:50:06.010183+00:00"
+}

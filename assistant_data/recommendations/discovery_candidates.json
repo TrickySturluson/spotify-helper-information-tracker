@@ -78,6 +78,56 @@
     }
   },
   {
+    "spotify_id": "6Ze4Z6TcASPtGhwOnnGKjF",
+    "spotify_uri": "spotify:track:6Ze4Z6TcASPtGhwOnnGKjF",
+    "artist": "Aviva",
+    "track": "BLAME IT ON THE KIDS",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "62dgdKzqyD2JYLekL8sO21",
+    "spotify_uri": "spotify:track:62dgdKzqyD2JYLekL8sO21",
+    "artist": "Aviva",
+    "track": "GRRRLS",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4SSnFejRGlZikf02HLewEF",
     "spotify_uri": "spotify:track:4SSnFejRGlZikf02HLewEF",
     "artist": "Billie Eilish",
@@ -234,6 +284,156 @@
     }
   },
   {
+    "spotify_id": "0f2489MzoisF9pKduawvce",
+    "spotify_uri": "spotify:track:0f2489MzoisF9pKduawvce",
+    "artist": "Ella Fitzgerald",
+    "track": "Autumn In New York",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5TNpCThzzXHEipXGKgNG8T",
+    "spotify_uri": "spotify:track:5TNpCThzzXHEipXGKgNG8T",
+    "artist": "Ella Fitzgerald",
+    "track": "Cheek To Cheek",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0Tyi56S51KsufCIcqRHWCN",
+    "spotify_uri": "spotify:track:0Tyi56S51KsufCIcqRHWCN",
+    "artist": "Foals",
+    "track": "2am",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "04caEZhAsQKnWqKsMwk9ud",
+    "spotify_uri": "spotify:track:04caEZhAsQKnWqKsMwk9ud",
+    "artist": "Foals",
+    "track": "My Number",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6q4KiZlnYaANNBQOVIIW4a",
+    "spotify_uri": "spotify:track:6q4KiZlnYaANNBQOVIIW4a",
+    "artist": "Friends in Real Life",
+    "track": "Buckeye",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1xGX9AdNu5IX0EjPIPEqH2",
+    "spotify_uri": "spotify:track:1xGX9AdNu5IX0EjPIPEqH2",
+    "artist": "Friends in Real Life",
+    "track": "Failed Careers",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4j3sD1EcYquM2ltqNH19ec",
     "spotify_uri": "spotify:track:4j3sD1EcYquM2ltqNH19ec",
     "artist": "Geto Boys",
@@ -312,6 +512,56 @@
     }
   },
   {
+    "spotify_id": "5wbg8kepMFoMzHOEuxiI0q",
+    "spotify_uri": "spotify:track:5wbg8kepMFoMzHOEuxiI0q",
+    "artist": "Gracie Abrams",
+    "track": "Close To You",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "61Oyg0lrAOMjBpEStqfOZ1",
+    "spotify_uri": "spotify:track:61Oyg0lrAOMjBpEStqfOZ1",
+    "artist": "Gracie Abrams",
+    "track": "Hit the Wall",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4pbhZVYcPpKfksYzmLlvWf",
     "spotify_uri": "spotify:track:4pbhZVYcPpKfksYzmLlvWf",
     "artist": "Harley Poe",
@@ -328,6 +578,56 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6MlnXU2iJW8XITOM9W8VL8",
+    "spotify_uri": "spotify:track:6MlnXU2iJW8XITOM9W8VL8",
+    "artist": "Juan Arenosa",
+    "track": "100 bpm",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "78jqdo7usNziiqeH8aJxqS",
+    "spotify_uri": "spotify:track:78jqdo7usNziiqeH8aJxqS",
+    "artist": "Juan Arenosa",
+    "track": "21 g",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
         }
       }
     ],
@@ -832,6 +1132,56 @@
     }
   },
   {
+    "spotify_id": "7uGD7HQMi8zFj1JEvYK1ot",
+    "spotify_uri": "spotify:track:7uGD7HQMi8zFj1JEvYK1ot",
+    "artist": "Radiator Hospital",
+    "track": "Big Cloud",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2RxGyOGoU0vsdxMwJrkCwT",
+    "spotify_uri": "spotify:track:2RxGyOGoU0vsdxMwJrkCwT",
+    "artist": "Radiator Hospital",
+    "track": "Do You Remember",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2VOomzT6VavJOGBeySqaMc",
     "spotify_uri": "spotify:track:2VOomzT6VavJOGBeySqaMc",
     "artist": "Rihanna",
@@ -848,6 +1198,106 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4SRShYMtFIGgnOU7iBicMH",
+    "spotify_uri": "spotify:track:4SRShYMtFIGgnOU7iBicMH",
+    "artist": "Sabrina Carpenter",
+    "track": "Nobody’s Son",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5G2f63n7IPVPPjfNIGih7Q",
+    "spotify_uri": "spotify:track:5G2f63n7IPVPPjfNIGih7Q",
+    "artist": "Sabrina Carpenter",
+    "track": "Taste",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "13m5qv9bHI7Q7J9ScWcZd8",
+    "spotify_uri": "spotify:track:13m5qv9bHI7Q7J9ScWcZd8",
+    "artist": "Scattle",
+    "track": "RGB",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2JsxDf1X8gJVC5vNyWZCdy",
+    "spotify_uri": "spotify:track:2JsxDf1X8gJVC5vNyWZCdy",
+    "artist": "Scattle",
+    "track": "Set In Stone",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
         }
       }
     ],
@@ -962,6 +1412,106 @@
     }
   },
   {
+    "spotify_id": "2WRaoxkEvEbDMKhvJdjXcH",
+    "spotify_uri": "spotify:track:2WRaoxkEvEbDMKhvJdjXcH",
+    "artist": "Skull Fist",
+    "track": "Bad for Good",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3yt7Gk7g0bfuNMEx6UHzNk",
+    "spotify_uri": "spotify:track:3yt7Gk7g0bfuNMEx6UHzNk",
+    "artist": "Skull Fist",
+    "track": "Chasing the Dream",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4nzJGrFj3nnE8e1vhf7Nnr",
+    "spotify_uri": "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr",
+    "artist": "Sound of Ceres",
+    "track": "My Spiral Arm",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1Tqhk16VUBc4h3C4DYy1W9",
+    "spotify_uri": "spotify:track:1Tqhk16VUBc4h3C4DYy1W9",
+    "artist": "Sound of Ceres",
+    "track": "Side A",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1AWdTY4hPU1U5q5ceJ26yg",
     "spotify_uri": "spotify:track:1AWdTY4hPU1U5q5ceJ26yg",
     "artist": "Strafe",
@@ -978,6 +1528,56 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1p80LdxRV74UKvL8gnD7ky",
+    "spotify_uri": "spotify:track:1p80LdxRV74UKvL8gnD7ky",
+    "artist": "Taylor Swift",
+    "track": "Blank Space",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4lIxdJw6W3Fg4vUIYCB0S5",
+    "spotify_uri": "spotify:track:4lIxdJw6W3Fg4vUIYCB0S5",
+    "artist": "Taylor Swift",
+    "track": "Style",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
         }
       }
     ],
@@ -1430,6 +2030,56 @@
     }
   },
   {
+    "spotify_id": "2mijcmCvkvig8SkNCgYZC5",
+    "spotify_uri": "spotify:track:2mijcmCvkvig8SkNCgYZC5",
+    "artist": "The Oh Hellos",
+    "track": "Bitter Water",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7g3MdW9vvunaniaNq4C8Fe",
+    "spotify_uri": "spotify:track:7g3MdW9vvunaniaNq4C8Fe",
+    "artist": "The Oh Hellos",
+    "track": "Constellations",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0UzhQhSjlIiNHqozH0tKHl",
     "spotify_uri": "spotify:track:0UzhQhSjlIiNHqozH0tKHl",
     "artist": "The Prodigy",
@@ -1498,6 +2148,106 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7pFibnxpBbPhCtA3VthLAS",
+    "spotify_uri": "spotify:track:7pFibnxpBbPhCtA3VthLAS",
+    "artist": "The Velveteers",
+    "track": "Choking",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0Bv29HnwIu7l3YYsh9TQWk",
+    "spotify_uri": "spotify:track:0Bv29HnwIu7l3YYsh9TQWk",
+    "artist": "The Velveteers",
+    "track": "Death Hex",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1g9o6MNw8DQEFGmKQwbyYa",
+    "spotify_uri": "spotify:track:1g9o6MNw8DQEFGmKQwbyYa",
+    "artist": "Tunde Adebimpe",
+    "track": "God Knows",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3ffpAgPusYqOoQJmKWtnbW",
+    "spotify_uri": "spotify:track:3ffpAgPusYqOoQJmKWtnbW",
+    "artist": "Tunde Adebimpe",
+    "track": "Magnetic",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-05T19:50:02.741735+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-05"
         }
       }
     ],
