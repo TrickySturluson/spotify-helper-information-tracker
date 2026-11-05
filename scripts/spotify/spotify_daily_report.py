@@ -12,6 +12,21 @@ from pathlib import Path
 DEFAULT_DATA = Path("assistant_data/spotify/daily_feedback.json")
 
 
+def _rows(value):
+    """Return only mapping-shaped rows from an optional evidence collection."""
+    if not isinstance(value, list):
+        return []
+    return [item for item in value if isinstance(item, dict)]
+
+
+def _count(value):
+    """Parse a non-negative integer without letting malformed evidence abort a report."""
+    try:
+        return max(0, int(value or 0))
+    except (TypeError, ValueError, OverflowError):
+        return 0
+
+
 def build_report(payload, candidates=None):
     if not isinstance(payload, dict) or not isinstance(payload.get("tracks"), dict):
         raise ValueError("Daily feedback must contain a tracks object.")
@@ -26,9 +41,9 @@ def build_report(payload, candidates=None):
     for row in tracks.values():
         if not isinstance(row, dict):
             continue
-        addition_rows = row.get("additions") or []
+        addition_rows = _rows(row.get("additions"))
         additions += len(addition_rows)
-        liked_rows = row.get("liked_observations") or []
+        liked_rows = _rows(row.get("liked_observations"))
         if liked_rows and isinstance(liked_rows[-1].get("liked"), bool):
             liked_observed += 1
             if liked_rows[-1]["liked"]:
@@ -49,19 +64,20 @@ def build_report(payload, candidates=None):
                 except (KeyError, TypeError, ValueError):
                     pass
 
-        playback_rows = row.get("playback_observations") or []
+        playback_raw = row.get("playback_observations")
+        playback_rows = _rows(playback_raw)
         if playback_rows:
             playback_observed += 1
-            plays = sum(max(0, int(item.get("plays") or 0)) for item in playback_rows)
+            plays = sum(_count(item.get("plays")) for item in playback_rows)
             playback_sessions += plays
             if plays:
                 playback_positive += 1
 
         if "lastfm_post_add_scrobbles" in row:
             lastfm_observed += 1
-            lastfm_scrobbles += max(0, int(row.get("lastfm_post_add_scrobbles") or 0))
+            lastfm_scrobbles += _count(row.get("lastfm_post_add_scrobbles"))
 
-        for event in row.get("removal_events") or []:
+        for event in _rows(row.get("removal_events")):
             removal_events += 1
             if event.get("reason") == "curator_rotation":
                 curator_rotations += 1
@@ -71,7 +87,9 @@ def build_report(payload, candidates=None):
     def rate(numerator, denominator):
         return round(numerator / denominator, 4) if denominator else None
 
-    coverage = payload.get("coverage") or {}
+    coverage = payload.get("coverage")
+    if not isinstance(coverage, dict):
+        coverage = {}
     mix_summary = {}
     daily_candidate_tracks = set()
     for candidate in candidates or []:
@@ -81,11 +99,13 @@ def build_report(payload, candidates=None):
             "spotify:track:" + str(candidate.get("spotify_id"))
             if candidate.get("spotify_id") else None
         )
-        for event in candidate.get("discovery_evidence") or []:
-            context = event.get("context") or {}
-            if context.get("playlist_id") != "4yUVHSMQySfWeEowfIMcx7":
+        for event in _rows(candidate.get("discovery_evidence")):
+            context = event.get("context")
+            if not isinstance(context, dict) or context.get("playlist_id") != "4yUVHSMQySfWeEowfIMcx7":
                 continue
-            recommendation = event.get("recommendation") or {}
+            recommendation = event.get("recommendation")
+            if not isinstance(recommendation, dict):
+                recommendation = {}
             tier = recommendation.get("daily_mix_bucket") or recommendation.get("tier") or "unclassified"
             summary = mix_summary.setdefault(tier, {"surfaced_events": 0, "unique_tracks": set(), "tracks_with_feedback": set()})
             summary["surfaced_events"] += 1
