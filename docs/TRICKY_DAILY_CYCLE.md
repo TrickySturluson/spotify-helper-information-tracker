@@ -28,6 +28,34 @@ playlist-fit rejection. This trend profile is user-wide context, not a
 replacement for Daily's separate exposure feedback or general playlist-fit
 calibration.
 
+## Automatic schedule and recovery
+
+`.github/workflows/spotify-daily-midnight-cycle.yml` runs at the EST/EDT
+midnight UTC offsets and has a second delivery 15 minutes later. In standard
+time, the 04:00/04:15 UTC deliveries are 23:00/23:15 Eastern on the prior date
+and are deliberately skipped; 05:00/05:15 UTC are midnight/recovery deliveries.
+During daylight time, 04:00/04:15 UTC are midnight/recovery deliveries and the
+05:00/05:15 UTC entries are harmless duplicate deliveries.
+
+GitHub may delay a scheduled event. The cycle gate therefore permits a
+scheduled catch-up later on the same Eastern calendar date, while refusing
+the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated
+deliveries idempotent and is checked before Spotify is contacted, so a backup
+delivery after a successful cycle is a local no-op.
+
+After Spotify accepts the playlist replacement, the runner immediately writes
+a `replacement_accepted_pending_verification` state and publishes the
+`cycled=true` Actions output. The workflow persists that state even if the
+subsequent playlist read-back or feedback observation fails. A successful
+read-back advances the state to `completed`. A pending-verification state is
+evidence that Spotify accepted the write, not proof that the post-change
+snapshot was verified; inspect the audit and recovery artifact before retrying.
+
+Manual dispatch remains midnight-gated unless its `force` input is explicitly
+set to `true`. The separate remote-verification workflow is safe-test-only:
+it compiles modules and runs tests without contacting Spotify or changing a
+playlist.
+
 ## Operation
 
 The midnight cycle refreshes the trend report before building recommendations.
