@@ -34,6 +34,33 @@ DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
 EASTERN = ZoneInfo("America/New_York")
 MINIMUM_RECOMMENDATIONS = 20
 
+# Short, user-approved-in-spirit rotating lines for the daily discovery queue.
+# This is deliberately separate from the metadata description generator: Daily
+# has an established non-empty editorial description and the user requested
+# that it rotate on every successful daily cycle.
+DAILY_DESCRIPTIONS = (
+    "Could be worse. Could be quiet.",
+    "At least the music's good.",
+    "Familiar names. Unexpected detours",
+    "Your daily dose of questionable taste.",
+    "A little familiar, a little unhinged.",
+    "No skips promised. Good luck.",
+    "Today's detour starts here.",
+    "The algorithm has questionable taste.",
+)
+
+
+def choose_daily_description(cycle_date, current_description=""):
+    """Choose a deterministic daily line and guarantee it differs from current."""
+    day = date.fromisoformat(cycle_date).toordinal()
+    start = day % len(DAILY_DESCRIPTIONS)
+    current = (current_description or "").strip()
+    for offset in range(len(DAILY_DESCRIPTIONS)):
+        candidate = DAILY_DESCRIPTIONS[(start + offset) % len(DAILY_DESCRIPTIONS)]
+        if candidate != current:
+            return candidate
+    raise manager.ManagerError("No distinct Tricky Daily description is available.")
+
 
 def should_run_cycle(local_now, force=False, event_name=None):
     """Allow delayed scheduled runs to catch up once per Eastern date.
@@ -176,6 +203,12 @@ def main():
     )
     cloud.replace_playlist(sp, DAILY_ID, uris)
 
+    # Rotate Daily's short editorial description after the track replacement.
+    # The description is intentionally owned by this dedicated Daily workflow,
+    # not by the generic metadata generator (which protects manual descriptions).
+    next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
+    sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": next_description})
+
     # The playlist replacement has been accepted. Persist the idempotency guard
     # and publish the output immediately, so the workflow can preserve this state
     # even if post-change verification or feedback collection later fails.
@@ -184,6 +217,7 @@ def main():
         "last_cycle_date_eastern": cycle_date,
         "last_cycle_at": manager.stamp(),
         "playlist_id": DAILY_ID,
+        "description": next_description,
         "status": "replacement_accepted_pending_verification",
     }
     manager.write(manager.CONFIG, config)
@@ -198,6 +232,11 @@ def main():
     )
 
     updated = sp.call("GET", f"/playlists/{DAILY_ID}")
+    if (updated.get("description") or "") != next_description:
+        raise manager.ManagerError(
+            "Tricky Daily tracks were replaced, but Spotify read-back did not confirm "
+            "the new playlist description; cycle remains pending verification."
+        )
     updated_snapshot = manager.snapshot(sp, updated)
     after_snapshot = manager.save_snapshot(updated_snapshot)
     manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
@@ -207,6 +246,7 @@ def main():
         "last_cycle_date_eastern": cycle_date,
         "last_cycle_at": manager.stamp(),
         "playlist_id": DAILY_ID,
+        "description": next_description,
         "status": "completed",
     }
     config["last_completed"] = {
