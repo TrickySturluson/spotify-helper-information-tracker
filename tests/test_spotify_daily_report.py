@@ -72,6 +72,34 @@ class DailyReportTests(unittest.TestCase):
         self.assertIsNone(report["spotify_playback_tracker"]["positive_rate_among_observed"])
         self.assertEqual(report["lastfm_scrobbles"]["coverage"], "unknown")
 
+    def test_malformed_feedback_rows_are_ignored_without_losing_valid_evidence(self):
+        report = build_report({
+            "tracks": {
+                "spotify:track:a": {
+                    "additions": [None, {"at": "2026-11-01", "liked_at_add": False}],
+                    "liked_observations": [None, {"at": "2026-11-02", "liked": True}],
+                    "playback_observations": [None, {"plays": "2"}, {"plays": "bad"}],
+                    "lastfm_post_add_scrobbles": "invalid",
+                    "removal_events": [None, {"reason": "curator_rotation"}],
+                },
+                "spotify:track:b": {"playback_observations": [None]},
+            },
+            "coverage": None,
+        }, [
+            {"spotify_uri": "spotify:track:a", "discovery_evidence": [
+                None,
+                {"context": None, "recommendation": {"tier": "discovery"}},
+                {"context": {"playlist_id": "4yUVHSMQySfWeEowfIMcx7"}, "recommendation": None},
+            ]},
+            None,
+        ])
+        self.assertEqual(report["addition_events"], 1)
+        self.assertEqual(report["liked"]["currently_liked_tracks"], 1)
+        self.assertEqual(report["spotify_playback_tracker"]["total_sessions"], 2)
+        self.assertEqual(report["lastfm_scrobbles"]["post_add_scrobbles"], 0)
+        self.assertEqual(report["removals"]["neutral_curator_rotations"], 1)
+        self.assertEqual(report["discovery_mix"]["by_tier"]["unclassified"]["surfaced_events"], 1)
+
     def test_malformed_feedback_is_rejected(self):
         with self.assertRaises(ValueError):
             build_report({"tracks": []})
