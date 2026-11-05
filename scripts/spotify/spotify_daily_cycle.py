@@ -35,6 +35,30 @@ EASTERN = ZoneInfo("America/New_York")
 MINIMUM_RECOMMENDATIONS = 20
 
 
+def should_run_cycle(local_now, force=False, event_name=None):
+    """Allow delayed scheduled runs to catch up once per Eastern date.
+
+    GitHub may queue scheduled workflows well after their nominal cron time.
+    The daily_cycle date guard below makes catch-up safe and idempotent. During
+    standard time, the 04:00 UTC cron lands at 23:00 Eastern on the prior date;
+    that occurrence must wait for the 05:00 UTC midnight occurrence.
+    Manual dispatches remain restricted unless --force is explicitly supplied.
+    """
+    if force:
+        return True
+    if event_name == "schedule":
+        return local_now.hour != 23
+    return local_now.hour == 0 and local_now.minute < 30
+
+
+def set_action_output(name, value):
+    """Publish a GitHub Actions step output when running inside Actions."""
+    output_path = os.environ.get("GITHUB_OUTPUT")
+    if output_path:
+        with open(output_path, "a", encoding="utf-8") as handle:
+            handle.write(f"{name}={value}\n")
+
+
 def configure():
     manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
     manager.TOKEN = Path(".spotify_playlist_token.json")
@@ -53,8 +77,10 @@ def main():
     parser.add_argument("--force", action="store_true", help="Allow a manually dispatched run outside midnight.")
     args = parser.parse_args()
     local_now = datetime.now(EASTERN)
-    if not args.force and not (local_now.hour == 0 and local_now.minute < 30):
-        print(f"Not the midnight Eastern window ({local_now.isoformat()}); no Spotify requests sent.")
+    event_name = os.environ.get("GITHUB_EVENT_NAME", "")
+    if not should_run_cycle(local_now, force=args.force, event_name=event_name):
+        print(f"Outside the allowed Tricky Daily cycle window ({local_now.isoformat()}, event={event_name or 'manual'}); no Spotify requests sent.")
+        set_action_output("cycled", "false")
         return 0
     cycle_date = local_now.date().isoformat()
 
@@ -77,6 +103,7 @@ def main():
     cycle_state = config.setdefault("daily_cycle", {})
     if cycle_state.get("last_cycle_date_eastern") == cycle_date:
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
+        set_action_output("cycled", "false")
         return 0
 
     before = manager.snapshot(sp, playlist)
@@ -186,6 +213,7 @@ def main():
     except Exception as error:
         manager.audit(event="daily_lastfm_observation_failed", error_type=type(error).__name__)
 
+    set_action_output("cycled", "true")
     print(
         f"Tricky Daily cycled for {cycle_date} Eastern: {len(recommendations)} tracks; "
         f"{len(old_uris - new_uris)} tracks rotated out neutrally. "
