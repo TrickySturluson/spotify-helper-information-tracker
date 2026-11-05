@@ -1,0 +1,7 @@
+{
+  "purpose": "Tricky Daily remote verification trigger",
+  "mode": "safe-test-only",
+  "playlist_mutation": false,
+  "requested_by": "ChatGPT-assisted project maintenance",
+  "note": "Updating this file triggers .github/workflows/spotify-daily-remote-verification.yml. It runs compilation and tests only; it does not call Spotify."
+}
