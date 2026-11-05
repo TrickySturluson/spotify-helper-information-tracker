@@ -547,7 +547,7 @@ def build_discovery_recommendations(
     required = min(MIN_MATCHES, target_size)
     if len(selected) < required:
         raise RuntimeError(
-            f"Only {len(selected)} unique-artist discovery candidates were found; "
+            f"Only {len(selected)} discovery candidates from unique artists were found; "
             f"{required} are required. Playlist was not changed."
         )
     return selected, []
