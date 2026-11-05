@@ -74,6 +74,16 @@ class DailyCycleScheduleTests(unittest.TestCase):
             self.assertEqual(daily_cycle.main(), 0)
         spotify.assert_not_called()
 
+    def test_daily_description_pool_keeps_all_originally_discussed_lines(self):
+        expected = {
+            "Could be worse. Could be quiet.",
+            "At least the music's good.",
+            "Familiar names. Unexpected detours",
+            "Your daily dose of questionable taste.",
+        }
+        self.assertTrue(expected.issubset(set(daily_cycle.DAILY_DESCRIPTIONS)))
+        self.assertEqual(len(daily_cycle.DAILY_DESCRIPTIONS), len(set(daily_cycle.DAILY_DESCRIPTIONS)))
+
     def test_daily_description_rotates_deterministically_and_never_repeats_current(self):
         current = daily_cycle.DAILY_DESCRIPTIONS[0]
         first = daily_cycle.choose_daily_description("2026-11-05", current)
