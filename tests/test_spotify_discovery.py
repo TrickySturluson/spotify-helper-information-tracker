@@ -213,6 +213,52 @@ class DiscoveryScoringTests(unittest.TestCase):
                     )
 
 
+    def test_daily_exposure_history_is_playlist_scoped_and_decays(self):
+        with tempfile.TemporaryDirectory() as directory:
+            history = Path(directory) / "candidates.json"
+            history.write_text(
+                '[{"spotify_id":"daily1","spotify_uri":"spotify:track:daily1",'
+                '"discovery_evidence":['
+                '{"source":"tricky_daily_recommendations","observed_at":"2026-11-04T05:00:00+00:00",'
+                '"context":{"playlist_id":"4yUVHSMQySfWeEowfIMcx7","cycle_date_eastern":"2026-11-04"}},'
+                '{"source":"booze_recommendation","observed_at":"2026-11-05T05:00:00+00:00",'
+                '"context":{"playlist_id":"4diIlnF8BlgoJrwUfejf49"}}]},'
+                '{"spotify_id":"booze1","spotify_uri":"spotify:track:booze1",'
+                '"discovery_evidence":[{"observed_at":"2026-11-05T05:00:00+00:00",'
+                '"context":{"playlist_id":"4diIlnF8BlgoJrwUfejf49"}}]}]',
+                encoding="utf-8",
+            )
+            recent = discovery.load_daily_discovery_exposure(date(2026, 11, 5), history)
+            older = discovery.load_daily_discovery_exposure(date(2026, 11, 20), history)
+        self.assertIn("spotify:track:daily1", recent)
+        self.assertEqual(recent["spotify:track:daily1"]["events_30d"], 1)
+        self.assertNotIn("spotify:track:booze1", recent)
+        self.assertLess(
+            older["spotify:track:daily1"]["penalty"],
+            recent["spotify:track:daily1"]["penalty"],
+        )
+
+    def test_daily_exposure_penalty_is_soft_and_positive_outcomes_override(self):
+        track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
+        exposure = {"discovery_exposure": {"spotify:track:daily1": {"penalty": 0.10}}}
+        plain, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), {})
+        exposed, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), exposure)
+        saved_feedback = {
+            **exposure,
+            "daily_evidence": {"spotify:track:daily1": {"liked": True, "liked_at_add": False}},
+        }
+        saved, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), saved_feedback)
+        self.assertLess(exposed, plain)
+        self.assertAlmostEqual(saved, plain + 0.06, places=5)
+
+    def test_non_daily_feedback_does_not_apply_discovery_exposure(self):
+        track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
+        plain, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), {})
+        other_playlist = {"discovery_exposure": {}}
+        unchanged, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), other_playlist)
+        self.assertEqual(unchanged, plain)
+
+
 if __name__ == "__main__":
     unittest.main()
 
