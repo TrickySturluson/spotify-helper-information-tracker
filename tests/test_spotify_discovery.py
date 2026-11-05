@@ -259,6 +259,52 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertEqual(unchanged, plain)
 
 
+    def test_daily_mix_uses_freshness_quotas_and_artist_cap(self):
+        ranked = []
+        for tier, count in (("familiar", 20), ("rediscovery", 20), ("discovery", 20)):
+            for index in range(count):
+                ranked.append({
+                    "uri": f"spotify:track:{tier}{index}",
+                    "artist": f"{tier} artist {index // 2}",
+                    "track": f"{tier} track {index}",
+                    "tier": tier,
+                    "score": 1.0 - index / 1000,
+                })
+        selected = discovery.select_daily_mix(ranked, target_size=20, per_artist=2)
+        counts = {}
+        for row in selected:
+            counts[row["tier"]] = counts.get(row["tier"], 0) + 1
+        self.assertEqual(len(selected), 20)
+        self.assertEqual(counts, {"discovery": 9, "rediscovery": 6, "familiar": 5})
+        self.assertLessEqual(max(
+            sum(1 for row in selected if row["artist"] == artist)
+            for artist in {row["artist"] for row in selected}
+        ), 2)
+
+    def test_daily_mix_backfills_short_tiers_by_global_rank(self):
+        ranked = [
+            {"uri": "spotify:track:d1", "artist": "D1", "tier": "discovery", "score": 0.9},
+            {"uri": "spotify:track:r1", "artist": "R1", "tier": "rediscovery", "score": 0.8},
+            {"uri": "spotify:track:f1", "artist": "F1", "tier": "familiar", "score": 0.7},
+            {"uri": "spotify:track:f2", "artist": "F2", "tier": "familiar", "score": 0.6},
+            {"uri": "spotify:track:f3", "artist": "F3", "tier": "familiar", "score": 0.5},
+        ]
+        selected = discovery.select_daily_mix(ranked, target_size=5, per_artist=2)
+        self.assertEqual(len(selected), 5)
+        self.assertEqual({row["uri"] for row in selected}, {row["uri"] for row in ranked})
+
+    def test_daily_mix_is_deterministic_and_does_not_mutate_candidates(self):
+        ranked = [
+            {"uri": f"spotify:track:{tier}", "artist": tier, "tier": tier, "score": 1.0}
+            for tier in ("discovery", "rediscovery", "familiar")
+        ]
+        before = [dict(row) for row in ranked]
+        first = discovery.select_daily_mix(ranked, target_size=3)
+        second = discovery.select_daily_mix(ranked, target_size=3)
+        self.assertEqual(first, second)
+        self.assertEqual(ranked, before)
+
+
 if __name__ == "__main__":
     unittest.main()
 
