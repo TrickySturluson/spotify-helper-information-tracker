@@ -98,6 +98,14 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertLess(description_at, verify_at)
         self.assertLess(verify_at, assertion_at)
 
+    def test_description_only_mode_is_present_and_does_not_replace_tracks(self):
+        source = (ROOT / "scripts" / " " if False else ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        branch = source[source.index("if args.description_only:"):source.index("# Re-read immediately before planning/mutation")]
+        self.assertIn('sp.call("PUT", f"/playlists/{DAILY_ID}"', branch)
+        self.assertIn('sp.call("GET", f"/playlists/{DAILY_ID}")', branch)
+        self.assertNotIn("cloud.replace_playlist", branch)
+        self.assertIn('set_action_output("description_updated", "true")', branch)
+
     def test_replacement_state_is_persisted_before_post_change_read(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
