@@ -305,6 +305,7 @@ class DiscoveryScoringTests(unittest.TestCase):
                     "tier": tier,
                     "score": 1.0 - index / 1000,
                 })
+        ranked.sort(key=lambda row: (-row["score"], row["artist"], row["track"]))
         selected = discovery.select_daily_mix(ranked, target_size=20, per_artist=2)
         counts = {}
         for row in selected:
