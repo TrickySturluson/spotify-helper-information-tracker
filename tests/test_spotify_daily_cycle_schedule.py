@@ -119,21 +119,20 @@ class DailyCycleScheduleTests(unittest.TestCase):
         second = daily_cycle.choose_daily_description("2026-11-06", first)
         self.assertNotEqual(first, second)
 
-    def test_description_update_precedes_readback_and_is_verified(self):
+    def test_description_update_precedes_readback_and_retries_spotify_lag(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
-        description_at = source.index('sp.call("PUT", f"/playlists/{DAILY_ID}"', replace_at)
+        description_at = source.index("update_description_and_verify(sp, next_description)", replace_at)
         verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', description_at)
-        assertion_at = source.index('if (updated.get("description") or "") != next_description:', verify_at)
         self.assertLess(replace_at, description_at)
         self.assertLess(description_at, verify_at)
-        self.assertLess(verify_at, assertion_at)
+        self.assertIn("for attempt in range(5)", source)
+        self.assertIn('sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": description})', source)
 
     def test_description_only_mode_is_present_and_does_not_replace_tracks(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         branch = source[source.index("if args.description_only:"):source.index("# Re-read immediately before planning/mutation")]
-        self.assertIn('sp.call("PUT", f"/playlists/{DAILY_ID}"', branch)
-        self.assertIn('sp.call("GET", f"/playlists/{DAILY_ID}")', branch)
+        self.assertIn("update_description_and_verify(sp, next_description)", branch)
         self.assertNotIn("cloud.replace_playlist", branch)
         self.assertIn('set_action_output("description_updated", "true")', branch)
 
