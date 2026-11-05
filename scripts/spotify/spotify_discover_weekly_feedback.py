@@ -142,8 +142,9 @@ def observe(sp=None, *, catalog_path=CATALOG, playlist_dir=PLAYLIST_DIR,
     current_uris = set(current)
     tracks = data.setdefault("tracks", {})
     is_new_snapshot = snapshot_id != previous.get("snapshot_id")
-    added = sorted(current_uris - previous_uris) if previous else []
-    disappeared = sorted(previous_uris - current_uris) if previous else []
+    has_previous = bool(previous.get("snapshot_id"))
+    added = sorted(current_uris - previous_uris) if is_new_snapshot else []
+    disappeared = sorted(previous_uris - current_uris) if has_previous and is_new_snapshot else []
 
     if is_new_snapshot:
         for uri in added:
