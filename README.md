@@ -507,6 +507,12 @@ A scheduled read-only observation workflow refreshes Liked Songs status and Last
 
 A day without listening is neutral. Missing tracker data is unknown, not zero. Spotify save checks or playback tracking can fail independently without interrupting an already-confirmed playlist edit. Last.fm scrobbles remain a separate secondary signal and are not mislabeled as measured Spotify playback.
 
+### Discover Weekly exposure and feedback
+
+The Spotify Reference Library sync also runs `compat/spotify_discover_weekly_feedback.py` when exactly one accessible **Discover Weekly** playlist is present in the authorized account's playlist catalog. It records dated weekly snapshots, first and repeat appearances, tracks disappearing between snapshots, Liked Songs status at first appearance and subsequent like/unlike changes, plus separately labelled Last.fm scrobbles after first exposure. The history is stored in `assistant_data/spotify/discover_weekly_feedback.json`; the tracker never edits playlists.
+
+Spotify's public Web API does **not** expose the explicit Discover Weekly hide action or a hidden-track event feed. A track disappearing from a later playlist snapshot is recorded only as a disappearance; it is not labelled as hidden. Spotify playback-tracker coverage remains unknown on GitHub runners that do not have the local segment file. If Discover Weekly is absent or inaccessible in the account's reference catalog, observation is skipped with a workflow warning rather than creating a false empty baseline.
+
 The reference library and feedback files are personal listening data. Because this repository is public, treat every committed snapshot, playlist identifier, feedback record, and timestamp as intentionally public. Never commit OAuth tokens or local playback credentials; see [the public-repository privacy guide](docs/PUBLIC_REPOSITORY_PRIVACY.md).
 
 

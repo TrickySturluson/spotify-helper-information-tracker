@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
       - name: Compile and test
         run: |
-          python -m py_compile compat/spotify_playlist_manager.py compat/spotify_reference_library.py compat/spotify_daily_feedback.py
+          python -m py_compile compat/spotify_playlist_manager.py compat/spotify_reference_library.py compat/spotify_daily_feedback.py compat/spotify_discover_weekly_feedback.py
           python -m unittest discover -s tests -t . -v
       - name: Verify Spotify credentials are configured
         env:
@@ -73,6 +73,27 @@ jobs:
           })
           PY
           python compat/spotify_reference_library.py sync
+      - name: Observe Discover Weekly exposure and feedback
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, "compat")
+          import spotify_playlist_manager as manager
+          manager.TOKEN = Path(".spotify_playlist_token.json")
+          manager.write(manager.TOKEN, {
+              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+              "obtained_at": 0,
+              "expires_in": 0,
+          })
+          PY
+          python compat/spotify_discover_weekly_feedback.py
       - name: Verify priority and sorter audition playlist snapshots are complete and current
         run: |
           python - <<'PY'
