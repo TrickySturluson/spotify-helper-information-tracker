@@ -207,10 +207,21 @@ def main():
             f"{DAILY_TARGET_SIZE} are required. Playlist left unchanged."
         )
     artist_keys = [discovery.norm(row.get("artist")) for row in recommendations]
-    if any(not artist for artist in artist_keys) or len(set(artist_keys)) != DAILY_TARGET_SIZE:
+    artist_counts = {artist: artist_keys.count(artist) for artist in set(artist_keys)}
+    if any(not artist for artist in artist_keys) or any(count > 2 for count in artist_counts.values()):
         raise manager.ManagerError(
-            "Daily discovery did not return 60 tracks from 60 distinct primary artists. "
-            "Playlist left unchanged."
+            "Daily discovery returned an invalid primary-artist distribution; "
+            "no artist may appear more than twice. Playlist left unchanged."
+        )
+    if len(recommendations) != DAILY_TARGET_SIZE:
+        raise manager.ManagerError("Daily discovery did not return exactly 60 tracks. Playlist left unchanged.")
+    if any(row.get("artist_diversity_fallback") for row in recommendations):
+        manager.audit(
+            event="daily_artist_diversity_fallback_used",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            distinct_primary_artists=len(artist_counts),
+            repeated_artist_tracks=sum(count - 1 for count in artist_counts.values() if count > 1),
         )
     uris = [row.get("uri") for row in recommendations]
     if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
@@ -292,10 +303,11 @@ def main():
         discovery.norm((row.get("artists") or [""])[0])
         for row in verified_items
     ]
+    verified_artist_counts = {artist: verified_artists.count(artist) for artist in set(verified_artists)}
     if (
         len(verified_items) != DAILY_TARGET_SIZE
         or any(not artist for artist in verified_artists)
-        or len(set(verified_artists)) != DAILY_TARGET_SIZE
+        or any(count > 2 for count in verified_artist_counts.values())
     ):
         manager.audit(
             event="daily_post_change_validation_failed",
@@ -303,10 +315,11 @@ def main():
             cycle_date_eastern=cycle_date,
             observed_track_count=len(verified_items),
             distinct_primary_artist_count=len(set(filter(None, verified_artists))),
+            max_tracks_per_primary_artist=max(verified_artist_counts.values(), default=0),
         )
         raise manager.ManagerError(
-            "Spotify read-back did not confirm exactly 60 tracks from 60 distinct "
-            "primary artists; cycle remains pending verification."
+            "Spotify read-back did not confirm exactly 60 tracks with no primary artist "
+            "appearing more than twice; cycle remains pending verification."
         )
     after_snapshot = manager.save_snapshot(updated_snapshot)
     manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
