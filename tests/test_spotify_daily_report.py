@@ -8,15 +8,15 @@ class DailyReportTests(unittest.TestCase):
         report = build_report({
             "tracks": {
                 "spotify:track:a": {
-                    "additions": [{"at": "2026-11-01"}],
-                    "liked_observations": [{"liked": True}],
+                    "additions": [{"at": "2026-11-01T00:00:00+00:00", "liked_at_add": False}],
+                    "liked_observations": [{"at": "2026-11-02T00:00:00+00:00", "liked": True}],
                     "playback_observations": [{"plays": 2, "played_ms": 300000}],
                     "lastfm_post_add_scrobbles": 3,
                     "removal_events": [{"reason": "curator_rotation"}],
                 },
                 "spotify:track:b": {
-                    "additions": [{"at": "2026-11-02"}],
-                    "liked_observations": [{"liked": False}],
+                    "additions": [{"at": "2026-11-02T00:00:00+00:00", "liked_at_add": False}],
+                    "liked_observations": [{"at": "2026-11-03T00:00:00+00:00", "liked": False}],
                     "playback_observations": [{"plays": 0, "played_ms": 0}],
                     "lastfm_post_add_scrobbles": 0,
                     "removal_events": [{"reason": "user_removed"}],
@@ -36,6 +36,9 @@ class DailyReportTests(unittest.TestCase):
         self.assertEqual(report["track_count"], 3)
         self.assertEqual(report["liked"]["observed_tracks"], 2)
         self.assertEqual(report["liked"]["positive_rate_among_observed"], 0.5)
+        self.assertEqual(report["liked_after_add"]["observed_tracks"], 2)
+        self.assertEqual(report["liked_after_add"]["tracks_saved_after_add"], 1)
+        self.assertEqual(report["liked_after_add"]["save_rate_among_tracks_with_unliked_baseline"], 0.5)
         self.assertEqual(report["spotify_playback_tracker"]["total_sessions"], 2)
         self.assertEqual(report["lastfm_scrobbles"]["post_add_scrobbles"], 3)
         self.assertEqual(report["removals"]["neutral_curator_rotations"], 1)
