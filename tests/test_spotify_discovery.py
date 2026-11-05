@@ -20,6 +20,32 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertEqual(selected[0]["track"], "Higher score")
         self.assertEqual(len({discovery.norm(row["artist"]) for row in selected}), 3)
 
+    def test_two_per_artist_is_only_a_fallback_selection_ceiling(self):
+        candidates = [
+            {"artist": "Artist A", "track": "A1", "score": 1.0},
+            {"artist": "Artist A", "track": "A2", "score": 0.9},
+            {"artist": "Artist A", "track": "A3", "score": 0.8},
+            {"artist": "Artist B", "track": "B1", "score": 0.7},
+            {"artist": "Artist B", "track": "B2", "score": 0.6},
+            {"artist": "Artist C", "track": "C1", "score": 0.5},
+        ]
+        strict = discovery.select_unique_artist_candidates(candidates, target_size=6)
+        fallback = discovery.select_unique_artist_candidates(candidates, target_size=6, max_per_artist=2)
+        self.assertEqual(len(strict), 3)
+        self.assertEqual(len(fallback), 5)
+        counts = {}
+        for row in fallback:
+            key = discovery.norm(row["artist"])
+            counts[key] = counts.get(key, 0) + 1
+        self.assertLessEqual(max(counts.values()), 2)
+        self.assertEqual(fallback[0]["track"], "A1")
+
+    def test_spotify_artist_search_supports_alternate_result_page(self):
+        sp = Mock()
+        sp.call.return_value = {"tracks": {"items": []}}
+        discovery.spotify_artist_tracks(sp, "Artist", offset=10)
+        self.assertIn("offset=10", sp.call.call_args.args[1])
+
     def test_general_discovery_defaults_remain_unchanged_and_artist_pool_is_expanded(self):
         self.assertEqual(discovery.TARGET_SIZE, 30)
         self.assertEqual(discovery.MIN_MATCHES, 20)
