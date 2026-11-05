@@ -20,9 +20,21 @@ class DailyCycleScheduleTests(unittest.TestCase):
         delayed = datetime(2026, 11, 5, 6, 47, tzinfo=EASTERN)
         self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
 
+    def test_scheduled_run_catches_up_after_one_am(self):
+        delayed = datetime(2026, 11, 5, 1, 5, tzinfo=EASTERN)
+        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
+
+    def test_scheduled_run_can_catch_up_late_in_same_eastern_day(self):
+        delayed = datetime(2026, 11, 5, 22, 45, tzinfo=EASTERN)
+        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
+
     def test_standard_time_early_cron_before_midnight_is_ignored(self):
         early_cron = datetime(2026, 11, 4, 23, 0, tzinfo=EASTERN)
         self.assertFalse(daily_cycle.should_run_cycle(early_cron, event_name="schedule"))
+
+    def test_late_standard_time_cron_occurrence_is_also_ignored(self):
+        late_early_cron = datetime(2026, 11, 4, 23, 59, tzinfo=EASTERN)
+        self.assertFalse(daily_cycle.should_run_cycle(late_early_cron, event_name="schedule"))
 
     def test_manual_dispatch_remains_midnight_gated_without_force(self):
         daytime = datetime(2026, 11, 5, 6, 47, tzinfo=EASTERN)
@@ -41,7 +53,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
             output = Path(directory) / "github-output"
             with patch.dict(os.environ, {"GITHUB_OUTPUT": str(output)}):
                 daily_cycle.set_action_output("cycled", "true")
-            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\n")
+            self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true\\n")
 
 
 if __name__ == "__main__":
@@ -51,8 +63,8 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Regression tests for Tricky Daily scheduled-run timing and outputs.
-# Coverage: Delayed schedule catch-up, EST midnight boundary, manual dispatch
-#           gating, explicit force behavior, and GitHub Actions step outputs.
+# Coverage: Delayed catch-up, EST cron boundary, manual dispatch gating, force,
+#           and GitHub Actions step outputs.
 # Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
 # Related: scripts/spotify/spotify_daily_cycle.py and the midnight-cycle workflow.
 # -----------------------------------------------------------------------------
