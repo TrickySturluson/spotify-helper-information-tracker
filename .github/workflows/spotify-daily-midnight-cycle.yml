@@ -10,9 +10,9 @@ on:
         type: choice
         options: ["false", "true"]
   schedule:
-    # Midnight Eastern is 04:00 UTC during EDT and 05:00 UTC during EST.
-    # The script's America/New_York gate makes exactly one of these runs active.
-    - cron: "0 4,5 * * *"
+    # Keep these as separate entries so the runner can reject the stale DST offset.
+    - cron: "0 4 * * *"
+    - cron: "0 5 * * *"
 
 permissions:
   contents: write
@@ -84,6 +84,7 @@ jobs:
           SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ inputs.force }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
         run: |
           if [ "$FORCE_CYCLE" = "true" ]; then
             python compat/spotify_daily_cycle.py --force
@@ -132,7 +133,7 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Automatically rotate Tricky Daily at midnight America/New_York.
-# Schedule: Dual UTC cron entries plus an IANA timezone gate handle EST/EDT.
+# Schedule: Separate UTC cron entries are matched to the current Eastern offset.
 # Safety: Requires configured Spotify credentials, existing playlist ownership,
 #         explicit unlocked state, a minimum recommendation count, and a
 #         pre-change recovery artifact before any playlist mutation.
