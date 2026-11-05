@@ -32,7 +32,8 @@ from scripts.music.discovery_ingestion import append_candidates
 
 DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
 EASTERN = ZoneInfo("America/New_York")
-MINIMUM_RECOMMENDATIONS = 20
+DAILY_TARGET_SIZE = 60
+MINIMUM_RECOMMENDATIONS = DAILY_TARGET_SIZE
 
 # Short, user-approved-in-spirit rotating lines for the daily discovery queue.
 # This is deliberately separate from the metadata description generator: Daily
@@ -197,12 +198,19 @@ def main():
         top_genres=[row.get("tag") for row in trend_report.get("genres", [])[:8]],
     )
     recommendations, skipped = discovery.build_discovery_recommendations(
-        sp, before["items"], today=local_now.date(), playlist_id=DAILY_ID
+        sp, before["items"], today=local_now.date(), playlist_id=DAILY_ID,
+        target_size=DAILY_TARGET_SIZE,
     )
-    if len(recommendations) < MINIMUM_RECOMMENDATIONS:
+    if len(recommendations) != DAILY_TARGET_SIZE:
         raise manager.ManagerError(
-            f"Only {len(recommendations)} recommendations resolved; at least "
-            f"{MINIMUM_RECOMMENDATIONS} are required. Playlist left unchanged."
+            f"Daily discovery returned {len(recommendations)} tracks; exactly "
+            f"{DAILY_TARGET_SIZE} are required. Playlist left unchanged."
+        )
+    artist_keys = [discovery.norm(row.get("artist")) for row in recommendations]
+    if any(not artist for artist in artist_keys) or len(set(artist_keys)) != DAILY_TARGET_SIZE:
+        raise manager.ManagerError(
+            "Daily discovery did not return 60 tracks from 60 distinct primary artists. "
+            "Playlist left unchanged."
         )
     uris = [row.get("uri") for row in recommendations]
     if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
@@ -349,7 +357,8 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Automatically refresh Tricky Daily once per Eastern calendar day.
+# Purpose: Automatically refresh Tricky Daily with 60 tracks from 60 distinct
+#           primary artists once per Eastern calendar day.
 # Schedule: GitHub Actions invokes this at 04:00 and 05:00 UTC; a ZoneInfo gate
 #           ensures only the actual midnight America/New_York run proceeds.
 # Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
