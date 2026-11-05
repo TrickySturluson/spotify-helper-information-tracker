@@ -9,6 +9,7 @@ import json
 import os
 import secrets
 import sys
+import time
 from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -97,6 +98,23 @@ def set_action_output(name, value):
             handle.write(f"{name}={value}\n")
 
 
+def update_description_and_verify(sp, description):
+    """Apply Daily's rotating line and tolerate brief Spotify read-after-write lag."""
+    sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": description})
+    last_seen = None
+    for attempt in range(5):
+        verified = sp.call("GET", f"/playlists/{DAILY_ID}")
+        last_seen = (verified or {}).get("description") or ""
+        if last_seen == description:
+            return
+        if attempt < 4:
+            time.sleep(1.0)
+    raise manager.ManagerError(
+        "Spotify accepted the Tricky Daily description update but read-back "
+        f"did not confirm it after retries (last value: {last_seen!r})."
+    )
+
+
 def configure():
     manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
     manager.TOKEN = Path(".spotify_playlist_token.json")
@@ -148,7 +166,7 @@ def main():
 
     if args.description_only:
         next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
-        sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": next_description})
+        update_description_and_verify(sp, next_description)
         config = manager.config()
         daily_state = config.setdefault("daily_cycle", {})
         daily_state.update({
@@ -165,9 +183,6 @@ def main():
             cycle_date_eastern=cycle_date,
             description=next_description,
         )
-        verified = sp.call("GET", f"/playlists/{DAILY_ID}")
-        if (verified.get("description") or "") != next_description:
-            raise manager.ManagerError("Spotify did not confirm the new Tricky Daily description on read-back.")
         config = manager.config()
         config.setdefault("daily_cycle", {}).update({
             "description": next_description,
@@ -193,6 +208,9 @@ def main():
         return 0
 
     before = manager.snapshot(sp, playlist)
+    previous_cycle_marker = (config.get("daily_cycle") or {}).get("last_cycle_at")
+    removal_sync = discovery.reconcile_daily_manual_removals(before["items"], previous_cycle_marker)
+    manager.audit(event="daily_manual_removals_reconciled", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date, **removal_sync)
     trend_report = listening_trends.generate()
     manager.audit(
         event="daily_listening_trends_generated", playlist_id=DAILY_ID,
@@ -280,12 +298,13 @@ def main():
         "status": "replacement_accepted_pending_verification",
     }
     manager.write(manager.CONFIG, config)
-    # Publish immediately after the durable local guard; if audit append fails,
-    # the workflow still knows Spotify accepted the playlist replacement.
+    # Publish immediately after the durable local guard; preserve state if later verification fails.
     set_action_output("cycled", "true")
-    # The track mutation is now durably guarded. A description API failure from
-    # this point onward cannot cause a second same-day track replacement.
-    sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": next_description})
+    discovery.write_daily_removal_baseline(
+        [{"uri": row.get("uri"), "track": row.get("track"), "artist": row.get("artist")} for row in recommendations],
+        config["daily_cycle"]["last_cycle_at"],
+    )
+    update_description_and_verify(sp, next_description)
     manager.audit(
         event="daily_cycle_replacement_accepted",
         playlist_id=DAILY_ID,
@@ -344,6 +363,7 @@ def main():
         "cycle_date_eastern": cycle_date,
     }
     manager.write(manager.CONFIG, config)
+    discovery.write_daily_removal_baseline(updated_snapshot["items"], config["daily_cycle"]["last_cycle_at"])
 
     old_uris = {row.get("uri") for row in before["items"] if row.get("uri")}
     new_uris = set(uris)
