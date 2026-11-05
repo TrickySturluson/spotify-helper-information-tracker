@@ -1,5 +1,5 @@
 {
-  "action": "cycle",
+  "action": "description-only",
   "force": true,
-  "reason": "Manual 60-track Tricky Daily verification cycle retry after fixing both forced-run idempotency guards; 2026-11-05T17:25:00-05:00"
+  "reason": "Tracks already replaced and independently verified at 60 items; repair rotating description without touching tracks; 2026-11-05T17:35:00-05:00"
 }
