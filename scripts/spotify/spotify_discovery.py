@@ -34,6 +34,15 @@ SIMILAR_PER_SEED = 20
 DISCOVERY_ARTISTS = 36
 TRACKS_PER_ARTIST = 10
 
+# Soft composition targets for Tricky Daily. These are quotas, not filters:
+# after the preferred mix is filled, the highest-ranked remaining candidates
+# backfill any shortfall. This keeps quality and minimum-pool safeguards intact.
+DAILY_MIX_TARGETS = {
+    "discovery": 0.45,   # no Last.fm scrobbles
+    "rediscovery": 0.30, # one or two scrobbles
+    "familiar": 0.25,   # three or more scrobbles
+}
+
 
 def norm(value):
     return re.sub(r"\s+", " ", str(value or "").strip()).casefold()
@@ -474,6 +483,61 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     return score, plays, known.get("last_scrobble"), is_liked
 
 
+def select_daily_mix(ranked, target_size=TARGET_SIZE, per_artist=2, targets=None):
+    """Select a freshness-balanced Daily set, then backfill by score.
+
+    Tier quotas are soft. Candidate ranking remains authoritative within each
+    tier, artist caps preserve variety, and shortages fall back to the global
+    score order rather than lowering the recommendation minimum.
+    """
+    targets = targets or DAILY_MIX_TARGETS
+    if not ranked or target_size <= 0:
+        return []
+    tiers = ("discovery", "rediscovery", "familiar")
+    weights = {tier: max(0.0, float(targets.get(tier, 0.0))) for tier in tiers}
+    total_weight = sum(weights.values())
+    if total_weight <= 0:
+        weights = {tier: 1.0 / len(tiers) for tier in tiers}
+    else:
+        weights = {tier: value / total_weight for tier, value in weights.items()}
+
+    # Largest-remainder allocation ensures integer quotas sum to target_size.
+    raw = {tier: weights[tier] * target_size for tier in tiers}
+    quotas = {tier: int(math.floor(raw[tier])) for tier in tiers}
+    remainder = target_size - sum(quotas.values())
+    for tier in sorted(tiers, key=lambda item: (-(raw[item] - quotas[item]), tiers.index(item)))[:remainder]:
+        quotas[tier] += 1
+
+    selected, selected_ids, artist_counts = [], set(), defaultdict(int)
+
+    def add(row):
+        identity = row.get("uri") or track_key(row.get("artist"), row.get("track"))
+        artist = norm(row.get("artist"))
+        if identity in selected_ids or artist_counts[artist] >= per_artist:
+            return False
+        selected.append(dict(row))
+        selected_ids.add(identity)
+        artist_counts[artist] += 1
+        return True
+
+    for tier in tiers:
+        count = 0
+        for row in ranked:
+            if row.get("tier") != tier:
+                continue
+            if add(row):
+                count += 1
+                if count >= quotas[tier]:
+                    break
+    # Soft quota fallback: preserve global ranking if any tier is undersupplied
+    # or artist caps prevented its target from being met.
+    for row in ranked:
+        if len(selected) >= target_size:
+            break
+        add(row)
+    return selected[:target_size]
+
+
 def build_discovery_recommendations(
     sp, playlist_items, today=None, profiles_path=PROFILES,
     features_path=FEATURES, api_key=None, target_size=TARGET_SIZE,
@@ -599,17 +663,23 @@ def build_discovery_recommendations(
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
         time.sleep(0.08)
-    # Deterministic ordering; cap artists to preserve range across the 30.
+    # Deterministic ordering. Daily uses soft freshness quotas with score-based
+    # backfill; other generated playlists retain the original score-only policy.
     ranked = sorted(candidates.values(), key=lambda row: (-row["score"], norm(row["artist"]), norm(row["track"])))
-    selected, artist_counts = [], defaultdict(int)
-    for row in ranked:
-        if len(selected) >= target_size:
-            break
-        key = norm(row["artist"])
-        if artist_counts[key] >= 2:
-            continue
-        selected.append(row)
-        artist_counts[key] += 1
+    if is_daily:
+        selected = select_daily_mix(ranked, target_size=target_size, per_artist=2)
+        for row in selected:
+            row["daily_mix_bucket"] = row.get("tier")
+    else:
+        selected, artist_counts = [], defaultdict(int)
+        for row in ranked:
+            if len(selected) >= target_size:
+                break
+            key = norm(row["artist"])
+            if artist_counts[key] >= 2:
+                continue
+            selected.append(row)
+            artist_counts[key] += 1
     if len(selected) < min(MIN_MATCHES, target_size):
         raise RuntimeError(
             f"Only {len(selected)} discovery candidates were found; at least "
