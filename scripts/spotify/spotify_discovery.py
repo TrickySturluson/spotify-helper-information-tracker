@@ -27,8 +27,8 @@ import spotify_listening_trends as listening_trends
 PROFILES = Path("assistant_data/music/artist_profiles.json")
 FEATURES = Path("assistant_data/recommendations/track_features.json")
 LASTFM_URL = "https://ws.audioscrobbler.com/2.0/"
-TARGET_SIZE = 60
-MIN_MATCHES = 60
+TARGET_SIZE = 30
+MIN_MATCHES = 20
 SEED_ARTISTS = 24
 SIMILAR_PER_SEED = 20
 DISCOVERY_ARTISTS = 120
