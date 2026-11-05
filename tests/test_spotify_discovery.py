@@ -264,6 +264,28 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertLess(exposed, plain)
         self.assertAlmostEqual(saved, plain + 0.06, places=5)
 
+    def test_measured_listening_reduces_daily_exposure_penalty(self):
+        track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
+        exposure = {"discovery_exposure": {"spotify:track:daily1": {"penalty": 0.10}}}
+        unobserved, *_ = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 5), exposure
+        )
+        played_feedback = {
+            **exposure,
+            "daily_evidence": {
+                "spotify:track:daily1": {
+                    "measured_plays": 2,
+                    "lastfm_plays": 0,
+                    "liked": False,
+                    "liked_at_add": False,
+                }
+            },
+        }
+        played, *_ = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 5), played_feedback
+        )
+        self.assertGreater(played, unobserved)
+
     def test_non_daily_feedback_does_not_apply_discovery_exposure(self):
         track = {"name": "Track", "artists": [{"name": "Artist"}], "uri": "spotify:track:daily1"}
         plain, *_ = discovery.candidate_score(track, 0.8, {}, set(), date(2026, 11, 5), {})
