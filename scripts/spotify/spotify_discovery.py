@@ -31,7 +31,7 @@ TARGET_SIZE = 30
 MIN_MATCHES = 20
 SEED_ARTISTS = 24
 SIMILAR_PER_SEED = 20
-DISCOVERY_ARTISTS = 120
+DISCOVERY_ARTISTS = 300
 TRACKS_PER_ARTIST = 10
 
 
@@ -543,17 +543,26 @@ def build_discovery_recommendations(
     collect_artist_candidates(similar, offset=0)
     fallback_used = False
     if is_daily:
-        # Daily first aims for 60 distinct artists. If short, retry a different
-        # Spotify search page before allowing a second track from any artist.
-        unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
-        if len(unique_selection) < target_size:
-            collect_artist_candidates(similar, offset=TRACKS_PER_ARTIST)
-            unique_selection = select_unique_artist_candidates(candidates.values(), target_size)
-        if len(unique_selection) < target_size:
+        # Search progressively deeper Spotify result pages before relaxing
+        # diversity. Each page is searched across the expanded artist pool.
+        selected = select_unique_artist_candidates(candidates.values(), target_size)
+        offset = TRACKS_PER_ARTIST
+        while len(selected) < target_size and offset < 100:
+            collect_artist_candidates(similar, offset=offset)
+            selected = select_unique_artist_candidates(candidates.values(), target_size)
+            offset += TRACKS_PER_ARTIST
+
+        # If 60 distinct artists still cannot be found, keep the 60-track
+        # rotation viable by relaxing the artist ceiling one step at a time.
+        # Track URIs remain deduplicated and removed tracks remain blocked.
+        if len(selected) < target_size:
             fallback_used = True
-            selected = select_unique_artist_candidates(candidates.values(), target_size, max_per_artist=2)
-        else:
-            selected = unique_selection
+            max_per_artist = 2
+            while len(selected) < target_size and max_per_artist <= target_size:
+                selected = select_unique_artist_candidates(
+                    candidates.values(), target_size, max_per_artist=max_per_artist
+                )
+                max_per_artist += 1
         required = target_size
     else:
         # Preserve the established general-discovery behavior for other playlists.
