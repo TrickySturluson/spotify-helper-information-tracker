@@ -58,7 +58,7 @@ def _track_items(snapshot):
             "album": row.get("album"),
         }
         for row in snapshot.get("items", [])
-        if isinstance(row, dict) and row.get("uri", "").startswith("spotify:track:")
+        if isinstance(row, dict) and isinstance(row.get("uri"), str) and row["uri"].startswith("spotify:track:")
     }
 
 
