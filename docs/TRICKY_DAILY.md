@@ -41,6 +41,7 @@ Optional input/output paths:
 ```bash
 python scripts/spotify/spotify_daily_report.py \
   --input assistant_data/spotify/daily_feedback.json \
+  --candidates assistant_data/recommendations/discovery_candidates.json \
   --output reports/tricky_daily_quality.json
 ```
 
@@ -49,6 +50,7 @@ The report includes:
 - Liked status rate among tracks with an actual liked-status observation.
 - Playback-positive rate and measured sessions among tracks with playback observations.
 - Post-add Last.fm scrobbles as a separate measure.
+- Historical Daily discovery mix surfaced by tier, with unique track counts and feedback coverage.
 - Neutral curator rotations separated from other removals.
 - Coverage state and the reason/detail for unavailable playback tracking.
 
