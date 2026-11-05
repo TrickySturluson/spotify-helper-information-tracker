@@ -121,6 +121,10 @@ def main():
             f"Only {len(recommendations)} recommendations resolved; at least "
             f"{MINIMUM_RECOMMENDATIONS} are required. Playlist left unchanged."
         )
+    mix_counts = {
+        tier: sum(1 for row in recommendations if row.get("daily_mix_bucket", row.get("tier")) == tier)
+        for tier in ("discovery", "rediscovery", "familiar")
+    }
     uris = [row.get("uri") for row in recommendations]
     if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
         raise manager.ManagerError("Recommendation set contains an invalid Spotify track URI.")
@@ -155,7 +159,7 @@ def main():
     backup = manager.save_snapshot(before)
     manager.audit(
         event="daily_cycle_started", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
-        recommendation_count=len(recommendations), skipped_count=len(skipped), backup=backup,
+        recommendation_count=len(recommendations), skipped_count=len(skipped), daily_mix_counts=mix_counts, backup=backup,
     )
     cloud.replace_playlist(sp, DAILY_ID, uris)
 
@@ -196,7 +200,7 @@ def main():
 
     manager.audit(
         event="daily_cycle_completed", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
-        recommendation_count=len(recommendations), removed_by_rotation=len(old_uris - new_uris),
+        recommendation_count=len(recommendations), daily_mix_counts=mix_counts, removed_by_rotation=len(old_uris - new_uris),
         backup=backup, spotify_requests=sp.request_metrics,
     )
 
@@ -217,6 +221,8 @@ def main():
     print(
         f"Tricky Daily cycled for {cycle_date} Eastern: {len(recommendations)} tracks; "
         f"{len(old_uris - new_uris)} tracks rotated out neutrally. "
+        f"Mix discovery/rediscovery/familiar={mix_counts['discovery']}/"
+        f"{mix_counts['rediscovery']}/{mix_counts['familiar']}. "
         f"Recovery snapshot: {backup}"
     )
     return 0
