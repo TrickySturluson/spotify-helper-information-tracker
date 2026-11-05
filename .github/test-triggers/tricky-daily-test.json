@@ -3,6 +3,6 @@
   "mode": "safe-test-only",
   "playlist_mutation": false,
   "requested_by": "ChatGPT-assisted project maintenance",
-  "verification_revision": "2a98857f223b2a981e735a2b6ab1d32235bd4511",
-  "note": "Updating this file triggers .github/workflows/spotify-daily-remote-verification.yml. It runs compilation and tests only; it does not call Spotify."
+  "verification_revision": "automation-smoke-2026-11-05T19:45:00Z",
+  "note": "Push-triggered safe verification run. Compile, full unit suite, and focused schedule regression tests only; no Spotify API calls and no playlist mutation."
 }
