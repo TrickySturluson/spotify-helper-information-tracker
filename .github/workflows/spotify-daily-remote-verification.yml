@@ -35,3 +35,11 @@ jobs:
         run: |
           echo "Remote verification passed its configured checks."
           echo "This workflow does not connect to Spotify or mutate any playlist."
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Remotely verify Tricky Daily code, schedule gates, and regression tests.
+# Trigger: Updating .github/test-triggers/tricky-daily-test.json or manual dispatch.
+# Safety: Read-only contents permission; never connects to Spotify or changes playlists.
+# -----------------------------------------------------------------------------
