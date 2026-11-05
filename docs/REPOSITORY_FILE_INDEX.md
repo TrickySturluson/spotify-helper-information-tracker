@@ -16,7 +16,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `.github/workflows/spotify-daily-feedback-observation.yml` — GitHub Actions automation for spotify daily feedback observation.
 - `.github/workflows/spotify-daily-midnight-cycle.yml` — DST-aware automatic Tricky Daily playlist rotation at midnight America/New_York.
 - `.github/workflows/spotify-playlist-manager.yml` — GitHub Actions automation for spotify playlist manager.
-- `.github/workflows/spotify-reference-library.yml` — GitHub Actions automation for spotify reference library.
+- `.github/workflows/spotify-reference-library.yml` — GitHub Actions automation for spotify reference library, including Discover Weekly feedback observation.
 - `.github/workflows/update.yml` — GitHub Actions automation for update.
 
 ## Root (6 files)
@@ -298,6 +298,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `compat/playlist_intelligence.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/playlist_metadata.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
 - `compat/spotify_daily_feedback.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
+- `compat/spotify_discover_weekly_feedback.py` — Compatibility entry point for Discover Weekly exposure and feedback observation.
 - `compat/spotify_daily_cycle.py` — Compatibility launcher for the Tricky Daily midnight cycle.
 - `compat/spotify_listening_trends.py` — Compatibility CLI for rolling listening-trends generation.
 - `compat/spotify_daily_playlist.py` — Legacy CLI/import compatibility entry point; delegates to maintained implementation under scripts/.
@@ -385,6 +386,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `scripts/spotify/playlist_intelligence.py` — Maintained implementation module for playlist intelligence. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/playlist_metadata.py` — Maintained implementation module for playlist metadata. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/spotify_daily_feedback.py` — Maintained implementation module for spotify daily feedback. See its bottom FILE OVERVIEW for detailed behavior.
+- `scripts/spotify/spotify_discover_weekly_feedback.py` — Maintained module for Discover Weekly snapshot exposure, Liked Songs observations, disappearance history, and separate Last.fm post-exposure counts.
 - `scripts/spotify/spotify_daily_playlist.py` — Maintained implementation module for spotify daily playlist. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/spotify_discovery.py` — Maintained implementation module for spotify discovery. See its bottom FILE OVERVIEW for detailed behavior.
 - `scripts/spotify/spotify_playback_tracker.py` — Maintained implementation module for spotify playback tracker. See its bottom FILE OVERVIEW for detailed behavior.
@@ -421,6 +423,7 @@ This catalogue was generated from the pull request's actual Git tree. It names e
 - `tests/test_spotify_playlist_cloud.py` — Automated regression tests for spotify playlist cloud.
 - `tests/test_spotify_playlist_manager.py` — Automated regression tests for spotify playlist manager.
 - `tests/test_spotify_playlist_sequencer.py` — Automated regression tests for spotify playlist sequencer.
+- `tests/test_spotify_discover_weekly_feedback.py` — Automated regression tests for Discover Weekly exposure and feedback semantics.
 - `tests/test_spotify_reference_library.py` — Automated regression tests for spotify reference library.
 - `tests/test_track_profiles.py` — Automated regression tests for track profiles.
 
