@@ -9,7 +9,7 @@ import json
 import os
 import secrets
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -35,19 +35,24 @@ EASTERN = ZoneInfo("America/New_York")
 MINIMUM_RECOMMENDATIONS = 20
 
 
-def should_run_cycle(local_now, force=False, event_name=None):
-    """Allow delayed scheduled runs to catch up once per Eastern date.
+def should_run_cycle(local_now, force=False, event_name=None, schedule_cron=None):
+    """Gate scheduled runs against the UTC cron that matches Eastern DST.
 
-    GitHub may queue scheduled workflows well after their nominal cron time.
-    The daily_cycle date guard below makes catch-up safe and idempotent. During
-    standard time, the 04:00 UTC cron lands at 23:00 Eastern on the prior date;
-    that occurrence must wait for the 05:00 UTC midnight occurrence.
+    GitHub can queue a scheduled run after its nominal time, so a correctly
+    matched cron may catch up later on the same Eastern date. The per-date
+    state guard below makes that catch-up idempotent. Separate cron strings
+    let us reject the stale DST counterpart before making any Spotify calls.
     Manual dispatches remain restricted unless --force is explicitly supplied.
     """
     if force:
         return True
     if event_name == "schedule":
-        return local_now.hour != 23
+        expected_offsets = {
+            "0 4 * * *": timedelta(hours=-4),  # Eastern Daylight Time
+            "0 5 * * *": timedelta(hours=-5),  # Eastern Standard Time
+        }
+        expected_offset = expected_offsets.get(schedule_cron)
+        return expected_offset is not None and local_now.utcoffset() == expected_offset
     return local_now.hour == 0 and local_now.minute < 30
 
 
@@ -78,7 +83,10 @@ def main():
     args = parser.parse_args()
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
-    if not should_run_cycle(local_now, force=args.force, event_name=event_name):
+    schedule_cron = os.environ.get("SCHEDULE_CRON", "")
+    if not should_run_cycle(
+        local_now, force=args.force, event_name=event_name, schedule_cron=schedule_cron
+    ):
         print(f"Outside the allowed Tricky Daily cycle window ({local_now.isoformat()}, event={event_name or 'manual'}); no Spotify requests sent.")
         set_action_output("cycled", "false")
         return 0
@@ -233,8 +241,8 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Automatically refresh Tricky Daily once per Eastern calendar day.
-# Schedule: GitHub Actions invokes this at 04:00 and 05:00 UTC; a ZoneInfo gate
-#           ensures only the actual midnight America/New_York run proceeds.
+# Schedule: Separate 04:00/05:00 UTC cron entries are matched to the current
+#           America/New_York UTC offset before any Spotify request is sent.
 # Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
 #         unlocked state, recommendation minimum, URI validation, duplicate
 #         prevention, per-day idempotency, and a pre-change recovery snapshot.
