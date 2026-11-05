@@ -187,13 +187,15 @@ def main():
         "status": "replacement_accepted_pending_verification",
     }
     manager.write(manager.CONFIG, config)
+    # Publish immediately after the durable local guard; if audit append fails,
+    # the workflow still knows Spotify accepted the playlist replacement.
+    set_action_output("cycled", "true")
     manager.audit(
         event="daily_cycle_replacement_accepted",
         playlist_id=DAILY_ID,
         cycle_date_eastern=cycle_date,
         backup=backup,
     )
-    set_action_output("cycled", "true")
 
     updated = sp.call("GET", f"/playlists/{DAILY_ID}")
     updated_snapshot = manager.snapshot(sp, updated)
