@@ -90,10 +90,17 @@ jobs:
           FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
         run: |
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
-            # A one-shot test-trigger file deletion runs the description-only
-            # path so the live description can be verified without a second
-            # track rotation on the same Eastern date.
-            python compat/spotify_daily_cycle.py --force --description-only
+            # A committed trigger file can request a real forced track cycle.
+            # The default action remains description-only for backward safety.
+            ACTION=$(python -c 'import json; print(json.load(open(".github/test-triggers/tricky-daily-live-cycle.json")).get("action", "description-only"))')
+            if [ "$ACTION" = "cycle" ]; then
+              python compat/spotify_daily_cycle.py --force
+            elif [ "$ACTION" = "description-only" ]; then
+              python compat/spotify_daily_cycle.py --force --description-only
+            else
+              echo "Unsupported Tricky Daily trigger action: $ACTION" >&2
+              exit 1
+            fi
           elif [ "$FORCE_CYCLE" = "true" ]; then
             python compat/spotify_daily_cycle.py --force
           else
