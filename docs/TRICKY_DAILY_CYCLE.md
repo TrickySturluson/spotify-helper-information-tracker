@@ -56,6 +56,22 @@ set to `true`. The separate remote-verification workflow is safe-test-only:
 it compiles modules and runs tests without contacting Spotify or changing a
 playlist.
 
+
+## Live preflight
+
+`.github/workflows/spotify-daily-live-preflight.yml` runs on updates to the
+dedicated test trigger and every six hours. It refreshes the OAuth access token
+when required, then performs read-only Spotify requests to verify the
+authenticated account, the exact Tricky Daily ID and name, playlist ownership,
+the managed-playlist exception, the explicit unlock state, and playlist-item
+readability. It never writes to Spotify or commits project state.
+
+A failed preflight blocks confidence in the next scheduled cycle. In
+particular, a locked playlist is reported as a safe refusal rather than
+silently unlocked. Unit tests mock Spotify and verify that the preflight only
+uses GET operations; the live workflow checks the real credentials and
+permissions.
+
 ## Operation
 
 The midnight cycle refreshes the trend report before building recommendations.
