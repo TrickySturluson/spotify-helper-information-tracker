@@ -408,6 +408,24 @@ def candidate_score(track, similarity, familiarity, liked, today=None, feedback=
     return score, plays, known.get("last_scrobble"), is_liked
 
 
+def select_unique_artist_candidates(candidates, target_size=TARGET_SIZE):
+    """Select highest-ranked tracks while allowing only one per primary artist."""
+    ranked = sorted(
+        candidates,
+        key=lambda row: (-row.get("score", 0), norm(row.get("artist")), norm(row.get("track"))),
+    )
+    selected, seen_artists = [], set()
+    for row in ranked:
+        if len(selected) >= target_size:
+            break
+        artist_key = norm(row.get("artist"))
+        if not artist_key or artist_key in seen_artists:
+            continue
+        selected.append(row)
+        seen_artists.add(artist_key)
+    return selected
+
+
 def build_discovery_recommendations(
     sp, playlist_items, today=None, profiles_path=PROFILES,
     features_path=FEATURES, api_key=None, target_size=TARGET_SIZE,
@@ -524,18 +542,8 @@ def build_discovery_recommendations(
             if key not in candidates or row["score"] > candidates[key]["score"]:
                 candidates[key] = row
         time.sleep(0.08)
-    # One track per primary artist: Daily is deliberately artist-diverse.
-    # Deterministic ordering keeps the highest-scoring track for each artist.
-    ranked = sorted(candidates.values(), key=lambda row: (-row["score"], norm(row["artist"]), norm(row["track"])))
-    selected, seen_artists = [], set()
-    for row in ranked:
-        if len(selected) >= target_size:
-            break
-        artist_key = norm(row.get("artist"))
-        if not artist_key or artist_key in seen_artists:
-            continue
-        selected.append(row)
-        seen_artists.add(artist_key)
+    # Daily is deliberately artist-diverse: one highest-ranked track per artist.
+    selected = select_unique_artist_candidates(candidates.values(), target_size)
     required = min(MIN_MATCHES, target_size)
     if len(selected) < required:
         raise RuntimeError(
