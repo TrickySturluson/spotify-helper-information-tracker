@@ -50,7 +50,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - `docs/WORKFLOWS.md` summarizes all 17 workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - Nine workflow YAML bottom overviews were rewritten with their actual triggers, credentials, repository writes, playlist-write boundaries and related implementation.
 - Workflow YAML comment-only changes can trigger push-path workflows. This operational hazard is now documented; see the incident entry in ACTIONS.md and docs/WORKFLOWS.md.
-- Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947. The PR has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`; latest tests #42150802119 and security scan #42150801849 are in progress.
+- Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947. The PR has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`; tests #42150802119 and security scan #42150801849 subsequently passed on earlier head `1bbfed67ae63c77628d6f8b775b7d12c50060d11`; the PR later advanced to `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`, for which current-head checks have not yet been verified.
 
 ## 2026-11-06 documentation audit progress
 
@@ -58,7 +58,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Updated the docs index to list all 21 technical guides, corrected a duplicated paragraph in the goal index, and expanded repository-wide Markdown-link and workflow-overview checks in draft PR #161.
 - Replaced generic source overviews with module-specific purpose, input/output, evidence, side-effect and safety descriptions across analytics, Last.fm, music and Spotify implementation modules (32 maintained modules updated in the current draft).
 - Current source audit found that marker presence alone had allowed generic boilerplate to pass; the new PR checks aim to prevent this recurring.
-- Current main has the documented workflow incident: the Reference Library snapshot refresh published; Enrich Music Metadata failed on 101 shared Library-path conflicts; Acoustic Metadata Enrichment failed while staging an absent optional GetSongBPM state file; and Update Last.fm History failed on 120 shared Library/Spotify snapshot conflicts. None of the failed enrichment/update workspace outputs were published. See ACTIONS.md and NEXT_WORK.md for exact evidence. See ACTIONS.md and NEXT_WORK.md for exact evidence.
+- Current main has the documented workflow incident: the Reference Library snapshot refresh published; Enrich Music Metadata failed on 101 shared Library-path conflicts; Acoustic Metadata Enrichment failed while staging an absent optional GetSongBPM state file; and Update Last.fm History failed on 120 shared Library/Spotify snapshot conflicts. None of the failed enrichment/update workspace outputs were published. See ACTIONS.md and NEXT_WORK.md for exact evidence.
 
 
 
@@ -86,6 +86,13 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The source inventory and semantic audit remain incomplete; do not declare the acceptance criteria met based only on structural tests or the current PR.
 - Exact workflow publication failures from the accidental YAML push triggers are documented in library-enrichment, listening-analytics, this workstream's ACTIONS, NEXT_WORK and LOOSE_ENDS.
 
+## Latest continuation — 2026-11-06
+
+- PR #161 current head is `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4` on `docs/semantic-documentation-audit`, based on `main` at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`. It remains draft/unmerged.
+- Earlier PR checks #42150802119 (tests) and #42150801849 (full-history secret scan) both passed on `1bbfed67ae63c77628d6f8b775b7d12c50060d11`; they do not verify the later current head. No current-head checks were returned by the connected GitHub status/run lookup. Treat verification as pending until checks for `5ec318d` are visible.
+- Manually sampled current PR-branch overviews for the playlist manager, cloud command handler, reference library and offline Library migration. Their descriptions now name actual state paths, data flows, operational boundaries and safety behavior; broader semantic sampling remains required.
+- The PR's structural guardrails and documentation updates remain useful, but acceptance is not complete: authoritative tracked-file inventory, test-module overview review, technical guide/source reconciliation, goal-status reconciliation and fresh-session simulation remain open.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
 - Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
@@ -93,7 +100,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The automated source-overview quality check passed across all 55 maintained implementation modules, and all 40 compatibility launchers name a maintained source path. Their factual accuracy still needs manual sampling; the 44 test-module overviews, module docstrings, workflow semantics and data-schema references also need a structured semantic review.
 
 ## Next action
-Recheck the latest full-history security scan #42150601862 and confirm the current PR head; merge PR #161 only after all required checks pass. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
+Obtain and verify tests plus the full-history security scan for exact current PR head `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`; do not merge PR #161 until both pass. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
