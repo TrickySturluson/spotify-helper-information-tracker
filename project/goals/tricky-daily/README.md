@@ -21,7 +21,9 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 ## Implementation map
 | Concern | Maintained implementation / evidence |
 |---|---|
-| Candidate generation and 60-track assembly | scripts/spotify/spotify_daily_playlist.py |
+| Current discovery candidate generation | scripts/spotify/spotify_discovery.py (called by the cycle with target size 60) |
+| 60-track assembly, validation and publication | scripts/spotify/spotify_daily_cycle.py |
+| Legacy/alternate candidate builder | scripts/spotify/spotify_daily_playlist.py (30-track builder; not the live 60-track cycle) |
 | Cycle orchestration and recovery state | scripts/spotify/spotify_daily_cycle.py |
 | Feedback learning | scripts/spotify/spotify_daily_feedback.py and assistant_data/spotify/daily_feedback.json |
 | Read-only live preflight | scripts/spotify/spotify_daily_preflight.py |
