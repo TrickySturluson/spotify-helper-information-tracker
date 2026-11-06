@@ -59,12 +59,12 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Branch `docs/semantic-overview-quality-20261105` contains source-overview improvements for 15 modules spanning analytics, Last.fm import, music enrichment/audio, Spotify playlist management, Daily feedback/discovery and local playback tracking.
 - `tests/test_script_layout.py` now rejects known generic fallback phrases in those 15 audited modules. The test is committed on the branch but has not yet run in CI.
 - The batch is documentation-only: no runtime logic, workflow YAML, generated data, provider state, playback observations or playlists changed.
-- Several other music and Spotify modules still use generic fallback overview text; semantic review remains incomplete.
+- The known generic fallback blocks found in the initial analytics/Last.fm/music/Spotify search were rewritten. Broader review may still find inaccurate or incomplete overviews with different wording; do not assume all 51 maintained modules are semantically complete.
 
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
-- The first semantic overview batch covers 15 modules only. Remaining maintained music/Spotify modules, compatibility launchers, test modules and workflow overviews still need source-to-document review.
-- The new anti-boilerplate regression test has not yet been executed in CI; no result should be inferred from successful file-update API responses.
+- The the semantic overview audit now covers 27 manually reviewed modules on a documentation branch. Remaining maintained music/Spotify modules, compatibility launchers, test modules and workflow overviews still need source-to-document review.
+- The targeted anti-boilerplate regression test now protects 27 manually reviewed modules but has not yet been executed in CI; no result should be inferred from successful file-update API responses.
 - Goal status, cross-project loose ends, open PRs/issues and outstanding workflow runs need reconciliation against current GitHub evidence.
 - Link integrity and whether every referenced guide exists have not yet been exhaustively checked; two invalid references were found and corrected in this batch.
 - Existing per-file overview claims in the repository README are not yet independently audited.
