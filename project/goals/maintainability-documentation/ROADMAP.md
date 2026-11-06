@@ -45,14 +45,24 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
 - It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
 
-## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## Current gaps / uncertainty
-- The full tracked-file inventory has not yet been compared programmatically with documentation coverage.
+## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## 2026-11-05 repository audit checkpoint
+
+- Confirmed current default branch `main` at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`.
+- Confirmed 13 goal workspaces, each with ROADMAP.md, README.md and ACTIONS.md.
+- Confirmed 17 GitHub Actions workflow YAML files and a workflow catalogue that the documentation contract test checks dynamically.
+- Confirmed maintained implementation directories: `scripts/analytics/` (7 Python modules), `scripts/lastfm/` (1), `scripts/music/` (24), and `scripts/spotify/` (19); `compat/`, `tests/`, and `.github/workflows/` are included in the FILE OVERVIEW presence check.
+- Latest observed full Daily curator test run #42144512658 and full-history public-repository security scan #42144512423 succeeded on the current main SHA. This is evidence for the automated checks on that commit, not semantic correctness of documentation.
+- The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
+- Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
+
+## Current gaps / uncertainty
+- The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
 - Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
 - Link integrity and whether every referenced guide still exists have not yet been exhaustively checked.
 - Existing per-file overview claims in the repository README are not yet independently audited.
 
 ## Next action
-Obtain a complete tracked-file listing from the repository, compare it with file overviews and docs/REPOSITORY_FILE_INDEX.md, then record a categorized gap list. Fix high-risk missing documentation first and add automated checks after the baseline is known.
+Continue with a directory-by-directory maintained-file audit, obtain a complete checkout/`git ls-files` inventory when available, compare it with file overviews and docs/REPOSITORY_FILE_INDEX.md, then record a categorized gap list. Audit semantic accuracy—not just marker presence—starting with write-capable Spotify tools, scheduled workflows, authentication, shared generated-state writers and recovery paths. Reconcile the 13 goal roadmaps and open PRs/issues. Keep documentation as the only active project priority until the fresh-session acceptance test passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
