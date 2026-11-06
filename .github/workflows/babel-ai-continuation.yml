@@ -1,0 +1,222 @@
+name: Babel AI continuation
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: babel-ai-continuation
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      enabled: ${{ steps.state.outputs.enabled }}
+      target_ref: ${{ steps.state.outputs.target_ref }}
+      branch_exists: ${{ steps.state.outputs.branch_exists }}
+    steps:
+      - name: Check out the current default branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Select the continuation branch and inspect stop state
+        id: state
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads https://github.com/${GITHUB_REPOSITORY}.git refs/heads/babel/agent-progress >/dev/null 2>&1; then
+            target_ref="babel/agent-progress"
+            branch_exists="true"
+          else
+            target_ref="main"
+            branch_exists="false"
+          fi
+          git fetch --no-tags origin "$target_ref"
+          git checkout --detach "origin/$target_ref"
+          if grep -Eq '^status:[[:space:]]*complete$' project/BABEL_AGENT_STATE.md; then
+            enabled="false"
+            echo "Babel is marked complete; scheduled continuation is stopping."
+          else
+            enabled="true"
+          fi
+          echo "enabled=$enabled" >> "$GITHUB_OUTPUT"
+          echo "target_ref=$target_ref" >> "$GITHUB_OUTPUT"
+          echo "branch_exists=$branch_exists" >> "$GITHUB_OUTPUT"
+
+  agent:
+    needs: preflight
+    if: needs.preflight.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the latest Babel continuation state
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.preflight.outputs.target_ref }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run the bounded Babel documentation agent
+        id: codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/babel/CONTINUATION_PROMPT.md
+          permission-profile: ":workspace"
+          safety-strategy: drop-sudo
+          effort: high
+          output-file: /tmp/babel-agent-final-message.md
+
+      - name: Package the documentation-only patch for isolated validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -N -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py
+          git diff --binary HEAD -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py > /tmp/babel.patch
+          test -f /tmp/babel.patch
+          if [ -f /tmp/babel-agent-final-message.md ]; then
+            cp /tmp/babel-agent-final-message.md /tmp/babel-agent-report.md
+          else
+            printf '%s\n' "No final agent report was produced." > /tmp/babel-agent-report.md
+          fi
+
+      - name: Upload the candidate patch and run report
+        uses: actions/upload-artifact@v4
+        with:
+          name: babel-continuation-${{ github.run_id }}
+          path: |
+            /tmp/babel.patch
+            /tmp/babel-agent-report.md
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    needs: [preflight, agent]
+    if: needs.preflight.outputs.enabled == 'true' && needs.agent.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out the current continuation base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.preflight.outputs.target_ref }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Download the candidate patch
+        uses: actions/download-artifact@v4
+        with:
+          name: babel-continuation-${{ github.run_id }}
+          path: /tmp/babel-artifact
+
+      - name: Validate scope, apply patch, and run documentation tests
+        id: validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          patch_file="/tmp/babel-artifact/babel.patch"
+          if [ ! -s "$patch_file" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "The agent produced no documentation changes."
+            exit 0
+          fi
+          git apply --check "$patch_file"
+          git apply "$patch_file"
+          python - <<'PY'
+          import subprocess
+          import sys
+
+          changed = subprocess.check_output(
+              ["git", "diff", "--name-only", "-z"], text=False
+          ).decode().split("\0")
+          changed = [path for path in changed if path]
+          allowed = (
+              lambda p: p == "AGENTS.md"
+              or (p.startswith("docs/") and p.endswith(".md"))
+              or (p.startswith("project/") and p.endswith(".md"))
+              or p in {
+                  "tests/test_documentation_contract.py",
+                  "tests/test_script_layout.py",
+              }
+          )
+          rejected = [path for path in changed if not allowed(path)]
+          deleted = subprocess.check_output(
+              ["git", "diff", "--diff-filter=D", "--name-only"], text=True
+          ).splitlines()
+          if rejected or deleted:
+              print("Rejected out-of-scope paths:", rejected, file=sys.stderr)
+              print("Rejected deletions:", deleted, file=sys.stderr)
+              raise SystemExit(1)
+          print("Validated documentation-only paths:", *changed, sep="\n- ")
+          PY
+          python -m unittest tests.test_documentation_contract tests.test_script_layout -v
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push the validated continuation batch
+        if: steps.validate.outputs.changed == 'true'
+        env:
+          BRANCH_EXISTS: ${{ needs.preflight.outputs.branch_exists }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$BRANCH_EXISTS" != "true" ]; then
+            git switch -c babel/agent-progress
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py
+          if git diff --cached --quiet; then
+            echo "No staged changes after validation."
+            exit 0
+          fi
+          git commit -m "Babel agent: continue documentation audit"
+          git push origin HEAD:refs/heads/babel/agent-progress
+
+      - name: Create or update the review pull request
+        if: steps.validate.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          existing="$(gh pr list --head babel/agent-progress --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$existing" ]; then
+            gh pr create \
+              --base main \
+              --head babel/agent-progress \
+              --title "Babel: autonomous documentation continuation" \
+              --body "## Purpose
+          This pull request contains bounded documentation and documentation-contract work produced by the repository's Babel AI continuation workflow.
+
+          ## Safety
+          - Documentation and narrowly scoped documentation tests only.
+          - No Spotify/provider calls, playlist mutations, generated-data writes, or runtime feature changes.
+          - The publisher validates changed paths and runs focused documentation tests.
+          - This PR is not auto-merged; human review is required.
+
+          The branch is updated by later scheduled runs while Babel remains active."
+          else
+            echo "Updated existing Babel continuation PR #$existing."
+          fi
+
+# FILE OVERVIEW
+# Purpose: Runs a bounded OpenAI Codex worker against SHIT Documentation & Continuity (Babel).
+# Trigger: Every six hours and manual dispatch; stops when project/BABEL_AGENT_STATE.md says complete.
+# Permissions: Read-only agent job; separate publisher job receives contents:write and pull-requests:write.
+# Safety: Agent cannot publish directly. Publisher rejects non-documentation paths/deletions and runs focused tests.
+# Side effects: May update only a dedicated Babel branch and its review PR; never merges or touches Spotify/provider state.
+# Related: .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md, docs/BABEL_AGENT.md.
