@@ -41,6 +41,18 @@ class DiscoveryScoringTests(unittest.TestCase):
         self.assertLessEqual(max(counts.values()), 2)
         self.assertEqual(fallback[0]["track"], "A1")
 
+    def test_daily_artist_search_expands_cumulatively_only_when_needed(self):
+        artists = [{"artist": f"Artist {index}"} for index in range(300)]
+        batches = list(discovery.iter_daily_artist_batches(artists))
+        self.assertEqual([len(batch) for batch in batches], [80, 80, 140])
+        flattened = [row for batch in batches for row in batch]
+        self.assertEqual(flattened, artists)
+
+    def test_daily_artist_search_uses_single_bounded_batch_when_pool_is_small(self):
+        artists = [{"artist": f"Artist {index}"} for index in range(45)]
+        batches = list(discovery.iter_daily_artist_batches(artists))
+        self.assertEqual(batches, [artists])
+
     def test_spotify_artist_search_supports_alternate_result_page(self):
         sp = Mock()
         sp.call.return_value = {"tracks": {"items": []}}
