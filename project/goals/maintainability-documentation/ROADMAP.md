@@ -19,8 +19,10 @@ Make SHIT understandable, maintainable, and recoverable by a contributor or assi
 ## Required per-file documentation
 Every maintained script/module/workflow should state its purpose, supported goal, inputs/outputs, dependencies/data paths, network and write side effects, safety/rate/mutation boundaries, and how to run/test it. Tests and schemas should have clear scope and ownership. Do not put prose into machine-readable JSON; use adjacent documentation or supported metadata.
 
+## Naming convention
+The documentation system is publicly named **SHIT Documentation & Continuity** and internally codenamed **Babel**. The naming contract is documented in [docs/BABEL.md](../../../docs/BABEL.md) and surfaced from the repository's first-contact entry points.
+
 ## Roadmap
-1. **Name and define the documentation system — implemented in documentation.** Establish SHIT Documentation & Continuity as the descriptive public name and Babel as its internal codename; make the relationship explicit at fresh-session entry points.
 1. **Mandatory continuity rules and navigation — implemented.** Root instructions, documentation rules, docs index, project roadmap and README links now exist on main.
 2. **Verify all goal workspaces.** Confirm every indexed goal has ROADMAP, README and ACTIONS; inspect links and reconcile current status.
 3. **Audit file-level coverage.** Compare all tracked scripts, modules, compatibility launchers, tests, workflows, schemas and data contracts with the file index and per-file overview requirements.
