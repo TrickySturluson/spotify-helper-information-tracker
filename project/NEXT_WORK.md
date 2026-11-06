@@ -19,6 +19,12 @@ Proposed direction: establish a coordinated SHIT-wide health system covering dat
 
 Design constraints to preserve: observe/diagnose before mutation; canonical data and provenance are protected; Last.fm scrobbles remain distinct from optional Spotify playback observations; uncertain records are never invented, silently deleted or silently rewritten; repairs must be explicitly scoped, deterministic, backed up, reversible, audited and verified afterward; consequential or ambiguous changes require user approval. At the post-Babel review, create a dedicated goal workspace and roadmap, define health dimensions/severity, ownership, autonomy levels, repair boundaries, reporting cadence and measurable acceptance criteria.
 
+## 2026-11-06 — Buddy first dispatch diagnosed; compatibility fix underway
+
+- ChatGPT's marker commit `7c1abce763d293992872699146eb7f13d10f9b87` triggered [Babel AI continuation run #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313).
+- Preflight passed; Codex failed before running the prompt. `ubuntu-latest` resolved to Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed restricting `/run/dbus/system_bus_socket`, matching upstream [issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no PR was produced.
+- Fix: pin only the Codex agent job to `ubuntu-24.04`, retaining the sandbox and permission model. Re-dispatch from a fresh branch based on the updated `main`, then verify all jobs and the review PR. Buddy remains unverified until end-to-end success.
+
 ## Cross-project loose-ends register
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
