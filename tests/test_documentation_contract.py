@@ -279,6 +279,15 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("not Spotify playback, likes, saves, or Last.fm scrobbles", operations_guide)
         self.assertIn("canonical MusicLibrary identity/playlist-source context", workflow_catalogue)
 
+    def test_library_resolver_index_rebuild_write_boundary_is_documented(self):
+        source = (ROOT / "scripts" / "music" / "music_library.py").read_text(encoding="utf-8")
+        guide = (ROOT / "docs" / "PER_RECORDING_MUSIC_LIBRARY.md").read_text(encoding="utf-8")
+        health = (ROOT / "scripts" / "music" / "library_health.py").read_text(encoding="utf-8")
+
+        self.assertIn("Constructor may rebuild and write library_index.json", source)
+        self.assertIn("strictly read-only structural check", guide)
+        self.assertIn("never instantiates the lazy resolver", health)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
