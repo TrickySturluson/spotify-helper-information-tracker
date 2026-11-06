@@ -1,0 +1,6 @@
+{
+  "purpose": "Retry Buddy after pinning the Codex agent job to Ubuntu 24.04.",
+  "source_ref": "main",
+  "requested_by": "ChatGPT via connected GitHub integration",
+  "retry_of": "42181953313"
+}
