@@ -45,7 +45,7 @@ The user has explicitly directed that documentation be the sole active project p
 - PR #161 remains draft and unmerged. Recheck current-head CI and security scan before merging.
 ## Booze or Boos! current snapshot — 2026-11-06
 
-- Latest repository snapshot for playlist `4diIlnF8BlgoJrwUfejf49`: 92 items reported/fetched, accessible, no item error; captured at `2026-11-06T01:47:59.824523+00:00`.
+- Latest repository snapshot for playlist `4diIlnF8BlgoJrwUfejf49`: 92 items reported/fetched, 92 unique track URIs (zero duplicates), accessible, no item error; captured at `2026-11-06T01:47:59.824523+00:00`.
 - The 64-track candidate manifest and five-axis audit from 2026-11-02 are historical and stale. Rebuild the candidate manifest and re-audit every track against the hard Halloween-relevance and party-energy gates after documentation completion.
 - No sorter preview or Booze playlist write was performed in this audit.
 
