@@ -1,6 +1,14 @@
 # Maintainability & Documentation — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Root README Reference Library schedule corrected
+
+- A further source-to-document search found the repository root `README.md` still claimed the Spotify Reference Library refreshed every six hours, contradicting the workflow YAML and the corrected workflow/API/enrichment guides.
+- Corrected the root README to daily 06:13 UTC and noted the main-branch workflow-file push trigger.
+- Extended `test_reference_library_schedule_matches_guide` to check both the enrichment guide and root README; extended the Daily force test to reject the stale "clock gate only" workflow-table sentence.
+- No workflow YAML, runtime behavior, generated data, provider state or Spotify playlist was changed. Exact-head CI after this test update is pending.
+
+
 ## 2026-11-06 — All 12 paused goal roadmaps now separate documentation and feature next actions
 
 - Source-to-roadmap review found all 12 non-documentation goal roadmaps had a pause banner but still exposed a feature/live-operation task under the immediate `Next action` heading.
