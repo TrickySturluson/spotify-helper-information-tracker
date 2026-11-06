@@ -1,3 +1,17 @@
+## 2026-11-06 — Tricky Daily immutable staging and failure-safe publication
+
+- **Authorization:** continued Daily code, test, documentation and safe read-only verification work. No live Spotify track replacement or description mutation was authorized or performed.
+- **Durable stage:** the cycle now builds a unique JSON record containing the exact ordered 60 URIs, candidate metadata, intended description, pre-write snapshot ID and URI order, recovery backup path, and SHA-256 over the complete record. In GitHub Actions, the stage, backup and pre-write evidence are committed/pushed to main before any Spotify write. The committed blob is re-read and hash-verified. A failed push or repository-head advance aborts before mutation.
+- **Race protection:** the live playlist is re-read before staging and again after the stage commit. Identity, owner, name, description, snapshot ID, complete pagination, ordered URI list and lock state are checked; current blacklist/whitelist policy is reloaded and rechecked immediately before mutation.
+- **Ambiguous write handling:** cloud replacement now reads live ordered URIs after a write exception. Exact target means the write applied despite a lost response; exact pre-write order means no mutation occurred; partial or unreadable results raise an explicit ambiguous error. The Daily runner persists a same-date idempotency guard for ambiguous outcomes. A surviving production stage also blocks same-date blind retries.
+- **Post-write contract:** read-back must be complete, exactly 60 tracks, exact staged order, unique valid Spotify track URIs, valid primary artists, and free of current blacklist hits before completion is recorded.
+- **Safe stage-only mode:** added a test-trigger action that exercises candidate generation, durable stage commit/read-back and pre-write checks but exits before any Spotify playlist write or description update. Test stages use a separate subdirectory and do not block production runs.
+- **Verification:** full safe CI run #42268351897 passed 500 tests, including generated-data audit and canonical Library health/confidence checks. Tests cover stage hash/commit failure, repository concurrency, pending-stage guard, pre-write race, exact post-write validation, and ambiguous write reconciliation.
+- **No-write stage-only attempt:** workflow run #42268583897 authenticated but Spotify returned HTTP 429 QUOTA_EXCEEDED during candidate search with Retry-After 5781 seconds. It failed before stage creation/commit; the workflow log confirms no playlist changes were attempted. No Spotify API calls were made after that response. Respect the entire Retry-After window before another provider call.
+- **Remaining:** the actual GitHub Actions stage commit/push has not yet been exercised end-to-end because the stage-only attempt hit the provider quota before staging. Guided resume/rollback/discard from a surviving stage and a final provider-supported race guarantee remain open. No live cycle should run without separate user authorization.
+- **Next:** after the provider cooldown has elapsed, retry only the no-write stage-only path and inspect the committed stage/backup. Keep live track and description mutations separately gated.
+
+---
 ## 2026-11-06 — Tricky Daily runtime correction and verification recovery
 
 - **Authorization:** user authorized Daily runtime/test corrections, safe verification, and a Daily-only snapshot refresh. Live playlist replacement/description mutation remains separately gated and was not performed.
