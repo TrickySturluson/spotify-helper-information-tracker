@@ -67,16 +67,19 @@ def build_daily_reference_updates(catalog, index, previous, record):
             if isinstance(artist, str) and artist.strip()
         }
 
-    def reconcile_memberships(mapping, old_keys, new_keys, label):
-        for key in old_keys - new_keys:
-            values = mapping.get(key, [])
+    def reconcile_memberships(mapping, new_keys, label):
+        # Reconcile every existing Daily membership, not only keys in the prior
+        # snapshot: a previous interrupted/stale sync may already have left
+        # orphaned Daily links outside that snapshot.
+        for key, values in list(mapping.items()):
             if not isinstance(values, list):
                 raise manager.ManagerError(f"Reference {label} index entry is malformed for {key!r}.")
-            remaining = list(dict.fromkeys(pid for pid in values if pid != DAILY_ID))
-            if remaining:
-                mapping[key] = remaining
-            else:
-                mapping.pop(key, None)
+            if DAILY_ID in values and key not in new_keys:
+                remaining = list(dict.fromkeys(pid for pid in values if pid != DAILY_ID))
+                if remaining:
+                    mapping[key] = remaining
+                else:
+                    mapping.pop(key, None)
         for key in new_keys:
             values = mapping.get(key, [])
             if not isinstance(values, list):
@@ -84,10 +87,10 @@ def build_daily_reference_updates(catalog, index, previous, record):
             if DAILY_ID not in values:
                 mapping[key] = [*values, DAILY_ID]
 
-    old_track_keys, new_track_keys = track_keys(old_items), track_keys(new_items)
-    old_artist_keys, new_artist_keys = artist_keys(old_items), artist_keys(new_items)
-    reconcile_memberships(track_map, old_track_keys, new_track_keys, "track")
-    reconcile_memberships(artist_map, old_artist_keys, new_artist_keys, "artist")
+    new_track_keys = track_keys(new_items)
+    new_artist_keys = artist_keys(new_items)
+    reconcile_memberships(track_map, new_track_keys, "track")
+    reconcile_memberships(artist_map, new_artist_keys, "artist")
 
     changed = (
         previous.get("snapshot_id") != record.get("snapshot_id")
