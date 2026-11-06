@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   schedule:
     # Run after the midnight Eastern rotation and its recovery delivery.
-    # GET-only refresh also reconciles the Daily catalog/index so repository audits stay aligned.
+    # Reconcile every stale Daily catalog/index membership before snapshot publication.
     - cron: "25 6 * * *"
 
 permissions:
