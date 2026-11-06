@@ -477,11 +477,16 @@ if __name__ == "__main__":
 
 
 # -----------------------------------------------------------------------------
-# FILE OVERVIEW
-# Purpose: Call the Last.fm API with automatic retries for temporary server/network errors.
-# Location: Maintained implementation in scripts/lastfm/update_lastfm.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/update_lastfm.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
-# -----------------------------------------------------------------------------
+# # FILE OVERVIEW
+# # Purpose: Import new scrobbles from the user's Last.fm account into the canonical archive.
+# # Inputs: LASTFM_API_KEY environment variable and the configured Last.fm username.
+# # Outputs: Appends/deduplicates chronological records in data/scrobbles.json and updates
+# #          data/metadata.json with synchronization checkpoint/count information.
+# # API behavior: Paginates Last.fm user.getRecentTracks in 200-row pages, waits between
+# #                requests, and retries temporary HTTP/network failures up to six times.
+# # Safety: Last.fm is the historical listening source of truth; this script does not
+# #         read Spotify playback or edit Spotify playlists. Never replace archive history
+# #         with tracker observations or treat a failed sync as an empty archive.
+# # Run: python compat/update_lastfm.py (repository root; requires LASTFM_API_KEY).
+# # Related: tests/; data/README.md; docs/WORKFLOWS.md.
+# # -----------------------------------------------------------------------------
