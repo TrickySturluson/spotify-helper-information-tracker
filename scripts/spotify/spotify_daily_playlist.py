@@ -253,10 +253,17 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build a balanced daily mix of proven favorites, rediscoveries and deep cuts. Last.fm scrobbles are evidence of repeated listening, not a guarantee of liking. The curator uses that history as a useful signal, while preserving room for less-played tracks and enforcing artist diversity.
-# Location: Maintained implementation in scripts/spotify/spotify_daily_playlist.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_daily_playlist.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Score and assemble a balanced Tricky Daily candidate set from
+#          recommendation features, favoring a mix of favorites, rediscoveries
+#          and less-played tracks while enforcing diversity.
+# Inputs: assistant_data/recommendations/track_features.json plus caller-
+#         supplied liked-track, recent-play and Spotify catalogue evidence.
+# Outputs: Returns ranked/selected candidates and exact Spotify track matches
+#          to the caller; this module does not write or mutate a playlist.
+# Semantics: Last.fm scrobbles indicate familiarity, not guaranteed preference;
+#            recency and repeated plays affect ranking, not absolute eligibility.
+# Run: Internal library module; invoked by the protected Daily/discovery
+#      orchestration. Direct execution intentionally exits with guidance.
+# Related: scripts/spotify/spotify_discovery.py;
+#          scripts/spotify/spotify_daily_cycle.py; docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------
