@@ -3,6 +3,6 @@
   "mode": "safe-test-only",
   "playlist_mutation": false,
   "requested_by": "ChatGPT-assisted project maintenance",
-  "verification_revision": "live-readback-after-cycle-2026-11-05T17:32:00-05:00",
-  "note": "Read-only live Spotify preflight after the accepted 60-track Tricky Daily replacement. Confirm exact playlist identity, ownership, unlock state, and item count; do not mutate playlist."
+  "verification_revision": "forced-idempotency-fix-2026-11-06",
+  "note": "Safe remote regression verification after fixing the Daily force/idempotency guard. Run the complete unit suite and focused schedule tests only; do not connect to Spotify or mutate any playlist."
 }
