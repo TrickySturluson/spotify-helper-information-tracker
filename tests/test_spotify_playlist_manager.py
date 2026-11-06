@@ -90,6 +90,20 @@ class PlaylistManagerTests(unittest.TestCase):
             manager.create(spotify, "SHIT Test", "", False)
         register.assert_called_once_with("new-playlist", "SHIT Test")
 
+    def test_snapshot_preserves_description_for_prewrite_guards(self):
+        spotify = __import__("unittest").mock.Mock()
+        spotify.items.return_value = []
+        playlist = {
+            "id": "playlist123", "name": "Tricky Daily",
+            "description": "Could be worse. Could be quiet.",
+            "snapshot_id": "snapshot123",
+        }
+        result = manager.snapshot(spotify, playlist)
+        self.assertEqual(
+            result["playlist"]["description"],
+            "Could be worse. Could be quiet.",
+        )
+
     def test_mutation_snapshots_use_exact_playlist_lookup_not_account_scan(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
