@@ -70,6 +70,13 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
 - Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
 
+## PR #161 verification update — 2026-11-06
+
+- First validation failed only because three compatibility wrappers did not name their maintained `scripts/music/` implementation. Those three overviews were corrected.
+- The next Daily curator tests run (#42149783445) passed on PR head `5b8bfab94064e74100c6b3ac183817b6a3f4d4bd`. It passed compile, generated-data audit, full Library health/confidence checks, bounded freshness planning, maintained-file documentation checks and full unit tests.
+- The new all-Markdown local-link, full guide-index, source overview quality, compatibility reference and workflow overview tests therefore passed on that head.
+- The complete-history public security scan (#42149783463) was still in progress at the last check. Recheck it and confirm the PR head has not advanced before considering the PR verified.
+
 ## Latest workstream status — 2026-11-06
 
 - All 12 non-documentation goal roadmaps now contain an explicit documentation-only pause; the goal index explains the same priority. The workstream plans are preserved, not discarded.
