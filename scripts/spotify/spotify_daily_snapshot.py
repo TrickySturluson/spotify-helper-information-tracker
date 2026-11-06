@@ -248,7 +248,7 @@ def refresh():
         f"{len(set(uris))} unique URIs; {removal_result.get('newly_removed', 0)} "
         f"new manual removals recorded; {removal_result.get('removed_total', 0)} "
         f"total blacklisted; {feedback_events_added} manual-removal feedback events reconciled; "
-        f"snapshot_id={record.get('snapshot_id')} ."
+        f"snapshot_id={record.get('snapshot_id')}."
     )
 
 
