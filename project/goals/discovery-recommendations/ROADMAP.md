@@ -1,7 +1,7 @@
 # Discovery & Recommendations — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Proposed; PR #60 and its current implementation/test status require inspection.
+**Last reviewed:** 2026-11-06  
+**Status:** Partial mainline candidate-ingestion implementation exists; richer per-song context remains proposed in open PR #60. Feature work is paused under the documentation-only priority.
 
 ## Repository-wide priority override — 2026-11-06
 
