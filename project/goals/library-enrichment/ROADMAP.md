@@ -45,7 +45,7 @@ No blind repeated lookups; no identity guessing; every promoted field has source
 
 ## Open proposal (not merged)
 
-- [PR #120 — Adopt incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, diverged (5 ahead, 419 behind current main; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It records the strategy decision; it does not implement or prove a bounded provider executor, retry queue, or completed on-demand enrichment path.
+- [PR #120 — Adopt incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, rechecked 2026-11-06 against main `a5fe4de`: diverged (5 ahead, 419 behind; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It records the strategy decision; it does not implement or prove a bounded provider executor, retry queue, or completed on-demand enrichment path.
 
 ## Next action (documentation-only priority)
 
