@@ -21,8 +21,12 @@ Each maintained implementation file should explain purpose and supported goal, i
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
 
-## AI continuation worker
+## Scheduled ChatGPT Buddy — current continuation path
 
-Babel includes a repository-hosted OpenAI Codex worker to continue documentation work from durable GitHub state. It is scheduled every six hours and can also be started manually. It resumes from the dedicated babel/agent-progress branch, makes documentation-only changes, and publishes through a review PR after path validation and full unittest discovery. It cannot perform Spotify/provider operations or change runtime implementation. Setup, permissions, recovery and limitations are in [docs/BABEL_AGENT.md](../../../docs/BABEL_AGENT.md).
+The current recurring documentation worker is the scheduled ChatGPT task **SHIT Buddy — daily Babel continuation**, using the connected GitHub app. It works from repository state, makes bounded documentation-only changes, and publishes to the persistent `babel/chatgpt-buddy` branch through one draft pull request. It does not require the repository-hosted Codex workflow or an OpenAI API key. See [docs/BABEL_CHATGPT_BUDDY.md](../../../docs/BABEL_CHATGPT_BUDDY.md) for its operating model, mandatory daily verification gate, scope, and review boundary.
 
-**Activation is pending:** the repository owner must add the OPENAI_API_KEY Actions secret and verify the first run. The ChatGPT subscription does not itself provide API credentials; API usage is billed separately.
+As of 2026-11-06, the worker's proposed guide and daily-check rule are in [draft PR #163](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/163). They are not merged mainline policy until the user reviews and merges that PR. Keep it as a draft; never approve or merge it automatically.
+
+## Separate repository-hosted Codex/API experiment
+
+The repository-hosted OpenAI Codex worker remains documented in [docs/BABEL_AGENT.md](../../../docs/BABEL_AGENT.md) and tracked by [project/BABEL_AGENT_STATE.md](../../BABEL_AGENT_STATE.md). Its runner compatibility workaround is verified, but the latest Codex attempt was blocked by API quota before validation or publication. It is not the current ChatGPT Buddy execution path. Do not trigger it or ask the user to fund API usage unless the user explicitly reauthorizes that separate experiment.

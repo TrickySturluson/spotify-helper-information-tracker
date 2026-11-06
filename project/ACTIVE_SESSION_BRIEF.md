@@ -1,6 +1,6 @@
 # Active SHIT Session Brief
 
-> **Purpose:** This is the curated context bridge between active ChatGPT work and the repository-hosted documentation worker (Buddy). It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
+> **Purpose:** This is the curated context bridge between active ChatGPT work, the scheduled ChatGPT Buddy task, and the separate repository-hosted Codex experiment. It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
 
 ## Operating rule
 
@@ -8,16 +8,35 @@ During every active SHIT work session, ChatGPT must maintain this file as work p
 
 Buddy must read this file at the start of every run, then reconcile it against the checked-out source, tests, workflow definitions, current branch, and recorded evidence. This brief is a navigation and context aid, not authority to override newer verified source or evidence. If it conflicts with source or fresh evidence, report and resolve the discrepancy rather than repeating stale claims.
 
-Updating this file does not wake Buddy, alter an already-running job, or deliver a live message. Buddy sees committed updates on its next scheduled or manually dispatched run.
+Updating this file does not wake a running task or deliver a live message. The scheduled ChatGPT Buddy reads committed repository state on a later run; the separate Codex worker, if explicitly reactivated, reads it on its next workflow run.
 
 ## Identity and roles
 
 - Repository/product: **Spotify Helper & Information Tracker (SHIT)**.
 - Documentation system: **SHIT Documentation & Continuity**, internal codename **Babel**.
-- Documentation worker: **Buddy** in repository documentation and everyday references. Its OpenAI agent identifier is **SHIT-Buddy**, reserved to distinguish it from possible future agents.
+- Documentation worker: **Buddy** in repository documentation and everyday references. The current execution path is the scheduled ChatGPT task using the connected GitHub app. **SHIT-Buddy** is the worker identifier, not a claim that the separate Codex workflow is active.
 - ChatGPT is responsible for active project work, keeping this brief and project records current, and reviewing Buddy's proposals.
 - Buddy is a documentation partner only. It may audit and improve documentation, continuity records, roadmaps, action logs, and narrowly scoped documentation-contract tests. It must not perform SHIT runtime/product development or Spotify/Last.fm operations.
-- User retains final authority over integration. Buddy may publish only to its isolated `babel/agent-progress` branch and its review PR; it must not write directly to `main`, self-merge, auto-merge, or expand its permissions.
+- User retains final authority over integration. The current ChatGPT Buddy may publish only to its persistent `babel/chatgpt-buddy` branch and one draft PR; it must not write directly to `main`, approve, mark ready, close, merge, self-merge, or expand its permissions.
+
+## Core daily Buddy verification gate
+
+For every SHIT-related ChatGPT conversation, first check the scheduled **SHIT Buddy — daily Babel continuation** automation and its latest run result. This is a conversation-triggered check, not continuous background monitoring.
+
+- Use `America/New_York` to decide whether a run belongs to today.
+- Until a successful, report-bearing run completes today, report **Buddy pending today** (or the exact failure/blocker) and repeat only a lightweight status check on the next SHIT conversation.
+- When a successful run appears, independently inspect its report, draft PR, full diff, read-back evidence, and CI/check status. Verify claims against source/tests; Buddy's self-review is not independent verification.
+- After review, record the Eastern date, automation run ID, PR number/head SHA (or no-PR result), review outcome, and remaining user action below.
+- On later SHIT conversations that day, perform a lightweight status lookup. Skip a full repeat review only if the run ID and PR head SHA still match this recorded checkpoint. Re-review if a new run, changed head, or material failure/check change appears.
+- A failed/incomplete run does not satisfy the daily completion gate. Never claim checks occurred between conversations.
+
+### Last independent Buddy review checkpoint
+
+- Eastern date: **2026-11-06**
+- Automation run ID: **not exposed to this scheduled-task execution context; do not substitute a turn number**
+- PR/head SHA: **PR #163; reviewed content head: 4dd918cbaffe5f027be9951258a7d4e7677c1c26**
+- Outcome: **PASS — full diff/source review and file read-backs passed; Daily curator tests #42238507544 (478 tests) and public repository security scan #42238507190 passed. This checkpoint predates subsequent evidence-only handoff updates; re-review if the PR head changes**
+- User action: **review draft PR #163; decide separately whether to retain or close PR #162; PR #161 remains a separate review item**
 
 ## Current priority
 
@@ -33,20 +52,30 @@ The intended design is a coordinated health system: (1) health monitoring across
 
 Safety contract to carry forward: observe and diagnose by default; preserve canonical data and provenance; distinguish authoritative Last.fm scrobbles from optional Spotify playback observations; never invent, silently delete, or silently rewrite uncertain records; only allow explicitly scoped, deterministic, backed-up, reversible repairs with audit trail and post-repair verification; require user approval for consequential or ambiguous changes. Revisit and formalize scope, ownership, autonomy levels, health dimensions, audit records and acceptance criteria only after Babel's completion gate and cold-start simulation pass.
 
-## Current Buddy activation status
+## Current scheduled ChatGPT Buddy status
+
+- **Execution model:** scheduled ChatGPT task SHIT Buddy — daily Babel continuation using the connected GitHub app. This is the current path; it does not use the repository-hosted Codex workflow or an OpenAI API key.
+- **Publication:** persistent branch babel/chatgpt-buddy and one open draft PR #163. The pre-batch head 2090ad97648851f5138856795600f4e582849efb passed checks #42188373512/#42188373527. The reviewed content head 4dd918cbaffe5f027be9951258a7d4e7677c1c26 was 37 commits ahead/one behind main with mergeable_state=clean; Daily curator tests #42238507544 (478 tests) and security scan #42238507190 passed. Later evidence-only handoff updates changed the PR head again; inspect the latest head's fresh checks.
+- **Daily-check rule:** the mandatory rule is proposed in PR #163. It is not merged mainline policy until the user reviews and merges the draft.
+- **CI correction:** PR tests on head b0365096d00137b2c392ca2385a080c2dba25011 failed one documentation-contract assertion because docs/BABEL_AGENT.md lacked the exact phrase “Activation is pending”. The phrase was restored with explicit no-API-spend and re-authorization wording. The corrected content head 4dd918cbaffe5f027be9951258a7d4e7677c1c26 passed tests #42238507544 (478 tests) and security scan #42238507190. Subsequent evidence-only handoff updates, including this brief update, create a new PR head; inspect its fresh checks.
+- **PR #162:** temporary GitHub-app connectivity proof remains open/draft and read-only. Security scan #42186485000 passed; Daily curator tests #42186485002 failed because its temporary guide is not listed in docs/README.md. Do not alter it; the user decides whether to retain or close it.
+- **PR #161:** existing documentation delivery remains open/draft with 117 changed files; current compare is 571 commits ahead and 135 behind main, and GitHub reports mergeable_state=dirty. Its old Daily curator tests #42165157006 and public repository security scan #42165156989 passed on its own head. No reviews or review threads are present. Do not merge or rebase it blindly.
+- **Next:** inspect the latest PR #163 head and fresh checks after the evidence-only handoff updates, then continue the semantic audit. Keep the PR draft and preserve human review.
+
+## Historical repository-hosted Codex worker execution evidence (separate path)
 
 - Workflow: `.github/workflows/babel-ai-continuation.yml`.
 - Instructions: `.github/babel/CONTINUATION_PROMPT.md`.
 - Durable worker state: `project/BABEL_AGENT_STATE.md`.
 - Proposal branch: `babel/agent-progress`.
 - The user has reported adding the OpenAI API key to GitHub repository Actions secrets under the exact name `OPENAI_API_KEY`. Secret values must never be read, printed, copied, or documented.
-- The first dispatch run is now verified: run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) completed with failure. Preflight passed; Codex failed before prompt execution; validation and publisher were skipped. Do not claim activation.
+- The first Codex workflow dispatch is now verified: run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) completed with failure. Preflight passed; Codex failed before prompt execution; validation and publisher were skipped. Do not claim activation.
 - The user has now confirmed **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** is enabled.
-- Workflow trigger enhancement: `.github/workflows/babel-ai-continuation.yml` listens for a push to a `babel/dispatch-*` branch when `.github/babel/dispatch.json` changes. On 2026-11-06, ChatGPT successfully created `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` in commit `7c1abce763d293992872699146eb7f13d10f9b87`. This is the first successful ChatGPT-initiated GitHub write intended to dispatch Buddy. The dispatch branch is only a trigger; preflight/agent/validation/publisher continue to use `main` or `babel/agent-progress` as before. Manual dispatch and the six-hour schedule remain available.
-- The marker push successfully triggered run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) on commit `7c1abce763d293992872699146eb7f13d10f9b87`. Preflight passed. Codex failed before prompt execution because `ubuntu-latest` resolved to Ubuntu 26.04 and the action's `drop-sudo` D-Bus socket restriction failed (`runner is not a member of the sudo group` / `Could not restrict access`). This matches upstream [openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no Buddy PR was created. The workflow's Codex agent job is pinned to `ubuntu-24.04` as a workaround, retaining `drop-sudo` and all existing permission boundaries.
-- Retry marker `75d3102e80ffe4158214114fa90c5979edda14e6` on `babel/dispatch-20261106-02` triggered [run #42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573). Preflight passed; the Ubuntu 24.04 Codex job completed `drop-sudo` isolation; Codex then returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no patch or PR was created. The runner fix is verified; the remaining blocker is API quota/billing. Do not retry until the user confirms quota is available.
-- Continuity rule is now propagated into `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL_AGENT.md`, `project/BABEL_AGENT_STATE.md`, the Buddy continuation prompt, the Maintainability & Documentation roadmap/action log, `project/NEXT_WORK.md`, and `project/PROJECT_LOG.md`. Latest supporting commits include `675351e` (worker state) and `7770474` (project log).
-- Post-quota verification must confirm the Codex job succeeds, independent validation passes path/deletion checks and full unittest discovery, and the publisher creates or updates the isolated proposal branch/PR. No automatic merge.
+- Workflow trigger enhancement: `.github/workflows/babel-ai-continuation.yml` listens for a push to a `babel/dispatch-*` branch when `.github/babel/dispatch.json` changes. On 2026-11-06, ChatGPT successfully created `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` in commit `7c1abce763d293992872699146eb7f13d10f9b87`. This is the first successful ChatGPT-initiated GitHub write intended to dispatch the separate repository-hosted Codex workflow. The dispatch branch is only a trigger; preflight/agent/validation/publisher continue to use `main` or `babel/agent-progress` as before. Manual dispatch and the six-hour schedule remain available.
+- The marker push successfully triggered run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) on commit `7c1abce763d293992872699146eb7f13d10f9b87`. Preflight passed. Codex failed before prompt execution because `ubuntu-latest` resolved to Ubuntu 26.04 and the action's `drop-sudo` D-Bus socket restriction failed (`runner is not a member of the sudo group` / `Could not restrict access`). This matches upstream [openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no Codex proposal PR was created. The workflow's Codex agent job is pinned to `ubuntu-24.04` as a workaround, retaining `drop-sudo` and all existing permission boundaries.
+- Retry marker `75d3102e80ffe4158214114fa90c5979edda14e6` on `babel/dispatch-20261106-02` triggered [run #42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573). Preflight passed; the Ubuntu 24.04 Codex job completed `drop-sudo` isolation; Codex then returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Codex candidate patch or proposal PR was created. The runner fix is verified, but no API spend or retry is authorized. Do not ask the user to add credits or trigger the Codex workflow unless the user explicitly reauthorizes this separate experiment.
+- Continuity rule is now propagated into `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL_AGENT.md`, `project/BABEL_AGENT_STATE.md`, the Codex continuation prompt, the Maintainability & Documentation roadmap/action log, `project/NEXT_WORK.md`, and `project/PROJECT_LOG.md`. Latest supporting commits include `675351e` (worker state) and `7770474` (project log).
+- If the user later explicitly reauthorizes the Codex experiment and available quota is confirmed, verification must prove the Codex job succeeds, independent validation passes path/deletion checks and full unittest discovery, and the publisher creates or updates the isolated proposal branch/PR. No automatic merge.
 
 ## Current repository findings and evidence to reconcile
 

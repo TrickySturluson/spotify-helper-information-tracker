@@ -36,15 +36,23 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Create `project/ACTIVE_SESSION_BRIEF.md` as a curated, privacy-safe bridge between active ChatGPT work and Buddy. Created on main in commit `55f1403c8feb614b1b6763ce8873499bdcbe4c86`.
 - [x] Update Buddy's continuation prompt to read the active brief first and reconcile it against checked-out source/evidence. Prompt update commit: `bad03f65cbe92690718278440886a84014fd79a1`.
 - [x] Make the brief a mandatory same-session operating rule in first-contact and documentation guidance (`AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL_AGENT.md`, Buddy continuation prompt, roadmap and action history). Commits: `798674d`, `e9339c7`, `991b1ff`, `bad03f6`, `01ee1d2`, `5899053`.
-- [ ] Verify Buddy reads the brief in its first successful run and reports reconciliation with live repository state.
+- [x] Verify the scheduled ChatGPT Buddy reads the brief and reconciles it against live repository state. This run read the brief, checked the current main/head refs, reviewed PRs #161–#163 and their relevant CI state, and recorded the findings in the current handoff/action history.
 - [ ] Perform a cold-start simulation proving the brief and repository docs are sufficient without prior chat history.
 - [ ] Confirm privacy boundaries: curated SHIT context only; no raw chat dumps, unrelated personal context, or secret values.
 
-## Controlled ChatGPT dispatch
+## Scheduled ChatGPT Buddy — current continuation path
 
-- [x] Add a narrowly scoped `push` trigger for fresh `babel/dispatch-*` branches, filtered to `.github/babel/dispatch.json`; retain manual dispatch and the six-hour schedule.
-- [x] Ensure the dispatch branch is only an event trigger: preflight and all work jobs continue to select `main` or `babel/agent-progress`, never treating the marker branch as a work base.
-- [ ] Execute the first ChatGPT-triggered run and verify Codex, independent validation, and isolated PR publication.
+- [x] Document the scheduled ChatGPT/GitHub-app path, daily verification rule, scope, branch/PR model, and human-review boundary in docs/BABEL_CHATGPT_BUDDY.md and the documentation index.
+- [x] Add the mandatory daily Buddy-check rule to AGENTS.md, project/DOCUMENTATION_RULES.md, and the active-session brief in draft PR #163. The rule is a proposal on this branch and is not mainline policy until the user merges the PR.
+- [x] Verify the existing persistent branch babel/chatgpt-buddy and one open draft PR #163; do not create duplicates. Its pre-batch head 2090ad97648851f5138856795600f4e582849efb had passing Daily curator tests (#42188373512) and public repository security scan (#42188373527).
+- [x] Inspect PR-triggered CI on content head 4dd918cbaffe5f027be9951258a7d4e7677c1c26: Daily curator tests #42238507544 passed all 478 tests and public repository security scan #42238507190 passed. This content-head verification predates later evidence-only handoff commits; keep the PR draft and re-check CI for the latest branch head.
+- [ ] Complete the fresh-session simulation using merged repository documentation, not this draft branch.
+
+## Repository-hosted Codex dispatch experiment — separate path
+
+- [x] Add a narrowly scoped push trigger for fresh babel/dispatch-* branches, filtered to .github/babel/dispatch.json; retain the workflow's manual dispatch and six-hour schedule.
+- [x] Ensure the dispatch branch is only an event trigger: preflight and work jobs select main or babel/agent-progress, never the marker branch as a work base.
+- [ ] Reactivate only if the repository owner explicitly reauthorizes the separate API-based experiment and confirms quota; then verify Codex, independent validation, full tests, and isolated PR publication.
 
 ## Deferred successor: SHIT-wide Integrity, Diagnostics & Recovery
 
@@ -54,13 +62,13 @@ The intended system should monitor integrity and operational health across canon
 
 Preserve strict safety boundaries: canonical data/provenance remain authoritative; Last.fm scrobbles are not conflated with optional Spotify playback observations; no fabricated or silently discarded records; deterministic repairs only, with explicit scope, backups, reversibility, audit trails and post-repair verification; user approval for consequential or ambiguous mutations. At the revisit, establish a dedicated goal workspace, ownership, severity model, autonomy levels, repair policy, reporting cadence and acceptance tests before implementation.
 
-## Buddy activation test — first attempt diagnosed
+## Repository-hosted Codex worker — first attempt diagnosed (separate path)
 
-- First ChatGPT-triggered run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) was received; preflight passed, but Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. Validation and publication were skipped.
+- First Codex workflow run triggered by ChatGPT [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) was received; preflight passed, but Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. Validation and publication were skipped.
 - The failure matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The Codex agent job is pinned to `ubuntu-24.04` as a compatibility workaround, without changing the security strategy or permission separation.
-- Activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication.
+- If the user later explicitly reauthorizes this separate API-based experiment and confirms quota, activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication. No retry is authorized under the current no-API-spend decision.
 
-## Buddy activation retest — runner fixed; API quota remains blocked
+## Repository-hosted Codex worker — runner fixed; API quota remains blocked
 
 - Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) ran the Codex job on Ubuntu 24.04. Preflight and `drop-sudo` isolation succeeded, confirming the Ubuntu 26.04 compatibility workaround.
 - Codex then returned `Quota exceeded. Check your plan and billing details.` Validation and publication were skipped; no candidate patch or PR was produced. The worker is not yet operationally verified.

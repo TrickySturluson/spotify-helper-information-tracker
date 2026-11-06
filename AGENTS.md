@@ -17,6 +17,19 @@ This file applies to every assistant, contributor, and automation agent working 
 
 During every active SHIT work session, ChatGPT must maintain [project/ACTIVE_SESSION_BRIEF.md](project/ACTIVE_SESSION_BRIEF.md) as work proceeds. Update it after every material decision, scope change, implementation change, source finding, test/audit result, failure, uncertainty, or blocker—not only at session end. Update the affected goal ROADMAP.md and ACTIONS.md in the same session, plus NEXT_WORK.md / LOOSE_ENDS.md / PROJECT_LOG.md when cross-project state changes. Buddy must read the brief at the start of every run and reconcile it against checked-out source and evidence. The brief is curated project context, never a raw chat transcript; exclude unrelated personal details and all secret values. It is not real-time messaging: Buddy sees only committed updates on a subsequent run.
 
+## Mandatory daily Buddy check for every SHIT conversation
+
+Whenever ChatGPT is asked to work on, discuss, review, plan, or report on SHIT, Babel, or Buddy, it must perform the Buddy daily-check gate before substantive work:
+
+1. Read the current SHIT Buddy automation status and latest run result using the available automation status source. Use the user's Eastern timezone, `America/New_York`, to determine the current calendar day.
+2. If no successful, report-bearing Buddy run has completed for the current Eastern date, state plainly that Buddy is **pending today** (or identify the exact failure/blocker). Do not repeatedly perform a full PR audit while the run is still pending; check again on the next SHIT-related conversation.
+3. Once a successful run for today is visible, independently review that run's report, Buddy-owned draft PR, complete changed-file list/diff, read-back evidence, and CI/check state. Verify claims against current source and tests; distinguish draft from merged work. A green check or Buddy's own self-review is not a substitute for independent review.
+4. Record a durable review checkpoint in `project/ACTIVE_SESSION_BRIEF.md`: Eastern date, Buddy run ID, reviewed PR/head SHA (or no-PR result), review outcome, and outstanding user action. On later SHIT conversations that same day, a lightweight status check is sufficient; skip the full review if the same run ID and PR head SHA are already recorded as reviewed. Re-review if either changes, a new run appears, or a material failure/check change is reported.
+5. A failed/incomplete run does not count as a successful daily completion. Report the blocker and retry the gate on the next SHIT-related conversation. Do not claim continuous background monitoring: checks occur when a SHIT conversation is active.
+6. ChatGPT may independently correct documentation within its authorized scope and publish changes only through a reviewable draft PR. Never write directly to `main`, approve, mark ready, close, merge, or self-merge. The user retains final integration authority.
+
+This is a core SHIT operating rule, not an optional reminder. It applies across fresh conversations and assistants; this repository instruction is authoritative over chat habits.
+
 ## Non-negotiable continuity rule
 The repository is the durable source of truth; chat history is not. Every meaningful requirement, decision, implementation, test, failure, blocker, provider limitation, and next action must be recorded in the appropriate documentation during the same session. Never leave important knowledge only in a conversation.
 

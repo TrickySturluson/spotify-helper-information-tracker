@@ -18,6 +18,20 @@ Every substantial project/workstream must have a maintained roadmap. Every meani
 - Buddy must read ACTIVE_SESSION_BRIEF.md at the start of every run, then reconcile it against checked-out source, tests, workflows, branches, and evidence. The brief never overrides newer verified evidence.
 - The brief is a curated project-context bridge, not a raw chat transcript or live message channel. It must exclude unrelated personal conversations, sensitive personal details, credentials, tokens, and secret values. Buddy sees updates only after they are committed and a later run begins; updating the file does not wake or message an already-running job.
 
+## Core ChatGPT rule: daily Buddy verification gate
+
+Every time ChatGPT works on, discusses, reviews, plans, or reports on SHIT, Babel, or Buddy, it must check the scheduled SHIT Buddy automation before substantive work. This check is event-driven by SHIT conversations; it is not continuous background monitoring.
+
+- Use the latest automation run/result and the `America/New_York` calendar date.
+- Until a successful, report-bearing Buddy run has completed for the current Eastern date, mark Buddy **pending today** (or report the exact failure/blocker) and perform only a lightweight status check on each subsequent SHIT conversation.
+- After today's successful run appears, independently inspect the run report, Buddy draft PR, full diff/changed files, GitHub read-back, and CI/checks. Verify source claims; do not accept Buddy's self-review or a green workflow alone as sufficient.
+- Record the review checkpoint in `ACTIVE_SESSION_BRIEF.md`: Eastern date, run ID, PR/head SHA (or no-PR result), outcome, and outstanding user action.
+- On subsequent SHIT conversations that day, check status lightly and skip a repeated full review when the run ID and PR head SHA match the recorded checkpoint. Re-review if a new run appears, the PR head changes, or a material check/failure changes.
+- A failed or incomplete run is not a successful daily completion. Report it and continue checking on the next SHIT conversation.
+- ChatGPT may correct authorized documentation and publish a reviewable draft PR, but must never write directly to `main`, approve, mark ready, close, merge, or self-merge. The user retains final authority.
+
+This rule applies to every future SHIT conversation and fresh assistant session. It does not promise background checks between conversations.
+
 ## Required reading before work
 
 At the start of a new task or resumed session:
