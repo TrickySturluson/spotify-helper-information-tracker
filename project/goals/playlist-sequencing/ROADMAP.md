@@ -58,8 +58,12 @@ Arrange tracks into coherent, enjoyable listening journeys. Smooth transitions a
 - [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open/draft on `codex/sorter-evaluation-ingestion-watchdog`, diverged (10 ahead, 419 behind current main; mergeable=false). No workflow runs were found for its observed head; rebase and obtain CI before relying on it. It proposes an offline evaluation plan and watchdog specification, not a verified quality report.
 - [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, diverged (5 ahead, 419 behind current main; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It records a strategy proposal but does not authorize live sorter integration or playlist writes.
 
-## Next action
-Audit the current sequencer implementation and tests against this roadmap, then compare a fresh read-only preview with the latest live playlist and evidence coverage. Record specific transition failures before changing weights or presets.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Audit the current sequencer implementation and tests against this roadmap, then compare a fresh read-only preview with the latest live playlist and evidence coverage. Record specific transition failures before changing weights or presets.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist Intelligence](../playlist-intelligence/ROADMAP.md) · [Transition scoring](../../../docs/TRANSITION_SCORING.md) · [Booze preset](../../../docs/BOOZE_OR_BOOS_SORT.md)
