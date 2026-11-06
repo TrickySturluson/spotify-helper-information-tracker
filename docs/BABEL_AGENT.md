@@ -6,7 +6,7 @@
 
 Babel has an optional repository-hosted AI worker that continues the documentation audit from GitHub rather than relying on a previous ChatGPT conversation. The worker is implemented in .github/workflows/babel-ai-continuation.yml and uses OpenAI's official openai/codex-action.
 
-**Integration status:** repository configuration is committed. **Activation is pending** until the repository owner adds the OPENAI_API_KEY GitHub Actions secret and starts the first manual run. Do not describe the worker as operational before a successful run is observed.
+**Integration status:** repository configuration is committed. The user reports that the `OPENAI_API_KEY` repository Actions secret has been added. **Activation remains pending** until the PR-creation permission is confirmed and the first manual run succeeds. Do not describe the worker as operational before a successful run is observed.
 
 ## Active-session context bridge
 
@@ -37,11 +37,10 @@ The Codex job has no GitHub write token. Candidate tests run in a separate read-
 ## One-time activation
 
 1. Create an API key in the OpenAI API platform: https://platform.openai.com/api-keys
-2. In the GitHub repository, open **Settings → Secrets and variables → Actions → New repository secret**.
-3. Name the secret exactly OPENAI_API_KEY and paste the API key into GitHub's secret field. Do not put the key in a file, issue, commit, or ChatGPT message.
-4. In **Settings → Actions → General → Workflow permissions**, enable **Allow GitHub Actions to create and approve pull requests** if it is disabled.
-5. Open **Actions → Babel AI continuation → Run workflow** and start it on main.
-6. Inspect the first run. Confirm the Codex job succeeds, the publisher's path validation and full unittest suite pass, and the dedicated branch/PR is created or updated.
+2. Confirm the repository Actions secret `OPENAI_API_KEY` exists. The user reports that it has been added; never read, print, or share its value.
+3. In **Settings → Actions → General → Workflow permissions**, enable **Allow GitHub Actions to create and approve pull requests** if it is disabled.
+4. Open **Actions → Babel AI continuation → Run workflow** and start it on `main`.
+5. Inspect the first run. Confirm the Codex job succeeds, the publisher's path validation and full unittest suite pass, and the dedicated branch/PR is created or updated.
 
 ChatGPT subscription access is not itself an API key. OpenAI API usage is billed separately under the API platform account. Set appropriate API usage limits/budget alerts in the OpenAI platform before enabling recurring runs.
 
