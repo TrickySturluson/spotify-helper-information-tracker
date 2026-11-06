@@ -39,14 +39,17 @@ python scripts/music/migrate_music_library.py
 
 # Optional staged migration: up to 50 unique songs from recent listening
 python scripts/music/migrate_music_library.py --recent-limit 50 --dry-run
-python scripts/music/migrate_music_library.py --recent-limit 50
 ```
 
 A bounded recent batch carries play counts in a separate listening-context field;
-missing album information does not create placeholder album records. Migration
-is local-only. It makes no provider requests, does not modify the legacy
-aggregate JSON, and can be repeated to refresh the normalized records. The old
-aggregates remain available for rollback and incremental compatibility.
+missing album information does not create placeholder album records. This legacy
+compatibility path is local-only and makes no provider requests or legacy-archive
+changes. The direct `--recent-limit` write path does not create its own backup and
+defaults to the canonical Library root; do not execute it against that root unless
+a separate verified backup exists. Use the supported full migration command
+`python shit.py library migrate --yes` for canonical migration; it creates a
+timestamped backup when an existing indexed Library is present. Legacy aggregate
+exports remain untouched, but they are not a backup of canonical Library writes.
 
 The initial staged validation batch (historical; not a current Library count)
 contained 50 unique recent songs and 22 artist identity records. It had no album
