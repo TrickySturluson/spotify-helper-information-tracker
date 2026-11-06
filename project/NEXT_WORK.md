@@ -25,7 +25,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 - Replaced the misleading exhaustive file catalogue with a maintained source/data-family index. The prior catalogue was stale because it described only 239 assistant_data files while the canonical per-record music Library has grown substantially; the recursive Git tree response was truncated, so do not rely on it as a complete inventory.
 - Added `tests/README.md` and expanded `tests/test_documentation_contract.py` to require directory guides for the major code, test, data, and workflow domains.
-- The new guide and index updates need a fresh passing CI run. The first docs-contract test itself passed on commit `38ad97e`; subsequent additions are not yet verified.
+- Daily curator run #42143513931 passed on commit 7d23db6, including the directory-guide checks and full unittest discovery. Run #42143770161 also passed on commit 79af1f9 after adding the Tricky Daily workspace. The newer Playlist Sequencing workspace is awaiting its own CI run.
 - Next: inspect CI after the latest commits; fix test failures; then audit every maintained Python/workflow overview and verify docs against actual implementation.
 
 ## 2026-11-05 — Dedicated Tricky Daily workstream added
