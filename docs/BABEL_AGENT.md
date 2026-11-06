@@ -12,7 +12,7 @@ Babel has an optional repository-hosted AI worker that continues the documentati
 
 1. GitHub Actions starts on a six-hour UTC schedule or manual workflow_dispatch.
 2. Preflight checks project/BABEL_AGENT_STATE.md. If it says status: complete, the workflow stops. Otherwise it selects the latest babel/agent-progress branch, falling back to main for the first run.
-3. The Codex job reads AGENTS.md, the mandatory documentation rules, Babel guide, handoff, loose-ends register, project log, and the Maintainability & Documentation roadmap/README/ACTIONS. It chooses one high-priority unfinished documentation task and makes a bounded change.
+3. The Codex job reads AGENTS.md, the mandatory documentation rules, Babel guide, handoff, loose-ends register, project log, and the Maintainability & Documentation roadmap/README/ACTIONS. It chooses one high-priority unfinished documentation task and makes a bounded change, then returns a raw unified Git patch as its final output (or NO_CHANGES). The patch is capped at 700 KB to stay within the workflow handoff limit.
 4. The agent job has contents: read, uses the Codex :workspace permission profile and drop-sudo safety strategy, and receives no Spotify or music-provider credentials.
 5. A separate publisher job receives contents: write and pull-requests: write. It applies the candidate patch only after checking that all paths are within the allowlist, rejects deletions and out-of-scope changes, and runs the full unittest suite.
 6. If validation passes and there are changes, the publisher commits to babel/agent-progress and creates or updates one review pull request against main. Later scheduled runs resume from that branch and add further commits to the same PR.
@@ -44,7 +44,7 @@ ChatGPT subscription access is not itself an API key. OpenAI API usage is billed
 ## Recovery and operations
 
 - **Latest work:** inspect the open pull request with head branch babel/agent-progress.
-- **Latest execution:** inspect Actions → Babel AI continuation and the latest run summary/artifact.
+- **Latest execution:** inspect Actions → Babel AI continuation and the latest run summary/Codex final-message output.
 - **Resume:** the next scheduled run checks out the latest dedicated branch. A manual dispatch can also restart it.
 - **Interrupted run:** no progress is assumed unless it was committed to the branch. The next run reads the branch and the repository checkpoints again.
 - **No changes:** the workflow reports a no-op; it does not create empty commits.
