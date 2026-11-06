@@ -52,9 +52,26 @@ class DailyCycleScheduleTests(unittest.TestCase):
         config = {"daily_cycle": {"last_cycle_date_eastern": "2026-11-05"}}
         self.assertTrue(daily_cycle.cycle_already_completed(config, "2026-11-05"))
         self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-06"))
-        self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-05", force=True))
+        self.assertTrue(daily_cycle.cycle_already_completed(config, "2026-11-05"))
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
-        self.assertEqual(source.count("cycle_already_completed(config, cycle_date, force=args.force)"), 2)
+        self.assertEqual(source.count("cycle_already_completed(config, cycle_date)"), 2)
+
+    def test_duplicate_forced_dispatch_exits_before_spotify_api(self):
+        class FrozenDateTime:
+            @staticmethod
+            def now(tz):
+                return datetime(2026, 11, 5, 14, 0, tzinfo=tz)
+
+        completed = {"daily_cycle": {"last_cycle_date_eastern": "2026-11-05"}}
+        with patch.object(daily_cycle, "datetime", FrozenDateTime), \
+             patch.object(daily_cycle, "configure"), \
+             patch.object(daily_cycle.manager, "config", return_value=completed), \
+             patch.object(daily_cycle.manager, "Spotify") as spotify, \
+             patch.object(daily_cycle, "set_action_output"), \
+             patch.dict(os.environ, {"GITHUB_EVENT_NAME": "workflow_dispatch"}), \
+             patch.object(sys, "argv", ["spotify_daily_cycle.py", "--force"]):
+            self.assertEqual(daily_cycle.main(), 0)
+        spotify.assert_not_called()
 
     def test_cycle_date_guard_rejects_malformed_state(self):
         with self.assertRaises(daily_cycle.manager.ManagerError):
