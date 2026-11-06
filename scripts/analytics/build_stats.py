@@ -551,10 +551,11 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Implementation module scripts/analytics/build_stats.py.
-# Location: Maintained implementation in scripts/analytics/build_stats.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/build_stats.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Rebuild the compact historical Last.fm statistics summary from the canonical archive.
+# Input: Reads data/scrobbles.json; this file remains the source of truth and is not modified.
+# Output: Rewrites data/stats.json with archive-wide artist, album, track, and time-bucket counts.
+# Semantics: Counts are derived from imported scrobbles; this is a compact summary, not
+#            a measured Spotify playback-duration report.
+# Run: python compat/build_stats.py.
+# Related: docs/REPOSITORY_FILE_INDEX.md and scripts/analytics/build_assistant_data.py.
 # -----------------------------------------------------------------------------
