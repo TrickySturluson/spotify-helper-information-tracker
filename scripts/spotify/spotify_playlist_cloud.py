@@ -1618,10 +1618,21 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Owner-verified GitHub issue command handler for Spotify playlist control.
-# Location: Maintained implementation in scripts/spotify/spotify_playlist_cloud.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_playlist_cloud.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Validate and execute owner-authorized GitHub issue commands for SHIT
+#          playlist operations; this is the cloud control-plane entry point.
+# Inputs: GitHub Actions event payload (GITHUB_EVENT_PATH), trusted issue owner,
+#         persisted .github/spotify_playlist_manager_state.json and Spotify
+#         credentials supplied by the calling workflow.
+# Outputs/state: Updates control state, playlist-manager audit/backups, GitHub
+#                outputs/comments and selected assistant_data playlist metadata.
+# API effects: Delegates Spotify reads and approved mutations to the playlist
+#              manager; supported commands include protected preview/confirm
+#              flows and Daily-specific operations.
+# Safety: Rejects unauthorized or malformed commands; validates pending
+#         operation state and removal conflicts; keeps removal-protected
+#         playlists guarded and uses manager locks, backups and audit records.
+# Run: Invoked by .github/workflows/spotify-playlist-manager.yml; do not run
+#      directly without a valid GitHub event payload and workflow environment.
+# Related: docs/SPOTIFY_API_OPERATIONS.md; docs/TRICKY_DAILY_CYCLE.md;
+#          scripts/spotify/spotify_playlist_manager.py; docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
