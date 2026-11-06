@@ -40,6 +40,11 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Existing `tests/test_script_layout.py` checks bottom `FILE OVERVIEW` coverage across maintained Python implementation, compatibility, tests and GitHub Actions workflow files.
 - The repository's standard unittest discovery includes both tests; `.github/workflows/update.yml` runs the full suite before data publishing. A successful CI run after this new test is required before calling the guardrail verified.
 
+## Repository inventory correction — implemented
+- Replaced the stale exhaustive file snapshot with a maintained source and data-family index. The previous snapshot incorrectly implied a small, static `assistant_data` file count despite the expanded per-record canonical music Library.
+- The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
+- It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage.
 - Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
