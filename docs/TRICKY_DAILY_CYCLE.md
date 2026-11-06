@@ -42,18 +42,19 @@ calibration.
 
 ## Automatic schedule and recovery
 
-`.github/workflows/spotify-daily-midnight-cycle.yml` runs at the EST/EDT
-midnight UTC offsets and has a second delivery 15 minutes later. In standard
-time, the 04:00/04:15 UTC deliveries are 23:00/23:15 Eastern on the prior date
-and are deliberately skipped; 05:00/05:15 UTC are midnight/recovery deliveries.
-During daylight time, 04:00/04:15 UTC are midnight/recovery deliveries and the
-05:00/05:15 UTC entries are harmless duplicate deliveries.
+`.github/workflows/spotify-daily-midnight-cycle.yml` currently declares two cron expressions: `0 4,5 * * *` and `15 4,5 * * *`. This produces scheduled deliveries at both 04:00 and 05:00 UTC, plus a 15-minute recovery delivery for each. It is **not** yet a strict cron-to-DST-offset match.
 
-GitHub may delay a scheduled event. The cycle gate therefore permits a
-scheduled catch-up later on the same Eastern calendar date, while refusing
-the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated
-deliveries idempotent and is checked before Spotify is contacted, so a backup
-delivery after a successful cycle is a local no-op.
+- During Eastern Standard Time, 04:00/04:15 UTC are 23:00/23:15 Eastern on the preceding date; the current script gate skips scheduled events when the local Eastern hour is 23. The 05:00/05:15 UTC deliveries are 00:00/00:15 Eastern and can run.
+- During Eastern Daylight Time, 04:00/04:15 UTC are 00:00/00:15 Eastern. The 05:00/05:15 UTC deliveries are 01:00/01:15 Eastern; the current gate permits these same-date catch-up/duplicate deliveries. The persisted `last_cycle_date_eastern` guard makes later deliveries local no-ops after a successful cycle.
+- The current `should_run_cycle()` checks the Eastern local hour for scheduled events; it does not inspect GitHub's exact `github.event.schedule` string to reject the stale DST counterpart.
+
+**Pending DST improvement:** open, unmerged [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) proposes separate 04:00/05:00 UTC cron entries, passes the exact scheduled cron string into the runner, and rejects a cron whose UTC offset does not match the current Eastern offset. Those stricter semantics are proposed, not current mainline behavior; do not document them as implemented until PR #159 is merged and verified.
+
+The workflow also supports a repository test-trigger push to `.github/test-triggers/tricky-daily-live-cycle.json`. That push forces the runner, with an explicit `action` value of `cycle`, `description-only`, or `verify-only`; if the key is absent, it defaults to `description-only`. This is a deliberate test hook, not the normal schedule.
+
+GitHub may delay scheduled events. The current gate allows a scheduled catch-up later on the same Eastern calendar date, while refusing the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated deliveries idempotent and is checked before Spotify is contacted, so a backup delivery after a successful cycle is a local no-op.
+
+Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
 
 After Spotify accepts the playlist replacement, the runner immediately writes
 a `replacement_accepted_pending_verification` state and publishes the
