@@ -1,6 +1,6 @@
 # Active SHIT Session Brief
 
-> **Purpose:** This is the curated context bridge between active ChatGPT work and the repository-hosted documentation worker (Buddy). It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
+> **Purpose:** This is the curated context bridge between active ChatGPT work, the scheduled ChatGPT Buddy task, and the separate repository-hosted Codex experiment. It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
 
 ## Operating rule
 
@@ -8,16 +8,16 @@ During every active SHIT work session, ChatGPT must maintain this file as work p
 
 Buddy must read this file at the start of every run, then reconcile it against the checked-out source, tests, workflow definitions, current branch, and recorded evidence. This brief is a navigation and context aid, not authority to override newer verified source or evidence. If it conflicts with source or fresh evidence, report and resolve the discrepancy rather than repeating stale claims.
 
-Updating this file does not wake Buddy, alter an already-running job, or deliver a live message. Buddy sees committed updates on its next scheduled or manually dispatched run.
+Updating this file does not wake a running task or deliver a live message. The scheduled ChatGPT Buddy reads committed repository state on a later run; the separate Codex worker, if explicitly reactivated, reads it on its next workflow run.
 
 ## Identity and roles
 
 - Repository/product: **Spotify Helper & Information Tracker (SHIT)**.
 - Documentation system: **SHIT Documentation & Continuity**, internal codename **Babel**.
-- Documentation worker: **Buddy** in repository documentation and everyday references. Its OpenAI agent identifier is **SHIT-Buddy**, reserved to distinguish it from possible future agents.
+- Documentation worker: **Buddy** in repository documentation and everyday references. The current execution path is the scheduled ChatGPT task using the connected GitHub app. **SHIT-Buddy** is the worker identifier, not a claim that the separate Codex workflow is active.
 - ChatGPT is responsible for active project work, keeping this brief and project records current, and reviewing Buddy's proposals.
 - Buddy is a documentation partner only. It may audit and improve documentation, continuity records, roadmaps, action logs, and narrowly scoped documentation-contract tests. It must not perform SHIT runtime/product development or Spotify/Last.fm operations.
-- User retains final authority over integration. Buddy may publish only to its isolated `babel/agent-progress` branch and its review PR; it must not write directly to `main`, self-merge, auto-merge, or expand its permissions.
+- User retains final authority over integration. The current ChatGPT Buddy may publish only to its persistent `babel/chatgpt-buddy` branch and one draft PR; it must not write directly to `main`, approve, mark ready, close, merge, self-merge, or expand its permissions.
 
 ## Core daily Buddy verification gate
 
@@ -32,11 +32,11 @@ For every SHIT-related ChatGPT conversation, first check the scheduled **SHIT Bu
 
 ### Last independent Buddy review checkpoint
 
-- Eastern date: **not yet reviewed**
-- Automation run ID: **none recorded**
-- PR/head SHA: **none recorded**
-- Outcome: **pending first successful daily Buddy run**
-- User action: **none identified yet**
+- Eastern date: **2026-11-06**
+- Automation run ID: **not exposed to this scheduled-task execution context; do not substitute a turn number**
+- PR/head SHA: **PR #163; pre-batch head reviewed: 2090ad97648851f5138856795600f4e582849efb**
+- Outcome: **PASS for source/PR/CI review of the pre-batch head; this batch's file read-backs are verified; fresh CI on the updated head is still required**
+- User action: **review draft PR #163; decide separately whether to retain or close PR #162; PR #161 remains a separate review item**
 
 ## Current priority
 
@@ -52,11 +52,16 @@ The intended design is a coordinated health system: (1) health monitoring across
 
 Safety contract to carry forward: observe and diagnose by default; preserve canonical data and provenance; distinguish authoritative Last.fm scrobbles from optional Spotify playback observations; never invent, silently delete, or silently rewrite uncertain records; only allow explicitly scoped, deterministic, backed-up, reversible repairs with audit trail and post-repair verification; require user approval for consequential or ambiguous changes. Revisit and formalize scope, ownership, autonomy levels, health dimensions, audit records and acceptance criteria only after Babel's completion gate and cold-start simulation pass.
 
-## Historical Codex-worker status (not the current Buddy execution path)
+## Current scheduled ChatGPT Buddy status
 
-The following section records the earlier repository-hosted Codex/API experiment. It is historical evidence only. The current scheduled ChatGPT/GitHub-app Buddy task is documented in [BABEL_CHATGPT_BUDDY.md](../docs/BABEL_CHATGPT_BUDDY.md) and is governed by the daily verification gate above. Do not infer that the quota-blocked Codex workflow is the active Buddy runner.
+- **Execution model:** scheduled ChatGPT task SHIT Buddy — daily Babel continuation using the connected GitHub app. This is the current path; it does not use the repository-hosted Codex workflow or an OpenAI API key.
+- **Publication:** persistent branch babel/chatgpt-buddy and one open draft PR #163. Before this batch, the PR was based on main, six commits ahead/one behind, with GitHub mergeable state clean. The pre-batch head 2090ad97648851f5138856795600f4e582849efb passed Daily curator tests #42188373512 and public repository security scan #42188373527. Those checks do not cover this batch's later commits.
+- **Daily-check rule:** the mandatory rule is proposed in PR #163. It is not merged mainline policy until the user reviews and merges the draft.
+- **PR #162:** temporary GitHub-app connectivity proof remains open/draft and read-only. Security scan #42186485000 passed; Daily curator tests #42186485002 failed because its temporary guide is not listed in docs/README.md. Do not alter it; the user decides whether to retain or close it.
+- **PR #161:** existing documentation delivery remains open/draft with 117 changed files; current compare is 571 commits ahead and 135 behind main, and GitHub reports mergeable_state=dirty. No reviews or review threads are present. Do not merge or rebase it blindly.
+- **Next:** inspect the updated PR #163 head and CI after this batch, then continue the semantic audit. Keep the PR draft and preserve human review.
 
-## Current Buddy activation status
+## Historical repository-hosted Codex worker execution evidence (separate path)
 
 - Workflow: `.github/workflows/babel-ai-continuation.yml`.
 - Instructions: `.github/babel/CONTINUATION_PROMPT.md`.
