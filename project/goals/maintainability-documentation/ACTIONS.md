@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Daily force/idempotency discrepancy added to source overview contract
+
+- **Finding:** the Tricky Daily guide, workflow catalogue and roadmap already documented that `--force` bypasses both the clock gate and the same-Eastern-date completion guard, contrary to the intended clock-only bypass. The `scripts/spotify/spotify_daily_cycle.py` bottom FILE OVERVIEW still described per-day idempotency without stating this exception, so the source-local documentation was incomplete.
+- **Correction:** updated the source overview to distinguish the intended safety contract from current behavior and explicitly label the broader force bypass as a known P0 discrepancy. No runtime code or test expectation was changed.
+- **Guardrail:** extended `test_daily_force_idempotency_gap_is_documented` to require the source overview to state both the current bypass and intended clock-only behavior. Updated `tests/README.md` and `docs/CODE_DOCUMENTATION.md` to describe the added source-to-guide check.
+- **Verification:** exact-head CI/security is pending after the source-overview and test changes; inspect the new Daily curator and Gitleaks runs before treating this guard as verified.
+- **Next:** continue semantic source-overview review for other write-capable modules, then reconcile the full technical guides and goal action histories.
+
+
 ## 2026-11-06 — Workflow catalogue source cross-check completed
 
 - Compared the trigger/schedule matrix in `docs/WORKFLOWS.md` against all 17 workflow YAML `on:` blocks on `docs/semantic-documentation-audit`.
