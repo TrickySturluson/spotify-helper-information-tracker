@@ -2,6 +2,18 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Exact-head verification passed; cold-start handoff inconsistencies corrected
+
+- **Verified head:** 54c318789a29817453366953f891a3431ea79fa8.
+- **Daily curator CI:** run [#42162264872](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42162264872) completed successfully. All steps passed: compile every Python module, audit generated project data, read-only full Library health, confidence and freshness checks, maintained-file documentation checks, and full unittest discovery.
+- **Security:** full-history Gitleaks scan [#42162264795](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42162264795) completed successfully, including checkout, installation and all-commit scan.
+- **Fresh-session review:** re-read the mandatory entry path (AGENTS.md, documentation rules, NEXT_WORK, LOOSE_ENDS, PROJECT_LOG, project README/roadmap, goal index, docs index, file index and the documentation goal's three files). This second cold-start pass exposed stale current-status text: the handoff cited an old ahead/behind count and run head; the roadmap still said the inventory was incomplete; and the README cited an older verification head. Corrected the roadmap, README, NEXT_WORK and LOOSE_ENDS so they now agree on the complete inventory, verified CI/security head, current branch state and remaining work.
+- **Current branch after these corrections:** 217092855d6e15b368ffda1769ff1ae868bee404; these later commits change only documentation/control files, not implementation code, tests, workflow YAML or generated data. No new workflow run was returned for this docs-only tip; the exact code/test head 54c318 passed all relevant checks.
+- **PR state:** #161 remains open/draft; latest metadata reported mergeable=true and 447 commits ahead / 0 behind main. Keep draft until semantic audit and final cold-start test are complete.
+- **Outcome:** current handoff contradictions found by the cold-start audit were corrected; inventory blocker remains resolved; source-to-guide and goal ACTIONS semantic/freshness audit remains active.
+- **Next:** continue manual review of technical guides and implementation contracts; reconcile the 13 goal ACTIONS histories and remaining current-status claims; then perform the final cold-start simulation and recheck exact PR state.
+
+
 ## 2026-11-06 — Complete committed-tree inventory and goal README continuity audit
 
 - **Inventory method:** the recursive root Git Trees response was truncated by the generated per-record Library. Replaced it with the root Contents listing and separate recursive Git Trees requests for every top-level directory; split `assistant_data/` into all nine immediate child subtrees plus its root files.
