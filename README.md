@@ -15,6 +15,8 @@ The project combines Spotify's live playlist and playback interfaces with Last.f
 
 ## Project continuity and current work
 
+**Documentation system:** the public-facing name is **SHIT Documentation & Continuity**; its internal codename is **Babel**. Use the descriptive name at first contact and in navigation, then “Babel” after the system has been defined. See [the Babel naming and operating guide](docs/BABEL.md).
+
 The durable project handoff lives in [`project/`](project/). When resuming work, read [`project/NEXT_WORK.md`](project/NEXT_WORK.md) first for the current blocker, priorities, constraints, and next action; then consult the [chronological project log](project/PROJECT_LOG.md). Project plans and decisions belong there rather than being left only in chat history.
 
 ## Source of truth
