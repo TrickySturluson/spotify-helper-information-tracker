@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Cross-document consistency audit corrected stale handoffs
+
+- Fresh-session review found duplicated and contradictory PR status blocks in `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, and the maintainability roadmap. Consolidated the active handoff and PR verification sections; retained older dated records as history and explicitly labelled the lower NEXT_WORK checkpoints as historical.
+- Replaced obsolete PR head/checkpoint references in the maintainability roadmap with the verified corrected-guard result: full CI #42152796114 and full-history security scan #42152796120 passed on `9cbf695`; later changes were documentation/handoff and test-guide prose only, with exact latest-head CI still unconfirmed.
+- Updated the maintainability README with current test/security evidence, the project-wide roadmap review date, and the project log. The current handoff now identifies the active documentation-only priority, the remaining acceptance work and the exact evidence caveat.
+- Refreshed the loose-ends PR #161 section to remove stale duplicate claims from earlier heads and clearly distinguish the verified commit from the latest unverified documentation-only branch head.
+- **Verification:** source and test logic were unchanged during this consistency pass. No new CI run was returned for the latest documentation-only branch updates. Structural and semantic acceptance remains incomplete.
+- **Next:** audit remaining historical/status statements across goal README/ACTIONS files and domain runbooks; then complete the fresh-session simulation and final exact-head verification.
+
 ## 2026-11-06 — Corrected documentation guard passed CI and full-history security scan
 
 - Corrected guard commit `9cbf695291fa073f96669f20e83404eccba4e45e` was tested by Daily curator CI run [#42152796114](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796114): **success**. All 9 maintained-file layout tests passed, then the full unittest discovery step also passed. Compile, generated-data audit, read-only full Library health/confidence checks and bounded freshness plan passed as well.
