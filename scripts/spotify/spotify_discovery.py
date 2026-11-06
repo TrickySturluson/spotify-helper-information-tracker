@@ -743,10 +743,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Discovery-first Spotify curator using Last.fm similarity + Spotify catalogue search. The scrobble archive is a taste/familiarity model, never the candidate catalogue. No archive track is hard-excluded: prior plays and recency progressively reduce its rank. Liked tracks receive a strong penalty but remain eligible.
-# Location: Maintained implementation in scripts/spotify/spotify_discovery.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_discovery.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Find and rank Spotify discovery candidates using Last.fm similarity and taste context.
+# Inputs: Canonical Last.fm listening archive, artist/track tag profiles and Spotify catalogue search.
+# Outputs: Candidate tracks with identity, score and supporting-seed metadata for curator workflows.
+# Semantics: The scrobble archive models familiarity/taste, not the candidate catalogue.
+#            Prior plays and recency reduce rank progressively; liked tracks receive a strong
+#            penalty but remain eligible, and no archive track is hard-excluded by default.
+# Safety: Discovery/search only; does not write Spotify playlists or convert candidates into plays.
+# Run: python compat/spotify_discovery.py (repository root; requires configured Spotify auth).
+# Related: scripts/spotify/spotify_daily_playlist.py; scripts/music/discovery_ingestion.py;
+#          docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------
