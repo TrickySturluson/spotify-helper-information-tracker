@@ -41,16 +41,29 @@ The playlist-local `playlist_removed_tracks.json` record has separate `removed` 
 - Workflows: .github/workflows/spotify-daily-midnight-cycle.yml, spotify-daily-live-preflight.yml, spotify-daily-remote-verification.yml, spotify-daily-feedback-observation.yml
 - Regression tests: tests/test_spotify_daily_cycle_schedule.py, test_spotify_daily_feedback_scoring.py, test_spotify_daily_playlist.py, test_spotify_daily_preflight.py
 
+## Recommendation memory — accepted product requirement, design pending
+
+Daily must maintain durable, playlist-specific history of its own recommendations and later outcomes. This is an explicit product requirement, not an optional enhancement.
+
+Store recommendation events, not merely current playlist membership. Each event should retain stable track identity (Spotify URI plus normalized artist/title fallback), recommendation timestamp, cycle/run ID, strategy/config version, selection rationale, evidence provenance, and exposure/add/remove intervals. Link repeated recommendations to the same track history while preserving each event.
+
+Keep outcomes distinct: measured Spotify playback; Last.fm scrobbles; likes/saves; explicit manual removal/blacklist; later retention; ignored/no observed play; not-yet-observed; and unknown due to incomplete coverage. Store source and observation windows. Missing playback coverage is unknown, never zero. A high-play-then-remove track must remain distinguishable from an unplayed track that was removed. Track-level rejection must not automatically become artist-level rejection.
+
+Memory must be append-safe/idempotent, versioned, recoverable, auditable, and scoped only to Tricky Daily. Define migration, retention and compaction before implementation. Test repeated recommendations, duplicate ingestion, delayed scrobbles, high-play-then-remove, unplayed-then-remove, retained-but-unplayed, missing coverage, whitelist behavior and source attribution. Do not invent historical outcomes from candidate rows whose listening fields are null. Memory never overrides blacklist/whitelist policy or publication safety.
+
 ## Feedback nuance — high-engagement removals
 
 Exact removed-track exclusions remain hard blocks. However, `load_playlist_feedback()` currently adds an artist-level negative event for any removed track with at least one measured post-add play or Last.fm scrobble, regardless of how many plays occurred or how many distinct tracks by that artist were removed. A highly played track removed for rotation/freshness can therefore penalize its artist. This is a P1 scoring-quality issue: decide a conservative aggregation rule (multiple distinct removed tracks vs low/high engagement) and add tests before changing weights. Never weaken exact track exclusions.
 
 ## Roadmap
+
+**Execution priority:** prove and stabilize the existing daily operational cycle first. Do not expand recommendation intelligence until the no-write staging path is proven end-to-end and scheduled/forced behavior is reconciled. Recommendation memory is a committed P1 workstream to build after that operational gate.
+
 1. **P0 — Exclusion and reconciliation integrity [IMPLEMENTED].** Centralize blacklist/removed-track enforcement and verify it before scoring and immediately before publication. Reconcile whitelist/blacklist and live playlist state on every invocation, including forced runs.
 2. **P0 — Transactional publication [IMPLEMENTED WITH RECOVERY GAPS].** Persist exact 60-track staging, make retries idempotent, guard concurrent invocations, preserve known-good state, and verify live ordered contents/count/uniqueness/exclusions before marking complete.
 3. **P0 — Forced-run parity [IMPLEMENTED].** Force bypasses only the clock gate; verify the same policy checks, reconciliation, staging, validation, description update/read-back, audit and post-publication checks as scheduled runs.
 4. **P0 — API and recovery resilience [AMBIGUOUS-WRITE GUARD IMPLEMENTED; RESUME GAP OPEN].** Respect Retry-After, bounded transient retries, token refresh, ambiguous write timeout read-back, pending-verification state and safe recovery.
-5. **P1 — Feedback correctness.** Distinguish exposure, positive engagement, explicit rejection, ignored, not-yet-exposed and unknown due to coverage gaps; preserve track-level vs artist-level preference.
+5. **P1 — Daily recommendation memory and feedback correctness.** Persist each recommendation event and its later observed outcomes; distinguish exposure, positive engagement, explicit rejection, ignored, not-yet-exposed and unknown due to coverage gaps; preserve track-level vs artist-level preference.
 6. **P1 — Candidate quality and diversity.** Improve familiarity/discovery balance, artist saturation, confidence, diminishing returns, diversity recovery and concise selection explanations.
 7. **P1 — Operational visibility.** Publish quality, feedback, safety, run and recovery summaries; alert on stale data or failed cycles.
 8. **P2 — Evaluation.** Evaluate recommendation changes against engagement, discovery and diversity outcomes with isolated experiments and rollback.
@@ -89,7 +102,7 @@ The latest documentation-related mainline checks passed: Daily curator tests #42
 
 ## Next action
 
-After `2026-11-06T19:49:46Z`, re-check the local cooldown file and current Eastern time, then run only the protected no-write stage-only path. Confirm the exact 60 candidate payload, exclusions, deduplication, artist fallback audit, stage commit/push, and committed-blob hash/order read-back. If discovery still cannot produce 60 or any gate fails, stop without Spotify playlist mutation and record the reason. A live 60-track replacement or description change requires separate user authorization.
+The recorded cooldown deadline (`2026-11-06T19:49:46Z`) has passed, but expiry alone is not proof that Spotify quota is healthy. Re-read `.github/spotify_api_cooldown.json` and confirm it is not in manual-clear state; then run only the protected no-write stage-only path. Confirm the exact 60 candidate payload, exclusions, deduplication, artist fallback audit, stage commit/push, and committed-blob hash/order read-back. If discovery still cannot produce 60 or any gate fails, stop without Spotify playlist mutation and record the reason. A live 60-track replacement or description change requires separate user authorization. The current `.github/test-triggers/tricky-daily-live-cycle.json` is configured with `action: stage-only`; verify that exact payload and workflow trigger before dispatch. No new stage-only run is claimed by this roadmap update.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist Intelligence umbrella roadmap](../playlist-intelligence/ROADMAP.md) · [Daily cycle guide](../../../docs/TRICKY_DAILY_CYCLE.md) · [Daily backlog](../../../docs/TRICKY_DAILY_TODO.md)
