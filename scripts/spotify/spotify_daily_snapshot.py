@@ -87,6 +87,7 @@ def build_daily_reference_updates(catalog, index, previous, record):
             if DAILY_ID not in values:
                 mapping[key] = [*values, DAILY_ID]
 
+    old_track_keys = track_keys(old_items)
     new_track_keys = track_keys(new_items)
     new_artist_keys = artist_keys(new_items)
     reconcile_memberships(track_map, new_track_keys, "track")
