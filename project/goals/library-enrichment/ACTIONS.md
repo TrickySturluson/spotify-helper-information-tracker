@@ -1,6 +1,12 @@
 # Canonical Library Enrichment — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Incremental Library enrichment PR status rechecked
+
+- PR #120 `codex/incremental-library-sorter-work` remains open/draft, 5 commits ahead and 419 behind current main, mergeable=false. Old-head tests #41380622956 and security scan #41380622844 passed.
+- Those results are from a stale/diverged base and do not establish current-main compatibility. Rebase and rerun CI after the documentation-only pause; no enrichment or provider work was performed.
+
+
 
 ## 2026-11-06 — Incremental enrichment strategy PR remains proposal-only
 
