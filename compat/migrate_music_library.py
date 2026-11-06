@@ -9,4 +9,11 @@ if __name__ == "__main__":
     runpy.run_path(str(script), run_name="__main__")
 
 # FILE OVERVIEW
-# - Launches the no-network migration from the established compat/ command surface.
+# Purpose: Backward-compatible launcher for the earlier Library migration command.
+# Delegation: Imports and executes scripts/music/migrate_music_library.py.
+# Behavior: Keeps the established compat/ entry point while the maintained implementation
+#           and migration rules live under scripts/music/.
+# Safety: No Spotify playlist writes; review the migration's dry-run/report before applying.
+# Run: python compat/migrate_music_library.py (repository root; see CLI help).
+# Related: scripts/music/migrate_music_library.py; docs/GREAT_MIGRATION.md.
+# -----------------------------------------------------------------------------
