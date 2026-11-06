@@ -1,6 +1,17 @@
 # Maintainability & Documentation — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+
+## 2026-11-06 — Complete committed-tree inventory and goal README continuity audit
+
+- **Inventory method:** the recursive root Git Trees response was truncated by the generated per-record Library. Replaced it with the root Contents listing and separate recursive Git Trees requests for every top-level directory; split `assistant_data/` into all nine immediate child subtrees plus its root files.
+- **Inventory result:** every queried subtree returned `truncated=false`; counted 28,161 committed file/blob entries at audit commit `7cc839f3f00eeb026cd898099654eea8f9a79497`. Breakdown: root 9, `.github/` 23, `compat/` 42, `data/` 4, `docs/` 22, `playback_data/` 2, `project/` 50, `scripts/` 61, `tests/` 46, `assistant_data/` 27,902. Maintained code totals reconcile to 55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflows, 21 technical guides and 13 goal workspaces.
+- **Documentation updated:** `docs/REPOSITORY_FILE_INDEX.md` now records the complete tree snapshot, family breakdown, method and commit. `ROADMAP.md` marks the committed-tree inventory acceptance item satisfied for that audited commit.
+- **Goal README review:** inspected all 13 goal READMEs on the documentation branch. All 12 paused feature workspaces carry the explicit repository-wide pause instruction; their feature resume directions are labelled as post-pause/safe-resume guidance rather than current authorization. The documentation workspace points back to the central handoff and its roadmap. Historical catalogue/coverage numbers in several READMEs remain explicitly historical or tied to named read-only reports; continue the status/freshness pass rather than treating these as current live totals.
+- **Exact-head checks before this inventory update:** PR #161 head `7cc839f3f00eeb026cd898099654eea8f9a79497` had Daily curator CI #42160249966 and full-history security scan #42160248763 both completed successfully. CI passed compile, generated-data audit, read-only Library health/confidence/freshness, documentation checks and full unittest discovery; Gitleaks completed successfully. The inventory and roadmap edits were committed afterward, so recheck exact-head CI/security before merge.
+- **Scope:** documentation and inventory audit only. No runtime behavior, workflow YAML, provider state, generated records or Spotify playlists changed.
+- **Next:** reconcile current PR head and exact-head checks; continue source-to-guide semantic review, goal ACTIONS freshness, and cross-document handoff consistency; repeat the cold-start resume simulation after those audits.
+
 ## 2026-11-06 — Paused-roadmap guard and latest schedule checks passed
 
 - **CI head:** `6261439b2f3095d8d4844c27bfbf4075c3bea5c0`.
