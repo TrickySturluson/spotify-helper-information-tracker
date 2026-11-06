@@ -69,6 +69,55 @@ def record_removal(uri, removed_at=None, reason="curator_rotation"):
         write(data)
 
 
+def record_manual_removals(rows):
+    """Idempotently mirror the durable Daily blacklist into outcome history.
+
+    The complete blacklist is replayed on every snapshot refresh so a retry
+    repairs partial publication. Existing feedback history is preserved.
+    """
+    data = read()
+    changed = 0
+    for item in rows if isinstance(rows, list) else []:
+        if not isinstance(item, dict):
+            continue
+        uri = item.get("uri")
+        if not isinstance(uri, str) or not uri.startswith("spotify:track:"):
+            continue
+        artists = item.get("artists") or []
+        artist = artists[0] if artists else item.get("artist")
+        track = item.get("name") or item.get("track")
+        record = data["tracks"].setdefault(uri, {
+            "uri": uri, "artist": artist, "track": track,
+            "first_added_at": None, "additions": [], "liked_observations": [],
+            "playback_observations": [], "removal_events": [], "liked_at_add": None,
+        })
+        events = record.setdefault("removal_events", [])
+        if not isinstance(events, list):
+            raise ValueError(f"Daily removal history is malformed for {uri}; refusing to overwrite it.")
+        detected_at = item.get("detected_at") or item.get("removed_at") or "unknown"
+        identity = (detected_at, "user_removed", item.get("last_present_cycle"))
+        existing = {
+            (event.get("at"), event.get("reason"), event.get("last_present_cycle"))
+            for event in events if isinstance(event, dict)
+        }
+        if identity in existing:
+            continue
+        events.append({
+            "at": detected_at, "reason": "user_removed",
+            "source": "daily_snapshot_reconciliation",
+            "last_present_cycle": item.get("last_present_cycle"),
+        })
+        record["last_removed_at"] = detected_at
+        if artist and not record.get("artist"):
+            record["artist"] = artist
+        if track and not record.get("track"):
+            record["track"] = track
+        changed += 1
+    if changed:
+        data["updated_at"] = now()
+        write(data)
+    return changed
+
 def observe_liked_songs(sp, uris, observed_at=None):
     """Check Spotify Liked Songs status for up to 50 tracks per request."""
     observed_at = observed_at or now()
@@ -198,11 +247,15 @@ def observe_lastfm_scrobbles(path=Path("data/scrobbles.json")):
             # Lifetime post-exposure scrobbles align with measured playback, which
             # is also accumulated from first_added_at. Individual additions remain
             # available in the event history for campaign-level analysis.
-            added_at = data["tracks"][uri]["first_added_at"]
+            added_at = data["tracks"][uri].get("first_added_at")
+            # Removal-only legacy rows have no trustworthy exposure start.
+            # Do not infer post-add scrobbles from an unknown timestamp.
+            if not isinstance(added_at, str) or not added_at:
+                continue
             try:
                 if played_at >= datetime.fromisoformat(added_at.replace("Z", "+00:00")):
                     counts[uri] += 1
-            except (TypeError, ValueError):
+            except (AttributeError, TypeError, ValueError):
                 continue
     for uri, count in counts.items():
         data["tracks"][uri]["lastfm_post_add_scrobbles"] = count

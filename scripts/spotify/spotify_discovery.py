@@ -491,8 +491,16 @@ def load_playlist_feedback(playlist_items, playlist_id, path=Path("playlist_remo
     negative_keys = set()
     negative_uris = set()
     for row in removed:
+        # Exact removals remain hard exclusions regardless of exposure. Broader
+        # artist-level dislike is softer and requires evidence the removed track
+        # was actually heard after entering Daily; missing coverage is neutral.
         if row["artist"]:
-            negative_artists[row["artist"]] += 1
+            evidence = daily_evidence.get(row["uri"], {})
+            exposure = evidence.get("measured_plays")
+            if exposure is None:
+                exposure = evidence.get("lastfm_plays")
+            if exposure is not None and exposure > 0:
+                negative_artists[row["artist"]] += 1
         if row["key"]:
             negative_keys.add(row["key"])
         if row["uri"]:
