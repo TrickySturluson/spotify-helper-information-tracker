@@ -2,6 +2,12 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Documentation guard self-check corrected
+
+- During branch-side review of the new test-module overview guard, its own `tests/test_script_layout.py` footer still contained the generic scope phrase that the new guard rejects. Replaced it with a description of the module's actual layout and documentation checks.
+- Re-fetched the changed test modules and confirmed the 11 previously generic test overviews no longer contain any of the rejected purpose/scope/related boilerplate. The guard itself was corrected as well.
+- **Verification limit:** this is source inspection only; no current-head CI run is available yet. Keep the PR's test and full-history security checks pending until they execute against the exact final head.
+
 ## 2026-11-06 — Test-module overview audit uncovered another boilerplate class
 
 - A repository code search found 11 test modules using generic `Purpose: Regression test module` / generic scope / generic related-file overviews, including playlist manager/cloud, Daily feedback/discovery, sequencing, reference-library, MusicBrainz ID, track-profile, playlist-intelligence and lyrics tests.
