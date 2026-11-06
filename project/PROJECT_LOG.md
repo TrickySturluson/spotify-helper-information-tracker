@@ -1,3 +1,12 @@
+## 2026-11-06 — Tricky Daily runtime correction and verification recovery
+
+- **Authorization:** user authorized Daily runtime/test corrections, safe verification, and a Daily-only snapshot refresh. Live playlist replacement/description mutation remains separately gated and was not performed.
+- **Runtime:** force now bypasses only the clock-window gate; the same-Eastern-date idempotency check is independent of force. Spotify description read-back HTML-unescapes provider text. The source overview and midnight workflow overview comments were corrected to match the implementation.
+- **Documentation:** updated the Daily cycle guide, roadmap, TODO, workflow catalogue (including the 19th workflow), active-session brief, loose ends, project log, test guide, and workflow/test contract language.
+- **Verification evidence:** full-suite runs found stale contract assertions and comments after the runtime change; they were corrected iteratively. The latest confirmed pre-comment-fix full suite #42260512826 failed only because the midnight workflow YAML still carried the old `--force` comment; commit 4cab258d8114571a7fbb49240069a82e74d1335c corrected it. A fresh post-fix full-suite result is still required. Read-only live preflight #42260095302 passed and reported 29 live Daily items.
+- **Snapshot boundary:** snapshot-refresh run #42257653420 failed in its focused schedule test before Spotify credentials/GET refresh. The last saved snapshot remains 37 items and is not a live read. The 47-entry Daily blacklist remains preserved.
+- **Next:** obtain green full/focused CI, then run the GET-only Daily snapshot refresh and inspect reconciliation. Keep live playlist mutation disabled until all remaining P0 staging, race-detection, ambiguous-write, and post-write verification safeguards are complete and separately authorized.
+
 ## 2026-11-06 — Resumed parallel SHIT work while Babel continues
 
 - **Decision:** resume explicitly authorized SHIT workstreams in parallel with SHIT Documentation & Continuity (Babel). Buddy remains documentation-only; ChatGPT owns active feature work and must keep each workstream's roadmap and action log current.

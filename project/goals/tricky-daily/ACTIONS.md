@@ -62,3 +62,9 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Failed or abandoned approaches:**
 - **Next action:**
 - **References:**
+## 2026-11-06 — Remote CI findings and live preflight
+
+- **Live preflight:** run #42260095302 passed read-only Spotify authentication and Tricky Daily identity/ownership/access checks. It fetched 29 playlist items across the paginated `sp.items()` reader and reported `playlist_mutation: false`. This is the freshest live item-count evidence currently available.
+- **Snapshot mismatch:** saved repository snapshot remains 37 items, captured at 2026-11-06T14:18:18.958752+00:00. It is stale relative to the 29-item live preflight. Do not infer the identity of the eight-item difference. Snapshot-refresh run #42257653420 failed in its focused schedule-test step before credential validation and Spotify GET requests, so it did not refresh the snapshot or removal baseline.
+- **CI failures:** remote full-suite and focused verification initially exposed four stale failures (three documentation-contract expectations and one brittle source-count assertion). After updating those, a subsequent run exposed a stale whole-catalogue assertion; the next exposed a stale phrase in the midnight workflow's bottom FILE OVERVIEW. The test and workflow/source comments have now been corrected. Run #42260512826 is the last confirmed failed full-suite run and predates the workflow-comment correction in commit 4cab258d8114571a7fbb49240069a82e74d1335c. A post-fix green run is still required.
+- **Current safety boundary:** no Daily playlist tracks or description were changed. Preserve all 47 recorded Daily removals; do not use a 60-track target as a reason to restore manually removed tracks. After green CI, rerun only the GET-only snapshot workflow and inspect reconciliation before any further Daily work.
