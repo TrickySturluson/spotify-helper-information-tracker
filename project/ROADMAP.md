@@ -9,6 +9,7 @@ Maintain a durable, reliable, cloud-operable music intelligence system that comb
 
 ## Non-negotiable project rules
 
+- The documentation system is publicly named **SHIT Documentation & Continuity** and internally codenamed **Babel**. Always define the descriptive name before relying on the codename; see [Babel operating guide](../docs/BABEL.md).
 - Last.fm scrobbles remain the historical listening source of truth. Spotify playback-tracker observations are optional prospective evidence and must expose coverage gaps.
 - Recommendations, playlist exposure, saves/likes, removals, Last.fm scrobbles, and measured Spotify playback are distinct evidence types.
 - Missing evidence is unknown, not zero or negative preference.
