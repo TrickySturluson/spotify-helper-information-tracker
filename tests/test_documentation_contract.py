@@ -33,6 +33,7 @@ class DocumentationContractTests(unittest.TestCase):
             ".github/README.md",
             "scripts/README.md",
             "project/README.md",
+            "docs/WORKFLOWS.md",
         )
         for relative in required:
             with self.subTest(path=relative):
@@ -46,6 +47,14 @@ class DocumentationContractTests(unittest.TestCase):
             for required in ("ROADMAP.md", "README.md", "ACTIONS.md"):
                 with self.subTest(goal=goal.name, required=required):
                     self.assertTrue((goal / required).is_file())
+
+    def test_every_github_actions_workflow_is_in_the_catalogue(self):
+        catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        workflows = sorted((ROOT / ".github" / "workflows").glob("*.yml"))
+        self.assertTrue(workflows, "No GitHub Actions workflows were found")
+        for workflow in workflows:
+            with self.subTest(workflow=workflow.name):
+                self.assertIn(workflow.name, catalogue)
 
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
