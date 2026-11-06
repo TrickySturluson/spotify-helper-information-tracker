@@ -3,6 +3,8 @@
 
 ## Goal
 
+The documentation system is publicly named **SHIT Documentation & Continuity** and internally codenamed **Babel**. Its name, scope, and operating contract are defined in [docs/BABEL.md](../../../docs/BABEL.md). Use the descriptive name for first-contact clarity and the codename only after it has been introduced.
+
 Make SHIT understandable, testable, recoverable and straightforward to continue across contributors and fresh assistant sessions.
 
 ## Scope, decisions and constraints
