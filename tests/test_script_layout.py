@@ -129,7 +129,7 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Guard the responsibility-based implementation and compatibility layout.
-# Scope: Regression checks for the behavior named by this test module.
+# Scope: Compatibility shims, package layout, maintained-file overview coverage and documentation quality guards.
 # Run: python -m unittest tests.test_script_layout -v (from the repository root).
 # Related: scripts/README.md, compat/README.md, tests/README.md, docs/CODE_DOCUMENTATION.md.
 # -----------------------------------------------------------------------------
