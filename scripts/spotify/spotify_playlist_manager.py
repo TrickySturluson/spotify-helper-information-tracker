@@ -329,7 +329,9 @@ def tracks(sp,p):
         rows.append({"uri":(t or {}).get("uri"),"name":(t or {}).get("name"),"artists":[a.get("name") for a in (t or {}).get("artists",[])],"album":((t or {}).get("album") or {}).get("name")})
     return rows
 def snapshot(sp,p):
-    return {"created_at":stamp(),"playlist":{"id":p["id"],"name":p.get("name"),"snapshot_id":p.get("snapshot_id")},"items":tracks(sp,p)}
+    # Preserve every playlist field used by later safety checks. In particular,
+    # Daily compares the live description with this immutable pre-discovery value.
+    return {"created_at":stamp(),"playlist":{"id":p["id"],"name":p.get("name"),"description":p.get("description") or "", "snapshot_id":p.get("snapshot_id")},"items":tracks(sp,p)}
 def save_snapshot(s):
     BACKUPS.mkdir(exist_ok=True); path=BACKUPS/(datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")+"_"+s["playlist"]["id"]+".json")
     write(path,s); return str(path)
