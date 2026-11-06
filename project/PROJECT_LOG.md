@@ -1,3 +1,12 @@
+## 2026-11-06 — Documentation audit uncovered workflow publication defects
+
+- **Context:** while documenting workflow YAMLs, comment-only commits to four push-path-triggered workflows started their configured automation. This was unintended; the workflow guide now explicitly warns that YAML comments still match path filters.
+- **Verified repository effect:** Reference Library run #42146148971 refreshed snapshots/removal state and committed 249 files (184 Library records, 63 Spotify snapshot/history files, 2 removal-state files). It made no Spotify playlist writes.
+- **Failures:** Enrich Music Metadata run #42146121471 could not rebase its generated song records over the simultaneous Reference Library additions (add/add conflicts), so its enrichment output was not published. Acoustic Metadata Enrichment run #42146097964 completed 100 batches (2,500 IDs; 207 found; 2,293 misses; 322 total profiles; 3,678 negative-cache entries) but could not commit because an optional GetSongBPM state file was absent and was unconditionally included in `git add`.
+- **Still pending:** Update Last.fm History run #42146153098 was still active at the last check; record its terminal status and any commit.
+- **Lesson:** documentation-only workflow edits must be staged with their push-trigger consequences understood. No workflow repair or additional enrichment was undertaken; remediation is deferred until the documentation-only priority is complete.
+- **References:** [Reference Library run #42146148971](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146148971), [Enrich Music Metadata run #42146121471](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146121471), [Acoustic Metadata run #42146097964](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146097964), [Update Last.fm run #42146153098](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146153098).
+
 ## 2026-11-01 — Goal workspaces merged and project-wide loose ends audited
 
 - **Goal:** make each project objective independently recallable and ensure unfinished requirements from repository history and prior SHIT conversations are not lost.
