@@ -454,6 +454,15 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertIn('- cron: "15 4,5 * * *"', workflow)
         self.assertIn("steps.daily-cycle.outputs.cycled == 'true' || steps.daily-cycle.outputs.description_updated == 'true'", workflow)
 
+    def test_workflow_persists_spotify_cooldown_even_when_cycle_fails(self):
+        workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
+        start = workflow.index("name: Preserve surfaced candidates and Spotify cooldown even if rotation fails")
+        step = workflow[start:workflow.index("\n\n", start)]
+        self.assertIn("hashFiles('.github/spotify_api_cooldown.json')", step)
+        self.assertIn(".github/spotify_api_cooldown.json", step)
+        self.assertIn("if: always()", step)
+
+
     def test_action_output_is_written_as_a_real_newline_delimited_value(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "github-output"
