@@ -24,8 +24,12 @@ Recommendation exposure is not a play. Candidate selection is not preference. Di
 ## Acceptance criteria
 No duplicate canonical recordings; source and exposure are recoverable; no candidate is counted as listening; unknown is not treated as rejection; response signals remain distinguishable and auditable.
 
-## Next action
-After documentation completion, compare PR #60's per-song discovery_context proposal with mainline discovery_ingestion.py and its tests; decide whether candidate-only storage is sufficient or canonical per-song context is still needed.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+After documentation completion, compare PR #60's per-song discovery_context proposal with mainline discovery_ingestion.py and its tests; decide whether candidate-only storage is sufficient or canonical per-song context is still needed.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Listening analytics](../listening-analytics/ROADMAP.md)
