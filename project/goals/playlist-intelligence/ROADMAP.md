@@ -1,7 +1,7 @@
 # Playlist Intelligence & Safety — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Active development; scoring preview is read-only and low-confidence. No write permission is implied by this roadmap.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the documentation-only priority. Existing fit scoring and sequencing remain preview-only/low-confidence; this roadmap grants no playlist-write permission.
 
 ## Repository-wide priority override — 2026-11-06
 
