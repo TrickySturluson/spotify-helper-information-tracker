@@ -14,7 +14,7 @@ Only the generated Booze or Boos! playlist is in scope. Keep the manager's deny-
 
 ## Latest saved snapshot status — 2026-11-06
 
-The latest repository snapshot for playlist `4diIlnF8BlgoJrwUfejf49` was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items were reported and fetched, the items snapshot was accessible, and no item error was recorded. This is a repository snapshot, not a playlist mutation by the reference workflow.
+The latest repository snapshot for playlist `4diIlnF8BlgoJrwUfejf49` was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items were reported and fetched, all 92 track URIs were unique (zero duplicate URIs), the items snapshot was accessible, and no item error was recorded. This is a repository snapshot, not a playlist mutation by the reference workflow.
 
 The older five-axis candidate manifest `assistant_data/spotify/playlist_fit_booze_candidates_20261102.json` and its 64-track audit below describe the earlier 2026-11-02 snapshot only. They are stale for the current 92-item snapshot and must not be used as current coverage or sorting evidence. Regenerate the candidate manifest and rerun the per-track Halloween-relevance/party-energy audit after the documentation-only project pause is lifted.
 
