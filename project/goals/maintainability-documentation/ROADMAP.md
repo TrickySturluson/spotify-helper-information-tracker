@@ -52,66 +52,30 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Workflow YAML comment-only changes can trigger push-path workflows. This operational hazard is now documented; see the incident entry in ACTIONS.md and docs/WORKFLOWS.md.
 - Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947. The PR has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`; tests #42150802119 and security scan #42150801849 subsequently passed on earlier head `1bbfed67ae63c77628d6f8b775b7d12c50060d11`; the PR later advanced to `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`, for which current-head checks have not yet been verified.
 
-## 2026-11-06 documentation audit progress
+## Current status — 2026-11-06
 
-- Confirmed all 13 goal workspaces contain ROADMAP.md, README.md and ACTIONS.md; all 17 workflow YAMLs are catalogued.
-- Updated the docs index to list all 21 technical guides, corrected a duplicated paragraph in the goal index, and expanded repository-wide Markdown-link and workflow-overview checks in draft PR #161.
-- Replaced generic source overviews with module-specific purpose, input/output, evidence, side-effect and safety descriptions across analytics, Last.fm, music and Spotify implementation modules (32 maintained modules updated in the current draft).
-- Current source audit found that marker presence alone had allowed generic boilerplate to pass; the new PR checks aim to prevent this recurring.
-- Current main has the documented workflow incident: the Reference Library snapshot refresh published; Enrich Music Metadata failed on 101 shared Library-path conflicts; Acoustic Metadata Enrichment failed while staging an absent optional GetSongBPM state file; and Update Last.fm History failed on 120 shared Library/Spotify snapshot conflicts. None of the failed enrichment/update workspace outputs were published. See ACTIONS.md and NEXT_WORK.md for exact evidence.
+- Documentation remains the only active workstream by explicit user direction. All 12 other goal roadmaps are paused, with their plans preserved.
+- The repository currently has 13 goal workspaces, 17 workflow YAMLs, 21 technical guides plus the docs index, 55 maintained implementation modules, 40 compatibility launchers and 44 test modules. The directory-scoped counts are documented in `docs/REPOSITORY_FILE_INDEX.md`; they are not a complete `git ls-files` inventory because the recursive Git tree response was truncated by generated Library records.
+- Draft PR [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161) contains 32 source overview rewrites, three compatibility overview corrections, 11 test overview rewrites, complete technical guide indexing, all-Markdown local-path link checks, workflow overview quality checks, and implementation/test overview boilerplate guards. It remains draft and unmerged.
+- The test-overview guard initially failed because its generic-rejection fixture accidentally contained the layout test's own newly specific scope sentence. The fixture was corrected in commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
+- CI run [#42152796114](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796114) passed on `9cbf695`, including compilation, generated-data audit, read-only full Library health/confidence/freshness checks, all layout tests and full unittest discovery. Full-history security scan [#42152796120](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796120) also passed on that commit.
+- Later commits changed only documentation/handoff files and `tests/README.md`; no source, test logic, workflow YAML or runtime data changed after `9cbf695`. The exact latest documentation-only head has not been confirmed by a fresh run in the connected run lookup. Do not overstate exact-head verification.
+- Latest live PR inspection reported mergeable true, draft/unmerged; branch comparison showed 0 commits behind main. Re-fetch PR metadata and compare status before any merge decision.
+- The workflow YAML comment-only push incident and its three failed publication attempts remain documented. Do not run enrichment, data publication or playlist operations during the documentation pause.
 
+## Remaining acceptance work
 
-
-## 2026-11-05 repository audit checkpoint
-
-- Structural audit began at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`; current default branch `main` was rechecked at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`.
-- Confirmed 13 goal workspaces, each with ROADMAP.md, README.md and ACTIONS.md.
-- Confirmed 17 GitHub Actions workflow YAML files and a workflow catalogue that the documentation contract test checks dynamically.
-- Confirmed maintained implementation directories: `scripts/analytics/` (7 Python modules), `scripts/lastfm/` (1), `scripts/music/` (28), and `scripts/spotify/` (19); `compat/`, `tests/`, and `.github/workflows/` are included in the FILE OVERVIEW presence check.
-- Latest observed full Daily curator test run #42144512658 and full-history public-repository security scan #42144512423 succeeded on the current main SHA. This is evidence for the automated checks on that commit, not semantic correctness of documentation.
-- The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
-- Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
-
-## PR #161 verification update — 2026-11-06
-
-- First validation failed only because three compatibility wrappers did not name their maintained `scripts/music/` implementation. Those three overviews were corrected.
-- The next Daily curator tests run (#42149783445) passed on PR head `5b8bfab94064e74100c6b3ac183817b6a3f4d4bd`. It passed compile, generated-data audit, full Library health/confidence checks, bounded freshness planning, maintained-file documentation checks and full unit tests.
-- The new all-Markdown local-link, full guide-index, source overview quality, compatibility reference and workflow overview tests therefore passed on that head.
-- The complete-history public security scan (#42149783463) was still in progress at the last check. Recheck it and confirm the PR head has not advanced before considering the PR verified.
-
-## Latest workstream status — 2026-11-06
-
-- All 12 non-documentation goal roadmaps now contain an explicit documentation-only pause; the goal index explains the same priority. The workstream plans are preserved, not discarded.
-- Draft PR #161 contains 32 source overview rewrites, a complete 21-guide docs index, repository-wide Markdown-link checks and stronger file-overview quality tests. Latest PR CI must be checked before merge.
-- The source inventory and semantic audit remain incomplete; do not declare the acceptance criteria met based only on structural tests or the current PR.
-- Exact workflow publication failures from the accidental YAML push triggers are documented in library-enrichment, listening-analytics, this workstream's ACTIONS, NEXT_WORK and LOOSE_ENDS.
-
-## Latest continuation — 2026-11-06
-
-- PR #161 current head is `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4` on `docs/semantic-documentation-audit`, based on `main` at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`. It remains draft/unmerged.
-- Earlier PR checks #42150802119 (tests) and #42150801849 (full-history secret scan) both passed on `1bbfed67ae63c77628d6f8b775b7d12c50060d11`; they do not verify the later current head. No current-head checks were returned by the connected GitHub status/run lookup. Treat verification as pending until checks for `5ec318d` are visible.
-- Manually sampled current PR-branch overviews for the playlist manager, cloud command handler, reference library and offline Library migration. Their descriptions now name actual state paths, data flows, operational boundaries and safety behavior; broader semantic sampling remains required.
-- The PR's structural guardrails and documentation updates remain useful, but acceptance is not complete: authoritative tracked-file inventory, test-module overview review, technical guide/source reconciliation, goal-status reconciliation and fresh-session simulation remain open.
-
-## Test-module overview quality — implemented in draft PR
-- A repository search identified 11 test modules using generic fallback overviews. Their purpose/scope/related-file summaries were replaced with test-specific coverage descriptions and direct implementation/guide references.
-- `tests/test_script_layout.py` now rejects those generic test-module overview phrases in addition to generic implementation overviews. The guard has not yet been run in CI on the latest PR head.
-- Test overview presence/boilerplate is now guarded; semantic correctness of every remaining test overview still requires review.
-
-## Verification checkpoint — 2026-11-06
-- Corrected test-overview guard passed CI run [#42152796114](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796114), including all layout checks and full unittest discovery, on commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
-- Full-history security scan [#42152796120](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796120) also passed on that commit.
-- Later commits through `7a51a6f835f84e459652e8a053d3a97ca2b2da4c` changed only documentation/handoff files and `tests/README.md`; no source, test logic or workflow YAML changed after the successful run. Exact latest-head CI/security has not been confirmed.
-- PR #161 is still draft/unmerged. `main...docs/semantic-documentation-audit` reports 199 ahead / 0 behind and current PR metadata reports mergeable true.
-
-## Current gaps / uncertainty
-- The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
-- Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
-- Repository-wide local-link validation and new overview-quality tests passed on PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a`; recheck them if the branch advances.
-- The automated source-overview quality check passed across all 55 maintained implementation modules, and all 40 compatibility launchers name a maintained source path. Their factual accuracy still needs manual sampling; the 44 test-module overviews, module docstrings, workflow semantics and data-schema references also need a structured semantic review.
+1. **Tracked-file inventory:** obtain a complete checkout and reconcile `git ls-files` against the maintained-file index and documentation contract. Keep generated per-record data documented by family/schema/owner rather than adding thousands of prose entries. The recursive Git tree API response was truncated and cannot be treated as complete.
+2. **Semantic source audit:** manually inspect every maintained implementation overview, compatibility launcher, test-module overview and workflow overview against actual inputs, outputs, state paths, network calls, permissions, side effects, retries and safety behavior. Automated anti-boilerplate tests prove specificity patterns, not factual accuracy.
+3. **Technical-guide audit:** reconcile all 21 technical guides and operational runbooks against current source, tests, schemas and workflow definitions. Correct stale commands, paths, schedules, permissions, ownership boundaries, recovery procedures and evidence claims.
+4. **Goal audit:** reconcile all 13 goal ROADMAP/README/ACTIONS sets against current main, the open PRs/issues and latest workflow evidence. Preserve proposals as proposals; distinguish planned, implemented, merged, deployed and verified.
+5. **Cross-document consistency:** remove contradictory historical checkpoints from current handoff sections; ensure NEXT_WORK, LOOSE_ENDS, project ROADMAP, goal ROADMAP and ACTIONS logs agree on current status and next action. Historical records may remain when clearly dated and labelled.
+6. **Fresh-session simulation:** start only from `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md` and the goal index. Verify that a new session can identify the active task, constraints, evidence, blockers and next executable step without chat history.
+7. **Final verification:** run documentation contract tests, layout tests, full unittest discovery and full-history security scan on the final PR head; inspect results and confirm the PR is mergeable before seeking merge authorization. Do not declare completion or merge based on older-head checks.
 
 ## Next action
-Obtain and verify tests plus the full-history security scan for exact current PR head `7a51a6f835f84e459652e8a053d3a97ca2b2da4c`; the corrected source/test state passed at `9cbf695`, but later documentation-only commits have not been shown with exact-head checks. Do not merge PR #161 until exact-head verification is available. Then complete the authoritative/defensible tracked-file inventory, manually sample the remaining test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
+
+Continue the cross-document consistency audit. The project handoff had accumulated stale PR checkpoints; the top-level NEXT_WORK section has now been consolidated. Inspect and reconcile remaining duplicated/stale checkpoint sections in this roadmap, LOOSE_ENDS and PROJECT_LOG, then perform the fresh-session simulation. Keep documentation as the only active priority until every acceptance criterion above has current evidence.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
