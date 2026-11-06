@@ -60,12 +60,15 @@ The intended invariant above is **force bypasses the clock gate only**. Current 
 - Verify current main code and latest workflow runs before changing anything. The guide documents expected behavior but is not proof of current live Spotify state.
 - Reconcile the most recent live playlist, feedback, blacklist/whitelist, description and staging state before another live write.
 
-## Next action (documentation-only priority)
+## Current parallel-work status — 2026-11-06
 
-Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+Babel remains active, but current mainline policy permits ChatGPT to continue explicitly authorized SHIT workstreams in parallel. The first Tricky Daily pass was a read-only source audit. It confirmed the P0 force/idempotency discrepancy: `--force` bypasses both the clock gate and the same-Eastern-date completion guard. The current test explicitly asserts that behavior, contrary to the required force-bypasses-clock-only contract. See the newest entry in [ACTIONS.md](ACTIONS.md).
 
-## Next feature action after documentation pause
-Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
+No runtime or test changes, provider requests, generated-data writes, or Spotify playlist operations have been performed. The next step is to obtain specific user authorization for the runtime/test correction. Do not interpret the parallel-work policy as blanket authorization for provider or playlist side effects.
+
+## Next action
+
+After authorization, make the smallest correction so `--force` bypasses only the clock-window gate while the same-Eastern-date completion guard remains active. Replace the regression assertion that currently expects forced idempotency bypass with tests proving a forced run on an already-completed Eastern date exits before any Spotify request. Run focused Daily schedule tests and the full safe test suite, then record exact evidence. Reconcile the Daily P0 acceptance criteria before any further live cycle; live Spotify writes still require explicit authorization.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist Intelligence umbrella roadmap](../playlist-intelligence/ROADMAP.md) · [Daily cycle guide](../../../docs/TRICKY_DAILY_CYCLE.md) · [Daily backlog](../../../docs/TRICKY_DAILY_TODO.md)
