@@ -24,7 +24,7 @@ TRACK_PROFILE_RECENT_WINDOW_DAYS=90 TRACK_PROFILE_RECENT_TOP_N=200 TRACK_PROFILE
 
 ## Workflow
 
-- `SHIT — Spotify Reference Library`: scheduled every six hours and manually dispatchable. A commit changing its workflow definition also triggers an immediate sync, which is useful when workflow dispatch is unavailable.
+- `SHIT — Spotify Reference Library`: scheduled daily at 06:13 UTC and manually dispatchable. A commit to its workflow definition on `main` also triggers an immediate sync, which is useful when workflow dispatch is unavailable.
 - `Enrich Music Metadata`: daily at 08:17 UTC and manually dispatchable. Scheduled track-profile budget is 200; manual dispatch allows 120/300/600. Changes to the workflow, enrichment scripts/compatibility launchers, discovery intake files, or selected priority-playlist snapshot paths trigger an immediate run; generated-data commits do not match those paths.
 - Both workflows commit only generated data; they do not modify Spotify playlists.
 
