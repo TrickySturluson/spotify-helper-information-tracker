@@ -292,7 +292,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("never instantiates the lazy resolver", health)
         self.assertIn("may rebuild/write library_index.json", sequencer)
         self.assertIn("Do not equate “no Spotify playlist writes” with “no local repository/file writes.”", transition_guide)
-        self.assertIn("audit is a resolver/index diagnostic", migration_guide)
+        self.assertIn("Resolver/index diagnostics: `audit` and `verify-catalogue`", migration_guide)
         self.assertIn("Use `health` when zero repository writes are required", migration_guide)
 
     def test_agent_entry_point_requires_documentation_rules(self):
