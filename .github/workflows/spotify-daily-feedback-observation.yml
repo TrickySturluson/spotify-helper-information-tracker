@@ -77,11 +77,15 @@ jobs:
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: GitHub Actions workflow "SHIT — Daily Feedback Observation".
-# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
-# Behavior: Automates the job steps declared in this workflow, including runtime
-#           setup, permissions, dependencies, and repository changes.
-# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
-#              with the implementation under scripts/ and compat/.
-# Related: See docs/ for feature-specific operating instructions.
+# Purpose: Observe Tricky Daily post-publication outcomes without rotating the playlist.
+# Trigger: Daily at 08:17 UTC or manual workflow_dispatch.
+# Behavior: Runs tests, authenticates to Spotify, executes
+#           compat/spotify_daily_feedback.py observe, audits generated data, and
+#           commits assistant_data/spotify/daily_feedback.json when it changes.
+# Credentials: Spotify client/refresh token plus a narrowly scoped GitHub App token
+#              that may persist a rotated Spotify refresh-token secret.
+# Safety: Observation/read operations only; does not add, remove or reorder tracks.
+#         Repository feedback state is written with contents:write.
+# Related: scripts/spotify/spotify_daily_feedback.py, docs/TRICKY_DAILY_CYCLE.md,
+#          docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
