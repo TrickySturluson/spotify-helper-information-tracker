@@ -77,8 +77,12 @@ The latest repository snapshot at `assistant_data/spotify/playlists/4yUVHSMQySfW
 - [PR #160 — Exposure-aware Daily discovery and quality reporting](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) is open/non-draft on `daily-exposure-aware-discovery`, diverged (27 ahead, 201 behind current main; mergeable=false). Old-head tests #42081994195 and security scan #42081994125 passed; rebase and rerun before merge. Its 45/30/25 mix, exposure-decay ranking and read-only quality report remain proposals.
 - [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open/non-draft on `feature/discover-weekly-feedback-tracking`, diverged (9 ahead, 201 behind current main; mergeable=false). Old-head tests #42071650507 and security scan #42071650219 passed; rebase and rerun before merge. It is adjacent listening-analytics work, not a Daily playlist-write feature.
 
-## Next action
-Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist Intelligence umbrella roadmap](../playlist-intelligence/ROADMAP.md) · [Daily cycle guide](../../../docs/TRICKY_DAILY_CYCLE.md) · [Daily backlog](../../../docs/TRICKY_DAILY_TODO.md)
