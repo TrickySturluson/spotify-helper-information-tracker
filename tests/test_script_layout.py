@@ -67,6 +67,41 @@ class ScriptLayoutTests(unittest.TestCase):
                 self.assertIn("FILE OVERVIEW", source)
                 self.assertIn("FILE OVERVIEW", source[-1500:])
 
+    def test_semantically_audited_overviews_do_not_use_generic_fallbacks(self):
+        # These files were manually checked against their implementation. Keep
+        # the known boilerplate regressions from returning in these contracts.
+        audited = (
+            "scripts/analytics/build_stats.py",
+            "scripts/analytics/build_playback_analytics.py",
+            "scripts/analytics/build_assistant_data.py",
+            "scripts/analytics/build_advanced_analytics.py",
+            "scripts/analytics/build_music_analytics.py",
+            "scripts/analytics/build_listening_time_summary.py",
+            "scripts/lastfm/update_lastfm.py",
+            "scripts/music/audio_analysis.py",
+            "scripts/music/build_music_metadata.py",
+            "scripts/spotify/spotify_playlist_manager.py",
+            "scripts/spotify/spotify_playlist_cloud.py",
+            "scripts/spotify/spotify_daily_playlist.py",
+            "scripts/spotify/spotify_daily_feedback.py",
+            "scripts/spotify/spotify_discovery.py",
+            "scripts/spotify/spotify_playback_tracker.py",
+        )
+        generic_phrases = (
+            "Implementation module scripts/",
+            "Uses the canonical archives and/or generated project data",
+            "consult this module's configuration and command options for exact paths",
+            "tests/ contains regression coverage",
+            "docs/ contains extended guides",
+            "legacy command entry point, when this tool has one",
+        )
+        for relative in audited:
+            with self.subTest(path=relative):
+                source = (ROOT / relative).read_text(encoding="utf-8")
+                overview = source[source.rfind("FILE OVERVIEW"):]
+                for phrase in generic_phrases:
+                    self.assertNotIn(phrase, overview)
+
     def test_repository_gitignore_has_a_file_overview(self):
         source = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn("FILE OVERVIEW", source)
