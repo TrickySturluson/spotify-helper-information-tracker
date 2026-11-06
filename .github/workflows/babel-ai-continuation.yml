@@ -86,23 +86,24 @@ jobs:
           safety-strategy: drop-sudo
           effort: high
 
-  publish:
+  validate:
     needs: [preflight, agent]
     if: needs.preflight.outputs.enabled == 'true' && needs.agent.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 35
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
+    outputs:
+      changed: ${{ steps.validate.outputs.changed }}
     steps:
-      - name: Check out the current continuation base
+      - name: Check out the continuation base without write credentials
         uses: actions/checkout@v5
         with:
           ref: ${{ needs.preflight.outputs.target_ref }}
           fetch-depth: 0
-          persist-credentials: true
+          persist-credentials: false
 
-      - name: Validate scope, apply patch, and run full tests
+      - name: Apply candidate patch, enforce allowlist, and run full tests
         id: validate
         env:
           BABEL_PATCH: ${{ needs.agent.outputs.patch }}
@@ -166,8 +167,60 @@ jobs:
           python -m unittest discover -s tests -t . -v
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+  publish:
+    needs: [preflight, agent, validate]
+    if: needs.preflight.outputs.enabled == 'true' && needs.validate.result == 'success' && needs.validate.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out the current continuation base
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.preflight.outputs.target_ref }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Apply the validated patch and recheck paths before publishing
+        env:
+          BABEL_PATCH: ${{ needs.agent.outputs.patch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          patch = os.environ.get("BABEL_PATCH", "")
+          if not patch.startswith("diff --git ") or len(patch.encode("utf-8")) > 700_000:
+              raise SystemExit("Missing or oversized validated patch.")
+          Path("/tmp/babel.patch").write_text(patch, encoding="utf-8")
+          PY
+          git apply --check /tmp/babel.patch
+          git apply /tmp/babel.patch
+          python - <<'PY'
+          import subprocess
+          import sys
+
+          tracked = subprocess.check_output(["git", "diff", "--name-only", "-z"], text=False).decode().split("\0")
+          untracked = subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard", "-z"], text=False).decode().split("\0")
+          changed = sorted({path for path in tracked + untracked if path})
+          allowed = lambda p: (
+              p == "AGENTS.md"
+              or (p.startswith("docs/") and p.endswith(".md"))
+              or (p.startswith("project/") and p.endswith(".md"))
+              or p in {"tests/test_documentation_contract.py", "tests/test_script_layout.py"}
+          )
+          rejected = [path for path in changed if not allowed(path)]
+          deleted = subprocess.check_output(["git", "diff", "--diff-filter=D", "--name-only"], text=True).splitlines()
+          if rejected or deleted:
+              print("Rejected paths:", rejected, "deletions:", deleted, file=sys.stderr)
+              raise SystemExit(1)
+          print("Publishing allowlisted paths:", *changed, sep="\n- ")
+          PY
+
       - name: Commit and push the validated continuation batch
-        if: steps.validate.outputs.changed == 'true'
         env:
           BRANCH_EXISTS: ${{ needs.preflight.outputs.branch_exists }}
         shell: bash
@@ -187,7 +240,6 @@ jobs:
           git push origin HEAD:refs/heads/babel/agent-progress
 
       - name: Create or update the review pull request
-        if: steps.validate.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -204,8 +256,9 @@ jobs:
 
           ## Safety
           - Documentation and narrowly scoped documentation tests only.
+          - Candidate tests run in a separate read-only job with no OpenAI API key and no write-capable GitHub token.
+          - The publisher only applies the already-validated patch, rechecks paths, and publishes to the dedicated branch.
           - No Spotify/provider calls, playlist mutations, generated-data writes, or runtime feature changes.
-          - The publisher validates changed paths and runs full unittest discovery.
           - This PR is not auto-merged; human review is required.
 
           The branch is updated by later scheduled runs while Babel remains active."
@@ -216,7 +269,7 @@ jobs:
 # FILE OVERVIEW
 # Purpose: Runs a bounded OpenAI Codex worker against SHIT Documentation & Continuity (Babel).
 # Trigger: Every six hours and manual dispatch; stops when project/BABEL_AGENT_STATE.md says complete.
-# Permissions: Read-only agent job; separate publisher job receives contents:write and pull-requests:write.
-# Safety: Agent cannot publish directly. Publisher rejects non-documentation paths/deletions and runs full unittest discovery.
+# Permissions: Read-only agent and validation jobs; separate publisher receives contents:write and pull-requests:write.
+# Safety: No write-capable token or API key is present while candidate tests run. Publisher rechecks allowlisted paths and never executes candidate code.
 # Side effects: May update only a dedicated Babel branch and its review PR; never merges or touches Spotify/provider state.
 # Related: .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md, docs/BABEL_AGENT.md.
