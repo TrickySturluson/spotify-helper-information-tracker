@@ -86,6 +86,18 @@ class ScriptLayoutTests(unittest.TestCase):
             "scripts/spotify/spotify_daily_feedback.py",
             "scripts/spotify/spotify_discovery.py",
             "scripts/spotify/spotify_playback_tracker.py",
+            "scripts/spotify/playlist_metadata.py",
+            "scripts/music/enrich_recommendation_lyrics.py",
+            "scripts/music/enrich_getsongbpm.py",
+            "scripts/music/mood_inference.py",
+            "scripts/music/build_music_profiles.py",
+            "scripts/music/lyrics_library.py",
+            "scripts/music/enrich_acousticbrainz.py",
+            "scripts/music/enrich_musicbrainz_durations.py",
+            "scripts/music/enrich_musicbrainz_recording_ids.py",
+            "scripts/music/build_track_profiles.py",
+            "scripts/spotify/track_playlist_removals.py",
+            "scripts/spotify/playlist_intelligence.py",
         )
         generic_phrases = (
             "Implementation module scripts/",
