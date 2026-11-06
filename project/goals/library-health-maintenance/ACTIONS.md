@@ -1,3 +1,7 @@
+# Library Health Checker & Data Maintainer — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+
 ## 2026-11-06 — Full Library health validation passed read-only in documentation PR CI
 
 - Daily curator tests run #42149783445 passed the full canonical Library health check on draft PR #161's then-current base data.
