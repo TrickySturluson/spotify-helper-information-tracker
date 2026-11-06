@@ -55,14 +55,22 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
 - Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
 
+## Semantic module-overview audit — first batch on documentation branch
+- Branch `docs/semantic-overview-quality-20261105` contains source-overview improvements for 15 modules spanning analytics, Last.fm import, music enrichment/audio, Spotify playlist management, Daily feedback/discovery and local playback tracking.
+- `tests/test_script_layout.py` now rejects known generic fallback phrases in those 15 audited modules. The test is committed on the branch but has not yet run in CI.
+- The batch is documentation-only: no runtime logic, workflow YAML, generated data, provider state, playback observations or playlists changed.
+- Several other music and Spotify modules still use generic fallback overview text; semantic review remains incomplete.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
-- Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
-- Link integrity and whether every referenced guide still exists have not yet been exhaustively checked.
+- The first semantic overview batch covers 15 modules only. Remaining maintained music/Spotify modules, compatibility launchers, test modules and workflow overviews still need source-to-document review.
+- The new anti-boilerplate regression test has not yet been executed in CI; no result should be inferred from successful file-update API responses.
+- Goal status, cross-project loose ends, open PRs/issues and outstanding workflow runs need reconciliation against current GitHub evidence.
+- Link integrity and whether every referenced guide exists have not yet been exhaustively checked; two invalid references were found and corrected in this batch.
 - Existing per-file overview claims in the repository README are not yet independently audited.
 
 ## Next action
-Continue with a directory-by-directory maintained-file audit, obtain a complete checkout/`git ls-files` inventory when available, compare it with file overviews and docs/REPOSITORY_FILE_INDEX.md, then record a categorized gap list. Audit semantic accuracy—not just marker presence—starting with write-capable Spotify tools, scheduled workflows, authentication, shared generated-state writers and recovery paths. Reconcile the 13 goal roadmaps and open PRs/issues. Keep documentation as the only active project priority until the fresh-session acceptance test passes.
+Continue semantic review of the remaining maintained music and Spotify modules, inspecting each implementation before rewriting its overview. Extend the anti-boilerplate test only as each module is genuinely audited. Then review compatibility launchers, tests and workflows, verify all new links, reconcile goal roadmaps/open PRs/issues/latest workflow runs, and complete the full tracked inventory plus fresh-session simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
