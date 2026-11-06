@@ -473,10 +473,19 @@ if __name__=="__main__": raise SystemExit(main())
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Local Spotify playlist manager. Playlists are locked unless explicitly unlocked.
-# Location: Maintained implementation in scripts/spotify/spotify_playlist_manager.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_playlist_manager.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Authenticated Spotify playlist administration with deny-by-default
+#          playlist locks and explicit, audited mutation plans.
+# Inputs: SPOTIFY_CLIENT_ID plus local OAuth refresh/access state; per-playlist
+#         permissions in .spotify_playlist_manager.json; cooldown state in
+#         .github/spotify_api_cooldown.json.
+# Outputs/state: Writes token/configuration, managed-playlist registry, dated
+#                playlist backups and append-only playlist_manager_audit.jsonl.
+# API effects: Reads playlist metadata/items and can create, add, remove or
+#              reorder playlist content through explicit manager commands.
+# Safety: Existing playlists remain locked until explicitly unlocked; managed
+#         ownership, scopes, removal safeguards, snapshots and plan validation
+#         apply. Spotify Retry-After cooldown fails requests closed.
+# Run: python compat/spotify_playlist_manager.py --help
+# Related: docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md;
+#          scripts/spotify/spotify_playlist_cloud.py; tests/test_spotify_playlist_manager.py.
 # -----------------------------------------------------------------------------
