@@ -43,6 +43,10 @@ The broad Update Last.fm History run #42146153098 completed its Last.fm, artist/
 ## Acceptance criteria
 No blind repeated lookups; no identity guessing; every promoted field has source and timestamp; failed lookups preserve old evidence; unknown coverage remains explicit; post-write health passes.
 
+## Open proposal (not merged)
+
+- [PR #120 — Adopt incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft. It records the strategy decision; it does not implement or prove a bounded provider executor, retry queue, or completed on-demand enrichment path.
+
 ## Next action
 Run a fresh read-only coverage/provider-checkpoint audit and select a small, high-value batch based on actual gaps and provider eligibility.
 
