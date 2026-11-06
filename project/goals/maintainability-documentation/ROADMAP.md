@@ -65,7 +65,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Structural audit began at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`; current default branch `main` was rechecked at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`.
 - Confirmed 13 goal workspaces, each with ROADMAP.md, README.md and ACTIONS.md.
 - Confirmed 17 GitHub Actions workflow YAML files and a workflow catalogue that the documentation contract test checks dynamically.
-- Confirmed maintained implementation directories: `scripts/analytics/` (7 Python modules), `scripts/lastfm/` (1), `scripts/music/` (24), and `scripts/spotify/` (19); `compat/`, `tests/`, and `.github/workflows/` are included in the FILE OVERVIEW presence check.
+- Confirmed maintained implementation directories: `scripts/analytics/` (7 Python modules), `scripts/lastfm/` (1), `scripts/music/` (28), and `scripts/spotify/` (19); `compat/`, `tests/`, and `.github/workflows/` are included in the FILE OVERVIEW presence check.
 - Latest observed full Daily curator test run #42144512658 and full-history public-repository security scan #42144512423 succeeded on the current main SHA. This is evidence for the automated checks on that commit, not semantic correctness of documentation.
 - The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
 - Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
