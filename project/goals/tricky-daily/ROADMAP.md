@@ -23,7 +23,9 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 - Playlist writes remain scoped to the specifically authorized Tricky Daily exception and documented controls; this does not authorize writes to other personal playlists.
 
 ## System map
-- Candidate generation and publication: scripts/spotify/spotify_daily_playlist.py, scripts/spotify/spotify_daily_cycle.py
+- Current discovery candidate generation: scripts/spotify/spotify_discovery.py (the cycle explicitly requests 60 candidates).
+- 60-track assembly, safety checks and publication: scripts/spotify/spotify_daily_cycle.py.
+- Legacy/alternate 30-track candidate builder: scripts/spotify/spotify_daily_playlist.py; it is not the current live 60-track cycle.
 - Feedback and learning: scripts/spotify/spotify_daily_feedback.py, assistant_data/spotify/daily_feedback.json
 - Preflight: scripts/spotify/spotify_daily_preflight.py
 - Trend context: scripts/spotify/spotify_listening_trends.py, assistant_data/spotify/listening_trends.json
