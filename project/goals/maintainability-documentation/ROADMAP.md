@@ -93,6 +93,11 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Manually sampled current PR-branch overviews for the playlist manager, cloud command handler, reference library and offline Library migration. Their descriptions now name actual state paths, data flows, operational boundaries and safety behavior; broader semantic sampling remains required.
 - The PR's structural guardrails and documentation updates remain useful, but acceptance is not complete: authoritative tracked-file inventory, test-module overview review, technical guide/source reconciliation, goal-status reconciliation and fresh-session simulation remain open.
 
+## Test-module overview quality — implemented in draft PR
+- A repository search identified 11 test modules using generic fallback overviews. Their purpose/scope/related-file summaries were replaced with test-specific coverage descriptions and direct implementation/guide references.
+- `tests/test_script_layout.py` now rejects those generic test-module overview phrases in addition to generic implementation overviews. The guard has not yet been run in CI on the latest PR head.
+- Test overview presence/boilerplate is now guarded; semantic correctness of every remaining test overview still requires review.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
 - Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
@@ -100,7 +105,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The automated source-overview quality check passed across all 55 maintained implementation modules, and all 40 compatibility launchers name a maintained source path. Their factual accuracy still needs manual sampling; the 44 test-module overviews, module docstrings, workflow semantics and data-schema references also need a structured semantic review.
 
 ## Next action
-Obtain and verify tests plus the full-history security scan for exact current PR head `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`; do not merge PR #161 until both pass. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
+Obtain and verify tests plus the full-history security scan for exact current PR head `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`; do not merge PR #161 until both pass. Then complete the authoritative/defensible tracked-file inventory, manually sample the remaining test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
