@@ -9,7 +9,7 @@ This is the cross-project register of known unfinished work discovered from the 
 
 The user has explicitly directed that documentation be the sole active project priority until the repository is as complete and accurate as reasonably achievable. Do not treat the domain-specific items below as permission to resume feature work during this phase.
 
-- Current main inspected at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`; subsequent documentation-only commits update NEXT_WORK, the maintainability roadmap/action history, and the project-wide priority order.
+- Earlier structural audit began at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`. Current main was rechecked at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`, which includes the documentation-control updates and Reference Library snapshot commit.
 - 13 goal workspaces exist and each has ROADMAP.md, README.md and ACTIONS.md. 17 GitHub Actions workflows are listed in `docs/WORKFLOWS.md`.
 - The automated documentation contract and file-layout tests passed in Daily curator run #42144512658 on the inspected main SHA; public repository security scan #42144512423 also passed. These results establish test success on that SHA, not semantic accuracy of every document.
 - The recursive Git tree API response was truncated by generated per-record Library data. A complete local `git ls-files` inventory remains required for exhaustive path reconciliation.
