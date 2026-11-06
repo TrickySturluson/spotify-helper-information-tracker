@@ -2,7 +2,7 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-05 (documentation audit checkpoint; domain-specific loose ends below still require individual revalidation)  
+**Last reviewed:** 2026-11-06 (live repository structure, workflow outcomes, open PRs and documentation audit checkpoint reviewed; domain-specific loose ends below still require individual revalidation)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
 
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
