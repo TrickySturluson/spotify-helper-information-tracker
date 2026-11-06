@@ -1,6 +1,14 @@
 # Maintainability & Documentation — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — All 12 paused goal roadmaps now separate documentation and feature next actions
+
+- Source-to-roadmap review found all 12 non-documentation goal roadmaps had a pause banner but still exposed a feature/live-operation task under the immediate `Next action` heading.
+- Rewrote all 12 to use `Next action (documentation-only priority)` plus `Next feature action after documentation pause`, preserving each original feature step verbatim under the deferred heading.
+- Updated all 12 goal ACTIONS logs and added a documentation-contract test requiring both headings and the explicit no-provider/no-data/no-playlist/no-feature instruction.
+- The new test and the 12 roadmap edits are on PR #161; exact-head CI is pending after this batch. No feature implementation, provider operation, generated-data write or playlist mutation occurred.
+- **Remaining:** audit each goal README for conflicting resume/next-step language and confirm the 13th (documentation) goal's next action remains aligned.
+
 ## 2026-11-06 — Initial fresh-session resume simulation passed
 
 - **Inputs used:** `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `NEXT_WORK.md`, `LOOSE_ENDS.md`, `PROJECT_LOG.md`, `project/goals/README.md`, and the Maintainability/Tricky Daily ROADMAP, README and ACTIONS files.
