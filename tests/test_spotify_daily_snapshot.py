@@ -48,3 +48,11 @@ for name, module in actual.items():
 
 if __name__ == "__main__":
     unittest.main()
+
+# FILE OVERVIEW
+# Purpose: Regression-test the Daily snapshot refresher's import precedence.
+# Tests: Launch an isolated interpreter and verify all imported Spotify modules
+#        resolve to maintained scripts/ implementations rather than compat shims.
+# Safety: No Spotify credentials, provider requests, repository writes, or playlist
+#         mutations are used by this test.
+# Related: scripts/spotify/spotify_daily_snapshot.py and docs/TRICKY_DAILY_CYCLE.md.
