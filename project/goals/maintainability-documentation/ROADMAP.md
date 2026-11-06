@@ -12,7 +12,7 @@ Make SHIT understandable, maintainable, and recoverable by a contributor or assi
 - [Documentation index](../../../docs/README.md): navigation to technical references and workstreams.
 - [Project roadmap](../../ROADMAP.md): cross-workstream priorities and dependencies.
 - [NEXT_WORK.md](../../NEXT_WORK.md), [LOOSE_ENDS.md](../../LOOSE_ENDS.md), and [PROJECT_LOG.md](../../PROJECT_LOG.md): current handoff, unresolved work, and chronology.
-- [Goal index](../README.md): 12 goal workspaces, each expected to contain ROADMAP, README and ACTIONS.
+- [Goal index](../README.md): 13 goal workspaces, each expected to contain ROADMAP, README and ACTIONS.
 - [Repository file index](../../../docs/REPOSITORY_FILE_INDEX.md): tracked file and directory inventory.
 
 ## Required per-file documentation
