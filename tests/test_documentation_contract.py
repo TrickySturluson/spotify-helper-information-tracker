@@ -367,6 +367,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("OPENAI_API_KEY", guide)
         self.assertIn("Forbidden:", prompt)
         self.assertIn("playlist generation or mutation", prompt)
+        self.assertIn("no general network/GitHub API access", prompt)
         self.assertIn("status: active", state)
         self.assertIn("babel-ai-continuation.yml", catalogue)
         self.assertIn("Activation is pending", guide)
