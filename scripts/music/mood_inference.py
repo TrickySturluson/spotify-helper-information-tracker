@@ -174,10 +174,13 @@ def infer_mood_profile(items, artist_profiles):
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Conservative mood inference from artist-level Last.fm tags.
-# Location: Maintained implementation in scripts/music/mood_inference.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/mood_inference.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Apply conservative mood labels from artist-level Last.fm tag evidence.
+# Inputs: Sourced artist profile tags and the module's explicit tag-to-mood rules.
+# Outputs: Derived mood categories/reasons for consumers; this is artist-context inference,
+#          not a measured audio feature or verified track-level emotional label.
+# Semantics: Sparse or conflicting tags remain low-confidence/unknown; never fabricate
+#            a track mood from the artist name alone.
+# Safety: Local deterministic inference; no provider requests or Spotify playlist writes.
+# Run: Imported by scripts/analytics/build_music_analytics.py and related builders.
+# Related: docs/TRACK_MOOD_EVIDENCE.md; tests/ contain mood-inference regression coverage.
 # -----------------------------------------------------------------------------
