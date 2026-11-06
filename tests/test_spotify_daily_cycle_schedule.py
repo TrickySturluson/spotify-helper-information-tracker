@@ -163,6 +163,33 @@ class DailyCycleScheduleTests(unittest.TestCase):
         with patch.object(daily_cycle.discovery, 'is_playlist_candidate_blocked', return_value=True):
             with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "blacklisted tracks"):
                 daily_cycle.validate_daily_post_write(updated, snapshot, uris, {})
+    def test_stage_only_mode_returns_before_any_spotify_write(self):
+        source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        stage_only_at = source.index("if args.stage_only:")
+        write_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
+        self.assertLess(stage_only_at, write_at)
+        self.assertIn('set_action_output("cycled", "false")', source[stage_only_at:write_at])
+        self.assertIn("args.stage_only", source[source.index("def create_daily_stage("):write_at])
+
+    def test_test_only_stage_uses_separate_nonblocking_subdirectory(self):
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        uris = ["spotify:track:" + str(i) for i in range(daily_cycle.DAILY_TARGET_SIZE)]
+        recommendations = [{"artist": "Artist", "track": "Track", "uri": uri} for uri in uris]
+        before = {"playlist": {"snapshot_id": "before"}, "items": []}
+        with TemporaryDirectory() as directory, patch.object(
+            daily_cycle, "DAILY_STAGE_DIR", Path(directory) / "stage"
+        ), patch.object(daily_cycle.manager, "stamp", return_value="2026-11-06T18:00:00Z"), patch.object(
+            daily_cycle.manager, "audit"
+        ), patch.object(daily_cycle, "persist_daily_stage", return_value=False), patch.dict(
+            os.environ, {"GITHUB_ACTIONS": "false", "GITHUB_RUN_ID": "stage-test-2"}
+        ):
+            stage_path, _, _ = daily_cycle.create_daily_stage(
+                "2026-11-06", before, [], recommendations, uris,
+                "playlist_backups/before.json", "Stage-only", test_mode=True
+            )
+            self.assertEqual(Path(stage_path).parent.name, "tests")
+            daily_cycle.assert_no_pending_daily_stage("2026-11-06")
     def test_pending_durable_stage_blocks_same_date_retry(self):
         from tempfile import TemporaryDirectory
         from pathlib import Path
