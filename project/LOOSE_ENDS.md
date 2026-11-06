@@ -5,6 +5,14 @@ This is the cross-project register of known unfinished work discovered from the 
 **Last reviewed:** 2026-11-06 (audit baseline `aacb70fa`; subsequent same-session commits contain documentation-only audit updates)  
 **Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
+## Babel AI continuation — INTEGRATED; ACTIVATION BLOCKED ON SECRET
+
+- Repository configuration is committed: .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
+- The workflow runs every six hours or manually, resumes from babel/agent-progress, and submits validated documentation/test-only changes through a review PR. Publisher rejects deletions/out-of-scope paths and runs full unittest discovery. No auto-merge, Spotify/provider credentials, provider calls, playlist writes or generated-data edits.
+- **Blocker:** repository owner must add OPENAI_API_KEY as a GitHub Actions secret and ensure Actions is permitted to create pull requests. OpenAI API usage is separately billed; a ChatGPT subscription does not itself supply an API key.
+- **Verification gap:** no successful workflow run/PR has yet been observed. After configuring the secret, manually dispatch once and inspect the full run, test result, branch and PR. Until then the worker is implemented but not operationally verified.
+- Guide: docs/BABEL_AGENT.md. Do not treat this as completion of Babel itself; it is infrastructure to help finish the remaining audit.
+
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
 The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
