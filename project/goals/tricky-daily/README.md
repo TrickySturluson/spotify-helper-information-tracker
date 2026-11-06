@@ -45,5 +45,11 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 ## Evidence standard
 A passing unit test does not prove a live Spotify operation. A successful API write does not prove read-back verification. A pending-verification state is not a completed cycle. Record exact commit, workflow run, test results, live snapshot/read-back and any failed step separately.
 
+## Open proposals (not merged)
+
+- [PR #159 — Tricky Daily DST schedule gating](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) is open and not merged. Current main still uses combined 04:00/05:00 UTC cron expressions and a local-hour gate; strict cron-to-Eastern-offset matching is proposed in the PR, not current behavior.
+- [PR #160 — Exposure-aware Daily discovery and quality reporting](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) is open and not merged. Its 45/30/25 mix, exposure-decay selection changes and new read-only report are proposals until merged and verified.
+- [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open and not merged; it is adjacent listening-analytics work, not a Daily playlist write feature.
+
 ## Related work
 [Playlist Intelligence & Safety](../playlist-intelligence/README.md) owns shared fit-model and sequencing behavior. Daily-specific requirements and acceptance criteria remain in this workspace, even when shared modules implement them.
