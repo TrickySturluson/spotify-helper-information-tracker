@@ -214,22 +214,29 @@ class DailyCycleScheduleTests(unittest.TestCase):
         from tempfile import TemporaryDirectory
         from pathlib import Path
         target = ["spotify:track:a", "spotify:track:b"]
-        candidate_tracks = [{"artist": "A", "track": "One", "uri": target[0]}, {"artist": "B", "track": "Two", "uri": target[1]}]
-        payload = {
+        candidate_tracks = [
+            {"artist": "A", "track": "One", "uri": target[0]},
+            {"artist": "B", "track": "Two", "uri": target[1]},
+        ]
+        record = {
+            "schema_version": 1,
             "playlist_id": daily_cycle.DAILY_ID,
+            "playlist_name": "Tricky Daily",
             "cycle_date_eastern": "2026-11-06",
-            "target_uris": target,
+            "run_id": "test",
+            "created_at": "2026-11-06T18:00:00Z",
+            "prewrite_snapshot_id": "before",
+            "prewrite_uris": ["spotify:track:before"],
+            "target_uris": list(target),
             "candidate_tracks": candidate_tracks,
             "target_description": "Daily stage test",
+            "backup_path": "playlist_backups/before.json",
+            "status": "staged_before_spotify_write",
         }
-        digest = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
-        record = {
-            "schema_version": 1, "playlist_id": daily_cycle.DAILY_ID,
-            "cycle_date_eastern": "2026-11-06", "target_uris": list(target),
-            "candidate_tracks": candidate_tracks, "target_description": "Daily stage test",
-            "prewrite_uris": ["spotify:track:before"], "prewrite_snapshot_id": "before",
-            "payload_sha256": digest,
-        }
+        digest = hashlib.sha256(
+            json.dumps(record, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        record["payload_sha256"] = digest
         record["target_uris"][0] = "spotify:track:tampered"
         with TemporaryDirectory() as directory:
             stage_path = Path(directory) / "stage.json"
@@ -239,6 +246,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
                     daily_cycle.verify_daily_stage(
                         str(stage_path), digest, target, ["spotify:track:before"], "before"
                     )
+
     def test_repository_head_guard_accepts_unchanged_stage_commit(self):
         from unittest.mock import Mock
         results = [Mock(), Mock(stdout="abc123\\n"), Mock(stdout="abc123\\n")]
