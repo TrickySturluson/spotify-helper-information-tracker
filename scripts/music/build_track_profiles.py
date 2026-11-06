@@ -454,14 +454,16 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Build track-level sourced tags and a rolling recent-top-track enrichment cohort.
-# Inputs: Last.fm scrobbles, exact priority-playlist snapshots, track profile cache,
-#         LASTFM_API_KEY and MUSICBRAINZ_ID_LOOKUPS_PER_RUN/track lookup limits.
-# Outputs: assistant_data/music/track_profiles.json, lookup state and recent_top_tracks.json.
-# Selection: Includes archive tracks, exact priority-playlist tracks and the top 200 by
-#            Last.fm plays in the previous 90 days; artist diversity and configured limits apply.
-# Identity: Uses exact/verified recording evidence; fuzzy MusicBrainz matches are not promoted.
+# Inputs: Last.fm scrobbles, exact priority-playlist snapshots, existing track-profile cache,
+#         LASTFM_API_KEY, TRACK_PROFILE_LOOKUPS_PER_RUN, TRACK_PROFILE_RECENT_WINDOW_DAYS,
+#         TRACK_PROFILE_RECENT_TOP_N and TRACK_PROFILE_PRIORITY_PLAYLISTS.
+# Outputs: assistant_data/music/track_profiles.json, durable lookup state and
+#          assistant_data/music/recent_top_tracks.json.
+# Selection: Includes archive tracks, exact priority-playlist tracks and a configurable
+#            recent top-N cohort ranked by Last.fm plays within the configured window.
+# Identity: Uses existing verified recording evidence; fuzzy MusicBrainz ID search is not run here.
 # Safety: Bounded provider requests; no archive mutation or Spotify playlist writes.
-# Run: python compat/build_track_profiles.py (repository root; provider keys as required).
+# Run: python compat/build_track_profiles.py (repository root; LASTFM_API_KEY required).
 # Related: docs/RECENT_TRACK_ENRICHMENT.md; docs/TRACK_MOOD_EVIDENCE.md;
 #          tests/test_track_profiles.py.
 # -----------------------------------------------------------------------------
