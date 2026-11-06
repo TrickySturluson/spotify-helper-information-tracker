@@ -13,6 +13,7 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 - Reconcile whitelist/blacklist and live playlist state before each run; a stale snapshot must not reverse user decisions.
 - Artist diversity may be relaxed progressively only after retrying alternatives. Never relax uniqueness or exclusions.
 - Forced runs bypass the schedule gate only, not safety or verification.
+- **Current source mismatch:** the runner also bypasses the same-Eastern-date completion guard when forced; this violates the intended force-only-clock-gate contract and is an open P0 item. See the roadmap and `docs/TRICKY_DAILY_TODO.md`.
 - Update and read back the rotating description on successful forced and scheduled cycles.
 - Last.fm scrobbles, measured Spotify playback, likes/saves, playlist exposure and removals are distinct evidence.
 - Missing playback coverage and an unplayed exposed track are not automatically negative preference.
