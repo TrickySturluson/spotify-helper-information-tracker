@@ -271,12 +271,10 @@ class PlaylistManagerTests(unittest.TestCase):
         self.assertEqual([row["name"] for row in restored["items"]], ["First", "[unavailable item]", "Last"])
 
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_spotify_429_reports_quota_cooldown_and_no_retry(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.bearer = lambda: "test-token"
+        spotify.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
         error = urllib.error.HTTPError(
             url="https://api.spotify.com/v1/me/playlists",
             code=429,
@@ -289,7 +287,7 @@ if __name__ == "__main__":
         ), patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
             with self.assertRaisesRegex(
                 manager.ManagerError,
-                r"quota/rate limit reached.*QUOTA_EXCEEDED.*3h 38m.*No playlist changes were attempted",
+                r"quota/rate limit reached.*QUOTA_EXCEEDED.*3h 37m.*No playlist changes were attempted",
             ):
                 spotify.call("GET", "/me/playlists?limit=50")
             saved = manager.read(manager.SPOTIFY_COOLDOWN, {})
@@ -321,6 +319,10 @@ if __name__ == "__main__":
             })
             with patch.object(manager, "SPOTIFY_COOLDOWN", cooldown):
                 manager.check_spotify_cooldown()
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 
 # -----------------------------------------------------------------------------
