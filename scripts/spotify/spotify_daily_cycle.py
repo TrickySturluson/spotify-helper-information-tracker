@@ -130,6 +130,41 @@ def persist_daily_stage(stage_path, backup_path, cycle_date):
     return True
 
 
+def verify_daily_stage(stage_path, expected_hash, expected_uris, before_uris, before_snapshot_id):
+    """Verify the on-disk/committed stage is exactly the payload about to be written."""
+    if os.environ.get("GITHUB_ACTIONS", "").lower() == "true":
+        result = subprocess.run(
+            ["git", "show", f"HEAD:{stage_path}"],
+            check=True, capture_output=True, text=True,
+        )
+        staged = json.loads(result.stdout)
+    else:
+        staged = manager.read(Path(stage_path), None)
+    if not isinstance(staged, dict):
+        raise manager.ManagerError("Durable Daily stage is missing or malformed; refusing playlist mutation.")
+    hash_payload = {
+        "playlist_id": staged.get("playlist_id"),
+        "cycle_date_eastern": staged.get("cycle_date_eastern"),
+        "target_uris": staged.get("target_uris"),
+        "candidate_tracks": staged.get("candidate_tracks"),
+        "target_description": staged.get("target_description"),
+    }
+    digest = hashlib.sha256(
+        json.dumps(hash_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    if (
+        digest != expected_hash
+        or staged.get("payload_sha256") != expected_hash
+        or staged.get("target_uris") != expected_uris
+        or staged.get("prewrite_uris") != before_uris
+        or staged.get("prewrite_snapshot_id") != before_snapshot_id
+    ):
+        raise manager.ManagerError(
+            "Durable Daily stage failed exact hash/order/pre-write snapshot verification; refusing playlist mutation."
+        )
+    return staged
+
+
 def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, backup, description):
     """Write and durably publish the exact ordered Daily payload before mutation."""
     if len(uris) != DAILY_TARGET_SIZE or len(set(uris)) != DAILY_TARGET_SIZE:
@@ -189,6 +224,10 @@ def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, b
     persisted = persist_daily_stage(stage_path, backup, cycle_date)
     if os.environ.get("GITHUB_ACTIONS", "").lower() == "true" and not persisted:
         raise manager.ManagerError("Daily stage was not durably committed; refusing playlist mutation.")
+    verify_daily_stage(
+        str(stage_path), payload_sha256, uris, before_uris,
+        (before.get("playlist") or {}).get("snapshot_id"),
+    )
     return str(stage_path), payload_sha256
 
 
