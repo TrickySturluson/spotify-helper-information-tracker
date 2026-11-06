@@ -750,13 +750,15 @@ if __name__ == "__main__":
 # Purpose: Maintain canonical read-only Spotify playlist snapshots and related reference evidence.
 # Inputs: Spotify playlist GET snapshots, configured reference/priority playlist IDs and
 #         market-scoped track metadata/playability observations.
-# Outputs: assistant_data/spotify playlist snapshots/history, reference indexes, health summaries
-#          and removal-baseline/feedback inputs.
-# Semantics: Snapshot time is explicit; an incomplete or inaccessible playlist is not an empty
-#            playlist. Requested and relinked Spotify IDs remain distinct; playability is market-scoped.
-# Safety: Snapshot ingestion does not mutate Spotify playlists. Playability refresh is plan-only
-#         by default and requires --execute --yes for bounded stale-only Spotify GETs; offline
-#         backfill uses backup-protected song-record writes.
+# Outputs: assistant_data/spotify snapshots/history/catalog/index/health, canonical MusicLibrary
+#          song/artist/album catalogue evidence, playlist-source context and market-scoped playability.
+# Semantics: Snapshot time is explicit; incomplete/inaccessible playlists are not empty. Non-relinked
+#            tracks add Spotify identity, playlist source/position and context evidence; this is not
+#            a Last.fm scrobble, measured playback, like, or proof of listening. Requested and relinked
+#            Spotify IDs remain distinct; playability is market-scoped snapshot-time evidence.
+# Safety: Sync writes repository snapshots and canonical Library evidence but never mutates Spotify
+#         playlists. Separate playability refresh is plan-only by default and requires --execute --yes
+#         for bounded stale-only Spotify GETs; offline backfill uses backup-protected song-record writes.
 # Run: python compat/spotify_reference_library.py sync|health|... (repository root).
 # Related: docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md;
 #          scripts/spotify/track_playlist_removals.py.
