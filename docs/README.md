@@ -7,14 +7,15 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 ## Start here
 
 1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
-2. [AI continuation worker](BABEL_AGENT.md) — scheduled Codex worker, branch/PR publishing, security boundaries, activation and recovery.
-3. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
-4. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
-5. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
-6. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
-7. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
-8. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
-9. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
+2. [ChatGPT scheduled Buddy](BABEL_CHATGPT_BUDDY.md) — free scheduled ChatGPT/GitHub-app continuation, operating boundaries, capability evidence and review model.
+3. [Repository-hosted AI continuation worker](BABEL_AGENT.md) — separate Codex/API worker, branch/PR publishing, security boundaries, activation and recovery.
+4. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
+5. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
+6. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
+7. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
+8. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
+9. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
+10. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
 
 ## Documentation families
 
