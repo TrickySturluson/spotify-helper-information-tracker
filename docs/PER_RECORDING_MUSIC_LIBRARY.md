@@ -48,11 +48,12 @@ is local-only. It makes no provider requests, does not modify the legacy
 aggregate JSON, and can be repeated to refresh the normalized records. The old
 aggregates remain available for rollback and incremental compatibility.
 
-The committed validation batch currently contains 50 unique recent songs and
-22 artist identity records. It has no album records because those source track
-profiles did not contain release metadata; seven songs have track-tag evidence,
-while 43 preserve an explicit no-tag/empty-evidence state. The batch is a
-partial integration sample, not a full migration.
+The initial staged validation batch (historical; not a current Library count)
+contained 50 unique recent songs and 22 artist identity records. It had no album
+records because those source track profiles did not contain release metadata;
+seven songs had track-tag evidence, while 43 preserved an explicit no-tag/empty-
+evidence state. This was a partial integration sample, not the full migration.
+Use the current Library status/health reports for live record counts.
 
 ## Lookup behavior
 
