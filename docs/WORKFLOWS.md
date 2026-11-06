@@ -2,6 +2,10 @@
 
 **Last reviewed:** 2026-11-06. This catalogue summarizes the 17 workflows under .github/workflows as inspected on main. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
 
+## Verification note — 2026-11-06
+
+The trigger and schedule matrix was cross-checked against all 17 current workflow YAML files. Push branch/path filters, PR/issue event types, manual-dispatch availability, and cron expressions were compared directly with the source `on:` blocks; declared permission blocks were also inspected. The workflow YAML remains authoritative. The table describes configuration at this review point and must be rechecked after any workflow edit. The documentation-only audit deliberately did not edit workflow YAML because path-filtered pushes can start provider/data jobs even when only comments change.
+
 ## Workflow matrix
 
 | Workflow | Trigger | Permissions | Credentials/configuration | Main behavior and side effects |
