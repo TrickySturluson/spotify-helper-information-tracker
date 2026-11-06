@@ -1,6 +1,6 @@
 # Tricky Daily — improvement backlog
 
-This is the persistent planning backlog for future Tricky Daily work. It records proposed improvements from the architecture review; it is **not a claim that these items are implemented**. Before changing code, inspect the current implementation and tests: some safeguards and feedback features already exist and must be extended rather than duplicated or regressed.
+This is the persistent planning backlog for future Tricky Daily work. It records proposed improvements from the architecture review; it is **not a claim that these items are implemented**. Before changing code, inspect the current implementation and tests: some safeguards and feedback features already exist and must be extended rather than duplicated or regressed. The current live 60-track cycle assembles candidates through `spotify_discovery.py` and `spotify_daily_cycle.py`; `spotify_daily_playlist.py` is a separate legacy/alternate 30-track builder, not the current cycle path.
 
 ## Product goals
 
@@ -76,4 +76,4 @@ Explore a weighted score with taste match (30%), discovery potential (25%), trac
 4. Add confidence/diversity experimentation and transition-aware sequencing.
 5. Integrate Discover Weekly attribution, reporting, and health monitoring.
 
-When continuing this work in a future chat, read this backlog together with `docs/TRICKY_DAILY_CYCLE.md`, the current Daily cycle/feedback/preflight code, and the relevant workflow files. Re-check repository state before assuming any unchecked item is still outstanding.
+When continuing this work in a future chat, read this backlog together with `docs/TRICKY_DAILY_CYCLE.md`, `scripts/spotify/spotify_daily_cycle.py`, `spotify_discovery.py`, the feedback/preflight code, and the relevant workflow files. Treat `spotify_daily_playlist.py` as the legacy 30-track builder unless its role is explicitly changed. Re-check repository state before assuming any unchecked item is still outstanding.
