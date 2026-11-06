@@ -11,7 +11,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 ## 2026-11-06 — Documentation-only priority; latest evidence reconciled
 
-**Current main:** `aacb70fa0345369398c9bd049d00e24a9ca09eb6` (metadata publication after documentation commit `8153028`).
+**Audit baseline:** main at `aacb70fa0345369398c9bd049d00e24a9ca09eb6`; subsequent same-session commits contain documentation-only audit and handoff updates.
 
 - **Naming:** the public-facing system name is **SHIT Documentation & Continuity**; internal codename **Babel**. Canonical guide: [docs/BABEL.md](../docs/BABEL.md).
 - **Priority:** documentation remains the only active workstream. Do not resume feature implementation, provider checks/enrichment, or Spotify playlist operations until the Maintainability & Documentation acceptance criteria and fresh-session simulation pass.
