@@ -67,6 +67,10 @@ The intended invariant above is **force bypasses the clock gate only**. Current 
 - Verify current main code and latest workflow runs before changing anything. The guide documents expected behavior but is not proof of current live Spotify state.
 - Reconcile the most recent live playlist, feedback, blacklist/whitelist, description and staging state before another live write.
 
+## Latest saved playlist evidence — 2026-11-06
+
+The latest repository snapshot at `assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json` was captured at `2026-11-06T01:48:00.233040+00:00`: 58/58 items fetched, 58 unique URIs, accessible, no item error. This is below the 60-track success target. The snapshot does not establish why the playlist had 58 items or whether it changed afterward; re-run read-only preflight and reconcile cycle/audit state before any later authorized write. No playlist repair is permitted during the documentation-only pause.
+
 ## Open proposals (not merged)
 
 - [PR #159 — Tricky Daily DST schedule gating](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) is open and not merged. Current main uses combined `0 4,5 * * *` and `15 4,5 * * *` schedules plus a local-hour gate; strict cron-to-Eastern-offset matching is proposed, not implemented.
