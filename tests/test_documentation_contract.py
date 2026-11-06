@@ -185,6 +185,20 @@ class DocumentationContractTests(unittest.TestCase):
                 with self.subTest(workflow=workflow.name, phrase=phrase):
                     self.assertNotIn(phrase, overview)
 
+    def test_workflow_catalogue_preserves_sensitive_trigger_boundaries(self):
+        catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        expected = (
+            "Push to main on matching enrichment paths",
+            "Push to `spotify-playlist-manager` branch on matching paths",
+            "Push to main on matching test-trigger/preflight paths",
+            "Push on the live-cycle test-trigger path (any branch)",
+            "Push on the safe-test trigger path (any branch)",
+            "Push to main when this workflow file changes",
+        )
+        for phrase in expected:
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, catalogue)
+
     def test_daily_force_idempotency_gap_is_documented(self):
         workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
         cycle_guide = (ROOT / "docs" / "TRICKY_DAILY_CYCLE.md").read_text(encoding="utf-8")
