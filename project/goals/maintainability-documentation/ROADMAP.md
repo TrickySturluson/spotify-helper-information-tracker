@@ -81,6 +81,10 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
 - Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
 
+## Source-audit evidence added — 2026-11-06
+
+- Great Migration `preview` and `prepare-preview` were traced through the workflow, preparation script, CLI dispatcher, and full migrator. The dry-run path returns before resolver construction, backup creation, or canonical Library writes; no provider requests or Spotify playlist writes occur. A regression test now guards this call chain. The new test is pending CI execution.
+
 ## Current gaps / uncertainty
 - Structural inventory is complete for the stated commit; semantic accuracy of all 55 implementation overviews, 40 compatibility launchers, 44 test modules and 17 workflow overviews remains under review.
 - The 21 technical guides and 13 goal workspaces still require a source-to-document freshness pass, including exact inputs/outputs, provider budgets, credentials, permissions, publication behavior and recovery paths.
