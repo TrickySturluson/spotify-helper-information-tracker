@@ -10,6 +10,14 @@ The documentation system's public-facing name is **SHIT Documentation & Continui
 
 Every substantial project/workstream must have a maintained roadmap. Every meaningful implementation, test, failure, decision, blocker, or change of direction must be reflected in the documentation during the same work session. Do not leave important project knowledge only in chat.
 
+## Active-session brief and Buddy synchronization — mandatory
+
+- At the start of every active SHIT work session, read and maintain [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md).
+- ChatGPT must update the brief throughout the session after every material decision, scope change, implementation/source finding, test or audit result, failure, uncertainty, or blocker. Do not wait until session end.
+- Update the affected goal ROADMAP.md and ACTIONS.md in the same session; update NEXT_WORK.md, LOOSE_ENDS.md, and PROJECT_LOG.md when cross-project state or major decisions change.
+- Buddy must read ACTIVE_SESSION_BRIEF.md at the start of every run, then reconcile it against checked-out source, tests, workflows, branches, and evidence. The brief never overrides newer verified evidence.
+- The brief is a curated project-context bridge, not a raw chat transcript or live message channel. It must exclude unrelated personal conversations, sensitive personal details, credentials, tokens, and secret values. Buddy sees updates only after they are committed and a later run begins; updating the file does not wake or message an already-running job.
+
 ## Required reading before work
 
 At the start of a new task or resumed session:
