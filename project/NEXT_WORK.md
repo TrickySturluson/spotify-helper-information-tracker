@@ -3,6 +3,8 @@
 
 This is the authoritative session handoff. Read this file first when resuming work, then read [LOOSE_ENDS.md](LOOSE_ENDS.md), [PROJECT_LOG.md](PROJECT_LOG.md), and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
 
+**Documentation system identity:** the public-facing name is **SHIT Documentation & Continuity**; the internal codename is **Babel**. See [docs/BABEL.md](../docs/BABEL.md). Documentation remains the sole active workstream until its acceptance criteria pass.
+
 ## Cross-project loose-ends register
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
