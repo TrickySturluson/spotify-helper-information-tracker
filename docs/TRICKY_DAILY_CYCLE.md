@@ -64,6 +64,12 @@ read-back advances the state to `completed`. A pending-verification state is
 evidence that Spotify accepted the write, not proof that the post-change
 snapshot was verified; inspect the audit and recovery artifact before retrying.
 
+### What automatic post-write verification actually proves
+
+The candidate builder filters exact negative track keys/URIs and selects unique candidate URIs before publication. The normal cycle caller also validates exactly 60 recommendations, non-empty primary artists, Spotify track-URI shape and URI uniqueness before it saves a backup and calls the protected replacement helper. After the write, the automatic read-back confirms the new description, exactly 60 returned items and a valid primary artist on every item, then saves the resulting snapshot and marks the cycle completed.
+
+**The automatic post-write check is narrower than the full P0 acceptance target.** It does not explicitly recheck duplicate URIs, recheck the blacklist against the returned snapshot, or compare the returned ordered URI list with the exact ordered candidate list. The separate `--verify-only` mode checks 60 items, duplicate URIs, blacklist membership and the expected description, but it also does not compare against a stored pre-write ordered staging payload. Therefore a completed cycle currently means the implemented checks passed; it must not be described as proving every P0 invariant. These remaining gaps are recorded in `docs/TRICKY_DAILY_TODO.md` and the Tricky Daily roadmap.
+
 Manual dispatch remains midnight-gated unless its `force` input is explicitly
 set to `true`. The separate remote-verification workflow is safe-test-only:
 it compiles modules and runs tests without contacting Spotify or changing a
