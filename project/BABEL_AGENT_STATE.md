@@ -14,7 +14,7 @@ completion_rule: all Maintainability & Documentation roadmap acceptance criteria
 - This is an automation aid for **SHIT Documentation & Continuity (internal codename: Babel)**, not a replacement for source review or human approval.
 - Repository documentation is the durable memory. Every run must read the current handoff and relevant goal records before acting.
 - The worker may make bounded documentation/test changes only. It must not perform SHIT feature work, provider requests, playlist operations, credential rotation, or generated-data writes.
-- A separate publisher job validates the patch allowlist and runs focused documentation tests before updating the dedicated branch.
+- A separate publisher job validates the patch allowlist and runs full unittest discovery before updating the dedicated branch.
 - The workflow does not merge its pull request. Review and merge remain a human-controlled boundary.
 - If this file says `status: complete`, scheduled continuation stops. Never set that state merely because a run has no useful changes or because one batch is finished.
 
