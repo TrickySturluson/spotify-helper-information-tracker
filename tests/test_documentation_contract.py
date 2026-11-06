@@ -81,6 +81,54 @@ class DocumentationContractTests(unittest.TestCase):
             with self.subTest(operation=operation):
                 self.assertIn(f"`[SHIT LIBRARY] {operation}`", guide)
 
+    def test_metadata_enrichment_budgets_match_workflow_and_guides(self):
+        workflow = (ROOT / ".github" / "workflows" / "enrich-music-metadata.yml").read_text(encoding="utf-8")
+        recent_guide = (ROOT / "docs" / "RECENT_TRACK_ENRICHMENT.md").read_text(encoding="utf-8")
+        metadata_guide = (ROOT / "docs" / "AUTOMATED_AUDIO_METADATA.md").read_text(encoding="utf-8")
+
+        dispatch_match = re.search(
+            r"workflow_dispatch:\\s*(.*?)\\npermissions:",
+            workflow,
+            flags=re.DOTALL,
+        )
+        self.assertIsNotNone(dispatch_match, "Could not locate metadata workflow dispatch inputs")
+
+        def input_block(name):
+            match = re.search(
+                rf"^      {name}:\\n(.*?)(?=^      [a-z_]+:|\\Z)",
+                dispatch_match.group(1),
+                flags=re.MULTILINE | re.DOTALL,
+            )
+            self.assertIsNotNone(match, f"Missing workflow input: {name}")
+            return match.group(1)
+
+        def choices_and_default(name):
+            block = input_block(name)
+            choices = re.findall(r"^\\s+-\\s+\\"?([0-9]+)\\"?\\s*$", block, re.MULTILINE)
+            default = re.search(r"^\\s+default:\\s+\\"?([0-9]+)\\"?\\s*$", block, re.MULTILINE)
+            self.assertIsNotNone(default, f"Missing default for {name}")
+            return choices, default.group(1)
+
+        duration_choices, duration_default = choices_and_default("musicbrainz_lookups")
+        artist_choices, artist_default = choices_and_default("artist_profile_lookups")
+        track_choices, track_default = choices_and_default("track_profile_lookups")
+
+        self.assertIn("MUSICBRAINZ_LOOKUPS_PER_RUN:", workflow)
+        self.assertIn("|| '300'", workflow)
+        self.assertIn("MUSIC_PROFILE_LOOKUPS_PER_RUN:", workflow)
+        self.assertIn("|| '100'", workflow)
+        self.assertIn('MUSICBRAINZ_ID_LOOKUPS_PER_RUN: "200"', workflow)
+        self.assertIn("TRACK_PROFILE_LOOKUPS_PER_RUN:", workflow)
+        self.assertIn("|| '200'", workflow)
+        self.assertIn('ALBUM_PROFILE_LOOKUPS_PER_RUN: "100"', workflow)
+
+        self.assertIn(f"MusicBrainz durations {'/'.join(duration_choices)} (default {int(duration_default):,})", metadata_guide)
+        self.assertIn(f"artist profiles {'/'.join(artist_choices)} (default {int(artist_default):,})", metadata_guide)
+        self.assertIn(f"track profiles {'/'.join(track_choices)} (default {int(track_default):,})", metadata_guide)
+        self.assertIn("300 MusicBrainz duration lookups, 100 artist-profile lookups, 200 track-profile lookups, 200 recording-ID lookups and 100 album-profile lookups", metadata_guide)
+        self.assertIn("scheduled workflow processes up to 200 track profiles per run", recent_guide)
+        self.assertIn(f"Manual dispatch offers {', '.join(track_choices[:-1])}, or {track_choices[-1]} lookups (default {track_default})", recent_guide)
+
     def test_documentation_index_lists_every_technical_guide(self):
         docs_root = ROOT / "docs"
         index = (docs_root / "README.md").read_text(encoding="utf-8")
@@ -169,8 +217,8 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Prevent regressions in SHIT's repository-wide documentation contract.
-# Scope: Required control documents, per-goal roadmaps, workflow operation allowlists,
-#        navigation coverage and local links from the main fresh-session entry points.
+# Scope: Required control documents, per-goal roadmaps, workflow operation allowlists and
+#        enrichment-budget alignment, navigation coverage and local links from fresh-session entry points.
 # Run: python -m unittest tests.test_documentation_contract -v
 # Related: AGENTS.md, docs/README.md, project/DOCUMENTATION_RULES.md,
 #          project/ROADMAP.md, and project/goals/*.
