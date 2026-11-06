@@ -117,6 +117,9 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - **Status distinction:** workflow/prompt/state/docs are committed; successful execution is not yet verified. Activation requires the repository secret OPENAI_API_KEY. API usage is billed separately from a ChatGPT subscription. Configure the repository setting that allows GitHub Actions to create pull requests if it is currently disabled.
 - Guide: docs/BABEL_AGENT.md. Do not mark the worker operational until the first Actions run passes and its branch/PR is inspected.
 
+
+**2026-11-06 dispatch milestone:** ChatGPT successfully created `babel/dispatch-20261106-01` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`), proving the connected GitHub integration can emit the configured push trigger. First workflow execution and all job outcomes remain unverified; inspect the Actions run before marking activation complete.
+
 ## Next action
 Continue the semantic audit of all 55 maintained implementation modules, 40 compatibility launchers, 44 test modules and 17 workflow overviews. Prioritize write-capable Spotify tools, scheduled workflows, authentication/secret rotation, shared generated-state writers, migration/recovery paths and data provenance. Reconcile all 21 technical guides, all 13 goal workspaces, open PRs/issues and the cross-project loose-ends register. Add targeted regression checks for real operational contracts, then complete a fresh-session resume simulation. Keep documentation as the only active project priority until that acceptance test passes.
 
