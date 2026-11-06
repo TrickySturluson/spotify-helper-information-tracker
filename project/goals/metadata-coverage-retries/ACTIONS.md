@@ -1,5 +1,10 @@
 # Metadata Coverage & Provider Retries — Actions & Evidence
 
+## 2026-11-06 — Open coverage-planner proposal reconciled
+
+- PR #65 remains an open draft proposing a read-only Library coverage planner. It is not merged behavior; compare its current diff/checks with main before selecting future work.
+- The documentation-only priority pauses all coverage-retry implementation and provider calls until the repository documentation acceptance criteria pass.
+
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
 ## 2026-11-01 — Goal workspace initialized
