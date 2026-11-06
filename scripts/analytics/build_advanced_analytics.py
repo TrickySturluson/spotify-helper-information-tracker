@@ -231,10 +231,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build deeper identity-aware listening analytics from the canonical archive. All timestamps and buckets are UTC. MBIDs are preferred for entity identity; normalized names are fallbacks where Last.fm did not provide an MBID.
-# Location: Maintained implementation in scripts/analytics/build_advanced_analytics.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_advanced_analytics.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_advanced_analytics). See docs/ for longer operational and data-contract guides.
+# Purpose: Build MBID-aware historical timelines, artist lifecycle, rediscovery, rolling-ranking,
+#          listening-session, and monthly-diversity analytics from Last.fm history.
+# Input: Reads data/scrobbles.json; sorts a copy in memory and never mutates the archive.
+# Identity/time: Prefers artist/track/album MBIDs with normalized-name fallback; all buckets are UTC.
+#          Sessions split after a 30-minute gap; artist rediscovery gaps use a 90-day threshold.
+# Outputs: Writes assistant_data/advanced/artist_monthly_timelines.json, artist_lifecycle.json,
+#          artist_rediscoveries.json, discovery.json, rolling_rankings.json, sessions.json,
+#          monthly_diversity.json, and manifest.json.
+# Safety: Reconciles aggregate counts against the source archive and refuses empty input.
+# Run: python compat/build_advanced_analytics.py.
+# Related: docs/REPOSITORY_FILE_INDEX.md and scripts/analytics/build_assistant_data.py.
 # -----------------------------------------------------------------------------

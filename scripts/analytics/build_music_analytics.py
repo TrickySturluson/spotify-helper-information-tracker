@@ -260,10 +260,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build duration trends and recommendation-ready library features from existing data.
-# Location: Maintained implementation in scripts/analytics/build_music_analytics.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_music_analytics.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_music_analytics). See docs/ for longer operational and data-contract guides.
+# Purpose: Rebuild duration trends and recommendation-ready track/artist features from existing data.
+# Inputs: Reads data/scrobbles.json, all 32 assistant_data/music artist shards,
+#         artist_profiles.json, track_profiles.json, and compact lyric analyses from
+#         data/lyrics/library.sqlite3 / existing lyric_features.json when available.
+# Outputs: Writes assistant_data/recommendations/monthly_duration_trends.json,
+#          yearly_duration_trends.json, artist_features.json, track_features.json, and manifest.json.
+# Semantics: Duration metrics use sourced duration records only; unknown durations remain unknown.
+#            Artist, track, and lyric evidence are kept as distinct feature sources; this builder
+#            makes no provider requests and does not alter canonical scrobbles or Spotify playlists.
+# Run: python compat/build_music_analytics.py.
+# Related: docs/AUTOMATED_AUDIO_METADATA.md, docs/TRANSITION_SCORING.md, and docs/LYRICS_LIBRARY.md.
 # -----------------------------------------------------------------------------

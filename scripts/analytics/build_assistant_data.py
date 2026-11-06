@@ -243,10 +243,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build compact, queryable analytics from the canonical Last.fm archive. The raw data/scrobbles.json remains the source of truth. This script creates assistant_data/ JSON files that can be fetched individually without loading the full archive.
-# Location: Maintained implementation in scripts/analytics/build_assistant_data.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_assistant_data.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_assistant_data). See docs/ for longer operational and data-contract guides.
+# Purpose: Build compact, queryable historical listening analytics from the canonical Last.fm archive.
+# Input: Reads data/scrobbles.json; refuses missing or empty input and never edits the archive.
+# Outputs: Rebuilds assistant_data/overview.json; rankings/artists.json, tracks.json and albums.json;
+#          indexes/artists.json; listening_patterns.json; per-year files under years/;
+#          per-month files under months/; and manifest.json.
+# Content: Includes archive-derived rankings, first/last-seen dates, daily/monthly/yearly patterns,
+#          and compact indexes so consumers need not load the full scrobble history.
+# Semantics: Last.fm counts describe imported scrobbles, not complete measured Spotify playback.
+# Run: python compat/build_assistant_data.py.
+# Related: docs/REPOSITORY_FILE_INDEX.md, scripts/analytics/build_stats.py, and shit.py.
 # -----------------------------------------------------------------------------
