@@ -3,6 +3,6 @@
   "mode": "safe-test-only",
   "playlist_mutation": false,
   "requested_by": "ChatGPT-assisted project maintenance",
-  "verification_revision": "daily-force-guard-docs-and-source-comment-ci-retest-2026-11-06",
-  "note": "Run full safe unit suite and focused Daily schedule/description tests after aligning current-policy contract tests, source overview comments and workflow documentation. Confirm the snapshot workflow's focused schedule gate is green. Safe tests and read-only preflight only; no Spotify playlist mutation and no Daily cycle."
+  "verification_revision": "daily-snapshot-index-reconciliation-and-full-audit-2026-11-06",
+  "note": "Run the full safe unit suite, generated-data audit, focused Daily schedule/description tests, and read-only live preflight against the current 29-item snapshot after reconciling the Daily catalog and reference indexes. No Spotify playlist mutation and no Daily cycle."
 }
