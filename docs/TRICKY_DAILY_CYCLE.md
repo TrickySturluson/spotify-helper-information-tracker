@@ -8,8 +8,7 @@ diversity rule. If 60 distinct artists still cannot be found, it searches progre
 catalogue pages and expands the artist pool before allowing repeated artists.
 The per-artist ceiling is relaxed progressively as a last resort; track URIs
 remain unique and playlist removals remain blocked. The fallback is audited.
-The cycle stages and pushes a full 60-track set rather than abandoning a rotation
-solely because artist diversity is limited.
+The cycle now commits an immutable, hashed 60-track staging payload and recovery backup to the repository before any Spotify write. It verifies the committed stage, rechecks the repository head and live playlist after the commit, then publishes only the exact ordered staged URIs. Artist diversity may relax as a last resort; track uniqueness and exclusions never do.
 Its discovery engine keeps established taste and Last.fm similarity as the
 foundation, uses recent listening momentum as a small soft nudge, and retains
 room for exploration outside current patterns.
@@ -19,7 +18,7 @@ room for exploration outside current patterns.
 
 ## Latest repository snapshot state — 2026-11-06
 
-The latest confirmed live Daily snapshot was captured at `2026-11-06T17:41:02.779553+00:00` by snapshot workflow run [#42263830309](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42263830309): 29 accessible items were reported and fetched, all 29 URIs were unique, and the removal baseline contains 29 rows. The Daily blacklist contains 55 entries with zero whitelist entries. The reference catalog now reports the same 29 items, and the track/artist index has zero stale or missing Daily memberships. The generated-data audit and full 481-test suite passed on the refreshed state. The prior 37-item snapshot remains in history. The snapshot/catalog/index commit is `d24fb9acbc17a8acaff4e8e893a7681e91c8a5bd`. This was a Spotify GET-only read and repository publication; no playlist tracks or description were changed.
+The latest confirmed live Daily snapshot was captured at `2026-11-06T17:41:02.779553+00:00` by snapshot workflow run [#42263830309](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42263830309): 29 accessible items were reported and fetched, all 29 URIs were unique, and the removal baseline contains 29 rows. The Daily blacklist contains 55 entries with zero whitelist entries. The reference catalog now reports the same 29 items, and the track/artist index has zero stale or missing Daily memberships. The generated-data audit and full 500-test suite passed on the refreshed state. The prior 37-item snapshot remains in history. The snapshot/catalog/index commit is `d24fb9acbc17a8acaff4e8e893a7681e91c8a5bd`. This was a Spotify GET-only read and repository publication; no playlist tracks or description were changed.
 
 ## Trend profile
 
@@ -60,7 +59,7 @@ GitHub may delay scheduled events. The current gate allows a scheduled catch-up 
 
 Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
 
-**Force/idempotency correction (source-checked 2026-11-06):** `should_run_cycle()` allows `--force` to bypass the clock-window gate, but `cycle_already_completed(config, cycle_date)` is called independently without a force override. Force bypasses the clock gate only. The same-Eastern-date completion guard therefore still blocks duplicate forced dispatches before Spotify client construction. A focused regression test covers this. The correction is implemented; remote CI is not yet green because the latest runs exposed stale documentation-contract assertions and a brittle source-count assertion. See [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
+**Force/idempotency correction (CI-verified 2026-11-06):** `should_run_cycle()` allows `--force` to bypass the clock-window gate, but `cycle_already_completed(config, cycle_date)` is called independently without a force override. Force bypasses the clock gate only. Duplicate forced dispatches are blocked before Spotify client construction. Full safe CI run #42268351897 passed 500 tests. See [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
 
 
 After Spotify accepts the playlist replacement, the runner immediately writes
@@ -75,7 +74,7 @@ snapshot was verified; inspect the audit and recovery artifact before retrying.
 
 The candidate builder filters exact negative track keys/URIs and selects unique candidate URIs before publication. The normal cycle caller also validates exactly 60 recommendations, non-empty primary artists, Spotify track-URI shape and URI uniqueness before it saves a backup and calls the protected replacement helper. After the write, the automatic read-back confirms the new description, exactly 60 returned items and a valid primary artist on every item, then saves the resulting snapshot and marks the cycle completed.
 
-**The automatic post-write check is narrower than the full P0 acceptance target.** It does not explicitly recheck duplicate URIs, recheck the blacklist against the returned snapshot, or compare the returned ordered URI list with the exact ordered candidate list. The separate `--verify-only` mode checks 60 items, duplicate URIs, blacklist membership and the expected description, but it also does not compare against a stored pre-write ordered staging payload. Therefore a completed cycle currently means the implemented checks passed; it must not be described as proving every P0 invariant. These remaining gaps are recorded in `docs/TRICKY_DAILY_TODO.md` and the Tricky Daily roadmap.
+**Automatic post-write verification now enforces the staged publication contract.** The returned playlist must have complete pagination, exactly 60 entries, exact ordered URI equality with the committed/hash-verified stage, unique valid track URIs, valid primary artists, and no current blacklist hits. A mismatch leaves the cycle pending verification and must not be retried blindly. This is unit/regression-tested; no live replacement has been run in this session.
 
 ## Rotating description
 
@@ -115,3 +114,11 @@ To inspect or regenerate it independently:
 ```bash
 python compat/spotify_listening_trends.py
 ```
+
+## Durable staging and failure-safe publication — 2026-11-06
+
+Before a production track replacement, the runner writes a unique JSON stage containing the exact ordered 60 URIs, candidate metadata, intended description, pre-write snapshot ID/URI order, recovery backup path, and a SHA-256 digest over the complete record. In GitHub Actions it commits and pushes the stage, backup, audit, candidate/trend/feedback and removal-reconciliation outputs to main, then reads the committed blob back and verifies its hash/order. A push failure aborts before Spotify mutation. A repository-head check and second live playlist/policy recheck run after the stage commit and immediately before replacement.
+
+spotify_playlist_cloud.replace_playlist() reconciles write exceptions by reading the live ordered URIs. Exact target means the write applied despite a lost response; exact pre-write order means it did not apply; partial or unreadable state raises an explicit ambiguous error. The Daily runner persists a same-date guard for ambiguous outcomes. A surviving production stage blocks same-date automatic retries. After a successful write, the complete live snapshot must match the staged ordered URIs exactly, with 60 unique valid track URIs, valid primary artists and no current blacklist hits.
+
+The safe --stage-only action performs the full candidate/pre-write/stage-commit/read-back path but exits before Spotify playlist writes or description changes. Its first Actions attempt (#42268583897) stopped during candidate search because Spotify returned HTTP 429 QUOTA_EXCEEDED with Retry-After: 5781 seconds; it failed before stage creation and the log confirms no playlist changes were attempted. Respect the cooldown; do not retry Spotify API calls until it expires. The stage-only action is a no-write verification hook, not a production cycle.
