@@ -28,6 +28,12 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - The new guide and index updates need a fresh passing CI run. The first docs-contract test itself passed on commit `38ad97e`; subsequent additions are not yet verified.
 - Next: inspect CI after the latest commits; fix test failures; then audit every maintained Python/workflow overview and verify docs against actual implementation.
 
+## 2026-11-05 — Dedicated Tricky Daily workstream added
+
+- Added project/goals/tricky-daily/ROADMAP.md, README.md and ACTIONS.md to preserve Daily's 60-track contract, exclusions, forced-run parity, feedback semantics, scheduling, recovery and live verification independently of the wider playlist-intelligence roadmap.
+- Added the Daily workspace to the goal index, project-wide roadmap and docs index. The dynamic documentation-contract test will automatically require its three core files.
+- Next: inspect the latest Daily curator CI run for the new goal, then audit the actual Daily implementation/workflows and current live evidence against the P0 acceptance criteria. Do not infer live correctness from documentation or unit tests alone.
+
 ## Current active task — Playlist intelligence five-axis fit model
 
 **State: read-only preview pipeline merged to main** (PR #126, squash commit `2f84924b8e76510a1648bfc3e4e369935aa2bdf0`). Model version `five-axis-fit-v0.3`. Read [playlist-intelligence README](goals/playlist-intelligence/README.md), [model contract](goals/playlist-intelligence/PLAYLIST_FIT_MODEL.md), [preview runner guide](goals/playlist-intelligence/PLAYLIST_FIT_PREVIEW.md), and [ACTIONS.md](goals/playlist-intelligence/ACTIONS.md) before continuing.
