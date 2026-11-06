@@ -285,10 +285,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Exposure-aware Tricky Daily feedback: saves, post-add plays and removals. This module records observed outcomes only. Lack of Daily listening is neutral; missing tracker coverage is unknown rather than zero.
-# Location: Maintained implementation in scripts/spotify/spotify_daily_feedback.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_daily_feedback.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Observe Tricky Daily post-exposure feedback from saves, playback,
+#          Last.fm scrobbles and removals without changing the playlist.
+# Inputs: Spotify liked-track observations through the read-only manager client,
+#         optional playback_data/segments.jsonl and data/scrobbles.json.
+# Outputs/state: Merges observations into assistant_data/spotify/daily_feedback.json
+#                with source timestamps and explicit coverage status.
+# Semantics: No observed play is neutral; missing tracker coverage is unknown,
+#            not a negative signal. Exposure, saves and post-add plays remain
+#            distinct evidence types.
+# Side effects/safety: Read-only Spotify API observations plus local feedback
+#                      JSON writes; no Spotify playlist mutations.
+# Run: python compat/spotify_daily_feedback.py observe
+# Related: docs/TRICKY_DAILY_CYCLE.md; docs/WORKFLOWS.md;
+#          scripts/spotify/spotify_daily_playlist.py.
 # -----------------------------------------------------------------------------
