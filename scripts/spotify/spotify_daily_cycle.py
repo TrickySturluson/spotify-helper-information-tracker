@@ -454,21 +454,14 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Rotate Tricky Daily to exactly 60 tracks once per Eastern calendar day.
-# Artist diversity: First seeks one track per primary artist; after alternate search-page
-#                   retries, fallback progressively raises the per-artist ceiling (starting
-#                   at two) only as needed to reach 60 unique track URIs. Fallback is audited.
-# Schedule: GitHub Actions delivers at 04:00/04:15 and 05:00/05:15 UTC; a ZoneInfo
-#           gate selects midnight America/New_York and the 15-minute recovery delivery.
-# Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
-#         unlocked state, 60-track minimum, URI validation, duplicate prevention,
-#         a pre-change recovery snapshot, and a same-Eastern-date completion guard.
-#         Known P0 discrepancy: current --force also bypasses that completion guard;
-#         intended behavior is to bypass the clock gate only. Do not treat the broader
-#         current behavior as the desired contract.
-# Feedback: Rotation removals are neutral curator_rotation events in Daily's own
-#           feedback store, never playlist-fit rejection or a negative preference.
-# Dispatch: Manual runs are clock-gated unless --force is explicit; currently --force
-#           bypasses both the clock gate and same-date guard. --description-only and
-#           --verify-only are separate actions.
-# Recovery: The pre-change backup is uploaded by the workflow and linked in manager state.
+# Candidates: Seek one track per primary artist; after alternate search-page retries, relax
+#             the artist cap from two only as needed to reach 60 unique URIs; audit fallback.
+# Schedule: UTC cron 04:00/04:15 and 05:00/05:15; ZoneInfo selects Eastern midnight.
+# Safety: Exact playlist identity/owner, managed policy, explicit unlock, URI/deduplication,
+#         pre-change backup and 60-track read-back. Known P0 discrepancy: current --force
+#         also bypasses that completion guard; intended behavior is to bypass the clock gate only.
+# Feedback: Rotation removals are neutral curator_rotation events, never negative preference.
+# Dispatch: --force bypasses clock and same-date guard; --description-only and --verify-only
+#           are separate actions.
+# Recovery: Workflow uploads the pre-change backup and links it in manager state.
 # -----------------------------------------------------------------------------
