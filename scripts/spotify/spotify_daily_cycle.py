@@ -144,7 +144,28 @@ def persist_daily_stage(stage_path, backup_path, cycle_date):
     )
     # A non-fast-forward rejection is a hard stop before the Spotify mutation.
     subprocess.run(["git", "push", "origin", "HEAD:main"], check=True)
-    return True
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+    )
+    return result.stdout.strip()
+
+
+def assert_repository_head_unchanged(stage_commit_sha):
+    """Abort if another main-branch commit lands after the durable stage push."""
+    if os.environ.get("GITHUB_ACTIONS", "").lower() != "true" or not stage_commit_sha:
+        return
+    subprocess.run(["git", "fetch", "origin", "main"], check=True, capture_output=True, text=True)
+    local_sha = subprocess.run(
+        ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+    ).stdout.strip()
+    remote_sha = subprocess.run(
+        ["git", "rev-parse", "origin/main"], check=True, capture_output=True, text=True
+    ).stdout.strip()
+    if local_sha != stage_commit_sha or remote_sha != stage_commit_sha:
+        raise manager.ManagerError(
+            "Repository main changed after the Daily payload was durably staged; "
+            "aborting before Spotify mutation so newer lock/state changes cannot be overwritten."
+        )
 
 
 def verify_daily_stage(stage_path, expected_hash, expected_uris, before_uris, before_snapshot_id):
@@ -238,14 +259,14 @@ def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, b
         target_track_count=len(uris),
         prewrite_snapshot_id=record["prewrite_snapshot_id"],
     )
-    persisted = persist_daily_stage(stage_path, backup, cycle_date)
-    if os.environ.get("GITHUB_ACTIONS", "").lower() == "true" and not persisted:
+    stage_commit_sha = persist_daily_stage(stage_path, backup, cycle_date)
+    if os.environ.get("GITHUB_ACTIONS", "").lower() == "true" and not stage_commit_sha:
         raise manager.ManagerError("Daily stage was not durably committed; refusing playlist mutation.")
     verify_daily_stage(
         str(stage_path), payload_sha256, uris, before_uris,
         (before.get("playlist") or {}).get("snapshot_id"),
     )
-    return str(stage_path), payload_sha256
+    return str(stage_path), payload_sha256, stage_commit_sha
 
 
 def assert_live_snapshot_unchanged(sp, expected_snapshot, expected_owner_id):
@@ -586,11 +607,12 @@ def main():
             "aborting before playlist mutation."
         )
     next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
-    stage_path, payload_sha256 = create_daily_stage(
+    stage_path, payload_sha256, stage_commit_sha = create_daily_stage(
         cycle_date, before, before_uris, recommendations, uris, backup, next_description
     )
-    # The durable stage commit can take time; recheck the exact live contents
-    # and removal policy again immediately before the Spotify write.
+    # The durable stage commit can take time; verify main did not advance
+    # (for example, a concurrent lock change) and recheck the live playlist.
+    assert_repository_head_unchanged(stage_commit_sha)
     playlist, _ = assert_live_snapshot_unchanged(sp, before, me.get("id"))
     fresh_feedback = discovery.load_playlist_feedback([], DAILY_ID)
     newly_blocked = [
