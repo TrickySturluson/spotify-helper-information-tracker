@@ -1,3 +1,9 @@
+## 2026-11-06 — Booze preset snapshot superseded; no sorter run
+
+- Latest Booze or Boos! snapshot `4diIlnF8BlgoJrwUfejf49` contains 92 accessible items as of `2026-11-06T01:47:59.824523+00:00`. The older 64-track fit candidate manifest is stale for this snapshot.
+- The sequencing guide now records the hard Halloween-relevance and party-energy gates, section arc, rejected novelty staples, duplicate/removal protections and explicit preview/confirmation boundary.
+- No sequence preview or Spotify playlist write was performed. Sorting work remains paused until the documentation-only priority is complete.
+
 # Playlist Sequencing — Actions & Evidence
 
 ## 2026-11-06 — Sequencing work paused for documentation audit
