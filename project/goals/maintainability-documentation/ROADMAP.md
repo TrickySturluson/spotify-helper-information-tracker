@@ -35,7 +35,7 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 
 - [x] Create `project/ACTIVE_SESSION_BRIEF.md` as a curated, privacy-safe bridge between active ChatGPT work and Buddy. Created on main in commit `55f1403c8feb614b1b6763ce8873499bdcbe4c86`.
 - [x] Update Buddy's continuation prompt to read the active brief first and reconcile it against checked-out source/evidence. Prompt update commit: `bad03f65cbe92690718278440886a84014fd79a1`.
-- [ ] Make the brief a mandatory same-session operating rule in all first-contact and documentation guidance; keep the relevant roadmap/action history synchronized.
+- [x] Make the brief a mandatory same-session operating rule in first-contact and documentation guidance (`AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL_AGENT.md`, Buddy continuation prompt, roadmap and action history). Commits: `798674d`, `e9339c7`, `991b1ff`, `bad03f6`, `01ee1d2`, `5899053`.
 - [ ] Verify Buddy reads the brief in its first successful run and reports reconciliation with live repository state.
 - [ ] Perform a cold-start simulation proving the brief and repository docs are sufficient without prior chat history.
 - [ ] Confirm privacy boundaries: curated SHIT context only; no raw chat dumps, unrelated personal context, or secret values.
