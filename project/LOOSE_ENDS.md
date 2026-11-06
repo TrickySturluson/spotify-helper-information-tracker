@@ -13,8 +13,8 @@ This section supersedes the older documentation-first freeze and Codex-worker de
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-06 (audit baseline `aacb70fa`; subsequent same-session commits contain documentation-only audit updates)  
-**Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
+**Last reviewed:** 2026-11-06 (Daily snapshot/index and publication-safety implementation; latest verified full safe CI run #42268351897)  
+**Review scope:** current main, active Babel documentation work, Tricky Daily safeguards, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
 ## Babel AI continuation — INTEGRATED; RUNNER FIX VERIFIED; API QUOTA BLOCKER
 
@@ -24,9 +24,9 @@ This is the cross-project register of known unfinished work discovered from the 
 - **Current blocker:** OpenAI API project/organization quota or billing limit. User must check API billing/usage limits and ensure quota is available. ChatGPT subscription does not supply API credits. Do not retry until the user confirms quota is available; never switch to `unsafe`.
 - Repository tests/security are green on the runner-fix commit: Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed 478 tests; security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed.
 - Buddy remains integrated but not operationally verified until a post-quota run completes Codex, validation, full tests, and isolated PR publication. See [docs/BABEL_AGENT.md](../docs/BABEL_AGENT.md).
-## Documentation-first audit checkpoint — ACTIVE PRIORITY
+## Babel documentation and continuity — ACTIVE PARALLEL WORKSTREAM
 
-The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
+Babel remains a major active workstream, but it does not freeze other SHIT feature work that the user has explicitly authorized. Buddy remains documentation-only. Keep the documentation acceptance criteria, cold-start test, and source-of-truth discipline active while authorized feature work proceeds in parallel.
 
 - **Audit baseline:** `aacb70fa0345369398c9bd049d00e24a9ca09eb6`; subsequent same-session commits contain documentation-only audit updates. Canonical documentation identity: [docs/BABEL.md](../docs/BABEL.md).
 - **Structure:** all 13 goal workspaces have ROADMAP.md, README.md and ACTIONS.md. The 12 non-documentation roadmaps now separate the current documentation-only action from their preserved next feature action.
@@ -39,8 +39,10 @@ The user explicitly requires documentation to be the sole active project priorit
 
 ## Newly verified high-risk documentation findings
 
-- **Tricky Daily force/idempotency P0 — implementation corrected, CI pending:** `--force` now bypasses only the clock-window gate; `cycle_already_completed(config, cycle_date)` remains independent and blocks duplicate forced runs on an already-completed Eastern date. A regression test verifies the duplicate exits before Spotify client construction. Remote CI is being rerun after stale documentation/source comments were corrected.
-- **Tricky Daily snapshot and reference index reconciled:** run #42263830309 captured 29 accessible, unique tracks at `2026-11-06T17:41:02.779553+00:00`, aligned the 29-row removal baseline, and retained 55 blacklisted removals with zero whitelist entries. The reference catalog now reports 29 items; track/artist indexes have zero stale or missing Daily memberships. The generated-data audit and 481-test suite passed on the refreshed state. The prior 37-item snapshot remains in history. This was GET-only and did not mutate Spotify. Automatic live-cycle post-write verification still lacks durable exact-order staging comparison and explicit returned-snapshot duplicate/blacklist rechecks; these remain P0 blockers.
+- **Tricky Daily force/idempotency P0 — implemented and CI-verified:** `--force` bypasses only the clock-window gate; `cycle_already_completed(config, cycle_date)` remains independent and blocks duplicate forced runs on an already-completed Eastern date. Full safe CI run #42268351897 passed 500 tests, including the forced duplicate exiting before Spotify client construction.
+- **Tricky Daily publication safety — implemented, end-to-end stage push pending:** immutable 60-URI SHA-256 stage plus backup is committed before a production write; committed blob is read back; repository HEAD and live playlist are rechecked; ambiguous write responses are reconciled by exact ordered read-back; post-write validation checks exact order/count/uniqueness/artist validity/blacklist; same-date pending stages block blind retries. Guided resume/rollback/discard remains open.
+- **Tricky Daily stage-only attempt:** workflow run #42268583897 authenticated but hit Spotify HTTP 429 QUOTA_EXCEEDED during candidate search with Retry-After 5781 seconds. It failed before stage creation/commit and confirms no playlist changes were attempted. The GitHub stage commit/push path remains unproven end-to-end; do not retry Spotify calls until the full cooldown elapsed.
+- **Tricky Daily snapshot and reference index reconciled:** run #42263830309 captured 29 accessible, unique tracks at `2026-11-06T17:41:02.779553+00:00`, aligned the 29-row removal baseline, and retained 55 blacklisted removals with zero whitelist entries. The reference catalog reports 29 items; track/artist indexes have zero stale or missing Daily memberships. The generated-data audit passed and the prior 37-item snapshot remains in history. This was GET-only and did not mutate Spotify.
 - **Stale Library migration report:** latest canonical audit in run #42166959478 reported 13,239 songs, while `assistant_data/music/library/migration_report.json` still records 13,005 from the 2026-11-01 migration. Treat the report as historical until a safe generated-report refresh is planned after the documentation pause.
 - **Resolver write boundary:** `MusicLibrary()` may rebuild/write `library_index.json` when the index is missing, empty or incomplete. Use `library health` for strictly read-only structural checks.
 - **Credential verification write boundary:** Great Migration `verify` can persist a replacement Spotify refresh token to the repository Actions secret through the narrowly scoped GitHub App. Local verification does not persist it; cloud verification is not purely read-only.
