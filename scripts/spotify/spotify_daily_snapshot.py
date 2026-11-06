@@ -27,6 +27,7 @@ sys.path.insert(0, str(SOURCE_DIR))
 import spotify_playlist_manager as manager
 import spotify_discovery as discovery
 import spotify_reference_library as reference_library
+import spotify_daily_feedback as daily_feedback
 
 DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
 SNAPSHOT_PATH = Path("assistant_data/spotify/playlists") / f"{DAILY_ID}.json"
@@ -190,6 +191,13 @@ def refresh():
             "advance the baseline or publish a potentially unsafe snapshot."
         )
 
+    # Replay the complete blacklist to recover interrupted feedback publication.
+    removal_payload = manager.read(Path("playlist_removed_tracks.json"), {})
+    daily_removals = (
+        ((removal_payload.get("playlists") or {}).get(DAILY_ID) or {}).get("removed", [])
+        if isinstance(removal_payload, dict) else []
+    )
+    feedback_events_added = daily_feedback.record_manual_removals(daily_removals)
     previous = cached if isinstance(cached, dict) else {}
     if (
         previous.get("items_accessible") is True
@@ -229,6 +237,7 @@ def refresh():
         unique_uri_count=len(set(uris)),
         duplicate_uri_count=len(uris) - len(set(uris)),
         removal_reconciliation=removal_result,
+        manual_removal_feedback_events_added=feedback_events_added,
         baseline_count=baseline_count,
         spotify_requests=sp.request_metrics,
         spotify_playlist_mutations=0,
@@ -237,7 +246,8 @@ def refresh():
         f"Tricky Daily snapshot refreshed: {fetched} accessible items; "
         f"{len(set(uris))} unique URIs; {removal_result.get('newly_removed', 0)} "
         f"new manual removals recorded; {removal_result.get('removed_total', 0)} "
-        f"total blacklisted; snapshot_id={record.get('snapshot_id')}."
+        f"total blacklisted; {feedback_events_added} removal feedback events reconciled; "
+        f"snapshot_id={record.get('snapshot_id')}."
     )
 
 
@@ -254,7 +264,7 @@ if __name__ == "__main__":
 # Purpose: Refresh only the Tricky Daily reference snapshot and detect manual removals.
 # Spotify access: GET-only; validates account ownership, exact playlist identity,
 #                 item accessibility, and complete pagination before publishing.
-# Repository outputs: Daily snapshot/history, catalog/index/health, removal baseline, blacklist, manager audit.
+# Repository outputs: Daily snapshot/history, catalog/index/health, removal baseline, blacklist, feedback, manager audit.
 # Safety: Reconciles removals against the last accepted-cycle marker before advancing
 #         the baseline. An unaligned baseline or incomplete live read fails closed.
 # Run: python scripts/spotify/spotify_daily_snapshot.py (repository root).
