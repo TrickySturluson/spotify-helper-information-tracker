@@ -1,7 +1,7 @@
 # Listening Analytics & Evidence Sources — Roadmap
 
 **Last reviewed:** 2026-11-06  
-**Status:** Architecture and source rules established; fresh coverage and semantic verification required.
+**Status:** Architecture and source rules established; fresh coverage and semantic verification required. Feature work is paused under the repository-wide documentation-only priority.
 
 ## Repository-wide priority override — 2026-11-06
 
