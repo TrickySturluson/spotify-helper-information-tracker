@@ -9,6 +9,9 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 ## 2026-11-06 — Documentation-first priority reaffirmed; live repository audit resumed
 
+**Additional finding:** a search of test modules found 11 generic fallback FILE OVERVIEW blocks. They have now been replaced with test-specific descriptions in draft PR #161, and `tests/test_script_layout.py` has a new regression check rejecting that boilerplate. `docs/CODE_DOCUMENTATION.md` and `docs/README.md` now describe this contract. This new test has not yet been CI-verified on the latest PR head. Continue with exact-head CI/security verification, then manually sample remaining test overviews and reconcile the technical guides against their source contracts.
+
+
 **Latest continuation:** Draft PR [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161) is on `docs/semantic-documentation-audit` at head `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`, based on main `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`. Earlier tests #42150802119 and security scan #42150801849 passed on prior head `1bbfed67ae63c77628d6f8b775b7d12c50060d11`; they do not verify the current head. The connected GitHub status/run lookup returned no checks for `5ec318d`, so current-head CI/security are outstanding. Do not merge until exact-head checks pass. Manual samples of playlist manager, cloud handler, reference library and offline migration overviews on the PR branch now show substantially more specific operational contracts.
 
 
