@@ -25,6 +25,14 @@ class DocumentationContractTests(unittest.TestCase):
             "project/NEXT_WORK.md",
             "project/LOOSE_ENDS.md",
             "project/PROJECT_LOG.md",
+            "compat/README.md",
+            "tests/README.md",
+            "data/README.md",
+            "assistant_data/README.md",
+            "playback_data/README.md",
+            ".github/README.md",
+            "scripts/README.md",
+            "project/README.md",
         )
         for relative in required:
             with self.subTest(path=relative):
