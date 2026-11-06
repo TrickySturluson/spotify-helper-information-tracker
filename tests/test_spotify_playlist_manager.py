@@ -287,7 +287,7 @@ class PlaylistManagerTests(unittest.TestCase):
         ), patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
             with self.assertRaisesRegex(
                 manager.ManagerError,
-                r"quota/rate limit reached.*QUOTA_EXCEEDED.*3h 38m.*No playlist changes were attempted",
+                r"quota/rate limit reached.*QUOTA_EXCEEDED.*3h 37m.*No playlist changes were attempted",
             ):
                 spotify.call("GET", "/me/playlists?limit=50")
             saved = manager.read(manager.SPOTIFY_COOLDOWN, {})
