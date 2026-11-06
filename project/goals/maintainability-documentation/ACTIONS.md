@@ -2,6 +2,18 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Semantic module-overview audit expanded to 27 modules
+
+- **Scope added:** 12 further modules were inspected and rewritten: playlist metadata enrichment; lyric-to-recommendation merge; GetSongBPM fallback; pure mood inference; artist-profile enrichment; local lyrics library; AcousticBrainz enrichment; MusicBrainz duration and recording-ID enrichment; track-profile enrichment; playlist-removal tracking; and playlist intelligence.
+- **Branch:** `docs/semantic-overview-quality-20261105`; this batch's last module update was followed by test-reference correction commit `3333aff313f8ae09f92566b2149ff9ad4c294aed`.
+- **Documentation details:** clarified provider credentials/caps/cooldowns, exact-identity requirements, local versus network side effects, transient lyric handling and compact fingerprint storage, removal baseline/blacklist semantics, unlocked-only deduplication, and read-only profile diagnostics.
+- **Guardrail:** expanded the targeted anti-boilerplate regression list to cover all 27 manually reviewed modules across analytics, Last.fm, music and Spotify. Corrected the mood-inference test reference to the existing `tests/test_playlist_intelligence.py`.
+- **Verification:** sequential GitHub file updates succeeded. Guide/test paths were checked; the nonexistent `tests/test_mood_inference.py` reference was removed. The regression test has not yet run in CI.
+- **Safety:** documentation comments and test assertions only; no runtime behavior, workflows, generated data, provider state, listening history or playlists changed.
+- **Remaining:** audit the rest of the repository for less obvious inaccurate or incomplete overviews, then review compatibility launchers, tests, workflows, technical guides and the full tracked-file inventory. This 27-module batch is not the documentation completion milestone.
+- **Next action:** inspect the current branch diff and run an appropriate documentation test workflow only after confirming its triggers and side effects; continue the remaining file and guide audit.
+
+
 ## 2026-11-05 — Semantic module-overview audit: first 15 modules repaired
 
 - **Purpose:** continue beyond FILE OVERVIEW marker presence and make the in-file contracts useful to a fresh contributor or assistant.
