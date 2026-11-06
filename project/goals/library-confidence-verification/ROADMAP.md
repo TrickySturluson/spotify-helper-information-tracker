@@ -24,8 +24,12 @@ Confidence categories are categorical, not calibrated probabilities. Distinct so
 ## Acceptance criteria
 Every confidence value traces to evidence and match method; ambiguous matches never become high; repeated same-provider evidence is not independent; audit is read-only and deterministic; downstream tools respect field-level confidence.
 
-## Next action
-After documentation completion, investigate the 214 current track_tags confidence mismatches from CI #42154433350, remeasure the residual 1,968 missing-provenance fields with the freshness planner, and review the existing Candy Claws duplicate artist/album candidates. Do not bulk-rewrite confidence or merge entities from the audit alone.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+After documentation completion, investigate the 214 current track_tags confidence mismatches from CI #42154433350, remeasure the residual 1,968 missing-provenance fields with the freshness planner, and review the existing Candy Claws duplicate artist/album candidates. Do not bulk-rewrite confidence or merge entities from the audit alone.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist intelligence](../playlist-intelligence/ROADMAP.md)
