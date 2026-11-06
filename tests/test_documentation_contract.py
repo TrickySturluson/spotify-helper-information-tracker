@@ -266,6 +266,18 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertNotIn("complete the tracked-file inventory", next_action)
         self.assertIn("previous “local checkout required” inventory blocker is resolved", handoff)
 
+    def test_reference_library_snapshot_evidence_is_not_misrepresented_as_listening(self):
+        source = (ROOT / "scripts" / "spotify" / "spotify_reference_library.py").read_text(encoding="utf-8")
+        library_guide = (ROOT / "docs" / "PER_RECORDING_MUSIC_LIBRARY.md").read_text(encoding="utf-8")
+        operations_guide = (ROOT / "docs" / "SPOTIFY_API_OPERATIONS.md").read_text(encoding="utf-8")
+        workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+
+        self.assertIn("canonical MusicLibrary", source)
+        self.assertIn("not a Last.fm scrobble", source)
+        self.assertIn("not a play, scrobble, like, save, or proof of listening", library_guide)
+        self.assertIn("not Spotify playback, likes, saves, or Last.fm scrobbles", operations_guide)
+        self.assertIn("canonical MusicLibrary identity/playlist-source context", workflow_catalogue)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
