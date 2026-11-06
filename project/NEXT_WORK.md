@@ -7,6 +7,9 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+> **How to read the remainder of this file:** The active priority, current PR/evidence boundary, and next executable documentation action are in the opening handoff section above. The longer goal-by-goal notes below preserve historical context and evidence; their older feature-oriented “Next” bullets are not current authorization while the documentation-only priority is active. Use each goal's latest ROADMAP/README/ACTIONS and the current LOOSE_ENDS register before resuming that workstream.
+
+
 ## 2026-11-06 — Documentation-first priority reaffirmed; live repository audit resumed
 
 **Active priority: documentation only.** Do not begin feature development, playlist operations, enrichment runs, or unrelated project work until the acceptance criteria in the Maintainability & Documentation roadmap are satisfied.
