@@ -1,12 +1,22 @@
+## 2026-11-06 — Scheduled ChatGPT Buddy path reconciled; draft PR #163 is current
+
+- **Current execution path:** the scheduled ChatGPT task **SHIT Buddy — daily Babel continuation** uses the connected GitHub app. It is distinct from the repository-hosted Codex/API workflow; the latter remains quota-blocked and must not be triggered unless the user explicitly reauthorizes that separate experiment.
+- **Publication boundary:** the persistent branch babel/chatgpt-buddy and one open draft PR #163 already exist. This batch updates that branch/PR; it does not create another branch or PR, and it does not write to main.
+- **PR #163 pre-batch evidence:** head 2090ad97648851f5138856795600f4e582849efb, base main, open/draft, six commits ahead and one behind, GitHub mergeable state clean. Daily curator tests [#42188373512](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42188373512) and public repository security scan [#42188373527](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42188373527) passed on that pre-batch head only; inspect CI on the updated head before relying on this batch.
+- **PR #161 (read-only):** open/draft, 117 changed files, 2,330 additions and 493 deletions; current compare is 571 commits ahead and 135 behind main, and GitHub reports mergeable_state=dirty. Its prior tests/security checks passed on its own head; no reviews or review threads are present. Do not merge or rebase blindly.
+- **PR #162 (read-only):** open/draft, one temporary connectivity-proof file. Security scan [#42186485000](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42186485000) passed; Daily curator tests [#42186485002](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42186485002) failed because the PR-only guide is not indexed in docs/README.md (test_documentation_index_lists_every_technical_guide). Do not modify this temporary PR; the user retains the decision to keep or close it.
+- **Daily verification rule:** the mandatory daily Buddy-check rule is proposed in PR #163. It becomes mainline policy only after human review and merge.
+- **Next:** finish read-back and full-diff review for this narrow continuity reconciliation, inspect new PR CI, then select the next highest-risk source-to-guide semantic mismatch. Keep feature work, provider operations and playlist changes paused until Babel's acceptance criteria and cold-start simulation pass.
+
 # SHIT — Next Work
 > **Mandatory continuity instruction:** Read [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md) before continuing. Read the relevant goal's `ROADMAP.md`, `README.md`, and `ACTIONS.md`; update them during the same session as work proceeds. The roadmap is the durable plan; this file is the current cross-project handoff.
 
 This is the authoritative session handoff. Read this file first when resuming work, then read [LOOSE_ENDS.md](LOOSE_ENDS.md), [PROJECT_LOG.md](PROJECT_LOG.md), and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
 
-## 2026-11-06 — ChatGPT can now create the Buddy dispatch trigger
+## 2026-11-06 — ChatGPT can create the separate repository-hosted Codex dispatch trigger
 
 - Successfully created `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`). This verifies the connected GitHub integration permits the narrow branch-and-marker write needed to emit the workflow's configured push event.
-- Workflow execution is not yet verified; inspect the Actions run associated with that commit. Do not claim Buddy ran until Codex, validation and publisher results are confirmed.
+- This marker triggers only the separate repository-hosted Codex/API workflow, not the current scheduled ChatGPT Buddy task. Its two run outcomes are recorded below; the first failed in sandbox setup and the retry was blocked by API quota.
 - Strategic direction: use ChatGPT as SHIT's conversational front end for planning, querying, controlled repository changes and verification. Keep GitHub as the durable source of truth, use narrow action-specific permissions, require explicit authorization for consequential changes, and retain review gates for autonomous proposals. Do not grant broad repository or Spotify write access merely to make the interface convenient.
 
 **Documentation system identity:** the public-facing name is **SHIT Documentation & Continuity**; the internal codename is **Babel**. See [docs/BABEL.md](../docs/BABEL.md). Documentation remains the sole active workstream until its acceptance criteria pass.
@@ -19,18 +29,18 @@ Proposed direction: establish a coordinated SHIT-wide health system covering dat
 
 Design constraints to preserve: observe/diagnose before mutation; canonical data and provenance are protected; Last.fm scrobbles remain distinct from optional Spotify playback observations; uncertain records are never invented, silently deleted or silently rewritten; repairs must be explicitly scoped, deterministic, backed up, reversible, audited and verified afterward; consequential or ambiguous changes require user approval. At the post-Babel review, create a dedicated goal workspace and roadmap, define health dimensions/severity, ownership, autonomy levels, repair boundaries, reporting cadence and measurable acceptance criteria.
 
-## 2026-11-06 — Buddy first dispatch diagnosed; runner compatibility fix committed, retest pending
+## 2026-11-06 — Repository-hosted Codex first dispatch diagnosed; runner compatibility fix committed
 
 - ChatGPT's marker commit `7c1abce763d293992872699146eb7f13d10f9b87` triggered [Babel AI continuation run #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313).
 - Preflight passed; Codex failed before running the prompt. `ubuntu-latest` resolved to Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed restricting `/run/dbus/system_bus_socket`, matching upstream [issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no PR was produced.
 - Fix committed: only the Codex agent job is pinned to `ubuntu-24.04`, retaining the sandbox and permission model. Re-dispatch from a fresh branch based on the updated `main`, then verify all jobs and the review PR. Buddy remains unverified until end-to-end success.
 
-## 2026-11-06 — Buddy runner fix verified; API quota blocks retry completion
+## 2026-11-06 — Repository-hosted Codex runner fix verified; API quota blocks retry completion
 
 - The first run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) confirmed the push trigger and preflight but failed during Codex `drop-sudo` setup on Ubuntu 26.04. The Codex job was pinned to Ubuntu 24.04 without weakening its sandbox.
 - Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and the `drop-sudo` isolation step on Ubuntu 24.04, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Buddy PR exists.
 - Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests on `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on the same commit.
-- **Next:** user must check OpenAI API billing/usage limits and ensure quota is available. Do not retry until confirmed. Then dispatch again and verify Codex, validation, full tests and PR publication. Buddy remains not yet operationally verified.
+- **Next:** do not retry the separate Codex/API worker unless the user explicitly reauthorizes it and confirms quota. This does not block the scheduled ChatGPT/GitHub-app Buddy path.
 
 ## Cross-project loose-ends register
 
@@ -41,9 +51,9 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Created `project/ACTIVE_SESSION_BRIEF.md` on main (commit `55f1403c8feb614b1b6763ce8873499bdcbe4c86`). It is a curated, privacy-safe SHIT context bridge, not a raw chat dump or real-time messaging channel.
 - Updated `.github/babel/CONTINUATION_PROMPT.md` so Buddy reads the brief first and reconciles it against checked-out source/evidence (commit `bad03f65cbe92690718278440886a84014fd79a1`).
 - The permanent AGENTS/documentation rules, Babel guide, roadmap and action history are being aligned with the requirement that ChatGPT maintain the brief throughout active SHIT work and keep goal ROADMAP/ACTIONS records synchronized.
-- Buddy remains unverified until its first successful manual workflow run. User reports the `OPENAI_API_KEY` Actions secret has been added; still confirm the repository Actions setting permits PR creation, dispatch on `main`, and inspect the run/PR.
+- The repository-hosted Codex worker remains unverified until its API quota is restored and its own workflow completes. The current scheduled ChatGPT Buddy path is separate and documented in [BABEL_CHATGPT_BUDDY.md](../docs/BABEL_CHATGPT_BUDDY.md).
 
-## 2026-11-06 — Babel AI continuation integrated; activation pending
+## 2026-11-06 — Repository-hosted Codex continuation integrated; API activation pending (separate path)
 
 - Added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
 - The OpenAI Codex worker is scheduled every six hours and manually dispatchable. It resumes from babel/agent-progress, makes bounded documentation-only changes, and publishes through one review PR. A separate read-only validation job rejects non-documentation paths/deletions and runs full unittest discovery without write credentials; the publisher rechecks paths and publishes without executing candidate code.
@@ -62,7 +72,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - **Complete committed-tree inventory:** verified at `aacb70fa` with a non-recursive root tree plus nine recursive directory trees; every directory result returned `truncated=false`. Total: **28,241 file/blob entries**, including 27,981 under `assistant_data/`. See [repository file index](../docs/REPOSITORY_FILE_INDEX.md).
 - **Automated verification:** Daily curator run [#42168520574](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42168520574) passed **460 tests** on `8153028e`; full-history security scan [#42168520598](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42168520598) passed on the same commit.
 - **Enrichment side effect reconciled:** comment-only documentation on `scripts/music/enrich_musicbrainz_recording_ids.py` triggered Enrich Music Metadata run [#42166959478](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42166959478). It completed successfully and published generated-data commit `aacb70fa`. It merged 195 discovery candidates into the canonical Library (13,239 songs); 67 MusicBrainz duration matches were added from 182 lookups; 3,373 artist profiles, 229 tagged track profiles and 905 matched album profiles were present. Duration coverage is 8,254/11,130 unique tracks and 139,758/152,005 scrobbles (91.9%). Final integrity audit: 9 checks, 18 warnings, 0 errors. The warnings are no captured playback intervals and 16 Spotify playlists with inaccessible item contents; preserved snapshots may be stale. No Spotify playlist writes occurred.
-- **Open documentation PR #161:** remains open/draft with 117 changed files. Its branch is divergent from current main (571 commits ahead, 29 behind); do not merge or rebase blindly. It contains valuable source-audited documentation and regression-test candidates; selectively reconcile them against current main and live source instead.
+- **Open documentation PR #161:** remains open/draft with 117 changed files. Its branch is divergent from current main (571 commits ahead, 135 behind); do not merge or rebase blindly. It contains valuable source-audited documentation and regression-test candidates; selectively reconcile them against current main and live source instead.
 - **Other open feature proposals:** #158, #159, #160, #120, #121, #65 and #60 remain proposals, not merged mainline behavior.
 
 ### Newly verified high-risk documentation findings
