@@ -253,10 +253,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build a balanced daily mix of proven favorites, rediscoveries and deep cuts. Last.fm scrobbles are evidence of repeated listening, not a guarantee of liking. The curator uses that history as a useful signal, while preserving room for less-played tracks and enforcing artist diversity.
-# Location: Maintained implementation in scripts/spotify/spotify_daily_playlist.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_daily_playlist.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Read-only candidate curator for the favorites / rediscoveries / deep-cuts Daily mix.
+# Inputs: Reads assistant_data/recommendations/track_features.json, including play counts and last-scrobble dates.
+# Ranking: Balances recency, repeated listening, and discovery tiers; scrobbles are listening evidence,
+#          not an explicit like. Existing playlist URIs are excluded from a proposed replacement set.
+# Resolution: Searches Spotify's catalogue and accepts exact artist/title matches only; ambiguous or
+#             unavailable results are skipped. It requires min(20, target_size) resolved tracks.
+# Outputs/side effects: Returns ordered resolved candidates and skipped-match diagnostics to its caller;
+#                       it does not write Spotify playlists or persist recommendation state itself.
+# Invocation: Called through the protected daily_preview command in scripts/spotify/spotify_playlist_cloud.py.
+# Tests: See tests/ for candidate scoring, tier balance, exact-match resolution and minimum-fill coverage.
 # -----------------------------------------------------------------------------

@@ -743,10 +743,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Discovery-first Spotify curator using Last.fm similarity + Spotify catalogue search. The scrobble archive is a taste/familiarity model, never the candidate catalogue. No archive track is hard-excluded: prior plays and recency progressively reduce its rank. Liked tracks receive a strong penalty but remain eligible.
-# Location: Maintained implementation in scripts/spotify/spotify_discovery.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_discovery.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Discovery-first curator that builds playlist candidates from artist similarity and Spotify tracks.
+# Inputs: Reads assistant_data/music/artist_profiles.json and
+#         assistant_data/recommendations/track_features.json; uses Last.fm similar-artist requests,
+#         Spotify artist-track/catalogue lookups, Liked Songs observations, and playlist-local removal feedback.
+# Ranking: Combines similarity, familiarity/recency, track/artist signals, liked status, and playlist feedback;
+#          liked tracks are penalized rather than categorically excluded, and exact playlist removals are guarded.
+# Output: Produces a deduplicated, artist-diverse candidate list with exact Spotify identities and diagnostics.
+# Safety: Candidate generation is separate from playlist mutation; it does not write Spotify playlists.
+# Invocation: Called by protected preview actions in scripts/spotify/spotify_playlist_cloud.py.
+# Related: assistant_data/recommendations/, playlist_removed_tracks.json, and tests/ discovery coverage.
 # -----------------------------------------------------------------------------

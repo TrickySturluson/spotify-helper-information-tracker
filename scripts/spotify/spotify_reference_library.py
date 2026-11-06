@@ -747,13 +747,16 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
-# Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
-# Safety: Snapshot ingestion never changes playlists; offline backfill makes a song-file backup before appending observations.
-# Playability: Use bounded stale-only GET /tracks/{id}?market=from_token checks (25/run, 90-day TTL); relinked IDs stay distinct from requested IDs.
-# Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_reference_library.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Read-only Spotify playlist reference snapshot, index, health and playability-evidence service.
+# Outputs: Writes assistant_data/spotify/playlists.json, playlists/{id}.json, history/{id}/ snapshots,
+#          reference_index.json, and related catalog metadata; preserves last-known items when access fails.
+# Sync: Reads playlists exposed to the authorized account and records ordered items/restrictions; it never
+#       edits Spotify playlists. health reports accessibility, completeness, index and feedback coverage.
+# Playability: Snapshot backfill makes no provider requests and appends evidence to canonical song records
+#              with a backup. refresh-playability is plan-only by default; --execute performs bounded
+#              Spotify GET lookups (1–50, default 25; 90-day staleness default) and records market-scoped
+#              observations without changing playlist contents.
+# Commands: sync, health, backfill-playability, refresh-playability, list, and lookup.
+# Run: python compat/spotify_reference_library.py <command> [options].
+# Related: assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md and docs/SPOTIFY_API_OPERATIONS.md.
 # -----------------------------------------------------------------------------

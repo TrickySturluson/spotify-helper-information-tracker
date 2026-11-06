@@ -1618,10 +1618,17 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Owner-verified GitHub issue command handler for Spotify playlist control.
-# Location: Maintained implementation in scripts/spotify/spotify_playlist_cloud.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_playlist_cloud.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: GitHub-issue command handler for cloud-based Spotify playlist control; not a general CLI.
+# Input/authentication: Reads the open issue titled "SHIT — Playlist Control", requires the sender to be
+#                       the repository owner, parses a JSON command, and rejects unknown actions or fields.
+# Commands: Supports status/inspect/health, lock controls, preview and confirmation, Daily/Halloween/Booze
+#           candidate previews, sequence preview, cleanup, enrichment, and undo actions.
+# State/audit: Uses .github/spotify_playlist_manager_state.json and
+#              .github/spotify_playlist_manager_audit.jsonl; delegates OAuth, registry checks, locks,
+#              snapshots and Spotify API calls to spotify_playlist_manager.py.
+# Safety: Playlist changes require managed/approved registry membership and an unlocked playlist.
+#         Preview/confirmation state is revalidated against current playlist snapshots; writes are
+#         bracketed by backups and audit events. Undo also stops if the playlist is locked.
+# Outputs: Writes the command result to the GitHub Actions output file for the control issue workflow.
+# Invocation: Executed by the SHIT playlist-control GitHub Actions workflow; use the documented issue JSON contract.
 # -----------------------------------------------------------------------------

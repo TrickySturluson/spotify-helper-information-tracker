@@ -238,10 +238,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Track manual removals across all owned Spotify playlists and detect duplicates. Run: python track_playlist_removals.py Optional: python track_playlist_removals.py PLAYLIST_ID Add --dedupe to remove extra occurrences from unlocked playlists only. First run establishes baselines; later runs detect tracks removed since the previous run and persist them in playlist_removed_tracks.json.
-# Location: Maintained implementation in scripts/spotify/track_playlist_removals.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/track_playlist_removals.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Compare owned Spotify playlist membership over time, persist manual removals, and report duplicates.
+# Inputs: Reads playlist contents through spotify_playlist_manager.py and prior local state files.
+# State: Writes playlist_removal_baseline.json and playlist_removed_tracks.json; a missing baseline can be
+#        seeded only from a complete, accessible saved reference-library snapshot.
+# Default behavior: Refreshes baselines and playlist-local removal history; inaccessible playlists are
+#                   skipped without treating them as empty. A targeted refresh fails if its playlist is unreadable.
+# Optional mutation: --dedupe removes only surplus exact-URI occurrences, preserves the first copy/order,
+#                    requires the playlist to be unlocked, and saves a pre-change snapshot before deletion.
+# Run: python compat/track_playlist_removals.py [PLAYLIST_ID] [--dedupe].
+# Safety: Removal history is sticky and playlist-local; do not treat a re-added URI as global approval.
 # -----------------------------------------------------------------------------
