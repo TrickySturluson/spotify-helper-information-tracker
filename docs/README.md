@@ -30,6 +30,7 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 - [Repository file index](REPOSITORY_FILE_INDEX.md) — tracked file and directory inventory.
 - [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — public data inventory, credential boundaries, and audit scope.
 - [Spotify API operations](SPOTIFY_API_OPERATIONS.md) — Spotify authentication, API behavior, and cloud-operation constraints.
+- [GitHub Actions workflow catalogue](WORKFLOWS.md) — triggers, permissions, credentials, side effects and operational boundaries for all workflows.
 - [Automatic playlist descriptions](AUTOMATIC_PLAYLIST_DESCRIPTIONS.md) — generated-description ownership, safeguards, and rollout.
 - [Tricky Daily cycle](TRICKY_DAILY_CYCLE.md) — cycle behavior, schedule, recovery, description rotation and preflight.
 - [Tricky Daily backlog](TRICKY_DAILY_TODO.md) — prioritized future improvements; unchecked items are not implemented.
