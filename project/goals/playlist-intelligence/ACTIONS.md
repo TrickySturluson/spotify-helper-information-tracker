@@ -1,6 +1,6 @@
 ## 2026-11-06 — Booze snapshot and hard-fit requirements revalidated
 
-- The latest repository snapshot for Booze or Boos! (`4diIlnF8BlgoJrwUfejf49`) was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items reported/fetched, accessible, no item error.
+- The latest repository snapshot for Booze or Boos! (`4diIlnF8BlgoJrwUfejf49`) was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items reported/fetched, 92 unique track URIs (zero duplicate URIs), accessible, no item error.
 - The earlier 64-track five-axis candidate manifest `playlist_fit_booze_candidates_20261102.json` is stale and must not be used as current coverage or sorting evidence.
 - Updated `docs/BOOZE_OR_BOOS_SORT.md` with the hard per-track Halloween/horror relevance gate, energetic/campy/party requirement, user-approved sound anchors, previously rejected novelty staples, duplicate/removal protections, and the current 92-item snapshot.
 - No Booze playlist mutation or sorter preview was run. The playlist-specific feature work remains paused until documentation acceptance criteria pass; regenerate the manifest and perform the hard-fit review only after that pause is lifted.
