@@ -36,8 +36,8 @@ The user has explicitly directed that documentation be the sole active project p
 ## Documentation audit PR
 
 - Draft PR #161's first check exposed three compatibility wrappers without explicit source paths; those were fixed.
-- Daily curator tests #42149783445 passed on PR head `5b8bfab94064e74100c6b3ac183817b6a3f4d4bd`, including repository-wide Markdown local links, full guide indexing, implementation overview quality, compatibility delegation and workflow overview checks, plus the full unit suite and read-only Library health/confidence/freshness checks.
-- The branch has since received additional documentation-log and handoff updates; the latest PR head must be rechecked. Public repository security scan #42149783463 was still running at the last check.
+- Daily curator tests #42150601947 passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a`, including repository-wide Markdown local links, full guide indexing, implementation overview quality, compatibility delegation and workflow overview checks, plus the full unit suite and read-only Library health/confidence/freshness checks.
+- The branch has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`. Current tests #42150802119 and full-history security scan #42150801849 are in progress; recheck both before merge.
 - PR #161 remains draft and unmerged. Recheck current-head CI and security scan before merging.
 ## Critical path
 
