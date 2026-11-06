@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Corrected documentation guard passed CI and full-history security scan
+
+- Corrected guard commit `9cbf695291fa073f96669f20e83404eccba4e45e` was tested by Daily curator CI run [#42152796114](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796114): **success**. All 9 maintained-file layout tests passed, then the full unittest discovery step also passed. Compile, generated-data audit, read-only full Library health/confidence checks and bounded freshness plan passed as well.
+- Full-history public repository security scan [#42152796120](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796120): **success** on the same corrected head.
+- After those successful runs, only documentation/handoff files were changed (`ACTIONS.md`, `NEXT_WORK.md`, `LOOSE_ENDS.md`, and `tests/README.md`); no source, test logic, workflow YAML or runtime data changed after `9cbf695`. `tests/README.md` was also updated to describe the newly enforced test-module overview contract. Therefore the core source/test state is CI-verified at `9cbf695`, but the exact latest documentation-only head `7a51a6f835f84e459652e8a053d3a97ca2b2da4c` has not been shown with a fresh run in the connected run lookup.
+- Compared `main...docs/semantic-documentation-audit`: branch is **199 commits ahead, 0 behind**; PR #161 metadata now reports `mergeable: true`, draft and unmerged, 97 changed files. This resolves the earlier transient `mergeable: false` observation; no base-branch divergence was found.
+- **Next:** request/observe exact latest-head CI and security if GitHub exposes them; then continue source-to-guide semantic audit and final fresh-session simulation. Do not merge merely because the earlier corrected head passed; exact latest-head evidence remains the clean acceptance standard.
+
 ## 2026-11-06 — Latest-head documentation check failure diagnosed and corrected
 
 - Exact-head CI run #42151586707 on `a92706e275230f01d46e58bfd1dbf68e0b39041a` failed only at `tests.test_script_layout`'s new test-module overview guard. Compilation, generated-data audit, full Library read-only health/confidence checks and bounded freshness planning all passed. Unit-test discovery was skipped because the dedicated layout guard failed first.
