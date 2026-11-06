@@ -98,6 +98,12 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - `tests/test_script_layout.py` now rejects those generic test-module overview phrases in addition to generic implementation overviews. The guard has not yet been run in CI on the latest PR head.
 - Test overview presence/boilerplate is now guarded; semantic correctness of every remaining test overview still requires review.
 
+## Verification checkpoint — 2026-11-06
+- Corrected test-overview guard passed CI run [#42152796114](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796114), including all layout checks and full unittest discovery, on commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
+- Full-history security scan [#42152796120](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796120) also passed on that commit.
+- Later commits through `7a51a6f835f84e459652e8a053d3a97ca2b2da4c` changed only documentation/handoff files and `tests/README.md`; no source, test logic or workflow YAML changed after the successful run. Exact latest-head CI/security has not been confirmed.
+- PR #161 is still draft/unmerged. `main...docs/semantic-documentation-audit` reports 199 ahead / 0 behind and current PR metadata reports mergeable true.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
 - Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
@@ -105,7 +111,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The automated source-overview quality check passed across all 55 maintained implementation modules, and all 40 compatibility launchers name a maintained source path. Their factual accuracy still needs manual sampling; the 44 test-module overviews, module docstrings, workflow semantics and data-schema references also need a structured semantic review.
 
 ## Next action
-Obtain and verify tests plus the full-history security scan for exact current PR head `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`; do not merge PR #161 until both pass. Then complete the authoritative/defensible tracked-file inventory, manually sample the remaining test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
+Obtain and verify tests plus the full-history security scan for exact current PR head `7a51a6f835f84e459652e8a053d3a97ca2b2da4c`; the corrected source/test state passed at `9cbf695`, but later documentation-only commits have not been shown with exact-head checks. Do not merge PR #161 until exact-head verification is available. Then complete the authoritative/defensible tracked-file inventory, manually sample the remaining test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
