@@ -241,10 +241,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Enrich SHIT track profiles from historical AcousticBrainz submissions using verified MusicBrainz recording IDs. Aggregates submissions, preserves disagreement, caches misses, and checkpoints each batch.
-# Location: Maintained implementation in scripts/music/enrich_acousticbrainz.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_acousticbrainz.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Enrich track audio profiles from historical AcousticBrainz submissions.
+# Inputs: Canonical Library/track-profile rows with verified MusicBrainz recording IDs;
+#         ACOUSTICBRAINZ_MAX_BATCHES controls the bounded work per run.
+# Outputs: Sourced acoustic/audio feature profiles and durable lookup/checkpoint state
+#          under assistant_data/music/.
+# Behavior: Aggregates available submissions, preserves disagreement, and caches misses;
+#            missing AcousticBrainz data is not replaced with invented neutral values.
+# Safety: Requires verified recording identity; rate-limited batches; no playlist writes.
+# Run: python compat/enrich_acousticbrainz.py (repository root).
+# Related: docs/AUTOMATED_AUDIO_METADATA.md; docs/AUDIO_ANALYSIS.md;
+#          tests/test_enrich_acousticbrainz.py.
 # -----------------------------------------------------------------------------
