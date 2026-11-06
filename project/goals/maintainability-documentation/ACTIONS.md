@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Playlist Sequencing split into an independently resumable workstream
+
+- **Reason:** the ordering engine has distinct user requirements (smooth transitions first, configurable energy journey/peak, sections, track-level evidence) and safety requirements (preview, explicit confirmation, stale-preview rejection, live read-back). It should not be buried inside the broader recommendation/fit-model workspace.
+- **Changes:** added project/goals/playlist-sequencing/ROADMAP.md, README.md and ACTIONS.md; linked the workspace from the goal index, project-wide roadmap and docs index.
+- **Boundary preserved:** the five-axis playlist-fit model remains a separate preview-only system and is not wired into the sequencer.
+- **Verification:** documentation paths and stated behavior were cross-checked against the transition-scoring guide, Booze preset guide and existing playlist-intelligence roadmap. A fresh CI run is required to verify the dynamic goal-directory check.
+- **Outcome:** dedicated workstream documentation created; runtime behavior unchanged.
+- **Next action:** inspect CI and audit sequencer implementation/tests against this roadmap.
+
 ## 2026-11-05 — Tricky Daily split into an independently resumable workstream
 
 - **Reason:** Daily is an active, safety-sensitive system with its own 60-track product contract, forced-run parity, feedback model, schedule, recovery and live-verification requirements. Keeping it only as a subsection of Playlist Intelligence made its own roadmap less discoverable.
