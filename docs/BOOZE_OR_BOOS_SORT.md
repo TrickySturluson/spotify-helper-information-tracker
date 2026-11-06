@@ -1,5 +1,23 @@
 # Booze or Boos! — sequence preset
 
+## Playlist brief and hard inclusion gate
+
+Booze or Boos! is a Halloween party playlist, not a generic dark/alternative playlist. **Every track must have a clear, explainable Halloween or horror connection at track level.** Acceptable anchors include monsters, vampires, zombies, witches, ghosts, murder/slasher themes, haunted houses, supernatural/occult imagery, or a specific Halloween/horror film, game or television connection. A dark sound, spooky artist brand, vague "night" reference or generic genre match is not enough. Record the evidence (title/theme/lyric analysis/media source) and hold or reject a track when the connection cannot be defended.
+
+The party-energy gate is separate from Halloween relevance. Tracks should feel confident, playful, campy, chaotic, energetic and party-ready—ideally danceable or a strong singalong/banger. Do not turn the playlist into a somber horror soundtrack, sad-victim narrative or apocalypse mood. A song can be genuinely horror-related and still fail if it drains the party.
+
+The preferred palette includes campy surf/monster-party sounds, psychobilly and horror punk, dark club/synth/rave, industrial and heavy rock/metal. Useful taste anchors include Messer Chups, "Who Do You Voodoo" (Dead Island), "Hex Girl" (Scooby-Doo), Night Club's dark-dance energy, the upbeat feel of "Locals", "Zombie Catches" as a banger, and Rob Zombie/heavy tracks. These are examples, not mandatory quotas or a license to accept weak Halloween fits.
+
+Previously rejected overused novelty staples should not be reintroduced without a new explicit user request: Ghostbusters, Monster Mash, Thriller, This Is Halloween, Somebody's Watching Me, Addams Family, Purple People Eater, and Nightmare on My Street. Avoid duplicates. Treat `playlist_removed_tracks.json` as an absolute removal-protection source; do not re-add a manually removed track because it scores well musically.
+
+Only the generated Booze or Boos! playlist is in scope. Keep the manager's deny-by-default lock, backup, full preview, explicit confirmation and post-write read-back requirements. This guide's sequence preset never authorizes a live write by itself.
+
+## Latest saved snapshot status — 2026-11-06
+
+The latest repository snapshot for playlist `4diIlnF8BlgoJrwUfejf49` was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items were reported and fetched, the items snapshot was accessible, and no item error was recorded. This is a repository snapshot, not a playlist mutation by the reference workflow.
+
+The older five-axis candidate manifest `assistant_data/spotify/playlist_fit_booze_candidates_20261102.json` and its 64-track audit below describe the earlier 2026-11-02 snapshot only. They are stale for the current 92-item snapshot and must not be used as current coverage or sorting evidence. Regenerate the candidate manifest and rerun the per-track Halloween-relevance/party-energy audit after the documentation-only project pause is lifted.
+
 This preset follows the intended party arc:
 
 1. Campy surf, monster-party novelty, lyrical crowd-pleasers and Messer Chups.
@@ -29,7 +47,7 @@ Section assignments in assistant_data/spotify/booze_or_boos_sections.json are ke
 The playlist-fit preview workflow now runs an additional read-only audit over the saved Booze or Boos! snapshot. The identity-only candidate manifest is `assistant_data/spotify/playlist_fit_booze_candidates_20261102.json`. It scores current Booze tracks against the five independent calibration-target profiles, excluding the entire Booze candidate batch from those profiles to avoid candidate leakage. This indicates broader musical affinity and evidence gaps; it does **not** certify that a track is Halloween-related. Use explicit recording-level theme/lyric evidence and the party brief for that judgment. The current saved snapshot has 64 tracks; regenerate the manifest if the source snapshot changes. No playlist writes are performed by this workflow.
 
 
-## Current metadata coverage finding (2026-11-02)
+## Historical metadata coverage finding (2026-11-02; superseded by the 2026-11-06 snapshot)
 
 The 64-track saved snapshot resolves to canonical Library records, but the five-axis cross-reference is not yet a safe automatic sorting signal: only 32/64 tracks score against each target, all low-confidence and one-axis; 31/32 rely on artist-scope genre context, only one track has direct Genre evidence, and 32/64 remain unknown. Sound/Energy/Mood/Theme direct evidence is absent in the reference profiles. The local cache check found 64 track-profile rows but only 2 Last.fm-tagged tracks and no lyric-theme, direct track-mood or recognized energy rows for Booze. Treat missing data as unknown, not as a negative or neutral musical trait. The immediate work is recording-level evidence enrichment and a separate Halloween-theme audit; don't rank additions from the current cross-reference scores.
 
