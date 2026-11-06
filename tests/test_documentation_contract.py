@@ -219,7 +219,6 @@ class DocumentationContractTests(unittest.TestCase):
             "discovery-recommendations",
             "listening-analytics",
             "playlist-intelligence",
-            "tricky-daily",
             "playlist-sequencing",
             "library-health-maintenance",
             "metadata-freshness",
@@ -237,7 +236,7 @@ class DocumentationContractTests(unittest.TestCase):
                 self.assertIn("## Next feature action after documentation pause", roadmap)
                 self.assertIn(required_instruction, roadmap)
 
-    def test_daily_force_idempotency_gap_is_documented(self):
+    def test_daily_force_idempotency_guard_is_enforced_and_documented(self):
         workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
         cycle_guide = (ROOT / "docs" / "TRICKY_DAILY_CYCLE.md").read_text(encoding="utf-8")
         todo = (ROOT / "docs" / "TRICKY_DAILY_TODO.md").read_text(encoding="utf-8")
@@ -247,17 +246,17 @@ class DocumentationContractTests(unittest.TestCase):
         cycle_workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
 
         self.assertIn("same-Eastern-date completion guard", workflow_catalogue)
-        self.assertIn("Current `--force` bypasses both the clock gate and same-Eastern-date completion guard", workflow_catalogue)
-        self.assertNotIn("Force bypasses the clock gate only", workflow_catalogue)
-        self.assertIn("currently bypasses", cycle_guide)
-        self.assertIn("Known P0 discrepancy", todo)
-        self.assertIn("Current source discrepancy", roadmap)
-        self.assertIn("Known P0 discrepancy: current --force", cycle_source)
-        self.assertIn("also bypasses that completion guard", cycle_source)
-        self.assertIn("intended behavior is to bypass the clock gate only", cycle_source)
+        self.assertIn("Force bypasses the clock gate only", workflow_catalogue)
+        self.assertNotIn("Current `--force` bypasses both the clock gate and same-Eastern-date completion guard", workflow_catalogue)
+        self.assertIn("force bypasses only the clock gate", cycle_guide.lower())
+        self.assertIn("force/idempotency", todo.lower())
+        self.assertIn("force bypasses the clock gate only", roadmap.lower())
+        self.assertNotIn("Known P0 discrepancy: current --force", cycle_source)
+        self.assertNotIn("also bypasses that completion guard", cycle_source)
+        self.assertIn("cycle_already_completed(config, cycle_date)", cycle_source)
         self.assertIn("exactly 60 valid unique track URIs", cycle_workflow)
-        self.assertIn("current --force bypasses both the clock gate and same-date completion guard", cycle_workflow)
-        self.assertIn("cycle_already_completed(config, \"2026-11-05\", force=True)", schedule_test)
+        self.assertNotIn("current --force bypasses both the clock gate and same-date completion guard", cycle_workflow)
+        self.assertIn("test_duplicate_forced_dispatch_exits_before_spotify_api", schedule_test)
 
     def test_completed_committed_tree_inventory_is_not_a_current_blocker(self):
         index = (ROOT / "docs" / "REPOSITORY_FILE_INDEX.md").read_text(encoding="utf-8")
