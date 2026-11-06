@@ -1,5 +1,15 @@
 # Maintainability & Documentation — Actions & Evidence
 
+## 2026-11-06 — Buddy retry verified sandbox; API quota blocker isolated
+
+- **Run:** [Babel AI continuation #42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), triggered by marker commit `75d3102e80ffe4158214114fa90c5979edda14e6` on `babel/dispatch-20261106-02`.
+- **Verified:** preflight succeeded; agent job ran on `ubuntu-24.04`; `drop-sudo` successfully restricted `/run/snapd-snap.socket`. The first-run Ubuntu 26.04 sandbox compatibility problem is resolved by the narrow runner pin.
+- **Failure:** Codex returned `Quota exceeded. Check your plan and billing details.` after launch. Agent job failed; validation and publisher were skipped. No candidate patch, `babel/agent-progress` branch, or Buddy PR was produced.
+- **Next blocker:** user must check OpenAI API project/organization billing and usage limits to ensure available quota/credits. ChatGPT subscription access does not provide API credits. Do not retry until quota is confirmed; never weaken `drop-sudo` or use `unsafe`.
+- **Independent repository checks:** Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests on `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on the same commit.
+- **Status:** GitHub dispatch, preflight, Ubuntu 24.04 runner, and sandbox isolation are verified. Buddy's actual documentation task, independent validation and PR publication remain unverified.
+
+
 ## 2026-11-06 — Buddy first dispatch run diagnosed; runner compatibility fix
 
 - **Run:** [Babel AI continuation #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313), triggered by marker commit `7c1abce763d293992872699146eb7f13d10f9b87` on `babel/dispatch-20261106-01`.

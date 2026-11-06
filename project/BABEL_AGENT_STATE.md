@@ -6,7 +6,7 @@ branch: babel/agent-progress
 trigger: GitHub Actions schedule every six hours, manual dispatch, plus push to babel/dispatch-* when .github/babel/dispatch.json changes
 publication: dedicated branch and one reviewable pull request; never auto-merge
 scope: documentation, continuity records, and narrowly scoped documentation-contract tests only
-last_result: first dispatch run #42181953313 reached preflight but Codex failed before prompt execution on Ubuntu 26.04 during drop-sudo D-Bus socket restriction; agent job pinned to ubuntu-24.04 as workaround; end-to-end verification pending
+last_result: run #42181953313 exposed Ubuntu 26.04 drop-sudo failure; after pinning agent to ubuntu-24.04, retry #42183337573 passed preflight and drop-sudo but Codex returned API quota exceeded; validation/publisher skipped; awaiting user billing/quota fix
 completion_rule: all Maintainability & Documentation roadmap acceptance criteria plus a successful cold-start simulation, with exact test and workflow evidence
 
 ## Operating contract
@@ -27,10 +27,18 @@ completion_rule: all Maintainability & Documentation roadmap acceptance criteria
 - Root cause: `ubuntu-latest` resolved to Ubuntu 26.04; Codex action `drop-sudo` failed restricting `/run/dbus/system_bus_socket` and reported the runner was not in the sudo group. This matches [upstream issue #188](https://github.com/openai/codex-action/issues/188).
 - Remediation: pin only the Codex agent job to `ubuntu-24.04`; retain `drop-sudo`, `:workspace`, read-only GitHub permissions, independent validation, and isolated publisher. Retry and verify every job before calling Buddy operational.
 
+## Retry evidence — 2026-11-06
+
+- Retry marker commit: `75d3102e80ffe4158214114fa90c5979edda14e6` on `babel/dispatch-20261106-02`, based on the updated `main`.
+- Workflow run: [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), event `push`, completed with failure.
+- `preflight`: success. The agent job checked out the latest source on `ubuntu-24.04`; its `drop-sudo` isolation successfully restricted `/run/snapd-snap.socket`. Codex then returned `Quota exceeded. Check your plan and billing details.`
+- `validate` and `publish`: skipped. No candidate patch, `babel/agent-progress` branch, or Buddy PR was produced.
+- **Conclusion:** the Ubuntu runner compatibility workaround is verified. The current blocker is OpenAI API quota/billing availability. Do not trigger repeated retries until the repository owner confirms quota is available. Never weaken the sandbox to `unsafe`.
+
 ## Recovery
 
 If a run is interrupted or fails, inspect the latest GitHub Actions run and the open `babel/agent-progress` pull request. The next scheduled/manual run starts from the latest dedicated branch when it exists. Record any blocker in this file and the Maintainability & Documentation action history.
 
 ## Activation requirement
 
-The GitHub Actions repository secret `OPENAI_API_KEY` must be configured by the repository owner. The key must be created in the OpenAI API platform; ChatGPT subscription access is not itself an API key. Never put the key in the repository or chat.
+The GitHub Actions repository secret `OPENAI_API_KEY` must be configured by the repository owner. The key must be created in the OpenAI API platform; ChatGPT subscription access is not itself an API key and does not supply API credits. The API project/organization must also have available quota/credits and a usable billing limit. Never put the key in the repository or chat.
