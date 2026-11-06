@@ -1,7 +1,7 @@
 # Metadata Freshness & Partial Revalidation — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Read-only field-level planner and unknown-age baseline rotation are merged; provenance recovery and any provider-backed executor remain separate work.
+**Last reviewed:** 2026-11-06  
+**Status:** Read-only field-level planner and unknown-age baseline rotation are merged. Exact legacy duration provenance recovery was applied in issues #107 and #114; the post-backfill planner measurement remains outstanding. Provider-backed execution is still separate and feature work is paused under the documentation-only priority.
 
 ## Repository-wide priority override — 2026-11-06
 
@@ -25,7 +25,7 @@ Freshness is per field and source. One updated field must not make other fields 
 Planner repeatability; no provider calls in planning; no fresh-field refetch; failed lookups do not overwrite valid evidence; every selection/skip is explainable; request caps/cooldowns are enforced.
 
 ## Next action
-Inspect issues #103–#106 and current main to determine whether exact duration provenance recovery has been applied and audited; then run a fresh planner preview.
+After documentation completion, run a fresh read-only planner preview and record the post-#114 unknown-age baseline; verify the prior #115–#118 audit evidence before considering any provider-backed executor.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Coverage retries](../metadata-coverage-retries/ROADMAP.md)
