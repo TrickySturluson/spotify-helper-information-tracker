@@ -247,11 +247,15 @@ def observe_lastfm_scrobbles(path=Path("data/scrobbles.json")):
             # Lifetime post-exposure scrobbles align with measured playback, which
             # is also accumulated from first_added_at. Individual additions remain
             # available in the event history for campaign-level analysis.
-            added_at = data["tracks"][uri]["first_added_at"]
+            added_at = data["tracks"][uri].get("first_added_at")
+            # Removal-only legacy rows have no trustworthy exposure start.
+            # Do not infer post-add scrobbles from an unknown timestamp.
+            if not isinstance(added_at, str) or not added_at:
+                continue
             try:
                 if played_at >= datetime.fromisoformat(added_at.replace("Z", "+00:00")):
                     counts[uri] += 1
-            except (TypeError, ValueError):
+            except (AttributeError, TypeError, ValueError):
                 continue
     for uri, count in counts.items():
         data["tracks"][uri]["lastfm_post_add_scrobbles"] = count
