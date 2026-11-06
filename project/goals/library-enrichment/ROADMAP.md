@@ -1,7 +1,7 @@
 # Canonical Library Enrichment — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Ongoing; canonical Library exists, field-level enrichment is incomplete.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the repository-wide documentation-only priority; the canonical Library exists, but field-level enrichment remains incomplete.
 
 ## Repository-wide priority override — 2026-11-06
 
