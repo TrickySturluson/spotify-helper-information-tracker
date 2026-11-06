@@ -4,14 +4,23 @@ The per-recording Library structure was merged into main in [PR #49](https://git
 
 ## Current published catalogue
 
-- 13,005 songs, 6,386 artists, and 7,861 albums in the current main-branch index.
-- The legacy Last.fm-derived track index contains 11,130 unique track identities; a direct cross-check resolves all 11,130 through canonical source-track-ID or recording-MBID aliases.
-- All 5,358 legacy artist names are represented in canonical artist records.
-- The catalogue also contains Spotify playlist-only tracks, with playlist membership kept distinct from Last.fm listening history.
-- Run #18's final runner-side audit passed with zero errors and its enrichment output was published. A separate post-publication audit/health scan is still required before the Library is considered fully verified.
-- Current duration coverage is approximately 91.1% of 152,005 scrobbles. Metadata and audio-feature coverage remain incomplete; see the project Great Migration and enrichment goal workspaces.
+- Latest read-only catalogue check: Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350), generated 2026-11-06T03:06:25Z, scanned **13,163 songs, 6,497 artists, and 7,969 albums**. Index counts matched those canonical counts exactly.
+- Latest alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs, and 11,651 name-candidate keys.
+- The read-only Library health report returned `ok=true`, zero errors and zero warnings. The separate repository audit reported 18 warnings (no playback intervals plus 16 inaccessible Spotify playlist snapshots, including the summary warning); these are not Library structural-health warnings.
+- The legacy Last.fm-derived track index still has 11,130 historical track identities and all 11,130 were previously cross-checked against canonical source-track-ID or recording-MBID aliases. All 5,358 legacy artist names were previously represented.
+- The older 13,005 / 6,386 / 7,861 count is a historical migration baseline, superseded by the 2026-11-06 read-only check above. Run #18's 91.1% duration coverage of 152,005 scrobbles is also historical; do not quote it as current coverage. Metadata and audio-feature coverage remain incomplete; see the Great Migration, confidence and enrichment goal workspaces.
 
 The raw Last.fm event archive remains separate. The Library stores normalized song/artist/album entities and evidence; it does not replace the original per-scrobble event history.
+
+## Spotify reference-snapshot evidence
+
+The scheduled/manual Spotify Reference Library sync is read-only against Spotify playlists, but it can add or update canonical Library records. Non-relinked tracks contribute Spotify identity, track/artist/album metadata, playlist source IDs and positions, and explicit `listening_context.source = "Spotify reference-library snapshot"`. The sync also stores market-scoped, timestamped playability observations.
+
+Playlist presence is not a play, scrobble, like, save, or proof of listening. Do not merge this context into Last.fm event history or measured Spotify playback. The Last.fm scrobble archive remains the historical listening source of truth. Inaccessible/incomplete snapshots must not be treated as empty; requested and relinked Spotify IDs remain distinct. See [the full Library integration contract](../../../docs/PER_RECORDING_MUSIC_LIBRARY.md).
+
+## Track-profile enrichment evidence
+
+The rolling Last.fm track-profile builder also writes selected cohort records into the canonical Library through `MusicLibrary.put_catalogue()`. Its counts come from Last.fm scrobbles, while exact priority-playlist tracks may be included even when they have zero scrobbles. Playlist membership is retained as source/context evidence; it is not a play, like, save, scrobble, or positive preference. See [Recent Track Enrichment](../../../docs/RECENT_TRACK_ENRICHMENT.md).
 
 ## Start here
 
@@ -19,7 +28,7 @@ The raw Last.fm event archive remains separate. The Library stores normalized so
 - [Album records](albums/README.md) — release identity, album overview, ordered tracklist, sources, and confidence.
 - [Song records](songs/README.md) — per-recording identity, track metadata, evidence, and relationships.
 - [Library index](library_index.json) — compact resolver mapping stable IDs and names to record paths.
-- [Migration report](migration_report.json) — migration counts, source coverage and remaining limitations. Its legacy limitation text is being reconciled with the direct source-index coverage check.
+- [Migration report](migration_report.json) — the original migration-run snapshot of counts, source coverage and limitations. It is historical output, not the current catalogue inventory; use the live Library status/health reports for current counts.
 
 ## Directory map
 
@@ -45,4 +54,4 @@ Open the folder-level README files first; each describes the records below it an
 - Tracklist membership alone does not prove that a song record or specific recording identity exists.
 - Unknown or ambiguous identities remain explicit; a missing provider field is not an invitation to guess.
 - The offline `migrate` operation imports stored data without provider calls or Spotify playlist edits. The `prepare` operation orchestrates migration plus bounded provider enrichment; the current workflow skips Spotify snapshot refresh and does not write to playlists.
-- For local inspection, run `python shit.py library status`, `python shit.py library audit`, and `python shit.py library health` (the read-only health command is available in main). Use `python shit.py library prepare --execute --yes` only when credentials, backups, checkpoints, and publication safeguards are configured.
+- For local inspection, `python shit.py library status` reads the existing index, while `python shit.py library health` is the strictly read-only structural check. `python shit.py library audit` constructs the resolver and may rebuild/write `library_index.json` if it is missing or incomplete; it is not a zero-write health check. Use `python shit.py library prepare --execute --yes` only when credentials, backups, checkpoints, and publication safeguards are configured.

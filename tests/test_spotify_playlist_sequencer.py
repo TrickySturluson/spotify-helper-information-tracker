@@ -923,8 +923,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_playlist_sequencer -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Protect playlist sequencing quality, energy-journey controls and evidence-aware transition handling.
+# Scope: Smooth-flow preference, rising/falling/wave/steady journeys, configurable peak placement,
+#        transition confidence, missing metadata, anchor validity and preview-only reorder plans.
+# Run: python -m unittest tests.test_spotify_playlist_sequencer -v
+# Related: scripts/spotify/spotify_playlist_sequencer.py; docs/TRANSITION_SCORING.md;
+#          project/goals/playlist-sequencing/ROADMAP.md.
 # -----------------------------------------------------------------------------

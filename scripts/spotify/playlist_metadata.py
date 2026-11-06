@@ -46,10 +46,13 @@ def enrich_artists(artists, api_key, path=PROFILE_PATH, sleep=time.sleep):
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Enrich playlist artist metadata from Last.fm without changing playlist contents.
-# Location: Maintained implementation in scripts/spotify/playlist_metadata.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/playlist_metadata.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Enrich playlist-associated artist context from Last.fm without changing playlist contents.
+# Inputs: Artist names and a Last.fm API key supplied by the calling workflow/command.
+# Outputs: Updates assistant_data/music/artist_profiles.json with sourced artist tags,
+#          derived genre/mood/theme groups and artist-profile metadata.
+# Semantics: Artist-level community tags are context only; they do not establish track mood,
+#            track identity or a user's explicit preference.
+# Safety: Sequential Last.fm requests with a short delay; no Spotify playlist writes.
+# Run: Imported by spotify_playlist_cloud.py; no standalone CLI.
+# Related: scripts/music/build_music_profiles.py; docs/TRACK_MOOD_EVIDENCE.md.
 # -----------------------------------------------------------------------------

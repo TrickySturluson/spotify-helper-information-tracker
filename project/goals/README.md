@@ -5,6 +5,8 @@ Each major SHIT objective has its own folder containing its scope, design decisi
 
 ## Cross-project status
 
+**Current repository-wide priority: documentation completion only.** All 12 non-documentation goal roadmaps explicitly mark their feature work paused until the Maintainability & Documentation acceptance criteria pass. Their feature plans remain preserved and queued; do not treat a goal's next feature milestone as permission to resume implementation during this phase.
+
 See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification blockers across all goal areas. The detailed history belongs in each goal's `ACTIONS.md`.
 
 ## How to use
@@ -32,4 +34,4 @@ See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification block
 | Spotify Playability | [ROADMAP](spotify-playability/ROADMAP.md) | [README](spotify-playability/README.md) | [ACTIONS](spotify-playability/ACTIONS.md) |
 | Library Confidence Verification | [ROADMAP](library-confidence-verification/ROADMAP.md) | [README](library-confidence-verification/README.md) | [ACTIONS](library-confidence-verification/ACTIONS.md) |
 
-Every goal folder must contain all three files: `ROADMAP.md`, `README.md`, and `ACTIONS.md`. Roadmaps are maintained plans, READMEs are design/scope references, and ACTIONS are dated evidence logs. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here.
+Every goal folder must contain all three files: `ROADMAP.md`, `README.md`, and `ACTIONS.md`. Roadmaps are maintained plans, READMEs are design/scope references, and ACTIONS are dated evidence logs. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here.

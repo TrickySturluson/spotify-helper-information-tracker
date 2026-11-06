@@ -42,7 +42,9 @@ If the App token is unavailable, cloud refresh fails closed **before contacting 
 
 ### Initial reauthorization (one-time recovery)
 
-The current repository secret has been rejected by Spotify (`invalid_grant`), so token-rotation persistence cannot repair it retroactively. Reauthorize the Spotify playlist manager once, then manually bootstrap the new token into GitHub Actions:
+**Use this procedure only if a current read-only Spotify authentication check confirms `invalid_grant`.** The `invalid_grant` rejection documented during an earlier recovery incident is historical; this guide does not establish that the repository secret is currently invalid. As of the 2026-11-06 documentation audit, the current secret's live validity was not rechecked. Do not delete local tokens, reauthorize, or replace the Actions secret based only on this historical note. First run the read-only authentication/preflight workflow and inspect its current result.
+
+If the current check confirms `invalid_grant`, token-rotation persistence cannot repair the rejected token retroactively. Reauthorize the Spotify playlist manager once, then manually bootstrap the new token into GitHub Actions:
 
 1. In the trusted local/Codespaces checkout, stop any other process using port `8888` and delete `.spotify_playlist_token.json`.
 2. Set `SPOTIFY_CLIENT_ID`, then run `python compat/spotify_playlist_manager.py list` and approve the requested scopes.
@@ -66,6 +68,12 @@ The manual secret update is required only for initial recovery. Once the App and
 Spotify may respond with HTTP 429 and a `Retry-After` header. SHIT must not automatically retry a 429. Treat `QUOTA_EXCEEDED` as an app/developer-account-level cooldown, preserve the supplied retry interval, and stop making Spotify requests until that interval has elapsed. Do not repeatedly edit the control issue to retry the same command: each issue event starts another workflow and can consume more API quota. Spotify calculates ordinary rate limits over a rolling 30-second window; development-mode quota is separate, shared across the developer account, and grouped by endpoint buckets.
 
 A 429 response is not evidence of a bad refresh token, wrong playlist owner, or missing playlist. Diagnose those only after the cooldown, using the actual HTTP status and response body. SHIT persists the observed cooldown in `.github/spotify_api_cooldown.json`; cloud workflow runs commit that file so subsequent commands can stop before sending another Spotify request. The guard expires automatically at the recorded deadline.
+
+## Reference Library snapshot writes versus Spotify writes
+
+The Spotify Reference Library workflow is read-only against Spotify: it uses playlist/catalogue and item GETs and never adds, removes, reorders, or edits playlist descriptions. It does, however, write repository state. For non-relinked tracks in playlist snapshots, `spotify_reference_library.py sync` updates canonical MusicLibrary song/artist/album records with Spotify identity, playlist-source IDs/positions, and explicit `listening_context` provenance. It also stores timestamped, market-scoped playability observations. These are repository-side catalogue and availability observations, not Spotify playback, likes, saves, or Last.fm scrobbles. Playlist membership must never be counted as listening history or positive preference. Inaccessible/incomplete playlist reads preserve prior complete snapshot contents rather than treating the failed response as an empty playlist.
+
+See [the canonical Library integration contract](PER_RECORDING_MUSIC_LIBRARY.md) for the exact evidence semantics and identity/relink rules.
 
 ## Request minimization
 

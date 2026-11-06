@@ -1,7 +1,11 @@
 # Spotify Track Playability & Availability — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Market-aware observation persistence, refresh planning and offline backfill are implemented/merged; freshness and coverage must be monitored.
+**Last reviewed:** 2026-11-06  
+**Status:** Market-aware observation persistence, refresh planning and offline backfill are implemented/merged (PR #78). The explicit playability feature work is paused under the documentation-only priority; freshness and coverage monitoring remain queued.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose
 Record whether a Spotify-linked recording is playable in a particular market/context, separately from whether it can be found or added to a playlist.
@@ -19,8 +23,12 @@ Playability is market-scoped and time-sensitive. Preserve requested and relinked
 ## Acceptance criteria
 Market observations coexist; no global timeless boolean; addability does not imply playability; checks make zero playlist writes; all observations retain source/time/identity.
 
-## Next action
-Run a fresh read-only playability coverage report and inspect the weekly refresh plan before any provider-backed check.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Run a fresh read-only playability coverage report and inspect the weekly refresh plan before any provider-backed check.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Metadata freshness](../metadata-freshness/ROADMAP.md)

@@ -1,7 +1,11 @@
 # Library Health Checker & Data Maintainer — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Read-only health checker and preview-only derived-index maintenance are merged; broader repairs remain restricted/proposed.
+**Last reviewed:** 2026-11-06  
+**Status:** Read-only health checker and preview-only derived-index maintenance are merged; broader repairs remain restricted/proposed. Feature work is paused under the documentation-only priority.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose
 Keep the canonical Library structurally sound and recoverable while separating diagnosis from mutation.
@@ -19,8 +23,12 @@ Health and preview modes are read-only and network-free. Repairs must be determi
 ## Acceptance criteria
 Read-only modes make zero writes/network calls; repairs preserve identity and aliases; every mutation is reversible and audited; post-repair health passes.
 
-## Next action
-Inspect latest weekly health and maintainer artifacts, then confirm current index-only repair implementation and regression tests before proposing any new repair scope.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Inspect latest weekly health and maintainer artifacts, then confirm current index-only repair implementation and regression tests before proposing any new repair scope.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Metadata freshness](../metadata-freshness/ROADMAP.md)

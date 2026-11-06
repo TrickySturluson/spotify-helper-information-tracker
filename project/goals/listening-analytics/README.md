@@ -1,5 +1,7 @@
 # Listening Analytics & Evidence Sources
 > **Roadmap:** [ROADMAP.md](ROADMAP.md) is the durable plan and next-action reference. Read it before work; update it and [ACTIONS.md](ACTIONS.md) in the same session as implementation, testing, decisions, or blockers.
+> **Current repository priority:** This workstream is paused for feature implementation while SHIT's documentation audit is active. Only documentation corrections and evidence reconciliation are permitted. Preserve this roadmap; resume its feature next actions only when the [central handoff](../../NEXT_WORK.md) and Maintainability & Documentation roadmap explicitly say documentation is complete.
+
 
 ## Goal
 
@@ -14,6 +16,11 @@ Scope: chronological scrobble archive, derived analytics, playback tracker cover
 **Status: existing architecture/rules documented; verify source files and coverage before quoting current totals.**
 
 **Resume:** inspect canonical Last.fm archive/manifests; inspect playback tracker coverage separately; verify analytics semantics; test unknown-vs-zero and deduplication; record fresh totals with source and timestamp.
+
+## Open proposals (not merged)
+
+- [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open and not merged. It proposes a read-only observer for weekly playlist appearances/disappearances, Liked Songs changes and separately labelled post-exposure Last.fm scrobbles. It does not expose Spotify's explicit hide action and does not write playlists.
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; its watchdog remains a specification until runtime implementation and tests are verified.
 
 ## Documentation and resume
 

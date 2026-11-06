@@ -1,5 +1,7 @@
 # Canonical Library Enrichment
 > **Roadmap:** [ROADMAP.md](ROADMAP.md) is the durable plan and next-action reference. Read it before work; update it and [ACTIONS.md](ACTIONS.md) in the same session as implementation, testing, decisions, or blockers.
+> **Current repository priority:** This workstream is paused for feature implementation while SHIT's documentation audit is active. Only documentation corrections and evidence reconciliation are permitted. Preserve this roadmap; resume its feature next actions only when the [central handoff](../../NEXT_WORK.md) and Maintainability & Documentation roadmap explicitly say documentation is complete.
+
 
 ## Goal
 
@@ -14,6 +16,10 @@ Invariants: recording, artist and album entities remain distinct; track mood is 
 **Status: ongoing; current published catalogue coverage is verified, but field-level enrichment remains incomplete.** Run #18 reported 91.1% duration coverage (138,515/152,005 scrobbles), 1,778 track profiles, 3,998 artist profiles, 400 album profiles, 115 audio profiles, and zero lyric features. MusicBrainz rate-limited/503'd; Last.fm tag lookups returned HTTP 400; Discogs/GetSongBPM credentials were absent. Treat those as observed provider gaps, not permanent failures. Depends on migration recovery and a read-only coverage report.
 
 **Resume:** audit canonical Library; measure missing fields; resolve trusted recording IDs; enrich high-value fields in bounded passes; reconcile through canonical writer; audit and measure each pass.
+
+## Open proposal (not merged)
+
+- [PR #120 — Adopt incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft. It records a strategy change and documentation; it does not implement or prove a bounded provider executor, retry queue, or completed on-demand enrichment path. Do not treat the proposal as deployed behavior.
 
 ## Documentation and resume
 

@@ -17,6 +17,10 @@ room for exploration outside current patterns.
 > Future work and prioritized implementation checklist: [Tricky Daily TODO](TRICKY_DAILY_TODO.md).
 > The TODO is a planning backlog, not a statement that unchecked items are already implemented.
 
+## Latest repository snapshot state — 2026-11-06
+
+The latest saved Spotify reference snapshot for Tricky Daily was captured at `2026-11-06T01:48:00.233040+00:00`: 58 items were reported and fetched, all 58 track URIs were unique, and the item list was accessible with no item error. This is below the intended 60-track successful-cycle contract. It is a timestamped repository snapshot, not a new live preflight; it does not establish why the playlist had 58 items or whether it changed afterward. Do not infer a successful 60-track cycle from this snapshot. Reconcile current live state and cycle/audit evidence before any future authorized write; no repair or playlist mutation is part of the documentation audit.
+
 ## Trend profile
 
 `scripts/spotify/spotify_listening_trends.py` builds
@@ -42,18 +46,22 @@ calibration.
 
 ## Automatic schedule and recovery
 
-`.github/workflows/spotify-daily-midnight-cycle.yml` runs at the EST/EDT
-midnight UTC offsets and has a second delivery 15 minutes later. In standard
-time, the 04:00/04:15 UTC deliveries are 23:00/23:15 Eastern on the prior date
-and are deliberately skipped; 05:00/05:15 UTC are midnight/recovery deliveries.
-During daylight time, 04:00/04:15 UTC are midnight/recovery deliveries and the
-05:00/05:15 UTC entries are harmless duplicate deliveries.
+`.github/workflows/spotify-daily-midnight-cycle.yml` currently declares two cron expressions: `0 4,5 * * *` and `15 4,5 * * *`. This produces scheduled deliveries at both 04:00 and 05:00 UTC, plus a 15-minute recovery delivery for each. It is **not** yet a strict cron-to-DST-offset match.
 
-GitHub may delay a scheduled event. The cycle gate therefore permits a
-scheduled catch-up later on the same Eastern calendar date, while refusing
-the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated
-deliveries idempotent and is checked before Spotify is contacted, so a backup
-delivery after a successful cycle is a local no-op.
+- During Eastern Standard Time, 04:00/04:15 UTC are 23:00/23:15 Eastern on the preceding date; the current script gate skips scheduled events when the local Eastern hour is 23. The 05:00/05:15 UTC deliveries are 00:00/00:15 Eastern and can run.
+- During Eastern Daylight Time, 04:00/04:15 UTC are 00:00/00:15 Eastern. The 05:00/05:15 UTC deliveries are 01:00/01:15 Eastern; the current gate permits these same-date catch-up/duplicate deliveries. The persisted `last_cycle_date_eastern` guard makes later deliveries local no-ops after a successful cycle.
+- The current `should_run_cycle()` checks the Eastern local hour for scheduled events; it does not inspect GitHub's exact `github.event.schedule` string to reject the stale DST counterpart.
+
+**Pending DST improvement:** open, unmerged [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) proposes separate 04:00/05:00 UTC cron entries, passes the exact scheduled cron string into the runner, and rejects a cron whose UTC offset does not match the current Eastern offset. Those stricter semantics are proposed, not current mainline behavior; do not document them as implemented until PR #159 is merged and verified.
+
+The workflow also supports a repository test-trigger push to `.github/test-triggers/tricky-daily-live-cycle.json`. That push forces the runner, with an explicit `action` value of `cycle`, `description-only`, or `verify-only`; if the key is absent, it defaults to `description-only`. This is a deliberate test hook, not the normal schedule.
+
+GitHub may delay scheduled events. The current gate allows a scheduled catch-up later on the same Eastern calendar date, while refusing the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated deliveries idempotent and is checked before Spotify is contacted, so a backup delivery after a successful cycle is a local no-op.
+
+Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
+
+**Current force/idempotency discrepancy (source-checked 2026-11-06):** the runner passes `--force` to both the time-window check and `cycle_already_completed()`. The latter returns `False` when forced, so force currently bypasses the same-Eastern-date completion guard too. The schedule test explicitly asserts this. That is broader than the intended P0 contract, which says force may bypass the clock gate only; the same-date idempotency guard and all policy/safety checks must still apply. Treat this as an unresolved implementation defect, not intended behavior. Runtime/test correction is deferred under the documentation-only project pause; see [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
+
 
 After Spotify accepts the playlist replacement, the runner immediately writes
 a `replacement_accepted_pending_verification` state and publishes the
@@ -63,10 +71,11 @@ read-back advances the state to `completed`. A pending-verification state is
 evidence that Spotify accepted the write, not proof that the post-change
 snapshot was verified; inspect the audit and recovery artifact before retrying.
 
-Manual dispatch remains midnight-gated unless its `force` input is explicitly
-set to `true`. The separate remote-verification workflow is safe-test-only:
-it compiles modules and runs tests without contacting Spotify or changing a
-playlist.
+### What automatic post-write verification actually proves
+
+The candidate builder filters exact negative track keys/URIs and selects unique candidate URIs before publication. The normal cycle caller also validates exactly 60 recommendations, non-empty primary artists, Spotify track-URI shape and URI uniqueness before it saves a backup and calls the protected replacement helper. After the write, the automatic read-back confirms the new description, exactly 60 returned items and a valid primary artist on every item, then saves the resulting snapshot and marks the cycle completed.
+
+**The automatic post-write check is narrower than the full P0 acceptance target.** It does not explicitly recheck duplicate URIs, recheck the blacklist against the returned snapshot, or compare the returned ordered URI list with the exact ordered candidate list. The separate `--verify-only` mode checks 60 items, duplicate URIs, blacklist membership and the expected description, but it also does not compare against a stored pre-write ordered staging payload. Therefore a completed cycle currently means the implemented checks passed; it must not be described as proving every P0 invariant. These remaining gaps are recorded in `docs/TRICKY_DAILY_TODO.md` and the Tricky Daily roadmap.
 
 ## Rotating description
 
@@ -86,7 +95,7 @@ replacing tracks.
 ## Live preflight
 
 `.github/workflows/spotify-daily-live-preflight.yml` runs on updates to the
-dedicated test trigger and every six hours. It refreshes the OAuth access token
+dedicated test trigger, every six hours, and manual `workflow_dispatch`. It refreshes the OAuth access token
 when required, then performs read-only Spotify requests to verify the
 authenticated account, the exact Tricky Daily ID and name, playlist ownership,
 the managed-playlist exception, the explicit unlock state, and playlist-item

@@ -1,3 +1,20 @@
+# Spotify Track Playability & Availability — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+## 2026-11-06 — Reference Library refresh distinguished from playability refresh
+
+- Reference Library workflow #42146148971 completed and committed repository snapshots/removal state as `3e989e33282efab6cc1416e35970e7c59af5f056`.
+- This was a read-only Spotify playlist snapshot refresh plus local repository-state publication; it did not mutate Spotify playlists.
+- Do not count it as the explicit market-aware `refresh-playability` operation or as proof that all saved tracks have fresh `from_token` market observations. The last explicit playability backfill remains the previously documented PR #78 / issue #82 evidence until a separate bounded refresh is verified.
+- This goal's feature work remains paused until documentation acceptance criteria pass.
+
 ## 2026-11-02 — Merge market-aware refresh and backfill saved observations
 
 - PR #78 merged to `main` as `e12b72ee24f1440115961282cd7baf7879ebeec8`.
@@ -54,7 +71,6 @@
 - **Not yet verified:** branch CI has not run to completion; this is not merged and no existing canonical data has been rewritten. Existing playlist snapshots are not yet backfilled into song records.
 - **Safety:** no Spotify API request or playlist mutation was made; the implementation only consumes fields from the existing read-only snapshot sync.
 - Next: run PR CI, repair any failures, verify fixture output, merge only after checks pass, then perform a bounded offline backfill from saved playlist snapshots. Later add explicit-market spot checks only after verifying current Spotify API behavior and configured market semantics.
-# Actions — Spotify Track Playability & Availability
 
 ## 2026-11-02 — Initial design and boundaries
 

@@ -776,8 +776,17 @@ class MusicLibrary:
 
 
 # FILE OVERVIEW
-# - Stores one JSON record per artist, album, and song in ID-sharded paths.
-# - Uses MusicBrainz/Spotify IDs, ISRCs and verified release positions before safe name aliases.
-# - Explains lookup paths and confidence; ambiguous artist/title candidates are never guessed.
-# - Does not invent album records when the source has no release context.
-# - Preserves metadata, listening context, audio, lyrics, derived fields, provenance, and timestamped Spotify playability observations.
+# Purpose: Canonical per-recording music Library storage, lookup, identity resolution and evidence preservation.
+# Records: One JSON record per song, artist and album under assistant_data/music/library/,
+#          with sharded paths, stable IDs, indexes, aliases and cross-entity relationships.
+# Identity: Prefer verified MusicBrainz/Spotify IDs and corroborating ISRC/release context;
+#           use name aliases only as explicit fallbacks and never guess ambiguous matches.
+# Evidence: Preserves field provenance/confidence, listening context, audio/lyrics features,
+#          metadata observations and market-scoped Spotify playability history.
+# Write boundary: Constructor may rebuild and write library_index.json when the index is missing,
+#                 empty or incomplete; it does not call providers during that recovery.
+# Safety: Resolver lookups do not promote weak identity evidence. Use library_health.py for a
+#         strictly read-only health scan; do not treat constructing MusicLibrary as read-only.
+# Related: library_cli.py, music_evidence.py, library_health.py, sync_music_library.py;
+#          docs/PER_RECORDING_MUSIC_LIBRARY.md.
+# -----------------------------------------------------------------------------

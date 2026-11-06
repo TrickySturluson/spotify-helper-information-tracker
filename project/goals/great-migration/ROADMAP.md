@@ -1,7 +1,11 @@
 # Great Migration — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Catalogue migration published and structurally verified; remaining work is controlled enrichment/provenance follow-through, not a fresh full migration.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the repository-wide documentation-only priority. The canonical catalogue migration is published and structurally verified; controlled enrichment/provenance follow-through remains queued.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose and success criteria
 Maintain one canonical per-recording music Library while preserving source identities, aliases, relationships, provenance, and recoverability. Publish only audited outputs without losing concurrent main-branch changes. Migration must not modify Spotify playlists or invent provider metadata.
@@ -27,8 +31,12 @@ Maintain one canonical per-recording music Library while preserving source ident
 - Post-publish health, confidence, and source coverage pass.
 - No Spotify playlist side effects.
 
-## Next action
-Inspect the latest main-branch status and current provider checkpoints; establish a fresh measured baseline before choosing any enrichment batch.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Inspect the latest main-branch status and current provider checkpoints; establish a fresh measured baseline before choosing any enrichment batch.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Central handoff](../../NEXT_WORK.md) · [Loose ends](../../LOOSE_ENDS.md)

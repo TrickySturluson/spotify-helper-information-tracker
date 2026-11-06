@@ -416,10 +416,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich unique scrobbled tracks with cached Last.fm metadata. Generated files are optimized for lookup: a compact manifest/index plus 32 artist-hash shards. The canonical scrobble archive is never modified.
-# Location: Maintained implementation in scripts/music/build_music_metadata.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/build_music_metadata.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Incrementally enrich unique Last.fm tracks with cached duration and metadata.
+# Inputs: data/scrobbles.json, existing music metadata manifest/shards, LASTFM_API_KEY,
+#         and MUSIC_METADATA_LOOKUPS_PER_RUN batch limit.
+# Outputs: Compact assistant_data/music manifest/index and 32 artist-hash metadata shards;
+#          canonical data/scrobbles.json is never modified.
+# Behavior: Reuses cached successes, records lookup state and provider outcomes, and
+#            prioritizes eligible missing tracks within the configured request budget.
+# Safety: Bounded Last.fm requests; no Spotify playlist writes or scrobble edits.
+# Run: python compat/build_music_metadata.py (repository root; requires LASTFM_API_KEY).
+# Related: docs/AUTOMATED_AUDIO_METADATA.md; docs/RECENT_TRACK_ENRICHMENT.md.
 # -----------------------------------------------------------------------------

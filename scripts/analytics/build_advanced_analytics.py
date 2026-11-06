@@ -231,10 +231,13 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build deeper identity-aware listening analytics from the canonical archive. All timestamps and buckets are UTC. MBIDs are preferred for entity identity; normalized names are fallbacks where Last.fm did not provide an MBID.
-# Location: Maintained implementation in scripts/analytics/build_advanced_analytics.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_advanced_analytics.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_advanced_analytics). See docs/ for longer operational and data-contract guides.
+# Purpose: Build identity-aware session, discovery, rediscovery and lifecycle analytics
+#          from the canonical Last.fm scrobble archive.
+# Inputs: data/scrobbles.json; artist/track names and MusicBrainz IDs from each scrobble.
+# Outputs: JSON datasets under assistant_data/advanced/; existing archive is never modified.
+# Semantics: UTC timestamps; MBIDs are preferred entity keys and normalized names are
+#            explicit fallbacks. Sessions use a 30-minute gap; rediscovery uses 90 days.
+# Safety: Offline aggregation only; no provider requests, Spotify API calls or playlist writes.
+# Run: python compat/build_advanced_analytics.py (repository root).
+# Related: tests/ and docs/; source archive contract in data/README.md.
 # -----------------------------------------------------------------------------

@@ -1097,8 +1097,9 @@ if __name__ == "__main__":
 # FILE OVERVIEW
 # Purpose: Preview energy-aware Spotify playlist sequences and write reorder plans for review. The sequencer never edits Spotify directly; the locked-by-default playlist manager performs the separate preview and confirmation-gated apply.
 # Inputs: Reads the selected Spotify playlist plus artist, track-tag, lyric-theme, and acoustic-profile caches under assistant_data/. Missing metadata remains unknown rather than being treated as a measured neutral value.
-# Outputs: Writes a JSON reorder plan; --compare also writes alternative peak-position plans and prints their transition summaries.
-# Run: python compat/spotify_playlist_sequencer.py PLAYLIST_ID [--journey rising|falling|wave|steady] [--peak-position 85] [--compare].
-# Safety: Refuses incomplete playlist membership and invalid or ambiguous anchors. Apply plans only through spotify_playlist_manager.py after reviewing its preview.
+# Outputs: Writes a local JSON reorder plan; --compare also writes alternative peak-position plans and transition summaries.
+# Safety: Never edits Spotify. Loading Library profiles may rebuild/write library_index.json if an existing
+#         index is empty or incomplete; use library_health.py for strictly read-only structural checks.
+#         Apply plans only through spotify_playlist_manager.py after its separate preview/confirmation.
 # Related: tests/test_spotify_playlist_sequencer.py; docs/TRANSITION_SCORING.md; scripts/spotify/spotify_playlist_manager.py.
 # -----------------------------------------------------------------------------

@@ -16,7 +16,7 @@ The API accepts up to 25 recording MBIDs per request. The script reads verified 
 
 The recording-ID resolver now reads ISRCs from already-saved, complete Spotify playlist snapshots before making any new Spotify request. It asks MusicBrainz for the recording associated with a unique ISRC, then still requires exact artist-credit and recording-title agreement before accepting the MBID. This is stronger identity evidence than title matching alone because ISRCs identify sound recordings rather than the underlying composition. If a track has multiple conflicting snapshot ISRCs, or MusicBrainz returns multiple exact recordings, the resolver leaves the ID unresolved. When no unique ISRC result exists, it falls back to the existing exact artist/title MusicBrainz search. ISRC-confirmed matches are marked high identity confidence; exact name-only matches are medium. MusicBrainz requests remain spaced at least one second apart.
 
-Run locally with `python compat/enrich_musicbrainz_recording_ids.py`; the scheduled metadata workflow runs a small 200-lookup batch. The ISRC index is built entirely from local snapshots, so this step does not consume Spotify API quota.
+Run locally with `python compat/enrich_musicbrainz_recording_ids.py`; the scheduled metadata workflow runs a bounded 200-lookup batch. The ISRC index is built entirely from local snapshots, so this step does not consume Spotify API quota.
 
 ## Recent-listening priority
 
@@ -41,6 +41,10 @@ The manual **Update Last.fm History** workflow also performs a read-only Spotify
 reference-library sync before refreshing Last.fm history, then runs the recent
 top-200 enrichment stages and rebuilds derived analytics. It never edits
 Spotify playlists.
+
+### Enrichment workflow budgets
+
+The daily **Enrich Music Metadata** schedule uses 300 MusicBrainz duration lookups, 100 artist-profile lookups, 200 track-profile lookups, 200 recording-ID lookups and 100 album-profile lookups, plus bounded optional Discogs/GetSongBPM/AcousticBrainz stages. Manual dispatch exposes larger explicit choices: MusicBrainz durations 1,000/3,000/6,000 (default 3,000), artist profiles 120/500/1,000 (default 500), and track profiles 120/300/600 (default 300). The rolling recent cohort remains top 200; it is not the same setting as the per-run track-profile lookup budget. These are caps, not guarantees that every candidate will be queried; caches, identity eligibility, cooldowns and provider availability can reduce actual requests.
 
 ## Coverage and limitations
 

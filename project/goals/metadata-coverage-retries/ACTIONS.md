@@ -1,6 +1,31 @@
 # Metadata Coverage & Provider Retries — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+## 2026-11-06 — Coverage planner PR status rechecked
+
+- PR #65 `codex/library-coverage-planner` remains open/draft, 3 commits ahead and 599 behind current main. GitHub reports mergeable=true, but the branch is heavily stale and diverged.
+- Old-head Daily curator tests #41361560857 failed in the unit-test step; full-history security scan #41361560861 passed. Rebase, investigate the old test failure and rerun current-main CI before relying on the planner.
+- No planner execution, provider requests or Library writes were performed.
+
+
+
+## 2026-11-06 — Open PR #65 test failure preserved for next session
+
+- [PR #65](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65) remains open and draft. Its observed full test run failed because live Last.fm MBID lookup requests for test artists returned HTTP 400/404; the full-history security scan passed. Do not describe the planner PR as test-green or merged.
+- No provider request or repair was performed during this documentation audit. Revisit the network-dependent test failure and deterministic mock boundary only after the documentation phase is complete.
+
+## 2026-11-06 — Open coverage-planner proposal reconciled
+
+- PR #65 remains an open draft proposing a read-only Library coverage planner. It is not merged behavior; compare its current diff/checks with main before selecting future work.
+- The documentation-only priority pauses all coverage-retry implementation and provider calls until the repository documentation acceptance criteria pass.
+
 
 ## 2026-11-01 — Goal workspace initialized
 

@@ -1618,10 +1618,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Owner-verified GitHub issue command handler for Spotify playlist control.
-# Location: Maintained implementation in scripts/spotify/spotify_playlist_cloud.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_playlist_cloud.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Validate and execute owner-authored GitHub issue commands for Spotify playlist control.
+# Inputs: Structured command payloads, playlist manager state, live Spotify metadata and
+#         the operation-specific backup/preview/confirmation records.
+# Outputs: Command result, audit/state updates and issue response; delegates playlist actions
+#          to the shared manager rather than duplicating write logic.
+# Safety: Owner verification, deny-by-default playlist locks, exact playlist identity,
+#         removal blacklist, preview, explicit confirmation, backups and read-back are required.
+#         No command payload alone grants blanket write permission.
+# Run: Invoked by .github/workflows/spotify-playlist-manager.yml; not a standalone writer.
+# Related: scripts/spotify/spotify_playlist_manager.py; docs/SPOTIFY_API_OPERATIONS.md;
+#          .github/README.md.
 # -----------------------------------------------------------------------------

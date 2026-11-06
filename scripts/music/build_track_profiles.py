@@ -453,10 +453,19 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich scrobbled tracks, exact priority-playlist tracks, and the rolling top 200 tracks by Last.fm plays in the previous 90 days. Writes a reusable recent_top_tracks.json cohort and prioritizes it for Last.fm tags and verified MusicBrainz recording tags. No fuzzy MBID search is used: uncertain identity matches remain unresolved.
-# Location: Maintained implementation in scripts/music/build_track_profiles.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/build_track_profiles.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Build track-level sourced tags and a rolling recent-top-track enrichment cohort.
+# Inputs: Last.fm scrobbles, exact priority-playlist snapshots, existing track-profile cache,
+#         LASTFM_API_KEY, TRACK_PROFILE_LOOKUPS_PER_RUN, TRACK_PROFILE_RECENT_WINDOW_DAYS,
+#         TRACK_PROFILE_RECENT_TOP_N and TRACK_PROFILE_PRIORITY_PLAYLISTS.
+# Outputs: assistant_data/music/track_profiles.json, durable lookup state,
+#          recent_top_tracks.json, and canonical MusicLibrary song/artist/album evidence
+#          written through MusicLibrary.put_catalogue().
+# Selection: Includes archive tracks, exact priority-playlist tracks and a configurable
+#            recent top-N cohort ranked by Last.fm plays within the configured window.
+# Semantics: Priority-playlist-only candidates may have zero scrobbles; playlist membership is context.
+# Identity: Uses existing verified recording evidence; fuzzy MusicBrainz ID search is not run here.
+# Safety: Bounded provider requests; no archive mutation or Spotify playlist writes.
+# Run: python compat/build_track_profiles.py (repository root; LASTFM_API_KEY required).
+# Related: docs/RECENT_TRACK_ENRICHMENT.md; docs/TRACK_MOOD_EVIDENCE.md;
+#          tests/test_track_profiles.py.
 # -----------------------------------------------------------------------------

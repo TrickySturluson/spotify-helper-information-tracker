@@ -222,10 +222,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Locally sample Spotify playback progress and append measured listening intervals. Uses Spotify OAuth Authorization Code with PKCE and only the user-read-playback-state scope. No client secret is stored.
-# Location: Maintained implementation in scripts/spotify/spotify_playback_tracker.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_playback_tracker.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Locally sample Spotify playback progress and append measured listening intervals.
+# Authentication: OAuth Authorization Code with PKCE; requests only user-read-playback-state.
+# Inputs: User-authorized Spotify playback state sampled by the local tracker process.
+# Outputs: Append-only playback_data/segments.jsonl observations with played_ms and sampled_at.
+# Semantics: Records measured intervals prospectively; it is not a complete historical archive
+#            and must remain separate from Last.fm scrobbles. Missing samples are unknown.
+# Safety: No client secret is stored; no playlist writes or repository commits are performed.
+# Run: python compat/spotify_playback_tracker.py (repository root; follow local OAuth setup).
+# Related: scripts/analytics/build_playback_analytics.py; playback_data/README.md;
+#          docs/SPOTIFY_API_OPERATIONS.md.
 # -----------------------------------------------------------------------------

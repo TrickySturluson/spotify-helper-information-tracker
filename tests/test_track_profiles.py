@@ -238,8 +238,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_track_profiles -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Regression tests for recent-track cohort selection and sourced track metadata enrichment.
+# Scope: Rolling 90-day top-track ranking, priority-playlist ingestion, exact identity resolution,
+#        Last.fm tag provenance, strict MusicBrainz recording-ID matching, retry cooldowns and ambiguity.
+# Run: python -m unittest tests.test_track_profiles -v
+# Related: scripts/music/build_track_profiles.py; scripts/music/build_music_metadata.py;
+#          docs/RECENT_TRACK_ENRICHMENT.md; docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------

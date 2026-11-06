@@ -359,10 +359,15 @@ def playlist_health(items, feedback=None, artist_profiles=None, track_profiles=N
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Playlist-specific taste profiles, recommendation diagnostics, and health checks. All outputs are derived from a single playlist snapshot plus public/local music metadata. This module is intentionally read-only: it never edits Spotify.
-# Location: Maintained implementation in scripts/spotify/playlist_intelligence.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/playlist_intelligence.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Provide reusable, read-only playlist-specific taste profiles, recommendation diagnostics and health checks.
+# Inputs: A playlist snapshot plus assistant_data recommendation scoring config, artist/track
+#         profiles, lyric features and optional local lyric metadata.
+# Outputs: Derived playlist profile, score and health structures for callers; no live playlist writes.
+# Semantics: Keeps playlist identity/membership separate from listening history; sparse
+#            genre/mood/audio evidence remains unknown rather than being treated as neutral.
+# Safety: Pure/local analysis helpers; imported by discovery, cloud-control and sequencing code.
+# Run: Import from scripts/spotify/spotify_playlist_cloud.py or related maintained modules;
+#      this module has no standalone CLI.
+# Related: scripts/spotify/spotify_discovery.py; spotify_playlist_sequencer.py;
+#          docs/PLAYLIST_FEEDBACK_CALIBRATION.md.
 # -----------------------------------------------------------------------------

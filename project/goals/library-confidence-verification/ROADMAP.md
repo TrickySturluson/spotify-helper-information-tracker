@@ -1,7 +1,11 @@
 # Library Identity & Metadata Confidence Verification — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Read-only confidence audit is merged and has passed full-catalogue CI; direct evidence coverage and sorter readiness remain incomplete.
+**Last reviewed:** 2026-11-06  
+**Status:** Read-only confidence audit is merged; direct evidence coverage and sorter readiness remain incomplete. Feature work is paused under the repository-wide documentation-only priority.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose
 Prove canonical records resolve to the correct recordings and that confidence reflects actual field-level evidence. Prevent weak identity/context from masquerading as strong recording metadata.
@@ -20,8 +24,12 @@ Confidence categories are categorical, not calibrated probabilities. Distinct so
 ## Acceptance criteria
 Every confidence value traces to evidence and match method; ambiguous matches never become high; repeated same-provider evidence is not independent; audit is read-only and deterministic; downstream tools respect field-level confidence.
 
-## Next action
-Run the latest confidence audit and compare it with the documented baseline; then prioritize the missing duration provenance and direct track-level evidence gaps.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+After documentation completion, investigate the 214 current track_tags confidence mismatches from CI #42154433350, remeasure the residual 1,968 missing-provenance fields with the freshness planner, and review the existing Candy Claws duplicate artist/album candidates. Do not bulk-rewrite confidence or merge entities from the audit alone.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist intelligence](../playlist-intelligence/ROADMAP.md)

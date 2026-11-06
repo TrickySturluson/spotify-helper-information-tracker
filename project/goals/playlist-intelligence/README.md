@@ -1,5 +1,7 @@
 # Playlist Intelligence & Safety
 > **Roadmap:** [ROADMAP.md](ROADMAP.md) is the durable plan and next-action reference. Read it before work; update it and [ACTIONS.md](ACTIONS.md) in the same session as implementation, testing, decisions, or blockers.
+> **Current repository priority:** This workstream is paused for feature implementation while SHIT's documentation audit is active. Only documentation corrections and evidence reconciliation are permitted. Preserve this roadmap; resume its feature next actions only when the [central handoff](../../NEXT_WORK.md) and Maintainability & Documentation roadmap explicitly say documentation is complete.
+
 
 ## Goal
 
@@ -11,9 +13,14 @@ Smooth transitions are the primary sorting objective; avoid jarring adjacent tra
 
 Only generated playlists are in scope by default. Personal playlists remain read-only unless explicitly authorized. Preserve deny-by-default controls, explicit unlocks, dedupe, removal blacklists and audits. Tricky Daily is an approved exception, not blanket permission. Booze or Boos! must remain energetic, fun, and strongly Halloween-related per track; inspect live contents before changes.
 
-**Status: active development; no live playlist write authorized by these docs. No playlist writes during migration recovery.**
+**Status: feature work paused under the repository-wide documentation-only priority.** Existing playlist intelligence, fit-scoring and sequencing implementation remains documented and preserved; no live playlist write is authorized by this workspace. Resume feature work only after the central handoff says documentation is complete.
 
 **Resume:** inspect sorter/tests/state; verify authorization and lock; preview; assess transitions; apply only explicitly authorized changes; verify order/count/duplicates/audit.
+
+## Open proposals (not merged)
+
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; it adds an evaluation/watchdog specification, not verified runtime reports or live playlist changes.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft; it records a strategy decision and does not complete sorter integration or authorize playlist writes.
 
 ## Documentation and resume
 
@@ -28,4 +35,4 @@ The 25-track human slider exercise is exploratory sanity-check context only. It 
 
 ### Booze or Boos! integration milestone — 2026-11-02
 
-A read-only cross-reference audit now runs the five-axis fit model over the 64-track saved Booze snapshot against the five calibration-target profiles. The full candidate batch is excluded from those profiles. This helps surface musical affinities and evidence gaps, but it does not replace the separate Halloween-relevance review. The existing sequencer remains the ordering engine; all changes still require a fresh live preview and explicit review.
+Historical 2026-11-02 audit: the five-axis fit model was run over a 64-track Booze snapshot with the candidate batch excluded from calibration profiles. That manifest is now stale. The latest repository snapshot captured 2026-11-06T01:47:59.824523Z contains 92 accessible unique track URIs (zero duplicate URIs), so the old 64-track scores must not be used as current evidence. Regenerate the manifest and redo the hard per-track Halloween/party-energy review after the documentation-only pause. Musical affinity never substitutes for explicit Halloween relevance.

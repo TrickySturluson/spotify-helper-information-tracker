@@ -1,3 +1,19 @@
+# Library Identity & Metadata Confidence Verification — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+## 2026-11-06 — Latest confidence audit found 214 track-tag mismatches, zero identity drift
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs. Identity confidence: 7,660 high / 5,503 low; methods: 5,669 recording MBIDs, 5,503 source-track IDs, 1,991 Spotify track IDs. Identity confidence drift: zero.
+- Metadata confidence: duration low on 8,187 records; missing stored confidence entries: zero; mismatches: 214, all in `track_tags`. Example rows show stored confidence `{}` versus recomputed tag confidence. This is a real current mismatch set and must be reviewed before any confidence materialization; do not bulk-rewrite.
+- The report is read-only; no canonical Library records or provider state were modified. Feature work remains paused until documentation acceptance criteria pass.
+
 ## 2026-11-02 — Create real-data identity review set and identify duplicate entity candidates
 
 - Added `IDENTITY_REVIEW_SET.md` (commit `2b8b840`) and linked it from the goal README (commit `456fac0`).
@@ -58,7 +74,6 @@
 - Added a CI step to run the audit over the complete published catalogue, not just fixtures.
 - Branch: `feature/library-confidence-audit`; not merged. Awaiting CI output.
 - Next: inspect full-library report; investigate stored-vs-recomputed drift and low-confidence populations; build curated gold set before changing any confidence policy.
-# Actions — Library Identity & Metadata Confidence Verification
 
 ## 2026-11-02 — Initialize confidence verification workspace
 

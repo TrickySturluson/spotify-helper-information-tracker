@@ -25,16 +25,43 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 | `assistant_data/` | Generated query indexes, playlist snapshots, music metadata and recommendation outputs; rebuild through documented generators |
 | `playback_data/` | Optional locally measured playback observations; coverage gaps must remain explicit |
 
-## Cross-cutting technical references
+## Technical and operational guide catalogue
 
-- [Repository file index](REPOSITORY_FILE_INDEX.md) — tracked file and directory inventory.
-- [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — public data inventory, credential boundaries, and audit scope.
-- [Spotify API operations](SPOTIFY_API_OPERATIONS.md) — Spotify authentication, API behavior, and cloud-operation constraints.
-- [GitHub Actions workflow catalogue](WORKFLOWS.md) — triggers, permissions, credentials, side effects and operational boundaries for all workflows.
-- [Automatic playlist descriptions](AUTOMATIC_PLAYLIST_DESCRIPTIONS.md) — generated-description ownership, safeguards, and rollout.
-- [Tricky Daily cycle](TRICKY_DAILY_CYCLE.md) — cycle behavior, schedule, recovery, description rotation and preflight.
+Every maintained guide in `docs/` is listed below. Use the workstream roadmap and action log alongside these technical references; a guide explains a contract, while the roadmap records its current implementation status.
+
+### Repository, privacy and operations
+
+- [Repository file index](REPOSITORY_FILE_INDEX.md) — maintained code, workflows, data families, source-of-truth boundaries and inventory commands.
+- [Code documentation standard](CODE_DOCUMENTATION.md) — file overviews, module docstrings, inline documentation and automated enforcement.
+- [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — published personal data, secret boundaries, and repository exposure risks.
+- [Spotify API operations](SPOTIFY_API_OPERATIONS.md) — authentication, permissions, API behavior, token handling and cloud-operation constraints.
+- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 17 workflows, triggers, permissions, credentials, writes and operational boundaries.
+- [Great Migration guide](GREAT_MIGRATION.md) — canonical Library migration, validation, backup, publication and recovery workflow.
+
+### Canonical Library, identity and metadata
+
+- [Per-recording music Library](PER_RECORDING_MUSIC_LIBRARY.md) — artist/album/song entities, identity resolution, aliases, provenance, evidence and canonical storage.
+- [Album metadata and lookup confidence](ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md) — exact album identity, release context, provider evidence and confidence boundaries.
+- [Automated audio metadata](AUTOMATED_AUDIO_METADATA.md) — provider enrichment, duration/tag/profile jobs, limits, caches and retry behavior.
+- [Recent-track enrichment](RECENT_TRACK_ENRICHMENT.md) — rolling recent-top-track selection and bounded priority enrichment.
+- [Track mood evidence](TRACK_MOOD_EVIDENCE.md) — track-level mood/theme evidence, source distinctions and confidence rules.
+- [GetSongBPM integration](GETSONGBPM.md) — optional tempo/key fallback, exact-match requirements and credential handling.
+- [Audio analysis](AUDIO_ANALYSIS.md) — local audio feature extraction, supported inputs, outputs and operational constraints.
+- [Audio mood models](AUDIO_MOOD_MODELS.md) — optional DEAM/Essentia inference, model provenance, license and confidence limitations.
+- [Lyrics library](LYRICS_LIBRARY.md) — transient lyric lookup, local metadata storage, phrase fingerprints and copyright boundaries.
+
+### Playlist intelligence, feedback and sequencing
+
+- [Automatic playlist descriptions](AUTOMATIC_PLAYLIST_DESCRIPTIONS.md) — description ownership, preservation of manual text, safeguards and rollout.
+- [Playlist feedback calibration](PLAYLIST_FEEDBACK_CALIBRATION.md) — immutable fit predictions, explicit feedback, calibration diagnostics and separation from Daily learning.
+- [Transition scoring](TRANSITION_SCORING.md) — evidence-aware adjacent-track scoring, missing-data handling and journey construction.
+- [Booze or Boos! sorting](BOOZE_OR_BOOS_SORT.md) — Halloween playlist goals, fit requirements, evidence gates and safe sequencing.
+- [Tricky Daily cycle](TRICKY_DAILY_CYCLE.md) — cycle behavior, Eastern-time schedule, recovery, description rotation and live preflight.
 - [Tricky Daily backlog](TRICKY_DAILY_TODO.md) — prioritized future improvements; unchecked items are not implemented.
-- [Playlist reference guide](../assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md) — canonical playlist roles and reference update rules.
+
+### Spotify reference data
+
+- [Playlist reference guide](../assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md) — canonical playlist roles, snapshot semantics and reference update rules.
 
 ## Workstream roadmaps
 
@@ -47,8 +74,8 @@ The [goal index](../project/goals/README.md) links all current goal workspaces. 
 
 ## Automated documentation checks
 
-- [Documentation contract tests](../tests/test_documentation_contract.py) verify required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, the root assistant instructions, major domain coverage in this index, and local links from the main fresh-session entry points.
-- [Script layout tests](../tests/test_script_layout.py) verify implementation/compatibility layout and bottom-of-file overview coverage for maintained Python and workflow files.
+- [Documentation contract tests](../tests/test_documentation_contract.py) verify required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, the root assistant instructions, complete indexing of every technical guide, workflow catalogue coverage, Great Migration issue/manual-dispatch allowlist alignment, scheduled/manual metadata-enrichment budget alignment, Reference Library schedule alignment, Tricky Daily force/idempotency discrepancy documentation, sensitive workflow trigger boundaries, documentation-only next actions in all 12 paused goal roadmaps, major domain coverage, and local links across all Markdown files.
+- [Script layout tests](../tests/test_script_layout.py) verify implementation/compatibility layout, bottom-of-file overview coverage, specific non-boilerplate implementation and test-module overviews, and compatibility-to-implementation references.
 - [Test suite guide](../tests/README.md) explains test families, commands, and the limits of unit-test evidence.
 - Both checks are part of the standard unittest discovery suite; the main scheduled/manual update workflow runs that suite before publishing refreshed data.
 

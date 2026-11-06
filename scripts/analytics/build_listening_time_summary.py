@@ -106,10 +106,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Publish complete-history listening-time estimates alongside verified duration data. The legacy baseline deliberately includes every scrobble. Verified-duration metrics remain a separate subset and are never filled with guessed durations.
-# Location: Maintained implementation in scripts/analytics/build_listening_time_summary.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_listening_time_summary.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_listening_time_summary). See docs/ for longer operational and data-contract guides.
+# Purpose: Publish complete-history and verified-duration listening-time estimates.
+# Inputs: data/scrobbles.json, data/stats.json, assistant_data/overview.json,
+#         assistant_data/music/overview.json and recommendation duration trends.
+# Outputs: assistant_data/listening_time.json plus monthly/yearly duration-trend fields.
+# Semantics: The legacy headline intentionally uses the 3.5-minute estimate for every
+#            scrobble; verified-duration equivalents are reported separately and never
+#            filled with guessed durations. Unknown-duration coverage stays visible.
+# Safety: Local derived-data build only; does not alter source scrobbles or contact providers.
+# Run: python compat/build_listening_time_summary.py (repository root).
+# Related: docs/ listening-time contract; tests/; scripts/analytics/build_music_analytics.py.
 # -----------------------------------------------------------------------------

@@ -238,10 +238,16 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Track manual removals across all owned Spotify playlists and detect duplicates. Run: python track_playlist_removals.py Optional: python track_playlist_removals.py PLAYLIST_ID Add --dedupe to remove extra occurrences from unlocked playlists only. First run establishes baselines; later runs detect tracks removed since the previous run and persist them in playlist_removed_tracks.json.
-# Location: Maintained implementation in scripts/spotify/track_playlist_removals.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/track_playlist_removals.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Compare owned Spotify playlist snapshots to detect manual removals and duplicates.
+# Inputs: Live playlist membership or freshly captured reference-library snapshots,
+#         prior baseline state and playlist ownership/managed-policy metadata.
+# Outputs: Updates playlist_removal_baseline.json and playlist_removed_tracks.json with
+#          exact track/URI removal evidence for downstream curator filters.
+# Behavior: First run establishes a baseline; later runs record differences. Supports
+#            a selected playlist ID and an explicit --dedupe operation.
+# Safety: Normal tracking is read/compare/persist; --dedupe is the separate write path and
+#         may remove duplicate occurrences only from playlists that are explicitly unlocked.
+# Run: python compat/track_playlist_removals.py [PLAYLIST_ID] [--dedupe].
+# Related: scripts/spotify/spotify_reference_library.py; spotify_playlist_manager.py;
+#          docs/SPOTIFY_API_OPERATIONS.md.
 # -----------------------------------------------------------------------------

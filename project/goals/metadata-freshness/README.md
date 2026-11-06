@@ -1,5 +1,7 @@
 # Metadata Freshness & Partial Revalidation
 > **Roadmap:** [ROADMAP.md](ROADMAP.md) is the durable plan and next-action reference. Read it before work; update it and [ACTIONS.md](ACTIONS.md) in the same session as implementation, testing, decisions, or blockers.
+> **Current repository priority:** This workstream is paused for feature implementation while SHIT's documentation audit is active. Only documentation corrections and evidence reconciliation are permitted. Preserve this roadmap; resume its feature next actions only when the [central handoff](../../NEXT_WORK.md) and Maintainability & Documentation roadmap explicitly say documentation is complete.
+
 
 ## Goal
 
@@ -46,7 +48,7 @@ A global `freshness_state.json` may track per-provider cursor, last successful p
 
 **Read-only field-level planner merged in PR #81** at `570598f`. It reads market-scoped Spotify playability, existing song Last.fm/MusicBrainz timestamps and duration source, and the saved `track_profiles.json`, `artist_profiles.json`, and `album_profiles.json` caches mapped back to canonical IDs. It respects per-profile and provider-wide cooldowns, and does not infer freshness from record modification times.
 
-Full-catalogue CI scanned 13,005 songs, 6,386 artists, and 7,861 albums; it recognized 1,778 track-profile rows, 3,998 artist-profile rows, and 400 album-profile rows. After the offline playability backfill, it selected **0 due tasks** under the current initial TTL policies. The planner is network-free and write-free. 335 tests and 131 Python module compilations passed on the final PR revision.
+Historical PR #81 CI scanned 13,005 songs, 6,386 artists and 7,861 albums, with 1,778 track-profile rows, 3,998 artist-profile rows and 400 album-profile rows. The latest read-only planner check in Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs, 6,497 artists and 7,969 albums; profile caches held 2,567 track, 4,498 artist and 805 album rows. It found 11 unknown-age baseline candidates, selected 25 due tasks and zero baseline tasks, with 11 missing timestamps and 1,968 missing-provenance fields. The planner made no provider requests or writes. This is a fresh bounded planning snapshot, not evidence that those selected tasks were executed.
 
 **Native CLI and weekly automation merged in PR #86** at `e4ae9b5`. Run `python shit.py library freshness --limit 25 --market from_token` for a bounded plan. The weekly workflow runs structural health, confidence, a read-only maintenance preview, and freshness planning every Sunday at 09:17 UTC, stores reports as a 30-day artifact, and makes no provider requests or Library writes. A manual `[SHIT LIBRARY] freshness-review` operation is also available. No provider-backed periodic executor is enabled; the current scheduled workflow is read-only and produces a plan/report.
 
@@ -66,9 +68,9 @@ Issue #90 completed a read-only plan against the 13,005-song catalogue. It scann
 
 
 
-## Duration provenance recovery in progress
+## Duration provenance recovery applied; residual planner evidence remains
 
-A follow-up audit found that some duration timestamps were present in legacy artist shards as `metadata_checked_at` but absent from canonical song evidence. At the Gates — Slaughter of the Soul is a confirmed example: exact duration/source and a successful Last.fm check timestamp exist in the legacy row, but the canonical song record has no observation timestamp. This explains at least part of the 6,613 unknown-age duration candidates. The new `library duration-evidence` preview/backfill utility restores only exact ID + duration + source + successful-status matches into append-only `duration_observations`; it is preview-only by default and requires backup-protected explicit apply. Issue #105 preview succeeded: 8,121 exact Last.fm duration observations across 8,121 song files; zero aliases missing/ambiguous, zero duration/source mismatches, zero conflicting duplicates; 2,958 unrecognized-provider rows and 51 invalid/missing timestamps safely skipped. Issue #106 is queued for backup-protected apply. Do not execute baseline provider lookups until the backfill is published and the remaining unknown-age set is remeasured.
+A follow-up audit found that some duration timestamps were present in legacy artist shards as `metadata_checked_at` but absent from canonical song evidence. At the Gates — Slaughter of the Soul was a confirmed exact-match example. The `library duration-evidence` preview/backfill utility restores only exact ID + duration + source + successful-status matches into append-only `duration_observations`; it is preview-only by default and requires backup-protected explicit apply. Issue #105 preview identified 8,121 exact Last.fm duration observations; issue #107 published those. A second preview in issue #113 identified 51 additional exact MusicBrainz observations; issue #114 applied them with a timestamped backup and post-write health success. Across both passes, 8,172 exact observations were added; 2,958 unrecognized-provider rows and 51 invalid/missing timestamps were skipped without guessing. The latest read-only planner run [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) reports 11 unknown-age baseline candidates and 1,968 missing-provenance fields across the current catalogue. These residual fields are not all necessarily duration observations; inspect their field/source classification before planning any refresh. No provider-backed executor is enabled.
 
 ## Resume
 

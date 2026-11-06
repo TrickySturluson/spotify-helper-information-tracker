@@ -108,7 +108,10 @@ if __name__ == "__main__":
 # Purpose: Reconcile all durable metadata exports into the canonical per-recording library.
 # Inputs: track_profiles, artist_profiles, album_profiles, audio_profiles and compact
 #         lyric_features exports. Full lyric text is neither read nor stored.
+# Outputs: Merges canonical song/artist/album records and discovery evidence; writes the
+#          resolver index and prints a post-sync audit report.
 # Behavior: Uses MusicLibrary.put_catalogue so identity safeguards and preservation
 #           rules apply; ambiguous name matches are not promoted to verified IDs.
+# Safety: Repository writer; constructing MusicLibrary may rebuild an incomplete derived index.
 # Run: python scripts/music/sync_music_library.py
 # Related: scripts/music/music_library.py; scripts/music/migrate_full_music_library.py.

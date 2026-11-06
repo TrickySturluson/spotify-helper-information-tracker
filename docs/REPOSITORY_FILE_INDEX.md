@@ -1,6 +1,6 @@
 # SHIT Repository File & Data-Family Index
 
-**Purpose:** explain where maintained code, control documents, workflows, canonical records, generated outputs, and operational state live. This is a navigational catalogue, not a frozen dump of every generated record path. The canonical current inventory is the Git tree (`git ls-files`); generated Library records are intentionally described by their path conventions rather than copied into this document one-by-one.
+**Purpose:** explain where maintained code, control documents, workflows, canonical records, generated outputs, and operational state live. This is a navigational catalogue, not a frozen dump of every generated record path. A complete committed-tree inventory was verified on the documentation audit branch using directory-scoped GitHub Git Trees API requests; the measured snapshot and method are recorded below. In a local checkout, `git ls-files` remains the simplest way to regenerate the current path list.
 
 ## Repository entry points
 
@@ -23,6 +23,58 @@
 | `tests/` | Python unittest regression suite | `tests/README.md`; each test module has a bottom overview |
 | `sitecustomize.py` and `shit.py` | Root-level import bootstrap and CLI entry point | Bottom file overview and linked operational documentation |
 
+## Complete committed-tree inventory snapshot — 2026-11-06
+
+**Audited commit:** `7cc839f3f00eeb026cd898099654eea8f9a79497` (documentation branch `docs/semantic-documentation-audit`).
+
+The inventory was assembled from the root Contents listing and directory-scoped Git Trees API requests for every top-level directory. The large `assistant_data/music/` tree was queried separately from its sibling families. Every queried subtree returned `truncated=false`; all root entries and all immediate `assistant_data/` entries were included. This avoids the 100,000-entry truncation encountered by a single recursive root-tree request.
+
+| Repository area | Committed files | Notes |
+|---|---:|---|
+| Root-level files | 9 | README, AGENTS, CLI/bootstrap, config, removal state and optional requirements |
+| `.github/` | 23 | Includes all 17 workflow YAMLs, test triggers and persisted manager/cooldown state |
+| `compat/` | 42 | 40 Python compatibility launchers, README and package marker |
+| `data/` | 4 | Canonical Last.fm archive, metadata/statistics and README |
+| `docs/` | 22 | 21 technical guides plus documentation index |
+| `playback_data/` | 2 | README and empty-directory marker; local tracker observations are optional |
+| `project/` | 50 | Control-centre files, 13 goal workspaces and supporting specifications |
+| `scripts/` | 61 | 55 maintained implementation modules, five package markers and README |
+| `tests/` | 46 | 44 test modules, package marker and README |
+| `assistant_data/` | 27,902 | Generated analytics, canonical Library, profiles, snapshots and state |
+| **Total** | **28,161** | Complete committed file/blob entries at the audited commit |
+
+### Generated-data family detail
+
+| `assistant_data/` family | Files |
+|---|---:|
+| Root-level files | 5 |
+| `advanced/` | 8 |
+| `indexes/` | 1 |
+| `months/` | 43 |
+| `music/` | 27,680 |
+| `playback/` | 6 |
+| `rankings/` | 3 |
+| `recommendations/` | 8 |
+| `spotify/` | 144 |
+| `years/` | 4 |
+| **Total** | **27,902** |
+
+The `assistant_data/music/` subtree contains 27,680 files and 27,641 directories; 27,676 of those files are JSON records and four are Markdown guides. These generated/canonical records are documented by schema, provenance, family and owning writer—not by thousands of individual prose entries. The `assistant_data/spotify/` subtree contains 144 files, including 143 JSON files and one Markdown guide.
+
+### Maintained-code coverage
+
+- `scripts/analytics/`: 7 implementation modules.
+- `scripts/lastfm/`: 1 implementation module.
+- `scripts/music/`: 28 implementation modules.
+- `scripts/spotify/`: 19 implementation modules.
+- `compat/`: 40 compatibility launchers.
+- `tests/`: 44 test modules.
+- `.github/workflows/`: 17 workflows.
+- `docs/`: 21 technical guides plus the index.
+- `project/goals/`: 13 workspaces; each contains ROADMAP.md, README.md and ACTIONS.md.
+
+**Scope and freshness:** this is a complete committed-tree inventory for the stated commit, not a claim that future commits cannot add/remove files. Refresh the snapshot after significant structural changes. The tree count includes generated JSON records, configuration/state files and documentation blobs; it does not count directories as files.
+ 
 ## Automation and repository state
 
 | Path | Contents | Ownership / safety |
@@ -44,7 +96,7 @@
 | `assistant_data/` | Generated historical analytics, indexes, monthly/advanced aggregates and manifests | Rebuild with documented analytics builders; not the canonical raw archive |
 | `assistant_data/music/library/` | Canonical structured music Library with artist, album and song records, indexes and migration report | Use Library CLI/migration/sync tools and documented schemas; do not hand-edit records or bypass provenance/identity safeguards |
 | `assistant_data/music/` outside `library/` | Generated metadata profiles, indexes, manifests, coverage summaries and enrichment caches | Rebuild/update through the documented music metadata pipeline |
-| `assistant_data/spotify/` | Playlist references, generated recommendations, feedback, descriptions and playlist-specific state | Use the owning Spotify tools; distinguish snapshots and generated outputs from live Spotify state |
+| `assistant_data/spotify/` | Playlist references, generated recommendations, feedback, descriptions and playlist-specific state; reference snapshots also feed canonical Library playlist-source and playability evidence | Use the owning Spotify tools; distinguish snapshots and generated outputs from live Spotify state |
 | `assistant_data/playback/` | Derived analytics from measured Spotify playback | Optional prospective observations; not interchangeable with Last.fm scrobbles; coverage gaps must remain explicit |
 | `playback_data/` | Optional local playback-tracker observations | Local measurement source; may be absent in cloud runs and must not be treated as complete history |
 | `playlist_removed_tracks.json` and `assistant_data/spotify/daily_feedback.json` | User feedback signals | Preserve provenance and use owning feedback/reconciliation tools |

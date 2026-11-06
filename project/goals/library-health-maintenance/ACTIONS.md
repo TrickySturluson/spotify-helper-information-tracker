@@ -1,3 +1,21 @@
+# Library Health Checker & Data Maintainer — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+
+## 2026-11-06 — Latest full Library health check passed on 13,163-record catalogue
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) ran the full read-only health check against 13,163 songs, 6,497 artists and 7,969 albums. Index counts matched exactly; the health report returned `ok=true`, zero errors and zero warnings.
+- Alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs and 11,651 name-candidate keys.
+- The preceding general repository audit emitted 18 warnings (no captured playback intervals plus 16 inaccessible Spotify playlist item snapshots and the summary warning); these are distinct from the Library health report, which had zero warnings.
+- This was validation only; no Library maintenance, migration, repair or provider enrichment was performed. Feature work remains paused until documentation acceptance criteria pass.
+
 ## 2026-11-02 — Verify new playability health rules against full catalogue
 
 - Issue #92 / Great Migration workflow run [41372492615](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41372492615) completed successfully.

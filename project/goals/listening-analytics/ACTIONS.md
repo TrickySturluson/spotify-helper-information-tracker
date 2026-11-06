@@ -1,6 +1,33 @@
 # Listening Analytics & Evidence Sources — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+## 2026-11-06 — Listening/discovery PR branch status rechecked
+
+- PR #158 `feature/discover-weekly-feedback-tracking`: open/non-draft, 9 ahead / 201 behind current main, mergeable=false. Old-head tests #42071650507 and security scan #42071650219 passed; rebase and rerun before review.
+- PR #121 `codex/sorter-evaluation-ingestion-watchdog`: open/draft, 10 ahead / 419 behind current main, mergeable=false; no workflow runs found for its observed head.
+- Passing old-head checks do not establish compatibility with current main. No code changes or listener/Spotify operations were performed; rebase/implementation review is deferred until documentation completion.
+
+
+
+## 2026-11-06 — Discover Weekly observer proposal status verified
+
+- [PR #158](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) remains open and unmerged. Its observed full tests and full-history security scan passed. It proposes read-only Discover Weekly exposure, Liked Songs and post-exposure scrobble tracking; do not describe this observer as deployed until merged and verified.
+- [PR #121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) remains an open draft and includes a listening-ingestion watchdog specification, not a verified runtime watchdog.
+
+## 2026-11-06 — Update Last.fm History publication also failed on shared-state conflicts
+
+- Run #42146153098 completed its provider/data steps successfully: Last.fm history import, artist genre/mood/theme enrichment, recent-top-200 track tag enrichment, duration prioritization, recording-ID resolution, AcousticBrainz fetch and derived statistics all completed.
+- The final publication step failed while rebasing commit `137fab61` ("Update Last.fm history and assistant analytics"). Git reported **120 unique conflicted paths**: 59 canonical music Library files and 61 Spotify playlist snapshots/reference files. The conflict set reflects the concurrent Reference Library commit `3e989e3` changing the same shared generated state.
+- The Last.fm import and analytics generated in the workflow workspace were therefore **not published**. Do not update mainline archive counts or claim those enrichment results as canonical.
+- This confirms a second shared-writer race in the same incident: Reference Library publication overlapped with the broad Update pipeline. No Spotify playlist writes occurred.
+- **Deferred remediation:** shared writer serialization across all workflows touching `assistant_data/music/library/` and `assistant_data/spotify/`; stale-base conflict handling that does not blindly overwrite concurrent state; explicit publication conflict reporting and recovery. Do not fix during the documentation-only phase.
 
 ## 2026-11-01 — Goal workspace initialized
 

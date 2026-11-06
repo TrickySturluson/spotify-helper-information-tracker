@@ -743,10 +743,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Discovery-first Spotify curator using Last.fm similarity + Spotify catalogue search. The scrobble archive is a taste/familiarity model, never the candidate catalogue. No archive track is hard-excluded: prior plays and recency progressively reduce its rank. Liked tracks receive a strong penalty but remain eligible.
-# Location: Maintained implementation in scripts/spotify/spotify_discovery.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_discovery.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Build discovery-first Spotify candidates using Last.fm artist similarity and catalogue search.
+# Inputs: Canonical Last.fm scrobbles, artist/track profiles, recommendation features,
+#         Spotify saved-track/reference feedback and LASTFM_API_KEY.
+# Outputs: Ranked candidate tracks with identity, score and seed evidence for protected
+#          preview/cycle callers; updates local discovery baseline/blacklist state where required.
+# Semantics: The scrobble archive models familiarity/taste, not the candidate catalogue.
+#            Prior plays and recency reduce rank progressively; liked tracks receive a strong
+#            penalty but remain eligible. Default target is 30; Tricky Daily passes 60 explicitly.
+# Safety: Candidate/search logic only; live playlist writes belong to spotify_daily_cycle.py
+#         or the separately confirmed playlist manager flow.
+# Run: Invoked by spotify_daily_cycle.py and the protected spotify_playlist_cloud.py preview;
+#      direct execution intentionally exits with guidance.
+# Related: scripts/music/discovery_ingestion.py; spotify_daily_cycle.py;
+#          docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------

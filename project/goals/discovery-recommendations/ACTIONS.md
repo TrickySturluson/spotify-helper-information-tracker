@@ -1,6 +1,32 @@
 # Discovery & Recommendations — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+## 2026-11-06 — Provenance-aware ingestion PR status rechecked
+
+- PR #60 `feature/recommendation-discovery-ingestion` remains open/non-draft, 4 commits ahead and 627 behind current main, mergeable=false.
+- Old-head Daily curator tests #41350320527 failed in the unit-test step; full-history security scan #41350320524 failed at Gitleaks. Prior review reported three `generic-api-key` findings on public Spotify track IDs in `assistant_data/music/library/library_index.json`; treat these as untriaged findings, not silently accepted false positives.
+- Rebase, investigate the test failure and security findings, and rerun current-main CI/security before review. No ingestion or Library writes were performed.
+
+
+
+## 2026-11-06 — Open PR #60 CI and secret-scan findings recorded
+
+- [PR #60](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60) remains open and unmerged. Its observed full test run failed when live Last.fm MBID lookups returned HTTP 400/404.
+- Its full-history gitleaks scan reported three `generic-api-key` findings on public Spotify track IDs in `assistant_data/music/library/library_index.json`. The matched values were redacted in the log and the surrounding data identifies Spotify URIs, so these appear to be false positives rather than credentials; nevertheless, revalidate the findings and scanner configuration before dismissing or allowlisting them.
+- Mainline candidate ingestion remains partial; PR #60's per-song discovery_context additions are proposed, not merged. No feature work was performed during this documentation pass.
+
+## 2026-11-06 — Mainline discovery intake and open PR distinction recorded
+
+- Mainline already contains `scripts/music/discovery_ingestion.py` and `tests/test_discovery_ingestion.py`, storing candidate evidence in `assistant_data/recommendations/discovery_candidates.json` separately from scrobbles, plays and preferences.
+- PR #60 remains open and proposes additional per-song `discovery_context` plus `scripts/music/record_discovery.py`; this richer integration is not merged. Compare the exact PR diff with main before any future decision.
+- Feature work in this goal remains paused under the repository-wide documentation-only priority. No discovery feature or provider operation was performed in this audit.
 
 ## 2026-11-01 — Goal workspace initialized
 

@@ -1,3 +1,43 @@
+## 2026-11-06 — High-risk documentation audit and exact verification
+
+- Corrected and regression-tested source/documentation boundaries for Daily's 60-track/force contract, Spotify Reference Library canonical writes, MusicLibrary index recovery, sequencer local plan/index writes, Great Migration audit/verify-catalogue index recovery and secret rotation, track-profile canonical writes, and legacy migration backup limitations.
+- Cross-checked all 17 workflow trigger/schedule and permission blocks. Two workflow YAML FILE OVERVIEW comments were corrected after their push-trigger implications were checked; no workflow logic changed.
+- Reconciled the current feature-PR divergence against main a5fe4de; all seven open feature PRs remain stale/unmerged and deferred under the documentation-only priority.
+- The last completed code/test head dfbefffe7fd4f5fa81d8d227a9dd1f8e71143049 passed Daily curator CI #42164423132 and full-history Gitleaks #42164422940. Subsequent commits changed only documentation/handoff/count/action-log files.
+- The full committed-tree inventory remains 28,161 file/blob entries at audit snapshot 7cc839f; no canonical data, provider state or Spotify playlist contents were changed.
+
+## 2026-11-06 — Complete repository inventory and workflow catalogue audit recorded
+
+- Enumerated the committed repository tree at `7cc839f3f00eeb026cd898099654eea8f9a79497` using root Contents plus directory-scoped recursive Git Trees requests. All queried subtrees returned `truncated=false`; 28,161 file/blob entries were counted, including 27,902 under `assistant_data/`. See `docs/REPOSITORY_FILE_INDEX.md`.
+- Cross-checked all 17 workflow trigger/schedule blocks and declared permissions against `docs/WORKFLOWS.md`; no trigger/cron mismatch was found. Updated the catalogue review date and recorded the limited scope of this check. Deep step-by-step credential and side-effect review remains open.
+- Reviewed all 13 goal READMEs for conflict between the documentation-only pause and immediate feature next actions. Their pause/resume boundaries were consistent; historic data snapshots remain explicitly historical or tied to named reports.
+- Repeated the mandatory fresh-session reading path and found stale status statements in the current handoff/roadmap/README. Corrected those documents and the loose-ends register. The last completed code/test head `54c318789a29817453366953f891a3431ea79fa8` passed Daily curator CI #42162264872 and full-history Gitleaks #42162264795. Later changes are documentation/control files only.
+- PR #161 remains open/draft; latest observed metadata reported mergeable=true, 447 commits ahead / 0 behind. Keep it draft until the remaining semantic audit and final cold-start acceptance pass are complete.
+- No runtime code, workflow YAML, provider operations, generated data or Spotify playlist contents were changed.
+
+## 2026-11-06 — Documentation audit uncovered workflow publication defects
+## 2026-11-06 — Root README schedule and Daily workflow table aligned
+
+- Found the root README still claimed the Spotify Reference Library refreshed every six hours, despite the workflow's daily 06:13 UTC cron and corrected technical guides. Updated the root README.
+- Extended the documentation-contract tests to assert the root README schedule and ensure the workflow matrix does not retain the stale Daily force "clock gate only" sentence.
+- No workflow/runtime/data/playlist behavior changed. Exact-head CI after this update is pending.
+
+
+## 2026-11-06 — Documentation PR intermediate-head CI and security passed
+
+- Daily curator CI #42158020546 and full-history Gitleaks scan #42158020518 both passed on PR #161 commit `041bf54da9b25d8269fd193c8f8e1bd1c497d33a`.
+- CI passed compilation, generated-data audit, read-only Library health/confidence/freshness, documentation checks and full unittest discovery. The security scan completed the all-history Gitleaks step successfully.
+- Later documentation-only commits have moved PR #161 beyond this verified head; exact-head CI/security must be rechecked. No provider requests, data publication or playlist writes occurred.
+
+
+
+- **Context:** while documenting workflow YAMLs, comment-only commits to four push-path-triggered workflows started their configured automation. This was unintended; the workflow guide now explicitly warns that YAML comments still match path filters.
+- **Verified repository effect:** Reference Library run #42146148971 refreshed snapshots/removal state and committed 249 files (184 Library records, 63 Spotify snapshot/history files, 2 removal-state files). It made no Spotify playlist writes. It did record two manual Tricky Daily removals from the 2026-11-05 pre-cycle snapshot in `playlist_removed_tracks.json`: Joseph Dubay — `Loser Boy` and Mal Blum — `Fine!`.
+- **Failures:** Enrich Music Metadata run #42146121471 could not rebase its generated song records over the simultaneous Reference Library additions (add/add conflicts), so its enrichment output was not published. Acoustic Metadata Enrichment run #42146097964 completed 100 batches (2,500 IDs; 207 found; 2,293 misses; 322 total profiles; 3,678 negative-cache entries) but could not commit because an optional GetSongBPM state file was absent and was unconditionally included in `git add`.
+- **Update Last.fm History:** run #42146153098 completed its provider/data steps but failed publication during rebase of commit `137fab61`, with 120 unique conflicts (59 music Library paths and 61 Spotify snapshot/reference paths). Its generated Last.fm/analytics/enrichment workspace output was not published.
+- **Lesson:** documentation-only workflow edits must be staged with their push-trigger consequences understood. No workflow repair or additional enrichment was undertaken; remediation is deferred until the documentation-only priority is complete.
+- **References:** [Reference Library run #42146148971](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146148971), [Enrich Music Metadata run #42146121471](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146121471), [Acoustic Metadata run #42146097964](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146097964), [Update Last.fm run #42146153098](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42146153098).
+
 ## 2026-11-01 — Goal workspaces merged and project-wide loose ends audited
 
 - **Goal:** make each project objective independently recallable and ensure unfinished requirements from repository history and prior SHIT conversations are not lost.
@@ -8,7 +48,93 @@
 - **Next action:** inspect Great Migration run #17 artifact and backup; keep playlist writes paused until migration recovery is complete.
 - **References:** PR #67 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/67; PR #60 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60; PR #65 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65; run #17 https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
 
+## 2026-11-06 — Documentation PR #161 exact-head CI and security passed
+
+- **PR:** [#161 — Improve SHIT documentation completeness and file-overview quality](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161), branch `docs/semantic-documentation-audit`, exact head `2ac590af9d8dbc85ebf5a81bc951f4190695906a`.
+- **Verification:** Daily curator CI [#42157311583](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42157311583) passed compilation, generated-data audit, read-only Library health/confidence/freshness checks, documentation checks and full unittest discovery. Full-history Gitleaks scan [#42157311623](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42157311623) passed on the same commit.
+- **State:** PR remains open and draft. Comparison against main reports 320 commits ahead and 0 behind; mergeable=true. The manual semantic audit, complete tracked-file inventory and fresh-session simulation are still required before completion.
+- **Safety:** no provider enrichment, data publication or Spotify playlist writes were performed by these checks.
+- **Branch hygiene:** a separate scratch branch `docs/semantic-overview-quality-20261105` was created before discovering the existing PR; it overlaps PR #161 and is not the delivery branch. Do not merge or continue it.
+- **Next:** continue the cross-document semantic audit on PR #161 only; keep the PR draft until all roadmap acceptance criteria pass.
+
+## 2026-11-06 — Workflow trigger matrix and forced-cycle contract audited
+
+- Compared all 17 rows in `docs/WORKFLOWS.md` with the actual YAML trigger blocks. Corrected branch/path filters for the enrichment, playlist-manager-check, Daily preflight, Daily cycle, remote verification, Reference Library and Last.fm update workflows; clarified owner-authored Great Migration issue and issue-comment event triggers.
+- Found a Daily P0 discrepancy: `--force` bypasses both the clock-window gate and the same-Eastern-date completion guard, while the intended contract says it bypasses only the clock gate. The schedule test currently asserts the broader behavior.
+- Updated the Daily cycle guide/TODO/README/roadmap, workflow catalogue and cross-project handoff/register; added documentation-contract tests for the force discrepancy and sensitive workflow trigger descriptions.
+- No runtime code, test expectations, workflow YAML, provider state, generated data or playlists changed. Exact-head CI/security for the latest documentation updates is pending.
+
+## 2026-11-06 — Reference Library schedule mismatch corrected
+
+- **Finding:** the Recent Track Enrichment guide claimed the Spotify Reference Library ran every six hours, but its workflow declares one daily run at 06:13 UTC, plus manual dispatch and a main-branch workflow-file push trigger.
+- **Changes:** corrected `docs/RECENT_TRACK_ENRICHMENT.md` and added a documentation-contract test that checks the workflow cron and rejects the stale six-hour description.
+- **Verification:** source/documentation comparison and GitHub file updates only; latest PR CI/security remains pending. No Spotify sync, provider calls or playlist changes were performed.
+
+## 2026-11-06 — Daily snapshot and playlist-reference registry drift recorded
+
+- Latest saved Tricky Daily snapshot: 58 items fetched, 58 unique URIs, accessible, no item error; captured at `2026-11-06T01:48:00.233040+00:00`. This is below the 60-track success target; cause and subsequent live state are unknown.
+- SHITting Grounds now exists in the reference catalog and has an accessible 25-item snapshot captured at `2026-11-06T01:47:59.822814+00:00`, but its curated `playlist_roles.json` entry still says it has no snapshot. The reference guide was corrected; generated/curated JSON was not changed.
+- Both discrepancies are recorded for reconciliation after the documentation-only pause. No playlist write or Spotify API request was made.
+
+## 2026-11-06 — Open PR branches compared against current main
+
+- Rechecked seven open PRs and their workflow runs, then compared each branch against current `main`.
+- Daily PRs #158/#159/#160 are diverged and 201 commits behind main (9/6/27 ahead); old-head test/security runs passed, but all require rebase and fresh CI.
+- PRs #120/#121 are 419 commits behind (5/10 ahead); #120 old-head tests/security passed, while #121 has no observed workflow runs.
+- PR #65 is 599 commits behind (3 ahead); old-head tests failed and security passed. PR #60 is 627 commits behind (4 ahead); old-head tests and Gitleaks failed, including three untriaged `generic-api-key` matches on public Spotify track IDs.
+- Updated the owning goal roadmaps/action logs, NEXT_WORK and LOOSE_ENDS. No PR was merged, rebased, or modified; all feature work remains deferred under the documentation-only priority.
+
+## 2026-11-06 — PR #161 latest Daily curator CI passed; security pending
+
+- Daily curator CI [#42158995339](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158995339) passed on PR head `7cc3497075d47bfb3ef2f35dcf7d89a04e33ecab`. All steps passed: compile, generated-data audit, read-only Library health/confidence/freshness, maintained-file documentation checks and full unittest discovery.
+- The run includes the Reference Library schedule regression test, Daily force/idempotency discrepancy documentation guard and sensitive workflow trigger-boundary test.
+- Full-history security scan #42158995392 was still in progress at the time of this entry. Subsequent status/documentation commits move the branch head; recheck exact-head CI/security.
+- No provider enrichment, data publication or playlist writes were performed.
+
+## 2026-11-06 — PR #161 full-history security scan completed successfully
+
+- Full-history Gitleaks scan [#42158995392](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158995392) passed on the same PR head `7cc3497075d47bfb3ef2f35dcf7d89a04e33ecab` as Daily curator CI #42158995339.
+- Both test and security workflows passed on that commit. Later documentation-only handoff/status commits advanced the branch; exact-head checks must be re-fetched before merge.
+
+## 2026-11-06 — Initial fresh-session resume simulation passed
+
+- Performed a cold-start review using only repository instructions, documentation rules, NEXT_WORK, LOOSE_ENDS, PROJECT_LOG, the goal index, and relevant Maintainability/Tricky Daily workstream docs.
+- The active documentation-only priority, PR #161 verification boundary, scratch-branch warning, paused goals, stale PR branches, Daily force/idempotency mismatch, 58-item snapshot and playlist-role registry drift were recoverable without chat history.
+- **Outcome:** pass for resuming the current documentation workstream. Repeat after the remaining semantic guide/file inventory audit and final verification; overall documentation completion remains open.
+
+## 2026-11-06 — All paused goal roadmaps now have documentation-only next actions
+
+- Review found 12 feature-goal roadmaps had explicit pause banners but still placed feature work/live operations under the immediate `Next action` heading.
+- Split each into an immediate documentation-only next action and a preserved feature action after the pause. Added all 12 goal ACTIONS records and a contract test enforcing the distinction.
+- No feature code, provider work, generated data or playlist state changed. Exact-head CI after this batch is pending.
+- Next: audit the 12 goal READMEs for contradictory resume/next-step instructions.
+
+## 2026-11-06 — Paused-roadmap guard passed CI; latest schedule assertions manually verified
+
+- Daily curator CI #42159891531 and full-history security scan #42159891537 both passed on PR #161 head `6261439b2f3095d8d4844c27bfbf4075c3bea5c0`. CI included the new contract test for all 12 paused goal roadmaps.
+- On subsequent tip `abc644dc9cac05fdd1868886823f7b54951f1a6e`, 19/19 manual assertions passed for the Reference Library cron, enrichment guide/root README, Daily force semantics and all 12 paused-roadmap next-action sections.
+- Later documentation-only status commits advanced the branch beyond the manually checked tip; exact-head CI/security should be rechecked. No runtime behavior, provider state, generated data or Spotify playlists changed.
+
 # SHIT Project Log
+
+## 2026-11-06 — Latest read-only canonical Library baseline refreshed
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs, 6,497 artists and 7,969 albums; index counts matched and Library health returned `ok=true`, zero errors and zero warnings. Full-history security scan [#42154433307](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433307) passed on the same commit.
+- Alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs and 11,651 name-candidate keys.
+- Confidence audit: identity high 7,660 / low 5,503, identity drift 0; metadata-confidence missing entries 0, mismatches 214 (all `track_tags`). Duration metadata confidence low on 8,187 records.
+- Freshness plan: 11 unknown-age baseline candidates, 25 due tasks selected, 0 baseline tasks selected, 11 missing timestamps, 32,506 no-data fields and 1,968 missing-provenance fields. No provider requests or writes occurred.
+- The preceding general repository audit had one playback-coverage warning and 16 inaccessible Spotify playlist snapshots (18 warning lines including the aggregate summary); the separate Library health report itself had zero warnings. No Spotify playlist write occurred.
+- These are read-only diagnostics on the documentation PR checkout, which was 0 commits behind main at the time; they do not represent enrichment execution.
+
+
+## 2026-11-06 — Documentation guard verification and continuity cleanup
+
+- Corrected the test-module overview guard fixture after CI exposed a self-match; full Daily curator CI #42152796114 and full-history security scan #42152796120 passed on corrected commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
+- Rewrote 11 generic test-module overviews and extended the layout guard to reject generic test-purpose/scope/related boilerplate. Updated the test-suite guide and documentation index to describe the stronger contract.
+- A fresh handoff review found duplicated, contradictory PR checkpoints in `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, and the maintainability roadmap. Consolidated current status and removed obsolete verification claims while preserving dated historical records.
+- Later commits after `9cbf695` changed documentation/handoff files and `tests/README.md` only; exact latest-head CI/security remains unconfirmed. PR #161 remains draft/unmerged pending full semantic audit and final verification.
+- **Next:** continue stale-status reconciliation, source-to-guide review, complete tracked-file inventory and fresh-session simulation. Documentation remains the only active project priority.
+
 
 ## 2026-11-01 — Per-goal workspaces established
 

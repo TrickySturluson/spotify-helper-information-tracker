@@ -52,7 +52,7 @@ The database supports searching by title, artist, remembered phrase, and recent 
 ## Current limitations
 
 - Lyrics coverage varies, especially for obscure and instrumental tracks.
-- Musixmatch and Genius require credentials; LRCLIB is the only provider that works without setup.
+- Musixmatch and Genius require credentials; LRCLIB and Lyrics.ovh are queried without API credentials.
 - Genius is metadata/link-only in this implementation.
 - Theme extraction is keyword-based and intentionally conservative; nuanced interpretation, narrative understanding, and audio-energy analysis remain separate.
 - Source agreement is recorded, but providers may return excerpts or variant lyric text; agreement is supporting evidence, not a guarantee of correctness.

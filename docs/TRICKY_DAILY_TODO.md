@@ -1,10 +1,21 @@
 # Tricky Daily — improvement backlog
 
-This is the persistent planning backlog for future Tricky Daily work. It records proposed improvements from the architecture review; it is **not a claim that these items are implemented**. Before changing code, inspect the current implementation and tests: some safeguards and feedback features already exist and must be extended rather than duplicated or regressed.
+This is the persistent planning backlog for future Tricky Daily work. It records gaps and improvements from the architecture review; an unchecked item means the requirement is **not fully satisfied or not yet verified**, not necessarily that no related code exists. `[~]` marks a partially implemented or incompletely verified item. Before changing code, inspect the current implementation and tests: some safeguards and feedback features already exist and must be extended rather than duplicated or regressed. The current live 60-track cycle assembles candidates through `spotify_discovery.py` and `spotify_daily_cycle.py`; `spotify_daily_playlist.py` is a separate legacy/alternate 30-track builder, not the current cycle path.
 
 ## Product goals
 
 Tricky Daily should reliably publish exactly 60 valid, unique tracks; learn from actual listening without confusing exposure with preference; discover music without becoming repetitive; and arrange tracks into an enjoyable sequence. Safety and data integrity outrank recommendation preferences.
+
+## Current implementation boundary — source-checked 2026-11-06
+
+- Candidate generation in `spotify_discovery.py` filters exact negative track keys/URIs before ranking, deduplicates candidates, searches deeper pages, and only then relaxes the per-artist cap. The cycle reconciles manual removals against the prior accepted-cycle baseline before generation. The separate `--verify-only` mode checks live count, duplicate URIs and blacklist membership.
+- The normal cycle validates 60 candidate rows, primary artists, Spotify track-URI shape and unique URIs before saving a backup and calling the protected replacement helper. It then persists `replacement_accepted_pending_verification`, publishes `cycled=true`, rotates and reads back the description, and reads the playlist again.
+- **Automatic post-write validation remains incomplete:** the normal path checks 60 returned items and valid primary artists, but does not explicitly recheck duplicate URIs, recheck blacklist membership, or compare the returned ordered URIs with a durable pre-write ordered staging artifact. The separate `--verify-only` mode checks duplicates and blacklist but does not compare with a stored expected order. Keep the related P0 items open.
+- A GitHub Actions concurrency group serializes workflow runs with `cancel-in-progress: false`; there is no durable cross-process lease or stale-lock recovery. Mark concurrency protection partial, not fully solved.
+- The cycle persists a backup and pending-verification marker before marking completion, but the exact ordered 60-item plan is not stored as a dedicated immutable staging artifact before replacement. Transactional staging/recovery is therefore partial.
+- **Known P0 discrepancy:** `--force` currently bypasses both the clock gate and the same-Eastern-date completion guard (`cycle_already_completed(..., force=True)` returns `False`). This contradicts the intended contract in P0 Forced-run parity below: force may bypass the time-window gate only, while the same-date idempotency guard must still block a second accepted cycle. The existing schedule test currently codifies the broader behavior. Do not treat it as approved; correct code and tests only after the documentation-only project pause ends.
+- Forced runs otherwise follow the normal ownership, managed-playlist lock, candidate generation, backup, replacement, description and read-back path. Force must never bypass blacklist, uniqueness, whitelist reconciliation or other safety checks.
+- Open proposals [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) (strict DST cron matching) and [PR #160](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) (exposure-aware ranking and quality report) remain unmerged. [PR #158](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) proposes adjacent Discover Weekly feedback tracking.
 
 ## P0 — correctness and publication safety
 
@@ -25,6 +36,7 @@ Tricky Daily should reliably publish exactly 60 valid, unique tracks; learn from
 - Two simultaneous invocations cannot both publish.
 - A simulated timeout after Spotify accepts a write triggers read-back/reconciliation rather than a blind second write.
 - A successful run is only marked complete after the live playlist is verified to match the approved staging result and contains exactly 60 unique valid tracks.
+- A forced invocation outside the time window is permitted only when the Eastern date has not already completed; a second forced invocation on an already-completed Eastern date is blocked by the same idempotency guard.
 
 ## P1 — recommendation quality and learning
 
@@ -76,4 +88,4 @@ Explore a weighted score with taste match (30%), discovery potential (25%), trac
 4. Add confidence/diversity experimentation and transition-aware sequencing.
 5. Integrate Discover Weekly attribution, reporting, and health monitoring.
 
-When continuing this work in a future chat, read this backlog together with `docs/TRICKY_DAILY_CYCLE.md`, the current Daily cycle/feedback/preflight code, and the relevant workflow files. Re-check repository state before assuming any unchecked item is still outstanding.
+When continuing this work in a future chat, read this backlog together with `docs/TRICKY_DAILY_CYCLE.md`, `scripts/spotify/spotify_daily_cycle.py`, `spotify_discovery.py`, the feedback/preflight code, and the relevant workflow files. Treat `spotify_daily_playlist.py` as the legacy 30-track builder unless its role is explicitly changed. Re-check repository state before assuming any unchecked item is still outstanding.

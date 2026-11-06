@@ -1,3 +1,29 @@
+# Great Migration — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+
+## 2026-11-06 — Current canonical catalogue baseline reverified read-only
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs, 6,497 artists and 7,969 albums. Index counts matched exactly; Library health returned `ok=true`, zero errors and zero warnings.
+- Alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs and 11,651 name-candidate keys.
+- The older 13,005 / 6,386 / 7,861 counts in the original migration reports are historical and superseded by this read-only check.
+- The confidence sub-report found zero identity drift but 214 metadata-confidence mismatches, all in track_tags. The freshness planner found 11 unknown-age baseline candidates, selected 25 due tasks and 1,968 missing-provenance fields. These are diagnostics/plans only, not executed enrichment.
+- The general repository audit also warned that no playback intervals had been captured and 16 Spotify playlist snapshots were inaccessible; the separate Library health report itself had zero warnings.
+- No migration, provider call, canonical write, repair, or playlist write was performed. Feature work remains paused under the documentation-only priority.
+
+## 2026-11-06 — Migration work paused for documentation-first audit
+
+- This workstream's migration, backfill, repair and provider operations remain paused while the repository-wide documentation acceptance criteria are incomplete.
+- The Reference Library snapshot refresh in run #42146148971 was not a migration or canonical Library backfill operation; it refreshed Spotify reference snapshots/removal state and made no Spotify playlist writes.
+- Preserve existing migration plans and recovery evidence. Resume only when the central handoff and Maintainability & Documentation roadmap explicitly clear the documentation-first pause.
+
 ## 2026-11-02 — Duration provenance preview passed; exact backfill queued
 
 - Issue #105 `duration-evidence-preview` completed successfully on latest main (workflow run 41375146233).
@@ -158,9 +184,7 @@
 - **Next:** inspect #69 result/artifact; verify publication; then inspect #70 audit; then inspect #71 enrichment and repeat bounded passes only while there is eligible, useful provider work.
 - **Coverage goal:** maximize reliable, provenance-backed track/artist/album/duration/acoustic/theme data, not manufacture 100% coverage. Keep unknowns unknown and explain provider/API/catalogue limitations.
 
-# Great Migration — Actions & Evidence
 
-Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
 ## 2026-11-01 — Fixed-workflow migration rerun requested
 

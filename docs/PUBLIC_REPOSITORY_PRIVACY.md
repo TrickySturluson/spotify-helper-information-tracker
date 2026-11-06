@@ -34,6 +34,10 @@ The raw listening archive is intentionally retained as the canonical source for 
 - The repository history contains hundreds of commits and exposes the personal author email in commit metadata. This review did not inspect every historical blob for leaked credentials; therefore it cannot certify that no secret was ever committed.
 - The public dataset includes precise listening timestamps and identifiable playlist history. This is personal behavioral data, even though it is not an authentication secret.
 
+## Latest verification (2026-11-06)
+
+Full-history public-repository security scan [#42158020518](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158020518) completed successfully on documentation PR #161 commit `041bf54da9b25d8269fd193c8f8e1bd1c497d33a`; checkout, Gitleaks installation and the all-commit scan all succeeded. This is stronger, newer evidence than the 2026-10-31 scan recorded above, but it does not certify unreachable Git objects, external account settings, or secrets outside the scanned repository history. Later documentation-only commits are awaiting another exact-head scan; no credential values were inspected or published as part of this review.
+
 ## Recommendations
 
 1. **Keep public only if the listening diary is intentionally public.** If exact timestamps and full listening history are acceptable to publish, no visibility change is needed. If not, make the repository private or redesign publication to export coarser/aggregated data while keeping the raw archive private.

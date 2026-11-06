@@ -1,7 +1,11 @@
 # Tricky Daily — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Active. Core rotation, fallback, Eastern-time scheduling, editorial description handling, preflight and feedback tooling are documented; end-to-end live correctness and remaining P0 safeguards must be verified against current code and Spotify state.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the documentation-only priority. Core 60-track rotation, fallback, Eastern-time scheduling, description handling, preflight and feedback tooling exist; end-to-end live correctness and remaining P0 safeguards are not yet fully verified.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose
 Maintain a reliable daily 60-track discovery playlist that balances familiar taste with fresh discoveries, learns from meaningful feedback, and never overrides explicit user exclusions or playlist safety controls.
@@ -18,8 +22,15 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 - Keep Daily's own exposure/feedback model separate from generic playlist-fit calibration. Scheduled rotation is neutral housekeeping, not a negative signal.
 - Playlist writes remain scoped to the specifically authorized Tricky Daily exception and documented controls; this does not authorize writes to other personal playlists.
 
+## Current source discrepancy — 2026-11-06
+
+The intended invariant above is **force bypasses the clock gate only**. Current source does not fully satisfy it: `spotify_daily_cycle.py` passes `args.force` into `cycle_already_completed()`, which returns `False` for forced calls and therefore bypasses the same-Eastern-date completion guard too. `tests/test_spotify_daily_cycle_schedule.py` currently asserts that behavior. This allows a second forced cycle on an Eastern date already marked complete and is a P0 idempotency mismatch, not an approved relaxation. Keep the requirement unchanged; after the documentation-only pause, fix the implementation and regression test so force bypasses only the time-window check and still respects same-date idempotency. No runtime change is authorized during the current documentation phase.
+
+
 ## System map
-- Candidate generation and publication: scripts/spotify/spotify_daily_playlist.py, scripts/spotify/spotify_daily_cycle.py
+- Current discovery candidate generation: scripts/spotify/spotify_discovery.py (the cycle explicitly requests 60 candidates).
+- 60-track assembly, safety checks and publication: scripts/spotify/spotify_daily_cycle.py.
+- Legacy/alternate 30-track candidate builder: scripts/spotify/spotify_daily_playlist.py; it is not the current live 60-track cycle.
 - Feedback and learning: scripts/spotify/spotify_daily_feedback.py, assistant_data/spotify/daily_feedback.json
 - Preflight: scripts/spotify/spotify_daily_preflight.py
 - Trend context: scripts/spotify/spotify_listening_trends.py, assistant_data/spotify/listening_trends.json
@@ -41,6 +52,7 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 ## Acceptance criteria
 - Every successful publication has exactly 60 valid unique track URIs and no blacklisted/removed entries.
 - A forced run cannot bypass any policy or state-reconciliation check.
+- A second forced invocation on an already-completed Eastern date is blocked; force bypasses the time-window gate only.
 - A stale snapshot cannot reintroduce a user-removed track or erase a newer whitelist/blacklist decision.
 - Failures at any stage preserve a recoverable state and never report completion prematurely.
 - Concurrent invocations cannot race to publish.
@@ -55,8 +67,22 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 - Verify current main code and latest workflow runs before changing anything. The guide documents expected behavior but is not proof of current live Spotify state.
 - Reconcile the most recent live playlist, feedback, blacklist/whitelist, description and staging state before another live write.
 
-## Next action
-Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
+## Latest saved playlist evidence — 2026-11-06
 
+The latest repository snapshot at `assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json` was captured at `2026-11-06T01:48:00.233040+00:00`: 58/58 items fetched, 58 unique URIs, accessible, no item error. This is below the 60-track success target. The snapshot does not establish why the playlist had 58 items or whether it changed afterward; re-run read-only preflight and reconcile cycle/audit state before any later authorized write. No playlist repair is permitted during the documentation-only pause.
+
+## Open proposals (not merged)
+
+- [PR #159 — Tricky Daily DST schedule gating](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) is open/non-draft on `fix/tricky-daily-schedule-gate`, but its branch is rechecked 2026-11-06 against main `a5fe4de`: diverged (6 commits ahead, 201 behind; mergeable=false). Its old-head tests #42091662410 and security scan #42091662609 passed, but it must be rebased and reverified before merge. Current main still uses combined cron/local-hour gating; strict cron-to-Eastern-offset matching is proposed, not implemented.
+- [PR #160 — Exposure-aware Daily discovery and quality reporting](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) is open/non-draft on `daily-exposure-aware-discovery`, rechecked 2026-11-06 against main `a5fe4de`: diverged (27 ahead, 201 behind; mergeable=false). Old-head tests #42081994195 and security scan #42081994125 passed; rebase and rerun before merge. Its 45/30/25 mix, exposure-decay ranking and read-only quality report remain proposals.
+- [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open/non-draft on `feature/discover-weekly-feedback-tracking`, rechecked 2026-11-06 against main `a5fe4de`: diverged (9 ahead, 201 behind; mergeable=false). Old-head tests #42071650507 and security scan #42071650219 passed; rebase and rerun before merge. It is adjacent listening-analytics work, not a Daily playlist-write feature.
+
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist Intelligence umbrella roadmap](../playlist-intelligence/ROADMAP.md) · [Daily cycle guide](../../../docs/TRICKY_DAILY_CYCLE.md) · [Daily backlog](../../../docs/TRICKY_DAILY_TODO.md)

@@ -1,6 +1,6 @@
 # SHIT — Project-wide Roadmap
 
-**Last reviewed:** 2026-11-05  
+**Last reviewed:** 2026-11-06  
 **Status:** Active; cross-workstream index. Detailed implementation plans and acceptance evidence remain in each goal's roadmap.
 
 ## Mission

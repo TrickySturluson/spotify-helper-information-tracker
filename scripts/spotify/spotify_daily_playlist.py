@@ -253,10 +253,17 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build a balanced daily mix of proven favorites, rediscoveries and deep cuts. Last.fm scrobbles are evidence of repeated listening, not a guarantee of liking. The curator uses that history as a useful signal, while preserving room for less-played tracks and enforcing artist diversity.
-# Location: Maintained implementation in scripts/spotify/spotify_daily_playlist.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_daily_playlist.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Legacy/alternate 30-track Daily candidate builder based on historical listening tiers.
+# Inputs: assistant_data/recommendations/track_features.json and a caller-supplied Spotify
+#         client/playlist membership for exact track resolution.
+# Outputs: Ranked favorite/rediscovery/deep-cut candidates; default TARGET_SIZE is 30
+#          and MIN_MATCHES is 20. This module does not perform the live Daily rotation.
+# Semantics: Uses Last.fm recency/repeat-play evidence and a 14-day recent exclusion;
+#            it does not model saved-track state. Current 60-track Tricky Daily rotation
+#            is orchestrated by spotify_daily_cycle.py using spotify_discovery.py.
+# Safety: Candidate preview only; direct execution intentionally exits and directs callers
+#         to the protected daily_preview command. It never edits Spotify playlists itself.
+# Run: Invoked through spotify_playlist_cloud.py daily_preview; no standalone CLI.
+# Related: scripts/spotify/spotify_daily_cycle.py; spotify_discovery.py;
+#          docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------

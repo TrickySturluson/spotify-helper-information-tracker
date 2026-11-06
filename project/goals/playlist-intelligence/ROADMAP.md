@@ -1,7 +1,11 @@
 # Playlist Intelligence & Safety — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Active development; scoring preview is read-only and low-confidence. No write permission is implied by this roadmap.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the documentation-only priority. Existing fit scoring and sequencing remain preview-only/low-confidence; this roadmap grants no playlist-write permission.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose
 Create enjoyable, coherent playlist discovery, sorting, feedback learning, and safe generated-playlist automation.
@@ -27,8 +31,17 @@ Create enjoyable, coherent playlist discovery, sorting, feedback learning, and s
 ## Acceptance criteria
 No blocked/removed track reappears; no duplicate URIs; generated output is staged and validated before writes; live playlist is read back and matches; all writes are authorized and audited; sequencing never overstates weak evidence.
 
-## Next action
-Audit the latest Daily code/workflows and current live playlist state, then work the P0 safety/publication items in [TRICKY_DAILY_TODO.md](../../../docs/TRICKY_DAILY_TODO.md). Separately keep fit scoring preview-only until evidence gates pass.
+## Open proposals (not merged)
 
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open/draft on `codex/sorter-evaluation-ingestion-watchdog`, rechecked 2026-11-06 against main `a5fe4de`: diverged (10 ahead, 419 behind; mergeable=false). No workflow runs were found for its observed head; rebase and obtain CI before relying on it. The evaluation/watchdog remain proposed until runtime implementation and tests are verified.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, rechecked 2026-11-06 against main `a5fe4de`: diverged (5 ahead, 419 behind; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It does not complete sorter integration or authorize playlist writes.
+
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Audit the latest Daily code/workflows and current live playlist state, then work the P0 safety/publication items in [TRICKY_DAILY_TODO.md](../../../docs/TRICKY_DAILY_TODO.md). Separately keep fit scoring preview-only until evidence gates pass.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Daily cycle guide](../../../docs/TRICKY_DAILY_CYCLE.md) · [Daily backlog](../../../docs/TRICKY_DAILY_TODO.md)

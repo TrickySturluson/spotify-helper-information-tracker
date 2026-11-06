@@ -260,10 +260,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build duration trends and recommendation-ready library features from existing data.
-# Location: Maintained implementation in scripts/analytics/build_music_analytics.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_music_analytics.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_music_analytics). See docs/ for longer operational and data-contract guides.
+# Purpose: Build recommendation-ready music features and listening-duration trends.
+# Inputs: data/scrobbles.json, assistant_data/music metadata/profile exports, optional
+#         local data/lyrics/library.sqlite3 analyses, and mood_inference helpers.
+# Outputs: JSON feature/trend datasets under assistant_data/recommendations/.
+# Semantics: Uses stable identity keys and keeps track-level evidence separate from
+#            artist context; missing lyrics or metadata remain unknown, not neutral.
+# Safety: Offline aggregation only; does not fetch lyrics, call providers or edit playlists.
+# Run: python compat/build_music_analytics.py (repository root).
+# Related: scripts/music/mood_inference.py, scripts/music/enrich_recommendation_lyrics.py,
+#          docs/TRACK_MOOD_EVIDENCE.md and docs/LYRICS_LIBRARY.md.
 # -----------------------------------------------------------------------------

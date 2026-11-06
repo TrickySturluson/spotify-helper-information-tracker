@@ -1,7 +1,11 @@
 # Metadata Freshness & Partial Revalidation — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Read-only field-level planner and unknown-age baseline rotation are merged; provenance recovery and any provider-backed executor remain separate work.
+**Last reviewed:** 2026-11-06  
+**Status:** Read-only field-level planner and unknown-age baseline rotation are merged. Exact legacy duration provenance recovery was applied in issues #107 and #114. The latest read-only planner scan (CI #42154433350) found 11 unknown-age baseline candidates, selected 25 due tasks and zero baseline tasks, and reported 1,968 missing-provenance fields. Provider-backed execution is still separate and feature work is paused under the documentation-only priority.
+
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
 
 ## Purpose
 Refresh only stale or weak metadata fields using deterministic, bounded, provider-aware passes instead of repeatedly scanning/refetching everything.
@@ -20,8 +24,12 @@ Freshness is per field and source. One updated field must not make other fields 
 ## Acceptance criteria
 Planner repeatability; no provider calls in planning; no fresh-field refetch; failed lookups do not overwrite valid evidence; every selection/skip is explainable; request caps/cooldowns are enforced.
 
-## Next action
-Inspect issues #103–#106 and current main to determine whether exact duration provenance recovery has been applied and audited; then run a fresh planner preview.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+After documentation completion, run a fresh read-only planner preview and record the post-#114 unknown-age baseline; verify the prior #115–#118 audit evidence before considering any provider-backed executor.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Coverage retries](../metadata-coverage-retries/ROADMAP.md)

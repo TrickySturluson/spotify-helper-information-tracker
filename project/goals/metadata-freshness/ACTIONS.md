@@ -1,3 +1,21 @@
+# Metadata Freshness & Partial Revalidation — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+
+## 2026-11-06 — Latest bounded freshness plan measured residual unknown-age/provenance
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) ran the read-only planner over 13,163 songs, 6,497 artists and 7,969 albums. Profile caches: 2,567 track, 4,498 artist, 805 album.
+- Planner found 11 unknown-age baseline candidates; selected 25 due tasks and zero baseline tasks. Counts included 11 missing timestamps, 32,506 no-data fields and 1,968 missing-provenance fields. The selected due work was only planned; no provider calls or writes were made.
+- PR #120 remains an open draft proposing incremental Library enrichment/sorter development. Do not treat it as merged or assume its behavior is present.
+- Feature implementation and provider calls in this goal remain paused until documentation acceptance criteria pass.
+
 ## 2026-11-02 — Full duration timestamp recovery preview passed (issue #105)
 
 - The read-only backfill scanned 32 legacy shards and 11,130 rows; 8,121 rows had valid Last.fm timestamps and exact canonical ID/duration/source matches with `matched` status.

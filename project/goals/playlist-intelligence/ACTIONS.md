@@ -1,6 +1,40 @@
 # Playlist Intelligence & Safety — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
+## 2026-11-06 — Open sorter/intelligence PR branches rechecked
+
+- PR #120 `codex/incremental-library-sorter-work`: open/draft, 5 ahead / 419 behind current main, mergeable=false; old-head tests #41380622956 and security scan #41380622844 passed.
+- PR #121 `codex/sorter-evaluation-ingestion-watchdog`: open/draft, 10 ahead / 419 behind current main, mergeable=false; no workflow runs found for its observed head.
+- Both are stale/diverged; rebase and rerun current-main CI before relying on either proposal. No sorter implementation or playlist operation was performed during this documentation review.
+
+
+
+## 2026-11-06 — Open sorter/evaluation proposal status reconciled
+
+- [PR #121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) remains open draft; no workflow runs were returned for its observed head. Its offline evaluation/watchdog specification is not yet verified runtime behavior.
+- [PR #120](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) remains open draft; its observed tests and full-history security scan passed. It records a parallel-development strategy, not completed sorter integration or permission to write playlists.
+
+## 2026-11-06 — Booze snapshot and hard-fit requirements revalidated
+
+- The latest repository snapshot for Booze or Boos! (`4diIlnF8BlgoJrwUfejf49`) was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items reported/fetched, 92 unique track URIs (zero duplicate URIs), accessible, no item error.
+- The earlier 64-track five-axis candidate manifest `playlist_fit_booze_candidates_20261102.json` is stale and must not be used as current coverage or sorting evidence.
+- Updated `docs/BOOZE_OR_BOOS_SORT.md` with the hard per-track Halloween/horror relevance gate, energetic/campy/party requirement, user-approved sound anchors, previously rejected novelty staples, duplicate/removal protections, and the current 92-item snapshot.
+- No Booze playlist mutation or sorter preview was run. The playlist-specific feature work remains paused until documentation acceptance criteria pass; regenerate the manifest and perform the hard-fit review only after that pause is lifted.
+
+
+## 2026-11-06 — Open proposal inventory and documentation pause
+
+- PR #121 (offline sorter evaluation/ingestion watchdog) and PR #120 (incremental Library enrichment/sorter development) remain open drafts; neither is merged behavior. Compare their diffs with current main before selecting future work.
+- Related Daily proposals #158–#160 also remain open and are separately tracked in the central handoff.
+- Existing fit, calibration and intelligence code is preserved. Feature work and live playlist operations in this goal remain paused until documentation acceptance criteria pass.
+
 
 ## 2026-11-01 — Goal workspace initialized
 
@@ -13,7 +47,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **References:** Tricky Daily `4yUVHSMQySfWeEowfIMcx7`; Booze or Boos! `4diIlnF8BlgoJrwUfejf49`; open sequence-preview issue #4 https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/4.
 - **Sorter requirements:** smooth adjacent transitions are primary; avoid jarring changes; gradual energy/BPM/loudness movement; mood/theme/genre sections; configurable peak placement (roughly 80–90% default concept); smooth resolution.
 - **Learner requirements:** use actual plays and explicit likes distinctly; do not treat unplayed Tricky Daily tracks as negative feedback; liked tracks may be down-ranked, not automatically excluded.
-- **Booze or Boos! constraints:** energetic, fun Halloween party list; every track should have a strong Halloween connection (murder/monster/slasher/vampire/creature themes), with campy/dark-playful/chaotic/danceable/metal energy. Avoid sad-victim/apocalypse mood and generic novelty staples previously rejected. A prior user report said 66 tracks while project state may have been stale; recheck live Spotify before edits.
+- **Booze or Boos! constraints:** energetic, fun Halloween party list; every track should have a strong Halloween connection (murder/monster/slasher/vampire/creature themes), with campy/dark-playful/chaotic/danceable/metal energy. Avoid sad-victim/apocalypse mood and generic novelty staples previously rejected. A historical user report on 2026-11-01 said 66 tracks; the latest repository snapshot on 2026-11-06 supersedes that with 92 accessible items. Still refresh live Spotify before any future edit.
 - **Safety:** generated playlists only by default; personal playlists read-only absent explicit authorization; Tricky Daily is an approved exception, not blanket write permission. Preview and audit before writes. No playlist writes during migration recovery.
 - **Outstanding:** reconcile issue #4 sequence preview with current sorter and live playlist; validate dedupe/removal blacklist persistence, live counts versus snapshots, and daily description rotation.
 - **Failed approach / lesson:** stale local playlist snapshots and unplayed daily placements are not reliable current counts or negative preference evidence.
@@ -199,7 +233,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 ## 2026-11-02 — Booze five-axis cross-reference preview added
 
 - Added identity-only candidate manifest `assistant_data/spotify/playlist_fit_booze_candidates_20261102.json` generated from saved Booze or Boos! snapshot `AAAA8bx0/IayXwvWXBdkeCowLo32i5oU` (64 tracks; captured 2026-11-02T03:58:22Z).
-- Updated the read-only fit workflow to run a second preview using all 64 current Booze tracks against the five calibration-target profiles, excluding the complete candidate batch from those profiles. Output is a cross-reference audit, not a Halloween-theme verdict and not an automatic add/remove/sort decision.
+- Updated the read-only fit workflow for a historical 2026-11-02 preview using the 64-track Booze snapshot against the five calibration-target profiles, excluding the complete candidate batch from those profiles. Output is a cross-reference audit, not a Halloween-theme verdict and not an automatic add/remove/sort decision.
 - Added a regression test requiring exact ordered URI agreement with the saved playlist snapshot, uniqueness, and identity-only fields. The workflow includes this test.
 - The existing sequencer remains responsible for smooth adjacent transitions, section order, artist spacing and the 85% gradual peak. No Spotify API calls or playlist writes were added. This branch is a reviewable PR; it must pass CI and real-data artifact inspection before merge.
 - Next: inspect the new audit artifact and evidence coverage, then use the live sequence preview against a fresh snapshot. Separately audit each Booze track's explicit Halloween theme evidence; five-axis similarity to other playlists is useful musical context but is not itself proof of Halloween relevance. Do not apply a sort until the expanded candidate set and complete proposed order are reviewed.
@@ -210,7 +244,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - The read-only cross-reference artifact completed successfully for all 64 saved tracks; all 64 resolved to a canonical Library record (28 exact Spotify-ID joins, 36 exact artist/title/album/duration joins). No candidate leakage into calibration profiles: all 64 candidates were excluded from each target profile.
 - **The model is not yet useful as an automatic sorter input for Booze.** Per target, only 32/64 tracks received a non-null fit score; all 32 are low confidence, support exactly one dimension, and 31/32 rely on artist-scope genre context. Only one track has direct Genre evidence. The other 32 tracks are unknown for each target. Sound, Energy, Mood and Theme have zero direct coverage in the target profiles; Smooth has no direct profile evidence at all.
 - Playlist-local cache coverage check: 64/64 have a legacy track-profile row, but only 2/64 have Last.fm tags; 0/64 have lyric-theme features, 0/64 have direct track mood, 0/64 have recognized energy scores, and 0/64 have a usable audio profile by the sequencer's exact artist/title key except 1 sparse row. This is an identity/metadata coverage problem, not evidence that the music lacks those qualities.
-- Therefore the cross-reference report is diagnostic only. Do not use its single-axis/context-only scores to select additions or claim Halloween fit. Next phase must prioritize trustworthy recording-level tags/lyrics/theme and usable acoustic evidence, then run a fresh live Booze sequence preview with the existing smooth-flow sorter. Do not apply until additions and full order are reviewed.
+- Therefore the cross-reference report is diagnostic only. Do not use its single-axis/context-only scores to select additions or claim Halloween fit. After documentation completion, the next phase must prioritize trustworthy recording-level tags/lyrics/theme and usable acoustic evidence, then run a fresh live Booze sequence preview with the existing smooth-flow sorter. Do not apply until additions and full order are reviewed.
 
 
 ## 2026-11-02 — Booze live preview baseline and next functional blockers
