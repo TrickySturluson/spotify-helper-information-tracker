@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
+"""Read-only Spotify playlist snapshot collector with repository-side Library evidence writes.
 
 Run: python spotify_reference_library.py sync
 The command reads every playlist returned by the authorized Spotify account and
