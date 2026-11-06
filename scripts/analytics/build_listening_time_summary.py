@@ -105,15 +105,15 @@ if __name__ == "__main__":
 
 
 # -----------------------------------------------------------------------------
-# # FILE OVERVIEW
-# # Purpose: Publish complete-history and verified-duration listening-time estimates.
-# # Inputs: data/scrobbles.json, data/stats.json, assistant_data/overview.json,
-# #         assistant_data/music/overview.json and recommendation duration trends.
-# # Outputs: assistant_data/listening_time.json plus monthly/yearly duration-trend fields.
-# # Semantics: The legacy headline intentionally uses the 3.5-minute estimate for every
-# #            scrobble; verified-duration equivalents are reported separately and never
-# #            filled with guessed durations. Unknown-duration coverage stays visible.
-# # Safety: Local derived-data build only; does not alter source scrobbles or contact providers.
-# # Run: python compat/build_listening_time_summary.py (repository root).
-# # Related: docs/ listening-time contract; tests/; scripts/analytics/build_music_analytics.py.
-# # -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Publish complete-history and verified-duration listening-time estimates.
+# Inputs: data/scrobbles.json, data/stats.json, assistant_data/overview.json,
+#         assistant_data/music/overview.json and recommendation duration trends.
+# Outputs: assistant_data/listening_time.json plus monthly/yearly duration-trend fields.
+# Semantics: The legacy headline intentionally uses the 3.5-minute estimate for every
+#            scrobble; verified-duration equivalents are reported separately and never
+#            filled with guessed durations. Unknown-duration coverage stays visible.
+# Safety: Local derived-data build only; does not alter source scrobbles or contact providers.
+# Run: python compat/build_listening_time_summary.py (repository root).
+# Related: docs/ listening-time contract; tests/; scripts/analytics/build_music_analytics.py.
+# -----------------------------------------------------------------------------
