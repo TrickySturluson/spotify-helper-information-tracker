@@ -35,6 +35,11 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - A fresh session can resume each active goal without chat history.
 - Meaningful work updates relevant documentation in the same session; status claims cite exact evidence.
 
+## Automated guardrails — implemented, awaiting CI evidence
+- Added `tests/test_documentation_contract.py` to enforce required control documents, all goal workspaces' ROADMAP/README/ACTIONS files, AGENTS continuity requirements, major documentation-domain coverage, and local links from the primary entry points.
+- Existing `tests/test_script_layout.py` checks bottom `FILE OVERVIEW` coverage across maintained Python implementation, compatibility, tests and GitHub Actions workflow files.
+- The repository's standard unittest discovery includes both tests; `.github/workflows/update.yml` runs the full suite before data publishing. A successful CI run after this new test is required before calling the guardrail verified.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage.
 - Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
