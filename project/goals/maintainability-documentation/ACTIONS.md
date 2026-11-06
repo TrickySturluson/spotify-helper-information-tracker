@@ -2,6 +2,19 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — High-risk repository write boundaries audited and regression-tested
+
+- **Spotify Reference Library:** confirmed `spotify_reference_library.py sync` reads Spotify playlists but writes repository snapshots and canonical MusicLibrary rows via `put_catalogue()`, including Spotify IDs, playlist-source/position and listening-context evidence, plus market-scoped playability observations. Clarified that playlist presence is not a Last.fm scrobble, measured playback, like, save or proof of listening. Updated source docstring/overview, canonical Library README, per-recording guide, Spotify operations guide, workflow catalogue and repository index.
+- **MusicLibrary resolver:** confirmed `MusicLibrary.__init__` can rebuild/write `library_index.json` when the index is missing, empty or incomplete. Updated the source overview and Library guide. `library_health.py` deliberately avoids the resolver and remains the strictly read-only health path.
+- **Sequencer:** confirmed preview writes local reorder-plan JSON and may trigger the same derived-index rebuild when it constructs the resolver. It never edits Spotify playlists. Updated its source overview and transition-scoring guide.
+- **Great Migration:** confirmed both `audit` and workflow operation `verify-catalogue` invoke the resolver audit and may therefore rebuild the derived index. Corrected the Great Migration guide and workflow catalogue: use `health` for a strict zero-write structural scan; do not label resolver audit paths strictly read-only.
+- **Daily source overview:** the first expanded overview exceeded the enforced 1,500-character tail window and failed the maintained-file documentation check. Compressed it to 1,035 characters while preserving the known `--force` same-date-idempotency discrepancy. A follow-up test assertion was adjusted to handle wrapped comment lines.
+- **Regression tests:** added/extended documentation-contract tests for Spotify snapshot evidence semantics, MusicLibrary index-rebuild behavior, sequencer local writes, and Great Migration audit/verify-catalogue classification. The tests also protect the completed inventory handoff.
+- **Verification:** exact code/test head `1f3e8490fa8b964a7692106f3762fe9b9d354120` passed Daily curator CI [#42163606682](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42163606682), including compilation, generated-data audit, full read-only Library health/confidence/freshness, maintained-file documentation checks and full unittest discovery. Full-history Gitleaks [#42163604155](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42163604155) was still in progress at last inspection. Subsequent commits changed only documentation wording/catalogue entries.
+- **Scope:** no runtime behavior, Spotify playlist contents, provider calls, generated Library records or workflow YAML were changed.
+- **Next:** continue the source-to-guide audit across all remaining writers and recovery paths; then reconcile each goal ACTIONS log's current status against current code/workflow evidence and perform the final cold-start simulation.
+
+
 ## 2026-11-06 — Spotify Reference Library canonical-write semantics documented
 
 - **Finding:** source inspection of `spotify_reference_library.py` showed that `sync` does more than write Spotify snapshots. It also calls `MusicLibrary.put_catalogue()` for non-relinked playlist tracks, adding Spotify identity, playlist source/position and listening-context evidence, and stores market-scoped playability observations. The source overview and several operational descriptions did not make the canonical Library write sufficiently explicit.
