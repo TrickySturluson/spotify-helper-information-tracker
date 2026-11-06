@@ -7,13 +7,13 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 ## Start here
 
 1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
-1. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
-2. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
-3. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
-4. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
-5. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
-6. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
-7. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
+2. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
+3. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
+4. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
+5. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
+6. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
+7. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
+8. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
 
 ## Documentation families
 

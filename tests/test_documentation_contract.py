@@ -10,7 +10,6 @@ CONTROL_DOCS = (
     "AGENTS.md",
     "docs/README.md",
     "docs/BABEL.md",
-    "docs/BABEL.md",
     "project/ROADMAP.md",
     "project/goals/README.md",
 )
