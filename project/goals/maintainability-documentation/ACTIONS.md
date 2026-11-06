@@ -2,6 +2,19 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Live repository inventory and documentation audit resumed
+
+- **Purpose:** continue the user-directed documentation-only phase and verify the current repository rather than relying on prior chat summaries.
+- **Repository:** canonical `TrickySturluson/spotify-helper-information-tracker`, default branch `main`, inspected tree SHA `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`.
+- **Inventory evidence:** 13 goal directories were listed individually; all 13 contain ROADMAP.md, README.md and ACTIONS.md. The current workflow directory contains 17 YAML files. Maintained implementation directories list 7 analytics modules, 1 Last.fm module, 24 music modules and 19 Spotify modules. The repository also contains compatibility launchers, tests, canonical data, generated analytics/Library records, playback observations, playlist state and the CLI.
+- **Automated verification:** latest observed Daily curator run #42144512658 and public repository security scan #42144512423 both succeeded on the inspected main SHA. Existing tests check goal workspace structure, selected local links, workflow catalogue coverage and bottom FILE OVERVIEW marker presence across maintained Python/workflow files.
+- **Important limitation:** the recursive Git tree API response was truncated by the very large generated per-record Library tree. It is not a complete inventory. Directory-scoped listings are adequate for the maintained code/workflow/goal counts above, but a full checkout plus `git ls-files` is still needed for exhaustive tracked-path reconciliation.
+- **Accuracy finding:** passing marker/link tests do not prove that every FILE OVERVIEW, workflow summary, technical guide, or roadmap remains semantically accurate. Manual source-to-document review remains required.
+- **Open work observed:** Daily PRs #158 (Discover Weekly exposure/feedback), #159 (DST schedule gating), and #160 (exposure-aware discovery) were open at audit time. They must remain clearly distinguished from merged mainline behavior until reviewed and merged.
+- **Changes:** updated `project/NEXT_WORK.md` to make documentation the sole active priority and record the verified baseline/next actions; updated this roadmap and action history. No application code, data, provider state, or Spotify playlists were changed.
+- **Outcome:** audit resumed; documentation remains in progress and is not declared complete.
+- **Next:** obtain a complete tracked-file inventory; audit all maintained file overviews and operational guides against source; reconcile all goal workspaces, open PRs/issues and current workflow evidence; add targeted checks for actual gaps; complete the fresh-session simulation.
+
 ## 2026-11-05 — Playlist Sequencing split into an independently resumable workstream
 
 - **Reason:** the ordering engine has distinct user requirements (smooth transitions first, configurable energy journey/peak, sections, track-level evidence) and safety requirements (preview, explicit confirmation, stale-preview rejection, live read-back). It should not be buried inside the broader recommendation/fit-model workspace.
