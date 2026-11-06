@@ -2,6 +2,11 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Open sorter/evaluation proposal status reconciled
+
+- [PR #121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) remains open draft; no workflow runs were returned for its observed head. Its offline evaluation/watchdog specification is not yet verified runtime behavior.
+- [PR #120](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) remains open draft; its observed tests and full-history security scan passed. It records a parallel-development strategy, not completed sorter integration or permission to write playlists.
+
 ## 2026-11-06 — Booze snapshot and hard-fit requirements revalidated
 
 - The latest repository snapshot for Booze or Boos! (`4diIlnF8BlgoJrwUfejf49`) was captured at `2026-11-06T01:47:59.824523+00:00`: 92 items reported/fetched, 92 unique track URIs (zero duplicate URIs), accessible, no item error.
