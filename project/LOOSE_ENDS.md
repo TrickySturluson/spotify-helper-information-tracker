@@ -35,6 +35,10 @@ The user has explicitly directed that documentation be the sole active project p
 
 ## Documentation audit PR
 
+- Current draft PR #161 head: `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4` (`docs/semantic-documentation-audit`), base main `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`. PR remains open, draft and unmerged.
+- Tests #42150802119 and full-history secret scan #42150801849 passed on earlier head `1bbfed67ae63c77628d6f8b775b7d12c50060d11`. The PR advanced afterward; current-head checks were not returned by the connected status/run lookup. Exact-head verification is therefore outstanding.
+- Manual PR-branch samples of manager, cloud handler, reference library and offline migration file overviews were reviewed for operational specificity. Full source/guide/test semantic audit remains incomplete.
+
 - Draft PR #161's first check exposed three compatibility wrappers without explicit source paths; those were fixed.
 - Daily curator tests #42150601947 passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a`, including repository-wide Markdown local links, full guide indexing, implementation overview quality, compatibility delegation and workflow overview checks, plus the full unit suite and read-only Library health/confidence/freshness checks.
 - The branch has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`. Current tests #42150802119 and full-history security scan #42150801849 are in progress; recheck both before merge.
