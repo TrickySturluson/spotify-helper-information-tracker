@@ -5,10 +5,12 @@ This is a dedicated discovery workflow, not a playlist-fit feedback event.
 Tracks removed by a scheduled rotation are recorded as neutral curator rotation.
 """
 import argparse
+import hashlib
 import html
 import json
 import os
 import secrets
+import subprocess
 import sys
 import time
 from datetime import date, datetime
@@ -95,6 +97,98 @@ def set_action_output(name, value):
     if output_path:
         with open(output_path, "a", encoding="utf-8") as handle:
             handle.write(f"{name}={value}\n")
+
+
+def persist_daily_stage(stage_path, backup_path, cycle_date):
+    """Commit the immutable stage and recovery snapshot before any Spotify write."""
+    if os.environ.get("GITHUB_ACTIONS", "").lower() != "true":
+        return False
+    paths = [
+        str(stage_path),
+        str(backup_path),
+        ".github/spotify_playlist_manager_audit.jsonl",
+        "assistant_data/spotify/daily_feedback.json",
+        "assistant_data/spotify/listening_trends.json",
+        "playlist_removal_baseline.json",
+        "playlist_removed_tracks.json",
+        "assistant_data/recommendations/discovery_candidates.json",
+    ]
+    existing = [path for path in paths if Path(path).is_file()]
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"],
+        check=True,
+    )
+    subprocess.run(["git", "add", "--", *existing], check=True)
+    subprocess.run(
+        ["git", "commit", "-m", f"Stage Tricky Daily payload for {cycle_date}"],
+        check=True,
+    )
+    # A non-fast-forward rejection is a hard stop before the Spotify mutation.
+    subprocess.run(["git", "push", "origin", "HEAD:main"], check=True)
+    return True
+
+
+def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, backup, description):
+    """Write and durably publish the exact ordered Daily payload before mutation."""
+    if len(uris) != DAILY_TARGET_SIZE or len(set(uris)) != DAILY_TARGET_SIZE:
+        raise manager.ManagerError("Cannot stage Daily payload: expected 60 unique ordered URIs.")
+    if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
+        raise manager.ManagerError("Cannot stage Daily payload: one or more URIs are invalid.")
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{int(time.time())}"
+    stage_dir = Path("assistant_data/spotify/staging/tricky_daily")
+    stage_path = stage_dir / f"{cycle_date}-{run_id}.json"
+    if stage_path.exists():
+        raise manager.ManagerError(f"Daily stage already exists for this run: {stage_path}")
+    candidate_rows = [
+        {
+            "artist": row.get("artist"),
+            "track": row.get("track"),
+            "uri": row.get("uri"),
+            "artist_diversity_fallback": bool(row.get("artist_diversity_fallback")),
+        }
+        for row in recommendations
+    ]
+    hash_payload = {
+        "playlist_id": DAILY_ID,
+        "cycle_date_eastern": cycle_date,
+        "target_uris": list(uris),
+        "candidate_tracks": candidate_rows,
+        "target_description": description,
+    }
+    payload_sha256 = hashlib.sha256(
+        json.dumps(hash_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    record = {
+        "schema_version": 1,
+        "playlist_id": DAILY_ID,
+        "playlist_name": "Tricky Daily",
+        "cycle_date_eastern": cycle_date,
+        "run_id": run_id,
+        "created_at": manager.stamp(),
+        "prewrite_snapshot_id": (before.get("playlist") or {}).get("snapshot_id"),
+        "prewrite_uris": list(before_uris),
+        "target_uris": list(uris),
+        "candidate_tracks": candidate_rows,
+        "target_description": description,
+        "backup_path": str(backup),
+        "payload_sha256": payload_sha256,
+        "status": "staged_before_spotify_write",
+    }
+    manager.write(stage_path, record)
+    manager.audit(
+        event="daily_cycle_payload_staged",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        stage_path=str(stage_path),
+        payload_sha256=payload_sha256,
+        target_track_count=len(uris),
+        prewrite_snapshot_id=record["prewrite_snapshot_id"],
+    )
+    persisted = persist_daily_stage(stage_path, backup, cycle_date)
+    if os.environ.get("GITHUB_ACTIONS", "").lower() == "true" and not persisted:
+        raise manager.ManagerError("Daily stage was not durably committed; refusing playlist mutation.")
+    return str(stage_path), payload_sha256
 
 
 def assert_live_snapshot_unchanged(sp, expected_snapshot, expected_owner_id):
@@ -429,10 +523,14 @@ def main():
             f"Daily candidates now include {len(newly_blocked)} blacklisted tracks; "
             "aborting before playlist mutation."
         )
+    next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
     manager.audit(
         event="daily_cycle_started", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), skipped_count=len(skipped), backup=backup,
         prewrite_snapshot_id=playlist.get("snapshot_id"),
+    )
+    stage_path, payload_sha256 = create_daily_stage(
+        cycle_date, before, before_uris, recommendations, uris, backup, next_description
     )
     try:
         cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)
@@ -446,6 +544,8 @@ def main():
             "playlist_id": DAILY_ID,
             "description": html.unescape(playlist.get("description") or ""),
             "status": "replacement_outcome_ambiguous",
+            "stage_path": stage_path,
+            "payload_sha256": payload_sha256,
         }
         manager.write(manager.CONFIG, config)
         set_action_output("cycled", "true")
@@ -459,9 +559,7 @@ def main():
         raise
 
     # Rotate Daily's short editorial description after the track replacement.
-    # The description is intentionally owned by this dedicated Daily workflow,
-    # not by the generic metadata generator (which protects manual descriptions).
-    next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
+    # The description was fixed in the immutable pre-write stage.
 
     # The playlist replacement has been accepted. Persist the idempotency guard
     # and publish the output immediately, so the workflow can preserve this state
@@ -473,6 +571,8 @@ def main():
         "playlist_id": DAILY_ID,
         "description": next_description,
         "status": "replacement_accepted_pending_verification",
+        "stage_path": stage_path,
+        "payload_sha256": payload_sha256,
     }
     manager.write(manager.CONFIG, config)
     # Publish immediately after the durable local guard; preserve state if later verification fails.
@@ -535,6 +635,8 @@ def main():
         "after_uris": [row.get("uri") for row in updated_snapshot["items"]],
         "kind": "daily",
         "cycle_date_eastern": cycle_date,
+        "stage_path": stage_path,
+        "payload_sha256": payload_sha256,
     }
     manager.write(manager.CONFIG, config)
     discovery.write_daily_removal_baseline(updated_snapshot["items"], config["daily_cycle"]["last_cycle_at"])
