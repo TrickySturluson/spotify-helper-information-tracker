@@ -298,8 +298,8 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Prevent regressions in SHIT's repository-wide documentation contract.
-# Scope: Required control documents, per-goal roadmaps, workflow operation allowlists and
-#        enrichment-budget alignment, navigation coverage and local links from fresh-session entry points.
+# Scope: Required control documents, per-goal roadmaps, workflow operation allowlists,
+#        enrichment-budget alignment, inventory handoff consistency, navigation and local links.
 # Run: python -m unittest tests.test_documentation_contract -v
 # Related: AGENTS.md, docs/README.md, project/DOCUMENTATION_RULES.md,
 #          project/ROADMAP.md, and project/goals/*.
