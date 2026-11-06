@@ -343,6 +343,7 @@ def main():
         return 0
 
     before = manager.snapshot(sp, playlist)
+    before_uris = [row.get("uri") for row in before.get("items", [])]
     previous_cycle_marker = (config.get("daily_cycle") or {}).get("last_cycle_at")
     removal_sync = discovery.reconcile_daily_manual_removals(before["items"], previous_cycle_marker)
     manager.audit(event="daily_manual_removals_reconciled", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date, **removal_sync)
