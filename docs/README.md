@@ -42,6 +42,12 @@ The [goal index](../project/goals/README.md) links all current goal workspaces. 
 - `README.md` for scope, architecture, decisions and constraints.
 - `ACTIONS.md` for dated evidence, implementation history, failures and verification.
 
+## Automated documentation checks
+
+- [Documentation contract tests](../tests/test_documentation_contract.py) verify required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, the root assistant instructions, major domain coverage in this index, and local links from the main fresh-session entry points.
+- [Script layout tests](../tests/test_script_layout.py) verify implementation/compatibility layout and bottom-of-file overview coverage for maintained Python and workflow files.
+- Both checks are part of the standard unittest discovery suite; the main scheduled/manual update workflow runs that suite before publishing refreshed data.
+
 ## Maintenance contract
 
 When a file, workflow, schema, data contract, or operational behavior changes, update its file overview or adjacent documentation and the relevant workstream records in the same session. Update this index when documentation is added, moved, renamed, or retired. Never put explanatory prose into machine-readable data files. Never treat an index entry as proof that the referenced implementation is current; inspect the source and latest workflow evidence.
