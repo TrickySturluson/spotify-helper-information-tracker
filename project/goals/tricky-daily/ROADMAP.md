@@ -25,7 +25,7 @@ The P0 invariant is **force bypasses the clock gate only**. This is now implemen
 
 ## Additional quota-safety test gap found — 2026-11-06
 
-The three Retry-After/cooldown regression tests were moved into `PlaylistManagerTests` and merged in PR #169 as `8d0d2d5e8b0448fde64932aced1014ef944e3312`. They now run under normal unittest discovery. The final PR CI passed 512 tests (#42272711018) and its security scan passed (#42272711156); the post-merge mainline test run also passed 512 tests (#42272911280). The post-merge full-history security scan #42272911119 also passed. This restores regression coverage for 429 cooldown persistence, active cooldown blocking, and expired cooldown allowance; no runtime behavior was changed by the test-only correction.
+The three Retry-After/cooldown regression tests were moved into `PlaylistManagerTests` and merged in PR #169 as `8d0d2d5e8b0448fde64932aced1014ef944e3312`. They now run under normal unittest discovery. The final PR CI passed 512 tests (#42272711018) and its security scan passed (#42272711156); the post-merge mainline test run also passed 512 tests (#42272911280), and the post-merge full-history security scan #42272911119 passed. A further gap was found: the manager did not persist a cooldown when `Retry-After` was an HTTP-date or unusable/missing. PR #170 proposes HTTP-date parsing and a durable manual-clear fail-closed state for missing/unparseable values. Its CI is pending; do not count this runtime improvement as merged or verified yet.
 
 ## Explicit whitelist contract — source/test verified 2026-11-06
 
