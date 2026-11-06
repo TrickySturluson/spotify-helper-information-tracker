@@ -478,10 +478,19 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Call the Last.fm API with automatic retries for temporary server/network errors.
-# Location: Maintained implementation in scripts/lastfm/update_lastfm.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/update_lastfm.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Incrementally import the TrickySturluson Last.fm scrobble history.
+# Inputs: LASTFM_API_KEY environment variable; Last.fm user.getRecentTracks
+#         pages (200 records/page); existing data/scrobbles.json and
+#         data/metadata.json.
+# Outputs: Replaces the chronological data/scrobbles.json archive and updates
+#          data/metadata.json with the newest imported Unix timestamp/count.
+# Network/retry: Last.fm HTTPS requests; 0.25-second page spacing; up to six
+#                exponential-backoff retries for temporary API, HTTP and
+#                network failures. Permanent API/HTTP errors stop the run.
+# Safety: Excludes now-playing/undated rows, filters incremental results to
+#         timestamps newer than the saved watermark, deduplicates by timestamp
+#         + artist + track, then sorts oldest-to-newest before writing.
+# Run: python compat/update_lastfm.py (from the repository root).
+# Related: data/README.md; scripts/analytics/build_stats.py;
+#          .github/workflows/update.yml; tests/ (Last.fm importer coverage).
 # -----------------------------------------------------------------------------
