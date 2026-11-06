@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — High-risk Spotify/Daily guide claims reconciled against source
+
+- Compared `docs/TRICKY_DAILY_CYCLE.md` against `spotify_daily_cycle.py`, `spotify_daily_preflight.py`, and both Daily workflow definitions. Confirmed the code generates the listening-trend report before candidate generation, reconciles manual removals before building candidates, enforces exactly 60 unique track URIs, records a pending-verification state immediately after accepted replacement, verifies the new description and post-change snapshot, and keeps preflight GET-only.
+- Found one omitted trigger in the live-preflight guide: the workflow also supports manual `workflow_dispatch`, in addition to the dedicated test-trigger push and six-hour schedule. Corrected the guide.
+- Found a potentially dangerous stale assertion in `docs/SPOTIFY_API_OPERATIONS.md`: it stated that the current Actions refresh token had been rejected with `invalid_grant`. The guide did not establish that this remained true. Reframed it as a historical incident and made current read-only authentication verification a prerequisite before any reauthorization or secret replacement.
+- Compared `docs/TRANSITION_SCORING.md` against sequencer scoring code for mood contribution weights. Verified track mood weights (high 0.15 / medium 0.10 / low 0.05), album fallback 0.04, artist fallback 0.03, and separation of acoustic confidence from semantic/mood context.
+- **Verification:** documentation-only edits; no Spotify requests, credential changes, playlist writes, or workflow dispatches were performed. Latest exact-head CI/security has not been returned for the current documentation-only branch state.
+- **Next:** continue high-risk guide/source comparison for playlist manager, migration, canonical Library, metadata enrichment, and workflow publication/recovery contracts.
+
 ## 2026-11-06 — Cross-document consistency audit corrected stale handoffs
 
 - Fresh-session review found duplicated and contradictory PR status blocks in `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, and the maintainability roadmap. Consolidated the active handoff and PR verification sections; retained older dated records as history and explicitly labelled the lower NEXT_WORK checkpoints as historical.
