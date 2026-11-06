@@ -273,5 +273,5 @@ if __name__ == "__main__":
 #               provider calls, Spotify playlist writes or source archive edits.
 # Run: python compat/build_music_analytics.py (from the repository root).
 # Related: scripts/music/mood_inference.py; docs/TRACK_MOOD_EVIDENCE.md;
-#          docs/RECOMMENDATION_FEATURES.md.
+#          docs/TRACK_MOOD_EVIDENCE.md; docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------
