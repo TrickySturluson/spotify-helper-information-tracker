@@ -88,5 +88,5 @@ if __name__ == "__main__":
 #           running and playback state was accessible; gaps are not inferred.
 # Run: python compat/build_playback_analytics.py (from the repository root).
 # Related: scripts/spotify/spotify_playback_tracker.py;
-#          docs/PLAYBACK_TRACKING.md; tests/ (playback analytics coverage).
+#          docs/REPOSITORY_FILE_INDEX.md; tests/ (playback analytics coverage).
 # -----------------------------------------------------------------------------
