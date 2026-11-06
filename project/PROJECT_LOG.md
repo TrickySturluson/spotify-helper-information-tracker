@@ -1,3 +1,10 @@
+## 2026-11-06 — Active-session brief established as a core continuity rule
+
+- **Decision:** maintain `project/ACTIVE_SESSION_BRIEF.md` throughout active SHIT work as the curated context bridge from ChatGPT to Buddy. It records material decisions, current work, evidence, failures, blockers, and the next action; relevant goal roadmaps and action logs remain synchronized in the same session.
+- **Privacy and timing:** the brief is not a raw chat dump and must exclude unrelated personal context and secret values. It is not real-time messaging; Buddy sees committed changes on a later run and cannot interrupt an active conversation.
+- **Implementation:** created the brief and updated Buddy's startup prompt, root instructions, mandatory documentation rules, Babel agent guide, worker state, documentation roadmap/action log, and cross-project handoff. See `project/goals/maintainability-documentation/ACTIONS.md` for commit-level evidence.
+- **Status:** documentation rule implemented on `main`; Buddy's first successful workflow run and cold-start simulation remain pending.
+
 ## 2026-11-06 — Babel AI continuation infrastructure added
 
 - Integrated a scheduled OpenAI Codex worker through GitHub Actions so documentation continuation can resume from repository state rather than a prior ChatGPT conversation.
