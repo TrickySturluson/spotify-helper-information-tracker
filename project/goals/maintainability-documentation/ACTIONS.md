@@ -2,6 +2,19 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Semantic module-overview audit: first 15 modules repaired
+
+- **Purpose:** continue beyond FILE OVERVIEW marker presence and make the in-file contracts useful to a fresh contributor or assistant.
+- **Branch:** `docs/semantic-overview-quality-20261105`, created from `main`. Latest recorded commit for this batch: `885dd37b56bd3f4f36d691fa87d98bcb19c7a479`.
+- **Files updated:** six analytics modules (`build_stats.py`, `build_playback_analytics.py`, `build_assistant_data.py`, `build_advanced_analytics.py`, `build_music_analytics.py`, `build_listening_time_summary.py`); Last.fm importer (`update_lastfm.py`); music modules (`audio_analysis.py`, `build_music_metadata.py`); Spotify modules (`spotify_playlist_manager.py`, `spotify_playlist_cloud.py`, `spotify_daily_playlist.py`, `spotify_daily_feedback.py`, `spotify_discovery.py`, `spotify_playback_tracker.py`). Total: 15 maintained modules.
+- **Documentation improvements:** replaced generic "see module paths" boilerplate with concrete input/output paths, provider behavior, write boundaries, uncertainty semantics, retry/cooldown behavior, supported invocation or internal-only role, and related source/guide references. Explicitly distinguished Last.fm scrobbles from prospective measured Spotify playback and candidate generation from playlist mutation.
+- **Reference correction:** checked every newly added guide reference; removed two nonexistent guide links (`docs/PLAYBACK_TRACKING.md` and `docs/RECOMMENDATION_FEATURES.md`) and replaced them with existing references.
+- **Guardrail:** expanded `tests/test_script_layout.py` with a semantic-regression test that rejects the known generic fallback phrases in these 15 manually audited modules. This test is implemented on the branch but has **not yet been executed in CI**.
+- **Verification:** GitHub file updates succeeded sequentially on the documentation branch. No Python logic, workflow YAML, canonical Library data, Last.fm archive, provider state, playback observations or Spotify playlists were changed. No tests or live operations were run in this batch.
+- **Limitations:** this is a first semantic-audit batch, not full coverage. Other maintained modules still contain generic overviews and require the same source-to-overview review. The new test currently protects only the 15 audited files.
+- **Outcome:** documentation edits committed on a non-default branch; CI and link-contract verification pending.
+- **Next action:** continue with the remaining music/Spotify modules, then audit compatibility launchers, tests and workflow overviews for semantic accuracy; inspect CI after an appropriate safe validation path is available.
+
 ## 2026-11-05 — Workflow overview audit found boilerplate; push-trigger side effects recorded
 
 - **Finding:** all 17 workflow files are listed in `docs/WORKFLOWS.md`, but nine workflow YAMLs had generic bottom overviews that did not describe their actual triggers, credentials, writes or safety boundaries. This passed the existing FILE OVERVIEW presence test but failed the intended documentation-quality standard.
