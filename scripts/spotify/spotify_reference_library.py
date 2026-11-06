@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
+"""Read-only Spotify playlist snapshot collector with repository-side Library evidence writes.
 
 Run: python spotify_reference_library.py sync
 The command reads every playlist returned by the authorized Spotify account and
@@ -747,16 +747,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Read-only Spotify playlist reference snapshot, index, health and playability-evidence service.
-# Outputs: Writes assistant_data/spotify/playlists.json, playlists/{id}.json, history/{id}/ snapshots,
-#          reference_index.json, and related catalog metadata; preserves last-known items when access fails.
-# Sync: Reads playlists exposed to the authorized account and records ordered items/restrictions; it never
-#       edits Spotify playlists. health reports accessibility, completeness, index and feedback coverage.
-# Playability: Snapshot backfill makes no provider requests and appends evidence to canonical song records
-#              with a backup. refresh-playability is plan-only by default; --execute performs bounded
-#              Spotify GET lookups (1–50, default 25; 90-day staleness default) and records market-scoped
-#              observations without changing playlist contents.
-# Commands: sync, health, backfill-playability, refresh-playability, list, and lookup.
-# Run: python compat/spotify_reference_library.py <command> [options].
-# Related: assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md and docs/SPOTIFY_API_OPERATIONS.md.
+# Purpose: Collect read-only Spotify playlist snapshots and write canonical reference evidence.
+# Inputs: Spotify playlist GET snapshots, configured reference/priority playlist IDs and
+#         market-scoped track metadata/playability observations.
+# Outputs: assistant_data/spotify snapshots/history/catalog/index/health, canonical MusicLibrary
+#          song/artist/album catalogue evidence, playlist-source context and market-scoped playability.
+# Semantics: Incomplete/inaccessible snapshots are not empty. Playlist membership is context,
+#            not a Last.fm scrobble, measured playback, like, or proof of listening. Non-relinked
+#            tracks retain identity/source/position; requested/relinked IDs stay distinct.
+# Safety: Sync writes repository snapshots and canonical Library evidence but never mutates Spotify
+#         playlists. Separate playability refresh is plan-only by default and requires --execute --yes
+#         for bounded stale-only Spotify GETs; offline backfill uses backup-protected song-record writes.
+# Run: python compat/spotify_reference_library.py sync|health|... (repository root).
+# Related: docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md;
+#          scripts/spotify/track_playlist_removals.py.
 # -----------------------------------------------------------------------------

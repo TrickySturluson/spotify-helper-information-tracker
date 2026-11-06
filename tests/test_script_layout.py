@@ -75,6 +75,55 @@ class ScriptLayoutTests(unittest.TestCase):
                 self.assertIn("FILE OVERVIEW", source)
                 self.assertIn("FILE OVERVIEW", source[-1500:])
 
+    def test_implementation_overviews_are_specific_not_generic_templates(self):
+        generic_phrases = (
+            "Uses the canonical archives and/or generated project data",
+            "consult this module's configuration and command options for exact paths",
+            "tests/ contains regression coverage",
+            "docs/ contains extended guides",
+            "See docs/ for longer operational and data-contract guides",
+            "Purpose: Implementation module scripts/",
+        )
+        implementations = sorted((ROOT / "scripts").rglob("*.py"))
+        self.assertTrue(implementations, "No maintained implementation modules were found")
+        for path in implementations:
+            if path.name == "__init__.py":
+                continue
+            source = path.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
+                overview = source[marker:]
+                self.assertIn("Purpose:", overview, "Overview must state the module's purpose")
+                for phrase in generic_phrases:
+                    self.assertNotIn(phrase, overview, f"Generic overview boilerplate: {phrase}")
+
+    def test_compatibility_overviews_name_the_maintained_implementation(self):
+        wrappers = sorted(path for path in (ROOT / "compat").glob("*.py") if path.name != "__init__.py")
+        for path in wrappers:
+            source = path.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
+                self.assertIn("scripts/", source[marker:], "Compatibility overview must name its maintained implementation")
+
+    def test_test_module_overviews_are_specific_not_generic(self):
+        generic_phrases = (
+            "Purpose: Regression test module.",
+            "Scope: Regression checks for the behavior named by this test module.",
+            "Related: Implementation lives under scripts/; longer behavior notes live in docs/.",
+        )
+        modules = sorted((ROOT / "tests").glob("test_*.py"))
+        self.assertTrue(modules, "No test modules were found")
+        for path in modules:
+            source = path.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
+                overview = source[marker:]
+                for phrase in generic_phrases:
+                    self.assertNotIn(phrase, overview, f"Generic test overview boilerplate: {phrase}")
+
     def test_maintained_overviews_do_not_use_generic_placeholders(self):
         candidates = []
         for directory in ("scripts", "compat", "tests", ".github/workflows"):
@@ -105,7 +154,7 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Guard the responsibility-based implementation and compatibility layout.
-# Scope: Regression checks for the behavior named by this test module.
+# Scope: Compatibility shims, package layout, maintained-file overview coverage and documentation quality guards.
 # Run: python -m unittest tests.test_script_layout -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Related: scripts/README.md, compat/README.md, tests/README.md, docs/CODE_DOCUMENTATION.md.
 # -----------------------------------------------------------------------------

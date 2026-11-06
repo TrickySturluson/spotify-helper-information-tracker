@@ -4,12 +4,14 @@ The per-recording Library structure was merged into main in [PR #49](https://git
 
 ## Current published catalogue
 
-- 13,005 songs, 6,386 artists, and 7,861 albums in the current main-branch index.
-- The legacy Last.fm-derived track index contains 11,130 unique track identities; a direct cross-check resolves all 11,130 through canonical source-track-ID or recording-MBID aliases.
-- All 5,358 legacy artist names are represented in canonical artist records.
-- The catalogue also contains Spotify playlist-only tracks, with playlist membership kept distinct from Last.fm listening history.
-- Run #18's final runner-side audit passed with zero errors and its enrichment output was published. A separate post-publication audit/health scan is still required before the Library is considered fully verified.
-- Current duration coverage is approximately 91.1% of 152,005 scrobbles. Metadata and audio-feature coverage remain incomplete; see the project Great Migration and enrichment goal workspaces.
+- The latest canonical Library audit in Enrich Music Metadata run [#42166959478](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42166959478) reported **13,239 songs** after the discovery-candidate merge; publication commit: `3d2c1ded`.
+- The legacy Last.fm-derived track index contains 11,130 unique track identities; the published duration overview reports 8,254 tracks with sourced durations and 139,758/152,005 scrobbles covered (91.943%).
+- All 5,358 legacy Last.fm artist identities remain represented in the source analytics index. Do not infer that every canonical artist/album entity count is the same as a legacy aggregate count.
+- The catalogue also contains Spotify playlist-only and discovery-candidate tracks, including exact playlist-only candidates even when they have zero Last.fm scrobbles. Playlist membership is source/context evidence, not a play, like, save, or proof of listening; it remains distinct from measured Spotify playback.
+- The post-enrichment project integrity audit completed 9 checks with 18 warnings and zero errors. The warnings include 16 Spotify playlist snapshots whose item contents were inaccessible and no captured measured-playback intervals; inaccessible snapshots are not empty and retained contents may be stale.
+- **Stale report warning:** `migration_report.json` still records the earlier 13,005-song migration snapshot from 2026-11-01. It is historical migration evidence, not the current canonical count. Use a fresh canonical Library audit/health report for current entity counts.
+- Metadata coverage remains incomplete; use the current generated manifests and source-specific reports rather than treating this snapshot as a timeless guarantee.
+
 
 The raw Last.fm event archive remains separate. The Library stores normalized song/artist/album entities and evidence; it does not replace the original per-scrobble event history.
 

@@ -18,6 +18,15 @@ The user explicitly requires documentation to be the sole active project priorit
 - **Open documentation PR #161:** open/draft, 117 changed files, 2,330 additions and 493 deletions. Its branch is divergent from current main (571 commits ahead, 29 behind); it is not safe to merge blindly. Use it as an audit/reference source and selectively port reviewed documentation/tests. Its checks passed on its own branch, not on current main.
 - **Other open feature PRs:** #158, #159, #160, #120, #121, #65 and #60 remain proposals. Their behavior is not merged mainline behavior.
 
+## Newly verified high-risk documentation findings
+
+- **Tricky Daily force/idempotency P0:** current `--force` bypasses both the clock gate and same-Eastern-date completion guard; the schedule test currently codifies this. Intended contract: force bypasses the time window only. The implementation/test correction remains deferred until the documentation-only pause ends.
+- **Tricky Daily snapshot and post-write gap:** saved snapshot at `2026-11-06T01:48:00.233040+00:00` contains 58 accessible, unique URIs, below the 60-track success target. It is not a live read-back. Automatic post-write verification also lacks exact ordered staged-payload comparison and explicit returned-snapshot blacklist/duplicate rechecks; the verify-only path is stronger but still does not compare exact staging.
+- **Stale Library migration report:** latest canonical audit in run #42166959478 reported 13,239 songs, while `assistant_data/music/library/migration_report.json` still records 13,005 from the 2026-11-01 migration. Treat the report as historical until a safe generated-report refresh is planned after the documentation pause.
+- **Resolver write boundary:** `MusicLibrary()` may rebuild/write `library_index.json` when the index is missing, empty or incomplete. Use `library health` for strictly read-only structural checks.
+- **Credential verification write boundary:** Great Migration `verify` can persist a replacement Spotify refresh token to the repository Actions secret through the narrowly scoped GitHub App. Local verification does not persist it; cloud verification is not purely read-only.
+- **Playlist snapshot evidence:** Reference Library sync writes repository snapshots and canonical Library source context but does not mutate Spotify playlists. Membership is not a play, like, save, scrobble or measured playback event. Sixteen playlist item snapshots were inaccessible in the latest enrichment audit; retained contents may be stale.
+
 ## Remaining documentation work
 
 1. Complete source-to-document semantic review across all 55 implementation modules, 40 compatibility launchers, 44 tests, 17 workflows and 21 technical guides.

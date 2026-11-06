@@ -23,6 +23,14 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - **Open documentation PR #161:** remains open/draft with 117 changed files. Its branch is divergent from current main (571 commits ahead, 29 behind); do not merge or rebase blindly. It contains valuable source-audited documentation and regression-test candidates; selectively reconcile them against current main and live source instead.
 - **Other open feature proposals:** #158, #159, #160, #120, #121, #65 and #60 remain proposals, not merged mainline behavior.
 
+### Newly verified high-risk documentation findings
+
+- **Tricky Daily force/idempotency P0:** `spotify_daily_cycle.py` passes `args.force` to both the clock gate and `cycle_already_completed()`; the latter returns `False` when forced. A forced run therefore bypasses the same-Eastern-date completion guard as well as the time window. The current schedule test explicitly asserts this broader behavior. The requirement remains force bypasses the clock gate only; do not treat the current implementation as approved.
+- **Tricky Daily saved snapshot:** the latest saved snapshot is timestamped `2026-11-06T01:48:00.233040+00:00`, reports 58 accessible items and 58 unique URIs. This is below the successful-cycle target of 60 and is not a live preflight or current Spotify read-back.
+- **Daily post-write verification gap:** the automatic post-write check does not explicitly compare the returned ordered URI list with an immutable staged payload or recheck blacklist/duplicate invariants against the returned snapshot. The separate verify-only path checks count, duplicates, blacklist and description, but not exact ordered staging equality. These are documented P0 gaps; no runtime fix during this documentation phase.
+- **Library report freshness:** the latest canonical Library audit reported 13,239 songs, but `assistant_data/music/library/migration_report.json` still records the earlier 13,005-song migration snapshot from 2026-11-01. The Library README now labels that report historical; reconcile the generated report only after the documentation pause.
+- **Resolver and credential side effects:** constructing `MusicLibrary()` may rebuild/write `library_index.json` if missing/empty/incomplete; use the dedicated read-only `library health` path for zero-write structural checks. Great Migration `verify` may persist a replacement Spotify refresh token to the Actions secret store through the scoped GitHub App; it is not purely read-only in cloud runs.
+
 ### Next executable actions
 
 1. Finish the source-to-document semantic audit of all 55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflows and 21 technical guides.

@@ -2,6 +2,15 @@
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
 
+
+## 2026-11-06 — Daily P0 discrepancies and saved-snapshot gap documented
+
+- **Source finding:** `--force` is passed into both `should_run_cycle()` and `cycle_already_completed()`; forced calls bypass the same-Eastern-date completion guard as well as the clock gate. The current schedule test asserts this. This contradicts the intended P0 contract that force bypasses the clock gate only.
+- **Saved snapshot:** main's latest Tricky Daily reference snapshot is timestamped `2026-11-06T01:48:00.233040+00:00`, with 58 accessible items and 58 unique URIs. This is below the 60-track success target and is not a live preflight/read-back.
+- **Verification boundary:** automatic post-write checks do not yet compare the returned ordered URI list with an immutable staged payload or explicitly recheck blacklist/duplicate invariants against the returned snapshot. The separate verify-only command is stronger but does not prove exact staged-order equality.
+- **Disposition:** documented in `docs/TRICKY_DAILY_CYCLE.md`, `docs/TRICKY_DAILY_TODO.md`, `docs/WORKFLOWS.md` and this roadmap. Runtime/test corrections remain deferred until the repository-wide documentation-only pause ends. No playlist or feature changes made.
+
+
 ## 2026-11-06 — Documentation-only pause recorded
 
 - The repository-wide priority remains completion of SHIT Documentation & Continuity (internal codename: Babel).

@@ -453,14 +453,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Automatically refresh Tricky Daily with 60 tracks from 60 distinct
-#           primary artists once per Eastern calendar day.
-# Schedule: GitHub Actions invokes this at 04:00 and 05:00 UTC; a ZoneInfo gate
-#           ensures only the actual midnight America/New_York run proceeds.
-# Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
-#         unlocked state, recommendation minimum, URI validation, duplicate
-#         prevention, per-day idempotency, and a pre-change recovery snapshot.
-# Feedback: Removed tracks are recorded only as neutral curator_rotation events
-#           in Daily's own feedback store, never as playlist-fit rejection.
-# Recovery: The backup is uploaded by the workflow and linked in manager state.
+# Purpose: Rotate Tricky Daily to exactly 60 tracks once per Eastern calendar day.
+# Candidates: Seek one track per primary artist; after alternate search-page retries, relax
+#             the artist cap from two only as needed to reach 60 unique URIs; audit fallback.
+# Schedule: UTC cron 04:00/04:15 and 05:00/05:15; ZoneInfo selects Eastern midnight.
+# Safety: Exact playlist identity/owner, managed policy, explicit unlock, URI/deduplication,
+#         pre-change backup and 60-track read-back. Known P0 discrepancy: current --force
+#         also bypasses that completion guard; intended behavior is to bypass the clock gate only.
+# Feedback: Rotation removals are neutral curator_rotation events, never negative preference.
+# Dispatch: --force bypasses clock and same-date guard; --description-only and --verify-only
+#           are separate actions.
+# Recovery: Workflow uploads the pre-change backup and links it in manager state.
 # -----------------------------------------------------------------------------

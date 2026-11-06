@@ -36,6 +36,12 @@ The sequencer now uses evidence-aware transition scoring:
 - Repeating the same primary artist receives a strong sequencing-only diversity penalty; the greedy builder avoids a third consecutive track by the same artist when alternatives exist, and the sequence objective penalizes any remaining run of three or more. The transition report keeps musical compatibility separate from that preference.
 - Genre and theme preferences remain soft bonuses, not hard grouping requirements.
 
+## Preview files and Library resolver side effects
+
+The sequencer is preview-only with respect to Spotify: it never edits playlist contents. It does write the requested local JSON reorder plan (and additional plan files when `--compare` is used). When Library profiles are available, it constructs `MusicLibrary`; if the existing `library_index.json` is empty or incomplete, that constructor may rebuild and write the derived index. This is the same recovery boundary documented in [the Library guide](PER_RECORDING_MUSIC_LIBRARY.md).
+
+For a strictly read-only structural health check, use `python shit.py library health`, which avoids constructing the resolver. Do not equate “no Spotify playlist writes” with “no local repository/file writes.”
+
 ## Reading evaluation output
 
 `gentle`, `moderate`, and `potential jump` are evidence-backed transition assessments. `provisional` means some metadata suggests a handoff quality, but the underlying evidence is too weak to call it a confirmed jump or smooth transition. `uncertain` means there is not enough shared metadata to judge the transition. It is not a negative score.

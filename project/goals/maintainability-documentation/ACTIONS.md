@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — High-risk operational contracts source-audited and documented
+
+- **Daily:** verified that `--force` bypasses both the clock gate and same-Eastern-date completion guard; current test asserts it. The saved reference snapshot has 58 accessible unique URIs, below the 60-track target. Documented the P0 mismatch and the narrower-than-required post-write verification in Daily guide/TODO/roadmap/workflow catalogue. No runtime behavior changed.
+- **Library:** verified `MusicLibrary()` can rebuild/write the derived index; read-only health avoids the resolver. Great Migration audit/verify-catalogue therefore are not strict zero-write scans. Credential verification can persist rotated Spotify refresh tokens in cloud runs through the scoped GitHub App. Documented backup limitations of legacy migrator paths.
+- **Evidence semantics:** Reference Library sync writes canonical repository-side Library context but never changes Spotify playlists; playlist membership is not listening evidence. Track-profile builder can include priority-playlist-only candidates with zero scrobbles and writes them to canonical Library records.
+- **Freshness corrections:** corrected Reference Library daily schedule to 06:13 UTC, enriched the workflow catalogue with exact path/trigger boundaries, and updated metadata budgets (scheduled: 300 duration, 100 artist, 200 track, 200 recording-ID, 100 album; manual choices documented separately).
+- **Library report mismatch:** current canonical audit reports 13,239 songs; the committed migration_report.json still contains the earlier 13,005-song migration snapshot. The README now labels it historical; no generated data was edited.
+- **Tests:** expanded documentation-contract and script-layout tests with workflow/guide allowlist and budget checks, all-Markdown local-link validation, all-goal pause checks, Daily force/idempotency, resolver write-boundary and snapshot/listening evidence assertions. CI verification is pending for this new test set.
+
+
 ## 2026-11-06 — Inventory verified; enrichment workflow reconciled; 12 goal pauses recorded
 
 - **Committed-tree inventory:** main commit `3d2c1ded8dfb44b92e6e0c086673c69350200edc` contains 28,241 file/blob entries. A non-recursive root tree plus nine recursive directory-scoped Git Trees requests were used; every subtree returned `truncated=false`. `assistant_data/` contains 27,981 files. Exact breakdown is in `docs/REPOSITORY_FILE_INDEX.md`.

@@ -1,3 +1,11 @@
+## 2026-11-06 — Daily idempotency, Library side effects and workflow budgets documented
+
+- Source audit confirmed a P0 Tricky Daily mismatch: `--force` bypasses both the clock gate and same-Eastern-date completion guard, although the intended contract is clock-gate bypass only. The current test codifies the broader behavior; runtime/test correction remains deferred during the documentation-only pause.
+- The latest saved Daily snapshot is 58 accessible unique URIs at `2026-11-06T01:48:00.233040+00:00`, below the 60-track target; it is not a live read-back. The automatic post-write verification also does not prove exact ordered staged-payload equality.
+- Corrected documentation for MusicLibrary resolver index-rebuild writes, read-only health boundaries, Great Migration token rotation and legacy migration backup limitations, Reference Library canonical evidence writes, playlist-only candidate semantics, Reference Library 06:13 UTC schedule and metadata enrichment budgets.
+- Identified a stale generated `migration_report.json`: it still records 13,005 songs while the latest canonical Library audit reported 13,239. The README now labels it historical; no generated data was edited.
+- Expanded documentation regression coverage with source-to-guide contracts, schedule/budget alignment, local Markdown links, all 12 paused roadmaps, inventory counts, and sensitive workflow boundaries. CI verification pending.
+
 ## 2026-11-06 — Documentation continuity, inventory and enrichment reconciliation
 
 - **Babel:** reaffirmed SHIT Documentation & Continuity as the public name and Babel as its internal codename. The canonical guide and first-contact link are in `docs/BABEL.md`.
