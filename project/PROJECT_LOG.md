@@ -19,6 +19,15 @@
 
 # SHIT Project Log
 
+## 2026-11-06 — Documentation guard verification and continuity cleanup
+
+- Corrected the test-module overview guard fixture after CI exposed a self-match; full Daily curator CI #42152796114 and full-history security scan #42152796120 passed on corrected commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
+- Rewrote 11 generic test-module overviews and extended the layout guard to reject generic test-purpose/scope/related boilerplate. Updated the test-suite guide and documentation index to describe the stronger contract.
+- A fresh handoff review found duplicated, contradictory PR checkpoints in `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, and the maintainability roadmap. Consolidated current status and removed obsolete verification claims while preserving dated historical records.
+- Later commits after `9cbf695` changed documentation/handoff files and `tests/README.md` only; exact latest-head CI/security remains unconfirmed. PR #161 remains draft/unmerged pending full semantic audit and final verification.
+- **Next:** continue stale-status reconciliation, source-to-guide review, complete tracked-file inventory and fresh-session simulation. Documentation remains the only active project priority.
+
+
 ## 2026-11-01 — Per-goal workspaces established
 
 - **Goal:** make individual project objectives independently recallable without loading unrelated history.
