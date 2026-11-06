@@ -26,6 +26,13 @@
 - **Branch hygiene:** a separate scratch branch `docs/semantic-overview-quality-20261105` was created before discovering the existing PR; it overlaps PR #161 and is not the delivery branch. Do not merge or continue it.
 - **Next:** continue the cross-document semantic audit on PR #161 only; keep the PR draft until all roadmap acceptance criteria pass.
 
+## 2026-11-06 — Workflow trigger matrix and forced-cycle contract audited
+
+- Compared all 17 rows in `docs/WORKFLOWS.md` with the actual YAML trigger blocks. Corrected branch/path filters for the enrichment, playlist-manager-check, Daily preflight, Daily cycle, remote verification, Reference Library and Last.fm update workflows; clarified owner-authored Great Migration issue and issue-comment event triggers.
+- Found a Daily P0 discrepancy: `--force` bypasses both the clock-window gate and the same-Eastern-date completion guard, while the intended contract says it bypasses only the clock gate. The schedule test currently asserts the broader behavior.
+- Updated the Daily cycle guide/TODO/README/roadmap, workflow catalogue and cross-project handoff/register; added documentation-contract tests for the force discrepancy and sensitive workflow trigger descriptions.
+- No runtime code, test expectations, workflow YAML, provider state, generated data or playlists changed. Exact-head CI/security for the latest documentation updates is pending.
+
 # SHIT Project Log
 
 ## 2026-11-06 — Latest read-only canonical Library baseline refreshed
