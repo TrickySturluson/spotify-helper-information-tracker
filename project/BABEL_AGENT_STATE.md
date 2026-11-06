@@ -13,6 +13,7 @@ completion_rule: all Maintainability & Documentation roadmap acceptance criteria
 
 - This is an automation aid for **SHIT Documentation & Continuity (internal codename: Babel)**, not a replacement for source review or human approval.
 - Repository documentation is the durable memory. Every run must read the current handoff and relevant goal records before acting.
+- Every run must read `project/ACTIVE_SESSION_BRIEF.md` first, then reconcile its claims against the checked-out repository and current evidence. The brief is a curated, privacy-safe context bridge, not a raw chat transcript or live message channel.
 - The worker may make bounded documentation/test changes only. It must not perform SHIT feature work, provider requests, playlist operations, credential rotation, or generated-data writes.
 - A separate read-only validation job applies the patch, enforces the allowlist, and runs full unittest discovery without the API key or a write-capable GitHub token. The publisher alone has write permissions; it rechecks paths and publishes without executing candidate code.
 - The workflow does not merge its pull request. Review and merge remain a human-controlled boundary.
