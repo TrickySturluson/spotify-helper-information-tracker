@@ -253,15 +253,17 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Generate a balanced Tricky Daily candidate mix from historical listening evidence.
-# Inputs: Canonical Last.fm archive, sourced artist/track metadata, feedback and configured
-#         discovery/familiarity signals.
-# Outputs: Ranked Daily recommendation candidates with inspectable score/reason metadata.
-# Semantics: Last.fm plays indicate familiarity, not guaranteed liking; liked tracks may be
-#            down-ranked without being categorically excluded, and unplayed exposure is neutral.
-# Safety: Candidate generation only; live Spotify changes are performed separately by
-#         spotify_daily_cycle.py through the locked/backup-protected manager.
-# Run: python compat/spotify_daily_playlist.py (repository root; see CLI help).
-# Related: scripts/spotify/spotify_discovery.py; spotify_daily_cycle.py;
+# Purpose: Legacy/alternate 30-track Daily candidate builder based on historical listening tiers.
+# Inputs: assistant_data/recommendations/track_features.json and a caller-supplied Spotify
+#         client/playlist membership for exact track resolution.
+# Outputs: Ranked favorite/rediscovery/deep-cut candidates; default TARGET_SIZE is 30
+#          and MIN_MATCHES is 20. This module does not perform the live Daily rotation.
+# Semantics: Uses Last.fm recency/repeat-play evidence and a 14-day recent exclusion;
+#            it does not model saved-track state. Current 60-track Tricky Daily rotation
+#            is orchestrated by spotify_daily_cycle.py using spotify_discovery.py.
+# Safety: Candidate preview only; direct execution intentionally exits and directs callers
+#         to the protected daily_preview command. It never edits Spotify playlists itself.
+# Run: Invoked through spotify_playlist_cloud.py daily_preview; no standalone CLI.
+# Related: scripts/spotify/spotify_daily_cycle.py; spotify_discovery.py;
 #          docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------
