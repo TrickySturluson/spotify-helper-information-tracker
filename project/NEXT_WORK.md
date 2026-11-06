@@ -34,6 +34,12 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Added the Daily workspace to the goal index, project-wide roadmap and docs index. The dynamic documentation-contract test will automatically require its three core files.
 - Next: inspect the latest Daily curator CI run for the new goal, then audit the actual Daily implementation/workflows and current live evidence against the P0 acceptance criteria. Do not infer live correctness from documentation or unit tests alone.
 
+## 2026-11-05 — Playlist Sequencing workstream separated
+
+- Added project/goals/playlist-sequencing/ROADMAP.md, README.md and ACTIONS.md. It preserves smooth-transition priority, user-controlled energy journeys/peak placement, track-level evidence requirements, uncertainty handling, Booze preset references, and preview/confirmation safety.
+- Linked it from the goal index, project-wide roadmap and docs index. The five-axis playlist-fit model remains explicitly separate from the sequencer.
+- Next: inspect the latest CI run after the new goal folders, then audit sequencer code/tests and live preview evidence against its acceptance criteria.
+
 ## Current active task — Playlist intelligence five-axis fit model
 
 **State: read-only preview pipeline merged to main** (PR #126, squash commit `2f84924b8e76510a1648bfc3e4e369935aa2bdf0`). Model version `five-axis-fit-v0.3`. Read [playlist-intelligence README](goals/playlist-intelligence/README.md), [model contract](goals/playlist-intelligence/PLAYLIST_FIT_MODEL.md), [preview runner guide](goals/playlist-intelligence/PLAYLIST_FIT_PREVIEW.md), and [ACTIONS.md](goals/playlist-intelligence/ACTIONS.md) before continuing.
