@@ -188,8 +188,11 @@ if __name__ == "__main__":
 # Purpose: Verify configured SHIT provider credentials before the Great Migration.
 # Checks: Spotify refresh-token exchange + read-only /me; Last.fm API key;
 #         optional Discogs identity token and GetSongBPM API key.
-# Safety: No playlist writes, no library writes, no token persistence, and no
-#         credential values or provider response bodies are printed.
+# Safety: No playlist or canonical Library writes; never prints credential values or
+#         provider response bodies. In authenticated cloud runs with
+#         SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN=1, a replacement Spotify refresh token may be
+#         persisted to the repository Actions secret through the scoped GitHub App.
+#         Local verification does not persist tokens.
 # Exit: 0 required checks pass; 1 optional configured provider fails; 2 a
 #       required provider is missing or invalid.
 # Run: python scripts/music/verify_provider_credentials.py
