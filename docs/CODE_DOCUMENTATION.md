@@ -9,6 +9,7 @@ SHIT uses documentation at three levels:
 ## Repository conventions
 
 - The bottom overview should read like a miniature README, not merely repeat the filename. Include concrete data flow, side effects, commands, safeguards, and related modules where relevant.
+- Generic fallback prose is not acceptable (for example, saying that a module uses unspecified archives/generated data or that tests/docs exist without naming the real paths). If behavior is intentionally delegated or pure, state that explicitly.
 - Keep implementation documentation beside the implementation in `scripts/`.
 - Keep `compat/` launchers lightweight; their overview must name the canonical implementation they delegate to.
 - Test overviews should name the behavior under test and show a valid command from the repository root.
@@ -35,4 +36,4 @@ When introducing a Python module, add a concise module docstring and a bottom `F
 
 ## Automated enforcement
 
-The `tests/test_script_layout.py` suite checks that maintained Python files under `scripts/`, `compat/`, and `tests/`, plus GitHub Actions workflow YAML files, contain a bottom `FILE OVERVIEW` block. The same test checks the root `.gitignore`. The `tests/test_documentation_contract.py` suite checks required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, fresh-session navigation, major repository-domain coverage, local links from the primary entry points, and that every GitHub Actions workflow is listed in docs/WORKFLOWS.md. Both checks are included in standard unittest discovery and therefore run in the main scheduled/manual update workflow before data publication. Generated JSON/JSONL and data archives remain documented by adjacent guides and manifests rather than invalid inline comments.
+The `tests/test_script_layout.py` suite checks that maintained Python files under `scripts/`, `compat/`, and `tests/`, plus GitHub Actions workflow YAML files, contain a bottom `FILE OVERVIEW` block. It also rejects known generic fallback phrases in maintained `scripts/` overviews and checks the root `.gitignore`. The `tests/test_documentation_contract.py` suite checks required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, fresh-session navigation, major repository-domain coverage, local links from the primary entry points, and that every GitHub Actions workflow is listed in docs/WORKFLOWS.md. Both checks are included in standard unittest discovery and therefore run in the main scheduled/manual update workflow before data publication. Generated JSON/JSONL and data archives remain documented by adjacent guides and manifests rather than invalid inline comments.

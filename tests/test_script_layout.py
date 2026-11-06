@@ -27,6 +27,14 @@ GROUPS = {
 }
 
 
+GENERIC_OVERVIEW_PHRASES = (
+    "Uses the canonical archives and/or generated project data",
+    "tests/ contains regression coverage; docs/ contains extended guides.",
+    "legacy command entry point, when applicable",
+    "the module's paths and command options for exact inputs and outputs",
+)
+
+
 class ScriptLayoutTests(unittest.TestCase):
     def test_every_implementation_has_a_compatibility_entry_point(self):
         for group, filenames in GROUPS.items():
@@ -66,6 +74,18 @@ class ScriptLayoutTests(unittest.TestCase):
                 source = path.read_text(encoding="utf-8")
                 self.assertIn("FILE OVERVIEW", source)
                 self.assertIn("FILE OVERVIEW", source[-1500:])
+
+    def test_maintained_implementation_overviews_do_not_use_generic_placeholders(self):
+        for group, filenames in GROUPS.items():
+            for filename in filenames:
+                path = ROOT / "scripts" / group / filename
+                with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                    source = path.read_text(encoding="utf-8")
+                    overview_start = source.rfind("FILE OVERVIEW")
+                    self.assertGreaterEqual(overview_start, 0)
+                    overview = source[overview_start:]
+                    for placeholder in GENERIC_OVERVIEW_PHRASES:
+                        self.assertNotIn(placeholder, overview)
 
     def test_repository_gitignore_has_a_file_overview(self):
         source = (ROOT / ".gitignore").read_text(encoding="utf-8")

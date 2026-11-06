@@ -9,6 +9,14 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-06 — 24 module overviews corrected; operational workflow reconciliation required
+
+- Replaced generic `FILE OVERVIEW` placeholders in 24 maintained implementation modules with concrete input/output/provider/side-effect/safety contracts. See [Maintainability & Documentation ACTIONS](goals/maintainability-documentation/ACTIONS.md).
+- Added an anti-placeholder assertion to `tests/test_script_layout.py`; the full suite passed on `0c055578` before this new assertion was added. Verify the new check in CI.
+- **Workflow side effect to reconcile:** comment-only edits to `scripts/music/enrich_musicbrainz_recording_ids.py` triggered Enrich Music Metadata run #42166959478 due its push path filter. At last inspection it was still running MusicBrainz duration enrichment. It has provider calls and contents:write publication steps; no cancellation action is available through the connected GitHub tools. Inspect terminal state, generated-data changes, and any bot commit before any new write-heavy task. It does not include Spotify playlist writes.
+- **Process rule:** before future edits to any path under `.github/workflows/`, `scripts/music/`, `scripts/spotify/`, or other path-filtered source, inspect matching workflow triggers. Batch documentation edits into one commit. Avoid source-path edits during this documentation phase unless required for per-file documentation, and explicitly monitor resulting runs.
+- **Next:** inspect the final status of run #42166959478 and security scan #42167054657; verify the new anti-placeholder test; then resume the manual semantic audit and fresh-session simulation. No feature development or playlist operations.
+
 ## 2026-11-06 — Documentation system naming established; audit remains active
 
 **Public-facing name:** SHIT Documentation & Continuity. **Internal codename:** Babel. The parent product/repository remains Spotify Helper & Information Tracker (SHIT). First references must define the descriptive name and codename; subsequent references may use Babel. See [docs/BABEL.md](../docs/BABEL.md).

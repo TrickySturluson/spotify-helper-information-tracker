@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Twenty-four implementation overviews made specific; workflow side effect under review
+
+- **Work:** replaced generic fallback `FILE OVERVIEW` blocks in 24 maintained modules: seven high-risk Spotify modules, eight Last.fm/music enrichment modules, five lyrics/audio/core analytics modules, and four playback/playlist-intelligence modules. Each now names concrete data paths, provider behavior, outputs, safety boundaries, limits, or its explicit caller.
+- **Commits:** `f58de19` (seven Spotify modules), `69fcdd5` (eight Last.fm/music enrichment modules), `68a9d55` (five lyrics/audio/core analytics modules), and `0c05557` (four playback/playlist-intelligence modules).
+- **Verification:** Daily curator tests run #42167054690 passed on `0c055578` (458 tests; includes maintained-file documentation/layout checks). Public repository security scan #42166959368 passed on `69fcdd58`; the security scan for `0c055578` was still in progress at the last check. A new anti-placeholder test was added after run #42167054690 and still needs CI verification.
+- **Unintended workflow trigger:** changing `scripts/music/enrich_musicbrainz_recording_ids.py` comments matched the Enrich Music Metadata push path filter. Run #42166959478 started with `contents:write` and provider calls; at the last inspection it was still executing “Fill missing durations from MusicBrainz”. Its workflow also enriches artist/track/album metadata, merges into the canonical Library, rebuilds summaries, audits, and may commit generated data. The available GitHub connection exposed no cancellation action. No Spotify playlist writes are included in this workflow. Record its final result and any generated-data commit before proceeding.
+- **Other CI evidence:** run #42167011344 passed on `68a9d55d`; run #42167054690 passed on `0c055578`. The earlier naming sequence had temporary intermediate failures because a commit referenced `docs/BABEL.md` before that file existed; the completed naming state passed on `9f2c788a` (run #42166506128), and the public-repository security scan also passed on that commit (run #42166506118).
+- **Outcome:** 24 overview corrections published; automated tests passed before the new anti-placeholder assertion; semantic review and current-workflow reconciliation remain open.
+- **Next:** verify the new anti-placeholder test in CI; monitor #42166959478 to terminal state and reconcile any resulting data commit; continue manual source-to-overview review and the remaining goal/runbook audit. Keep documentation as the only active priority.
+
 ## 2026-11-06 — Documentation system named SHIT Documentation & Continuity (codename Babel)
 
 - **User decision:** use **SHIT Documentation & Continuity** as the descriptive public-facing name and **Babel** as an internal codename introduced only after its meaning is clear. Do not call the parent SHIT product or repository Babel.

@@ -1,6 +1,6 @@
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-05  
+**Last reviewed:** 2026-11-06  
 **Status:** In progress. The documentation control structure is established; the full file-level coverage and freshness audit remains open.
 
 ## Purpose
@@ -49,7 +49,16 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
 - It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
 
-## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## 2026-11-05 repository audit checkpoint
+## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## 2026-11-06 — Module overview semantic correction
+
+- Replaced generic fallback overviews in 24 maintained implementation modules across Spotify operations, music enrichment, Last.fm import, and analytics with module-specific contracts for actual inputs, outputs, providers, limits, provenance, safety boundaries, and invocation.
+- The first seven high-risk Spotify modules were committed together; the remaining 17 generic overviews were replaced in two grouped commits. These are documentation/comment-only changes; runtime logic was not changed.
+- Added an anti-placeholder regression check in `tests/test_script_layout.py` so known generic fallback phrases cannot silently return to maintained `scripts/` overviews.
+- The full 458-test suite passed on commit `0c055578` before the new anti-placeholder assertion was added (Daily curator run #42167054690). The new assertion still requires its own CI result.
+- **Operational side effect:** the source path `scripts/music/enrich_musicbrainz_recording_ids.py` is included in the push filter for Enrich Music Metadata. The documentation-only comment update triggered run #42166959478, which has contents:write and provider-enrichment steps. It was still in its MusicBrainz duration stage at the last check; no cancellation action was exposed. Reconcile its terminal status and any generated-data commit before further work. No Spotify playlist write is part of that workflow.
+- **Process correction:** future source-overview edits must inspect all matching workflow path filters first, batch related changes into one commit, and record any unavoidable provider/write side effects. Prefer documentation-only paths when the same contract can be maintained adjacent to source without weakening the required in-file overview standard.
+
+## 2026-11-05 repository audit checkpoint
 
 - Confirmed current default branch `main` at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`.
 - Confirmed 13 goal workspaces, each with ROADMAP.md, README.md and ACTIONS.md.
