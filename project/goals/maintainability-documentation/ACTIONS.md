@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Spotify Reference Library canonical-write semantics documented
+
+- **Finding:** source inspection of `spotify_reference_library.py` showed that `sync` does more than write Spotify snapshots. It also calls `MusicLibrary.put_catalogue()` for non-relinked playlist tracks, adding Spotify identity, playlist source/position and listening-context evidence, and stores market-scoped playability observations. The source overview and several operational descriptions did not make the canonical Library write sufficiently explicit.
+- **Corrections:** expanded the source FILE OVERVIEW; documented the data flow and evidence boundaries in `docs/PER_RECORDING_MUSIC_LIBRARY.md`, the canonical Library README, `docs/SPOTIFY_API_OPERATIONS.md`, `docs/WORKFLOWS.md`, and the repository file index.
+- **Non-negotiable semantics:** playlist membership is not a Last.fm scrobble, measured playback, like, save or proof of listening. The Spotify snapshot workflow is read-only against Spotify playlists but writes repository snapshots and canonical Library evidence. Requested/relinked IDs and market-scoped playability remain distinct.
+- **Regression guard:** added a documentation-contract test requiring the source overview, Library guide, Spotify operations guide and workflow catalogue to preserve this distinction. Updated test documentation.
+- **Verification:** CI/security are pending after source/test/documentation updates; inspect exact-head results before marking the new guard verified. No runtime logic or Spotify playlist state changed.
+- **Next:** continue source-to-guide audit of the remaining write-capable modules and verify canonical data-writer side effects, then reconcile the remaining workstream action histories.
+
+
 ## 2026-11-06 — Daily force/idempotency discrepancy added to source overview contract
 
 - **Finding:** the Tricky Daily guide, workflow catalogue and roadmap already documented that `--force` bypasses both the clock gate and the same-Eastern-date completion guard, contrary to the intended clock-only bypass. The `scripts/spotify/spotify_daily_cycle.py` bottom FILE OVERVIEW still described per-day idempotency without stating this exception, so the source-local documentation was incomplete.
