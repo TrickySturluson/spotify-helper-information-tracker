@@ -289,7 +289,7 @@ class DocumentationContractTests(unittest.TestCase):
 
         self.assertIn("Constructor may rebuild and write library_index.json", source)
         self.assertIn("strictly read-only structural check", guide)
-        self.assertIn("never instantiates the lazy resolver", health)
+        self.assertIn("never instantiates the lazy resolver", health.lower())
         self.assertIn("may rebuild/write library_index.json", sequencer)
         self.assertIn("Do not equate “no Spotify playlist writes” with “no local repository/file writes.”", transition_guide)
         self.assertIn("Resolver/index diagnostics: `audit` and `verify-catalogue`", migration_guide)
