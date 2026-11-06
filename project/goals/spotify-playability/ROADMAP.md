@@ -1,7 +1,7 @@
 # Spotify Track Playability & Availability — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Market-aware observation persistence, refresh planning and offline backfill are implemented/merged; freshness and coverage must be monitored.
+**Last reviewed:** 2026-11-06  
+**Status:** Market-aware observation persistence, refresh planning and offline backfill are implemented/merged (PR #78). The explicit playability feature work is paused under the documentation-only priority; freshness and coverage monitoring remain queued.
 
 ## Repository-wide priority override — 2026-11-06
 
