@@ -97,6 +97,103 @@ def set_action_output(name, value):
             handle.write(f"{name}={value}\n")
 
 
+def assert_live_snapshot_unchanged(sp, expected_snapshot, expected_owner_id):
+    """Fail closed if Daily changed while candidate generation was in progress."""
+    expected_playlist = expected_snapshot.get("playlist") or {}
+    expected_items = expected_snapshot.get("items") or []
+    expected_uris = [row.get("uri") for row in expected_items]
+    live = sp.call("GET", f"/playlists/{DAILY_ID}")
+    if not isinstance(live, dict) or live.get("id") != DAILY_ID:
+        raise manager.ManagerError("Pre-write guard could not confirm the exact Tricky Daily playlist.")
+    if (live.get("owner") or {}).get("id") != expected_owner_id:
+        raise manager.ManagerError("Pre-write guard found a changed or unexpected Daily owner.")
+    if (live.get("name") or "").strip().casefold() != "tricky daily":
+        raise manager.ManagerError("Pre-write guard found a changed Daily playlist name.")
+    if not manager.unlocked(DAILY_ID):
+        raise manager.ManagerError("Tricky Daily was locked during candidate generation; aborting before write.")
+
+    live_snapshot = manager.snapshot(sp, live)
+    live_items = live_snapshot.get("items") or []
+    live_uris = [row.get("uri") for row in live_items]
+    reported = (live.get("items") or live.get("tracks") or {}).get("total")
+    if not isinstance(reported, int) or reported != len(live_items):
+        raise manager.ManagerError(
+            f"Pre-write guard could not verify complete pagination (reported={reported}, fetched={len(live_items)}); aborting."
+        )
+    if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in live_uris):
+        raise manager.ManagerError("Pre-write guard found unavailable or invalid live track rows; aborting.")
+    if (
+        live.get("snapshot_id") != expected_playlist.get("snapshot_id")
+        or live_uris != expected_uris
+    ):
+        manager.audit(
+            event="daily_prewrite_snapshot_changed",
+            playlist_id=DAILY_ID,
+            expected_snapshot_id=expected_playlist.get("snapshot_id"),
+            observed_snapshot_id=live.get("snapshot_id"),
+            expected_track_count=len(expected_uris),
+            observed_track_count=len(live_uris),
+            ordered_contents_match=live_uris == expected_uris,
+        )
+        raise manager.ManagerError(
+            "Tricky Daily changed after candidate generation; the pre-write snapshot guard "
+            "aborted without replacing any tracks."
+        )
+    return live, live_snapshot
+
+
+def validate_daily_post_write(updated_playlist, updated_snapshot, expected_uris, feedback):
+    """Validate exact ordered payload, pagination, unique tracks, artists, and removal policy."""
+    items = updated_snapshot.get("items") or []
+    actual_uris = [row.get("uri") for row in items]
+    reported = (updated_playlist.get("items") or updated_playlist.get("tracks") or {}).get("total")
+    if not isinstance(reported, int) or reported != len(items):
+        raise manager.ManagerError(
+            f"Post-write read-back was incomplete (reported={reported}, fetched={len(items)})."
+        )
+    if len(items) != DAILY_TARGET_SIZE or len(actual_uris) != DAILY_TARGET_SIZE:
+        raise manager.ManagerError(
+            f"Post-write read-back contains {len(items)} tracks; expected exactly {DAILY_TARGET_SIZE}."
+        )
+    if actual_uris != expected_uris:
+        mismatch = next(
+            (i for i, (actual, expected) in enumerate(zip(actual_uris, expected_uris)) if actual != expected),
+            min(len(actual_uris), len(expected_uris)),
+        )
+        raise manager.ManagerError(
+            f"Post-write ordered URI read-back differs from the staged payload at position {mismatch + 1}."
+        )
+    if len(set(actual_uris)) != len(actual_uris):
+        raise manager.ManagerError("Post-write read-back contains duplicate track URIs.")
+    if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in actual_uris):
+        raise manager.ManagerError("Post-write read-back contains an invalid track URI.")
+
+    artists = [
+        discovery.norm((row.get("artists") or [""])[0])
+        for row in items
+    ]
+    if any(not artist for artist in artists):
+        raise manager.ManagerError("Post-write read-back contains a track without a valid primary artist.")
+    blocked = [
+        row for row in items
+        if discovery.is_playlist_candidate_blocked(
+            (row.get("artists") or [""])[0],
+            row.get("name") or row.get("track") or "",
+            row.get("uri"),
+            feedback,
+        )
+    ]
+    if blocked:
+        labels = [
+            f"{(row.get('artists') or [''])[0]} — {row.get('name') or row.get('track')}"
+            for row in blocked[:8]
+        ]
+        raise manager.ManagerError(
+            f"Post-write read-back contains {len(blocked)} blacklisted tracks: " + ", ".join(labels)
+        )
+    return artists
+
+
 def update_description_and_verify(sp, description):
     """Apply Daily's rotating line and tolerate brief Spotify read-after-write lag."""
     sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": description})
@@ -313,11 +410,30 @@ def main():
         manager.audit(event="daily_liked_baseline_unavailable", error_type=type(error).__name__)
 
     backup = manager.save_snapshot(before)
+    # Re-read the exact ordered live playlist immediately before mutation. A
+    # user edit during discovery must never be overwritten by a stale candidate run.
+    playlist, _ = assert_live_snapshot_unchanged(sp, before, me.get("id"))
+    fresh_feedback = discovery.load_playlist_feedback([], DAILY_ID)
+    newly_blocked = [
+        row for row in recommendations
+        if discovery.is_playlist_candidate_blocked(
+            row.get("artist") or "",
+            row.get("track") or "",
+            row.get("uri"),
+            fresh_feedback,
+        )
+    ]
+    if newly_blocked:
+        raise manager.ManagerError(
+            f"Daily candidates now include {len(newly_blocked)} blacklisted tracks; "
+            "aborting before playlist mutation."
+        )
     manager.audit(
         event="daily_cycle_started", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), skipped_count=len(skipped), backup=backup,
+        prewrite_snapshot_id=playlist.get("snapshot_id"),
     )
-    cloud.replace_playlist(sp, DAILY_ID, uris)
+    cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)
 
     # Rotate Daily's short editorial description after the track replacement.
     # The description is intentionally owned by this dedicated Daily workflow,
@@ -358,28 +474,25 @@ def main():
         )
     updated_snapshot = manager.snapshot(sp, updated)
     verified_items = updated_snapshot["items"]
-    verified_artists = [
-        discovery.norm((row.get("artists") or [""])[0])
-        for row in verified_items
-    ]
-    verified_artist_counts = {artist: verified_artists.count(artist) for artist in set(verified_artists)}
-    if (
-        len(verified_items) != DAILY_TARGET_SIZE
-        or any(not artist for artist in verified_artists)
-        
-    ):
+    try:
+        verified_artists = validate_daily_post_write(
+            updated, updated_snapshot, uris, fresh_feedback
+        )
+    except manager.ManagerError as error:
         manager.audit(
             event="daily_post_change_validation_failed",
             playlist_id=DAILY_ID,
             cycle_date_eastern=cycle_date,
             observed_track_count=len(verified_items),
-            distinct_primary_artist_count=len(set(filter(None, verified_artists))),
-            max_tracks_per_primary_artist=max(verified_artist_counts.values(), default=0),
+            expected_track_count=DAILY_TARGET_SIZE,
+            validation_error=str(error),
+            expected_uris=uris,
+            observed_uris=[row.get("uri") for row in verified_items],
         )
         raise manager.ManagerError(
-            "Spotify read-back did not confirm exactly 60 tracks with valid primary artists; "
-            "cycle remains pending verification."
+            f"{error} Cycle remains pending verification; do not retry blindly."
         )
+    verified_artist_counts = {artist: verified_artists.count(artist) for artist in set(verified_artists)}
     after_snapshot = manager.save_snapshot(updated_snapshot)
     manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
                   snapshot=after_snapshot, cycle_date_eastern=cycle_date)
