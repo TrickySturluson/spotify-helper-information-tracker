@@ -307,6 +307,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("may rebuild library_index.json", migration_workflow)
         self.assertIn("health is the strictly read-only structural scan", migration_workflow)
         self.assertIn("verify may persist a rotated Spotify refresh token as an Actions", migration_workflow)
+        self.assertIn("Verify provider credentials (may persist rotated refresh token)", migration_workflow)
+        self.assertNotIn("Verify provider credentials (read-only)", migration_workflow)
         self.assertIn("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN=1", credential_verifier)
         self.assertIn("replacement Spotify refresh token may be", credential_verifier)
 
