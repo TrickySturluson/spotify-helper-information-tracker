@@ -150,6 +150,18 @@ class DailyManualRemovalFeedbackTests(unittest.TestCase):
         )[0]
         self.assertEqual(neutral, plain)
 
+class DailyFeedbackWorkflowTests(unittest.TestCase):
+    def test_observation_workflow_adds_compat_path_before_manager_import(self):
+        from pathlib import Path
+        workflow = Path(".github/workflows/spotify-daily-feedback-observation.yml").read_text(
+            encoding="utf-8"
+        )
+        path_setup = workflow.index('sys.path.insert(0, "compat")')
+        manager_import = workflow.index("import spotify_playlist_manager as manager")
+        self.assertLess(path_setup, manager_import)
+        self.assertIn("python compat/spotify_daily_feedback.py observe", workflow)
+
+
 if __name__ == "__main__":
     unittest.main()
 
