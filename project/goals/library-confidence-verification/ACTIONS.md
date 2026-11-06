@@ -2,11 +2,11 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
-## 2026-11-06 — Full Library confidence audit passed read-only in documentation PR CI
+## 2026-11-06 — Latest confidence audit found 214 track-tag mismatches, zero identity drift
 
-- Daily curator tests run #42149783445 passed the full canonical Library confidence audit on draft PR #161's then-current base data.
-- This was validation only; it did not modify canonical Library records or provider state. Recheck on current main after the documentation PR is merged.
-- Feature work remains paused until documentation acceptance criteria pass.
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs. Identity confidence: 7,660 high / 5,503 low; methods: 5,669 recording MBIDs, 5,503 source-track IDs, 1,991 Spotify track IDs. Identity confidence drift: zero.
+- Metadata confidence: duration low on 8,187 records; missing stored confidence entries: zero; mismatches: 214, all in `track_tags`. Example rows show stored confidence `{}` versus recomputed tag confidence. This is a real current mismatch set and must be reviewed before any confidence materialization; do not bulk-rewrite.
+- The report is read-only; no canonical Library records or provider state were modified. Feature work remains paused until documentation acceptance criteria pass.
 
 ## 2026-11-02 — Create real-data identity review set and identify duplicate entity candidates
 
