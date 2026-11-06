@@ -81,6 +81,12 @@ song plus its related artist file and, only when known, its album file on demand
 does not exist, the existing aggregate path remains active; during migration,
 missing individual records may still fall back to legacy track metadata.
 
+## Resolver construction and read-only health
+
+`MusicLibrary()` is a lazy resolver, but construction is not guaranteed to be read-only. If `library_index.json` is missing, empty, or incomplete (for example, after a truncated index write), the constructor scans canonical artist/album/song records and rebuilds the derived index on disk. This recovery makes no provider requests and does not rewrite the canonical entity records, but it **does write `library_index.json`**.
+
+For a strictly read-only structural check, use `python shit.py library health` or `python scripts/music/library_health.py`. That checker deliberately does not instantiate `MusicLibrary`, rebuild indexes, make provider calls, or write files. Do not use a generic resolver construction or an audit path that instantiates it when the requirement is zero writes.
+
 ## Boundaries and maintenance
 
 - No metadata provider is called by the migration or lookup layer.
