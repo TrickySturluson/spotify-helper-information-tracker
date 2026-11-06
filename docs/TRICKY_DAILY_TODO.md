@@ -36,6 +36,7 @@ Tricky Daily should reliably publish exactly 60 valid, unique tracks; learn from
 - Two simultaneous invocations cannot both publish.
 - A simulated timeout after Spotify accepts a write triggers read-back/reconciliation rather than a blind second write.
 - A successful run is only marked complete after the live playlist is verified to match the approved staging result and contains exactly 60 unique valid tracks.
+- A forced invocation outside the time window is permitted only when the Eastern date has not already completed; a second forced invocation on an already-completed Eastern date is blocked by the same idempotency guard.
 
 ## P1 — recommendation quality and learning
 
