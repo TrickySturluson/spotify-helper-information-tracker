@@ -60,7 +60,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- .github/spotify_playlist_manager_audit.jsonl
-          for path in assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json assistant_data/spotify/history/4yUVHSMQySfWeEowfIMcx7 playlist_removal_baseline.json playlist_removed_tracks.json; do
+          for path in assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json assistant_data/spotify/history/4yUVHSMQySfWeEowfIMcx7 assistant_data/spotify/playlists.json assistant_data/spotify/reference_index.json assistant_data/spotify/health.json playlist_removal_baseline.json playlist_removed_tracks.json; do
             if [ -e "$path" ]; then git add -- "$path"; fi
           done
           if ! git diff --cached --quiet; then
