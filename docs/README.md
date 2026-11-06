@@ -7,13 +7,14 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 ## Start here
 
 1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
-2. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
-3. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
-4. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
-5. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
-6. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
-7. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
-8. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
+2. [AI continuation worker](BABEL_AGENT.md) — scheduled Codex worker, branch/PR publishing, security boundaries, activation and recovery.
+3. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
+4. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
+5. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
+6. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
+7. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
+8. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
+9. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
 
 ## Documentation families
 
@@ -38,7 +39,7 @@ Every maintained guide in `docs/` is listed below. Use the workstream roadmap an
 - [Code documentation standard](CODE_DOCUMENTATION.md) — file overviews, module docstrings, inline documentation and automated enforcement.
 - [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — published personal data, secret boundaries and repository exposure risks.
 - [Spotify API operations](SPOTIFY_API_OPERATIONS.md) — authentication, permissions, API behavior, token handling and cloud-operation constraints.
-- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 17 workflows, triggers, permissions, credentials, writes and operational boundaries.
+- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 18 workflows, triggers, permissions, credentials, writes and operational boundaries.
 - [Great Migration guide](GREAT_MIGRATION.md) — canonical Library migration, validation, backup, publication and recovery.
 
 ### Canonical Library, identity and metadata
