@@ -156,8 +156,8 @@ jobs:
 #           the script gate and per-date guard make delayed/duplicate runs safe.
 # Safety: Requires credentials, exact playlist ownership, managed-playlist permission,
 #         explicit unlock, exactly 60 valid unique track URIs, and a pre-change backup.
-# Known P0: current --force bypasses both the clock gate and same-date completion guard;
-#           intended behavior is to bypass the clock gate only.
+# Force bypasses only the clock-window gate; the same-Eastern-date completion
+# guard remains active for scheduled, manual, and forced invocations.
 # Recovery: Accepted replacements publish cycled=true and persist the daily idempotency
 #           state even if post-change verification later fails.
 # -----------------------------------------------------------------------------
