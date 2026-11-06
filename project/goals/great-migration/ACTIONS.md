@@ -1,3 +1,9 @@
+## 2026-11-06 — Migration work paused for documentation-first audit
+
+- This workstream's migration, backfill, repair and provider operations remain paused while the repository-wide documentation acceptance criteria are incomplete.
+- The Reference Library snapshot refresh in run #42146148971 was not a migration or canonical Library backfill operation; it refreshed Spotify reference snapshots/removal state and made no Spotify playlist writes.
+- Preserve existing migration plans and recovery evidence. Resume only when the central handoff and Maintainability & Documentation roadmap explicitly clear the documentation-first pause.
+
 ## 2026-11-02 — Duration provenance preview passed; exact backfill queued
 
 - Issue #105 `duration-evidence-preview` completed successfully on latest main (workflow run 41375146233).
