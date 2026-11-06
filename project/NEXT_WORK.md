@@ -34,6 +34,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - These accidental workflow runs are documented as an incident. Do not rerun or repair enrichment workflows during the documentation-only phase. Once docs are complete, the operational backlog must include shared-writer serialization/stale-base conflict handling and conditional staging of optional provider files.
 
 ### Current open pull requests observed during this audit
+- #161 — documentation quality expansion (draft PR; branch `docs/semantic-documentation-audit`). It contains 29 source overview rewrites, the complete docs index and expanded quality/link tests. Wait for CI and keep it unmerged until the audit is complete.
 - #158 — Discover Weekly exposure and feedback tracking (open, non-draft).
 - #159 — Tricky Daily DST schedule gating (open, non-draft).
 - #160 — exposure-aware Tricky Daily discovery (open, non-draft).
