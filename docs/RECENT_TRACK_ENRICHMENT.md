@@ -22,6 +22,10 @@ Audio measurements remain a separate layer. Spotify's Audio Features and Audio A
 TRACK_PROFILE_RECENT_WINDOW_DAYS=90 TRACK_PROFILE_RECENT_TOP_N=200 TRACK_PROFILE_LOOKUPS_PER_RUN=200 TRACK_PROFILE_PRIORITY_PLAYLISTS=4diIlnF8BlgoJrwUfejf49 python compat/build_track_profiles.py
 ```
 
+### Canonical Library writes and playlist-only candidates
+
+The track-profile builder also writes the selected cohort into canonical song/artist/album records through `MusicLibrary.put_catalogue()`; it does not only update the track-profile cache. The cohort can include exact priority-playlist tracks even when they have zero Last.fm scrobbles. Playlist membership is source/context evidence, not a play, like, save, or positive listening preference. Last.fm play counts remain sourced from the Last.fm archive. This is a repository data write, not a Spotify playlist mutation.
+
 ## Workflow
 
 - `SHIT — Spotify Reference Library`: scheduled daily at 06:13 UTC and manually dispatchable. A commit to its workflow definition on `main` also triggers an immediate sync, which is useful when workflow dispatch is unavailable.
