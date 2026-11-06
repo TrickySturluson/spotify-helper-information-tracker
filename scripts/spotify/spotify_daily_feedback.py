@@ -285,14 +285,16 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Observe and report Tricky Daily exposure, saves, later plays and removals.
-# Inputs: Daily playlist snapshots/history, Spotify liked state, Last.fm scrobbles,
-#         optional measured playback segments and removal feedback.
-# Outputs: assistant_data/spotify/daily_feedback.json plus read-only quality reports.
+# Purpose: Observe Tricky Daily exposure outcomes, saved-track state, later plays and removals.
+# Inputs: Existing Daily feedback rows, Spotify Liked Songs state, Last.fm scrobbles,
+#         and optional measured playback_data/segments.jsonl observations.
+# Outputs: assistant_data/spotify/daily_feedback.json with per-track observations and
+#          explicit source-coverage state.
 # Semantics: Exposure is not a play; a play is not a like; unplayed candidates are neutral.
 #            Missing local playback coverage is unknown, never zero engagement.
-# Safety: Observation/reporting only; does not add, remove or reorder Spotify tracks.
-# Run: python compat/spotify_daily_feedback.py observe|report (repository root).
+# Safety: Observation only; reads Spotify saved-track state and local history, never adds,
+#         removes or reorders playlist tracks.
+# Run: python compat/spotify_daily_feedback.py observe (repository root).
 # Related: docs/TRICKY_DAILY_CYCLE.md; docs/PLAYLIST_FEEDBACK_CALIBRATION.md;
 #          tests/test_spotify_daily_feedback_scoring.py.
 # -----------------------------------------------------------------------------
