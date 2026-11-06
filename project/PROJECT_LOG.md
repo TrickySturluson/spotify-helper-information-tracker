@@ -39,6 +39,12 @@
 - **Changes:** corrected `docs/RECENT_TRACK_ENRICHMENT.md` and added a documentation-contract test that checks the workflow cron and rejects the stale six-hour description.
 - **Verification:** source/documentation comparison and GitHub file updates only; latest PR CI/security remains pending. No Spotify sync, provider calls or playlist changes were performed.
 
+## 2026-11-06 — Daily snapshot and playlist-reference registry drift recorded
+
+- Latest saved Tricky Daily snapshot: 58 items fetched, 58 unique URIs, accessible, no item error; captured at `2026-11-06T01:48:00.233040+00:00`. This is below the 60-track success target; cause and subsequent live state are unknown.
+- SHITting Grounds now exists in the reference catalog and has an accessible 25-item snapshot captured at `2026-11-06T01:47:59.822814+00:00`, but its curated `playlist_roles.json` entry still says it has no snapshot. The reference guide was corrected; generated/curated JSON was not changed.
+- Both discrepancies are recorded for reconciliation after the documentation-only pause. No playlist write or Spotify API request was made.
+
 # SHIT Project Log
 
 ## 2026-11-06 — Latest read-only canonical Library baseline refreshed
