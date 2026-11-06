@@ -53,6 +53,11 @@ Arrange tracks into coherent, enjoyable listening journeys. Smooth transitions a
 - Current acoustic and semantic coverage is incomplete; unknown must remain visible rather than being filled with invented values.
 - A good preview or passing test does not authorize a live playlist write.
 
+## Open proposals (not merged)
+
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; it proposes an offline evaluation plan and watchdog specification, not a verified quality report.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft; it records a strategy proposal but does not authorize live sorter integration or playlist writes.
+
 ## Next action
 Audit the current sequencer implementation and tests against this roadmap, then compare a fresh read-only preview with the latest live playlist and evidence coverage. Record specific transition failures before changing weights or presets.
 
