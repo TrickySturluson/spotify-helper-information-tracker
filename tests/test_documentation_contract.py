@@ -84,9 +84,12 @@ class DocumentationContractTests(unittest.TestCase):
     def test_reference_library_schedule_matches_guide(self):
         workflow = (ROOT / ".github" / "workflows" / "spotify-reference-library.yml").read_text(encoding="utf-8")
         guide = (ROOT / "docs" / "RECENT_TRACK_ENRICHMENT.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn('cron: "13 6 * * *"', workflow)
         self.assertIn("scheduled daily at 06:13 UTC", guide)
         self.assertNotIn("scheduled every six hours", guide)
+        self.assertIn("daily at 06:13 UTC", readme)
+        self.assertNotIn("every six hours (UTC)", readme)
 
     def test_metadata_enrichment_budgets_match_workflow_and_guides(self):
         workflow = (ROOT / ".github" / "workflows" / "enrich-music-metadata.yml").read_text(encoding="utf-8")
@@ -240,6 +243,8 @@ class DocumentationContractTests(unittest.TestCase):
         schedule_test = (ROOT / "tests" / "test_spotify_daily_cycle_schedule.py").read_text(encoding="utf-8")
 
         self.assertIn("same-Eastern-date completion guard", workflow_catalogue)
+        self.assertIn("Current `--force` bypasses both the clock gate and same-Eastern-date completion guard", workflow_catalogue)
+        self.assertNotIn("Force bypasses the clock gate only", workflow_catalogue)
         self.assertIn("currently bypasses", cycle_guide)
         self.assertIn("Known P0 discrepancy", todo)
         self.assertIn("Current source discrepancy", roadmap)
