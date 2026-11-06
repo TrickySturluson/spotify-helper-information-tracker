@@ -10,7 +10,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Safety:** agent job has contents:read and workspace-scoped editing; publisher alone receives contents:write and pull-requests:write. No Spotify/provider credentials are passed. Prompt forbids runtime features, provider calls, playlist changes, generated data and workflow edits.
 - **Activation blocker:** the repository-file integration cannot provision GitHub Actions secrets. Repository owner must create an OpenAI API key and add it as the repository Actions secret OPENAI_API_KEY. ChatGPT subscription access is not an API key; API usage is billed separately. The repository setting allowing GitHub Actions to create pull requests may also need to be enabled.
 - **Verification:** files and documentation committed to main; no successful Actions run has yet been observed. Do not call the worker active until the secret is configured, the first run succeeds, full unittest discovery passes, and the branch/PR is inspected.
-- **Next:** configure the secret and required repository Actions setting, manually dispatch the workflow once, inspect logs/artifacts/PR, then leave the six-hour continuation schedule enabled until the explicit completion sentinel is set.
+- **Next:** configure the secret and required repository Actions setting, manually dispatch the workflow once, inspect logs, Codex output, and PR, then leave the six-hour continuation schedule enabled until the explicit completion sentinel is set.
 
 ## 2026-11-06 — Great Migration preview side-effect contract source-audited
 
