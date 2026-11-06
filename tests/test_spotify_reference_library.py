@@ -561,8 +561,11 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_reference_library -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Verify Spotify reference snapshots, playability evidence and Tricky Daily observation semantics.
+# Scope: Managed-playlist authorization, complete-snapshot history/accessibility, market-scoped relinking,
+#        unknown-versus-unplayable states, bounded refresh, backup-protected offline backfill, Liked Songs,
+#        post-add Last.fm scrobbles and measured playback coverage.
+# Run: python -m unittest tests.test_spotify_reference_library -v
+# Related: scripts/spotify/spotify_reference_library.py; scripts/spotify/spotify_daily_feedback.py;
+#          docs/SPOTIFY_API_OPERATIONS.md; project/goals/spotify-playability/ROADMAP.md.
 # -----------------------------------------------------------------------------

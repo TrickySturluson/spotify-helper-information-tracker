@@ -147,8 +147,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_daily_playlist -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Verify the legacy/alternate Daily candidate builder and exact Spotify track resolution.
+# Scope: Favorite/rediscovery/deep-cut balance, recency penalties, artist caps, tier quotas,
+#        shortage fill, exact primary-artist/title matching and duplicate-URI prevention.
+# Run: python -m unittest tests.test_spotify_daily_playlist -v
+# Related: scripts/spotify/spotify_daily_playlist.py; scripts/spotify/spotify_discovery.py;
+#          project/goals/tricky-daily/ROADMAP.md.
 # -----------------------------------------------------------------------------

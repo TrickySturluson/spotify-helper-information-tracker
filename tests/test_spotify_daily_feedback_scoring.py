@@ -65,8 +65,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_daily_feedback_scoring -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Protect Tricky Daily's distinction between tracks already liked and tracks liked after exposure.
+# Scope: A post-add save is positive conversion evidence, while a pre-existing like retains its
+#        separate familiarity/liked penalty; these states must not be conflated.
+# Run: python -m unittest tests.test_spotify_daily_feedback_scoring -v
+# Related: scripts/spotify/spotify_discovery.py; scripts/spotify/spotify_daily_feedback.py;
+#          docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------

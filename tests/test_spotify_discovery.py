@@ -341,8 +341,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_discovery -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Protect discovery ranking, Spotify candidate resolution and playlist-local feedback rules.
+# Scope: Artist diversity/fallback caps, similar-artist consensus, retry behavior, familiarity and
+#        liked-track penalties, exact removal blocks, explicit re-add whitelists and corrupt-state failure.
+# Run: python -m unittest tests.test_spotify_discovery -v
+# Related: scripts/spotify/spotify_discovery.py; scripts/spotify/spotify_daily_cycle.py;
+#          docs/TRICKY_DAILY_CYCLE.md; project/goals/discovery-recommendations/ROADMAP.md.
 # -----------------------------------------------------------------------------

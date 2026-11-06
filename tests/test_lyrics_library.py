@@ -134,8 +134,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_lyrics_library -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Verify transient lyric analysis and the local, copyright-conscious lyrics metadata library.
+# Scope: Theme detection, source merging, phrase-fingerprint search thresholds, versioned exports,
+#        exclusion of full lyrics/fingerprints from recommendation exports, and offline export loading.
+# Run: python -m unittest tests.test_lyrics_library -v
+# Related: scripts/music/lyrics_library.py; scripts/analytics/build_music_analytics.py;
+#          docs/LYRICS_LIBRARY.md; docs/TRACK_MOOD_EVIDENCE.md.
 # -----------------------------------------------------------------------------

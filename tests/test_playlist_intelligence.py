@@ -190,8 +190,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_playlist_intelligence -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Verify read-only playlist profiles, metadata coverage, fit diagnostics and health reports.
+# Scope: Track-versus-artist mood provenance, genre/theme separation, confidence tiers, scoring config,
+#        duplicate/concentration diagnostics and local lyric-theme evidence.
+# Run: python -m unittest tests.test_playlist_intelligence -v
+# Related: scripts/spotify/playlist_intelligence.py; scripts/music/mood_inference.py;
+#          docs/PLAYLIST_FEEDBACK_CALIBRATION.md; docs/TRACK_MOOD_EVIDENCE.md.
 # -----------------------------------------------------------------------------

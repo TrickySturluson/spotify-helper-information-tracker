@@ -351,8 +351,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_playlist_cloud -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Test the GitHub issue command handler's authorization, staging, confirmation and recovery rules.
+# Scope: Owner/playlist identity checks, lock enforcement, exact ordered-content revalidation,
+#        removal-history rechecks, manager delegation, backup/restore, interrupted confirmation and undo.
+# Run: python -m unittest tests.test_spotify_playlist_cloud -v
+# Related: scripts/spotify/spotify_playlist_cloud.py; scripts/spotify/spotify_playlist_manager.py;
+#          docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
