@@ -163,6 +163,63 @@ class DailyCycleScheduleTests(unittest.TestCase):
         with patch.object(daily_cycle.discovery, 'is_playlist_candidate_blocked', return_value=True):
             with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "blacklisted tracks"):
                 daily_cycle.validate_daily_post_write(updated, snapshot, uris, {})
+    def test_daily_stage_preserves_exact_order_hash_and_prewrite_snapshot(self):
+        import hashlib
+        import json
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        uris = ["spotify:track:" + str(i) for i in range(daily_cycle.DAILY_TARGET_SIZE)]
+        recommendations = [{"artist": "Artist " + str(i), "track": "Track " + str(i), "uri": uri} for i, uri in enumerate(uris)]
+        before = {"playlist": {"snapshot_id": "before"}, "items": [{"uri": "spotify:track:old"}]}
+        with TemporaryDirectory() as directory, patch.object(
+            daily_cycle, "DAILY_STAGE_DIR", Path(directory) / "stage"
+        ), patch.object(daily_cycle.manager, "stamp", return_value="2026-11-06T18:00:00Z"), patch.object(
+            daily_cycle.manager, "audit"
+        ), patch.object(daily_cycle, "persist_daily_stage", return_value=False), patch.dict(
+            os.environ, {"GITHUB_ACTIONS": "false", "GITHUB_RUN_ID": "stage-test-1"}
+        ):
+            stage_path, digest = daily_cycle.create_daily_stage(
+                "2026-11-06", before, ["spotify:track:old"], recommendations,
+                uris, "playlist_backups/before.json", "Today's detour starts here."
+            )
+            record = json.loads(Path(stage_path).read_text(encoding="utf-8"))
+        self.assertEqual(record["target_uris"], uris)
+        self.assertEqual(record["prewrite_uris"], ["spotify:track:old"])
+        self.assertEqual(record["prewrite_snapshot_id"], "before")
+        self.assertEqual(record["status"], "staged_before_spotify_write")
+        self.assertEqual(record["payload_sha256"], digest)
+        self.assertEqual(len(digest), 64)
+
+    def test_github_daily_stage_requires_successful_git_push_before_write(self):
+        import subprocess
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        with TemporaryDirectory() as directory:
+            stage = Path(directory) / "stage.json"
+            backup = Path(directory) / "backup.json"
+            stage.write_text("{}", encoding="utf-8")
+            backup.write_text("{}", encoding="utf-8")
+            calls = [None, None, None, None, subprocess.CalledProcessError(1, ["git", "push"])]
+            with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
+                daily_cycle.subprocess, "run", side_effect=calls
+            ) as run:
+                with self.assertRaises(subprocess.CalledProcessError):
+                    daily_cycle.persist_daily_stage(stage, backup, "2026-11-06")
+            commands = [call.args[0] for call in run.call_args_list]
+            add_index = next(i for i, command in enumerate(commands) if command[:2] == ["git", "add"])
+            commit_index = next(i for i, command in enumerate(commands) if command[:2] == ["git", "commit"])
+            push_index = next(i for i, command in enumerate(commands) if command[:2] == ["git", "push"])
+            self.assertLess(add_index, commit_index)
+            self.assertLess(commit_index, push_index)
+
+    def test_daily_stage_is_created_and_committed_before_playlist_replace(self):
+        source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        prepare_at = source.index("stage_path, payload_sha256 = create_daily_stage(")
+        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
+        stage_function = source[source.index("def create_daily_stage("):source.index("def assert_live_snapshot_unchanged(")]
+        self.assertLess(prepare_at, replace_at)
+        self.assertIn("persist_daily_stage(stage_path, backup, cycle_date)", stage_function)
+        self.assertIn('subprocess.run(["git", "push", "origin", "HEAD:main"], check=True)', source)
     def test_daily_requires_sixty_tracks_and_valid_primary_artists(self):
         self.assertEqual(daily_cycle.DAILY_TARGET_SIZE, 60)
         self.assertEqual(daily_cycle.MINIMUM_RECOMMENDATIONS, 60)
