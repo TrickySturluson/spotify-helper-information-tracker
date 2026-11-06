@@ -33,12 +33,12 @@ Design constraints to preserve: observe/diagnose before mutation; canonical data
 
 - ChatGPT's marker commit `7c1abce763d293992872699146eb7f13d10f9b87` triggered [Babel AI continuation run #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313).
 - Preflight passed; Codex failed before running the prompt. `ubuntu-latest` resolved to Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed restricting `/run/dbus/system_bus_socket`, matching upstream [issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no PR was produced.
-- Fix committed: only the Codex agent job is pinned to `ubuntu-24.04`, retaining the sandbox and permission model. Re-dispatch from a fresh branch based on the updated `main`, then verify all jobs and the review PR. Buddy remains unverified until end-to-end success.
+- Fix committed: only the Codex agent job is pinned to `ubuntu-24.04`, retaining the sandbox and permission model. Re-dispatch from a fresh branch based on the updated `main`, then verify all jobs and the review PR. The separate Codex worker remains unverified until end-to-end success; this does not describe the scheduled ChatGPT Buddy path.
 
 ## 2026-11-06 — Repository-hosted Codex runner fix verified; API quota blocks retry completion
 
 - The first run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) confirmed the push trigger and preflight but failed during Codex `drop-sudo` setup on Ubuntu 26.04. The Codex job was pinned to Ubuntu 24.04 without weakening its sandbox.
-- Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and the `drop-sudo` isolation step on Ubuntu 24.04, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Buddy PR exists.
+- Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and the `drop-sudo` isolation step on Ubuntu 24.04, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Codex proposal PR exists.
 - Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests on `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on the same commit.
 - **Next:** do not retry the separate Codex/API worker unless the user explicitly reauthorizes it and confirms quota. This does not block the scheduled ChatGPT/GitHub-app Buddy path.
 
@@ -59,7 +59,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - The OpenAI Codex worker is scheduled every six hours and manually dispatchable. It resumes from babel/agent-progress, makes bounded documentation-only changes, and publishes through one review PR. A separate read-only validation job rejects non-documentation paths/deletions and runs full unittest discovery without write credentials; the publisher rechecks paths and publishes without executing candidate code.
 - No Spotify/provider credentials or provider operations are available to the agent. It cannot modify runtime features, generated data, or workflow YAML; it never auto-merges.
 - **Activation pending:** the user reports `OPENAI_API_KEY` is configured and has now confirmed **Allow GitHub Actions to create and approve pull requests** is enabled. Next, ChatGPT creates a fresh `babel/dispatch-*` branch from `main` and commits `.github/babel/dispatch.json` to trigger the workflow, then verifies the run and proposal PR. Manual dispatch and the six-hour schedule remain available. API usage is billed separately from ChatGPT subscription access.
-- See [Babel AI continuation guide](../docs/BABEL_AGENT.md). The worker is integrated but not yet operationally verified. Documentation remains the only SHIT priority.
+- See [Babel AI continuation guide](../docs/BABEL_AGENT.md). The Codex worker is integrated but not yet operationally verified. The scheduled ChatGPT Buddy path is separate; documentation remains the only SHIT priority.
 
 ## 2026-11-06 — Documentation-only priority; latest evidence reconciled
 
