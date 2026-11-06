@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Recent enrichment guide schedule corrected against workflow YAML
+
+- **Finding:** `docs/RECENT_TRACK_ENRICHMENT.md` incorrectly described the Spotify Reference Library workflow as scheduled every six hours. The authoritative YAML `.github/workflows/spotify-reference-library.yml` has a single daily cron, `13 6 * * *` (06:13 UTC), plus manual dispatch and a main-branch push trigger limited to changes to that workflow file.
+- **Correction:** updated the guide to state daily 06:13 UTC and clarified the workflow-definition push trigger.
+- **Guardrail:** added `test_reference_library_schedule_matches_guide` to the documentation contract suite; it checks the YAML cron and guide wording and rejects the stale six-hour claim.
+- **Verification:** source-to-guide inspection and GitHub file updates only. The latest PR-head CI/security runs are queued; no provider calls, reference sync, repository data publication or playlist writes were initiated by this edit.
+- **Next:** continue the remaining guide/source audit; run the full documentation checks on the latest PR head before merge.
+
+
 ## 2026-11-06 — Workflow catalogue and Daily force semantics reconciled against source
 
 - **Workflow audit:** compared all 17 catalogue rows with the current YAML triggers. Corrected branch/path conditions for the enrichment, playlist-manager check, Daily preflight, Daily cycle, remote verification, Reference Library and Last.fm update workflows; clarified Great Migration owner-authored issue filtering.
