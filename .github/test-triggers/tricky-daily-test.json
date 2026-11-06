@@ -3,6 +3,6 @@
   "mode": "safe-test-only",
   "playlist_mutation": false,
   "requested_by": "ChatGPT-assisted project maintenance",
-  "verification_revision": "forced-idempotency-and-description-readback-2026-11-06",
-  "note": "Run the full safe unit suite and focused Daily schedule/description tests after the force/idempotency and HTML-escaped description read-back fixes. Do not mutate any Spotify playlist."
+  "verification_revision": "daily-force-doc-contract-and-snapshot-ci-retest-2026-11-06",
+  "note": "Run the full safe unit suite and focused Daily schedule/description tests after correcting stale documentation-contract expectations and the brittle source-count assertion. Confirm snapshot refresh workflow can pass its focused schedule test. Safe verification and read-only preflight only; do not mutate any Spotify playlist or run the Daily cycle."
 }
