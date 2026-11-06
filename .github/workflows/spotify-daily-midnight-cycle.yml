@@ -140,14 +140,18 @@ jobs:
             git commit -m "Cycle Tricky Daily playlist state"
             git push
           fi
-      - name: Preserve surfaced candidates even if rotation fails
-        if: always() && hashFiles('assistant_data/recommendations/discovery_candidates.json') != ''
+      - name: Preserve surfaced candidates and Spotify cooldown even if rotation fails
+        if: always() && (hashFiles('assistant_data/recommendations/discovery_candidates.json') != '' || hashFiles('.github/spotify_api_cooldown.json') != '')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assistant_data/recommendations/discovery_candidates.json
+          for path in assistant_data/recommendations/discovery_candidates.json .github/spotify_api_cooldown.json; do
+            if [ -f "$path" ]; then
+              git add -- "$path"
+            fi
+          done
           if ! git diff --cached --quiet; then
-            git commit -m "Preserve Tricky Daily discovery candidates"
+            git commit -m "Preserve Tricky Daily candidates and Spotify cooldown"
             git push
           fi
 
