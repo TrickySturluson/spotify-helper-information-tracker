@@ -250,6 +250,19 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Current source discrepancy", roadmap)
         self.assertIn("cycle_already_completed(config, \"2026-11-05\", force=True)", schedule_test)
 
+    def test_completed_committed_tree_inventory_is_not_a_current_blocker(self):
+        index = (ROOT / "docs" / "REPOSITORY_FILE_INDEX.md").read_text(encoding="utf-8")
+        roadmap = (ROOT / "project" / "goals" / "maintainability-documentation" / "ROADMAP.md").read_text(encoding="utf-8")
+        handoff = (ROOT / "project" / "NEXT_WORK.md").read_text(encoding="utf-8")
+
+        self.assertIn("28,161", index)
+        self.assertIn("27,902", index)
+        self.assertIn("truncated=false", index)
+        self.assertIn("tracked committed-tree inventory acceptance item satisfied", roadmap)
+        next_action = roadmap.split("## Next action", 1)[1].split("## Related records", 1)[0].lower()
+        self.assertNotIn("complete the tracked-file inventory", next_action)
+        self.assertIn("previous “local checkout required” inventory blocker is resolved", handoff)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
