@@ -1,6 +1,13 @@
 # Playlist Sequencing — Actions & Evidence
 
 Newest entries first. Distinguish design intent, implementation, preview output, authorized writes and independent live read-back.
+## 2026-11-06 — Sequencing PR branches rechecked against current main
+
+- PR #120 `codex/incremental-library-sorter-work`: open/draft, 5 ahead / 419 behind, mergeable=false; old-head tests #41380622956 and security scan #41380622844 passed.
+- PR #121 `codex/sorter-evaluation-ingestion-watchdog`: open/draft, 10 ahead / 419 behind, mergeable=false; no workflow runs found for its observed head.
+- These proposals are stale/diverged and require rebase plus fresh CI. No sorter execution or playlist write occurred.
+
+
 
 ## 2026-11-06 — Open sorter proposals and verification status recorded
 
