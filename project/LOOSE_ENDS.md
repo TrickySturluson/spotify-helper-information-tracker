@@ -25,6 +25,14 @@ The user has explicitly directed that documentation be the sole active project p
 - Update Last.fm History #42146153098, Enrich Music Metadata #42146121471 and Acoustic Metadata Enrichment #42146097964 remained active at last inspection. Record their final outcomes and any generated commits here before considering the incident closed.
 - The connected GitHub interface did not expose workflow cancellation. Future workflow-YAML edits must first inspect push-path filters; comment-only edits can start provider and data-writing jobs.
 
+## Additional verified workflow defects from 2026-11-06
+
+- **Reference Library run #42146148971:** completed and committed 249 files as `3e989e33282efab6cc1416e35970e7c59af5f056` (184 Library records, 63 Spotify reference/history files, 2 removal-state files). This was a repository snapshot refresh; no Spotify playlist mutation occurred.
+- **Enrich Music Metadata run #42146121471:** provider/enrichment stages completed but publication failed during rebase because canonical song JSON additions conflicted with the simultaneous Reference Library commit. No enrichment workspace output was published.
+- **Acoustic Metadata Enrichment run #42146097964:** 100 batches completed (2,500 IDs, 207 found, 2,293 misses, 322 total profiles, 3,678 negative-cache entries). Optional GetSongBPM skipped without its key. Commit failed because the workflow staged a missing optional `assistant_data/music/getsongbpm_lookup_state.json` path. No acoustic output was published.
+- **Update Last.fm History run #42146153098:** still active at latest inspection; final result and any commit must be reconciled.
+- **Deferred remediation:** serialize shared Library writers / detect stale-base conflicts, and make optional provider output paths conditional before staging. Keep this deferred until documentation acceptance criteria pass.
+
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
