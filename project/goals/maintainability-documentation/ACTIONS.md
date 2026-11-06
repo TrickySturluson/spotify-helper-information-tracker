@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Lyrics provider documentation corrected against implementation
+
+- Compared `docs/LYRICS_LIBRARY.md` with `scripts/music/lyrics_library.py` and `tests/test_lyrics_library.py`.
+- Found an internal contradiction: the provider section correctly said LRCLIB and Lyrics.ovh run without credentials, but the limitations section incorrectly called LRCLIB the only no-setup provider. Corrected it to state that both LRCLIB and Lyrics.ovh are credential-free; Musixmatch and Genius require credentials.
+- Confirmed the documented behavior for transient lyric processing, local-only SQLite storage, five-word SHA-256 phrase fingerprints, v3 lexical theme analysis, provider-specific fallbacks, and the export's exclusion of lyrics/fingerprints against source and tests.
+- **Verification:** documentation-only change; no lyric provider was called and no local lyric database was accessed or modified. The current PR CI/security run is still in progress on an earlier head; exact latest-head verification remains pending.
+- **Next:** continue the source-to-guide audit of enrichment schedules, batch caps, cooldowns, and data provenance; then re-check the current PR CI/security result.
+
 ## 2026-11-06 — Great Migration allowlist guard passed CI and security scan
 
 - Daily curator CI [#42154101093](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154101093) completed successfully on PR head commit `cb70525b5221ab017a1d6073061ad3611d7a16be`. Compilation, generated-data audit, full read-only Library health/confidence/freshness checks, maintained-file documentation checks and full unittest discovery all passed.
