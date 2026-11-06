@@ -274,6 +274,7 @@ class PlaylistManagerTests(unittest.TestCase):
     def test_spotify_429_reports_quota_cooldown_and_no_retry(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.bearer = lambda: "test-token"
+        spotify.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
         error = urllib.error.HTTPError(
             url="https://api.spotify.com/v1/me/playlists",
             code=429,
