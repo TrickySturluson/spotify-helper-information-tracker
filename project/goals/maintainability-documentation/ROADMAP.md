@@ -35,10 +35,10 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - A fresh session can resume each active goal without chat history.
 - Meaningful work updates relevant documentation in the same session; status claims cite exact evidence.
 
-## Automated guardrails — implemented and CI-verified for current core contract
+## Automated guardrails — implemented; corrected core checks CI-verified
 - Added `tests/test_documentation_contract.py` to enforce required control documents, all goal workspaces' ROADMAP/README/ACTIONS files, AGENTS continuity requirements, major documentation-domain coverage, and local links from the primary entry points.
 - Existing `tests/test_script_layout.py` checks bottom `FILE OVERVIEW` coverage across maintained Python implementation, compatibility, tests and GitHub Actions workflow files.
-- The repository's standard unittest discovery includes both tests; `.github/workflows/update.yml` runs the full suite before data publishing. A successful CI run after this new test is required before calling the guardrail verified.
+- The repository's standard unittest discovery includes both tests; `.github/workflows/update.yml` runs the full suite before data publishing. The corrected layout guard and full unittest suite passed Daily curator CI run #42152796114 on commit `9cbf695291fa073f96669f20e83404eccba4e45e`. The full-history security scan #42152796120 also passed on that commit. Later documentation-only commits have not been shown with a fresh exact-head run; see the current status below.
 
 ## Repository inventory correction — implemented
 - Replaced the stale exhaustive file snapshot with a maintained source and data-family index. The previous snapshot incorrectly implied a small, static `assistant_data` file count despite the expanded per-record canonical music Library.
@@ -50,7 +50,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - `docs/WORKFLOWS.md` summarizes all 17 workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - Nine workflow YAML bottom overviews were rewritten with their actual triggers, credentials, repository writes, playlist-write boundaries and related implementation.
 - Workflow YAML comment-only changes can trigger push-path workflows. This operational hazard is now documented; see the incident entry in ACTIONS.md and docs/WORKFLOWS.md.
-- Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947. The PR has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`; tests #42150802119 and security scan #42150801849 subsequently passed on earlier head `1bbfed67ae63c77628d6f8b775b7d12c50060d11`; the PR later advanced to `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`, for which current-head checks have not yet been verified.
+- Draft PR #161 adds complete technical-guide indexing, repository-wide Markdown local-path checks, specific workflow overview checks, implementation/test overview anti-boilerplate checks and compatibility-to-source references. The corrected test-overview guard and full unittest discovery passed on commit `9cbf695291fa073f96669f20e83404eccba4e45e` in run #42152796114; full-history security scan #42152796120 also passed on that commit. Later commits changed only documentation/handoff files and `tests/README.md`; exact latest-head verification remains unconfirmed. See the current status section below and re-fetch live PR metadata before acting.
 
 ## Current status — 2026-11-06
 
