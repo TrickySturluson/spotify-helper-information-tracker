@@ -88,6 +88,68 @@ class DailyManualRemovalFeedbackTests(unittest.TestCase):
                 feedback.DATA = original
 
 
+    def test_removal_after_measured_exposure_is_negative_evidence(self):
+        track = {
+            "name": "Removed After Listening",
+            "artists": [{"name": "Artist"}],
+            "uri": "spotify:track:heard-then-removed",
+        }
+        base = {
+            "negative_keys": {"artist|removed after listening"},
+            "negative_uris": {"spotify:track:heard-then-removed"},
+            "negative_artists": {}, "positive_artists": {},
+        }
+        unexposed = {
+            **base,
+            "daily_evidence": {
+                "spotify:track:heard-then-removed": {
+                    "removal_count": 1, "measured_plays": None, "lastfm_plays": None,
+                }
+            },
+        }
+        exposed = {
+            **base,
+            "daily_evidence": {
+                "spotify:track:heard-then-removed": {
+                    "removal_count": 1, "measured_plays": 12, "lastfm_plays": 4,
+                }
+            },
+        }
+        neutral_score = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 6), unexposed
+        )[0]
+        rejected_score = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 6), exposed
+        )[0]
+        self.assertLess(rejected_score, neutral_score)
+
+    def test_unheard_manual_removal_does_not_create_exposure_penalty(self):
+        track = {
+            "name": "Removed Without Exposure",
+            "artists": [{"name": "Artist"}],
+            "uri": "spotify:track:unheard-removed",
+        }
+        base = {
+            "negative_keys": {"artist|removed without exposure"},
+            "negative_uris": {"spotify:track:unheard-removed"},
+            "negative_artists": {}, "positive_artists": {},
+        }
+        feedback = {
+            **base,
+            "daily_evidence": {
+                "spotify:track:unheard-removed": {
+                    "removal_count": 1, "measured_plays": None, "lastfm_plays": None,
+                }
+            },
+        }
+        plain = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 6), {}
+        )[0]
+        neutral = discovery.candidate_score(
+            track, 0.8, {}, set(), date(2026, 11, 6), feedback
+        )[0]
+        self.assertEqual(neutral, plain)
+
 if __name__ == "__main__":
     unittest.main()
 
