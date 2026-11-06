@@ -154,9 +154,12 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Use MusicBrainz as a cautious secondary duration source for unresolved tracks.
-# Location: Maintained implementation in scripts/music/enrich_musicbrainz_durations.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_musicbrainz_durations.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Inputs: Canonical Library/metadata records with missing duration evidence and configured
+#         MUSICBRAINZ_LOOKUPS_PER_RUN budget.
+# Outputs: Duration observations with provider provenance and lookup status in music metadata.
+# Matching: Prefer verified recording IDs and conservative exact identity checks; do not
+#           replace a sourced duration with an unverified guess.
+# Safety: Bounded, rate-limited requests; misses/ambiguity remain distinct from transient errors.
+# Run: python compat/enrich_musicbrainz_durations.py (repository root).
+# Related: docs/AUTOMATED_AUDIO_METADATA.md; docs/PER_RECORDING_MUSIC_LIBRARY.md.
 # -----------------------------------------------------------------------------
