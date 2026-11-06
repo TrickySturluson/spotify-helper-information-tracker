@@ -83,3 +83,5 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Next:** inspect fresh CI results, resolve any genuine regressions, and close superseded draft PRs only after this branch is green.
 
 - **Exposure-boundary refinement:** current branch also changes artist-level negative feedback so a manually removed track teaches broader artist dislike only when post-add measured playback or Last.fm scrobbles exist. Exact track blacklist enforcement remains unconditional. Added integration-style tests that load the actual blacklist and feedback JSON: an unexposed removal stays neutral for the artist but remains an exact hard block; measured exposure can inform the artist-level penalty.
+
+- **Unknown exposure-start safety:** adding removal-only rows exposed a Last.fm observer edge case: legacy rows with `first_added_at=null` could raise while comparing scrobble timestamps. The observer now skips post-add attribution when the exposure start is unknown, rather than crashing or inventing a start time. A regression test creates a removal-only row, supplies a matching Last.fm scrobble, and verifies it remains unattributed.
