@@ -454,9 +454,9 @@ if __name__ == "__main__":
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Rotate Tricky Daily to exactly 60 tracks once per Eastern calendar day.
-# Artist diversity: First seeks one track per primary artist; if the candidate pool
-#                   remains short after discovery retries, controlled fallback allows
-#                   up to two tracks per artist. Fallback use is explicitly audited.
+# Artist diversity: First seeks one track per primary artist; after alternate search-page
+#                   retries, fallback progressively raises the per-artist ceiling (starting
+#                   at two) only as needed to reach 60 unique track URIs. Fallback is audited.
 # Schedule: GitHub Actions delivers at 04:00/04:15 and 05:00/05:15 UTC; a ZoneInfo
 #           gate selects midnight America/New_York and the 15-minute recovery delivery.
 # Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
