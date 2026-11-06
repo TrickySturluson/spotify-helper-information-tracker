@@ -1,4 +1,5 @@
 # Spotify Helper & Information Tracker (SHIT)
+> **Assistant continuity rule:** Before any work, read [the mandatory documentation rules](project/DOCUMENTATION_RULES.md), [the current handoff](project/NEXT_WORK.md), and the relevant goal's roadmap, README and action log. Update them during the same session whenever work, status, decisions, tests or blockers change.
 
 **Canonical repository:** https://github.com/TrickySturluson/spotify-helper-information-tracker
 
