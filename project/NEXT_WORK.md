@@ -3,6 +3,12 @@
 
 This is the authoritative session handoff. Read this file first when resuming work, then read [LOOSE_ENDS.md](LOOSE_ENDS.md), [PROJECT_LOG.md](PROJECT_LOG.md), and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
 
+## 2026-11-06 — ChatGPT can now create the Buddy dispatch trigger
+
+- Successfully created `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`). This verifies the connected GitHub integration permits the narrow branch-and-marker write needed to emit the workflow's configured push event.
+- Workflow execution is not yet verified; inspect the Actions run associated with that commit. Do not claim Buddy ran until Codex, validation and publisher results are confirmed.
+- Strategic direction: use ChatGPT as SHIT's conversational front end for planning, querying, controlled repository changes and verification. Keep GitHub as the durable source of truth, use narrow action-specific permissions, require explicit authorization for consequential changes, and retain review gates for autonomous proposals. Do not grant broad repository or Spotify write access merely to make the interface convenient.
+
 **Documentation system identity:** the public-facing name is **SHIT Documentation & Continuity**; the internal codename is **Babel**. See [docs/BABEL.md](../docs/BABEL.md). Documentation remains the sole active workstream until its acceptance criteria pass.
 
 ## Cross-project loose-ends register
