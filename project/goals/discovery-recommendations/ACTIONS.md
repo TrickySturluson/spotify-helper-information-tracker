@@ -2,6 +2,12 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Mainline discovery intake and open PR distinction recorded
+
+- Mainline already contains `scripts/music/discovery_ingestion.py` and `tests/test_discovery_ingestion.py`, storing candidate evidence in `assistant_data/recommendations/discovery_candidates.json` separately from scrobbles, plays and preferences.
+- PR #60 remains open and proposes additional per-song `discovery_context` plus `scripts/music/record_discovery.py`; this richer integration is not merged. Compare the exact PR diff with main before any future decision.
+- Feature work in this goal remains paused under the repository-wide documentation-only priority. No discovery feature or provider operation was performed in this audit.
+
 ## 2026-11-01 — Goal workspace initialized
 
 - **Action:** established this goal's dedicated documentation and action-history location.
