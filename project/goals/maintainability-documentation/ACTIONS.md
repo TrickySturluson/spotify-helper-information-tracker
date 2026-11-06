@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Enrichment budget documentation now matches scheduled and manual workflow limits
+
+- Compared `docs/RECENT_TRACK_ENRICHMENT.md` and `docs/AUTOMATED_AUDIO_METADATA.md` with `.github/workflows/enrich-music-metadata.yml` and `scripts/music/build_track_profiles.py`.
+- Found the guide described 200 track-profile lookups as the maximum, but that is only the scheduled-run budget. Manual dispatch offers 120/300/600 track-profile lookups (default 300); standalone script default is 120. The 90-day top-200 cohort is a separate selection limit.
+- Updated both guides to distinguish scheduled defaults, manual choices, standalone defaults and cohort size. Also expanded the workflow-trigger description to include enrichment scripts/compatibility launchers, discovery intake and selected priority-playlist snapshot paths.
+- Added `test_metadata_enrichment_budgets_match_workflow_and_guides` to the documentation contract suite. It parses workflow defaults and manual choices and checks that both metadata guides match them. Updated tests/docs indexes and the maintainability README to describe this guard.
+- **Verification:** source-level review only; the new test has not yet been executed by CI on the latest branch head. No enrichment or provider requests were made.
+- **Next:** await latest exact-head CI/security, then continue remaining technical guide/source review.
+
 ## 2026-11-06 — Latest full documentation CI and current Library baselines verified
 
 - Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) and full-history security scan [#42154433307](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433307) both passed on commit `adce63e1f17bb2bb13a26944b7b5917c3506a714`. This run included the Great Migration 15-operation allowlist test, documentation checks, full unittest discovery, and read-only full Library health/confidence/freshness checks.
