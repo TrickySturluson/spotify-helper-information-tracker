@@ -306,7 +306,7 @@ class DocumentationContractTests(unittest.TestCase):
         library_readme = (ROOT / "assistant_data" / "music" / "library" / "README.md").read_text(encoding="utf-8")
 
         self.assertIn("canonical MusicLibrary song/artist/album evidence", source)
-        self.assertIn("playlist membership is source/context evidence, not a play", enrichment_guide)
+        self.assertIn("playlist membership is source/context evidence, not a play", enrichment_guide.lower())
         self.assertIn("playlist-only candidates are not scrobbles", workflow_catalogue)
         self.assertIn("even when they have zero scrobbles", library_readme)
 
