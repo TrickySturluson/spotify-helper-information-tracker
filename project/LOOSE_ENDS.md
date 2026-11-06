@@ -43,6 +43,12 @@ The user has explicitly directed that documentation be the sole active project p
 - Daily curator tests #42150601947 passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a`, including repository-wide Markdown local links, full guide indexing, implementation overview quality, compatibility delegation and workflow overview checks, plus the full unit suite and read-only Library health/confidence/freshness checks.
 - The branch has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`. Current tests #42150802119 and full-history security scan #42150801849 are in progress; recheck both before merge.
 - PR #161 remains draft and unmerged. Recheck current-head CI and security scan before merging.
+## Booze or Boos! current snapshot — 2026-11-06
+
+- Latest repository snapshot for playlist `4diIlnF8BlgoJrwUfejf49`: 92 items reported/fetched, accessible, no item error; captured at `2026-11-06T01:47:59.824523+00:00`.
+- The 64-track candidate manifest and five-axis audit from 2026-11-02 are historical and stale. Rebuild the candidate manifest and re-audit every track against the hard Halloween-relevance and party-energy gates after documentation completion.
+- No sorter preview or Booze playlist write was performed in this audit.
+
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
