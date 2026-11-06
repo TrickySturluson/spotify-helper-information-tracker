@@ -1,5 +1,15 @@
 # Maintainability & Documentation — Actions & Evidence
 
+## 2026-11-06 — Buddy first dispatch run diagnosed; runner compatibility fix
+
+- **Run:** [Babel AI continuation #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313), triggered by marker commit `7c1abce763d293992872699146eb7f13d10f9b87` on `babel/dispatch-20261106-01`.
+- **Verified:** push trigger worked; preflight completed successfully; workflow found the configured continuation prompt and launched the Codex action.
+- **Failure:** Codex action failed before executing the prompt. Runner `ubuntu-latest` was Ubuntu 26.04; `drop-sudo` could not restrict `/run/dbus/system_bus_socket` and reported `runner is not a member of the sudo group`. This matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188).
+- **Downstream effect:** validation and publisher were skipped; no candidate patch, `babel/agent-progress` branch, or Buddy PR was created. No SHIT data or Spotify state was changed.
+- **Remediation:** pin only the Codex agent job to `ubuntu-24.04`. Keep `drop-sudo`, the `:workspace` profile, read-only agent/validation permissions, separate publisher, allowlist and human review gate unchanged. Trigger a fresh run from a branch based on the updated main and verify every stage.
+- **Status:** first dispatch mechanism proven; Buddy itself is not yet operationally verified.
+
+
 ## 2026-11-06 — Deferred post-Babel health-system direction recorded
 
 - **User direction:** after Babel is considered realistically as complete as it can be, revisit making Buddy part of SHIT's overall health system.
