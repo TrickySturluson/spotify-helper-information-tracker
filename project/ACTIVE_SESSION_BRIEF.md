@@ -25,6 +25,14 @@ Updating this file does not wake Buddy, alter an already-running job, or deliver
 
 Success means a new assistant with no prior chat history can identify the repository's goals, current verified state, constraints, evidence, unresolved risks, and next executable action from repository files alone.
 
+## Deferred post-Babel objective — SHIT-wide integrity, diagnostics and recovery
+
+After Babel is judged as complete and realistically as good as it can be, revisit a dedicated SHIT-wide **Integrity, Diagnostics & Recovery** workstream. This is explicitly deferred; it does not expand the current documentation-only priority or authorize runtime implementation now.
+
+The intended design is a coordinated health system: (1) health monitoring across project data, documentation, tests and workflows; (2) diagnostics that trace symptoms to likely root causes; (3) bounded recovery/repair for deterministic, reversible cases; (4) Buddy as the permanent Documentation & Continuity Guardian, checking documentation drift, roadmaps, handoffs and evidence; and (5) an improvement backlog for recurring failures and systemic weaknesses. Buddy contributes evidence and documentation maintenance but is not the sole health authority and must not approve its own risky repairs.
+
+Safety contract to carry forward: observe and diagnose by default; preserve canonical data and provenance; distinguish authoritative Last.fm scrobbles from optional Spotify playback observations; never invent, silently delete, or silently rewrite uncertain records; only allow explicitly scoped, deterministic, backed-up, reversible repairs with audit trail and post-repair verification; require user approval for consequential or ambiguous changes. Revisit and formalize scope, ownership, autonomy levels, health dimensions, audit records and acceptance criteria only after Babel's completion gate and cold-start simulation pass.
+
 ## Current Buddy activation status
 
 - Workflow: `.github/workflows/babel-ai-continuation.yml`.
