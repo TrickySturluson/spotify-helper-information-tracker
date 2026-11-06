@@ -2,6 +2,13 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Final checkpoint before current-head CI
+
+- PR #161 was last inspected at head `e65abf6c4c804bcf31e7b2e4ef2fc8c8e1457d0a`; it remained draft/unmerged. GitHub reported `mergeable: false` and no check/status records for that exact SHA.
+- Earlier successful runs #42150802119 and #42150801849 belong to older head `1bbfed67ae63c77628d6f8b775b7d12c50060d11` only. They do not verify the later source/test overview edits or the final documentation guard self-check correction.
+- The 11 generic test overviews have been replaced, and the new guard's own footer was corrected. The full suite must still run on the exact latest head before these changes can be considered CI-verified.
+- **Next:** refresh PR metadata (the handoff SHA is a checkpoint, not a substitute for live state), investigate why GitHub reports the PR as not mergeable, obtain current-head tests and full-history security scan, then continue semantic guide/source review.
+
 ## 2026-11-06 — Documentation guard self-check corrected
 
 - During branch-side review of the new test-module overview guard, its own `tests/test_script_layout.py` footer still contained the generic scope phrase that the new guard rejects. Replaced it with a description of the module's actual layout and documentation checks.
