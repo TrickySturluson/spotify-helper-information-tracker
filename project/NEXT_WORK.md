@@ -11,6 +11,14 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 **Documentation system identity:** the public-facing name is **SHIT Documentation & Continuity**; the internal codename is **Babel**. See [docs/BABEL.md](../docs/BABEL.md). Documentation remains the sole active workstream until its acceptance criteria pass.
 
+## Deferred post-Babel objective — SHIT-wide Integrity, Diagnostics & Recovery
+
+**Revisit only after SHIT Documentation & Continuity (Babel) is considered realistically complete**: its roadmap acceptance criteria must pass and the fresh-session cold-start simulation must demonstrate that a new assistant can resume from repository documentation alone. This is a recorded future goal, not permission to start runtime work during the current documentation-only phase.
+
+Proposed direction: establish a coordinated SHIT-wide health system covering data integrity, documentation/continuity, tests, workflows and operational reliability. Include monitoring, root-cause diagnostics, bounded recovery/repair, and a tracked improvement backlog. Make Buddy a permanent Documentation & Continuity Guardian within that system: it checks documentation drift, roadmap/action-log freshness, handoff accuracy and whether recorded claims have evidence. Buddy should contribute to health reporting but must not be the sole judge of system health or independently authorize risky repairs.
+
+Design constraints to preserve: observe/diagnose before mutation; canonical data and provenance are protected; Last.fm scrobbles remain distinct from optional Spotify playback observations; uncertain records are never invented, silently deleted or silently rewritten; repairs must be explicitly scoped, deterministic, backed up, reversible, audited and verified afterward; consequential or ambiguous changes require user approval. At the post-Babel review, create a dedicated goal workspace and roadmap, define health dimensions/severity, ownership, autonomy levels, repair boundaries, reporting cadence and measurable acceptance criteria.
+
 ## Cross-project loose-ends register
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
