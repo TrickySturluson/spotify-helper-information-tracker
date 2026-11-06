@@ -359,10 +359,17 @@ def playlist_health(items, feedback=None, artist_profiles=None, track_profiles=N
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Playlist-specific taste profiles, recommendation diagnostics, and health checks. All outputs are derived from a single playlist snapshot plus public/local music metadata. This module is intentionally read-only: it never edits Spotify.
-# Location: Maintained implementation in scripts/spotify/playlist_intelligence.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/playlist_intelligence.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Read-only playlist identity profiles, recommendation diagnostics, confidence reasons,
+#          and playlist-health summaries. This module does not edit Spotify playlists.
+# Inputs: Receives a playlist item snapshot and optional playlist-local feedback; loads
+#         assistant_data/recommendations/playlist_scoring.json, artist_profiles.json,
+#         track_profiles.json, recommendation track_features.json, lyric_features.json,
+#         and data/lyrics/library.sqlite3 as available.
+# Outputs: Builds genre/sound/mood/theme identity profiles, metadata coverage, candidate
+#          confidence/reason diagnostics, and health counts for duplicates, missing URIs,
+#          non-track items, artist concentration, and removal/whitelist feedback.
+# Evidence: Keeps artist-, track-, and lyric-sourced signals distinct; missing metadata
+#           lowers coverage/confidence rather than being treated as a negative preference.
+# Invocation: Imported by scripts/spotify/spotify_playlist_cloud.py and discovery tooling.
+# Related: docs/PLAYLIST_INTELLIGENCE.md and docs/TRANSITION_SCORING.md.
 # -----------------------------------------------------------------------------
