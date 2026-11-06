@@ -2,6 +2,13 @@
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
 
+## 2026-11-06 — Documentation-only pause recorded
+
+- The repository-wide priority remains completion of SHIT Documentation & Continuity (internal codename: Babel).
+- The roadmap now separates the current documentation-only next action from the preserved next feature action. Feature plans and acceptance criteria remain intact for later resumption.
+- No feature implementation or Spotify playlist operation is part of this documentation update.
+
+
 ## 2026-11-05 — Dedicated Daily workstream documentation created
 
 - **Purpose:** preserve Tricky Daily as an independently resumable active workstream rather than relying only on a long feature backlog nested under Playlist Intelligence.

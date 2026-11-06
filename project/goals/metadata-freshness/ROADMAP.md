@@ -20,7 +20,11 @@ Freshness is per field and source. One updated field must not make other fields 
 ## Acceptance criteria
 Planner repeatability; no provider calls in planning; no fresh-field refetch; failed lookups do not overwrite valid evidence; every selection/skip is explainable; request caps/cooldowns are enforced.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Inspect issues #103–#106 and current main to determine whether exact duration provenance recovery has been applied and audited; then run a fresh planner preview.
 
 ## Related records

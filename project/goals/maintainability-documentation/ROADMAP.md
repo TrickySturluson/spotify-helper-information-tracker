@@ -39,23 +39,36 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - A fresh session can resume each active goal without chat history.
 - Meaningful work updates relevant documentation in the same session; status claims cite exact evidence.
 
-## Automated guardrails — implemented and CI-verified for current core contract
-- Added `tests/test_documentation_contract.py` to enforce required control documents, all goal workspaces' ROADMAP/README/ACTIONS files, AGENTS continuity requirements, major documentation-domain coverage, and local links from the primary entry points.
-- Existing `tests/test_script_layout.py` checks bottom `FILE OVERVIEW` coverage across maintained Python implementation, compatibility, tests and GitHub Actions workflow files.
-- The repository's standard unittest discovery includes both tests; `.github/workflows/update.yml` runs the full suite before data publishing. A successful CI run after this new test is required before calling the guardrail verified.
+## Automated guardrails — core checks implemented and CI-verified
+- `tests/test_documentation_contract.py` enforces required control documents, all 13 goal workspaces' ROADMAP/README/ACTIONS files, AGENTS continuity requirements, major documentation-domain coverage, Babel identity and local links from primary entry points.
+- `tests/test_script_layout.py` checks compatibility delegation, package layout, and bottom `FILE OVERVIEW` presence across maintained Python implementations, compatibility launchers, test modules and workflow YAMLs. Its known-placeholder guard scans those same maintained file families.
+- Daily curator run #42168520574 passed all 460 tests on commit `8153028e4123d2be9307983b0eccff47fcaf07f9`; public repository security scan #42168520598 also passed on that commit. The later metadata-enrichment publication is separately validated by run #42166959478 and the post-enrichment integrity audit.
 
 ## Repository inventory correction — implemented
 - Replaced the stale exhaustive file snapshot with a maintained source and data-family index. The previous snapshot incorrectly implied a small, static `assistant_data` file count despite the expanded per-record canonical music Library.
 - The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
 - It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
 
-## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## 2026-11-06 — Module overview semantic correction
+## Complete committed-tree inventory — verified 2026-11-06
+
+- Snapshot commit: `3d2c1ded8dfb44b92e6e0c086673c69350200edc`.
+- A non-recursive root Git Tree plus separate recursive requests for each of the nine top-level directories produced **28,241 file/blob entries**. Every directory-scoped result returned `truncated=false`; the root recursive response was not used because it was truncated.
+- Breakdown: root 9; `.github/` 23; `assistant_data/` 27,981; `compat/` 42; `data/` 4; `docs/` 23; `playback_data/` 2; `project/` 50; `scripts/` 61; `tests/` 46.
+- Maintained files: 55 Python implementation modules (60 files including five package initializers), 40 compatibility launchers (41 Python files including initializer), 44 test modules (45 Python files including initializer), 17 workflow YAMLs, 21 technical guides and 13 goal workspaces.
+- **Outcome:** committed-tree inventory acceptance item is satisfied for this snapshot. Refresh after structural/generated-data changes. See `docs/REPOSITORY_FILE_INDEX.md`.
+
+## Workflow catalogue and local-link checks — CI-verified
+
+- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
+- The current mainline test validates local links from the primary entry points. A repository-wide all-Markdown local-link check remains a candidate guardrail from draft PR #161 and must be ported/adapted before being treated as implemented.
+
+## 2026-11-06 — Module overview semantic correction
 
 - Replaced generic or underspecified overviews in 28 maintained implementation modules across Spotify operations, music enrichment, Last.fm import, and analytics with module-specific contracts for actual inputs, outputs, providers, limits, provenance, safety boundaries, and invocation.
 - The first seven high-risk Spotify modules were committed together; the remaining 17 generic overviews were replaced in two grouped commits. These are documentation/comment-only changes; runtime logic was not changed.
 - Added an anti-placeholder regression check in `tests/test_script_layout.py` so known generic fallback phrases cannot silently return to maintained `scripts/` overviews.
 - The full 460-test suite passed on commit `da3be75844e3ce28eacd46ce8d87960493402503` (Daily curator run #42167849568), including the anti-placeholder assertion scanning all maintained Python modules under `scripts/` and the explicit Babel identity/link contract. Public repository security scan #42167849588 also passed.
-- **Operational side effect:** the source path `scripts/music/enrich_musicbrainz_recording_ids.py` is included in the push filter for Enrich Music Metadata. The documentation-only comment update triggered run #42166959478, which has contents:write and provider-enrichment steps. It was still in its MusicBrainz duration stage at the last check; no cancellation action was exposed. Reconcile its terminal status and any generated-data commit before further work. No Spotify playlist write is part of that workflow.
+- **Operational side effect:** the source path `scripts/music/enrich_musicbrainz_recording_ids.py` is included in the push filter for Enrich Music Metadata. The documentation-only comment update triggered run #42166959478, which has contents:write and provider-enrichment steps. It completed successfully and published generated metadata as commit `3d2c1ded8dfb44b92e6e0c086673c69350200edc`. The run merged 195 discovery candidates into the canonical Library, audited 13,239 songs, and rebuilt summaries/analytics. Post-enrichment integrity audit: 9 checks, 18 warnings, 0 errors. The warnings were a missing measured-playback capture and 16 Spotify playlist snapshots with inaccessible item contents; preserved snapshot data may be stale. No Spotify playlist write is part of that workflow.
 - **Process correction:** future source-overview edits must inspect all matching workflow path filters first, batch related changes into one commit, and record any unavoidable provider/write side effects. Prefer documentation-only paths when the same contract can be maintained adjacent to source without weakening the required in-file overview standard.
 
 ## 2026-11-05 repository audit checkpoint
@@ -69,13 +82,13 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
 
 ## Current gaps / uncertainty
-- The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
-- Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
-- Link integrity and whether every referenced guide still exists have not yet been exhaustively checked.
-- Existing per-file overview claims in the repository README are not yet independently audited.
+- Structural inventory is complete for the stated commit; semantic accuracy of all 55 implementation overviews, 40 compatibility launchers, 44 test modules and 17 workflow overviews remains under review.
+- The 21 technical guides and 13 goal workspaces still require a source-to-document freshness pass, including exact inputs/outputs, provider budgets, credentials, permissions, publication behavior and recovery paths.
+- All-Markdown local-link validation and comprehensive workflow/goal cross-contract tests are not yet on main; the draft PR #161 contains candidate implementations that must be reconciled rather than blindly merged.
+- The current open PR/issue set and domain-specific loose ends must be rechecked against live GitHub state; old historical checkpoints are not current evidence.
 
 ## Next action
-Continue with a directory-by-directory maintained-file audit, obtain a complete checkout/`git ls-files` inventory when available, compare it with file overviews and docs/REPOSITORY_FILE_INDEX.md, then record a categorized gap list. Audit semantic accuracy—not just marker presence—starting with write-capable Spotify tools, scheduled workflows, authentication, shared generated-state writers and recovery paths. Reconcile the 13 goal roadmaps and open PRs/issues. Keep documentation as the only active project priority until the fresh-session acceptance test passes.
+Continue the semantic audit of all 55 maintained implementation modules, 40 compatibility launchers, 44 test modules and 17 workflow overviews. Prioritize write-capable Spotify tools, scheduled workflows, authentication/secret rotation, shared generated-state writers, migration/recovery paths and data provenance. Reconcile all 21 technical guides, all 13 goal workspaces, open PRs/issues and the cross-project loose-ends register. Add targeted regression checks for real operational contracts, then complete a fresh-session resume simulation. Keep documentation as the only active project priority until that acceptance test passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)

@@ -20,7 +20,11 @@ Task identity is recording + provider + data family. Statuses include eligible, 
 ## Acceptance criteria
 Repeated plans with unchanged inputs are deterministic; no ineligible request is issued; provider failure never becomes not_found; no successful value bypasses canonical writer; all network/write budgets are tested.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Inspect PR #65 and current main implementation/CI; reconcile this roadmap against actual code before implementing anything.
 
 ## Related records

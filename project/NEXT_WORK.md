@@ -9,23 +9,36 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
-## 2026-11-06 — 24 module overviews corrected; operational workflow reconciliation required
+## 2026-11-06 — Documentation-only priority; latest evidence reconciled
 
-- Replaced generic or underspecified `FILE OVERVIEW` blocks in 28 maintained implementation modules with concrete input/output/provider/side-effect/safety contracts. See [Maintainability & Documentation ACTIONS](goals/maintainability-documentation/ACTIONS.md).
-- Added an anti-placeholder assertion to `tests/test_script_layout.py` and expanded it to scan every maintained Python module under `scripts/`. The explicit Babel identity/link contract is also tested. Daily curator run #42168360237 passed all 460 tests on `8fb80589968a7868fd50bba5e13af7f787ed5c15`.
-- **Workflow side effect to reconcile:** comment-only edits to `scripts/music/enrich_musicbrainz_recording_ids.py` triggered Enrich Music Metadata run #42166959478 due its push path filter. At the latest inspection, duration enrichment, artist-profile enrichment, and recording-ID resolution had succeeded; track-tag enrichment was still running. It has provider calls and contents:write publication steps; no cancellation action is available through the connected GitHub tools. Inspect terminal state, generated-data changes, and any bot commit before any new write-heavy task. It does not include Spotify playlist writes.
-- **Process rule:** before future edits to any path under `.github/workflows/`, `scripts/music/`, `scripts/spotify/`, or other path-filtered source, inspect matching workflow triggers. Batch documentation edits into one commit. Avoid source-path edits during this documentation phase unless required for per-file documentation, and explicitly monitor resulting runs.
-- **Verification update:** Daily curator run #42167849568 passed all 460 tests on `da3be75844e3ce28eacd46ce8d87960493402503`; the all-scripts anti-placeholder check and explicit Babel identity/link test passed. Public repository security scan #42167849588 also passed. The Enrich Music Metadata run #42166959478 remains in progress at its MusicBrainz duration stage.
-- **Next:** reconcile the terminal status of run #42166959478 and any generated-data commit; then continue the manual semantic audit of remaining modules, technical guides, 13 goal roadmaps, open PRs/issues, and complete tracked-file inventory. Finish with a fresh-session simulation. No feature development or playlist operations.
+**Current main:** `3d2c1ded8dfb44b92e6e0c086673c69350200edc` (metadata publication after documentation commit `8153028`).
 
-## 2026-11-06 — Documentation system naming established; audit remains active
+- **Naming:** the public-facing system name is **SHIT Documentation & Continuity**; internal codename **Babel**. Canonical guide: [docs/BABEL.md](../docs/BABEL.md).
+- **Priority:** documentation remains the only active workstream. Do not resume feature implementation, provider checks/enrichment, or Spotify playlist operations until the Maintainability & Documentation acceptance criteria and fresh-session simulation pass.
+- **Overview work:** 28 known generic/underspecified implementation overviews were corrected. The maintained inventory contains 55 Python implementation modules, 40 compatibility launchers, 44 test modules and 17 workflow YAML files. Automated overview presence and known-placeholder checks cover scripts, compatibility launchers, tests and workflows.
+- **Goal structure:** 13 goal workspaces each contain ROADMAP.md, README.md and ACTIONS.md. This update adds a separate documentation-only next action to each of the 12 non-documentation roadmaps while preserving its next feature action for later.
+- **Complete committed-tree inventory:** verified at `3d2c1ded` with a non-recursive root tree plus nine recursive directory trees; every directory result returned `truncated=false`. Total: **28,241 file/blob entries**, including 27,981 under `assistant_data/`. See [repository file index](../docs/REPOSITORY_FILE_INDEX.md).
+- **Automated verification:** Daily curator run [#42168520574](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42168520574) passed **460 tests** on `8153028e`; full-history security scan [#42168520598](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42168520598) passed on the same commit.
+- **Enrichment side effect reconciled:** comment-only documentation on `scripts/music/enrich_musicbrainz_recording_ids.py` triggered Enrich Music Metadata run [#42166959478](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42166959478). It completed successfully and published generated-data commit `3d2c1ded`. It merged 195 discovery candidates into the canonical Library (13,239 songs); 67 MusicBrainz duration matches were added from 182 lookups; 3,373 artist profiles, 229 tagged track profiles and 905 matched album profiles were present. Duration coverage is 8,254/11,130 unique tracks and 139,758/152,005 scrobbles (91.9%). Final integrity audit: 9 checks, 18 warnings, 0 errors. The warnings are no captured playback intervals and 16 Spotify playlists with inaccessible item contents; preserved snapshots may be stale. No Spotify playlist writes occurred.
+- **Open documentation PR #161:** remains open/draft with 117 changed files. Its branch is divergent from current main (571 commits ahead, 29 behind); do not merge or rebase blindly. It contains valuable source-audited documentation and regression-test candidates; selectively reconcile them against current main and live source instead.
+- **Other open feature proposals:** #158, #159, #160, #120, #121, #65 and #60 remain proposals, not merged mainline behavior.
+
+### Next executable actions
+
+1. Finish the source-to-document semantic audit of all 55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflows and 21 technical guides.
+2. Correct high-risk documentation mismatches first: Daily force/idempotency, Library resolver index writes, Spotify snapshot evidence semantics, Great Migration secret rotation and backup boundaries, and the Reference Library schedule.
+3. Port and adapt the useful documentation regression tests from PR #161; do not import stale assertions or merge its divergent history.
+4. Reconcile all 13 goal roadmaps, workflow permissions/triggers/publication behavior, open PRs/issues and the loose-ends register.
+5. Complete a fresh-session simulation using only repository documentation. No feature development, provider runs or playlist operations before acceptance.
+
+
+## Historical checkpoint — Documentation system naming established (superseded)
 
 **Public-facing name:** SHIT Documentation & Continuity. **Internal codename:** Babel. The parent product/repository remains Spotify Helper & Information Tracker (SHIT). First references must define the descriptive name and codename; subsequent references may use Babel. See [docs/BABEL.md](../docs/BABEL.md).
 
 - Published the naming convention across root README, AGENTS.md, docs index, mandatory documentation rules, this handoff, project roadmap, and Maintainability & Documentation records.
 - The canonical Babel guide defines its mission, responsibilities, naming rules, safety constraints, required structure, and evidence-based completion standard.
-- **Verification state:** file creation and sequential GitHub contents updates succeeded. Naming-link checks and a fresh CI run have not yet been performed. Do not treat this as documentation completion.
-- **Next:** verify every new/changed naming link and inspect the current main head and relevant CI/workflow results; then resume the per-file semantic audit and operational-contract reconciliation below.
+- **Historical status at that checkpoint:** naming-link checks and CI were still pending. This was superseded by the verified Babel identity/link tests and passing 460-test run #42168520574 on commit `8153028e`.
 
 ## 2026-11-05 — Documentation-first priority reaffirmed; live repository audit resumed
 

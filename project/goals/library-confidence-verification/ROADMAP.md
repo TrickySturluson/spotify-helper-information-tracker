@@ -20,7 +20,11 @@ Confidence categories are categorical, not calibrated probabilities. Distinct so
 ## Acceptance criteria
 Every confidence value traces to evidence and match method; ambiguous matches never become high; repeated same-provider evidence is not independent; audit is read-only and deterministic; downstream tools respect field-level confidence.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Run the latest confidence audit and compare it with the documented baseline; then prioritize the missing duration provenance and direct track-level evidence gaps.
 
 ## Related records

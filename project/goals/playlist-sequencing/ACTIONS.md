@@ -2,6 +2,13 @@
 
 Newest entries first. Distinguish design intent, implementation, preview output, authorized writes and independent live read-back.
 
+## 2026-11-06 — Documentation-only pause recorded
+
+- The repository-wide priority remains completion of SHIT Documentation & Continuity (internal codename: Babel).
+- The roadmap now separates the current documentation-only next action from the preserved next feature action. Feature plans and acceptance criteria remain intact for later resumption.
+- No feature implementation or Spotify playlist operation is part of this documentation update.
+
+
 ## 2026-11-05 — Dedicated sequencing workstream documentation created
 
 - **Purpose:** make the ordering engine independently resumable because its transition-evidence rules and user-defined listening-journey controls are distinct from recommendation/fit scoring.

@@ -19,7 +19,11 @@ Health and preview modes are read-only and network-free. Repairs must be determi
 ## Acceptance criteria
 Read-only modes make zero writes/network calls; repairs preserve identity and aliases; every mutation is reversible and audited; post-repair health passes.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Inspect latest weekly health and maintainer artifacts, then confirm current index-only repair implementation and regression tests before proposing any new repair scope.
 
 ## Related records

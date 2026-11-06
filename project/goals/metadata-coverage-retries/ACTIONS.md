@@ -2,6 +2,12 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Documentation-only pause recorded
+
+- The repository-wide priority remains completion of SHIT Documentation & Continuity (internal codename: Babel).
+- The roadmap now separates the current documentation-only next action from the preserved next feature action. Feature plans and acceptance criteria remain intact for later resumption.
+- No feature implementation or Spotify playlist operation is part of this documentation update.
+
 ## 2026-11-01 — Goal workspace initialized
 
 - **Action:** established this goal's dedicated documentation and action-history location.

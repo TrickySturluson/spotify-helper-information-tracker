@@ -13,9 +13,9 @@ Scope: repository architecture/file indexes; per-file overviews; input/output an
 
 Each maintained implementation file should explain purpose and supported goal, inputs/outputs/dependencies/data paths, network/write side effects, safety/rate/mutation boundaries, and how to run/test it. Never insert prose into machine-readable JSON; use adjacent docs or supported metadata conventions.
 
-**Status:** the repository file index and per-file overview system exist. All 13 goal workspaces now have ROADMAP.md, README.md, and ACTIONS.md; semantic accuracy and current-state reconciliation remain under audit. The 28 known generic or underspecified module overviews have been replaced, and automated tests now reject known generic placeholders across every maintained Python module under `scripts/`.
+**Status:** the repository file index and per-file overview system exist. All 13 goal workspaces now have ROADMAP.md, README.md, and ACTIONS.md; semantic accuracy and current-state reconciliation remain under audit. The 28 known generic or underspecified module overviews have been replaced, and automated tests now reject known generic placeholders across maintained Python implementations, compatibility launchers, test modules and GitHub Actions workflow YAML files.
 
-**Resume:** review README/index; identify undocumented or stale modules/workflows; add concise overviews without runtime changes; run relevant tests/index checks; update this workspace and central handoff.
+**Resume:** use the verified committed-tree inventory and source-specific checks to audit the remaining implementation overviews, compatibility launchers, test modules, workflow contracts, technical guides and all goal workspaces. Keep documentation as the sole active workstream until a fresh-session simulation passes.
 
 ## Documentation and resume
 

@@ -23,6 +23,32 @@
 | `tests/` | Python unittest regression suite | `tests/README.md`; each test module has a bottom overview |
 | `sitecustomize.py` and `shit.py` | Root-level import bootstrap and CLI entry point | Bottom file overview and linked operational documentation |
 
+## Complete committed-tree inventory snapshot — 2026-11-06
+
+**Snapshot commit:** `3d2c1ded8dfb44b92e6e0c086673c69350200edc` (after the successful metadata-enrichment publication).
+
+The recursive root-tree response was not used because generated Library records make it too large. The inventory was counted from a non-recursive root tree and one recursive Git Trees request for each of its nine top-level directories. The root and every directory-scoped response returned `truncated=false`. Counts below are Git tree blobs (files), not directory/tree objects.
+
+| Location | File/blob entries |
+|---|---:|
+| Repository root | 9 |
+| `.github/` | 23 |
+| `assistant_data/` | 27,981 |
+| `compat/` | 42 |
+| `data/` | 4 |
+| `docs/` | 23 |
+| `playback_data/` | 2 |
+| `project/` | 50 |
+| `scripts/` | 61 |
+| `tests/` | 46 |
+| **Total** | **28,241** |
+
+The `assistant_data/` subtree contained 55,770 tree entries: 27,981 file blobs and 27,789 directory/tree objects. This is why the recursive root request was truncated; the directory-scoped inventory completed without truncation.
+
+The maintained-code subtrees contain 55 Python implementation modules under `scripts/` (60 Python files including five package initializers), 40 compatibility launchers (41 Python files including the package initializer), 44 test modules (45 Python files including the package initializer), and 17 workflow YAML files. The `docs/` subtree contains 21 technical guides plus `README.md` and `BABEL.md`; `project/` contains 13 goal workspaces.
+
+This snapshot satisfies the committed-tree inventory requirement for the stated commit. Refresh it after structural or generated-data changes; do not treat the counts as timeless. In a complete checkout, `git ls-files` remains the simplest repeatable current inventory.
+
 ## Automation and repository state
 
 | Path | Contents | Ownership / safety |

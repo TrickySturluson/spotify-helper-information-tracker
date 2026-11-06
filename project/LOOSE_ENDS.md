@@ -2,36 +2,30 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-06 (documentation audit checkpoint; domain-specific loose ends below still require individual revalidation)  
-**Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
-
-## 2026-11-06 documentation progress
-
-- Public documentation-system name: **SHIT Documentation & Continuity**; internal codename: **Babel**. Canonical guide: `docs/BABEL.md`.
-- 13 goal workspaces remain present with ROADMAP/README/ACTIONS structure; current audit is focused on semantic accuracy and operational contracts rather than folder creation.
-- 28 generic or underspecified module overviews were replaced with concrete operating contracts. The anti-placeholder regression test scans maintained Python implementations, compatibility launchers, test modules, and workflow YAML files; full suite run #42168360237 passed 460 tests.
-- Enrich Music Metadata run #42166959478 was triggered unintentionally by a source-comment-only documentation commit matching its push path filter. At last inspection, its duration, artist-profile, and recording-ID stages had succeeded and track-tag enrichment was active. It has provider calls and contents:write publication, but no Spotify playlist-write steps. Reconcile its final result and any generated-data commit before declaring the repository state stable.
-- Security scan #42167849588 is complete and successful; security scan #42168360298 for the latest analytics-overview commit was still in progress. Enrich Music Metadata run #42166959478 remains in progress; update this register when it reaches terminal state and any generated-data publication is reconciled.
+**Last reviewed:** 2026-11-06 (main commit `3d2c1ded`; workflow results, inventory, documentation PR and current audit priority rechecked)  
+**Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
-The user has explicitly directed that documentation be the sole active project priority until the repository is as complete and accurate as reasonably achievable. Do not treat the domain-specific items below as permission to resume feature work during this phase.
+The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
 
-- Current main inspected at `deb653a2528ee7d9969296048582fb9764e7d908` for this checkpoint. The documentation naming and module-overview work is now published; re-check main after the still-running metadata workflow before relying on this SHA.
-- 13 goal workspaces exist and each has ROADMAP.md, README.md and ACTIONS.md. 17 GitHub Actions workflows are listed in `docs/WORKFLOWS.md`.
-- The documentation contract, file-layout, and full 460-test suite passed in Daily curator run #42167694048 on `deb653a2528ee7d9969296048582fb9764e7d908`. This includes the explicit Babel identity/link contract and the anti-placeholder check across all maintained Python modules under `scripts/`. Public repository security scan #42167849588 passed on the `da3be758` documentation checkpoint. These results establish automated checks, not semantic accuracy of every document.
-- The recursive Git tree API response was truncated by generated per-record Library data. A complete local `git ls-files` inventory remains required for exhaustive path reconciliation.
-- Maintained code directories currently enumerate 7 analytics modules, 1 Last.fm module, 24 music modules and 19 Spotify modules. The bottom FILE OVERVIEW presence test also covers compatibility launchers, tests and workflow YAMLs. Manual accuracy review remains open.
-- Open Daily PRs observed during the audit: #158, #159 and #160. Their proposed changes are not merged mainline behavior; review their diffs and current status before updating implementation documentation.
-- **Remaining documentation work:** complete tracked-file inventory; semantically audit every maintained FILE OVERVIEW; reconcile each technical guide, workflow permission/secret/side-effect description, data schema and goal roadmap against source/tests; update stale domain-specific loose ends with current evidence; add targeted checks for real gaps; complete a fresh-session resume simulation.
-- **Status:** documentation architecture and structural guardrails are established; full semantic and operational documentation audit is still in progress. Do not mark this register or the project documentation complete yet.
+- **Current main:** `3d2c1ded8dfb44b92e6e0c086673c69350200edc`. Canonical documentation identity: [docs/BABEL.md](../docs/BABEL.md).
+- **Structure:** all 13 goal workspaces have ROADMAP.md, README.md and ACTIONS.md. The 12 non-documentation roadmaps now separate the current documentation-only action from their preserved next feature action.
+- **Per-file overview baseline:** 28 known generic/underspecified implementation overviews were corrected. Current maintained inventory: 55 Python implementation modules, 40 compatibility launchers, 44 test modules, 17 workflow YAMLs and 21 technical guides. Presence and known-placeholder regression checks cover scripts, compat, tests and workflows; semantic accuracy is still under audit.
+- **Complete inventory:** verified at commit `3d2c1ded` using a non-recursive root tree and nine recursive directory-scoped tree queries. Every directory result returned `truncated=false`. Total: **28,241 file/blob entries**; `assistant_data/` contains 27,981. The inventory acceptance item is satisfied for that snapshot; refresh after structural changes.
+- **CI/security:** Daily curator run #42168520574 passed all 460 tests on `8153028e`; full-history Gitleaks scan #42168520598 passed on the same commit. These results verify automated checks, not semantic correctness of every guide.
+- **Enrichment workflow incident — RESOLVED:** Enrich Music Metadata run #42166959478 completed successfully and published commit `3d2c1ded`. It merged 195 discovery candidates into the canonical Library, whose audit reported 13,239 songs. Duration coverage is 8,254/11,130 tracks and 139,758/152,005 scrobbles (91.9%). MusicBrainz added 67 duration matches from 182 lookups; artist profiles: 3,373 matched; track profiles with sourced tags: 229; matched album profiles: 905. Final integrity audit: 9 checks, 18 warnings, 0 errors. The warnings are a lack of captured playback intervals and 16 Spotify playlists whose item contents were inaccessible; preserved snapshots may be stale. No Spotify playlist was modified.
+- **Open documentation PR #161:** open/draft, 117 changed files, 2,330 additions and 493 deletions. Its branch is divergent from current main (571 commits ahead, 29 behind); it is not safe to merge blindly. Use it as an audit/reference source and selectively port reviewed documentation/tests. Its checks passed on its own branch, not on current main.
+- **Other open feature PRs:** #158, #159, #160, #120, #121, #65 and #60 remain proposals. Their behavior is not merged mainline behavior.
 
-## Documentation audit — workflow side-effect incident
+## Remaining documentation work
 
-- Nine workflow YAML bottom overviews were rewritten with specific triggers, credentials, data writes and safety boundaries. This was documentation-only at the file-content level, but the YAML paths themselves matched configured push filters.
-- Reference Library workflow #42146148971 completed and committed generated state as `3e989e33282efab6cc1416e35970e7c59af5f056` (249 files; 184 Library records, 63 Spotify snapshot/history files, 2 removal-state files). This was a read-only Spotify snapshot refresh and repository commit, not a Spotify playlist write.
-- Update Last.fm History #42146153098, Enrich Music Metadata #42146121471 and Acoustic Metadata Enrichment #42146097964 remained active at last inspection. Record their final outcomes and any generated commits here before considering the incident closed.
-- The connected GitHub interface did not expose workflow cancellation. Future workflow-YAML edits must first inspect push-path filters; comment-only edits can start provider and data-writing jobs.
+1. Complete source-to-document semantic review across all 55 implementation modules, 40 compatibility launchers, 44 tests, 17 workflows and 21 technical guides.
+2. Correct high-risk mismatches: Daily force/idempotency, Library resolver/index rebuild writes, Spotify snapshot-versus-listening evidence, Great Migration token rotation and backup boundaries, and Reference Library schedule.
+3. Port and adapt PR #161's useful regression checks for workflow budgets/allowlists, local Markdown links, paused roadmaps, and high-risk side-effect contracts. Do not import stale branch assertions without checking current source.
+4. Reconcile all goal roadmaps, data schemas/provenance, workflow permissions/trigger filters/publication behavior, open PRs/issues and domain-specific loose ends.
+5. Complete the fresh-session resume simulation. Until it passes, do not mark Babel complete or resume feature/provider/playlist work.
+
 
 ## Critical path
 

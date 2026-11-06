@@ -2,6 +2,17 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Inventory verified; enrichment workflow reconciled; 12 goal pauses recorded
+
+- **Committed-tree inventory:** main commit `3d2c1ded8dfb44b92e6e0c086673c69350200edc` contains 28,241 file/blob entries. A non-recursive root tree plus nine recursive directory-scoped Git Trees requests were used; every subtree returned `truncated=false`. `assistant_data/` contains 27,981 files. Exact breakdown is in `docs/REPOSITORY_FILE_INDEX.md`.
+- **Maintained-code inventory:** 55 Python implementation modules, 40 compatibility launchers, 44 test modules, 17 workflow YAML files, 21 technical guides and 13 goal workspaces. 28 known generic/underspecified implementation overviews have been corrected.
+- **Goal continuity:** all 12 non-documentation roadmaps now separate the active documentation-only next action from the preserved next feature action; each corresponding ACTIONS file records the pause.
+- **CI/security:** Daily curator run #42168520574 passed 460 tests on `8153028e`; full-history security scan #42168520598 passed on the same commit.
+- **Enrichment reconciliation:** run #42166959478 completed successfully and published `3d2c1ded`. It merged 195 discovery candidates, audited 13,239 canonical songs, reached 8,254/11,130 tracks with sourced durations and 139,758/152,005 duration-covered scrobbles (91.9%). Artist profiles: 3,373 matched; track profiles with sourced tags: 229; matched album profiles: 905. Final audit: 9 checks, 18 warnings, 0 errors. Warnings were no captured playback intervals and 16 inaccessible Spotify playlist item snapshots. No Spotify playlist writes occurred.
+- **PR #161:** open/draft, 117 files changed; branch diverges from current main by 571 commits ahead and 29 behind. Do not merge blindly. Review and port individual tests/docs only after source verification.
+- **Next:** audit high-risk Daily force/idempotency, Library resolver write boundaries, Spotify snapshot evidence semantics, Great Migration secret rotation/backup behavior, and workflow schedule/budget alignment. Then extend documentation contract tests and perform fresh-session acceptance.
+
+
 ## 2026-11-06 — Four analytics overviews corrected; broad placeholder guard passed
 
 - **Additional source documentation:** replaced vague fallback overviews in `scripts/analytics/build_advanced_analytics.py`, `build_assistant_data.py`, `build_listening_time_summary.py`, and `build_music_analytics.py` with concrete inputs, outputs, identity/time semantics, baseline/verified-duration distinctions, and read/write behavior.

@@ -55,7 +55,11 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 - Verify current main code and latest workflow runs before changing anything. The guide documents expected behavior but is not proof of current live Spotify state.
 - Reconcile the most recent live playlist, feedback, blacklist/whitelist, description and staging state before another live write.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
 
 ## Related records

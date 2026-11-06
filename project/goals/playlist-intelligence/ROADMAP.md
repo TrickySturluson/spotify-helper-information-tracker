@@ -27,7 +27,11 @@ Create enjoyable, coherent playlist discovery, sorting, feedback learning, and s
 ## Acceptance criteria
 No blocked/removed track reappears; no duplicate URIs; generated output is staged and validated before writes; live playlist is read back and matches; all writes are authorized and audited; sequencing never overstates weak evidence.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Audit the latest Daily code/workflows and current live playlist state, then work the P0 safety/publication items in [TRICKY_DAILY_TODO.md](../../../docs/TRICKY_DAILY_TODO.md). Separately keep fit scoring preview-only until evidence gates pass.
 
 ## Related records

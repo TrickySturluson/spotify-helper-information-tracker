@@ -28,7 +28,11 @@ Run #18 reported ~91.1% duration coverage, 1,778 track profiles, 3,998 artist pr
 ## Acceptance criteria
 No blind repeated lookups; no identity guessing; every promoted field has source and timestamp; failed lookups preserve old evidence; unknown coverage remains explicit; post-write health passes.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Run a fresh read-only coverage/provider-checkpoint audit and select a small, high-value batch based on actual gaps and provider eligibility.
 
 ## Related records

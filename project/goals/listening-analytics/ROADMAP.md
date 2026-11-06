@@ -24,7 +24,11 @@ Provide accurate historical listening analytics and prospective playback evidenc
 ## Acceptance criteria
 Every metric names its source and period; tracker coverage is visible; no event type is silently converted into a scrobble; totals reconcile to canonical data.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Inspect current archive manifest, analytics outputs, tracker workflow/runtime and coverage report; publish fresh separately sourced baselines.
 
 ## Related records

@@ -1,3 +1,9 @@
+## 2026-11-06 — Documentation-only pause recorded
+
+- The repository-wide priority remains completion of SHIT Documentation & Continuity (internal codename: Babel).
+- The roadmap now separates the current documentation-only next action from the preserved next feature action. Feature plans and acceptance criteria remain intact for later resumption.
+- No feature implementation or Spotify playlist operation is part of this documentation update.
+
 ## 2026-11-02 — Create real-data identity review set and identify duplicate entity candidates
 
 - Added `IDENTITY_REVIEW_SET.md` (commit `2b8b840`) and linked it from the goal README (commit `456fac0`).

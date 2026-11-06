@@ -49,7 +49,11 @@ Arrange tracks into coherent, enjoyable listening journeys. Smooth transitions a
 - Current acoustic and semantic coverage is incomplete; unknown must remain visible rather than being filled with invented values.
 - A good preview or passing test does not authorize a live playlist write.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Audit the current sequencer implementation and tests against this roadmap, then compare a fresh read-only preview with the latest live playlist and evidence coverage. Record specific transition failures before changing weights or presets.
 
 ## Related records

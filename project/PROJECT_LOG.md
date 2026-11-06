@@ -1,3 +1,14 @@
+## 2026-11-06 — Documentation continuity, inventory and enrichment reconciliation
+
+- **Babel:** reaffirmed SHIT Documentation & Continuity as the public name and Babel as its internal codename. The canonical guide and first-contact link are in `docs/BABEL.md`.
+- **Goal roadmaps:** added an explicit documentation-only next action to all 12 non-documentation roadmaps while preserving each next feature action; corresponding ACTIONS logs record the pause.
+- **Inventory:** verified 28,241 committed file/blob entries at main commit `3d2c1ded` using a non-recursive root Git Tree and nine recursive directory trees; every subtree returned `truncated=false`. `assistant_data/` contains 27,981 files. See `docs/REPOSITORY_FILE_INDEX.md`.
+- **Overview guardrails:** 28 known generic/underspecified implementation overviews were corrected. The maintained inventory includes 55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflow YAMLs and 21 technical guides.
+- **CI/security:** Daily curator run #42168520574 passed 460 tests on `8153028e`; full-history security scan #42168520598 passed on the same commit.
+- **Workflow side effect reconciled:** Enrich Music Metadata run #42166959478 completed successfully and published generated-data commit `3d2c1ded`. It merged 195 discovery candidates into the canonical Library (13,239 songs), added 67 MusicBrainz duration matches from 182 lookups, and rebuilt metadata summaries/analytics. Duration coverage: 8,254/11,130 tracks and 139,758/152,005 scrobbles (91.9%). Artist profiles: 3,373 matched; track profiles with sourced tags: 229; matched album profiles: 905. Final audit: 9 checks, 18 warnings, 0 errors. Warnings: no captured playback intervals and 16 Spotify playlist snapshots with inaccessible item contents. No Spotify playlist writes occurred.
+- **PR #161:** remains open/draft with 117 changed files. Its branch diverges from current main (571 ahead, 29 behind); it is an audit/reference source, not a safe merge candidate. Selectively port high-value tests and documentation after checking them against current source.
+- **Status:** documentation remains the only active workstream. Semantic audit and fresh-session acceptance remain open.
+
 ## 2026-11-01 — Goal workspaces merged and project-wide loose ends audited
 
 - **Goal:** make each project objective independently recallable and ensure unfinished requirements from repository history and prior SHIT conversations are not lost.

@@ -20,7 +20,11 @@ Recommendation exposure is not a play. Candidate selection is not preference. Di
 ## Acceptance criteria
 No duplicate canonical recordings; source and exposure are recoverable; no candidate is counted as listening; unknown is not treated as rejection; response signals remain distinguishable and auditable.
 
-## Next action
+## Next action (documentation-only priority)
+
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
 Inspect PR #60 and current main/tests, then document the exact implemented boundary and remaining schema/ingestion work.
 
 ## Related records
