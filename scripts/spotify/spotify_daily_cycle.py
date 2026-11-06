@@ -456,10 +456,10 @@ if __name__ == "__main__":
 #             the artist cap from two only as needed to reach 60 unique URIs; audit fallback.
 # Schedule: UTC cron 04:00/04:15 and 05:00/05:15; ZoneInfo selects Eastern midnight.
 # Safety: Exact playlist identity/owner, managed policy, explicit unlock, URI/deduplication,
-#         pre-change backup and 60-track read-back. Known P0 discrepancy: current --force
-#         also bypasses that completion guard; intended behavior is to bypass the clock gate only.
+#         pre-change backup and 60-track read-back. Same-Eastern-date idempotency guard
+#         remains active even when --force bypasses the clock-window gate.
 # Feedback: Rotation removals are neutral curator_rotation events, never negative preference.
-# Dispatch: --force bypasses clock and same-date guard; --description-only and --verify-only
+# Dispatch: --force bypasses only the clock window; --description-only and --verify-only
 #           are separate actions.
 # Recovery: Workflow uploads the pre-change backup and links it in manager state.
 # -----------------------------------------------------------------------------
