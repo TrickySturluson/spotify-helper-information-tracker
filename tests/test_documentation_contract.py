@@ -241,6 +241,7 @@ class DocumentationContractTests(unittest.TestCase):
         todo = (ROOT / "docs" / "TRICKY_DAILY_TODO.md").read_text(encoding="utf-8")
         roadmap = (ROOT / "project" / "goals" / "tricky-daily" / "ROADMAP.md").read_text(encoding="utf-8")
         schedule_test = (ROOT / "tests" / "test_spotify_daily_cycle_schedule.py").read_text(encoding="utf-8")
+        cycle_source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
 
         self.assertIn("same-Eastern-date completion guard", workflow_catalogue)
         self.assertIn("Current `--force` bypasses both the clock gate and same-Eastern-date completion guard", workflow_catalogue)
