@@ -6,7 +6,7 @@
 
 This document describes the separate repository-hosted OpenAI Codex worker, implemented in .github/workflows/babel-ai-continuation.yml with OpenAI's official openai/codex-action. It is not the current scheduled ChatGPT Buddy path, which uses the connected GitHub app and is documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md). The Codex worker is an optional API-based experiment and is currently blocked by API quota before validation or publication.
 
-**Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran. After pinning the Codex job to Ubuntu 24.04, retry #42183337573 reached Codex but the API returned a quota-exceeded error; **Activation is pending** until API quota is available and an end-to-end run succeeds. Do not describe the worker as operational yet.
+**Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran. After pinning the Codex job to Ubuntu 24.04, retry #42183337573 reached Codex but the API returned a quota-exceeded error. The Codex worker is not operationally verified and is not the current ChatGPT Buddy path. Under the user's current no-API-spend decision, do not trigger it or ask the user to add credits; revisit only after explicit reauthorization.
 
 ## Active-session context bridge
 
@@ -34,7 +34,9 @@ The workflow rejects deletions and all other changed paths. In particular, the w
 
 The Codex job has no GitHub write token. Candidate tests run in a separate read-only job with neither the OpenAI API key nor a write-capable GitHub token, so even a malicious test change cannot steal publishing credentials. The publisher is the only job that can push; it only reapplies the validated patch, rechecks changed paths, and publishes without running candidate code. The agent is instructed to keep the state active unless every Maintainability & Documentation acceptance criterion is evidenced, including a successful fresh-session simulation.
 
-## One-time activation
+## Historical activation procedure — only after explicit user reauthorization
+
+**Current decision:** do not perform these steps or retry the workflow while the user has chosen a no-API-spend path. The scheduled ChatGPT Buddy task documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md) is the current continuation route and does not use this Codex workflow. The following steps are retained only for a future case where the user explicitly asks to reactivate the separate API-based experiment.
 
 1. Create an API key in the OpenAI API platform: https://platform.openai.com/api-keys
 2. Confirm the repository Actions secret `OPENAI_API_KEY` exists. The user reports that it has been added; never read, print, or share its value.
@@ -50,13 +52,13 @@ The first ChatGPT-triggered push run is [#42181953313](https://github.com/Tricky
 
 The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), passed preflight and successfully completed the `drop-sudo` socket-restriction step on Ubuntu 24.04. Codex then returned **`Quota exceeded. Check your plan and billing details.`** Validation and publishing were skipped; no patch, continuation branch, or PR was produced. This proves the runner workaround, but not the agent task or publishing pipeline.
 
-**Next action:** the repository owner must check the OpenAI API platform's billing/usage limits and ensure the API project or organization has available quota/credits. ChatGPT subscription access does not provide API credits. Do not expose or paste the API key. Do not retry until quota is available; then trigger a fresh dispatch and verify Codex output, independent validation/full tests, and isolated PR publication. Do not switch to `unsafe` to bypass sandbox failures.
+**Current action:** none is authorized. Do not ask the user to add API credits or trigger another run. Only revisit the Codex experiment if the user explicitly reauthorizes it; then verify available quota, sandbox isolation, independent validation, full tests, and isolated PR publication without weakening `drop-sudo` or switching to `unsafe`.
 
 ## Recovery and operations
 
-- **Latest work:** inspect the open pull request with head branch babel/agent-progress.
+- **Latest work:** no Codex proposal PR currently exists. The active Buddy proposal is separate: draft PR #163 on babel/chatgpt-buddy.
 - **Latest execution:** inspect Actions → Babel AI continuation and the latest run summary/Codex final-message output.
-- **Resume:** the next scheduled run checks out the latest dedicated branch. A manual dispatch can also restart it.
+- **Resume:** do not manually dispatch this Codex workflow under the current no-API-spend decision. If the user later reauthorizes it, re-check current workflow state and branches before any new dispatch.
 - **Interrupted run:** no progress is assumed unless it was committed to the branch. The next run reads the branch and the repository checkpoints again.
 - **No changes:** the workflow reports a no-op; it does not create empty commits.
 - **Out-of-scope patch or failed tests:** publisher fails without pushing. Inspect the run log and Codex final-message output, then fix the prompt or documentation manually before retrying.
@@ -74,4 +76,4 @@ The branch is intentionally separate from main; the worker's commits are proposa
 
 ## Verification status
 
-Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed full unittest discovery (**478 tests**) on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) also passed on that commit. These verify repository tests/security scan, not Buddy. The first Buddy run failed on Ubuntu 26.04; the second reached Codex on Ubuntu 24.04 but was blocked by API quota. Do not mark activation complete until a post-quota run proves Codex execution, independent validation, full tests, and the resulting isolated branch/PR.
+Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed full unittest discovery (**478 tests**) on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) also passed on that commit. These verify repository tests/security scan, not Buddy. The first Codex run failed on Ubuntu 26.04; the second reached Codex on Ubuntu 24.04 but was blocked by API quota. Do not mark the Codex experiment operational without a future explicitly authorized end-to-end run. The current scheduled ChatGPT Buddy path is separate.
