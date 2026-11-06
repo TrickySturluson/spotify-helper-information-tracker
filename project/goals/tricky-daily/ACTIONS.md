@@ -2,6 +2,15 @@
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
 
+## 2026-11-06 — Latest saved Daily snapshot is below the 60-track target
+
+- **Evidence:** `assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json`, captured `2026-11-06T01:48:00.233040+00:00`, reports 58 items, 58 fetched, 58 unique track URIs, accessible, and no item error.
+- **Requirement:** a successful Tricky Daily cycle should contain exactly 60 unique valid tracks.
+- **Interpretation:** the saved snapshot is below target, but it does not establish why the playlist had 58 items or whether the playlist changed afterward. Do not label this a cycle failure without reconciling cycle state, audit and a fresh read-only preflight.
+- **Safety:** documentation/evidence review only. No live Spotify request, playlist mutation, candidate push or repair was performed.
+- **Next action after documentation completion:** inspect fresh live preflight, manager state/audit and cycle state; reconcile the discrepancy before any authorized write.
+
+
 ## 2026-11-06 — Forced Daily run bypasses the same-date idempotency guard
 
 - **Finding:** source inspection of `scripts/spotify/spotify_daily_cycle.py` found that `--force` is passed to both `should_run_cycle()` and `cycle_already_completed()`. The latter returns `False` immediately for `force=True`, so a forced invocation bypasses the same-Eastern-date completion guard as well as the clock-window gate.
