@@ -457,12 +457,14 @@ if __name__ == "__main__":
 # Artist diversity: First seeks one track per primary artist; if the candidate pool
 #                   remains short after discovery retries, controlled fallback allows
 #                   up to two tracks per artist. Fallback use is explicitly audited.
-# Schedule: GitHub Actions invokes this at 04:00 and 05:00 UTC; a ZoneInfo gate
-#           ensures only the actual midnight America/New_York run proceeds.
+# Schedule: GitHub Actions delivers at 04:00/04:15 and 05:00/05:15 UTC; a ZoneInfo
+#           gate selects midnight America/New_York and the 15-minute recovery delivery.
 # Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
 #         unlocked state, 60-track minimum, URI validation, duplicate prevention,
 #         per-day idempotency and a pre-change recovery snapshot.
 # Feedback: Rotation removals are neutral curator_rotation events in Daily's own
 #           feedback store, never playlist-fit rejection or a negative preference.
+# Dispatch: Manual runs remain midnight-gated unless --force is explicit; --description-only
+#           and --verify-only are separate safe actions.
 # Recovery: The pre-change backup is uploaded by the workflow and linked in manager state.
 # -----------------------------------------------------------------------------
