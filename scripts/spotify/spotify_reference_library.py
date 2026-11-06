@@ -754,8 +754,9 @@ if __name__ == "__main__":
 #          and removal-baseline/feedback inputs.
 # Semantics: Snapshot time is explicit; an incomplete or inaccessible playlist is not an empty
 #            playlist. Requested and relinked Spotify IDs remain distinct; playability is market-scoped.
-# Safety: Snapshot ingestion does not mutate Spotify playlists. Bounded stale-only GET refreshes;
-#         offline backfill uses backup-protected song-record writes.
+# Safety: Snapshot ingestion does not mutate Spotify playlists. Playability refresh is plan-only
+#         by default and requires --execute --yes for bounded stale-only Spotify GETs; offline
+#         backfill uses backup-protected song-record writes.
 # Run: python compat/spotify_reference_library.py sync|health|... (repository root).
 # Related: docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md;
 #          scripts/spotify/track_playlist_removals.py.
