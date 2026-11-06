@@ -241,10 +241,19 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Enrich SHIT track profiles from historical AcousticBrainz submissions using verified MusicBrainz recording IDs. Aggregates submissions, preserves disagreement, caches misses, and checkpoints each batch.
-# Location: Maintained implementation in scripts/music/enrich_acousticbrainz.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_acousticbrainz.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Enrich existing recordings with AcousticBrainz low-level acoustic
+#          descriptors using already-known MusicBrainz recording IDs.
+# Inputs: assistant_data/music/artists/shard-*.json; optional recent-top-track
+#         priority file; persisted acousticbrainz_lookup_state.json checkpoints.
+# Outputs: Merges sourced acoustic submissions into audio_profiles.json and
+#          writes lookup state after bounded request batches.
+# Provider policy: Queries AcousticBrainz in batches of 25 MBIDs; per-run cap
+#                  uses ACOUSTICBRAINZ_MAX_BATCHES (default 1000) and delay
+#                  ACOUSTICBRAINZ_SLEEP_SECONDS (default 1.1). Missing-result
+#                  retry cooldown is at least 30 days (default 180).
+# Safety: Requires an existing recording MBID; does not download audio or write
+#         Spotify playlists. Checkpoints allow interrupted runs to resume.
+# Run: python compat/enrich_acousticbrainz.py (from the repository root).
+# Related: scripts/music/enrich_musicbrainz_recording_ids.py;
+#          docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------
