@@ -38,6 +38,7 @@ DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
 EASTERN = ZoneInfo("America/New_York")
 DAILY_TARGET_SIZE = 60
 MINIMUM_RECOMMENDATIONS = DAILY_TARGET_SIZE
+DAILY_STAGE_DIR = Path("assistant_data/spotify/staging/tricky_daily")
 
 # Short, user-approved-in-spirit rotating lines for the daily discovery queue.
 # This is deliberately separate from the metadata description generator: Daily
@@ -136,7 +137,7 @@ def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, b
     if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
         raise manager.ManagerError("Cannot stage Daily payload: one or more URIs are invalid.")
     run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{int(time.time())}"
-    stage_dir = Path("assistant_data/spotify/staging/tricky_daily")
+    stage_dir = DAILY_STAGE_DIR
     stage_path = stage_dir / f"{cycle_date}-{run_id}.json"
     if stage_path.exists():
         raise manager.ManagerError(f"Daily stage already exists for this run: {stage_path}")
