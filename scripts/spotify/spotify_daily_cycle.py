@@ -103,7 +103,7 @@ def update_description_and_verify(sp, description):
     last_seen = None
     for attempt in range(5):
         verified = sp.call("GET", f"/playlists/{DAILY_ID}")
-        last_seen = (verified or {}).get("description") or ""
+        last_seen = html.unescape((verified or {}).get("description") or "")
         if last_seen == description:
             return
         if attempt < 4:
