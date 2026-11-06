@@ -50,7 +50,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - `docs/WORKFLOWS.md` summarizes all 17 workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - Nine workflow YAML bottom overviews were rewritten with their actual triggers, credentials, repository writes, playlist-write boundaries and related implementation.
 - Workflow YAML comment-only changes can trigger push-path workflows. This operational hazard is now documented; see the incident entry in ACTIONS.md and docs/WORKFLOWS.md.
-- Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947; the complete-history security scan #42150601862 is still in progress.
+- Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on prior PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947. The PR has since advanced with documentation-only reconciliation updates to head `1bbfed67ae63c77628f6d8b775b7d12c50060d11`; latest tests #42150802119 and security scan #42150801849 are in progress.
 
 ## 2026-11-06 documentation audit progress
 
