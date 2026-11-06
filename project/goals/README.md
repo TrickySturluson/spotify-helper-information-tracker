@@ -1,4 +1,5 @@
 # Project Goal Workspaces
+> **Required for every goal:** maintain `ROADMAP.md`, `README.md`, and `ACTIONS.md`. Read the roadmap before work and update all relevant documentation in the same session. See [mandatory documentation rules](../DOCUMENTATION_RULES.md).
 
 Each major SHIT objective has its own folder containing its scope, design decisions, current state, actions taken, verification evidence, and next steps.
 
