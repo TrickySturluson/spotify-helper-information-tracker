@@ -19,13 +19,16 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
 COMPAT = ROOT / "compat"
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-if str(COMPAT) not in sys.path:
-    sys.path.insert(0, str(COMPAT))
 SOURCE_DIR = ROOT / "scripts" / "spotify"
-if str(SOURCE_DIR) not in sys.path:
-    sys.path.insert(0, str(SOURCE_DIR))
+# Maintained modules must win over legacy compatibility launchers regardless
+# of whether this file is invoked directly or through compat/spotify_daily_cycle.py.
+for entry in (ROOT, COMPAT):
+    if str(entry) in sys.path:
+        sys.path.remove(str(entry))
+    sys.path.append(str(entry))
+if str(SOURCE_DIR) in sys.path:
+    sys.path.remove(str(SOURCE_DIR))
+sys.path.insert(0, str(SOURCE_DIR))
 
 import spotify_playlist_manager as manager
 import spotify_discovery as discovery
