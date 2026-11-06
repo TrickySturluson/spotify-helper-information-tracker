@@ -6,6 +6,7 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 
 ## Start here
 
+1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
 1. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
 2. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
 3. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.

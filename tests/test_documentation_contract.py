@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTROL_DOCS = (
     "AGENTS.md",
     "docs/README.md",
+    "docs/BABEL.md",
+    "docs/BABEL.md",
     "project/ROADMAP.md",
     "project/goals/README.md",
 )
@@ -19,6 +21,7 @@ class DocumentationContractTests(unittest.TestCase):
         required = (
             "AGENTS.md",
             "docs/README.md",
+            "docs/BABEL.md",
             "docs/REPOSITORY_FILE_INDEX.md",
             "project/DOCUMENTATION_RULES.md",
             "project/ROADMAP.md",
@@ -62,6 +65,24 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("NEXT_WORK.md", source)
         self.assertIn("LOOSE_ENDS.md", source)
         self.assertIn("same session", source.lower())
+
+    def test_documentation_system_identity_is_explicit(self):
+        guide = (ROOT / "docs" / "BABEL.md").read_text(encoding="utf-8")
+        self.assertIn("SHIT Documentation & Continuity", guide)
+        self.assertIn("Internal codename: Babel", guide)
+        for relative in (
+            "README.md",
+            "AGENTS.md",
+            "docs/README.md",
+            "project/DOCUMENTATION_RULES.md",
+            "project/NEXT_WORK.md",
+            "project/ROADMAP.md",
+            "project/goals/maintainability-documentation/README.md",
+        ):
+            source = (ROOT / relative).read_text(encoding="utf-8")
+            with self.subTest(document=relative):
+                self.assertIn("SHIT Documentation & Continuity", source)
+                self.assertIn("Babel", source)
 
     def test_documentation_index_covers_major_repository_domains(self):
         source = (ROOT / "docs" / "README.md").read_text(encoding="utf-8")
