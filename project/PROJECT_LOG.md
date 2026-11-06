@@ -1,4 +1,11 @@
 ## 2026-11-06 — Documentation audit uncovered workflow publication defects
+## 2026-11-06 — Documentation PR intermediate-head CI and security passed
+
+- Daily curator CI #42158020546 and full-history Gitleaks scan #42158020518 both passed on PR #161 commit `041bf54da9b25d8269fd193c8f8e1bd1c497d33a`.
+- CI passed compilation, generated-data audit, read-only Library health/confidence/freshness, documentation checks and full unittest discovery. The security scan completed the all-history Gitleaks step successfully.
+- Later documentation-only commits have moved PR #161 beyond this verified head; exact-head CI/security must be rechecked. No provider requests, data publication or playlist writes occurred.
+
+
 
 - **Context:** while documenting workflow YAMLs, comment-only commits to four push-path-triggered workflows started their configured automation. This was unintended; the workflow guide now explicitly warns that YAML comments still match path filters.
 - **Verified repository effect:** Reference Library run #42146148971 refreshed snapshots/removal state and committed 249 files (184 Library records, 63 Spotify snapshot/history files, 2 removal-state files). It made no Spotify playlist writes. It did record two manual Tricky Daily removals from the 2026-11-05 pre-cycle snapshot in `playlist_removed_tracks.json`: Joseph Dubay — `Loser Boy` and Mal Blum — `Fine!`.
