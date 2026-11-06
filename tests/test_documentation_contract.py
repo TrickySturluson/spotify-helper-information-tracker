@@ -295,6 +295,17 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Resolver/index diagnostics: `audit` and `verify-catalogue`", migration_guide)
         self.assertIn("Use `health` when zero repository writes are required", migration_guide)
 
+    def test_track_profile_builder_preserves_playlist_only_evidence_semantics(self):
+        source = (ROOT / "scripts" / "music" / "build_track_profiles.py").read_text(encoding="utf-8")
+        enrichment_guide = (ROOT / "docs" / "RECENT_TRACK_ENRICHMENT.md").read_text(encoding="utf-8")
+        workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        library_readme = (ROOT / "assistant_data" / "music" / "library" / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("canonical MusicLibrary song/artist/album evidence", source)
+        self.assertIn("playlist membership is source/context evidence, not a play", enrichment_guide)
+        self.assertIn("playlist-only candidates are not scrobbles", workflow_catalogue)
+        self.assertIn("even when they have zero scrobbles", library_readme)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
