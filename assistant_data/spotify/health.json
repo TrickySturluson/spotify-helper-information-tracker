@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T17:41:02.827862+00:00",
+  "generated_at": "2026-11-06T18:14:16.179712+00:00",
   "playlists": {
     "total": 58,
     "accessible": 42,
@@ -13,7 +13,7 @@
     "unique_artists": 1336
   },
   "daily_feedback": {
-    "tracks_observed": 30,
+    "tracks_observed": 60,
     "playback_tracker_status": "unknown",
     "playback_tracker_detail": {
       "status": "unknown",
@@ -25,7 +25,7 @@
     },
     "lastfm_status": "available",
     "liked_songs_status": "observed",
-    "updated_at": "2026-11-05T19:50:06.010183+00:00",
+    "updated_at": "2026-11-06T18:14:16.154032+00:00",
     "segments_file_in_sync_environment": false
   },
   "overall_status": "warning"
