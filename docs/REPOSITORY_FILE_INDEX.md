@@ -37,7 +37,7 @@ These counts come from directory-scoped GitHub repository listings. Python-modul
 | `compat/` | 41 Python files + README | 40 compatibility launchers |
 | `tests/` | 45 Python files + README | 44 test modules |
 | `.github/workflows/` | 17 YAML files | 17 workflows |
-| `docs/` | 22 Markdown files | 21 technical guides + this index |
+| `docs/` | 22 Markdown files | 21 technical documents + `docs/README.md` index |
 | `project/goals/` | 13 goal directories + parent index | 13 workspaces; each has ROADMAP.md, README.md and ACTIONS.md |
 
 **Inventory limitation:** the recursive Git tree API response was truncated by the very large generated per-record Library tree. The directory-scoped counts above are verified for maintained source, tests, workflows, guides and goal workspaces, but they are not a complete tracked-path manifest. A complete checkout and `git ls-files` are still required to reconcile every generated JSON/JSONL, state, artifact and configuration path. Do not claim the full tracked-file audit is complete from these counts alone.
