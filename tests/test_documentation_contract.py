@@ -56,6 +56,59 @@ class DocumentationContractTests(unittest.TestCase):
             with self.subTest(workflow=workflow.name):
                 self.assertIn(workflow.name, catalogue)
 
+    def test_documentation_index_lists_every_technical_guide(self):
+        docs_root = ROOT / "docs"
+        index = (docs_root / "README.md").read_text(encoding="utf-8")
+        guides = sorted(
+            path for path in docs_root.glob("*.md")
+            if path.name != "README.md"
+        )
+        self.assertTrue(guides, "No technical guides were found")
+        for guide in guides:
+            with self.subTest(guide=guide.name):
+                self.assertIn(f"]({guide.name})", index)
+
+    def test_all_markdown_local_links_resolve(self):
+        ignored = {".git", ".venv", "venv", "node_modules"}
+        documents = sorted(
+            path for path in ROOT.rglob("*.md")
+            if not any(part in ignored for part in path.parts)
+        )
+        self.assertTrue(documents, "No Markdown documentation was found")
+        for document in documents:
+            source = document.read_text(encoding="utf-8")
+            targets = re.findall(r"(?<!!)\\[[^\\]]+\\]\\(([^)]+)\\)", source)
+            for raw_target in targets:
+                target = raw_target.strip().split()[0].strip("<>")
+                parsed = urlsplit(target)
+                if parsed.scheme or parsed.netloc or not parsed.path:
+                    continue
+                local_path = (
+                    ROOT / unquote(parsed.path)
+                    if target.startswith("/")
+                    else document.parent / unquote(parsed.path)
+                )
+                with self.subTest(document=document.relative_to(ROOT), target=target):
+                    self.assertTrue(local_path.exists(), f"Broken local documentation link: {target}")
+
+    def test_workflow_overviews_are_specific_not_generic_boilerplate(self):
+        workflow_root = ROOT / ".github" / "workflows"
+        generic_phrases = (
+            "See the on: section above",
+            "Automates the job steps declared in this workflow",
+            "Keep paths, secrets, permissions, and Python versions synchronized",
+        )
+        workflows = sorted(workflow_root.glob("*.yml"))
+        self.assertTrue(workflows, "No GitHub Actions workflows were found")
+        for workflow in workflows:
+            source = workflow.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            self.assertGreaterEqual(marker, 0, f"{workflow.name} has no FILE OVERVIEW")
+            overview = source[marker:]
+            for phrase in generic_phrases:
+                with self.subTest(workflow=workflow.name, phrase=phrase):
+                    self.assertNotIn(phrase, overview)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
