@@ -26,6 +26,12 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Enrich Music Metadata #42146121471 and Acoustic Metadata Enrichment #42146097964 both reached terminal failure at publication; exact conflict/pathspec evidence is recorded below. Update Last.fm History #42146153098 also reached terminal failure with 120 unique shared-state conflicts; its workspace outputs were not published. No workflow cancellation action was exposed by the connected GitHub interface.
 - Do not repeat this side effect. The workflow catalogue now explains that comment-only YAML edits can trigger configured push workflows; inspect push path filters before any future workflow edit.
 
+### Documentation PR verification
+- Draft PR #161 initially failed its new compatibility-reference test on three wrappers; those overviews were corrected.
+- Daily curator tests run #42149783445 passed on head `5b8bfab94064e74100c6b3ac183817b6a3f4d4bd`, including compile, data audit, full Library health/confidence checks, bounded freshness plan, maintained-file documentation checks and full unittest discovery.
+- This verifies all-Markdown local links, all 21 technical-guide index entries, non-boilerplate implementation overviews, compatibility references and specific workflow overviews on that head.
+- Public repository security scan #42149783463 remained in progress at the last check. Confirm terminal success and ensure PR #161 has not advanced to a different untested head.
+
 ### Final workflow side-effect results (2026-11-06)
 - Reference Library #42146148971 succeeded and committed `3e989e33282efab6cc1416e35970e7c59af5f056` (249 files: 184 Library records, 63 Spotify reference/history files, 2 removal-state files; 4,445 additions / 644 deletions). Repository snapshots/removal feedback changed; no Spotify playlist was written.
 - Enrich Music Metadata #42146121471 failed publication during rebase with add/add conflicts in canonical song JSON files introduced by the Reference Library commit. Its workspace enrichment was not published.
