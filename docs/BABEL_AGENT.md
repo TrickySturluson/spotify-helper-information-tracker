@@ -8,6 +8,10 @@ Babel has an optional repository-hosted AI worker that continues the documentati
 
 **Integration status:** repository configuration is committed. **Activation is pending** until the repository owner adds the OPENAI_API_KEY GitHub Actions secret and starts the first manual run. Do not describe the worker as operational before a successful run is observed.
 
+## Active-session context bridge
+
+Before reading the other continuation records, Buddy must read `project/ACTIVE_SESSION_BRIEF.md`. It is a curated SHIT project brief maintained by ChatGPT during active work—not a raw transcript and not a real-time message channel. ChatGPT updates it after material decisions, source findings, changes, tests, failures, and blockers, alongside the affected goal roadmap/action log. Buddy must reconcile the brief against the checked-out repository and newer evidence. It sees only committed changes on a subsequent run; updates do not wake an active job. Never include unrelated personal conversation or secret values.
+
 ## How continuation works
 
 1. GitHub Actions starts on a six-hour UTC schedule or manual workflow_dispatch.
