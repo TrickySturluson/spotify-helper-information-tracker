@@ -2,6 +2,16 @@
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
 
+## 2026-11-06 — Forced Daily run bypasses the same-date idempotency guard
+
+- **Finding:** source inspection of `scripts/spotify/spotify_daily_cycle.py` found that `--force` is passed to both `should_run_cycle()` and `cycle_already_completed()`. The latter returns `False` immediately for `force=True`, so a forced invocation bypasses the same-Eastern-date completion guard as well as the clock-window gate.
+- **Test evidence:** `tests/test_spotify_daily_cycle_schedule.py::test_cycle_date_guard_skips_already_completed_eastern_date` explicitly asserts `cycle_already_completed(..., force=True)` is false. The current test therefore codifies the broader behavior.
+- **Requirement conflict:** the user-facing P0 contract in this roadmap/TODO is that force bypasses the clock gate only; same-date idempotency, blacklist/whitelist reconciliation and all safety/verification checks must remain active. This is an unresolved P0 implementation mismatch, not an approved exception.
+- **Documentation changes:** updated `docs/WORKFLOWS.md`, `docs/TRICKY_DAILY_CYCLE.md`, `docs/TRICKY_DAILY_TODO.md`, this roadmap and README to distinguish actual behavior from the intended contract. Added a documentation regression test so the mismatch is not silently erased from the handoff.
+- **Safety:** no code, test behavior, workflow schedule or Spotify playlist was changed. Feature correction is deferred until the repository-wide documentation-only pause ends.
+- **Next action after documentation completion:** change `cycle_already_completed()` so force bypasses only the clock-window gate; update the schedule test to require a same-date forced invocation to remain blocked; then run the full Daily tests and a safe preview before any live cycle.
+
+
 ## 2026-11-06 — Open Daily proposals and CI status reconciled
 
 - [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) remains open and unmerged. Its observed full tests and full-history security scan passed; it proposes strict cron-to-Eastern-offset gating beyond the current combined cron/local-hour behavior.
