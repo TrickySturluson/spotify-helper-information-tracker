@@ -1,3 +1,14 @@
+## 2026-11-06 — Extend Retry-After parsing and fail closed without a usable header
+
+- **Finding:** the Spotify manager persisted a cooldown only when the HTTP 429 response's `Retry-After` header contained digits. The HTTP standard also permits an HTTP-date value; a missing or unparseable header left no durable cooldown, allowing a later scheduled run to retry immediately.
+- **Correction proposed:** PR [#170](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/170) adds parsing for delta-seconds and HTTP-date values. When no usable value exists, it writes `manual_clear_required: true` and blocks client initialization and every subsequent API request until a human verifies the restriction has elapsed and clears the state. It also rejects timezone-naive persisted cooldown timestamps.
+- **Regression coverage:** added mocked tests for HTTP-date persistence and missing-header fail-closed behavior. Existing numeric Retry-After coverage remains active after PR #169. No tests make provider calls.
+- **PR / CI:** branch `daily-retry-after-header-resilience`, head `4e116d494b0e02628e3dba30e3857ab530d4e2e3`. Daily curator tests [#42273342714](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273342714) and public repository security scan [#42273342665](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273342665) were queued at the time of this entry. Runtime change is not merged or verified yet.
+- **Safety:** no Spotify/Last.fm/provider request, workflow dispatch, playlist write, description mutation, or generated-data change was performed.
+- **Next:** inspect PR CI and full diff. If both checks pass, merge this narrow quota-safety fix; document manual-clear procedure. Continue to avoid Spotify requests until the currently persisted cooldown expires at `2026-11-06T19:49:46Z`.
+
+---
+
 ## 2026-11-06 — Cooldown regression coverage restored and merged
 
 - **Merge:** PR [#169](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/169) merged to main as `8d0d2d5e8b0448fde64932aced1014ef944e3312`. The change is test-only; runtime Spotify manager behavior is unchanged.
