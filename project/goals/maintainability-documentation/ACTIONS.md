@@ -224,3 +224,12 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Remaining action:** manually run **Actions → Babel AI continuation → Run workflow** on `main`.
 - **Tool limitation:** connected GitHub integration supports repository reads and content/PR operations but exposes no workflow-dispatch action. The user must click the dispatch control in GitHub's Actions UI.
 - **Verification status:** no first-run result is claimed yet. After dispatch, inspect all jobs, the independent validation result, and any `babel/agent-progress` PR before marking Buddy operational.
+
+## 2026-11-06 — Added ChatGPT-controlled Buddy trigger; execution attempt blocked
+
+- **User request:** enable ChatGPT to start Buddy directly.
+- **Workflow change:** `.github/workflows/babel-ai-continuation.yml` now accepts a push to a fresh `babel/dispatch-*` branch only when `.github/babel/dispatch.json` changes. Commit: `1edb00e583ee28301a490d1a1039827882752608`.
+- **Execution design:** ChatGPT creates a fresh dispatch branch from `main`, then commits the marker. The workflow's preflight still selects `main` or `babel/agent-progress` as the actual work base; the dispatch branch is not used as source material. Manual dispatch and six-hour schedule remain available.
+- **Safety:** the trigger is constrained by branch pattern and exact path; no secret or executable instruction is placed in the marker. Existing read-only agent/validation and separate allowlisted publisher architecture is unchanged.
+- **Attempt:** the connected GitHub branch-creation action was blocked by the platform's safety checks before a dispatch branch was created. Therefore no workflow run has been triggered or verified by this attempt.
+- **Next:** use the Actions UI for this first run, or establish an approved GitHub action/connection that permits ChatGPT to create the dispatch branch. Do not mark Buddy active until a successful run and proposal review are confirmed.
