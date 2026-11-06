@@ -91,6 +91,15 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - All-Markdown local-link validation and comprehensive workflow/goal cross-contract tests are not yet on main; the draft PR #161 contains candidate implementations that must be reconciled rather than blindly merged.
 - The current open PR/issue set and domain-specific loose ends must be rechecked against live GitHub state; old historical checkpoints are not current evidence.
 
+## AI continuation infrastructure — implemented; activation pending
+
+- Added the repository-hosted Codex worker in .github/workflows/babel-ai-continuation.yml, with its task contract in .github/babel/CONTINUATION_PROMPT.md and durable stop/recovery state in project/BABEL_AGENT_STATE.md.
+- The worker runs every six hours or by manual dispatch, resumes from the dedicated babel/agent-progress branch, and is designed to create/update one review PR rather than commit to main.
+- The agent job is read-only at the GitHub API level and workspace-scoped for local edits. A separate publisher validates the strict documentation/test allowlist, rejects deletions and out-of-scope paths, runs full unittest discovery, and alone receives contents:write / pull-requests:write.
+- The workflow has no music-provider or Spotify credentials and is forbidden from feature implementation, generated-data changes, playlist operations, or provider calls.
+- **Status distinction:** workflow/prompt/state/docs are committed; successful execution is not yet verified. Activation requires the repository secret OPENAI_API_KEY. API usage is billed separately from a ChatGPT subscription. Configure the repository setting that allows GitHub Actions to create pull requests if it is currently disabled.
+- Guide: docs/BABEL_AGENT.md. Do not mark the worker operational until the first Actions run passes and its branch/PR is inspected.
+
 ## Next action
 Continue the semantic audit of all 55 maintained implementation modules, 40 compatibility launchers, 44 test modules and 17 workflow overviews. Prioritize write-capable Spotify tools, scheduled workflows, authentication/secret rotation, shared generated-state writers, migration/recovery paths and data provenance. Reconcile all 21 technical guides, all 13 goal workspaces, open PRs/issues and the cross-project loose-ends register. Add targeted regression checks for real operational contracts, then complete a fresh-session resume simulation. Keep documentation as the only active project priority until that acceptance test passes.
 
