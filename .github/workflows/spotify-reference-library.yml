@@ -136,11 +136,17 @@ jobs:
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: GitHub Actions workflow "SHIT — Spotify Reference Library".
-# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
-# Behavior: Automates the job steps declared in this workflow, including runtime
-#           setup, permissions, dependencies, and repository changes.
-# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
-#              with the implementation under scripts/ and compat/.
-# Related: See docs/ for feature-specific operating instructions.
+# Purpose: Refresh read-only Spotify playlist reference snapshots and reconcile removal history.
+# Trigger: Daily at 06:13 UTC, manual workflow_dispatch, or a push changing this workflow.
+# Behavior: Compiles/tests the reference-library tools, seeds the removal baseline from
+#           prior complete snapshots, fetches Spotify playlist snapshots, verifies
+#           completeness for priority/audition playlists, updates removal feedback,
+#           audits project data, and commits refreshed assistant_data/spotify plus
+#           related Library/removal state.
+# Credentials: Spotify client/refresh token and narrowly scoped GitHub App token for
+#              persisting rotated refresh-token secrets.
+# Safety: Serialized by spotify-reference-library; Spotify access is read-only.
+#         Incomplete/ambiguous priority snapshots fail closed instead of replacing good data.
+# Related: scripts/spotify/spotify_reference_library.py, track_playlist_removals.py,
+#          docs/SPOTIFY_API_OPERATIONS.md, docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
