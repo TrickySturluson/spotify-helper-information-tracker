@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
   schedule:
     # Run after the midnight Eastern rotation and its recovery delivery.
+    # Snapshot publication is GET-only; focused Daily regression tests gate the refresh.
     - cron: "25 6 * * *"
 
 permissions:
