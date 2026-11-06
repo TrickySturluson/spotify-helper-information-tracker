@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Great Migration allowlist guard passed CI and security scan
+
+- Daily curator CI [#42154101093](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154101093) completed successfully on PR head commit `cb70525b5221ab017a1d6073061ad3611d7a16be`. Compilation, generated-data audit, full read-only Library health/confidence/freshness checks, maintained-file documentation checks and full unittest discovery all passed.
+- Inspected the job log and confirmed the new `test_great_migration_issue_operations_match_workflow_and_guide` test passed. It checks that all 15 issue-title operations, manual-dispatch choices and runbook entries stay aligned.
+- Full-history public repository security scan [#42154101121](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154101121) also passed on that commit.
+- After this successful run, only `docs/PER_RECORDING_MUSIC_LIBRARY.md` and this action log were changed. The latest canonical Library guide now warns that the legacy `--recent-limit` direct-write path bypasses its own backup and labels the 50-song validation sample as historical. Exact latest-head CI/security has not been confirmed for these last documentation-only changes.
+- **Next:** continue the Library provenance and metadata-enrichment guide audit; then run final exact-head documentation tests and security scan.
+
 ## 2026-11-06 — Canonical Library guide corrected for legacy staged-write risk
 
 - Compared `docs/PER_RECORDING_MUSIC_LIBRARY.md` with `scripts/music/migrate_music_library.py`, `scripts/music/music_library.py`, and the supported `library_cli.py` migration route.
