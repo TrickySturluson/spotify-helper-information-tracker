@@ -302,7 +302,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Use `health` when zero repository writes are required", migration_guide)
         self.assertIn("legacy run/resume and --recent-limit writes do not create their own backup", legacy_migrator)
         self.assertIn("timestamped sibling backup", full_migrator)
-        self.assertIn("audit/verify-catalogue instantiate MusicLibrary and may rebuild", migration_workflow)
+        self.assertIn("audit/verify-catalogue instantiate MusicLibrary", migration_workflow)
+        self.assertIn("may rebuild library_index.json", migration_workflow)
         self.assertIn("health is the strictly read-only structural scan", migration_workflow)
         self.assertIn("verify may persist a rotated Spotify refresh token as an Actions", migration_workflow)
 
