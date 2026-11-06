@@ -18,6 +18,10 @@ The scheduled/manual Spotify Reference Library sync is read-only against Spotify
 
 Playlist presence is not a play, scrobble, like, save, or proof of listening. Do not merge this context into Last.fm event history or measured Spotify playback. The Last.fm scrobble archive remains the historical listening source of truth. Inaccessible/incomplete snapshots must not be treated as empty; requested and relinked Spotify IDs remain distinct. See [the full Library integration contract](../../../docs/PER_RECORDING_MUSIC_LIBRARY.md).
 
+## Track-profile enrichment evidence
+
+The rolling Last.fm track-profile builder also writes selected cohort records into the canonical Library through `MusicLibrary.put_catalogue()`. Its counts come from Last.fm scrobbles, while exact priority-playlist tracks may be included even when they have zero scrobbles. Playlist membership is retained as source/context evidence; it is not a play, like, save, scrobble, or positive preference. See [Recent Track Enrichment](../../../docs/RECENT_TRACK_ENRICHMENT.md).
+
 ## Start here
 
 - [Artist records](artists/README.md) — artist identity, sourced artist-level context, and related albums/songs.
