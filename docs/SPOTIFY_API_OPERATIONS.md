@@ -6,6 +6,10 @@ SHIT uses the Spotify Web API through the GitHub Actions secret `SPOTIFY_REFRESH
 
 Spotify's February 2026 Web API migration changed playlist item endpoints from `/tracks` to `/items`. Full playlist item reads are available only when the authenticated user owns the playlist or is a collaborator. A public playlist being visible in Spotify does not imply that its full item list is readable through the Web API.
 
+## Playlist snapshot evidence is not listening evidence
+
+A playlist item returned by the Spotify Web API proves only that the track appeared in the accessible playlist snapshot at that time. Playlist membership is source/context evidence; it is **not Spotify playback, likes, saves, or Last.fm scrobbles**. Do not use a playlist snapshot as a substitute for measured playback observations, liked/saved state, or the canonical Last.fm event archive. See [Per-recording music Library](PER_RECORDING_MUSIC_LIBRARY.md) for the field-level provenance and source-of-truth rules.
+
 ## Product requirement: GitHub-hosted and PC-independent operation
 
 SHIT's product goal is a feature-rich, conversational ChatGPT–Spotify experience. GitHub is the central source of truth for this repository's code, configuration, durable workflow state, and documentation. GitHub Actions or another managed cloud runtime must perform all supported scheduled and on-demand SHIT operations. The user's personal PC must be allowed to stay off without stopping those operations.
