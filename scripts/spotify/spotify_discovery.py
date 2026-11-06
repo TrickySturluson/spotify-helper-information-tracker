@@ -743,10 +743,20 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Discovery-first Spotify curator using Last.fm similarity + Spotify catalogue search. The scrobble archive is a taste/familiarity model, never the candidate catalogue. No archive track is hard-excluded: prior plays and recency progressively reduce its rank. Liked tracks receive a strong penalty but remain eligible.
-# Location: Maintained implementation in scripts/spotify/spotify_discovery.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_discovery.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Generate discovery-first Daily candidates using Last.fm similar-
+#          artist evidence and Spotify catalogue availability.
+# Inputs: assistant_data/music/artist_profiles.json,
+#         assistant_data/recommendations/track_features.json, Last.fm API
+#         credentials, Spotify client access, and Daily removal/feedback state.
+# Outputs/state: Returns scored unique-artist candidates; its reconciliation
+#                helpers maintain the Daily removal baseline/blacklist from
+#                observed playlist removals.
+# Provider effects: Calls Last.fm similarity and Spotify catalogue endpoints;
+#                   it does not add/remove/reorder Spotify playlist items.
+# Safety: The scrobble archive informs familiarity, not candidate eligibility;
+#         liked tracks are down-ranked rather than hard-excluded, and removal
+#         protections must be applied before candidates are selected.
+# Run: Internal module; invoked through the protected playlist cloud workflow.
+# Related: scripts/spotify/spotify_daily_playlist.py;
+#          scripts/spotify/track_playlist_removals.py; docs/TRICKY_DAILY_CYCLE.md.
 # -----------------------------------------------------------------------------
