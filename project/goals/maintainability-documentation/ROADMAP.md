@@ -45,7 +45,7 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Document the scheduled ChatGPT/GitHub-app path, daily verification rule, scope, branch/PR model, and human-review boundary in docs/BABEL_CHATGPT_BUDDY.md and the documentation index.
 - [x] Add the mandatory daily Buddy-check rule to AGENTS.md, project/DOCUMENTATION_RULES.md, and the active-session brief in draft PR #163. The rule is a proposal on this branch and is not mainline policy until the user merges the PR.
 - [x] Verify the existing persistent branch babel/chatgpt-buddy and one open draft PR #163; do not create duplicates. Its pre-batch head 2090ad97648851f5138856795600f4e582849efb had passing Daily curator tests (#42188373512) and public repository security scan (#42188373527).
-- [ ] Inspect PR-triggered CI on the updated head after this documentation batch; keep the PR draft for human review.
+- [x] Inspect PR-triggered CI on content head 4dd918cbaffe5f027be9951258a7d4e7677c1c26: Daily curator tests #42238507544 passed all 478 tests and public repository security scan #42238507190 passed. This content-head verification predates later evidence-only handoff commits; keep the PR draft and re-check CI for the latest branch head.
 - [ ] Complete the fresh-session simulation using merged repository documentation, not this draft branch.
 
 ## Repository-hosted Codex dispatch experiment — separate path
