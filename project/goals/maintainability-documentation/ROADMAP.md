@@ -50,7 +50,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - `docs/WORKFLOWS.md` summarizes all 17 workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - Nine workflow YAML bottom overviews were rewritten with their actual triggers, credentials, repository writes, playlist-write boundaries and related implementation.
 - Workflow YAML comment-only changes can trigger push-path workflows. This operational hazard is now documented; see the incident entry in ACTIONS.md and docs/WORKFLOWS.md.
-- The draft documentation PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow overviews, reject generic implementation boilerplate and require compatibility overviews to name maintained source modules. These new checks are pending CI verification; do not call them implemented/verified until the PR's current head passes.
+- Draft PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow/implementation overviews and require compatibility overviews to name maintained source modules. These documentation tests passed on PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` in run #42150601947; the complete-history security scan #42150601862 is still in progress.
 
 ## 2026-11-06 documentation audit progress
 
@@ -58,9 +58,11 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Updated the docs index to list all 21 technical guides, corrected a duplicated paragraph in the goal index, and expanded repository-wide Markdown-link and workflow-overview checks in draft PR #161.
 - Replaced generic source overviews with module-specific purpose, input/output, evidence, side-effect and safety descriptions across analytics, Last.fm, music and Spotify implementation modules (32 maintained modules updated in the current draft).
 - Current source audit found that marker presence alone had allowed generic boilerplate to pass; the new PR checks aim to prevent this recurring.
-- Current main has the documented workflow incident: reference snapshot refresh published, two enrichment publication steps failed, and one broad update workflow remained under observation at the latest check. See ACTIONS.md and NEXT_WORK.md for exact evidence.
+- Current main has the documented workflow incident: the Reference Library snapshot refresh published; Enrich Music Metadata failed on 101 shared Library-path conflicts; Acoustic Metadata Enrichment failed while staging an absent optional GetSongBPM state file; and Update Last.fm History failed on 120 shared Library/Spotify snapshot conflicts. None of the failed enrichment/update workspace outputs were published. See ACTIONS.md and NEXT_WORK.md for exact evidence. See ACTIONS.md and NEXT_WORK.md for exact evidence.
 
-\n\n## 2026-11-05 repository audit checkpoint
+
+
+## 2026-11-05 repository audit checkpoint
 
 - Structural audit began at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`; current default branch `main` was rechecked at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`.
 - Confirmed 13 goal workspaces, each with ROADMAP.md, README.md and ACTIONS.md.
@@ -87,11 +89,11 @@ Every maintained script/module/workflow should state its purpose, supported goal
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
 - Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
-- Repository-wide local-link validation and new overview-quality tests are pending PR #161 CI; any failures must be fixed before merge.
-- The source overview audit is improved but not complete; compatibility shims, test overviews, all module docstrings, workflow semantics and data-schema references still need a structured review.
+- Repository-wide local-link validation and new overview-quality tests passed on PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a`; recheck them if the branch advances.
+- The automated source-overview quality check passed across all 55 maintained implementation modules, and all 40 compatibility launchers name a maintained source path. Their factual accuracy still needs manual sampling; the 44 test-module overviews, module docstrings, workflow semantics and data-schema references also need a structured semantic review.
 
 ## Next action
-Finish PR #161 CI and repair every link/overview-quality failure; review the remaining compatibility and test overviews; obtain a complete checkout/`git ls-files` inventory and compare it with docs/REPOSITORY_FILE_INDEX.md; semantically reconcile all 13 goal roadmaps, seven pre-existing open PRs, workflow side effects and operational runbooks; then complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
+Recheck the latest full-history security scan #42150601862 and confirm the current PR head; merge PR #161 only after all required checks pass. Then complete the authoritative/defensible tracked-file inventory, manually review all 44 test-module overviews and remaining semantic claims, reconcile all 13 goal README/ACTIONS files, seven pre-existing open PRs and operational runbooks, and complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
