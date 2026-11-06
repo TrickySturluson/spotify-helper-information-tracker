@@ -136,6 +136,19 @@ class DailyCycleScheduleTests(unittest.TestCase):
         second = daily_cycle.choose_daily_description("2026-11-06", first)
         self.assertNotEqual(first, second)
 
+    def test_description_readback_normalizes_html_escaped_apostrophes(self):
+        class FakeSpotify:
+            def call(self, method, path, payload=None):
+                if method == "PUT":
+                    self.description = payload["description"]
+                    return {}
+                return {"description": "Today&#x27;s detour starts here."}
+
+        with patch.object(daily_cycle.time, "sleep"):
+            daily_cycle.update_description_and_verify(
+                FakeSpotify(), "Today's detour starts here."
+            )
+
     def test_description_update_precedes_readback_and_retries_spotify_lag(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
