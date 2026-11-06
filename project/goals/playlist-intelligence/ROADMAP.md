@@ -31,6 +31,11 @@ Create enjoyable, coherent playlist discovery, sorting, feedback learning, and s
 ## Acceptance criteria
 No blocked/removed track reappears; no duplicate URIs; generated output is staged and validated before writes; live playlist is read back and matches; all writes are authorized and audited; sequencing never overstates weak evidence.
 
+## Open proposals (not merged)
+
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; the evaluation/watchdog remain proposed until runtime implementation and tests are verified.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft; it does not complete sorter integration or authorize playlist writes.
+
 ## Next action
 Audit the latest Daily code/workflows and current live playlist state, then work the P0 safety/publication items in [TRICKY_DAILY_TODO.md](../../../docs/TRICKY_DAILY_TODO.md). Separately keep fit scoring preview-only until evidence gates pass.
 
