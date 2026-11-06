@@ -286,6 +286,8 @@ class DocumentationContractTests(unittest.TestCase):
         sequencer = (ROOT / "scripts" / "spotify" / "spotify_playlist_sequencer.py").read_text(encoding="utf-8")
         transition_guide = (ROOT / "docs" / "TRANSITION_SCORING.md").read_text(encoding="utf-8")
         migration_guide = (ROOT / "docs" / "GREAT_MIGRATION.md").read_text(encoding="utf-8")
+        legacy_migrator = (ROOT / "scripts" / "music" / "migrate_music_library.py").read_text(encoding="utf-8")
+        full_migrator = (ROOT / "scripts" / "music" / "migrate_full_music_library.py").read_text(encoding="utf-8")
 
         self.assertIn("Constructor may rebuild and write library_index.json", source)
         self.assertIn("strictly read-only structural check", guide)
@@ -294,6 +296,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Do not equate “no Spotify playlist writes” with “no local repository/file writes.”", transition_guide)
         self.assertIn("Resolver/index diagnostics: `audit` and `verify-catalogue`", migration_guide)
         self.assertIn("Use `health` when zero repository writes are required", migration_guide)
+        self.assertIn("legacy run/resume and --recent-limit writes do not create their own backup", legacy_migrator)
+        self.assertIn("timestamped sibling backup", full_migrator)
 
     def test_track_profile_builder_preserves_playlist_only_evidence_semantics(self):
         source = (ROOT / "scripts" / "music" / "build_track_profiles.py").read_text(encoding="utf-8")
