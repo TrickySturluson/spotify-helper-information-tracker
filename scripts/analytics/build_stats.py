@@ -551,10 +551,17 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Implementation module scripts/analytics/build_stats.py.
-# Location: Maintained implementation in scripts/analytics/build_stats.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/build_stats.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Build the compact top-level listening statistics snapshot from the
+#          canonical Last.fm scrobble archive.
+# Inputs: data/scrobbles.json; each record supplies a Unix timestamp, artist,
+#         album and track fields.
+# Outputs: Replaces data/stats.json with totals, rankings, first/last-seen dates,
+#          UTC time buckets and replay/concentration metrics.
+# Semantics: The listening-time figure is a rough 3.5-minute-per-scrobble
+#            estimate, not measured playback or duration-verified time.
+# Side effects: Local JSON read/write only; no provider requests and no changes
+#               to the canonical scrobble archive.
+# Run: python compat/build_stats.py (from the repository root).
+# Related: scripts/analytics/build_assistant_data.py; data/README.md;
+#          tests/ (analytics regression coverage).
 # -----------------------------------------------------------------------------
