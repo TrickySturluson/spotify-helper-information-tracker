@@ -216,10 +216,11 @@ class DailyCycleScheduleTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             stage_path = Path(directory) / "stage.json"
             daily_cycle.manager.write(stage_path, record)
-            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "failed exact hash/order"):
-                daily_cycle.verify_daily_stage(
-                    str(stage_path), digest, target, ["spotify:track:before"], "before"
-                )
+            with patch.dict(os.environ, {"GITHUB_ACTIONS": "false"}):
+                with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "failed exact hash/order"):
+                    daily_cycle.verify_daily_stage(
+                        str(stage_path), digest, target, ["spotify:track:before"], "before"
+                    )
     def test_github_daily_stage_requires_successful_git_push_before_write(self):
         import subprocess
         from tempfile import TemporaryDirectory
