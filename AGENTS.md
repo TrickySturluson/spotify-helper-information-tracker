@@ -13,11 +13,36 @@ This file applies to every assistant, contributor, and automation agent working 
    Before editing or committing any path, inspect matching workflow `push.paths` filters. Comment-only changes to a listed source or workflow file still trigger its full workflow, including provider calls and repository writes.
 6. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
 
-## Active-session brief — mandatory Buddy context bridge
+## Active-session brief — mandatory continuity bridge
 
 During every active SHIT work session, ChatGPT must maintain [project/ACTIVE_SESSION_BRIEF.md](project/ACTIVE_SESSION_BRIEF.md) as work proceeds. Update it after every material decision, scope change, implementation change, source finding, test/audit result, failure, uncertainty, or blocker—not only at session end. Update the affected goal ROADMAP.md and ACTIONS.md in the same session, plus NEXT_WORK.md / LOOSE_ENDS.md / PROJECT_LOG.md when cross-project state changes. Buddy must read the brief at the start of every run and reconcile it against checked-out source and evidence. The brief is curated project context, never a raw chat transcript; exclude unrelated personal details and all secret values. It is not real-time messaging: Buddy sees only committed updates on a subsequent run.
 
+## Mandatory daily Buddy check for every SHIT conversation
+
+Whenever ChatGPT is asked to work on, discuss, review, plan, or report on SHIT, Babel, or Buddy, it must perform the Buddy daily-check gate before substantive work:
+
+1. Read the current SHIT Buddy automation status and latest run result using the available automation status source. Use `America/New_York` to determine the current calendar day.
+2. If no successful, report-bearing Buddy run has completed for the current Eastern date, state plainly that Buddy is **pending today** (or identify the exact failure/blocker). Do not repeatedly perform a full PR audit while the run is still pending; check again on the next SHIT-related conversation.
+3. Once a successful run for today is visible, independently review its report, Buddy-owned draft PR, complete changed-file list/diff, read-back evidence, and CI/check state. Verify claims against current source and tests; a green check or Buddy's own self-review is not sufficient.
+4. Record a durable review checkpoint in `project/ACTIVE_SESSION_BRIEF.md`: Eastern date, Buddy run ID, reviewed PR/head SHA (or no-PR result), review outcome, and outstanding user action. On later SHIT conversations that same day, a lightweight status check is sufficient if the same run ID and PR head SHA are already recorded as reviewed. Re-review if either changes, a new run appears, or a material check/failure changes.
+5. A failed/incomplete run does not count as a successful daily completion. Report the blocker and retry the gate on the next SHIT-related conversation. This is conversation-triggered checking, not continuous background monitoring.
+6. Buddy remains a documentation-only proposal worker. It may update its dedicated branch and draft PR, but may not write directly to `main`, approve, mark ready, close, merge, or self-merge.
+
+## ChatGPT documentation publication authority
+
+The user has authorized ChatGPT to independently publish routine, verified documentation-only maintenance without waiting for per-change user review. This authority is deliberately narrower than general repository or product authority.
+
+- **Permitted to publish after independent review:** Markdown documentation, project/workstream roadmaps, README and ACTIONS records, handoff/loose-end/project logs, indexes and source/operational explanations, and narrowly scoped documentation-contract tests when required to enforce a documentation invariant.
+- **Review required before publication:** inspect the complete proposed diff; verify factual claims against current source, tests, workflows and GitHub evidence; verify links/indexes and cross-document consistency; run relevant safe checks; read every changed file back; confirm the final commit/PR state. Record exact evidence and uncertainty.
+- **Publication path:** ChatGPT may publish qualifying documentation-only changes directly to `main` when the connected GitHub capability permits it, or use a separate ChatGPT-controlled branch/PR when direct publication is unavailable or a reviewable proposal is safer. Do not modify Buddy's branch or impersonate Buddy. A draft PR is not merged publication.
+- **Hold for user authorization:** runtime/product code or behavior; Spotify, Last.fm or other provider operations; playlists; canonical or generated user data; workflow logic/triggers; repository permissions; secrets/credentials; security controls; dependency manifests; irreversible or ambiguous side effects; and any change whose scope cannot confidently be classified as documentation-only.
+- **No scope creep:** user authorization for autonomous documentation publication does not authorize operational changes. When uncertain, do not publish; preserve the proposal separately and ask the user for the specific authorization needed.
+- **User visibility:** report material publications, exact commit/PR and verification, plus any blocked items. Routine documentation changes do not require the user to review each one. The user retains authority over all operational changes and any expansion of this policy.
+
+ChatGPT may resume other explicitly authorized SHIT workstreams while Babel continues in parallel. Buddy remains focused on Babel documentation maintenance. Every active workstream must still follow the same-session documentation rules, maintain its roadmap and action log, and respect its own safety/authorization boundaries.
+
 ## Non-negotiable continuity rule
+
 The repository is the durable source of truth; chat history is not. Every meaningful requirement, decision, implementation, test, failure, blocker, provider limitation, and next action must be recorded in the appropriate documentation during the same session. Never leave important knowledge only in a conversation.
 
 Every major workstream must maintain:
@@ -37,6 +62,7 @@ Update the relevant roadmap and action log whenever status changes. Update the w
 - Keep documentation plain and explicit enough for a fresh session with no prior chat context.
 
 ## Before ending a work session
+
 Update all affected documentation in the same session. Verify changed links and file paths where practical. Record exact tests and failures, the commit/PR/workflow evidence, whether changes are published, remaining uncertainty, and the next executable action. A task is not complete until its documentation and handoff are current.
 
 See [the documentation index](docs/README.md) for navigation and [the project-wide roadmap](project/ROADMAP.md) for cross-workstream priorities.
