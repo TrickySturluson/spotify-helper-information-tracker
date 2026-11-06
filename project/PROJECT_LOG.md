@@ -8,6 +8,15 @@
 - **Next action:** inspect Great Migration run #17 artifact and backup; keep playlist writes paused until migration recovery is complete.
 - **References:** PR #67 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/67; PR #60 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60; PR #65 https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65; run #17 https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
 
+## 2026-11-05 — First semantic module-overview audit batch
+
+- **Goal:** improve documentation accuracy beyond marker presence, so module overviews describe actual data flow, provider behavior, side effects and safety constraints.
+- **Work:** created branch `docs/semantic-overview-quality-20261105` from `main`; rewrote 15 module overviews across analytics, Last.fm import, music metadata/audio and Spotify playlist/Daily/playback modules; added a targeted anti-boilerplate regression test for the audited set.
+- **Evidence:** latest batch commit `885dd37b56bd3f4f36d691fa87d98bcb19c7a479`. File updates succeeded. CI has not yet run the new test.
+- **Safety:** no runtime logic, workflow YAML, generated data, provider state, listening history or Spotify playlists changed. Two invalid documentation links discovered during the audit were corrected.
+- **Status:** partial; other maintained modules, compatibility/test/workflow documentation, full inventory and fresh-session test remain open.
+- **Next:** continue source-verified overview repair; do not treat this branch as merged or verified until CI and review complete.
+
 # SHIT Project Log
 
 ## 2026-11-01 — Per-goal workspaces established
