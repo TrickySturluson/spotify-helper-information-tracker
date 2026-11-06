@@ -1,6 +1,13 @@
 # Discovery & Recommendations — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Provenance-aware ingestion PR status rechecked
+
+- PR #60 `feature/recommendation-discovery-ingestion` remains open/non-draft, 4 commits ahead and 627 behind current main, mergeable=false.
+- Old-head Daily curator tests #41350320527 failed in the unit-test step; full-history security scan #41350320524 failed at Gitleaks. Prior review reported three `generic-api-key` findings on public Spotify track IDs in `assistant_data/music/library/library_index.json`; treat these as untriaged findings, not silently accepted false positives.
+- Rebase, investigate the test failure and security findings, and rerun current-main CI/security before review. No ingestion or Library writes were performed.
+
+
 
 ## 2026-11-06 — Open PR #60 CI and secret-scan findings recorded
 
