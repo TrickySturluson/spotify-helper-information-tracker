@@ -32,7 +32,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 **Recent defect fixed:** CI run #42151586707 exposed a self-referential phrase in the new test-module overview guard: the test's own specific scope line had accidentally been added to its generic-rejection fixture. The fixture was corrected in `9cbf695`; the subsequent full CI run passed.
 
-**Documentation work completed on the PR branch so far:** 13 goal workspaces have ROADMAP/README/ACTIONS; 17 workflows are catalogued; 21 technical guides are indexed; 32 implementation module overviews were rewritten with source-specific contracts; compatibility wrappers and 11 generic test-module overviews were corrected; documentation tests now enforce guide indexing, repository-wide Markdown link targets, workflow overview specificity, implementation/test overview specificity, compatibility references, Great Migration operation alignment and metadata-enrichment budget alignment.
+**Documentation work completed on the PR branch so far:** 13 goal workspaces have ROADMAP/README/ACTIONS; 17 workflows are catalogued; 21 technical guides are indexed; 35 implementation module overviews were rewritten with source-specific contracts; compatibility wrappers and 11 generic test-module overviews were corrected; documentation tests now enforce guide indexing, repository-wide Markdown link targets, workflow overview specificity, implementation/test overview specificity, compatibility references, Great Migration operation alignment and metadata-enrichment budget alignment.
 
 **Other open PRs (all unmerged; re-fetch live state before acting):**
 - [#159 — Tricky Daily DST schedule gating](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159): open/non-draft, branch `fix/tricky-daily-schedule-gate`, 6 ahead / 201 behind current main, mergeable=false. Old-head tests #42091662410 and security #42091662609 passed; rebase and rerun before review.
@@ -85,7 +85,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - These accidental workflow runs are documented as an incident. Do not rerun or repair enrichment workflows during the documentation-only phase. Once docs are complete, the operational backlog must include shared-writer serialization/stale-base conflict handling and conditional staging of optional provider files.
 
 ### Current open pull requests observed during this audit
-- #161 — documentation quality expansion (draft PR; branch `docs/semantic-documentation-audit`). It contains 32 source overview rewrites, the complete docs index and expanded quality/link tests. Wait for CI and keep it unmerged until the audit is complete.
+- #161 — documentation quality expansion (draft PR; branch `docs/semantic-documentation-audit`). It contains 35 source overview rewrites, the complete docs index and expanded quality/link tests. Wait for CI and keep it unmerged until the audit is complete.
 - #158 — Discover Weekly exposure and feedback tracking (open, non-draft).
 - #159 — Tricky Daily DST schedule gating (open, non-draft).
 - #160 — exposure-aware Tricky Daily discovery (open, non-draft).
