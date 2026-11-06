@@ -2,8 +2,21 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-02 (after PR #126 playlist-intelligence preview merge and post-hoc reference comparison)  
+**Last reviewed:** 2026-11-05 (documentation audit checkpoint; domain-specific loose ends below still require individual revalidation)  
 **Review scope:** repository structure and workflows, open issues/PRs, relevant prior SHIT conversations and user decisions.
+
+## Documentation-first audit checkpoint — ACTIVE PRIORITY
+
+The user has explicitly directed that documentation be the sole active project priority until the repository is as complete and accurate as reasonably achievable. Do not treat the domain-specific items below as permission to resume feature work during this phase.
+
+- Current main inspected at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`; subsequent documentation-only commits update NEXT_WORK, the maintainability roadmap/action history, and the project-wide priority order.
+- 13 goal workspaces exist and each has ROADMAP.md, README.md and ACTIONS.md. 17 GitHub Actions workflows are listed in `docs/WORKFLOWS.md`.
+- The automated documentation contract and file-layout tests passed in Daily curator run #42144512658 on the inspected main SHA; public repository security scan #42144512423 also passed. These results establish test success on that SHA, not semantic accuracy of every document.
+- The recursive Git tree API response was truncated by generated per-record Library data. A complete local `git ls-files` inventory remains required for exhaustive path reconciliation.
+- Maintained code directories currently enumerate 7 analytics modules, 1 Last.fm module, 24 music modules and 19 Spotify modules. The bottom FILE OVERVIEW presence test also covers compatibility launchers, tests and workflow YAMLs. Manual accuracy review remains open.
+- Open Daily PRs observed during the audit: #158, #159 and #160. Their proposed changes are not merged mainline behavior; review their diffs and current status before updating implementation documentation.
+- **Remaining documentation work:** complete tracked-file inventory; semantically audit every maintained FILE OVERVIEW; reconcile each technical guide, workflow permission/secret/side-effect description, data schema and goal roadmap against source/tests; update stale domain-specific loose ends with current evidence; add targeted checks for real gaps; complete a fresh-session resume simulation.
+- **Status:** documentation architecture and structural guardrails are established; full semantic and operational documentation audit is still in progress. Do not mark this register or the project documentation complete yet.
 
 ## Critical path
 
