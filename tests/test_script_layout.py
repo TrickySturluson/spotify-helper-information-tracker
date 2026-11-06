@@ -99,6 +99,23 @@ class ScriptLayoutTests(unittest.TestCase):
                 self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
                 self.assertIn("scripts/", source[marker:], "Compatibility overview must name its maintained implementation")
 
+    def test_test_module_overviews_are_specific_not_generic(self):
+        generic_phrases = (
+            "Purpose: Regression test module.",
+            "Scope: Regression checks for the behavior named by this test module.",
+            "Related: Implementation lives under scripts/; longer behavior notes live in docs/.",
+        )
+        modules = sorted((ROOT / "tests").glob("test_*.py"))
+        self.assertTrue(modules, "No test modules were found")
+        for path in modules:
+            source = path.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
+                overview = source[marker:]
+                for phrase in generic_phrases:
+                    self.assertNotIn(phrase, overview, f"Generic test overview boilerplate: {phrase}")
+
     def test_repository_gitignore_has_a_file_overview(self):
         source = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn("FILE OVERVIEW", source)
@@ -114,5 +131,5 @@ if __name__ == "__main__":
 # Purpose: Guard the responsibility-based implementation and compatibility layout.
 # Scope: Regression checks for the behavior named by this test module.
 # Run: python -m unittest tests.test_script_layout -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Related: scripts/README.md, compat/README.md, tests/README.md, docs/CODE_DOCUMENTATION.md.
 # -----------------------------------------------------------------------------
