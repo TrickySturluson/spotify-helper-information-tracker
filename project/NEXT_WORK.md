@@ -1,3 +1,13 @@
+# Current policy overlay — 2026-11-06
+
+> This section supersedes older handoff language below that says Babel is the sole active SHIT workstream or that ChatGPT must wait for user review/merge for every documentation update. The authoritative rules are in [AGENTS.md](../AGENTS.md), [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../docs/BABEL_CHATGPT_BUDDY.md).
+
+- Babel remains active, but ChatGPT may continue other explicitly authorized SHIT workstreams in parallel. Buddy remains focused on Babel.
+- ChatGPT may independently publish verified documentation-only changes directly to `main` when GitHub permits. It must inspect the complete diff, verify claims against current source/tests/workflows/evidence, run relevant safe checks, and read every changed file back.
+- Buddy remains proposal-only on `babel/chatgpt-buddy` and its draft PR; it cannot write to `main`, approve, mark ready, close, merge, or self-merge.
+- Operational changes—including runtime/product code, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, and dependency manifests—require separate user authorization.
+- Routine documentation publication does not require per-change user review. Report material publications, exact evidence, and blockers.
+
 # SHIT — Next Work
 > **Mandatory continuity instruction:** Read [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md) before continuing. Read the relevant goal's `ROADMAP.md`, `README.md`, and `ACTIONS.md`; update them during the same session as work proceeds. The roadmap is the durable plan; this file is the current cross-project handoff.
 
