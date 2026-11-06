@@ -70,6 +70,13 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The recursive Git tree API result was truncated by the large generated per-record Library tree. It is explicitly not accepted as a complete inventory. Directory-scoped listings were used for maintained code and goal workspaces.
 - Three open Daily PRs were observed (#158, #159, #160); their proposed behavior is not treated as merged implementation.
 
+## Latest workstream status — 2026-11-06
+
+- All 12 non-documentation goal roadmaps now contain an explicit documentation-only pause; the goal index explains the same priority. The workstream plans are preserved, not discarded.
+- Draft PR #161 contains 29 source overview rewrites, a complete 21-guide docs index, repository-wide Markdown-link checks and stronger file-overview quality tests. Latest PR CI must be checked before merge.
+- The source inventory and semantic audit remain incomplete; do not declare the acceptance criteria met based only on structural tests or the current PR.
+- Exact workflow publication failures from the accidental YAML push triggers are documented in library-enrichment, listening-analytics, this workstream's ACTIONS, NEXT_WORK and LOOSE_ENDS.
+
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
 - Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
