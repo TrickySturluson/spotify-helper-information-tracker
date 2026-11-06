@@ -66,7 +66,7 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 
 - First Codex workflow run triggered by ChatGPT [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) was received; preflight passed, but Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. Validation and publication were skipped.
 - The failure matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The Codex agent job is pinned to `ubuntu-24.04` as a compatibility workaround, without changing the security strategy or permission separation.
-- Activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication.
+- If the user later explicitly reauthorizes this separate API-based experiment and confirms quota, activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication. No retry is authorized under the current no-API-spend decision.
 
 ## Repository-hosted Codex worker — runner fixed; API quota remains blocked
 
