@@ -260,10 +260,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build duration trends and recommendation-ready library features from existing data.
-# Location: Maintained implementation in scripts/analytics/build_music_analytics.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_music_analytics.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_music_analytics). See docs/ for longer operational and data-contract guides.
+# Purpose: Build recommendation-ready track/artist features and duration trends
+#          by joining Last.fm history with cached music and lyric evidence.
+# Inputs: data/scrobbles.json; assistant_data/music/ metadata; optional
+#         data/lyrics/library.sqlite3 analyses; scripts/music/mood_inference.py.
+# Outputs: Rebuilds assistant_data/recommendations monthly/yearly duration
+#          trends, artist_features.json, track_features.json and manifest.
+# Semantics: Preserves artist-level and track-level tags as separate evidence;
+#            missing duration or mood evidence remains unknown rather than being
+#            fabricated from unrelated records.
+# Side effects: Local JSON/SQLite reads and atomic JSON replacement only; no
+#               provider calls, Spotify playlist writes or source archive edits.
+# Run: python compat/build_music_analytics.py (from the repository root).
+# Related: scripts/music/mood_inference.py; docs/TRACK_MOOD_EVIDENCE.md;
+#          docs/RECOMMENDATION_FEATURES.md.
 # -----------------------------------------------------------------------------
