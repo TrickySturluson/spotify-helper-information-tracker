@@ -358,8 +358,9 @@ jobs:
 #           backfill-playability, verify-catalogue, maintain-preview, freshness-review,
 #           validate-freshness-branch, duration-evidence-preview/apply.
 # Write boundaries: migrate/prepare/backfill-playability/duration-evidence-apply write Library
-#           or evidence state. audit/verify-catalogue instantiate MusicLibrary and may rebuild
-#           library_index.json; health is the strictly read-only structural scan.
+#           or evidence state. verify may persist a rotated Spotify refresh token as an Actions
+#           secret via a narrowly scoped GitHub App. audit/verify-catalogue instantiate MusicLibrary
+#           and may rebuild library_index.json; health is the strictly read-only structural scan.
 # Safety: Owner validation, allowlist, serialized runs, latest-main checkout, tests first,
 #         backup artifacts, no Spotify playlist writes, generated-data-only commits.
 # Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py;
