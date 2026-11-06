@@ -33,7 +33,8 @@ Success means a new assistant with no prior chat history can identify the reposi
 - Proposal branch: `babel/agent-progress`.
 - The user has reported adding the OpenAI API key to GitHub repository Actions secrets under the exact name `OPENAI_API_KEY`. Secret values must never be read, printed, copied, or documented.
 - The repository state file still records `last_result: not yet run`. Do not claim activation until a successful workflow run is observed.
-- Remaining owner-side activation check: ensure **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** is enabled, then manually dispatch **Actions → Babel AI continuation → Run workflow** on `main`.
+- The user has now confirmed **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** is enabled.
+- Remaining activation action: manually dispatch **Actions → Babel AI continuation → Run workflow** on `main`, then inspect the run and proposal PR. This chat's connected GitHub tools expose read and repository-content operations but no workflow-dispatch action; the user must click Run workflow in GitHub's Actions UI.
 - Continuity rule is now propagated into `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL_AGENT.md`, `project/BABEL_AGENT_STATE.md`, the Buddy continuation prompt, the Maintainability & Documentation roadmap/action log, `project/NEXT_WORK.md`, and `project/PROJECT_LOG.md`. Latest supporting commits include `675351e` (worker state) and `7770474` (project log).
 - First-run verification must confirm the Codex job succeeded, the independent validation job passed path/deletion checks and full unittest discovery, and the publisher created or updated the isolated proposal branch/PR. No automatic merge.
 
