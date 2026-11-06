@@ -18,6 +18,13 @@ The user has explicitly directed that documentation be the sole active project p
 - **Remaining documentation work:** complete tracked-file inventory; semantically audit every maintained FILE OVERVIEW; reconcile each technical guide, workflow permission/secret/side-effect description, data schema and goal roadmap against source/tests; update stale domain-specific loose ends with current evidence; add targeted checks for real gaps; complete a fresh-session resume simulation.
 - **Status:** documentation architecture and structural guardrails are established; full semantic and operational documentation audit is still in progress. Do not mark this register or the project documentation complete yet.
 
+## Documentation audit — workflow side-effect incident
+
+- Nine workflow YAML bottom overviews were rewritten with specific triggers, credentials, data writes and safety boundaries. This was documentation-only at the file-content level, but the YAML paths themselves matched configured push filters.
+- Reference Library workflow #42146148971 completed and committed generated state as `3e989e33282efab6cc1416e35970e7c59af5f056` (249 files; 184 Library records, 63 Spotify snapshot/history files, 2 removal-state files). This was a read-only Spotify snapshot refresh and repository commit, not a Spotify playlist write.
+- Update Last.fm History #42146153098, Enrich Music Metadata #42146121471 and Acoustic Metadata Enrichment #42146097964 remained active at last inspection. Record their final outcomes and any generated commits here before considering the incident closed.
+- The connected GitHub interface did not expose workflow cancellation. Future workflow-YAML edits must first inspect push-path filters; comment-only edits can start provider and data-writing jobs.
+
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
