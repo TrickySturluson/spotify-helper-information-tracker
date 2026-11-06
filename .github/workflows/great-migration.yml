@@ -351,11 +351,16 @@ jobs:
             }
 
 # FILE OVERVIEW
-# Purpose: ChatGPT-triggerable and manually dispatchable SHIT Library operations.
-# Trigger: Daily provider credential check at 09:17 UTC; owner-created issues titled [SHIT LIBRARY] <status|preview|migrate|prepare-preview|prepare|audit|verify>.
-# Commands: status/preview/health/verify/prepare-preview/validate-freshness-branch/duration-evidence-preview are read-only; duration-evidence-apply is a backup-protected provenance migration; prepare runs migration
-#           followed by bounded, checkpointed metadata enrichment and final audit.
-#           backfill-playability reads saved Spotify snapshots only and publishes song evidence.
-# Safety: owner validation, allow-listed operations, serialized runs, latest-main checkout, tests first,
-#         rollback backup artifact, no Spotify playlist writes, generated-data-only commits.
-# Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py; freshness baseline PR validation.
+# Purpose: Owner-authorized, ChatGPT-triggerable and manually dispatchable SHIT Library operations.
+# Trigger: Daily provider credential check at 09:17 UTC; workflow_dispatch; owner-authored
+#          [SHIT LIBRARY] issue commands, with a strict operation allowlist.
+# Commands: status, preview, migrate, prepare, prepare-preview, audit, health, verify,
+#           backfill-playability, verify-catalogue, maintain-preview, freshness-review,
+#           validate-freshness-branch, duration-evidence-preview/apply.
+# Write boundaries: migrate/prepare/backfill-playability/duration-evidence-apply write Library
+#           or evidence state. audit/verify-catalogue instantiate MusicLibrary and may rebuild
+#           library_index.json; health is the strictly read-only structural scan.
+# Safety: Owner validation, allowlist, serialized runs, latest-main checkout, tests first,
+#         backup artifacts, no Spotify playlist writes, generated-data-only commits.
+# Related: shit.py; scripts/music/library_cli.py; scripts/music/prepare_music_library.py;
+#          docs/GREAT_MIGRATION.md and docs/WORKFLOWS.md.
