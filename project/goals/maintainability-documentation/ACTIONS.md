@@ -22,6 +22,8 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 
 ## 2026-11-05 — Repository index corrected and test-suite guide added
 
+- **CI verification:** Daily curator tests run #42143513931 passed on commit 7d23db6a12ec80eb0830a84738dab3c856ef8dff after the directory-guide additions and index correction. The run completed successfully, including the documentation-layout step and full unittest discovery. A later run #42143770161 also passed on commit 79af1f93756878d27a40a02c3a2abc4b627643ce after the dedicated Tricky Daily workspace was added. The new Playlist Sequencing workspace is newer and awaits its own run.
+
 - **Finding:** the previous `docs/REPOSITORY_FILE_INDEX.md` described itself as a complete tracked-file catalogue and listed only 239 assistant_data files, while the current canonical music Library contains a much larger per-record tree. The recursive Git tree API also reported `truncated: true`, so it was not safe to claim a complete recursive inventory from that response.
 - **Changes:** replaced the stale exhaustive snapshot with a source and data-family index. It documents code/workflow/test ownership, canonical Last.fm data, canonical structured Library records, generated analytics, optional playback observations, Spotify state/feedback, and commands to inspect the exact current Git inventory. Added `tests/README.md` and linked it from the documentation index.
 - **Verification:** repository directories and goal workspaces were inspected through GitHub contents listings. The previous docs contract test passed on commit `38ad97e`; the new directory-guide requirement and corrected index have not yet had a fresh CI run.
