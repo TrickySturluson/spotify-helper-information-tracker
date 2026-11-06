@@ -1,3 +1,7 @@
+# Metadata Freshness & Partial Revalidation — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+
 ## 2026-11-06 — Freshness validation and open PR status
 
 - Daily curator tests run #42149783445 passed the bounded, read-only metadata freshness planning step on draft PR #161's then-current base data; this did not run provider enrichment or modify Library records.
