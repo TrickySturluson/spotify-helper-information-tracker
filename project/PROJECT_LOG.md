@@ -1,9 +1,18 @@
+## 2026-11-06 — Scheduled ChatGPT Buddy separated from the quota-blocked Codex experiment
+
+- **Source-of-truth correction:** the current recurring Buddy path is the scheduled ChatGPT task using the connected GitHub app and the persistent babel/chatgpt-buddy branch. The repository-hosted Codex/API workflow is a separate experiment; its Ubuntu runner fix is verified, but its latest Codex execution failed on API quota before validation or publication. Do not describe the Codex workflow as the current ChatGPT Buddy runner.
+- **Publication state:** existing draft PR #163 is the single Buddy proposal. Before this batch it was open/draft on head 2090ad97648851f5138856795600f4e582849efb, six commits ahead/one behind main, mergeable state clean. Daily curator tests #42188373512 and public repository security scan #42188373527 passed on that pre-batch head; new commits require fresh CI.
+- **Review-only PR reconciliation:** PR #161 remains open/draft with 117 changed files and is 571 commits ahead/135 behind current main; GitHub reports dirty mergeability and there are no submitted reviews/threads. PR #162 remains an open/draft temporary connectivity proof; its security scan passed, while tests failed because its temporary guide is absent from the docs index. Neither PR was modified.
+- **Decision:** the mandatory daily Buddy-check rule is proposed in PR #163 and is not mainline policy until the user reviews and merges it. Keep PR #163 draft and preserve the user's final integration authority.
+- **Documentation:** clarified docs/BABEL.md, the Maintainability & Documentation README/roadmap/action history, project/ACTIVE_SESSION_BRIEF.md, NEXT_WORK.md, and LOOSE_ENDS.md. No source code, workflow YAML, permissions, secrets, generated data, canonical records, provider state, or Spotify playlists were changed.
+- **Next:** inspect the updated PR #163 head and CI, then continue the highest-risk source-to-guide semantic audit. Babel remains in progress; the fresh-session simulation is still outstanding.
+
 ## 2026-11-06 — Active-session brief established as a core continuity rule
 
 - **Decision:** maintain `project/ACTIVE_SESSION_BRIEF.md` throughout active SHIT work as the curated context bridge from ChatGPT to Buddy. It records material decisions, current work, evidence, failures, blockers, and the next action; relevant goal roadmaps and action logs remain synchronized in the same session.
 - **Privacy and timing:** the brief is not a raw chat dump and must exclude unrelated personal context and secret values. It is not real-time messaging; Buddy sees committed changes on a later run and cannot interrupt an active conversation.
 - **Implementation:** created the brief and updated Buddy's startup prompt, root instructions, mandatory documentation rules, Babel agent guide, worker state, documentation roadmap/action log, and cross-project handoff. See `project/goals/maintainability-documentation/ACTIONS.md` for commit-level evidence.
-- **Status:** documentation rule implemented on `main`; Buddy's first successful workflow run and cold-start simulation remain pending.
+- **Status:** the repository-hosted Codex worker's first successful workflow run remains pending because of the API quota blocker. The separate scheduled ChatGPT Buddy path and proposed daily-check rule are documented in draft PR #163; cold-start simulation remains pending.
 
 ## 2026-11-06 — Babel AI continuation infrastructure added
 
@@ -28,7 +37,7 @@
 - **Overview guardrails:** 28 known generic/underspecified implementation overviews were corrected. The maintained inventory includes 55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflow YAMLs and 21 technical guides.
 - **CI/security:** Daily curator run #42168520574 passed 460 tests on `8153028e`; full-history security scan #42168520598 passed on the same commit.
 - **Workflow side effect reconciled:** Enrich Music Metadata run #42166959478 completed successfully and published generated-data commit `3d2c1ded`. It merged 195 discovery candidates into the canonical Library (13,239 songs), added 67 MusicBrainz duration matches from 182 lookups, and rebuilt metadata summaries/analytics. Duration coverage: 8,254/11,130 tracks and 139,758/152,005 scrobbles (91.9%). Artist profiles: 3,373 matched; track profiles with sourced tags: 229; matched album profiles: 905. Final audit: 9 checks, 18 warnings, 0 errors. Warnings: no captured playback intervals and 16 Spotify playlist snapshots with inaccessible item contents. No Spotify playlist writes occurred.
-- **PR #161:** remains open/draft with 117 changed files. Its branch diverges from current main (571 ahead, 29 behind); it is an audit/reference source, not a safe merge candidate. Selectively port high-value tests and documentation after checking them against current source.
+- **PR #161:** remains open/draft with 117 changed files. Its branch diverges from current main (571 ahead, 135 behind); it is an audit/reference source, not a safe merge candidate. Selectively port high-value tests and documentation after checking them against current source.
 - **Status:** documentation remains the only active workstream. Semantic audit and fresh-session acceptance remain open.
 
 ## 2026-11-01 — Goal workspaces merged and project-wide loose ends audited
