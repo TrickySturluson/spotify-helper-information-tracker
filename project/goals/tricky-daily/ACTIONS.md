@@ -1,5 +1,11 @@
 # Tricky Daily — Actions & Evidence
 
+## 2026-11-06 — Daily proposals and live-playlist safety status
+
+- PR #158 (Discover Weekly exposure/feedback), #159 (DST schedule gating) and #160 (exposure-aware discovery) remain open proposals, not merged behavior.
+- No Tricky Daily playlist mutation, cycle, description change or candidate push was performed as part of this documentation audit. The accidental Reference Library refresh was read-only against Spotify and only updated repository snapshots/removal state.
+- Daily feature work remains paused until the documentation-only acceptance criteria pass.
+
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
 
 ## 2026-11-05 — Dedicated Daily workstream documentation created
