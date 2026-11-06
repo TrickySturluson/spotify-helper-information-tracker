@@ -291,6 +291,7 @@ class DocumentationContractTests(unittest.TestCase):
         migration_guide = (ROOT / "docs" / "GREAT_MIGRATION.md").read_text(encoding="utf-8")
         legacy_migrator = (ROOT / "scripts" / "music" / "migrate_music_library.py").read_text(encoding="utf-8")
         full_migrator = (ROOT / "scripts" / "music" / "migrate_full_music_library.py").read_text(encoding="utf-8")
+        migration_workflow = (ROOT / ".github" / "workflows" / "great-migration.yml").read_text(encoding="utf-8")
 
         self.assertIn("Constructor may rebuild and write library_index.json", source)
         self.assertIn("strictly read-only structural check", guide)
@@ -301,6 +302,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Use `health` when zero repository writes are required", migration_guide)
         self.assertIn("legacy run/resume and --recent-limit writes do not create their own backup", legacy_migrator)
         self.assertIn("timestamped sibling backup", full_migrator)
+        self.assertIn("audit/verify-catalogue instantiate MusicLibrary and may rebuild", migration_workflow)
+        self.assertIn("health is the strictly read-only structural scan", migration_workflow)
 
     def test_track_profile_builder_preserves_playlist_only_evidence_semantics(self):
         source = (ROOT / "scripts" / "music" / "build_track_profiles.py").read_text(encoding="utf-8")
