@@ -1,4 +1,6 @@
 # Playlist Sequencing
+> **Current repository priority:** This workstream is paused for feature implementation while SHIT's documentation audit is active. Only documentation corrections and evidence reconciliation are permitted. Preserve this roadmap; resume its feature next actions only when the [central handoff](../../NEXT_WORK.md) and Maintainability & Documentation roadmap explicitly say documentation is complete.
+
 
 Playlist Sequencing is SHIT's ordering engine. It optimizes track-to-track flow and a user-defined listening journey; it is distinct from candidate recommendation and the five-axis playlist-fit scorer.
 
