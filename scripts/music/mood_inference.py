@@ -186,5 +186,5 @@ def infer_mood_profile(items, artist_profiles):
 # Side effects: No filesystem, network, Spotify or Library writes.
 # Run: Imported by scripts/analytics/build_music_analytics.py and related
 #      enrichment tools; no standalone CLI.
-# Related: docs/TRACK_MOOD_EVIDENCE.md; tests/test_mood_inference.py.
+# Related: docs/TRACK_MOOD_EVIDENCE.md; tests/test_playlist_intelligence.py.
 # -----------------------------------------------------------------------------
