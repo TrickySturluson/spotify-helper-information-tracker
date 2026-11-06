@@ -242,14 +242,14 @@ if __name__ == "__main__":
 
 
 # -----------------------------------------------------------------------------
-# # FILE OVERVIEW
-# # Purpose: Build compact assistant-queryable indexes and summaries from Last.fm history.
-# # Source of truth: data/scrobbles.json; this script never rewrites the raw scrobble archive.
-# # Outputs: assistant_data overview/manifest, time buckets, rankings, entity indexes and
-# #          other compact JSON summaries consumed by ChatGPT and project analytics.
-# # Semantics: Preserves UTC timestamps and explicit unknown artist/album/track labels;
-# #            output is derived and can be regenerated from the canonical archive.
-# # Safety: Local aggregation only; no provider requests or Spotify playlist writes.
-# # Run: python compat/build_assistant_data.py (repository root).
-# # Related: tests/; assistant_data/README.md; docs/REPOSITORY_FILE_INDEX.md.
-# # -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Build compact assistant-queryable indexes and summaries from Last.fm history.
+# Source of truth: data/scrobbles.json; this script never rewrites the raw scrobble archive.
+# Outputs: assistant_data overview/manifest, time buckets, rankings, entity indexes and
+#          other compact JSON summaries consumed by ChatGPT and project analytics.
+# Semantics: Preserves UTC timestamps and explicit unknown artist/album/track labels;
+#            output is derived and can be regenerated from the canonical archive.
+# Safety: Local aggregation only; no provider requests or Spotify playlist writes.
+# Run: python compat/build_assistant_data.py (repository root).
+# Related: tests/; assistant_data/README.md; docs/REPOSITORY_FILE_INDEX.md.
+# -----------------------------------------------------------------------------
