@@ -1,3 +1,14 @@
+## 2026-11-06 — Daily reliability priority and recommendation-memory requirement
+
+- **User decision:** operational reliability comes first. Daily must function as intended before expanding recommendation intelligence; continue safe no-write verification and diagnose actual daily refresh/scheduling behavior before any live playlist replacement.
+- **Recommendation memory approved as a product requirement:** Daily must durably remember each recommendation event and connect it to later observed outcomes across cycles. Distinguish measured Spotify playback from Last.fm scrobbles, likes/saves, manual removals/blacklists, later retention, ignored/no observed play, not-yet-observed, and unknown due to coverage gaps. Repeated recommendations remain separate events linked to the same track history. High-play-then-remove differs from unplayed-then-remove. Track-level rejection must not automatically become artist-level rejection. Memory must be idempotent, append-safe, versioned, recoverable, auditable, playlist-scoped, and subordinate to hard exclusions/whitelist policy.
+- **No invented backfill:** historical candidate rows with null listening evidence cannot be converted into plays, ignores, or approval. Existing recommendation artifacts are historical candidate evidence only unless their fields explicitly support an outcome.
+- **Operational sequence:** P0: confirm cooldown file is not in manual-clear state; confirm current test trigger remains stage-only; complete exact 60-candidate staging, durable commit, hash/order read-back and pre-write checks; then verify schedule/DST, daily delivery, same-date idempotency and snapshot freshness. P1: design schema and implement recommendation memory after the operational gate.
+- **Current evidence:** `.github/spotify_api_cooldown.json` records deadline `2026-11-06T19:49:46+00:00`; deadline has passed but is not proof of quota recovery. `.github/test-triggers/tricky-daily-live-cycle.json` currently says `action: stage-only`, `force: true`, and identifies the post-cooldown verification attempt. No new workflow dispatch or Spotify request was made as part of this documentation update.
+- **Authorization boundary:** no live playlist track replacement or description mutation is authorized by this roadmap decision. Stage-only is permitted as no-write verification; any live replacement still requires separate authorization.
+- **Files updated:** Daily roadmap, backlog, and this action log. This entry adds no runtime code or test claims.
+
+---
 ## 2026-11-06 — Feedback nuance: high-engagement removals and artist-level penalties
 
 - **Source review:** `load_playlist_feedback()` in `scripts/spotify/spotify_discovery.py` adds one negative artist event whenever a removed track has any positive post-add measured-play or Last.fm-scrobble count. It does not distinguish a single play from many plays or repeated track removals for the same artist.
