@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Workflow catalogue and Daily force semantics reconciled against source
+
+- **Workflow audit:** compared all 17 catalogue rows with the current YAML triggers. Corrected branch/path conditions for the enrichment, playlist-manager check, Daily preflight, Daily cycle, remote verification, Reference Library and Last.fm update workflows; clarified Great Migration owner-authored issue filtering.
+- **Daily discrepancy:** source and schedule-test inspection found `--force` bypasses both the clock gate and the same-Eastern-date completion guard, while the intended P0 contract says it should bypass only the clock gate. The existing schedule test currently asserts the broader behavior.
+- **Documentation:** corrected `docs/WORKFLOWS.md`, `docs/TRICKY_DAILY_CYCLE.md`, `docs/TRICKY_DAILY_TODO.md`, the Daily README/roadmap, and the cross-project loose-ends/handoff records. Added a documentation-contract test requiring the discrepancy to remain explicit.
+- **Verification boundary:** source/YAML/test inspection and GitHub file updates only. The new documentation regression test has not yet run in CI; exact-head CI/security is pending after these commits.
+- **Safety:** no workflow YAML, application behavior, test expectation, provider state, generated data or Spotify playlist was changed. The workflow catalogue edit is Markdown only and does not trigger push-path workflows.
+- **Next:** monitor exact-head CI/security; continue the technical guide/source audit and fresh-session test. Keep the runtime fix deferred until the documentation-only pause ends.
+
+
 ## 2026-11-06 — Exact PR #161 head CI and security verification passed
 
 - **Delivery branch:** `docs/semantic-documentation-audit`; PR [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161), head commit `2ac590af9d8dbc85ebf5a81bc951f4190695906a`.
