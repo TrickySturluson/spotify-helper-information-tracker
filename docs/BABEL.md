@@ -23,7 +23,7 @@ The repository—not chat history—is the durable source of truth. Babel makes 
 - **First reference in a fresh document or session:** “SHIT Documentation & Continuity (internal codename: Babel).”
 - **Later references:** “Babel” is acceptable after the relationship has been established.
 - **Navigation and first-contact headings:** prefer the descriptive name. Do not use “Babel” alone as a heading or link label when a reader may not yet know what it means.
-- **Scope boundary:** Babel is the documentation/continuity system, not a separate music feature, runtime service, playlist, data provider, or replacement name for SHIT.
+- **Scope boundary:** Babel is the documentation/continuity system, not a music feature, playlist, data provider, or replacement name for SHIT. It may use a narrowly scoped GitHub Actions AI worker to maintain documentation; that worker is an implementation aid, not the source of truth.
 
 ## Responsibilities
 
@@ -67,6 +67,10 @@ Every major workstream must maintain:
 - **No secret disclosure.** Document credential names and setup requirements, never credential values, tokens, or private keys.
 - **No prose in machine data.** Keep explanations in Markdown or supported code overviews, not canonical/generated JSON or other machine-readable records.
 - **No feature work during the documentation gate.** The user's current instruction is to finish the documentation and fresh-session audit before resuming unrelated feature development or playlist operations.
+
+## AI-assisted continuation
+
+Babel now includes an optional repository-hosted AI continuation worker. Its architecture, activation requirements, permissions, recovery behavior, and limitations are documented in [BABEL_AGENT.md](BABEL_AGENT.md). The worker reads repository instructions and checkpoints, makes bounded documentation-only changes, and submits them through a dedicated review branch. It does not replace human review or the repository's evidence requirements.
 
 ## Definition of success
 
