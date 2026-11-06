@@ -3,6 +3,10 @@
 **Last reviewed:** 2026-11-05  
 **Status:** Design specification exists; planner/executor implementation and live-schema verification must be confirmed before use.
 
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
+
 ## Purpose
 Turn missing or weak metadata into a deterministic, bounded work queue without confusing provider failures with definitive absence or repeatedly spending request budgets.
 
