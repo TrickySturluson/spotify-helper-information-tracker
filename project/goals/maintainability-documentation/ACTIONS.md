@@ -1,6 +1,14 @@
 # Maintainability & Documentation — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Latest PR head Daily curator tests passed
+
+- **Head tested:** `7cc3497075d47bfb3ef2f35dcf7d89a04e33ecab`.
+- **Daily curator CI:** [#42158995339](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158995339) completed successfully. Every step passed: compile all Python modules, generated-data audit, read-only full Library health/confidence/freshness checks, maintained-file documentation checks and full unittest discovery.
+- This run includes the newly added Reference Library schedule-alignment test, Daily force/idempotency discrepancy guard, and workflow trigger-boundary checks.
+- **Security:** full-history scan [#42158995392](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158995392) is still in progress at the time of this entry.
+- **Boundary:** the current docs/status commit will advance the branch beyond the tested SHA; exact-head verification must be rechecked. No provider enrichment, data publication, workflow YAML edits or Spotify playlist writes occurred.
+
 ## 2026-11-06 — Latest available CI/security on intermediate PR head passed
 
 - Daily curator CI [#42158020546](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158020546) and full-history Gitleaks scan [#42158020518](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42158020518) both passed on commit `041bf54da9b25d8269fd193c8f8e1bd1c497d33a`.
