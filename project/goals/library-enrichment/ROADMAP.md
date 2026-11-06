@@ -17,6 +17,13 @@ Increase useful, trustworthy metadata for recordings, artists, and albums using 
 ## Baseline (historical; refresh before use)
 Run #18 reported ~91.1% duration coverage, 1,778 track profiles, 3,998 artist profiles, 400 album profiles, 115 audio profiles, and zero lyric features. Provider issues included MusicBrainz 503/rate limits, Last.fm tag HTTP 400, and unavailable optional Discogs/GetSongBPM credentials.
 
+## 2026-11-06 operational findings — documentation record only
+
+- A concurrent metadata-enrichment run (#42146121471) completed its provider work but failed publication on add/add conflicts in canonical song records introduced by the simultaneous Reference Library commit. Enrichment workspace changes were not published.
+- AcousticBrainz run #42146097964 completed 100 batches (2,500 candidate IDs; 207 found; 2,293 misses; 322 total profiles; 3,678 negative-cache entries) but failed publication because the workflow unconditionally staged an absent optional `getsongbpm_lookup_state.json` after the optional GetSongBPM provider was skipped.
+- These are workflow/publication reliability defects, not proof that the corresponding metadata is now present in canonical main. Do not count either run's uncommitted workspace output as Library coverage.
+- Remediation is deferred until the user-authorized documentation-only phase is complete. Future work: shared-writer serialization/stale-base conflict handling and conditional staging of optional provider files.
+
 ## Roadmap
 1. **Fresh coverage audit — next.** Measure per-field and per-entity coverage, provenance, confidence, freshness, and provider checkpoints on current main.
 2. **Recording identity and duration.** Resolve exact recording IDs; preserve verified durations and legacy default estimates distinctly; backfill provenance only when exact evidence matches.
