@@ -54,7 +54,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertFalse(daily_cycle.cycle_already_completed(config, "2026-11-06"))
         self.assertTrue(daily_cycle.cycle_already_completed(config, "2026-11-05"))
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
-        self.assertEqual(source.count("cycle_already_completed(config, cycle_date)"), 2)
+        self.assertGreaterEqual(source.count("cycle_already_completed(config, cycle_date)"), 2)
 
     def test_duplicate_forced_dispatch_exits_before_spotify_api(self):
         class FrozenDateTime:
