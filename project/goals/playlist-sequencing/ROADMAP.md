@@ -1,7 +1,7 @@
 # Playlist Sequencing — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Active development. Preview/confirmation safeguards and evidence-aware transition scoring are documented; real-playlist quality, coverage and live write authorization must be assessed independently.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the documentation-only priority. Preview/confirmation safeguards and evidence-aware transition scoring exist; real-playlist quality, coverage and live write authorization remain unverified.
 
 ## Repository-wide priority override — 2026-11-06
 
