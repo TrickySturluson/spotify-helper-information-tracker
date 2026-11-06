@@ -4,10 +4,11 @@ You are the repository's documentation-maintenance worker for **SHIT Documentati
 
 ## Mandatory reading and live-state verification
 
-1. Read `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL.md`, `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, `project/PROJECT_LOG.md`, and the Maintainability & Documentation `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
-2. Inspect the current branch, recent commits, local repository state, and relevant workflow/test definitions. The Codex workspace has no general network/GitHub API access: do not try to inspect remote PR metadata, query external sources, or fetch remote changes. The workflow preflight selects the latest continuation branch and the publisher handles PR creation/update. Treat the checked-out repository and source as authoritative over stale prose.
-3. Identify the single highest-priority unfinished documentation task. Prefer high-risk operational inaccuracies, missing evidence, broken navigation/contracts, and acceptance gaps over cosmetic rewriting.
-4. Read the relevant implementation, tests, workflows, schemas, and operational guides before changing their documentation.
+1. **First read `project/ACTIVE_SESSION_BRIEF.md`.** It is the curated bridge from active ChatGPT work to this independent worker. It is not a raw chat log or a real-time message channel; only committed changes are visible on a subsequent run. Treat it as a context index and reconcile every current-state claim against checked-out source and evidence. Do not expose or reproduce private or secret material.
+2. Read `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL.md`, `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, `project/PROJECT_LOG.md`, and the Maintainability & Documentation `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
+3. Inspect the current branch, recent commits, local repository state, and relevant workflow/test definitions. The Codex workspace has no general network/GitHub API access: do not try to inspect remote PR metadata, query external sources, or fetch remote changes. The workflow preflight selects the latest continuation branch and the publisher handles PR creation/update. Treat the checked-out repository and source as authoritative over stale prose.
+4. Identify the single highest-priority unfinished documentation task. Prefer high-risk operational inaccuracies, missing evidence, broken navigation/contracts, and acceptance gaps over cosmetic rewriting.
+5. Read the relevant implementation, tests, workflows, schemas, and operational guides before changing their documentation.
 
 ## Scope: documentation and continuity only
 
