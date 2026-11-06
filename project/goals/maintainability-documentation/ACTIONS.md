@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Canonical Library guide corrected for legacy staged-write risk
+
+- Compared `docs/PER_RECORDING_MUSIC_LIBRARY.md` with `scripts/music/migrate_music_library.py`, `scripts/music/music_library.py`, and the supported `library_cli.py` migration route.
+- Found that the documented legacy `--recent-limit` write path writes directly to the default canonical Library root without creating its own backup. The guide previously showed the write command as a normal staged-migration step without warning. Removed the direct-write example, documented the backup limitation, and directed canonical migration through `python shit.py library migrate --yes`, which creates a timestamped backup when an existing indexed Library is present.
+- Reworded the 50-song/22-artist validation sample as a historical partial integration sample, not a current canonical Library count. Clarified that untouched legacy aggregate exports are not a backup of canonical Library writes.
+- **Verification:** source-level inspection only; no migration or Library writes were performed. Latest PR CI is running on an earlier head and does not include this newest documentation edit; exact-head verification remains pending.
+- **Next:** continue reviewing canonical Library identity/provenance, enrichment freshness and shared-writer recovery guides against implementation and tests.
+
 ## 2026-11-06 — Latest available full CI and security runs passed before Great Migration allowlist guard
 
 - Daily curator CI [#42153534943](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42153534943) completed successfully on PR commit 4b49dc322797b158debf5900b57777c27816a70d. Compilation, generated-data audit, full read-only Library health/confidence checks, bounded freshness planning, maintained-file documentation checks and full unittest discovery all passed.
