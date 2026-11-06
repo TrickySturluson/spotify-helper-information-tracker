@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Automated documentation contract checks added
+
+- **Purpose:** catch missing documentation foundations and broken navigation before future changes can quietly erode continuity.
+- **Changes:** added `tests/test_documentation_contract.py`. It checks repository control documents, every goal folder's ROADMAP/README/ACTIONS, root assistant instructions, coverage of major repository domains in the docs index, and local links from the main fresh-session entry points. Updated `docs/README.md` and `docs/CODE_DOCUMENTATION.md` to explain the checks.
+- **Execution:** test is included in standard unittest discovery; the existing `.github/workflows/update.yml` runs full unittest discovery before publishing refreshed data. No workflow YAML change was required.
+- **Verification:** file creation succeeded. The new test has not yet been executed in GitHub Actions; do not mark the guardrail verified until a successful run is inspected.
+- **Outcome:** implemented; CI verification pending.
+- **Next action:** inspect the latest workflow run after this commit. If tests fail, diagnose and fix only the actual broken paths/contract assumptions, then add coverage for source inventory and stale file-index detection.
+
 ## 2026-11-05 — Repository navigation and mandatory agent instructions added
 
 - **Purpose:** make the documentation system discoverable and enforceable from the repository root, not dependent on a chat summary.
