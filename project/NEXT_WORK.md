@@ -42,11 +42,11 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - #120 — incremental Library enrichment and sorter development (open draft).
 - #65 — read-only Library coverage planner (open draft).
 - #60 — provenance-aware recommendation ingestion (open, non-draft).
-Treat all seven as proposals, not merged behavior. Reinspect their diffs, current base/head relationship and checks before updating mainline documentation or selecting future work.
+Treat all eight open PRs as proposals, not merged behavior. Reinspect their diffs, current base/head relationship and checks before updating mainline documentation or selecting future work.
 
 ### Findings and remaining audit work
 - The documentation architecture is substantial and already includes 13 goal workspaces, 22 cross-cutting guides in `docs/`, the central handoff/loose-ends/log/roadmap, directory guides, workflow catalogue, and automated documentation contract tests.
-- The documentation contract currently verifies required control files, goal workspace structure, major-domain navigation, selected local links, workflow catalogue coverage, and bottom FILE OVERVIEW presence. It does not semantically compare each overview or guide with the current implementation.
+- Mainline's existing documentation contract verifies required control files, goal workspace structure, major-domain navigation, selected local links, workflow catalogue coverage, and bottom FILE OVERVIEW presence. It does not yet semantically compare every overview or guide with the implementation. Draft PR #161 extends this with all-Markdown link checks, complete guide indexing, workflow-overview quality checks, implementation boilerplate rejection, and compatibility-to-source checks; these new checks remain pending CI/merge.
 - The maintainability roadmap and action log still correctly identify manual semantic review, operational contract reconciliation, and a fresh-session resume test as unfinished.
 - Open Daily pull requests observed during this audit: #158 Discover Weekly exposure/feedback tracking, #159 DST schedule gating, and #160 exposure-aware Daily discovery. Treat them as unmerged proposals; inspect their current state before incorporating their behavior into mainline documentation.
 - The loose-ends register's review date and several historic status statements are stale relative to the current repository. Reconcile each workstream against current main, open PRs/issues and fresh workflow evidence before treating its entries as current.
