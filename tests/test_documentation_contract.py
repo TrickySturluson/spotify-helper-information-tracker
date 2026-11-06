@@ -59,22 +59,22 @@ class DocumentationContractTests(unittest.TestCase):
     def test_great_migration_issue_operations_match_workflow_and_guide(self):
         workflow = (ROOT / ".github" / "workflows" / "great-migration.yml").read_text(encoding="utf-8")
         guide = (ROOT / "docs" / "GREAT_MIGRATION.md").read_text(encoding="utf-8")
-        allowed_match = re.search(r"allowed\\s*=\\s*\\{([^}]+)\\}", workflow)
+        allowed_match = re.search(r"allowed\s*=\s*\{([^}]+)\}", workflow)
         self.assertIsNotNone(allowed_match, "Could not locate Great Migration operation allowlist")
         allowed = set(re.findall(r'"([a-z][a-z0-9-]*)"', allowed_match.group(1)))
 
         dispatch_match = re.search(
-            r"workflow_dispatch:\\s*(.*?)\\npermissions:",
+            r"workflow_dispatch:\s*(.*?)\npermissions:",
             workflow,
             flags=re.DOTALL,
         )
         self.assertIsNotNone(dispatch_match, "Could not locate manual dispatch options")
         options_match = re.search(
-            r"options:\\s*((?:\\s+-\\s+[a-z][a-z0-9-]*\\s*\\n)+)",
+            r"options:\s*((?:\s+-\s+[a-z][a-z0-9-]*\s*\n)+)",
             dispatch_match.group(1),
         )
         self.assertIsNotNone(options_match, "Could not locate manual dispatch command choices")
-        dispatch_options = set(re.findall(r"^\\s+-\\s+([a-z][a-z0-9-]*)\\s*$", options_match.group(1), re.MULTILINE))
+        dispatch_options = set(re.findall(r"^\s+-\s+([a-z][a-z0-9-]*)\s*$", options_match.group(1), re.MULTILINE))
 
         self.assertEqual(allowed, dispatch_options, "Issue allowlist and manual dispatch choices must stay aligned")
         for operation in sorted(allowed):
