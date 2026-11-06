@@ -5,14 +5,13 @@ This is the cross-project register of known unfinished work discovered from the 
 **Last reviewed:** 2026-11-06 (audit baseline `aacb70fa`; subsequent same-session commits contain documentation-only audit updates)  
 **Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
-## Babel AI continuation — INTEGRATED; ACTIVATION BLOCKED ON SECRET
+## Babel AI continuation — INTEGRATED; FIRST RUN FAILED; RETEST REQUIRED
 
-- Repository configuration is committed: .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
-- The workflow runs every six hours or manually, resumes from babel/agent-progress, and submits validated documentation/test-only changes through a review PR. Read-only validation rejects deletions/out-of-scope paths and runs full unittest discovery without write credentials; publisher rechecks paths and publishes without executing candidate code. No auto-merge, Spotify/provider credentials, provider calls, playlist writes or generated-data edits.
-- **Blocker:** repository owner must add OPENAI_API_KEY as a GitHub Actions secret and ensure Actions is permitted to create pull requests. OpenAI API usage is separately billed; a ChatGPT subscription does not itself supply an API key.
-- **Verification gap:** no successful workflow run/PR has yet been observed. After configuring the secret, manually dispatch once and inspect the full run, test result, branch and PR. Until then the worker is implemented but not operationally verified.
-- Guide: docs/BABEL_AGENT.md. Do not treat this as completion of Babel itself; it is infrastructure to help finish the remaining audit.
-
+- Repository configuration and the ChatGPT push trigger are committed. The user reports `OPENAI_API_KEY` is configured and Actions is allowed to create pull requests.
+- First dispatch run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313): preflight passed; Codex agent failed before prompt execution; validation and publisher were skipped. No Buddy PR was produced.
+- Root cause: `ubuntu-latest` selected Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed while restricting `/run/dbus/system_bus_socket`, matching [upstream issue #188](https://github.com/openai/codex-action/issues/188).
+- Remediation: pin the isolated Codex job to `ubuntu-24.04` without weakening `drop-sudo`, workspace permissions, validation or publisher boundaries. Trigger a fresh run and verify Codex, path checks, full unittest discovery, and the isolated PR.
+- Until all stages pass, Buddy is integrated but not operationally verified. See [docs/BABEL_AGENT.md](../docs/BABEL_AGENT.md).
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
 The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
