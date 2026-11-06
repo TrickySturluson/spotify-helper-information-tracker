@@ -59,9 +59,16 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Draft PR [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161) contains 32 source overview rewrites, three compatibility overview corrections, 11 test overview rewrites, complete technical guide indexing, all-Markdown local-path link checks, workflow overview quality checks, and implementation/test overview boilerplate guards. It remains draft and unmerged.
 - The test-overview guard initially failed because its generic-rejection fixture accidentally contained the layout test's own newly specific scope sentence. The fixture was corrected in commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
 - Latest available Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) passed on commit `adce63e1f17bb2bb13a26944b7b5917c3506a714`, including compilation, generated-data audit, full read-only Library health/confidence/freshness checks, all documentation checks and full unittest discovery. The Great Migration issue/manual-dispatch/runbook allowlist test and canonical Library guide safety clarification were included. Full-history security scan [#42154433307](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433307) also passed on that commit.
-- After `adce63e`, one additional regression test was added to compare scheduled/manual metadata-enrichment budgets with the workflow and both guides; documentation files were also updated for those limits, lyrics-provider setup, goal statuses/dates, action-log chronology and current Library baselines. No application implementation source or workflow YAML changed. The new test has not yet run in CI; exact latest-head CI/security remains outstanding.
-- Latest live PR inspection reported mergeable true, draft/unmerged; branch comparison showed 0 commits behind main. Re-fetch PR metadata and compare status before any merge decision.
+- After `adce63e`, the metadata-enrichment budget regression test and further guide/goal/handoff updates were added. Exact-head verification is now complete: Daily curator CI [#42157311583](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42157311583) and full-history security scan [#42157311623](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42157311623) both passed on PR head `2ac590af9d8dbc85ebf5a81bc951f4190695906a`. The CI run included compile, generated-data audit, read-only Library health/confidence/freshness, documentation checks and full unittest discovery.
+- PR #161 remains open and draft; live metadata reported mergeable=true and comparison against `main` reports 320 commits ahead / 0 behind. This is not merge authorization: semantic source/guide reconciliation, complete tracked-file inventory and fresh-session simulation remain acceptance gates.
 - The workflow YAML comment-only push incident and its three failed publication attempts remain documented. Do not run enrichment, data publication or playlist operations during the documentation pause.
+
+## Latest exact-head verification — 2026-11-06
+
+- PR #161 head: `2ac590af9d8dbc85ebf5a81bc951f4190695906a`.
+- Daily curator CI #42157311583: success; compile, generated-data audit, full read-only Library health/confidence/freshness checks, documentation checks and full unittest discovery all passed.
+- Full-history public repository security scan #42157311623: success.
+- These checks verify the current PR head but do not close the manual semantic audit, complete inventory, guide reconciliation or fresh-session acceptance criteria.
 
 ## Remaining acceptance work
 
