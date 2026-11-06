@@ -461,10 +461,14 @@ if __name__ == "__main__":
 #           gate selects midnight America/New_York and the 15-minute recovery delivery.
 # Safety: Exact playlist ID/name/owner checks, managed-playlist policy, explicit
 #         unlocked state, 60-track minimum, URI validation, duplicate prevention,
-#         per-day idempotency and a pre-change recovery snapshot.
+#         a pre-change recovery snapshot, and a same-Eastern-date completion guard.
+#         Known P0 discrepancy: current --force also bypasses that completion guard;
+#         intended behavior is to bypass the clock gate only. Do not treat the broader
+#         current behavior as the desired contract.
 # Feedback: Rotation removals are neutral curator_rotation events in Daily's own
 #           feedback store, never playlist-fit rejection or a negative preference.
-# Dispatch: Manual runs remain midnight-gated unless --force is explicit; --description-only
-#           and --verify-only are separate safe actions.
+# Dispatch: Manual runs are clock-gated unless --force is explicit; currently --force
+#           bypasses both the clock gate and same-date guard. --description-only and
+#           --verify-only are separate actions.
 # Recovery: The pre-change backup is uploaded by the workflow and linked in manager state.
 # -----------------------------------------------------------------------------
