@@ -1,3 +1,10 @@
+## 2026-11-06 — Reference Library refresh distinguished from playability refresh
+
+- Reference Library workflow #42146148971 completed and committed repository snapshots/removal state as `3e989e33282efab6cc1416e35970e7c59af5f056`.
+- This was a read-only Spotify playlist snapshot refresh plus local repository-state publication; it did not mutate Spotify playlists.
+- Do not count it as the explicit market-aware `refresh-playability` operation or as proof that all saved tracks have fresh `from_token` market observations. The last explicit playability backfill remains the previously documented PR #78 / issue #82 evidence until a separate bounded refresh is verified.
+- This goal's feature work remains paused until documentation acceptance criteria pass.
+
 ## 2026-11-02 — Merge market-aware refresh and backfill saved observations
 
 - PR #78 merged to `main` as `e12b72ee24f1440115961282cd7baf7879ebeec8`.
