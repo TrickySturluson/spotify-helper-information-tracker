@@ -285,12 +285,15 @@ class DocumentationContractTests(unittest.TestCase):
         health = (ROOT / "scripts" / "music" / "library_health.py").read_text(encoding="utf-8")
         sequencer = (ROOT / "scripts" / "spotify" / "spotify_playlist_sequencer.py").read_text(encoding="utf-8")
         transition_guide = (ROOT / "docs" / "TRANSITION_SCORING.md").read_text(encoding="utf-8")
+        migration_guide = (ROOT / "docs" / "GREAT_MIGRATION.md").read_text(encoding="utf-8")
 
         self.assertIn("Constructor may rebuild and write library_index.json", source)
         self.assertIn("strictly read-only structural check", guide)
         self.assertIn("never instantiates the lazy resolver", health)
         self.assertIn("may rebuild/write library_index.json", sequencer)
         self.assertIn("Do not equate “no Spotify playlist writes” with “no local repository/file writes.”", transition_guide)
+        self.assertIn("audit is a resolver/index diagnostic", migration_guide)
+        self.assertIn("Use `health` when zero repository writes are required", migration_guide)
 
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
