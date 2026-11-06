@@ -1,7 +1,7 @@
 # Library Health Checker & Data Maintainer — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Read-only health checker and preview-only derived-index maintenance are merged; broader repairs remain restricted/proposed.
+**Last reviewed:** 2026-11-06  
+**Status:** Read-only health checker and preview-only derived-index maintenance are merged; broader repairs remain restricted/proposed. Feature work is paused under the documentation-only priority.
 
 ## Repository-wide priority override — 2026-11-06
 
