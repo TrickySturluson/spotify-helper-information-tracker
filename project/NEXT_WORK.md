@@ -21,7 +21,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
 - The OpenAI Codex worker is scheduled every six hours and manually dispatchable. It resumes from babel/agent-progress, makes bounded documentation-only changes, and publishes through one review PR. A separate read-only validation job rejects non-documentation paths/deletions and runs full unittest discovery without write credentials; the publisher rechecks paths and publishes without executing candidate code.
 - No Spotify/provider credentials or provider operations are available to the agent. It cannot modify runtime features, generated data, or workflow YAML; it never auto-merges.
-- **Activation pending:** add the OpenAI API key as repository Actions secret OPENAI_API_KEY, ensure GitHub Actions is allowed to create pull requests, then manually dispatch once and verify the run/PR. API usage is billed separately from ChatGPT subscription access.
+- **Activation pending:** the user reports that repository Actions secret `OPENAI_API_KEY` has been added. Confirm **Allow GitHub Actions to create and approve pull requests**, then manually dispatch once on `main` and verify the run/PR. API usage is billed separately from ChatGPT subscription access.
 - See [Babel AI continuation guide](../docs/BABEL_AGENT.md). The worker is integrated but not yet operationally verified. Documentation remains the only SHIT priority.
 
 ## 2026-11-06 — Documentation-only priority; latest evidence reconciled
