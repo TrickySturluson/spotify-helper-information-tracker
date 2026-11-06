@@ -81,10 +81,8 @@ def should_run_cycle(local_now, force=False, event_name=None):
     return local_now.hour == 0 and local_now.minute < 30
 
 
-def cycle_already_completed(config, cycle_date, force=False):
-    """Return whether the Eastern date was claimed, unless an explicit forced run overrides it."""
-    if force:
-        return False
+def cycle_already_completed(config, cycle_date):
+    """Return whether this Eastern date already has an accepted cycle, regardless of force."""
     state = config.get("daily_cycle", {})
     if not isinstance(state, dict):
         raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing a duplicate rotation.")
@@ -147,7 +145,7 @@ def main():
     # Check the persisted date before opening Spotify. Backup cron entries and
     # delayed duplicate deliveries should be cheap local no-ops after success.
     config = manager.config()
-    if not args.description_only and cycle_already_completed(config, cycle_date, force=args.force):
+    if not args.description_only and cycle_already_completed(config, cycle_date):
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
@@ -242,7 +240,7 @@ def main():
     # Re-read immediately before planning/mutation in case state changed after
     # startup. The workflow concurrency group also serializes cycle executions.
     config = manager.config()
-    if cycle_already_completed(config, cycle_date, force=args.force):
+    if cycle_already_completed(config, cycle_date):
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
