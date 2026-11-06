@@ -3,6 +3,10 @@
 **Last reviewed:** 2026-11-05  
 **Status:** Catalogue migration published and structurally verified; remaining work is controlled enrichment/provenance follow-through, not a fresh full migration.
 
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
+
 ## Purpose and success criteria
 Maintain one canonical per-recording music Library while preserving source identities, aliases, relationships, provenance, and recoverability. Publish only audited outputs without losing concurrent main-branch changes. Migration must not modify Spotify playlists or invent provider metadata.
 
