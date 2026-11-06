@@ -325,8 +325,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_spotify_playlist_manager -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Verify the shared Spotify playlist manager's authorization and write-safety invariants.
+# Scope: Deny-by-default managed-playlist policy, lock checks, plan validation, backups, metrics,
+#        refresh-token rotation/secret persistence, exact lookup behavior and Retry-After cooldowns.
+# Run: python -m unittest tests.test_spotify_playlist_manager -v
+# Related: scripts/spotify/spotify_playlist_manager.py; docs/SPOTIFY_API_OPERATIONS.md;
+#          docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
