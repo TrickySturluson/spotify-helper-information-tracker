@@ -12,7 +12,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 **Active priority: documentation only.** Do not begin feature development, playlist operations, enrichment runs, or unrelated project work until the documentation audit reaches the completion standard in the Maintainability & Documentation roadmap.
 
 ### Verified repository baseline
-- Canonical repository: `TrickySturluson/spotify-helper-information-tracker`, default branch `main`; inspected current main tree SHA `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`.
+- Canonical repository: `TrickySturluson/spotify-helper-information-tracker`, default branch `main`; current inspected main head is `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a` (includes the documentation-control updates and the completed Reference Library snapshot commit). The earlier baseline SHA `b542ceab2c40f6910a91ea3fcb84c204fc412c2d` is historical.
 - Root structure includes `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, the project control centre, `docs/`, `scripts/`, `compat/`, `tests/`, `data/`, `assistant_data/`, `playback_data/`, `.github/`, and the `shit.py` CLI.
 - The current goal index contains **13** goal workspaces. Every workspace contains ROADMAP.md, README.md and ACTIONS.md.
 - Current `.github/workflows/` inventory contains 17 workflow YAML files; `docs/WORKFLOWS.md` exists and the documentation contract test requires every workflow filename to appear in it.
