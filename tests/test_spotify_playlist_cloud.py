@@ -64,6 +64,78 @@ class CloudExecutorTests(unittest.TestCase):
         sp.call.assert_any_call("POST", "/playlists/playlist123/items", {"uris": uris[100:200]})
         sp.call.assert_any_call("POST", "/playlists/playlist123/items", {"uris": uris[200:]})
 
+    def test_replace_reconciles_lost_response_when_exact_target_is_live(self):
+        target = ["spotify:track:new"]
+        live = {"id": "playlist123", "name": "Test", "snapshot_id": "after"}
+        snapshot = {"playlist": live, "items": [{"uri": target[0]}]}
+        sp = Mock()
+        with patch.object(manager, "assert_managed"), patch.object(
+            manager, "unlocked", return_value=True
+        ), patch.object(
+            manager, "mutate_with_snapshots", side_effect=RuntimeError("response lost")
+        ), patch.object(
+            manager, "fetch_playlist", return_value=live
+        ), patch.object(
+            manager, "snapshot", return_value=snapshot
+        ), patch.object(manager, "audit"):
+            result = cloud.replace_playlist(
+                sp, "playlist123", target, expected_before_uris=["spotify:track:old"]
+            )
+        self.assertEqual(result["status"], "applied_after_ambiguous_response")
+
+    def test_replace_rethrows_when_readback_proves_write_did_not_apply(self):
+        before = {"id": "playlist123", "name": "Test", "snapshot_id": "before"}
+        snapshot = {"playlist": before, "items": [{"uri": "spotify:track:old"}]}
+        sp = Mock()
+        with patch.object(manager, "assert_managed"), patch.object(
+            manager, "unlocked", return_value=True
+        ), patch.object(
+            manager, "mutate_with_snapshots", side_effect=RuntimeError("write rejected")
+        ), patch.object(
+            manager, "fetch_playlist", return_value=before
+        ), patch.object(
+            manager, "snapshot", return_value=snapshot
+        ), patch.object(manager, "audit"):
+            with self.assertRaisesRegex(RuntimeError, "write rejected"):
+                cloud.replace_playlist(
+                    sp, "playlist123", ["spotify:track:new"],
+                    expected_before_uris=["spotify:track:old"],
+                )
+
+    def test_replace_fails_closed_when_readback_is_partial(self):
+        live = {"id": "playlist123", "name": "Test", "snapshot_id": "partial"}
+        snapshot = {"playlist": live, "items": [{"uri": "spotify:track:new"}]}
+        sp = Mock()
+        with patch.object(manager, "assert_managed"), patch.object(
+            manager, "unlocked", return_value=True
+        ), patch.object(
+            manager, "mutate_with_snapshots", side_effect=RuntimeError("append failed")
+        ), patch.object(
+            manager, "fetch_playlist", return_value=live
+        ), patch.object(
+            manager, "snapshot", return_value=snapshot
+        ), patch.object(manager, "audit"):
+            with self.assertRaises(cloud.AmbiguousPlaylistMutationError):
+                cloud.replace_playlist(
+                    sp, "playlist123", ["spotify:track:new", "spotify:track:second"],
+                    expected_before_uris=["spotify:track:old"],
+                )
+
+    def test_replace_fails_closed_when_ambiguous_readback_is_unavailable(self):
+        sp = Mock()
+        with patch.object(manager, "assert_managed"), patch.object(
+            manager, "unlocked", return_value=True
+        ), patch.object(
+            manager, "mutate_with_snapshots", side_effect=RuntimeError("response lost")
+        ), patch.object(
+            manager, "fetch_playlist", side_effect=RuntimeError("readback unavailable")
+        ), patch.object(manager, "audit"):
+            with self.assertRaises(cloud.AmbiguousPlaylistMutationError):
+                cloud.replace_playlist(
+                    sp, "playlist123", ["spotify:track:new"],
+                    expected_before_uris=["spotify:track:old"],
+                )
+
     def test_restore_empty_snapshot_removes_existing_items(self):
         sp = Mock()
         with patch.object(manager, "assert_managed"), patch.object(manager, "unlocked", return_value=True), patch.object(
