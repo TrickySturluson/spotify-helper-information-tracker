@@ -274,7 +274,7 @@ class DocumentationContractTests(unittest.TestCase):
 
         self.assertIn("canonical MusicLibrary", source)
         self.assertIn("not a Last.fm scrobble", source)
-        self.assertIn("not a play, scrobble, like, save, or proof of listening", library_guide)
+        self.assertIn("does **not** prove the user played, liked, saved, or listened to it", library_guide)
         self.assertIn("not Spotify playback, likes, saves, or Last.fm scrobbles", operations_guide)
         self.assertIn("canonical MusicLibrary identity/playlist-source context", workflow_catalogue)
 
