@@ -29,6 +29,7 @@ Maintain a durable, reliable, cloud-operable music intelligence system that comb
 | Listening Analytics | Accurate Last.fm analytics and explicitly bounded Spotify playback observations | [ROADMAP](goals/listening-analytics/ROADMAP.md) |
 | Playlist Intelligence & Safety | Shared fit model, sorter, learner, generated-playlist safeguards and Booze workflow | [ROADMAP](goals/playlist-intelligence/ROADMAP.md) |
 | Tricky Daily | Dedicated 60-track discovery rotation, feedback, schedule, safety, recovery and description verification | [ROADMAP](goals/tricky-daily/ROADMAP.md) |
+| Playlist Sequencing | Evidence-aware transition scoring, user-controlled energy journeys, presets and preview-first ordering | [ROADMAP](goals/playlist-sequencing/ROADMAP.md) |
 | Maintainability & Documentation | Complete file-level documentation coverage and enforce fresh-session continuity | [ROADMAP](goals/maintainability-documentation/ROADMAP.md) |
 | Library Health & Maintenance | Read-only health, confidence and maintenance previews; guarded repair path | [ROADMAP](goals/library-health-maintenance/ROADMAP.md) |
 | Metadata Freshness | Timestamp/provenance recovery and safe freshness planning | [ROADMAP](goals/metadata-freshness/ROADMAP.md) |
