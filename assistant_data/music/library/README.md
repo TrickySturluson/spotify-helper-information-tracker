@@ -18,7 +18,7 @@ The raw Last.fm event archive remains separate. The Library stores normalized so
 - [Album records](albums/README.md) — release identity, album overview, ordered tracklist, sources, and confidence.
 - [Song records](songs/README.md) — per-recording identity, track metadata, evidence, and relationships.
 - [Library index](library_index.json) — compact resolver mapping stable IDs and names to record paths.
-- [Migration report](migration_report.json) — migration counts, source coverage and remaining limitations. Its legacy limitation text is being reconciled with the direct source-index coverage check.
+- [Migration report](migration_report.json) — the original migration-run snapshot of counts, source coverage and limitations. It is historical output, not the current catalogue inventory; use the live Library status/health reports for current counts.
 
 ## Directory map
 
