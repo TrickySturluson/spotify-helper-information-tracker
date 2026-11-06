@@ -60,6 +60,13 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - The failure matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The Codex agent job is pinned to `ubuntu-24.04` as a compatibility workaround, without changing the security strategy or permission separation.
 - Activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication.
 
+## Buddy activation retest — runner fixed; API quota remains blocked
+
+- Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) ran the Codex job on Ubuntu 24.04. Preflight and `drop-sudo` isolation succeeded, confirming the Ubuntu 26.04 compatibility workaround.
+- Codex then returned `Quota exceeded. Check your plan and billing details.` Validation and publication were skipped; no candidate patch or PR was produced. The worker is not yet operationally verified.
+- The repository owner must ensure the OpenAI API project/organization has available quota/credits and a usable billing limit. Do not retry until quota is confirmed. Keep `drop-sudo`, workspace restrictions, read-only validation and isolated publisher unchanged.
+- Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests and security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`.
+
 ## Acceptance criteria
 - Every indexed goal has ROADMAP, README and ACTIONS with current links.
 - Every maintained executable file has a useful overview or an explicit adjacent-documentation entry; no file is falsely marked covered.

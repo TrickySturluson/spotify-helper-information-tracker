@@ -25,6 +25,13 @@ Design constraints to preserve: observe/diagnose before mutation; canonical data
 - Preflight passed; Codex failed before running the prompt. `ubuntu-latest` resolved to Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed restricting `/run/dbus/system_bus_socket`, matching upstream [issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no PR was produced.
 - Fix committed: only the Codex agent job is pinned to `ubuntu-24.04`, retaining the sandbox and permission model. Re-dispatch from a fresh branch based on the updated `main`, then verify all jobs and the review PR. Buddy remains unverified until end-to-end success.
 
+## 2026-11-06 — Buddy runner fix verified; API quota blocks retry completion
+
+- The first run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) confirmed the push trigger and preflight but failed during Codex `drop-sudo` setup on Ubuntu 26.04. The Codex job was pinned to Ubuntu 24.04 without weakening its sandbox.
+- Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and the `drop-sudo` isolation step on Ubuntu 24.04, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Buddy PR exists.
+- Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests on `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on the same commit.
+- **Next:** user must check OpenAI API billing/usage limits and ensure quota is available. Do not retry until confirmed. Then dispatch again and verify Codex, validation, full tests and PR publication. Buddy remains not yet operationally verified.
+
 ## Cross-project loose-ends register
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.

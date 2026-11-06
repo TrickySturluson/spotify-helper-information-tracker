@@ -6,7 +6,7 @@
 
 Babel has an optional repository-hosted AI worker that continues the documentation audit from GitHub rather than relying on a previous ChatGPT conversation. The worker is implemented in .github/workflows/babel-ai-continuation.yml and uses OpenAI's official openai/codex-action.
 
-**Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran; **Activation is pending** until an end-to-end run succeeds. Do not describe the worker as operational yet.
+**Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran. After pinning the Codex job to Ubuntu 24.04, retry #42183337573 reached Codex but the API returned a quota-exceeded error; **Activation is pending** until API quota is available and an end-to-end run succeeds. Do not describe the worker as operational yet.
 
 ## Active-session context bridge
 
@@ -40,13 +40,17 @@ The Codex job has no GitHub write token. Candidate tests run in a separate read-
 2. Confirm the repository Actions secret `OPENAI_API_KEY` exists. The user reports that it has been added; never read, print, or share its value.
 3. In **Settings → Actions → General → Workflow permissions**, enable **Allow GitHub Actions to create and approve pull requests** if it is disabled.
 4. After the Ubuntu 24.04 compatibility fix is on `main`, trigger a fresh run with a new `babel/dispatch-*` marker push or use **Actions → Babel AI continuation → Run workflow** on `main`.
-5. Confirm the Codex prompt executes, independent path/deletion validation passes, full unittest discovery passes, and the dedicated branch/PR is created or updated.
+5. Confirm the API project has available quota, then verify the Codex prompt executes, independent path/deletion validation passes, full unittest discovery passes, and the dedicated branch/PR is created or updated.
 
 ChatGPT subscription access is not itself an API key. OpenAI API usage is billed separately under the API platform account. Set appropriate API usage limits/budget alerts in the OpenAI platform before enabling recurring runs.
 
-## First-run failure and compatibility workaround
+## First-run failure, runner fix, and API quota blocker
 
-The first ChatGPT-triggered push run is [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313). Preflight succeeded; the Codex action failed before the prompt ran while trying to restrict `/run/dbus/system_bus_socket` on the GitHub-hosted Ubuntu 26.04 image selected by `ubuntu-latest`. The same failure is tracked upstream in [openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The agent job is pinned to `ubuntu-24.04` as the compatibility workaround; `drop-sudo` remains enabled. Do not switch to `unsafe` to bypass this failure. A fresh run must verify Codex execution, independent path validation/full tests, and isolated PR publication.
+The first ChatGPT-triggered push run is [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313). Preflight succeeded; the Codex action failed before the prompt ran while trying to restrict `/run/dbus/system_bus_socket` on the GitHub-hosted Ubuntu 26.04 image selected by `ubuntu-latest`. The same failure is tracked upstream in [openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The agent job is now pinned to `ubuntu-24.04`; `drop-sudo` remains enabled.
+
+The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), passed preflight and successfully completed the `drop-sudo` socket-restriction step on Ubuntu 24.04. Codex then returned **`Quota exceeded. Check your plan and billing details.`** Validation and publishing were skipped; no patch, continuation branch, or PR was produced. This proves the runner workaround, but not the agent task or publishing pipeline.
+
+**Next action:** the repository owner must check the OpenAI API platform's billing/usage limits and ensure the API project or organization has available quota/credits. ChatGPT subscription access does not provide API credits. Do not expose or paste the API key. Do not retry until quota is available; then trigger a fresh dispatch and verify Codex output, independent validation/full tests, and isolated PR publication. Do not switch to `unsafe` to bypass sandbox failures.
 
 ## Recovery and operations
 
@@ -70,4 +74,4 @@ The branch is intentionally separate from main; the worker's commits are proposa
 
 ## Verification status
 
-The repository baseline is green: Daily curator tests run #42178656402 passed full unittest discovery (**478 tests**) on commit 69e72829c6cc9e72837025f8c777b4d846c9ba7b. This verifies the repository test suite and documentation contracts, not the Codex continuation worker. No successful Babel AI continuation run has yet been observed. The API secret is reported configured. Do not mark activation complete until a post-fix run proves Codex execution, independent validation, full tests, and the resulting isolated branch/PR.
+Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed full unittest discovery (**478 tests**) on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) also passed on that commit. These verify repository tests/security scan, not Buddy. The first Buddy run failed on Ubuntu 26.04; the second reached Codex on Ubuntu 24.04 but was blocked by API quota. Do not mark activation complete until a post-quota run proves Codex execution, independent validation, full tests, and the resulting isolated branch/PR.

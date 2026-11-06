@@ -5,13 +5,14 @@ This is the cross-project register of known unfinished work discovered from the 
 **Last reviewed:** 2026-11-06 (audit baseline `aacb70fa`; subsequent same-session commits contain documentation-only audit updates)  
 **Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
-## Babel AI continuation — INTEGRATED; FIRST RUN FAILED; RETEST REQUIRED
+## Babel AI continuation — INTEGRATED; RUNNER FIX VERIFIED; API QUOTA BLOCKER
 
 - Repository configuration and the ChatGPT push trigger are committed. The user reports `OPENAI_API_KEY` is configured and Actions is allowed to create pull requests.
-- First dispatch run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313): preflight passed; Codex agent failed before prompt execution; validation and publisher were skipped. No Buddy PR was produced.
-- Root cause: `ubuntu-latest` selected Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed while restricting `/run/dbus/system_bus_socket`, matching [upstream issue #188](https://github.com/openai/codex-action/issues/188).
-- Remediation: pin the isolated Codex job to `ubuntu-24.04` without weakening `drop-sudo`, workspace permissions, validation or publisher boundaries. Trigger a fresh run and verify Codex, path checks, full unittest discovery, and the isolated PR.
-- Until all stages pass, Buddy is integrated but not operationally verified. See [docs/BABEL_AGENT.md](../docs/BABEL_AGENT.md).
+- First run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313): preflight passed; Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. This matches [upstream issue #188](https://github.com/openai/codex-action/issues/188).
+- The Codex job is pinned to `ubuntu-24.04` with `drop-sudo` retained. Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and sandbox isolation, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Buddy PR was produced.
+- **Current blocker:** OpenAI API project/organization quota or billing limit. User must check API billing/usage limits and ensure quota is available. ChatGPT subscription does not supply API credits. Do not retry until the user confirms quota is available; never switch to `unsafe`.
+- Repository tests/security are green on the runner-fix commit: Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed 478 tests; security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed.
+- Buddy remains integrated but not operationally verified until a post-quota run completes Codex, validation, full tests, and isolated PR publication. See [docs/BABEL_AGENT.md](../docs/BABEL_AGENT.md).
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
 The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
