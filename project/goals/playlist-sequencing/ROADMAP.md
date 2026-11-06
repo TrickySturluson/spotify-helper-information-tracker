@@ -55,8 +55,8 @@ Arrange tracks into coherent, enjoyable listening journeys. Smooth transitions a
 
 ## Open proposals (not merged)
 
-- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; it proposes an offline evaluation plan and watchdog specification, not a verified quality report.
-- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft; it records a strategy proposal but does not authorize live sorter integration or playlist writes.
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open/draft on `codex/sorter-evaluation-ingestion-watchdog`, diverged (10 ahead, 419 behind current main; mergeable=false). No workflow runs were found for its observed head; rebase and obtain CI before relying on it. It proposes an offline evaluation plan and watchdog specification, not a verified quality report.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, diverged (5 ahead, 419 behind current main; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It records a strategy proposal but does not authorize live sorter integration or playlist writes.
 
 ## Next action
 Audit the current sequencer implementation and tests against this roadmap, then compare a fresh read-only preview with the latest live playlist and evidence coverage. Record specific transition failures before changing weights or presets.
