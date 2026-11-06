@@ -23,7 +23,7 @@ jobs:
       branch_exists: ${{ steps.state.outputs.branch_exists }}
     steps:
       - name: Check out the current default branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main
           fetch-depth: 0
@@ -70,7 +70,7 @@ jobs:
       patch: ${{ steps.codex.outputs.final-message }}
     steps:
       - name: Check out the latest Babel continuation state
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.preflight.outputs.target_ref }}
           fetch-depth: 0
@@ -85,30 +85,6 @@ jobs:
           permission-profile: ":workspace"
           safety-strategy: drop-sudo
           effort: high
-          output-file: /tmp/babel-agent-final-message.md
-
-      - name: Package the documentation-only patch for isolated validation
-        shell: bash
-        run: |
-          set -euo pipefail
-          git add -N -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py
-          git diff --binary HEAD -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py > /tmp/babel.patch
-          test -f /tmp/babel.patch
-          if [ -f /tmp/babel-agent-final-message.md ]; then
-            cp /tmp/babel-agent-final-message.md /tmp/babel-agent-report.md
-          else
-            printf '%s\n' "No final agent report was produced." > /tmp/babel-agent-report.md
-          fi
-
-      - name: Upload the candidate patch and run report
-        uses: actions/upload-artifact@v4
-        with:
-          name: babel-continuation-${{ github.run_id }}
-          path: |
-            /tmp/babel.patch
-            /tmp/babel-agent-report.md
-          if-no-files-found: error
-          retention-days: 14
 
   publish:
     needs: [preflight, agent]
@@ -120,13 +96,13 @@ jobs:
       pull-requests: write
     steps:
       - name: Check out the current continuation base
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.preflight.outputs.target_ref }}
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Validate scope, apply patch, and run documentation tests
+      - name: Validate scope, apply patch, and run full tests
         id: validate
         env:
           BABEL_PATCH: ${{ needs.agent.outputs.patch }}
@@ -136,14 +112,16 @@ jobs:
           python - <<'PY'
           import os
           from pathlib import Path
+
           patch = os.environ.get("BABEL_PATCH", "")
           if patch.strip() == "NO_CHANGES":
-              print("changed=false" + "\\n")
               Path("/tmp/babel-no-changes").write_text("true", encoding="utf-8")
           elif not patch.strip():
               raise SystemExit("Codex returned an empty patch instead of NO_CHANGES.")
           elif len(patch.encode("utf-8")) > 700_000:
               raise SystemExit("Patch exceeds the 700 KB safe job-output limit; split the task into a smaller batch.")
+          elif not patch.startswith("diff --git "):
+              raise SystemExit("Codex output is not a raw unified git diff.")
           else:
               Path("/tmp/babel.patch").write_text(patch, encoding="utf-8")
           PY
@@ -159,10 +137,13 @@ jobs:
           import subprocess
           import sys
 
-          changed = subprocess.check_output(
+          tracked = subprocess.check_output(
               ["git", "diff", "--name-only", "-z"], text=False
           ).decode().split("\0")
-          changed = [path for path in changed if path]
+          untracked = subprocess.check_output(
+              ["git", "ls-files", "--others", "--exclude-standard", "-z"], text=False
+          ).decode().split("\0")
+          changed = sorted({path for path in tracked + untracked if path})
           allowed = (
               lambda p: p == "AGENTS.md"
               or (p.startswith("docs/") and p.endswith(".md"))
@@ -236,6 +217,6 @@ jobs:
 # Purpose: Runs a bounded OpenAI Codex worker against SHIT Documentation & Continuity (Babel).
 # Trigger: Every six hours and manual dispatch; stops when project/BABEL_AGENT_STATE.md says complete.
 # Permissions: Read-only agent job; separate publisher job receives contents:write and pull-requests:write.
-# Safety: Agent cannot publish directly. Publisher rejects non-documentation paths/deletions and runs focused tests.
+# Safety: Agent cannot publish directly. Publisher rejects non-documentation paths/deletions and runs full unittest discovery.
 # Side effects: May update only a dedicated Babel branch and its review PR; never merges or touches Spotify/provider state.
 # Related: .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md, docs/BABEL_AGENT.md.
