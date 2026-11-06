@@ -1,7 +1,7 @@
 # Discovery & Recommendations — Roadmap
 
 **Last reviewed:** 2026-11-06  
-**Status:** Partial mainline candidate-ingestion implementation exists; richer per-song context remains proposed in open PR #60. Feature work is paused under the documentation-only priority.
+**Status:** Partial mainline candidate-ingestion implementation exists; richer per-song context remains proposed in open PR #60. Feature work is paused under the documentation-only priority. PR #60 is open/non-draft on `feature/recommendation-discovery-ingestion`, diverged (4 ahead, 627 behind current main; mergeable=false). Its old-head unit tests #41350320527 and full-history security scan #41350320524 both failed; rebase, triage the test failure and Gitleaks findings, then rerun CI before review.
 
 ## Repository-wide priority override — 2026-11-06
 
@@ -14,7 +14,7 @@ Capture suggested/recommended/discovered tracks as evidence-rich candidate event
 Recommendation exposure is not a play. Candidate selection is not preference. Distinguish later play, explicit like/save, explicit rejection/removal, ignored, not exposed, and unknown coverage. Preserve source/provider, context, capture time, candidate identity, and observable response. Last.fm scrobbles remain historical listening evidence.
 
 ## Roadmap
-1. **Review existing PR and schema — next.** Inspect PR #60, current branch/CI, and any merged code; do not duplicate existing implementation.
+1. **Review existing PR and schema — next.** After the documentation pause, rebase the stale/diverged PR #60 branch, triage its failed old-head tests and Gitleaks findings, inspect current branch/CI and merged code; do not duplicate existing implementation.
 2. **Define canonical candidate event.** Stable recording identity, source, recommendation context, timestamp, provenance, and separate response fields.
 3. **Capture discovery sources.** Spotify recommendations/Discover Weekly and other explicitly supported sources, each with attribution and source-specific coverage.
 4. **Reconcile outcomes.** Join later playback/scrobbles, likes/saves, removals/rejections, and playlist additions without collapsing event types.
