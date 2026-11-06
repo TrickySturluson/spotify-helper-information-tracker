@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   schedule:
     # Run after the midnight Eastern rotation and its recovery delivery.
-    # Snapshot publication is GET-only; focused Daily regression tests gate the refresh.
+    # Snapshot publication is GET-only; schedule and import-path regression tests gate the refresh.
     - cron: "25 6 * * *"
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
       - name: Compile and run safe regression tests
         run: |
           python -m py_compile scripts/spotify/spotify_daily_snapshot.py scripts/spotify/spotify_daily_cycle.py scripts/spotify/spotify_discovery.py scripts/spotify/spotify_reference_library.py scripts/spotify/spotify_playlist_manager.py
-          python -m unittest tests.test_spotify_daily_cycle_schedule -v
+          python -m unittest tests.test_spotify_daily_cycle_schedule tests.test_spotify_daily_snapshot -v
       - name: Validate Spotify credentials
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
