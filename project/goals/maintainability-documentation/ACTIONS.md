@@ -50,7 +50,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Trigger contract:** `.github/workflows/babel-ai-continuation.yml` listens for a push to `babel/dispatch-*` when `.github/babel/dispatch.json` changes. The marker branch is only a trigger; the worker continues to select `main` or `babel/agent-progress` as its source.
 - **Verified:** GitHub accepted the branch creation and marker commit. This proves ChatGPT can perform the narrow GitHub write needed to emit the trigger event.
 - **Not yet verified:** no workflow run URL/ID or job status is available from the connected GitHub actions in this session. Do not claim the workflow started, completed, or published a PR until the Actions run is inspected.
-- **Next:** inspect the `Babel AI continuation` workflow run associated with the marker push; verify preflight, Codex, independent path/test validation, and publisher; then record the run ID, commit/ref and outcomes. If no run appears, diagnose the event/filter/permissions before changing the design.
+- **Outcome:** the marker push triggered run #42181953313, which failed during Codex sandbox setup; retry #42183337573 reached Codex on Ubuntu 24.04 but was blocked by API quota before validation or publication. These outcomes are recorded above. Do not trigger another Codex run unless the user explicitly reauthorizes this separate API experiment.
 
 
 ## 2026-11-06 — Repository-hosted AI continuation worker integrated
