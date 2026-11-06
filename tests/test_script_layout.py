@@ -76,16 +76,16 @@ class ScriptLayoutTests(unittest.TestCase):
                 self.assertIn("FILE OVERVIEW", source[-1500:])
 
     def test_maintained_implementation_overviews_do_not_use_generic_placeholders(self):
-        for group, filenames in GROUPS.items():
-            for filename in filenames:
-                path = ROOT / "scripts" / group / filename
-                with self.subTest(path=path.relative_to(ROOT).as_posix()):
-                    source = path.read_text(encoding="utf-8")
-                    overview_start = source.rfind("FILE OVERVIEW")
-                    self.assertGreaterEqual(overview_start, 0)
-                    overview = source[overview_start:]
-                    for placeholder in GENERIC_OVERVIEW_PHRASES:
-                        self.assertNotIn(placeholder, overview)
+        implementations = sorted((ROOT / "scripts").rglob("*.py"))
+        self.assertTrue(implementations, "No maintained implementation modules were found")
+        for path in implementations:
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                source = path.read_text(encoding="utf-8")
+                overview_start = source.rfind("FILE OVERVIEW")
+                self.assertGreaterEqual(overview_start, 0)
+                overview = source[overview_start:]
+                for placeholder in GENERIC_OVERVIEW_PHRASES:
+                    self.assertNotIn(placeholder, overview)
 
     def test_repository_gitignore_has_a_file_overview(self):
         source = (ROOT / ".gitignore").read_text(encoding="utf-8")
