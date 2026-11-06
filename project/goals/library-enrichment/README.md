@@ -17,6 +17,10 @@ Invariants: recording, artist and album entities remain distinct; track mood is 
 
 **Resume:** audit canonical Library; measure missing fields; resolve trusted recording IDs; enrich high-value fields in bounded passes; reconcile through canonical writer; audit and measure each pass.
 
+## Open proposal (not merged)
+
+- [PR #120 — Adopt incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft. It records a strategy change and documentation; it does not implement or prove a bounded provider executor, retry queue, or completed on-demand enrichment path. Do not treat the proposal as deployed behavior.
+
 ## Documentation and resume
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
