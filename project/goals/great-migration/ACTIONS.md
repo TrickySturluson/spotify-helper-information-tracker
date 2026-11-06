@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Current canonical catalogue baseline reverified read-only
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs, 6,497 artists and 7,969 albums. Index counts matched exactly; Library health returned `ok=true`, zero errors and zero warnings.
+- Alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs and 11,651 name-candidate keys.
+- The older 13,005 / 6,386 / 7,861 counts in the original migration reports are historical and superseded by this read-only check.
+- The confidence sub-report found zero identity drift but 214 metadata-confidence mismatches, all in track_tags. The freshness planner found 11 unknown-age baseline candidates, selected 25 due tasks and 1,968 missing-provenance fields. These are diagnostics/plans only, not executed enrichment.
+- The general repository audit also warned that no playback intervals had been captured and 16 Spotify playlist snapshots were inaccessible; the separate Library health report itself had zero warnings.
+- No migration, provider call, canonical write, repair, or playlist write was performed. Feature work remains paused under the documentation-only priority.
+
 ## 2026-11-06 — Migration work paused for documentation-first audit
 
 - This workstream's migration, backfill, repair and provider operations remain paused while the repository-wide documentation acceptance criteria are incomplete.
