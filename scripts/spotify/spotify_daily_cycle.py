@@ -180,13 +180,7 @@ def verify_daily_stage(stage_path, expected_hash, expected_uris, before_uris, be
         staged = manager.read(Path(stage_path), None)
     if not isinstance(staged, dict):
         raise manager.ManagerError("Durable Daily stage is missing or malformed; refusing playlist mutation.")
-    hash_payload = {
-        "playlist_id": staged.get("playlist_id"),
-        "cycle_date_eastern": staged.get("cycle_date_eastern"),
-        "target_uris": staged.get("target_uris"),
-        "candidate_tracks": staged.get("candidate_tracks"),
-        "target_description": staged.get("target_description"),
-    }
+    hash_payload = {key: value for key, value in staged.items() if key != "payload_sha256"}
     digest = hashlib.sha256(
         json.dumps(hash_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
@@ -223,16 +217,6 @@ def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, b
         }
         for row in recommendations
     ]
-    hash_payload = {
-        "playlist_id": DAILY_ID,
-        "cycle_date_eastern": cycle_date,
-        "target_uris": list(uris),
-        "candidate_tracks": candidate_rows,
-        "target_description": description,
-    }
-    payload_sha256 = hashlib.sha256(
-        json.dumps(hash_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
-    ).hexdigest()
     record = {
         "schema_version": 1,
         "playlist_id": DAILY_ID,
@@ -246,9 +230,12 @@ def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, b
         "candidate_tracks": candidate_rows,
         "target_description": description,
         "backup_path": str(backup),
-        "payload_sha256": payload_sha256,
         "status": "staged_before_spotify_write",
     }
+    payload_sha256 = hashlib.sha256(
+        json.dumps(record, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    record["payload_sha256"] = payload_sha256
     manager.write(stage_path, record)
     manager.audit(
         event="daily_cycle_payload_staged",
