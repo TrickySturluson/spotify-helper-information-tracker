@@ -25,7 +25,7 @@ Confidence categories are categorical, not calibrated probabilities. Distinct so
 Every confidence value traces to evidence and match method; ambiguous matches never become high; repeated same-provider evidence is not independent; audit is read-only and deterministic; downstream tools respect field-level confidence.
 
 ## Next action
-Run the latest confidence audit and compare it with the documented baseline; then prioritize the missing duration provenance and direct track-level evidence gaps.
+After documentation completion, investigate the 214 current track_tags confidence mismatches from CI #42154433350, remeasure the residual 1,968 missing-provenance fields with the freshness planner, and review the existing Candy Claws duplicate artist/album candidates. Do not bulk-rewrite confidence or merge entities from the audit alone.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Playlist intelligence](../playlist-intelligence/ROADMAP.md)
