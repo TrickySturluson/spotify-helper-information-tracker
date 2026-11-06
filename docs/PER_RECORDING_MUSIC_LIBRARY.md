@@ -58,6 +58,20 @@ seven songs had track-tag evidence, while 43 preserved an explicit no-tag/empty-
 evidence state. This was a partial integration sample, not the full migration.
 Use the current Library status/health reports for live record counts.
 
+## Spotify reference-snapshot integration
+
+`scripts/spotify/spotify_reference_library.py sync` is read-only against Spotify playlists, but it does write repository data. For non-relinked playlist tracks it sends catalogue rows through `MusicLibrary.put_catalogue()`, preserving Spotify track/artist/album identifiers, duration, ISRC where available, playlist source IDs/positions, and a `listening_context` whose source is explicitly `Spotify reference-library snapshot`. It also appends market-scoped, timestamped Spotify playability observations to matched song records.
+
+This evidence has strict semantics:
+
+- Playlist membership proves only that the track appeared in that playlist snapshot at that time. It does **not** prove the user played, liked, saved, or listened to it.
+- These rows are not Last.fm scrobbles and are not measured Spotify playback. The canonical Last.fm event archive remains the historical listening source of truth.
+- Playability is a snapshot-time, market-scoped observation, not a timeless boolean.
+- Requested and relinked Spotify IDs remain distinct; replacement-recording metadata must not be merged into the original requested song identity.
+- An inaccessible or incomplete playlist is not an empty playlist. Retain prior complete contents as stale evidence rather than erasing them.
+
+The workflow writes Spotify snapshots/history/catalogue indexes and canonical Library evidence while making no playlist mutations. See [Spotify API operations](SPOTIFY_API_OPERATIONS.md) and [workflow catalogue](WORKFLOWS.md).
+
 ## Lookup behavior
 
 The sequencer first resolves each playlist item by Spotify track ID, then by
