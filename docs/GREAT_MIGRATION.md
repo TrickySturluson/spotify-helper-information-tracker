@@ -42,33 +42,33 @@ The offline migration makes no provider requests and never edits Spotify playlis
 
 After this workflow is merged into the repository's default branch, ChatGPT can start an issue-triggered operation by creating an issue with one of these exact titles:
 
-- \`[SHIT LIBRARY] status\`
-- \`[SHIT LIBRARY] preview\`
-- \`[SHIT LIBRARY] migrate\`
-- \`[SHIT LIBRARY] prepare\`
-- \`[SHIT LIBRARY] prepare-preview\`
-- \`[SHIT LIBRARY] audit\`
-- \`[SHIT LIBRARY] health\`
-- \`[SHIT LIBRARY] verify\`
-- \`[SHIT LIBRARY] backfill-playability\`
-- \`[SHIT LIBRARY] verify-catalogue\`
-- \`[SHIT LIBRARY] maintain-preview\`
-- \`[SHIT LIBRARY] freshness-review\`
-- \`[SHIT LIBRARY] validate-freshness-branch\`
-- \`[SHIT LIBRARY] duration-evidence-preview\`
-- \`[SHIT LIBRARY] duration-evidence-apply\`
+- `[SHIT LIBRARY] status`
+- `[SHIT LIBRARY] preview`
+- `[SHIT LIBRARY] migrate`
+- `[SHIT LIBRARY] prepare`
+- `[SHIT LIBRARY] prepare-preview`
+- `[SHIT LIBRARY] audit`
+- `[SHIT LIBRARY] health`
+- `[SHIT LIBRARY] verify`
+- `[SHIT LIBRARY] backfill-playability`
+- `[SHIT LIBRARY] verify-catalogue`
+- `[SHIT LIBRARY] maintain-preview`
+- `[SHIT LIBRARY] freshness-review`
+- `[SHIT LIBRARY] validate-freshness-branch`
+- `[SHIT LIBRARY] duration-evidence-preview`
+- `[SHIT LIBRARY] duration-evidence-apply`
 
-The dedicated **SHIT — Great Migration** workflow processes issue requests only when the issue was opened by the repository owner and its title begins with \`[SHIT LIBRARY] \`. It validates the command against the 15-operation allowlist above. Manual Actions dispatch exposes the same allowlist as a required choice. Unsupported titles or commands fail validation.
+The dedicated **SHIT — Great Migration** workflow processes issue requests only when the issue was opened by the repository owner and its title begins with `[SHIT LIBRARY] `. It validates the command against the 15-operation allowlist above. Manual Actions dispatch exposes the same allowlist as a required choice. Unsupported titles or commands fail validation.
 
 **Operation and side-effect classes:**
 
-- Read-only Library/report operations: \`status\`, \`preview\`, \`prepare-preview\`, \`audit\`, \`health\`, \`verify-catalogue\`, \`maintain-preview\`, \`freshness-review\`, \`validate-freshness-branch\`, and \`duration-evidence-preview\`.
-- Provider credential verification: \`verify\` performs Spotify refresh-token exchange plus read-only account access, Last.fm API access, and optional Discogs/GetSongBPM checks. It never prints credential values and does not mutate the Library or playlists. If Spotify returns a replacement refresh token, the cloud workflow persists it to the repository Actions secret through the narrowly scoped GitHub App token before reporting success.
-- Canonical Library/data writers: \`migrate\`, \`prepare\`, \`backfill-playability\`, and \`duration-evidence-apply\`. These can update generated/canonical Library state and publish repository changes. \`prepare\` performs bounded, checkpointed provider enrichment and final audit; the workflow deliberately skips Spotify reference refresh and uses saved snapshots.
+- Read-only Library/report operations: `status`, `preview`, `prepare-preview`, `audit`, `health`, `verify-catalogue`, `maintain-preview`, `freshness-review`, `validate-freshness-branch`, and `duration-evidence-preview`.
+- Provider credential verification: `verify` performs Spotify refresh-token exchange plus read-only account access, Last.fm API access, and optional Discogs/GetSongBPM checks. It never prints credential values and does not mutate the Library or playlists. If Spotify returns a replacement refresh token, the cloud workflow persists it to the repository Actions secret through the narrowly scoped GitHub App token before reporting success.
+- Canonical Library/data writers: `migrate`, `prepare`, `backfill-playability`, and `duration-evidence-apply`. These can update generated/canonical Library state and publish repository changes. `prepare` performs bounded, checkpointed provider enrichment and final audit; the workflow deliberately skips Spotify reference refresh and uses saved snapshots.
 
 The workflow posts the execution log back to the requesting issue and uploads the pre-migration backup as a 30-day workflow artifact when one is created. Successful write operations commit generated Library/enrichment data; read-only operations do not commit Library changes. Repository maintainers can also use the manual Actions dispatch.
 
-The \`prepare\` issue operation requires \`LASTFM_API_KEY\` for its Last.fm enrichment stages. The GitHub workflow passes \`--skip-spotify-refresh\`, so this operation uses saved Spotify snapshots and does not require \`SPOTIFY_REFRESH_TOKEN\` for a reference refresh. Discogs and GetSongBPM remain optional. The \`verify\` operation separately requires \`SPOTIFY_CLIENT_ID\`, \`SPOTIFY_REFRESH_TOKEN\`, and \`LASTFM_API_KEY\`; optional provider credentials are checked when configured. The credential verification also runs automatically every day at 09:17 UTC. Results appear in the Actions run summary; failures create or update a single \`[SHIT ALERT] Daily credential verification failed\` issue, avoiding duplicate alerts.
+The `prepare` issue operation requires `LASTFM_API_KEY` for its Last.fm enrichment stages. The GitHub workflow passes `--skip-spotify-refresh`, so this operation uses saved Spotify snapshots and does not require `SPOTIFY_REFRESH_TOKEN` for a reference refresh. Discogs and GetSongBPM remain optional. The `verify` operation separately requires `SPOTIFY_CLIENT_ID`, `SPOTIFY_REFRESH_TOKEN`, and `LASTFM_API_KEY`; optional provider credentials are checked when configured. The credential verification also runs automatically every day at 09:17 UTC. Results appear in the Actions run summary; failures create or update a single `[SHIT ALERT] Daily credential verification failed` issue, avoiding duplicate alerts.
 
 Never put credentials or tokens in an issue title or body.
 
