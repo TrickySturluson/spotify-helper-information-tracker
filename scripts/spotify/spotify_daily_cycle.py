@@ -197,14 +197,14 @@ def verify_daily_stage(stage_path, expected_hash, expected_uris, before_uris, be
     return staged
 
 
-def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, backup, description):
+def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, backup, description, test_mode=False):
     """Write and durably publish the exact ordered Daily payload before mutation."""
     if len(uris) != DAILY_TARGET_SIZE or len(set(uris)) != DAILY_TARGET_SIZE:
         raise manager.ManagerError("Cannot stage Daily payload: expected 60 unique ordered URIs.")
     if any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
         raise manager.ManagerError("Cannot stage Daily payload: one or more URIs are invalid.")
     run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{int(time.time())}"
-    stage_dir = DAILY_STAGE_DIR
+    stage_dir = DAILY_STAGE_DIR / "tests" if test_mode else DAILY_STAGE_DIR
     stage_path = stage_dir / f"{cycle_date}-{run_id}.json"
     if stage_path.exists():
         raise manager.ManagerError(f"Daily stage already exists for this run: {stage_path}")
@@ -231,6 +231,7 @@ def create_daily_stage(cycle_date, before, before_uris, recommendations, uris, b
         "target_description": description,
         "backup_path": str(backup),
         "status": "staged_before_spotify_write",
+        "stage_mode": "test_only" if test_mode else "production",
     }
     payload_sha256 = hashlib.sha256(
         json.dumps(record, sort_keys=True, separators=(",", ":")).encode("utf-8")
@@ -392,6 +393,7 @@ def main():
     parser.add_argument("--force", action="store_true", help="Allow a manually dispatched run outside midnight.")
     parser.add_argument("--description-only", action="store_true", help="Rotate and verify only the Tricky Daily description; leave tracks untouched.")
     parser.add_argument("--verify-only", action="store_true", help="Verify the live Daily playlist without changing tracks or description.")
+    parser.add_argument("--stage-only", action="store_true", help="Build and durably verify a Daily payload without changing Spotify.")
     args = parser.parse_args()
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
@@ -595,7 +597,8 @@ def main():
         )
     next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
     stage_path, payload_sha256, stage_commit_sha = create_daily_stage(
-        cycle_date, before, before_uris, recommendations, uris, backup, next_description
+        cycle_date, before, before_uris, recommendations, uris, backup, next_description,
+        test_mode=args.stage_only,
     )
     # The durable stage commit can take time; verify main did not advance
     # (for example, a concurrent lock change) and recheck the live playlist.
@@ -613,6 +616,15 @@ def main():
             f"Daily candidates now include {len(newly_blocked)} blacklisted tracks "
             "after durable staging; aborting before playlist mutation."
         )
+    if args.stage_only:
+        print(
+            "Tricky Daily stage-only verification succeeded; "
+            f"stage={stage_path}, payload_sha256={payload_sha256}, "
+            f"stage_commit={stage_commit_sha or 'local-only'}. No Spotify playlist write was attempted."
+        )
+        set_action_output("cycled", "false")
+        return 0
+
     manager.audit(
         event="daily_cycle_started", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), skipped_count=len(skipped), backup=backup,
