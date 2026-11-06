@@ -81,3 +81,5 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Safety:** no Spotify playlist mutation, no removal whitelist changes, and no conversion of missing playback coverage to zero. The exact blacklist remains independently enforced.
 - **Verification:** previous PR #164's full tests and security scan passed, but it was stale; PR #165 exposed two existing Daily stage/repository-head test failures because main advanced after the branch fork. This current-mainline branch requires fresh CI.
 - **Next:** inspect fresh CI results, resolve any genuine regressions, and close superseded draft PRs only after this branch is green.
+
+- **Exposure-boundary refinement:** current branch also changes artist-level negative feedback so a manually removed track teaches broader artist dislike only when post-add measured playback or Last.fm scrobbles exist. Exact track blacklist enforcement remains unconditional. Added integration-style tests that load the actual blacklist and feedback JSON: an unexposed removal stays neutral for the artist but remains an exact hard block; measured exposure can inform the artist-level penalty.
