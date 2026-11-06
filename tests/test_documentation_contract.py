@@ -345,6 +345,28 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("playlist-only candidates are not scrobbles", workflow_catalogue)
         self.assertIn("even when they have zero scrobbles", library_readme)
 
+    def test_babel_ai_continuation_is_documented_and_bounded(self):
+        guide = (ROOT / "docs" / "BABEL_AGENT.md").read_text(encoding="utf-8")
+        workflow = (ROOT / ".github" / "workflows" / "babel-ai-continuation.yml").read_text(encoding="utf-8")
+        prompt = (ROOT / ".github" / "babel" / "CONTINUATION_PROMPT.md").read_text(encoding="utf-8")
+        state = (ROOT / "project" / "BABEL_AGENT_STATE.md").read_text(encoding="utf-8")
+        catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+
+        self.assertIn("openai/codex-action@v1", workflow)
+        self.assertIn('cron: "17 */6 * * *"', workflow)
+        self.assertIn("workflow_dispatch", workflow)
+        self.assertIn("contents: read", workflow)
+        self.assertIn("contents: write", workflow)
+        self.assertIn("python -m unittest discover -s tests -t . -v", workflow)
+        self.assertIn("babel/agent-progress", workflow)
+        self.assertIn("never auto-merges", guide.lower())
+        self.assertIn("OPENAI_API_KEY", guide)
+        self.assertIn("Forbidden:", prompt)
+        self.assertIn("Spotify playlist", prompt)
+        self.assertIn("status: active", state)
+        self.assertIn("babel-ai-continuation.yml", catalogue)
+        self.assertIn("Activation is pending", guide)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
