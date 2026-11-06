@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-06T14:18:18.958752+00:00",
+  "captured_at": "2026-11-06T17:31:19.839728+00:00",
   "id": "4yUVHSMQySfWeEowfIMcx7",
   "name": "Tricky Daily",
   "description": "Today&#x27;s detour starts here.",
@@ -10,13 +10,13 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAAAS20rqKVv0I7T4rVxeMTPnFueEooD",
-  "total_items_reported": 37,
-  "item_count_fetched": 37,
+  "snapshot_id": "AAAAU+6ebF/lAtBRjCsTe8qhzbtP48l/",
+  "total_items_reported": 29,
+  "item_count_fetched": 29,
   "items_accessible": true,
   "items_error": null,
-  "last_items_accessible_at": "2026-11-06T14:18:18.958757+00:00",
-  "items_snapshot_id": "AAAAS20rqKVv0I7T4rVxeMTPnFueEooD",
+  "last_items_accessible_at": "2026-11-06T17:31:19.839732+00:00",
+  "items_snapshot_id": "AAAAU+6ebF/lAtBRjCsTe8qhzbtP48l/",
   "playability_market": "from_token",
   "playability_market_context": "spotify_user_account_country",
   "items": [
@@ -40,7 +40,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958570+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839634+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -69,7 +69,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958591+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839654+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -98,7 +98,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958597+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839659+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -127,7 +127,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958602+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839662+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -156,7 +156,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958607+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839667+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -185,7 +185,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958612+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839669+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -214,7 +214,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958617+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839672+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -243,7 +243,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958625+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839678+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -272,7 +272,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958634+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839682+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -301,7 +301,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958639+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839684+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -330,7 +330,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958643+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839687+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -359,7 +359,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958647+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839689+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -388,7 +388,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958653+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839692+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -417,7 +417,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958657+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839695+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -446,7 +446,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958661+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839697+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -475,7 +475,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958667+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839698+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -504,7 +504,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958670+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839702+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -515,35 +515,6 @@
     },
     {
       "position": 17,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "5mHxmOZXyYoq8gwjCz3Vcp",
-      "uri": "spotify:track:5mHxmOZXyYoq8gwjCz3Vcp",
-      "name": "The Best Ever Death Metal Band in Denton",
-      "artists": [
-        "The Mountain Goats"
-      ],
-      "artist_ids": [
-        "3hyGGjxu73JuzBa757H6R5"
-      ],
-      "album": "All Hail West Texas (Remastered)",
-      "album_id": "0xxHfGQtC485rStXundfMi",
-      "duration_ms": 156960,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958674+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USMRG1348101"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 18,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -562,7 +533,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958680+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839704+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -572,7 +543,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 19,
+      "position": 18,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -591,7 +562,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958683+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839706+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -601,7 +572,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 20,
+      "position": 19,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -620,7 +591,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958687+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839708+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -630,65 +601,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 21,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "3SJWVMRwk5z4Uaff7kGs0d",
-      "uri": "spotify:track:3SJWVMRwk5z4Uaff7kGs0d",
-      "name": "Spanish Sahara",
-      "artists": [
-        "Foals"
-      ],
-      "artist_ids": [
-        "6FQqZYVfTNQ1pCqfkwVFEa"
-      ],
-      "album": "Total Life Forever",
-      "album_id": "670h50t8E3LwP2bGqxGi6E",
-      "duration_ms": 409560,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958690+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "GBAHT1000047"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 22,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "51rfRCiUSvxXlCSCfIztBy",
-      "uri": "spotify:track:51rfRCiUSvxXlCSCfIztBy",
-      "name": "I Love You, I'm Sorry",
-      "artists": [
-        "Gracie Abrams"
-      ],
-      "artist_ids": [
-        "4tuJ0bMpJh08umKkEXKUI5"
-      ],
-      "album": "The Secret of Us",
-      "album_id": "56bdWeO40o3WfAD2Lja4dl",
-      "duration_ms": 157146,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958693+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USUG12401766"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 23,
+      "position": 20,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -707,7 +620,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958697+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839710+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -717,36 +630,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 24,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "2RGcuZJYIvA7sFx38WLhQK",
-      "uri": "spotify:track:2RGcuZJYIvA7sFx38WLhQK",
-      "name": "Rule #21 - Momento Mori",
-      "artists": [
-        "Fish in a Birdcage"
-      ],
-      "artist_ids": [
-        "3AFsnAC0H9hes71BeRypbq"
-      ],
-      "album": "Waterfall",
-      "album_id": "4rCqRxg0mqoSVq42bKX4WI",
-      "duration_ms": 189756,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958700+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "CAZC42000009"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 25,
+      "position": 21,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -765,7 +649,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958703+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839711+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -775,65 +659,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 26,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "10YGSqXSKL5g6VmXiuSdd2",
-      "uri": "spotify:track:10YGSqXSKL5g6VmXiuSdd2",
-      "name": "I Turn My Camera On",
-      "artists": [
-        "Spoon"
-      ],
-      "artist_ids": [
-        "0K1q0nXQ8is36PzOKAMbNe"
-      ],
-      "album": "Gimme Fiction (Deluxe Edition)",
-      "album_id": "4sjSsxnmBlzxgZ9HGkHDsk",
-      "duration_ms": 212106,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958707+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USMRG1556503"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 27,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "0pZ0bzuywvxr3ClQo3syYY",
-      "uri": "spotify:track:0pZ0bzuywvxr3ClQo3syYY",
-      "name": "Holly Hobby (Version)",
-      "artists": [
-        "Casiotone For The Painfully Alone"
-      ],
-      "artist_ids": [
-        "4FdSsjcX7vzOnN5zNqQWAy"
-      ],
-      "album": "Etiquette",
-      "album_id": "1fMaPBDIcOsEpW4tz6gUhi",
-      "duration_ms": 163893,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958710+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "TCADL1852270"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 28,
+      "position": 22,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -852,7 +678,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958718+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839715+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -862,7 +688,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 29,
+      "position": 23,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -881,7 +707,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958722+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839717+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -891,7 +717,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 30,
+      "position": 24,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -912,7 +738,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958725+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839719+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -922,7 +748,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 31,
+      "position": 25,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -941,7 +767,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958729+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839721+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -951,65 +777,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 32,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "4w3MvMb3ylHkBLUIIaCQzF",
-      "uri": "spotify:track:4w3MvMb3ylHkBLUIIaCQzF",
-      "name": "Only You",
-      "artists": [
-        "Ebony Riley"
-      ],
-      "artist_ids": [
-        "44uizbRKRAdJglzWQKBReo"
-      ],
-      "album": "Only You",
-      "album_id": "1GwCXvwD971NE1ItfSCxfR",
-      "duration_ms": 132519,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958732+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USUM72510093"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 33,
-      "added_at": "2026-11-05T23:11:07Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "6KfoDhO4XUWSbnyKjNp9c4",
-      "uri": "spotify:track:6KfoDhO4XUWSbnyKjNp9c4",
-      "name": "Maniac",
-      "artists": [
-        "Conan Gray"
-      ],
-      "artist_ids": [
-        "4Uc8Dsxct0oMqx0P6i60ea"
-      ],
-      "album": "Kid Krow",
-      "album_id": "2CMlkzFI2oDAy5MbyV7OV5",
-      "duration_ms": 185773,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958736+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USUM71920712"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 34,
+      "position": 26,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1028,7 +796,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958739+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839722+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1038,7 +806,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 35,
+      "position": 27,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1057,7 +825,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958745+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839724+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1067,7 +835,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 36,
+      "position": 28,
       "added_at": "2026-11-05T23:11:07Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1086,7 +854,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-06T14:18:18.958748+00:00",
+      "playability_checked_at": "2026-11-06T17:31:19.839726+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,

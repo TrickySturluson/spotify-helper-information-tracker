@@ -777,6 +777,94 @@
             "plantoid"
           ],
           "album": "Dog's Life"
+        },
+        {
+          "uri": "spotify:track:5mHxmOZXyYoq8gwjCz3Vcp",
+          "name": "The Best Ever Death Metal Band in Denton",
+          "artists": [
+            "The Mountain Goats"
+          ],
+          "album": "All Hail West Texas (Remastered)",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:3SJWVMRwk5z4Uaff7kGs0d",
+          "name": "Spanish Sahara",
+          "artists": [
+            "Foals"
+          ],
+          "album": "Total Life Forever",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:51rfRCiUSvxXlCSCfIztBy",
+          "name": "I Love You, I'm Sorry",
+          "artists": [
+            "Gracie Abrams"
+          ],
+          "album": "The Secret of Us",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:2RGcuZJYIvA7sFx38WLhQK",
+          "name": "Rule #21 - Momento Mori",
+          "artists": [
+            "Fish in a Birdcage"
+          ],
+          "album": "Waterfall",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:10YGSqXSKL5g6VmXiuSdd2",
+          "name": "I Turn My Camera On",
+          "artists": [
+            "Spoon"
+          ],
+          "album": "Gimme Fiction (Deluxe Edition)",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:0pZ0bzuywvxr3ClQo3syYY",
+          "name": "Holly Hobby (Version)",
+          "artists": [
+            "Casiotone For The Painfully Alone"
+          ],
+          "album": "Etiquette",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:4w3MvMb3ylHkBLUIIaCQzF",
+          "name": "Only You",
+          "artists": [
+            "Ebony Riley"
+          ],
+          "album": "Only You",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:6KfoDhO4XUWSbnyKjNp9c4",
+          "name": "Maniac",
+          "artists": [
+            "Conan Gray"
+          ],
+          "album": "Kid Krow",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-06T17:31:19.847075+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
         }
       ],
       "whitelisted": []
