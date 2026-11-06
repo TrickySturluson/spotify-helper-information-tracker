@@ -33,6 +33,12 @@
 - Updated the Daily cycle guide/TODO/README/roadmap, workflow catalogue and cross-project handoff/register; added documentation-contract tests for the force discrepancy and sensitive workflow trigger descriptions.
 - No runtime code, test expectations, workflow YAML, provider state, generated data or playlists changed. Exact-head CI/security for the latest documentation updates is pending.
 
+## 2026-11-06 — Reference Library schedule mismatch corrected
+
+- **Finding:** the Recent Track Enrichment guide claimed the Spotify Reference Library ran every six hours, but its workflow declares one daily run at 06:13 UTC, plus manual dispatch and a main-branch workflow-file push trigger.
+- **Changes:** corrected `docs/RECENT_TRACK_ENRICHMENT.md` and added a documentation-contract test that checks the workflow cron and rejects the stale six-hour description.
+- **Verification:** source/documentation comparison and GitHub file updates only; latest PR CI/security remains pending. No Spotify sync, provider calls or playlist changes were performed.
+
 # SHIT Project Log
 
 ## 2026-11-06 — Latest read-only canonical Library baseline refreshed
