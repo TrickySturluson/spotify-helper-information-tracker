@@ -87,7 +87,7 @@ class DocumentationContractTests(unittest.TestCase):
         metadata_guide = (ROOT / "docs" / "AUTOMATED_AUDIO_METADATA.md").read_text(encoding="utf-8")
 
         dispatch_match = re.search(
-            r"workflow_dispatch:\\s*(.*?)\\npermissions:",
+            r"workflow_dispatch:\s*(.*?)\npermissions:",
             workflow,
             flags=re.DOTALL,
         )
@@ -95,7 +95,7 @@ class DocumentationContractTests(unittest.TestCase):
 
         def input_block(name):
             match = re.search(
-                rf"^      {name}:\\n(.*?)(?=^      [a-z_]+:|\\Z)",
+                rf"^      {name}:\n(.*?)(?=^      [a-z_]+:|\Z)",
                 dispatch_match.group(1),
                 flags=re.MULTILINE | re.DOTALL,
             )
@@ -104,10 +104,13 @@ class DocumentationContractTests(unittest.TestCase):
 
         def choices_and_default(name):
             block = input_block(name)
-            choices = re.findall(r"^\\s+-\\s+\\"?([0-9]+)\\"?\\s*$", block, re.MULTILINE)
-            default = re.search(r"^\\s+default:\\s+\\"?([0-9]+)\\"?\\s*$", block, re.MULTILINE)
+            choices = re.findall(r'^\s+-\s+"?([0-9]+)"?\s*$', block, re.MULTILINE)
+            default = re.search(r'^\s+default:\s+"?([0-9]+)"?\s*$', block, re.MULTILINE)
             self.assertIsNotNone(default, f"Missing default for {name}")
             return choices, default.group(1)
+
+        def display_choices(values):
+            return "/".join(f"{int(value):,}" for value in values)
 
         duration_choices, duration_default = choices_and_default("musicbrainz_lookups")
         artist_choices, artist_default = choices_and_default("artist_profile_lookups")
@@ -122,9 +125,9 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("|| '200'", workflow)
         self.assertIn('ALBUM_PROFILE_LOOKUPS_PER_RUN: "100"', workflow)
 
-        self.assertIn(f"MusicBrainz durations {'/'.join(duration_choices)} (default {int(duration_default):,})", metadata_guide)
-        self.assertIn(f"artist profiles {'/'.join(artist_choices)} (default {int(artist_default):,})", metadata_guide)
-        self.assertIn(f"track profiles {'/'.join(track_choices)} (default {int(track_default):,})", metadata_guide)
+        self.assertIn(f"MusicBrainz durations {display_choices(duration_choices)} (default {int(duration_default):,})", metadata_guide)
+        self.assertIn(f"artist profiles {display_choices(artist_choices)} (default {int(artist_default):,})", metadata_guide)
+        self.assertIn(f"track profiles {display_choices(track_choices)} (default {int(track_default):,})", metadata_guide)
         self.assertIn("300 MusicBrainz duration lookups, 100 artist-profile lookups, 200 track-profile lookups, 200 recording-ID lookups and 100 album-profile lookups", metadata_guide)
         self.assertIn("scheduled workflow processes up to 200 track profiles per run", recent_guide)
         self.assertIn(f"Manual dispatch offers {', '.join(track_choices[:-1])}, or {track_choices[-1]} lookups (default {track_default})", recent_guide)
