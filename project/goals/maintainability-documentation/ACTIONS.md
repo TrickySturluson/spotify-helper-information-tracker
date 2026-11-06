@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Workflow catalogue source cross-check completed
+
+- Compared the trigger/schedule matrix in `docs/WORKFLOWS.md` against all 17 workflow YAML `on:` blocks on `docs/semantic-documentation-audit`.
+- Checked push branch/path filters, pull-request and issue event types, manual-dispatch availability, cron expressions, and declared permission blocks. All 17 workflow names are represented in the catalogue; the existing documentation contract also checks catalogue coverage and sensitive trigger-boundary phrases.
+- No trigger/cron mismatch was found in this pass. The 06:13 UTC Reference Library schedule, 06:17 UTC broad update schedule, 07:23 UTC Acoustic metadata schedule, 08:17 UTC metadata/feedback schedules, Sunday 09:17 UTC Library review, and the Daily 04:00/05:00 plus 15-minute recovery entries agree with their source YAML.
+- Updated the catalogue review date to 2026-11-06 and recorded the audit scope. The YAML remains authoritative; this was a documentation-only change. No workflow YAML was edited, avoiding accidental push-triggered provider/data jobs.
+- **Limit:** this pass verified trigger/schedule and permissions, not a complete semantic audit of every job step, shell command, environment variable, secret usage, artifact retention and publication side effect. Those remain in the workflow/source audit.
+- **Next:** complete the deeper workflow step/credential/write audit and reconcile the remaining technical guides and goal action histories.
+
+
 ## 2026-11-06 — Exact-head verification passed; cold-start handoff inconsistencies corrected
 
 - **Verified head:** 54c318789a29817453366953f891a3431ea79fa8.
