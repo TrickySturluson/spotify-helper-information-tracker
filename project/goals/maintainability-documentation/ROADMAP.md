@@ -71,6 +71,10 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - Full-history public repository security scan #42157311623: success.
 - These checks verify the current PR head but do not close the manual semantic audit, complete inventory, guide reconciliation or fresh-session acceptance criteria.
 
+## Fresh-session resume simulation — initial pass completed 2026-11-06
+
+A cold-start review was performed using only `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `NEXT_WORK.md`, `LOOSE_ENDS.md`, `PROJECT_LOG.md`, the goal index, and the relevant Maintainability and Tricky Daily roadmap/README/ACTIONS files. The handoff correctly identifies the documentation-only priority, active PR #161, last fully verified commit and later unverified handoff commits, scratch-branch warning, all 12 paused feature goals, stale/diverged open PRs, Daily force/idempotency mismatch, 58-item snapshot discrepancy, playlist-role registry drift, and the next executable documentation steps. **Result: pass for resuming the current documentation workstream without chat history.** Repeat the simulation after the remaining audit and final verification; this does not satisfy the full inventory or semantic-accuracy gates.
+
 ## Remaining acceptance work
 
 1. **Tracked-file inventory:** obtain a complete checkout and reconcile `git ls-files` against the maintained-file index and documentation contract. Keep generated per-record data documented by family/schema/owner rather than adding thousands of prose entries. The recursive Git tree API response was truncated and cannot be treated as complete.
@@ -78,12 +82,12 @@ Every maintained script/module/workflow should state its purpose, supported goal
 3. **Technical-guide audit:** reconcile all 21 technical guides and operational runbooks against current source, tests, schemas and workflow definitions. Correct stale commands, paths, schedules, permissions, ownership boundaries, recovery procedures and evidence claims.
 4. **Goal audit:** reconcile all 13 goal ROADMAP/README/ACTIONS sets against current main, the open PRs/issues and latest workflow evidence. Preserve proposals as proposals; distinguish planned, implemented, merged, deployed and verified.
 5. **Cross-document consistency:** remove contradictory historical checkpoints from current handoff sections; ensure NEXT_WORK, LOOSE_ENDS, project ROADMAP, goal ROADMAP and ACTIONS logs agree on current status and next action. Historical records may remain when clearly dated and labelled.
-6. **Fresh-session simulation:** start only from `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md` and the goal index. Verify that a new session can identify the active task, constraints, evidence, blockers and next executable step without chat history.
+6. **Fresh-session simulation:** initial pass completed for the current documentation workstream on 2026-11-06 using the repository entry points and relevant goal docs. Repeat after the remaining guide/inventory audit and final verification; verify that all active goals remain resumable without chat history.
 7. **Final verification:** run documentation contract tests, layout tests, full unittest discovery and full-history security scan on the final PR head; inspect results and confirm the PR is mergeable before seeking merge authorization. Do not declare completion or merge based on older-head checks.
 
 ## Next action
 
-Continue the cross-document consistency audit. The project handoff had accumulated stale PR checkpoints; the top-level NEXT_WORK section has now been consolidated. Inspect and reconcile remaining duplicated/stale checkpoint sections in this roadmap, LOOSE_ENDS and PROJECT_LOG, then perform the fresh-session simulation. Keep documentation as the only active priority until every acceptance criterion above has current evidence.
+Continue the remaining source-to-guide semantic audit and complete the tracked-file inventory. The first fresh-session simulation passed for the current documentation workstream; repeat it after the remaining audit and final exact-head verification. Keep documentation as the only active priority until every acceptance criterion above has current evidence.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
