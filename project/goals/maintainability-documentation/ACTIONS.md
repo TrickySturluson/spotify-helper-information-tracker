@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Daily and playlist-reference snapshot evidence reconciled
+
+- **Daily snapshot:** latest saved reference record (captured `2026-11-06T01:48:00.233040+00:00`) contains 58/58 accessible unique tracks, below the 60-track successful-cycle target. Updated the Daily cycle guide, Daily roadmap/action history and cross-project loose-ends register; cause/current live state remain unknown.
+- **Reference role drift:** `playlists.json` and the per-playlist snapshot now contain SHITting Grounds (25/25 accessible, captured `2026-11-06T01:47:59.822814+00:00`), but the curated `playlist_roles.json` entry still has null snapshot fields and `not_yet_in_reference_snapshot`. Updated `assistant_data/spotify/PLAYLIST_REFERENCE_GUIDE.md` to describe the mismatch; the curated JSON was not changed.
+- **Safety:** repository snapshot inspection and documentation edits only. No new Spotify API calls, playlist mutations, generated-data writes or role-registry edits.
+- **Next:** after the documentation pause, reconcile the Daily count with cycle/audit/preflight evidence and update the SHITting Grounds curated role entry through an approved data-maintenance step.
+
+
 ## 2026-11-06 — Recent enrichment guide schedule corrected against workflow YAML
 
 - **Finding:** `docs/RECENT_TRACK_ENRICHMENT.md` incorrectly described the Spotify Reference Library workflow as scheduled every six hours. The authoritative YAML `.github/workflows/spotify-reference-library.yml` has a single daily cron, `13 6 * * *` (06:13 UTC), plus manual dispatch and a main-branch push trigger limited to changes to that workflow file.
