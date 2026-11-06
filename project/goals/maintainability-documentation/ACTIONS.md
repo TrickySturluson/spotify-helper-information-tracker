@@ -2,6 +2,17 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Accidental workflow execution during workflow-overview documentation
+
+- **Context:** comment-only edits to workflow YAMLs on `main` matched their push-path filters and started data workflows. This was unintended during the documentation-only phase; the prevention rule is now recorded in `docs/WORKFLOWS.md`.
+- **Reference Library:** run #42146148971 succeeded and published commit `3e989e33282efab6cc1416e35970e7c59af5f056`. It changed 249 files (184 Library records, 63 Spotify reference/history files, 2 removal-state files), with 4,445 additions and 644 deletions. It refreshed repository snapshots/removal feedback; it did not mutate any Spotify playlist.
+- **Enrich Music Metadata:** run #42146121471 completed enrichment steps but failed at publication while rebasing commit `cbae47de` ("Enrich music durations and artist profiles"). Git reported multiple add/add conflicts in canonical song JSON files that had just been added by the Reference Library commit. The enrichment changes were not published. This is direct evidence of a shared generated-Library publication race; no manual conflict resolution or retry was attempted.
+- **Acoustic Metadata Enrichment:** run #42146097964 completed 100 AcousticBrainz batches of 25 IDs each: 2,500 candidates checked, 207 profiles found, 2,293 misses, 322 total stored profiles and 3,678 negative-cache entries. Optional GetSongBPM was skipped because GETSONGBPM_API_KEY was absent. Publication then failed because `git add` included `assistant_data/music/getsongbpm_lookup_state.json`, which did not exist (exit 128). No AcousticBrainz changes were published. This is a concrete workflow robustness defect when an optional provider state file is absent.
+- **Update Last.fm History:** run #42146153098 was still active at the latest check, in the track-profile enrichment phase after successful Last.fm import, artist-profile enrichment, recent-top track tag enrichment, duration prioritization, recording-ID resolution and AcousticBrainz fetch. Inspect its terminal result and any commit before resuming.
+- **Safety boundary:** none of these runs wrote to Spotify playlists. Reference snapshots and removal state were committed; the two failed enrichment publication steps did not publish their workspace outputs.
+- **Follow-up (after documentation phase):** serialize all workflows that write shared Library paths or add stale-base conflict detection/rebase verification; make optional provider state paths conditional before staging; add tests for absent optional output files. Do not implement these fixes during the current documentation-only phase.
+- **Outcome:** unintended automation side effects fully identified for two terminal runs; one run still requires final inspection. Record these failures as findings, not successful enrichment publication.
+
 ## 2026-11-05 — Workflow overview audit found boilerplate; push-trigger side effects recorded
 
 - **Finding:** all 17 workflow files are listed in `docs/WORKFLOWS.md`, but nine workflow YAMLs had generic bottom overviews that did not describe their actual triggers, credentials, writes or safety boundaries. This passed the existing FILE OVERVIEW presence test but failed the intended documentation-quality standard.
