@@ -216,4 +216,4 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Buddy prompt:** `.github/babel/CONTINUATION_PROMPT.md` now requires the worker to read the active brief first and reconcile it against the checked-out source/evidence. Commit `bad03f65cbe92690718278440886a84014fd79a1`.
 - **Important limitation:** this is not real-time messaging. Buddy sees only committed changes on a later scheduled/manual run; it cannot interrupt or message the active ChatGPT conversation.
 - **Verification:** GitHub contents API confirmed both commits. Buddy has not yet had a successful run; its state file still records `last_result: not yet run`. No test or workflow run has been claimed for these documentation edits.
-- **Next:** propagate the mandatory same-session maintenance rule into AGENTS.md, DOCUMENTATION_RULES.md, the Babel guide, and NEXT_WORK; then complete the first-run activation and inspect the actual worker output/PR.
+- **Next:** confirm the repository Actions PR-creation permission, manually dispatch Buddy on `main`, and inspect the actual worker output, validation result, and proposal PR; then complete the cold-start simulation.
