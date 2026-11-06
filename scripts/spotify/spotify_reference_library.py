@@ -747,13 +747,16 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Canonical, read-only Spotify playlist reference library and Daily feedback helpers.
-# Data: Captures track IDs, restrictions, playability and relinking evidence from snapshots.
-# Safety: Snapshot ingestion never changes playlists; offline backfill makes a song-file backup before appending observations.
-# Playability: Use bounded stale-only GET /tracks/{id}?market=from_token checks (25/run, 90-day TTL); relinked IDs stay distinct from requested IDs.
-# Location: Maintained implementation in scripts/spotify/spotify_reference_library.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/spotify_reference_library.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Maintain canonical read-only Spotify playlist snapshots and related reference evidence.
+# Inputs: Spotify playlist GET snapshots, configured reference/priority playlist IDs and
+#         market-scoped track metadata/playability observations.
+# Outputs: assistant_data/spotify playlist snapshots/history, reference indexes, health summaries
+#          and removal-baseline/feedback inputs.
+# Semantics: Snapshot time is explicit; an incomplete or inaccessible playlist is not an empty
+#            playlist. Requested and relinked Spotify IDs remain distinct; playability is market-scoped.
+# Safety: Snapshot ingestion does not mutate Spotify playlists. Bounded stale-only GET refreshes;
+#         offline backfill uses backup-protected song-record writes.
+# Run: python compat/spotify_reference_library.py sync|health|... (repository root).
+# Related: docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md;
+#          scripts/spotify/track_playlist_removals.py.
 # -----------------------------------------------------------------------------
