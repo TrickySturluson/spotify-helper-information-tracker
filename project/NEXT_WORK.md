@@ -80,6 +80,8 @@ Treat all eight open PRs as proposals, not merged behavior. Reinspect their diff
 6. Perform the fresh-session simulation using only the documented entry points and record any ambiguity or missing step.
 7. Run documentation contract tests, layout tests, full unittest discovery and full-history security scan on the final PR head. Keep PR #161 draft/unmerged until all acceptance criteria and exact-head verification pass.
 
+> **Historical sections below:** dated checkpoints after this point preserve prior decisions and evidence. They are not the active handoff; the current priority, PR status, verification caveat and next actions are defined in the 2026-11-06 section above. Reconcile any apparent conflict against the latest goal roadmap and live GitHub state.
+
 ## 2026-11-05 — Documentation system expansion in progress
 
 - The repository now has root [AGENTS.md](../AGENTS.md), a central [documentation index](../docs/README.md), and a cross-workstream [project roadmap](ROADMAP.md). These complement—not replace—the mandatory [documentation rules](DOCUMENTATION_RULES.md), 13 individual goal roadmaps, the loose-ends register and chronological project log.
