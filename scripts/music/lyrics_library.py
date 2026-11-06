@@ -403,10 +403,19 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: SHIT lyrics lookup and local song-reference library. Lyrics are fetched transiently for analysis. The local SQLite database stores song metadata, source references, theme evidence, and one-way phrase fingerprints rather than copying full copyrighted lyric text.
-# Location: Maintained implementation in scripts/music/lyrics_library.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/lyrics_library.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Search, analyze and maintain SHIT's local song/lyric-reference
+#          library, producing compact theme evidence for recommendations.
+# Inputs: Artist/title/optional album and duration; configurable SQLite database
+#         (default data/lyrics/library.sqlite3); optional provider credentials
+#         for LRCLIB, Musixmatch or Genius lookups.
+# Outputs/state: Stores song metadata, source references, theme analysis and
+#                one-way phrase fingerprints in SQLite; export writes compact
+#                features to assistant_data/recommendations/lyric_features.json.
+# Copyright boundary: Lyrics are fetched transiently for analysis; full lyric
+#                     text is not retained in the local database/export.
+# Side effects: Local SQLite/JSON writes and optional external lyric-provider
+#               requests; never edits Spotify playlists or fetches Spotify audio.
+# Run: python compat/lyrics_library.py --help
+# Related: docs/LYRICS_LIBRARY.md; scripts/music/enrich_recommendation_lyrics.py;
+#          tests/test_lyrics_library.py.
 # -----------------------------------------------------------------------------
