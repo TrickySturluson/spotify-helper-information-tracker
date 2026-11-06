@@ -99,6 +99,9 @@ jobs:
               python compat/spotify_daily_cycle.py --force --description-only
             elif [ "$ACTION" = "verify-only" ]; then
               python compat/spotify_daily_cycle.py --force --verify-only
+            elif [ "$ACTION" = "stage-only" ]; then
+              # Generate and durably commit a test-only stage; never call Spotify write endpoints.
+              python compat/spotify_daily_cycle.py --force --stage-only
             else
               echo "Unsupported Tricky Daily trigger action: $ACTION" >&2
               exit 1
