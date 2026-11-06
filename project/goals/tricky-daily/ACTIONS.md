@@ -2,6 +2,12 @@
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
 
+## 2026-11-06 — Open Daily proposals and CI status reconciled
+
+- [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) remains open and unmerged. Its observed full tests and full-history security scan passed; it proposes strict cron-to-Eastern-offset gating beyond the current combined cron/local-hour behavior.
+- [PR #160](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) remains open and unmerged. Its observed tests and security scan passed; exposure-decay ranking, 45/30/25 composition and the new read-only Daily quality report are proposals, not mainline behavior.
+- The Daily cycle guide was corrected to describe current mainline scheduling and explicitly distinguish PR #159's proposed stricter DST gate. No Daily cycle, Spotify request or playlist write was performed.
+
 ## 2026-11-06 — Daily proposals and live-playlist safety status
 
 - PR #158 (Discover Weekly exposure/feedback), #159 (DST schedule gating) and #160 (exposure-aware discovery) remain open proposals, not merged behavior.
