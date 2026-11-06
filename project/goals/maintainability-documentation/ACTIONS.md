@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Repository index corrected and test-suite guide added
+
+- **Finding:** the previous `docs/REPOSITORY_FILE_INDEX.md` described itself as a complete tracked-file catalogue and listed only 239 assistant_data files, while the current canonical music Library contains a much larger per-record tree. The recursive Git tree API also reported `truncated: true`, so it was not safe to claim a complete recursive inventory from that response.
+- **Changes:** replaced the stale exhaustive snapshot with a source and data-family index. It documents code/workflow/test ownership, canonical Last.fm data, canonical structured Library records, generated analytics, optional playback observations, Spotify state/feedback, and commands to inspect the exact current Git inventory. Added `tests/README.md` and linked it from the documentation index.
+- **Verification:** repository directories and goal workspaces were inspected through GitHub contents listings. The previous docs contract test passed on commit `38ad97e`; the new directory-guide requirement and corrected index have not yet had a fresh CI run.
+- **Outcome:** index scope corrected; further CI verification pending.
+- **Next action:** inspect the new test run after the latest commits, fix any failures, then audit source/workflow file overviews against the actual tree and stale operational descriptions.
+
 ## 2026-11-05 — Automated documentation contract checks added
 
 - **Purpose:** catch missing documentation foundations and broken navigation before future changes can quietly erode continuity.
