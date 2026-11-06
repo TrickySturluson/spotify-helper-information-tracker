@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "captured_at": "2026-11-05T14:41:54.380617+00:00",
+  "captured_at": "2026-11-06T01:48:10.517931+00:00",
   "playlist_count": 58,
   "playlists": [
     {
@@ -16,7 +16,7 @@
       "item_count": 191,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:08.699497+00:00",
-      "captured_at": "2026-11-05T14:41:44.356932+00:00",
+      "captured_at": "2026-11-06T01:48:03.465420+00:00",
       "record_path": "assistant_data/spotify/playlists/4HzqY9iy04M1EVSF5kcD64.json",
       "changed": false
     },
@@ -33,7 +33,7 @@
       "item_count": 625,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:55.877985+00:00",
-      "captured_at": "2026-11-05T14:41:42.259507+00:00",
+      "captured_at": "2026-11-06T01:48:01.201581+00:00",
       "record_path": "assistant_data/spotify/playlists/34ZLWdJxp6U7HfFfu7DJu1.json",
       "changed": false
     },
@@ -50,7 +50,7 @@
       "item_count": 6,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:10.759059+00:00",
-      "captured_at": "2026-11-05T14:41:44.363896+00:00",
+      "captured_at": "2026-11-06T01:48:03.475293+00:00",
       "record_path": "assistant_data/spotify/playlists/70s94R5XfF7EHJ7T9cF4Hz.json",
       "changed": false
     },
@@ -67,7 +67,7 @@
       "item_count": 60,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:09.296127+00:00",
-      "captured_at": "2026-11-05T14:41:44.360651+00:00",
+      "captured_at": "2026-11-06T01:48:03.471616+00:00",
       "record_path": "assistant_data/spotify/playlists/0O9ojSstxwa5vQy2V7pO2x.json",
       "changed": false
     },
@@ -84,7 +84,7 @@
       "item_count": 51,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:49.937345+00:00",
-      "captured_at": "2026-11-05T14:41:41.782196+00:00",
+      "captured_at": "2026-11-06T01:48:00.801136+00:00",
       "record_path": "assistant_data/spotify/playlists/6ZsqAs5OnRMVudhfB2QzTx.json",
       "changed": false
     },
@@ -101,7 +101,7 @@
       "item_count": 17,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:11.024918+00:00",
-      "captured_at": "2026-11-05T14:41:44.364302+00:00",
+      "captured_at": "2026-11-06T01:48:03.475700+00:00",
       "record_path": "assistant_data/spotify/playlists/0up7QOuebKfpL52Lkv57iG.json",
       "changed": false
     },
@@ -118,7 +118,7 @@
       "item_count": 9,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:09.946533+00:00",
-      "captured_at": "2026-11-05T14:41:44.362410+00:00",
+      "captured_at": "2026-11-06T01:48:03.473729+00:00",
       "record_path": "assistant_data/spotify/playlists/4tn53u9giOW4exRSHM9S2Q.json",
       "changed": false
     },
@@ -135,7 +135,7 @@
       "item_count": 92,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-03T14:16:29.223773+00:00",
-      "captured_at": "2026-11-05T14:41:41.023386+00:00",
+      "captured_at": "2026-11-06T01:47:59.824523+00:00",
       "record_path": "assistant_data/spotify/playlists/4diIlnF8BlgoJrwUfejf49.json",
       "changed": false
     },
@@ -152,7 +152,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:52.267576+00:00",
-      "captured_at": "2026-11-05T14:41:45.272817+00:00",
+      "captured_at": "2026-11-06T01:48:04.152371+00:00",
       "record_path": "assistant_data/spotify/playlists/5DjXZzcWUsRT1c7X3jNIqX.json",
       "changed": false
     },
@@ -169,7 +169,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:33.875770+00:00",
-      "captured_at": "2026-11-05T14:41:43.908241+00:00",
+      "captured_at": "2026-11-06T01:48:03.012203+00:00",
       "record_path": "assistant_data/spotify/playlists/43OGTiXjftiA4Rfjpd4WKz.json",
       "changed": false
     },
@@ -186,7 +186,7 @@
       "item_count": 3,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:11.793211+00:00",
-      "captured_at": "2026-11-05T14:41:45.086695+00:00",
+      "captured_at": "2026-11-06T01:48:03.916864+00:00",
       "record_path": "assistant_data/spotify/playlists/09xTFE86ySsLDlUor57oxj.json",
       "changed": false
     },
@@ -203,7 +203,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:51.786534+00:00",
-      "captured_at": "2026-11-05T14:41:45.086300+00:00",
+      "captured_at": "2026-11-06T01:48:03.916437+00:00",
       "record_path": "assistant_data/spotify/playlists/6c6Ra1iI1JjhADV2gnT7p6.json",
       "changed": false
     },
@@ -220,7 +220,7 @@
       "item_count": 9,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:48.617545+00:00",
-      "captured_at": "2026-11-05T14:41:41.027273+00:00",
+      "captured_at": "2026-11-06T01:48:00.239243+00:00",
       "record_path": "assistant_data/spotify/playlists/5ldEH1DIttBpwfDHCK0cH9.json",
       "changed": false
     },
@@ -237,7 +237,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:31.571059+00:00",
-      "captured_at": "2026-11-05T14:41:42.445160+00:00",
+      "captured_at": "2026-11-06T01:48:01.424260+00:00",
       "record_path": "assistant_data/spotify/playlists/1DfldKacNIZzRc1wvUbd7a.json",
       "changed": false
     },
@@ -254,7 +254,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:25.480970+00:00",
-      "captured_at": "2026-11-05T14:41:42.251532+00:00",
+      "captured_at": "2026-11-06T01:48:01.189977+00:00",
       "record_path": "assistant_data/spotify/playlists/6s5BBWS2DrarnwfTp0KxNx.json",
       "changed": false
     },
@@ -271,7 +271,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:34.755890+00:00",
-      "captured_at": "2026-11-05T14:41:44.112765+00:00",
+      "captured_at": "2026-11-06T01:48:03.245366+00:00",
       "record_path": "assistant_data/spotify/playlists/5oaemzgKQVvRm044eoELf8.json",
       "changed": false
     },
@@ -288,7 +288,7 @@
       "item_count": 21,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:56.819074+00:00",
-      "captured_at": "2026-11-05T14:41:42.980392+00:00",
+      "captured_at": "2026-11-06T01:48:01.783297+00:00",
       "record_path": "assistant_data/spotify/playlists/5wRSUXlFbT8EX9p1kfa6GG.json",
       "changed": false
     },
@@ -305,7 +305,7 @@
       "item_count": 17,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:52.661040+00:00",
-      "captured_at": "2026-11-05T14:41:42.255426+00:00",
+      "captured_at": "2026-11-06T01:48:01.196397+00:00",
       "record_path": "assistant_data/spotify/playlists/2VV3P1FkFgPloylv3FVN75.json",
       "changed": false
     },
@@ -322,7 +322,7 @@
       "item_count": 1,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:13.227279+00:00",
-      "captured_at": "2026-11-05T14:41:45.276596+00:00",
+      "captured_at": "2026-11-06T01:48:04.158626+00:00",
       "record_path": "assistant_data/spotify/playlists/2ObNqlwaAvu4VpUVydWlYW.json",
       "changed": false
     },
@@ -339,7 +339,7 @@
       "item_count": 30,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:51.705525+00:00",
-      "captured_at": "2026-11-05T14:41:42.251963+00:00",
+      "captured_at": "2026-11-06T01:48:01.190594+00:00",
       "record_path": "assistant_data/spotify/playlists/5uekshuTjqgJ0A6AVNfhgP.json",
       "changed": false
     },
@@ -356,7 +356,7 @@
       "item_count": 11,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:52.393620+00:00",
-      "captured_at": "2026-11-05T14:41:42.254937+00:00",
+      "captured_at": "2026-11-06T01:48:01.195853+00:00",
       "record_path": "assistant_data/spotify/playlists/5STPnvDqoU9Uc0qtlQsBRE.json",
       "changed": false
     },
@@ -373,7 +373,7 @@
       "item_count": 1,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:48.367073+00:00",
-      "captured_at": "2026-11-05T14:41:41.026901+00:00",
+      "captured_at": "2026-11-06T01:48:00.238956+00:00",
       "record_path": "assistant_data/spotify/playlists/4b8bnocxVCRuPNFKIfffCU.json",
       "changed": false
     },
@@ -390,7 +390,7 @@
       "item_count": 1388,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:06.743654+00:00",
-      "captured_at": "2026-11-05T14:41:44.331857+00:00",
+      "captured_at": "2026-11-06T01:48:03.426875+00:00",
       "record_path": "assistant_data/spotify/playlists/3XQz9AyZP6ADcr9i8iBaVx.json",
       "changed": false
     },
@@ -407,7 +407,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:51.274973+00:00",
-      "captured_at": "2026-11-05T14:41:44.673629+00:00",
+      "captured_at": "2026-11-06T01:48:03.632162+00:00",
       "record_path": "assistant_data/spotify/playlists/4uj6bJgjBtW7r91ognROc7.json",
       "changed": false
     },
@@ -424,7 +424,7 @@
       "item_count": 3,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:09.654245+00:00",
-      "captured_at": "2026-11-05T14:41:44.362088+00:00",
+      "captured_at": "2026-11-06T01:48:03.473437+00:00",
       "record_path": "assistant_data/spotify/playlists/3tyyzePtZplN4Ezifl9Zyc.json",
       "changed": false
     },
@@ -441,7 +441,7 @@
       "item_count": 3,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:57.776109+00:00",
-      "captured_at": "2026-11-05T14:41:43.425866+00:00",
+      "captured_at": "2026-11-06T01:48:02.422215+00:00",
       "record_path": "assistant_data/spotify/playlists/3QOXoyzMgmR11E3uApwAXV.json",
       "changed": false
     },
@@ -458,7 +458,7 @@
       "item_count": 21,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:50.697434+00:00",
-      "captured_at": "2026-11-05T14:41:41.785164+00:00",
+      "captured_at": "2026-11-06T01:48:00.805866+00:00",
       "record_path": "assistant_data/spotify/playlists/4PlyPb9mptoHrMTb6KSka1.json",
       "changed": false
     },
@@ -475,7 +475,7 @@
       "item_count": 16,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:07.549978+00:00",
-      "captured_at": "2026-11-05T14:41:44.354954+00:00",
+      "captured_at": "2026-11-06T01:48:03.462525+00:00",
       "record_path": "assistant_data/spotify/playlists/2B3Ie8mcurQaou0BxPBuFe.json",
       "changed": false
     },
@@ -492,7 +492,7 @@
       "item_count": 46,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:07.788788+00:00",
-      "captured_at": "2026-11-05T14:41:44.355573+00:00",
+      "captured_at": "2026-11-06T01:48:03.463317+00:00",
       "record_path": "assistant_data/spotify/playlists/0hdqYliqXPsvGEvlC63VnR.json",
       "changed": false
     },
@@ -509,7 +509,7 @@
       "item_count": 14,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:48.019441+00:00",
-      "captured_at": "2026-11-05T14:41:41.025957+00:00",
+      "captured_at": "2026-11-06T01:48:00.237972+00:00",
       "record_path": "assistant_data/spotify/playlists/1Da4M4osxPQ9Undfxz7KOh.json",
       "changed": false
     },
@@ -526,7 +526,7 @@
       "item_count": 5,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:09.514230+00:00",
-      "captured_at": "2026-11-05T14:41:44.361705+00:00",
+      "captured_at": "2026-11-06T01:48:03.473098+00:00",
       "record_path": "assistant_data/spotify/playlists/3N0CIzW2q9EQ7K3wdBRjPv.json",
       "changed": false
     },
@@ -543,7 +543,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:32.205247+00:00",
-      "captured_at": "2026-11-05T14:41:42.979565+00:00",
+      "captured_at": "2026-11-06T01:48:01.782387+00:00",
       "record_path": "assistant_data/spotify/playlists/10oSwSqfz6NKpdqveJRD1N.json",
       "changed": false
     },
@@ -560,7 +560,7 @@
       "item_count": 5,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:13.390817+00:00",
-      "captured_at": "2026-11-05T14:41:45.276935+00:00",
+      "captured_at": "2026-11-06T01:48:04.158927+00:00",
       "record_path": "assistant_data/spotify/playlists/0SM5JuDrYQMPIcOM5CGrHo.json",
       "changed": false
     },
@@ -577,7 +577,7 @@
       "item_count": 48,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:08.909918+00:00",
-      "captured_at": "2026-11-05T14:41:44.359646+00:00",
+      "captured_at": "2026-11-06T01:48:03.470197+00:00",
       "record_path": "assistant_data/spotify/playlists/43GBDM9QGiRColXN05iHal.json",
       "changed": false
     },
@@ -594,7 +594,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:25.138229+00:00",
-      "captured_at": "2026-11-05T14:41:41.965317+00:00",
+      "captured_at": "2026-11-06T01:48:00.979612+00:00",
       "record_path": "assistant_data/spotify/playlists/6gaTNs2hbW1kMvBSq0PGDG.json",
       "changed": false
     },
@@ -611,7 +611,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:22.101127+00:00",
-      "captured_at": "2026-11-05T14:41:41.781709+00:00",
+      "captured_at": "2026-11-06T01:48:00.800351+00:00",
       "record_path": "assistant_data/spotify/playlists/7yQNzIwGXyEfjKwMbUcYYq.json",
       "changed": false
     },
@@ -628,7 +628,7 @@
       "item_count": 54,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:50.520939+00:00",
-      "captured_at": "2026-11-05T14:41:41.784067+00:00",
+      "captured_at": "2026-11-06T01:48:00.803992+00:00",
       "record_path": "assistant_data/spotify/playlists/1aG27IbNdaUcyAkkfpwpMn.json",
       "changed": false
     },
@@ -645,7 +645,7 @@
       "item_count": 4,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:10.062603+00:00",
-      "captured_at": "2026-11-05T14:41:44.362799+00:00",
+      "captured_at": "2026-11-06T01:48:03.474157+00:00",
       "record_path": "assistant_data/spotify/playlists/27W6XAOB0y8rOVs1sEM1qU.json",
       "changed": false
     },
@@ -662,7 +662,7 @@
       "item_count": 13,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:50.189807+00:00",
-      "captured_at": "2026-11-05T14:41:41.783450+00:00",
+      "captured_at": "2026-11-06T01:48:00.803112+00:00",
       "record_path": "assistant_data/spotify/playlists/0XybIFtyBNGcPQV4hKpjrl.json",
       "changed": false
     },
@@ -679,7 +679,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:33.576211+00:00",
-      "captured_at": "2026-11-05T14:41:43.655787+00:00",
+      "captured_at": "2026-11-06T01:48:02.788234+00:00",
       "record_path": "assistant_data/spotify/playlists/1xp9Nsr1Q92gFHTSPaTUjT.json",
       "changed": false
     },
@@ -696,7 +696,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:33.143296+00:00",
-      "captured_at": "2026-11-05T14:41:43.425482+00:00",
+      "captured_at": "2026-11-06T01:48:02.421714+00:00",
       "record_path": "assistant_data/spotify/playlists/0VdggmUS2v9YwRvbL2wJb8.json",
       "changed": false
     },
@@ -713,7 +713,7 @@
       "item_count": 25,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-02T10:39:07.431225+00:00",
-      "captured_at": "2026-11-05T14:41:41.022208+00:00",
+      "captured_at": "2026-11-06T01:47:59.822814+00:00",
       "record_path": "assistant_data/spotify/playlists/4aLdllLgRPh5vKOznkC97D.json",
       "changed": false
     },
@@ -730,7 +730,7 @@
       "item_count": 23,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:12.191671+00:00",
-      "captured_at": "2026-11-05T14:41:45.273217+00:00",
+      "captured_at": "2026-11-06T01:48:04.152906+00:00",
       "record_path": "assistant_data/spotify/playlists/36yV3rN8VqwAKm8ZBp28Zb.json",
       "changed": false
     },
@@ -747,7 +747,7 @@
       "item_count": 11,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:10.269971+00:00",
-      "captured_at": "2026-11-05T14:41:44.363131+00:00",
+      "captured_at": "2026-11-06T01:48:03.474483+00:00",
       "record_path": "assistant_data/spotify/playlists/2ICCklgbF6cg0q5p4xAHKi.json",
       "changed": false
     },
@@ -764,7 +764,7 @@
       "item_count": 54,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:07.335517+00:00",
-      "captured_at": "2026-11-05T14:41:44.353747+00:00",
+      "captured_at": "2026-11-06T01:48:03.460727+00:00",
       "record_path": "assistant_data/spotify/playlists/388CR6TFu3pZZGlMsAXlEy.json",
       "changed": false
     },
@@ -781,7 +781,7 @@
       "item_count": 8,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:48.224715+00:00",
-      "captured_at": "2026-11-05T14:41:41.026484+00:00",
+      "captured_at": "2026-11-06T01:48:00.238529+00:00",
       "record_path": "assistant_data/spotify/playlists/7L2rSp4SuohBEyNxEtAurx.json",
       "changed": false
     },
@@ -798,7 +798,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:32.897417+00:00",
-      "captured_at": "2026-11-05T14:41:43.230512+00:00",
+      "captured_at": "2026-11-06T01:48:02.114040+00:00",
       "record_path": "assistant_data/spotify/playlists/24DRwQJlzcXYm6fKH770Ty.json",
       "changed": false
     },
@@ -815,7 +815,7 @@
       "item_count": 16,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:48.898294+00:00",
-      "captured_at": "2026-11-05T14:41:41.027728+00:00",
+      "captured_at": "2026-11-06T01:48:00.239781+00:00",
       "record_path": "assistant_data/spotify/playlists/5meDjtqrqOe5oHpvZGWRMz.json",
       "changed": false
     },
@@ -832,7 +832,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:31.819792+00:00",
-      "captured_at": "2026-11-05T14:41:42.770523+00:00",
+      "captured_at": "2026-11-06T01:48:01.588464+00:00",
       "record_path": "assistant_data/spotify/playlists/7pV0AvO89TBM9Jsyo4tgNl.json",
       "changed": false
     },
@@ -849,7 +849,7 @@
       "item_count": 82,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:51.155894+00:00",
-      "captured_at": "2026-11-05T14:41:41.785926+00:00",
+      "captured_at": "2026-11-06T01:48:00.807040+00:00",
       "record_path": "assistant_data/spotify/playlists/3Py0bGiIJQHtirIbhwLpdG.json",
       "changed": false
     },
@@ -866,7 +866,7 @@
       "item_count": 100,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:58.764183+00:00",
-      "captured_at": "2026-11-05T14:41:43.908999+00:00",
+      "captured_at": "2026-11-06T01:48:03.013320+00:00",
       "record_path": "assistant_data/spotify/playlists/7ktZCiqIBwsOPWShhqLzRi.json",
       "changed": false
     },
@@ -879,13 +879,13 @@
       },
       "public": true,
       "collaborative": false,
-      "snapshot_id": "AAAAEjbKSs4Ty7PPchKI/usv9nYJHWxQ",
-      "item_count": 30,
+      "snapshot_id": "AAAANp0gFX0k6liPRPGnVJeFx9FKkEBL",
+      "item_count": 58,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-11-01T04:36:47.822896+00:00",
-      "captured_at": "2026-11-05T14:41:41.025221+00:00",
+      "last_items_accessible_at": "2026-11-06T01:48:00.233045+00:00",
+      "captured_at": "2026-11-06T01:48:00.233040+00:00",
       "record_path": "assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json",
-      "changed": false
+      "changed": true
     },
     {
       "id": "1C6heonV5mxcBwNpmOGMjC",
@@ -900,7 +900,7 @@
       "item_count": 2,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:56.626518+00:00",
-      "captured_at": "2026-11-05T14:41:42.979994+00:00",
+      "captured_at": "2026-11-06T01:48:01.782833+00:00",
       "record_path": "assistant_data/spotify/playlists/1C6heonV5mxcBwNpmOGMjC.json",
       "changed": false
     },
@@ -917,7 +917,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:21.887768+00:00",
-      "captured_at": "2026-11-05T14:41:41.268218+00:00",
+      "captured_at": "2026-11-06T01:48:00.528860+00:00",
       "record_path": "assistant_data/spotify/playlists/0co3cJkCBANbHlMTxMnAmS.json",
       "changed": false
     },
@@ -934,7 +934,7 @@
       "item_count": 0,
       "items_accessible": false,
       "last_items_accessible_at": "2026-10-31T09:04:34.927845+00:00",
-      "captured_at": "2026-11-05T14:41:44.322352+00:00",
+      "captured_at": "2026-11-06T01:48:03.412664+00:00",
       "record_path": "assistant_data/spotify/playlists/3VCP3OvTTY4tCE8cR7SXYZ.json",
       "changed": false
     },
@@ -951,7 +951,7 @@
       "item_count": 100,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:36:52.245649+00:00",
-      "captured_at": "2026-11-05T14:41:42.253153+00:00",
+      "captured_at": "2026-11-06T01:48:01.192641+00:00",
       "record_path": "assistant_data/spotify/playlists/6zATzTjlOTxtMLM1cC9MQX.json",
       "changed": false
     },
@@ -968,7 +968,7 @@
       "item_count": 4,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:10.504958+00:00",
-      "captured_at": "2026-11-05T14:41:44.363553+00:00",
+      "captured_at": "2026-11-06T01:48:03.474965+00:00",
       "record_path": "assistant_data/spotify/playlists/4lwoL79floIi7Yptos6Xt8.json",
       "changed": false
     },
@@ -985,7 +985,7 @@
       "item_count": 141,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-01T04:37:13.031813+00:00",
-      "captured_at": "2026-11-05T14:41:45.274361+00:00",
+      "captured_at": "2026-11-06T01:48:04.154963+00:00",
       "record_path": "assistant_data/spotify/playlists/2dXmAFyjrI8TMmea1OILCX.json",
       "changed": false
     }

@@ -1,0 +1,784 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-05T14:41:41.025221+00:00",
+  "id": "4yUVHSMQySfWeEowfIMcx7",
+  "name": "Tricky Daily",
+  "description": "Familiar names. Unexpected detours",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAEjbKSs4Ty7PPchKI/usv9nYJHWxQ",
+  "total_items_reported": 30,
+  "item_count_fetched": 30,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-01T04:36:47.822896+00:00",
+  "items_snapshot_id": "AAAAEjbKSs4Ty7PPchKI/usv9nYJHWxQ",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0axOUdjZIEUomNyfByKXUu",
+      "uri": "spotify:track:0axOUdjZIEUomNyfByKXUu",
+      "name": "Bryn Marina",
+      "artists": [
+        "Sound of Ceres"
+      ],
+      "artist_ids": [
+        "6JaG7zUlBpWd43CweqURY6"
+      ],
+      "album": "Nostalgia for Infinity",
+      "album_id": "3iw8AtVaKBYUoIXhq1MAcF",
+      "duration_ms": 222193,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJZA1618702"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ndqRUbFU5qLV3I34ahRAF",
+      "uri": "spotify:track:6ndqRUbFU5qLV3I34ahRAF",
+      "name": "Dagger Only Run",
+      "artists": [
+        "Sound of Ceres"
+      ],
+      "artist_ids": [
+        "6JaG7zUlBpWd43CweqURY6"
+      ],
+      "album": "Nostalgia for Infinity",
+      "album_id": "3iw8AtVaKBYUoIXhq1MAcF",
+      "duration_ms": 304217,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJZA1618710"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4LSlJ0uuMIMXxvlno645eW",
+      "uri": "spotify:track:4LSlJ0uuMIMXxvlno645eW",
+      "name": "Dirty Imbecile - Re-mastered",
+      "artists": [
+        "The Happy Fits"
+      ],
+      "artist_ids": [
+        "73rPcaYEhBd0UuVZBqqyQJ"
+      ],
+      "album": "Awfully Apeelin' Revisited (10 Year Anniversary)",
+      "album_id": "3KKHOVr3LkFEmdZZRQWxDC",
+      "duration_ms": 239824,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWP2553234"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4QFPI4qCR0vmaND38fU9EJ",
+      "uri": "spotify:track:4QFPI4qCR0vmaND38fU9EJ",
+      "name": "She Wants Me (To Be Loved)",
+      "artists": [
+        "The Happy Fits"
+      ],
+      "artist_ids": [
+        "73rPcaYEhBd0UuVZBqqyQJ"
+      ],
+      "album": "What Could Be Better",
+      "album_id": "7DSF9jiOViBMK1BwALYv0W",
+      "duration_ms": 199413,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6MZ2094861"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1kZg1WMDj8VJiAGk8dB9bv",
+      "uri": "spotify:track:1kZg1WMDj8VJiAGk8dB9bv",
+      "name": "Baltimore Gas & Electric Co.",
+      "artists": [
+        "Raymond Scott"
+      ],
+      "artist_ids": [
+        "31DffUzogcRBJT3Andaqtt"
+      ],
+      "album": "Manhattan Research, Inc.",
+      "album_id": "7ctcZZGbNxjwHb46pMRZ7D",
+      "duration_ms": 74040,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLB559900119"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2dmWmHjnRwkoaSCVJqmltE",
+      "uri": "spotify:track:2dmWmHjnRwkoaSCVJqmltE",
+      "name": "Devil Drums",
+      "artists": [
+        "Raymond Scott",
+        "Raymond Scott Quintet"
+      ],
+      "artist_ids": [
+        "31DffUzogcRBJT3Andaqtt",
+        "2TtxVYGXwhuRb9EfmLlqFh"
+      ],
+      "album": "Microphone Music",
+      "album_id": "2VfgvLgihYABpbco9qsrpz",
+      "duration_ms": 222040,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLB550200055"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6NecZZnHsb51khBONZj4Pt",
+      "uri": "spotify:track:6NecZZnHsb51khBONZj4Pt",
+      "name": "Become a father and mother of the world",
+      "artists": [
+        "385"
+      ],
+      "artist_ids": [
+        "7u21tMSahMCi7r2w75Ucbk"
+      ],
+      "album": "Invisible Universe",
+      "album_id": "1mlbcdKLJfhrTtbY6g4KrJ",
+      "duration_ms": 143137,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPL2003842"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4BFnBPveibUAplefLJAYxL",
+      "uri": "spotify:track:4BFnBPveibUAplefLJAYxL",
+      "name": "Invisible Universe",
+      "artists": [
+        "385"
+      ],
+      "artist_ids": [
+        "7u21tMSahMCi7r2w75Ucbk"
+      ],
+      "album": "Invisible Universe",
+      "album_id": "1mlbcdKLJfhrTtbY6g4KrJ",
+      "duration_ms": 313000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPL2003836"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "557lM1DeqevRyI3PQm1rI2",
+      "uri": "spotify:track:557lM1DeqevRyI3PQm1rI2",
+      "name": "A Host for All Kinds of Life",
+      "artists": [
+        "Green-House"
+      ],
+      "artist_ids": [
+        "0M6QGBKWICr8dxhh3UJW45"
+      ],
+      "album": "A Host for All Kinds of Life",
+      "album_id": "08pPPgrNVzEa12ksYN3Drl",
+      "duration_ms": 239656,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2336026"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4GYdKBuHZNRByw8bFES0EL",
+      "uri": "spotify:track:4GYdKBuHZNRByw8bFES0EL",
+      "name": "Castle Song",
+      "artists": [
+        "Green-House"
+      ],
+      "artist_ids": [
+        "0M6QGBKWICr8dxhh3UJW45"
+      ],
+      "album": "A Host for All Kinds of Life",
+      "album_id": "08pPPgrNVzEa12ksYN3Drl",
+      "duration_ms": 173311,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2336022"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0ee4Ic7uGzK1IoTLjTpEe4",
+      "uri": "spotify:track:0ee4Ic7uGzK1IoTLjTpEe4",
+      "name": "Backside Of The TV",
+      "artists": [
+        "平田志穂子"
+      ],
+      "artist_ids": [
+        "4PYEhkeRZkSSGCrurjzDrX"
+      ],
+      "album": "ペルソナ4 オリジナル・サウンドトラック",
+      "album_id": "78LGjDUuu5dQZRfbrFQ2Ys",
+      "duration_ms": 174213,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPK651669213"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0VVJ8oBXp5jlr9qQkpMrR7",
+      "uri": "spotify:track:0VVJ8oBXp5jlr9qQkpMrR7",
+      "name": "Dance!",
+      "artists": [
+        "平田志穂子",
+        "Lotus Juice"
+      ],
+      "artist_ids": [
+        "4PYEhkeRZkSSGCrurjzDrX",
+        "0HM4KuHUJ5ww5DdOGi3FEf"
+      ],
+      "album": "ペルソナ4 ダンシング・オールナイト オリジナル・サウンドトラック (ADVANCED CD付 COLLECTOR'S EDITION)",
+      "album_id": "6zoYqsnXU8CiGygHuSJEcp",
+      "duration_ms": 208626,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPK651669301"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6aQkq3A5YDLaMAB6gDe40H",
+      "uri": "spotify:track:6aQkq3A5YDLaMAB6gDe40H",
+      "name": "G3NOCID3",
+      "artists": [
+        "DAMAG3",
+        "Changeline"
+      ],
+      "artist_ids": [
+        "0xIT8X4ltWYOTHXJ2hm6vn",
+        "6y4WxCw3Pu2MnjqSBtoxSJ"
+      ],
+      "album": "G3NOCID3",
+      "album_id": "02DFQzr5bWKEuwHedN9obd",
+      "duration_ms": 201000,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN82363618"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4IvdqcnYM1NdGMnoWMWZ2U",
+      "uri": "spotify:track:4IvdqcnYM1NdGMnoWMWZ2U",
+      "name": "HUNTR_SHAFR",
+      "artists": [
+        "DAMAG3",
+        "Infatuation"
+      ],
+      "artist_ids": [
+        "0xIT8X4ltWYOTHXJ2hm6vn",
+        "5M2NpFQ9a9jo5EEWKtQyzM"
+      ],
+      "album": "BLiND",
+      "album_id": "0hgeId6xoZE4PyA8ZKQswA",
+      "duration_ms": 173571,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNMW2564508"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3Wq9n38WyCVw7ebg5RtBN6",
+      "uri": "spotify:track:3Wq9n38WyCVw7ebg5RtBN6",
+      "name": "Mr Magpie",
+      "artists": [
+        "The Electric Swing Circus"
+      ],
+      "artist_ids": [
+        "3MUnAJMKx97SfTZYNB2iXY"
+      ],
+      "album": "It Flew By",
+      "album_id": "3PwKRBTI8qZfij6rcT7bP2",
+      "duration_ms": 193509,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GB8KE1650942"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1gTGhCizR1liaZu45tWxUF",
+      "uri": "spotify:track:1gTGhCizR1liaZu45tWxUF",
+      "name": "The Penniless Optimist",
+      "artists": [
+        "The Electric Swing Circus"
+      ],
+      "artist_ids": [
+        "3MUnAJMKx97SfTZYNB2iXY"
+      ],
+      "album": "The Electric Swing Circus",
+      "album_id": "2UOU6kWdv497oDdDDp26V9",
+      "duration_ms": 165883,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GB8KE1301235"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3SyzUB8LeQxplnbWTVYTVj",
+      "uri": "spotify:track:3SyzUB8LeQxplnbWTVYTVj",
+      "name": "11/11",
+      "artists": [
+        "Team Sleep"
+      ],
+      "artist_ids": [
+        "6CwDvApcRshxhEVMP30Sq7"
+      ],
+      "album": "Team Sleep (U.S. Release)",
+      "album_id": "7BORauiIbjPkOVRzSq38DP",
+      "duration_ms": 198200,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USMV20500100"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0yzjqS9Ya9tE0QAYizgpNe",
+      "uri": "spotify:track:0yzjqS9Ya9tE0QAYizgpNe",
+      "name": "Ataraxia",
+      "artists": [
+        "Team Sleep"
+      ],
+      "artist_ids": [
+        "6CwDvApcRshxhEVMP30Sq7"
+      ],
+      "album": "Team Sleep (U.S. Release)",
+      "album_id": "7BORauiIbjPkOVRzSq38DP",
+      "duration_ms": 197360,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USMV20500086"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7tBX9jPeim8V36Ktipwte2",
+      "uri": "spotify:track:7tBX9jPeim8V36Ktipwte2",
+      "name": "All of my Kin Back Home",
+      "artists": [
+        "Jon Von Letscher"
+      ],
+      "artist_ids": [
+        "2Nultd9TqpQKcahZJKS1uR"
+      ],
+      "album": "Schizofriendia",
+      "album_id": "3oASUDjg0xDW9Y6G8KFSaF",
+      "duration_ms": 213342,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SEYOK1114793"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7Aj0Lumtnl7WmMTuqXw3NZ",
+      "uri": "spotify:track:7Aj0Lumtnl7WmMTuqXw3NZ",
+      "name": "Big Bang Baby",
+      "artists": [
+        "Jon Von Letscher"
+      ],
+      "artist_ids": [
+        "2Nultd9TqpQKcahZJKS1uR"
+      ],
+      "album": "Schizofriendia",
+      "album_id": "3oASUDjg0xDW9Y6G8KFSaF",
+      "duration_ms": 246060,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SEYOK1114794"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5XEJvWsXaKstECcbrDmFDC",
+      "uri": "spotify:track:5XEJvWsXaKstECcbrDmFDC",
+      "name": "Araceli",
+      "artists": [
+        "Nataly Dawn"
+      ],
+      "artist_ids": [
+        "1vCgeJQjG0SFPCC9ixbCGz"
+      ],
+      "album": "How I Knew Her",
+      "album_id": "1n1nLPKQBME1Ua12dLvCHT",
+      "duration_ms": 133826,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USNO11200389"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6g471JGgVYl3VBrqiXkSL5",
+      "uri": "spotify:track:6g471JGgVYl3VBrqiXkSL5",
+      "name": "Careless Whisper",
+      "artists": [
+        "Nataly Dawn"
+      ],
+      "artist_ids": [
+        "1vCgeJQjG0SFPCC9ixbCGz"
+      ],
+      "album": "Careless Whisper",
+      "album_id": "7MbeX1yxFaVBx1XPqekAt8",
+      "duration_ms": 163586,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZ22B1744148"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ijz1J35cpWQCGuFeNoEMx",
+      "uri": "spotify:track:6ijz1J35cpWQCGuFeNoEMx",
+      "name": "F*ck Your Mom",
+      "artists": [
+        "Cyndago"
+      ],
+      "artist_ids": [
+        "2K4POGlR6WEBPRig8Mx5Ta"
+      ],
+      "album": "F*ck Your Mom",
+      "album_id": "1e1nYMRwMxJ3O8y57iruwY",
+      "duration_ms": 59443,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "usdy41520682"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6HnZisE8m1J4QRcFndPZBT",
+      "uri": "spotify:track:6HnZisE8m1J4QRcFndPZBT",
+      "name": "Lexapro",
+      "artists": [
+        "Computerwife"
+      ],
+      "artist_ids": [
+        "2URzewPhxn6Si52NkbYxIQ"
+      ],
+      "album": "Computerwife",
+      "album_id": "3Iide0ydByhNLcImRImcYt",
+      "duration_ms": 206919,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZ9EW2300051"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5TP7SajMPHbKb7vG2erAFl",
+      "uri": "spotify:track:5TP7SajMPHbKb7vG2erAFl",
+      "name": "Nobody",
+      "artists": [
+        "Computerwife"
+      ],
+      "artist_ids": [
+        "2URzewPhxn6Si52NkbYxIQ"
+      ],
+      "album": "Nobody",
+      "album_id": "2OiED8uXfirhu1PCHdylRu",
+      "duration_ms": 332490,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P2637331"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 25,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "51Fjme0JiitpyXKuyQiCDo",
+      "uri": "spotify:track:51Fjme0JiitpyXKuyQiCDo",
+      "name": "Lalala",
+      "artists": [
+        "Y2K",
+        "bbno$"
+      ],
+      "artist_ids": [
+        "6USMTwO0MNDnKte5a5h0xx",
+        "41X1TR6hrK8Q2ZCpp2EqCz"
+      ],
+      "album": "Lalala",
+      "album_id": "4WlC4FXhonJhNTXCQPGP3r",
+      "duration_ms": 160626,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM11904230"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 26,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2R1Yk6vm11P3pLIrtBR4eM",
+      "uri": "spotify:track:2R1Yk6vm11P3pLIrtBR4eM",
+      "name": "Biessensoŭnasć",
+      "artists": [
+        "Nürnberg"
+      ],
+      "artist_ids": [
+        "2IkTGThCeQAPGMru4uXzs4"
+      ],
+      "album": "Skryvaj",
+      "album_id": "4v7LVUKXfXJwsomhfHaefk",
+      "duration_ms": 176100,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "RUA3R1825010"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 27,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4j1DcIvHKlwfEtUDbogiW5",
+      "uri": "spotify:track:4j1DcIvHKlwfEtUDbogiW5",
+      "name": "Biessensoŭnasć - Demo",
+      "artists": [
+        "Nürnberg"
+      ],
+      "artist_ids": [
+        "2IkTGThCeQAPGMru4uXzs4"
+      ],
+      "album": "Skryvaj (Demo)",
+      "album_id": "0vJ5SwhZcjIYcJrTyVK4Tu",
+      "duration_ms": 172251,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNJV2370097"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 28,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "29KwH2LEjfWEtiC2jCrLVw",
+      "uri": "spotify:track:29KwH2LEjfWEtiC2jCrLVw",
+      "name": "Amore mio aiutami - Main Theme",
+      "artists": [
+        "Piero Piccioni"
+      ],
+      "artist_ids": [
+        "2WPn0emjr8XPmMOT0bBcPe"
+      ],
+      "album": "Amore mio aiutami (Original Motion Picture Soundtrack)",
+      "album_id": "5ekkoKz391PScKKZRCmgDF",
+      "duration_ms": 234026,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "ITF730701379"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2026-10-30T10:54:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4u307txePIagFC4K67AdBA",
+      "uri": "spotify:track:4u307txePIagFC4K67AdBA",
+      "name": "Easy Lovers",
+      "artists": [
+        "Piero Piccioni"
+      ],
+      "artist_ids": [
+        "2WPn0emjr8XPmMOT0bBcPe"
+      ],
+      "album": "Camille 2000 (Original Motion Picture Soundtrack)",
+      "album_id": "3cRZJtPT7J0C8fZWJsdtFU",
+      "duration_ms": 225573,
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBHGA0401305"
+      },
+      "available_markets_count": 0
+    }
+  ],
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country"
+}
