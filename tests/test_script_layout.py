@@ -75,10 +75,15 @@ class ScriptLayoutTests(unittest.TestCase):
                 self.assertIn("FILE OVERVIEW", source)
                 self.assertIn("FILE OVERVIEW", source[-1500:])
 
-    def test_maintained_implementation_overviews_do_not_use_generic_placeholders(self):
-        implementations = sorted((ROOT / "scripts").rglob("*.py"))
-        self.assertTrue(implementations, "No maintained implementation modules were found")
-        for path in implementations:
+    def test_maintained_overviews_do_not_use_generic_placeholders(self):
+        candidates = []
+        for directory in ("scripts", "compat", "tests", ".github/workflows"):
+            base = ROOT / directory
+            if base.exists():
+                suffixes = {".py"} if directory != ".github/workflows" else {".yml", ".yaml"}
+                candidates.extend(path for path in base.rglob("*") if path.is_file() and path.suffix in suffixes)
+        self.assertTrue(candidates, "No maintained implementation, test, or workflow files were found")
+        for path in sorted(candidates):
             with self.subTest(path=path.relative_to(ROOT).as_posix()):
                 source = path.read_text(encoding="utf-8")
                 overview_start = source.rfind("FILE OVERVIEW")
