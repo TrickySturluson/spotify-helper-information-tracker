@@ -46,6 +46,14 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Ensure the dispatch branch is only an event trigger: preflight and all work jobs continue to select `main` or `babel/agent-progress`, never treating the marker branch as a work base.
 - [ ] Execute the first ChatGPT-triggered run and verify Codex, independent validation, and isolated PR publication.
 
+## Deferred successor: SHIT-wide Integrity, Diagnostics & Recovery
+
+Once this roadmap's acceptance criteria pass **and** the fresh-session simulation succeeds, revisit a separate cross-project workstream tentatively titled **Integrity, Diagnostics & Recovery**. This is a future design checkpoint only; it is not part of Babel's current implementation scope and must not interrupt documentation completion.
+
+The intended system should monitor integrity and operational health across canonical data, derived data, documentation, tests and workflows; diagnose root causes; maintain a prioritized improvement backlog; and support carefully bounded recovery. Buddy should continue as the permanent **Documentation & Continuity Guardian**, checking documentation drift, roadmap/action-log freshness, handoff accuracy and evidence quality as one contributor to overall health—not as the sole authority over health or repair approval.
+
+Preserve strict safety boundaries: canonical data/provenance remain authoritative; Last.fm scrobbles are not conflated with optional Spotify playback observations; no fabricated or silently discarded records; deterministic repairs only, with explicit scope, backups, reversibility, audit trails and post-repair verification; user approval for consequential or ambiguous mutations. At the revisit, establish a dedicated goal workspace, ownership, severity model, autonomy levels, repair policy, reporting cadence and acceptance tests before implementation.
+
 ## Acceptance criteria
 - Every indexed goal has ROADMAP, README and ACTIONS with current links.
 - Every maintained executable file has a useful overview or an explicit adjacent-documentation entry; no file is falsely marked covered.
