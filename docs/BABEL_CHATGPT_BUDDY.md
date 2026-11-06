@@ -38,6 +38,19 @@ Each run must:
 
 The task is designed to be resumable from repository state rather than depending on a long-lived conversation. One bounded batch per run is preferred over broad, risky rewrites.
 
+## Mandatory ChatGPT verification on every SHIT conversation
+
+ChatGPT must check Buddy whenever a conversation involves SHIT, Babel, or Buddy. This is a core repository rule, not an optional reminder.
+
+1. Check the scheduled automation's latest run/result before substantive SHIT work, using the current `America/New_York` date.
+2. If no successful, report-bearing run has completed today, report that Buddy is pending (or give the exact failure/blocker). On each later SHIT conversation, make a lightweight status check rather than repeatedly auditing the same unchanged state.
+3. Once today's successful run appears, independently review its report, Buddy PR, full diff, changed-file list, read-back evidence, and CI/checks. Compare material claims with current source and tests.
+4. Record the review checkpoint in `project/ACTIVE_SESSION_BRIEF.md`: Eastern date, run ID, PR number/head SHA (or no-PR result), outcome, and any user action.
+5. On later SHIT conversations the same day, skip the full review if the run ID and PR head SHA are unchanged and the checkpoint records a completed review. Re-review if a new run appears, the PR head changes, or a material check/failure changes.
+6. A failed or incomplete run is not a successful daily completion. Checks happen when SHIT conversations occur; this does not create continuous background monitoring.
+
+ChatGPT may make authorized documentation corrections and publish them through a draft PR. It must never write directly to `main`, approve, mark ready, close, merge, or self-merge. The user retains final authority.
+
 ## Scope and authority
 
 Allowed:
