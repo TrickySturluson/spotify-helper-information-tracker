@@ -76,6 +76,7 @@ class DailyManualRemovalFeedbackTests(unittest.TestCase):
                     "name": "Removed Track",
                     "artists": ["Removed Artist"],
                     "detected_at": "2026-11-06T12:00:00+00:00",
+                    "last_present_cycle": "2026-11-05T23:00:00+00:00",
                 }]
                 self.assertEqual(feedback.record_manual_removals(rows), 1)
                 self.assertEqual(feedback.record_manual_removals(rows), 0)
@@ -85,6 +86,7 @@ class DailyManualRemovalFeedbackTests(unittest.TestCase):
                 self.assertEqual(record["track"], "Removed Track")
                 self.assertEqual(len(record["removal_events"]), 1)
                 self.assertEqual(record["removal_events"][0]["reason"], "user_removed")
+                self.assertEqual(record["removal_events"][0]["last_present_cycle"], "2026-11-05T23:00:00+00:00")
                 self.assertIsNone(record["first_added_at"])
             finally:
                 feedback.DATA = original
