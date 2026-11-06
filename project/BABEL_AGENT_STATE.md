@@ -3,10 +3,10 @@
 status: active
 worker: OpenAI Codex through openai/codex-action
 branch: babel/agent-progress
-trigger: GitHub Actions schedule every six hours plus manual dispatch
+trigger: GitHub Actions schedule every six hours, manual dispatch, plus push to babel/dispatch-* when .github/babel/dispatch.json changes
 publication: dedicated branch and one reviewable pull request; never auto-merge
 scope: documentation, continuity records, and narrowly scoped documentation-contract tests only
-last_result: not yet run
+last_result: dispatch marker pushed successfully; workflow execution not yet verified
 completion_rule: all Maintainability & Documentation roadmap acceptance criteria plus a successful cold-start simulation, with exact test and workflow evidence
 
 ## Operating contract
