@@ -7,9 +7,38 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-05 — Documentation-first priority reaffirmed; live repository audit resumed
+
+**Active priority: documentation only.** Do not begin feature development, playlist operations, enrichment runs, or unrelated project work until the documentation audit reaches the completion standard in the Maintainability & Documentation roadmap.
+
+### Verified repository baseline
+- Canonical repository: `TrickySturluson/spotify-helper-information-tracker`, default branch `main`; inspected current main tree SHA `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`.
+- Root structure includes `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, the project control centre, `docs/`, `scripts/`, `compat/`, `tests/`, `data/`, `assistant_data/`, `playback_data/`, `.github/`, and the `shit.py` CLI.
+- The current goal index contains **13** goal workspaces. Every workspace contains ROADMAP.md, README.md and ACTIONS.md.
+- Current `.github/workflows/` inventory contains 17 workflow YAML files; `docs/WORKFLOWS.md` exists and the documentation contract test requires every workflow filename to appear in it.
+- Maintained Python implementation is organized under analytics (7 modules), Last.fm (1), music (24), and Spotify (19); compatibility launchers, tests, and workflow YAMLs are also covered by the bottom-of-file overview test.
+- Documentation tests are part of unittest discovery. Latest observed Daily curator test run #42144512658 and public repository security scan #42144512423 both completed successfully on the inspected main SHA. This verifies the automated checks ran successfully; it does **not** prove semantic accuracy of every overview or technical guide.
+- The recursive Git tree API response was truncated because generated Library records make the tree very large. Do not use that truncated response as a complete tracked-file inventory. Use directory-scoped listings for maintained code and `git ls-files` in a complete checkout for the authoritative full inventory.
+
+### Findings and remaining audit work
+- The documentation architecture is substantial and already includes 13 goal workspaces, 22 cross-cutting guides in `docs/`, the central handoff/loose-ends/log/roadmap, directory guides, workflow catalogue, and automated documentation contract tests.
+- The documentation contract currently verifies required control files, goal workspace structure, major-domain navigation, selected local links, workflow catalogue coverage, and bottom FILE OVERVIEW presence. It does not semantically compare each overview or guide with the current implementation.
+- The maintainability roadmap and action log still correctly identify manual semantic review, operational contract reconciliation, and a fresh-session resume test as unfinished.
+- Open Daily pull requests observed during this audit: #158 Discover Weekly exposure/feedback tracking, #159 DST schedule gating, and #160 exposure-aware Daily discovery. Treat them as unmerged proposals; inspect their current state before incorporating their behavior into mainline documentation.
+- The loose-ends register's review date and several historic status statements are stale relative to the current repository. Reconcile each workstream against current main, open PRs/issues and fresh workflow evidence before treating its entries as current.
+
+### Next executable actions
+1. Complete a directory-by-directory inventory of maintained source, compatibility shims, tests, workflows, data schemas and operational state owners; use a complete local `git ls-files` inventory when available, and explicitly mark generated per-record data as schema/family-documented rather than individually prose-indexed.
+2. Audit every maintained Python/workflow FILE OVERVIEW against its actual code, triggers, permissions, credentials, network calls, writes, retry behavior and test commands; presence alone is not enough.
+3. Audit each technical guide and each of the 13 goal roadmaps against current source/tests/workflow evidence; resolve stale paths, contradictory claims and missing runbooks.
+4. Reconcile open PRs/issues and latest workflow evidence into the relevant goal ACTIONS, ROADMAP, NEXT_WORK and LOOSE_ENDS records.
+5. Add meaningful automated checks for gaps discovered by the audit, without brittle boilerplate or treating generated JSON as hand-maintained documentation.
+6. Perform a fresh-session simulation: start only from AGENTS.md, DOCUMENTATION_RULES.md, NEXT_WORK.md and the goal index; verify the next action and safety boundaries are unambiguous.
+7. Do not declare documentation complete until every acceptance criterion in `project/goals/maintainability-documentation/ROADMAP.md` has evidence.
+
 ## 2026-11-05 — Documentation system expansion in progress
 
-- The repository now has root [AGENTS.md](../AGENTS.md), a central [documentation index](../docs/README.md), and a cross-workstream [project roadmap](ROADMAP.md). These complement—not replace—the mandatory [documentation rules](DOCUMENTATION_RULES.md), 11 individual goal roadmaps, the loose-ends register and chronological project log.
+- The repository now has root [AGENTS.md](../AGENTS.md), a central [documentation index](../docs/README.md), and a cross-workstream [project roadmap](ROADMAP.md). These complement—not replace—the mandatory [documentation rules](DOCUMENTATION_RULES.md), 13 individual goal roadmaps, the loose-ends register and chronological project log.
 - The repository root README links to the new navigation. No code, canonical Library data, provider state, listening history or Spotify playlists were changed by this documentation-only update.
 - **Current documentation priority:** audit actual tracked files against the repository file index and per-file overview standard; check all goal folders and links; identify stale/missing operational contracts; add automated coverage/link checks only after measuring the real gaps.
 - **Important limitation:** a complete repository tree/per-file coverage audit has not yet been run. Do not claim the documentation system is fully audited.
