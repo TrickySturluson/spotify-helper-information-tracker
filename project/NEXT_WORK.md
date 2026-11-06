@@ -11,7 +11,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 **Active priority: documentation only.** Do not begin feature development, playlist operations, enrichment runs, or unrelated project work until the acceptance criteria in the Maintainability & Documentation roadmap are satisfied.
 
-**Current documentation PR:** [#161 — Improve SHIT documentation completeness and file-overview quality](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161), branch `docs/semantic-documentation-audit`. Latest observed metadata: open, draft, mergeable, 97 changed files; branch comparison reports 203 commits ahead and 0 behind `main`. Re-fetch PR metadata and compare status before acting because each documentation commit advances the head.
+**Current documentation PR:** [#161 — Improve SHIT documentation completeness and file-overview quality](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161), branch `docs/semantic-documentation-audit`. Latest observed metadata: open, draft, mergeable, 97 changed files; the last branch comparison showed 0 commits behind `main`. Re-fetch PR metadata and compare status before acting because each documentation commit advances the head.
 
 **Latest verified CI/security evidence:** corrected test-overview guard commit `9cbf695291fa073f96669f20e83404eccba4e45e` passed Daily curator CI [#42152796114](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796114), including all 9 layout tests and full unittest discovery. Compile, generated-data audit, read-only full Library health/confidence checks and bounded freshness planning also passed. Full-history public-repository security scan [#42152796120](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42152796120) passed on the same commit.
 
@@ -72,13 +72,13 @@ Treat all eight open PRs as proposals, not merged behavior. Reinspect their diff
 - The 12 non-documentation workstreams remain paused by explicit user direction. Their outstanding items are preserved in the goal roadmaps and loose-ends register; do not interpret them as active authorization.
 
 ### Next executable actions
-1. Complete a directory-by-directory inventory of maintained source, compatibility shims, tests, workflows, data schemas and operational state owners; use a complete local `git ls-files` inventory when available, and explicitly mark generated per-record data as schema/family-documented rather than individually prose-indexed.
-2. Audit every maintained Python/workflow FILE OVERVIEW against its actual code, triggers, permissions, credentials, network calls, writes, retry behavior and test commands; presence alone is not enough.
-3. Audit each technical guide and each of the 13 goal roadmaps against current source/tests/workflow evidence; resolve stale paths, contradictory claims and missing runbooks.
-4. Reconcile open PRs/issues and latest workflow evidence into the relevant goal ACTIONS, ROADMAP, NEXT_WORK and LOOSE_ENDS records.
-5. Add meaningful automated checks for gaps discovered by the audit, without brittle boilerplate or treating generated JSON as hand-maintained documentation.
-6. Perform a fresh-session simulation: start only from AGENTS.md, DOCUMENTATION_RULES.md, NEXT_WORK.md and the goal index; verify the next action and safety boundaries are unambiguous.
-7. Do not declare documentation complete until every acceptance criterion in `project/goals/maintainability-documentation/ROADMAP.md` has evidence.
+1. Continue the cross-document consistency audit, starting with older handoff and loose-ends sections that may retain stale PR/checkpoint statements.
+2. Reconcile all 13 goal ROADMAP/README/ACTIONS sets against current source, open PRs/issues and workflow evidence; preserve proposals as proposals.
+3. Manually compare implementation, compatibility, test and workflow overviews against actual source contracts and test coverage.
+4. Audit all 21 technical guides, schemas and operational runbooks for current paths, commands, permissions, schedules, side effects and recovery steps.
+5. Obtain a complete tracked-path inventory with `git ls-files` in a full checkout; document generated data by family/schema/owner rather than individual records.
+6. Perform the fresh-session simulation using only the documented entry points and record any ambiguity or missing step.
+7. Run documentation contract tests, layout tests, full unittest discovery and full-history security scan on the final PR head. Keep PR #161 draft/unmerged until all acceptance criteria and exact-head verification pass.
 
 ## 2026-11-05 — Documentation system expansion in progress
 
