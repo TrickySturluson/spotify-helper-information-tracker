@@ -29,7 +29,7 @@
 - **PR verification:** final PR test run [#42272711018](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272711018) passed all 512 discovered tests; public repository security scan [#42272711156](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272711156) passed.
 - **Post-merge verification:** mainline Daily curator tests [#42272911280](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272911280) passed all 512 tests on merge commit `8d0d2d5e8b0448fde64932aced1014ef944e3312`. Mainline full-history security scan [#42272911119](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272911119) also passed.
 - **Outcome:** the previously dormant cooldown regressions are now part of normal test discovery and pass in PR and post-merge CI. No Spotify request, workflow dispatch, playlist mutation, description mutation, or generated-data change was performed.
-- **Next:** confirm the post-merge security scan; after the recorded Spotify cooldown expires, perform only the protected no-write Daily stage-only verification. Live playlist replacement still requires separate authorization.
+- **Next:** after the recorded Spotify cooldown expires, re-check the saved deadline and perform only the protected no-write Daily stage-only verification. Live playlist replacement still requires separate authorization.
 
 ---
 
