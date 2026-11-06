@@ -524,20 +524,36 @@ def main():
             "aborting before playlist mutation."
         )
     next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
+    stage_path, payload_sha256 = create_daily_stage(
+        cycle_date, before, before_uris, recommendations, uris, backup, next_description
+    )
+    # The durable stage commit can take time; recheck the exact live contents
+    # and removal policy again immediately before the Spotify write.
+    playlist, _ = assert_live_snapshot_unchanged(sp, before, me.get("id"))
+    fresh_feedback = discovery.load_playlist_feedback([], DAILY_ID)
+    newly_blocked = [
+        row for row in recommendations
+        if discovery.is_playlist_candidate_blocked(
+            row.get("artist") or "", row.get("track") or "", row.get("uri"), fresh_feedback
+        )
+    ]
+    if newly_blocked:
+        raise manager.ManagerError(
+            f"Daily candidates now include {len(newly_blocked)} blacklisted tracks "
+            "after durable staging; aborting before playlist mutation."
+        )
     manager.audit(
         event="daily_cycle_started", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), skipped_count=len(skipped), backup=backup,
         prewrite_snapshot_id=playlist.get("snapshot_id"),
-    )
-    stage_path, payload_sha256 = create_daily_stage(
-        cycle_date, before, before_uris, recommendations, uris, backup, next_description
+        stage_path=stage_path,
+        payload_sha256=payload_sha256,
     )
     try:
         cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)
     except cloud.AmbiguousPlaylistMutationError as error:
         # Persist the date guard even when the write outcome cannot be proven.
         # A second scheduled/forced delivery must not blindly repeat a partial write.
-        config = manager.config()
         config["daily_cycle"] = {
             "last_cycle_date_eastern": cycle_date,
             "last_cycle_at": manager.stamp(),
