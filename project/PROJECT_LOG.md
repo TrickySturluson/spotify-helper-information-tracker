@@ -1,3 +1,12 @@
+## 2026-11-06 — Resumed parallel SHIT work while Babel continues
+
+- **Decision:** resume explicitly authorized SHIT workstreams in parallel with SHIT Documentation & Continuity (Babel). Buddy remains documentation-only; ChatGPT owns active feature work and must keep each workstream's roadmap and action log current.
+- **First workstream selected:** Tricky Daily. A read-only audit of current main source confirmed that `--force` bypasses the same-Eastern-date completion guard as well as the clock gate. The current test asserts the bypass, contradicting the required force-bypasses-clock-only contract. The saved 58-item snapshot remains historical evidence, not a live Spotify read.
+- **Authorization boundary:** no runtime/test correction, provider request, generated-data write, or Spotify playlist operation has been performed. The Daily runtime/test correction awaits specific user authorization; live playlist writes remain separately gated.
+- **Babel checkpoint:** today's Buddy run `a1354400-ad1c-8320-906e-888d071012ee` updated draft PR #163 (head `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`). Independent review found a policy contradiction: the draft prohibits ChatGPT direct documentation publication to `main`, while current mainline rules authorize independently verified documentation-only publication. PR #163 remains draft and must not be merged until corrected. Its reported Daily curator tests #42239266411 and security scan #42239266381 both completed successfully; no PR reviews or inline threads were present.
+- **Continuity updates:** active-session brief, Daily roadmap/action log, and current handoff were updated on main. No feature behavior changed.
+- **Next action:** obtain authorization for the smallest Daily force/idempotency code and regression-test correction; continue Babel semantic audits in parallel.
+
 ## 2026-11-06 — Active-session brief established as a core continuity rule
 
 - **Decision:** maintain `project/ACTIVE_SESSION_BRIEF.md` throughout active SHIT work as the curated context bridge from ChatGPT to Buddy. It records material decisions, current work, evidence, failures, blockers, and the next action; relevant goal roadmaps and action logs remain synchronized in the same session.
