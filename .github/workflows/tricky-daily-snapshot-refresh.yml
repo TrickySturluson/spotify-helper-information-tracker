@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   schedule:
     # Run after the midnight Eastern rotation and its recovery delivery.
-    # Snapshot publication is GET-only; schedule and import-path regression tests gate the refresh.
+    # GET-only refresh also reconciles the Daily catalog/index so repository audits stay aligned.
     - cron: "25 6 * * *"
 
 permissions:
