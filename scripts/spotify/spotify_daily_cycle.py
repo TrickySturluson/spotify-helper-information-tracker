@@ -395,6 +395,8 @@ def main():
     parser.add_argument("--verify-only", action="store_true", help="Verify the live Daily playlist without changing tracks or description.")
     parser.add_argument("--stage-only", action="store_true", help="Build and durably verify a Daily payload without changing Spotify.")
     args = parser.parse_args()
+    if args.stage_only and (args.description_only or args.verify_only):
+        raise manager.ManagerError("--stage-only cannot be combined with --description-only or --verify-only.")
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
     if not should_run_cycle(local_now, force=args.force, event_name=event_name):
