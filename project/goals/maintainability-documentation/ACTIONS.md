@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Documentation system named SHIT Documentation & Continuity (codename Babel)
+
+- **User decision:** use **SHIT Documentation & Continuity** as the descriptive public-facing name and **Babel** as an internal codename introduced only after its meaning is clear. Do not call the parent SHIT product or repository Babel.
+- **Changes published to `main`:** added [docs/BABEL.md](../../../docs/BABEL.md) as the canonical identity, scope, naming, operating-contract and completion-standard guide. Updated the root README, AGENTS.md, documentation index, mandatory documentation rules, current handoff, project-wide roadmap, and this workstream's README/ROADMAP to establish the convention.
+- **Naming rule:** first reference is “SHIT Documentation & Continuity (internal codename: Babel)”; later references may use “Babel”. First-contact headings and navigation retain the descriptive name.
+- **Verification:** GitHub contents API accepted the file creation and sequential updates. Commits: `2afbc25`, `25dec1a`, `a02f668`, `d1841c2`, `2173d83`, `022f5b2`, `b906de5`, `4bdafe0`, `be34f0c`; this action-log update follows them. No application code, generated data, provider state, listening history, or Spotify playlists were changed.
+- **Limit:** naming propagation and Markdown publication are verified; repository-wide link/test/CI verification after these edits has not yet been run. Documentation audit remains in progress.
+- **Next:** verify every naming link and entry point, inspect current main/CI after the documentation commits, then continue the semantic file-overview and operational-contract audit. Keep documentation as the only active workstream.
+- **Outcome:** naming decision documented and published; validation pending.
+
 ## 2026-11-05 — Workflow overview audit found boilerplate; push-trigger side effects recorded
 
 - **Finding:** all 17 workflow files are listed in `docs/WORKFLOWS.md`, but nine workflow YAMLs had generic bottom overviews that did not describe their actual triggers, credentials, writes or safety boundaries. This passed the existing FILE OVERVIEW presence test but failed the intended documentation-quality standard.
