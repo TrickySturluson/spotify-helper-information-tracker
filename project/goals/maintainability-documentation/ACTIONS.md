@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Tricky Daily split into an independently resumable workstream
+
+- **Reason:** Daily is an active, safety-sensitive system with its own 60-track product contract, forced-run parity, feedback model, schedule, recovery and live-verification requirements. Keeping it only as a subsection of Playlist Intelligence made its own roadmap less discoverable.
+- **Changes:** added project/goals/tricky-daily/ROADMAP.md, README.md and ACTIONS.md; linked the new workspace from the goal index, project-wide roadmap and docs index. The existing Daily TODO and cycle guide remain detailed technical references.
+- **Guardrail:** the documentation contract test discovers every goal directory dynamically and requires ROADMAP/README/ACTIONS, so the new goal is automatically included in CI coverage.
+- **Verification:** GitHub file creation succeeded. A new CI run is required to verify the dynamic goal check after this workspace was added. No code, playlist, Library data or provider state was changed.
+- **Outcome:** dedicated workstream documentation created; CI verification pending.
+- **Next action:** inspect the latest CI run, then audit Daily implementation and workflow evidence against the new P0 roadmap without assuming unchecked backlog items are complete.
+
 ## 2026-11-05 — Repository index corrected and test-suite guide added
 
 - **Finding:** the previous `docs/REPOSITORY_FILE_INDEX.md` described itself as a complete tracked-file catalogue and listed only 239 assistant_data files, while the current canonical music Library contains a much larger per-record tree. The recursive Git tree API also reported `truncated: true`, so it was not safe to claim a complete recursive inventory from that response.
