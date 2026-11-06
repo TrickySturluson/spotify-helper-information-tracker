@@ -39,6 +39,8 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 
 **Fresh-session simulation:** initial cold-start pass completed on 2026-11-06 using only the repository entry points, goal index, and relevant Maintainability/Tricky Daily workstream docs. A new reader can recover the active priority, PR/evidence boundary, blockers and next action without chat history. Repeat after the remaining audit and final verification.
 
+**Roadmap continuity correction:** all 12 paused feature-goal roadmaps now split the immediate documentation-only next action from the preserved feature action after the pause. A documentation-contract test enforces both headings and the no-provider/no-data/no-playlist/no-feature restriction. Next audit the 12 goal READMEs for contradictory resume instructions; exact-head CI for this latest test/roadmap batch must be checked.
+
 **Next actions:** continue manual source-to-guide semantic review; audit all 13 goal ROADMAP/README/ACTIONS sets against current source, open PRs/issues and workflow evidence; complete a defensible tracked-file inventory (the recursive Git tree response was truncated); update any remaining stale handoff statements; then repeat the initial successful fresh-session simulation after the audit. Do not merge PR #161 until the documentation audit is complete and exact latest-head verification is obtained.
 
 ### Verified repository baseline
