@@ -25,7 +25,7 @@ The P0 invariant is **force bypasses the clock gate only**. This is now implemen
 
 ## Additional quota-safety test gap found — 2026-11-06
 
-The three Retry-After/cooldown regression tests were moved into `PlaylistManagerTests` and merged in PR #169 as `8d0d2d5e8b0448fde64932aced1014ef944e3312`; PR and post-merge CI passed 512 tests, and both security scans passed. PR #170 then closed the remaining header-format gap: numeric and HTTP-date Retry-After values are persisted as UTC deadlines; missing/unusable values create a non-expiring `manual_clear_required` state that blocks every Spotify request until manually cleared after provider restriction verification. PR #170 merged as `397218ebf4e397ec4a8fd3a1d1ec6e23aefe8db2`; its PR CI passed 514 tests (#42273342714) and security scan passed (#42273342665). Post-merge mainline tests #42273509046 and security scan #42273509063 were queued at last check.
+The three Retry-After/cooldown regression tests were moved into `PlaylistManagerTests` and merged in PR #169 as `8d0d2d5e8b0448fde64932aced1014ef944e3312`; PR and post-merge CI passed 512 tests, and both security scans passed. PR #170 then closed the remaining header-format gap: numeric and HTTP-date Retry-After values are persisted as UTC deadlines; missing/unusable values create a non-expiring `manual_clear_required` state that blocks every Spotify request until manually cleared after provider restriction verification. PR #170 merged as `397218ebf4e397ec4a8fd3a1d1ec6e23aefe8db2`; its PR CI passed 514 tests (#42273342714) and security scan passed (#42273342665). Post-merge mainline tests #42273509046 and security scan #42273509063 both passed.
 
 ## Explicit whitelist contract — source/test verified 2026-11-06
 
@@ -40,6 +40,10 @@ The playlist-local `playlist_removed_tracks.json` record has separate `removed` 
 - Prioritized safety and quality backlog: [TRICKY_DAILY_TODO.md](../../../docs/TRICKY_DAILY_TODO.md)
 - Workflows: .github/workflows/spotify-daily-midnight-cycle.yml, spotify-daily-live-preflight.yml, spotify-daily-remote-verification.yml, spotify-daily-feedback-observation.yml
 - Regression tests: tests/test_spotify_daily_cycle_schedule.py, test_spotify_daily_feedback_scoring.py, test_spotify_daily_playlist.py, test_spotify_daily_preflight.py
+
+## Feedback nuance — high-engagement removals
+
+Exact removed-track exclusions remain hard blocks. However, `load_playlist_feedback()` currently adds an artist-level negative event for any removed track with at least one measured post-add play or Last.fm scrobble, regardless of how many plays occurred or how many distinct tracks by that artist were removed. A highly played track removed for rotation/freshness can therefore penalize its artist. This is a P1 scoring-quality issue: decide a conservative aggregation rule (multiple distinct removed tracks vs low/high engagement) and add tests before changing weights. Never weaken exact track exclusions.
 
 ## Roadmap
 1. **P0 — Exclusion and reconciliation integrity [IMPLEMENTED].** Centralize blacklist/removed-track enforcement and verify it before scoring and immediately before publication. Reconcile whitelist/blacklist and live playlist state on every invocation, including forced runs.
