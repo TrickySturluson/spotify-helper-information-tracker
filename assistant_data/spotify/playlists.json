@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "captured_at": "2026-11-06T14:18:32.165045+00:00",
+  "captured_at": "2026-11-06T17:38:39.391562+00:00",
   "playlist_count": 58,
   "playlists": [
     {
@@ -879,13 +879,13 @@
       },
       "public": true,
       "collaborative": false,
-      "snapshot_id": "AAAAS20rqKVv0I7T4rVxeMTPnFueEooD",
-      "item_count": 37,
+      "snapshot_id": "AAAAU+6ebF/lAtBRjCsTe8qhzbtP48l/",
+      "item_count": 29,
       "items_accessible": true,
-      "last_items_accessible_at": "2026-11-06T14:18:18.958757+00:00",
-      "captured_at": "2026-11-06T14:18:18.958752+00:00",
+      "last_items_accessible_at": "2026-11-06T17:31:19.839732+00:00",
+      "captured_at": "2026-11-06T17:38:39.391562+00:00",
       "record_path": "assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "1C6heonV5mxcBwNpmOGMjC",
