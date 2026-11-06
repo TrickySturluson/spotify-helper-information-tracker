@@ -1,7 +1,7 @@
 # Discovery & Recommendations — Roadmap
 
 **Last reviewed:** 2026-11-06  
-**Status:** Partial mainline candidate-ingestion implementation exists; richer per-song context remains proposed in open PR #60. Feature work is paused under the documentation-only priority. PR #60 is open/non-draft on `feature/recommendation-discovery-ingestion`, diverged (4 ahead, 627 behind current main; mergeable=false). Its old-head unit tests #41350320527 and full-history security scan #41350320524 both failed; rebase, triage the test failure and Gitleaks findings, then rerun CI before review.
+**Status:** Partial mainline candidate-ingestion implementation exists; richer per-song context remains proposed in open PR #60. Feature work is paused under the documentation-only priority. PR #60 is open/non-draft on `feature/recommendation-discovery-ingestion`, rechecked 2026-11-06 against main `a5fe4de`: diverged (4 ahead, 627 behind; mergeable=false). Its old-head unit tests #41350320527 and full-history security scan #41350320524 both failed; rebase, triage the test failure and Gitleaks findings, then rerun CI before review.
 
 ## Repository-wide priority override — 2026-11-06
 
