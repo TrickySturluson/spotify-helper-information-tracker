@@ -314,6 +314,25 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN=1", credential_verifier)
         self.assertIn("replacement Spotify refresh token may be", credential_verifier)
 
+    def test_great_migration_previews_are_zero_write(self):
+        guide = (ROOT / "docs" / "GREAT_MIGRATION.md").read_text(encoding="utf-8")
+        workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        prepare_source = (ROOT / "scripts" / "music" / "prepare_music_library.py").read_text(encoding="utf-8")
+        cli_source = (ROOT / "scripts" / "music" / "library_cli.py").read_text(encoding="utf-8")
+        full_migrator = (ROOT / "scripts" / "music" / "migrate_full_music_library.py").read_text(encoding="utf-8")
+
+        self.assertIn("`preview` inventories the source catalogue", guide)
+        self.assertIn("`prepare-preview`", guide)
+        self.assertIn("Strictly read-only Library/report operations", guide)
+        self.assertIn("prepare-preview", workflow_catalogue)
+        self.assertIn('command("shit.py", "library", "preview")', prepare_source)
+        self.assertIn("run_migration(args.root, dry_run=True)", cli_source)
+
+        dry_run = full_migrator.split("if args.dry_run:", 1)[1].split("backup_path = None", 1)[0]
+        self.assertIn('"writes": 0', dry_run)
+        self.assertNotIn("MusicLibrary(", dry_run)
+        self.assertNotIn("put_catalogue", dry_run)
+
     def test_track_profile_builder_preserves_playlist_only_evidence_semantics(self):
         source = (ROOT / "scripts" / "music" / "build_track_profiles.py").read_text(encoding="utf-8")
         enrichment_guide = (ROOT / "docs" / "RECENT_TRACK_ENRICHMENT.md").read_text(encoding="utf-8")
