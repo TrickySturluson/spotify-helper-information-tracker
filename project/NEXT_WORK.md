@@ -33,7 +33,7 @@ Design constraints to preserve: observe/diagnose before mutation; canonical data
 
 - ChatGPT's marker commit `7c1abce763d293992872699146eb7f13d10f9b87` triggered [Babel AI continuation run #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313).
 - Preflight passed; Codex failed before running the prompt. `ubuntu-latest` resolved to Ubuntu 26.04 and `openai/codex-action` `drop-sudo` failed restricting `/run/dbus/system_bus_socket`, matching upstream [issue #188](https://github.com/openai/codex-action/issues/188). Validation and publisher were skipped; no PR was produced.
-- Fix committed: only the Codex agent job is pinned to `ubuntu-24.04`, retaining the sandbox and permission model. Re-dispatch from a fresh branch based on the updated `main`, then verify all jobs and the review PR. The separate Codex worker remains unverified until end-to-end success; this does not describe the scheduled ChatGPT Buddy path.
+- Fix committed: only the Codex agent job is pinned to `ubuntu-24.04`, retaining the sandbox and permission model. A later retry is recorded below; it reached Codex but was blocked by API quota. Do not dispatch again unless the user explicitly reauthorizes this separate experiment.
 
 ## 2026-11-06 — Repository-hosted Codex runner fix verified; API quota blocks retry completion
 
@@ -58,7 +58,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
 - The OpenAI Codex worker is scheduled every six hours and manually dispatchable. It resumes from babel/agent-progress, makes bounded documentation-only changes, and publishes through one review PR. A separate read-only validation job rejects non-documentation paths/deletions and runs full unittest discovery without write credentials; the publisher rechecks paths and publishes without executing candidate code.
 - No Spotify/provider credentials or provider operations are available to the agent. It cannot modify runtime features, generated data, or workflow YAML; it never auto-merges.
-- **Activation pending:** the user reports `OPENAI_API_KEY` is configured and has now confirmed **Allow GitHub Actions to create and approve pull requests** is enabled. Next, ChatGPT creates a fresh `babel/dispatch-*` branch from `main` and commits `.github/babel/dispatch.json` to trigger the workflow, then verifies the run and proposal PR. Manual dispatch and the six-hour schedule remain available. API usage is billed separately from ChatGPT subscription access.
+- **Historical activation result:** the user reported the `OPENAI_API_KEY` secret and Actions PR-creation permission were configured. The initial ChatGPT-initiated dispatch and a retry were both attempted; the first failed during sandbox setup and the retry reached Codex but was blocked by API quota. Do not create another dispatch marker or manually run this Codex workflow unless the user explicitly reauthorizes the separate API experiment.
 - See [Babel AI continuation guide](../docs/BABEL_AGENT.md). The Codex worker is integrated but not yet operationally verified. The scheduled ChatGPT Buddy path is separate; documentation remains the only SHIT priority.
 
 ## 2026-11-06 — Documentation-only priority; latest evidence reconciled
