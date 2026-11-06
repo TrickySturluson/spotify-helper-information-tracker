@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Latest full documentation CI and current Library baselines verified
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) and full-history security scan [#42154433307](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433307) both passed on commit `adce63e1f17bb2bb13a26944b7b5917c3506a714`. This run included the Great Migration 15-operation allowlist test, documentation checks, full unittest discovery, and read-only full Library health/confidence/freshness checks.
+- The run measured the current catalogue at 13,163 songs, 6,497 artists and 7,969 albums; index counts matched and health returned zero errors/warnings. Confidence audit found identity drift 0 and 214 metadata-confidence mismatches, all in track_tags. Freshness planning found 11 unknown-age baseline candidates, 25 due tasks selected, and 1,968 missing-provenance fields. No provider calls or writes occurred.
+- Subsequent documentation-only work refreshed the canonical Library README and migration report framing, corrected the stale 13,005-record baselines in goal READMEs, recorded the latest confidence/freshness diagnostics, and reconciled action-log headings/chronology across the goal workspaces.
+- No source, test logic, workflow YAML or runtime data changed after `adce63e`. Exact latest-head CI/security remains unconfirmed for the final documentation-only updates.
+- **Next:** continue the remaining technical-guide/source audit and fresh-session simulation; obtain exact final-head checks before merge.
+
 ## 2026-11-06 — Lyrics provider documentation corrected against implementation
 
 - Compared `docs/LYRICS_LIBRARY.md` with `scripts/music/lyrics_library.py` and `tests/test_lyrics_library.py`.
