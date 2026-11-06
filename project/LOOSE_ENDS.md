@@ -33,6 +33,11 @@ The user has explicitly directed that documentation be the sole active project p
 - **Update Last.fm History run #42146153098:** provider/data steps completed but publication failed during rebase with 120 unique conflicts (59 canonical music Library paths, 61 Spotify snapshot/reference paths); its generated archive/analytics/enrichment output was not published.
 - **Deferred remediation:** serialize shared Library writers / detect stale-base conflicts, and make optional provider output paths conditional before staging. Keep this deferred until documentation acceptance criteria pass.
 
+## Documentation audit PR
+
+- Draft PR #161 (`docs/semantic-documentation-audit`) contains 29 source overview rewrites, complete indexing of all 21 technical guides, stronger implementation/workflow overview checks, repository-wide Markdown local-link validation and explicit pause notes in all 12 other goal roadmaps.
+- Latest CI must be checked against the current PR head. Do not merge until all checks pass and any discovered documentation gaps are repaired.
+
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
