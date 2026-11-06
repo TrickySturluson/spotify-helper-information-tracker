@@ -45,6 +45,17 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
 - It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
 
+## Complete committed-tree inventory — verified 2026-11-06
+
+- The single recursive root-tree request was truncated by the large generated Library subtree, so it was not used as evidence.
+- Replaced that incomplete approach with the root Contents listing plus separate recursive Git Trees requests for every top-level directory. The `assistant_data/` directory was split into its nine immediate child subtrees plus its root-level files.
+- All queried directory trees returned `truncated=false`; all root and immediate `assistant_data/` entries were included.
+- Counted 28,161 committed file/blob entries at audit commit `7cc839f3f00eeb026cd898099654eea8f9a79497`: 9 root files, 23 `.github/`, 42 `compat/`, 4 `data/`, 22 `docs/`, 2 `playback_data/`, 50 `project/`, 61 `scripts/`, 46 `tests/`, and 27,902 `assistant_data/`.
+- Maintained-code totals reconcile: 55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflows, 21 technical guides, and 13 goal workspaces.
+- The complete snapshot replaces the prior assumption that a local checkout was required to get a defensible committed-tree inventory. A local `git ls-files` remains the easiest repeatable refresh method when a checkout is available.
+- Generated records remain family/schema-documented rather than individually enumerated in prose. The file index now records counts and family distribution.
+- **Outcome:** tracked committed-tree inventory acceptance item satisfied for the audited commit; refresh after future structural changes.
+
 ## Workflow catalogue and documentation guardrails
 
 - `docs/WORKFLOWS.md` summarizes all 17 workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
