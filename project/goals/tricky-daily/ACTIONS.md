@@ -1,3 +1,13 @@
+## 2026-11-06 — Resumed parallel SHIT work; Tricky Daily read-only audit
+
+- **Purpose:** begin SHIT feature work while SHIT Documentation & Continuity (Babel) continues in parallel, following the current mainline policy. First candidate workstream: Tricky Daily, whose roadmap identifies force/idempotency as a P0 invariant.
+- **Source inspection:** read current-main `scripts/spotify/spotify_daily_cycle.py` (blob `81b0a9c2c8fbd5524ef5991183aa0a2b17ed07fc`) and `tests/test_spotify_daily_cycle_schedule.py` (blob `993ff5c269a45dc39a9eeeee6414da7ac5edb110`). The runner passes `args.force` to both the time-window gate and `cycle_already_completed()`. That function returns `False` when forced, bypassing the same-Eastern-date completion guard. The current test explicitly expects this behavior. It conflicts with the required contract: force bypasses the clock gate only.
+- **Other evidence:** the roadmap and cycle guide record a saved 2026-11-06 01:48 UTC snapshot with 58 accessible unique tracks against the 60-track success target. This is historical repository evidence, not a live Spotify read or explanation of the discrepancy.
+- **Buddy review:** today's scheduled ChatGPT Buddy run `a1354400-ad1c-8320-906e-888d071012ee` updated draft PR #163 at head `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`. The 13-file diff was inspected. Independent review outcome: NEEDS CHANGES because the draft's AGENTS/Buddy policy language says ChatGPT must never publish directly to `main`, contradicting current mainline documentation-publication authority. No PR reviews or inline threads were present. Daily curator CI #42239266411 and security scan #42239266381 both completed successfully; Buddy reports 478 tests passed.
+- **Changes / side effects:** read-only GitHub source/documentation inspection only. No runtime or test files changed; no workflow dispatch, Spotify/provider request, playlist write, generated-data change, secret, or permission change.
+- **Authorization boundary:** the runtime/test correction and any live Spotify operation are not performed until separately authorized. Babel remains active in parallel; PR #163 stays draft and must not be merged while its policy contradiction remains.
+- **Next action:** obtain user authorization for the smallest Daily force/idempotency correction and regression test, then implement, run focused/full safe tests, and record exact evidence.
+
 # Tricky Daily — Actions & Evidence
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
