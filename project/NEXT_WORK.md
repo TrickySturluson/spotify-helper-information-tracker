@@ -20,6 +20,22 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Documentation tests are part of unittest discovery. Latest observed Daily curator test run #42144512658 and public repository security scan #42144512423 both completed successfully on the inspected main SHA. This verifies the automated checks ran successfully; it does **not** prove semantic accuracy of every overview or technical guide.
 - The recursive Git tree API response was truncated because generated Library records make the tree very large. Do not use that truncated response as a complete tracked-file inventory. Use directory-scoped listings for maintained code and `git ls-files` in a complete checkout for the authoritative full inventory.
 
+### Workflow overview work and operational side effect
+- Replaced generic bottom overviews in nine workflows with workflow-specific trigger, credential, write, safety and related-code descriptions. The workflow catalogue remains the source for the full 17-workflow matrix.
+- Editing workflow YAML on main triggered path-filtered jobs even though only comments changed. Reference Library run #42146148971 completed successfully and committed `3e989e33282efab6cc1416e35970e7c59af5f056`, changing 249 generated files: 184 Library records, 63 Spotify reference/history files and 2 removal-state files. It refreshed repository snapshots/removal feedback; it did not write to Spotify playlists.
+- Runs #42146153098 (Update Last.fm History), #42146121471 (Enrich Music Metadata), and #42146097964 (Acoustic Metadata Enrichment) were still in progress at the latest inspection. Their completion and any commits/failures must be checked before the documentation audit continues. No workflow cancellation action was exposed by the connected GitHub interface.
+- Do not repeat this side effect. The workflow catalogue now explains that comment-only YAML edits can trigger configured push workflows; inspect push path filters before any future workflow edit.
+
+### Current open pull requests observed during this audit
+- #158 — Discover Weekly exposure and feedback tracking (open, non-draft).
+- #159 — Tricky Daily DST schedule gating (open, non-draft).
+- #160 — exposure-aware Tricky Daily discovery (open, non-draft).
+- #121 — offline sorter evaluation and ingestion watchdog spec (open draft).
+- #120 — incremental Library enrichment and sorter development (open draft).
+- #65 — read-only Library coverage planner (open draft).
+- #60 — provenance-aware recommendation ingestion (open, non-draft).
+Treat all seven as proposals, not merged behavior. Reinspect their diffs, current base/head relationship and checks before updating mainline documentation or selecting future work.
+
 ### Findings and remaining audit work
 - The documentation architecture is substantial and already includes 13 goal workspaces, 22 cross-cutting guides in `docs/`, the central handoff/loose-ends/log/roadmap, directory guides, workflow catalogue, and automated documentation contract tests.
 - The documentation contract currently verifies required control files, goal workspace structure, major-domain navigation, selected local links, workflow catalogue coverage, and bottom FILE OVERVIEW presence. It does not semantically compare each overview or guide with the current implementation.
