@@ -217,3 +217,10 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Important limitation:** this is not real-time messaging. Buddy sees only committed changes on a later scheduled/manual run; it cannot interrupt or message the active ChatGPT conversation.
 - **Verification:** GitHub contents API confirmed both commits. Buddy has not yet had a successful run; its state file still records `last_result: not yet run`. No test or workflow run has been claimed for these documentation edits.
 - **Next:** confirm the repository Actions PR-creation permission, manually dispatch Buddy on `main`, and inspect the actual worker output, validation result, and proposal PR; then complete the cold-start simulation.
+
+## 2026-11-06 — Buddy activation prerequisites confirmed; first dispatch pending
+
+- **User-confirmed setup:** GitHub repository Actions secret `OPENAI_API_KEY` has been added, and **Allow GitHub Actions to create and approve pull requests** is now enabled.
+- **Remaining action:** manually run **Actions → Babel AI continuation → Run workflow** on `main`.
+- **Tool limitation:** connected GitHub integration supports repository reads and content/PR operations but exposes no workflow-dispatch action. The user must click the dispatch control in GitHub's Actions UI.
+- **Verification status:** no first-run result is claimed yet. After dispatch, inspect all jobs, the independent validation result, and any `babel/agent-progress` PR before marking Buddy operational.
