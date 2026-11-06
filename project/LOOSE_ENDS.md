@@ -35,26 +35,10 @@ The user has explicitly directed that documentation be the sole active project p
 
 ## Documentation audit PR
 
-- Draft PR #161 (`docs/semantic-documentation-audit`) contains 29 source overview rewrites, complete indexing of all 21 technical guides, stronger implementation/workflow overview checks, repository-wide Markdown local-link validation and explicit pause notes in all 12 other goal roadmaps.
-- Latest CI must be checked against the current PR head. Do not merge until all checks pass and any discovered documentation gaps are repaired.
-
-## Open pull requests — verified 2026-11-06
-
-All eight pull requests below were open when checked. They are proposals/branches, not merged mainline behavior.
-
-| PR | Scope | State |
-|---|---|---|
-| [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161) | Documentation completeness and file-overview quality | Draft; CI pending |
-| [#160](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) | Exposure-aware Tricky Daily discovery | Open |
-| [#159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) | Tricky Daily DST schedule gating | Open |
-| [#158](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) | Discover Weekly exposure/feedback tracking | Open |
-| [#121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) | Offline sorter evaluation and ingestion watchdog spec | Draft |
-| [#120](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) | Incremental Library enrichment and sorter development | Draft |
-| [#65](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65) | Read-only Library coverage planner | Draft |
-| [#60](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60) | Provenance-aware recommendation ingestion | Open |
-
-Reinspect each PR's current diff, head/base relationship and checks before using its work. Several are old and may be superseded by mainline implementation; do not assume their contents are still needed or safe to merge.
-
+- Draft PR #161's first check exposed three compatibility wrappers without explicit source paths; those were fixed.
+- Daily curator tests #42149783445 passed on PR head `5b8bfab94064e74100c6b3ac183817b6a3f4d4bd`, including repository-wide Markdown local links, full guide indexing, implementation overview quality, compatibility delegation and workflow overview checks, plus the full unit suite and read-only Library health/confidence/freshness checks.
+- The branch has since received additional documentation-log and handoff updates; the latest PR head must be rechecked. Public repository security scan #42149783463 was still running at the last check.
+- PR #161 remains draft and unmerged. Recheck current-head CI and security scan before merging.
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
