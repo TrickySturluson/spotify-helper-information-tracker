@@ -19,7 +19,7 @@ room for exploration outside current patterns.
 
 ## Latest repository snapshot state — 2026-11-06
 
-The latest confirmed live Daily snapshot was captured at `2026-11-06T17:31:19.839728+00:00` by snapshot workflow run [#42262344471](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42262344471): 29 accessible items were reported and fetched, all 29 URIs were unique, and the removal baseline now contains 29 rows. Reconciliation recorded 8 additional manual removals, bringing the Daily blacklist to 55 entries with zero whitelist entries. The snapshot and removal-state commit is `0fa8e6a1a086c9425313f12a54fe7b045a70dd47`. The earlier 37-item snapshot is retained as history. This was a Spotify GET-only read and repository publication; no playlist tracks or description were changed.
+The latest confirmed live Daily snapshot was captured at `2026-11-06T17:41:02.779553+00:00` by snapshot workflow run [#42263830309](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42263830309): 29 accessible items were reported and fetched, all 29 URIs were unique, and the removal baseline contains 29 rows. The Daily blacklist contains 55 entries with zero whitelist entries. The reference catalog now reports the same 29 items, and the track/artist index has zero stale or missing Daily memberships. The generated-data audit and full 481-test suite passed on the refreshed state. The prior 37-item snapshot remains in history. The snapshot/catalog/index commit is `d24fb9acbc17a8acaff4e8e893a7681e91c8a5bd`. This was a Spotify GET-only read and repository publication; no playlist tracks or description were changed.
 
 ## Trend profile
 
