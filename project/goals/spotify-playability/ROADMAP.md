@@ -23,8 +23,12 @@ Playability is market-scoped and time-sensitive. Preserve requested and relinked
 ## Acceptance criteria
 Market observations coexist; no global timeless boolean; addability does not imply playability; checks make zero playlist writes; all observations retain source/time/identity.
 
-## Next action
-Run a fresh read-only playability coverage report and inspect the weekly refresh plan before any provider-backed check.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Run a fresh read-only playability coverage report and inspect the weekly refresh plan before any provider-backed check.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Metadata freshness](../metadata-freshness/ROADMAP.md)
