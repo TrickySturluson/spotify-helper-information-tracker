@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Repository navigation and mandatory agent instructions added
+
+- **Purpose:** make the documentation system discoverable and enforceable from the repository root, not dependent on a chat summary.
+- **Changes:** added root AGENTS.md; added docs/README.md as the cross-cutting documentation index; added project/ROADMAP.md as the cross-workstream roadmap; linked all three from the repository README and documented the expansion in project/NEXT_WORK.md.
+- **Existing foundation verified:** project/DOCUMENTATION_RULES.md, project/NEXT_WORK.md, project/LOOSE_ENDS.md, project/PROJECT_LOG.md, the goal index and 11 goal workspaces already exist on main. Each goal is intended to have ROADMAP/README/ACTIONS.
+- **Verification:** fetched and inspected the existing root README, documentation rules, project handoff/log/index, loose-ends register, maintainability workspace, playlist-intelligence workspace, Tricky Daily backlog/cycle guide and privacy/description guides. New files were created successfully on the repository default branch. No code, Library data, provider state, listening history or Spotify playlists were changed.
+- **Limitation:** this is not yet a full tracked-file inventory audit. The complete file-index accuracy, per-file overview coverage, link integrity, goal-file completeness and current GitHub run/PR status remain to be verified.
+- **Outcome:** navigation/control structure expanded; documentation coverage audit still in progress.
+- **Next action:** obtain the complete tracked-file tree, compare all scripts/modules/workflows/tests/schemas/data contracts with documentation, fix the highest-risk gaps, then add automated checks and perform a fresh-session resume test.
+
 ## 2026-11-05 — Mandatory project roadmaps and same-session documentation rule
 
 - **User direction:** every project/workstream must have a durable roadmap so future assistant sessions can continue without previous chat knowledge; documentation must explicitly require ongoing maintenance.
