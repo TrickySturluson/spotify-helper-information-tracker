@@ -7,6 +7,7 @@
 Make SHIT understandable, maintainable, and recoverable by a contributor or assistant with no access to prior chat history. Repository documentation—not chat memory—is the durable source of truth.
 
 ## Established structure
+- Public-facing identity: **SHIT Documentation & Continuity**; internal codename: **Babel**. The naming convention and system contract are defined in [docs/BABEL.md](../../../docs/BABEL.md).
 - Root [AGENTS.md](../../../AGENTS.md): mandatory instructions for every assistant/contributor session.
 - [Documentation rules](../../DOCUMENTATION_RULES.md): required reading, same-session updates, evidence vocabulary and completion checklist.
 - [Documentation index](../../../docs/README.md): navigation to technical references and workstreams.
@@ -19,6 +20,7 @@ Make SHIT understandable, maintainable, and recoverable by a contributor or assi
 Every maintained script/module/workflow should state its purpose, supported goal, inputs/outputs, dependencies/data paths, network and write side effects, safety/rate/mutation boundaries, and how to run/test it. Tests and schemas should have clear scope and ownership. Do not put prose into machine-readable JSON; use adjacent documentation or supported metadata.
 
 ## Roadmap
+1. **Name and define the documentation system — implemented in documentation.** Establish SHIT Documentation & Continuity as the descriptive public name and Babel as its internal codename; make the relationship explicit at fresh-session entry points.
 1. **Mandatory continuity rules and navigation — implemented.** Root instructions, documentation rules, docs index, project roadmap and README links now exist on main.
 2. **Verify all goal workspaces.** Confirm every indexed goal has ROADMAP, README and ACTIONS; inspect links and reconcile current status.
 3. **Audit file-level coverage.** Compare all tracked scripts, modules, compatibility launchers, tests, workflows, schemas and data contracts with the file index and per-file overview requirements.
