@@ -8,6 +8,7 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 
 ## User requirements and invariants
 - Publish exactly 60 valid, unique Spotify track URIs on a successful cycle.
+- Complete one successful Tricky Daily rotation per Eastern calendar day under the documented schedule, with a recovery delivery for delayed Actions; snapshot refresh alone does not count as playlist rotation.
 - Prefer distinct artists; retry for alternate tracks and progressively relax artist diversity only as a last resort. Never relax track uniqueness or exclusions.
 - Removed/blacklisted tracks are absolute exclusions in normal runs, forced runs, retries, fallback expansion, and final publication.
 - Reconcile whitelist/blacklist and live playlist state on every run, including forced runs. Only an explicit playlist-local whitelist entry matching the Spotify track URI or normalized primary-artist/title identity can clear that exact removal; current playlist presence alone is never approval. A stale or unaligned snapshot must not overwrite newer user decisions.
@@ -79,6 +80,12 @@ Exact removed-track exclusions remain hard blocks. However, `load_playlist_feedb
 - Description changes are verified independently; successful tracks with failed description verification remain distinguishable.
 - Feedback reports preserve source and coverage; no-play is not automatically negative.
 - CI regression tests pass, and live workflow evidence is recorded separately from unit-test evidence.
+
+## Schedule reliability — configured behavior vs proven behavior
+
+The current workflow declares cron deliveries at `0 4,5 * * *` and `15 4,5 * * *` UTC (four potential deliveries per UTC day, intended to cover EST/EDT midnight plus a 15-minute recovery). The runner uses the Eastern local hour and a same-Eastern-date completion guard; `--force` bypasses only the clock gate. The current gate does not validate the exact `github.event.schedule` cron string against the active DST offset, so stale-offset deliveries may be admitted as same-date catch-up attempts. Strict cron-to-DST matching remains an open improvement (PR #159 is historical/unmerged until rechecked).
+
+**Important operational distinction:** the daily GET-only snapshot workflow is not the playlist rotation. A successful snapshot, preflight, compile/test run, or stage-only run does not prove the 60-track playlist was refreshed. Daily's requirement is satisfied only by a successful cycle with accepted write, exact 60-track read-back, verified description and completed same-date state. No such fresh successful cycle is established by the evidence recorded here.
 
 ## Current gaps and verification requirements
 - The live track-replacement path has not been exercised in this session. The user has not authorized a live cycle; no playlist tracks or description were changed.
