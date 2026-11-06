@@ -8,7 +8,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Latest draft PR head `5b8bfab94064e74100c6b3ac183817b6a3f4d4bd` passed Daily curator tests run #42149783445.
 - Successful checks included Python compilation, generated-data audit, full canonical Library health check, full Library confidence audit, bounded freshness planning, maintained-file documentation checks, and full unittest discovery.
 - This confirms the new implementation-overview quality test, compatibility references, complete technical-guide index, repository-wide Markdown local-link check, workflow-overview checks and existing unit tests passed on that PR head.
-- Public repository security scan #42149783463 was still in progress at the time of this entry; do not mark PR verification complete until it reaches a terminal successful state and the PR's latest head is checked again.
+- Public repository security scan #42149783463 subsequently succeeded on the earlier head. The latest PR head `31e8f3811ac7791dfc11ed560506ae138ea2213a` passed Daily curator tests run #42150601947; complete-history security scan #42150601862 is still in progress. Recheck it before merge.
 
 ## 2026-11-06 — Documentation quality expansion and all-workstream pause recorded
 
