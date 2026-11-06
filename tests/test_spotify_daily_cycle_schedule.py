@@ -190,6 +190,36 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertEqual(record["payload_sha256"], digest)
         self.assertEqual(len(digest), 64)
 
+    def test_daily_stage_verification_rejects_mutated_payload(self):
+        import hashlib
+        import json
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        target = ["spotify:track:a", "spotify:track:b"]
+        candidate_tracks = [{"artist": "A", "track": "One", "uri": target[0]}, {"artist": "B", "track": "Two", "uri": target[1]}]
+        payload = {
+            "playlist_id": daily_cycle.DAILY_ID,
+            "cycle_date_eastern": "2026-11-06",
+            "target_uris": target,
+            "candidate_tracks": candidate_tracks,
+            "target_description": "Daily stage test",
+        }
+        digest = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+        record = {
+            "schema_version": 1, "playlist_id": daily_cycle.DAILY_ID,
+            "cycle_date_eastern": "2026-11-06", "target_uris": list(target),
+            "candidate_tracks": candidate_tracks, "target_description": "Daily stage test",
+            "prewrite_uris": ["spotify:track:before"], "prewrite_snapshot_id": "before",
+            "payload_sha256": digest,
+        }
+        record["target_uris"][0] = "spotify:track:tampered"
+        with TemporaryDirectory() as directory:
+            stage_path = Path(directory) / "stage.json"
+            daily_cycle.manager.write(stage_path, record)
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "failed exact hash/order"):
+                daily_cycle.verify_daily_stage(
+                    str(stage_path), digest, target, ["spotify:track:before"], "before"
+                )
     def test_github_daily_stage_requires_successful_git_push_before_write(self):
         import subprocess
         from tempfile import TemporaryDirectory
