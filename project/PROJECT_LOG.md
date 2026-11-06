@@ -10,6 +10,14 @@
 
 # SHIT Project Log
 
+## 2026-11-06 — Documentation system named SHIT Documentation & Continuity (codename Babel)
+
+- **Decision:** the documentation/continuity system's public-facing name is **SHIT Documentation & Continuity**; its internal codename is **Babel**. The parent product and repository remain Spotify Helper & Information Tracker (SHIT).
+- **Rationale:** first-time contributors and AI sessions should understand the system's purpose immediately. The codename is useful only after it has been defined.
+- **Canonical contract:** [docs/BABEL.md](../docs/BABEL.md). The convention is surfaced in the root README, AGENTS.md, docs index, mandatory documentation rules, current handoff, project roadmap, and Maintainability & Documentation workspace.
+- **Status:** naming documentation published to main. Link and CI verification after these commits remains pending; the broader semantic documentation audit is still in progress.
+- **Next:** validate the naming entry points and continue the source-to-document semantic audit. Documentation remains the sole active priority.
+
 ## 2026-11-01 — Per-goal workspaces established
 
 - **Goal:** make individual project objectives independently recallable without loading unrelated history.
