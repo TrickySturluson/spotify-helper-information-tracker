@@ -56,7 +56,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 
 - Confirmed all 13 goal workspaces contain ROADMAP.md, README.md and ACTIONS.md; all 17 workflow YAMLs are catalogued.
 - Updated the docs index to list all 21 technical guides, corrected a duplicated paragraph in the goal index, and expanded repository-wide Markdown-link and workflow-overview checks in draft PR #161.
-- Replaced generic source overviews with module-specific purpose, input/output, evidence, side-effect and safety descriptions across analytics, Last.fm, music and Spotify implementation modules (29 maintained modules updated in the current draft).
+- Replaced generic source overviews with module-specific purpose, input/output, evidence, side-effect and safety descriptions across analytics, Last.fm, music and Spotify implementation modules (32 maintained modules updated in the current draft).
 - Current source audit found that marker presence alone had allowed generic boilerplate to pass; the new PR checks aim to prevent this recurring.
 - Current main has the documented workflow incident: reference snapshot refresh published, two enrichment publication steps failed, and one broad update workflow remained under observation at the latest check. See ACTIONS.md and NEXT_WORK.md for exact evidence.
 
