@@ -1,6 +1,13 @@
 # Playlist Intelligence & Safety — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Open sorter/intelligence PR branches rechecked
+
+- PR #120 `codex/incremental-library-sorter-work`: open/draft, 5 ahead / 419 behind current main, mergeable=false; old-head tests #41380622956 and security scan #41380622844 passed.
+- PR #121 `codex/sorter-evaluation-ingestion-watchdog`: open/draft, 10 ahead / 419 behind current main, mergeable=false; no workflow runs found for its observed head.
+- Both are stale/diverged; rebase and rerun current-main CI before relying on either proposal. No sorter implementation or playlist operation was performed during this documentation review.
+
+
 
 ## 2026-11-06 — Open sorter/evaluation proposal status reconciled
 
