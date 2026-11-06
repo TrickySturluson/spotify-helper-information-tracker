@@ -9,5 +9,11 @@ if __name__ == "__main__":
     runpy.run_path(str(script), run_name="__main__")
 
 # FILE OVERVIEW
-# Launches the full no-network migration of stored track profiles and
-# accessible Spotify playlist snapshots into The Library.
+# Purpose: Backward-compatible command-line launcher for the full canonical Library migration.
+# Delegation: Imports and executes scripts/music/migrate_full_music_library.py.
+# Behavior: Preserves the established compat/ command path; all migration logic lives
+#           in the maintained scripts/music implementation.
+# Safety: No-network migration; does not write to Spotify playlists.
+# Run: python compat/migrate_full_music_library.py --dry-run (or documented apply mode).
+# Related: scripts/music/migrate_full_music_library.py; docs/PER_RECORDING_MUSIC_LIBRARY.md.
+# -----------------------------------------------------------------------------
