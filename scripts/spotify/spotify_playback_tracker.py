@@ -235,5 +235,5 @@ if __name__ == "__main__":
 #           is stopped remain unmeasured; the result is not account-wide history.
 # Run: python compat/spotify_playback_tracker.py [--interval SECONDS]
 # Related: scripts/analytics/build_playback_analytics.py;
-#          docs/AUDIO_ANALYSIS.md; docs/WORKFLOWS.md.
+#          docs/REPOSITORY_FILE_INDEX.md; docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
