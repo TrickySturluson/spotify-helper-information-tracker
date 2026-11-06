@@ -33,8 +33,12 @@ Every metric names its source and period; tracker coverage is visible; no event 
 - [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open/non-draft on `feature/discover-weekly-feedback-tracking`, diverged (9 ahead, 201 behind current main; mergeable=false). Its old-head tests #42071650507 and security scan #42071650219 passed, but it must be rebased and reverified before merge. It proposes a read-only observer for weekly appearances/disappearances, Liked Songs changes and separately labelled post-exposure Last.fm scrobbles; it does not expose Spotify's explicit hide action or write playlists.
 - [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open/draft on `codex/sorter-evaluation-ingestion-watchdog`, diverged (10 ahead, 419 behind current main; mergeable=false). No workflow runs were found for its observed head; rebase and obtain CI before relying on it. Its watchdog remains a specification until runtime implementation and tests are verified.
 
-## Next action
-Inspect current archive manifest, analytics outputs, tracker workflow/runtime and coverage report; publish fresh separately sourced baselines.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Inspect current archive manifest, analytics outputs, tracker workflow/runtime and coverage report; publish fresh separately sourced baselines.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Discovery](../discovery-recommendations/ROADMAP.md)
