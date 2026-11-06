@@ -141,6 +141,95 @@ class DailyFeedbackWorkflowTests(unittest.TestCase):
         self.assertIn("python compat/spotify_daily_feedback.py observe", workflow)
 
 
+
+    def test_unexposed_manual_removal_does_not_penalize_the_artist(self):
+        import json
+        import os
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "assistant_data/spotify").mkdir(parents=True)
+            blacklist = root / "playlist_removed_tracks.json"
+            blacklist.write_text(json.dumps({
+                "playlists": {
+                    "4yUVHSMQySfWeEowfIMcx7": {
+                        "removed": [{
+                            "uri": "spotify:track:removed",
+                            "name": "Removed Track",
+                            "artists": ["Artist"],
+                        }],
+                        "whitelisted": [],
+                    }
+                }
+            }), encoding="utf-8")
+            feedback_path = root / "assistant_data/spotify/daily_feedback.json"
+            feedback_path.write_text(json.dumps({
+                "tracks": {
+                    "spotify:track:removed": {
+                        "removal_events": [{"reason": "user_removed"}],
+                        "playback_observations": [],
+                        "lastfm_post_add_scrobbles": None,
+                    }
+                }
+            }), encoding="utf-8")
+            original = Path.cwd()
+            try:
+                os.chdir(root)
+                feedback = discovery.load_playlist_feedback(
+                    [], "4yUVHSMQySfWeEowfIMcx7", path=blacklist
+                )
+            finally:
+                os.chdir(original)
+        self.assertEqual(feedback["negative_artists"].get("artist", 0), 0)
+        self.assertIn("spotify:track:removed", feedback["negative_uris"])
+        self.assertTrue(discovery.is_playlist_candidate_blocked(
+            "Artist", "Removed Track", "spotify:track:removed", feedback
+        ))
+
+    def test_exposed_manual_removal_can_inform_artist_level_negative_feedback(self):
+        import json
+        import os
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "assistant_data/spotify").mkdir(parents=True)
+            blacklist = root / "playlist_removed_tracks.json"
+            blacklist.write_text(json.dumps({
+                "playlists": {
+                    "4yUVHSMQySfWeEowfIMcx7": {
+                        "removed": [{
+                            "uri": "spotify:track:removed",
+                            "name": "Removed Track",
+                            "artists": ["Artist"],
+                        }],
+                        "whitelisted": [],
+                    }
+                }
+            }), encoding="utf-8")
+            feedback_path = root / "assistant_data/spotify/daily_feedback.json"
+            feedback_path.write_text(json.dumps({
+                "tracks": {
+                    "spotify:track:removed": {
+                        "removal_events": [{"reason": "user_removed"}],
+                        "playback_observations": [{"plays": 3}],
+                        "lastfm_post_add_scrobbles": 2,
+                    }
+                }
+            }), encoding="utf-8")
+            original = Path.cwd()
+            try:
+                os.chdir(root)
+                feedback = discovery.load_playlist_feedback(
+                    [], "4yUVHSMQySfWeEowfIMcx7", path=blacklist
+                )
+            finally:
+                os.chdir(original)
+        self.assertEqual(feedback["negative_artists"].get("artist", 0), 1)
+
 if __name__ == "__main__":
     unittest.main()
 
