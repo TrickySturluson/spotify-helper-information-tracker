@@ -13,24 +13,24 @@
 
 # Maintainability & Documentation — Actions & Evidence
 
-## 2026-11-06 — Buddy retry verified sandbox; API quota blocker isolated
+## 2026-11-06 — Repository-hosted Codex worker retry verified sandbox; API quota blocker isolated
 
 - **Run:** [Babel AI continuation #42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), triggered by marker commit `75d3102e80ffe4158214114fa90c5979edda14e6` on `babel/dispatch-20261106-02`.
 - **Verified:** preflight succeeded; agent job ran on `ubuntu-24.04`; `drop-sudo` successfully restricted `/run/snapd-snap.socket`. The first-run Ubuntu 26.04 sandbox compatibility problem is resolved by the narrow runner pin.
 - **Failure:** Codex returned `Quota exceeded. Check your plan and billing details.` after launch. Agent job failed; validation and publisher were skipped. No candidate patch, `babel/agent-progress` branch, or Buddy PR was produced.
 - **Next blocker:** user must check OpenAI API project/organization billing and usage limits to ensure available quota/credits. ChatGPT subscription access does not provide API credits. Do not retry until quota is confirmed; never weaken `drop-sudo` or use `unsafe`.
 - **Independent repository checks:** Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests on `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on the same commit.
-- **Status:** GitHub dispatch, preflight, Ubuntu 24.04 runner, and sandbox isolation are verified. Buddy's actual documentation task, independent validation and PR publication remain unverified.
+- **Status:** GitHub dispatch, preflight, Ubuntu 24.04 runner, and sandbox isolation are verified. The Codex worker's documentation task, independent validation and PR publication remain unverified.
 
 
-## 2026-11-06 — Buddy first dispatch run diagnosed; runner compatibility fix
+## 2026-11-06 — Repository-hosted Codex first dispatch run diagnosed; runner compatibility fix
 
 - **Run:** [Babel AI continuation #42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313), triggered by marker commit `7c1abce763d293992872699146eb7f13d10f9b87` on `babel/dispatch-20261106-01`.
 - **Verified:** push trigger worked; preflight completed successfully; workflow found the configured continuation prompt and launched the Codex action.
 - **Failure:** Codex action failed before executing the prompt. Runner `ubuntu-latest` was Ubuntu 26.04; `drop-sudo` could not restrict `/run/dbus/system_bus_socket` and reported `runner is not a member of the sudo group`. This matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188).
-- **Downstream effect:** validation and publisher were skipped; no candidate patch, `babel/agent-progress` branch, or Buddy PR was created. No SHIT data or Spotify state was changed.
+- **Downstream effect:** validation and publisher were skipped; no Codex candidate patch, `babel/agent-progress` branch, or Codex proposal PR was created. No SHIT data or Spotify state was changed.
 - **Remediation:** pin only the Codex agent job to `ubuntu-24.04`. Keep `drop-sudo`, the `:workspace` profile, read-only agent/validation permissions, separate publisher, allowlist and human review gate unchanged. Trigger a fresh run from a branch based on the updated main and verify every stage.
-- **Status:** first dispatch mechanism proven; Buddy itself is not yet operationally verified.
+- **Status:** first dispatch mechanism proven; The repository-hosted Codex worker itself is not yet operationally verified.
 
 
 ## 2026-11-06 — Deferred post-Babel health-system direction recorded
@@ -43,9 +43,9 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
-## 2026-11-06 — First ChatGPT-initiated Buddy dispatch trigger committed
+## 2026-11-06 — First ChatGPT-initiated Codex dispatch trigger committed
 
-- **Purpose:** test whether ChatGPT can initiate the repository-hosted Buddy workflow through the connected GitHub integration, a prerequisite for using ChatGPT as SHIT's front-end interface.
+- **Purpose:** test whether ChatGPT can initiate the separate repository-hosted Codex workflow through the connected GitHub integration, a prerequisite for using ChatGPT as SHIT's front-end interface.
 - **Execution:** successfully created branch `babel/dispatch-20261106-01` from `main`, then committed `.github/babel/dispatch.json` on that branch. Commit: `7c1abce763d293992872699146eb7f13d10f9b87`.
 - **Trigger contract:** `.github/workflows/babel-ai-continuation.yml` listens for a push to `babel/dispatch-*` when `.github/babel/dispatch.json` changes. The marker branch is only a trigger; the worker continues to select `main` or `babel/agent-progress` as its source.
 - **Verified:** GitHub accepted the branch creation and marker commit. This proves ChatGPT can perform the narrow GitHub write needed to emit the trigger event.
@@ -266,21 +266,21 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Created:** `project/ACTIVE_SESSION_BRIEF.md` on main, commit `55f1403c8feb614b1b6763ce8873499bdcbe4c86`. It records the current objective, role boundaries, activation state, carry-forward risks/evidence, required update format, and privacy rules.
 - **Buddy prompt:** `.github/babel/CONTINUATION_PROMPT.md` now requires the worker to read the active brief first and reconcile it against the checked-out source/evidence. Commit `bad03f65cbe92690718278440886a84014fd79a1`.
 - **Important limitation:** this is not real-time messaging. Buddy sees only committed changes on a later scheduled/manual run; it cannot interrupt or message the active ChatGPT conversation.
-- **Verification:** GitHub contents API confirmed both commits. Buddy has not yet had a successful run; its state file still records `last_result: not yet run`. No test or workflow run has been claimed for these documentation edits.
+- **Verification:** GitHub contents API confirmed both commits. The Codex worker has not yet had a successful run; its state file still records `last_result: not yet run`. No test or workflow run has been claimed for these documentation edits.
 - **Next:** confirm the repository Actions PR-creation permission, manually dispatch Buddy on `main`, and inspect the actual worker output, validation result, and proposal PR; then complete the cold-start simulation.
 
-## 2026-11-06 — Buddy activation prerequisites confirmed; first dispatch pending
+## 2026-11-06 — Codex worker activation prerequisites confirmed; dispatch outcomes recorded
 
 - **User-confirmed setup:** GitHub repository Actions secret `OPENAI_API_KEY` has been added, and **Allow GitHub Actions to create and approve pull requests** is now enabled.
 - **Remaining action:** manually run **Actions → Babel AI continuation → Run workflow** on `main`.
 - **Tool limitation:** connected GitHub integration supports repository reads and content/PR operations but exposes no workflow-dispatch action. The user must click the dispatch control in GitHub's Actions UI.
-- **Verification status:** no first-run result is claimed yet. After dispatch, inspect all jobs, the independent validation result, and any `babel/agent-progress` PR before marking Buddy operational.
+- **Verification status:** no first-run result is claimed yet. The initial dispatch and retry outcomes are recorded above; do not mark the Codex worker operational until its API quota is restored and its own full workflow succeeds.
 
-## 2026-11-06 — Added ChatGPT-controlled Buddy trigger; execution attempt blocked
+## 2026-11-06 — Added ChatGPT-controlled trigger for the repository-hosted Codex workflow
 
-- **User request:** enable ChatGPT to start Buddy directly.
+- **User request:** enable ChatGPT to trigger the separate repository-hosted Codex workflow.
 - **Workflow change:** `.github/workflows/babel-ai-continuation.yml` now accepts a push to a fresh `babel/dispatch-*` branch only when `.github/babel/dispatch.json` changes. Commit: `1edb00e583ee28301a490d1a1039827882752608`.
 - **Execution design:** ChatGPT creates a fresh dispatch branch from `main`, then commits the marker. The workflow's preflight still selects `main` or `babel/agent-progress` as the actual work base; the dispatch branch is not used as source material. Manual dispatch and six-hour schedule remain available.
 - **Safety:** the trigger is constrained by branch pattern and exact path; no secret or executable instruction is placed in the marker. Existing read-only agent/validation and separate allowlisted publisher architecture is unchanged.
 - **Attempt:** the connected GitHub branch-creation action was blocked by the platform's safety checks before a dispatch branch was created. Therefore no workflow run has been triggered or verified by this attempt.
-- **Next:** use the Actions UI for this first run, or establish an approved GitHub action/connection that permits ChatGPT to create the dispatch branch. Do not mark Buddy active until a successful run and proposal review are confirmed.
+- **Next:** use the Actions UI for this first run, or establish an approved GitHub action/connection that permits ChatGPT to create the dispatch branch. Do not mark the Codex worker operational until a successful run and proposal review are confirmed.
