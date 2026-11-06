@@ -1,3 +1,16 @@
+## 2026-11-06 — Whitelist contract audit and latest mainline verification
+
+- **Purpose:** close the remaining P0 documentation question around whether a whitelist can accidentally erase unrelated or newer Daily removal decisions.
+- **Source review:** inspected current-main `scripts/spotify/spotify_discovery.py`. `reconcile_daily_manual_removals()` honors whitelist URI and normalized primary-artist/title identities when comparing the last accepted-cycle baseline; `load_playlist_feedback()` builds playlist-scoped positive identities and removes only matching removal records from the active negative set; `is_playlist_candidate_blocked()` enforces exact removal identity. Live playlist presence is not approval and does not clear a historical removal.
+- **Defined contract:** whitelist is playlist-local and exact-track scoped. URI and normalized primary-artist/title identity are supported match keys. A whitelist does not authorize an artist, another playlist, or unrelated tracks. The current Daily whitelist is empty (0 entries).
+- **Regression evidence:** `tests/test_spotify_discovery.py` contains tests for whitelist-aware live reconciliation, re-added removed tracks remaining blocked without explicit whitelist, and explicit whitelist override. These tests support the documented semantics; no runtime behavior was changed.
+- **Latest mainline CI:** Daily curator tests [#42270239847](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42270239847) and public repository security scan [#42270239536](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42270239536) both completed successfully on commit `b278da8f4f81bd8202fda50d6ed457e4ccfcb62e`. These runs verify the then-current mainline, including documentation contract and unit tests; they do not verify a live playlist cycle.
+- **Latest live state / cooldown:** the last confirmed GET-only Daily snapshot remains 29 accessible unique tracks (workflow #42268795272); baseline 29; blacklist 55; whitelist 0; feedback ledger 60 track rows. The midnight cycle attempt #42268583897 failed on Spotify HTTP 429 with Retry-After 5,781 seconds; durable deadline is `2026-11-06T19:49:46+00:00`. No playlist mutation occurred. Do not issue Spotify requests before that deadline.
+- **Outcome:** whitelist semantics are implemented and regression-tested; the TODO's P0 whitelist item can be marked complete. No provider call, workflow dispatch, playlist write, or generated-data edit was performed during this audit.
+- **Next action:** after the persisted cooldown expires, run the protected no-write stage-only workflow and verify candidate completeness (60), exclusion/deduplication checks, stage commit/push, and committed-blob hash/order read-back. If successful, report readiness and request separate authorization before any live replacement.
+
+---
+
 ## 2026-11-06 — Durable Daily staging and publication safeguards
 
 - **Authorization boundary:** all work in this section is code, tests, repository state, and read-only verification. No live Daily track replacement or description mutation was performed or authorized.
