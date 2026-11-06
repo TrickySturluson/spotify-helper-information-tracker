@@ -43,6 +43,17 @@
 
 # SHIT Project Log
 
+## 2026-11-06 — Future SHIT-wide health system deferred until Babel completion
+
+- **User direction:** once Babel is considered realistically as complete as it can be, revisit making Buddy a permanent part of SHIT's overall health.
+- **Future concept:** a coordinated Integrity, Diagnostics & Recovery workstream with monitoring across data/docs/tests/workflows, root-cause diagnostics, tightly bounded recovery/repair, Buddy-led documentation/continuity guardianship, and a systemic improvement backlog.
+- **Role boundary:** Buddy contributes documentation and continuity evidence but is not the sole health authority and does not self-authorize risky repairs.
+- **Gate:** explicitly deferred until Babel's roadmap acceptance criteria and fresh-session cold-start simulation pass. No runtime implementation is authorized by this entry.
+- **Safety:** preserve canonical data and provenance; distinguish Last.fm scrobbles from optional Spotify playback observations; never invent or silently discard uncertain records; require scoped deterministic repairs, backups, reversibility, audit trails, post-repair verification and user approval for consequential/ambiguous changes.
+- **Next at revisit:** create a dedicated goal workspace and specify health dimensions, ownership, severity, autonomy levels, repair boundaries and acceptance criteria.
+
+# SHIT Project Log
+
 ## 2026-11-06 — 28 source overviews corrected and broad anti-placeholder coverage
 
 - **Additional analytics documentation:** specified the exact input/output contracts for advanced analytics, assistant analytics, listening-time summary, and music analytics builders.
