@@ -243,10 +243,17 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Build compact, queryable analytics from the canonical Last.fm archive. The raw data/scrobbles.json remains the source of truth. This script creates assistant_data/ JSON files that can be fetched individually without loading the full archive.
-# Location: Maintained implementation in scripts/analytics/build_assistant_data.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_assistant_data.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_assistant_data). See docs/ for longer operational and data-contract guides.
+# Purpose: Build the assistant-facing historical analytics index from the
+#          canonical Last.fm scrobble archive.
+# Inputs: data/scrobbles.json; records retain Last.fm timestamps, names and IDs.
+# Outputs: Rebuilds assistant_data overview, artist/track/album rankings,
+#          artist lookup index, listening patterns, annual/monthly summaries
+#          and manifest. Also reads the existing music overview to link coverage.
+# Semantics: Calendar buckets are UTC; track and album identities include artist
+#            to avoid collapsing identical titles across different artists.
+# Side effects: Local JSON reads/writes only; no provider calls and no mutation
+#               of data/scrobbles.json or the canonical music Library.
+# Run: python compat/build_assistant_data.py (from the repository root).
+# Related: scripts/analytics/build_advanced_analytics.py;
+#          docs/REPOSITORY_FILE_INDEX.md; assistant_data/manifest.json.
 # -----------------------------------------------------------------------------
