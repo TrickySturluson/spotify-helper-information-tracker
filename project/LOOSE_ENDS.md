@@ -2,17 +2,26 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-06 (audit baseline `aacb70fa`; subsequent same-session commits contain documentation-only audit updates)  
+**Last reviewed:** 2026-11-06 (default branch main at 80546ae51aeccda56efc6d0b1be554d41baa3c73; Buddy branch/PR state independently rechecked before this batch)  
 **Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
-## Babel AI continuation — INTEGRATED; RUNNER FIX VERIFIED; API QUOTA BLOCKER
+## Scheduled ChatGPT Buddy — CURRENT PATH; PR #163 DRAFT
+
+- The current recurring path is the scheduled ChatGPT task **SHIT Buddy — daily Babel continuation**, using the connected GitHub app. It is separate from the repository-hosted Codex/API experiment below and does not depend on that workflow or an OpenAI API key.
+- The persistent branch babel/chatgpt-buddy and one open draft PR #163 already existed. Before this batch, PR #163 targeted main, was six commits ahead/one behind, and GitHub reported mergeable_state=clean. Its pre-batch head 2090ad97648851f5138856795600f4e582849efb passed Daily curator tests [#42188373512](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42188373512) and the public repository security scan [#42188373527](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42188373527). These are prior-head checks only; the new batch needs its own PR CI.
+- The proposed mandatory daily Buddy-check rule is present in PR #163's branch but is **not merged mainline policy** until the user reviews and merges the draft.
+- **PR #162, separate temporary connectivity proof:** remains open/draft and was not modified. Its security scan [#42186485000](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42186485000) passed; Daily curator tests [#42186485002](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42186485002) failed because the PR-only guide docs/BABEL_SCHEDULED_TASK_CONNECTIVITY_TEST.md is missing from docs/README.md, triggering test_documentation_index_lists_every_technical_guide. The user retains the decision to retain or close this proof PR.
+- **PR #161, existing documentation delivery:** remains open/draft with 117 changed files, 2,330 additions and 493 deletions. Current compare reports 571 commits ahead and 135 behind main; GitHub reports mergeable_state=dirty. Its historical tests/security checks passed on its own old head, but there are no submitted reviews or review threads. Do not merge or rebase wholesale; use it only as an audit/reference source.
+- **Next:** keep PR #163 draft, inspect its updated head/CI after this batch, and continue the semantic documentation audit. Do not modify PR #161 or #162.
+
+## Repository-hosted Codex worker — INTEGRATED; RUNNER FIX VERIFIED; API QUOTA BLOCKER (SEPARATE PATH)
 
 - Repository configuration and the ChatGPT push trigger are committed. The user reports `OPENAI_API_KEY` is configured and Actions is allowed to create pull requests.
 - First run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313): preflight passed; Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. This matches [upstream issue #188](https://github.com/openai/codex-action/issues/188).
-- The Codex job is pinned to `ubuntu-24.04` with `drop-sudo` retained. Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and sandbox isolation, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Buddy PR was produced.
+- The Codex job is pinned to `ubuntu-24.04` with `drop-sudo` retained. Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and sandbox isolation, then Codex returned `Quota exceeded. Check your plan and billing details.` Validation and publisher were skipped; no Codex proposal PR was produced.
 - **Current blocker:** OpenAI API project/organization quota or billing limit. User must check API billing/usage limits and ensure quota is available. ChatGPT subscription does not supply API credits. Do not retry until the user confirms quota is available; never switch to `unsafe`.
 - Repository tests/security are green on the runner-fix commit: Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed 478 tests; security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed.
-- Buddy remains integrated but not operationally verified until a post-quota run completes Codex, validation, full tests, and isolated PR publication. See [docs/BABEL_AGENT.md](../docs/BABEL_AGENT.md).
+- The repository-hosted Codex worker remains integrated but not operationally verified; it is a separate API-based experiment, not the current scheduled ChatGPT Buddy path. See [docs/BABEL_AGENT.md](../docs/BABEL_AGENT.md).
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
 The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
@@ -23,7 +32,7 @@ The user explicitly requires documentation to be the sole active project priorit
 - **Complete inventory:** verified at commit `aacb70fa` using a non-recursive root tree and nine recursive directory-scoped tree queries. Every directory result returned `truncated=false`. Total: **28,241 file/blob entries**; `assistant_data/` contains 27,981. The inventory acceptance item is satisfied for that snapshot; refresh after structural changes.
 - **CI/security:** Daily curator run #42168520574 passed all 460 tests on `8153028e`; full-history Gitleaks scan #42168520598 passed on the same commit. These results verify automated checks, not semantic correctness of every guide.
 - **Enrichment workflow incident — RESOLVED:** Enrich Music Metadata run #42166959478 completed successfully and published commit `aacb70fa`. It merged 195 discovery candidates into the canonical Library, whose audit reported 13,239 songs. Duration coverage is 8,254/11,130 tracks and 139,758/152,005 scrobbles (91.9%). MusicBrainz added 67 duration matches from 182 lookups; artist profiles: 3,373 matched; track profiles with sourced tags: 229; matched album profiles: 905. Final integrity audit: 9 checks, 18 warnings, 0 errors. The warnings are a lack of captured playback intervals and 16 Spotify playlists whose item contents were inaccessible; preserved snapshots may be stale. No Spotify playlist was modified.
-- **Open documentation PR #161:** open/draft, 117 changed files, 2,330 additions and 493 deletions. Its branch is divergent from current main (571 commits ahead, 29 behind); it is not safe to merge blindly. Use it as an audit/reference source and selectively port reviewed documentation/tests. Its checks passed on its own branch, not on current main.
+- **Open documentation PR #161:** open/draft, 117 changed files, 2,330 additions and 493 deletions. Its branch is divergent from current main (571 commits ahead, 135 behind); it is not safe to merge blindly. Use it as an audit/reference source and selectively port reviewed documentation/tests. Its checks passed on its own branch, not on current main.
 - **Other open feature PRs:** #158, #159, #160, #120, #121, #65 and #60 remain proposals. Their behavior is not merged mainline behavior.
 
 ## Newly verified high-risk documentation findings
@@ -38,7 +47,7 @@ The user explicitly requires documentation to be the sole active project priorit
 
 ## Remaining documentation work
 
-1. Complete source-to-document semantic review across all 55 implementation modules, 40 compatibility launchers, 44 tests, 17 workflows and 21 technical guides.
+1. Complete source-to-document semantic review across all 55 implementation modules, 40 compatibility launchers, 44 tests, 18 workflows and 21 technical guides.
 2. Correct high-risk mismatches: Daily force/idempotency, Library resolver/index rebuild writes, Spotify snapshot-versus-listening evidence, Great Migration token rotation and backup boundaries, and Reference Library schedule.
 3. Port and adapt PR #161's useful regression checks for workflow budgets/allowlists, local Markdown links, paused roadmaps, and high-risk side-effect contracts. Do not import stale branch assertions without checking current source.
 4. Reconcile all goal roadmaps, data schemas/provenance, workflow permissions/trigger filters/publication behavior, open PRs/issues and domain-specific loose ends.
