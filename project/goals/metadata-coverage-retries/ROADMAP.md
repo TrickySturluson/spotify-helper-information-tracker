@@ -1,6 +1,6 @@
 # Metadata Coverage & Provider Retries — Roadmap
 
-**Last reviewed:** 2026-11-05  
+**Last reviewed:** 2026-11-06  
 **Status:** Design specification exists; planner/executor implementation and live-schema verification must be confirmed before use.
 
 ## Repository-wide priority override — 2026-11-06
