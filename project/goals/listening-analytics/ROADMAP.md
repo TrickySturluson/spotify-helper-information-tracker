@@ -28,6 +28,11 @@ Provide accurate historical listening analytics and prospective playback evidenc
 ## Acceptance criteria
 Every metric names its source and period; tracker coverage is visible; no event type is silently converted into a scrobble; totals reconcile to canonical data.
 
+## Open proposals (not merged)
+
+- [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open and not merged; it proposes a read-only observer for weekly appearances/disappearances, Liked Songs changes and separately labelled post-exposure Last.fm scrobbles. It does not expose Spotify's explicit hide action or write playlists.
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; its watchdog remains a specification until runtime implementation and tests are verified.
+
 ## Next action
 Inspect current archive manifest, analytics outputs, tracker workflow/runtime and coverage report; publish fresh separately sourced baselines.
 
