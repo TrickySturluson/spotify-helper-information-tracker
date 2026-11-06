@@ -2,6 +2,11 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Discover Weekly observer proposal status verified
+
+- [PR #158](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) remains open and unmerged. Its observed full tests and full-history security scan passed. It proposes read-only Discover Weekly exposure, Liked Songs and post-exposure scrobble tracking; do not describe this observer as deployed until merged and verified.
+- [PR #121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) remains an open draft and includes a listening-ingestion watchdog specification, not a verified runtime watchdog.
+
 ## 2026-11-06 — Update Last.fm History publication also failed on shared-state conflicts
 
 - Run #42146153098 completed its provider/data steps successfully: Last.fm history import, artist genre/mood/theme enrichment, recent-top-200 track tag enrichment, duration prioritization, recording-ID resolution, AcousticBrainz fetch and derived statistics all completed.
