@@ -1,0 +1,5 @@
+{
+  "purpose": "Trigger the bounded Babel documentation continuation workflow.",
+  "source_ref": "main",
+  "requested_by": "ChatGPT via connected GitHub integration"
+}
