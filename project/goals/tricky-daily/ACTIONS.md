@@ -85,3 +85,11 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Exposure-boundary refinement:** current branch also changes artist-level negative feedback so a manually removed track teaches broader artist dislike only when post-add measured playback or Last.fm scrobbles exist. Exact track blacklist enforcement remains unconditional. Added integration-style tests that load the actual blacklist and feedback JSON: an unexposed removal stays neutral for the artist but remains an exact hard block; measured exposure can inform the artist-level penalty.
 
 - **Unknown exposure-start safety:** adding removal-only rows exposed a Last.fm observer edge case: legacy rows with `first_added_at=null` could raise while comparing scrobble timestamps. The observer now skips post-add attribution when the exposure start is unknown, rather than crashing or inventing a start time. A regression test creates a removal-only row, supplies a matching Last.fm scrobble, and verifies it remains unattributed.
+
+## 2026-11-06 — Quota-aware staged Daily artist discovery
+
+- **Diagnosis:** `spotify_discovery.build_discovery_recommendations()` searched every artist in the 300-artist similar pool on the first Spotify pass. If the pool still failed to yield 60 distinct artists, it then queried deeper pages across all 300 artists. This creates a large Search request burst and is consistent with the observed HTTP 429 quota failure.
+- **Change on branch `daily-quota-aware-discovery-current`:** Daily now searches an initial cohort of 80 artists. If fewer than 60 unique candidates are available, it expands cumulative coverage to 160, then 300. Only after exhausting the artist pool does it query deeper result pages and, as a last resort, relax the artist ceiling. General non-Daily discovery is unchanged.
+- **Safety:** exact blacklist checks, URI deduplication, the 60-track requirement, and artist-cap fallback semantics remain intact. Candidate generation does not mutate playlists.
+- **Tests:** added coverage for the 80 → 160 → 300 cumulative batches and the small-pool single-batch case. Full CI is pending.
+- **Next:** verify full CI, inspect Spotify request metrics on the next authorized preview/cycle, and tune the initial cohort only from measured candidate yield. Avoid another large live discovery request until this branch is reviewed.
