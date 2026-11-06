@@ -95,13 +95,17 @@ def record_manual_removals(rows):
         if not isinstance(events, list):
             raise ValueError(f"Daily removal history is malformed for {uri}; refusing to overwrite it.")
         detected_at = item.get("detected_at") or item.get("removed_at") or "unknown"
-        identity = (detected_at, "user_removed")
-        existing = {(event.get("at"), event.get("reason")) for event in events if isinstance(event, dict)}
+        identity = (detected_at, "user_removed", item.get("last_present_cycle"))
+        existing = {
+            (event.get("at"), event.get("reason"), event.get("last_present_cycle"))
+            for event in events if isinstance(event, dict)
+        }
         if identity in existing:
             continue
         events.append({
             "at": detected_at, "reason": "user_removed",
             "source": "daily_snapshot_reconciliation",
+            "last_present_cycle": item.get("last_present_cycle"),
         })
         record["last_removed_at"] = detected_at
         if artist and not record.get("artist"):
