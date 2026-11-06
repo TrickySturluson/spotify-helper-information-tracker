@@ -1,3 +1,14 @@
+## 2026-11-06 — Retry-After regression tests found outside unittest discovery
+
+- **Finding:** source inspection of tests/test_spotify_playlist_manager.py showed that three existing cooldown tests were indented beneath the module-level if __name__ == "__main__" block, after unittest.main(). They were not defined during normal unittest discovery and therefore did not provide CI coverage for Retry-After persistence, active-cooldown client initialization, or expired-cooldown handling.
+- **Correction proposed:** PR [#169](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/169) moves the three existing tests into PlaylistManagerTests before the script-entry guard. Branch: daily-cooldown-test-discovery-fix; head: ab21a2f260a3bad8d4f30ec1934ff2bcfde6bb1a.
+- **Read-back:** the branch file was fetched after update; all three methods are class-indented at lines 274, 301 and 312, before the module guard at line 323. PR #169 changes one test file only; no runtime code or workflow behavior changes.
+- **CI:** PR test run [#42272223932](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272223932) and public security scan [#42272224111](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272224111) were queued/in progress at the time of this entry. Completion and actual test discovery count remain pending.
+- **Safety:** no Spotify/Last.fm/provider request, workflow dispatch, playlist write, description mutation, or generated-data change was performed.
+- **Next:** inspect PR CI, confirm the cooldown tests are counted and pass, and only then merge the test-only correction. Continue to respect the persisted Spotify cooldown until 2026-11-06T19:49:46Z.
+
+---
+
 ## 2026-11-06 — Whitelist contract audit and latest mainline verification
 
 - **Purpose:** close the remaining P0 documentation question around whether a whitelist can accidentally erase unrelated or newer Daily removal decisions.
