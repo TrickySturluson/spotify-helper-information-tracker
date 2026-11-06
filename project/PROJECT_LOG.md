@@ -19,6 +19,16 @@
 
 # SHIT Project Log
 
+## 2026-11-06 — Latest read-only canonical Library baseline refreshed
+
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs, 6,497 artists and 7,969 albums; index counts matched and Library health returned `ok=true`, zero errors and zero warnings. Full-history security scan [#42154433307](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433307) passed on the same commit.
+- Alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs and 11,651 name-candidate keys.
+- Confidence audit: identity high 7,660 / low 5,503, identity drift 0; metadata-confidence missing entries 0, mismatches 214 (all `track_tags`). Duration metadata confidence low on 8,187 records.
+- Freshness plan: 11 unknown-age baseline candidates, 25 due tasks selected, 0 baseline tasks selected, 11 missing timestamps, 32,506 no-data fields and 1,968 missing-provenance fields. No provider requests or writes occurred.
+- The preceding general repository audit had one playback-coverage warning and 16 inaccessible Spotify playlist snapshots (18 warning lines including the aggregate summary); the separate Library health report itself had zero warnings. No Spotify playlist write occurred.
+- These are read-only diagnostics on the documentation PR checkout, which was 0 commits behind main at the time; they do not represent enrichment execution.
+
+
 ## 2026-11-06 — Documentation guard verification and continuity cleanup
 
 - Corrected the test-module overview guard fixture after CI exposed a self-match; full Daily curator CI #42152796114 and full-history security scan #42152796120 passed on corrected commit `9cbf695291fa073f96669f20e83404eccba4e45e`.
