@@ -129,3 +129,11 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Regression:** added a workflow-contract test asserting the cooldown file is persisted under `always()` and included in the step's trigger condition.
 - **Safety:** no Spotify request or playlist mutation is performed by the workflow change. It makes the existing fail-closed cooldown durable across scheduled Actions runs.
 - **Verification:** full CI pending on PR #168.
+
+## 2026-11-06 — Quota-aware discovery and durable cooldown merged
+
+- **Merge:** PR #168 merged as `232db2e6891b19077843b719cf9cb1cd67bf6356`.
+- **Staged discovery:** Daily now searches 80 similar artists initially, doubles cumulative coverage to 160 and then 300 only if the candidate pool cannot fill 60 unique artists. Deeper Spotify result pages are deferred until the available artist pool is exhausted. Other playlist discovery behavior is unchanged.
+- **Cooldown persistence:** the midnight workflow's always-run failure recovery now commits `.github/spotify_api_cooldown.json` even when the cycle fails before accepted replacement state. The latest observed 429 from run #42268583897 was also recorded with its 5,781-second Retry-After deadline.
+- **Verification:** full 509-test suite passed in run [#42269711590](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42269711590); public repository security scan passed in run [#42269711587](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42269711587). Main-branch post-merge checks are running separately.
+- **Safety:** no playlist mutation or Spotify Search request was made by this change. The 60-track target, exact blacklist, whitelist, URI uniqueness, and final artist-cap fallback remain intact.
