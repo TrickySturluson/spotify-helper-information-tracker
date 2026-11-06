@@ -24,8 +24,12 @@ Freshness is per field and source. One updated field must not make other fields 
 ## Acceptance criteria
 Planner repeatability; no provider calls in planning; no fresh-field refetch; failed lookups do not overwrite valid evidence; every selection/skip is explainable; request caps/cooldowns are enforced.
 
-## Next action
-After documentation completion, run a fresh read-only planner preview and record the post-#114 unknown-age baseline; verify the prior #115–#118 audit evidence before considering any provider-backed executor.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+After documentation completion, run a fresh read-only planner preview and record the post-#114 unknown-age baseline; verify the prior #115–#118 audit evidence before considering any provider-backed executor.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Coverage retries](../metadata-coverage-retries/ROADMAP.md)
