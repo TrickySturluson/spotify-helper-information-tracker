@@ -1,3 +1,9 @@
+## 2026-11-06 — Freshness validation and open PR status
+
+- Daily curator tests run #42149783445 passed the bounded, read-only metadata freshness planning step on draft PR #161's then-current base data; this did not run provider enrichment or modify Library records.
+- PR #120 remains an open draft proposing incremental Library enrichment/sorter development. Do not treat it as merged or assume its behavior is present.
+- Feature implementation and provider calls in this goal remain paused until documentation acceptance criteria pass.
+
 ## 2026-11-02 — Full duration timestamp recovery preview passed (issue #105)
 
 - The read-only backfill scanned 32 legacy shards and 11,130 rows; 8,121 rows had valid Last.fm timestamps and exact canonical ID/duration/source matches with `matched` status.
