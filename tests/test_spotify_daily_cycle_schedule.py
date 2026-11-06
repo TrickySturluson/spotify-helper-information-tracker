@@ -211,7 +211,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
     def test_description_update_precedes_readback_and_retries_spotify_lag(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
-        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
+        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
         description_at = source.index("update_description_and_verify(sp, next_description)", replace_at)
         verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', description_at)
         self.assertLess(replace_at, description_at)
@@ -228,7 +228,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
     def test_replacement_state_is_persisted_before_post_change_read(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
-        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris)")
+        replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
         persist_at = source.index("manager.write(manager.CONFIG, config)", replace_at)
         output_at = source.index('set_action_output("cycled", "true")', persist_at)
         audit_at = source.index('event="daily_cycle_replacement_accepted"', output_at)
