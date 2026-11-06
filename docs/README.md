@@ -1,5 +1,7 @@
 # SHIT Documentation Index
 
+**SHIT Documentation & Continuity** is the public-facing name of this documentation system. Its internal codename is **Babel**. Read [BABEL.md](BABEL.md) for the naming convention, purpose, scope, and operating contract.
+
 This index is the navigation map for **Spotify Helper & Information Tracker (SHIT)**. It is written for contributors and assistant sessions that have no access to previous conversations.
 
 ## Start here
