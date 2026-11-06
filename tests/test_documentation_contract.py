@@ -185,6 +185,19 @@ class DocumentationContractTests(unittest.TestCase):
                 with self.subTest(workflow=workflow.name, phrase=phrase):
                     self.assertNotIn(phrase, overview)
 
+    def test_daily_force_idempotency_gap_is_documented(self):
+        workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        cycle_guide = (ROOT / "docs" / "TRICKY_DAILY_CYCLE.md").read_text(encoding="utf-8")
+        todo = (ROOT / "docs" / "TRICKY_DAILY_TODO.md").read_text(encoding="utf-8")
+        roadmap = (ROOT / "project" / "goals" / "tricky-daily" / "ROADMAP.md").read_text(encoding="utf-8")
+        schedule_test = (ROOT / "tests" / "test_spotify_daily_cycle_schedule.py").read_text(encoding="utf-8")
+
+        self.assertIn("same-Eastern-date completion guard", workflow_catalogue)
+        self.assertIn("currently bypasses", cycle_guide)
+        self.assertIn("Known P0 discrepancy", todo)
+        self.assertIn("Current source discrepancy", roadmap)
+        self.assertIn("cycle_already_completed(config, \"2026-11-05\", force=True)", schedule_test)
+
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("DOCUMENTATION_RULES.md", source)
