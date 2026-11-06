@@ -61,3 +61,13 @@ Chronological handoff record for substantial project work. New entries go at the
 - **Documentation:** added the target architecture, central source-of-truth rules, PC-independence acceptance criteria, and current OAuth/token synchronization gap to the Spotify operations guide and project control center.
 - **Verified current boundary:** the playlist-control workflow runs on GitHub Actions. The manager's OAuth callback still uses `127.0.0.1:8888`, and optional playback tracking depends on a local process; these are setup/local-only limits and must not be represented as always-on cloud features.
 - **Decision:** use GitHub branches, pull requests, and Actions as the canonical path for code and remote operations. Treat the local token file as a cache only, never as the Actions credential source of truth. Do not build on the user's PC unless explicitly requested.
+
+
+## 2026-11-05 — Mandatory roadmap and documentation-maintenance standard
+
+- **User direction:** every project/workstream must have a durable roadmap specifically so a future assistant can reference plans without previous chat knowledge. Documentation must always be maintained and must explicitly instruct future assistants to keep it current.
+- **Work completed:** added `project/DOCUMENTATION_RULES.md`; created `ROADMAP.md` for all 11 existing goal workspaces; updated repository/project entry points and the goal index to make the standard mandatory.
+- **Required structure:** each goal maintains `ROADMAP.md` (plan/status/next action/acceptance criteria), `README.md` (scope/design/invariants), and `ACTIONS.md` (dated implementation and verification evidence). Central `NEXT_WORK.md`, `LOOSE_ENDS.md`, and `PROJECT_LOG.md` remain the repository-level continuity records.
+- **Operating rule:** read the relevant roadmap before work and update documentation in the same session as implementation, testing, failures, decisions, or blockers. Never leave project knowledge only in chat; never claim planned work is implemented or a merged change is operationally verified without evidence.
+- **Verification:** documentation-only changes. Roadmap files were created for all 11 indexed goal folders; index and entry-point updates link to the rules and roadmaps. No code, Library data, provider state, listening history, or Spotify playlists were changed.
+- **Next action:** audit all goal folders for missing/stale `ACTIONS.md`/README files and reconcile each roadmap against latest main, open PRs, issues, and workflow runs. Then apply this standard to any new independent project/workstream.
