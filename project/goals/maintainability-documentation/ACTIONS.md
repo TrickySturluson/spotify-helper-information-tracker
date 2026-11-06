@@ -2,6 +2,18 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Exact PR #161 head CI and security verification passed
+
+- **Delivery branch:** `docs/semantic-documentation-audit`; PR [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161), head commit `2ac590af9d8dbc85ebf5a81bc951f4190695906a`.
+- **PR state:** open, draft, mergeable=true. Branch comparison against `main` reports 320 commits ahead and 0 behind. The PR remains a draft because the documentation acceptance audit is not complete.
+- **Daily curator CI:** run [#42157311583](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42157311583) completed successfully on the exact PR head. Every step passed: Python compilation, generated-data audit, read-only full Library health, read-only confidence audit, bounded read-only freshness plan, maintained-file documentation checks and full unittest discovery.
+- **Public repository security:** full-history Gitleaks scan [#42157311623](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42157311623) completed successfully on the same exact head.
+- **Evidence boundary:** these runs verify tests, documentation guardrails, read-only Library diagnostics and secret scanning on commit `2ac590a`. They do not prove every guide/overview is semantically accurate, complete the full tracked-file inventory, or verify live Spotify playlist behavior.
+- **Safety:** the CI checks performed no provider enrichment, repository data publication or Spotify playlist writes. No runtime implementation or workflow YAML changed for this verification update.
+- **Parallel-branch note:** a separate scratch branch `docs/semantic-overview-quality-20261105` was created during the resumed review before PR #161 was discovered. It overlaps the existing documentation PR and is not the delivery branch; do not merge or continue it. PR #161 already contains the broader 32-module overview audit and stronger repository-wide checks.
+- **Next action:** continue semantic guide/source reconciliation, complete the full tracked-file inventory and fresh-session simulation; keep PR #161 draft/unmerged until all acceptance criteria are met.
+
+
 ## 2026-11-06 — Enrichment budget documentation now matches scheduled and manual workflow limits
 
 - Compared `docs/RECENT_TRACK_ENRICHMENT.md` and `docs/AUTOMATED_AUDIO_METADATA.md` with `.github/workflows/enrich-music-metadata.yml` and `scripts/music/build_track_profiles.py`.
