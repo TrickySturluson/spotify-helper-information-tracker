@@ -38,6 +38,23 @@ The user has explicitly directed that documentation be the sole active project p
 - Draft PR #161 (`docs/semantic-documentation-audit`) contains 29 source overview rewrites, complete indexing of all 21 technical guides, stronger implementation/workflow overview checks, repository-wide Markdown local-link validation and explicit pause notes in all 12 other goal roadmaps.
 - Latest CI must be checked against the current PR head. Do not merge until all checks pass and any discovered documentation gaps are repaired.
 
+## Open pull requests — verified 2026-11-06
+
+All eight pull requests below were open when checked. They are proposals/branches, not merged mainline behavior.
+
+| PR | Scope | State |
+|---|---|---|
+| [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161) | Documentation completeness and file-overview quality | Draft; CI pending |
+| [#160](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) | Exposure-aware Tricky Daily discovery | Open |
+| [#159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) | Tricky Daily DST schedule gating | Open |
+| [#158](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) | Discover Weekly exposure/feedback tracking | Open |
+| [#121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) | Offline sorter evaluation and ingestion watchdog spec | Draft |
+| [#120](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) | Incremental Library enrichment and sorter development | Draft |
+| [#65](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65) | Read-only Library coverage planner | Draft |
+| [#60](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60) | Provenance-aware recommendation ingestion | Open |
+
+Reinspect each PR's current diff, head/base relationship and checks before using its work. Several are old and may be superseded by mainline implementation; do not assume their contents are still needed or safe to merge.
+
 ## Critical path
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
