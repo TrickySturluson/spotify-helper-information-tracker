@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Repository-hosted AI continuation worker integrated
+
+- **Purpose:** let Babel continue its documentation audit from GitHub checkpoints when a ChatGPT conversation ends, without depending on chat history.
+- **Files:** added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md, and docs/BABEL_AGENT.md. Updated docs/BABEL.md, docs/README.md, docs/WORKFLOWS.md, and the Maintainability & Documentation roadmap/README.
+- **Architecture:** scheduled every six hours and manually dispatchable; Codex resumes from babel/agent-progress; a separate publisher validates allowed documentation/test paths, rejects deletions and out-of-scope changes, runs full unittest discovery, then pushes the dedicated branch and creates/updates a review PR. It never auto-merges.
+- **Safety:** agent job has contents:read and workspace-scoped editing; publisher alone receives contents:write and pull-requests:write. No Spotify/provider credentials are passed. Prompt forbids runtime features, provider calls, playlist changes, generated data and workflow edits.
+- **Activation blocker:** the repository-file integration cannot provision GitHub Actions secrets. Repository owner must create an OpenAI API key and add it as the repository Actions secret OPENAI_API_KEY. ChatGPT subscription access is not an API key; API usage is billed separately. The repository setting allowing GitHub Actions to create pull requests may also need to be enabled.
+- **Verification:** files and documentation committed to main; no successful Actions run has yet been observed. Do not call the worker active until the secret is configured, the first run succeeds, full unittest discovery passes, and the branch/PR is inspected.
+- **Next:** configure the secret and required repository Actions setting, manually dispatch the workflow once, inspect logs/artifacts/PR, then leave the six-hour continuation schedule enabled until the explicit completion sentinel is set.
+
 ## 2026-11-06 — Great Migration preview side-effect contract source-audited
 
 - **Scope:** traced the `prepare-preview` and `preview` paths across `.github/workflows/great-migration.yml`, `scripts/music/prepare_music_library.py`, `scripts/music/library_cli.py`, and `scripts/music/migrate_full_music_library.py`.
