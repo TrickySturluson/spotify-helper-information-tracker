@@ -35,6 +35,9 @@ The user has explicitly directed that documentation be the sole active project p
 
 ## Documentation audit PR
 
+- Latest diagnosed CI issue: run #42151586707 failed the new test-module overview guard because its rejection fixture accidentally contained the layout test's own newly specific scope sentence. The test's own footer was correctly specific; the fixture was wrong. Corrected on `9cbf695291fa073f96669f20e83404eccba4e45e`.
+- Exact-head test run #42152796114 and security run #42152796120 were queued after the correction. Verify both against this head before merge; previous-head security success is not sufficient.
+
 - Latest observed PR #161 head at this checkpoint: `e65abf6c4c804bcf31e7b2e4ef2fc8c8e1457d0a`; it remained draft/unmerged. The GitHub connector reported `mergeable: false` and no check/status records for this exact SHA. Re-fetch PR metadata and check runs before deciding whether the branch is ready; do not rely on earlier successful checks for older heads.
 
 - Further semantic review found 11 generic test-module overviews that had passed the old marker-only check. Draft PR #161 now replaces those overviews and extends `tests/test_script_layout.py` to reject the generic purpose/scope/related boilerplate. `docs/CODE_DOCUMENTATION.md` and `docs/README.md` describe the added guard.
