@@ -73,7 +73,7 @@ class DocumentationContractTests(unittest.TestCase):
         for relative in CONTROL_DOCS:
             document = ROOT / relative
             source = document.read_text(encoding="utf-8")
-            targets = re.findall(r"(?<!!)\\[[^\\]]+\\]\\(([^)]+)\\)", source)
+            targets = re.findall(r"(?<!!)\[[^\]]+\]\(([^)]+)\)", source)
             for raw_target in targets:
                 target = raw_target.strip().split()[0].strip("<>")
                 parsed = urlsplit(target)
