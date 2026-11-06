@@ -56,6 +56,9 @@ GitHub may delay scheduled events. The current gate allows a scheduled catch-up 
 
 Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
 
+**Current force/idempotency discrepancy (source-checked 2026-11-06):** the runner passes `--force` to both the time-window check and `cycle_already_completed()`. The latter returns `False` when forced, so force currently bypasses the same-Eastern-date completion guard too. The schedule test explicitly asserts this. That is broader than the intended P0 contract, which says force may bypass the clock gate only; the same-date idempotency guard and all policy/safety checks must still apply. Treat this as an unresolved implementation defect, not intended behavior. Runtime/test correction is deferred under the documentation-only project pause; see [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
+
+
 After Spotify accepts the playlist replacement, the runner immediately writes
 a `replacement_accepted_pending_verification` state and publishes the
 `cycled=true` Actions output. The workflow persists that state even if the
@@ -69,11 +72,6 @@ snapshot was verified; inspect the audit and recovery artifact before retrying.
 The candidate builder filters exact negative track keys/URIs and selects unique candidate URIs before publication. The normal cycle caller also validates exactly 60 recommendations, non-empty primary artists, Spotify track-URI shape and URI uniqueness before it saves a backup and calls the protected replacement helper. After the write, the automatic read-back confirms the new description, exactly 60 returned items and a valid primary artist on every item, then saves the resulting snapshot and marks the cycle completed.
 
 **The automatic post-write check is narrower than the full P0 acceptance target.** It does not explicitly recheck duplicate URIs, recheck the blacklist against the returned snapshot, or compare the returned ordered URI list with the exact ordered candidate list. The separate `--verify-only` mode checks 60 items, duplicate URIs, blacklist membership and the expected description, but it also does not compare against a stored pre-write ordered staging payload. Therefore a completed cycle currently means the implemented checks passed; it must not be described as proving every P0 invariant. These remaining gaps are recorded in `docs/TRICKY_DAILY_TODO.md` and the Tricky Daily roadmap.
-
-Manual dispatch remains midnight-gated unless its `force` input is explicitly
-set to `true`. The separate remote-verification workflow is safe-test-only:
-it compiles modules and runs tests without contacting Spotify or changing a
-playlist.
 
 ## Rotating description
 
