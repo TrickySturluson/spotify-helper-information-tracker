@@ -48,9 +48,11 @@ index = {
     "track_playlists": {
         "spotify:track:old": [daily_id, "other-playlist"],
         "spotify:track:new": ["other-playlist"],
+        "spotify:track:orphaned": [daily_id],
     },
     "artist_playlists": {
         "old artist": [daily_id],
+        "orphan artist": [daily_id],
         "shared artist": [daily_id, "other-playlist"],
         "new artist": ["other-playlist"],
     },
@@ -85,6 +87,8 @@ assert daily_row["snapshot_id"] == "new" and daily_row["item_count"] == 2
 assert updated_index["track_playlists"]["spotify:track:old"] == ["other-playlist"]
 assert daily_id in updated_index["track_playlists"]["spotify:track:new-daily"]
 assert "old artist" not in updated_index["artist_playlists"]
+assert "orphan artist" not in updated_index["artist_playlists"]
+assert "spotify:track:orphaned" not in updated_index["track_playlists"]
 assert updated_index["artist_playlists"]["shared artist"] == [daily_id, "other-playlist"]
 assert daily_id in updated_index["artist_playlists"]["new artist"]
 """
