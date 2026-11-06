@@ -26,6 +26,13 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Runs #42146153098 (Update Last.fm History), #42146121471 (Enrich Music Metadata), and #42146097964 (Acoustic Metadata Enrichment) were still in progress at the latest inspection. Their completion and any commits/failures must be checked before the documentation audit continues. No workflow cancellation action was exposed by the connected GitHub interface.
 - Do not repeat this side effect. The workflow catalogue now explains that comment-only YAML edits can trigger configured push workflows; inspect push path filters before any future workflow edit.
 
+### Final workflow side-effect results (2026-11-06)
+- Reference Library #42146148971 succeeded and committed `3e989e33282efab6cc1416e35970e7c59af5f056` (249 files: 184 Library records, 63 Spotify reference/history files, 2 removal-state files; 4,445 additions / 644 deletions). Repository snapshots/removal feedback changed; no Spotify playlist was written.
+- Enrich Music Metadata #42146121471 failed publication during rebase with add/add conflicts in canonical song JSON files introduced by the Reference Library commit. Its workspace enrichment was not published.
+- Acoustic Metadata Enrichment #42146097964 completed 100 batches (2,500 IDs; 207 found; 2,293 misses; 322 total profiles; 3,678 negative-cache entries), skipped optional GetSongBPM because its key was not configured, then failed at `git add` because `assistant_data/music/getsongbpm_lookup_state.json` did not exist. No acoustic profile changes were published.
+- Update Last.fm History #42146153098 remained active at the latest check after successful Last.fm import and several enrichment steps; inspect its terminal status and any generated commit.
+- These accidental workflow runs are documented as an incident. Do not rerun or repair enrichment workflows during the documentation-only phase. Once docs are complete, the operational backlog must include shared-writer serialization/stale-base conflict handling and conditional staging of optional provider files.
+
 ### Current open pull requests observed during this audit
 - #158 — Discover Weekly exposure and feedback tracking (open, non-draft).
 - #159 — Tricky Daily DST schedule gating (open, non-draft).
