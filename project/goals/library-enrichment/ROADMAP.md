@@ -24,6 +24,10 @@ Run #18 reported ~91.1% duration coverage, 1,778 track profiles, 3,998 artist pr
 - These are workflow/publication reliability defects, not proof that the corresponding metadata is now present in canonical main. Do not count either run's uncommitted workspace output as Library coverage.
 - Remediation is deferred until the user-authorized documentation-only phase is complete. Future work: shared-writer serialization/stale-base conflict handling and conditional staging of optional provider files.
 
+## Additional publication finding — 2026-11-06
+
+The broad Update Last.fm History run #42146153098 completed its Last.fm, artist/track, duration, recording-ID, AcousticBrainz and statistics steps but failed to publish during rebase. It encountered 120 unique conflicts: 59 canonical music Library paths and 61 Spotify playlist snapshot/reference paths. The separate Reference Library run had committed changes to those shared paths. None of the Update run's workspace outputs should be counted as canonical mainline enrichment or analytics. Shared-writer serialization and safe stale-base publication are required future work.
+
 ## Roadmap
 1. **Fresh coverage audit — next.** Measure per-field and per-entity coverage, provenance, confidence, freshness, and provider checkpoints on current main.
 2. **Recording identity and duration.** Resolve exact recording IDs; preserve verified durations and legacy default estimates distinctly; backfill provenance only when exact evidence matches.
