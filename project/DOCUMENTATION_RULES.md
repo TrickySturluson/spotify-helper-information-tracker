@@ -101,3 +101,27 @@ Before ending a meaningful work session:
 If documentation is missing, incomplete, contradictory, or stale, repair it before or while proceeding. Do not silently ignore this standard. When the user gives a new requirement, preserve it in the appropriate roadmap and related contract. The user's explicit direction overrides an older plan; record the change and its implications.
 
 **This standard applies to every current and future workstream in SHIT, including Tricky Daily, playlist intelligence/sorting, playlist management and safety, discovery/recommendations, playback tracking, Last.fm analytics, Library migration/enrichment, metadata retries/freshness, playability, health/maintenance, confidence verification, and documentation/maintainability.**
+
+## Mandatory daily Buddy verification gate
+
+Every SHIT-related ChatGPT conversation must begin with a lightweight check of the scheduled SHIT Buddy automation and its latest run result. Use `America/New_York` to determine the current date.
+
+- If no successful, report-bearing run has completed for the current Eastern date, report **Buddy pending today** (or the exact failure/blocker). Repeat only a lightweight status check on subsequent SHIT conversations until today's run completes.
+- After a successful run appears, independently inspect its report, Buddy draft PR, complete changed-file list and diff, read-back evidence, and current CI/check state. Verify claims against source, tests, workflows, and repository evidence. Buddy's self-review and green CI are not sufficient on their own.
+- Record the Eastern date, run ID, PR/head SHA (or no-PR result), review outcome, and remaining user action in `ACTIVE_SESSION_BRIEF.md`.
+- On later SHIT conversations that day, skip a repeated full audit only when the run ID and PR head SHA match the reviewed checkpoint. Re-review on a new run, changed head, or material check/failure change.
+- Failed or incomplete runs do not count. This is conversation-triggered checking, not continuous background monitoring.
+
+## ChatGPT documentation publication authority
+
+The user has authorized ChatGPT to publish routine, independently verified documentation-only maintenance without waiting for per-change user review. This does not grant general repository or product authority.
+
+**Within scope after independent review:** Markdown documentation; workstream roadmaps, READMEs, and ACTIONS; project handoffs, indexes, logs, and source/operational explanations; and narrowly scoped documentation-contract tests needed to enforce a documentation invariant.
+
+Before publishing, ChatGPT must inspect the complete diff; verify claims against current source, tests, workflows, and GitHub evidence; check links, indexes, and cross-document consistency; run relevant safe checks; read every changed file back; and record exact evidence and remaining uncertainty. Use direct publication to `main` when the connected GitHub capability permits it. If direct publication is unavailable or a reviewable proposal is safer, use a separate ChatGPT-controlled branch/PR. Never modify Buddy's branch or represent ChatGPT work as Buddy work.
+
+**Outside scope; separate user authorization required:** runtime/product code or behavior; Spotify, Last.fm, or other provider operations; playlist changes; canonical or generated user data; workflow logic or triggers; repository permissions; secrets or credentials; security controls; dependency manifests; irreversible or ambiguous side effects; and changes whose scope cannot confidently be classified as documentation-only. When uncertain, hold the change and ask for the specific authorization needed.
+
+Buddy remains a documentation-only proposal worker. It may update its dedicated branch and draft PR, but may not write directly to `main`, approve, mark ready, close, merge, or self-merge. ChatGPT's publication authority does not extend to Buddy.
+
+ChatGPT may continue other explicitly authorized SHIT workstreams while Babel proceeds in parallel. Buddy remains focused on Babel. Every active workstream must maintain its roadmap and action log in the same session and obey its own safety and authorization boundaries. Routine documentation updates do not require user review; report material publications and blockers. The user retains authority over operational changes and any expansion of this policy.
