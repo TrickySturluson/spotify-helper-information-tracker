@@ -68,10 +68,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Merge local lyric-analysis evidence into recommendation track features. Run after build_music_analytics.py. If the local lyrics database is absent, the command exits cleanly without changing generated recommendation data.
-# Location: Maintained implementation in scripts/music/enrich_recommendation_lyrics.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_recommendation_lyrics.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Merge locally stored lyric-analysis features into recommendation
+#          track rows after the main music-analytics build.
+# Inputs: Optional data/lyrics/library.sqlite3 and required
+#         assistant_data/recommendations/track_features.json.
+# Outputs: Atomically replaces track_features.json with lyric-analysis fields
+#          joined by normalized artist/title identity.
+# Behavior: If the local lyrics database is absent, exits successfully without
+#           changing recommendation data; if features are absent, fails with
+#           an instruction to run build_music_analytics.py first.
+# Side effects: Local SQLite/JSON reads and temporary-file replacement only;
+#               no lyrics are fetched and no Spotify playlist writes occur.
+# Run: python compat/enrich_recommendation_lyrics.py (from repository root).
+# Related: scripts/music/lyrics_library.py; scripts/analytics/build_music_analytics.py;
+#          docs/LYRICS_LIBRARY.md.
 # -----------------------------------------------------------------------------
