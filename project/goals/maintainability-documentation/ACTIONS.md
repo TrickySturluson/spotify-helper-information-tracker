@@ -2,6 +2,13 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Latest available full CI and security runs passed before Great Migration allowlist guard
+
+- Daily curator CI [#42153534943](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42153534943) completed successfully on PR commit 4b49dc322797b158debf5900b57777c27816a70d. Compilation, generated-data audit, full read-only Library health/confidence checks, bounded freshness planning, maintained-file documentation checks and full unittest discovery all passed.
+- Full-history public repository security scan [#42153534925](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42153534925) also passed on that commit.
+- After those runs, the Great Migration runbook was corrected against the workflow source and a new regression test was added to ensure issue-title operations, manual-dispatch choices and documented commands remain identical. This new test and the final runbook edits are **not yet covered by those successful runs**; exact latest-head verification remains outstanding.
+- **Next:** obtain a fresh CI run that executes test_great_migration_issue_operations_match_workflow_and_guide, all documentation checks and full unittest discovery, plus a fresh full-history security scan, before treating the current PR head as fully verified.
+
 ## 2026-11-06 — Great Migration runbook reconciled with actual workflow allowlist
 - Added `test_great_migration_issue_operations_match_workflow_and_guide` to `tests/test_documentation_contract.py`: it parses the workflow's Python allowlist and manual-dispatch choice block, asserts both sets match, and requires every allowed issue title to appear in the runbook. Updated `tests/README.md` and `docs/README.md` to describe this guard. The regex fixture was source-inspected after correcting an initial double-escaping error; CI is still required to execute it.
 
