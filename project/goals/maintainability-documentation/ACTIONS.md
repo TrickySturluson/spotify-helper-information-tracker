@@ -2,6 +2,14 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Latest-head documentation check failure diagnosed and corrected
+
+- Exact-head CI run #42151586707 on `a92706e275230f01d46e58bfd1dbf68e0b39041a` failed only at `tests.test_script_layout`'s new test-module overview guard. Compilation, generated-data audit, full Library read-only health/confidence checks and bounded freshness planning all passed. Unit-test discovery was skipped because the dedicated layout guard failed first.
+- Retrieved the job log and identified a false-positive fixture: when making `test_script_layout.py`'s own FILE OVERVIEW specific, the same phrase was also accidentally substituted into the guard's `generic_phrases` rejection list. The guard therefore rejected its own correct scope sentence. This was a test-fixture defect, not a repository overview defect.
+- Corrected the fixture to reject the original generic scope phrase, while leaving the test module's own scope specific. Committed as `9cbf695291fa073f96669f20e83404eccba4e45e`.
+- The full-history public-repository security scan passed on the failed head (`#42151586743`). New exact-head CI runs #42152796114 (Daily curator tests) and #42152796120 (security scan) were queued for the corrected commit; final result remains pending.
+- **Next:** wait for both runs on exact head `9cbf695`, inspect failures/logs if any, then proceed with the wider semantic audit. Do not merge until exact-head tests and security both pass.
+
 ## 2026-11-06 — Final checkpoint before current-head CI
 
 - PR #161 was last inspected at head `e65abf6c4c804bcf31e7b2e4ef2fc8c8e1457d0a`; it remained draft/unmerged. GitHub reported `mergeable: false` and no check/status records for that exact SHA.
