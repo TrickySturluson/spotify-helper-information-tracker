@@ -1,4 +1,11 @@
 ## 2026-11-06 — Documentation audit uncovered workflow publication defects
+## 2026-11-06 — Root README schedule and Daily workflow table aligned
+
+- Found the root README still claimed the Spotify Reference Library refreshed every six hours, despite the workflow's daily 06:13 UTC cron and corrected technical guides. Updated the root README.
+- Extended the documentation-contract tests to assert the root README schedule and ensure the workflow matrix does not retain the stale Daily force "clock gate only" sentence.
+- No workflow/runtime/data/playlist behavior changed. Exact-head CI after this update is pending.
+
+
 ## 2026-11-06 — Documentation PR intermediate-head CI and security passed
 
 - Daily curator CI #42158020546 and full-history Gitleaks scan #42158020518 both passed on PR #161 commit `041bf54da9b25d8269fd193c8f8e1bd1c497d33a`.
