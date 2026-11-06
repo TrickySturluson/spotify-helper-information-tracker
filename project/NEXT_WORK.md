@@ -7,6 +7,13 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-05 — Documentation system expansion in progress
+
+- The repository now has root [AGENTS.md](../AGENTS.md), a central [documentation index](../docs/README.md), and a cross-workstream [project roadmap](ROADMAP.md). These complement—not replace—the mandatory [documentation rules](DOCUMENTATION_RULES.md), 11 individual goal roadmaps, the loose-ends register and chronological project log.
+- The repository root README links to the new navigation. No code, canonical Library data, provider state, listening history or Spotify playlists were changed by this documentation-only update.
+- **Current documentation priority:** audit actual tracked files against the repository file index and per-file overview standard; check all goal folders and links; identify stale/missing operational contracts; add automated coverage/link checks only after measuring the real gaps.
+- **Important limitation:** a complete repository tree/per-file coverage audit has not yet been run. Do not claim the documentation system is fully audited.
+
 ## Current active task — Playlist intelligence five-axis fit model
 
 **State: read-only preview pipeline merged to main** (PR #126, squash commit `2f84924b8e76510a1648bfc3e4e369935aa2bdf0`). Model version `five-axis-fit-v0.3`. Read [playlist-intelligence README](goals/playlist-intelligence/README.md), [model contract](goals/playlist-intelligence/PLAYLIST_FIT_MODEL.md), [preview runner guide](goals/playlist-intelligence/PLAYLIST_FIT_PREVIEW.md), and [ACTIONS.md](goals/playlist-intelligence/ACTIONS.md) before continuing.
