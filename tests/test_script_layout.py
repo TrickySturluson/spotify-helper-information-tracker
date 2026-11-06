@@ -102,7 +102,7 @@ class ScriptLayoutTests(unittest.TestCase):
     def test_test_module_overviews_are_specific_not_generic(self):
         generic_phrases = (
             "Purpose: Regression test module.",
-            "Scope: Compatibility shims, package layout, maintained-file overview coverage and documentation quality guards.",
+            "Scope: Regression checks for the behavior named by this test module.",
             "Related: Implementation lives under scripts/; longer behavior notes live in docs/.",
         )
         modules = sorted((ROOT / "tests").glob("test_*.py"))
