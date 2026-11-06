@@ -37,6 +37,8 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 
 ## Workstream roadmaps
 
+Tricky Daily now has its own dedicated [roadmap, scope guide and action history](../project/goals/tricky-daily/ROADMAP.md), alongside the broader Playlist Intelligence & Safety workstream. This keeps Daily-specific safety and cycle requirements independently resumable.
+
 The [goal index](../project/goals/README.md) links all current goal workspaces. Each goal must maintain three files:
 - `ROADMAP.md` for plans, status, milestones, acceptance criteria and next action.
 - `README.md` for scope, architecture, decisions and constraints.
