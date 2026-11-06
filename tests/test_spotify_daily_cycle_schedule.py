@@ -98,11 +98,71 @@ class DailyCycleScheduleTests(unittest.TestCase):
     def test_daily_verifies_sixty_tracks_after_spotify_readback_without_artist_ceiling(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         self.assertIn('verified_items = updated_snapshot["items"]', source)
-        self.assertIn("len(verified_items) != DAILY_TARGET_SIZE", source)
-        self.assertIn("len(verified_items) != DAILY_TARGET_SIZE", source)
+        self.assertIn("validate_daily_post_write(", source)
+        self.assertIn("actual_uris != expected_uris", source)
+        self.assertIn("len(set(actual_uris)) != len(actual_uris)", source)
+        self.assertIn("is_playlist_candidate_blocked", source)
         self.assertNotIn("count > 2 for count in verified_artist_counts.values()", source)
         self.assertIn('event="daily_post_change_validation_failed"', source)
 
+
+    def test_prewrite_guard_aborts_if_live_daily_changed_during_discovery(self):
+        from unittest.mock import Mock
+        before = {
+            "playlist": {"id": daily_cycle.DAILY_ID, "name": "Tricky Daily", "snapshot_id": "before"},
+            "items": [{"uri": "spotify:track:before"}],
+        }
+        live = {
+            "id": daily_cycle.DAILY_ID, "name": "Tricky Daily", "owner": {"id": "owner"},
+            "snapshot_id": "after", "tracks": {"total": 1},
+        }
+        sp = Mock()
+        sp.call.return_value = live
+        with patch.object(daily_cycle.manager, 'unlocked', return_value=True), patch.object(
+            daily_cycle.manager, 'snapshot',
+            return_value={"playlist": live, "items": [{"uri": "spotify:track:changed"}]},
+        ), patch.object(daily_cycle.manager, 'audit'):
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "changed after candidate generation"):
+                daily_cycle.assert_live_snapshot_unchanged(sp, before, "owner")
+        sp.call.assert_called_once_with("GET", f"/playlists/{daily_cycle.DAILY_ID}")
+
+    def test_prewrite_guard_accepts_only_complete_unchanged_snapshot(self):
+        from unittest.mock import Mock
+        before = {
+            "playlist": {"id": daily_cycle.DAILY_ID, "name": "Tricky Daily", "snapshot_id": "same"},
+            "items": [{"uri": "spotify:track:a"}],
+        }
+        live = {
+            "id": daily_cycle.DAILY_ID, "name": "Tricky Daily", "owner": {"id": "owner"},
+            "snapshot_id": "same", "tracks": {"total": 1},
+        }
+        live_snapshot = {"playlist": live, "items": [{"uri": "spotify:track:a"}]}
+        sp = Mock()
+        sp.call.return_value = live
+        with patch.object(daily_cycle.manager, 'unlocked', return_value=True), patch.object(
+            daily_cycle.manager, 'snapshot', return_value=live_snapshot
+        ):
+            result, snapshot = daily_cycle.assert_live_snapshot_unchanged(sp, before, "owner")
+        self.assertIs(result, live)
+        self.assertIs(snapshot, live_snapshot)
+
+    def test_postwrite_guard_rejects_order_mismatch_and_blacklist(self):
+        uris = ["spotify:track:" + str(i) for i in range(daily_cycle.DAILY_TARGET_SIZE)]
+        items = [{"uri": uri, "name": "Track " + str(i), "artists": ["Artist " + str(i)]} for i, uri in enumerate(uris)]
+        updated = {"tracks": {"total": daily_cycle.DAILY_TARGET_SIZE}}
+        snapshot = {"items": items}
+        with patch.object(daily_cycle.discovery, 'is_playlist_candidate_blocked', return_value=False):
+            self.assertEqual(
+                len(daily_cycle.validate_daily_post_write(updated, snapshot, uris, {})),
+                daily_cycle.DAILY_TARGET_SIZE,
+            )
+            reordered = dict(snapshot)
+            reordered['items'] = [items[1], items[0], *items[2:]]
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "ordered URI"):
+                daily_cycle.validate_daily_post_write(updated, reordered, uris, {})
+        with patch.object(daily_cycle.discovery, 'is_playlist_candidate_blocked', return_value=True):
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "blacklisted tracks"):
+                daily_cycle.validate_daily_post_write(updated, snapshot, uris, {})
     def test_daily_requires_sixty_tracks_and_valid_primary_artists(self):
         self.assertEqual(daily_cycle.DAILY_TARGET_SIZE, 60)
         self.assertEqual(daily_cycle.MINIMUM_RECOMMENDATIONS, 60)
