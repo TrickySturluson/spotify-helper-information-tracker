@@ -98,3 +98,34 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Exposure-boundary refinement:** current branch also changes artist-level negative feedback so a manually removed track teaches broader artist dislike only when post-add measured playback or Last.fm scrobbles exist. Exact track blacklist enforcement remains unconditional. Added integration-style tests that load the actual blacklist and feedback JSON: an unexposed removal stays neutral for the artist but remains an exact hard block; measured exposure can inform the artist-level penalty.
 
 - **Unknown exposure-start safety:** adding removal-only rows exposed a Last.fm observer edge case: legacy rows with `first_added_at=null` could raise while comparing scrobble timestamps. The observer now skips post-add attribution when the exposure start is unknown, rather than crashing or inventing a start time. A regression test creates a removal-only row, supplies a matching Last.fm scrobble, and verifies it remains unattributed.
+
+## 2026-11-06 — Quota-aware staged Daily artist discovery
+
+- **Diagnosis:** `spotify_discovery.build_discovery_recommendations()` searched every artist in the 300-artist similar pool on the first Spotify pass. If the pool still failed to yield 60 distinct artists, it then queried deeper pages across all 300 artists. This creates a large Search request burst and is consistent with the observed HTTP 429 quota failure.
+- **Change on branch `daily-quota-aware-discovery-current`:** Daily now searches an initial cohort of 80 artists. If fewer than 60 unique candidates are available, it expands cumulative coverage to 160, then 300. Only after exhausting the artist pool does it query deeper result pages and, as a last resort, relax the artist ceiling. General non-Daily discovery is unchanged.
+- **Safety:** exact blacklist checks, URI deduplication, the 60-track requirement, and artist-cap fallback semantics remain intact. Candidate generation does not mutate playlists.
+- **Tests:** added coverage for the 80 → 160 → 300 cumulative batches and the small-pool single-batch case. Full CI is pending.
+- **Next:** verify full CI, inspect Spotify request metrics on the next authorized preview/cycle, and tune the initial cohort only from measured candidate yield. Avoid another large live discovery request until this branch is reviewed.
+
+## 2026-11-06 — Manual-removal feedback merged and exercised by live GET-only snapshot
+
+- **Merge:** PR #166 merged to main as `49d1c61a74a77fb4c7e5d180247f5d8c9eeee7fc`. The branch passed the full 503-test suite and public repository security scan on its final head before merge.
+- **Production-path verification:** push-triggered snapshot workflow [#42268795272](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42268795272) passed all steps, including safe regression tests, credential validation, authenticated GET-only snapshot/reconciliation, and publication.
+- **Observed result:** snapshot captured `2026-11-06T18:14:16.140845+00:00`; 29 accessible unique tracks; baseline 29; blacklist 55; whitelist 0. The run added 55 manual-removal feedback events; the feedback ledger now contains 60 track rows. Spotify request metrics: 2 GET requests (`/me`, `/playlists/{id}`), 0 playlist mutations.
+- **Coverage:** liked-song observation is marked observed and Last.fm coverage available. Playback tracker remains unknown because `playback_data/segments.jsonl` is absent. Do not infer zero plays from this missing tracker file.
+- **Outcome:** the new removal feedback path is now merged and has successfully executed in the scheduled snapshot workflow. This does not mean the live playlist is at 60; it remains at 29 accessible tracks. Live replacement remains gated on safe exact-order staging/read-back and quota-aware candidate generation.
+
+## 2026-11-06 — Latest scheduled cycle quota failure and candidate preservation
+
+- **Run:** [#42268583897](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42268583897) passed compilation, unit tests, and Spotify credential validation, then failed on its first Spotify artist Search request with HTTP 429 QUOTA_EXCEEDED; Retry-After was 5,781 seconds. The run made no playlist mutations and skipped cycle-state/feedback persistence.
+- **Recovery artifact:** the failure-preservation step committed `assistant_data/recommendations/discovery_candidates.json` containing 195 candidate rows / 105 distinct artist names. These are name-only surfaced candidates (no Spotify track URIs), not a validated or publishable 60-track payload. Preserve them for diagnosis; do not treat them as Spotify-resolved.
+- **Quota response:** the reported cooldown ended around 2026-11-06 19:49 UTC. Do not retry Search/preview/cycle before the cooldown is confirmed clear.
+- **Improvement:** PR #168 implements progressive 80 → 160 → 300 artist search coverage to avoid paying for the full 300-artist Spotify Search burst when the initial cohort can already fill 60 unique tracks.
+
+## 2026-11-06 — Persist Spotify quota cooldown across failed Actions runs
+
+- **Fatal gap found:** the manager correctly wrote Retry-After to `.github/spotify_api_cooldown.json`, but the midnight workflow only committed that file in the accepted-cycle persistence step. When discovery failed before publishing `cycled=true`, that step was skipped. The failure recovery step committed only `discovery_candidates.json`, so the next scheduled workflow could lose the cooldown and retry Spotify while still rate-limited.
+- **Fix on branch `daily-quota-aware-discovery-current`:** the always-run recovery step now commits both surfaced candidates and `.github/spotify_api_cooldown.json`, and runs when either file exists. This preserves cooldown state even if discovery fails before producing candidates.
+- **Regression:** added a workflow-contract test asserting the cooldown file is persisted under `always()` and included in the step's trigger condition.
+- **Safety:** no Spotify request or playlist mutation is performed by the workflow change. It makes the existing fail-closed cooldown durable across scheduled Actions runs.
+- **Verification:** full CI pending on PR #168.
