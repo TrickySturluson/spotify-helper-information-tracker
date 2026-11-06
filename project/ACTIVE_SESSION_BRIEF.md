@@ -2,6 +2,16 @@
 
 > **Purpose:** This is the curated context bridge between active ChatGPT work and the repository-hosted documentation worker (Buddy). It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
 
+## Current policy and session overlay — 2026-11-06
+
+- Babel remains active, but ChatGPT may continue other explicitly authorized SHIT workstreams in parallel. Buddy remains a documentation-only worker focused on Babel.
+- The current Buddy is the scheduled ChatGPT task using the connected GitHub app; the repository-hosted Codex/API workflow is a separate quota-blocked experiment and must not be retried without explicit user reauthorization.
+- Today's Buddy run completed: run `a1354400-ad1c-8320-906e-888d071012ee` (scheduled 2026-11-06 09:00 Eastern; completed 15:04 UTC). It updated draft PR [#163](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/163), head `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`, with 13 documentation files. Independent review outcome: **NEEDS CHANGES**. The draft incorrectly says ChatGPT may publish documentation only through a draft PR and must never write to `main`; current mainline `AGENTS.md` and `project/DOCUMENTATION_RULES.md` explicitly authorize independently verified documentation-only publication directly to `main`. No PR reviews or inline threads were present. Do not merge this contradictory draft.
+- PR #163 CI evidence reported and independently rechecked: Daily curator tests run [#42239266411](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42239266411) completed successfully; public security scan [#42239266381](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42239266381) completed successfully. The test run reports 478 passing tests in Buddy's report. These checks do not resolve the policy contradiction or establish Babel completion.
+- ChatGPT resumed a read-only Tricky Daily audit as the first candidate SHIT workstream. Current main source `scripts/spotify/spotify_daily_cycle.py` (blob `81b0a9c2c8fbd5524ef5991183aa0a2b17ed07fc`) passes `args.force` into `cycle_already_completed()`; that function returns `False` when forced, so a second forced rotation can bypass the same-Eastern-date idempotency guard. Test `tests/test_spotify_daily_cycle_schedule.py` (blob `993ff5c269a45dc39a9eeeee6414da7ac5edb110`) explicitly asserts this behavior. This conflicts with the roadmap's requirement that force bypass only the clock gate.
+- No runtime code, tests, generated/canonical data, Spotify playlist, provider, workflow, secret, or permission was changed in this audit. A runtime/test correction and any live Spotify operation remain subject to separate, specific user authorization. The documented 58-item Daily snapshot is historical evidence, not a current live read.
+- **Next executable action:** obtain authorization for the Daily force/idempotency runtime and regression-test correction; then implement the smallest fix, run the focused tests and full safe suite, and update the Daily roadmap/action log. Continue Babel in parallel; do not merge PR #163 until its authority language is corrected.
+
 ## Operating rule
 
 During every active SHIT work session, ChatGPT must maintain this file as work proceeds. Update it after each material user decision, scope change, implementation change, source finding, test/audit result, failure, uncertainty, or blocker—not merely at session end. Update the affected goal `ROADMAP.md` and `ACTIONS.md` in the same session; also update `NEXT_WORK.md`, `LOOSE_ENDS.md`, and `PROJECT_LOG.md` when cross-project state or major decisions change.
@@ -21,7 +31,7 @@ Updating this file does not wake Buddy, alter an already-running job, or deliver
 
 ## Current priority
 
-**Babel documentation and continuity completion is the sole active SHIT workstream.** Do not resume feature development, enrichment, provider checks, or Spotify playlist operations until the Maintainability & Documentation roadmap acceptance criteria pass and a fresh-session simulation succeeds using repository documentation alone.
+**Babel remains active, and explicitly authorized SHIT workstreams may proceed in parallel.** ChatGPT may resume bounded SHIT feature work while Buddy remains focused on Babel. Operational/runtime changes, provider operations, generated data, and playlist writes still require specific user authorization and must follow the relevant workstream safeguards.
 
 Success means a new assistant with no prior chat history can identify the repository's goals, current verified state, constraints, evidence, unresolved risks, and next executable action from repository files alone.
 
@@ -33,7 +43,7 @@ The intended design is a coordinated health system: (1) health monitoring across
 
 Safety contract to carry forward: observe and diagnose by default; preserve canonical data and provenance; distinguish authoritative Last.fm scrobbles from optional Spotify playback observations; never invent, silently delete, or silently rewrite uncertain records; only allow explicitly scoped, deterministic, backed-up, reversible repairs with audit trail and post-repair verification; require user approval for consequential or ambiguous changes. Revisit and formalize scope, ownership, autonomy levels, health dimensions, audit records and acceptance criteria only after Babel's completion gate and cold-start simulation pass.
 
-## Current Buddy activation status
+## Historical repository-hosted Codex/API experiment (not the current Buddy path)
 
 - Workflow: `.github/workflows/babel-ai-continuation.yml`.
 - Instructions: `.github/babel/CONTINUATION_PROMPT.md`.
