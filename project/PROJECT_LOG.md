@@ -10,6 +10,14 @@
 
 # SHIT Project Log
 
+## 2026-11-06 — 28 source overviews corrected and broad anti-placeholder coverage
+
+- **Additional analytics documentation:** specified the exact input/output contracts for advanced analytics, assistant analytics, listening-time summary, and music analytics builders.
+- **Total:** 28 maintained implementation overviews now describe concrete inputs, outputs, provider behavior, identity semantics, safety boundaries, and invocation rather than generic fallback prose.
+- **Automated protection:** placeholder detection now covers maintained Python implementations, compatibility launchers, test modules, and workflow YAML files.
+- **Verification:** Daily curator run #42168360237 passed 460 tests on `8fb80589968a7868fd50bba5e13af7f787ed5c15`; security scan #42168221944 passed on the previous source-overview commit. Latest security scan #42168360298 was still in progress.
+- **Operational exception:** Enrich Music Metadata run #42166959478 remains in progress after being triggered by the source-comment path filter; duration, artist-profile, and recording-ID stages succeeded, with track-tag enrichment active. Reconcile generated-data publication when it finishes.
+
 ## 2026-11-06 — Documentation identity, overview guardrails, and CI verification
 
 - **Naming:** SHIT Documentation & Continuity is the public-facing name; Babel is its internal codename. The canonical guide is `docs/BABEL.md`.

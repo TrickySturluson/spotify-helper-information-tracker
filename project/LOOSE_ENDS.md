@@ -9,9 +9,9 @@ This is the cross-project register of known unfinished work discovered from the 
 
 - Public documentation-system name: **SHIT Documentation & Continuity**; internal codename: **Babel**. Canonical guide: `docs/BABEL.md`.
 - 13 goal workspaces remain present with ROADMAP/README/ACTIONS structure; current audit is focused on semantic accuracy and operational contracts rather than folder creation.
-- 24 known generic module overviews were replaced with concrete operating contracts. The anti-placeholder regression test scans all Python modules under `scripts/`; full suite run #42167694048 passed 460 tests.
-- Enrich Music Metadata run #42166959478 was triggered unintentionally by a source-comment-only documentation commit matching its push path filter. It was still executing MusicBrainz duration enrichment at last inspection. It has provider calls and contents:write publication, but no Spotify playlist-write steps. Reconcile its final result and any generated-data commit before declaring the repository state stable.
-- Security scan #42167849588 is now complete and successful. Enrich Music Metadata run #42166959478 remains in progress; update this register when it reaches terminal state and any generated-data publication is reconciled.
+- 28 generic or underspecified module overviews were replaced with concrete operating contracts. The anti-placeholder regression test scans maintained Python implementations, compatibility launchers, test modules, and workflow YAML files; full suite run #42168360237 passed 460 tests.
+- Enrich Music Metadata run #42166959478 was triggered unintentionally by a source-comment-only documentation commit matching its push path filter. At last inspection, its duration, artist-profile, and recording-ID stages had succeeded and track-tag enrichment was active. It has provider calls and contents:write publication, but no Spotify playlist-write steps. Reconcile its final result and any generated-data commit before declaring the repository state stable.
+- Security scan #42167849588 is complete and successful; security scan #42168360298 for the latest analytics-overview commit was still in progress. Enrich Music Metadata run #42166959478 remains in progress; update this register when it reaches terminal state and any generated-data publication is reconciled.
 
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 

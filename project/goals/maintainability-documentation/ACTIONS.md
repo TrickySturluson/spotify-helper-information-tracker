@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Four analytics overviews corrected; broad placeholder guard passed
+
+- **Additional source documentation:** replaced vague fallback overviews in `scripts/analytics/build_advanced_analytics.py`, `build_assistant_data.py`, `build_listening_time_summary.py`, and `build_music_analytics.py` with concrete inputs, outputs, identity/time semantics, baseline/verified-duration distinctions, and read/write behavior.
+- **Total corrected in this pass:** 28 implementation overviews: `scripts/spotify/spotify_playlist_manager.py`, `spotify_daily_playlist.py`, `spotify_playlist_cloud.py`, `spotify_reference_library.py`, `spotify_daily_feedback.py`, `spotify_discovery.py`, `track_playlist_removals.py`; `scripts/lastfm/update_lastfm.py`; `scripts/music/build_music_metadata.py`, `build_music_profiles.py`, `build_track_profiles.py`, `enrich_musicbrainz_durations.py`, `enrich_musicbrainz_recording_ids.py`, `enrich_acousticbrainz.py`, `enrich_getsongbpm.py`, `enrich_recommendation_lyrics.py`, `audio_analysis.py`, `lyrics_library.py`, `mood_inference.py`; `scripts/analytics/build_stats.py`, `build_playback_analytics.py`, `build_advanced_analytics.py`, `build_assistant_data.py`, `build_listening_time_summary.py`, `build_music_analytics.py`; `scripts/spotify/playlist_intelligence.py`, `playlist_metadata.py`, `spotify_playback_tracker.py`.
+- **Guardrail expansion:** anti-placeholder coverage now scans Python files under `scripts/`, `compat/`, and `tests/`, plus YAML workflows. This is broader than only modules with compatibility launchers.
+- **Verification:** Daily curator run #42168360237 passed **460 tests** on `8fb80589968a7868fd50bba5e13af7f787ed5c15`; the broad maintained-overview placeholder check passed. Public security scan #42168221944 passed for the preceding analytics-overview commit; scan #42168360298 for the expanded guard was still running at the last check.
+- **Operational side effect:** Enrich Music Metadata run #42166959478 remains active. Duration, artist-profile, and recording-ID steps succeeded; track-tag enrichment was active. Later workflow steps may enrich albums, optionally call Discogs, merge candidates into the canonical Library, rebuild analytics, audit, and publish generated data. It has no Spotify playlist-write step.
+- **Next:** reconcile the Enrich workflow's terminal status and any bot data commit; verify the latest security scan; continue semantic audit of remaining non-placeholder modules and guides, all goal workspaces, workflow details, open PRs/issues, and the complete tracked-file inventory.
+
 ## 2026-11-06 — Full documentation guardrails and public security scan passed
 
 - **CI:** Daily curator run #42167849568 completed successfully on `da3be75844e3ce28eacd46ce8d87960493402503`. The maintained-file documentation check passed, including scanning all Python files under `scripts/` for generic overview placeholders; full unittest discovery passed **460 tests**.
