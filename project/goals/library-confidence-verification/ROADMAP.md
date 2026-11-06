@@ -1,6 +1,6 @@
 # Library Identity & Metadata Confidence Verification — Roadmap
 
-**Last reviewed:** 2026-11-05  
+**Last reviewed:** 2026-11-06  
 **Status:** Read-only confidence audit is merged and has passed full-catalogue CI; direct evidence coverage and sorter readiness remain incomplete.
 
 ## Repository-wide priority override — 2026-11-06
