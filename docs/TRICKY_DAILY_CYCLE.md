@@ -86,7 +86,7 @@ replacing tracks.
 ## Live preflight
 
 `.github/workflows/spotify-daily-live-preflight.yml` runs on updates to the
-dedicated test trigger and every six hours. It refreshes the OAuth access token
+dedicated test trigger, every six hours, and manual `workflow_dispatch`. It refreshes the OAuth access token
 when required, then performs read-only Spotify requests to verify the
 authenticated account, the exact Tricky Daily ID and name, playlist ownership,
 the managed-playlist exception, the explicit unlock state, and playlist-item
