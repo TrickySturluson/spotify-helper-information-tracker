@@ -203,6 +203,10 @@ def assert_live_snapshot_unchanged(sp, expected_snapshot, expected_owner_id):
         raise manager.ManagerError("Pre-write guard found a changed or unexpected Daily owner.")
     if (live.get("name") or "").strip().casefold() != "tricky daily":
         raise manager.ManagerError("Pre-write guard found a changed Daily playlist name.")
+    expected_description = html.unescape(expected_playlist.get("description") or "")
+    live_description = html.unescape(live.get("description") or "")
+    if live_description != expected_description:
+        raise manager.ManagerError("Pre-write guard found a changed Daily description; aborting before write.")
     if not manager.unlocked(DAILY_ID):
         raise manager.ManagerError("Tricky Daily was locked during candidate generation; aborting before write.")
 
