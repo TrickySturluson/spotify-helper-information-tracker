@@ -14,7 +14,7 @@ Turn missing or weak metadata into a deterministic, bounded work queue without c
 Task identity is recording + provider + data family. Statuses include eligible, retry_wait, not_found, ambiguous, complete, blocked, and invalid. Timeouts, rate limits, network/server/parse/auth errors are not not_found. A failed provider must not block other providers. Planning is read-only and network-free. Successful values merge through canonical writer with provenance.
 
 ## Roadmap
-1. **Audit current PR/code and real schemas — next.** Verify PR #65 status, merged code (if any), current checkpoints, and actual canonical Library schema.
+1. **Audit current PR/code and real schemas — next.** PR #65 is open/draft on `codex/library-coverage-planner`, diverged (3 ahead, 599 behind current main; mergeable=true but stale). Its old-head test run #41361560857 failed during unit tests; security scan #41361560861 passed. Rebase, investigate the failure and rerun CI before relying on it. Verify merged code (if any), current checkpoints, and actual canonical Library schema.
 2. **Deterministic planner.** Generate one explainable task per eligible recording/provider/field family; deduplicate and preserve cooldown/negative-cache state.
 3. **Comprehensive tests.** Cover transient errors, definitive negatives, malformed records, ambiguous identities, duplicate tasks, cooldowns, provider isolation, and zero network/write side effects in planning.
 4. **Generated retry queue.** Build the queue from canonical records and provider state; queue is a worklist, never source of truth.
@@ -25,7 +25,7 @@ Task identity is recording + provider + data family. Statuses include eligible, 
 Repeated plans with unchanged inputs are deterministic; no ineligible request is issued; provider failure never becomes not_found; no successful value bypasses canonical writer; all network/write budgets are tested.
 
 ## Next action
-Inspect PR #65 and current main implementation/CI; reconcile this roadmap against actual code before implementing anything.
+Inspect PR #65 and current main implementation/CI after the documentation pause; reconcile this roadmap against actual code before implementing anything. Its historical test/security results are not current-main verification.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Retry contract](../../RETRY_QUEUE_SPEC.md)
