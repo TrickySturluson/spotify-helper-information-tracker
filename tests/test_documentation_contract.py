@@ -249,7 +249,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("currently bypasses", cycle_guide)
         self.assertIn("Known P0 discrepancy", todo)
         self.assertIn("Current source discrepancy", roadmap)
-        self.assertIn("Known P0 discrepancy: current --force also bypasses that completion guard", cycle_source)
+        self.assertIn("Known P0 discrepancy: current --force", cycle_source)
+        self.assertIn("also bypasses that completion guard", cycle_source)
         self.assertIn("intended behavior is to bypass the clock gate only", cycle_source)
         self.assertIn("cycle_already_completed(config, \"2026-11-05\", force=True)", schedule_test)
 
