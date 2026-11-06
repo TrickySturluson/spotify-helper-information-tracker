@@ -30,7 +30,7 @@ Use these as separate classification targets. Do not collapse them into one gene
 
 ### Sorter audition destination
 
-[SHITting Grounds](https://open.spotify.com/playlist/4aLdllLgRPh5vKOznkC97D) is the user's audition playlist for candidate tracks. It is registered in `playlist_roles.json`, but it was not present in the catalog snapshot when this registry was added. The next reference sync should retrieve it and create its normal per-playlist snapshot. Its registration here does not imply that any tracks have been added.
+[SHITting Grounds](https://open.spotify.com/playlist/4aLdllLgRPh5vKOznkC97D) is the user's audition playlist for candidate tracks. The latest reference catalog now includes it with a 25-item, accessible snapshot captured at `2026-11-06T01:47:59.822814+00:00` in `assistant_data/spotify/playlists/4aLdllLgRPh5vKOznkC97D.json`. **The curated role registry is stale:** its `playlist_roles.json` entry still has `snapshot_record: null`, `snapshot_accessible: null`, and `sync_status: not_yet_in_reference_snapshot`. Reconcile that registry entry after the documentation-only pause; do not treat the old registry status as evidence that the snapshot is missing. Its registration and snapshot do not imply that any tracks have been added.
 
 ### Broad taste references — not calibration targets
 
