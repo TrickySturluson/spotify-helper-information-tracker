@@ -1,8 +1,8 @@
 {
-  "cooldown_until": "2026-11-01T09:04:19+00:00",
-  "recorded_at": "2026-11-01T05:26:39+00:00",
-  "retry_after_seconds": 13060,
+  "cooldown_until": "2026-11-06T19:49:46+00:00",
+  "recorded_at": "2026-11-06T18:13:25+00:00",
+  "retry_after_seconds": 5781,
   "reason": "QUOTA_EXCEEDED",
-  "endpoint": "GET /me/playlists?limit=50",
-  "source": "Observed Spotify HTTP 429 response in GitHub Actions run 41276951724"
+  "endpoint": "GET /search?type=track&limit=10&offset=0&q=artist%3A%22Leith+Ross%22",
+  "source": "Observed Spotify HTTP 429 response in GitHub Actions run 42268583897"
 }
