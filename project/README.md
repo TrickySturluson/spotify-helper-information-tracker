@@ -1,4 +1,5 @@
 # SHIT Project Control Center
+> **Mandatory:** Follow [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md) for every task. Every goal must maintain `ROADMAP.md`, `README.md`, and `ACTIONS.md`; update documentation in the same session as implementation or verification. Do not rely on chat history.
 
 This folder is the human-readable control desk and durable memory for ongoing work on **Spotify Helper & Information Tracker (SHIT)**. The repository is the source of truth for project plans and decisions; chat history is not.
 
