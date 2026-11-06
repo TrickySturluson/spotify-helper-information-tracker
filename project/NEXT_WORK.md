@@ -9,6 +9,14 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-06 — Babel AI continuation integrated; activation pending
+
+- Added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
+- The OpenAI Codex worker is scheduled every six hours and manually dispatchable. It resumes from babel/agent-progress, makes bounded documentation-only changes, and publishes through one review PR. A separate publisher rejects non-documentation paths/deletions and runs full unittest discovery before pushing.
+- No Spotify/provider credentials or provider operations are available to the agent. It cannot modify runtime features, generated data, or workflow YAML; it never auto-merges.
+- **Activation pending:** add the OpenAI API key as repository Actions secret OPENAI_API_KEY, ensure GitHub Actions is allowed to create pull requests, then manually dispatch once and verify the run/PR. API usage is billed separately from ChatGPT subscription access.
+- See [Babel AI continuation guide](../docs/BABEL_AGENT.md). The worker is integrated but not yet operationally verified. Documentation remains the only SHIT priority.
+
 ## 2026-11-06 — Documentation-only priority; latest evidence reconciled
 
 **Audit baseline:** main at `aacb70fa0345369398c9bd049d00e24a9ca09eb6`; subsequent same-session commits contain documentation-only audit and handoff updates.
