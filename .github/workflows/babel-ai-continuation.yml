@@ -66,6 +66,8 @@ jobs:
     timeout-minutes: 50
     permissions:
       contents: read
+    outputs:
+      patch: ${{ steps.codex.outputs.final-message }}
     steps:
       - name: Check out the latest Babel continuation state
         uses: actions/checkout@v4
@@ -124,23 +126,33 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Download the candidate patch
-        uses: actions/download-artifact@v4
-        with:
-          name: babel-continuation-${{ github.run_id }}
-          path: /tmp/babel-artifact
-
       - name: Validate scope, apply patch, and run documentation tests
         id: validate
+        env:
+          BABEL_PATCH: ${{ needs.agent.outputs.patch }}
         shell: bash
         run: |
           set -euo pipefail
-          patch_file="/tmp/babel-artifact/babel.patch"
-          if [ ! -s "$patch_file" ]; then
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          patch = os.environ.get("BABEL_PATCH", "")
+          if patch.strip() == "NO_CHANGES":
+              print("changed=false" + "\\n")
+              Path("/tmp/babel-no-changes").write_text("true", encoding="utf-8")
+          elif not patch.strip():
+              raise SystemExit("Codex returned an empty patch instead of NO_CHANGES.")
+          elif len(patch.encode("utf-8")) > 700_000:
+              raise SystemExit("Patch exceeds the 700 KB safe job-output limit; split the task into a smaller batch.")
+          else:
+              Path("/tmp/babel.patch").write_text(patch, encoding="utf-8")
+          PY
+          if [ -f /tmp/babel-no-changes ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "The agent produced no documentation changes."
             exit 0
           fi
+          patch_file="/tmp/babel.patch"
           git apply --check "$patch_file"
           git apply "$patch_file"
           python - <<'PY'
@@ -212,7 +224,7 @@ jobs:
           ## Safety
           - Documentation and narrowly scoped documentation tests only.
           - No Spotify/provider calls, playlist mutations, generated-data writes, or runtime feature changes.
-          - The publisher validates changed paths and runs focused documentation tests.
+          - The publisher validates changed paths and runs full unittest discovery.
           - This PR is not auto-merged; human review is required.
 
           The branch is updated by later scheduled runs while Babel remains active."
