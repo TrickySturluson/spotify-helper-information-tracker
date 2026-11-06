@@ -1,3 +1,14 @@
+## Current policy overlay — 2026-11-06
+
+This section supersedes the older documentation-first freeze and Codex-worker descriptions below.
+
+- Babel remains active, but ChatGPT may continue other explicitly authorized SHIT workstreams in parallel. Buddy remains focused on Babel.
+- The current Buddy is the scheduled ChatGPT task using the connected GitHub app. The repository-hosted Codex/API workflow is a separate quota-blocked experiment; do not dispatch it or seek API credits without explicit user reauthorization.
+- ChatGPT may independently publish routine, verified documentation-only changes without per-change user review, after complete-diff inspection, source/test/workflow verification, relevant safe checks, and read-back.
+- Buddy remains proposal-only on `babel/chatgpt-buddy` and its draft PR. Buddy cannot write to `main`, approve, mark ready, close, merge, or self-merge.
+- Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside this authority and require separate user authorization.
+- The canonical rules are in [AGENTS.md](../AGENTS.md), [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../docs/BABEL_CHATGPT_BUDDY.md).
+
 # SHIT — Consolidated Loose Ends & Verification Register
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
