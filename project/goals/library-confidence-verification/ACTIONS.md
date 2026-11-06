@@ -68,7 +68,6 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - Added a CI step to run the audit over the complete published catalogue, not just fixtures.
 - Branch: `feature/library-confidence-audit`; not merged. Awaiting CI output.
 - Next: inspect full-library report; investigate stored-vs-recomputed drift and low-confidence populations; build curated gold set before changing any confidence policy.
-# Actions — Library Identity & Metadata Confidence Verification
 
 ## 2026-11-02 — Initialize confidence verification workspace
 
