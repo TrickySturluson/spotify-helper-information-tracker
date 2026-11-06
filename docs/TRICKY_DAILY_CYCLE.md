@@ -19,7 +19,7 @@ room for exploration outside current patterns.
 
 ## Latest repository snapshot state — 2026-11-06
 
-The latest saved Daily-only snapshot inspected on 2026-11-06 was captured at `2026-11-06T14:18:18.958752+00:00`: 37 accessible items were reported and fetched. The paired removal baseline contained 37 rows, and `playlist_removed_tracks.json` contained 47 Daily removals with no whitelist entries. These are repository snapshot facts, not a fresh live read in this session; any later manual edits remain unconfirmed until the snapshot workflow succeeds. The first push-triggered snapshot workflow run (42257653420) failed during its focused regression-test step and skipped Spotify credential validation and refresh, so it did not produce a new live snapshot.
+The latest confirmed live Daily snapshot was captured at `2026-11-06T17:31:19.839728+00:00` by snapshot workflow run [#42262344471](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42262344471): 29 accessible items were reported and fetched, all 29 URIs were unique, and the removal baseline now contains 29 rows. Reconciliation recorded 8 additional manual removals, bringing the Daily blacklist to 55 entries with zero whitelist entries. The snapshot and removal-state commit is `0fa8e6a1a086c9425313f12a54fe7b045a70dd47`. The earlier 37-item snapshot is retained as history. This was a Spotify GET-only read and repository publication; no playlist tracks or description were changed.
 
 ## Trend profile
 
