@@ -45,7 +45,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
 - It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
 
-## Current gaps / uncertainty
+## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage.
 - Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
 - Link integrity and whether every referenced guide still exists have not yet been exhaustively checked.
