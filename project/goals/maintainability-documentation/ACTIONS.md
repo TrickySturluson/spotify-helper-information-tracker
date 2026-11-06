@@ -2,6 +2,18 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-05 — Workflow overview audit found boilerplate; push-trigger side effects recorded
+
+- **Finding:** all 17 workflow files are listed in `docs/WORKFLOWS.md`, but nine workflow YAMLs had generic bottom overviews that did not describe their actual triggers, credentials, writes or safety boundaries. This passed the existing FILE OVERVIEW presence test but failed the intended documentation-quality standard.
+- **Changes:** replaced the generic overview blocks in `acoustic-metadata-enrichment.yml`, `backfill-music-durations.yml`, `daily-curator-tests.yml`, `enrich-music-metadata.yml`, `playlist-manager-check.yml`, `spotify-daily-feedback-observation.yml`, `spotify-playlist-manager.yml`, `spotify-reference-library.yml`, and `update.yml` with workflow-specific contracts. Added a warning to `docs/WORKFLOWS.md` that comment-only edits to workflow YAMLs can trigger path-filtered workflows.
+- **Verification:** Daily curator tests and public-repository security scans passed on the workflow-overview commits through `217bb36049a1791f467c2ed9fbcda34c36daf602`; examples include run #42146153109 and #42146153169.
+- **Operational side effect:** editing workflow YAML files on `main` triggered configured push workflows. Reference-library run #42146148971 completed successfully and produced commit `3e989e33282efab6cc1416e35970e7c59af5f056`: 249 files changed (184 canonical Library records, 63 Spotify reference/history files, and 2 removal-state files), 4,445 additions and 644 deletions. It refreshed snapshots and removal feedback; it did **not** write to Spotify playlists.
+- **Other triggered jobs:** Update Last.fm History run #42146153098, Enrich Music Metadata run #42146121471, and Acoustic Metadata Enrichment run #42146097964 were still in progress at the latest check. Their completed steps included Last.fm import/artist enrichment, MusicBrainz duration/recording-ID lookups, and strict MusicBrainz ID resolution respectively; track-tag/AcousticBrainz enrichment was still running. These runs were not part of the requested documentation-only scope. The available GitHub connection did not expose a workflow-cancellation action, so they could not be stopped from this session.
+- **Lesson / prevention:** inspect all workflow push-path filters before committing workflow documentation. A comment-only change is still a triggering file change. Future overview edits should be staged and reviewed with their trigger consequences understood; do not repeat this side effect.
+- **Separate code-documentation audit:** inspection of maintained source overviews found further generic fallback text in analytics, Last.fm, music and Spotify modules. Marker presence is not proof of a useful overview; continue semantic review and repair those files.
+- **Outcome:** nine workflow overviews improved and tested; workflow audit remains incomplete; provider refresh side effects are being monitored and must be reconciled in the handoff.
+- **Next:** monitor the three remaining runs to terminal state and inspect any resulting commits; then improve the source-module overview quality and strengthen tests so generic fallback boilerplate is rejected.
+
 ## 2026-11-05 — Live repository inventory and documentation audit resumed
 
 - **Purpose:** continue the user-directed documentation-only phase and verify the current repository rather than relying on prior chat summaries.
