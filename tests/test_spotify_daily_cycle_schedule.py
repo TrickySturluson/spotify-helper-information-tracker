@@ -249,7 +249,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
     def test_repository_head_guard_accepts_unchanged_stage_commit(self):
         from unittest.mock import Mock
-        results = [Mock(), Mock(stdout="abc123\\n"), Mock(stdout="abc123\\n")]
+        results = [Mock(), Mock(stdout="abc123\n"), Mock(stdout="abc123\n")]
         with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
             daily_cycle.subprocess, "run", side_effect=results
         ):
@@ -257,7 +257,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
     def test_repository_head_guard_rejects_concurrent_main_commit(self):
         from unittest.mock import Mock
-        results = [Mock(), Mock(stdout="abc123\\n"), Mock(stdout="def456\\n")]
+        results = [Mock(), Mock(stdout="abc123\n"), Mock(stdout="def456\n")]
         with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
             daily_cycle.subprocess, "run", side_effect=results
         ):
@@ -273,7 +273,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
             backup = Path(directory) / "backup.json"
             stage.write_text("{}", encoding="utf-8")
             backup.write_text("{}", encoding="utf-8")
-            results = [Mock(), Mock(), Mock(), Mock(), Mock(), Mock(stdout="abc123\\n")]
+            results = [Mock(), Mock(), Mock(), Mock(), Mock(), Mock(stdout="abc123\n")]
             with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
                 daily_cycle.subprocess, "run", side_effect=results
             ):
@@ -341,7 +341,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
     def test_daily_stage_is_created_and_committed_before_playlist_replace(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
-        prepare_at = source.index("stage_path, payload_sha256 = create_daily_stage(")
+        prepare_at = source.index("stage_path, payload_sha256, stage_commit_sha = create_daily_stage(")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
         stage_function = source[source.index("def create_daily_stage("):source.index("def assert_live_snapshot_unchanged(")]
         self.assertLess(prepare_at, replace_at)
