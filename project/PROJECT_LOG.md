@@ -1,3 +1,10 @@
+## 2026-11-06 — Daily operational-first roadmap and recommendation memory
+
+- User decision: stabilize Daily's actual refresh and publication process before expanding recommendation intelligence. First prove the protected no-write stage-only path end-to-end; then verify schedule/DST delivery, same-date idempotency, snapshot freshness and recovery behavior. No live playlist replacement or description mutation is authorized by this decision.
+- Daily recommendation memory is now an approved product requirement. It will record each recommendation event and later outcomes across cycles, with separate provenance for Spotify playback, Last.fm scrobbles, likes/saves, manual removals, later retention, no observed play, not-yet-observed and unknown coverage. Repeated recommendations link to a shared track history but remain separate events. High-play-then-remove differs from unplayed-then-remove; track rejection does not automatically imply artist rejection. Memory must be idempotent, versioned, recoverable, auditable and subordinate to hard exclusions/whitelist policy. Historical rows with null evidence must not be backfilled as outcomes.
+- The current Daily test trigger was re-read and is configured as `action: stage-only`, `force: true`. The persisted Spotify cooldown deadline is `2026-11-06T19:49:46+00:00`; it is past, but must be rechecked for manual-clear/fail-closed state before Spotify access. No stage-only run was dispatched as part of this documentation update.
+- Documentation updates: Daily roadmap commit `3c6a6b87f5f1317431c72b087838ed78a88a4438`; Daily backlog commit `ca72ebfe52880d3db9097be8e4e10657210b8f57`; Daily action log commit `6ff577fbe340eee8b31b84384c27f7d637a12184`. No runtime or workflow code changed.
+
 ## 2026-11-06 — Tricky Daily immutable staging and failure-safe publication
 
 - **Authorization:** continued Daily code, test, documentation and safe read-only verification work. No live Spotify track replacement or description mutation was authorized or performed.
