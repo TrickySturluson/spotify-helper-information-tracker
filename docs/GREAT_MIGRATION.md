@@ -62,8 +62,8 @@ The dedicated **SHIT — Great Migration** workflow processes issue requests onl
 
 **Operation and side-effect classes:**
 
-- Strictly read-only Library/report operations: `status`, `preview`, `prepare-preview`, `health`, `verify-catalogue`, `maintain-preview`, `freshness-review`, `validate-freshness-branch`, and `duration-evidence-preview`.
-- Resolver/index diagnostic: `audit` reads canonical records and resolver aliases, but constructing `MusicLibrary` may rebuild/write the derived `library_index.json` when it is missing or incomplete. Use `health` when zero repository writes are required.
+- Strictly read-only Library/report operations: `status`, `preview`, `prepare-preview`, `health`, `maintain-preview`, `freshness-review`, `validate-freshness-branch`, and `duration-evidence-preview`.
+- Resolver/index diagnostics: `audit` and `verify-catalogue` call the resolver audit and instantiate `MusicLibrary`; construction may rebuild/write the derived `library_index.json` when it is missing or incomplete. They do not intentionally rewrite canonical song/artist/album evidence or call metadata providers. Use `health` when zero repository writes are required.
 - Provider credential verification: `verify` performs Spotify refresh-token exchange plus read-only account access, Last.fm API access, and optional Discogs/GetSongBPM checks. It never prints credential values and does not mutate the Library or playlists. If Spotify returns a replacement refresh token, the cloud workflow persists it to the repository Actions secret through the narrowly scoped GitHub App token before reporting success.
 - Canonical Library/data writers: `migrate`, `prepare`, `backfill-playability`, and `duration-evidence-apply`. These can update generated/canonical Library state and publish repository changes. `prepare` performs bounded, checkpointed provider enrichment and final audit; the workflow deliberately skips Spotify reference refresh and uses saved snapshots.
 
