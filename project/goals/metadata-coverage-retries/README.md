@@ -1,4 +1,5 @@
 # Metadata Coverage & Provider Retries
+> **Roadmap:** [ROADMAP.md](ROADMAP.md) is the durable plan and next-action reference. Read it before work; update it and [ACTIONS.md](ACTIONS.md) in the same session as implementation, testing, decisions, or blockers.
 
 ## Goal
 
