@@ -19,7 +19,7 @@ room for exploration outside current patterns.
 
 ## Latest repository snapshot state — 2026-11-06
 
-The latest saved Spotify reference snapshot for Tricky Daily was captured at `2026-11-06T01:48:00.233040+00:00`: 58 items were reported and fetched, all 58 track URIs were unique, and the item list was accessible with no item error. This is below the intended 60-track successful-cycle contract. It is a timestamped repository snapshot, not a new live preflight; it does not establish why the playlist had 58 items or whether it changed afterward. Do not infer a successful 60-track cycle from this snapshot. Reconcile current live state and cycle/audit evidence before any future authorized write; no repair or playlist mutation is part of the documentation audit.
+The latest saved Daily-only snapshot inspected on 2026-11-06 was captured at `2026-11-06T14:18:18.958752+00:00`: 37 accessible items were reported and fetched. The paired removal baseline contained 37 rows, and `playlist_removed_tracks.json` contained 47 Daily removals with no whitelist entries. These are repository snapshot facts, not a fresh live read in this session; any later manual edits remain unconfirmed until the snapshot workflow succeeds. The first push-triggered snapshot workflow run (42257653420) failed during its focused regression-test step and skipped Spotify credential validation and refresh, so it did not produce a new live snapshot.
 
 ## Trend profile
 
@@ -60,7 +60,7 @@ GitHub may delay scheduled events. The current gate allows a scheduled catch-up 
 
 Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
 
-**Current force/idempotency discrepancy (source-checked 2026-11-06):** the runner passes `--force` to both the time-window check and `cycle_already_completed()`. The latter returns `False` when forced, so force currently bypasses the same-Eastern-date completion guard too. The schedule test explicitly asserts this. That is broader than the intended P0 contract, which says force may bypass the clock gate only; the same-date idempotency guard and all policy/safety checks must still apply. Treat this as an unresolved implementation defect, not intended behavior. Runtime/test correction is deferred under the documentation-only project pause; see [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
+**Force/idempotency correction (source-checked 2026-11-06):** `should_run_cycle()` allows `--force` to bypass the clock-window gate, but `cycle_already_completed(config, cycle_date)` is called independently without a force override. The same-Eastern-date completion guard therefore still blocks duplicate forced dispatches before Spotify client construction. A focused regression test covers this. The correction is implemented; remote CI is not yet green because the latest runs exposed stale documentation-contract assertions and a brittle source-count assertion. See [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
 
 
 After Spotify accepts the playlist replacement, the runner immediately writes
