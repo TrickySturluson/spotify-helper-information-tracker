@@ -9,6 +9,15 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-06 — Documentation system naming established; audit remains active
+
+**Public-facing name:** SHIT Documentation & Continuity. **Internal codename:** Babel. The parent product/repository remains Spotify Helper & Information Tracker (SHIT). First references must define the descriptive name and codename; subsequent references may use Babel. See [docs/BABEL.md](../docs/BABEL.md).
+
+- Published the naming convention across root README, AGENTS.md, docs index, mandatory documentation rules, this handoff, project roadmap, and Maintainability & Documentation records.
+- The canonical Babel guide defines its mission, responsibilities, naming rules, safety constraints, required structure, and evidence-based completion standard.
+- **Verification state:** file creation and sequential GitHub contents updates succeeded. Naming-link checks and a fresh CI run have not yet been performed. Do not treat this as documentation completion.
+- **Next:** verify every new/changed naming link and inspect the current main head and relevant CI/workflow results; then resume the per-file semantic audit and operational-contract reconciliation below.
+
 ## 2026-11-05 — Documentation-first priority reaffirmed; live repository audit resumed
 
 **Active priority: documentation only.** Do not begin feature development, playlist operations, enrichment runs, or unrelated project work until the documentation audit reaches the completion standard in the Maintainability & Documentation roadmap.
