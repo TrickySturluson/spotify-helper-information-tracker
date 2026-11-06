@@ -52,6 +52,7 @@ The intended invariant above is **force bypasses the clock gate only**. Current 
 ## Acceptance criteria
 - Every successful publication has exactly 60 valid unique track URIs and no blacklisted/removed entries.
 - A forced run cannot bypass any policy or state-reconciliation check.
+- A second forced invocation on an already-completed Eastern date is blocked; force bypasses the time-window gate only.
 - A stale snapshot cannot reintroduce a user-removed track or erase a newer whitelist/blacklist decision.
 - Failures at any stage preserve a recoverable state and never report completion prematurely.
 - Concurrent invocations cannot race to publish.
