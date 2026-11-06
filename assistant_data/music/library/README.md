@@ -4,12 +4,11 @@ The per-recording Library structure was merged into main in [PR #49](https://git
 
 ## Current published catalogue
 
-- 13,005 songs, 6,386 artists, and 7,861 albums in the current main-branch index.
-- The legacy Last.fm-derived track index contains 11,130 unique track identities; a direct cross-check resolves all 11,130 through canonical source-track-ID or recording-MBID aliases.
-- All 5,358 legacy artist names are represented in canonical artist records.
-- The catalogue also contains Spotify playlist-only tracks, with playlist membership kept distinct from Last.fm listening history.
-- Run #18's final runner-side audit passed with zero errors and its enrichment output was published. A separate post-publication audit/health scan is still required before the Library is considered fully verified.
-- Current duration coverage is approximately 91.1% of 152,005 scrobbles. Metadata and audio-feature coverage remain incomplete; see the project Great Migration and enrichment goal workspaces.
+- Latest read-only catalogue check: Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350), generated 2026-11-06T03:06:25Z, scanned **13,163 songs, 6,497 artists, and 7,969 albums**. Index counts matched those canonical counts exactly.
+- Latest alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs, and 11,651 name-candidate keys.
+- The read-only Library health report returned `ok=true`, zero errors and zero warnings. The separate repository audit reported 18 warnings (no playback intervals plus 16 inaccessible Spotify playlist snapshots, including the summary warning); these are not Library structural-health warnings.
+- The legacy Last.fm-derived track index still has 11,130 historical track identities and all 11,130 were previously cross-checked against canonical source-track-ID or recording-MBID aliases. All 5,358 legacy artist names were previously represented.
+- The older 13,005 / 6,386 / 7,861 count is a historical migration baseline, superseded by the 2026-11-06 read-only check above. Run #18's 91.1% duration coverage of 152,005 scrobbles is also historical; do not quote it as current coverage. Metadata and audio-feature coverage remain incomplete; see the Great Migration, confidence and enrichment goal workspaces.
 
 The raw Last.fm event archive remains separate. The Library stores normalized song/artist/album entities and evidence; it does not replace the original per-scrobble event history.
 
