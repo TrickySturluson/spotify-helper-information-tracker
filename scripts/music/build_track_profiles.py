@@ -457,8 +457,9 @@ if __name__ == "__main__":
 # Inputs: Last.fm scrobbles, exact priority-playlist snapshots, existing track-profile cache,
 #         LASTFM_API_KEY, TRACK_PROFILE_LOOKUPS_PER_RUN, TRACK_PROFILE_RECENT_WINDOW_DAYS,
 #         TRACK_PROFILE_RECENT_TOP_N and TRACK_PROFILE_PRIORITY_PLAYLISTS.
-# Outputs: assistant_data/music/track_profiles.json, durable lookup state and
-#          assistant_data/music/recent_top_tracks.json.
+# Outputs: assistant_data/music/track_profiles.json, durable lookup state,
+#          recent_top_tracks.json, and canonical MusicLibrary song/artist/album evidence
+#          written through MusicLibrary.put_catalogue().
 # Selection: Includes archive tracks, exact priority-playlist tracks and a configurable
 #            recent top-N cohort ranked by Last.fm plays within the configured window.
 # Identity: Uses existing verified recording evidence; fuzzy MusicBrainz ID search is not run here.
