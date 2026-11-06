@@ -153,10 +153,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Use MusicBrainz as a cautious secondary duration source for unresolved tracks.
-# Location: Maintained implementation in scripts/music/enrich_musicbrainz_durations.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_musicbrainz_durations.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Resolve missing recording durations from MusicBrainz as a cautious
+#          secondary source for the canonical music metadata cache.
+# Inputs: data/scrobbles.json and existing assistant_data/music artist shards;
+#         MUSICBRAINZ_LOOKUPS_PER_RUN (default 1000) controls the batch cap.
+# Outputs: Updates affected assistant_data/music/artists/shard-*.json records
+#          with sourced duration evidence and lookup status.
+# Provider policy: Uses MusicBrainz recording search with bounded requests and
+#                  a descriptive User-Agent; results must pass the script's
+#                  recording/artist identity checks before being accepted.
+# Safety: Secondary duration evidence only; unresolved/ambiguous records are
+#         not assigned guessed durations. No Spotify playlist writes.
+# Run: python compat/enrich_musicbrainz_durations.py (from the repository root).
+# Related: scripts/music/build_music_metadata.py;
+#          docs/AUTOMATED_AUDIO_METADATA.md; docs/PER_RECORDING_MUSIC_LIBRARY.md.
 # -----------------------------------------------------------------------------
