@@ -1,7 +1,7 @@
 # Metadata Freshness & Partial Revalidation — Roadmap
 
 **Last reviewed:** 2026-11-06  
-**Status:** Read-only field-level planner and unknown-age baseline rotation are merged. Exact legacy duration provenance recovery was applied in issues #107 and #114; the post-backfill planner measurement remains outstanding. Provider-backed execution is still separate and feature work is paused under the documentation-only priority.
+**Status:** Read-only field-level planner and unknown-age baseline rotation are merged. Exact legacy duration provenance recovery was applied in issues #107 and #114. The latest read-only planner scan (CI #42154433350) found 11 unknown-age baseline candidates, selected 25 due tasks and zero baseline tasks, and reported 1,968 missing-provenance fields. Provider-backed execution is still separate and feature work is paused under the documentation-only priority.
 
 ## Repository-wide priority override — 2026-11-06
 
