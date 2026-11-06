@@ -25,7 +25,7 @@ Recommendation exposure is not a play. Candidate selection is not preference. Di
 No duplicate canonical recordings; source and exposure are recoverable; no candidate is counted as listening; unknown is not treated as rejection; response signals remain distinguishable and auditable.
 
 ## Next action
-Inspect PR #60 and current main/tests, then document the exact implemented boundary and remaining schema/ingestion work.
+After documentation completion, compare PR #60's per-song discovery_context proposal with mainline discovery_ingestion.py and its tests; decide whether candidate-only storage is sufficient or canonical per-song context is still needed.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Listening analytics](../listening-analytics/ROADMAP.md)
