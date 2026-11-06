@@ -75,11 +75,14 @@ if __name__ == "__main__":
 
 
 # -----------------------------------------------------------------------------
-# FILE OVERVIEW
-# Purpose: Aggregate measured Spotify playback intervals into queryable analytics.
-# Location: Maintained implementation in scripts/analytics/build_playback_analytics.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/build_playback_analytics.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
-# -----------------------------------------------------------------------------
+# # FILE OVERVIEW
+# # Purpose: Aggregate locally measured Spotify playback intervals into separate analytics.
+# # Inputs: playback_data/segments.jsonl; each valid row contributes its measured played_ms
+# #         and sampled_at timestamp.
+# # Outputs: artist, track, month, day and overall summaries under assistant_data/playback/.
+# # Semantics: Counts only recorded positive playback intervals; this is prospective tracker
+# #            evidence, not a reconstruction of Last.fm scrobbles or complete listening history.
+# # Safety: Offline aggregation only; an absent/sparse input is not interpreted as no listening.
+# # Run: python compat/build_playback_analytics.py (repository root).
+# # Related: scripts/spotify/spotify_playback_tracker.py; playback_data/README.md.
+# # -----------------------------------------------------------------------------
