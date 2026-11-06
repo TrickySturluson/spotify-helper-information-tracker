@@ -1,3 +1,7 @@
+# Great Migration — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+
 ## 2026-11-06 — Migration work paused for documentation-first audit
 
 - This workstream's migration, backfill, repair and provider operations remain paused while the repository-wide documentation acceptance criteria are incomplete.
@@ -164,9 +168,7 @@
 - **Next:** inspect #69 result/artifact; verify publication; then inspect #70 audit; then inspect #71 enrichment and repeat bounded passes only while there is eligible, useful provider work.
 - **Coverage goal:** maximize reliable, provenance-backed track/artist/album/duration/acoustic/theme data, not manufacture 100% coverage. Keep unknowns unknown and explain provider/API/catalogue limitations.
 
-# Great Migration — Actions & Evidence
 
-Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
 ## 2026-11-01 — Fixed-workflow migration rerun requested
 
