@@ -74,8 +74,8 @@ The [goal index](../project/goals/README.md) links all current goal workspaces. 
 
 ## Automated documentation checks
 
-- [Documentation contract tests](../tests/test_documentation_contract.py) verify required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, the root assistant instructions, major domain coverage in this index, and local links from the main fresh-session entry points.
-- [Script layout tests](../tests/test_script_layout.py) verify implementation/compatibility layout and bottom-of-file overview coverage for maintained Python and workflow files.
+- [Documentation contract tests](../tests/test_documentation_contract.py) verify required repository control documents, all goal workspace ROADMAP/README/ACTIONS files, the root assistant instructions, complete indexing of every technical guide, major domain coverage, and local links across all Markdown files.
+- [Script layout tests](../tests/test_script_layout.py) verify implementation/compatibility layout, bottom-of-file overview coverage, specific non-boilerplate implementation overviews, and compatibility-to-implementation references.
 - [Test suite guide](../tests/README.md) explains test families, commands, and the limits of unit-test evidence.
 - Both checks are part of the standard unittest discovery suite; the main scheduled/manual update workflow runs that suite before publishing refreshed data.
 
