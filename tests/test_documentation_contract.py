@@ -81,6 +81,13 @@ class DocumentationContractTests(unittest.TestCase):
             with self.subTest(operation=operation):
                 self.assertIn(f"`[SHIT LIBRARY] {operation}`", guide)
 
+    def test_reference_library_schedule_matches_guide(self):
+        workflow = (ROOT / ".github" / "workflows" / "spotify-reference-library.yml").read_text(encoding="utf-8")
+        guide = (ROOT / "docs" / "RECENT_TRACK_ENRICHMENT.md").read_text(encoding="utf-8")
+        self.assertIn('cron: "13 6 * * *"', workflow)
+        self.assertIn("scheduled daily at 06:13 UTC", guide)
+        self.assertNotIn("scheduled every six hours", guide)
+
     def test_metadata_enrichment_budgets_match_workflow_and_guides(self):
         workflow = (ROOT / ".github" / "workflows" / "enrich-music-metadata.yml").read_text(encoding="utf-8")
         recent_guide = (ROOT / "docs" / "RECENT_TRACK_ENRICHMENT.md").read_text(encoding="utf-8")
