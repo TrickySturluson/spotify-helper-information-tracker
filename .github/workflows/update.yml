@@ -181,11 +181,17 @@ jobs:
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: GitHub Actions workflow "Update Last.fm History".
-# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
-# Behavior: Automates the job steps declared in this workflow, including runtime
-#           setup, permissions, dependencies, and repository changes.
-# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
-#              with the implementation under scripts/ and compat/.
-# Related: See docs/ for feature-specific operating instructions.
+# Purpose: Main scheduled Last.fm archive, metadata and analytics refresh pipeline.
+# Trigger: Daily at 06:17 UTC, manual workflow_dispatch, or a push changing this workflow.
+# Behavior: Runs the full unittest suite; refreshes Spotify reference snapshots read-only;
+#           imports Last.fm scrobbles; performs bounded artist/track/duration/recording-ID
+#           and AcousticBrainz enrichment; rebuilds historical, advanced, music and
+#           measured-playback analytics; validates outputs and commits refreshed data.
+# Credentials: LASTFM_API_KEY, Spotify client/refresh token, and a narrowly scoped
+#              GitHub App token used only to persist rotated Spotify refresh-token secrets.
+# Writes: Canonical Last.fm data, assistant_data/, and playback_data/ when present;
+#         contents:write is required for publication.
+# Safety: Spotify reference sync is read-only; this workflow does not mutate playlists.
+# Related: scripts/lastfm/update_lastfm.py, scripts/analytics/, scripts/music/,
+#          scripts/spotify/spotify_reference_library.py, docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
