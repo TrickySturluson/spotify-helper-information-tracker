@@ -416,10 +416,22 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich unique scrobbled tracks with cached Last.fm metadata. Generated files are optimized for lookup: a compact manifest/index plus 32 artist-hash shards. The canonical scrobble archive is never modified.
-# Location: Maintained implementation in scripts/music/build_music_metadata.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/build_music_metadata.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Incrementally enrich unique Last.fm-scrobbled recordings with
+#          duration metadata, then reconcile the results into the canonical
+#          per-recording MusicLibrary.
+# Inputs: data/scrobbles.json; LASTFM_API_KEY; prior assistant_data/music
+#         manifest, artist shards and recent_top_tracks.json. The per-run
+#         lookup cap is MUSIC_METADATA_LOOKUPS_PER_RUN (default 120).
+# Provider behavior: Calls Last.fm track.getInfo by MBID when available, then
+#                    exact artist/title fallback; validates returned labels.
+#                    Successful matches are cached; unmatched results retry
+#                    after 30 days; transient failures stop the current batch.
+# Outputs: Rebuilds legacy assistant_data/music artist shards/indexes,
+#          overview/manifest and artist duration totals, then merges track,
+#          artist and album context into assistant_data/music/library/.
+# Safety: Never edits data/scrobbles.json and never writes Spotify playlists.
+#         Atomic temp-file replacement is used for generated JSON outputs.
+# Run: python compat/build_music_metadata.py (from the repository root).
+# Related: scripts/music/music_library.py; scripts/music/sync_music_library.py;
+#          docs/AUTOMATED_AUDIO_METADATA.md; docs/PER_RECORDING_MUSIC_LIBRARY.md.
 # -----------------------------------------------------------------------------
