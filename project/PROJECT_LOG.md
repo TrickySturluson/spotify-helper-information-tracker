@@ -17,6 +17,14 @@
 - **Status:** partial; other maintained modules, compatibility/test/workflow documentation, full inventory and fresh-session test remain open.
 - **Next:** continue source-verified overview repair; do not treat this branch as merged or verified until CI and review complete.
 
+## 2026-11-05 — Semantic module-overview audit expanded to 27 modules
+
+- **Work:** expanded the documentation branch audit from 15 to 27 maintained modules. Added concrete contracts for artist/track tag enrichment, lyric analysis and feature merging, acoustic/tempo/duration providers, MusicBrainz identity resolution, playlist removal tracking, playlist metadata and read-only playlist intelligence.
+- **Guardrail:** extended the anti-boilerplate regression test to all 27 reviewed modules and corrected one test reference to the existing playlist-intelligence test module.
+- **Latest recorded commit:** `3333aff313f8ae09f92566b2149ff9ad4c294aed` on `docs/semantic-overview-quality-20261105`.
+- **Verification:** file updates and path checks succeeded; CI has not yet run. No application behavior, provider state, generated data or Spotify playlists changed.
+- **Status:** partial; broad semantic review of the remaining maintained modules and all other documentation layers remains outstanding.
+
 # SHIT Project Log
 
 ## 2026-11-01 — Per-goal workspaces established
