@@ -1,6 +1,6 @@
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-05  
+**Last reviewed:** 2026-11-06  
 **Status:** In progress. The documentation control structure is established; the full file-level coverage and freshness audit remains open.
 
 ## Purpose
@@ -45,7 +45,22 @@ Every maintained script/module/workflow should state its purpose, supported goal
 - The new index distinguishes canonical Last.fm scrobbles, canonical structured music Library records, generated analytics/profiles, optional playback observations, Spotify playlist state/feedback, source code, tests, and GitHub automation.
 - It documents commands for retrieving the exact current tracked path inventory instead of embedding a stale generated-record listing.
 
-## Workflow catalogue and local-link checks — CI-verified\n- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. `tests/test_documentation_contract.py` fails if a workflow filename is missing from the catalogue.\n- The same test parses and validates local links from the primary entry points. Its Markdown-link regex was corrected and verified in run #42144349548 (commit 9a624875).\n\n## 2026-11-05 repository audit checkpoint
+## Workflow catalogue and documentation guardrails
+
+- `docs/WORKFLOWS.md` summarizes all 17 workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
+- Nine workflow YAML bottom overviews were rewritten with their actual triggers, credentials, repository writes, playlist-write boundaries and related implementation.
+- Workflow YAML comment-only changes can trigger push-path workflows. This operational hazard is now documented; see the incident entry in ACTIONS.md and docs/WORKFLOWS.md.
+- The draft documentation PR #161 expands the contract to index every technical guide, validate local links across all Markdown files, reject generic workflow overviews, reject generic implementation boilerplate and require compatibility overviews to name maintained source modules. These new checks are pending CI verification; do not call them implemented/verified until the PR's current head passes.
+
+## 2026-11-06 documentation audit progress
+
+- Confirmed all 13 goal workspaces contain ROADMAP.md, README.md and ACTIONS.md; all 17 workflow YAMLs are catalogued.
+- Updated the docs index to list all 21 technical guides, corrected a duplicated paragraph in the goal index, and expanded repository-wide Markdown-link and workflow-overview checks in draft PR #161.
+- Replaced generic source overviews with module-specific purpose, input/output, evidence, side-effect and safety descriptions across analytics, Last.fm, music and Spotify implementation modules (29 maintained modules updated in the current draft).
+- Current source audit found that marker presence alone had allowed generic boilerplate to pass; the new PR checks aim to prevent this recurring.
+- Current main has the documented workflow incident: reference snapshot refresh published, two enrichment publication steps failed, and one broad update workflow remained under observation at the latest check. See ACTIONS.md and NEXT_WORK.md for exact evidence.
+
+\n\n## 2026-11-05 repository audit checkpoint
 
 - Confirmed current default branch `main` at `b542ceab2c40f6910a91ea3fcb84c204fc412c2d`.
 - Confirmed 13 goal workspaces, each with ROADMAP.md, README.md and ACTIONS.md.
@@ -57,12 +72,12 @@ Every maintained script/module/workflow should state its purpose, supported goal
 
 ## Current gaps / uncertainty
 - The full tracked-file inventory has not yet been compared programmatically with documentation coverage; a complete checkout and `git ls-files` are still needed for authoritative whole-repository coverage.
-- Goal status and cross-project loose ends need reconciliation against current main, open PRs/issues and latest workflow runs.
-- Link integrity and whether every referenced guide still exists have not yet been exhaustively checked.
-- Existing per-file overview claims in the repository README are not yet independently audited.
+- Goal status and cross-project loose ends still need a complete semantic reconciliation against current main, all seven pre-existing open PRs, current issues and latest workflow runs.
+- Repository-wide local-link validation and new overview-quality tests are pending PR #161 CI; any failures must be fixed before merge.
+- The source overview audit is improved but not complete; compatibility shims, test overviews, all module docstrings, workflow semantics and data-schema references still need a structured review.
 
 ## Next action
-Continue with a directory-by-directory maintained-file audit, obtain a complete checkout/`git ls-files` inventory when available, compare it with file overviews and docs/REPOSITORY_FILE_INDEX.md, then record a categorized gap list. Audit semantic accuracy—not just marker presence—starting with write-capable Spotify tools, scheduled workflows, authentication, shared generated-state writers and recovery paths. Reconcile the 13 goal roadmaps and open PRs/issues. Keep documentation as the only active project priority until the fresh-session acceptance test passes.
+Finish PR #161 CI and repair every link/overview-quality failure; review the remaining compatibility and test overviews; obtain a complete checkout/`git ls-files` inventory and compare it with docs/REPOSITORY_FILE_INDEX.md; semantically reconcile all 13 goal roadmaps, seven pre-existing open PRs, workflow side effects and operational runbooks; then complete the fresh-session acceptance simulation. Keep documentation as the only active project priority until every acceptance criterion passes.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
