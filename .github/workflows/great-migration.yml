@@ -99,7 +99,7 @@ jobs:
           private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
           permission-secrets: write
 
-      - name: Verify provider credentials (read-only)
+      - name: Verify provider credentials (may persist rotated refresh token)
         if: steps.request.outputs.command == 'verify'
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
@@ -282,7 +282,7 @@ jobs:
           client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
           private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
           permission-secrets: write
-      - name: Verify provider credentials (read-only)
+      - name: Verify provider credentials (may persist rotated refresh token)
         id: verify
         continue-on-error: true
         env:
