@@ -24,6 +24,17 @@
 | spotify-reference-library.yml | Push, manual dispatch, daily schedule (06:13 UTC) | contents: write; narrowly scoped GitHub App token may write Spotify secret | Spotify client/refresh token and GitHub App credentials | Tests, seeds removal baseline from prior complete snapshots, refreshes Spotify reference snapshots, validates priority/audition snapshots, updates removal feedback and commits assistant_data state. Snapshot refresh is read-only against Spotify; repository snapshot/feedback files are written. |
 | update.yml | Push when this workflow changes, manual dispatch, daily schedule (06:17 UTC) | contents: write; narrowly scoped GitHub App token may write Spotify secret | Spotify client/refresh token, Last.fm key and GitHub App credentials | Runs tests, refreshes Spotify reference data read-only, updates canonical Last.fm history, performs bounded music metadata enrichment, rebuilds analytics and validates outputs, then commits data/assistant_data/playback_data. This is a broad scheduled data-refresh pipeline. |
 
+## Important: workflow-file edits can execute workflows
+
+A documentation-only edit to a workflow YAML file is still a change to that workflow's configured `push.paths` filter. If the file itself is listed there, even a comment-only commit to `main` can start the workflow and perform its normal provider calls or repository writes. The same applies to implementation files listed in another workflow's path filter.
+
+Before editing any workflow YAML or path-filtered implementation on the default branch:
+1. Inspect every workflow whose `push.paths` may match the changed path.
+2. Identify provider calls, repository writes, playlist side effects, concurrency groups and expected duration.
+3. Prefer preparing the documentation change on a non-default branch and review the exact merge-trigger behavior before publishing.
+4. Monitor every triggered run through completion and record any generated-data commits or failures.
+5. Never assume a comment-only change is operationally inert.
+
 ## Important operational distinctions
 
 - **Read-only validation:** daily-curator-tests.yml, library-freshness-review.yml, playlist-fit-preview.yml, playlist-manager-check.yml, public-repository-security.yml, spotify-daily-live-preflight.yml and spotify-daily-remote-verification.yml are intended as checks/previews, not playlist writers.
