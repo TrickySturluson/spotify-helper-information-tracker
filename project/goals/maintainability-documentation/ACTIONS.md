@@ -29,7 +29,7 @@
 - **Verified:** push trigger worked; preflight completed successfully; workflow found the configured continuation prompt and launched the Codex action.
 - **Failure:** Codex action failed before executing the prompt. Runner `ubuntu-latest` was Ubuntu 26.04; `drop-sudo` could not restrict `/run/dbus/system_bus_socket` and reported `runner is not a member of the sudo group`. This matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188).
 - **Downstream effect:** validation and publisher were skipped; no Codex candidate patch, `babel/agent-progress` branch, or Codex proposal PR was created. No SHIT data or Spotify state was changed.
-- **Remediation:** pin only the Codex agent job to `ubuntu-24.04`. Keep `drop-sudo`, the `:workspace` profile, read-only agent/validation permissions, separate publisher, allowlist and human review gate unchanged. Trigger a fresh run from a branch based on the updated main and verify every stage.
+- **Remediation/outcome:** the Codex agent job was pinned to `ubuntu-24.04` without weakening safeguards; the retry verified runner isolation but was blocked by API quota. No further retry is authorized unless the user explicitly reauthorizes this experiment.
 - **Status:** first dispatch mechanism proven; The repository-hosted Codex worker itself is not yet operationally verified.
 
 
@@ -49,11 +49,11 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Execution:** successfully created branch `babel/dispatch-20261106-01` from `main`, then committed `.github/babel/dispatch.json` on that branch. Commit: `7c1abce763d293992872699146eb7f13d10f9b87`.
 - **Trigger contract:** `.github/workflows/babel-ai-continuation.yml` listens for a push to `babel/dispatch-*` when `.github/babel/dispatch.json` changes. The marker branch is only a trigger; the worker continues to select `main` or `babel/agent-progress` as its source.
 - **Verified:** GitHub accepted the branch creation and marker commit. This proves ChatGPT can perform the narrow GitHub write needed to emit the trigger event.
-- **Not yet verified:** no workflow run URL/ID or job status is available from the connected GitHub actions in this session. Do not claim the workflow started, completed, or published a PR until the Actions run is inspected.
+- **Run outcome:** the marker push triggered run #42181953313, which failed during Codex sandbox setup; retry #42183337573 reached Codex on Ubuntu 24.04 but was blocked by API quota. No validation, publisher, or Codex proposal PR succeeded.
 - **Outcome:** the marker push triggered run #42181953313, which failed during Codex sandbox setup; retry #42183337573 reached Codex on Ubuntu 24.04 but was blocked by API quota before validation or publication. These outcomes are recorded above. Do not trigger another Codex run unless the user explicitly reauthorizes this separate API experiment.
 
 
-## 2026-11-06 — Repository-hosted AI continuation worker integrated
+## 2026-11-06 — Repository-hosted Codex worker integrated (separate path)
 
 - **Purpose:** let Babel continue its documentation audit from GitHub checkpoints when a ChatGPT conversation ends, without depending on chat history.
 - **Files:** added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md, and docs/BABEL_AGENT.md. Updated docs/BABEL.md, docs/README.md, docs/WORKFLOWS.md, and the Maintainability & Documentation roadmap/README.
@@ -273,8 +273,8 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 
 - **User-confirmed setup:** GitHub repository Actions secret `OPENAI_API_KEY` has been added, and **Allow GitHub Actions to create and approve pull requests** is now enabled.
 - **Current action:** none is authorized. The initial dispatch and retry outcomes are recorded above; do not manually run the Codex workflow unless the user explicitly reauthorizes it.
-- **Tool limitation:** connected GitHub integration supports repository reads and content/PR operations but exposes no workflow-dispatch action. The user must click the dispatch control in GitHub's Actions UI.
-- **Verification status:** no first-run result is claimed yet. The initial dispatch and retry outcomes are recorded above; do not mark the Codex worker operational until its API quota is restored and its own full workflow succeeds.
+- **Tool limitation at that time:** the connector exposed no workflow-dispatch action, so manual dispatch required the GitHub Actions UI. ChatGPT later used the permitted push-marker trigger; this does not authorize another Codex run.
+- **Verification status:** the first dispatch and retry outcomes are recorded above; the Codex worker remains non-operational because API quota blocked the agent before validation and publication.
 
 ## 2026-11-06 — Added ChatGPT-controlled trigger for the repository-hosted Codex workflow
 
