@@ -1,5 +1,13 @@
 # Maintainability & Documentation — Actions & Evidence
 
+## 2026-11-06 — Deferred post-Babel health-system direction recorded
+
+- **User direction:** after Babel is considered realistically as complete as it can be, revisit making Buddy part of SHIT's overall health system.
+- **Recorded future direction:** a cross-project Integrity, Diagnostics & Recovery workstream covering health monitoring, root-cause diagnosis, bounded recovery/repair, documentation continuity and a systemic improvement backlog. Buddy's enduring role would be Documentation & Continuity Guardian, contributing evidence and drift checks without becoming the sole health authority or approving risky repairs.
+- **Gate:** do not begin this work until the Maintainability & Documentation roadmap acceptance criteria pass and the fresh-session cold-start simulation succeeds. Babel remains the sole active SHIT workstream.
+- **Safety constraints:** preserve canonical data/provenance, distinguish Last.fm scrobbles from optional Spotify playback observations, never invent or silently discard uncertain records, and require deterministic, backed-up, reversible, audited, post-verified repairs; consequential/ambiguous changes require user approval.
+- **Outcome:** future goal recorded, not implemented. At the revisit, create a dedicated goal workspace and define ownership, health dimensions, autonomy boundaries and acceptance criteria.
+
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
 ## 2026-11-06 — First ChatGPT-initiated Buddy dispatch trigger committed
