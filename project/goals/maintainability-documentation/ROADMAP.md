@@ -80,7 +80,7 @@ Every maintained script/module/workflow should state its purpose, supported goal
 ## Latest workstream status — 2026-11-06
 
 - All 12 non-documentation goal roadmaps now contain an explicit documentation-only pause; the goal index explains the same priority. The workstream plans are preserved, not discarded.
-- Draft PR #161 contains 29 source overview rewrites, a complete 21-guide docs index, repository-wide Markdown-link checks and stronger file-overview quality tests. Latest PR CI must be checked before merge.
+- Draft PR #161 contains 32 source overview rewrites, a complete 21-guide docs index, repository-wide Markdown-link checks and stronger file-overview quality tests. Latest PR CI must be checked before merge.
 - The source inventory and semantic audit remain incomplete; do not declare the acceptance criteria met based only on structural tests or the current PR.
 - Exact workflow publication failures from the accidental YAML push triggers are documented in library-enrichment, listening-analytics, this workstream's ACTIONS, NEXT_WORK and LOOSE_ENDS.
 
