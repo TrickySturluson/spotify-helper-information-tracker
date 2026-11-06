@@ -14,11 +14,11 @@
 - **Implementation:** created the brief and updated Buddy's startup prompt, root instructions, mandatory documentation rules, Babel agent guide, worker state, documentation roadmap/action log, and cross-project handoff. See `project/goals/maintainability-documentation/ACTIONS.md` for commit-level evidence.
 - **Status:** the repository-hosted Codex worker's first successful workflow run remains pending because of the API quota blocker. The separate scheduled ChatGPT Buddy path and proposed daily-check rule are documented in draft PR #163; cold-start simulation remains pending.
 
-## 2026-11-06 — Babel AI continuation infrastructure added
+## 2026-11-06 — Repository-hosted Codex worker infrastructure added (separate path)
 
 - Integrated a scheduled OpenAI Codex worker through GitHub Actions so documentation continuation can resume from repository state rather than a prior ChatGPT conversation.
 - The worker uses a six-hour schedule plus manual dispatch, resumes from a dedicated branch, and publishes only allowlisted documentation/test changes through a review PR after full unittest discovery. It does not auto-merge or receive Spotify/provider credentials.
-- Activation remains pending on repository secret OPENAI_API_KEY and the GitHub Actions setting that permits workflow-created pull requests. First-run success is not yet verified.
+- The user later reported the OPENAI_API_KEY secret and Actions PR-creation permission were configured. The first dispatch failed during Codex sandbox setup; the retry reached Codex but was blocked by API quota before validation or publication. No further API spend or retry is authorized unless the user explicitly reauthorizes this separate experiment. The scheduled ChatGPT Buddy path is separate.
 - Operating guide: docs/BABEL_AGENT.md. Durable status: project/BABEL_AGENT_STATE.md.
 
 ## 2026-11-06 — Daily idempotency, Library side effects and workflow budgets documented
