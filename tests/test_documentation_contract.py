@@ -248,7 +248,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("same-Eastern-date completion guard", workflow_catalogue)
         self.assertIn("Force bypasses the clock gate only", workflow_catalogue)
         self.assertIn("## Tricky Daily force/idempotency guard — corrected; CI verification pending", workflow_catalogue)
-        self.assertIn("force bypasses only the clock gate", cycle_guide.lower())
+        self.assertIn("force bypasses the clock gate only", cycle_guide.lower())
         self.assertIn("force/idempotency", todo.lower())
         self.assertIn("force bypasses the clock gate only", roadmap.lower())
         self.assertNotIn("Known P0 discrepancy: current --force", cycle_source)
