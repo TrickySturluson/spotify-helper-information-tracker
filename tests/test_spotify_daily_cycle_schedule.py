@@ -195,7 +195,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         ), patch.object(daily_cycle, "persist_daily_stage", return_value=False), patch.dict(
             os.environ, {"GITHUB_ACTIONS": "false", "GITHUB_RUN_ID": "stage-test-1"}
         ):
-            stage_path, digest = daily_cycle.create_daily_stage(
+            stage_path, digest, stage_commit_sha = daily_cycle.create_daily_stage(
                 "2026-11-06", before, ["spotify:track:old"], recommendations,
                 uris, "playlist_backups/before.json", "Today's detour starts here."
             )
@@ -206,6 +206,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         self.assertEqual(record["status"], "staged_before_spotify_write")
         self.assertEqual(record["payload_sha256"], digest)
         self.assertEqual(len(digest), 64)
+        self.assertFalse(stage_commit_sha)
 
     def test_daily_stage_verification_rejects_mutated_payload(self):
         import hashlib
@@ -238,6 +239,22 @@ class DailyCycleScheduleTests(unittest.TestCase):
                     daily_cycle.verify_daily_stage(
                         str(stage_path), digest, target, ["spotify:track:before"], "before"
                     )
+    def test_repository_head_guard_accepts_unchanged_stage_commit(self):
+        from unittest.mock import Mock
+        results = [Mock(), Mock(stdout="abc123\\n"), Mock(stdout="abc123\\n")]
+        with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
+            daily_cycle.subprocess, "run", side_effect=results
+        ):
+            daily_cycle.assert_repository_head_unchanged("abc123")
+
+    def test_repository_head_guard_rejects_concurrent_main_commit(self):
+        from unittest.mock import Mock
+        results = [Mock(), Mock(stdout="abc123\\n"), Mock(stdout="def456\\n")]
+        with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
+            daily_cycle.subprocess, "run", side_effect=results
+        ):
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "Repository main changed"):
+                daily_cycle.assert_repository_head_unchanged("abc123")
     def test_github_daily_stage_requires_successful_git_push_before_write(self):
         import subprocess
         from tempfile import TemporaryDirectory
