@@ -47,8 +47,12 @@ No blind repeated lookups; no identity guessing; every promoted field has source
 
 - [PR #120 — Adopt incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, diverged (5 ahead, 419 behind current main; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It records the strategy decision; it does not implement or prove a bounded provider executor, retry queue, or completed on-demand enrichment path.
 
-## Next action
-Run a fresh read-only coverage/provider-checkpoint audit and select a small, high-value batch based on actual gaps and provider eligibility.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Run a fresh read-only coverage/provider-checkpoint audit and select a small, high-value batch based on actual gaps and provider eligibility.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Retry specification](../../RETRY_QUEUE_SPEC.md)
