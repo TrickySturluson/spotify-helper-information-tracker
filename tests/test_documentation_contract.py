@@ -242,6 +242,7 @@ class DocumentationContractTests(unittest.TestCase):
         roadmap = (ROOT / "project" / "goals" / "tricky-daily" / "ROADMAP.md").read_text(encoding="utf-8")
         schedule_test = (ROOT / "tests" / "test_spotify_daily_cycle_schedule.py").read_text(encoding="utf-8")
         cycle_source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
+        cycle_workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
 
         self.assertIn("same-Eastern-date completion guard", workflow_catalogue)
         self.assertIn("Current `--force` bypasses both the clock gate and same-Eastern-date completion guard", workflow_catalogue)
@@ -252,6 +253,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("Known P0 discrepancy: current --force", cycle_source)
         self.assertIn("also bypasses that completion guard", cycle_source)
         self.assertIn("intended behavior is to bypass the clock gate only", cycle_source)
+        self.assertIn("exactly 60 valid unique track URIs", cycle_workflow)
+        self.assertIn("current --force bypasses both the clock gate and same-date completion guard", cycle_workflow)
         self.assertIn("cycle_already_completed(config, \"2026-11-05\", force=True)", schedule_test)
 
     def test_completed_committed_tree_inventory_is_not_a_current_blocker(self):
