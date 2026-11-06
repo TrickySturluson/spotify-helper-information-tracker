@@ -13,7 +13,7 @@ Smooth transitions are the primary sorting objective; avoid jarring adjacent tra
 
 Only generated playlists are in scope by default. Personal playlists remain read-only unless explicitly authorized. Preserve deny-by-default controls, explicit unlocks, dedupe, removal blacklists and audits. Tricky Daily is an approved exception, not blanket permission. Booze or Boos! must remain energetic, fun, and strongly Halloween-related per track; inspect live contents before changes.
 
-**Status: active development; no live playlist write authorized by these docs. No playlist writes during migration recovery.**
+**Status: feature work paused under the repository-wide documentation-only priority.** Existing playlist intelligence, fit-scoring and sequencing implementation remains documented and preserved; no live playlist write is authorized by this workspace. Resume feature work only after the central handoff says documentation is complete.
 
 **Resume:** inspect sorter/tests/state; verify authorization and lock; preview; assess transitions; apply only explicitly authorized changes; verify order/count/duplicates/audit.
 
