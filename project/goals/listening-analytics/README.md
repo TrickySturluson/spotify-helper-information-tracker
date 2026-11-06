@@ -17,6 +17,11 @@ Scope: chronological scrobble archive, derived analytics, playback tracker cover
 
 **Resume:** inspect canonical Last.fm archive/manifests; inspect playback tracker coverage separately; verify analytics semantics; test unknown-vs-zero and deduplication; record fresh totals with source and timestamp.
 
+## Open proposals (not merged)
+
+- [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open and not merged. It proposes a read-only observer for weekly playlist appearances/disappearances, Liked Songs changes and separately labelled post-exposure Last.fm scrobbles. It does not expose Spotify's explicit hide action and does not write playlists.
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; its watchdog remains a specification until runtime implementation and tests are verified.
+
 ## Documentation and resume
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
