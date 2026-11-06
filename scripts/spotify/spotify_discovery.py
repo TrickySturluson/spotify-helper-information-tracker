@@ -32,6 +32,7 @@ MIN_MATCHES = 20
 SEED_ARTISTS = 24
 SIMILAR_PER_SEED = 20
 DISCOVERY_ARTISTS = 300
+DAILY_INITIAL_ARTIST_BATCH = 80
 TRACKS_PER_ARTIST = 10
 
 
@@ -590,6 +591,24 @@ def select_unique_artist_candidates(candidates, target_size=TARGET_SIZE, max_per
     return selected
 
 
+def iter_daily_artist_batches(artist_rows, initial_size=DAILY_INITIAL_ARTIST_BATCH):
+    """Yield progressively larger Daily artist-search batches.
+
+    Start with a bounded first pass, then double cumulative artist coverage only
+    when the current pool cannot produce 60 unique artists. This avoids paying
+    for hundreds of Spotify Search calls on ordinary successful cycles.
+    """
+    rows = list(artist_rows or [])
+    if not rows:
+        return
+    end = min(len(rows), max(1, int(initial_size)))
+    yield rows[:end]
+    while end < len(rows):
+        next_end = min(len(rows), end * 2)
+        yield rows[end:next_end]
+        end = next_end
+
+
 def build_discovery_recommendations(
     sp, playlist_items, today=None, profiles_path=PROFILES,
     features_path=FEATURES, api_key=None, target_size=TARGET_SIZE,
@@ -704,15 +723,24 @@ def build_discovery_recommendations(
                     candidates[uri] = row
             time.sleep(0.08)
 
-    collect_artist_candidates(similar, offset=0)
     fallback_used = False
     if is_daily:
-        # Search progressively deeper Spotify result pages before relaxing
-        # diversity. Each page is searched across the expanded artist pool.
-        selected = select_unique_artist_candidates(candidates.values(), target_size)
+        # Search an initial bounded artist cohort, then double cumulative
+        # coverage only when needed to reach 60 distinct artists.
+        searched_artists = []
+        selected = []
+        for artist_batch in iter_daily_artist_batches(similar):
+            collect_artist_candidates(artist_batch, offset=0)
+            searched_artists.extend(artist_batch)
+            selected = select_unique_artist_candidates(candidates.values(), target_size)
+            if len(selected) >= target_size:
+                break
+
+        # Only after exhausting the available artist pool do deeper catalogue
+        # pages add alternate tracks for the final artist-diversity fallback.
         offset = TRACKS_PER_ARTIST
         while len(selected) < target_size and offset < 100:
-            collect_artist_candidates(similar, offset=offset)
+            collect_artist_candidates(searched_artists, offset=offset)
             selected = select_unique_artist_candidates(candidates.values(), target_size)
             offset += TRACKS_PER_ARTIST
 
@@ -730,6 +758,7 @@ def build_discovery_recommendations(
         required = target_size
     else:
         # Preserve the established general-discovery behavior for other playlists.
+        collect_artist_candidates(similar, offset=0)
         selected = select_unique_artist_candidates(candidates.values(), target_size, max_per_artist=2)
         required = min(MIN_MATCHES, target_size)
 
