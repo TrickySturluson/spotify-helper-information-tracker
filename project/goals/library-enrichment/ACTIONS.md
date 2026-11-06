@@ -2,6 +2,11 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Incremental enrichment strategy PR remains proposal-only
+
+- [PR #120](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) remains open draft. Its observed tests and full-history security scan passed, but the PR records a strategy change and does not implement a bounded provider executor, retry queue or completed on-demand enrichment path.
+- Provider-backed enrichment remains paused under the repository-wide documentation-only priority.
+
 ## 2026-11-06 — Update Last.fm History publication also failed on shared-state conflicts
 
 - Run #42146153098 completed its provider/data steps successfully: Last.fm history import, artist genre/mood/theme enrichment, recent-top-200 track tag enrichment, duration prioritization, recording-ID resolution, AcousticBrainz fetch and derived statistics all completed.
