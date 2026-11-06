@@ -2,6 +2,11 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Open PR #65 test failure preserved for next session
+
+- [PR #65](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65) remains open and draft. Its observed full test run failed because live Last.fm MBID lookup requests for test artists returned HTTP 400/404; the full-history security scan passed. Do not describe the planner PR as test-green or merged.
+- No provider request or repair was performed during this documentation audit. Revisit the network-dependent test failure and deterministic mock boundary only after the documentation phase is complete.
+
 ## 2026-11-06 — Open coverage-planner proposal reconciled
 
 - PR #65 remains an open draft proposing a read-only Library coverage planner. It is not merged behavior; compare its current diff/checks with main before selecting future work.
