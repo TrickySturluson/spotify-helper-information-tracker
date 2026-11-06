@@ -453,10 +453,21 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich scrobbled tracks, exact priority-playlist tracks, and the rolling top 200 tracks by Last.fm plays in the previous 90 days. Writes a reusable recent_top_tracks.json cohort and prioritizes it for Last.fm tags and verified MusicBrainz recording tags. No fuzzy MBID search is used: uncertain identity matches remain unresolved.
-# Location: Maintained implementation in scripts/music/build_track_profiles.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/build_track_profiles.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Incrementally enrich individual scrobbled tracks with sourced
+#          Last.fm and MusicBrainz community-tag evidence.
+# Inputs: data/scrobbles.json; existing artist shards; optional Spotify playlist
+#         snapshots for priority cohorts; LASTFM_API_KEY.
+# Outputs: assistant_data/music/track_profiles.json and refreshed
+#          recent_top_tracks.json; lookup status, raw tags and source provenance
+#          remain attached to each recording profile.
+# Provider policy: Last.fm track.getTopTags plus MusicBrainz recording tags/
+#                  genres only when a trusted recording MBID already exists.
+#                  Default lookup cap is 120 per run; unmatched records retry
+#                  after 30 days.
+# Safety: Does not fuzzy-search MusicBrainz recording identity; records without
+#         a trusted MBID remain unresolved or Last.fm-only. No Spotify playlist
+#         writes and no inferred listening/likes are created.
+# Run: python compat/build_track_profiles.py (from the repository root).
+# Related: scripts/music/build_music_profiles.py;
+#          docs/TRACK_MOOD_EVIDENCE.md; docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------
