@@ -1,6 +1,13 @@
 # Listening Analytics & Evidence Sources — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Listening/discovery PR branch status rechecked
+
+- PR #158 `feature/discover-weekly-feedback-tracking`: open/non-draft, 9 ahead / 201 behind current main, mergeable=false. Old-head tests #42071650507 and security scan #42071650219 passed; rebase and rerun before review.
+- PR #121 `codex/sorter-evaluation-ingestion-watchdog`: open/draft, 10 ahead / 419 behind current main, mergeable=false; no workflow runs found for its observed head.
+- Passing old-head checks do not establish compatibility with current main. No code changes or listener/Spotify operations were performed; rebase/implementation review is deferred until documentation completion.
+
+
 
 ## 2026-11-06 — Discover Weekly observer proposal status verified
 
