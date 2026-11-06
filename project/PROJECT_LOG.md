@@ -45,6 +45,14 @@
 - SHITting Grounds now exists in the reference catalog and has an accessible 25-item snapshot captured at `2026-11-06T01:47:59.822814+00:00`, but its curated `playlist_roles.json` entry still says it has no snapshot. The reference guide was corrected; generated/curated JSON was not changed.
 - Both discrepancies are recorded for reconciliation after the documentation-only pause. No playlist write or Spotify API request was made.
 
+## 2026-11-06 — Open PR branches compared against current main
+
+- Rechecked seven open PRs and their workflow runs, then compared each branch against current `main`.
+- Daily PRs #158/#159/#160 are diverged and 201 commits behind main (9/6/27 ahead); old-head test/security runs passed, but all require rebase and fresh CI.
+- PRs #120/#121 are 419 commits behind (5/10 ahead); #120 old-head tests/security passed, while #121 has no observed workflow runs.
+- PR #65 is 599 commits behind (3 ahead); old-head tests failed and security passed. PR #60 is 627 commits behind (4 ahead); old-head tests and Gitleaks failed, including three untriaged `generic-api-key` matches on public Spotify track IDs.
+- Updated the owning goal roadmaps/action logs, NEXT_WORK and LOOSE_ENDS. No PR was merged, rebased, or modified; all feature work remains deferred under the documentation-only priority.
+
 # SHIT Project Log
 
 ## 2026-11-06 — Latest read-only canonical Library baseline refreshed
