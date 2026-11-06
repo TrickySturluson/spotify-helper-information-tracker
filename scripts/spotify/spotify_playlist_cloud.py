@@ -119,26 +119,98 @@ def completed_state_matches(playlist, completed, current_snapshot):
     return playlist.get("snapshot_id") == completed.get("after_snapshot_id")
 
 
-def replace_playlist(sp, pid, uris):
+class AmbiguousPlaylistMutationError(manager.ManagerError):
+    """A Spotify write may have applied, but exact live state could not be proven."""
+
+
+def _snapshot_uris(snapshot):
+    return [row.get("uri") for row in (snapshot or {}).get("items", [])]
+
+
+def replace_playlist(sp, pid, uris, expected_before_uris=None):
     manager.assert_managed(pid)
-    # Replace the first page, then append in order; duplicate URIs are preserved.
+    # Preserve order for restore operations. Daily supplies its exact pre-write
+    # URI order so a lost response can be reconciled without blindly retrying.
     if not manager.unlocked(pid):
         raise manager.ManagerError("Playlist is LOCKED; undo was stopped before restoration.")
     first = uris[:100]
     if first:
-        manager.mutate_with_snapshots(sp,pid,lambda: sp.call("PUT", f"/playlists/{pid}/items", {"uris": first}),
-                                      event="restore_replace_first_page",item_count=len(first))
-        for offset in range(100, len(uris), 100):
-            if not manager.unlocked(pid):
-                raise manager.ManagerError("Playlist locked during undo; remaining restoration stopped.")
-            batch=uris[offset:offset + 100]
-            manager.mutate_with_snapshots(sp,pid,lambda batch=batch: sp.call("POST", f"/playlists/{pid}/items", {"uris": batch}),
-                                          event="restore_append_page",offset=offset,item_count=len(batch))
+        if expected_before_uris is None:
+            before_playlist = manager.fetch_playlist(sp, pid)
+            before_snapshot = manager.snapshot(sp, before_playlist)
+            before_uris = _snapshot_uris(before_snapshot)
+        else:
+            before_uris = list(expected_before_uris)
+        try:
+            manager.mutate_with_snapshots(
+                sp, pid,
+                lambda: sp.call("PUT", f"/playlists/{pid}/items", {"uris": first}),
+                event="restore_replace_first_page", item_count=len(first),
+            )
+            for offset in range(100, len(uris), 100):
+                if not manager.unlocked(pid):
+                    raise manager.ManagerError("Playlist locked during undo; remaining restoration stopped.")
+                batch = uris[offset:offset + 100]
+                manager.mutate_with_snapshots(
+                    sp, pid,
+                    lambda batch=batch: sp.call("POST", f"/playlists/{pid}/items", {"uris": batch}),
+                    event="restore_append_page", offset=offset, item_count=len(batch),
+                )
+        except Exception as operation_error:
+            try:
+                live_playlist = manager.fetch_playlist(sp, pid)
+                live_snapshot = manager.snapshot(sp, live_playlist)
+                live_uris = _snapshot_uris(live_snapshot)
+            except Exception as read_error:
+                manager.audit(
+                    event="replace_outcome_ambiguous_readback_failed",
+                    playlist_id=pid,
+                    expected_before_count=len(before_uris),
+                    expected_target_count=len(uris),
+                    operation_error_type=type(operation_error).__name__,
+                    readback_error_type=type(read_error).__name__,
+                )
+                raise AmbiguousPlaylistMutationError(
+                    "Spotify replacement outcome is ambiguous because live read-back failed. "
+                    "Do not retry automatically; inspect the playlist and recovery snapshot first."
+                ) from operation_error
+
+            if live_uris == uris:
+                manager.audit(
+                    event="replace_outcome_reconciled_applied",
+                    playlist_id=pid,
+                    item_count=len(live_uris),
+                    operation_error_type=type(operation_error).__name__,
+                )
+                return {"status": "applied_after_ambiguous_response"}
+            if live_uris == before_uris:
+                manager.audit(
+                    event="replace_outcome_reconciled_not_applied",
+                    playlist_id=pid,
+                    before_count=len(before_uris),
+                    target_count=len(uris),
+                    operation_error_type=type(operation_error).__name__,
+                )
+                raise operation_error
+            manager.audit(
+                event="replace_outcome_partial_or_ambiguous",
+                playlist_id=pid,
+                before_count=len(before_uris),
+                target_count=len(uris),
+                observed_count=len(live_uris),
+                operation_error_type=type(operation_error).__name__,
+            )
+            raise AmbiguousPlaylistMutationError(
+                "Spotify replacement outcome is partial or ambiguous: live contents match "
+                "neither the exact pre-write order nor the exact target order. Do not retry automatically."
+            ) from operation_error
     else:
         current = [item.get("uri") for item in manager.tracks(sp, manager.find(sp, pid)) if item.get("uri")]
         if current:
-            manager.mutate_with_snapshots(sp,pid,lambda: manager.remove(sp,pid,current),
-                                          event="restore_clear_playlist",item_count=len(current))
+            manager.mutate_with_snapshots(
+                sp, pid, lambda: manager.remove(sp, pid, current),
+                event="restore_clear_playlist", item_count=len(current),
+            )
 
 
 def cleanup_duplicates(sp, pid):
