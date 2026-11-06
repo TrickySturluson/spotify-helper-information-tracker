@@ -33,6 +33,84 @@ SNAPSHOT_PATH = Path("assistant_data/spotify/playlists") / f"{DAILY_ID}.json"
 HISTORY_PATH = Path("assistant_data/spotify/history") / DAILY_ID
 
 
+def build_daily_reference_updates(catalog, index, previous, record):
+    """Update only Tricky Daily's catalog row and track/artist index memberships."""
+    if not isinstance(catalog, dict) or not isinstance(catalog.get("playlists"), list):
+        raise manager.ManagerError("Spotify reference catalog is missing or malformed; refusing a partial Daily refresh.")
+    if not isinstance(index, dict):
+        raise manager.ManagerError("Spotify reference index is missing or malformed; refusing a partial Daily refresh.")
+    track_map = index.get("track_playlists")
+    artist_map = index.get("artist_playlists")
+    if not isinstance(track_map, dict) or not isinstance(artist_map, dict):
+        raise manager.ManagerError("Spotify reference index maps are missing or malformed; refusing a partial Daily refresh.")
+    rows = catalog["playlists"]
+    daily_row = next((row for row in rows if isinstance(row, dict) and row.get("id") == DAILY_ID), None)
+    if daily_row is None:
+        raise manager.ManagerError("Tricky Daily is absent from the reference catalog; refusing to invent a partial catalog.")
+
+    old_items = previous.get("items", []) if isinstance(previous, dict) else []
+    new_items = record.get("items", [])
+    if not isinstance(old_items, list) or not isinstance(new_items, list):
+        raise manager.ManagerError("Daily snapshot item lists are malformed; refusing to update reference indexes.")
+
+    def track_keys(items):
+        return {
+            row.get("uri") for row in items
+            if isinstance(row, dict) and isinstance(row.get("uri"), str) and row.get("uri")
+        }
+
+    def artist_keys(items):
+        return {
+            artist.casefold()
+            for row in items if isinstance(row, dict)
+            for artist in (row.get("artists") or [])
+            if isinstance(artist, str) and artist.strip()
+        }
+
+    def reconcile_memberships(mapping, old_keys, new_keys, label):
+        for key in old_keys - new_keys:
+            values = mapping.get(key, [])
+            if not isinstance(values, list):
+                raise manager.ManagerError(f"Reference {label} index entry is malformed for {key!r}.")
+            remaining = list(dict.fromkeys(pid for pid in values if pid != DAILY_ID))
+            if remaining:
+                mapping[key] = remaining
+            else:
+                mapping.pop(key, None)
+        for key in new_keys:
+            values = mapping.get(key, [])
+            if not isinstance(values, list):
+                raise manager.ManagerError(f"Reference {label} index entry is malformed for {key!r}.")
+            if DAILY_ID not in values:
+                mapping[key] = [*values, DAILY_ID]
+
+    old_track_keys, new_track_keys = track_keys(old_items), track_keys(new_items)
+    old_artist_keys, new_artist_keys = artist_keys(old_items), artist_keys(new_items)
+    reconcile_memberships(track_map, old_track_keys, new_track_keys, "track")
+    reconcile_memberships(artist_map, old_artist_keys, new_artist_keys, "artist")
+
+    changed = (
+        previous.get("snapshot_id") != record.get("snapshot_id")
+        or old_track_keys != new_track_keys
+    ) if isinstance(previous, dict) else True
+    daily_row.update({
+        "name": record.get("name"),
+        "owner": record.get("owner"),
+        "public": record.get("public"),
+        "collaborative": record.get("collaborative"),
+        "snapshot_id": record.get("snapshot_id"),
+        "item_count": record.get("item_count_fetched"),
+        "items_accessible": True,
+        "last_items_accessible_at": record.get("last_items_accessible_at") or record.get("captured_at"),
+        "captured_at": record.get("captured_at"),
+        "record_path": str(SNAPSHOT_PATH),
+        "changed": changed,
+    })
+    catalog["captured_at"] = record.get("captured_at")
+    index["generated_at"] = record.get("captured_at")
+    return catalog, index
+
+
 def refresh():
     manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
     manager.TOKEN = Path(".spotify_playlist_token.json")
@@ -83,6 +161,12 @@ def refresh():
     if len(uris) != len(items) or any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in uris):
         raise manager.ManagerError("Tricky Daily snapshot contains unavailable or invalid track rows.")
 
+    catalog = manager.read(reference_library.CATALOG, None)
+    index = manager.read(reference_library.INDEX, None)
+    catalog_update, index_update = build_daily_reference_updates(
+        catalog, index, cached if isinstance(cached, dict) else {}, record
+    )
+
     removal_result = discovery.reconcile_daily_manual_removals(
         items, cycle_marker,
         baseline_path=Path("playlist_removal_baseline.json"),
@@ -119,6 +203,16 @@ def refresh():
             manager.write(old_path, previous)
 
     manager.write(SNAPSHOT_PATH, record)
+    manager.write(reference_library.CATALOG, catalog_update)
+    manager.write(reference_library.INDEX, index_update)
+    manager.write(
+        reference_library.ROOT / "health.json",
+        reference_library.build_health_report(
+            catalog_update["playlists"],
+            index_update["track_playlists"],
+            index_update["artist_playlists"],
+        ),
+    )
     baseline_count = discovery.write_daily_removal_baseline(
         items, cycle_marker, baseline_path=Path("playlist_removal_baseline.json")
     )
@@ -156,7 +250,7 @@ if __name__ == "__main__":
 # Purpose: Refresh only the Tricky Daily reference snapshot and detect manual removals.
 # Spotify access: GET-only; validates account ownership, exact playlist identity,
 #                 item accessibility, and complete pagination before publishing.
-# Repository outputs: Daily snapshot/history, removal baseline, blacklist, manager audit.
+# Repository outputs: Daily snapshot/history, catalog/index/health, removal baseline, blacklist, manager audit.
 # Safety: Reconciles removals against the last accepted-cycle marker before advancing
 #         the baseline. An unaligned baseline or incomplete live read fails closed.
 # Run: python scripts/spotify/spotify_daily_snapshot.py (repository root).
