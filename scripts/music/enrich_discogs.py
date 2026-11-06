@@ -203,12 +203,13 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Optional release-context genre/style enrichment from Discogs.
-# Inputs: Existing track_profiles.json records and DISCOGS_USER_TOKEN.
-# Outputs: Adds exact-match release context to track profiles and durable lookup
-#          state; ambiguous releases and missing results remain explicit.
-# Run: python compat/enrich_discogs.py (optional; requires a Discogs token).
-# Safety: Exact artist/title tracklist validation; one unique master/release;
-#         rate-limited requests; cached misses; never changes acoustic confidence.
-# Related: tests/test_enrich_discogs.py; docs/AUTOMATED_AUDIO_METADATA.md.
+# Purpose: Add optional Discogs release-style context to exact track-profile matches.
+# Inputs: Existing track_profiles.json rows and DISCOGS_USER_TOKEN; bounded lookup limit
+#         is controlled by DISCOGS_LOOKUPS_PER_RUN.
+# Outputs: Release-context evidence and durable lookup state in assistant_data/music/.
+# Matching: Requires exact artist/title tracklist validation and one unambiguous release;
+#           ambiguous releases and misses remain explicit rather than guessed.
+# Safety: Rate-limited and cached; does not overwrite primary BPM or acoustic evidence.
+# Run: python compat/enrich_discogs.py (requires DISCOGS_USER_TOKEN).
+# Related: docs/AUTOMATED_AUDIO_METADATA.md; tests/test_enrich_discogs.py.
 # -----------------------------------------------------------------------------
