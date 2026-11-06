@@ -1,6 +1,13 @@
 # Tricky Daily — Actions & Evidence
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
 ## 2026-11-06 — Daily-related PR branches are stale/diverged from current main
 
 - Live PR inspection: #159 `fix/tricky-daily-schedule-gate` is open/non-draft, 6 commits ahead and 201 behind current main, mergeable=false; old-head Daily tests #42091662410 and security scan #42091662609 passed.
