@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Great Migration preview side-effect contract source-audited
+
+- **Scope:** traced the `prepare-preview` and `preview` paths across `.github/workflows/great-migration.yml`, `scripts/music/prepare_music_library.py`, `scripts/music/library_cli.py`, and `scripts/music/migrate_full_music_library.py`.
+- **Verified behavior:** `prepare-preview` calls the preparation script without `--execute`; that script invokes `python shit.py library preview`; the CLI dispatches to the full migrator with `--dry-run`. The full migrator's dry-run branch reads the saved inputs/index and returns before constructing `MusicLibrary`, creating a backup, or calling `put_catalogue`. The preflight makes no provider requests and no Spotify playlist writes. This confirms the documented zero-write preflight contract for the current source.
+- **Guardrail:** added a focused documentation-contract test tying the guide's read-only claim to the actual call chain and ensuring the dry-run branch returns before resolver construction or canonical Library writes.
+- **Runtime/data impact:** none. No provider calls, generated-data changes, Spotify operations, or runtime code changes were made.
+- **Verification status:** source-level control-flow review complete; the new regression test has not yet been run in CI. Do not describe the new test as passing until a workflow run confirms it.
+- **Next:** continue the source-to-document audit with other write-capable workflow/CLI paths, then run the full documentation/test suite on the final audit batch.
+
+
 ## 2026-11-06 — High-risk operational contracts source-audited and documented
 
 - **Daily:** verified that `--force` bypasses both the clock gate and same-Eastern-date completion guard; current test asserts it. The saved reference snapshot has 58 accessible unique URIs, below the 60-track target. Documented the P0 mismatch and the narrower-than-required post-write verification in Daily guide/TODO/roadmap/workflow catalogue. No runtime behavior changed.
