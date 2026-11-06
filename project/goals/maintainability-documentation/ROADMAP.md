@@ -57,9 +57,11 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - Maintained files: 55 Python implementation modules (60 files including five package initializers), 40 compatibility launchers (41 Python files including initializer), 44 test modules (45 Python files including initializer), 17 workflow YAMLs, 21 technical guides and 13 goal workspaces.
 - **Outcome:** committed-tree inventory acceptance item is satisfied for this snapshot. Refresh after structural/generated-data changes. See `docs/REPOSITORY_FILE_INDEX.md`.
 
+**Current count note:** the committed-tree snapshot above recorded 17 workflow YAMLs. The live repository now contains 18 after the Babel AI continuation workflow was added; the inventory snapshot remains historical until refreshed.
+
 ## Workflow catalogue and local-link checks — CI-verified
 
-- `docs/WORKFLOWS.md` summarizes all 17 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
+- `docs/WORKFLOWS.md` summarizes all 18 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - The current mainline test validates local links from the primary entry points. A repository-wide all-Markdown local-link check remains a candidate guardrail from draft PR #161 and must be ported/adapted before being treated as implemented.
 
 ## 2026-11-06 — Module overview semantic correction
