@@ -78,6 +78,13 @@
 - The active documentation-only priority, PR #161 verification boundary, scratch-branch warning, paused goals, stale PR branches, Daily force/idempotency mismatch, 58-item snapshot and playlist-role registry drift were recoverable without chat history.
 - **Outcome:** pass for resuming the current documentation workstream. Repeat after the remaining semantic guide/file inventory audit and final verification; overall documentation completion remains open.
 
+## 2026-11-06 — All paused goal roadmaps now have documentation-only next actions
+
+- Review found 12 feature-goal roadmaps had explicit pause banners but still placed feature work/live operations under the immediate `Next action` heading.
+- Split each into an immediate documentation-only next action and a preserved feature action after the pause. Added all 12 goal ACTIONS records and a contract test enforcing the distinction.
+- No feature code, provider work, generated data or playlist state changed. Exact-head CI after this batch is pending.
+- Next: audit the 12 goal READMEs for contradictory resume/next-step instructions.
+
 # SHIT Project Log
 
 ## 2026-11-06 — Latest read-only canonical Library baseline refreshed
