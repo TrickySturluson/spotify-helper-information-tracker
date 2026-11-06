@@ -103,6 +103,20 @@ def set_action_output(name, value):
             handle.write(f"{name}={value}\n")
 
 
+def assert_no_pending_daily_stage(cycle_date):
+    """Block same-date retries when a durable pre-write stage survives a failed run."""
+    if not DAILY_STAGE_DIR.exists():
+        return
+    pending = sorted(DAILY_STAGE_DIR.glob(f"{cycle_date}-*.json"))
+    if pending:
+        examples = ", ".join(str(path) for path in pending[:3])
+        raise manager.ManagerError(
+            f"A durable Tricky Daily stage already exists for {cycle_date} Eastern "
+            f"({examples}). Automatic retry is blocked until the staged payload and live "
+            "playlist are inspected."
+        )
+
+
 def persist_daily_stage(stage_path, backup_path, cycle_date):
     """Commit the immutable stage and recovery snapshot before any Spotify write."""
     if os.environ.get("GITHUB_ACTIONS", "").lower() != "true":
@@ -482,6 +496,7 @@ def main():
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
+    assert_no_pending_daily_stage(cycle_date)
 
     before = manager.snapshot(sp, playlist)
     before_uris = [row.get("uri") for row in before.get("items", [])]
