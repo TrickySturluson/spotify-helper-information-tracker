@@ -206,6 +206,32 @@ class DocumentationContractTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, catalogue)
 
+    def test_paused_goal_roadmaps_separate_documentation_and_feature_next_actions(self):
+        paused_goals = (
+            "great-migration",
+            "library-enrichment",
+            "metadata-coverage-retries",
+            "discovery-recommendations",
+            "listening-analytics",
+            "playlist-intelligence",
+            "tricky-daily",
+            "playlist-sequencing",
+            "library-health-maintenance",
+            "metadata-freshness",
+            "spotify-playability",
+            "library-confidence-verification",
+        )
+        required_instruction = (
+            "Do not run provider checks/enrichment, alter generated data, "
+            "modify playlists, or implement features while the documentation-only priority is active."
+        )
+        for goal in paused_goals:
+            with self.subTest(goal=goal):
+                roadmap = (ROOT / "project" / "goals" / goal / "ROADMAP.md").read_text(encoding="utf-8")
+                self.assertIn("## Next action (documentation-only priority)", roadmap)
+                self.assertIn("## Next feature action after documentation pause", roadmap)
+                self.assertIn(required_instruction, roadmap)
+
     def test_daily_force_idempotency_gap_is_documented(self):
         workflow_catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
         cycle_guide = (ROOT / "docs" / "TRICKY_DAILY_CYCLE.md").read_text(encoding="utf-8")
