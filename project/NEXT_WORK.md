@@ -7,6 +7,8 @@
 - Buddy remains proposal-only on `babel/chatgpt-buddy` and its draft PR; it cannot write to `main`, approve, mark ready, close, merge, or self-merge.
 - Operational changes—including runtime/product code, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, and dependency manifests—require separate user authorization.
 - Routine documentation publication does not require per-change user review. Report material publications, exact evidence, and blockers.
+- **Current session focus (2026-11-06):** Tricky Daily is the first resumed SHIT workstream. A read-only source audit confirmed the P0 force/idempotency mismatch in `scripts/spotify/spotify_daily_cycle.py`; the runtime/test correction is awaiting specific user authorization. No Spotify/provider operation or runtime change has been made.
+- **Buddy daily check:** run `a1354400-ad1c-8320-906e-888d071012ee` completed today. Draft PR #163 head `c8e4a2ad74b8c50868a6806abf9869b9da4b5725` needs changes because it contradicts mainline ChatGPT documentation-publication authority. Its reported Daily curator test run #42239266411 and security scan #42239266381 both completed successfully. Do not merge the draft until the policy conflict is corrected.
 
 # SHIT — Next Work
 > **Mandatory continuity instruction:** Read [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md) before continuing. Read the relevant goal's `ROADMAP.md`, `README.md`, and `ACTIONS.md`; update them during the same session as work proceeds. The roadmap is the durable plan; this file is the current cross-project handoff.
