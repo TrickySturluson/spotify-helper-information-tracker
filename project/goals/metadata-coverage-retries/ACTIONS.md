@@ -1,6 +1,13 @@
 # Metadata Coverage & Provider Retries — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Coverage planner PR status rechecked
+
+- PR #65 `codex/library-coverage-planner` remains open/draft, 3 commits ahead and 599 behind current main. GitHub reports mergeable=true, but the branch is heavily stale and diverged.
+- Old-head Daily curator tests #41361560857 failed in the unit-test step; full-history security scan #41361560861 passed. Rebase, investigate the old test failure and rerun current-main CI before relying on the planner.
+- No planner execution, provider requests or Library writes were performed.
+
+
 
 ## 2026-11-06 — Open PR #65 test failure preserved for next session
 
