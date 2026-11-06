@@ -6,7 +6,7 @@
 
 Babel has an optional repository-hosted AI worker that continues the documentation audit from GitHub rather than relying on a previous ChatGPT conversation. The worker is implemented in .github/workflows/babel-ai-continuation.yml and uses OpenAI's official openai/codex-action.
 
-**Integration status:** repository configuration is committed. The user reports that the `OPENAI_API_KEY` repository Actions secret has been added. **Activation remains pending** until the PR-creation permission is confirmed and the first manual run succeeds. Do not describe the worker as operational before a successful run is observed.
+**Integration status:** repository configuration is committed. The user reports that the `OPENAI_API_KEY` repository Actions secret has been added. **Activation remains pending** until the first run succeeds. Do not describe the worker as operational before a successful run is observed.
 
 ## Active-session context bridge
 
@@ -14,7 +14,7 @@ Before reading the other continuation records, Buddy must read `project/ACTIVE_S
 
 ## How continuation works
 
-1. GitHub Actions starts on a six-hour UTC schedule or manual workflow_dispatch.
+1. GitHub Actions starts on a six-hour UTC schedule, manual `workflow_dispatch`, or a ChatGPT-controlled push to a fresh `babel/dispatch-*` branch containing only `.github/babel/dispatch.json`. The dispatch branch is only a trigger: preflight explicitly checks out `main` or the latest `babel/agent-progress` branch for the actual work.
 2. Preflight checks project/BABEL_AGENT_STATE.md. If it says status: complete, the workflow stops. Otherwise it selects the latest babel/agent-progress branch, falling back to main for the first run.
 3. The Codex job reads AGENTS.md, the mandatory documentation rules, Babel guide, handoff, loose-ends register, project log, and the Maintainability & Documentation roadmap/README/ACTIONS. It chooses one high-priority unfinished documentation task and makes a bounded change, then returns a raw unified Git patch as its final output (or NO_CHANGES). The patch is capped at 700 KB to stay within the workflow handoff limit.
 4. The agent job has contents: read, uses the Codex :workspace permission profile and drop-sudo safety strategy, and receives no Spotify or music-provider credentials. The workspace profile has no general network access; the preflight/publisher jobs handle branch selection and PR operations outside the model's workspace.
