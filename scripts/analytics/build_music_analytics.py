@@ -259,15 +259,15 @@ if __name__ == "__main__":
 
 
 # -----------------------------------------------------------------------------
-# # FILE OVERVIEW
-# # Purpose: Build recommendation-ready music features and listening-duration trends.
-# # Inputs: data/scrobbles.json, assistant_data/music metadata/profile exports, optional
-# #         local data/lyrics/library.sqlite3 analyses, and mood_inference helpers.
-# # Outputs: JSON feature/trend datasets under assistant_data/recommendations/.
-# # Semantics: Uses stable identity keys and keeps track-level evidence separate from
-# #            artist context; missing lyrics or metadata remain unknown, not neutral.
-# # Safety: Offline aggregation only; does not fetch lyrics, call providers or edit playlists.
-# # Run: python compat/build_music_analytics.py (repository root).
-# # Related: scripts/music/mood_inference.py, scripts/music/enrich_recommendation_lyrics.py,
-# #          docs/TRACK_MOOD_EVIDENCE.md and docs/LYRICS_LIBRARY.md.
-# # -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Build recommendation-ready music features and listening-duration trends.
+# Inputs: data/scrobbles.json, assistant_data/music metadata/profile exports, optional
+#         local data/lyrics/library.sqlite3 analyses, and mood_inference helpers.
+# Outputs: JSON feature/trend datasets under assistant_data/recommendations/.
+# Semantics: Uses stable identity keys and keeps track-level evidence separate from
+#            artist context; missing lyrics or metadata remain unknown, not neutral.
+# Safety: Offline aggregation only; does not fetch lyrics, call providers or edit playlists.
+# Run: python compat/build_music_analytics.py (repository root).
+# Related: scripts/music/mood_inference.py, scripts/music/enrich_recommendation_lyrics.py,
+#          docs/TRACK_MOOD_EVIDENCE.md and docs/LYRICS_LIBRARY.md.
+# -----------------------------------------------------------------------------
