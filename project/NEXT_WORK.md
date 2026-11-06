@@ -1,4 +1,5 @@
 # SHIT — Next Work
+> **Mandatory continuity instruction:** Read [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md) before continuing. Read the relevant goal's `ROADMAP.md`, `README.md`, and `ACTIONS.md`; update them during the same session as work proceeds. The roadmap is the durable plan; this file is the current cross-project handoff.
 
 This is the authoritative session handoff. Read this file first when resuming work, then read [LOOSE_ENDS.md](LOOSE_ENDS.md), [PROJECT_LOG.md](PROJECT_LOG.md), and [README.md](../README.md). Update this file whenever priorities, blockers, or verified status change.
 
