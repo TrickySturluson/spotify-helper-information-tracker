@@ -80,8 +80,10 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Regression test module.
-# Scope: Regression checks for the behavior named by this test module.
-# Run: python -m unittest tests.test_musicbrainz_recording_ids -v (from the repository root).
-# Related: Implementation lives under scripts/; longer behavior notes live in docs/.
+# Purpose: Test conservative MusicBrainz recording-ID resolution and provider cooldown handling.
+# Scope: Normalization without fuzzy punctuation removal, accessible Spotify ISRC indexing,
+#        exact artist/title corroboration, rate-limit cooldown persistence and recent-track priority.
+# Run: python -m unittest tests.test_musicbrainz_recording_ids -v
+# Related: scripts/music/enrich_musicbrainz_recording_ids.py;
+#          docs/PER_RECORDING_MUSIC_LIBRARY.md; docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------
