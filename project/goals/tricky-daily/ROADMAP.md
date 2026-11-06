@@ -61,6 +61,12 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 - Verify current main code and latest workflow runs before changing anything. The guide documents expected behavior but is not proof of current live Spotify state.
 - Reconcile the most recent live playlist, feedback, blacklist/whitelist, description and staging state before another live write.
 
+## Open proposals (not merged)
+
+- [PR #159 — Tricky Daily DST schedule gating](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) is open and not merged. Current main uses combined `0 4,5 * * *` and `15 4,5 * * *` schedules plus a local-hour gate; strict cron-to-Eastern-offset matching is proposed, not implemented.
+- [PR #160 — Exposure-aware Daily discovery and quality reporting](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/160) is open and not merged. Its 45/30/25 mix, exposure-decay ranking and read-only quality report remain proposals.
+- [PR #158 — Discover Weekly exposure and feedback tracking](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/158) is open and not merged; it is adjacent listening-analytics work, not a Daily playlist-write feature.
+
 ## Next action
 Read NEXT_WORK.md, this roadmap, README.md, ACTIONS.md, the Daily TODO/cycle guides, and the relevant code/tests/workflows. Then audit current Daily code and latest successful workflow evidence against P0 acceptance criteria; fix the highest-risk gap before any further live cycle.
 
