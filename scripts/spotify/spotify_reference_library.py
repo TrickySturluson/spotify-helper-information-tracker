@@ -752,10 +752,9 @@ if __name__ == "__main__":
 #         market-scoped track metadata/playability observations.
 # Outputs: assistant_data/spotify snapshots/history/catalog/index/health, canonical MusicLibrary
 #          song/artist/album catalogue evidence, playlist-source context and market-scoped playability.
-# Semantics: Snapshot time is explicit; incomplete/inaccessible playlists are not empty. Non-relinked
-#            tracks add Spotify identity, playlist source/position and context evidence; this is not
-#            a Last.fm scrobble, measured playback, like, or proof of listening. Requested and relinked
-#            Spotify IDs remain distinct; playability is market-scoped snapshot-time evidence.
+# Semantics: Incomplete/inaccessible snapshots are not empty. Playlist membership is context,
+#            not a Last.fm scrobble, measured playback, like, or proof of listening. Non-relinked
+#            tracks retain identity/source/position; requested/relinked IDs stay distinct.
 # Safety: Sync writes repository snapshots and canonical Library evidence but never mutates Spotify
 #         playlists. Separate playability refresh is plan-only by default and requires --execute --yes
 #         for bounded stale-only Spotify GETs; offline backfill uses backup-protected song-record writes.
