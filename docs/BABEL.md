@@ -70,7 +70,11 @@ Every major workstream must maintain:
 
 ## AI-assisted continuation
 
-Babel now includes an optional repository-hosted AI continuation worker. Its architecture, activation requirements, permissions, recovery behavior, and limitations are documented in [BABEL_AGENT.md](BABEL_AGENT.md). The worker reads repository instructions and checkpoints, makes bounded documentation-only changes, and submits them through a dedicated review branch. It does not replace human review or the repository's evidence requirements.
+The current recurring continuation path is the scheduled ChatGPT Buddy task using the connected GitHub app. Its operating model, daily verification rule, capability evidence, branch/PR model, and limits are documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md). It uses the scheduled ChatGPT execution context and GitHub app; it is not the repository-hosted Codex workflow.
+
+A separate repository-hosted OpenAI Codex/API experiment is documented in [BABEL_AGENT.md](BABEL_AGENT.md). Its Ubuntu 24.04 runner workaround is verified, but the latest Codex execution failed with an API quota response before validation or publication. It is not the active ChatGPT Buddy path and must not be triggered unless the repository owner explicitly reauthorizes it.
+
+Both paths are proposal-only: they may publish bounded documentation changes only through their dedicated review pull requests. Neither replaces source verification or human approval, and neither may declare Babel complete based on a successful run or a draft pull request.
 
 ## Definition of success
 
