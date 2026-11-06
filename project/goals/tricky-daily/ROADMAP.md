@@ -1,7 +1,7 @@
 # Tricky Daily — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Active. Core rotation, fallback, Eastern-time scheduling, editorial description handling, preflight and feedback tooling are documented; end-to-end live correctness and remaining P0 safeguards must be verified against current code and Spotify state.
+**Last reviewed:** 2026-11-06  
+**Status:** Active. Force/idempotency, exclusion rechecks, immutable pre-write staging, repository concurrency checks, ambiguous-write reconciliation, exact post-write verification, and GET-only snapshot/catalog/index reconciliation are implemented and covered by CI. A live track cycle has not been run; it remains separately gated by user authorization and provider cooldown.
 
 ## Purpose
 Maintain a reliable daily 60-track discovery playlist that balances familiar taste with fresh discoveries, learns from meaningful feedback, and never overrides explicit user exclusions or playlist safety controls.
@@ -20,7 +20,7 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 
 ## Force/idempotency correction — 2026-11-06
 
-The P0 invariant is **force bypasses the clock gate only**. This is now implemented: `should_run_cycle()` receives the force flag, while `cycle_already_completed(config, cycle_date)` is evaluated independently and cannot be bypassed by force. A forced duplicate is covered by a regression test that asserts the process exits before creating a Spotify client. The first remote CI attempts failed because repository documentation-contract tests still asserted the old defect and one schedule test counted source call sites too narrowly. Those stale assertions have been corrected; the next remote run must confirm them. Do not mark the correction CI-verified until that run passes.
+The P0 invariant is **force bypasses the clock gate only**. This is now implemented: `should_run_cycle()` receives the force flag, while `cycle_already_completed(config, cycle_date)` is evaluated independently and cannot be bypassed by force. A forced duplicate is covered by a regression test that asserts the process exits before creating a Spotify client. The stale contract assertions were corrected. Full safe CI run #42268351897 passed 500 tests, including the forced duplicate-dispatch guard. This correction is CI-verified.
 
 
 ## System map
@@ -34,10 +34,10 @@ The P0 invariant is **force bypasses the clock gate only**. This is now implemen
 - Regression tests: tests/test_spotify_daily_cycle_schedule.py, test_spotify_daily_feedback_scoring.py, test_spotify_daily_playlist.py, test_spotify_daily_preflight.py
 
 ## Roadmap
-1. **P0 — Exclusion and reconciliation integrity.** Centralize blacklist/removed-track enforcement and verify it before scoring and immediately before publication. Reconcile whitelist/blacklist and live playlist state on every invocation, including forced runs.
-2. **P0 — Transactional publication.** Persist exact 60-track staging, make retries idempotent, guard concurrent invocations, preserve known-good state, and verify live ordered contents/count/uniqueness/exclusions before marking complete.
-3. **P0 — Forced-run parity.** Force bypasses only the clock gate; verify the same policy checks, reconciliation, staging, validation, description update/read-back, audit and post-publication checks as scheduled runs.
-4. **P0 — API and recovery resilience.** Respect Retry-After, bounded transient retries, token refresh, ambiguous write timeout read-back, pending-verification state and safe recovery.
+1. **P0 — Exclusion and reconciliation integrity [IMPLEMENTED].** Centralize blacklist/removed-track enforcement and verify it before scoring and immediately before publication. Reconcile whitelist/blacklist and live playlist state on every invocation, including forced runs.
+2. **P0 — Transactional publication [IMPLEMENTED WITH RECOVERY GAPS].** Persist exact 60-track staging, make retries idempotent, guard concurrent invocations, preserve known-good state, and verify live ordered contents/count/uniqueness/exclusions before marking complete.
+3. **P0 — Forced-run parity [IMPLEMENTED].** Force bypasses only the clock gate; verify the same policy checks, reconciliation, staging, validation, description update/read-back, audit and post-publication checks as scheduled runs.
+4. **P0 — API and recovery resilience [AMBIGUOUS-WRITE GUARD IMPLEMENTED; RESUME GAP OPEN].** Respect Retry-After, bounded transient retries, token refresh, ambiguous write timeout read-back, pending-verification state and safe recovery.
 5. **P1 — Feedback correctness.** Distinguish exposure, positive engagement, explicit rejection, ignored, not-yet-exposed and unknown due to coverage gaps; preserve track-level vs artist-level preference.
 6. **P1 — Candidate quality and diversity.** Improve familiarity/discovery balance, artist saturation, confidence, diminishing returns, diversity recovery and concise selection explanations.
 7. **P1 — Operational visibility.** Publish quality, feedback, safety, run and recovery summaries; alert on stale data or failed cycles.
@@ -56,6 +56,11 @@ The P0 invariant is **force bypasses the clock gate only**. This is now implemen
 - CI regression tests pass, and live workflow evidence is recorded separately from unit-test evidence.
 
 ## Current gaps and verification requirements
+- The live track-replacement path has not been exercised in this session. The user has not authorized a live cycle; no playlist tracks or description were changed.
+- The no-write stage-only workflow attempt (#42268583897) stopped during candidate discovery on Spotify HTTP 429 QUOTA_EXCEEDED with Retry-After: 5781 seconds (about 1h36m). It failed before stage creation/commit and before any playlist mutation. Do not issue further Spotify API requests until that cooldown expires; repeated calls may extend it.
+- The durable staging Git commit/push path is unit-tested but has not yet completed an end-to-end GitHub Actions stage-only run because of the provider quota response.
+- Recovery is fail-closed, not automatic: a surviving production stage blocks same-date retries and ambiguous/partial writes persist a date guard. A guided resume/rollback/discard workflow remains open.
+- GitHub concurrency plus repository-head and live-snapshot rechecks greatly reduce races, but Spotify does not provide a conditional write tied to snapshot ID; the last race window cannot be eliminated entirely.
 - The detailed P0 checklist remains in TRICKY_DAILY_TODO.md; unchecked items are not assumed implemented.
 - Verify current main code and latest workflow runs before changing anything. The guide documents expected behavior but is not proof of current live Spotify state.
 - Reconcile the most recent live playlist, feedback, blacklist/whitelist, description and staging state before another live write.
