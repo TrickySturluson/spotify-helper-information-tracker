@@ -14,6 +14,9 @@ Its discovery engine keeps established taste and Last.fm similarity as the
 foundation, uses recent listening momentum as a small soft nudge, and retains
 room for exploration outside current patterns.
 
+> Future work and prioritized implementation checklist: [Tricky Daily TODO](TRICKY_DAILY_TODO.md).
+> The TODO is a planning backlog, not a statement that unchecked items are already implemented.
+
 ## Trend profile
 
 `scripts/spotify/spotify_listening_trends.py` builds
@@ -64,7 +67,6 @@ Manual dispatch remains midnight-gated unless its `force` input is explicitly
 set to `true`. The separate remote-verification workflow is safe-test-only:
 it compiles modules and runs tests without contacting Spotify or changing a
 playlist.
-
 
 ## Rotating description
 
