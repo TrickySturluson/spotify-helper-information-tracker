@@ -103,3 +103,5 @@ Run from the repository root:
 3. Keep Last.fm scrobbles, measured Spotify playback, sourced provider metadata, inferred features, user feedback, and live playlist state distinct.
 4. Never hand-edit generated records or machine state when an owning writer exists.
 5. Treat the Git tree as the current path inventory; a documentation entry does not prove the file still exists or behaves as described.
+
+**Current workflow-count note (2026-11-06):** this historical inventory snapshot recorded 17 workflow YAML files. The repository now has 18 after adding `.github/workflows/babel-ai-continuation.yml`; refresh the full committed-tree snapshot during the next structural inventory audit rather than silently rewriting the historical snapshot counts.
