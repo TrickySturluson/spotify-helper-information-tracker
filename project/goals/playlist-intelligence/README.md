@@ -30,4 +30,4 @@ The 25-track human slider exercise is exploratory sanity-check context only. It 
 
 ### Booze or Boos! integration milestone — 2026-11-02
 
-A read-only cross-reference audit now runs the five-axis fit model over the 64-track saved Booze snapshot against the five calibration-target profiles. The full candidate batch is excluded from those profiles. This helps surface musical affinities and evidence gaps, but it does not replace the separate Halloween-relevance review. The existing sequencer remains the ordering engine; all changes still require a fresh live preview and explicit review.
+Historical 2026-11-02 audit: the five-axis fit model was run over a 64-track Booze snapshot with the candidate batch excluded from calibration profiles. That manifest is now stale. The latest repository snapshot captured 2026-11-06T01:47:59.824523Z contains 92 accessible items, so the old 64-track scores must not be used as current evidence. Regenerate the manifest and redo the hard per-track Halloween/party-energy review after the documentation-only pause. Musical affinity never substitutes for explicit Halloween relevance.
