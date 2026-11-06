@@ -1,3 +1,7 @@
+# Spotify Track Playability & Availability — Actions & Evidence
+
+Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+
 ## 2026-11-06 — Reference Library refresh distinguished from playability refresh
 
 - Reference Library workflow #42146148971 completed and committed repository snapshots/removal state as `3e989e33282efab6cc1416e35970e7c59af5f056`.
@@ -61,7 +65,6 @@
 - **Not yet verified:** branch CI has not run to completion; this is not merged and no existing canonical data has been rewritten. Existing playlist snapshots are not yet backfilled into song records.
 - **Safety:** no Spotify API request or playlist mutation was made; the implementation only consumes fields from the existing read-only snapshot sync.
 - Next: run PR CI, repair any failures, verify fixture output, merge only after checks pass, then perform a bounded offline backfill from saved playlist snapshots. Later add explicit-market spot checks only after verifying current Spotify API behavior and configured market semantics.
-# Actions — Spotify Track Playability & Availability
 
 ## 2026-11-02 — Initial design and boundaries
 
