@@ -518,3 +518,10 @@ This README introduces **Spotify Helper & Information Tracker (SHIT)**, explains
 ## Repository-wide file documentation
 
 For a complete map of tracked source, configuration, generated data, and machine-readable state, see [the repository file index](docs/REPOSITORY_FILE_INDEX.md). Directory-level guides in `data/`, `assistant_data/`, `.github/`, and `playback_data/` document data families without corrupting JSON or archive formats. Maintained Python modules, compatibility launchers, tests, and workflows include a file overview at the bottom.
+
+
+## Mandatory contributor and assistant navigation
+
+- Start with [AGENTS.md](AGENTS.md) for repository-wide operating instructions.
+- Use the [documentation index](docs/README.md) to find architecture guides, data contracts, runbooks, privacy guidance and workstream roadmaps.
+- The [project-wide roadmap](project/ROADMAP.md) summarizes all workstreams; the individual goal roadmaps remain authoritative for their own plans.
