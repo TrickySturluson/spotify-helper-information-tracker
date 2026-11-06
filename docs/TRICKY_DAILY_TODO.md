@@ -48,6 +48,9 @@ Tricky Daily should reliably publish exactly 60 valid, unique tracks; learn from
 
 ## P1 — recommendation quality and learning
 
+- [ ] **Daily recommendation memory (committed requirement).** Persist every Daily recommendation event and connect later outcomes across cycles. Record track identity, cycle/run, recommendation timestamp, strategy/config version, selection rationale, evidence provenance, exposure interval and observed outcome timestamps. Distinguish measured Spotify playback, Last.fm scrobbles, likes/saves, explicit manual removal/blacklist, later retention, ignored/no observed play, not-yet-observed, and unknown due to incomplete coverage. Repeated recommendations link to one track history but remain separate events. High-play-then-remove must differ from unplayed removal. Track-level rejection must not automatically penalize the artist. Never infer outcomes from historical candidate rows with null evidence; never let memory override hard exclusions or whitelist semantics. Design append-safe/idempotent schema, migration, recovery, audit and compaction before implementation. Test duplicate ingestion, delayed scrobbles, repeated recommendations, high-play-then-remove, unplayed-then-remove, retained/unplayed, missing coverage and source attribution.
+
+
 - [ ] **Calibrate artist-level penalties for high-engagement removals.** Today any removed track with at least one measured post-add play or Last.fm scrobble contributes one artist-level negative event, regardless of play count or how many distinct tracks by that artist were removed. Keep exact track exclusions absolute, but avoid treating a highly played single track removed for rotation/freshness as evidence the whole artist is disliked. Decide/test a conservative rule (e.g. multiple distinct removals or an engagement-sensitive signal) before changing scoring weights.
 
 - [ ] **Separate signals by meaning.** Keep Last.fm scrobbles, Spotify playback-tracker observations, playlist additions, saves/likes, removals, skips where reliably available, and actual post-add listening as distinct evidence sources. Preserve source and coverage metadata.
@@ -92,12 +95,13 @@ Explore a weighted score with taste match (30%), discovery potential (25%), trac
 
 ## Implementation order
 
-1. Audit the current code and tests against the P0 checklist; mark already-satisfied items as implemented only after verifying the actual paths.
-2. Fix any P0 gaps and add failure-injection/regression tests before expanding recommendation logic.
-3. Improve exposure-aware feedback, track/artist learning, and saturation controls.
-4. Add confidence/diversity experimentation and transition-aware sequencing.
-5. Integrate Discover Weekly attribution, reporting, and health monitoring.
+1. **Operational reliability first:** re-check cooldown state, verify the current stage-only trigger, complete the no-write 60-track stage/commit/hash/read-back proof, and diagnose failures without touching Spotify playlist contents or description.
+2. **Daily refresh behavior:** verify the actual schedule, Eastern-time/DST gate, workflow delivery, same-day idempotency, snapshot freshness and recovery delivery. A green unit test or GET-only snapshot is not proof that the playlist itself refreshes daily.
+3. Audit remaining P0 paths and close recovery gaps (especially guided resume/rollback/discard) with failure-injection coverage.
+4. Design and implement Daily recommendation memory, then connect exposure-aware feedback and conservative track/artist learning.
+5. Improve artist saturation, familiarity/discovery balance, confidence and diversity recovery.
+6. Add sequencing, outcome reporting, Discover Weekly attribution and health monitoring after operational and feedback foundations are reliable.
 
-A no-write stage-only attempt (#42268583897) was stopped by Spotify HTTP 429 QUOTA_EXCEEDED with Retry-After: 5781 seconds, before stage creation and before any playlist mutation. Do not retry Spotify requests until the cooldown expires. No live cycle has been authorized or performed.
+Historical no-write attempt #42268583897 was stopped by Spotify HTTP 429 QUOTA_EXCEEDED with Retry-After: 5781 seconds, before stage creation and before any playlist mutation. The persisted deadline was 2026-11-06T19:49:46Z and is now past; re-check the durable cooldown file and fail-closed state before any Spotify request. The current test-trigger JSON is configured as stage-only; confirm it remains so before dispatch. No live playlist cycle has been authorized or performed.
 
 When continuing this work in a future chat, read this backlog together with `docs/TRICKY_DAILY_CYCLE.md`, `scripts/spotify/spotify_daily_cycle.py`, `spotify_playlist_cloud.py`, `spotify_discovery.py`, the feedback/preflight code, and the relevant workflow files. Treat `spotify_daily_playlist.py` as the legacy 30-track builder unless its role is explicitly changed. Re-check repository state before assuming any unchecked item is still outstanding.
