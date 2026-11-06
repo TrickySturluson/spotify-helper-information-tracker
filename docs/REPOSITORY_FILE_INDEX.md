@@ -23,6 +23,25 @@
 | `tests/` | Python unittest regression suite | `tests/README.md`; each test module has a bottom overview |
 | `sitecustomize.py` and `shit.py` | Root-level import bootstrap and CLI entry point | Bottom file overview and linked operational documentation |
 
+## Maintained-file inventory snapshot — 2026-11-06
+
+These counts come from directory-scoped GitHub repository listings. Python-module counts exclude each directory's `__init__.py`; they describe maintained code, not every generated data record.
+
+| Area | Files observed | Maintained count |
+|---|---:|---:|
+| `scripts/analytics/` | 8 Python files | 7 implementation modules |
+| `scripts/lastfm/` | 2 Python files | 1 implementation module |
+| `scripts/music/` | 29 Python files | 28 implementation modules |
+| `scripts/spotify/` | 20 Python files | 19 implementation modules |
+| **Maintained implementation total** | **59 Python files** | **55 modules** |
+| `compat/` | 41 Python files + README | 40 compatibility launchers |
+| `tests/` | 45 Python files + README | 44 test modules |
+| `.github/workflows/` | 17 YAML files | 17 workflows |
+| `docs/` | 22 Markdown files | 21 technical guides + this index |
+| `project/goals/` | 13 goal directories + parent index | 13 workspaces; each has ROADMAP.md, README.md and ACTIONS.md |
+
+**Inventory limitation:** the recursive Git tree API response was truncated by the very large generated per-record Library tree. The directory-scoped counts above are verified for maintained source, tests, workflows, guides and goal workspaces, but they are not a complete tracked-path manifest. A complete checkout and `git ls-files` are still required to reconcile every generated JSON/JSONL, state, artifact and configuration path. Do not claim the full tracked-file audit is complete from these counts alone.
+
 ## Automation and repository state
 
 | Path | Contents | Ownership / safety |
