@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - "babel/dispatch-*"
+    paths:
+      - ".github/babel/dispatch.json"
 
 permissions:
   contents: read
@@ -268,7 +273,7 @@ jobs:
 
 # FILE OVERVIEW
 # Purpose: Runs a bounded OpenAI Codex worker against SHIT Documentation & Continuity (Babel).
-# Trigger: Every six hours and manual dispatch; stops when project/BABEL_AGENT_STATE.md says complete.
+# Trigger: Every six hours, manual dispatch, or a narrowly scoped marker commit to a fresh babel/dispatch-* branch; stops when project/BABEL_AGENT_STATE.md says complete.
 # Permissions: Read-only agent and validation jobs; separate publisher receives contents:write and pull-requests:write.
 # Safety: No write-capable token or API key is present while candidate tests run. Publisher rechecks allowlisted paths and never executes candidate code.
 # Side effects: May update only a dedicated Babel branch and its review PR; never merges or touches Spotify/provider state.
