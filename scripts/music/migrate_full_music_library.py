@@ -231,8 +231,8 @@ if __name__ == "__main__":
     main()
 
 # FILE OVERVIEW
-# Migrates every stored track-profile row and every track in accessible Spotify
-# playlist snapshots into per-song records. No network calls or playlist writes.
+# Purpose: Migrate stored track-profile rows and accessible Spotify playlist snapshots
+#          into canonical per-song Library records, preserving verified identities.
 # IDs are kept distinct unless a verified recording ID or Spotify ID matches.
 # Mood fields are intentionally not fabricated: missing evidence remains unknown.
 # Dry run: python compat/migrate_full_music_library.py --dry-run
