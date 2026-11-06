@@ -19,6 +19,25 @@ Updating this file does not wake Buddy, alter an already-running job, or deliver
 - Buddy is a documentation partner only. It may audit and improve documentation, continuity records, roadmaps, action logs, and narrowly scoped documentation-contract tests. It must not perform SHIT runtime/product development or Spotify/Last.fm operations.
 - User retains final authority over integration. Buddy may publish only to its isolated `babel/agent-progress` branch and its review PR; it must not write directly to `main`, self-merge, auto-merge, or expand its permissions.
 
+## Core daily Buddy verification gate
+
+For every SHIT-related ChatGPT conversation, first check the scheduled **SHIT Buddy — daily Babel continuation** automation and its latest run result. This is a conversation-triggered check, not continuous background monitoring.
+
+- Use `America/New_York` to decide whether a run belongs to today.
+- Until a successful, report-bearing run completes today, report **Buddy pending today** (or the exact failure/blocker) and repeat only a lightweight status check on the next SHIT conversation.
+- When a successful run appears, independently inspect its report, draft PR, full diff, read-back evidence, and CI/check status. Verify claims against source/tests; Buddy's self-review is not independent verification.
+- After review, record the Eastern date, automation run ID, PR number/head SHA (or no-PR result), review outcome, and remaining user action below.
+- On later SHIT conversations that day, perform a lightweight status lookup. Skip a full repeat review only if the run ID and PR head SHA still match this recorded checkpoint. Re-review if a new run, changed head, or material failure/check change appears.
+- A failed/incomplete run does not satisfy the daily completion gate. Never claim checks occurred between conversations.
+
+### Last independent Buddy review checkpoint
+
+- Eastern date: **not yet reviewed**
+- Automation run ID: **none recorded**
+- PR/head SHA: **none recorded**
+- Outcome: **pending first successful daily Buddy run**
+- User action: **none identified yet**
+
 ## Current priority
 
 **Babel documentation and continuity completion is the sole active SHIT workstream.** Do not resume feature development, enrichment, provider checks, or Spotify playlist operations until the Maintainability & Documentation roadmap acceptance criteria pass and a fresh-session simulation succeeds using repository documentation alone.
@@ -32,6 +51,10 @@ After Babel is judged as complete and realistically as good as it can be, revisi
 The intended design is a coordinated health system: (1) health monitoring across project data, documentation, tests and workflows; (2) diagnostics that trace symptoms to likely root causes; (3) bounded recovery/repair for deterministic, reversible cases; (4) Buddy as the permanent Documentation & Continuity Guardian, checking documentation drift, roadmaps, handoffs and evidence; and (5) an improvement backlog for recurring failures and systemic weaknesses. Buddy contributes evidence and documentation maintenance but is not the sole health authority and must not approve its own risky repairs.
 
 Safety contract to carry forward: observe and diagnose by default; preserve canonical data and provenance; distinguish authoritative Last.fm scrobbles from optional Spotify playback observations; never invent, silently delete, or silently rewrite uncertain records; only allow explicitly scoped, deterministic, backed-up, reversible repairs with audit trail and post-repair verification; require user approval for consequential or ambiguous changes. Revisit and formalize scope, ownership, autonomy levels, health dimensions, audit records and acceptance criteria only after Babel's completion gate and cold-start simulation pass.
+
+## Historical Codex-worker status (not the current Buddy execution path)
+
+The following section records the earlier repository-hosted Codex/API experiment. It is historical evidence only. The current scheduled ChatGPT/GitHub-app Buddy task is documented in [BABEL_CHATGPT_BUDDY.md](../docs/BABEL_CHATGPT_BUDDY.md) and is governed by the daily verification gate above. Do not infer that the quota-blocked Codex workflow is the active Buddy runner.
 
 ## Current Buddy activation status
 
