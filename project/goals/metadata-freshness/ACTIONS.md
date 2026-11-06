@@ -2,9 +2,10 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
-## 2026-11-06 — Freshness validation and open PR status
+## 2026-11-06 — Latest bounded freshness plan measured residual unknown-age/provenance
 
-- Daily curator tests run #42149783445 passed the bounded, read-only metadata freshness planning step on draft PR #161's then-current base data; this did not run provider enrichment or modify Library records.
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) ran the read-only planner over 13,163 songs, 6,497 artists and 7,969 albums. Profile caches: 2,567 track, 4,498 artist, 805 album.
+- Planner found 11 unknown-age baseline candidates; selected 25 due tasks and zero baseline tasks. Counts included 11 missing timestamps, 32,506 no-data fields and 1,968 missing-provenance fields. The selected due work was only planned; no provider calls or writes were made.
 - PR #120 remains an open draft proposing incremental Library enrichment/sorter development. Do not treat it as merged or assume its behavior is present.
 - Feature implementation and provider calls in this goal remain paused until documentation acceptance criteria pass.
 
