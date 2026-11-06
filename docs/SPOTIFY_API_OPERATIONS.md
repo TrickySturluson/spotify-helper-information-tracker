@@ -69,6 +69,12 @@ Spotify may respond with HTTP 429 and a `Retry-After` header. SHIT must not auto
 
 A 429 response is not evidence of a bad refresh token, wrong playlist owner, or missing playlist. Diagnose those only after the cooldown, using the actual HTTP status and response body. SHIT persists the observed cooldown in `.github/spotify_api_cooldown.json`; cloud workflow runs commit that file so subsequent commands can stop before sending another Spotify request. The guard expires automatically at the recorded deadline.
 
+## Reference Library snapshot writes versus Spotify writes
+
+The Spotify Reference Library workflow is read-only against Spotify: it uses playlist/catalogue and item GETs and never adds, removes, reorders, or edits playlist descriptions. It does, however, write repository state. For non-relinked tracks in playlist snapshots, `spotify_reference_library.py sync` updates canonical MusicLibrary song/artist/album records with Spotify identity, playlist-source IDs/positions, and explicit `listening_context` provenance. It also stores timestamped, market-scoped playability observations. These are repository-side catalogue and availability observations, not Spotify playback, likes, saves, or Last.fm scrobbles. Playlist membership must never be counted as listening history or positive preference. Inaccessible/incomplete playlist reads preserve prior complete snapshot contents rather than treating the failed response as an empty playlist.
+
+See [the canonical Library integration contract](PER_RECORDING_MUSIC_LIBRARY.md) for the exact evidence semantics and identity/relink rules.
+
 ## Request minimization
 
 - Playlist control uses one exact `GET /playlists/{id}` lookup plus the authenticated-user check. If the exact lookup fails, it stops instead of scanning every page of `/me/playlists`.
