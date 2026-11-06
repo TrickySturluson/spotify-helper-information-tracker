@@ -1,7 +1,7 @@
 # Tricky Daily — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Active. Core rotation, fallback, Eastern-time scheduling, editorial description handling, preflight and feedback tooling are documented; end-to-end live correctness and remaining P0 safeguards must be verified against current code and Spotify state.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the documentation-only priority. Core 60-track rotation, fallback, Eastern-time scheduling, description handling, preflight and feedback tooling exist; end-to-end live correctness and remaining P0 safeguards are not yet fully verified.
 
 ## Repository-wide priority override — 2026-11-06
 
