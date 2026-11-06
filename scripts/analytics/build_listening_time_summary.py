@@ -106,10 +106,18 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Publish complete-history listening-time estimates alongside verified duration data. The legacy baseline deliberately includes every scrobble. Verified-duration metrics remain a separate subset and are never filled with guessed durations.
-# Location: Maintained implementation in scripts/analytics/build_listening_time_summary.py.
-# Data flow: Reads canonical project inputs and/or existing generated artifacts;
-#            writes only the outputs described by this module's implementation.
-# Run: python compat/build_listening_time_summary.py (legacy CLI entry point, when this tool has one).
-# Related: tests/ (regression coverage for build_listening_time_summary). See docs/ for longer operational and data-contract guides.
+# Purpose: Publish complete-history listening-time estimates beside duration-
+#          verified metrics without conflating estimates with measured playback.
+# Inputs: data/scrobbles.json, data/stats.json, assistant_data/overview.json,
+#         assistant_data/music/overview.json and recommendation duration trends.
+# Outputs: Writes assistant_data/listening_time.json and refreshes the related
+#          top-level overview/stats plus monthly/yearly duration bucket summaries.
+# Semantics: The legacy estimate applies a 3.5-minute baseline to every
+#            scrobble; known-duration totals are a separate subset and do not
+#            imply actual playback time.
+# Side effects: Local JSON reads/writes with temporary-file replacement; no
+#               provider requests and no Spotify playlist writes.
+# Run: python compat/build_listening_time_summary.py (from the repository root).
+# Related: docs/AUTOMATED_AUDIO_METADATA.md; scripts/analytics/build_music_analytics.py;
+#          scripts/analytics/build_playback_analytics.py.
 # -----------------------------------------------------------------------------
