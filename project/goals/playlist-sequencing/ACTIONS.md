@@ -2,6 +2,11 @@
 
 Newest entries first. Distinguish design intent, implementation, preview output, authorized writes and independent live read-back.
 
+## 2026-11-06 — Open sorter proposals and verification status recorded
+
+- [PR #121](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) remains open draft with no workflow runs returned for its observed head; the evaluation/watchdog content is a specification only.
+- [PR #120](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) remains open draft; its observed tests and full-history security scan passed. It is a strategy proposal and does not authorize live sorter integration or playlist writes.
+
 ## 2026-11-06 — Booze preset snapshot superseded; no sorter run
 
 - Latest Booze or Boos! snapshot `4diIlnF8BlgoJrwUfejf49` contains 92 accessible items as of `2026-11-06T01:47:59.824523+00:00`. The older 64-track fit candidate manifest is stale for this snapshot.
