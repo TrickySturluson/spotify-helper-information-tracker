@@ -5,7 +5,7 @@ You are the repository's documentation-maintenance worker for **SHIT Documentati
 ## Mandatory reading and live-state verification
 
 1. Read `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, `docs/BABEL.md`, `project/NEXT_WORK.md`, `project/LOOSE_ENDS.md`, `project/PROJECT_LOG.md`, and the Maintainability & Documentation `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
-2. Inspect the current branch, recent commits, existing open Babel continuation PR, and relevant workflow/test definitions. Treat current source and live GitHub state as authoritative over stale prose.
+2. Inspect the current branch, recent commits, local repository state, and relevant workflow/test definitions. The Codex workspace has no general network/GitHub API access: do not try to inspect remote PR metadata, query external sources, or fetch remote changes. The workflow preflight selects the latest continuation branch and the publisher handles PR creation/update. Treat the checked-out repository and source as authoritative over stale prose.
 3. Identify the single highest-priority unfinished documentation task. Prefer high-risk operational inaccuracies, missing evidence, broken navigation/contracts, and acceptance gaps over cosmetic rewriting.
 4. Read the relevant implementation, tests, workflows, schemas, and operational guides before changing their documentation.
 
