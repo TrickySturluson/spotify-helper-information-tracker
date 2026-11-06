@@ -1,6 +1,13 @@
 # Canonical Library Enrichment — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
 ## 2026-11-06 — Incremental Library enrichment PR status rechecked
 
 - PR #120 `codex/incremental-library-sorter-work` remains open/draft, 5 commits ahead and 419 behind current main, mergeable=false. Old-head tests #41380622956 and security scan #41380622844 passed.
