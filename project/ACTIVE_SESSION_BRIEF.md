@@ -34,8 +34,8 @@ For every SHIT-related ChatGPT conversation, first check the scheduled **SHIT Bu
 
 - Eastern date: **2026-11-06**
 - Automation run ID: **not exposed to this scheduled-task execution context; do not substitute a turn number**
-- PR/head SHA: **PR #163; pre-batch head reviewed: 2090ad97648851f5138856795600f4e582849efb**
-- Outcome: **PASS for source/PR/CI review of the pre-batch head; this batch's file read-backs are verified; fresh CI on the updated head is still required**
+- PR/head SHA: **PR #163; reviewed content head: 4dd918cbaffe5f027be9951258a7d4e7677c1c26**
+- Outcome: **PASS — full diff/source review and file read-backs passed; Daily curator tests #42238507544 (478 tests) and public repository security scan #42238507190 passed. This checkpoint predates subsequent evidence-only handoff updates; re-review if the PR head changes**
 - User action: **review draft PR #163; decide separately whether to retain or close PR #162; PR #161 remains a separate review item**
 
 ## Current priority
@@ -55,12 +55,12 @@ Safety contract to carry forward: observe and diagnose by default; preserve cano
 ## Current scheduled ChatGPT Buddy status
 
 - **Execution model:** scheduled ChatGPT task SHIT Buddy — daily Babel continuation using the connected GitHub app. This is the current path; it does not use the repository-hosted Codex workflow or an OpenAI API key.
-- **Publication:** persistent branch babel/chatgpt-buddy and one open draft PR #163. Before this batch, the PR was based on main, six commits ahead/one behind, with GitHub mergeable state clean. The pre-batch head 2090ad97648851f5138856795600f4e582849efb passed Daily curator tests #42188373512 and public repository security scan #42188373527. Those checks do not cover this batch's later commits.
+- **Publication:** persistent branch babel/chatgpt-buddy and one open draft PR #163. The pre-batch head 2090ad97648851f5138856795600f4e582849efb passed checks #42188373512/#42188373527. The reviewed content head 4dd918cbaffe5f027be9951258a7d4e7677c1c26 was 37 commits ahead/one behind main with mergeable_state=clean; Daily curator tests #42238507544 (478 tests) and security scan #42238507190 passed. Later evidence-only handoff updates changed the PR head again; inspect the latest head's fresh checks.
 - **Daily-check rule:** the mandatory rule is proposed in PR #163. It is not merged mainline policy until the user reviews and merges the draft.
-- **CI correction:** PR tests on head b0365096d00137b2c392ca2385a080c2dba25011 failed one documentation-contract assertion because docs/BABEL_AGENT.md lacked the exact phrase “Activation is pending”. The phrase was restored with explicit no-API-spend and re-authorization wording. Corrected head 2d3b7fa79a0b9989c81de4df1a67ee2e8a483eba has fresh tests (#42238395936) and security scan (#42238395680) queued; inspect final results.
+- **CI correction:** PR tests on head b0365096d00137b2c392ca2385a080c2dba25011 failed one documentation-contract assertion because docs/BABEL_AGENT.md lacked the exact phrase “Activation is pending”. The phrase was restored with explicit no-API-spend and re-authorization wording. The corrected content head 4dd918cbaffe5f027be9951258a7d4e7677c1c26 passed tests #42238507544 (478 tests) and security scan #42238507190. Subsequent evidence-only handoff updates, including this brief update, create a new PR head; inspect its fresh checks.
 - **PR #162:** temporary GitHub-app connectivity proof remains open/draft and read-only. Security scan #42186485000 passed; Daily curator tests #42186485002 failed because its temporary guide is not listed in docs/README.md. Do not alter it; the user decides whether to retain or close it.
 - **PR #161:** existing documentation delivery remains open/draft with 117 changed files; current compare is 571 commits ahead and 135 behind main, and GitHub reports mergeable_state=dirty. Its old Daily curator tests #42165157006 and public repository security scan #42165156989 passed on its own head. No reviews or review threads are present. Do not merge or rebase it blindly.
-- **Next:** inspect the updated PR #163 head and CI after this batch, then continue the semantic audit. Keep the PR draft and preserve human review.
+- **Next:** inspect the latest PR #163 head and fresh checks after the evidence-only handoff updates, then continue the semantic audit. Keep the PR draft and preserve human review.
 
 ## Historical repository-hosted Codex worker execution evidence (separate path)
 
