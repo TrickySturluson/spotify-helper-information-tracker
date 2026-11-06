@@ -292,6 +292,7 @@ class DocumentationContractTests(unittest.TestCase):
         legacy_migrator = (ROOT / "scripts" / "music" / "migrate_music_library.py").read_text(encoding="utf-8")
         full_migrator = (ROOT / "scripts" / "music" / "migrate_full_music_library.py").read_text(encoding="utf-8")
         migration_workflow = (ROOT / ".github" / "workflows" / "great-migration.yml").read_text(encoding="utf-8")
+        credential_verifier = (ROOT / "scripts" / "music" / "verify_provider_credentials.py").read_text(encoding="utf-8")
 
         self.assertIn("Constructor may rebuild and write library_index.json", source)
         self.assertIn("strictly read-only structural check", guide)
@@ -306,6 +307,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("may rebuild library_index.json", migration_workflow)
         self.assertIn("health is the strictly read-only structural scan", migration_workflow)
         self.assertIn("verify may persist a rotated Spotify refresh token as an Actions", migration_workflow)
+        self.assertIn("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN=1", credential_verifier)
+        self.assertIn("replacement Spotify refresh token may be", credential_verifier)
 
     def test_track_profile_builder_preserves_playlist_only_evidence_semantics(self):
         source = (ROOT / "scripts" / "music" / "build_track_profiles.py").read_text(encoding="utf-8")
