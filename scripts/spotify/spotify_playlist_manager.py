@@ -4,6 +4,7 @@ import argparse, base64, hashlib, json, os, re, secrets, subprocess, sys, time, 
 from collections import Counter
 import urllib.parse, urllib.request, webbrowser
 from datetime import datetime, timezone, timedelta
+from email.utils import parsedate_to_datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
@@ -22,16 +23,48 @@ SPOTIFY_COOLDOWN = Path(".github/spotify_api_cooldown.json")
 
 def stamp(): return datetime.now(timezone.utc).isoformat()
 
+def parse_retry_after(value, now=None):
+    """Parse Spotify Retry-After as delta-seconds or an HTTP-date."""
+    if value is None:
+        return None, None
+    raw = str(value).strip()
+    if not raw:
+        return None, None
+    now = now or datetime.now(timezone.utc)
+    if raw.isdecimal():
+        seconds = int(raw)
+        try:
+            return now + timedelta(seconds=seconds), seconds
+        except OverflowError:
+            return None, None
+    try:
+        deadline = parsedate_to_datetime(raw)
+        if deadline.tzinfo is None:
+            deadline = deadline.replace(tzinfo=timezone.utc)
+        deadline = deadline.astimezone(timezone.utc)
+        seconds = max(0, int((deadline - now).total_seconds()))
+        return deadline, seconds
+    except (TypeError, ValueError, OverflowError):
+        return None, None
+
+
 def check_spotify_cooldown():
     """Fail closed while a previously reported Spotify Retry-After is active."""
     state = read(SPOTIFY_COOLDOWN, {})
     if not isinstance(state, dict):
         raise ManagerError("Spotify cooldown state is invalid; refusing API requests.")
+    if state.get("manual_clear_required") is True:
+        raise ManagerError(
+            "Spotify API cooldown requires manual clearance because no usable Retry-After "
+            "value was provided. No Spotify request was sent."
+        )
     until = state.get("cooldown_until")
     if not until:
         return
     try:
         deadline = datetime.fromisoformat(until.replace("Z", "+00:00"))
+        if deadline.tzinfo is None:
+            raise ValueError("cooldown timestamp has no timezone")
     except (TypeError, ValueError):
         raise ManagerError("Spotify cooldown timestamp is invalid; refusing API requests.")
     remaining = (deadline - datetime.now(timezone.utc)).total_seconds()
@@ -180,28 +213,37 @@ class Spotify:
                 api_error = payload.get("error") if isinstance(payload, dict) else {}
                 api_error = api_error if isinstance(api_error, dict) else {}
                 reason = str(api_error.get("reason") or api_error.get("message") or "rate limit")
-                if retry_after and retry_after.isdigit():
-                    seconds = int(retry_after)
+                deadline, seconds = parse_retry_after(retry_after)
+                if deadline is not None:
                     hours, remainder = divmod(seconds, 3600)
                     minutes = remainder // 60
                     wait = f"{hours}h {minutes}m" if hours else f"{minutes}m"
-                    deadline = datetime.now(timezone.utc) + timedelta(seconds=seconds)
                     write(SPOTIFY_COOLDOWN, {
                         "cooldown_until": deadline.isoformat(),
                         "recorded_at": stamp(),
                         "retry_after_seconds": seconds,
+                        "retry_after_value": str(retry_after).strip(),
                         "reason": reason,
                         "endpoint": f"{method} {path}",
                     })
+                    cooldown_note = "Do not retry read/preview commands until the cooldown expires."
                 else:
-                    wait = "the interval specified by Spotify"
+                    wait = "manual clearance (Spotify supplied no usable Retry-After value)"
+                    write(SPOTIFY_COOLDOWN, {
+                        "cooldown_until": None,
+                        "manual_clear_required": True,
+                        "recorded_at": stamp(),
+                        "retry_after_value": retry_after,
+                        "reason": reason,
+                        "endpoint": f"{method} {path}",
+                    })
+                    cooldown_note = "Further Spotify requests are blocked until this cooldown is manually cleared."
                 raise ManagerError(
                     f"Spotify API quota/rate limit reached on {method} {path} "
-                    f"(HTTP 429; {reason}). Spotify says wait {wait} "
+                    f"(HTTP 429; {reason}). Wait {wait} "
                     f"(Retry-After: {retry_after or 'not supplied'}). "
-                    "No playlist changes were attempted. Do not retry read/preview "
-                    "commands until the cooldown expires; repeated requests can "
-                    "extend service restrictions."
+                    "No playlist changes were attempted. " + cooldown_note +
+                    " Repeated requests can extend service restrictions."
                 ) from e
             raise ManagerError(f"Spotify API {method} {path}: HTTP {e.code}:{retry_note} {detail}")
     def me(self): return self.call("GET","/me")

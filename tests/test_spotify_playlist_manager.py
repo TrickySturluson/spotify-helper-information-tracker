@@ -299,6 +299,51 @@ class PlaylistManagerTests(unittest.TestCase):
                 spotify.call("GET", "/me")
         request.assert_called_once()
 
+    def test_spotify_429_parses_http_date_retry_after(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.bearer = lambda: "test-token"
+        spotify.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
+        error = urllib.error.HTTPError(
+            url="https://api.spotify.com/v1/me/playlists",
+            code=429,
+            msg="Too Many Requests",
+            hdrs={"Retry-After": "Wed, 02 Jan 2030 03:04:05 GMT"},
+            fp=io.BytesIO(b'{"error":{"status":429,"message":"Too many requests","reason":"QUOTA_EXCEEDED"}}'),
+        )
+        with tempfile.TemporaryDirectory() as directory, patch.object(
+            manager, "SPOTIFY_COOLDOWN", Path(directory) / "cooldown.json"
+        ), patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
+            with self.assertRaisesRegex(manager.ManagerError, "No playlist changes were attempted"):
+                spotify.call("GET", "/me/playlists")
+            saved = manager.read(manager.SPOTIFY_COOLDOWN, {})
+            self.assertEqual(saved["cooldown_until"], "2030-01-02T03:04:05+00:00")
+            self.assertGreater(saved["retry_after_seconds"], 0)
+            self.assertFalse(saved.get("manual_clear_required", False))
+        request.assert_called_once()
+
+    def test_spotify_429_without_usable_retry_after_fails_closed(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.bearer = lambda: "test-token"
+        spotify.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
+        error = urllib.error.HTTPError(
+            url="https://api.spotify.com/v1/me/playlists",
+            code=429,
+            msg="Too Many Requests",
+            hdrs={},
+            fp=io.BytesIO(b'{"error":{"status":429,"message":"Too many requests","reason":"QUOTA_EXCEEDED"}}'),
+        )
+        with tempfile.TemporaryDirectory() as directory, patch.object(
+            manager, "SPOTIFY_COOLDOWN", Path(directory) / "cooldown.json"
+        ), patch.object(manager.urllib.request, "urlopen", side_effect=error) as request:
+            with self.assertRaisesRegex(manager.ManagerError, "manual clearance"):
+                spotify.call("GET", "/me/playlists")
+            saved = manager.read(manager.SPOTIFY_COOLDOWN, {})
+            self.assertTrue(saved["manual_clear_required"])
+            self.assertIsNone(saved["cooldown_until"])
+            with self.assertRaisesRegex(manager.ManagerError, "requires manual clearance"):
+                spotify.call("GET", "/me")
+        request.assert_called_once()
+
     def test_active_spotify_cooldown_blocks_client_initialization(self):
         with tempfile.TemporaryDirectory() as directory:
             cooldown = Path(directory) / "cooldown.json"
