@@ -7,6 +7,22 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-05 — Semantic module-overview audit underway
+
+**Active priority remains documentation only.** No feature development, playlist operations, enrichment, provider refreshes or unrelated project work.
+
+- Created documentation branch `docs/semantic-overview-quality-20261105` from `main`; the current batch is not merged or published to main.
+- Rewrote 15 maintained module FILE OVERVIEW blocks against their actual implementations: six analytics modules, Last.fm history importer, two music modules, and six Spotify modules covering playlist manager/cloud controller, Daily candidate/feedback/discovery and playback tracking.
+- Replaced generic placeholder prose with concrete paths, input/output contracts, API behavior, write side effects, safeguards, retry/coverage semantics and supported invocation.
+- Added an anti-boilerplate regression check for those 15 audited modules in `tests/test_script_layout.py`.
+- Corrected two nonexistent guide references found while checking the new links.
+- Latest branch commit recorded for this batch: `885dd37b56bd3f4f36d691fa87d98bcb19c7a479`.
+- **Verification boundary:** file updates succeeded, but the new test has not run in CI. No application behavior or live Spotify state was changed.
+- **Remaining:** other maintained modules still contain generic overview text; continue reviewing source before editing, then audit compatibility/test/workflow summaries, all technical guides and goal records. Complete tracked inventory and fresh-session simulation remain mandatory.
+
+### Next executable action
+Continue with the remaining music and Spotify modules whose overviews contain generic fallback language. Fetch each source, inspect real data paths/provider calls/writes/CLI behavior, rewrite only its overview, add it to the anti-boilerplate test only after review, and record the exact commit. Do not edit workflow YAMLs during this pass because comment-only workflow edits previously triggered provider/data-writing jobs.
+
 ## 2026-11-05 — Documentation-first priority reaffirmed; live repository audit resumed
 
 **Active priority: documentation only.** Do not begin feature development, playlist operations, enrichment runs, or unrelated project work until the documentation audit reaches the completion standard in the Maintainability & Documentation roadmap.
