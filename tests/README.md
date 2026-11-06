@@ -14,7 +14,7 @@ For focused checks, run `python -m unittest tests.test_documentation_contract -v
 - **Library integrity:** migration, schema, identity confidence, health, maintenance, and freshness tests.
 - **Metadata and discovery:** provider enrichment, recording identity, acoustic descriptors, lyrics, mood inference, and candidate ingestion.
 - **Playlist intelligence:** fit scoring, feedback calibration, previews, sequencing, discovery, and removal feedback.
-- **Tricky Daily:** cycle scheduling, feedback scoring, playlist generation, and preflight safeguards.
+- **Tricky Daily:** cycle scheduling, feedback scoring, playlist generation, read-only preflight/snapshot refresh, and maintained-source import precedence.
 - **Spotify operations:** playlist management, reference-library synchronization, descriptions, and playback observations.
 
 Test filenames provide the detailed inventory. Use the relevant workstream roadmap and action log to understand why a behavior is protected and what live verification remains necessary.

@@ -11,9 +11,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-for entry in (ROOT, ROOT / "compat", ROOT / "scripts" / "spotify"):
-    if str(entry) not in sys.path:
-        sys.path.insert(0, str(entry))
+# Keep maintained implementations ahead of compatibility launchers.
+# The compat shims import these modules by their legacy top-level names; placing
+# compat first makes a shim import itself (for example, spotify_listening_trends).
+SOURCE_DIR = ROOT / "scripts" / "spotify"
+COMPAT_DIR = ROOT / "compat"
+for entry in (ROOT, COMPAT_DIR):
+    if str(entry) in sys.path:
+        sys.path.remove(str(entry))
+    sys.path.append(str(entry))
+if str(SOURCE_DIR) in sys.path:
+    sys.path.remove(str(SOURCE_DIR))
+sys.path.insert(0, str(SOURCE_DIR))
 
 import spotify_playlist_manager as manager
 import spotify_discovery as discovery
