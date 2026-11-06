@@ -12,7 +12,7 @@ SHIT now maintains a rolling **90-day top-200 track cohort** derived from the ca
 
 ## Enrichment
 
-The existing incremental track-profile pipeline prioritizes the cohort for Last.fm track tags and MusicBrainz recording tags/genres where a verified recording MBID exists. It retains cached profiles, retries according to existing cooldown rules, and never invents a match when identity is ambiguous. The workflow budgets up to 200 track-profile lookups per run.
+The existing incremental track-profile pipeline prioritizes the cohort for Last.fm track tags and MusicBrainz recording tags/genres where a verified recording MBID exists. It retains cached profiles, retries according to existing cooldown rules, and never invents a match when identity is ambiguous. The scheduled workflow processes up to 200 track profiles per run. Manual dispatch offers 120, 300, or 600 lookups (default 300); the standalone script defaults to 120 when no environment override is set. The 200-track cohort size and the per-run lookup budget are separate controls.
 
 Audio measurements remain a separate layer. Spotify's Audio Features and Audio Analysis endpoints are unavailable to many development-mode applications under Spotify's November 2024 API changes; SHIT therefore does not treat those fields as guaranteed. The separate AcousticBrainz and optional GetSongBPM enrichers remain best-effort external sources, with provenance and confidence kept explicit.
 
@@ -25,6 +25,6 @@ TRACK_PROFILE_RECENT_WINDOW_DAYS=90 TRACK_PROFILE_RECENT_TOP_N=200 TRACK_PROFILE
 ## Workflow
 
 - `SHIT — Spotify Reference Library`: scheduled every six hours and manually dispatchable. A commit changing its workflow definition also triggers an immediate sync, which is useful when workflow dispatch is unavailable.
-- `Enrich Music Metadata`: daily schedule and manual dispatch; commits to its workflow or track-profile implementation trigger an immediate enrichment run.
+- `Enrich Music Metadata`: daily at 08:17 UTC and manually dispatchable. Scheduled track-profile budget is 200; manual dispatch allows 120/300/600. Changes to the workflow, enrichment scripts/compatibility launchers, discovery intake files, or selected priority-playlist snapshot paths trigger an immediate run; generated-data commits do not match those paths.
 - Both workflows commit only generated data; they do not modify Spotify playlists.
 
