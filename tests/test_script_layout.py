@@ -67,6 +67,38 @@ class ScriptLayoutTests(unittest.TestCase):
                 self.assertIn("FILE OVERVIEW", source)
                 self.assertIn("FILE OVERVIEW", source[-1500:])
 
+    def test_implementation_overviews_are_specific_not_generic_templates(self):
+        generic_phrases = (
+            "Uses the canonical archives and/or generated project data",
+            "consult this module's configuration and command options for exact paths",
+            "tests/ contains regression coverage",
+            "docs/ contains extended guides",
+            "See docs/ for longer operational and data-contract guides",
+            "Purpose: Implementation module scripts/",
+        )
+        implementations = sorted((ROOT / "scripts").rglob("*.py"))
+        self.assertTrue(implementations, "No maintained implementation modules were found")
+        for path in implementations:
+            if path.name == "__init__.py":
+                continue
+            source = path.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
+                overview = source[marker:]
+                self.assertIn("Purpose:", overview, "Overview must state the module's purpose")
+                for phrase in generic_phrases:
+                    self.assertNotIn(phrase, overview, f"Generic overview boilerplate: {phrase}")
+
+    def test_compatibility_overviews_name_the_maintained_implementation(self):
+        wrappers = sorted(path for path in (ROOT / "compat").glob("*.py") if path.name != "__init__.py")
+        for path in wrappers:
+            source = path.read_text(encoding="utf-8")
+            marker = source.rfind("FILE OVERVIEW")
+            with self.subTest(path=path.relative_to(ROOT).as_posix()):
+                self.assertGreaterEqual(marker, 0, "Missing FILE OVERVIEW")
+                self.assertIn("scripts/", source[marker:], "Compatibility overview must name its maintained implementation")
+
     def test_repository_gitignore_has_a_file_overview(self):
         source = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn("FILE OVERVIEW", source)
