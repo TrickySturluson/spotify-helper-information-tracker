@@ -151,10 +151,14 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich artist profiles with community tags for recommendation use.
-# Location: Maintained implementation in scripts/music/build_music_profiles.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/build_music_profiles.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Incrementally build artist-level community-tag profiles for discovery and playlist analysis.
+# Inputs: Reads canonical data/scrobbles.json and existing assistant_data/music/artist_profiles.json.
+# Provider: Uses Last.fm artist tag metadata; requires LASTFM_API_KEY and defaults to
+#           120 artist lookups/run (MUSIC_PROFILE_LOOKUPS_PER_RUN), with 30-day retry timing.
+# Output: Rewrites assistant_data/music/artist_profiles.json with raw community tags,
+#         lookup status/provenance, and conservative derived genres, moods, and themes.
+# Semantics: Raw tags are retained; derived categories are artist-context signals, not
+#            recording-level truth and must not be copied onto every track.
+# Run: python compat/build_music_profiles.py.
+# Related: scripts/spotify/spotify_discovery.py and docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------

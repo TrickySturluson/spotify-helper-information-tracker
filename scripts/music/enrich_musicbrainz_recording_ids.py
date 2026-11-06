@@ -247,10 +247,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Resolve missing MusicBrainz recording IDs using existing Spotify snapshot ISRCs first, then strict exact artist/title search. Ambiguous identities are never guessed; results are checkpointed to the original artist shards.
-# Location: Maintained implementation in scripts/music/enrich_musicbrainz_recording_ids.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_musicbrainz_recording_ids.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Resolve missing MusicBrainz recording IDs for existing song records.
+# Inputs: Reads assistant_data/music/artists/shard-*.json, recent_top_tracks.json,
+#         and Spotify playlist snapshots under assistant_data/spotify/playlists/ to index ISRCs.
+# Matching: Reuses exact Spotify-ID/ISRC evidence first, then strict exact artist/title
+#           MusicBrainz matching; ambiguous candidates are never guessed.
+# Outputs/state: Checkpoints provider cooldown/attempt state in
+#                assistant_data/music/musicbrainz_id_lookup_state.json and updates original shards.
+# Reliability: Writes checkpoints as work progresses so interrupted batches can resume;
+#              MusicBrainz requests follow the one-request-per-second policy.
+# Run: python compat/enrich_musicbrainz_recording_ids.py.
+# Related: docs/ALBUM_METADATA_AND_LOOKUP_CONFIDENCE.md and docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------

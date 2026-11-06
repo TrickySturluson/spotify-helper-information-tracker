@@ -453,10 +453,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich scrobbled tracks, exact priority-playlist tracks, and the rolling top 200 tracks by Last.fm plays in the previous 90 days. Writes a reusable recent_top_tracks.json cohort and prioritizes it for Last.fm tags and verified MusicBrainz recording tags. No fuzzy MBID search is used: uncertain identity matches remain unresolved.
-# Location: Maintained implementation in scripts/music/build_track_profiles.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/build_track_profiles.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Build independently sourced recording-level tag profiles for listened and priority tracks.
+# Inputs: Reads data/scrobbles.json, assistant_data/music artist shards, and configured
+#         assistant_data/spotify/playlists/{id}.json priority snapshots.
+# Outputs: Writes assistant_data/music/track_profiles.json and recent_top_tracks.json;
+#          the recent cohort prioritizes the top 200 unique tracks by Last.fm plays over 90 days.
+# Providers/identity: Last.fm track tags are combined with MusicBrainz recording tags only
+#                     when a verified recording MBID already exists; no fuzzy MBID search.
+# Semantics: Track tags remain separate from artist profiles; unresolved identities and
+#            missing tags stay unknown. Provider checkpoints/cooldowns control retries.
+# Run: python compat/build_track_profiles.py (requires LASTFM_API_KEY for Last.fm enrichment).
+# Related: docs/AUTOMATED_AUDIO_METADATA.md and docs/PER_RECORDING_MUSIC_LIBRARY.md.
 # -----------------------------------------------------------------------------
