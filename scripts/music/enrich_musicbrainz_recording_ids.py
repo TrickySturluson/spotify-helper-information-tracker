@@ -247,10 +247,13 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Resolve missing MusicBrainz recording IDs using existing Spotify snapshot ISRCs first, then strict exact artist/title search. Ambiguous identities are never guessed; results are checkpointed to the original artist shards.
-# Location: Maintained implementation in scripts/music/enrich_musicbrainz_recording_ids.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/enrich_musicbrainz_recording_ids.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Resolve missing MusicBrainz recording IDs for canonical Library tracks.
+# Inputs: Existing Spotify snapshot ISRCs first, then strict MusicBrainz artist/title
+#         lookup for unresolved recordings; bounded by MUSICBRAINZ_ID_LOOKUPS_PER_RUN.
+# Outputs: Recording-ID evidence and checkpoint state in the existing artist-sharded metadata.
+# Matching: Exact/verified identity only; ambiguous candidates remain unresolved.
+# Safety: Never fuzzy-promotes an identity; provider calls are bounded and rate-limited.
+# Run: python compat/enrich_musicbrainz_recording_ids.py (repository root).
+# Related: docs/PER_RECORDING_MUSIC_LIBRARY.md; docs/AUTOMATED_AUDIO_METADATA.md;
+#          tests/test_musicbrainz_recording_ids.py.
 # -----------------------------------------------------------------------------
