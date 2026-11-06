@@ -77,6 +77,6 @@ Chronological handoff record for substantial project work. New entries go at the
 
 - Added root AGENTS.md, docs/README.md, project/ROADMAP.md, automated documentation-contract tests, and a corrected source/data-family index after finding the prior exhaustive snapshot had become stale as the canonical music Library expanded.
 - Added dedicated ROADMAP/README/ACTIONS workspaces for Tricky Daily and Playlist Sequencing so their independent user requirements, safety constraints, evidence and next actions survive chat boundaries.
-- CI evidence: Daily curator tests #42143513931 passed on 7d23db6 (including documentation contract and directory guides); #42143770161 passed on 79af1f9 after the Daily workspace was added. Playlist Sequencing was added afterward; its latest CI run is still pending.
+- CI evidence: Daily curator tests #42143513931 passed on 7d23db6 (including documentation contract and directory guides); #42143770161 passed on 79af1f9 after the Daily workspace was added. Playlist Sequencing was added afterward and passed in Daily curator run #42143913729. A later run #42144349548 passed after adding the workflow catalogue and correcting the primary Markdown-link parser.
 - No playlist writes, Library data changes, provider state changes, or listening-history changes were performed as part of this documentation work.
 - Next: verify the latest CI run after the Playlist Sequencing workspace; then audit file-level overviews and reconcile all workstream roadmaps with current code/workflow evidence.
