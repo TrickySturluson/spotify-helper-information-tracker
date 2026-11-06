@@ -59,11 +59,16 @@ jobs:
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: GitHub Actions workflow "Acoustic Metadata Enrichment".
-# Trigger: See the on: section above for scheduled, push, pull-request, or manual runs.
-# Behavior: Automates the job steps declared in this workflow, including its
-#           runtime setup, permissions, dependencies, and repository changes.
-# Maintenance: Keep paths, secrets, permissions, and Python versions synchronized
-#              with the implementation under scripts/ and compat/.
-# Related: See docs/ for feature-specific operating instructions.
+# Purpose: Enrich the music catalogue with recording IDs and acoustic/audio metadata.
+# Trigger: Daily at 07:23 UTC; manual dispatch with a max_batches input; or pushes
+#          affecting this workflow and the AcousticBrainz/MusicBrainz compatibility launchers.
+# Inputs: MUSICBRAINZ_ID_LOOKUPS_PER_RUN is fixed at 1,000; manual max_batches
+#         controls AcousticBrainz batches (default 100, up to 2,500 tracks).
+# Providers: MusicBrainz recording-ID lookup, AcousticBrainz, and optional
+#            GetSongBPM when GETSONGBPM_API_KEY is configured.
+# Writes: Commits audio_profiles.json, artist-sharded audio data and
+#         getsongbpm_lookup_state.json when those outputs change.
+# Safety: Bounded provider calls; no Spotify playlist operations. contents:write.
+# Related: scripts/music/enrich_acousticbrainz.py, enrich_musicbrainz_recording_ids.py,
+#          enrich_getsongbpm.py; docs/AUTOMATED_AUDIO_METADATA.md and docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
