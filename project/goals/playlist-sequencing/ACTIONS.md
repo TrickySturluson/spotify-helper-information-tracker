@@ -1,5 +1,11 @@
 # Playlist Sequencing — Actions & Evidence
 
+## 2026-11-06 — Sequencing work paused for documentation audit
+
+- The sequencing and transition-scoring implementation remains documented and preserved; no sorter run or playlist reorder was performed during this audit.
+- Related sorter proposals #120 and #121 remain open drafts and must be compared against main before any future merge or implementation decision.
+- Feature work remains paused until documentation acceptance criteria pass.
+
 Newest entries first. Distinguish design intent, implementation, preview output, authorized writes and independent live read-back.
 
 ## 2026-11-05 — Dedicated sequencing workstream documentation created
