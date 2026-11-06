@@ -17,6 +17,11 @@ Only generated playlists are in scope by default. Personal playlists remain read
 
 **Resume:** inspect sorter/tests/state; verify authorization and lock; preview; assess transitions; apply only explicitly authorized changes; verify order/count/duplicates/audit.
 
+## Open proposals (not merged)
+
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open and draft; it adds an evaluation/watchdog specification, not verified runtime reports or live playlist changes.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open and draft; it records a strategy decision and does not complete sorter integration or authorize playlist writes.
+
 ## Documentation and resume
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
