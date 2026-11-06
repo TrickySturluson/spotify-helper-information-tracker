@@ -1,13 +1,23 @@
+## 2026-11-06 — Feedback nuance: high-engagement removals and artist-level penalties
+
+- **Source review:** `load_playlist_feedback()` in `scripts/spotify/spotify_discovery.py` adds one negative artist event whenever a removed track has any positive post-add measured-play or Last.fm-scrobble count. It does not distinguish a single play from many plays or repeated track removals for the same artist.
+- **Why this matters:** exact track removals must remain hard exclusions, but a track removed after substantial listening may reflect rotation/freshness rather than dislike of the artist. A single highly played removal currently contributes the same one-count artist-level penalty as a low-exposure removal.
+- **Current safeguards:** an unexposed or zero-play removal does not create an artist penalty; measured playback and Last.fm post-add scrobbles remain separate sources; exact URI/key exclusions are preserved independently.
+- **Decision needed before runtime change:** design a conservative artist-level aggregation rule (for example, require multiple distinct removed tracks from the same artist, or distinguish low engagement from high engagement) and test the cases explicitly. Do not guess a play-count threshold or let this work weaken exact track blocks. This is a P1 scoring-quality issue, not a current hard-exclusion bypass.
+- **Next:** add a regression scenario for a high-play-count single-track removal and multiple distinct removals from one artist; agree on the intended artist-level signal before changing scoring weights.
+
+---
+
 ## 2026-11-06 — Retry-After parsing and fail-closed quota recovery merged
 
 - **Merge:** PR [#170](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/170) merged to main as `397218ebf4e397ec4a8fd3a1d1ec6e23aefe8db2`.
 - **Behavior:** the manager parses `Retry-After` as either delta-seconds or an HTTP-date and persists a UTC cooldown deadline. If the header is missing or unusable, it writes `manual_clear_required: true` and blocks client initialization and every subsequent API request until an operator verifies the restriction has elapsed and manually clears the state. Timezone-naive persisted cooldown timestamps are rejected.
 - **Regression coverage:** added mocked tests for HTTP-date persistence and missing-header fail-closed behavior; the numeric Retry-After test remains active from PR #169.
 - **PR verification:** Daily curator tests [#42273342714](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273342714) passed all 514 tests; public repository security scan [#42273342665](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273342665) passed.
-- **Post-merge:** mainline Daily curator tests [#42273509046](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273509046) and full-history security scan [#42273509063](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273509063) were queued at last check.
+- **Post-merge:** mainline Daily curator tests [#42273509046](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273509046) and full-history security scan [#42273509063](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42273509063) both passed.
 - **Manual-clear procedure:** when `manual_clear_required` is true, do not delete the file merely to resume work. Verify the 429 restriction has elapsed using authoritative provider/account evidence; then remove `.github/spotify_api_cooldown.json` in a reviewed commit to main. The guard otherwise remains intentionally non-expiring.
 - **Safety:** no Spotify/Last.fm/provider request, workflow dispatch, playlist write, description mutation, or generated-data change was performed by this PR.
-- **Next:** confirm post-merge CI and follow the Daily stage-only gate after the existing cooldown expires. A live playlist replacement still requires separate authorization.
+- **Next:** after the existing cooldown expires, re-check the deadline and run only the protected no-write Daily stage-only verification. A live playlist replacement still requires separate authorization.
 
 ---
 
