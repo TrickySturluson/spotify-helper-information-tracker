@@ -168,10 +168,12 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Analyze legally obtained local audio files and build SHIT audio profiles. Input filenames must be "Artist - Track.ext". Files are analyzed locally; this tool never downloads or extracts audio from Spotify. Results contain descriptors, not audio. Requires Essentia and NumPy.
-# Location: Maintained implementation in scripts/music/audio_analysis.py.
-# Data flow: Uses the canonical archives and/or generated project data; see the
-#            module's paths and command options for exact inputs and outputs.
-# Run: python compat/audio_analysis.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Extract audio descriptors from legally obtained local music files for SHIT profiles.
+# Inputs: Local audio files named "Artist - Track.ext"; requires Essentia and NumPy.
+# Outputs: Structured descriptor/profile data under assistant_data/music/; audio itself
+#          is neither copied into the repository nor uploaded to Spotify or a provider.
+# Safety: Local-file analysis only. Do not download or extract audio from Spotify.
+# Run: python compat/audio_analysis.py <audio-folder> (repository root).
+# Related: scripts/music/analyze_audio_mood.py; docs/AUDIO_ANALYSIS.md;
+#          docs/AUTOMATED_AUDIO_METADATA.md; tests/test_audio_analysis.py.
 # -----------------------------------------------------------------------------
