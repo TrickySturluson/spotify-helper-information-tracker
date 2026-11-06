@@ -2,6 +2,12 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Open PR #60 CI and secret-scan findings recorded
+
+- [PR #60](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/60) remains open and unmerged. Its observed full test run failed when live Last.fm MBID lookups returned HTTP 400/404.
+- Its full-history gitleaks scan reported three `generic-api-key` findings on public Spotify track IDs in `assistant_data/music/library/library_index.json`. The matched values were redacted in the log and the surrounding data identifies Spotify URIs, so these appear to be false positives rather than credentials; nevertheless, revalidate the findings and scanner configuration before dismissing or allowlisting them.
+- Mainline candidate ingestion remains partial; PR #60's per-song discovery_context additions are proposed, not merged. No feature work was performed during this documentation pass.
+
 ## 2026-11-06 — Mainline discovery intake and open PR distinction recorded
 
 - Mainline already contains `scripts/music/discovery_ingestion.py` and `tests/test_discovery_ingestion.py`, storing candidate evidence in `assistant_data/recommendations/discovery_candidates.json` separately from scrobbles, plays and preferences.
