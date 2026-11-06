@@ -20,3 +20,9 @@ Each maintained implementation file should explain purpose and supported goal, i
 ## Documentation and resume
 
 Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful action, update it with files changed, execution, exact verification and outcome. Update [the central handoff](../../NEXT_WORK.md) when priority or blockers change.
+
+## AI continuation worker
+
+Babel includes a repository-hosted OpenAI Codex worker to continue documentation work from durable GitHub state. It is scheduled every six hours and can also be started manually. It resumes from the dedicated babel/agent-progress branch, makes documentation-only changes, and publishes through a review PR after path validation and full unittest discovery. It cannot perform Spotify/provider operations or change runtime implementation. Setup, permissions, recovery and limitations are in [docs/BABEL_AGENT.md](../../../docs/BABEL_AGENT.md).
+
+**Activation is pending:** the repository owner must add the OPENAI_API_KEY Actions secret and verify the first run. The ChatGPT subscription does not itself provide API credentials; API usage is billed separately.
