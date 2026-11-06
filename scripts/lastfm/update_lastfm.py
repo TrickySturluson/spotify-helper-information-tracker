@@ -477,16 +477,16 @@ if __name__ == "__main__":
 
 
 # -----------------------------------------------------------------------------
-# # FILE OVERVIEW
-# # Purpose: Import new scrobbles from the user's Last.fm account into the canonical archive.
-# # Inputs: LASTFM_API_KEY environment variable and the configured Last.fm username.
-# # Outputs: Appends/deduplicates chronological records in data/scrobbles.json and updates
-# #          data/metadata.json with synchronization checkpoint/count information.
-# # API behavior: Paginates Last.fm user.getRecentTracks in 200-row pages, waits between
-# #                requests, and retries temporary HTTP/network failures up to six times.
-# # Safety: Last.fm is the historical listening source of truth; this script does not
-# #         read Spotify playback or edit Spotify playlists. Never replace archive history
-# #         with tracker observations or treat a failed sync as an empty archive.
-# # Run: python compat/update_lastfm.py (repository root; requires LASTFM_API_KEY).
-# # Related: tests/; data/README.md; docs/WORKFLOWS.md.
-# # -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Import new scrobbles from the user's Last.fm account into the canonical archive.
+# Inputs: LASTFM_API_KEY environment variable and the configured Last.fm username.
+# Outputs: Appends/deduplicates chronological records in data/scrobbles.json and updates
+#          data/metadata.json with synchronization checkpoint/count information.
+# API behavior: Paginates Last.fm user.getRecentTracks in 200-row pages, waits between
+#                requests, and retries temporary HTTP/network failures up to six times.
+# Safety: Last.fm is the historical listening source of truth; this script does not
+#         read Spotify playback or edit Spotify playlists. Never replace archive history
+#         with tracker observations or treat a failed sync as an empty archive.
+# Run: python compat/update_lastfm.py (repository root; requires LASTFM_API_KEY).
+# Related: tests/; data/README.md; docs/WORKFLOWS.md.
+# -----------------------------------------------------------------------------
