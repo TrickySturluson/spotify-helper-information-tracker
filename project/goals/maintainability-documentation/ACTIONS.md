@@ -2,6 +2,17 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Great Migration runbook reconciled with actual workflow allowlist
+
+- Compared `docs/GREAT_MIGRATION.md` against `.github/workflows/great-migration.yml`, `scripts/music/library_cli.py`, `scripts/music/prepare_music_library.py`, `scripts/music/migrate_full_music_library.py`, and `scripts/music/verify_provider_credentials.py`.
+- Found the guide incorrectly said the workflow accepted only five operations, while the source allowlist and manual-dispatch choices contain 15. Replaced the incomplete list with all 15 exact issue titles and grouped them by read-only, credential-verification and canonical-data-writing side effects.
+- Found the guide implied workflow `prepare` required Spotify refresh credentials and refreshed Spotify snapshots. The workflow actually passes `--skip-spotify-refresh` for both `prepare` and `prepare-preview`; the runbook now distinguishes local preparation (refreshes snapshots by default) from the GitHub issue path (uses saved snapshots). The issue `prepare` path requires Last.fm credentials; Spotify refresh credentials are required for the separate `verify` operation.
+- Found the `verify` description incorrectly claimed credentials were never persisted. The credential verifier never prints values, but a replacement Spotify refresh token may be persisted to the Actions secret through the scoped GitHub App token. The runbook now documents that behavior accurately.
+- Clarified that migration creates a timestamped backup only when an existing indexed Library is present; initial migration has no prior Library to back up. The guide also clarifies that the workflow uploads a backup artifact when one is actually generated.
+- Corrected literal escaped-newline formatting in the guide and repaired escaped backticks introduced during the edit.
+- **Verification:** source-level comparison only; no migration, provider verification, credential change, workflow dispatch or data write was performed. Exact latest-head CI/security is pending.
+- **Next:** continue high-risk runbook review for Library ownership/provenance, metadata enrichment/retry semantics and shared-state publication/recovery.
+
 ## 2026-11-06 — High-risk Spotify/Daily guide claims reconciled against source
 
 - Compared `docs/TRICKY_DAILY_CYCLE.md` against `spotify_daily_cycle.py`, `spotify_daily_preflight.py`, and both Daily workflow definitions. Confirmed the code generates the listening-trend report before candidate generation, reconciles manual removals before building candidates, enforces exactly 60 unique track URIs, records a pending-verification state immediately after accepted replacement, verifies the new description and post-change snapshot, and keeps preflight GET-only.
