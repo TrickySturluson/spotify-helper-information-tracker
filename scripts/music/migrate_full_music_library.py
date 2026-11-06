@@ -235,5 +235,8 @@ if __name__ == "__main__":
 #          into canonical per-song Library records, preserving verified identities.
 # IDs are kept distinct unless a verified recording ID or Spotify ID matches.
 # Mood fields are intentionally not fabricated: missing evidence remains unknown.
+# Safety: Offline only; refuses incomplete/invalid snapshots and makes no provider or playlist writes.
+# Recovery: --dry-run makes no writes; existing indexed Libraries get a timestamped sibling backup
+#           before migration unless --no-backup is explicitly supplied. First import has no prior backup.
 # Dry run: python compat/migrate_full_music_library.py --dry-run
 # Full run: python compat/migrate_full_music_library.py
