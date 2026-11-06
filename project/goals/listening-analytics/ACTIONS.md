@@ -1,6 +1,13 @@
 # Listening Analytics & Evidence Sources — Actions & Evidence
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
+## 2026-11-06 — Paused roadmap next actions separated
+
+- Replaced the ambiguous immediate feature next step with an explicit documentation-only next action while the repository-wide pause is active.
+- Preserved the original feature task under `Next feature action after documentation pause`; no implementation, provider operation, generated-data change or playlist write was performed.
+- This separation is enforced by `tests/test_documentation_contract.py` for all 12 paused goal roadmaps.
+
+
 ## 2026-11-06 — Listening/discovery PR branch status rechecked
 
 - PR #158 `feature/discover-weekly-feedback-tracking`: open/non-draft, 9 ahead / 201 behind current main, mergeable=false. Old-head tests #42071650507 and security scan #42071650219 passed; rebase and rerun before review.
