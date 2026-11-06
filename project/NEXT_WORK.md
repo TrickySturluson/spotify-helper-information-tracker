@@ -16,7 +16,7 @@ Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration
 - Root structure includes `AGENTS.md`, `project/DOCUMENTATION_RULES.md`, the project control centre, `docs/`, `scripts/`, `compat/`, `tests/`, `data/`, `assistant_data/`, `playback_data/`, `.github/`, and the `shit.py` CLI.
 - The current goal index contains **13** goal workspaces. Every workspace contains ROADMAP.md, README.md and ACTIONS.md.
 - Current `.github/workflows/` inventory contains 17 workflow YAML files; `docs/WORKFLOWS.md` exists and the documentation contract test requires every workflow filename to appear in it.
-- Maintained Python implementation is organized under analytics (7 modules), Last.fm (1), music (24), and Spotify (19); compatibility launchers, tests, and workflow YAMLs are also covered by the bottom-of-file overview test.
+- Maintained Python implementation is organized under analytics (7 modules), Last.fm (1), music (28), and Spotify (19); compatibility launchers, tests, and workflow YAMLs are also covered by the bottom-of-file overview test.
 - Documentation tests are part of unittest discovery. Latest observed Daily curator test run #42144512658 and public repository security scan #42144512423 both completed successfully on the inspected main SHA. This verifies the automated checks ran successfully; it does **not** prove semantic accuracy of every overview or technical guide.
 - The recursive Git tree API response was truncated because generated Library records make the tree very large. Do not use that truncated response as a complete tracked-file inventory. Use directory-scoped listings for maintained code and `git ls-files` in a complete checkout for the authoritative full inventory.
 
