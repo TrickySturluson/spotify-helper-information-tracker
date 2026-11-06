@@ -22,7 +22,7 @@ The user has explicitly directed that documentation be the sole active project p
 
 - Nine workflow YAML bottom overviews were rewritten with specific triggers, credentials, data writes and safety boundaries. This was documentation-only at the file-content level, but the YAML paths themselves matched configured push filters.
 - Reference Library workflow #42146148971 completed and committed generated state as `3e989e33282efab6cc1416e35970e7c59af5f056` (249 files; 184 Library records, 63 Spotify snapshot/history files, 2 removal-state files). This was a read-only Spotify snapshot refresh and repository commit, not a Spotify playlist write.
-- Update Last.fm History #42146153098, Enrich Music Metadata #42146121471 and Acoustic Metadata Enrichment #42146097964 remained active at last inspection. Record their final outcomes and any generated commits here before considering the incident closed.
+- All three other runs are now terminal: Enrich Music Metadata #42146121471 failed publication with 101 unique Library path conflicts; Acoustic Metadata Enrichment #42146097964 failed because an optional GetSongBPM state file was absent from the staging path; Update Last.fm History #42146153098 failed publication with 120 unique conflicts (59 Library, 61 Spotify snapshot/reference). Detailed outcomes are recorded below and in the owning goal action logs.
 - The connected GitHub interface did not expose workflow cancellation. Future workflow-YAML edits must first inspect push-path filters; comment-only edits can start provider and data-writing jobs.
 
 ## Additional verified workflow defects from 2026-11-06
@@ -30,7 +30,7 @@ The user has explicitly directed that documentation be the sole active project p
 - **Reference Library run #42146148971:** completed and committed 249 files as `3e989e33282efab6cc1416e35970e7c59af5f056` (184 Library records, 63 Spotify reference/history files, 2 removal-state files). This was a repository snapshot refresh; no Spotify playlist mutation occurred.
 - **Enrich Music Metadata run #42146121471:** provider/enrichment stages completed but publication failed during rebase because canonical song JSON additions conflicted with the simultaneous Reference Library commit. No enrichment workspace output was published.
 - **Acoustic Metadata Enrichment run #42146097964:** 100 batches completed (2,500 IDs, 207 found, 2,293 misses, 322 total profiles, 3,678 negative-cache entries). Optional GetSongBPM skipped without its key. Commit failed because the workflow staged a missing optional `assistant_data/music/getsongbpm_lookup_state.json` path. No acoustic output was published.
-- **Update Last.fm History run #42146153098:** still active at latest inspection; final result and any commit must be reconciled.
+- **Update Last.fm History run #42146153098:** provider/data steps completed but publication failed during rebase with 120 unique conflicts (59 canonical music Library paths, 61 Spotify snapshot/reference paths); its generated archive/analytics/enrichment output was not published.
 - **Deferred remediation:** serialize shared Library writers / detect stale-base conflicts, and make optional provider output paths conditional before staging. Keep this deferred until documentation acceptance criteria pass.
 
 ## Critical path
