@@ -31,6 +31,15 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 6. **Reconcile cross-project records.** Keep NEXT_WORK, LOOSE_ENDS, PROJECT_LOG, project roadmap and goal roadmaps synchronized with current GitHub evidence.
 7. **Fresh-session test.** Verify a new assistant can identify priorities, constraints, exact next actions and verification commands from repository docs alone.
 
+## Active-session continuity bridge
+
+- [x] Create `project/ACTIVE_SESSION_BRIEF.md` as a curated, privacy-safe bridge between active ChatGPT work and Buddy. Created on main in commit `55f1403c8feb614b1b6763ce8873499bdcbe4c86`.
+- [x] Update Buddy's continuation prompt to read the active brief first and reconcile it against checked-out source/evidence. Prompt update commit: `bad03f65cbe92690718278440886a84014fd79a1`.
+- [ ] Make the brief a mandatory same-session operating rule in all first-contact and documentation guidance; keep the relevant roadmap/action history synchronized.
+- [ ] Verify Buddy reads the brief in its first successful run and reports reconciliation with live repository state.
+- [ ] Perform a cold-start simulation proving the brief and repository docs are sufficient without prior chat history.
+- [ ] Confirm privacy boundaries: curated SHIT context only; no raw chat dumps, unrelated personal context, or secret values.
+
 ## Acceptance criteria
 - Every indexed goal has ROADMAP, README and ACTIONS with current links.
 - Every maintained executable file has a useful overview or an explicit adjacent-documentation entry; no file is falsely marked covered.
