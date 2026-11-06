@@ -1,7 +1,7 @@
 # Great Migration — Roadmap
 
-**Last reviewed:** 2026-11-05  
-**Status:** Catalogue migration published and structurally verified; remaining work is controlled enrichment/provenance follow-through, not a fresh full migration.
+**Last reviewed:** 2026-11-06  
+**Status:** Feature work paused under the repository-wide documentation-only priority. The canonical catalogue migration is published and structurally verified; controlled enrichment/provenance follow-through remains queued.
 
 ## Repository-wide priority override — 2026-11-06
 
