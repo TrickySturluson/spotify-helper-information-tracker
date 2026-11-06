@@ -3,6 +3,10 @@
 **Last reviewed:** 2026-11-05  
 **Status:** Active development. Preview/confirmation safeguards and evidence-aware transition scoring are documented; real-playlist quality, coverage and live write authorization must be assessed independently.
 
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
+
 ## Purpose
 Arrange tracks into coherent, enjoyable listening journeys. Smooth transitions are the primary objective; sequencing must not invent acoustic certainty when source metadata is missing.
 
