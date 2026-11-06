@@ -1,10 +1,10 @@
-# SHIT Documentation & Continuity — AI continuation worker
+# SHIT Documentation & Continuity — repository-hosted Codex worker
 
 > **Internal codename: Babel**
 
 ## Purpose and status
 
-Babel has an optional repository-hosted AI worker that continues the documentation audit from GitHub rather than relying on a previous ChatGPT conversation. The worker is implemented in .github/workflows/babel-ai-continuation.yml and uses OpenAI's official openai/codex-action.
+This document describes the separate repository-hosted OpenAI Codex worker, implemented in .github/workflows/babel-ai-continuation.yml with OpenAI's official openai/codex-action. It is not the current scheduled ChatGPT Buddy path, which uses the connected GitHub app and is documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md). The Codex worker is an optional API-based experiment and is currently blocked by API quota before validation or publication.
 
 **Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran. After pinning the Codex job to Ubuntu 24.04, retry #42183337573 reached Codex but the API returned a quota-exceeded error; **Activation is pending** until API quota is available and an end-to-end run succeeds. Do not describe the worker as operational yet.
 
