@@ -2,11 +2,12 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
-## 2026-11-06 — Full Library health validation passed read-only in documentation PR CI
+## 2026-11-06 — Latest full Library health check passed on 13,163-record catalogue
 
-- Daily curator tests run #42149783445 passed the full canonical Library health check on draft PR #161's then-current base data.
-- This was validation only; no Library maintenance, migration, repair or provider enrichment was performed. Recheck after the documentation PR is merged and after any generated-data publication.
-- Feature work remains paused until documentation acceptance criteria pass.
+- Daily curator CI [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) ran the full read-only health check against 13,163 songs, 6,497 artists and 7,969 albums. Index counts matched exactly; the health report returned `ok=true`, zero errors and zero warnings.
+- Alias counts: 1,991 Spotify IDs, 11,338 recording MBIDs, 1,904 ISRCs, 13,163 source-track IDs and 11,651 name-candidate keys.
+- The preceding general repository audit emitted 18 warnings (no captured playback intervals plus 16 inaccessible Spotify playlist item snapshots and the summary warning); these are distinct from the Library health report, which had zero warnings.
+- This was validation only; no Library maintenance, migration, repair or provider enrichment was performed. Feature work remains paused until documentation acceptance criteria pass.
 
 ## 2026-11-02 — Verify new playability health rules against full catalogue
 
