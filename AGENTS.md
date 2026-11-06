@@ -1,9 +1,12 @@
 # SHIT repository instructions
 
+**Documentation system naming:** use **SHIT Documentation & Continuity** as the clear public-facing name. Its internal codename is **Babel**; define it through [docs/BABEL.md](docs/BABEL.md) before using the short name in a fresh session.
+
 This file applies to every assistant, contributor, and automation agent working in this repository.
 
 ## Before changing anything
 1. Read [project/DOCUMENTATION_RULES.md](project/DOCUMENTATION_RULES.md). It is mandatory.
+2. Read [the documentation-system identity and operating guide](docs/BABEL.md) so “Babel” is unambiguous.
 2. Read [project/NEXT_WORK.md](project/NEXT_WORK.md), [project/LOOSE_ENDS.md](project/LOOSE_ENDS.md), and [project/PROJECT_LOG.md](project/PROJECT_LOG.md).
 3. Find the relevant workstream in [project/goals/README.md](project/goals/README.md). Read its `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
 4. Read the relevant source, tests, data contracts, runbooks, workflow definitions, and current GitHub status. Documentation is not a substitute for checking the live implementation.
