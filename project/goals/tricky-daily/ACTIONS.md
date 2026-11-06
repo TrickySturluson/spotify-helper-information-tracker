@@ -108,3 +108,11 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Recovery artifact:** the failure-preservation step committed `assistant_data/recommendations/discovery_candidates.json` containing 195 candidate rows / 105 distinct artist names. These are name-only surfaced candidates (no Spotify track URIs), not a validated or publishable 60-track payload. Preserve them for diagnosis; do not treat them as Spotify-resolved.
 - **Quota response:** the reported cooldown ended around 2026-11-06 19:49 UTC. Do not retry Search/preview/cycle before the cooldown is confirmed clear.
 - **Improvement:** PR #168 implements progressive 80 → 160 → 300 artist search coverage to avoid paying for the full 300-artist Spotify Search burst when the initial cohort can already fill 60 unique tracks.
+
+## 2026-11-06 — Persist Spotify quota cooldown across failed Actions runs
+
+- **Fatal gap found:** the manager correctly wrote Retry-After to `.github/spotify_api_cooldown.json`, but the midnight workflow only committed that file in the accepted-cycle persistence step. When discovery failed before publishing `cycled=true`, that step was skipped. The failure recovery step committed only `discovery_candidates.json`, so the next scheduled workflow could lose the cooldown and retry Spotify while still rate-limited.
+- **Fix on branch `daily-quota-aware-discovery-current`:** the always-run recovery step now commits both surfaced candidates and `.github/spotify_api_cooldown.json`, and runs when either file exists. This preserves cooldown state even if discovery fails before producing candidates.
+- **Regression:** added a workflow-contract test asserting the cooldown file is persisted under `always()` and included in the step's trigger condition.
+- **Safety:** no Spotify request or playlist mutation is performed by the workflow change. It makes the existing fail-closed cooldown durable across scheduled Actions runs.
+- **Verification:** full CI pending on PR #168.
