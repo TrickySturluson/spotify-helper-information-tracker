@@ -7,10 +7,10 @@ This file applies to every assistant, contributor, and automation agent working 
 ## Before changing anything
 1. Read [project/DOCUMENTATION_RULES.md](project/DOCUMENTATION_RULES.md). It is mandatory.
 2. Read [the documentation-system identity and operating guide](docs/BABEL.md) so “Babel” is unambiguous.
-2. Read [project/NEXT_WORK.md](project/NEXT_WORK.md), [project/LOOSE_ENDS.md](project/LOOSE_ENDS.md), and [project/PROJECT_LOG.md](project/PROJECT_LOG.md).
-3. Find the relevant workstream in [project/goals/README.md](project/goals/README.md). Read its `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
-4. Read the relevant source, tests, data contracts, runbooks, workflow definitions, and current GitHub status. Documentation is not a substitute for checking the live implementation.
-5. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
+3. Read [project/NEXT_WORK.md](project/NEXT_WORK.md), [project/LOOSE_ENDS.md](project/LOOSE_ENDS.md), and [project/PROJECT_LOG.md](project/PROJECT_LOG.md).
+4. Find the relevant workstream in [project/goals/README.md](project/goals/README.md). Read its `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
+5. Read the relevant source, tests, data contracts, runbooks, workflow definitions, and current GitHub status. Documentation is not a substitute for checking the live implementation.
+6. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
 
 ## Non-negotiable continuity rule
 The repository is the durable source of truth; chat history is not. Every meaningful requirement, decision, implementation, test, failure, blocker, provider limitation, and next action must be recorded in the appropriate documentation during the same session. Never leave important knowledge only in a conversation.
