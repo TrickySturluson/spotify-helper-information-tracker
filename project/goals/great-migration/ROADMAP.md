@@ -31,8 +31,12 @@ Maintain one canonical per-recording music Library while preserving source ident
 - Post-publish health, confidence, and source coverage pass.
 - No Spotify playlist side effects.
 
-## Next action
-Inspect the latest main-branch status and current provider checkpoints; establish a fresh measured baseline before choosing any enrichment batch.
+## Next action (documentation-only priority)
 
+Continue the documentation audit for this workstream: verify this roadmap, README, ACTIONS, linked technical guides, source overviews, tests, workflow references and evidence claims against the current repository. Record any newly discovered contradictions or stale paths here and in the central handoff. **Do not run provider checks/enrichment, alter generated data, modify playlists, or implement features while the documentation-only priority is active.**
+
+## Next feature action after documentation pause
+
+Inspect the latest main-branch status and current provider checkpoints; establish a fresh measured baseline before choosing any enrichment batch.
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Central handoff](../../NEXT_WORK.md) · [Loose ends](../../LOOSE_ENDS.md)
