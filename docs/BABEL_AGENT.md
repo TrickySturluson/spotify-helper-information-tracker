@@ -36,7 +36,8 @@ The Codex job and publisher job are separated so the model does not receive a wr
 2. In the GitHub repository, open **Settings → Secrets and variables → Actions → New repository secret**.
 3. Name the secret exactly OPENAI_API_KEY and paste the API key into GitHub's secret field. Do not put the key in a file, issue, commit, or ChatGPT message.
 4. Open **Actions → Babel AI continuation → Run workflow** and start it on main.
-5. Inspect the first run. Confirm the Codex job succeeds, the publisher's path validation and full unittest suite pass, and the dedicated branch/PR is created or updated.
+5. In **Settings → Actions → General → Workflow permissions**, enable **Allow GitHub Actions to create and approve pull requests** if it is disabled.
+6. Inspect the first run. Confirm the Codex job succeeds, the publisher's path validation and full unittest suite pass, and the dedicated branch/PR is created or updated.
 
 ChatGPT subscription access is not itself an API key. OpenAI API usage is billed separately under the API platform account. Set appropriate API usage limits/budget alerts in the OpenAI platform before enabling recurring runs.
 
@@ -47,7 +48,7 @@ ChatGPT subscription access is not itself an API key. OpenAI API usage is billed
 - **Resume:** the next scheduled run checks out the latest dedicated branch. A manual dispatch can also restart it.
 - **Interrupted run:** no progress is assumed unless it was committed to the branch. The next run reads the branch and the repository checkpoints again.
 - **No changes:** the workflow reports a no-op; it does not create empty commits.
-- **Out-of-scope patch or failed tests:** publisher fails without pushing. Inspect the run log/artifact and fix the prompt or documentation manually before retrying.
+- **Out-of-scope patch or failed tests:** publisher fails without pushing. Inspect the run log and Codex final-message output, then fix the prompt or documentation manually before retrying.
 - **Completion:** only the explicit status: complete sentinel stops future scheduled runs. A no-op is not completion.
 
 The branch is intentionally separate from main; the worker's commits are proposals until human review and merge. This workflow does not promise that the same ChatGPT browser conversation will reopen or receive a new message. It is an independent Codex agent operating from repository state.
