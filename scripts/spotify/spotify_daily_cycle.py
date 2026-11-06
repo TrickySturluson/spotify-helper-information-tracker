@@ -434,7 +434,29 @@ def main():
         recommendation_count=len(recommendations), skipped_count=len(skipped), backup=backup,
         prewrite_snapshot_id=playlist.get("snapshot_id"),
     )
-    cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)
+    try:
+        cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)
+    except cloud.AmbiguousPlaylistMutationError as error:
+        # Persist the date guard even when the write outcome cannot be proven.
+        # A second scheduled/forced delivery must not blindly repeat a partial write.
+        config = manager.config()
+        config["daily_cycle"] = {
+            "last_cycle_date_eastern": cycle_date,
+            "last_cycle_at": manager.stamp(),
+            "playlist_id": DAILY_ID,
+            "description": html.unescape(playlist.get("description") or ""),
+            "status": "replacement_outcome_ambiguous",
+        }
+        manager.write(manager.CONFIG, config)
+        set_action_output("cycled", "true")
+        manager.audit(
+            event="daily_cycle_replacement_outcome_ambiguous",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            backup=backup,
+            error=str(error),
+        )
+        raise
 
     # Rotate Daily's short editorial description after the track replacement.
     # The description is intentionally owned by this dedicated Daily workflow,
