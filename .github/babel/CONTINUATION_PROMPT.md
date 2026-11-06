@@ -42,7 +42,8 @@ The agent state file is `project/BABEL_AGENT_STATE.md`. Keep `status: active` wh
 Before finishing:
 1. Review the complete diff for accuracy, scope, links, and unintended changes.
 2. Update all affected continuity records.
-3. Summarize the batch in your final response file/output, including changed paths, evidence, unresolved items, and next action.
-4. Do not claim that changes are merged into main. They will be published only to the dedicated `babel/agent-progress` branch and reviewed in its pull request.
+3. Stage intent-to-add for new allowed files with `git add -N -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py`, then generate the complete patch with `git diff --binary HEAD -- AGENTS.md docs project tests/test_documentation_contract.py tests/test_script_layout.py`.
+4. Your **entire final response must be only that complete unified diff**, beginning with `diff --git`, with no Markdown fences or commentary. If there are no changes, output exactly `NO_CHANGES`. Keep the patch under 700 KB; choose a smaller task if necessary. The publisher receives this final response as a patch and validates it independently.
+5. Do not claim that changes are merged into main. They will be published only to the dedicated `babel/agent-progress` branch and reviewed in its pull request.
 
 Your goal is reliable continuation, not maximum diff size. One carefully verified task is better than a broad speculative rewrite.
