@@ -453,10 +453,15 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich scrobbled tracks, exact priority-playlist tracks, and the rolling top 200 tracks by Last.fm plays in the previous 90 days. Writes a reusable recent_top_tracks.json cohort and prioritizes it for Last.fm tags and verified MusicBrainz recording tags. No fuzzy MBID search is used: uncertain identity matches remain unresolved.
-# Location: Maintained implementation in scripts/music/build_track_profiles.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/build_track_profiles.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Build track-level sourced tags and a rolling recent-top-track enrichment cohort.
+# Inputs: Last.fm scrobbles, exact priority-playlist snapshots, track profile cache,
+#         LASTFM_API_KEY and MUSICBRAINZ_ID_LOOKUPS_PER_RUN/track lookup limits.
+# Outputs: assistant_data/music/track_profiles.json, lookup state and recent_top_tracks.json.
+# Selection: Includes archive tracks, exact priority-playlist tracks and the top 200 by
+#            Last.fm plays in the previous 90 days; artist diversity and configured limits apply.
+# Identity: Uses exact/verified recording evidence; fuzzy MusicBrainz matches are not promoted.
+# Safety: Bounded provider requests; no archive mutation or Spotify playlist writes.
+# Run: python compat/build_track_profiles.py (repository root; provider keys as required).
+# Related: docs/RECENT_TRACK_ENRICHMENT.md; docs/TRACK_MOOD_EVIDENCE.md;
+#          tests/test_track_profiles.py.
 # -----------------------------------------------------------------------------
