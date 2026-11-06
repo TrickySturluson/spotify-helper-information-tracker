@@ -71,3 +71,12 @@ Chronological handoff record for substantial project work. New entries go at the
 - **Operating rule:** read the relevant roadmap before work and update documentation in the same session as implementation, testing, failures, decisions, or blockers. Never leave project knowledge only in chat; never claim planned work is implemented or a merged change is operationally verified without evidence.
 - **Verification:** documentation-only changes. Roadmap files were created for all 11 indexed goal folders; index and entry-point updates link to the rules and roadmaps. No code, Library data, provider state, listening history, or Spotify playlists were changed.
 - **Next action:** audit all goal folders for missing/stale `ACTIONS.md`/README files and reconcile each roadmap against latest main, open PRs, issues, and workflow runs. Then apply this standard to any new independent project/workstream.
+
+
+## 2026-11-05 — Documentation control centre and active playlist workspaces expanded
+
+- Added root AGENTS.md, docs/README.md, project/ROADMAP.md, automated documentation-contract tests, and a corrected source/data-family index after finding the prior exhaustive snapshot had become stale as the canonical music Library expanded.
+- Added dedicated ROADMAP/README/ACTIONS workspaces for Tricky Daily and Playlist Sequencing so their independent user requirements, safety constraints, evidence and next actions survive chat boundaries.
+- CI evidence: Daily curator tests #42143513931 passed on 7d23db6 (including documentation contract and directory guides); #42143770161 passed on 79af1f9 after the Daily workspace was added. Playlist Sequencing was added afterward; its latest CI run is still pending.
+- No playlist writes, Library data changes, provider state changes, or listening-history changes were performed as part of this documentation work.
+- Next: verify the latest CI run after the Playlist Sequencing workspace; then audit file-level overviews and reconcile all workstream roadmaps with current code/workflow evidence.
