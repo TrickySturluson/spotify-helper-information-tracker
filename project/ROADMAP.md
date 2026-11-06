@@ -38,14 +38,14 @@ Maintain a durable, reliable, cloud-operable music intelligence system that comb
 
 ## Cross-project priority order
 
-This is a coordination order, not a replacement for goal-specific roadmaps. If a dependency or fresh failure changes the order, record why in NEXT_WORK and the affected roadmaps.
+This is a coordination order, not a replacement for goal-specific roadmaps. The user's explicit current direction makes documentation the sole active workstream until its acceptance criteria pass. Do not advance lower-priority feature work during this phase. If a dependency or fresh failure changes the order, record why in NEXT_WORK and the affected roadmaps.
 
-1. **Protect canonical state and recoverability.** Resolve migration/publication loose ends, verify canonical Library integrity, and prevent unsafe concurrent writes.
-2. **Repair metadata provenance and coverage.** Recover timestamps, measure genuine gaps, and run only bounded provider-aware enrichment/retries.
-3. **Maintain operational confidence.** Keep health, freshness, confidence, playability and security checks current.
-4. **Improve discovery and listening intelligence.** Preserve source distinctions, ingest candidates safely, and validate evidence quality before scoring.
-5. **Improve playlist intelligence and live operations.** Keep sorting and recommendation systems preview-first until evidence, safety and rollback gates pass.
-6. **Complete documentation coverage.** Audit every maintained script, module, workflow, test entry point and data contract; automate link and coverage checks where practical.
+1. **Complete documentation coverage and fresh-session continuity.** Audit maintained files and data contracts against source; verify every goal roadmap; reconcile links, operational guides, open PRs/issues and workflow evidence; improve automated checks; complete the fresh-session simulation. No feature development, playlist operations or unrelated project work until this is complete.
+2. **Protect canonical state and recoverability.** Resolve migration/publication loose ends, verify canonical Library integrity, and prevent unsafe concurrent writes.
+3. **Repair metadata provenance and coverage.** Recover timestamps, measure genuine gaps, and run only bounded provider-aware enrichment/retries.
+4. **Maintain operational confidence.** Keep health, freshness, confidence, playability and security checks current.
+5. **Improve discovery and listening intelligence.** Preserve source distinctions, ingest candidates safely, and validate evidence quality before scoring.
+6. **Improve playlist intelligence and live operations.** Keep sorting and recommendation systems preview-first until evidence, safety and rollback gates pass.
 7. **Validate cloud independence.** Close remaining authentication and optional local-tracker dependencies before describing the product as fully PC-independent.
 
 ## Completion standard
