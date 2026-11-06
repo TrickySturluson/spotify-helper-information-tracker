@@ -6,7 +6,7 @@
 
 Babel has an optional repository-hosted AI worker that continues the documentation audit from GitHub rather than relying on a previous ChatGPT conversation. The worker is implemented in .github/workflows/babel-ai-continuation.yml and uses OpenAI's official openai/codex-action.
 
-**Integration status:** repository configuration is committed. The user reports that the `OPENAI_API_KEY` repository Actions secret has been added. **Activation remains pending** until the first run succeeds. Do not describe the worker as operational before a successful run is observed.
+**Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran; activation remains pending until an end-to-end run succeeds. Do not describe the worker as operational yet.
 
 ## Active-session context bridge
 
@@ -17,7 +17,7 @@ Before reading the other continuation records, Buddy must read `project/ACTIVE_S
 1. GitHub Actions starts on a six-hour UTC schedule, manual `workflow_dispatch`, or a ChatGPT-controlled push to a fresh `babel/dispatch-*` branch containing only `.github/babel/dispatch.json`. The dispatch branch is only a trigger: preflight explicitly checks out `main` or the latest `babel/agent-progress` branch for the actual work.
 2. Preflight checks project/BABEL_AGENT_STATE.md. If it says status: complete, the workflow stops. Otherwise it selects the latest babel/agent-progress branch, falling back to main for the first run.
 3. The Codex job reads AGENTS.md, the mandatory documentation rules, Babel guide, handoff, loose-ends register, project log, and the Maintainability & Documentation roadmap/README/ACTIONS. It chooses one high-priority unfinished documentation task and makes a bounded change, then returns a raw unified Git patch as its final output (or NO_CHANGES). The patch is capped at 700 KB to stay within the workflow handoff limit.
-4. The agent job has contents: read, uses the Codex :workspace permission profile and drop-sudo safety strategy, and receives no Spotify or music-provider credentials. The workspace profile has no general network access; the preflight/publisher jobs handle branch selection and PR operations outside the model's workspace.
+4. The agent job has contents: read, runs on `ubuntu-24.04` (the first `ubuntu-latest`/Ubuntu 26.04 attempt exposed an upstream `drop-sudo` compatibility failure), uses the Codex `:workspace` permission profile and `drop-sudo` safety strategy, and receives no Spotify or music-provider credentials. The workspace profile has no general network access; the preflight/publisher jobs handle branch selection and PR operations outside the model's workspace.
 5. A separate validation job has contents: read, no OpenAI API key, and no write-capable GitHub token. It applies the candidate patch, enforces the path allowlist, rejects deletions/out-of-scope changes, and runs full unittest discovery. A final publisher job receives contents: write and pull-requests: write; it reapplies the already-validated patch, rechecks paths, and publishes without executing candidate code.
 6. If validation passes and there are changes, the publisher commits to babel/agent-progress and creates or updates one review pull request against main. Later scheduled runs resume from that branch and add further commits to the same PR.
 7. The workflow never auto-merges. A human must review and merge the final work. When all acceptance criteria and the cold-start simulation genuinely pass, the agent may set status: complete; subsequent scheduled runs then stop.
@@ -43,6 +43,10 @@ The Codex job has no GitHub write token. Candidate tests run in a separate read-
 5. Inspect the first run. Confirm the Codex job succeeds, the publisher's path validation and full unittest suite pass, and the dedicated branch/PR is created or updated.
 
 ChatGPT subscription access is not itself an API key. OpenAI API usage is billed separately under the API platform account. Set appropriate API usage limits/budget alerts in the OpenAI platform before enabling recurring runs.
+
+## First-run failure and compatibility workaround
+
+The first ChatGPT-triggered push run is [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313). Preflight succeeded; the Codex action failed before the prompt ran while trying to restrict `/run/dbus/system_bus_socket` on the GitHub-hosted Ubuntu 26.04 image selected by `ubuntu-latest`. The same failure is tracked upstream in [openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The agent job is pinned to `ubuntu-24.04` as the compatibility workaround; `drop-sudo` remains enabled. Do not switch to `unsafe` to bypass this failure. A fresh run must verify Codex execution, independent path validation/full tests, and isolated PR publication.
 
 ## Recovery and operations
 
