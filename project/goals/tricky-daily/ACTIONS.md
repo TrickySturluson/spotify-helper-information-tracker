@@ -1,3 +1,15 @@
+## 2026-11-06 — Cooldown regression coverage restored and merged
+
+- **Merge:** PR [#169](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/169) merged to main as `8d0d2d5e8b0448fde64932aced1014ef944e3312`. The change is test-only; runtime Spotify manager behavior is unchanged.
+- **Defect corrected:** the three existing Retry-After/cooldown tests were previously nested beneath the module-level `if __name__ == "__main__"` guard after `unittest.main()`, so normal unittest discovery did not define them. They now reside in `PlaylistManagerTests` before the entry-point guard.
+- **Test fixture corrections:** initialized the `request_metrics` structure on the partially constructed test client and corrected the deterministic formatted duration expectation for 13,060 seconds from 3h 38m to 3h 37m.
+- **PR verification:** final PR test run [#42272711018](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272711018) passed all 512 discovered tests; public repository security scan [#42272711156](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272711156) passed.
+- **Post-merge verification:** mainline Daily curator tests [#42272911280](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272911280) passed all 512 tests on merge commit `8d0d2d5e8b0448fde64932aced1014ef944e3312`. Mainline full-history security scan [#42272911119](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42272911119) was still running when this entry was written.
+- **Outcome:** the previously dormant cooldown regressions are now part of normal test discovery and pass in PR and post-merge CI. No Spotify request, workflow dispatch, playlist mutation, description mutation, or generated-data change was performed.
+- **Next:** confirm the post-merge security scan; after the recorded Spotify cooldown expires, perform only the protected no-write Daily stage-only verification. Live playlist replacement still requires separate authorization.
+
+---
+
 ## 2026-11-06 — Retry-After regression tests found outside unittest discovery
 
 - **Finding:** source inspection of tests/test_spotify_playlist_manager.py showed that three existing cooldown tests were indented beneath the module-level if __name__ == "__main__" block, after unittest.main(). They were not defined during normal unittest discovery and therefore did not provide CI coverage for Retry-After persistence, active-cooldown client initialization, or expired-cooldown handling.
