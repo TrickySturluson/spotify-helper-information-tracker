@@ -163,6 +163,23 @@ class DailyCycleScheduleTests(unittest.TestCase):
         with patch.object(daily_cycle.discovery, 'is_playlist_candidate_blocked', return_value=True):
             with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "blacklisted tracks"):
                 daily_cycle.validate_daily_post_write(updated, snapshot, uris, {})
+    def test_pending_durable_stage_blocks_same_date_retry(self):
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        with TemporaryDirectory() as directory, patch.object(
+            daily_cycle, "DAILY_STAGE_DIR", Path(directory)
+        ):
+            (Path(directory) / "2026-11-06-run-123.json").write_text("{}", encoding="utf-8")
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "Automatic retry is blocked"):
+                daily_cycle.assert_no_pending_daily_stage("2026-11-06")
+
+    def test_no_pending_stage_is_a_noop_for_new_cycle_date(self):
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        with TemporaryDirectory() as directory, patch.object(
+            daily_cycle, "DAILY_STAGE_DIR", Path(directory)
+        ):
+            daily_cycle.assert_no_pending_daily_stage("2026-11-06")
     def test_daily_stage_preserves_exact_order_hash_and_prewrite_snapshot(self):
         import hashlib
         import json
