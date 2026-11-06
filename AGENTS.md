@@ -13,6 +13,10 @@ This file applies to every assistant, contributor, and automation agent working 
    Before editing or committing any path, inspect matching workflow `push.paths` filters. Comment-only changes to a listed source or workflow file still trigger its full workflow, including provider calls and repository writes.
 6. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
 
+## Active-session brief — mandatory Buddy context bridge
+
+During every active SHIT work session, ChatGPT must maintain [project/ACTIVE_SESSION_BRIEF.md](project/ACTIVE_SESSION_BRIEF.md) as work proceeds. Update it after every material decision, scope change, implementation change, source finding, test/audit result, failure, uncertainty, or blocker—not only at session end. Update the affected goal ROADMAP.md and ACTIONS.md in the same session, plus NEXT_WORK.md / LOOSE_ENDS.md / PROJECT_LOG.md when cross-project state changes. Buddy must read the brief at the start of every run and reconcile it against checked-out source and evidence. The brief is curated project context, never a raw chat transcript; exclude unrelated personal details and all secret values. It is not real-time messaging: Buddy sees only committed updates on a subsequent run.
+
 ## Non-negotiable continuity rule
 The repository is the durable source of truth; chat history is not. Every meaningful requirement, decision, implementation, test, failure, blocker, provider limitation, and next action must be recorded in the appropriate documentation during the same session. Never leave important knowledge only in a conversation.
 
