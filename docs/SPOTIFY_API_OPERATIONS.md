@@ -42,7 +42,9 @@ If the App token is unavailable, cloud refresh fails closed **before contacting 
 
 ### Initial reauthorization (one-time recovery)
 
-The current repository secret has been rejected by Spotify (`invalid_grant`), so token-rotation persistence cannot repair it retroactively. Reauthorize the Spotify playlist manager once, then manually bootstrap the new token into GitHub Actions:
+**Use this procedure only if a current read-only Spotify authentication check confirms `invalid_grant`.** The `invalid_grant` rejection documented during an earlier recovery incident is historical; this guide does not establish that the repository secret is currently invalid. As of the 2026-11-06 documentation audit, the current secret's live validity was not rechecked. Do not delete local tokens, reauthorize, or replace the Actions secret based only on this historical note. First run the read-only authentication/preflight workflow and inspect its current result.
+
+If the current check confirms `invalid_grant`, token-rotation persistence cannot repair the rejected token retroactively. Reauthorize the Spotify playlist manager once, then manually bootstrap the new token into GitHub Actions:
 
 1. In the trusted local/Codespaces checkout, stop any other process using port `8888` and delete `.spotify_playlist_token.json`.
 2. Set `SPOTIFY_CLIENT_ID`, then run `python compat/spotify_playlist_manager.py list` and approve the requested scopes.
