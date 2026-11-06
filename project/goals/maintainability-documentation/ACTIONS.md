@@ -12,7 +12,7 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 
 ## 2026-11-06 — Documentation quality expansion and all-workstream pause recorded
 
-- **Source overview audit:** rewrote 29 maintained implementation overviews across `scripts/analytics/`, `scripts/lastfm/`, `scripts/music/` and `scripts/spotify/` to replace generic fallback boilerplate with source-specific purpose, inputs, outputs, evidence semantics, side effects, safety boundaries and run instructions.
+- **Source overview audit:** rewrote 32 maintained implementation overviews across `scripts/analytics/`, `scripts/lastfm/`, `scripts/music/` and `scripts/spotify/` to replace generic fallback boilerplate with source-specific purpose, inputs, outputs, evidence semantics, side effects, safety boundaries and run instructions.
 - **Guide navigation:** expanded `docs/README.md` to link all 21 technical guides; removed a duplicated maintenance paragraph in `project/goals/README.md`.
 - **Automated quality gates:** draft PR #161 adds repository-wide local Markdown-link checks, complete docs-guide index coverage, specific workflow overview checks, non-boilerplate implementation overview checks and compatibility-to-source references. Checks must pass on the latest PR head before merge.
 - **Workflow documentation:** nine workflow YAML overviews were made specific. `docs/WORKFLOWS.md` now warns that comment-only edits to workflow YAMLs can trigger path-filtered automation. The resulting unintended runs and failures are recorded above.
