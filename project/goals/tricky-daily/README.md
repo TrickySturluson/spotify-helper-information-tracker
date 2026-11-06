@@ -1,4 +1,6 @@
 # Tricky Daily
+> **Current repository priority:** This workstream is paused for feature implementation while SHIT's documentation audit is active. Only documentation corrections and evidence reconciliation are permitted. Preserve this roadmap; resume its feature next actions only when the [central handoff](../../NEXT_WORK.md) and Maintainability & Documentation roadmap explicitly say documentation is complete.
+
 
 Tricky Daily is the user's daily rotating 60-track discovery playlist. Its goal is to be reliably refreshed while retaining taste relevance, meaningful variety, and strict protection of explicit user feedback.
 
