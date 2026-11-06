@@ -22,6 +22,11 @@ Maintain a reliable daily 60-track discovery playlist that balances familiar tas
 - Keep Daily's own exposure/feedback model separate from generic playlist-fit calibration. Scheduled rotation is neutral housekeeping, not a negative signal.
 - Playlist writes remain scoped to the specifically authorized Tricky Daily exception and documented controls; this does not authorize writes to other personal playlists.
 
+## Current source discrepancy — 2026-11-06
+
+The intended invariant above is **force bypasses the clock gate only**. Current source does not fully satisfy it: `spotify_daily_cycle.py` passes `args.force` into `cycle_already_completed()`, which returns `False` for forced calls and therefore bypasses the same-Eastern-date completion guard too. `tests/test_spotify_daily_cycle_schedule.py` currently asserts that behavior. This allows a second forced cycle on an Eastern date already marked complete and is a P0 idempotency mismatch, not an approved relaxation. Keep the requirement unchanged; after the documentation-only pause, fix the implementation and regression test so force bypasses only the time-window check and still respects same-date idempotency. No runtime change is authorized during the current documentation phase.
+
+
 ## System map
 - Current discovery candidate generation: scripts/spotify/spotify_discovery.py (the cycle explicitly requests 60 candidates).
 - 60-track assembly, safety checks and publication: scripts/spotify/spotify_daily_cycle.py.
