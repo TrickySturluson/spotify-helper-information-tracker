@@ -10,7 +10,7 @@ For focused checks, run `python -m unittest tests.test_documentation_contract -v
 
 ## Test families
 
-- **Documentation and repository layout:** `test_documentation_contract.py` checks required control documents, all goal workspace roadmaps/READMEs/action logs, the assistant entry point, domain navigation, and local links from primary entry points. `test_script_layout.py` checks compatibility delegation and bottom-of-file overview coverage.
+- **Documentation and repository layout:** `test_documentation_contract.py` checks required control documents, all goal workspace roadmaps/READMEs/action logs, the assistant entry point, domain navigation, local links from primary entry points, and complete listing of GitHub Actions workflows in docs/WORKFLOWS.md. `test_script_layout.py` checks compatibility delegation and bottom-of-file overview coverage.
 - **Library integrity:** migration, schema, identity confidence, health, maintenance, and freshness tests.
 - **Metadata and discovery:** provider enrichment, recording identity, acoustic descriptors, lyrics, mood inference, and candidate ingestion.
 - **Playlist intelligence:** fit scoring, feedback calibration, previews, sequencing, discovery, and removal feedback.
