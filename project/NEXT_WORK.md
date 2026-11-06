@@ -9,6 +9,13 @@ This is the authoritative session handoff. Read this file first when resuming wo
 
 Read [LOOSE_ENDS.md](LOOSE_ENDS.md) for the current audit index across migration, provider coverage, enrichment, analytics, discovery, playlists, workflows and documentation. Each entry links to its goal history. Update the register when an item is resolved, deferred or newly discovered.
 
+## 2026-11-06 — Buddy active-session context bridge added
+
+- Created `project/ACTIVE_SESSION_BRIEF.md` on main (commit `55f1403c8feb614b1b6763ce8873499bdcbe4c86`). It is a curated, privacy-safe SHIT context bridge, not a raw chat dump or real-time messaging channel.
+- Updated `.github/babel/CONTINUATION_PROMPT.md` so Buddy reads the brief first and reconciles it against checked-out source/evidence (commit `bad03f65cbe92690718278440886a84014fd79a1`).
+- The permanent AGENTS/documentation rules, Babel guide, roadmap and action history are being aligned with the requirement that ChatGPT maintain the brief throughout active SHIT work and keep goal ROADMAP/ACTIONS records synchronized.
+- Buddy remains unverified until its first successful manual workflow run. User reports the `OPENAI_API_KEY` Actions secret has been added; still confirm the repository Actions setting permits PR creation, dispatch on `main`, and inspect the run/PR.
+
 ## 2026-11-06 — Babel AI continuation integrated; activation pending
 
 - Added .github/workflows/babel-ai-continuation.yml, .github/babel/CONTINUATION_PROMPT.md, project/BABEL_AGENT_STATE.md and docs/BABEL_AGENT.md.
