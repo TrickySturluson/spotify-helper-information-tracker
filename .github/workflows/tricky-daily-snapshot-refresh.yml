@@ -1,0 +1,96 @@
+name: SHIT — Tricky Daily Snapshot Refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/tricky-daily-snapshot-refresh.yml"
+  workflow_dispatch:
+  schedule:
+    # Run after the midnight Eastern rotation and its recovery delivery.
+    - cron: "25 6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tricky-daily-snapshot-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile and run safe regression tests
+        run: |
+          python -m py_compile scripts/spotify/spotify_daily_snapshot.py scripts/spotify/spotify_daily_cycle.py scripts/spotify/spotify_discovery.py scripts/spotify/spotify_reference_library.py scripts/spotify/spotify_playlist_manager.py
+          python -m unittest tests.test_spotify_daily_cycle_schedule -v
+      - name: Validate Spotify credentials
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
+          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
+      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        id: spotify-secret-writer
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
+          permission-secrets: write
+      - name: Refresh Tricky Daily snapshot and reconcile manual removals
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
+          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
+        run: python scripts/spotify/spotify_daily_snapshot.py
+      - name: Publish Daily-only snapshot and removal state
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- .github/spotify_playlist_manager_audit.jsonl
+          for path in assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json assistant_data/spotify/history/4yUVHSMQySfWeEowfIMcx7 playlist_removal_baseline.json playlist_removed_tracks.json; do
+            if [ -e "$path" ]; then git add -- "$path"; fi
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh Tricky Daily snapshot and removal feedback"
+            published=false
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo "Rebase conflict; refusing to overwrite concurrent project changes."
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                published=true
+                break
+              fi
+              if [ "$attempt" -lt 5 ]; then sleep 2; fi
+            done
+            if [ "$published" != "true" ]; then
+              echo "Could not safely publish Daily snapshot after five attempts."
+              exit 1
+            fi
+          fi
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Refresh only Tricky Daily's saved Spotify snapshot every day.
+# Trigger: Daily at 06:25 UTC, manual dispatch, or this workflow's main-branch edit.
+# Spotify operations: GET-only; no playlist writes or description changes.
+# Reconciliation: Detects tracks removed since the last accepted Daily cycle and
+#                 preserves the blacklist before advancing the removal baseline.
+# Publication: Commits only the Daily snapshot/history, removal baseline/blacklist,
+#              and manager audit; fails closed on inaccessible or incomplete reads.
+# -----------------------------------------------------------------------------
