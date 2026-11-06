@@ -101,3 +101,10 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Observed result:** snapshot captured `2026-11-06T18:14:16.140845+00:00`; 29 accessible unique tracks; baseline 29; blacklist 55; whitelist 0. The run added 55 manual-removal feedback events; the feedback ledger now contains 60 track rows. Spotify request metrics: 2 GET requests (`/me`, `/playlists/{id}`), 0 playlist mutations.
 - **Coverage:** liked-song observation is marked observed and Last.fm coverage available. Playback tracker remains unknown because `playback_data/segments.jsonl` is absent. Do not infer zero plays from this missing tracker file.
 - **Outcome:** the new removal feedback path is now merged and has successfully executed in the scheduled snapshot workflow. This does not mean the live playlist is at 60; it remains at 29 accessible tracks. Live replacement remains gated on safe exact-order staging/read-back and quota-aware candidate generation.
+
+## 2026-11-06 — Latest scheduled cycle quota failure and candidate preservation
+
+- **Run:** [#42268583897](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42268583897) passed compilation, unit tests, and Spotify credential validation, then failed on its first Spotify artist Search request with HTTP 429 QUOTA_EXCEEDED; Retry-After was 5,781 seconds. The run made no playlist mutations and skipped cycle-state/feedback persistence.
+- **Recovery artifact:** the failure-preservation step committed `assistant_data/recommendations/discovery_candidates.json` containing 195 candidate rows / 105 distinct artist names. These are name-only surfaced candidates (no Spotify track URIs), not a validated or publishable 60-track payload. Preserve them for diagnosis; do not treat them as Spotify-resolved.
+- **Quota response:** the reported cooldown ended around 2026-11-06 19:49 UTC. Do not retry Search/preview/cycle before the cooldown is confirmed clear.
+- **Improvement:** PR #168 implements progressive 80 → 160 → 300 artist search coverage to avoid paying for the full 300-artist Spotify Search burst when the initial cohort can already fill 60 unique tracks.
