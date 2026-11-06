@@ -3,6 +3,10 @@
 **Last reviewed:** 2026-11-05  
 **Status:** Proposed; PR #60 and its current implementation/test status require inspection.
 
+## Repository-wide priority override — 2026-11-06
+
+**This workstream is paused for feature implementation while SHIT's documentation audit is active.** The only permitted work here until the Maintainability & Documentation roadmap passes its acceptance criteria is documentation correction, evidence reconciliation, and recording known gaps. Do not run enrichment, modify canonical data, change playlists, or begin feature development. This workstream's feature roadmap remains queued; the active next action is the documentation-only handoff in [project/NEXT_WORK.md](../../NEXT_WORK.md). Resume feature work only when that handoff and the maintainability roadmap explicitly say documentation is complete.
+
 ## Purpose
 Capture suggested/recommended/discovered tracks as evidence-rich candidate events that can be enriched and retrieved without polluting listening history or falsely claiming user preference.
 
