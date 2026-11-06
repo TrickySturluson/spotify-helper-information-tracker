@@ -2,6 +2,15 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Test-module overview audit uncovered another boilerplate class
+
+- A repository code search found 11 test modules using generic `Purpose: Regression test module` / generic scope / generic related-file overviews, including playlist manager/cloud, Daily feedback/discovery, sequencing, reference-library, MusicBrainz ID, track-profile, playlist-intelligence and lyrics tests.
+- Replaced those generic overviews with test-specific coverage summaries and direct implementation/guide links. Also made `tests/test_script_layout.py` describe its actual layout/documentation guard responsibilities.
+- Extended `test_script_layout.py` to reject generic test-module overview boilerplate, so this second documentation-quality gap is now enforced rather than only manually noted.
+- Updated `docs/CODE_DOCUMENTATION.md` and `docs/README.md` to document the stronger test-overview contract.
+- **Verification:** changes are on draft PR #161; no local checkout/runtime was available to execute unittest here. Prior passing CI runs apply to earlier PR heads only. Exact current-head CI and full-history security scan remain required.
+- **Next:** review the PR's current head and obtain exact-head CI/security results; continue semantic sampling of remaining test modules, guide claims, and goal handoffs.
+
 ## 2026-11-06 — Latest documentation audit continuation
 
 - Reopened draft PR [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161) and inspected its current metadata: branch `docs/semantic-documentation-audit`, head `5ec318d6dd46de6741e73feb0f2dde1e6cc089e4`, base `main` at `a5fe4de6398e2a3d6651fa7e439d2cb898f4fe0a`; 83 changed files, 790 additions and 237 deletions. PR remains draft and unmerged.
