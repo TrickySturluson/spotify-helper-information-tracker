@@ -59,6 +59,35 @@ class DailyPostAddSaveScoringTests(unittest.TestCase):
         self.assertLess(liked_score, unliked_score)
 
 
+
+class DailyManualRemovalFeedbackTests(unittest.TestCase):
+    def test_manual_removal_is_saved_once(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        import spotify_daily_feedback as feedback
+
+        with tempfile.TemporaryDirectory() as directory:
+            original = feedback.DATA
+            feedback.DATA = Path(directory) / "daily_feedback.json"
+            try:
+                rows = [{
+                    "uri": "spotify:track:removed",
+                    "name": "Removed Track",
+                    "artists": ["Removed Artist"],
+                    "detected_at": "2026-11-06T12:00:00+00:00",
+                    "last_present_cycle": "2026-11-05T23:00:00+00:00",
+                }]
+                self.assertEqual(feedback.record_manual_removals(rows), 1)
+                self.assertEqual(feedback.record_manual_removals(rows), 0)
+                saved = json.loads(feedback.DATA.read_text(encoding="utf-8"))
+                event = saved["tracks"]["spotify:track:removed"]["removal_events"][0]
+                self.assertEqual(event["reason"], "user_removed")
+                self.assertEqual(event["source"], "daily_snapshot_reconciliation")
+            finally:
+                feedback.DATA = original
+
+
 if __name__ == "__main__":
     unittest.main()
 
