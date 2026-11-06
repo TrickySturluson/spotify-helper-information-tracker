@@ -747,7 +747,7 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Maintain canonical read-only Spotify playlist snapshots and related reference evidence.
+# Purpose: Collect read-only Spotify playlist snapshots and write canonical reference evidence.
 # Inputs: Spotify playlist GET snapshots, configured reference/priority playlist IDs and
 #         market-scoped track metadata/playability observations.
 # Outputs: assistant_data/spotify snapshots/history/catalog/index/health, canonical MusicLibrary
