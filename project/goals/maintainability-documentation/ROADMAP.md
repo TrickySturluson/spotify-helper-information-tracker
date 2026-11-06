@@ -40,6 +40,12 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [ ] Perform a cold-start simulation proving the brief and repository docs are sufficient without prior chat history.
 - [ ] Confirm privacy boundaries: curated SHIT context only; no raw chat dumps, unrelated personal context, or secret values.
 
+## Controlled ChatGPT dispatch
+
+- [x] Add a narrowly scoped `push` trigger for fresh `babel/dispatch-*` branches, filtered to `.github/babel/dispatch.json`; retain manual dispatch and the six-hour schedule.
+- [x] Ensure the dispatch branch is only an event trigger: preflight and all work jobs continue to select `main` or `babel/agent-progress`, never treating the marker branch as a work base.
+- [ ] Execute the first ChatGPT-triggered run and verify Codex, independent validation, and isolated PR publication.
+
 ## Acceptance criteria
 - Every indexed goal has ROADMAP, README and ACTIONS with current links.
 - Every maintained executable file has a useful overview or an explicit adjacent-documentation entry; no file is falsely marked covered.
