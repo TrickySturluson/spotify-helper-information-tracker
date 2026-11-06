@@ -15,16 +15,18 @@ See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification block
 
 ## Goal index
 
-- [Great Migration](great-migration/README.md)
-- [Library Enrichment](library-enrichment/README.md)
-- [Metadata Coverage & Retry System](metadata-coverage-retries/README.md)
-- [Discovery & Recommendations](discovery-recommendations/README.md)
-- [Listening Analytics](listening-analytics/README.md)
-- [Playlist Intelligence](playlist-intelligence/README.md)
-- [Maintainability & Documentation](maintainability-documentation/README.md)
-- [Library Health Checker & Data Maintainer](library-health-maintenance/README.md)
-- [Metadata Freshness & Partial Revalidation](metadata-freshness/README.md)
-- [Spotify Track Playability & Availability](spotify-playability/README.md)
-- [Library Identity & Metadata Confidence Verification](library-confidence-verification/README.md)
+| Goal | Roadmap | Scope / design | Action history |
+|---|---|---|---|
+| Great Migration | [ROADMAP](great-migration/ROADMAP.md) | [README](great-migration/README.md) | [ACTIONS](great-migration/ACTIONS.md) |
+| Library Enrichment | [ROADMAP](library-enrichment/ROADMAP.md) | [README](library-enrichment/README.md) | [ACTIONS](library-enrichment/ACTIONS.md) |
+| Metadata Coverage & Retries | [ROADMAP](metadata-coverage-retries/ROADMAP.md) | [README](metadata-coverage-retries/README.md) | [ACTIONS](metadata-coverage-retries/ACTIONS.md) |
+| Discovery & Recommendations | [ROADMAP](discovery-recommendations/ROADMAP.md) | [README](discovery-recommendations/README.md) | [ACTIONS](discovery-recommendations/ACTIONS.md) |
+| Listening Analytics | [ROADMAP](listening-analytics/ROADMAP.md) | [README](listening-analytics/README.md) | [ACTIONS](listening-analytics/ACTIONS.md) |
+| Playlist Intelligence & Safety | [ROADMAP](playlist-intelligence/ROADMAP.md) | [README](playlist-intelligence/README.md) | [ACTIONS](playlist-intelligence/ACTIONS.md) |
+| Maintainability & Documentation | [ROADMAP](maintainability-documentation/ROADMAP.md) | [README](maintainability-documentation/README.md) | [ACTIONS](maintainability-documentation/ACTIONS.md) |
+| Library Health & Maintenance | [ROADMAP](library-health-maintenance/ROADMAP.md) | [README](library-health-maintenance/README.md) | [ACTIONS](library-health-maintenance/ACTIONS.md) |
+| Metadata Freshness | [ROADMAP](metadata-freshness/ROADMAP.md) | [README](metadata-freshness/README.md) | [ACTIONS](metadata-freshness/ACTIONS.md) |
+| Spotify Playability | [ROADMAP](spotify-playability/ROADMAP.md) | [README](spotify-playability/README.md) | [ACTIONS](spotify-playability/ACTIONS.md) |
+| Library Confidence Verification | [ROADMAP](library-confidence-verification/ROADMAP.md) | [README](library-confidence-verification/README.md) | [ACTIONS](library-confidence-verification/ACTIONS.md) |
 
-Every goal folder must contain `README.md` and `ACTIONS.md`. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here.
+Every goal folder must contain all three files: `ROADMAP.md`, `README.md`, and `ACTIONS.md`. Roadmaps are maintained plans, READMEs are design/scope references, and ACTIONS are dated evidence logs. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here.
