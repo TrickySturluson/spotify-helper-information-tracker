@@ -33,8 +33,8 @@ No blocked/removed track reappears; no duplicate URIs; generated output is stage
 
 ## Open proposals (not merged)
 
-- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open/draft on `codex/sorter-evaluation-ingestion-watchdog`, diverged (10 ahead, 419 behind current main; mergeable=false). No workflow runs were found for its observed head; rebase and obtain CI before relying on it. The evaluation/watchdog remain proposed until runtime implementation and tests are verified.
-- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, diverged (5 ahead, 419 behind current main; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It does not complete sorter integration or authorize playlist writes.
+- [PR #121 — Offline sorter evaluation and listening-ingestion watchdog specification](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/121) is open/draft on `codex/sorter-evaluation-ingestion-watchdog`, rechecked 2026-11-06 against main `a5fe4de`: diverged (10 ahead, 419 behind; mergeable=false). No workflow runs were found for its observed head; rebase and obtain CI before relying on it. The evaluation/watchdog remain proposed until runtime implementation and tests are verified.
+- [PR #120 — Incremental Library enrichment and parallel sorter development](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/120) is open/draft on `codex/incremental-library-sorter-work`, rechecked 2026-11-06 against main `a5fe4de`: diverged (5 ahead, 419 behind; mergeable=false). Old-head tests #41380622956 and security scan #41380622844 passed, but rebase and rerun before review. It does not complete sorter integration or authorize playlist writes.
 
 ## Next action (documentation-only priority)
 
