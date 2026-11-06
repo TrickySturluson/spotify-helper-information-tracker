@@ -52,7 +52,7 @@ The user has explicitly directed that documentation be the sole active project p
 
 ### 1. Great Migration — FULL CATALOGUE PUBLISHED; STRUCTURAL HEALTH VERIFIED
 
-- Per-recording Library structure merged in PR #49. Full canonical catalogue is published on `main`: 13,005 songs, 6,386 artists, 7,861 albums.
+- Per-recording Library structure merged in PR #49. Latest read-only CI baseline [#42154433350](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42154433350) scanned 13,163 songs, 6,497 artists and 7,969 albums; index counts matched and Library health returned zero errors/warnings. The earlier 13,005 / 6,386 / 7,861 figures are historical.
 - Legacy source coverage: 11,130/11,130 track IDs resolve through source-track/recording-MBID aliases; 5,358/5,358 legacy artist names represented.
 - Run #18 published enrichment commit `c55012f`. Run #21 later used stale issue-event SHA `b892f3b`, repeated work from stale checkpoints, and failed publication; its output was not pushed. Workflow fix `21cc2ed` checks out latest `main` before migration.
 - Issue #92 / run 41372492615 passed canonical audit and full structural health: zero errors/warnings. It also validated the merged playability checks.
@@ -77,7 +77,7 @@ The user has explicitly directed that documentation be the sole active project p
 
 ### 4. Confidence verification and duplicate-entity review
 
-- PR #88 merged missing-vs-mismatch confidence classification. Issue #92: identity confidence drift 0; metadata differences are 1,582 missing stored duration confidence and 0 genuine mismatches.
+- PR #88 merged missing-vs-mismatch confidence classification. **Historical issue #92 baseline:** identity confidence drift 0; metadata differences were 1,582 missing stored duration confidence and 0 genuine mismatches. The latest CI #42154433350 instead reports zero missing confidence entries and 214 track_tags mismatches; see the current Library Confidence workspace.
 - Curated [identity review set](goals/library-confidence-verification/IDENTITY_REVIEW_SET.md) includes a verified recording-MBID song, a high-confidence Spotify-ID song with market-scoped playability, and a low-confidence source-track-only song.
 - Concrete duplicate candidate: Candy Claws has a verified MBID artist and an empty name-fallback artist; the same album has enriched and empty fallback records. Spotify track `spotify:0lw2mlzncwftftvdojdysg` carries the enriched album's exact Spotify album ID but points to the fallback album.
 - Issue #102 tracks a read-only duplicate artist/album/song audit. Do not merge on name alone or delete records. Preserve release editions, references, source IDs, listening context, playability history and provenance.
