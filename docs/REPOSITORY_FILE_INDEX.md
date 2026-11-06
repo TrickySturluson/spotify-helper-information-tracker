@@ -1,6 +1,6 @@
 # SHIT Repository File & Data-Family Index
 
-**Purpose:** explain where maintained code, control documents, workflows, canonical records, generated outputs, and operational state live. This is a navigational catalogue, not a frozen dump of every generated record path. The canonical current inventory is the Git tree (`git ls-files`); generated Library records are intentionally described by their path conventions rather than copied into this document one-by-one.
+**Purpose:** explain where maintained code, control documents, workflows, canonical records, generated outputs, and operational state live. This is a navigational catalogue, not a frozen dump of every generated record path. A complete committed-tree inventory was verified on the documentation audit branch using directory-scoped GitHub Git Trees API requests; the measured snapshot and method are recorded below. In a local checkout, `git ls-files` remains the simplest way to regenerate the current path list.
 
 ## Repository entry points
 
@@ -23,25 +23,58 @@
 | `tests/` | Python unittest regression suite | `tests/README.md`; each test module has a bottom overview |
 | `sitecustomize.py` and `shit.py` | Root-level import bootstrap and CLI entry point | Bottom file overview and linked operational documentation |
 
-## Maintained-file inventory snapshot — 2026-11-06
+## Complete committed-tree inventory snapshot — 2026-11-06
 
-These counts come from directory-scoped GitHub repository listings. Python-module counts exclude each directory's `__init__.py`; they describe maintained code, not every generated data record.
+**Audited commit:** `7cc839f3f00eeb026cd898099654eea8f9a79497` (documentation branch `docs/semantic-documentation-audit`).
 
-| Area | Files observed | Maintained count |
-|---|---:|---:|
-| `scripts/analytics/` | 8 Python files | 7 implementation modules |
-| `scripts/lastfm/` | 2 Python files | 1 implementation module |
-| `scripts/music/` | 29 Python files | 28 implementation modules |
-| `scripts/spotify/` | 20 Python files | 19 implementation modules |
-| **Maintained implementation total** | **59 Python files** | **55 modules** |
-| `compat/` | 41 Python files + README | 40 compatibility launchers |
-| `tests/` | 45 Python files + README | 44 test modules |
-| `.github/workflows/` | 17 YAML files | 17 workflows |
-| `docs/` | 22 Markdown files | 21 technical documents + `docs/README.md` index |
-| `project/goals/` | 13 goal directories + parent index | 13 workspaces; each has ROADMAP.md, README.md and ACTIONS.md |
+The inventory was assembled from the root Contents listing and directory-scoped Git Trees API requests for every top-level directory. The large `assistant_data/music/` tree was queried separately from its sibling families. Every queried subtree returned `truncated=false`; all root entries and all immediate `assistant_data/` entries were included. This avoids the 100,000-entry truncation encountered by a single recursive root-tree request.
 
-**Inventory limitation:** the recursive Git tree API response was truncated by the very large generated per-record Library tree. The directory-scoped counts above are verified for maintained source, tests, workflows, guides and goal workspaces, but they are not a complete tracked-path manifest. A complete checkout and `git ls-files` are still required to reconcile every generated JSON/JSONL, state, artifact and configuration path. Do not claim the full tracked-file audit is complete from these counts alone.
+| Repository area | Committed files | Notes |
+|---|---:|---|
+| Root-level files | 9 | README, AGENTS, CLI/bootstrap, config, removal state and optional requirements |
+| `.github/` | 23 | Includes all 17 workflow YAMLs, test triggers and persisted manager/cooldown state |
+| `compat/` | 42 | 40 Python compatibility launchers, README and package marker |
+| `data/` | 4 | Canonical Last.fm archive, metadata/statistics and README |
+| `docs/` | 22 | 21 technical guides plus documentation index |
+| `playback_data/` | 2 | README and empty-directory marker; local tracker observations are optional |
+| `project/` | 50 | Control-centre files, 13 goal workspaces and supporting specifications |
+| `scripts/` | 61 | 55 maintained implementation modules, five package markers and README |
+| `tests/` | 46 | 44 test modules, package marker and README |
+| `assistant_data/` | 27,902 | Generated analytics, canonical Library, profiles, snapshots and state |
+| **Total** | **28,161** | Complete committed file/blob entries at the audited commit |
 
+### Generated-data family detail
+
+| `assistant_data/` family | Files |
+|---|---:|
+| Root-level files | 5 |
+| `advanced/` | 8 |
+| `indexes/` | 1 |
+| `months/` | 43 |
+| `music/` | 27,680 |
+| `playback/` | 6 |
+| `rankings/` | 3 |
+| `recommendations/` | 8 |
+| `spotify/` | 144 |
+| `years/` | 4 |
+| **Total** | **27,902** |
+
+The `assistant_data/music/` subtree contains 27,680 files and 27,641 directories; 27,676 of those files are JSON records and four are Markdown guides. These generated/canonical records are documented by schema, provenance, family and owning writer—not by thousands of individual prose entries. The `assistant_data/spotify/` subtree contains 144 files, including 143 JSON files and one Markdown guide.
+
+### Maintained-code coverage
+
+- `scripts/analytics/`: 7 implementation modules.
+- `scripts/lastfm/`: 1 implementation module.
+- `scripts/music/`: 28 implementation modules.
+- `scripts/spotify/`: 19 implementation modules.
+- `compat/`: 40 compatibility launchers.
+- `tests/`: 44 test modules.
+- `.github/workflows/`: 17 workflows.
+- `docs/`: 21 technical guides plus the index.
+- `project/goals/`: 13 workspaces; each contains ROADMAP.md, README.md and ACTIONS.md.
+
+**Scope and freshness:** this is a complete committed-tree inventory for the stated commit, not a claim that future commits cannot add/remove files. Refresh the snapshot after significant structural changes. The tree count includes generated JSON records, configuration/state files and documentation blobs; it does not count directories as files.
+ 
 ## Automation and repository state
 
 | Path | Contents | Ownership / safety |
