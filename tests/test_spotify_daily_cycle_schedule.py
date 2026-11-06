@@ -263,6 +263,60 @@ class DailyCycleScheduleTests(unittest.TestCase):
         ):
             with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "Repository main changed"):
                 daily_cycle.assert_repository_head_unchanged("abc123")
+    def test_persisted_stage_returns_commit_sha_after_successful_push(self):
+        from unittest.mock import Mock
+        import subprocess
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        with TemporaryDirectory() as directory:
+            stage = Path(directory) / "stage.json"
+            backup = Path(directory) / "backup.json"
+            stage.write_text("{}", encoding="utf-8")
+            backup.write_text("{}", encoding="utf-8")
+            results = [Mock(), Mock(), Mock(), Mock(), Mock(), Mock(stdout="abc123\\n")]
+            with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
+                daily_cycle.subprocess, "run", side_effect=results
+            ):
+                commit_sha = daily_cycle.persist_daily_stage(stage, backup, "2026-11-06")
+        self.assertEqual(commit_sha, "abc123")
+
+    def test_verify_daily_stage_reads_committed_git_version_in_actions(self):
+        import hashlib
+        import json
+        from unittest.mock import Mock
+        record = {
+            "schema_version": 1,
+            "playlist_id": daily_cycle.DAILY_ID,
+            "cycle_date_eastern": "2026-11-06",
+            "target_uris": ["spotify:track:a"],
+            "candidate_tracks": [{"artist": "A", "track": "One", "uri": "spotify:track:a"}],
+            "target_description": "Daily stage test",
+            "prewrite_uris": ["spotify:track:before"],
+            "prewrite_snapshot_id": "before",
+            "backup_path": "playlist_backups/before.json",
+            "status": "staged_before_spotify_write",
+        }
+        digest = hashlib.sha256(
+            json.dumps(record, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        record["payload_sha256"] = digest
+        result = Mock(stdout=json.dumps(record))
+        with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
+            daily_cycle.subprocess, "run", return_value=result
+        ) as run:
+            staged = daily_cycle.verify_daily_stage(
+                "assistant_data/spotify/staging/tricky_daily/test.json",
+                digest,
+                ["spotify:track:a"],
+                ["spotify:track:before"],
+                "before",
+            )
+        self.assertEqual(staged["payload_sha256"], digest)
+        run.assert_called_once_with(
+            ["git", "show", "HEAD:assistant_data/spotify/staging/tricky_daily/test.json"],
+            check=True, capture_output=True, text=True,
+        )
+
     def test_github_daily_stage_requires_successful_git_push_before_write(self):
         import subprocess
         from tempfile import TemporaryDirectory
