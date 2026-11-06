@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — Documentation quality expansion and all-workstream pause recorded
+
+- **Source overview audit:** rewrote 29 maintained implementation overviews across `scripts/analytics/`, `scripts/lastfm/`, `scripts/music/` and `scripts/spotify/` to replace generic fallback boilerplate with source-specific purpose, inputs, outputs, evidence semantics, side effects, safety boundaries and run instructions.
+- **Guide navigation:** expanded `docs/README.md` to link all 21 technical guides; removed a duplicated maintenance paragraph in `project/goals/README.md`.
+- **Automated quality gates:** draft PR #161 adds repository-wide local Markdown-link checks, complete docs-guide index coverage, specific workflow overview checks, non-boilerplate implementation overview checks and compatibility-to-source references. Checks must pass on the latest PR head before merge.
+- **Workflow documentation:** nine workflow YAML overviews were made specific. `docs/WORKFLOWS.md` now warns that comment-only edits to workflow YAMLs can trigger path-filtered automation. The resulting unintended runs and failures are recorded above.
+- **Priority propagation:** added an explicit documentation-only pause/override to all 12 non-documentation goal roadmaps and the goal index, so a new session cannot mistake a queued feature next-step for current authorization.
+- **PR:** [#161](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/161), draft, branch `docs/semantic-documentation-audit`; current head is being checked by CI. Do not merge until all tests pass and any newly discovered documentation defects are fixed.
+- **Status:** substantial file-level quality improvements are staged in a draft PR; the repository-wide documentation audit remains incomplete. The complete tracked-file inventory, semantic guide review, all goal README/ACTIONS reconciliation, and fresh-session simulation remain outstanding.
+
 ## 2026-11-06 — Update Last.fm History publication also failed on shared-state conflicts
 
 - Run #42146153098 completed its provider/data steps successfully: Last.fm history import, artist genre/mood/theme enrichment, recent-top-200 track tag enrichment, duration prioritization, recording-ID resolution, AcousticBrainz fetch and derived statistics all completed.
