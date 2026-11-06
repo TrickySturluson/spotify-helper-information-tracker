@@ -168,6 +168,6 @@ Chronological handoff record for substantial project work. New entries go at the
 - Next: verify the latest CI run after the Playlist Sequencing workspace; then audit file-level overviews and reconcile all workstream roadmaps with current code/workflow evidence.
 
 
-## 2026-11-06 — ChatGPT-initiated Buddy trigger
+## 2026-11-06 — ChatGPT-initiated Codex workflow trigger
 
-ChatGPT successfully created branch `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`). This is the first verified ChatGPT-initiated GitHub trigger write for Buddy. The workflow's actual run and job outcomes have not yet been verified; see the Maintainability & Documentation action log and `project/ACTIVE_SESSION_BRIEF.md`.
+ChatGPT successfully created branch `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`). This is the first verified ChatGPT-initiated GitHub trigger write for the separate repository-hosted Codex workflow. Run #42181953313 failed during Codex sandbox setup; retry #42183337573 reached Codex on Ubuntu 24.04 but was blocked by API quota before validation or publication. The scheduled ChatGPT Buddy path is separate; see the Maintainability & Documentation action log and `project/ACTIVE_SESSION_BRIEF.md`.
