@@ -93,3 +93,11 @@ Newest entries first. Separate implemented behavior from plans, test evidence, l
 - **Safety:** exact blacklist checks, URI deduplication, the 60-track requirement, and artist-cap fallback semantics remain intact. Candidate generation does not mutate playlists.
 - **Tests:** added coverage for the 80 → 160 → 300 cumulative batches and the small-pool single-batch case. Full CI is pending.
 - **Next:** verify full CI, inspect Spotify request metrics on the next authorized preview/cycle, and tune the initial cohort only from measured candidate yield. Avoid another large live discovery request until this branch is reviewed.
+
+## 2026-11-06 — Manual-removal feedback merged and exercised by live GET-only snapshot
+
+- **Merge:** PR #166 merged to main as `49d1c61a74a77fb4c7e5d180247f5d8c9eeee7fc`. The branch passed the full 503-test suite and public repository security scan on its final head before merge.
+- **Production-path verification:** push-triggered snapshot workflow [#42268795272](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42268795272) passed all steps, including safe regression tests, credential validation, authenticated GET-only snapshot/reconciliation, and publication.
+- **Observed result:** snapshot captured `2026-11-06T18:14:16.140845+00:00`; 29 accessible unique tracks; baseline 29; blacklist 55; whitelist 0. The run added 55 manual-removal feedback events; the feedback ledger now contains 60 track rows. Spotify request metrics: 2 GET requests (`/me`, `/playlists/{id}`), 0 playlist mutations.
+- **Coverage:** liked-song observation is marked observed and Last.fm coverage available. Playback tracker remains unknown because `playback_data/segments.jsonl` is absent. Do not infer zero plays from this missing tracker file.
+- **Outcome:** the new removal feedback path is now merged and has successfully executed in the scheduled snapshot workflow. This does not mean the live playlist is at 60; it remains at 29 accessible tracks. Live replacement remains gated on safe exact-order staging/read-back and quota-aware candidate generation.
