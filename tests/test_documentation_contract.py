@@ -304,6 +304,7 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("timestamped sibling backup", full_migrator)
         self.assertIn("audit/verify-catalogue instantiate MusicLibrary and may rebuild", migration_workflow)
         self.assertIn("health is the strictly read-only structural scan", migration_workflow)
+        self.assertIn("verify may persist a rotated Spotify refresh token as an Actions", migration_workflow)
 
     def test_track_profile_builder_preserves_playlist_only_evidence_semantics(self):
         source = (ROOT / "scripts" / "music" / "build_track_profiles.py").read_text(encoding="utf-8")
