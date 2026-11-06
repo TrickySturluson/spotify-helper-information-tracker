@@ -2,6 +2,16 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-06 — First ChatGPT-initiated Buddy dispatch trigger committed
+
+- **Purpose:** test whether ChatGPT can initiate the repository-hosted Buddy workflow through the connected GitHub integration, a prerequisite for using ChatGPT as SHIT's front-end interface.
+- **Execution:** successfully created branch `babel/dispatch-20261106-01` from `main`, then committed `.github/babel/dispatch.json` on that branch. Commit: `7c1abce763d293992872699146eb7f13d10f9b87`.
+- **Trigger contract:** `.github/workflows/babel-ai-continuation.yml` listens for a push to `babel/dispatch-*` when `.github/babel/dispatch.json` changes. The marker branch is only a trigger; the worker continues to select `main` or `babel/agent-progress` as its source.
+- **Verified:** GitHub accepted the branch creation and marker commit. This proves ChatGPT can perform the narrow GitHub write needed to emit the trigger event.
+- **Not yet verified:** no workflow run URL/ID or job status is available from the connected GitHub actions in this session. Do not claim the workflow started, completed, or published a PR until the Actions run is inspected.
+- **Next:** inspect the `Babel AI continuation` workflow run associated with the marker push; verify preflight, Codex, independent path/test validation, and publisher; then record the run ID, commit/ref and outcomes. If no run appears, diagnose the event/filter/permissions before changing the design.
+
+
 ## 2026-11-06 — Repository-hosted AI continuation worker integrated
 
 - **Purpose:** let Babel continue its documentation audit from GitHub checkpoints when a ChatGPT conversation ends, without depending on chat history.
