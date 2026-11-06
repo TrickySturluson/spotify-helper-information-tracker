@@ -1,6 +1,14 @@
 # Tricky Daily — Actions & Evidence
 
 Newest entries first. Separate implemented behavior from plans, test evidence, live API acceptance, and independent read-back verification.
+## 2026-11-06 — Daily-related PR branches are stale/diverged from current main
+
+- Live PR inspection: #159 `fix/tricky-daily-schedule-gate` is open/non-draft, 6 commits ahead and 201 behind current main, mergeable=false; old-head Daily tests #42091662410 and security scan #42091662609 passed.
+- PR #160 `daily-exposure-aware-discovery` is open/non-draft, 27 ahead / 201 behind, mergeable=false; old-head tests #42081994195 and security scan #42081994125 passed.
+- PR #158 `feature/discover-weekly-feedback-tracking` is open/non-draft, 9 ahead / 201 behind, mergeable=false; old-head tests #42071650507 and security scan #42071650219 passed.
+- These checks ran on their stale branch heads, not current main. The proposals remain unmerged and must be rebased and reverified after the documentation-only pause. No feature work or PR merge is authorized during this phase.
+
+
 
 ## 2026-11-06 — Latest saved Daily snapshot is below the 60-track target
 
