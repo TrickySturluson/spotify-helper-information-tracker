@@ -238,10 +238,21 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Track manual removals across all owned Spotify playlists and detect duplicates. Run: python track_playlist_removals.py Optional: python track_playlist_removals.py PLAYLIST_ID Add --dedupe to remove extra occurrences from unlocked playlists only. First run establishes baselines; later runs detect tracks removed since the previous run and persist them in playlist_removed_tracks.json.
-# Location: Maintained implementation in scripts/spotify/track_playlist_removals.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/track_playlist_removals.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Compare current owned-playlist membership with prior baselines,
+#          persist explicit user removals and optionally deduplicate unlocked
+#          playlists.
+# Inputs: Spotify playlist access through spotify_playlist_manager.py;
+#         playlist_removal_baseline.json and playlist_removed_tracks.json;
+#         optional assistant_data/spotify reference snapshots.
+# Outputs/state: Updates the removal baseline and exact track/URI blacklist;
+#                optional --seed-from-reference-library imports a complete
+#                reference snapshot as a baseline.
+# Spotify effects: Default operation inspects playlists and records removals.
+#                  --dedupe can remove duplicate occurrences, but only from
+#                  playlists that the manager reports as unlocked.
+# Safety: First run establishes a baseline rather than inventing removals;
+#         preserve exact playlist/track identity and manager lock safeguards.
+# Run: python compat/track_playlist_removals.py --help
+# Related: scripts/spotify/spotify_playlist_manager.py;
+#          docs/SPOTIFY_API_OPERATIONS.md; docs/WORKFLOWS.md.
 # -----------------------------------------------------------------------------
