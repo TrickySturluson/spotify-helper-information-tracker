@@ -1,3 +1,10 @@
+## 2026-11-06 — Babel AI continuation infrastructure added
+
+- Integrated a scheduled OpenAI Codex worker through GitHub Actions so documentation continuation can resume from repository state rather than a prior ChatGPT conversation.
+- The worker uses a six-hour schedule plus manual dispatch, resumes from a dedicated branch, and publishes only allowlisted documentation/test changes through a review PR after full unittest discovery. It does not auto-merge or receive Spotify/provider credentials.
+- Activation remains pending on repository secret OPENAI_API_KEY and the GitHub Actions setting that permits workflow-created pull requests. First-run success is not yet verified.
+- Operating guide: docs/BABEL_AGENT.md. Durable status: project/BABEL_AGENT_STATE.md.
+
 ## 2026-11-06 — Daily idempotency, Library side effects and workflow budgets documented
 
 - Source audit confirmed a P0 Tricky Daily mismatch: `--force` bypasses both the clock gate and same-Eastern-date completion guard, although the intended contract is clock-gate bypass only. The current test codifies the broader behavior; runtime/test correction remains deferred during the documentation-only pause.
