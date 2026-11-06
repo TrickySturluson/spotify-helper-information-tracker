@@ -3,6 +3,7 @@
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
 ## 2026-11-06 — Great Migration runbook reconciled with actual workflow allowlist
+- Added `test_great_migration_issue_operations_match_workflow_and_guide` to `tests/test_documentation_contract.py`: it parses the workflow's Python allowlist and manual-dispatch choice block, asserts both sets match, and requires every allowed issue title to appear in the runbook. Updated `tests/README.md` and `docs/README.md` to describe this guard. The regex fixture was source-inspected after correcting an initial double-escaping error; CI is still required to execute it.
 
 - Compared `docs/GREAT_MIGRATION.md` against `.github/workflows/great-migration.yml`, `scripts/music/library_cli.py`, `scripts/music/prepare_music_library.py`, `scripts/music/migrate_full_music_library.py`, and `scripts/music/verify_provider_credentials.py`.
 - Found the guide incorrectly said the workflow accepted only five operations, while the source allowlist and manual-dispatch choices contain 15. Replaced the incomplete list with all 15 exact issue titles and grouped them by read-only, credential-verification and canonical-data-writing side effects.
