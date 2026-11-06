@@ -151,10 +151,20 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Incrementally enrich artist profiles with community tags for recommendation use.
-# Location: Maintained implementation in scripts/music/build_music_profiles.py.
-# Data flow: Uses the canonical archives and/or generated project data; consult
-#            this module's configuration and command options for exact paths.
-# Run: python compat/build_music_profiles.py (legacy command entry point, when applicable).
-# Related: tests/ contains regression coverage; docs/ contains extended guides.
+# Purpose: Incrementally build artist-level genre, mood and theme profiles
+#          from Last.fm community tags for recommendation and discovery use.
+# Inputs: data/scrobbles.json; LASTFM_API_KEY; existing
+#         assistant_data/music/artist_profiles.json cache.
+# Outputs: Replaces artist_profiles.json with raw tags, derived tag families,
+#          lookup status and timestamps while preserving cached results.
+# Provider policy: Calls Last.fm artist.getTopTags; lookup cap is controlled by
+#                  MUSIC_PROFILE_LOOKUPS_PER_RUN (default 120). Unmatched or
+#                  unavailable profiles are retried after 30 days.
+# Semantics: Raw tags are retained; derived genre/mood/theme groups are
+#            conservative community signals, not definitive classifications.
+# Side effects: Last.fm HTTPS requests and local JSON writes; no scrobble
+#               archive edits or Spotify playlist writes.
+# Run: python compat/build_music_profiles.py (from the repository root).
+# Related: scripts/music/mood_inference.py; scripts/music/build_track_profiles.py;
+#          docs/TRACK_MOOD_EVIDENCE.md; docs/AUTOMATED_AUDIO_METADATA.md.
 # -----------------------------------------------------------------------------
