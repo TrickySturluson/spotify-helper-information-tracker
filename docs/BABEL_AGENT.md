@@ -63,4 +63,4 @@ The branch is intentionally separate from main; the worker's commits are proposa
 
 ## Verification status
 
-The workflow and its documentation have been committed, but a successful Actions execution has not yet been observed. The API secret is not provisioned by the repository-file integration and must be added by the repository owner. Do not mark activation complete until the first run and its resulting branch/PR are verified.
+The repository baseline is green: Daily curator tests run #42178656402 passed full unittest discovery (**478 tests**) on commit 69e72829c6cc9e72837025f8c777b4d846c9ba7b. This verifies the repository test suite and documentation contracts, not the Codex continuation worker. No successful Babel AI continuation run has yet been observed. The API secret must be configured by the repository owner; do not mark activation complete until the first worker run and its resulting branch/PR are verified.
