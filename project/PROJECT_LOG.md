@@ -10,6 +10,14 @@
 
 # SHIT Project Log
 
+## 2026-11-06 — Documentation identity, overview guardrails, and CI verification
+
+- **Naming:** SHIT Documentation & Continuity is the public-facing name; Babel is its internal codename. The canonical guide is `docs/BABEL.md`.
+- **Documentation:** 24 generic implementation overviews replaced with concrete module-specific contracts; anti-placeholder test now scans every Python file under `scripts/`. Documentation index and fresh-session tests explicitly enforce Babel identity and links.
+- **Verification:** Daily curator run #42167849568 passed **460 tests** on `da3be75844e3ce28eacd46ce8d87960493402503`; public repository security scan #42167849588 passed on the same commit.
+- **Operational exception:** Enrich Music Metadata run #42166959478 is still active at the MusicBrainz duration stage after a source-comment edit matched its push filter. It may publish generated metadata; no playlist-write step is part of this workflow. Reconcile the run and any resulting bot commit before declaring the repository state stable.
+- **Status:** Babel naming and automated documentation guardrails are implemented and verified. Full semantic audit and fresh-session acceptance remain open.
+
 ## 2026-11-06 — Twenty-four maintained module overviews corrected
 
 - **Goal:** replace generic per-file boilerplate with accurate module-specific operating contracts to improve fresh-session continuity.

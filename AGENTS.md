@@ -10,6 +10,7 @@ This file applies to every assistant, contributor, and automation agent working 
 3. Read [project/NEXT_WORK.md](project/NEXT_WORK.md), [project/LOOSE_ENDS.md](project/LOOSE_ENDS.md), and [project/PROJECT_LOG.md](project/PROJECT_LOG.md).
 4. Find the relevant workstream in [project/goals/README.md](project/goals/README.md). Read its `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
 5. Read the relevant source, tests, data contracts, runbooks, workflow definitions, and current GitHub status. Documentation is not a substitute for checking the live implementation.
+   Before editing or committing any path, inspect matching workflow `push.paths` filters. Comment-only changes to a listed source or workflow file still trigger its full workflow, including provider calls and repository writes.
 6. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
 
 ## Non-negotiable continuity rule

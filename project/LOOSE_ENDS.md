@@ -11,7 +11,7 @@ This is the cross-project register of known unfinished work discovered from the 
 - 13 goal workspaces remain present with ROADMAP/README/ACTIONS structure; current audit is focused on semantic accuracy and operational contracts rather than folder creation.
 - 24 known generic module overviews were replaced with concrete operating contracts. The anti-placeholder regression test scans all Python modules under `scripts/`; full suite run #42167694048 passed 460 tests.
 - Enrich Music Metadata run #42166959478 was triggered unintentionally by a source-comment-only documentation commit matching its push path filter. It was still executing MusicBrainz duration enrichment at last inspection. It has provider calls and contents:write publication, but no Spotify playlist-write steps. Reconcile its final result and any generated-data commit before declaring the repository state stable.
-- Security scan #42167694030 and the metadata workflow were still in progress at the last status check; update this register when both reach terminal state.
+- Security scan #42167849588 is now complete and successful. Enrich Music Metadata run #42166959478 remains in progress; update this register when it reaches terminal state and any generated-data publication is reconciled.
 
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
@@ -19,7 +19,7 @@ The user has explicitly directed that documentation be the sole active project p
 
 - Current main inspected at `deb653a2528ee7d9969296048582fb9764e7d908` for this checkpoint. The documentation naming and module-overview work is now published; re-check main after the still-running metadata workflow before relying on this SHA.
 - 13 goal workspaces exist and each has ROADMAP.md, README.md and ACTIONS.md. 17 GitHub Actions workflows are listed in `docs/WORKFLOWS.md`.
-- The documentation contract, file-layout, and full 460-test suite passed in Daily curator run #42167694048 on `deb653a2528ee7d9969296048582fb9764e7d908`. This includes the explicit Babel identity/link contract and the anti-placeholder check across all maintained Python modules under `scripts/`. Public repository security scan #42167694030 was still in progress at the last inspection. These results establish automated checks, not semantic accuracy of every document.
+- The documentation contract, file-layout, and full 460-test suite passed in Daily curator run #42167694048 on `deb653a2528ee7d9969296048582fb9764e7d908`. This includes the explicit Babel identity/link contract and the anti-placeholder check across all maintained Python modules under `scripts/`. Public repository security scan #42167849588 passed on the `da3be758` documentation checkpoint. These results establish automated checks, not semantic accuracy of every document.
 - The recursive Git tree API response was truncated by generated per-record Library data. A complete local `git ls-files` inventory remains required for exhaustive path reconciliation.
 - Maintained code directories currently enumerate 7 analytics modules, 1 Last.fm module, 24 music modules and 19 Spotify modules. The bottom FILE OVERVIEW presence test also covers compatibility launchers, tests and workflow YAMLs. Manual accuracy review remains open.
 - Open Daily PRs observed during the audit: #158, #159 and #160. Their proposed changes are not merged mainline behavior; review their diffs and current status before updating implementation documentation.
