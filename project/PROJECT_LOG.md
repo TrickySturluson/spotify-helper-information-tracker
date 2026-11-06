@@ -1,3 +1,11 @@
+## 2026-11-06 — High-risk documentation audit and exact verification
+
+- Corrected and regression-tested source/documentation boundaries for Daily's 60-track/force contract, Spotify Reference Library canonical writes, MusicLibrary index recovery, sequencer local plan/index writes, Great Migration audit/verify-catalogue index recovery and secret rotation, track-profile canonical writes, and legacy migration backup limitations.
+- Cross-checked all 17 workflow trigger/schedule and permission blocks. Two workflow YAML FILE OVERVIEW comments were corrected after their push-trigger implications were checked; no workflow logic changed.
+- Reconciled the current feature-PR divergence against main a5fe4de; all seven open feature PRs remain stale/unmerged and deferred under the documentation-only priority.
+- The last completed code/test head dfbefffe7fd4f5fa81d8d227a9dd1f8e71143049 passed Daily curator CI #42164423132 and full-history Gitleaks #42164422940. Subsequent commits changed only documentation/handoff/count/action-log files.
+- The full committed-tree inventory remains 28,161 file/blob entries at audit snapshot 7cc839f; no canonical data, provider state or Spotify playlist contents were changed.
+
 ## 2026-11-06 — Complete repository inventory and workflow catalogue audit recorded
 
 - Enumerated the committed repository tree at `7cc839f3f00eeb026cd898099654eea8f9a79497` using root Contents plus directory-scoped recursive Git Trees requests. All queried subtrees returned `truncated=false`; 28,161 file/blob entries were counted, including 27,902 under `assistant_data/`. See `docs/REPOSITORY_FILE_INDEX.md`.
