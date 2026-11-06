@@ -35,6 +35,8 @@ The user has explicitly directed that documentation be the sole active project p
 
 ## Documentation audit PR
 
+- Latest observed PR #161 head at this checkpoint: `e65abf6c4c804bcf31e7b2e4ef2fc8c8e1457d0a`; it remained draft/unmerged. The GitHub connector reported `mergeable: false` and no check/status records for this exact SHA. Re-fetch PR metadata and check runs before deciding whether the branch is ready; do not rely on earlier successful checks for older heads.
+
 - Further semantic review found 11 generic test-module overviews that had passed the old marker-only check. Draft PR #161 now replaces those overviews and extends `tests/test_script_layout.py` to reject the generic purpose/scope/related boilerplate. `docs/CODE_DOCUMENTATION.md` and `docs/README.md` describe the added guard.
 - This new test-module quality check is not yet CI-verified on the latest PR head. Manual review of the remaining test-module overviews and technical-guide claims remains open.
 
