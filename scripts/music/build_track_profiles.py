@@ -462,6 +462,7 @@ if __name__ == "__main__":
 #          written through MusicLibrary.put_catalogue().
 # Selection: Includes archive tracks, exact priority-playlist tracks and a configurable
 #            recent top-N cohort ranked by Last.fm plays within the configured window.
+# Semantics: Priority-playlist-only candidates may have zero scrobbles; playlist membership is context.
 # Identity: Uses existing verified recording evidence; fuzzy MusicBrainz ID search is not run here.
 # Safety: Bounded provider requests; no archive mutation or Spotify playlist writes.
 # Run: python compat/build_track_profiles.py (repository root; LASTFM_API_KEY required).
