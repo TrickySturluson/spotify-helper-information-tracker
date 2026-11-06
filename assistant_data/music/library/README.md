@@ -16,7 +16,7 @@ The raw Last.fm event archive remains separate. The Library stores normalized so
 
 The scheduled/manual Spotify Reference Library sync is read-only against Spotify playlists, but it can add or update canonical Library records. Non-relinked tracks contribute Spotify identity, track/artist/album metadata, playlist source IDs and positions, and explicit `listening_context.source = "Spotify reference-library snapshot"`. The sync also stores market-scoped, timestamped playability observations.
 
-Playlist presence is not a play, scrobble, like, save, or proof of listening. Do not merge this context into Last.fm event history or measured Spotify playback. The Last.fm scrobble archive remains the historical listening source of truth. Inaccessible/incomplete snapshots must not be treated as empty; requested and relinked Spotify IDs remain distinct. See [the full Library integration contract](../../../../docs/PER_RECORDING_MUSIC_LIBRARY.md).
+Playlist presence is not a play, scrobble, like, save, or proof of listening. Do not merge this context into Last.fm event history or measured Spotify playback. The Last.fm scrobble archive remains the historical listening source of truth. Inaccessible/incomplete snapshots must not be treated as empty; requested and relinked Spotify IDs remain distinct. See [the full Library integration contract](../../../docs/PER_RECORDING_MUSIC_LIBRARY.md).
 
 ## Start here
 
