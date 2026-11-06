@@ -2,6 +2,10 @@
 
 **This file is mandatory operating guidance for every future assistant, contributor, and automation session working in this repository.** It exists so work can be resumed accurately without access to previous chat history. The repository documentation—not chat memory—is the durable source of truth.
 
+## Documentation system identity
+
+The documentation system's public-facing name is **SHIT Documentation & Continuity**. Its internal codename is **Babel**. Use the descriptive name in first-contact navigation, headings, and explanations; after defining the relationship, “Babel” is an acceptable concise reference. Never assume a fresh contributor or assistant knows what Babel means. The canonical explanation and scope live in [docs/BABEL.md](../docs/BABEL.md).
+
 ## Non-negotiable rule
 
 Every substantial project/workstream must have a maintained roadmap. Every meaningful implementation, test, failure, decision, blocker, or change of direction must be reflected in the documentation during the same work session. Do not leave important project knowledge only in chat.
