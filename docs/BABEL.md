@@ -66,11 +66,11 @@ Every major workstream must maintain:
 - **No unsafe side effects.** Documentation work must not casually trigger provider requests, generated-data writers, or Spotify playlist operations. Inspect workflow path filters before editing workflow files; comment-only workflow edits may still trigger jobs.
 - **No secret disclosure.** Document credential names and setup requirements, never credential values, tokens, or private keys.
 - **No prose in machine data.** Keep explanations in Markdown or supported code overviews, not canonical/generated JSON or other machine-readable records.
-- **No feature work during the documentation gate.** The user's current instruction is to finish the documentation and fresh-session audit before resuming unrelated feature development or playlist operations.
+- **Parallel work is allowed.** Babel remains an ongoing documentation/continuity workstream, but ChatGPT may resume other explicitly authorized SHIT workstreams in parallel. Each workstream must keep its roadmap and action log current and obey its own safety boundaries. Buddy remains focused on Babel.
 
 ## AI-assisted continuation
 
-Babel now includes an optional repository-hosted AI continuation worker. Its architecture, activation requirements, permissions, recovery behavior, and limitations are documented in [BABEL_AGENT.md](BABEL_AGENT.md). The worker reads repository instructions and checkpoints, makes bounded documentation-only changes, and submits them through a dedicated review branch. It does not replace human review or the repository's evidence requirements.
+The current recurring documentation worker is the scheduled ChatGPT task using the connected GitHub app. Its operating model, daily verification gate, strict scope, and publication boundary are documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md). The separate repository-hosted Codex/API experiment is documented in [BABEL_AGENT.md](BABEL_AGENT.md); it is quota-blocked and must not be retried without explicit user reauthorization.
 
 ## Definition of success
 
