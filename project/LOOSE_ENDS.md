@@ -2,14 +2,14 @@
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-06 (main commit `aacb70fa`; workflow results, inventory, documentation PR and current audit priority rechecked)  
+**Last reviewed:** 2026-11-06 (audit baseline `aacb70fa`; subsequent same-session commits contain documentation-only audit updates)  
 **Review scope:** current main, documentation work, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
 ## Documentation-first audit checkpoint — ACTIVE PRIORITY
 
 The user explicitly requires documentation to be the sole active project priority until SHIT Documentation & Continuity (internal codename: Babel) meets its acceptance criteria. Do not treat any domain-specific feature backlog below as authorization to resume implementation.
 
-- **Current main:** `aacb70fa0345369398c9bd049d00e24a9ca09eb6`. Canonical documentation identity: [docs/BABEL.md](../docs/BABEL.md).
+- **Audit baseline:** `aacb70fa0345369398c9bd049d00e24a9ca09eb6`; subsequent same-session commits contain documentation-only audit updates. Canonical documentation identity: [docs/BABEL.md](../docs/BABEL.md).
 - **Structure:** all 13 goal workspaces have ROADMAP.md, README.md and ACTIONS.md. The 12 non-documentation roadmaps now separate the current documentation-only action from their preserved next feature action.
 - **Per-file overview baseline:** 28 known generic/underspecified implementation overviews were corrected. Current maintained inventory: 55 Python implementation modules, 40 compatibility launchers, 44 test modules, 17 workflow YAMLs and 21 technical guides. Presence and known-placeholder regression checks cover scripts, compat, tests and workflows; semantic accuracy is still under audit.
 - **Complete inventory:** verified at commit `aacb70fa` using a non-recursive root tree and nine recursive directory-scoped tree queries. Every directory result returned `truncated=false`. Total: **28,241 file/blob entries**; `assistant_data/` contains 27,981. The inventory acceptance item is satisfied for that snapshot; refresh after structural changes.
