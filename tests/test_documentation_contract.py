@@ -270,7 +270,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("committed-tree inventory acceptance item is satisfied for this snapshot", roadmap)
         next_action = roadmap.split("## Next action", 1)[1].split("## Related records", 1)[0].lower()
         self.assertNotIn("complete the tracked-file inventory", next_action)
-        self.assertIn("Complete committed-tree inventory: verified", handoff)
+        self.assertIn("Complete committed-tree inventory", handoff)
+        self.assertIn("verified at", handoff)
 
     def test_reference_library_snapshot_evidence_is_not_misrepresented_as_listening(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_reference_library.py").read_text(encoding="utf-8")
