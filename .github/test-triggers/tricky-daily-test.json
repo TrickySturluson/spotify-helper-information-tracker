@@ -3,6 +3,6 @@
   "mode": "safe-test-only",
   "playlist_mutation": false,
   "requested_by": "ChatGPT-assisted project maintenance",
-  "verification_revision": "forced-idempotency-fix-2026-11-06",
-  "note": "Safe remote regression verification after fixing the Daily force/idempotency guard. Run the complete unit suite and focused schedule tests only; do not connect to Spotify or mutate any playlist."
+  "verification_revision": "forced-idempotency-and-description-readback-2026-11-06",
+  "note": "Run the full safe unit suite and focused Daily schedule/description tests after the force/idempotency and HTML-escaped description read-back fixes. Do not mutate any Spotify playlist."
 }
