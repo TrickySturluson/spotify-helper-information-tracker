@@ -1,5 +1,11 @@
 # Playlist Intelligence & Safety — Actions & Evidence
 
+## 2026-11-06 — Open proposal inventory and documentation pause
+
+- PR #121 (offline sorter evaluation/ingestion watchdog) and PR #120 (incremental Library enrichment/sorter development) remain open drafts; neither is merged behavior. Compare their diffs with current main before selecting future work.
+- Related Daily proposals #158–#160 also remain open and are separately tracked in the central handoff.
+- Existing fit, calibration and intelligence code is preserved. Feature work and live playlist operations in this goal remain paused until documentation acceptance criteria pass.
+
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
 ## 2026-11-01 — Goal workspace initialized
