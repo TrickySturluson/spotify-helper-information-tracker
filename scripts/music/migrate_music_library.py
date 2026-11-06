@@ -298,6 +298,8 @@ if __name__ == "__main__":
 # Purpose: resumable, local-only migration into the canonical per-artist/album/song Library.
 # Inputs: track/artist/album/audio profiles, lyric features, and complete saved Spotify playlist snapshots.
 # Outputs: sharded artist/album/song records and a compact resolver index under assistant_data/music/library/.
-# Safety: no provider/API requests, no Spotify writes, no playlist edits; incomplete accessible snapshots block execution.
-# Recovery: idempotent run/resume merges and preserves existing evidence; the project launcher creates a timestamped backup first.
+# Safety: no provider/API requests, no Spotify writes, no playlist edits; incomplete snapshots block execution.
+# Write boundary: status/preview/audit construct MusicLibrary and may rebuild library_index.json.
+# Recovery: legacy run/resume and --recent-limit writes do not create their own backup. Use
+#           `python shit.py library migrate --yes` for the supported backup-protected full migration.
 # Related: scripts/music/music_library.py, compat/migrate_music_library.py, shit.py, docs/.
