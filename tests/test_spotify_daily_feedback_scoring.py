@@ -91,6 +91,37 @@ class DailyManualRemovalFeedbackTests(unittest.TestCase):
             finally:
                 feedback.DATA = original
 
+    def test_removal_only_record_without_add_time_is_not_attributed_lastfm_plays(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        import spotify_daily_feedback as feedback
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            original = feedback.DATA
+            feedback.DATA = root / "daily_feedback.json"
+            scrobbles = root / "scrobbles.json"
+            try:
+                feedback.record_manual_removals([{
+                    "uri": "spotify:track:removed",
+                    "name": "Removed Track",
+                    "artists": ["Removed Artist"],
+                    "detected_at": "2026-11-06T12:00:00+00:00",
+                }])
+                scrobbles.write_text(json.dumps([{
+                    "artist": "Removed Artist",
+                    "track": "Removed Track",
+                    "timestamp": 1793966400,
+                }]), encoding="utf-8")
+                feedback.observe_lastfm_scrobbles(scrobbles)
+                saved = json.loads(feedback.DATA.read_text(encoding="utf-8"))
+                record = saved["tracks"]["spotify:track:removed"]
+                self.assertIsNone(record["first_added_at"])
+                self.assertEqual(record["lastfm_post_add_scrobbles"], 0)
+            finally:
+                feedback.DATA = original
+
     def test_exposed_removal_is_negative_but_unexposed_removal_is_neutral(self):
         track = {
             "name": "Removed Track",
