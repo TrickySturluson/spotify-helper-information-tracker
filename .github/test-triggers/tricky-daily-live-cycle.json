@@ -1,5 +1,6 @@
 {
   "action": "stage-only",
   "force": true,
-  "reason": "Safe no-write verification of the immutable Daily staging path: generate 60 candidates, commit and verify the exact ordered payload plus recovery backup, recheck live Daily and repository state, then exit before any Spotify playlist write or description change."
+  "reason": "Safe no-write verification of the immutable Daily staging path: generate 60 candidates, commit and verify the exact ordered payload plus recovery backup, recheck live Daily and repository state, then exit before any Spotify playlist write or description change. Post-cooldown retry on 2026-11-06; stage-only must stop before every Spotify playlist write and description mutation.",
+  "verification_attempt": "2026-11-06-post-cooldown"
 }
