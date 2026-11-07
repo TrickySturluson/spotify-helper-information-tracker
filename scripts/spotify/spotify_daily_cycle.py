@@ -577,12 +577,13 @@ def main():
 
     liked_baseline = {}
     try:
-        for offset in range(0, len(uris), 50):
-            batch = uris[offset:offset + 50]
-            saved = sp.call("GET", "/me/library/contains?uris=" + ",".join(batch))
-            liked_baseline.update(dict(zip(batch, [bool(value) for value in (saved or [])])))
+        liked_baseline = daily_feedback.query_liked_status(sp, uris)
     except Exception as error:
-        manager.audit(event="daily_liked_baseline_unavailable", error_type=type(error).__name__)
+        manager.audit(
+            event="daily_liked_baseline_unavailable",
+            error_type=type(error).__name__,
+            error=str(error),
+        )
 
     backup = manager.save_snapshot(before)
     # Re-read the exact ordered live playlist immediately before mutation. A
@@ -768,7 +769,7 @@ def main():
     try:
         daily_feedback.observe_liked_songs(sp, uris)
     except Exception as error:
-        manager.audit(event="daily_liked_song_observation_failed", error_type=type(error).__name__)
+        manager.audit(event="daily_liked_song_observation_failed", error_type=type(error).__name__, error=str(error))
     try:
         daily_feedback.observe_playback_segments()
     except Exception as error:
