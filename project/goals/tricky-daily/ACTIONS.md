@@ -1,3 +1,14 @@
+## 2026-11-07 UTC / 2026-11-06 Eastern — Liked-song observation limit fixed
+
+- **Audit finding:** successful live cycle #42316296314 exposed HTTP 400 from `GET /me/library/contains` because the code sent 50 URIs in a request. Spotify's current endpoint limit is 40. The cycle still completed and the playlist replacement/read-back succeeded, but `liked_at_add` and immediate post-add liked observation were unavailable for that cycle.
+- **Code fix:** `scripts/spotify/spotify_daily_feedback.py` now centralizes `query_liked_status()` with 40-URI batches and exact response-length validation. Both the cycle baseline and `observe_liked_songs()` use it. Errors are preserved in audit text; missing liked status remains unknown.
+- **Regression tests:** `tests/test_spotify_daily_feedback_scoring.py` covers 81 URIs split 40/40/1 and a 60-track observation split 40/20. Full Daily curator run #42317712007 passed 519 tests.
+- **Post-cycle observation:** feedback workflow [#42317820148](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42317820148) passed. It checked 123 feedback rows, recorded current liked status for all 60 live Daily tracks (all 60 unliked at observation time), kept playback tracker unknown due missing segment file, and confirmed Last.fm available. The current cycle's historical `liked_at_add` baseline remains unknown; do not infer it from this later observation.
+- **Workflow convenience:** `.github/workflows/spotify-daily-feedback-observation.yml` now has a main-branch push trigger on its own workflow file for immediate post-cycle read-only observation, in addition to schedule/manual dispatch.
+- **Next:** next cycle will capture liked-at-add correctly using 40-item batches. Verify the next scheduled cycle, then continue recovery work and Daily recommendation memory.
+
+---
+
 ## 2026-11-07 UTC / 2026-11-06 Eastern — First verified live 60-track cycle
 
 - **Stage-only proof:** run [#42316048566](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316048566) completed the no-write path: 60 valid unique candidates, 60 distinct primary artists, zero Daily blacklist overlaps, exact recovery backup committed, and stage SHA/order verified from the committed Git tree. This exposed the ignored-backup issue; `persist_daily_stage()` now force-adds the exact backup file from `playlist_backups/` before commit. Full 516-test suite passed in #42315934572.
