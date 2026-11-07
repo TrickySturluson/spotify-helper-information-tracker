@@ -1,6 +1,10 @@
 name: SHIT — Daily Feedback Observation
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/spotify-daily-feedback-observation.yml"
   workflow_dispatch:
   schedule:
     - cron: "17 8 * * *"
@@ -80,7 +84,7 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Observe Tricky Daily post-publication outcomes without rotating the playlist.
-# Trigger: Daily at 08:17 UTC or manual workflow_dispatch.
+# Trigger: Daily at 08:17 UTC, manual workflow_dispatch, or a reviewed main-branch edit to this workflow file for an immediate post-cycle observation.
 # Behavior: Runs tests, authenticates to Spotify, executes
 #           compat/spotify_daily_feedback.py observe, audits generated data, and
 #           commits assistant_data/spotify/daily_feedback.json when it changes.
