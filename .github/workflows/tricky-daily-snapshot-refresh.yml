@@ -9,6 +9,7 @@ on:
   schedule:
     # Run after the midnight Eastern rotation and its recovery delivery.
     # Reconcile all Daily catalog/index memberships before snapshot publication (including orphaned keys).
+    # Manual post-cycle syncs use a reviewed workflow-file edit; this remains GET-only.
     - cron: "25 6 * * *"
 
 permissions:
