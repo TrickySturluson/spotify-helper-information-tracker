@@ -322,7 +322,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
             backup = Path(directory) / "backup.json"
             stage.write_text("{}", encoding="utf-8")
             backup.write_text("{}", encoding="utf-8")
-            results = [Mock(), Mock(), Mock(), Mock(), Mock(), Mock(stdout="abc123\n")]
+            results = [Mock(), Mock(), Mock(), Mock(), Mock(), Mock(), Mock(stdout="abc123\n")]
             with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
                 daily_cycle.subprocess, "run", side_effect=results
             ):
@@ -375,7 +375,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
             backup = Path(directory) / "backup.json"
             stage.write_text("{}", encoding="utf-8")
             backup.write_text("{}", encoding="utf-8")
-            calls = [None, None, None, None, subprocess.CalledProcessError(1, ["git", "push"])]
+            calls = [None, None, None, None, None, subprocess.CalledProcessError(1, ["git", "push"])]
             with patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), patch.object(
                 daily_cycle.subprocess, "run", side_effect=calls
             ) as run:
