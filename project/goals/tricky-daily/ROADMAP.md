@@ -108,6 +108,8 @@ Post-cycle read-only verification [#42316824364](https://github.com/TrickySturlu
 
 GET-only snapshot refresh [#42316906860](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316906860) then published a current Daily snapshot at `2026-11-07T00:13:46.604200+00:00`: 60 accessible items, 60 unique URIs, zero new manual removals, 58 total blacklisted, and 3 idempotent removal-feedback events reconciled. The reference catalog and Daily baseline both report 60 items. Snapshot/catalog/baseline publication commit: `bae0cb6c435c6c12672b97bde88138ddbd9be0fe`.
 
+Feedback observation #42317820148 passed 519 tests, checked 123 Daily feedback rows using Spotify's 40-URI saved-item limit, and recorded current liked status for all 60 live tracks (all were unliked at observation time). The earlier cycle's `liked_at_add` baseline remains unknown because the old 50-URI request returned HTTP 400; it is not backfilled. Future cycles use the corrected shared 40-URI helper. The feedback observer now supports an immediate workflow-file push trigger and remains read-only with respect to Spotify playlists.
+
 The live-cycle trigger `.github/test-triggers/tricky-daily-live-cycle.json` is now `action: verify-only`, `force: true`; future edits to that trigger cannot silently launch another replacement. The latest feedback coverage reports Last.fm available, liked-song observations present, and playback tracker unknown because the segment file is absent. Daily recommendation memory remains a committed P1 requirement, not yet implemented.
 
 ## Next action
