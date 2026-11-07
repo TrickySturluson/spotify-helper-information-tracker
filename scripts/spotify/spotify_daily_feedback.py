@@ -10,6 +10,7 @@ from pathlib import Path
 
 DATA = Path("assistant_data/spotify/daily_feedback.json")
 DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
+MAX_LIBRARY_CONTAINS_URIS = 40  # Spotify Check User's Saved Items endpoint limit.
 
 
 def now():
@@ -118,19 +119,38 @@ def record_manual_removals(rows):
         write(data)
     return changed
 
-def observe_liked_songs(sp, uris, observed_at=None):
-    """Check Spotify Liked Songs status for up to 50 tracks per request."""
-    observed_at = observed_at or now()
-    data = read()
-    ids = [uri.rsplit(":", 1)[-1] for uri in uris if isinstance(uri, str) and uri.startswith("spotify:track:")]
+def query_liked_status(sp, uris):
+    """Return saved-item flags using Spotify's documented 40-URI request limit."""
+    ids = [
+        uri.rsplit(":", 1)[-1]
+        for uri in uris
+        if isinstance(uri, str) and uri.startswith("spotify:track:")
+    ]
     liked = {}
-    for offset in range(0, len(ids), 50):
-        batch = ids[offset:offset + 50]
+    for offset in range(0, len(ids), MAX_LIBRARY_CONTAINS_URIS):
+        batch = ids[offset:offset + MAX_LIBRARY_CONTAINS_URIS]
         if not batch:
             continue
-        result = sp.call("GET", "/me/library/contains?uris=" + ",".join("spotify:track:" + track_id for track_id in batch))
-        for track_id, is_liked in zip(batch, result or []):
+        result = sp.call(
+            "GET",
+            "/me/library/contains?uris="
+            + ",".join("spotify:track:" + track_id for track_id in batch),
+        )
+        if not isinstance(result, list) or len(result) != len(batch):
+            raise ValueError(
+                "Spotify saved-item lookup returned an unexpected result length; "
+                "liked status remains unknown for this batch."
+            )
+        for track_id, is_liked in zip(batch, result):
             liked["spotify:track:" + track_id] = bool(is_liked)
+    return liked
+
+
+def observe_liked_songs(sp, uris, observed_at=None):
+    """Check Spotify Liked Songs status in batches of at most 40 tracks."""
+    observed_at = observed_at or now()
+    data = read()
+    liked = query_liked_status(sp, uris)
     for uri, value in liked.items():
         if uri in data["tracks"]:
             observations = data["tracks"][uri]["liked_observations"]
