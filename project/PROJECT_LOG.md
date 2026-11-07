@@ -1,3 +1,13 @@
+## 2026-11-07 UTC / 2026-11-06 Eastern — Saved-item lookup batching and feedback refresh
+
+- Spotify's current `GET /me/library/contains` endpoint accepts at most 40 URIs. The first successful live cycle's 50-item liked-baseline and post-add observation requests returned HTTP 400; playlist publication itself succeeded. The current liked-at-add baseline for the 60 tracks is therefore unknown and must not be backfilled from a later observation.
+- Added `spotify_daily_feedback.query_liked_status()` with 40-URI batching and exact response-length checks. The Daily cycle and observation function now share it. Added regression tests for 81 URIs (40/40/1) and 60 tracks (40/20). Mainline Daily curator run #42317712007 passed 519 tests.
+- Feedback observer run [#42317820148](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42317820148) succeeded: 123 feedback rows checked, all 60 current Daily tracks have a current liked observation (all unliked at observation time), Last.fm coverage available, playback tracker unknown because the segment file is absent.
+- The feedback observation workflow now supports a push on its own workflow file for immediate post-cycle read-only refresh, alongside schedule/manual dispatch.
+- Next scheduled Daily rotation after cooldown persistence fix remains unverified. Continue with recovery controls and then the approved recommendation-memory implementation.
+
+---
+
 ## 2026-11-07 UTC / 2026-11-06 Eastern — First verified Tricky Daily production cycle
 
 - **Live cycle:** workflow [#42316296314](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316296314) completed successfully. The trigger was explicitly set to `action: cycle` for this user-authorized attempt. Production stage commit `e08baedf6c006322ff31abd4d11bc8169d69a123` and recovery backup `playlist_backups/20261107T000907379512Z_4yUVHSMQySfWeEowfIMcx7.json` were committed before Spotify mutation. State commit `d7ce8ec476b59d284d468bb4989ead8b0d109871` records `last_cycle_date_eastern=2026-11-06`, status completed, 60 after-URIs and stage SHA-256 `1dc211f78d4402bccd26a9d8e76349381468e930db5865e8770557bee6cd3c7e`.
