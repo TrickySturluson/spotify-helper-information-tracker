@@ -11,6 +11,11 @@
           "at": "2026-11-05T19:50:05.289503+00:00",
           "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "liked_at_add": false
+        },
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": true
         }
       ],
       "liked_observations": [
@@ -25,10 +30,10 @@
       ],
       "playback_observations": [],
       "removal_events": [],
-      "liked_at_add": false,
-      "last_added_at": "2026-11-05T19:50:05.289503+00:00",
+      "liked_at_add": true,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825158+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191853+00:00"
     },
     "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr": {
       "uri": "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr",
@@ -57,7 +62,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825181+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191873+00:00"
     },
     "spotify:track:2mijcmCvkvig8SkNCgYZC5": {
       "uri": "spotify:track:2mijcmCvkvig8SkNCgYZC5",
@@ -89,7 +94,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825185+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191877+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:7g3MdW9vvunaniaNq4C8Fe": {
@@ -122,7 +127,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825187+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191879+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:0f2489MzoisF9pKduawvce": {
@@ -155,7 +160,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825190+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191881+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:5TNpCThzzXHEipXGKgNG8T": {
@@ -188,7 +193,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825192+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191883+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:1p80LdxRV74UKvL8gnD7ky": {
@@ -221,7 +226,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825194+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191884+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:4lIxdJw6W3Fg4vUIYCB0S5": {
@@ -254,7 +259,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825196+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191887+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:7pFibnxpBbPhCtA3VthLAS": {
@@ -285,7 +290,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825198+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191889+00:00"
     },
     "spotify:track:0Bv29HnwIu7l3YYsh9TQWk": {
       "uri": "spotify:track:0Bv29HnwIu7l3YYsh9TQWk",
@@ -310,7 +315,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825200+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191890+00:00"
     },
     "spotify:track:13m5qv9bHI7Q7J9ScWcZd8": {
       "uri": "spotify:track:13m5qv9bHI7Q7J9ScWcZd8",
@@ -342,7 +347,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825201+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191892+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:2JsxDf1X8gJVC5vNyWZCdy": {
@@ -375,7 +380,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825203+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191894+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:0Tyi56S51KsufCIcqRHWCN": {
@@ -408,7 +413,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825205+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191896+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:04caEZhAsQKnWqKsMwk9ud": {
@@ -441,7 +446,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825207+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191897+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:6Ze4Z6TcASPtGhwOnnGKjF": {
@@ -474,7 +479,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825209+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191899+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:62dgdKzqyD2JYLekL8sO21": {
@@ -507,7 +512,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825211+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191900+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:5wbg8kepMFoMzHOEuxiI0q": {
@@ -540,7 +545,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825212+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191902+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:61Oyg0lrAOMjBpEStqfOZ1": {
@@ -573,7 +578,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825214+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191904+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:6q4KiZlnYaANNBQOVIIW4a": {
@@ -606,7 +611,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825215+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191905+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:1xGX9AdNu5IX0EjPIPEqH2": {
@@ -639,7 +644,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825217+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191907+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:6MlnXU2iJW8XITOM9W8VL8": {
@@ -672,7 +677,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825219+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191909+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:78jqdo7usNziiqeH8aJxqS": {
@@ -705,7 +710,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825221+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191911+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:1g9o6MNw8DQEFGmKQwbyYa": {
@@ -738,7 +743,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825223+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191912+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:3ffpAgPusYqOoQJmKWtnbW": {
@@ -771,7 +776,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825224+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191914+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:7uGD7HQMi8zFj1JEvYK1ot": {
@@ -804,7 +809,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825226+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191915+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:2RxGyOGoU0vsdxMwJrkCwT": {
@@ -837,7 +842,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825228+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191917+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:4SRShYMtFIGgnOU7iBicMH": {
@@ -870,7 +875,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825229+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191918+00:00",
       "last_removed_at": "unknown"
     },
     "spotify:track:5G2f63n7IPVPPjfNIGih7Q": {
@@ -903,7 +908,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825231+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191920+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:2WRaoxkEvEbDMKhvJdjXcH": {
@@ -936,7 +941,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825233+00:00",
+      "lastfm_observed_at": "2026-11-07T10:52:04.191922+00:00",
       "last_removed_at": "2026-11-05T22:25:31.658417+00:00"
     },
     "spotify:track:3yt7Gk7g0bfuNMEx6UHzNk": {
@@ -967,7 +972,7 @@
       "liked_at_add": false,
       "last_added_at": "2026-11-05T19:50:05.289503+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825234+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191923+00:00"
     },
     "spotify:track:7mlW7VfFHQyWRbM12ENjTA": {
       "uri": "spotify:track:7mlW7VfFHQyWRbM12ENjTA",
@@ -993,7 +998,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825236+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191925+00:00"
     },
     "spotify:track:62h0ZwgpJcV3uYb8FW4QoM": {
       "uri": "spotify:track:62h0ZwgpJcV3uYb8FW4QoM",
@@ -1019,7 +1024,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825238+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191927+00:00"
     },
     "spotify:track:7KpuWB8e10gdbClcLVZOba": {
       "uri": "spotify:track:7KpuWB8e10gdbClcLVZOba",
@@ -1045,7 +1050,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825239+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191928+00:00"
     },
     "spotify:track:2aUsjBN2uYzNTV254mzbBG": {
       "uri": "spotify:track:2aUsjBN2uYzNTV254mzbBG",
@@ -1071,7 +1076,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825241+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191930+00:00"
     },
     "spotify:track:4KJKj7GZLzxq1bXRu0XP6l": {
       "uri": "spotify:track:4KJKj7GZLzxq1bXRu0XP6l",
@@ -1097,7 +1102,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825243+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191931+00:00"
     },
     "spotify:track:3j6CeoBBlm40Msn1JE1SPD": {
       "uri": "spotify:track:3j6CeoBBlm40Msn1JE1SPD",
@@ -1123,7 +1128,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825244+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191933+00:00"
     },
     "spotify:track:78MI7mu1LV1k4IA2HzKmHe": {
       "uri": "spotify:track:78MI7mu1LV1k4IA2HzKmHe",
@@ -1149,7 +1154,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825246+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191935+00:00"
     },
     "spotify:track:0At2qAoaVjIwWNAqrscXli": {
       "uri": "spotify:track:0At2qAoaVjIwWNAqrscXli",
@@ -1175,7 +1180,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825248+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191936+00:00"
     },
     "spotify:track:68dqD3zcq0rEN7G0gEJx6V": {
       "uri": "spotify:track:68dqD3zcq0rEN7G0gEJx6V",
@@ -1201,7 +1206,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825249+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191937+00:00"
     },
     "spotify:track:0uQhDYHyoZe5DpncrPolb6": {
       "uri": "spotify:track:0uQhDYHyoZe5DpncrPolb6",
@@ -1227,7 +1232,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825252+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191939+00:00"
     },
     "spotify:track:5sZGJQjdAAGiqF8AtAMv4f": {
       "uri": "spotify:track:5sZGJQjdAAGiqF8AtAMv4f",
@@ -1253,7 +1258,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825254+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191941+00:00"
     },
     "spotify:track:6W1WqOE3Wd5AnZbL149Xfy": {
       "uri": "spotify:track:6W1WqOE3Wd5AnZbL149Xfy",
@@ -1279,7 +1284,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825256+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191942+00:00"
     },
     "spotify:track:7KyzYTcqtptWqlmEZAVPZV": {
       "uri": "spotify:track:7KyzYTcqtptWqlmEZAVPZV",
@@ -1305,7 +1310,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825257+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191944+00:00"
     },
     "spotify:track:5HkvwkP7q01ArLWx4vTzKV": {
       "uri": "spotify:track:5HkvwkP7q01ArLWx4vTzKV",
@@ -1331,7 +1336,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825259+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191945+00:00"
     },
     "spotify:track:3GCL1PydwsLodcpv0Ll1ch": {
       "uri": "spotify:track:3GCL1PydwsLodcpv0Ll1ch",
@@ -1357,7 +1362,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825261+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191946+00:00"
     },
     "spotify:track:0FPsI1Ar6bKOkqKibt075r": {
       "uri": "spotify:track:0FPsI1Ar6bKOkqKibt075r",
@@ -1383,7 +1388,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825263+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191948+00:00"
     },
     "spotify:track:5ISRNtWOdRbCsDGBzl8pxA": {
       "uri": "spotify:track:5ISRNtWOdRbCsDGBzl8pxA",
@@ -1409,7 +1414,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825264+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191949+00:00"
     },
     "spotify:track:01HCRjjmMxN5sbTfqUiUWe": {
       "uri": "spotify:track:01HCRjjmMxN5sbTfqUiUWe",
@@ -1435,7 +1440,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825266+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191951+00:00"
     },
     "spotify:track:2LwL0c76WLkCtjZihAqk6u": {
       "uri": "spotify:track:2LwL0c76WLkCtjZihAqk6u",
@@ -1461,7 +1466,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825267+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191952+00:00"
     },
     "spotify:track:4KpEEIxcPnLrbt43WEmyix": {
       "uri": "spotify:track:4KpEEIxcPnLrbt43WEmyix",
@@ -1487,7 +1492,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825268+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191954+00:00"
     },
     "spotify:track:1v2zBIYiiLhKGj98Ks2UWP": {
       "uri": "spotify:track:1v2zBIYiiLhKGj98Ks2UWP",
@@ -1513,7 +1518,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825270+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191955+00:00"
     },
     "spotify:track:2W7rrKEKlBGGYcYmTBHLCY": {
       "uri": "spotify:track:2W7rrKEKlBGGYcYmTBHLCY",
@@ -1539,7 +1544,7 @@
       "liked_at_add": null,
       "last_removed_at": "unknown",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825272+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191957+00:00"
     },
     "spotify:track:5mHxmOZXyYoq8gwjCz3Vcp": {
       "uri": "spotify:track:5mHxmOZXyYoq8gwjCz3Vcp",
@@ -1565,7 +1570,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825273+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191958+00:00"
     },
     "spotify:track:3SJWVMRwk5z4Uaff7kGs0d": {
       "uri": "spotify:track:3SJWVMRwk5z4Uaff7kGs0d",
@@ -1591,7 +1596,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825274+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191960+00:00"
     },
     "spotify:track:51rfRCiUSvxXlCSCfIztBy": {
       "uri": "spotify:track:51rfRCiUSvxXlCSCfIztBy",
@@ -1617,7 +1622,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825276+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191961+00:00"
     },
     "spotify:track:2RGcuZJYIvA7sFx38WLhQK": {
       "uri": "spotify:track:2RGcuZJYIvA7sFx38WLhQK",
@@ -1643,7 +1648,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825278+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191963+00:00"
     },
     "spotify:track:10YGSqXSKL5g6VmXiuSdd2": {
       "uri": "spotify:track:10YGSqXSKL5g6VmXiuSdd2",
@@ -1669,7 +1674,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825280+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191964+00:00"
     },
     "spotify:track:0pZ0bzuywvxr3ClQo3syYY": {
       "uri": "spotify:track:0pZ0bzuywvxr3ClQo3syYY",
@@ -1695,7 +1700,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825281+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191966+00:00"
     },
     "spotify:track:4w3MvMb3ylHkBLUIIaCQzF": {
       "uri": "spotify:track:4w3MvMb3ylHkBLUIIaCQzF",
@@ -1721,7 +1726,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825283+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191968+00:00"
     },
     "spotify:track:6KfoDhO4XUWSbnyKjNp9c4": {
       "uri": "spotify:track:6KfoDhO4XUWSbnyKjNp9c4",
@@ -1747,7 +1752,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-06T17:31:19.847075+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825284+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191969+00:00"
     },
     "spotify:track:7pPciGaYxP2FsFQCIBDEhb": {
       "uri": "spotify:track:7pPciGaYxP2FsFQCIBDEhb",
@@ -1768,11 +1773,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.077214+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825286+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191971+00:00"
     },
     "spotify:track:1naVD19eofGpFf6wosmHIe": {
       "uri": "spotify:track:1naVD19eofGpFf6wosmHIe",
@@ -1793,11 +1803,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.917683+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825287+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191973+00:00"
     },
     "spotify:track:0Bxt094DTxSkkTVk1NXG4z": {
       "uri": "spotify:track:0Bxt094DTxSkkTVk1NXG4z",
@@ -1818,11 +1833,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.065768+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825289+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191974+00:00"
     },
     "spotify:track:27mFsmEWiSablfQTyZZhgp": {
       "uri": "spotify:track:27mFsmEWiSablfQTyZZhgp",
@@ -1843,11 +1863,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.088622+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825290+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191976+00:00"
     },
     "spotify:track:0yQPpUq5BJyqah5m2Q5Stt": {
       "uri": "spotify:track:0yQPpUq5BJyqah5m2Q5Stt",
@@ -1868,11 +1893,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.146459+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825292+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191977+00:00"
     },
     "spotify:track:29nzgSkf11owK8vO9iBgCq": {
       "uri": "spotify:track:29nzgSkf11owK8vO9iBgCq",
@@ -1893,11 +1923,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.954522+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825293+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191979+00:00"
     },
     "spotify:track:6tyX74mRk73CLhQ3pPPcm9": {
       "uri": "spotify:track:6tyX74mRk73CLhQ3pPPcm9",
@@ -1918,11 +1953,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.921373+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825294+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191980+00:00"
     },
     "spotify:track:6bBbmVZiHXS3IMGo81ZAy8": {
       "uri": "spotify:track:6bBbmVZiHXS3IMGo81ZAy8",
@@ -1943,11 +1983,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.092446+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825296+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191982+00:00"
     },
     "spotify:track:0tZSHcIwouL6HLgH0BBpUC": {
       "uri": "spotify:track:0tZSHcIwouL6HLgH0BBpUC",
@@ -1968,11 +2013,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.038819+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825298+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191984+00:00"
     },
     "spotify:track:2wdYxKe5V85s9Uu6F8CGca": {
       "uri": "spotify:track:2wdYxKe5V85s9Uu6F8CGca",
@@ -1993,11 +2043,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.997414+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825299+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191985+00:00"
     },
     "spotify:track:7BkLfZnv7DJdJJ9wWj8Vdv": {
       "uri": "spotify:track:7BkLfZnv7DJdJJ9wWj8Vdv",
@@ -2018,11 +2073,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.127163+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825301+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191987+00:00"
     },
     "spotify:track:1zvEyArJj6LU9OKlPyQ3nk": {
       "uri": "spotify:track:1zvEyArJj6LU9OKlPyQ3nk",
@@ -2043,11 +2103,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.111603+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825302+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191988+00:00"
     },
     "spotify:track:3XlrbYlaUFnDYGfRcdoYRU": {
       "uri": "spotify:track:3XlrbYlaUFnDYGfRcdoYRU",
@@ -2068,11 +2133,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.142587+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825304+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191990+00:00"
     },
     "spotify:track:7KAXxQfUG4kzRivltbD1UY": {
       "uri": "spotify:track:7KAXxQfUG4kzRivltbD1UY",
@@ -2093,11 +2163,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.973070+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825305+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191992+00:00"
     },
     "spotify:track:7vD5aaLhbeBRbXEDOoVL0F": {
       "uri": "spotify:track:7vD5aaLhbeBRbXEDOoVL0F",
@@ -2118,11 +2193,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.119370+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825307+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191993+00:00"
     },
     "spotify:track:6NwfEnsQsp9fogTC0Nxaug": {
       "uri": "spotify:track:6NwfEnsQsp9fogTC0Nxaug",
@@ -2143,11 +2223,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.012279+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825309+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191994+00:00"
     },
     "spotify:track:4eOeJSEMFZfauBx33CBInS": {
       "uri": "spotify:track:4eOeJSEMFZfauBx33CBInS",
@@ -2168,11 +2253,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.914022+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825310+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191996+00:00"
     },
     "spotify:track:5y8FIZ6PTHar4J2hxsGdBV": {
       "uri": "spotify:track:5y8FIZ6PTHar4J2hxsGdBV",
@@ -2193,11 +2283,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.910346+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825312+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191998+00:00"
     },
     "spotify:track:5pPxbTrJZEQLSjGhCz1uRK": {
       "uri": "spotify:track:5pPxbTrJZEQLSjGhCz1uRK",
@@ -2218,11 +2313,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.084777+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825313+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.191999+00:00"
     },
     "spotify:track:6cgoN2nijpjj8KY6QkHxtk": {
       "uri": "spotify:track:6cgoN2nijpjj8KY6QkHxtk",
@@ -2243,11 +2343,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.100027+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825315+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192001+00:00"
     },
     "spotify:track:0CbESIyx34Usxoy7emUEBd": {
       "uri": "spotify:track:0CbESIyx34Usxoy7emUEBd",
@@ -2268,11 +2373,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.008559+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825316+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192003+00:00"
     },
     "spotify:track:4T1i9YoZP9NlqA3dA2v7AN": {
       "uri": "spotify:track:4T1i9YoZP9NlqA3dA2v7AN",
@@ -2293,11 +2403,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.034978+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825318+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192004+00:00"
     },
     "spotify:track:61E6sQsTB3NqCpCqbDYOJY": {
       "uri": "spotify:track:61E6sQsTB3NqCpCqbDYOJY",
@@ -2318,11 +2433,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.042654+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825319+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192006+00:00"
     },
     "spotify:track:3zj9gN3yV8DDQGlG8JwHfR": {
       "uri": "spotify:track:3zj9gN3yV8DDQGlG8JwHfR",
@@ -2343,11 +2463,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.928674+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825321+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192007+00:00"
     },
     "spotify:track:4lw0JWCcRWXcWKOGLOsAaO": {
       "uri": "spotify:track:4lw0JWCcRWXcWKOGLOsAaO",
@@ -2368,11 +2493,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.925019+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825323+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192009+00:00"
     },
     "spotify:track:5jEf7MDPf8Bo4blM8Otusr": {
       "uri": "spotify:track:5jEf7MDPf8Bo4blM8Otusr",
@@ -2393,11 +2523,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.023527+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825324+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192010+00:00"
     },
     "spotify:track:7DzGlyhndGfcLhbUKNjkU3": {
       "uri": "spotify:track:7DzGlyhndGfcLhbUKNjkU3",
@@ -2418,11 +2553,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.950823+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825326+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192012+00:00"
     },
     "spotify:track:4MphNlftuxnkGw8ga8VL7J": {
       "uri": "spotify:track:4MphNlftuxnkGw8ga8VL7J",
@@ -2443,11 +2583,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.932281+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825327+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192014+00:00"
     },
     "spotify:track:43ZkV4OT05cB27GFdBjyHD": {
       "uri": "spotify:track:43ZkV4OT05cB27GFdBjyHD",
@@ -2468,11 +2613,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.096257+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825329+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192015+00:00"
     },
     "spotify:track:2RaGRh57p4OtzpXtr65Nws": {
       "uri": "spotify:track:2RaGRh57p4OtzpXtr65Nws",
@@ -2493,11 +2643,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.993614+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825330+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192016+00:00"
     },
     "spotify:track:1TQuqiFxqnVeez9OMq3emB": {
       "uri": "spotify:track:1TQuqiFxqnVeez9OMq3emB",
@@ -2518,11 +2673,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.027397+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825332+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192018+00:00"
     },
     "spotify:track:2PbFkHMIR7PrWlSBZ5gxk4": {
       "uri": "spotify:track:2PbFkHMIR7PrWlSBZ5gxk4",
@@ -2543,11 +2703,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.001126+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825333+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192019+00:00"
     },
     "spotify:track:44mYhOVgerj2qPjkGDVA6n": {
       "uri": "spotify:track:44mYhOVgerj2qPjkGDVA6n",
@@ -2568,11 +2733,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.019715+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825335+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192021+00:00"
     },
     "spotify:track:5psvGE7LSnzIourvasDTH9": {
       "uri": "spotify:track:5psvGE7LSnzIourvasDTH9",
@@ -2593,11 +2763,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.046449+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825336+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192022+00:00"
     },
     "spotify:track:5yjFwHNs8KTVcuPQsmD7di": {
       "uri": "spotify:track:5yjFwHNs8KTVcuPQsmD7di",
@@ -2618,11 +2793,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.103826+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825337+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192024+00:00"
     },
     "spotify:track:1CyTXPHBkfwwIfpoTuTU43": {
       "uri": "spotify:track:1CyTXPHBkfwwIfpoTuTU43",
@@ -2643,11 +2823,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.134849+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825338+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192025+00:00"
     },
     "spotify:track:2bUin4VC1LNdF8Bjjxb8Uc": {
       "uri": "spotify:track:2bUin4VC1LNdF8Bjjxb8Uc",
@@ -2668,11 +2853,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.107743+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825340+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192027+00:00"
     },
     "spotify:track:2ZKnIoRQtfAsjtsHVs7IFi": {
       "uri": "spotify:track:2ZKnIoRQtfAsjtsHVs7IFi",
@@ -2693,11 +2883,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.943367+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825341+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192028+00:00"
     },
     "spotify:track:1yYr4D1KjhhyDD5bZIiFQy": {
       "uri": "spotify:track:1yYr4D1KjhhyDD5bZIiFQy",
@@ -2718,11 +2913,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.004842+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825343+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192030+00:00"
     },
     "spotify:track:6sAcECONsANle5n0rnP2at": {
       "uri": "spotify:track:6sAcECONsANle5n0rnP2at",
@@ -2743,11 +2943,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.961991+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825344+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192031+00:00"
     },
     "spotify:track:4LOLsPR4Vc1JbElWEwhl3q": {
       "uri": "spotify:track:4LOLsPR4Vc1JbElWEwhl3q",
@@ -2768,11 +2973,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.965668+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825346+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192033+00:00"
     },
     "spotify:track:1e0i5HwYBT4Lt2P1cjE1gZ": {
       "uri": "spotify:track:1e0i5HwYBT4Lt2P1cjE1gZ",
@@ -2793,11 +3003,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.977213+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825348+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192034+00:00"
     },
     "spotify:track:3aa9zo0DxDjykGIFRTFRJH": {
       "uri": "spotify:track:3aa9zo0DxDjykGIFRTFRJH",
@@ -2818,11 +3033,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.935956+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825349+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192035+00:00"
     },
     "spotify:track:7c3lk5GwSyJfaxG6wdW4Wv": {
       "uri": "spotify:track:7c3lk5GwSyJfaxG6wdW4Wv",
@@ -2843,11 +3063,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.969362+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825350+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192037+00:00"
     },
     "spotify:track:06ivS38drtNuRCDIg2ww9k": {
       "uri": "spotify:track:06ivS38drtNuRCDIg2ww9k",
@@ -2868,11 +3093,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.054106+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825352+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192038+00:00"
     },
     "spotify:track:7fKqzZlS2em2fwDkKvSJZA": {
       "uri": "spotify:track:7fKqzZlS2em2fwDkKvSJZA",
@@ -2893,11 +3123,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.050256+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825353+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192040+00:00"
     },
     "spotify:track:0cP48AdpqDt4Ue8zGgeagh": {
       "uri": "spotify:track:0cP48AdpqDt4Ue8zGgeagh",
@@ -2918,11 +3153,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.069570+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825355+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192042+00:00"
     },
     "spotify:track:7f1WcvOOUVUoHdrilGw4Sr": {
       "uri": "spotify:track:7f1WcvOOUVUoHdrilGw4Sr",
@@ -2943,11 +3183,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.061861+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825357+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192043+00:00"
     },
     "spotify:track:71BWZa1liIRyUiuJ3MB66o": {
       "uri": "spotify:track:71BWZa1liIRyUiuJ3MB66o",
@@ -2968,11 +3213,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.031221+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825358+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192045+00:00"
     },
     "spotify:track:57j65yC2HggQfmYNc6rdOK": {
       "uri": "spotify:track:57j65yC2HggQfmYNc6rdOK",
@@ -2993,11 +3243,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.939687+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825360+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192047+00:00"
     },
     "spotify:track:3Mj0U2UxyL24aigdXbsMIt": {
       "uri": "spotify:track:3Mj0U2UxyL24aigdXbsMIt",
@@ -3018,11 +3273,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.958250+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825361+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192048+00:00"
     },
     "spotify:track:0pJW1Xw3aY4Eh6k5iuBkfI": {
       "uri": "spotify:track:0pJW1Xw3aY4Eh6k5iuBkfI",
@@ -3043,11 +3303,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.073404+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825363+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192050+00:00"
     },
     "spotify:track:4bydArt0Ervz2Yfh5CBVHe": {
       "uri": "spotify:track:4bydArt0Ervz2Yfh5CBVHe",
@@ -3068,11 +3333,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.123295+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825364+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192052+00:00"
     },
     "spotify:track:0Ko51fAd7p7hzmkNTy4508": {
       "uri": "spotify:track:0Ko51fAd7p7hzmkNTy4508",
@@ -3093,11 +3363,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.131007+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825366+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192053+00:00"
     },
     "spotify:track:705gJfPR33f1dlLWS6dL80": {
       "uri": "spotify:track:705gJfPR33f1dlLWS6dL80",
@@ -3118,11 +3393,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.138678+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825367+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192055+00:00"
     },
     "spotify:track:6MYJv37Mpj5njLLbxKWNun": {
       "uri": "spotify:track:6MYJv37Mpj5njLLbxKWNun",
@@ -3143,11 +3423,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.080990+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825369+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192056+00:00"
     },
     "spotify:track:2epXtSEg9a7e79EmroKk91": {
       "uri": "spotify:track:2epXtSEg9a7e79EmroKk91",
@@ -3168,11 +3453,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.015986+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825370+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192057+00:00"
     },
     "spotify:track:0jmyo9QOmFbjDCYpNaPDhy": {
       "uri": "spotify:track:0jmyo9QOmFbjDCYpNaPDhy",
@@ -3193,11 +3483,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:02.947094+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825372+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192059+00:00"
     },
     "spotify:track:1jhyXhw6C9RCA70XKHycBl": {
       "uri": "spotify:track:1jhyXhw6C9RCA70XKHycBl",
@@ -3218,11 +3513,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.115529+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825373+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192060+00:00"
     },
     "spotify:track:09NibQcboHT4aqZbkvRa2w": {
       "uri": "spotify:track:09NibQcboHT4aqZbkvRa2w",
@@ -3243,11 +3543,16 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T10:52:03.057981+00:00",
+          "reason": "curator_rotation"
+        }
+      ],
       "liked_at_add": null,
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825375+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192062+00:00"
     },
     "spotify:track:3Yjki0QYxpdSHdykr2QYN9": {
       "uri": "spotify:track:3Yjki0QYxpdSHdykr2QYN9",
@@ -3273,7 +3578,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-07T00:02:39.599569+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825376+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192064+00:00"
     },
     "spotify:track:2gnvh9HRH5fCo5iDQXMvQN": {
       "uri": "spotify:track:2gnvh9HRH5fCo5iDQXMvQN",
@@ -3299,7 +3604,7 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-07T00:02:39.599569+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825378+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192065+00:00"
     },
     "spotify:track:6G2xXQRSZlEzYsUEb3uvuR": {
       "uri": "spotify:track:6G2xXQRSZlEzYsUEb3uvuR",
@@ -3325,7 +3630,1482 @@
       "liked_at_add": null,
       "last_removed_at": "2026-11-07T00:02:39.599569+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-07T00:30:06.825380+00:00"
+      "lastfm_observed_at": "2026-11-07T10:52:04.192067+00:00"
+    },
+    "spotify:track:6gjitvaInHSbArmOHI6vro": {
+      "uri": "spotify:track:6gjitvaInHSbArmOHI6vro",
+      "artist": "Bahari",
+      "track": "Savage (feat. BIA)",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192069+00:00"
+    },
+    "spotify:track:6x6Hn46un1jcqNrLWq29ZA": {
+      "uri": "spotify:track:6x6Hn46un1jcqNrLWq29ZA",
+      "artist": "Perry Como",
+      "track": "And I Love You So",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192072+00:00"
+    },
+    "spotify:track:1WMawd1HhdmEojY4b1Ouyi": {
+      "uri": "spotify:track:1WMawd1HhdmEojY4b1Ouyi",
+      "artist": "Lingua Ignota",
+      "track": "FAITHFUL SERVANT FRIEND OF CHRIST",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192073+00:00"
+    },
+    "spotify:track:0S9w3jx4cO9rSBcGwB16in": {
+      "uri": "spotify:track:0S9w3jx4cO9rSBcGwB16in",
+      "artist": "Sigur Rós",
+      "track": "Olsen olsen",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192075+00:00"
+    },
+    "spotify:track:3myu17ZPpaakVbzAOZREI8": {
+      "uri": "spotify:track:3myu17ZPpaakVbzAOZREI8",
+      "artist": "Leith Ross",
+      "track": "Coming Back to Me",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192076+00:00"
+    },
+    "spotify:track:3srxNYtbQJiZrTzjwEasyU": {
+      "uri": "spotify:track:3srxNYtbQJiZrTzjwEasyU",
+      "artist": "Jason Webley",
+      "track": "Last Song",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192078+00:00"
+    },
+    "spotify:track:4WFWh42DCkPCjcjqITk54S": {
+      "uri": "spotify:track:4WFWh42DCkPCjcjqITk54S",
+      "artist": "Cornelia Murr",
+      "track": "Different This Time",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192080+00:00"
+    },
+    "spotify:track:2qV4oFPfGjIH4bg9L8mjkJ": {
+      "uri": "spotify:track:2qV4oFPfGjIH4bg9L8mjkJ",
+      "artist": "Molly Kate Kestner",
+      "track": "Good Die Young",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192081+00:00"
+    },
+    "spotify:track:4gyCAjlJc23N510msOtq3U": {
+      "uri": "spotify:track:4gyCAjlJc23N510msOtq3U",
+      "artist": "The Amazing Devil",
+      "track": "Drinking Song for the Socially Anxious",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192083+00:00"
+    },
+    "spotify:track:78LMazmfqncADjyJVae8dN": {
+      "uri": "spotify:track:78LMazmfqncADjyJVae8dN",
+      "artist": "Jawny",
+      "track": "Anything You Want",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192085+00:00"
+    },
+    "spotify:track:3dM8rGWFIbq60PI9oUW9Nm": {
+      "uri": "spotify:track:3dM8rGWFIbq60PI9oUW9Nm",
+      "artist": "Cat Pierce",
+      "track": "Hard to Be a Woman",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192086+00:00"
+    },
+    "spotify:track:7Ichlrj4l5uV549sD6I4tN": {
+      "uri": "spotify:track:7Ichlrj4l5uV549sD6I4tN",
+      "artist": "chloe moriondo",
+      "track": "Bugbear",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192088+00:00"
+    },
+    "spotify:track:1nfTQPof5WfMMs2xYOnmTT": {
+      "uri": "spotify:track:1nfTQPof5WfMMs2xYOnmTT",
+      "artist": "Search Yiu",
+      "track": "Lass mich eh nicht",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192089+00:00"
+    },
+    "spotify:track:6r11Ejmq0FKkVQoawHfTFP": {
+      "uri": "spotify:track:6r11Ejmq0FKkVQoawHfTFP",
+      "artist": "Mind’s Eye",
+      "track": "astrology girl",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192091+00:00"
+    },
+    "spotify:track:2gqTknJNepaQJpOl54zLUo": {
+      "uri": "spotify:track:2gqTknJNepaQJpOl54zLUo",
+      "artist": "May Roosevelt",
+      "track": "L'amour",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192092+00:00"
+    },
+    "spotify:track:4gS8ME5WHf7KrcQSI4MU8H": {
+      "uri": "spotify:track:4gS8ME5WHf7KrcQSI4MU8H",
+      "artist": "No More Kings",
+      "track": "Dance Alone",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192094+00:00"
+    },
+    "spotify:track:5O1ms8FzhDKZySsQPH5QF1": {
+      "uri": "spotify:track:5O1ms8FzhDKZySsQPH5QF1",
+      "artist": "Sadesper Record",
+      "track": "Insanity",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192096+00:00"
+    },
+    "spotify:track:3gwbuvu5hYV9rQfHCTZYXB": {
+      "uri": "spotify:track:3gwbuvu5hYV9rQfHCTZYXB",
+      "artist": "FINLINCE!",
+      "track": "erased",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192097+00:00"
+    },
+    "spotify:track:77FSmplFEEoyDMTu4xSm56": {
+      "uri": "spotify:track:77FSmplFEEoyDMTu4xSm56",
+      "artist": "Bullet for My Valentine",
+      "track": "Hand Of Blood",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192098+00:00"
+    },
+    "spotify:track:6uUBVBs7h8o7OITdJW8F2u": {
+      "uri": "spotify:track:6uUBVBs7h8o7OITdJW8F2u",
+      "artist": "Ha Vay",
+      "track": "Fragile",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192100+00:00"
+    },
+    "spotify:track:5H8s3dQTh4Mp7LcsXk3FQ1": {
+      "uri": "spotify:track:5H8s3dQTh4Mp7LcsXk3FQ1",
+      "artist": "Straitjacket Fits",
+      "track": "Dialling A Prayer",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192102+00:00"
+    },
+    "spotify:track:4PiGUKtVlJvUSNdeFPVaSS": {
+      "uri": "spotify:track:4PiGUKtVlJvUSNdeFPVaSS",
+      "artist": "Osie",
+      "track": "sweet lies",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192103+00:00"
+    },
+    "spotify:track:5H2kNIrzEsKfofmrt1B3SU": {
+      "uri": "spotify:track:5H2kNIrzEsKfofmrt1B3SU",
+      "artist": "Swervedriver",
+      "track": "Deep Seat",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192105+00:00"
+    },
+    "spotify:track:5vtMCt0sWVxCbsTUnPyCTh": {
+      "uri": "spotify:track:5vtMCt0sWVxCbsTUnPyCTh",
+      "artist": "Tiny Habits",
+      "track": "Anything He Was",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192106+00:00"
+    },
+    "spotify:track:3bdO4r8zKFUruFwtqORbaW": {
+      "uri": "spotify:track:3bdO4r8zKFUruFwtqORbaW",
+      "artist": "Lady Lamb",
+      "track": "Batter",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192108+00:00"
+    },
+    "spotify:track:6AMEHNhqK1qwCEJX9UBjEQ": {
+      "uri": "spotify:track:6AMEHNhqK1qwCEJX9UBjEQ",
+      "artist": "Sweet Trip",
+      "track": "Chocolate Matter",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192109+00:00"
+    },
+    "spotify:track:4SC0RcnLhIof8hKa2igvSH": {
+      "uri": "spotify:track:4SC0RcnLhIof8hKa2igvSH",
+      "artist": "Kate Bollinger",
+      "track": "Talk About It",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192110+00:00"
+    },
+    "spotify:track:6QZp4bkCotnIA1ZHayOvXt": {
+      "uri": "spotify:track:6QZp4bkCotnIA1ZHayOvXt",
+      "artist": "Gene Autry",
+      "track": "Deep In the Heart of Texas",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192112+00:00"
+    },
+    "spotify:track:2mweWXUplavtY2YCANfmwO": {
+      "uri": "spotify:track:2mweWXUplavtY2YCANfmwO",
+      "artist": "Blonde Redhead",
+      "track": "Elephant Woman",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192113+00:00"
+    },
+    "spotify:track:7IBzp33O4Hjr92wXtH3yQJ": {
+      "uri": "spotify:track:7IBzp33O4Hjr92wXtH3yQJ",
+      "artist": "VACATIONS",
+      "track": "Honey",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192115+00:00"
+    },
+    "spotify:track:3eB2Bt0pl9LAgoeMr5MW1D": {
+      "uri": "spotify:track:3eB2Bt0pl9LAgoeMr5MW1D",
+      "artist": "kiichi",
+      "track": "Love Love Nightmare",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192116+00:00"
+    },
+    "spotify:track:4MykYFVQhubOeoecu3rEk3": {
+      "uri": "spotify:track:4MykYFVQhubOeoecu3rEk3",
+      "artist": "Bing Crosby",
+      "track": "The Headless Horseman",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192118+00:00"
+    },
+    "spotify:track:5WJU1ZM5sRmEFNFmrAdSYO": {
+      "uri": "spotify:track:5WJU1ZM5sRmEFNFmrAdSYO",
+      "artist": "the booyah! kids",
+      "track": "Mani",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192120+00:00"
+    },
+    "spotify:track:6Ro3eI4wdA9yXmU6t8UDrl": {
+      "uri": "spotify:track:6Ro3eI4wdA9yXmU6t8UDrl",
+      "artist": "Bic Runga",
+      "track": "She Left on a Monday",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192121+00:00"
+    },
+    "spotify:track:7zycM9Qcin9tyU4xB0Jj3I": {
+      "uri": "spotify:track:7zycM9Qcin9tyU4xB0Jj3I",
+      "artist": "Film School",
+      "track": "Crushin",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192123+00:00"
+    },
+    "spotify:track:5xIapfLMLmQp5DQqCukCTO": {
+      "uri": "spotify:track:5xIapfLMLmQp5DQqCukCTO",
+      "artist": "Swirlies",
+      "track": "House Of Pancake",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192124+00:00"
+    },
+    "spotify:track:1Jj89srrESrwvvCzpMIaUw": {
+      "uri": "spotify:track:1Jj89srrESrwvvCzpMIaUw",
+      "artist": "love-sadKiD",
+      "track": "Dunks",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192125+00:00"
+    },
+    "spotify:track:0UXaslpoA81no74N7U56U9": {
+      "uri": "spotify:track:0UXaslpoA81no74N7U56U9",
+      "artist": "Trivium",
+      "track": "Pull Harder on the Strings of Your Martyr",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192283+00:00"
+    },
+    "spotify:track:2eg3CoqVGI21N8115BgdQA": {
+      "uri": "spotify:track:2eg3CoqVGI21N8115BgdQA",
+      "artist": "Johnny Mathis",
+      "track": "Chances Are - Single Version",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192285+00:00"
+    },
+    "spotify:track:60N0QZVNMIDZoxdZ2aQF1U": {
+      "uri": "spotify:track:60N0QZVNMIDZoxdZ2aQF1U",
+      "artist": "Ringo Deathstarr",
+      "track": "Disease",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192287+00:00"
+    },
+    "spotify:track:43qEiVrNStVMdSgy7DsQt2": {
+      "uri": "spotify:track:43qEiVrNStVMdSgy7DsQt2",
+      "artist": "Burl Ives",
+      "track": "Buckeye Jim",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192288+00:00"
+    },
+    "spotify:track:4i4ca5BwYg6RVmA1lCske2": {
+      "uri": "spotify:track:4i4ca5BwYg6RVmA1lCske2",
+      "artist": "The Army, The Navy",
+      "track": "Alexandra",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192290+00:00"
+    },
+    "spotify:track:78QaOQvmxQ2F8ZeMtLZCAL": {
+      "uri": "spotify:track:78QaOQvmxQ2F8ZeMtLZCAL",
+      "artist": "KIKIYAMA",
+      "track": "あしもとひかる さかのうえ",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192291+00:00"
+    },
+    "spotify:track:1R3e0aONAMejKbS2jne9kq": {
+      "uri": "spotify:track:1R3e0aONAMejKbS2jne9kq",
+      "artist": "Jónsi",
+      "track": "Sinking Friendships",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192293+00:00"
+    },
+    "spotify:track:3hv5YHBWz1S1CPLsqQqP0o": {
+      "uri": "spotify:track:3hv5YHBWz1S1CPLsqQqP0o",
+      "artist": "Beach Bunny",
+      "track": "Oxygen",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192294+00:00"
+    },
+    "spotify:track:7pyV1UPPIuFU7kI4U4D1zl": {
+      "uri": "spotify:track:7pyV1UPPIuFU7kI4U4D1zl",
+      "artist": "broimsuperman",
+      "track": "Lost",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192296+00:00"
+    },
+    "spotify:track:5SxXPHek3xsrNSkzTehdqa": {
+      "uri": "spotify:track:5SxXPHek3xsrNSkzTehdqa",
+      "artist": "Abby Powledge",
+      "track": "benefits",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192297+00:00"
+    },
+    "spotify:track:2VYnlKxB8jpbCeLUjQsebc": {
+      "uri": "spotify:track:2VYnlKxB8jpbCeLUjQsebc",
+      "artist": "Faye Webster",
+      "track": "In A Good Way",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192299+00:00"
+    },
+    "spotify:track:5PjdC2gMATetx5xdnwGUu7": {
+      "uri": "spotify:track:5PjdC2gMATetx5xdnwGUu7",
+      "artist": "girl in red",
+      "track": "i wanna be your girlfriend",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192301+00:00"
+    },
+    "spotify:track:1s9QTZr0OE6R1NhVAdyeoq": {
+      "uri": "spotify:track:1s9QTZr0OE6R1NhVAdyeoq",
+      "artist": "vuul",
+      "track": "delusional",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192302+00:00"
+    },
+    "spotify:track:46RNrAkGsqWTDrv2ZPOAbx": {
+      "uri": "spotify:track:46RNrAkGsqWTDrv2ZPOAbx",
+      "artist": "Phoebe Bridgers",
+      "track": "Moon Song",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192304+00:00"
+    },
+    "spotify:track:5RXjt2s4HBJw3TcaAzwSrD": {
+      "uri": "spotify:track:5RXjt2s4HBJw3TcaAzwSrD",
+      "artist": "Searows",
+      "track": "End Of The World",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192305+00:00"
+    },
+    "spotify:track:44ChZXjeUF4T6TJtbYEJAG": {
+      "uri": "spotify:track:44ChZXjeUF4T6TJtbYEJAG",
+      "artist": "Mickey Darling",
+      "track": "SOMEWHERE ELSE",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192307+00:00"
+    },
+    "spotify:track:0NFkELb7TjwEcCxWFpvX5I": {
+      "uri": "spotify:track:0NFkELb7TjwEcCxWFpvX5I",
+      "artist": "Pharmakon",
+      "track": "Bang Bang - Bonus Track",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192308+00:00"
+    },
+    "spotify:track:0Pq9K4yZlPwjjRMeIkBCpg": {
+      "uri": "spotify:track:0Pq9K4yZlPwjjRMeIkBCpg",
+      "artist": "Tessa Violet",
+      "track": "Wishful Drinking",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192309+00:00"
+    },
+    "spotify:track:6vNHkJiZZtKm4x8ESkfM4Q": {
+      "uri": "spotify:track:6vNHkJiZZtKm4x8ESkfM4Q",
+      "artist": "Catherine Wheel",
+      "track": "Crank",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192311+00:00"
+    },
+    "spotify:track:70eQKtsthQ7IDNUuD241Oi": {
+      "uri": "spotify:track:70eQKtsthQ7IDNUuD241Oi",
+      "artist": "Ovlov",
+      "track": "Blue Baby",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192312+00:00"
+    },
+    "spotify:track:6N52mlzedgdIpaCqzeg7sP": {
+      "uri": "spotify:track:6N52mlzedgdIpaCqzeg7sP",
+      "artist": "Glxsgxw",
+      "track": "THE COME DOWN",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192314+00:00"
+    },
+    "spotify:track:4UCSbPweLRQNfkr5MCRooZ": {
+      "uri": "spotify:track:4UCSbPweLRQNfkr5MCRooZ",
+      "artist": "mxmtoon",
+      "track": "fever dream",
+      "first_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "additions": [
+        {
+          "at": "2026-11-07T10:52:02.906618+00:00",
+          "daily_playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "liked_at_add": false
+        }
+      ],
+      "liked_observations": [
+        {
+          "at": "2026-11-07T10:52:03.150453+00:00",
+          "liked": false
+        }
+      ],
+      "playback_observations": [],
+      "removal_events": [],
+      "liked_at_add": false,
+      "last_added_at": "2026-11-07T10:52:02.906618+00:00",
+      "lastfm_post_add_scrobbles": 0,
+      "lastfm_observed_at": "2026-11-07T10:52:04.192315+00:00"
     }
   },
   "coverage": {
@@ -3337,9 +5117,9 @@
       "reason": "segment_file_missing",
       "segment_count": 0,
       "latest_segment_at": null,
-      "observed_at": "2026-11-07T00:30:06.104350+00:00",
+      "observed_at": "2026-11-07T10:52:03.520057+00:00",
       "file_present": false
     }
   },
-  "updated_at": "2026-11-07T00:30:06.825382+00:00"
+  "updated_at": "2026-11-07T10:52:04.192318+00:00"
 }
