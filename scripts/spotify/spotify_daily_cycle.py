@@ -131,13 +131,19 @@ def persist_daily_stage(stage_path, backup_path, cycle_date):
         "playlist_removed_tracks.json",
         "assistant_data/recommendations/discovery_candidates.json",
     ]
-    existing = [path for path in paths if Path(path).is_file()]
+    existing = [path for path in paths if Path(path).is_file() and path != str(backup_path)]
+    backup_exists = Path(backup_path).is_file()
     subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(
         ["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"],
         check=True,
     )
-    subprocess.run(["git", "add", "--", *existing], check=True)
+    if existing:
+        subprocess.run(["git", "add", "--", *existing], check=True)
+    if backup_exists:
+        # playlist_backups/ is intentionally ignored by default; the one exact
+        # recovery snapshot paired with this stage must still be committed.
+        subprocess.run(["git", "add", "-f", "--", str(backup_path)], check=True)
     subprocess.run(
         ["git", "commit", "-m", f"Stage Tricky Daily payload for {cycle_date}"],
         check=True,
