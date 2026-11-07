@@ -266,6 +266,7 @@ class DailyFeedbackWorkflowTests(unittest.TestCase):
 class DailyLikedSongQueryTests(unittest.TestCase):
     def test_saved_item_queries_never_exceed_spotify_40_uri_limit(self):
         from unittest.mock import Mock
+        from urllib.parse import unquote
         import spotify_daily_feedback as feedback
 
         uris = [f"spotify:track:{index:022d}" for index in range(81)]
@@ -281,7 +282,7 @@ class DailyLikedSongQueryTests(unittest.TestCase):
             self.assertEqual(method, "GET")
             values = path.split("?uris=", 1)[1].split(",")
             self.assertEqual(len(values), expected_size)
-            self.assertTrue(all(value.startswith("spotify:track:") for value in values))
+            self.assertTrue(all(unquote(value).startswith("spotify:track:") for value in values))
         self.assertTrue(liked[uris[0]])
         self.assertFalse(liked[uris[40]])
         self.assertTrue(liked[uris[80]])
