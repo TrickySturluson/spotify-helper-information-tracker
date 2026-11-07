@@ -865,6 +865,39 @@
           "source": "manual removal detected by Tricky Daily live reconciliation",
           "detected_at": "2026-11-06T17:31:19.847075+00:00",
           "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:3Yjki0QYxpdSHdykr2QYN9",
+          "name": "Preybirds (Watcher Song)",
+          "artists": [
+            "Rabbitology"
+          ],
+          "album": "Preybirds (Watcher Song)",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-07T00:02:39.599569+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:2gnvh9HRH5fCo5iDQXMvQN",
+          "name": "Can't Fight",
+          "artists": [
+            "Lianne La Havas"
+          ],
+          "album": "Lianne La Havas",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-07T00:02:39.599569+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:6G2xXQRSZlEzYsUEb3uvuR",
+          "name": "Está Dañada",
+          "artists": [
+            "Ivan Cornejo"
+          ],
+          "album": "Alma Vacía",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-07T00:02:39.599569+00:00",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
         }
       ],
       "whitelisted": []

@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+  "playlist_name": "Tricky Daily",
+  "cycle_date_eastern": "2026-11-06",
+  "run_id": "42315703554",
+  "created_at": "2026-11-07T00:03:32.330404+00:00",
+  "prewrite_snapshot_id": "AAAAVoJF2xVUAjwGWGpGZOQ7PSNpKgJy",
+  "prewrite_uris": [
+    "spotify:track:2aMCzbkgN7n1e4KUFQsg2G",
+    "spotify:track:7pFibnxpBbPhCtA3VthLAS",
+    "spotify:track:2NW037bP6iLJfeBYynIh1w",
+    "spotify:track:30MzKx1Whc1SfJeDLWgakn",
+    "spotify:track:2h0O3uXZW6ClktlgHWGpjy",
+    "spotify:track:1uMujqG0hOvXAdr79aAw0w",
+    "spotify:track:0cggVFqh0WNgRN31TAKd4f",
+    "spotify:track:61chPKv4x0eRF424m1hv3N",
+    "spotify:track:34bjVNEp8M3FXGdzr4ci5R",
+    "spotify:track:3CU1qWV0h0PvWXQg71YUoo",
+    "spotify:track:6AMEHNhqK1qwCEJX9UBjEQ",
+    "spotify:track:3yt7Gk7g0bfuNMEx6UHzNk",
+    "spotify:track:20jbSiX29FDX4oQxBXyUEi",
+    "spotify:track:6QQmXx3FYPK7BI96j5lrXg",
+    "spotify:track:5TzpCPx20n4hELdE9Vw6ZQ",
+    "spotify:track:1vI1tVWRCObcIy2SuSGyeq",
+    "spotify:track:3PN3tH1jQgl6FCLW8CBedu",
+    "spotify:track:5vhQpfCt2I0XUG2eJBS3gl",
+    "spotify:track:22901T4SPYBr6FNodnQhmw",
+    "spotify:track:163jsgXXOKqhuQdT6pRPc5",
+    "spotify:track:6aAhBncpJcB0gJCKobVsrI",
+    "spotify:track:1vWqAeeT5CKkjRBfQ9SONh",
+    "spotify:track:6tdjyoaesC0pXHA7QD8oEw",
+    "spotify:track:6YkMJqkZNCuKhot5tgPFkV",
+    "spotify:track:1EC2Gut6C9LFnN92drtqUa",
+    "spotify:track:6x0k9peOIj7P9vbkFguvMO"
+  ],
+  "target_uris": [
+    "spotify:track:7pPciGaYxP2FsFQCIBDEhb",
+    "spotify:track:1naVD19eofGpFf6wosmHIe",
+    "spotify:track:0Bxt094DTxSkkTVk1NXG4z",
+    "spotify:track:27mFsmEWiSablfQTyZZhgp",
+    "spotify:track:0yQPpUq5BJyqah5m2Q5Stt",
+    "spotify:track:29nzgSkf11owK8vO9iBgCq",
+    "spotify:track:6tyX74mRk73CLhQ3pPPcm9",
+    "spotify:track:6bBbmVZiHXS3IMGo81ZAy8",
+    "spotify:track:0tZSHcIwouL6HLgH0BBpUC",
+    "spotify:track:2wdYxKe5V85s9Uu6F8CGca",
+    "spotify:track:7BkLfZnv7DJdJJ9wWj8Vdv",
+    "spotify:track:1zvEyArJj6LU9OKlPyQ3nk",
+    "spotify:track:3XlrbYlaUFnDYGfRcdoYRU",
+    "spotify:track:7KAXxQfUG4kzRivltbD1UY",
+    "spotify:track:7vD5aaLhbeBRbXEDOoVL0F",
+    "spotify:track:6NwfEnsQsp9fogTC0Nxaug",
+    "spotify:track:4eOeJSEMFZfauBx33CBInS",
+    "spotify:track:5y8FIZ6PTHar4J2hxsGdBV",
+    "spotify:track:5pPxbTrJZEQLSjGhCz1uRK",
+    "spotify:track:6cgoN2nijpjj8KY6QkHxtk",
+    "spotify:track:0CbESIyx34Usxoy7emUEBd",
+    "spotify:track:4T1i9YoZP9NlqA3dA2v7AN",
+    "spotify:track:61E6sQsTB3NqCpCqbDYOJY",
+    "spotify:track:3zj9gN3yV8DDQGlG8JwHfR",
+    "spotify:track:4lw0JWCcRWXcWKOGLOsAaO",
+    "spotify:track:5jEf7MDPf8Bo4blM8Otusr",
+    "spotify:track:7DzGlyhndGfcLhbUKNjkU3",
+    "spotify:track:4MphNlftuxnkGw8ga8VL7J",
+    "spotify:track:43ZkV4OT05cB27GFdBjyHD",
+    "spotify:track:2RaGRh57p4OtzpXtr65Nws",
+    "spotify:track:1TQuqiFxqnVeez9OMq3emB",
+    "spotify:track:2PbFkHMIR7PrWlSBZ5gxk4",
+    "spotify:track:44mYhOVgerj2qPjkGDVA6n",
+    "spotify:track:5psvGE7LSnzIourvasDTH9",
+    "spotify:track:5yjFwHNs8KTVcuPQsmD7di",
+    "spotify:track:1CyTXPHBkfwwIfpoTuTU43",
+    "spotify:track:2bUin4VC1LNdF8Bjjxb8Uc",
+    "spotify:track:2ZKnIoRQtfAsjtsHVs7IFi",
+    "spotify:track:1yYr4D1KjhhyDD5bZIiFQy",
+    "spotify:track:6sAcECONsANle5n0rnP2at",
+    "spotify:track:4LOLsPR4Vc1JbElWEwhl3q",
+    "spotify:track:1e0i5HwYBT4Lt2P1cjE1gZ",
+    "spotify:track:3aa9zo0DxDjykGIFRTFRJH",
+    "spotify:track:7c3lk5GwSyJfaxG6wdW4Wv",
+    "spotify:track:06ivS38drtNuRCDIg2ww9k",
+    "spotify:track:7fKqzZlS2em2fwDkKvSJZA",
+    "spotify:track:0cP48AdpqDt4Ue8zGgeagh",
+    "spotify:track:7f1WcvOOUVUoHdrilGw4Sr",
+    "spotify:track:71BWZa1liIRyUiuJ3MB66o",
+    "spotify:track:57j65yC2HggQfmYNc6rdOK",
+    "spotify:track:3Mj0U2UxyL24aigdXbsMIt",
+    "spotify:track:0pJW1Xw3aY4Eh6k5iuBkfI",
+    "spotify:track:4bydArt0Ervz2Yfh5CBVHe",
+    "spotify:track:0Ko51fAd7p7hzmkNTy4508",
+    "spotify:track:705gJfPR33f1dlLWS6dL80",
+    "spotify:track:6MYJv37Mpj5njLLbxKWNun",
+    "spotify:track:2epXtSEg9a7e79EmroKk91",
+    "spotify:track:0jmyo9QOmFbjDCYpNaPDhy",
+    "spotify:track:1jhyXhw6C9RCA70XKHycBl",
+    "spotify:track:09NibQcboHT4aqZbkvRa2w"
+  ],
+  "candidate_tracks": [
+    {
+      "artist": "Bahari",
+      "track": "Savage",
+      "uri": "spotify:track:7pPciGaYxP2FsFQCIBDEhb",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Perry Como",
+      "track": "And I Love You So",
+      "uri": "spotify:track:1naVD19eofGpFf6wosmHIe",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sound of Ceres",
+      "track": "Solar Mirror Anthology Vol. 6",
+      "uri": "spotify:track:0Bxt094DTxSkkTVk1NXG4z",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Lingua Ignota",
+      "track": "DO YOU DOUBT ME TRAITOR",
+      "uri": "spotify:track:27mFsmEWiSablfQTyZZhgp",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sigur Rós",
+      "track": "Hoppípolla",
+      "uri": "spotify:track:0yQPpUq5BJyqah5m2Q5Stt",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Leith Ross",
+      "track": "(You) On My Arm",
+      "uri": "spotify:track:29nzgSkf11owK8vO9iBgCq",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Jason Webley",
+      "track": "2 am",
+      "uri": "spotify:track:6tyX74mRk73CLhQ3pPPcm9",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Cornelia Murr",
+      "track": "Changed",
+      "uri": "spotify:track:6bBbmVZiHXS3IMGo81ZAy8",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Molly Kate Kestner",
+      "track": "Compromise",
+      "uri": "spotify:track:0tZSHcIwouL6HLgH0BBpUC",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "The Amazing Devil",
+      "track": "Battle Cries",
+      "uri": "spotify:track:2wdYxKe5V85s9Uu6F8CGca",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Jawny",
+      "track": "adios",
+      "uri": "spotify:track:7BkLfZnv7DJdJJ9wWj8Vdv",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Cat Pierce",
+      "track": "Go to Hell",
+      "uri": "spotify:track:1zvEyArJj6LU9OKlPyQ3nk",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "chloe moriondo",
+      "track": "Bodybag",
+      "uri": "spotify:track:3XlrbYlaUFnDYGfRcdoYRU",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sweet Trip",
+      "track": "Air Supply - 2021 Remaster",
+      "uri": "spotify:track:7KAXxQfUG4kzRivltbD1UY",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Search Yiu",
+      "track": "Komme mit",
+      "uri": "spotify:track:7vD5aaLhbeBRbXEDOoVL0F",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Mind’s Eye",
+      "track": "clevergirl",
+      "uri": "spotify:track:6NwfEnsQsp9fogTC0Nxaug",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "May Roosevelt",
+      "track": "Fantasia",
+      "uri": "spotify:track:4eOeJSEMFZfauBx33CBInS",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "No More Kings",
+      "track": "Critical Hit",
+      "uri": "spotify:track:5y8FIZ6PTHar4J2hxsGdBV",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sadesper Record",
+      "track": "A White Sheep Walks - Groove Tape Mix",
+      "uri": "spotify:track:5pPxbTrJZEQLSjGhCz1uRK",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "FINLINCE!",
+      "track": "do u see me",
+      "uri": "spotify:track:6cgoN2nijpjj8KY6QkHxtk",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Bullet for My Valentine",
+      "track": "All These Things I Hate (Revolve Around Me)",
+      "uri": "spotify:track:0CbESIyx34Usxoy7emUEBd",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Ha Vay",
+      "track": "Angel! Wild! Superstar!",
+      "uri": "spotify:track:4T1i9YoZP9NlqA3dA2v7AN",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Straitjacket Fits",
+      "track": "Dailling a Prayer",
+      "uri": "spotify:track:61E6sQsTB3NqCpCqbDYOJY",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Osie",
+      "track": "inside",
+      "uri": "spotify:track:3zj9gN3yV8DDQGlG8JwHfR",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Swervedriver",
+      "track": "Blowin' Cool",
+      "uri": "spotify:track:4lw0JWCcRWXcWKOGLOsAaO",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Tiny Habits",
+      "track": "Anything He Was",
+      "uri": "spotify:track:5jEf7MDPf8Bo4blM8Otusr",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Lady Lamb",
+      "track": "Aubergine - Remastered",
+      "uri": "spotify:track:7DzGlyhndGfcLhbUKNjkU3",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Kate Bollinger",
+      "track": "A Couple Things",
+      "uri": "spotify:track:4MphNlftuxnkGw8ga8VL7J",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Gene Autry",
+      "track": "Back In the Saddle Again",
+      "uri": "spotify:track:43ZkV4OT05cB27GFdBjyHD",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Blonde Redhead",
+      "track": "23",
+      "uri": "spotify:track:2RaGRh57p4OtzpXtr65Nws",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "VACATIONS",
+      "track": "Home",
+      "uri": "spotify:track:1TQuqiFxqnVeez9OMq3emB",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "kiichi",
+      "track": "[I Love You]",
+      "uri": "spotify:track:2PbFkHMIR7PrWlSBZ5gxk4",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Bing Crosby",
+      "track": "It's Beginning To Look Like Christmas",
+      "uri": "spotify:track:44mYhOVgerj2qPjkGDVA6n",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "the booyah! kids",
+      "track": "Don't Trust Me",
+      "uri": "spotify:track:5psvGE7LSnzIourvasDTH9",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Bic Runga",
+      "track": "Listening for the Weather",
+      "uri": "spotify:track:5yjFwHNs8KTVcuPQsmD7di",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Film School",
+      "track": "Activated",
+      "uri": "spotify:track:1CyTXPHBkfwwIfpoTuTU43",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Swirlies",
+      "track": "Bell",
+      "uri": "spotify:track:2bUin4VC1LNdF8Bjjxb8Uc",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "love-sadKiD",
+      "track": "Cash",
+      "uri": "spotify:track:2ZKnIoRQtfAsjtsHVs7IFi",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Trivium",
+      "track": "In Waves",
+      "uri": "spotify:track:1yYr4D1KjhhyDD5bZIiFQy",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Johnny Mathis",
+      "track": "Chances Are (with Ray Conniff & His Orchestra)",
+      "uri": "spotify:track:6sAcECONsANle5n0rnP2at",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Ringo Deathstarr",
+      "track": "Be Love",
+      "uri": "spotify:track:4LOLsPR4Vc1JbElWEwhl3q",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Burl Ives",
+      "track": "Big Rock Candy Mountain",
+      "uri": "spotify:track:1e0i5HwYBT4Lt2P1cjE1gZ",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "The Army, The Navy",
+      "track": "40%",
+      "uri": "spotify:track:3aa9zo0DxDjykGIFRTFRJH",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "KIKIYAMA",
+      "track": "☆メニュータイプチェンジ☆",
+      "uri": "spotify:track:7c3lk5GwSyJfaxG6wdW4Wv",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Jónsi",
+      "track": "Go Do",
+      "uri": "spotify:track:06ivS38drtNuRCDIg2ww9k",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Beach Bunny",
+      "track": "Cloud 9",
+      "uri": "spotify:track:7fKqzZlS2em2fwDkKvSJZA",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "broimsuperman",
+      "track": "can you save me?",
+      "uri": "spotify:track:0cP48AdpqDt4Ue8zGgeagh",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Abby Powledge",
+      "track": "and then there's me",
+      "uri": "spotify:track:7f1WcvOOUVUoHdrilGw4Sr",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Faye Webster",
+      "track": "I Know You",
+      "uri": "spotify:track:71BWZa1liIRyUiuJ3MB66o",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "girl in red",
+      "track": "bad idea!",
+      "uri": "spotify:track:57j65yC2HggQfmYNc6rdOK",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "vuul",
+      "track": "curse",
+      "uri": "spotify:track:3Mj0U2UxyL24aigdXbsMIt",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Phoebe Bridgers",
+      "track": "I Know The End",
+      "uri": "spotify:track:0pJW1Xw3aY4Eh6k5iuBkfI",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Searows",
+      "track": "Belly of the Whale",
+      "uri": "spotify:track:4bydArt0Ervz2Yfh5CBVHe",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Mickey Darling",
+      "track": "Big Sad",
+      "uri": "spotify:track:0Ko51fAd7p7hzmkNTy4508",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Pharmakon",
+      "track": "Autoimmune",
+      "uri": "spotify:track:705gJfPR33f1dlLWS6dL80",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Tessa Violet",
+      "track": "Crush",
+      "uri": "spotify:track:6MYJv37Mpj5njLLbxKWNun",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Ovlov",
+      "track": "Baby Alligator",
+      "uri": "spotify:track:2epXtSEg9a7e79EmroKk91",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Catherine Wheel",
+      "track": "Black Metallic",
+      "uri": "spotify:track:0jmyo9QOmFbjDCYpNaPDhy",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Glxsgxw",
+      "track": "100x - screwed",
+      "uri": "spotify:track:1jhyXhw6C9RCA70XKHycBl",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "mxmtoon",
+      "track": "feelings are fatal",
+      "uri": "spotify:track:09NibQcboHT4aqZbkvRa2w",
+      "artist_diversity_fallback": false
+    }
+  ],
+  "target_description": "Today's detour starts here.",
+  "backup_path": "playlist_backups/20261107T000331699829Z_4yUVHSMQySfWeEowfIMcx7.json",
+  "status": "staged_before_spotify_write",
+  "stage_mode": "test_only",
+  "payload_sha256": "43d3b02f825fb5582cd6264ffc93ee4d31a43a04a8a6e1755868f14323e8256e"
+}
