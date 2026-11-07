@@ -73,6 +73,48 @@ class DailyCycleScheduleTests(unittest.TestCase):
             self.assertEqual(daily_cycle.main(), 0)
         spotify.assert_not_called()
 
+    def test_verify_only_runs_after_same_day_cycle_without_any_playlist_mutation(self):
+        class FrozenDateTime:
+            @staticmethod
+            def now(tz):
+                return datetime(2026, 11, 6, 14, 0, tzinfo=tz)
+
+        completed = {
+            "daily_cycle": {
+                "last_cycle_date_eastern": "2026-11-06",
+                "description": "Current Daily description",
+            }
+        }
+        playlist = {
+            "id": daily_cycle.DAILY_ID,
+            "name": "Tricky Daily",
+            "owner": {"id": "owner"},
+            "description": "Current Daily description",
+            "snapshot_id": "snapshot-60",
+        }
+        items = [
+            {"uri": f"spotify:track:{i:022d}", "name": f"Track {i}", "artists": [f"Artist {i}"]}
+            for i in range(60)
+        ]
+        spotify = __import__("unittest").mock.Mock()
+        spotify.me.return_value = {"id": "owner"}
+        spotify.call.return_value = playlist
+        with patch.object(daily_cycle, "datetime", FrozenDateTime), \
+             patch.object(daily_cycle, "configure"), \
+             patch.object(daily_cycle.manager, "config", return_value=completed), \
+             patch.object(daily_cycle.manager, "check_spotify_cooldown"), \
+             patch.object(daily_cycle.manager, "Spotify", return_value=spotify), \
+             patch.object(daily_cycle.manager, "assert_managed"), \
+             patch.object(daily_cycle.manager, "unlocked", return_value=True), \
+             patch.object(daily_cycle.manager, "snapshot", return_value={"items": items}), \
+             patch.object(daily_cycle.discovery, "load_playlist_feedback", return_value={"negative_keys": set(), "negative_uris": set()}), \
+             patch.object(daily_cycle, "set_action_output"), \
+             patch.dict(os.environ, {"GITHUB_EVENT_NAME": "workflow_dispatch"}), \
+             patch.object(sys, "argv", ["spotify_daily_cycle.py", "--force", "--verify-only"]):
+            self.assertEqual(daily_cycle.main(), 0)
+        spotify.call.assert_called_once_with("GET", f"/playlists/{daily_cycle.DAILY_ID}")
+        self.assertEqual(spotify.method_calls, [unittest.mock.call.me(), unittest.mock.call.call("GET", f"/playlists/{daily_cycle.DAILY_ID}")])
+
     def test_cycle_date_guard_rejects_malformed_state(self):
         with self.assertRaises(daily_cycle.manager.ManagerError):
             daily_cycle.cycle_already_completed({"daily_cycle": []}, "2026-11-05")
