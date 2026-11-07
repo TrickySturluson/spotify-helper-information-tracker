@@ -1,3 +1,12 @@
+## 2026-11-07 UTC / 2026-11-06 Eastern — Percent-encoded saved-item request verified
+
+- Updated the shared Daily saved-item lookup to percent-encode each Spotify URI and retain the documented 40-URI maximum.
+- Feedback observer #42318532288 passed 519 tests and completed read-only observation of 123 feedback rows using the encoded request format. All 60 current Daily tracks have current liked status observed as false; Last.fm remains available and playback tracker remains unknown due missing segment file.
+- The current cycle's historical liked-at-add baseline remains unknown because the pre-fix 50-item request failed; it is not backfilled from the later observation.
+- The next cycle will capture the baseline using the corrected helper.
+
+---
+
 ## 2026-11-07 UTC / 2026-11-06 Eastern — Saved-item lookup batching and feedback refresh
 
 - Spotify's current `GET /me/library/contains` endpoint accepts at most 40 URIs. The first successful live cycle's 50-item liked-baseline and post-add observation requests returned HTTP 400; playlist publication itself succeeded. The current liked-at-add baseline for the 60 tracks is therefore unknown and must not be backfilled from a later observation.
