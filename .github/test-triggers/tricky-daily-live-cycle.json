@@ -1,6 +1,6 @@
 {
   "action": "stage-only",
   "force": true,
-  "reason": "Safe no-write verification after fixing the snapshot contract: preserve Daily description in the initial snapshot, generate exactly 60 candidates, commit and verify the ordered payload plus recovery backup, recheck live Daily and repository state, then exit before every Spotify playlist write and description mutation. Stage-only only.",
-  "verification_attempt": "2026-11-06-description-snapshot-fix"
+  "reason": "Stage-only verification after mainline regression suite passed 516 tests: preserve the exact Daily description in the pre-discovery snapshot; generate 60 candidates; commit and verify the immutable ordered payload and recovery backup; recheck live Daily and repository head; exit before all Spotify playlist write endpoints and description mutation. No live publication.",
+  "verification_attempt": "2026-11-07-stage-only-after-regression-tests"
 }
