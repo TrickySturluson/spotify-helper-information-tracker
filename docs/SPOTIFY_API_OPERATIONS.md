@@ -8,7 +8,7 @@ Spotify's February 2026 Web API migration changed playlist item endpoints from `
 
 ## Saved-item lookup batching
 
-Spotify's current **Check User's Saved Items** endpoint is `GET /me/library/contains?uris=...`. It accepts Spotify URIs and has a hard maximum of **40 URIs per request**. Use batches of 40 or fewer; a 50-item batch returns HTTP 400. SHIT centralizes this behavior in `spotify_daily_feedback.query_liked_status()`, used by both the Daily cycle's `liked_at_add` baseline and post-add liked-song observation. Regression tests cover 81-item query splitting and 60-item observation splitting.
+Spotify's current **Check User's Saved Items** endpoint is `GET /me/library/contains?uris=...`. It accepts Spotify URIs and has a hard maximum of **40 URIs per request**. Use batches of 40 or fewer; a 50-item batch returns HTTP 400. Percent-encode each URI value (for example, `spotify:track:...` becomes `spotify%3Atrack%3A...`) and keep the comma separators between encoded URIs. SHIT centralizes this behavior in `spotify_daily_feedback.query_liked_status()`, used by both the Daily cycle's `liked_at_add` baseline and post-add liked-song observation. Regression tests cover 81-item query splitting and 60-item observation splitting.
 
 A missing or failed liked lookup is unknown, not unliked. Do not backfill `liked_at_add` for a past addition from a later current-state observation; retain the distinction between baseline-at-add and later liked status.
 
