@@ -1,6 +1,6 @@
 {
   "action": "verify-only",
   "force": true,
-  "reason": "Post-cycle read-only verification: confirm exactly 60 unique live tracks, zero Daily blacklist matches, and description matches accepted state. Do not replace tracks or change description. Keep the trigger in verify-only mode to prevent accidental repeat live cycles on future trigger-file edits.",
-  "verification_attempt": "2026-11-07-post-cycle-readback"
+  "reason": "Read-only post-cycle verification after fixing the same-date guard: verify the live 60-track playlist, unique URIs, zero blacklist matches, and accepted description. This action must not replace tracks or update description.",
+  "verification_attempt": "2026-11-07-post-cycle-verification-guard-fix"
 }
