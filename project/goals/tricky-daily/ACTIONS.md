@@ -1,3 +1,15 @@
+## 2026-11-07 UTC / 2026-11-06 Eastern — First verified live 60-track cycle
+
+- **Stage-only proof:** run [#42316048566](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316048566) completed the no-write path: 60 valid unique candidates, 60 distinct primary artists, zero Daily blacklist overlaps, exact recovery backup committed, and stage SHA/order verified from the committed Git tree. This exposed the ignored-backup issue; `persist_daily_stage()` now force-adds the exact backup file from `playlist_backups/` before commit. Full 516-test suite passed in #42315934572.
+- **Production cycle:** run [#42316296314](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316296314) succeeded. It committed stage `assistant_data/spotify/staging/tricky_daily/2026-11-06-42316296314.json` and recovery backup `playlist_backups/20261107T000907379512Z_4yUVHSMQySfWeEowfIMcx7.json` before the Spotify write. Stage commit: `e08baedf6c006322ff31abd4d11bc8169d69a123`; state commit: `d7ce8ec476b59d284d468bb4989ead8b0d109871`. Final output: 60 tracks; 26 previous tracks rotated out neutrally. The script only reports success after description read-back and complete ordered playlist read-back validation.
+- **Read-only post-cycle verification:** run [#42316824364](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316824364) passed after a 517-test fix to allow `--verify-only` to bypass the same-day completed-cycle early exit. It independently confirmed 60 unique tracks, zero blacklisted, description `Today's detour starts here.`, snapshot ID `AAAAV+t5mQVmRSxOOjmUuVYsGIqAbzv2`.
+- **GET-only snapshot refresh:** run [#42316906860](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316906860) passed. Snapshot captured at `2026-11-07T00:13:46.604200+00:00`: 60 accessible items, 60 unique URIs, zero new manual removals, 58 total blacklist entries, and 3 removal-feedback events reconciled. Snapshot/catalog/baseline commit: `bae0cb6c435c6c12672b97bde88138ddbd9be0fe`.
+- **Trigger safety:** the live-cycle test trigger was reset to `action: verify-only`, `force: true` after the authorized cycle. Do not leave it in `cycle` mode.
+- **Next:** verify the next scheduled Eastern-midnight rotation after PR #168's cooldown-persistence fix; then close guided resume/rollback/discard. Recommendation memory remains an approved P1 requirement and must follow the operational gate.
+- **Coverage:** Last.fm available; liked-song observations present; playback tracker unknown due missing `playback_data/segments.jsonl`. Never interpret missing coverage as zero plays.
+
+---
+
 ## 2026-11-06 — Daily reliability priority and recommendation-memory requirement
 
 - **User decision:** operational reliability comes first. Daily must function as intended before expanding recommendation intelligence; continue safe no-write verification and diagnose actual daily refresh/scheduling behavior before any live playlist replacement.
