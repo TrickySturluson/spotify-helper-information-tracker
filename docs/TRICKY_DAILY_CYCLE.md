@@ -22,7 +22,7 @@ The live Tricky Daily cycle completed in workflow [#42316296314](https://github.
 
 The follow-up read-only verification [#42316824364](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316824364) independently confirmed 60 unique tracks, zero blacklist hits, and the accepted description. The current snapshot workflow [#42316906860](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316906860) then refreshed the Daily-only saved snapshot at `2026-11-07T00:13:46.604200+00:00`: 60 accessible items, 60 unique URIs, zero new manual removals, 58 blacklisted entries, and 3 removal-feedback events reconciled. The Daily reference catalog and removal baseline also contain 60 items. Snapshot/catalog/baseline commit: `bae0cb6c435c6c12672b97bde88138ddbd9be0fe`.
 
-The current playback-tracker status remains unknown because `playback_data/segments.jsonl` is absent. Last.fm and liked-song observations are available; do not infer zero plays from missing playback coverage.
+The current playback-tracker status remains unknown because `playback_data/segments.jsonl` is absent. Last.fm and liked-song observations are available; do not infer zero plays from missing playback coverage. Feedback observation run #42317820148 checked 123 Daily feedback rows in batches of at most 40 and recorded current liked status for all 60 live Daily tracks (all 60 were unliked at observation time). The earlier live cycle's `liked_at_add` baseline is still unknown because its pre-fix 50-URI request returned HTTP 400; do not backfill that historical baseline from the later observation. Future cycles now use the corrected 40-URI helper.
 
 ## Trend profile
 
