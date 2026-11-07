@@ -1,10 +1,10 @@
 # GitHub Actions Workflow Catalogue
 
-**Last reviewed:** 2026-11-06. This catalogue summarizes the 19 workflows under .github/workflows as inspected on main. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
+**Last reviewed:** 2026-11-07. This catalogue summarizes the 19 workflows under .github/workflows as inspected on main. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
 
 ## Verification note — 2026-11-06
 
-The trigger and schedule matrix was cross-checked against all 19 current workflow YAML files. Push branch/path filters, PR/issue event types, manual-dispatch availability, and cron expressions were compared directly with the source `on:` blocks; declared permission blocks were also inspected. The workflow YAML remains authoritative. The table describes configuration at this review point and must be rechecked after any workflow edit. The Daily workflow push filter was checked against the dedicated test-trigger JSON path. The no-write stage-only test trigger (#42268583897) authenticated but Spotify returned HTTP 429 QUOTA_EXCEEDED during candidate search, before stage creation and before any playlist write; the log confirms no playlist changes were attempted. Do not retry Spotify requests until the Retry-After cooldown expires. Great Migration has no push trigger.
+The trigger and schedule matrix was cross-checked against the current workflow YAML files. Push branch/path filters, PR/issue event types, manual-dispatch availability, cron expressions and declared permission blocks were compared directly with source. The Daily workflow push filter was checked against its dedicated trigger JSON. Stage-only run #42316048566 completed a committed 60-track payload/backup/hash proof; live cycle #42316296314 then published and verified exactly 60 tracks and the description; post-cycle verify-only #42316824364 passed; GET-only snapshot refresh #42316906860 published a 60-item Daily snapshot. The Daily test-trigger JSON is now `action: verify-only`, so edits to it do not launch another live replacement. Scheduled runs #42212368912 and #42214834581 failed with HTTP 429 before PR #168 made cooldown persistence durable; the next scheduled run after that fix remains to be verified. Great Migration has no push trigger.
 
 ## Workflow matrix
 
