@@ -1,6 +1,6 @@
 {
   "action": "stage-only",
   "force": true,
-  "reason": "Stage-only verification after mainline regression suite passed 516 tests: preserve the exact Daily description in the pre-discovery snapshot; generate 60 candidates; commit and verify the immutable ordered payload and recovery backup; recheck live Daily and repository head; exit before all Spotify playlist write endpoints and description mutation. No live publication.",
-  "verification_attempt": "2026-11-07-stage-only-after-regression-tests"
+  "reason": "Stage-only retry after 516-test mainline suite passed and ignored-backup persistence was fixed. Generate 60 candidates, force-add the exact ignored recovery backup, commit and verify the immutable ordered payload/hash from HEAD, recheck repository head and live Daily snapshot/policy, then exit before every Spotify playlist write and description mutation. No live publication.",
+  "verification_attempt": "2026-11-07-stage-only-backup-force-add"
 }
