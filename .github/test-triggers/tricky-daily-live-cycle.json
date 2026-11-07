@@ -1,6 +1,6 @@
 {
-  "action": "cycle",
+  "action": "verify-only",
   "force": true,
-  "reason": "User-authorized live Tricky Daily cycle attempt after stage-only passed: regenerate exactly 60 unique candidates, reconcile and honor all current Daily manual removals/blacklist/whitelist policy, commit and verify the immutable stage plus recovery backup, recheck live playlist/repository state, then publish exactly the verified 60 tracks and rotate the Daily description. Abort before writes on any failed guard or active Spotify cooldown.",
-  "verification_attempt": "2026-11-07-authorized-live-cycle"
+  "reason": "Post-cycle read-only verification: confirm exactly 60 unique live tracks, zero Daily blacklist matches, and description matches accepted state. Do not replace tracks or change description. Keep the trigger in verify-only mode to prevent accidental repeat live cycles on future trigger-file edits.",
+  "verification_attempt": "2026-11-07-post-cycle-readback"
 }
