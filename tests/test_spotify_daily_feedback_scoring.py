@@ -321,7 +321,7 @@ if __name__ == "__main__":
 # FILE OVERVIEW
 # Purpose: Protect Tricky Daily's distinction between tracks already liked and tracks liked after exposure.
 # Scope: A post-add save is positive conversion evidence, while a pre-existing like retains its
-#        separate familiarity/liked penalty; these states must not be conflated.
+#        separate familiarity/liked penalty; also protects Spotify's 40-URI saved-item lookup limit.
 # Run: python -m unittest tests.test_spotify_daily_feedback_scoring -v
 # Related: scripts/spotify/spotify_discovery.py; scripts/spotify/spotify_daily_feedback.py;
 #          docs/TRICKY_DAILY_CYCLE.md.
