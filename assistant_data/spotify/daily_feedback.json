@@ -2790,6 +2790,63 @@
       "last_added_at": "2026-11-07T00:09:12.963851+00:00",
       "lastfm_post_add_scrobbles": 0,
       "lastfm_observed_at": "2026-11-07T00:09:13.948071+00:00"
+    },
+    "spotify:track:3Yjki0QYxpdSHdykr2QYN9": {
+      "uri": "spotify:track:3Yjki0QYxpdSHdykr2QYN9",
+      "artist": "Rabbitology",
+      "track": "Preybirds (Watcher Song)",
+      "first_added_at": null,
+      "additions": [],
+      "liked_observations": [],
+      "playback_observations": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T00:02:39.599569+00:00",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        }
+      ],
+      "liked_at_add": null,
+      "last_removed_at": "2026-11-07T00:02:39.599569+00:00"
+    },
+    "spotify:track:2gnvh9HRH5fCo5iDQXMvQN": {
+      "uri": "spotify:track:2gnvh9HRH5fCo5iDQXMvQN",
+      "artist": "Lianne La Havas",
+      "track": "Can't Fight",
+      "first_added_at": null,
+      "additions": [],
+      "liked_observations": [],
+      "playback_observations": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T00:02:39.599569+00:00",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        }
+      ],
+      "liked_at_add": null,
+      "last_removed_at": "2026-11-07T00:02:39.599569+00:00"
+    },
+    "spotify:track:6G2xXQRSZlEzYsUEb3uvuR": {
+      "uri": "spotify:track:6G2xXQRSZlEzYsUEb3uvuR",
+      "artist": "Ivan Cornejo",
+      "track": "Está Dañada",
+      "first_added_at": null,
+      "additions": [],
+      "liked_observations": [],
+      "playback_observations": [],
+      "removal_events": [
+        {
+          "at": "2026-11-07T00:02:39.599569+00:00",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        }
+      ],
+      "liked_at_add": null,
+      "last_removed_at": "2026-11-07T00:02:39.599569+00:00"
     }
   },
   "coverage": {
@@ -2805,5 +2862,5 @@
       "file_present": false
     }
   },
-  "updated_at": "2026-11-07T00:09:13.948074+00:00"
+  "updated_at": "2026-11-07T00:13:46.621368+00:00"
 }

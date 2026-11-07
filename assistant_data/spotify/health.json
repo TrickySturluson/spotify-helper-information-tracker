@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T18:14:16.179712+00:00",
+  "generated_at": "2026-11-07T00:13:46.664598+00:00",
   "playlists": {
     "total": 58,
     "accessible": 42,
@@ -9,23 +9,23 @@
     "item_count_mismatches": []
   },
   "index": {
-    "unique_tracks": 1881,
-    "unique_artists": 1336
+    "unique_tracks": 1912,
+    "unique_artists": 1363
   },
   "daily_feedback": {
-    "tracks_observed": 60,
+    "tracks_observed": 123,
     "playback_tracker_status": "unknown",
     "playback_tracker_detail": {
       "status": "unknown",
       "reason": "segment_file_missing",
       "segment_count": 0,
       "latest_segment_at": null,
-      "observed_at": "2026-11-05T19:50:05.494242+00:00",
+      "observed_at": "2026-11-07T00:09:13.043757+00:00",
       "file_present": false
     },
     "lastfm_status": "available",
     "liked_songs_status": "observed",
-    "updated_at": "2026-11-06T18:14:16.154032+00:00",
+    "updated_at": "2026-11-07T00:13:46.621368+00:00",
     "segments_file_in_sync_environment": false
   },
   "overall_status": "warning"
