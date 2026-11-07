@@ -91,6 +91,7 @@ jobs:
 # Credentials: Spotify client/refresh token plus a narrowly scoped GitHub App token
 #              that may persist a rotated Spotify refresh-token secret.
 # Safety: Observation/read operations only; does not add, remove or reorder tracks.
+# API: Saved-item lookups percent-encode URIs and batch at the documented 40-URI maximum.
 #         Repository feedback state is written with contents:write.
 # Related: scripts/spotify/spotify_daily_feedback.py, docs/TRICKY_DAILY_CYCLE.md,
 #          docs/WORKFLOWS.md.
