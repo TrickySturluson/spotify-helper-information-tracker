@@ -134,7 +134,7 @@ def query_liked_status(sp, uris):
         result = sp.call(
             "GET",
             "/me/library/contains?uris="
-            + ",".join("spotify:track:" + track_id for track_id in batch),
+            + ",".join(quote("spotify:track:" + track_id, safe="") for track_id in batch),
         )
         if not isinstance(result, list) or len(result) != len(batch):
             raise ValueError(
