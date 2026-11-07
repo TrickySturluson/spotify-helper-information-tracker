@@ -263,6 +263,56 @@ class DailyFeedbackWorkflowTests(unittest.TestCase):
                 os.chdir(original)
         self.assertEqual(feedback["negative_artists"].get("artist", 0), 1)
 
+class DailyLikedSongQueryTests(unittest.TestCase):
+    def test_saved_item_queries_never_exceed_spotify_40_uri_limit(self):
+        from unittest.mock import Mock
+        import spotify_daily_feedback as feedback
+
+        uris = [f"spotify:track:{index:022d}" for index in range(81)]
+        spotify = Mock()
+        spotify.call.side_effect = [[True] * 40, [False] * 40, [True]]
+
+        liked = feedback.query_liked_status(spotify, uris)
+
+        self.assertEqual(len(spotify.call.call_args_list), 3)
+        expected_sizes = [40, 40, 1]
+        for call, expected_size in zip(spotify.call.call_args_list, expected_sizes):
+            method, path = call.args
+            self.assertEqual(method, "GET")
+            values = path.split("?uris=", 1)[1].split(",")
+            self.assertEqual(len(values), expected_size)
+            self.assertTrue(all(value.startswith("spotify:track:") for value in values))
+        self.assertTrue(liked[uris[0]])
+        self.assertFalse(liked[uris[40]])
+        self.assertTrue(liked[uris[80]])
+
+    def test_observe_liked_songs_records_60_tracks_in_40_and_20_batches(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import Mock
+        import spotify_daily_feedback as feedback
+
+        original = feedback.DATA
+        uris = [f"spotify:track:{index:022d}" for index in range(60)]
+        items = [{"uri": uri, "artist": f"Artist {index}", "track": f"Track {index}"} for index, uri in enumerate(uris)]
+        with tempfile.TemporaryDirectory() as directory:
+            feedback.DATA = Path(directory) / "daily_feedback.json"
+            try:
+                feedback.record_additions(items, added_at="2026-11-06T12:00:00+00:00")
+                spotify = Mock()
+                spotify.call.side_effect = [[True] * 40, [False] * 20]
+                result = feedback.observe_liked_songs(spotify, uris, observed_at="2026-11-06T12:01:00+00:00")
+                saved = json.loads(feedback.DATA.read_text(encoding="utf-8"))
+                self.assertEqual(len(result), 60)
+                self.assertTrue(saved["tracks"][uris[0]]["liked_observations"][-1]["liked"])
+                self.assertFalse(saved["tracks"][uris[59]]["liked_observations"][-1]["liked"])
+                self.assertEqual(saved["coverage"]["liked_songs"], "observed")
+                self.assertEqual([len(call.args[1].split("?uris=", 1)[1].split(",")) for call in spotify.call.call_args_list], [40, 20])
+            finally:
+                feedback.DATA = original
+
+
 if __name__ == "__main__":
     unittest.main()
 
