@@ -14,13 +14,12 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 
 ## Required Worker bindings and configuration
 
-The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Replace the canonical Worker host and both callback host placeholders before deployment.
+The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
 
 Non-secret Worker variables:
 
 - GITHUB_OWNER=TrickySturluson
 - BROKER_BASE_URL (canonical HTTPS Worker origin)
-- GITHUB_REPOSITORY=spotify-helper-information-tracker
 - GITHUB_APP_CLIENT_ID
 - GITHUB_APP_REDIRECT_URI (exact Worker URL plus /auth/github/callback)
 - SPOTIFY_CLIENT_ID
@@ -34,7 +33,7 @@ Worker secrets (set with Cloudflare's secret-management interface or Wrangler se
 
 The GitHub App must be installed only on this repository and grant only Actions: write and Secrets: write to the broker. The installation token request further narrows the token to this one repository and those two permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
 
-## OAuth application setup
+## GitHub App and Spotify app setup
 
 - Create one GitHub App, set its user-authorization callback URL to the exact HTTPS Worker URL plus /auth/github/callback, and install it only on this repository.
 - Use the App's client ID/client secret for the browser web-authorization flow and App ID/private key for installation tokens. Do not enable automatic user authorization during installation; the broker starts the flow explicitly with state and PKCE.
@@ -47,7 +46,7 @@ The GitHub App must be installed only on this repository and grant only Actions:
 From a trusted development environment or Cloudflare's Git-connected deployment flow:
 
 1. Create the Worker. Its SQLite-backed Durable Object namespace is created automatically by the Wrangler migration.
-2. Replace the placeholder namespace ID and callback host values.
+2. Replace the Worker host placeholders with the final HTTPS hostname.
 3. Set the non-secret variables and Worker secrets listed above.
 4. Deploy the Worker.
 5. Register the exact Spotify callback URI and GitHub App user-authorization callback URI.
@@ -69,7 +68,7 @@ From a trusted development environment or Cloudflare's Git-connected deployment 
 
 ## Tests
 
-Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping and PKCE challenge generation. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
+Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, workflow concurrency classification, and transactional Durable Object replay/expiry behavior. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
 
 ## Status
 
