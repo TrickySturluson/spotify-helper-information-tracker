@@ -22,7 +22,7 @@ from scripts.music.discovery_ingestion import append_candidates
 STATE = Path(".github/spotify_playlist_manager_state.json")
 OWNER = "TrickySturluson"
 CONTROL_ISSUE_TITLE = "SHIT — Playlist Control"
-REMOVAL_GUARDED_KINDS = {"booze5", "booze10", "booze20", "horror_expansion", "daily"}
+REMOVAL_GUARDED_KINDS = {"booze5", "booze10", "booze20", "horror_expansion", "daily", "poker"}
 
 DAILY_DESCRIPTIONS = [
     "Could be worse. Could be quiet.",
@@ -303,6 +303,7 @@ def main():
         "booze5_preview": {"command", "playlist_id"},
         "booze10_preview": {"command", "playlist_id"},
         "booze20_uri_preview": {"command", "playlist_id", "tracks"},
+        "poker_preview": {"command", "playlist_id"},
         "booze20_resolve_sources": {"command", "sources"},
         "sequence_preview": {"command", "playlist_id"},
         "confirm": {"command", "confirmation"},
@@ -310,7 +311,7 @@ def main():
     }
     if not isinstance(action, str) or action not in allowed or set(command) != allowed[action]:
         fail("Rejected: invalid command or fields.")
-    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze5_preview", "booze10_preview", "booze20_uri_preview", "sequence_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
+    if action in {"lock", "unlock", "preview", "daily_preview", "horror_preview", "inspect", "booze20_preview", "booze5_preview", "booze10_preview", "booze20_uri_preview", "poker_preview", "sequence_preview", "cleanup_on", "cleanup_off", "cleanup_check", "cleanup_run", "health", "enrich"} and not isinstance(command.get("playlist_id"), str):
         fail("Rejected: a playlist_id is required.")
     if action == "confirm" and not isinstance(command.get("confirmation"), str):
         fail("Rejected: confirmation code is required.")
@@ -1076,6 +1077,158 @@ def main():
             lines.extend(f"Already present: {row}" for row in already_present)
             lines.extend(["", "To add these exact new tracks, submit confirm with this one-time code:", confirmation, "The playlist must remain unlocked and unchanged until confirmation."])
             result = "\n".join(lines)
+    elif action == "poker_preview":
+        # Resolve a curated 40-track poker / cards / gambling / casino set.
+        candidates = [
+            ("Motörhead", "Ace of Spades"),
+            ("Lady Gaga", "Poker Face"),
+            ("Kenny Rogers", "The Gambler"),
+            ("AC/DC", "The Jack"),
+            ("Frank Sinatra", "Luck Be a Lady"),
+            ("Elvis Presley", "Viva Las Vegas"),
+            ("Juice Newton", "Queen of Hearts"),
+            ("Bob Seger", "Ramblin' Gamblin' Man"),
+            ("The Rolling Stones", "Tumbling Dice"),
+            ("Rush", "Roll the Bones"),
+            ("Jimmy Eat World", "Big Casino"),
+            ("Wilco", "Casino Queen"),
+            ("The Clash", "The Card Cheat"),
+            ("Grateful Dead", "Deal"),
+            ("Steve Miller Band", "Take the Money and Run"),
+            ("Pink Floyd", "Money"),
+            ("ABBA", "Money, Money, Money"),
+            ("AC/DC", "Moneytalks"),
+            ("Daft Punk", "Get Lucky"),
+            ("Basement Jaxx", "Good Luck"),
+            ("Social Distortion", "Bad Luck"),
+            ("Bonnie Raitt", "Luck of the Draw"),
+            ("Tony Christie", "Las Vegas"),
+            ("Sheryl Crow", "Leaving Las Vegas"),
+            ("The Animals", "The House of the Rising Sun"),
+            ("ABBA", "The Winner Takes It All"),
+            ("Beck", "Loser"),
+            ("M.O.P.", "Ante Up"),
+            ("Zac Efron", "Bet On It"),
+            ("Ray Charles", "Blackjack"),
+            ("Radiohead", "House of Cards"),
+            ("The Allman Brothers Band", "Gamblin' Man"),
+            ("Garth Brooks", "Two of a Kind, Workin' on a Full House"),
+            ("Elvis Presley", "King of the Whole Wide World"),
+            ("The B-52's", "Private Idaho"),
+            ("The Steve Miller Band", "The Joker"),
+            ("Kenny Rogers", "Lady"),
+            ("The O'Jays", "For the Love of Money"),
+            ("Dire Straits", "Money for Nothing"),
+            ("The Beatles", "The Fool on the Hill"),
+        ]
+        pid = command["playlist_id"]
+        p = owned_playlist(sp, pid, me)
+        current = manager.snapshot(sp, p)
+        import spotify_discovery as daily
+        feedback = daily.load_playlist_feedback(current["items"], pid)
+        existing = {item.get("uri") for item in current["items"] if item.get("uri")}
+        def music_key(value):
+            return "".join(ch for ch in str(value or "").casefold() if ch.isalnum())
+        resolved, skipped, already_present = [], [], []
+        def catalog_search(query):
+            return sp.call("GET", "/search?" + query)
+        track_cache = config.setdefault("track_uri_cache", {})
+        for artist, title in candidates:
+            target_artist, target_title = music_key(artist), music_key(title)
+            cache_key = target_artist + "|" + target_title
+            cached = track_cache.get(cache_key)
+            match = None
+            if (isinstance(cached, dict) and isinstance(cached.get("uri"), str)
+                    and cached["uri"].startswith("spotify:track:")
+                    and isinstance(cached.get("name"), str)):
+                match = {
+                    "name": cached["name"], "uri": cached["uri"],
+                    "artists": [{"name": artist}],
+                    "album": {"name": cached.get("album")},
+                    "duration_ms": cached.get("duration_ms"),
+                }
+            else:
+                time.sleep(1.0)
+                query = urllib.parse.urlencode({
+                    "type": "track", "limit": 10,
+                    "q": f'artist:"{artist}" track:"{title}"',
+                })
+                page = catalog_search(query)
+                matches = ((page or {}).get("tracks") or {}).get("items") or []
+                match = next((track for track in matches
+                    if music_key(track.get("name")) == target_title
+                    and any(music_key(a.get("name")) == target_artist for a in (track.get("artists") or []))
+                    and isinstance(track.get("uri"), str)
+                    and track["uri"].startswith("spotify:track:")), None)
+                if match:
+                    track_cache[cache_key] = {
+                        "name": match["name"], "uri": match["uri"],
+                        "album": (match.get("album") or {}).get("name"),
+                        "duration_ms": match.get("duration_ms"),
+                    }
+                    manager.write(STATE, config)
+            if not match:
+                skipped.append(f"{artist} — {title} (no exact Spotify match)")
+                continue
+            if daily.is_playlist_candidate_blocked(artist, match["name"], match["uri"], feedback):
+                skipped.append(f"{artist} — {title} (blocked by playlist removal history)")
+                continue
+            if match["uri"] in existing:
+                already_present.append(f"{artist} — {match['name']}")
+                continue
+            if any(row["uri"] == match["uri"] for row in resolved):
+                skipped.append(f"{artist} — {title} (duplicate)")
+                continue
+            resolved.append({
+                "artist": artist, "track": match["name"], "uri": match["uri"],
+                "album": (match.get("album") or {}).get("name"),
+                "duration_ms": match.get("duration_ms"),
+            })
+        if len(resolved) != 40 or skipped or already_present:
+            result = "\\n".join([
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: BLOCKED — exact 40-track batch not available; nothing staged.",
+                f'Eligible: {len(resolved)}/40 | Already present: {len(already_present)} | Excluded: {len(skipped)}.',
+                "Spotify changes: NONE.",
+                "ELIGIBLE:",
+                *[f"  {row['artist']} — {row['track']} [{row['uri']}]" for row in resolved],
+                "ALREADY PRESENT:", *[f"  {row}" for row in already_present],
+                "EXCLUDED:", *[f"  {row}" for row in skipped],
+            ])
+        else:
+            intake = append_candidates(
+                [{"uri": row["uri"], "artist": row["artist"], "track": row["track"],
+                  "album": row.get("album"), "duration_ms": row.get("duration_ms")} for row in resolved],
+                source="poker_test_recommendation_preview",
+                context={"playlist_id": pid, "playlist_name": p.get("name"), "preview_date": manager.stamp()[:10]},
+            )
+            operations = [{"action": "add", "uris": [row["uri"] for row in resolved]}]
+            confirmation = secrets.token_urlsafe(12)
+            config["pending"] = {
+                "playlist_id": pid, "operations": operations,
+                "snapshot_id": p.get("snapshot_id"), "expected_uris": snapshot_uris(current),
+                "confirmation": confirmation, "kind": "poker",
+                "candidate_tracks": [
+                    {"artist": row["artist"], "title": row["track"], "uri": row["uri"]}
+                    for row in resolved
+                ],
+            }
+            manager.write(STATE, config)
+            manager.audit(event="poker_previewed", playlist_id=pid, added_count=len(resolved),
+                          library_new_candidates=intake["new_candidates"])
+            lines = [
+                f'STAGING REPORT — {p.get("name")} [{pid}]',
+                "STATUS: READY FOR CONFIRMATION",
+                f'Current items: {len(current["items"])} | Staged additions: {len(resolved)}.',
+                "Spotify changes: NONE — confirmation required.",
+                "40 tracks resolved exactly; duplicates and playlist removal-history conflicts: 0.",
+                "",
+            ]
+            lines.extend(f'{index:02d}. {row["artist"]} — {row["track"]} [{row["uri"]}]'
+                         for index, row in enumerate(resolved, 1))
+            lines.extend(["", "One-time confirmation code:", confirmation,
+                          "The playlist must remain unlocked and unchanged until confirmation."])
+            result = "\\n".join(lines)
     elif action == "booze20_resolve_sources":
         # Read exact track URIs from known Spotify albums/playlists; no catalogue search.
         sources = command["sources"]
