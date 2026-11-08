@@ -36,6 +36,13 @@
         "cleanup",
         "undo"
       ]
+    },
+    "4Ccwf3QRr8HfSsK48pTuBI": {
+      "name": "Poker test",
+      "reason": "Explicitly approved by the user for a 40-track poker-themed addition; add-only access.",
+      "permissions": [
+        "add"
+      ]
     }
   },
   "note": "Account ownership and unlock state do not establish permission. Unknown playlists remain read-only. New playlists created by SHIT are registered automatically."
