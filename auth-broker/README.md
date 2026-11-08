@@ -57,7 +57,7 @@ From a trusted development environment or Cloudflare's Git-connected deployment 
 ## Security contract
 
 - GitHub OAuth access tokens are used only in memory to verify the GitHub identity; they are not stored in KV.
-- GitHub and Spotify state values, session IDs and PKCE verifiers are short-lived KV entries and are consumed on callback.
+- GitHub and Spotify state values, session IDs and PKCE verifiers are short-lived Durable Object records and are consumed transactionally on callback. Expired records are removed by the Durable Object alarm.
 - The Spotify refresh token is held only in memory between token exchange and GitHub's encrypted secret update.
 - No token, code, verifier, session ID, private key, or provider response body is logged or returned.
 - Cookies are Secure, HttpOnly, SameSite=Lax and host-only.
