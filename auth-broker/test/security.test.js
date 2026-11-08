@@ -174,3 +174,14 @@ test("Wrangler configuration declares every required public runtime variable", a
     assert.match(config, new RegExp("^" + name + " =", "m"), name + " must be configured");
   }
 });
+
+
+test("broker source exposes only the Spotify refresh secret and read-only verification dispatch", async () => {
+  const source = await readFile(new URL("../src/index.js", import.meta.url), "utf8");
+  assert.match(source, /const SECRET_NAME = "SPOTIFY_REFRESH_TOKEN"/);
+  assert.match(source, /const AUTH_WORKFLOW = "spotify-auth-health-check\.yml"/);
+  assert.match(source, /actions\/secrets\/\$\{SECRET_NAME\}/);
+  assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
+  assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
+  assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
+});
