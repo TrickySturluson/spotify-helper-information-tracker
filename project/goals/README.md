@@ -5,7 +5,7 @@ Each major SHIT objective has its own folder containing its scope, design decisi
 
 ## Cross-project status
 
-**Current repository-wide priority: documentation completion only.** All 12 non-documentation goal workspaces separate a documentation-only next action from the preserved next feature action. Do not treat a future feature action as permission to resume implementation while the Maintainability & Documentation acceptance criteria remain open. See [the current handoff](../NEXT_WORK.md) and [the documentation roadmap](maintainability-documentation/ROADMAP.md).
+**Current coordination priority: Babel documentation completion remains active.** The user has explicitly authorized the Mobile Cloud Operation & Spotify Reauthorization workstream to proceed in parallel; this does not reopen unrelated feature work. Other non-documentation goal workspaces retain their documented feature actions until separately authorized. See [the current handoff](../NEXT_WORK.md), [the documentation roadmap](maintainability-documentation/ROADMAP.md), and [the mobile cloud operation roadmap](mobile-cloud-operation/ROADMAP.md).
 
 See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification blockers across all goal areas. The detailed history belongs in each goal's `ACTIONS.md`.
 
