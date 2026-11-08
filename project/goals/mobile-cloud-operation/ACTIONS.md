@@ -110,3 +110,12 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 
 - Added a cryptographic unit test that generates a temporary RSA keypair, builds a GitHub App JWT using the same PKCS#1 PEM conversion path as production, and verifies the RS256 signature with the public key. The generated key is test-only and never persisted.
 - This specifically tests the private-key parsing/signing code rather than relying only on Wrangler bundle validation. Test run is pending on the latest feature-branch commit.
+
+
+## 2026-11-08 — Restore the mobile-operation documentation contract
+
+- Created PR [#179](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/179) to restore the required goal README after the owner-authored read-only control test (#178) reached the workflow but failed the repository documentation contract. The original failure was the missing `project/goals/mobile-cloud-operation/README.md` on `main`.
+- PR #179's first CI run confirmed the README requirement was repaired and all pre-test checks passed, but the 519-test suite found one remaining broken local link: `OPERATIONS.md` is present on the broker feature branch/PR #176, not on `main` yet.
+- Corrected the README to describe the guide's actual branch/PR status without creating a broken local link. The follow-up test run must pass before PR #179 is considered merge-ready.
+- The full-history Gitleaks check passed on PR #179. No runtime code, credentials, workflow permissions, OAuth settings, playlist locks, snapshots, or playlists were changed.
+- PR #179 remains unmerged pending owner approval. Do not merge automatically.
