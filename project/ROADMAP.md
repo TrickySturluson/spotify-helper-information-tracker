@@ -35,6 +35,7 @@ Maintain a durable, reliable, cloud-operable music intelligence system that comb
 | Library Health & Maintenance | Read-only health, confidence and maintenance previews; guarded repair path | [ROADMAP](goals/library-health-maintenance/ROADMAP.md) |
 | Metadata Freshness | Timestamp/provenance recovery and safe freshness planning | [ROADMAP](goals/metadata-freshness/ROADMAP.md) |
 | Spotify Playability | Market-scoped availability evidence and refresh policy | [ROADMAP](goals/spotify-playability/ROADMAP.md) |
+| Mobile Cloud Operation & Spotify Reauthorization | Phone-based Spotify OAuth bootstrap and PC-independent SHIT control | [ROADMAP](goals/mobile-cloud-operation/ROADMAP.md) |
 | Library Confidence Verification | Identity confidence, duplicate review and evidence-preserving reconciliation | [ROADMAP](goals/library-confidence-verification/ROADMAP.md) |
 
 ## Cross-project priority order
