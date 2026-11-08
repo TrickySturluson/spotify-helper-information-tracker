@@ -114,12 +114,111 @@ async function rateLimit(request, env, route) {
   if (!result.success) throw new BrokerError("Too many attempts.");
 }
 
+function stateStub(env) {
+  if (!env.OAUTH_STATE) throw new BrokerError("Strongly consistent OAuth state storage is not configured.");
+  return env.OAUTH_STATE.get(env.OAUTH_STATE.idFromName("shit-mobile-oauth-state"));
+}
+
+async function stateCall(env, operation, payload) {
+  const result = await stateStub(env).fetch("https://oauth-state.internal/" + operation, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (result.status === 404) return null;
+  if (!result.ok) throw new BrokerError("Secure OAuth state storage failed.");
+  const data = await result.json();
+  return data.value === undefined ? true : data.value;
+}
+
+async function stateGet(env, key) { return stateCall(env, "get", { key }); }
+async function statePut(env, key, value, ttl) { return stateCall(env, "put", { key, value, ttl }); }
+async function stateDelete(env, key) { return stateCall(env, "delete", { key }); }
+async function stateConsume(env, key) { return stateCall(env, "consume", { key }); }
+async function statePutSpotify(env, key, value, activeKey, activeValue, ttl) {
+  return stateCall(env, "put-spotify", { key, value, activeKey, activeValue, ttl });
+}
+async function stateConsumeSpotify(env, key, activeKey, sessionId, expectedState) {
+  return stateCall(env, "consume-spotify", { key, activeKey, sessionId, expectedState });
+}
+
+export class OAuthStateStore {
+  constructor(ctx) { this.ctx = ctx; }
+
+  async scheduleCleanup(expiresAt) {
+    const current = await this.ctx.storage.getAlarm();
+    if (!current || expiresAt < current) await this.ctx.storage.setAlarm(expiresAt);
+  }
+
+  async fetch(request) {
+    if (request.method !== "POST") return new Response("Not found.", { status: 404 });
+    const input = await request.json();
+    const storage = this.ctx.storage;
+    const now = Date.now();
+    const path = new URL(request.url).pathname;
+
+    if (path === "/put" || path === "/put-spotify") {
+      const ttl = Math.max(1, Math.min(Number(input.ttl) || 1, SESSION_TTL));
+      const expiresAt = now + ttl * 1000;
+      await storage.transaction(async (txn) => {
+        await txn.put(input.key, { value: input.value, expiresAt });
+        if (path === "/put-spotify") await txn.put(input.activeKey, { value: input.activeValue, expiresAt });
+      });
+      await this.scheduleCleanup(expiresAt);
+      return Response.json({ ok: true });
+    }
+
+    if (path === "/get") {
+      const record = await storage.get(input.key);
+      if (!record || record.expiresAt <= now) {
+        if (record) await storage.delete(input.key);
+        return Response.json({}, { status: 404 });
+      }
+      return Response.json({ value: record.value });
+    }
+
+    if (path === "/delete") {
+      await storage.delete(input.key);
+      return Response.json({ ok: true });
+    }
+
+    if (path === "/consume" || path === "/consume-spotify") {
+      const value = await storage.transaction(async (txn) => {
+        const record = await txn.get(input.key);
+        if (!record || record.expiresAt <= now) {
+          if (record) await txn.delete(input.key);
+          return null;
+        }
+        if (path === "/consume-spotify") {
+          const active = await txn.get(input.activeKey);
+          if (!active || active.expiresAt <= now || active.value !== input.expectedState || record.value.sessionId !== input.sessionId) return null;
+          await txn.delete(input.activeKey);
+        }
+        await txn.delete(input.key);
+        return record.value;
+      });
+      return value === null ? Response.json({}, { status: 404 }) : Response.json({ value });
+    }
+
+    return new Response("Not found.", { status: 404 });
+  }
+
+  async alarm() {
+    const entries = await this.ctx.storage.list({ prefix: "oauth:" });
+    const now = Date.now();
+    let nextExpiry = null;
+    for (const [key, record] of entries) {
+      if (!record || record.expiresAt <= now) await this.ctx.storage.delete(key);
+      else if (nextExpiry === null || record.expiresAt < nextExpiry) nextExpiry = record.expiresAt;
+    }
+    if (nextExpiry !== null) await this.ctx.storage.setAlarm(nextExpiry);
+  }
+}
 async function getSession(request, env) {
   const id = parseCookies(request.headers.get("Cookie"))["__Host-shit_session"];
   if (!id || !/^[A-Za-z0-9_-]{40,}$/.test(id)) return null;
-  const value = await env.OAUTH_KV.get(`session:${id}`);
-  if (!value) return null;
-  const session = JSON.parse(value);
+  const session = await stateGet(env, `oauth:session:${id}`);
+  if (!session) return null;
   if (!isAuthorizedOwner(session.login)) return null;
   return { id, login: session.login };
 }
@@ -303,10 +402,9 @@ async function githubLoginCallback(request, env, url) {
   if (!state || state !== cookies["__Host-shit_gh_state"] || !code) {
     throw new BrokerError("GitHub sign-in could not be verified. Start again.");
   }
-  const stateKey = `github-state:${state}`;
-  const stateValue = await env.OAUTH_KV.get(stateKey);
-  if (!stateValue) throw new BrokerError("GitHub sign-in expired. Start again.");
-  await env.OAUTH_KV.delete(stateKey);
+  const stateKey = `oauth:github-state:${state}`;
+  const stateValue = await stateConsume(env, stateKey);
+  if (stateValue !== "pending") throw new BrokerError("GitHub sign-in expired. Start again.");
   const tokenData = await exchangeForm("https://github.com/login/oauth/access_token", {
     client_id: env.GITHUB_OAUTH_CLIENT_ID,
     client_secret: env.GITHUB_OAUTH_CLIENT_SECRET,
@@ -328,7 +426,7 @@ async function githubLoginCallback(request, env, url) {
     throw new BrokerError("This GitHub account is not authorized to manage SHIT.");
   }
   const sessionId = randomValue(32);
-  await env.OAUTH_KV.put(`session:${sessionId}`, JSON.stringify({ login: user.login }), { expirationTtl: SESSION_TTL });
+  await statePut(env, `oauth:session:${sessionId}`, { login: user.login }, SESSION_TTL);
   return redirect(new URL("/spotify/start", env.BROKER_BASE_URL).toString(), {
     "Set-Cookie": cookie("__Host-shit_session", sessionId, SESSION_TTL),
   });
@@ -342,12 +440,10 @@ async function spotifyCallback(request, env, url) {
   if (!session || !state || state !== cookies["__Host-shit_spotify_state"] || !code) {
     throw new BrokerError("Spotify authorization could not be verified. Start again.");
   }
-  const key = `spotify-state:${state}`;
-  const stored = await env.OAUTH_KV.get(key);
-  if (!stored) throw new BrokerError("Spotify authorization expired. Start again.");
-  await env.OAUTH_KV.delete(key);
-  const stateData = JSON.parse(stored);
-  if (stateData.sessionId !== session.id) throw new BrokerError("Spotify authorization session mismatch.");
+  const key = `oauth:spotify-state:${state}`;
+  const activeKey = `oauth:spotify-active:${session.id}`;
+  const stateData = await stateConsumeSpotify(env, key, activeKey, session.id, state);
+  if (!stateData) throw new BrokerError("Spotify authorization expired, was replayed, or was superseded. Start again.");
   const githubToken = await installationToken(env);
   await assertNoConcurrentSpotifyJobs(githubToken);
   const tokenData = await exchangeForm("https://accounts.spotify.com/api/token", {
@@ -361,7 +457,7 @@ async function spotifyCallback(request, env, url) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
   const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
-  await env.OAUTH_KV.delete(`session:${session.id}`);
+  await stateDelete(env, `oauth:session:${session.id}`);
   const message = verificationStarted
     ? "Your Spotify authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed."
     : "Your Spotify authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open the Actions page and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.";
@@ -391,7 +487,7 @@ export async function handleRequest(request, env) {
       await rateLimit(request, env, "github-start");
       requireEnv(env, ["GITHUB_OAUTH_CLIENT_ID", "GITHUB_OAUTH_REDIRECT_URI"]);
       const state = randomValue(24);
-      await env.OAUTH_KV.put(`github-state:${state}`, "pending", { expirationTtl: OAUTH_TTL });
+      await statePut(env, `oauth:github-state:${state}`, "pending", OAUTH_TTL);
       const target = new URL("https://github.com/login/oauth/authorize");
       target.search = new URLSearchParams({
         client_id: env.GITHUB_OAUTH_CLIENT_ID,
@@ -421,10 +517,13 @@ export async function handleRequest(request, env) {
       const verifier = randomValue(64);
       const state = randomValue(24);
       const challenge = await pkceChallenge(verifier);
-      await env.OAUTH_KV.put(
-        `spotify-state:${state}`,
-        JSON.stringify({ sessionId: session.id, verifier }),
-        { expirationTtl: OAUTH_TTL },
+      await statePutSpotify(
+        env,
+        `oauth:spotify-state:${state}`,
+        { sessionId: session.id, verifier },
+        `oauth:spotify-active:${session.id}`,
+        state,
+        OAUTH_TTL,
       );
       const target = new URL("https://accounts.spotify.com/authorize");
       target.search = new URLSearchParams({
