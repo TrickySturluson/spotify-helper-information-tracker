@@ -6,6 +6,7 @@ import {
   escapeHtml,
   handleRequest,
   githubAppJwt,
+  assertNoConcurrentSpotifyJobs,
   hasRequiredScopes,
   isAuthorizedOwner,
   OAuthStateStore,
@@ -280,4 +281,41 @@ test("GitHub App JWT builder signs a valid RS256 token from PKCS1 PEM", async ()
     new TextEncoder().encode(parts[0] + "." + parts[1]),
   );
   assert.equal(valid, true);
+});
+
+
+test("workflow preflight checks every active state and blocks queued Spotify work", async () => {
+  const originalFetch = globalThis.fetch;
+  const checked = [];
+  globalThis.fetch = async (url) => {
+    const status = new URL(url).searchParams.get("status");
+    checked.push(status);
+    const queued = status === "queued";
+    return new Response(JSON.stringify({
+      total_count: queued ? 1 : 0,
+      workflow_runs: queued ? [{ path: ".github/workflows/spotify-playlist-manager.yml" }] : [],
+    }), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  try {
+    await assert.rejects(
+      assertNoConcurrentSpotifyJobs("installation-token"),
+      /queued or running/,
+    );
+    assert.deepEqual(checked.sort(), ["in_progress", "pending", "queued", "requested", "waiting"]);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("workflow preflight fails closed when GitHub run data is incomplete", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ total_count: 0 }), { status: 200 });
+  try {
+    await assert.rejects(
+      assertNoConcurrentSpotifyJobs("installation-token"),
+      /Could not safely inspect/,
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
