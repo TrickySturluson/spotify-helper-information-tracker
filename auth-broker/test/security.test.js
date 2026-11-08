@@ -9,6 +9,7 @@ import {
   githubAppJwt,
   assertNoConcurrentSpotifyJobs,
   saveRefreshToken,
+  exchangeForm,
   hasRequiredScopes,
   isAuthorizedOwner,
   OAuthStateStore,
@@ -412,6 +413,58 @@ test("failed GitHub secret update stops before auth-health dispatch", async () =
     );
     assert.equal(mock.calls.savedTokens.length, 0);
     assert.equal(mock.calls.dispatches.length, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+
+test("OAuth provider code exchange posts PKCE fields in the form body, not the URL", async () => {
+  const originalFetch = globalThis.fetch;
+  let captured;
+  globalThis.fetch = async (url, options) => {
+    captured = { url: String(url), options };
+    return new Response(JSON.stringify({ access_token: "short-lived", refresh_token: "rotated-refresh-token", scope: "user-read-private" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+  try {
+    const result = await exchangeForm("https://accounts.spotify.com/api/token", {
+      client_id: "spotify-client-id",
+      grant_type: "authorization_code",
+      code: "one-time-authorization-code",
+      redirect_uri: "https://broker.example.workers.dev/spotify/callback",
+      code_verifier: "pkce-verifier",
+    });
+    assert.equal(captured.url, "https://accounts.spotify.com/api/token");
+    assert.equal(captured.options.method, "POST");
+    assert.equal(captured.options.headers["Content-Type"], "application/x-www-form-urlencoded");
+    const body = new URLSearchParams(captured.options.body);
+    assert.equal(body.get("code"), "one-time-authorization-code");
+    assert.equal(body.get("code_verifier"), "pkce-verifier");
+    assert.equal(body.get("redirect_uri"), "https://broker.example.workers.dev/spotify/callback");
+    assert.equal(result.refresh_token, "rotated-refresh-token");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("OAuth provider rejection returns a generic error without provider response details", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ error: "invalid_grant", error_description: "sensitive provider detail" }), {
+    status: 400,
+    headers: { "Content-Type": "application/json" },
+  });
+  try {
+    await assert.rejects(
+      exchangeForm("https://accounts.spotify.com/api/token", { grant_type: "authorization_code" }),
+      (error) => {
+        assert.match(error.message, /authorization provider rejected/);
+        assert.doesNotMatch(error.message, /invalid_grant|sensitive provider detail/);
+        return true;
+      },
+    );
   } finally {
     globalThis.fetch = originalFetch;
   }
