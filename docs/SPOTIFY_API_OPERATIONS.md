@@ -54,7 +54,7 @@ If the App token is unavailable, cloud refresh fails closed **before contacting 
 
 ### Mobile reauthorization replacement — planned, not deployed
 
-The current Codespaces/local callback procedure below is the legacy recovery path. The active workstream is [Mobile Cloud Operation & Spotify Reauthorization](../project/goals/mobile-cloud-operation/ROADMAP.md). The intended replacement is a managed HTTPS OAuth broker that authenticates the GitHub owner, uses Spotify PKCE, writes the refresh token directly to the repository Actions secret through a repository-scoped GitHub App, and triggers only the read-only auth-health workflow. This broker is not implemented or deployed yet. Until end-to-end verification is complete, do not claim mobile reauthorization is available. Never paste a refresh token into ChatGPT, an issue, a commit, or a log.
+The current Codespaces/local callback procedure below is the legacy recovery path. The active workstream is [Mobile Cloud Operation & Spotify Reauthorization](../project/goals/mobile-cloud-operation/ROADMAP.md). The broker source implementation is in PR #176: a managed HTTPS Worker using GitHub App web authorization + PKCE, Spotify PKCE, strongly consistent Durable Object state, and a repository-scoped GitHub App to write the refresh token directly to the repository Actions secret before triggering only the read-only auth-health workflow. The broker is not deployed or end-to-end verified yet. Until that verification is complete, do not claim mobile reauthorization is available. Never paste a refresh token into ChatGPT, an issue, a commit, or a log.
 
 ### Initial reauthorization (legacy one-time recovery)
 
