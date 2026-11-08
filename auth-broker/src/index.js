@@ -225,8 +225,10 @@ async function githubAppJwt(env) {
 
 async function installationToken(env) {
   const jwt = await githubAppJwt(env);
+  const installation = await githubApi(`/repos/${OWNER}/${REPOSITORY}/installation`, jwt);
+  if (!installation?.id) throw new BrokerError("GitHub App is not installed on the SHIT repository.");
   const token = await githubApi(
-    `/app/installations/${encodeURIComponent(env.GITHUB_APP_INSTALLATION_ID)}/access_tokens`,
+    `/app/installations/${installation.id}/access_tokens`,
     jwt,
     "POST",
     {
@@ -238,12 +240,34 @@ async function installationToken(env) {
   return token.token;
 }
 
+async function assertNoConcurrentSpotifyJobs(token) {
+  const runs = await githubApi(
+    `/repos/${OWNER}/${REPOSITORY}/actions/runs?status=in_progress&per_page=100`,
+    token,
+  );
+  if ((runs?.total_count || 0) > 100) {
+    throw new BrokerError("Too many active GitHub Actions runs to safely authorize. Wait and retry.");
+  }
+  const active = (runs?.workflow_runs || []).filter((run) => {
+    const path = String(run.path || "");
+    const name = String(run.name || "");
+    const spotifyWorkflow = path.startsWith(".github/workflows/") &&
+      (path.includes("spotify") || /great-migration|update\.yml|enrich-music-metadata|acoustic-metadata-enrichment|backfill-music-durations/i.test(path));
+    const brokerWorkflow = /mobile-auth-broker-tests|deploy-mobile-auth-broker/i.test(path);
+    return spotifyWorkflow && !brokerWorkflow && name !== "SHIT — Spotify Auth Health Check";
+  });
+  if (active.length) {
+    throw new BrokerError("A Spotify-related GitHub workflow is already running. Wait for it to finish before reauthorizing.");
+  }
+}
+
 async function saveRefreshToken(env, refreshToken) {
   if (typeof refreshToken !== "string" || refreshToken.length < 20) {
     throw new BrokerError("Spotify did not return a usable refresh token.");
   }
   await sodium.ready;
   const token = await installationToken(env);
+  await assertNoConcurrentSpotifyJobs(token);
   const path = `/repos/${OWNER}/${REPOSITORY}`;
   const publicKey = await githubApi(`${path}/actions/secrets/public-key`, token);
   const key = sodium.from_base64(publicKey.key, sodium.base64_variants.ORIGINAL);
@@ -406,7 +430,7 @@ export async function handleRequest(request, env) {
 
     if (url.pathname === "/spotify/callback" && request.method === "GET") {
       await rateLimit(request, env, "spotify-callback");
-      requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_INSTALLATION_ID", "GITHUB_APP_PRIVATE_KEY"]);
+      requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_PRIVATE_KEY"]);
       const result = await spotifyCallback(request, env, url);
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_spotify_state"));
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_session"));
