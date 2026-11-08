@@ -16,7 +16,7 @@ on:
 
 concurrency:
   group: mobile-auth-broker-tests-${{ github.event.pull_request.head.ref || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -55,6 +55,30 @@ jobs:
             --var "GITHUB_APP_REDIRECT_URI:https://broker.example.workers.dev/auth/github/callback" \
             --var "SPOTIFY_CLIENT_ID:example-spotify-client-id" \
             --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback"
+
+  commit-lockfile:
+    needs: test
+    if: github.event_name == 'push' && github.actor == 'TrickySturluson' && github.ref == 'refs/heads/feature/mobile-spotify-reauth-plan'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v7.0.2
+        with:
+          name: mobile-auth-broker-package-lock-${{ github.run_id }}
+          path: auth-broker
+      - name: Commit only the generated broker lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add auth-broker/package-lock.json
+          if git diff --cached --quiet; then
+            echo "Broker lockfile is already current."
+          else
+            git commit -m "Lock audited mobile auth broker dependencies"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
 
 # FILE OVERVIEW
 # Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
