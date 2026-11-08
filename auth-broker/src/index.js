@@ -262,12 +262,12 @@ async function assertNoConcurrentSpotifyJobs(token) {
   }
 }
 
-async function saveRefreshToken(env, refreshToken) {
+async function saveRefreshToken(env, refreshToken, existingToken = null) {
   if (typeof refreshToken !== "string" || refreshToken.length < 20) {
     throw new BrokerError("Spotify did not return a usable refresh token.");
   }
   await sodium.ready;
-  const token = await installationToken(env);
+  const token = existingToken || await installationToken(env);
   await assertNoConcurrentSpotifyJobs(token);
   const path = `/repos/${OWNER}/${REPOSITORY}`;
   const publicKey = await githubApi(`${path}/actions/secrets/public-key`, token);
@@ -348,6 +348,8 @@ async function spotifyCallback(request, env, url) {
   await env.OAUTH_KV.delete(key);
   const stateData = JSON.parse(stored);
   if (stateData.sessionId !== session.id) throw new BrokerError("Spotify authorization session mismatch.");
+  const githubToken = await installationToken(env);
+  await assertNoConcurrentSpotifyJobs(githubToken);
   const tokenData = await exchangeForm("https://accounts.spotify.com/api/token", {
     client_id: env.SPOTIFY_CLIENT_ID,
     grant_type: "authorization_code",
@@ -358,7 +360,7 @@ async function spotifyCallback(request, env, url) {
   if (!hasRequiredScopes(tokenData.scope)) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
-  const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token);
+  const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
   await env.OAUTH_KV.delete(`session:${session.id}`);
   const message = verificationStarted
     ? "Your Spotify authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed."
@@ -410,9 +412,12 @@ export async function handleRequest(request, env) {
 
     if (url.pathname === "/spotify/start" && request.method === "GET") {
       await rateLimit(request, env, "spotify-start");
-      requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI"]);
+      requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_PRIVATE_KEY"]);
       const session = await getSession(request, env);
       if (!session) return redirect("/auth/github/start");
+      // Do not send the user into Spotify consent while a Spotify workflow is active.
+      const githubToken = await installationToken(env);
+      await assertNoConcurrentSpotifyJobs(githubToken);
       const verifier = randomValue(64);
       const state = randomValue(24);
       const challenge = await pkceChallenge(verifier);
