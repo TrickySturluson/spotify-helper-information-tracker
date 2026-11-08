@@ -1,6 +1,6 @@
 # Mobile Cloud Operation & Spotify Reauthorization — Roadmap
 
-**Status:** Design and repository audit started; no broker deployed.  
+**Status:** Broker source implementation and automated tests underway; no broker deployed.  
 **Priority:** Active, explicitly authorized by the user on 2026-11-08.
 
 ## Problem
@@ -34,14 +34,15 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 
 ### M1 — Broker implementation
 
-- [ ] Implement HTTPS broker with GitHub App web authorization + PKCE owner authentication.
-- [ ] Implement short-lived server-side OAuth state and PKCE verifier storage.
-- [ ] Implement Spotify authorization-code exchange and exact scope validation.
-- [ ] Implement GitHub App JWT and short-lived installation-token handling.
-- [ ] Encrypt the refresh token with GitHub's Actions secret public key and update only SPOTIFY_REFRESH_TOKEN.
-- [ ] Dispatch only spotify-auth-health-check.yml after confirmed secret persistence.
-- [ ] Add CSRF/state validation, replay protection, rate limiting, secure cookies, security headers and strict log redaction.
-- [ ] Add tests for owner denial, state mismatch/expiry/replay, token exchange failures, GitHub encryption/API failures and fail-closed behavior.
+- [x] Implement HTTPS broker source with GitHub App web authorization + PKCE owner authentication.
+- [x] Implement short-lived server-side OAuth state and PKCE verifier storage in a strongly consistent SQLite-backed Durable Object.
+- [x] Implement Spotify authorization-code exchange and exact scope validation.
+- [x] Implement GitHub App JWT, installation discovery and short-lived repository-scoped installation-token handling.
+- [x] Encrypt the refresh token with GitHub's Actions secret public key and update only SPOTIFY_REFRESH_TOKEN.
+- [x] Dispatch only spotify-auth-health-check.yml after confirmed secret persistence.
+- [x] Implement owner allowlisting, one-time state/replay protection, preflight checks for active Spotify workflows, rate limiting, secure cookies, security headers and strict log redaction.
+- [x] Add unit tests for owner allow/deny, scopes, cookies, HTML escaping, PKCE, canonical host, concurrency classification and Durable Object replay/expiry.
+- [ ] Add integration/failure tests for provider token exchange, GitHub encryption/API errors, fail-closed persistence and dispatch outcomes.
 
 ### M2 — Deployment pipeline and setup
 
@@ -71,6 +72,14 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - [ ] Keep explicit user confirmation for every consequential playlist write.
 - [ ] Document operations ChatGPT can execute through connected GitHub capabilities versus steps requiring a user tap in GitHub.
 - [ ] Test the full flow with the user's PC off.
+
+## Implementation notes
+
+- Cloudflare Workers is the selected deployment target. SQLite-backed Durable Objects were chosen instead of ordinary Workers KV because OAuth state consumption and the active-flow marker need strongly consistent transactional behavior. Cloudflare documents SQLite Durable Objects on Free and Paid plans, subject to plan quotas and storage billing; do not assume unlimited zero-cost usage.
+- The rate-limiting binding is an approximate per-location abuse throttle, not a security boundary. Owner authentication, PKCE, session binding and transactional one-time state provide the actual controls.
+- A dedicated broker GitHub App is expected, installed only on this repository with Actions: write and Secrets: write. The app's web authorization flow (with PKCE) verifies the GitHub owner; the installation token is separately narrowed to this repository and those two permissions.
+- The broker checks for active Spotify-related Actions runs before consent, before code exchange and before secret publication. This reduces token-rotation races but is not an atomic lock against a new workflow starting between checks; complete live testing in a quiet maintenance window.
+- Automated unit tests and Wrangler dry-run validation are being added to the PR. No external account, app, secret, redirect URI or playlist has been changed.
 
 ## Acceptance criteria
 
