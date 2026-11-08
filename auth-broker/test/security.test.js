@@ -10,6 +10,7 @@ import {
   isSpotifyWorkflowPath,
   parseCookies,
   pkceChallenge,
+  verifySpotifyIdentity,
 } from "../src/index.js";
 
 test("GitHub owner check is case-insensitive but rejects other identities", () => {
@@ -184,4 +185,32 @@ test("broker source exposes only the Spotify refresh secret and read-only verifi
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
   assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
+});
+
+
+test("Spotify account identity is verified before secret persistence", async () => {
+  let calledUrl = "";
+  let authorization = "";
+  const identity = await verifySpotifyIdentity("short-lived-access-token", async (url, options) => {
+    calledUrl = url;
+    authorization = options.headers.Authorization;
+    return new Response(JSON.stringify({ id: "spotify-account-id", display_name: "Example Listener" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  });
+  assert.equal(calledUrl, "https://api.spotify.com/v1/me");
+  assert.equal(authorization, "Bearer short-lived-access-token");
+  assert.deepEqual(identity, { id: "spotify-account-id", displayName: "Example Listener" });
+});
+
+test("Spotify identity verification fails closed on non-200 or missing identity", async () => {
+  await assert.rejects(
+    verifySpotifyIdentity("access-token", async () => new Response("", { status: 401 })),
+    /Spotify account verification failed/,
+  );
+  await assert.rejects(
+    verifySpotifyIdentity("access-token", async () => new Response(JSON.stringify({ display_name: "No ID" }), { status: 200 })),
+    /verifiable account identity/,
+  );
 });
