@@ -74,8 +74,6 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-<badge>Implementation and automated tests complete</badge>
-
 The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. **The Worker is not deployed and live mobile authorization is not available yet.** Deployment is blocked on external account provisioning, not unfinished broker code:
 
 - Create the Cloudflare Worker and configure its canonical `workers.dev` URL.
