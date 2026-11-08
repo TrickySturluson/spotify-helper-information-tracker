@@ -81,16 +81,16 @@ The existing owner-only issue workflow already allows ChatGPT to operate SHIT fr
 - Exact issue title: `SHIT — Playlist Control`.
 - The open issue body contains one exact JSON command object; sender must be `TrickySturluson`.
 - The workflow runs remotely in GitHub Actions, serializes control commands, persists state/audit, and comments the result.
-- The supported command list and procedure are being maintained in the mobile-operation workstream; the detailed `OPERATIONS.md` guide is part of PR #176 and is not yet present on `main`.
+- The supported command list and procedure are documented in [OPERATIONS.md](OPERATIONS.md), added alongside the broker reconciliation for review.
 - ChatGPT can use GitHub issue/file/workflow tools to prepare, stage, inspect and verify. It cannot access an interactive Codespaces terminal or read Actions secret values.
 - Playlist mutations still require the manager's lock/unlock, preview, explicit confirmation, snapshot, audit and live read-back safeguards.
 
 ## Current implementation status
 
 - PR #179 merged on 2026-11-08 (merge commit `e8aafcc`), restoring this required README. The updated repository test run passed all 519 tests; the full-history Gitleaks scan also passed.
-- The latest reviewed PR #176 feature-branch head passed its lockfile check, test suite and full-history Gitleaks check. Its branch still needs reconciliation with `main` before merge.
-- PR #177's original cleanup branch diverged after PR #179 merged. This follow-up cleanup PR removes the same three accidentally published scaffold files from a fresh branch based on current `main`; do not merge the stale PR #177.
-- `auth-broker/package-lock.json` and the tested broker implementation remain on PR #176's feature branch; the Worker is not deployed.
+- PR #181 was merged after explicit approval as `b0b280ff7b0b6d71fcbcf8fa3ded2d0b0f7b8a22`; it removed the three accidental scaffold files and recorded the verified control-channel status.
+- The original broker PR #176 was 7 commits behind and divergent from the new `main`, so its source and tests have been copied to a fresh branch from current `main` rather than force-merging old history. The reconciled branch is `feature/mobile-spotify-reauth-reconciled`.
+- The broker remains source-only and undeployed. Its 24-test suite, dependency audit, Wrangler dry-run and full-history Gitleaks must be rerun on the reconciled branch before merge.
 - No Cloudflare Worker, dedicated GitHub App, Spotify callback, Actions secret or playlist has been changed. Phone OAuth is not available until the external setup and end-to-end checks are complete.
 
 ## Latest mobile control verification — 2026-11-08
@@ -99,4 +99,4 @@ The existing owner-only issue workflow already allows ChatGPT to operate SHIT fr
 - Its updated repository test workflow passed all 519 tests; its full-history Gitleaks scan passed.
 - A new read-only `status` control issue (#180) was created by the GitHub connector as `TrickySturluson`, and the owner-gated workflow reached the manager. The manager's Spotify API preflight failed with `invalid_grant`; this confirms the stored refresh token is still expired/revoked/invalid after rotation. Do not repeat status or playlist commands until reauthorization succeeds.
 - The workflow preserved a backup artifact and completed its state/audit persistence steps. No playlist mutation, unlock, or Spotify playlist write occurred. Issue #180 was closed after the run to prevent accidental retriggering.
-- The broker is still undeployed and no Spotify secret was changed. Next steps remain: merge the current-main cleanup PR after owner approval, reconcile/revalidate the broker PR, complete the external Cloudflare/GitHub App/Spotify setup, authorize on phone, and pass read-only auth-health verification before any playlist write.
+- The broker is still undeployed and no Spotify secret was changed. Next steps remain: finish review and CI on the reconciled broker PR, obtain separate merge approval, complete the external Cloudflare/GitHub App/Spotify setup, authorize on phone, and pass read-only auth-health verification before any playlist write.
