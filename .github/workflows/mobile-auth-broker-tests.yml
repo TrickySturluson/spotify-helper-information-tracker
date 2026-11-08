@@ -83,6 +83,8 @@ jobs:
             echo "Broker lockfile is already current."
           else
             git commit -m "Lock audited mobile auth broker dependencies"
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
