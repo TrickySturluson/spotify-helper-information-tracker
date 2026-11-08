@@ -83,3 +83,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Updated the deployment guide to pre-create the Worker in the Cloudflare dashboard, then deploy updates to that existing Worker. Cloudflare's current Workers authorization guide says deploying an existing Worker needs Workers Editor, while creating a new Worker through Wrangler needs Workers Admin; pre-creation avoids granting Admin to the CI token. Source: https://developers.cloudflare.com/workers/authorization/.
 - Cloudflare currently documents SQLite-backed Durable Objects as available on Free and Paid plans. Free-tier limits include 5 million row reads/day, 100,000 row writes/day and 5 GB SQLite storage; usage beyond included allocations may incur charges. Sources: https://developers.cloudflare.com/durable-objects/platform/limits/ and https://developers.cloudflare.com/workers/platform/pricing/.
 - Deployment remains disabled until the Worker exists and the user configures a Worker-scoped Cloudflare API token, repository secret CLOUDFLARE_API_TOKEN, repository variable CLOUDFLARE_ACCOUNT_ID, GitHub App secrets in Cloudflare, and exact callback URLs. No Cloudflare account or external setting has been changed.
+
+
+## 2026-11-08 — Preserve existing SHIT GitHub App permissions
+
+- Inspected the existing Spotify operations guide: the current SHIT manager App is documented as repository-scoped with `Secrets: write` only, used to persist Spotify refresh-token rotations.
+- Kept that App unchanged. The mobile broker requires workflow dispatch as well as secret publication, so it will use a separate dedicated broker App with only repository `Actions: write` and `Secrets: write`. This avoids silently broadening the existing operational credential.
+- Updated broker setup instructions and roadmap to make the separation explicit. No App, permission, installation, repository secret or external setting has been changed.
