@@ -41,12 +41,12 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - [x] Encrypt the refresh token with GitHub's Actions secret public key and update only SPOTIFY_REFRESH_TOKEN.
 - [x] Dispatch only spotify-auth-health-check.yml after confirmed secret persistence.
 - [x] Implement owner allowlisting, one-time state/replay protection, preflight checks for active Spotify workflows, rate limiting, secure cookies, security headers and strict log redaction.
-- [x] Add unit tests for owner allow/deny, scopes, cookies, HTML escaping, PKCE, canonical host, concurrency classification and Durable Object replay/expiry.
+- [x] Add unit tests for owner allow/deny, scopes, cookies, HTML escaping, PKCE, canonical host, fail-closed workflow concurrency classification, Durable Object replay/expiry and required runtime configuration.
 - [ ] Add integration/failure tests for provider token exchange, GitHub encryption/API errors, fail-closed persistence and dispatch outcomes.
 
 ### M2 — Deployment pipeline and setup
 
-- [ ] Add infrastructure configuration and reproducible deployment workflow.
+- [x] Add infrastructure configuration and reproducible deployment workflow.
 - [ ] Document external secret/variable names only.
 - [ ] Deploy to a managed HTTPS runtime and register the exact Spotify callback URI.
 - [ ] Install the minimal repository-scoped GitHub App.
