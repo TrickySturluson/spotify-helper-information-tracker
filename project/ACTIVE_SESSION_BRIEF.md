@@ -7,7 +7,7 @@
 - Current repository refresh token was rejected with `invalid_grant` in run #42448656654. Do not repeatedly retry it.
 - Proposed secure bridge: managed HTTPS OAuth broker; authenticate the GitHub owner; use short-lived server-side PKCE state; exchange Spotify code server-side; write refresh token directly to the repository Actions secret via a repository-scoped GitHub App; then dispatch only the read-only auth-health workflow.
 - Broker must never expose/store the refresh token beyond immediate secret publication, never unlock playlists, and never call playlist-write endpoints. Existing SHIT playlist safety gates remain unchanged.
-- Workstream plan: `project/goals/mobile-cloud-operation/` (README, ROADMAP, ACTIONS). Current feature branch: `feature/mobile-spotify-reauth-plan`. No runtime code, workflow, secret, permission, Spotify app setting, or playlist has been changed yet.
+- Workstream plan: `project/goals/mobile-cloud-operation/` (README, ROADMAP, ACTIONS). Current feature branch: `feature/mobile-spotify-reauth-plan`. Broker source, unit tests, Durable Object config and owner-triggered deployment workflow now exist in PR #176; the broker is not deployed. No external secrets, GitHub App permissions/installations, Spotify settings, repository secrets or playlists have been changed.
 - Buddy's latest recorded run is 2026-11-07; the 2026-11-08 Eastern daily check is pending and has not been independently reviewed.
 
 
