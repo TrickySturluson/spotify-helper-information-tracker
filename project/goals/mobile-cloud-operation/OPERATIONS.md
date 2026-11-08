@@ -63,7 +63,7 @@ Example explicit unlock payload:
 
 1. Read the current manager state, audit and relevant playlist data before choosing a command.
 2. Preserve the user's exact scope. Do not infer unlock, removal, replacement, reorder or confirmation permission from a request to preview or stage.
-3. Use the GitHub connector to create a new control issue or update the active control issue body with the exact JSON payload. Never put tokens or other credentials in the issue.
+3. Use the GitHub connector to create a new control issue or update the active control issue body with the exact JSON payload. Then verify the Actions event sender is `TrickySturluson`; if the connector's event identity is not the owner, stop and have the owner create/edit the issue in GitHub. Never weaken the owner check or put tokens/credentials in the issue.
 4. Inspect the resulting Actions run and job logs. Do not treat a green trigger or queued run as successful execution.
 5. Read the issue result comment and persisted manager state/audit. For a preview, report the exact staged changes and confirmation code.
 6. Obtain explicit user approval for the exact consequential write. Only then submit the `confirm` command with the issued confirmation code.
@@ -72,7 +72,7 @@ Example explicit unlock payload:
 ## What ChatGPT can do through the connected GitHub integration
 
 - Read repository files, manager state, audit, workflow definitions and issue history.
-- Create or update owner-authored control issues using the exact JSON schema.
+- Create or update control issues using the exact JSON schema when the connected GitHub identity is authorized to act as the repository owner. The event sender identity must be verified before relying on the workflow.
 - Read workflow runs, jobs and supported logs; inspect issue comments and persisted results.
 - Update documentation and code on feature branches and prepare pull requests.
 - Verify repository-side evidence after a workflow completes.
@@ -80,6 +80,7 @@ Example explicit unlock payload:
 ## What still requires a user action or is not exposed
 
 - ChatGPT does not have an interactive Codespaces terminal through the current GitHub connector.
+- The connected GitHub identity's ability to satisfy the workflow's `sender.login == TrickySturluson` gate has not yet been end-to-end verified; test with a read-only `status` command after Spotify reauthorization. If it fails, the owner must submit the issue manually from GitHub rather than weakening the gate.
 - ChatGPT cannot read the Spotify refresh token or GitHub Actions secret values.
 - Initial broker deployment requires the user to configure the Cloudflare Worker, dedicated GitHub App, exact Spotify/GitHub callback URLs and runtime secrets in their provider dashboards.
 - The user must complete GitHub and Spotify OAuth consent in the phone browser. ChatGPT can then monitor and verify the read-only cloud health workflow.
