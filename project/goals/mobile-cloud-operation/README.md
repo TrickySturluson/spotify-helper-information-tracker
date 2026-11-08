@@ -55,9 +55,9 @@ A phone-only setup after initial infrastructure bootstrap still requires owner c
 
 - A managed HTTPS runtime such as Cloudflare Workers.
 - A repository-scoped GitHub App with minimal Secrets: write and Actions: write permissions.
-- A GitHub OAuth App or equivalent owner-authentication mechanism.
+- The same repository-scoped GitHub App's web authorization flow for owner authentication; no separate OAuth App is required.
 - Exact HTTPS callback registration in Spotify Developer Dashboard.
-- Runtime secrets for the GitHub OAuth client secret and GitHub App private key, plus non-secret IDs/installation metadata.
+- Runtime secrets for the GitHub App client secret and private key, plus non-secret App/client IDs.
 - A deployment credential in GitHub Actions if deployment is automated.
 
 Do not claim phone operation is available until the broker is deployed, secrets are configured, owner-only access is tested, OAuth completes, the GitHub secret is updated, and read-only verification succeeds.
