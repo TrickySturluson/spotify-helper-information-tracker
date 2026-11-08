@@ -47,12 +47,12 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 ### M2 — Deployment pipeline and setup
 
 - [x] Add infrastructure configuration and reproducible deployment workflow.
-- [ ] Document external secret/variable names only.
+- [x] Document external secret/variable names only.
 - [ ] Deploy to a managed HTTPS runtime and register the exact Spotify callback URI.
 - [ ] Install the minimal repository-scoped GitHub App.
 - [ ] Configure GitHub App web authorization and runtime secrets.
-- [ ] Confirm no persistent Spotify refresh-token storage exists in the broker.
-- [ ] Add a mobile-first authorization page with clear account/permission explanation and no third-party scripts.
+- [x] Confirm no persistent Spotify refresh-token storage exists in the broker (static boundary test and code review; refresh token exists only in the callback request's memory until encrypted GitHub secret publication).
+- [x] Add a mobile-first authorization landing/completion page with clear account/permission explanation and no third-party scripts.
 
 ### M3 — Verification and integration
 
@@ -79,7 +79,7 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - The rate-limiting binding is an approximate per-location abuse throttle, not a security boundary. Owner authentication, PKCE, session binding and transactional one-time state provide the actual controls.
 - A dedicated broker GitHub App, separate from the existing SHIT manager secret-writer App, is required. Install it only on this repository with Actions: write and Secrets: write; do not broaden the existing manager App's Secrets: write-only permissions. The app's web authorization flow (with PKCE) verifies the GitHub owner; the installation token is separately narrowed to this repository and those two permissions.
 - The broker checks for active Spotify-related Actions runs before consent, before code exchange and before secret publication. This reduces token-rotation races but is not an atomic lock against a new workflow starting between checks; complete live testing in a quiet maintenance window.
-- Automated unit tests and Wrangler dry-run validation are being added to the PR. No external account, app, secret, redirect URI or playlist has been changed.
+- Automated unit tests and Wrangler dry-run validation are being added to the PR. Deployment variables are injected from GitHub repository variables with Wrangler `--var`, avoiding drift from dashboard-managed variables. No external account, app, secret, redirect URI or playlist has been changed.
 
 ## Acceptance criteria
 
