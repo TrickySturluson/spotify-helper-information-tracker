@@ -74,4 +74,15 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-The broker implementation is under development and is not deployed. Do not use it for live authorization until the full security review, tests, external app configuration and deployment verification are complete.
+<badge>Implementation and automated tests complete</badge>
+
+The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. **The Worker is not deployed and live mobile authorization is not available yet.** Deployment is blocked on external account provisioning, not unfinished broker code:
+
+- Create the Cloudflare Worker and configure its canonical `workers.dev` URL.
+- Create and install the dedicated broker GitHub App with only repository Actions:write and Secrets:write.
+- Register the exact GitHub and Spotify callback URLs.
+- Add the required repository Actions variables and the Cloudflare deployment token.
+- Set the GitHub App client secret and private key as Cloudflare Worker secrets.
+- Run the owner-only deployment workflow, then complete mobile OAuth and verify the read-only auth health check.
+
+No Spotify refresh token has been replaced by this broker until its OAuth flow succeeds. Do not use it for live authorization until deployment and the end-to-end acceptance checks above pass. The broker never unlocks or edits playlists.
