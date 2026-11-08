@@ -364,17 +364,26 @@ export function isSpotifyWorkflowPath(path) {
   return !SAFE_CONCURRENT_WORKFLOWS.has(workflowFile.toLowerCase());
 }
 
-async function assertNoConcurrentSpotifyJobs(token) {
-  const runs = await githubApi(
-    `/repos/${OWNER}/${REPOSITORY}/actions/runs?status=in_progress&per_page=100`,
-    token,
-  );
-  if ((runs?.total_count || 0) > 100) {
-    throw new BrokerError("Too many active GitHub Actions runs to safely authorize. Wait and retry.");
+export async function assertNoConcurrentSpotifyJobs(token) {
+  const activeStatuses = ["queued", "in_progress", "requested", "waiting", "pending"];
+  const responses = await Promise.all(activeStatuses.map((status) =>
+    githubApi(
+      `/repos/${OWNER}/${REPOSITORY}/actions/runs?status=${status}&per_page=100`,
+      token,
+    )
+  ));
+  const active = [];
+  for (const runs of responses) {
+    if (!runs || typeof runs.total_count !== "number" || !Array.isArray(runs.workflow_runs)) {
+      throw new BrokerError("Could not safely inspect active GitHub Actions runs; authorization was stopped.");
+    }
+    if (runs.total_count > 100) {
+      throw new BrokerError("Too many active GitHub Actions runs to safely authorize. Wait and retry.");
+    }
+    active.push(...runs.workflow_runs.filter((run) => isSpotifyWorkflowPath(run.path)));
   }
-  const active = (runs?.workflow_runs || []).filter((run) => isSpotifyWorkflowPath(run.path));
   if (active.length) {
-    throw new BrokerError("A Spotify-related GitHub workflow is already running. Wait for it to finish before reauthorizing.");
+    throw new BrokerError("A Spotify-related GitHub workflow is queued or running. Wait for it to finish before reauthorizing.");
   }
 }
 
