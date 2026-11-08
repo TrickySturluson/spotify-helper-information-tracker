@@ -1,3 +1,7 @@
+# Current mobile infrastructure work — 2026-11-08
+
+The user explicitly authorized building a phone-first Spotify reauthorization path and a Codespaces-independent SHIT operating model. The active workstream is [Mobile Cloud Operation & Spotify Reauthorization](goals/mobile-cloud-operation/ROADMAP.md). The current stored Spotify refresh token was rejected with `invalid_grant` in playlist-control run [#42448656654](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42448656654); do not retry it repeatedly. Existing GitHub Actions playlist control and automatic token-rotation persistence already exist. The remaining gap is initial OAuth callback delivery and safe bootstrap into repository Secrets. The selected design direction is a managed HTTPS OAuth broker using Spotify PKCE, GitHub owner authentication, a repository-scoped GitHub App, and the existing read-only auth-health workflow. No broker has been implemented/deployed yet; no secrets, permissions, Spotify settings or playlists have been changed. Continue with M0 security/deployment audit, then implement and test the broker on the current feature branch.
+
 # Current policy overlay — 2026-11-07
 
 > This section supersedes older handoff language below that says Babel is the sole active SHIT workstream or that ChatGPT must wait for user review/merge for every documentation update. The authoritative rules are in [AGENTS.md](../AGENTS.md), [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../docs/BABEL_CHATGPT_BUDDY.md).
