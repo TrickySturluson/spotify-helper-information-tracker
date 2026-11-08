@@ -5,6 +5,12 @@ on:
     paths:
       - "auth-broker/**"
       - ".github/workflows/mobile-auth-broker-tests.yml"
+  push:
+    branches:
+      - "feature/**"
+    paths:
+      - "auth-broker/**"
+      - ".github/workflows/mobile-auth-broker-tests.yml"
   workflow_dispatch:
 
 permissions:
