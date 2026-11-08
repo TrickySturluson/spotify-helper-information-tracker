@@ -37,7 +37,14 @@ jobs:
       - name: Run broker security unit tests
         run: npm test
       - name: Validate Worker bundle and Wrangler configuration without deploying
-        run: npx wrangler deploy --dry-run
+        run: |
+          npx wrangler deploy --dry-run \
+            --var "BROKER_BASE_URL:https://broker.example.workers.dev" \
+            --var "GITHUB_APP_CLIENT_ID:example-client-id" \
+            --var "GITHUB_APP_ID:123456" \
+            --var "GITHUB_APP_REDIRECT_URI:https://broker.example.workers.dev/auth/github/callback" \
+            --var "SPOTIFY_CLIENT_ID:example-spotify-client-id" \
+            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback"
 
 # FILE OVERVIEW
 # Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
