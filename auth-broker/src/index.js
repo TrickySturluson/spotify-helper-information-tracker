@@ -378,6 +378,24 @@ async function assertNoConcurrentSpotifyJobs(token) {
   }
 }
 
+export async function verifySpotifyIdentity(accessToken, fetchImpl = fetch) {
+  if (typeof accessToken !== "string" || !accessToken) {
+    throw new BrokerError("Spotify did not issue a usable access token.");
+  }
+  const result = await fetchImpl("https://api.spotify.com/v1/me", {
+    headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
+  });
+  if (!result.ok) throw new BrokerError("Spotify account verification failed; no credential was saved.");
+  const profile = await result.json();
+  if (!profile || typeof profile.id !== "string" || !profile.id) {
+    throw new BrokerError("Spotify did not return a verifiable account identity; no credential was saved.");
+  }
+  return {
+    id: profile.id,
+    displayName: typeof profile.display_name === "string" ? profile.display_name : "",
+  };
+}
+
 async function saveRefreshToken(env, refreshToken, existingToken = null) {
   if (typeof refreshToken !== "string" || refreshToken.length < 20) {
     throw new BrokerError("Spotify did not return a usable refresh token.");
@@ -474,11 +492,12 @@ async function spotifyCallback(request, env, url) {
   if (!hasRequiredScopes(tokenData.scope)) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
+  const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
   const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
   await stateDelete(env, `oauth:session:${session.id}`);
   const message = verificationStarted
-    ? "Your Spotify authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed."
-    : "Your Spotify authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open the Actions page and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.";
+    ? `Spotify account verified: ${spotifyIdentity.displayName || "Spotify user"} (ID ${spotifyIdentity.id}). Your authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
+    : `Spotify account verified: ${spotifyIdentity.displayName || "Spotify user"} (ID ${spotifyIdentity.id}). Your authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open the Actions page and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
   return page(
     "Spotify authorization saved",
     message,
