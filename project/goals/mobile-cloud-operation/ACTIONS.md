@@ -60,3 +60,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The PR remains #176; no secrets, external account settings, Spotify redirect registrations, GitHub App installations, live OAuth sessions, or playlists have been changed.
 
 - After switching Cloudflare rate-limit keys from client IPs to per-session (post-login) and route-wide (pre-login) identifiers, broker unit tests and Wrangler dry-run passed again in run #42450832707. This avoids false throttling for users behind shared mobile carrier IPs. The latest full-history Gitleaks scan is running as #42450865632.
+
+
+## 2026-11-08 — Branch-targeting correction
+
+- Detected that three file updates had landed on `main` rather than the feature branch: `auth-broker/README.md`, `auth-broker/src/index.js`, and `auth-broker/wrangler.toml`. No Worker deployment, OAuth credential, GitHub secret, permission change, Spotify setting or playlist operation resulted.
+- Opened corrective revert PR [#177](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/177), deleting only those three files from `main`. PR #177 is mergeable; it has not been merged. Owner should merge #177 before the full operational PR #176 is reconciled/rechecked.
+- Full-history Gitleaks scan passed on the complete broker source/configuration branch in run [#42450865632](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42450865632). Broker unit tests and Wrangler dry-run passed in [#42450832707](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42450832707).
+- PR #176 remains open and not currently mergeable while `main` contains the three prematurely published files. Do not merge #176 until PR #177 is merged and #176 is refreshed/reconciled.
