@@ -1,9 +1,11 @@
 import test from "node:test";
+import { generateKeyPairSync } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import {
   escapeHtml,
   handleRequest,
+  githubAppJwt,
   hasRequiredScopes,
   isAuthorizedOwner,
   OAuthStateStore,
@@ -245,4 +247,37 @@ test("clean completion URL consumes one-time non-secret authorization summary", 
 
   const replay = await handleRequest(new Request("https://trusted.example/complete?result=" + resultId), env);
   assert.match(await replay.text(), /expired or was already used/);
+});
+
+
+test("GitHub App JWT builder signs a valid RS256 token from PKCS1 PEM", async () => {
+  const { privateKey, publicKey } = generateKeyPairSync("rsa", {
+    modulusLength: 2048,
+    publicKeyEncoding: { type: "spki", format: "pem" },
+    privateKeyEncoding: { type: "pkcs1", format: "pem" },
+  });
+  const jwt = await githubAppJwt({ GITHUB_APP_ID: "123456", GITHUB_APP_PRIVATE_KEY: privateKey });
+  const parts = jwt.split(".");
+  assert.equal(parts.length, 3);
+  const header = JSON.parse(Buffer.from(parts[0], "base64url").toString("utf8"));
+  const payload = JSON.parse(Buffer.from(parts[1], "base64url").toString("utf8"));
+  assert.deepEqual(header, { alg: "RS256", typ: "JWT" });
+  assert.equal(payload.iss, "123456");
+  assert.ok(payload.exp > payload.iat);
+
+  const publicDer = Buffer.from(publicKey.replace(/-----BEGIN PUBLIC KEY-----|-----END PUBLIC KEY-----|\\s/g, ""), "base64");
+  const verifyKey = await crypto.subtle.importKey(
+    "spki",
+    publicDer,
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["verify"],
+  );
+  const valid = await crypto.subtle.verify(
+    "RSASSA-PKCS1-v1_5",
+    verifyKey,
+    Buffer.from(parts[2], "base64url"),
+    new TextEncoder().encode(parts[0] + "." + parts[1]),
+  );
+  assert.equal(valid, true);
 });
