@@ -10,11 +10,11 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 4. The broker obtains a short-lived installation token from a GitHub App restricted to this repository. It checks for active Spotify-related Actions runs before replacing the credential and refuses to race an in-flight Spotify job.
 5. The broker encrypts the Spotify refresh token using GitHub's repository Actions secret public key and updates only SPOTIFY_REFRESH_TOKEN.
 6. Only after the secret update succeeds does it dispatch spotify-auth-health-check.yml. This workflow verifies authentication and does not edit playlists.
-7. The browser receives only status and a link to the auth-health workflow. The refresh token is never returned or stored in KV.
+7. The browser receives only status and a link to the auth-health workflow. The refresh token is never returned or stored in the Durable Object state store.
 
 ## Required Worker bindings and configuration
 
-Create one Cloudflare Workers KV namespace and bind it as OAUTH_KV. Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Replace the KV namespace placeholder and both callback host placeholders before deployment.
+The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Replace the canonical Worker host and both callback host placeholders before deployment.
 
 Non-secret Worker variables:
 
@@ -45,7 +45,7 @@ The GitHub App must be installed only on this repository and grant only Actions:
 
 From a trusted development environment or Cloudflare's Git-connected deployment flow:
 
-1. Create the Worker and KV namespace.
+1. Create the Worker. Its SQLite-backed Durable Object namespace is created automatically by the Wrangler migration.
 2. Replace the placeholder namespace ID and callback host values.
 3. Set the non-secret variables and Worker secrets listed above.
 4. Deploy the Worker.
@@ -56,7 +56,7 @@ From a trusted development environment or Cloudflare's Git-connected deployment 
 
 ## Security contract
 
-- GitHub OAuth access tokens are used only in memory to verify the GitHub identity; they are not stored in KV.
+- GitHub OAuth access tokens are used only in memory to verify the GitHub identity; they are not stored. Only short-lived state, PKCE verifier and session metadata are stored in the strongly consistent Durable Object.
 - GitHub and Spotify state values, session IDs and PKCE verifiers are short-lived Durable Object records and are consumed transactionally on callback. Expired records are removed by the Durable Object alarm.
 - The Spotify refresh token is held only in memory between token exchange and GitHub's encrypted secret update.
 - No token, code, verifier, session ID, private key, or provider response body is logged or returned.
