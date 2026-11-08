@@ -43,6 +43,7 @@ jobs:
             fi
           done
           case "$BROKER_BASE_URL" in
+            https://*/*) echo "::error::BROKER_BASE_URL must be an HTTPS origin with no path or trailing slash."; exit 1 ;;
             https://*) ;;
             *) echo "::error::BROKER_BASE_URL must use HTTPS."; exit 1 ;;
           esac
