@@ -41,7 +41,7 @@ The broker must:
 ## Security boundaries
 
 - The broker is an authentication bootstrap, not a second playlist manager.
-- The existing GitHub issue-command workflow is the mobile control plane for playlist operations. It accepts owner-authored JSON in an open issue titled `SHIT — Playlist Control`; ChatGPT can create/update the issue and inspect Actions runs through the GitHub connector. The user does not need Codespaces or a local terminal.
+- The existing GitHub issue-command workflow is the mobile control plane for playlist operations. It accepts owner-authored JSON in an open issue titled `SHIT — Playlist Control`; ChatGPT can create/update the issue and inspect Actions runs through the GitHub connector if the resulting event sender is the repository owner. Verify that identity with a read-only status command after reauthorization; if it is not the owner, the user must submit the issue manually. The user does not need Codespaces or a local terminal.
 - GitHub identity and Spotify identity are distinct; verify both and report the authenticated Spotify account through the read-only workflow.
 - Use PKCE; do not introduce a Spotify client secret if the app is a public client.
 - Restrict the GitHub App to this repository. Request only Secrets: write and Actions: write for the broker; do not request Contents, Administration, or broad account permissions.
