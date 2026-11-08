@@ -104,3 +104,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Changed the Spotify callback to redirect immediately to a clean completion URL after the code is exchanged and the secret is saved. The one-time authorization code/state no longer remains in the final browser address bar.
 - The completion URL uses a random one-time handle to retrieve a 120-second Durable Object record containing only the Spotify account identity and verification-dispatch status. The record is consumed on first display; it contains no access or refresh token.
 - Added tests for completion identity rendering, expiry/replay rejection and one-time consumption. Updated the broker security guide. OAuth code exchange, GitHub secret update and workflow dispatch remain unchanged.
+
+
+## 2026-11-08 — Expanded active-workflow race prevention
+
+- Expanded the Spotify workflow preflight from only `in_progress` to all five non-completed GitHub Actions statuses: `queued`, `in_progress`, `requested`, `waiting` and `pending`. A queued Spotify workflow can now block reauthorization before it begins refreshing the old token.
+- The broker now fails closed if any status response is malformed or reports more than 100 active runs. Added tests that assert all five statuses are queried, queued Spotify work blocks, and incomplete API data blocks.
+- This is grounded in GitHub's current workflow-runs API status enumeration: https://docs.github.com/en/rest/actions/workflow-runs.
