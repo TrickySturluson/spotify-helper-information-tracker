@@ -5,6 +5,7 @@ on:
     paths:
       - "auth-broker/**"
       - ".github/workflows/mobile-auth-broker-tests.yml"
+      - ".github/workflows/deploy-mobile-auth-broker.yml"
   push:
     branches:
       - "feature/**"
