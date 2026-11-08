@@ -18,8 +18,8 @@ Codespaces and local checkouts become optional developer tools, not requirements
 - The playlist manager uses Spotify Authorization Code with PKCE. Its callback server binds port 8888 and is tied to a local/Codespaces runtime.
 - SPOTIFY_REFRESH_TOKEN is the cloud credential source of truth. Automatic refresh-token rotation is already persisted through a GitHub App token.
 - The manual Spotify auth-health workflow performs a read-only authentication check and can persist a rotated token.
-- Playlist-control run [#42448656654](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42448656654) failed because Spotify rejected the stored credential with invalid_grant. Repeated retries cannot repair it.
-- The GitHub connector does not provide an interactive Codespaces terminal or direct Actions-secret access to ChatGPT. A read-only `status` request created through the connector was authored as `TrickySturluson` and successfully triggered the owner-gated workflow (issue #178); command execution was then blocked by a pre-existing documentation-contract failure on `main`.
+- Playlist-control run [#42448656654](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42448656654) and the post-documentation-fix read-only status run [#42458239670](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42458239670) both reached Spotify and were rejected with `invalid_grant`. Repeated retries cannot repair this credential; complete the mobile reauthorization path before any playlist operation.
+- The GitHub connector can create owner-authored control issues as `TrickySturluson` and trigger the owner-gated workflow without Codespaces. Issue #178 first proved the identity/trigger path but hit a documentation test failure. After PR #179 restored the README and all 519 repository tests passed, issue #180 reached the manager; its read-only status command then failed only because Spotify rejected the stored refresh token.
 
 ## Proposed architecture
 
@@ -41,7 +41,7 @@ The broker must:
 ## Security boundaries
 
 - The broker is an authentication bootstrap, not a second playlist manager.
-- The existing GitHub issue-command workflow is the mobile control plane for playlist operations. It accepts owner-authored JSON in an open issue titled `SHIT — Playlist Control`; ChatGPT can create/update the issue and inspect Actions runs through the GitHub connector. This was verified on 2026-11-08: connector-created issue #178 was authored as `TrickySturluson` and passed the workflow's owner-sender gate. The `status` command itself did not execute because the workflow's full test suite exposed a missing `README.md` in this goal directory on `main`; see the action log and issue #178. The user does not need Codespaces or a local terminal.
+- The existing GitHub issue-command workflow is the mobile control plane for playlist operations. It accepts owner-authored JSON in an open issue titled `SHIT — Playlist Control`; ChatGPT can create/update the issue and inspect Actions runs through the GitHub connector. This was verified on 2026-11-08: issue #178 proved owner identity and trigger; after PR #179 merged, issue #180 reached the manager and executed the read-only status path until Spotify returned `invalid_grant`. See the action log. The user does not need Codespaces or a local terminal.
 - GitHub identity and Spotify identity are distinct; verify both and report the authenticated Spotify account through the read-only workflow.
 - Use PKCE; do not introduce a Spotify client secret if the app is a public client.
 - Restrict the GitHub App to this repository. Request only Secrets: write and Actions: write for the broker; do not request Contents, Administration, or broad account permissions.
@@ -87,8 +87,16 @@ The existing owner-only issue workflow already allows ChatGPT to operate SHIT fr
 
 ## Current implementation status
 
-- Broker validation on the feature branch previously passed 24 tests, `npm ci`, high-severity npm audit, Wrangler dry-run and full-history Gitleaks; the latest feature-branch security checks must be confirmed before merge. PR #179 restores this required README on `main`. Its first test run reached 519 tests (518 passed) and exposed a second documentation-contract issue: this README linked to `OPERATIONS.md`, which exists on PR #176 but is not yet on `main`. The premature local link has been removed; rerun the suite before merge.
-- `auth-broker/package-lock.json` is committed.
-- Full-history Gitleaks scans passed on earlier branch revisions; the newest documentation-only scan is running.
-- PR #176 contains the broker implementation. PR #177 is a prerequisite cleanup of the initial scaffold accidentally committed to `main`; resolve it before merging #176.
+- PR #179 merged on 2026-11-08 (merge commit `e8aafcc`), restoring this required README. The updated repository test run passed all 519 tests; the full-history Gitleaks scan also passed.
+- The latest reviewed PR #176 feature-branch head passed its lockfile check, test suite and full-history Gitleaks check. Its branch still needs reconciliation with `main` before merge.
+- PR #177's original cleanup branch diverged after PR #179 merged. This follow-up cleanup PR removes the same three accidentally published scaffold files from a fresh branch based on current `main`; do not merge the stale PR #177.
+- `auth-broker/package-lock.json` and the tested broker implementation remain on PR #176's feature branch; the Worker is not deployed.
 - No Cloudflare Worker, dedicated GitHub App, Spotify callback, Actions secret or playlist has been changed. Phone OAuth is not available until the external setup and end-to-end checks are complete.
+
+## Latest mobile control verification — 2026-11-08
+
+- PR #179 was merged after explicit owner approval. Merge commit: `e8aafccfa5465911d661bb128e13578ed312303b`.
+- Its updated repository test workflow passed all 519 tests; its full-history Gitleaks scan passed.
+- A new read-only `status` control issue (#180) was created by the GitHub connector as `TrickySturluson`, and the owner-gated workflow reached the manager. The manager's Spotify API preflight failed with `invalid_grant`; this confirms the stored refresh token is still expired/revoked/invalid after rotation. Do not repeat status or playlist commands until reauthorization succeeds.
+- The workflow preserved a backup artifact and completed its state/audit persistence steps. No playlist mutation, unlock, or Spotify playlist write occurred. Issue #180 was closed after the run to prevent accidental retriggering.
+- The broker is still undeployed and no Spotify secret was changed. Next steps remain: merge the current-main cleanup PR after owner approval, reconcile/revalidate the broker PR, complete the external Cloudflare/GitHub App/Spotify setup, authorize on phone, and pass read-only auth-health verification before any playlist write.
