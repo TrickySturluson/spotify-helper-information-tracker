@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   escapeHtml,
+  handleRequest,
   hasRequiredScopes,
   isAuthorizedOwner,
   parseCookies,
@@ -47,4 +48,13 @@ test("PKCE challenge is SHA-256 base64url without padding", async () => {
     await pkceChallenge("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"),
     "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM",
   );
+});
+
+
+test("broker rejects requests sent to a non-canonical host", async () => {
+  const result = await handleRequest(
+    new Request("https://attacker.example/"),
+    { BROKER_BASE_URL: "https://trusted.example" },
+  );
+  assert.equal(result.status, 400);
 });
