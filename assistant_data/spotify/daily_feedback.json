@@ -3876,11 +3876,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-08T11:00:52.289582+00:00"
+      "lastfm_observed_at": "2026-11-08T11:00:52.289582+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:4gyCAjlJc23N510msOtq3U": {
       "uri": "spotify:track:4gyCAjlJc23N510msOtq3U",
@@ -4051,11 +4059,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-08T11:00:52.289588+00:00"
+      "lastfm_observed_at": "2026-11-08T11:00:52.289588+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:2gqTknJNepaQJpOl54zLUo": {
       "uri": "spotify:track:2gqTknJNepaQJpOl54zLUo",
@@ -4076,11 +4092,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-08T11:00:52.289589+00:00"
+      "lastfm_observed_at": "2026-11-08T11:00:52.289589+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:4gS8ME5WHf7KrcQSI4MU8H": {
       "uri": "spotify:track:4gS8ME5WHf7KrcQSI4MU8H",
@@ -4161,11 +4185,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-08T11:00:52.289592+00:00"
+      "lastfm_observed_at": "2026-11-08T11:00:52.289592+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:77FSmplFEEoyDMTu4xSm56": {
       "uri": "spotify:track:77FSmplFEEoyDMTu4xSm56",
@@ -4186,11 +4218,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-08T11:00:52.289593+00:00"
+      "lastfm_observed_at": "2026-11-08T11:00:52.289593+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:6uUBVBs7h8o7OITdJW8F2u": {
       "uri": "spotify:track:6uUBVBs7h8o7OITdJW8F2u",
@@ -4331,11 +4371,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-07T10:52:02.906618+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-08T11:00:52.289599+00:00"
+      "lastfm_observed_at": "2026-11-08T11:00:52.289599+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:3bdO4r8zKFUruFwtqORbaW": {
       "uri": "spotify:track:3bdO4r8zKFUruFwtqORbaW",
@@ -6851,5 +6899,5 @@
       "file_present": false
     }
   },
-  "updated_at": "2026-11-08T11:00:52.289702+00:00"
+  "updated_at": "2026-11-08T13:40:33.723767+00:00"
 }
