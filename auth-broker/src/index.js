@@ -160,9 +160,9 @@ export class OAuthStateStore {
     if (path === "/put" || path === "/put-spotify") {
       const ttl = Math.max(1, Math.min(Number(input.ttl) || 1, SESSION_TTL));
       const expiresAt = now + ttl * 1000;
-      await storage.transaction(async (txn) => {
-        await txn.put(input.key, { value: input.value, expiresAt });
-        if (path === "/put-spotify") await txn.put(input.activeKey, { value: input.activeValue, expiresAt });
+      await storage.transaction(async () => {
+        await storage.put(input.key, { value: input.value, expiresAt });
+        if (path === "/put-spotify") await storage.put(input.activeKey, { value: input.activeValue, expiresAt });
       });
       await this.scheduleCleanup(expiresAt);
       return Response.json({ ok: true });
@@ -183,18 +183,18 @@ export class OAuthStateStore {
     }
 
     if (path === "/consume" || path === "/consume-spotify") {
-      const value = await storage.transaction(async (txn) => {
-        const record = await txn.get(input.key);
+      const value = await storage.transaction(async () => {
+        const record = await storage.get(input.key);
         if (!record || record.expiresAt <= now) {
-          if (record) await txn.delete(input.key);
+          if (record) await storage.delete(input.key);
           return null;
         }
         if (path === "/consume-spotify") {
-          const active = await txn.get(input.activeKey);
+          const active = await storage.get(input.activeKey);
           if (!active || active.expiresAt <= now || active.value !== input.expectedState || record.value.sessionId !== input.sessionId) return null;
-          await txn.delete(input.activeKey);
+          await storage.delete(input.activeKey);
         }
-        await txn.delete(input.key);
+        await storage.delete(input.key);
         return record.value;
       });
       return value === null ? Response.json({}, { status: 404 }) : Response.json({ value });
