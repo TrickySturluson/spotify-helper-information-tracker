@@ -372,7 +372,8 @@ export async function handleRequest(request, env) {
   const url = new URL(request.url);
   try {
     requireEnv(env, ["BROKER_BASE_URL"]);
-    if (url.origin !== new URL(env.BROKER_BASE_URL).origin) {
+    const canonicalOrigin = new URL(env.BROKER_BASE_URL);
+    if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
     if (url.pathname === "/" && request.method === "GET") {
