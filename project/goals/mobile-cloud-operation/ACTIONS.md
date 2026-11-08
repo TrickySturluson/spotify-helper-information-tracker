@@ -90,3 +90,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Inspected the existing Spotify operations guide: the current SHIT manager App is documented as repository-scoped with `Secrets: write` only, used to persist Spotify refresh-token rotations.
 - Kept that App unchanged. The mobile broker requires workflow dispatch as well as secret publication, so it will use a separate dedicated broker App with only repository `Actions: write` and `Secrets: write`. This avoids silently broadening the existing operational credential.
 - Updated broker setup instructions and roadmap to make the separation explicit. No App, permission, installation, repository secret or external setting has been changed.
+
+
+## 2026-11-08 — Spotify account identity preflight
+
+- Added a server-side Spotify `GET /v1/me` check immediately after the authorization-code exchange and before writing the refresh token to GitHub. If Spotify identity cannot be verified, secret persistence stops.
+- The completion page now displays the authenticated Spotify display name and account ID, allowing the owner to notice if the wrong Spotify account was authorized. No identity is stored in the broker's Durable Object.
+- Added unit tests for successful identity retrieval and fail-closed handling of HTTP errors/missing IDs. Updated broker guide and roadmap.
