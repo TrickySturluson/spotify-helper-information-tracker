@@ -1,6 +1,6 @@
 # Mobile Cloud Operation & Spotify Reauthorization — Roadmap
 
-**Status:** Broker source implementation and automated tests underway; no broker deployed.  
+**Status:** Broker source implementation is complete in review PR #182; CI is rerunning on the reconciled branch. No broker is deployed.  
 **Priority:** Active, explicitly authorized by the user on 2026-11-08.
 
 ## Problem
@@ -42,17 +42,17 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - [x] Dispatch only spotify-auth-health-check.yml after confirmed secret persistence.
 - [x] Implement owner allowlisting, one-time state/replay protection, preflight checks for active Spotify workflows, rate limiting, secure cookies, security headers and strict log redaction.
 - [x] Add unit tests for owner allow/deny, scopes, cookies, HTML escaping, PKCE, canonical host, fail-closed workflow concurrency classification, Durable Object replay/expiry and required runtime configuration.
-- [ ] Add integration/failure tests for provider token exchange, GitHub encryption/API errors, fail-closed persistence and dispatch outcomes.
+- [x] Add mocked integration/failure tests for provider token exchange, GitHub encryption/API errors, fail-closed persistence and dispatch outcomes (24 broker tests on the previously reviewed head; rerun on PR #182).
 
 ### M2 — Deployment pipeline and setup
 
 - [x] Add infrastructure configuration and reproducible deployment workflow.
-- [ ] Document external secret/variable names only.
+- [x] Document external secret/variable names only; keep values out of repository documentation.
 - [ ] Deploy to a managed HTTPS runtime and register the exact Spotify callback URI.
 - [ ] Install the minimal repository-scoped GitHub App.
 - [ ] Configure GitHub App web authorization and runtime secrets.
-- [ ] Confirm no persistent Spotify refresh-token storage exists in the broker.
-- [ ] Add a mobile-first authorization page with clear account/permission explanation and no third-party scripts.
+- [x] Confirm no persistent Spotify refresh-token storage exists in the broker through source review and regression tests.
+- [x] Add a mobile-first authorization page with clear account/permission explanation and no third-party scripts.
 
 ### M3 — Verification and integration
 
@@ -67,10 +67,10 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 
 ### M4 — Mobile SHIT operation quality
 
-- [ ] Provide a simple mobile entry point for supported SHIT operations using the existing GitHub issue/workflow control plane.
-- [ ] Ensure ChatGPT can prepare, stage, inspect and verify through supported GitHub tools without terminal access.
+- [x] Provide a simple mobile entry point for supported SHIT operations using the existing GitHub issue/workflow control plane.
+- [x] Verify ChatGPT can prepare, stage, inspect and verify through supported GitHub tools without terminal access; owner-authored read-only status reached the manager in issue #180.
 - [ ] Keep explicit user confirmation for every consequential playlist write.
-- [ ] Document operations ChatGPT can execute through connected GitHub capabilities versus steps requiring a user tap in GitHub.
+- [x] Document operations ChatGPT can execute through connected GitHub capabilities versus steps requiring a user tap in GitHub in OPERATIONS.md.
 - [ ] Test the full flow with the user's PC off.
 
 ## Implementation notes
@@ -79,7 +79,8 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - The rate-limiting binding is an approximate per-location abuse throttle, not a security boundary. Owner authentication, PKCE, session binding and transactional one-time state provide the actual controls.
 - A dedicated broker GitHub App, separate from the existing SHIT manager secret-writer App, is required. Install it only on this repository with Actions: write and Secrets: write; do not broaden the existing manager App's Secrets: write-only permissions. The app's web authorization flow (with PKCE) verifies the GitHub owner; the installation token is separately narrowed to this repository and those two permissions.
 - The broker checks for active Spotify-related Actions runs before consent, before code exchange and before secret publication. This reduces token-rotation races but is not an atomic lock against a new workflow starting between checks; complete live testing in a quiet maintenance window.
-- Automated unit tests and Wrangler dry-run validation are being added to the PR. No external account, app, secret, redirect URI or playlist has been changed.
+- The previous reviewed broker head `1d38979a801ae3b5a8b635537f46f931f7048c9e` passed the 24-test broker suite, `npm audit --audit-level=high`, Wrangler dry-run, lockfile verification and full-history Gitleaks. PR #182 is rerunning the broker suite, dependency audit, Wrangler dry-run, 519-test repository suite and full-history Gitleaks after reconciliation. Passing unit/CI checks do not prove external OAuth or deployment.
+- No external account, app, secret, redirect URI or playlist has been changed.
 
 ## Acceptance criteria
 
@@ -95,4 +96,12 @@ Complete only when a user can reauthorize from a phone browser without Codespace
 
 ## Next action
 
-Complete M0 by verifying repository security/branch rules and selecting the least-privilege managed deployment path. Then implement and test the broker on a feature branch. Do not retry the invalid Spotify credential until a new token has been securely installed.
+Complete review/CI for PR #182, obtain separate explicit approval before merging it, then perform the owner-side Cloudflare/GitHub App/Spotify setup and deploy only after a separate readiness review. Complete mobile OAuth and two independent read-only auth-health checks before any playlist command. Do not retry the invalid Spotify credential until the broker is deployed and the new token is securely installed.
+
+## Reconciliation status — 2026-11-08
+
+- PR #181 was merged as `b0b280ff7b0b6d71fcbcf8fa3ded2d0b0f7b8a22` after explicit approval; its 519-test suite and full-history Gitleaks scan passed.
+- The old broker PR #176 was 7 commits behind/divergent. Its reviewed broker implementation was copied onto a fresh branch based on the new `main`; PR [#182](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/182) is open, ahead 17 commits and behind 0 at the latest recorded comparison. Do not merge without separate explicit owner approval.
+- CI on the reconciled PR must finish successfully. The workflow catalogue, docs index, goal index and current-main mobile operation history are included in the PR; the prior PR #176 docs were not blindly copied over the newer PR #181 status.
+- Known design limitation: active Spotify workflow checks are repeated but are not an atomic lock against a new workflow starting after the final check. Schedule first OAuth in a quiet maintenance window; do not weaken fail-closed behavior.
+- No Worker deployment, external app configuration, callback registration, credential change or playlist operation has occurred. Spotify `invalid_grant` remains the live blocker.
