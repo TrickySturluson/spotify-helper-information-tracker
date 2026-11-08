@@ -24,3 +24,6 @@ new_sqlite_classes = ["OAuthStateStore"]
 name = "AUTH_RATE_LIMITER"
 namespace_id = "20261108"
 simple = { limit = 20, period = 60 }
+
+[observability]
+enabled = false
