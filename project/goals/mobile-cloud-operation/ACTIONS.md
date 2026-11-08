@@ -134,3 +134,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The owner-only CI lockfile job successfully downloaded the generated artifact, rebased its lockfile-only commit onto the latest feature branch, and pushed commit `fd73165834c0870eb6cf4e5ac202414f2dbd934b`.
 - `auth-broker/package-lock.json` is now present (lockfile v3; 50,252 characters). The manifest pins libsodium-wrappers 0.8.4 and Wrangler 4.158.0. The preceding test run passed 18/18 tests, the high-severity npm audit and Wrangler dry-run; the next owner push will exercise the committed lockfile through `npm ci`.
 - A failed earlier lockfile push was due to the branch moving after the runner checkout; the job now fetches and rebases before pushing. A previous action-reference typo was corrected to `actions/download-artifact@v8.0.2`.
+
+
+## 2026-11-08 — Mocked OAuth and secret-persistence integration tests added
+
+- Expanded the broker suite from 18 to 23 tests. New tests exercise the Spotify Authorization Code + PKCE form exchange, generic/redacted provider failures, GitHub Actions public-key sealed-box encryption/decryption, exact secret payload shape, read-only health-workflow dispatch, dispatch failure after secret persistence, and fail-closed behavior when secret publication fails.
+- The GitHub API is mocked; the tests do not contact Spotify/GitHub, write repository secrets, or change playlists. They verify the actual encryption/decryption round trip using a generated test-only sodium keypair.
+- Source/test changes are on the feature branch and a fresh CI run is pending. The previous 18-test run passed with npm ci, high-severity dependency audit and Wrangler dry-run; latest full-history Gitleaks scan on the docs-updated branch passed.
