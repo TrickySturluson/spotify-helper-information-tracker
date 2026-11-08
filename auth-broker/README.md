@@ -68,7 +68,7 @@ From a trusted development environment or Cloudflare's Git-connected deployment 
 
 ## Tests
 
-Run `npm ci` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping and PKCE challenge generation. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
+Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping and PKCE challenge generation. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
 
 ## Status
 
