@@ -214,3 +214,35 @@ test("Spotify identity verification fails closed on non-200 or missing identity"
     /verifiable account identity/,
   );
 });
+
+
+test("clean completion URL consumes one-time non-secret authorization summary", async () => {
+  const storage = new MemoryDurableStorage();
+  const store = new OAuthStateStore({ storage });
+  const resultId = "abcdefghijklmnopqrstuvwxyzABCDEF";
+  await callStateStore(store, "/put", {
+    key: "oauth:result:" + resultId,
+    value: {
+      spotifyIdentity: { id: "spotify-id-123", displayName: "Example Listener" },
+      verificationStarted: true,
+    },
+    ttl: 120,
+  });
+  const env = {
+    BROKER_BASE_URL: "https://trusted.example",
+    OAUTH_STATE: {
+      idFromName: () => "state",
+      get: () => ({ fetch: (request) => store.fetch(request) }),
+    },
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+  };
+  const first = await handleRequest(new Request("https://trusted.example/complete?result=" + resultId), env);
+  const body = await first.text();
+  assert.equal(first.status, 200);
+  assert.match(body, /Example Listener/);
+  assert.match(body, /spotify-id-123/);
+  assert.match(body, /read-only authentication check/);
+
+  const replay = await handleRequest(new Request("https://trusted.example/complete?result=" + resultId), env);
+  assert.match(await replay.text(), /expired or was already used/);
+});
