@@ -1,5 +1,16 @@
 # Active SHIT Session Brief
 
+## Mobile cloud operation — 2026-11-08
+
+- User explicitly authorized building a phone-first Spotify reauthorization path and a Codespaces-independent SHIT operation model.
+- Baseline confirmed: manager OAuth uses Authorization Code + PKCE but starts a local callback server on port 8888; cloud playlist-control workflow runs remotely; refresh-token rotation is already persisted through a GitHub App; read-only auth-health workflow exists.
+- Current repository refresh token was rejected with `invalid_grant` in run #42448656654. Do not repeatedly retry it.
+- Proposed secure bridge: managed HTTPS OAuth broker; authenticate the GitHub owner; use short-lived server-side PKCE state; exchange Spotify code server-side; write refresh token directly to the repository Actions secret via a repository-scoped GitHub App; then dispatch only the read-only auth-health workflow.
+- Broker must never expose/store the refresh token beyond immediate secret publication, never unlock playlists, and never call playlist-write endpoints. Existing SHIT playlist safety gates remain unchanged.
+- Workstream plan: `project/goals/mobile-cloud-operation/` (README, ROADMAP, ACTIONS). Current feature branch: `feature/mobile-spotify-reauth-plan`. No runtime code, workflow, secret, permission, Spotify app setting, or playlist has been changed yet.
+- Buddy's latest recorded run is 2026-11-07; the 2026-11-08 Eastern daily check is pending and has not been independently reviewed.
+
+
 > **Purpose:** This is the curated context bridge between active ChatGPT work, the scheduled ChatGPT Buddy task, and the separate repository-hosted Codex experiment. It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
 
 ## Current policy and session overlay — 2026-11-07
