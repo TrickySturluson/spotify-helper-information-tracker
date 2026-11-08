@@ -467,6 +467,48 @@
       "uri": "spotify:track:2xnHP0XnnsLmtdaX8POQ4M",
       "album": "Love",
       "duration_ms": 209713
+    },
+    "britneyspears|lucky": {
+      "name": "Lucky",
+      "uri": "spotify:track:2TTYIwTM2iLC1YOyHuhRMt",
+      "album": "Oops!... I Did It Again",
+      "duration_ms": 206226
+    },
+    "mumfordsons|snakeeyes": {
+      "name": "Snake Eyes",
+      "uri": "spotify:track:6BM4A4rhnKIxG61jN4A2jC",
+      "album": "Wilder Mind (Deluxe)",
+      "duration_ms": 248524
+    },
+    "abba|takeachanceonme": {
+      "name": "Take A Chance On Me",
+      "uri": "spotify:track:5BckPAYcKEJuYs1eV1BHHe",
+      "album": "The Album",
+      "duration_ms": 243933
+    },
+    "cheaptrick|highroller": {
+      "name": "High Roller",
+      "uri": "spotify:track:3Wh23YSGado2WvecwytL7M",
+      "album": "Heaven Tonight",
+      "duration_ms": 238103
+    },
+    "cyndilauper|moneychangeseverything": {
+      "name": "Money Changes Everything",
+      "uri": "spotify:track:5C2O6Tr274KQNxcmPnk2t2",
+      "album": "She's So Unusual",
+      "duration_ms": 305417
+    },
+    "simplyred|moneystootighttomention": {
+      "name": "Money's Too Tight (To Mention)",
+      "uri": "spotify:track:0G6GYPY4ZWNSAy8qgWuWxY",
+      "album": "Picture Book",
+      "duration_ms": 247160
+    },
+    "theanimals|houseoftherisingsun": {
+      "name": "House Of The Rising Sun",
+      "uri": "spotify:track:7BY005dacJkbO6EPiOh2wb",
+      "album": "The Animals",
+      "duration_ms": 271280
     }
   },
   "pending": {
