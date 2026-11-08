@@ -68,7 +68,7 @@ jobs:
           steps.parse-command.outputs.command == 'horror_preview' ||
           steps.parse-command.outputs.command == 'daily_preview' ||
           (steps.parse-command.outputs.command == 'confirm' &&
-          contains(fromJSON('["booze5","booze10","booze20","horror_expansion","daily"]'),
+          contains(fromJSON('["booze5","booze10","booze20","horror_expansion","daily","poker"]'),
           steps.parse-command.outputs.pending_kind))
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
