@@ -119,3 +119,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The owner-only deployment workflow now requires the public runtime values as GitHub repository Actions variables and injects them with Wrangler `--var`. It validates HTTPS and exact callback-host consistency before deployment. `CLOUDFLARE_ACCOUNT_ID` is also a repository variable; only `CLOUDFLARE_API_TOKEN` is a GitHub secret for this workflow. The GitHub App client secret/private key remain Cloudflare Worker secrets.
 - The isolated test workflow now exercises Wrangler's `--var` option in dry-run mode, and the broker tests assert all required values are wired from repository variables. Source: https://developers.cloudflare.com/workers/wrangler/commands/workers/.
 - Updated setup documentation and roadmap. No deployment or external settings have been changed.
+
+
+## 2026-11-08 — First complete broker validation pass
+
+- On commit `5cd2ee0e471e560034500a600a2d01104cf7ee94`, all 18 Node security/unit tests passed, the full dependency audit passed at the high-severity threshold, and Wrangler's Worker bundle/configuration dry-run passed. This was a non-deploying CI run.
+- The earlier completion-page test failure exposed a real null-Cookie-header edge case. `parseCookies` now safely accepts an absent Cookie header; the completion route test then passed. This fix was tested on the same passing run.
+- Updated CI to generate a lockfile, preserve it as a short-lived artifact, and commit only that lockfile to this feature branch after successful owner-push CI. Future runs use `npm ci` once the lockfile exists. This avoids unpinned transitive dependencies while keeping write permission isolated to the lockfile-only job.
+- Latest branch workflow after adding the lockfile job is running separately; no lockfile commit has yet been confirmed.
