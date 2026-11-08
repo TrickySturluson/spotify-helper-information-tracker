@@ -31,11 +31,11 @@ Worker secrets (set with Cloudflare's secret-management interface or Wrangler se
 - GITHUB_APP_CLIENT_SECRET
 - GITHUB_APP_PRIVATE_KEY
 
-The GitHub App must be installed only on this repository and grant only Actions: write and Secrets: write to the broker. The installation token request further narrows the token to this one repository and those two permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
+The dedicated broker GitHub App must be installed only on this repository and grant only Actions: write and Secrets: write. Keep it separate from the existing SHIT manager App, which is documented as Secrets: write only; do not widen that operational App's permissions. The installation token request further narrows the token to this one repository and those two permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
 
 ## GitHub App and Spotify app setup
 
-- Create one GitHub App, set its user-authorization callback URL to the exact HTTPS Worker URL plus /auth/github/callback, and install it only on this repository.
+- Create a **dedicated broker GitHub App** separate from the existing SHIT manager secret-writer App. Set its user-authorization callback URL to the exact HTTPS Worker URL plus /auth/github/callback, enable the user authorization flow, and install it only on this repository. Grant only repository `Actions: write` and `Secrets: write`; do not broaden the existing manager App's permissions.
 - Use the App's client ID/client secret for the browser web-authorization flow and App ID/private key for installation tokens. Do not enable automatic user authorization during installation; the broker starts the flow explicitly with state and PKCE.
 - Register both exact HTTPS callback URLs in Spotify Developer Dashboard. Use the same Spotify app/client ID already used by SHIT. Do not configure a Spotify client secret for the public PKCE client.
 - Use separate callback URLs for GitHub and Spotify as shown above.
