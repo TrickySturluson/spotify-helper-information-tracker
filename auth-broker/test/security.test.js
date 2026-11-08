@@ -1,4 +1,5 @@
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import {
   escapeHtml,
@@ -156,4 +157,20 @@ test("Durable Object expires and cleans abandoned OAuth records", async () => {
   assert.equal(await storage.get("oauth:expired"), undefined);
   assert.ok(await storage.get("oauth:live"));
   assert.ok(storage.alarmAt > Date.now());
+});
+
+
+test("Wrangler configuration declares every required public runtime variable", async () => {
+  const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
+  for (const name of [
+    "BROKER_BASE_URL",
+    "GITHUB_OWNER",
+    "GITHUB_APP_CLIENT_ID",
+    "GITHUB_APP_ID",
+    "GITHUB_APP_REDIRECT_URI",
+    "SPOTIFY_CLIENT_ID",
+    "SPOTIFY_REDIRECT_URI",
+  ]) {
+    assert.match(config, new RegExp("^" + name + " =", "m"), name + " must be configured");
+  }
 });
