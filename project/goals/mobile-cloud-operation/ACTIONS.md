@@ -111,3 +111,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Expanded the Spotify workflow preflight from only `in_progress` to all five non-completed GitHub Actions statuses: `queued`, `in_progress`, `requested`, `waiting` and `pending`. A queued Spotify workflow can now block reauthorization before it begins refreshing the old token.
 - The broker now fails closed if any status response is malformed or reports more than 100 active runs. Added tests that assert all five statuses are queried, queued Spotify work blocks, and incomplete API data blocks.
 - This is grounded in GitHub's current workflow-runs API status enumeration: https://docs.github.com/en/rest/actions/workflow-runs.
+
+
+## 2026-11-08 — Deployment configuration source-of-truth correction
+
+- Removed placeholder `[vars]` from wrangler.toml. Wrangler treats its config as authoritative and normally overwrites dashboard variables on deploy; relying on dashboard values while keeping placeholders in TOML would have silently replaced the real callback/app values.
+- The owner-only deployment workflow now requires the public runtime values as GitHub repository Actions variables and injects them with Wrangler `--var`. It validates HTTPS and exact callback-host consistency before deployment. `CLOUDFLARE_ACCOUNT_ID` is also a repository variable; only `CLOUDFLARE_API_TOKEN` is a GitHub secret for this workflow. The GitHub App client secret/private key remain Cloudflare Worker secrets.
+- The isolated test workflow now exercises Wrangler's `--var` option in dry-run mode, and the broker tests assert all required values are wired from repository variables. Source: https://developers.cloudflare.com/workers/wrangler/commands/workers/.
+- Updated setup documentation and roadmap. No deployment or external settings have been changed.
