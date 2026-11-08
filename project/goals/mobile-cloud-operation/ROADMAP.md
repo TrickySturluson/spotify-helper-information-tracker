@@ -1,6 +1,6 @@
 # Mobile Cloud Operation & Spotify Reauthorization — Roadmap
 
-**Status:** Broker source implementation and automated tests underway; no broker deployed.  
+**Status:** Broker source implementation is complete for the initial unit-tested milestone; deployment and end-to-end OAuth remain blocked on external account/app setup. No broker is deployed.  
 **Priority:** Active, explicitly authorized by the user on 2026-11-08.
 
 ## Problem
@@ -29,8 +29,8 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - [x] Confirm local callback binds port 8888 and uses PKCE.
 - [x] Confirm cloud refresh-token rotation persistence exists.
 - [x] Record invalid_grant blocker; avoid repeated retries.
-- [ ] Inspect repository rules, GitHub App installation/permissions, and Spotify redirect settings without exposing secret values.
-- [ ] Confirm deployment provider/account; prefer free tier and no local PC requirement.
+- [ ] Inspect repository rules, GitHub App installation/permissions, and Spotify redirect settings without exposing secret values. The connected GitHub API returned 403 for branch-protection inspection; the existing SHIT manager App is documented as Secrets: write only, but its live installation/settings and the Spotify dashboard still require owner-side verification.
+- [ ] Confirm deployment provider/account; prefer free tier and no local PC requirement. Cloudflare Workers + SQLite Durable Objects are selected; the user's Cloudflare account, Worker and billing/quota settings are not yet configured.
 
 ### M1 — Broker implementation
 
@@ -79,7 +79,7 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - The rate-limiting binding is an approximate per-location abuse throttle, not a security boundary. Owner authentication, PKCE, session binding and transactional one-time state provide the actual controls.
 - A dedicated broker GitHub App, separate from the existing SHIT manager secret-writer App, is required. Install it only on this repository with Actions: write and Secrets: write; do not broaden the existing manager App's Secrets: write-only permissions. The app's web authorization flow (with PKCE) verifies the GitHub owner; the installation token is separately narrowed to this repository and those two permissions.
 - The broker checks for active Spotify-related Actions runs before consent, before code exchange and before secret publication. This reduces token-rotation races but is not an atomic lock against a new workflow starting between checks; complete live testing in a quiet maintenance window.
-- Automated unit tests and Wrangler dry-run validation are being added to the PR. Deployment variables are injected from GitHub repository variables with Wrangler `--var`, avoiding drift from dashboard-managed variables. No external account, app, secret, redirect URI or playlist has been changed.
+- 18 broker security/unit tests passed on CI; the full dependency audit passed at the high-severity threshold; Wrangler bundle/config dry-run passed. The lockfile is committed and a subsequent `npm ci` run passed. Public repository full-history secret scans passed on earlier commits; the latest scan is still running. Deployment variables are injected from GitHub repository variables with Wrangler `--var`, avoiding drift from dashboard-managed variables. No external account, app, secret, redirect URI or playlist has been changed.
 
 ## Acceptance criteria
 
@@ -95,4 +95,4 @@ Complete only when a user can reauthorize from a phone browser without Codespace
 
 ## Next action
 
-Complete M0 by verifying repository security/branch rules and selecting the least-privilege managed deployment path. Then implement and test the broker on a feature branch. Do not retry the invalid Spotify credential until a new token has been securely installed.
+Finish the remaining broker integration/failure tests and obtain the external setup values through the user's Cloudflare, GitHub App and Spotify Developer dashboards. Then deploy the Worker and complete M3 end-to-end verification from a phone. Do not retry the invalid Spotify credential until a new token has been securely installed.
