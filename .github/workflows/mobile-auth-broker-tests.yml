@@ -35,6 +35,13 @@ jobs:
           node-version: "22"
       - name: Install pinned broker dependencies
         run: npm install --ignore-scripts
+      - name: Preserve generated dependency lockfile for review
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: mobile-auth-broker-package-lock-${{ github.run_id }}
+          path: auth-broker/package-lock.json
+          retention-days: 7
+          if-no-files-found: error
       - name: Audit complete broker dependency tree
         run: npm audit --audit-level=high
       - name: Run broker security unit tests
