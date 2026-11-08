@@ -67,11 +67,13 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 
 ### M4 — Mobile SHIT operation quality
 
-- [ ] Provide a simple mobile entry point for supported SHIT operations using the existing GitHub issue/workflow control plane.
-- [ ] Ensure ChatGPT can prepare, stage, inspect and verify through supported GitHub tools without terminal access.
-- [ ] Keep explicit user confirmation for every consequential playlist write.
-- [ ] Document operations ChatGPT can execute through connected GitHub capabilities versus steps requiring a user tap in GitHub.
-- [ ] Test the full flow with the user's PC off.
+- [x] Use the existing owner-only GitHub issue/workflow control plane as the mobile entry point; no separate app or Codespaces session is required.
+- [x] Document ChatGPT's supported GitHub connector path for preparing, staging, inspecting and verifying without terminal access.
+- [x] Preserve the manager's explicit unlock, preview, confirmation-code, snapshot, audit and live read-back gates for every consequential playlist write.
+- [x] Document supported ChatGPT/GitHub operations versus external dashboard and phone OAuth actions in OPERATIONS.md.
+- [ ] Test the full flow with the user's PC off after broker deployment and OAuth setup.
+
+The existing issue-command workflow is the mobile command surface: an owner-authored JSON body on an open `SHIT — Playlist Control` issue triggers GitHub Actions. ChatGPT can create/update that issue and inspect runs through the GitHub connector. See [OPERATIONS.md](OPERATIONS.md). End-to-end proof with the PC off remains pending.
 
 ## Implementation notes
 
