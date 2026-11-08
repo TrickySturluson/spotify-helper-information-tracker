@@ -918,7 +918,7 @@ def main():
             lines.append("OTHER EXCLUSIONS:")
             lines.extend(f'  {row}' for row in skipped)
             lines.extend(["", "To add only these exact ten staged tracks, submit confirm with this one-time code:", confirmation])
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
     elif action == "booze20_preview":
         # Resolve the strict 15-track Halloween-themed batch through Spotify's catalogue.
         candidates = [
@@ -1228,7 +1228,7 @@ def main():
                          for index, row in enumerate(resolved, 1))
             lines.extend(["", "One-time confirmation code:", confirmation,
                           "The playlist must remain unlocked and unchanged until confirmation."])
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
     elif action == "booze20_resolve_sources":
         # Read exact track URIs from known Spotify albums/playlists; no catalogue search.
         sources = command["sources"]
