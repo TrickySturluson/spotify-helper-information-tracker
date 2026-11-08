@@ -1112,13 +1112,13 @@ def main():
             ("Ray Charles", "Blackjack"),
             ("Radiohead", "House of Cards"),
             ("Cheap Trick", "High Roller"),
-            ("Rush", "Big Money"),
+            ("Rush", "The Big Money"),
             ("KISS", "Hard Luck Woman"),
             ("Cyndi Lauper", "Money Changes Everything"),
             ("Steve Miller Band", "The Joker"),
             ("Simply Red", "Money's Too Tight (To Mention)"),
             ("The O'Jays", "For the Love of Money"),
-            ("Barrett Strong", "Money"),
+            ("The Beatles", "Money (That's What I Want)"),
             ("The Animals", "House of the Rising Sun"),
         ]
         pid = command["playlist_id"]
