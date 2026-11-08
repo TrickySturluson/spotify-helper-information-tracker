@@ -1118,7 +1118,7 @@ def main():
             ("Steve Miller Band", "The Joker"),
             ("Simply Red", "Money's Too Tight (To Mention)"),
             ("The O'Jays", "For the Love of Money"),
-            ("The Beatles", "Money (That's What I Want)"),
+            ("The Flying Lizards", "Money"),
             ("The Animals", "House of the Rising Sun"),
         ]
         pid = command["playlist_id"]
