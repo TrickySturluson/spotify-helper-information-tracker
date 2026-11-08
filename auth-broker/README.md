@@ -6,7 +6,7 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 
 1. The browser starts the GitHub App web authorization flow with PKCE and the broker verifies the returned GitHub identity is exactly the repository owner.
 2. The broker creates a short-lived session and redirects to Spotify Authorization Code with PKCE.
-3. The broker validates one-time OAuth state and session binding, exchanges the code server-side, and requires all scopes used by the existing SHIT manager.
+3. The broker validates one-time OAuth state and session binding, exchanges the code server-side, requires all scopes used by the existing SHIT manager, and verifies Spotify `/v1/me` before saving. The completion page displays the Spotify account name and ID so the owner can spot an account mix-up.
 4. The broker obtains a short-lived installation token from a GitHub App restricted to this repository. It checks for active Spotify-related Actions runs before replacing the credential and refuses to race an in-flight Spotify job.
 5. The broker encrypts the Spotify refresh token using GitHub's repository Actions secret public key and updates only SPOTIFY_REFRESH_TOKEN.
 6. Only after the secret update succeeds does it dispatch spotify-auth-health-check.yml. This workflow verifies authentication and does not edit playlists.
@@ -69,7 +69,7 @@ From Cloudflare and GitHub dashboards (no local PC is required):
 
 ## Tests
 
-Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, workflow concurrency classification, and transactional Durable Object replay/expiry behavior. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
+Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, fail-closed workflow concurrency classification, transactional Durable Object replay/expiry, required runtime configuration, playlist-isolation boundaries and Spotify identity verification. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
 
 ## Status
 
