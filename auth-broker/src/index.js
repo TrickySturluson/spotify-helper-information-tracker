@@ -232,7 +232,7 @@ function requireEnv(env, names) {
   }
 }
 
-async function exchangeForm(url, fields, headers = {}) {
+export async function exchangeForm(url, fields, headers = {}) {
   const result = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json", ...headers },
