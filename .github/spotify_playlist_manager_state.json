@@ -515,174 +515,267 @@
       "uri": "spotify:track:4f6CJbnASHEtQspSwqoYlr",
       "album": "Power Windows",
       "duration_ms": 334493
+    },
+    "theflyinglizards|money": {
+      "name": "Money",
+      "uri": "spotify:track:5rgY6vN5CaEL3boucCi3CT",
+      "album": "The Flying Lizards",
+      "duration_ms": 338186
     }
   },
   "pending": {
-    "playlist_id": "4diIlnF8BlgoJrwUfejf49",
+    "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
     "operations": [
       {
         "action": "add",
         "uris": [
-          "spotify:track:3Auu9Qn6SJtj3m2pSXDvRn",
-          "spotify:track:3SckfIVpVUzxajKpTyz1lz",
-          "spotify:track:4pbhZVYcPpKfksYzmLlvWf",
-          "spotify:track:5t4sUPylyiRocqLG7lG2jc",
-          "spotify:track:4TwRAkQUQ3gc3uzO60jXqn",
-          "spotify:track:6MUw29wzA834p6Zcs1DSXi",
-          "spotify:track:2kYcEUoIa394Bvdi1J916I",
-          "spotify:track:6KTXHrliiM0il8gq7AkQPC",
-          "spotify:track:30SIHI5BlW9QjfgGdtjigD",
-          "spotify:track:6ghX8UGeO4PiFLiG9X0i0T"
+          "spotify:track:3CIOopLwvyMvXk97ZEksKO",
+          "spotify:track:5R8dQOPq8haW94K7mgERlO",
+          "spotify:track:5KqldkCunQ2rWxruMEtGh0",
+          "spotify:track:3k1WwLG1OXCm6iQ13VrJEL",
+          "spotify:track:7mPGSqaVpW2RBdyMq2goQ6",
+          "spotify:track:5Q7ayTarb9Tpmkik5cVMug",
+          "spotify:track:6R6ib5FgDYlG0rPA9c5DVv",
+          "spotify:track:691Wr3tOjDqic3OTPLouX3",
+          "spotify:track:4hq0S6wznq7SHDyMOFXL9i",
+          "spotify:track:58wZxW3Fz4jOlTeUnnnjnC",
+          "spotify:track:463wBlCYhDPuOVvAU8bS1h",
+          "spotify:track:2zsVcKLJ9fWgxF2D7Rd6mZ",
+          "spotify:track:3E1pzieZ3mm0bRjChBcOc0",
+          "spotify:track:47J2U4dM6ArEhZmc3BiH1w",
+          "spotify:track:1ZhrREyOOeFV6TxDOyiPwu",
+          "spotify:track:0vFOzaXqZHahrZp6enQwQb",
+          "spotify:track:3lKN03PDeBnXZS7sDukRBt",
+          "spotify:track:5u5F7qLDvZjBSktaDp4HxB",
+          "spotify:track:2TTYIwTM2iLC1YOyHuhRMt",
+          "spotify:track:1loMHOGpWEgh1cFvpoSZf0",
+          "spotify:track:6Y19VBGJBoixg6umIkE7ar",
+          "spotify:track:0ABbh7ro3kLFdZfLlbeA3g",
+          "spotify:track:6Yho0ryRLj7a75FwZpvl9l",
+          "spotify:track:6MWJy3DXI0Je49FW3gDpLp",
+          "spotify:track:6BM4A4rhnKIxG61jN4A2jC",
+          "spotify:track:3oEkrIfXfSh9zGnE7eBzSV",
+          "spotify:track:5PntSbMHC1ud6Vvl8x56qd",
+          "spotify:track:7rbJDW5JAhCAA1VYtQY4Kg",
+          "spotify:track:5BckPAYcKEJuYs1eV1BHHe",
+          "spotify:track:4Rs9oRN8uQrEbPSrEL6pp8",
+          "spotify:track:48X4D1FYOShPz2VF3YdfCF",
+          "spotify:track:3Wh23YSGado2WvecwytL7M",
+          "spotify:track:4f6CJbnASHEtQspSwqoYlr",
+          "spotify:track:1vcZBUX6P6FHXzG2mUfmCE",
+          "spotify:track:5C2O6Tr274KQNxcmPnk2t2",
+          "spotify:track:1bp2IO61zbQrbWNmKKxg3f",
+          "spotify:track:0G6GYPY4ZWNSAy8qgWuWxY",
+          "spotify:track:3p1JoOEhVkEnTaa4JzTMSk",
+          "spotify:track:5rgY6vN5CaEL3boucCi3CT",
+          "spotify:track:7BY005dacJkbO6EPiOh2wb"
         ]
       }
     ],
-    "snapshot_id": "AAABF+ZZgThQ2U81E2Bvf+t+lj1X6oNN",
-    "expected_uris": [
-      "spotify:track:7KEGIroxrVnh40lYTfOVYY",
-      "spotify:track:2zMltFX7IerjrXLSt1P0WG",
-      "spotify:track:18k49mXvNPtKlcT6Ky39pe",
-      "spotify:track:7F6B0eGSuPpDin9yCK6Zh7",
-      "spotify:track:2l0Z9fY1E8Bep8opmhmDhq",
-      "spotify:track:7vKWix5Csqu54sC0EmvB3Z",
-      "spotify:track:22rVn6AqjJJCBzMXaRfhfU",
-      "spotify:track:6QjHD0Sc1oW29NqWs9x7nJ",
-      "spotify:track:1aLa8Bb1QdK39uDB8R0XN8",
-      "spotify:track:0wHwJLCxCCO4BORXEPGCRZ",
-      "spotify:track:1BE4EFEuVLLPbwyzJWDmdO",
-      "spotify:track:6dkAXLDKALkULFcWcJUlba",
-      "spotify:track:1ipGbUPMdwmO7Ajk6iMDQu",
-      "spotify:track:5mguQw289MoZ8Jm75yhRr2",
-      "spotify:track:3SLRpaxbk4b4cXPvX7xsRJ",
-      "spotify:track:3lM9UdOYvDIs5PSY8aBEl2",
-      "spotify:track:1mmsMMDhZARJuzBsZ9NDrh",
-      "spotify:track:5x48N9IiNNnbZ7J4IFoccq",
-      "spotify:track:2rzafMh8q10vQGixcHupCh",
-      "spotify:track:1apH42Wa9c0Iy2X7VZOZr9",
-      "spotify:track:4mUm3GB285Na6WQZ2UgEUg",
-      "spotify:track:4A9dMvwGlocF9gxVesArPR",
-      "spotify:track:5ykjrPyJXKivUqoRcJTl17",
-      "spotify:track:252s9AdYVzDJ8jAQ8G5Iws",
-      "spotify:track:6cRltrjAMIXBO20lYzGGhE",
-      "spotify:track:0Pz6mAKZ4iNWy3jyFfEG9z",
-      "spotify:track:1E5lJ3PRYAmOwv2Zlqj8FT",
-      "spotify:track:0MK6lVnmhVulpP62vkZBWV",
-      "spotify:track:1XWSE59E3X8T2AHE4v11Hu",
-      "spotify:track:51T9xt361Nm8IyUPoAlCPt",
-      "spotify:track:2m17BTWlZq0wtS9cpJsCfM",
-      "spotify:track:1bPgyV3er2BP0ON7EEEMYf",
-      "spotify:track:5DDrJgKXx1L7Hd4z7Xlyau",
-      "spotify:track:1Am0XWDLxOEs9rtv6mxv3c",
-      "spotify:track:1EK6EP11eJfvaPDHmfFEGJ",
-      "spotify:track:2nBCXzLuyPD6nYopKqYFwH",
-      "spotify:track:2ji2uByd9KuqWzEy7zyXa3",
-      "spotify:track:6BVvbbgWtthQQRObyHkBO8",
-      "spotify:track:0wNxW9B75cpXYLuzz8UE8S",
-      "spotify:track:0O36zwwlB2LxMXvBSC4qec",
-      "spotify:track:0F56U0Bvvjh0QcqG21USyO",
-      "spotify:track:4arnjokDz9Yq2Y6Ezhle2n",
-      "spotify:track:3XEFPu7v1FNl8LOGphjhXi",
-      "spotify:track:0YA1w64rtqWVgU4XKNsMIK",
-      "spotify:track:47APqKrXaywGEKHHJO1g6G",
-      "spotify:track:1R9GowEpMThnBGAAonp4fV",
-      "spotify:track:7JlJCLbSHCKEqkHEnA7zjg",
-      "spotify:track:4UfNj1K76NqCWhmEwNVSLY",
-      "spotify:track:3n75gL3WU5tAwwAgssRI9j",
-      "spotify:track:1Khz3jzqOomoHt8JgREX0S",
-      "spotify:track:7dWyBjRr6F6Ap2N6xNNXf2",
-      "spotify:track:18Cs5wC3kOk7k79myWe1Hw",
-      "spotify:track:1oN0o0h1YRyzCZHpspvnYZ",
-      "spotify:track:1A7bPjB30GZ4ENZ4txW00L",
-      "spotify:track:1eAiNGFpK7gRzNXHZD8xFa",
-      "spotify:track:1monuK5GiBdPoUQOpFvHZN",
-      "spotify:track:6niPlWUTeb6MZFFpadCw0J",
-      "spotify:track:3SyAr7p4vnQLgCvLP6k6V4",
-      "spotify:track:04wmRk6OTKydthiFXR8D0E",
-      "spotify:track:7uB82W1hgkVbuKnvdaQCLD",
-      "spotify:track:0gJHlqVTW4BCdSoXx1lYcx",
-      "spotify:track:7CpbhqKUedOIrcvc94p60Y",
-      "spotify:track:64J18bwOzZAUmuFxn5l6Ss",
-      "spotify:track:1dUPABHPVfHnvdLnKwYbgz",
-      "spotify:track:778IoB8EsMVEz3ADtsbMCg",
-      "spotify:track:74ossQbC07mTsaJONMeAdZ",
-      "spotify:track:4y8G3pyyBvBKd47iyvHBNj",
-      "spotify:track:39PWLJrvfBCrfe4NX9aGZD",
-      "spotify:track:2XzHlidrCo9YjXcFovtFQ5",
-      "spotify:track:7LDTB4kVmrLCU5TqKjZnzm",
-      "spotify:track:2VDqNzRGI49PkXKlhpinmJ",
-      "spotify:track:3Q9G213iOuM72OWIu86oJH",
-      "spotify:track:4e74QB4MF5ei1UlzmOZKSI",
-      "spotify:track:3Ero9C3m7RlEf1xu5XhFDC",
-      "spotify:track:1Qxdyb5Rb7f9RGHQRSU4Nd",
-      "spotify:track:1OcDvY7VSrlB5wa5zQoBzb",
-      "spotify:track:1sh9C3fQEAQ5NLJjUluPhG",
-      "spotify:track:45XtqGyKhOkkYIeOND0KF7",
-      "spotify:track:64GqJk8Cv2X53aC53HWxZt",
-      "spotify:track:7HtSPzWtfn0PWY2NkWGYvq",
-      "spotify:track:6LDQAitG4HGw2mfVghNrnw",
-      "spotify:track:4gQP59lYowoVb9hlYMKboc",
-      "spotify:track:6YGdEZFf2ScoZ5UwHI8OUj",
-      "spotify:track:4oYhjvRS1xkZ57sMUJhbPe",
-      "spotify:track:5NikbOnmxmXuWl8TJ7HKlf",
-      "spotify:track:7yyc6sHS3DIhmiGzkCMTy3",
-      "spotify:track:1augeAxke7uiwYrY7GDCeu",
-      "spotify:track:4vkyiEKQdCbj9Yhd3zUQYz",
-      "spotify:track:5lg5J8MWo2p7LDE3xWvdsT",
-      "spotify:track:54FcoaV60w56CP2r2R9pR3",
-      "spotify:track:6Fugb7wXYYiwffZ2mQ4851",
-      "spotify:track:6AsSfqrBu1cFXDhnCa85D9"
-    ],
-    "confirmation": "UBiP2nOo2rxVppmt",
-    "kind": "booze20",
+    "snapshot_id": "AAAAAR0Wn5CE1dQmHZPLoHEAzkX5lZG7",
+    "expected_uris": [],
+    "confirmation": "a_lz2F7sLvP_JIg8",
+    "kind": "poker",
     "candidate_tracks": [
       {
-        "artist": "Kid Congo & The Pink Monkey Birds",
-        "title": "Haunted Head",
-        "uri": "spotify:track:3Auu9Qn6SJtj3m2pSXDvRn"
+        "artist": "Motörhead",
+        "title": "Ace of Spades",
+        "uri": "spotify:track:3CIOopLwvyMvXk97ZEksKO"
       },
       {
-        "artist": "Alien Sex Fiend",
-        "title": "Now I'm Feeling Zombiefied",
-        "uri": "spotify:track:3SckfIVpVUzxajKpTyz1lz"
+        "artist": "Lady Gaga",
+        "title": "Poker Face",
+        "uri": "spotify:track:5R8dQOPq8haW94K7mgERlO"
       },
       {
-        "artist": "Harley Poe",
-        "title": "Gorehound",
-        "uri": "spotify:track:4pbhZVYcPpKfksYzmLlvWf"
+        "artist": "Kenny Rogers",
+        "title": "The Gambler",
+        "uri": "spotify:track:5KqldkCunQ2rWxruMEtGh0"
       },
       {
-        "artist": "Coffin Carousel",
-        "title": "March Of The Dead",
-        "uri": "spotify:track:5t4sUPylyiRocqLG7lG2jc"
+        "artist": "AC/DC",
+        "title": "The Jack",
+        "uri": "spotify:track:3k1WwLG1OXCm6iQ13VrJEL"
       },
       {
-        "artist": "The Deathtones",
-        "title": "All Hallows Eve",
-        "uri": "spotify:track:4TwRAkQUQ3gc3uzO60jXqn"
+        "artist": "Frank Sinatra",
+        "title": "Luck Be A Lady",
+        "uri": "spotify:track:7mPGSqaVpW2RBdyMq2goQ6"
       },
       {
-        "artist": "The Ruined",
-        "title": "She Must Die",
-        "uri": "spotify:track:6MUw29wzA834p6Zcs1DSXi"
+        "artist": "Elvis Presley",
+        "title": "Viva Las Vegas",
+        "uri": "spotify:track:5Q7ayTarb9Tpmkik5cVMug"
       },
       {
-        "artist": "The Hellfreaks",
-        "title": "Boogieman",
-        "uri": "spotify:track:2kYcEUoIa394Bvdi1J916I"
+        "artist": "Juice Newton",
+        "title": "Queen Of Hearts",
+        "uri": "spotify:track:6R6ib5FgDYlG0rPA9c5DVv"
       },
       {
-        "artist": "AFI",
-        "title": "Fall Children",
-        "uri": "spotify:track:6KTXHrliiM0il8gq7AkQPC"
+        "artist": "Bob Seger",
+        "title": "Ramblin' Gamblin' Man",
+        "uri": "spotify:track:691Wr3tOjDqic3OTPLouX3"
       },
       {
-        "artist": "Demented Are Go",
-        "title": "Brand New Corpse",
-        "uri": "spotify:track:30SIHI5BlW9QjfgGdtjigD"
+        "artist": "The Rolling Stones",
+        "title": "Tumbling Dice",
+        "uri": "spotify:track:4hq0S6wznq7SHDyMOFXL9i"
       },
       {
-        "artist": "The Meteors",
-        "title": "Chainsaw Boogie",
-        "uri": "spotify:track:6ghX8UGeO4PiFLiG9X0i0T"
+        "artist": "Rush",
+        "title": "Roll the Bones",
+        "uri": "spotify:track:58wZxW3Fz4jOlTeUnnnjnC"
+      },
+      {
+        "artist": "Jimmy Eat World",
+        "title": "Big Casino",
+        "uri": "spotify:track:463wBlCYhDPuOVvAU8bS1h"
+      },
+      {
+        "artist": "Wilco",
+        "title": "Casino Queen",
+        "uri": "spotify:track:2zsVcKLJ9fWgxF2D7Rd6mZ"
+      },
+      {
+        "artist": "The Clash",
+        "title": "The Card Cheat",
+        "uri": "spotify:track:3E1pzieZ3mm0bRjChBcOc0"
+      },
+      {
+        "artist": "Grateful Dead",
+        "title": "Deal",
+        "uri": "spotify:track:47J2U4dM6ArEhZmc3BiH1w"
+      },
+      {
+        "artist": "Steve Miller Band",
+        "title": "Take The Money And Run",
+        "uri": "spotify:track:1ZhrREyOOeFV6TxDOyiPwu"
+      },
+      {
+        "artist": "Pink Floyd",
+        "title": "Money",
+        "uri": "spotify:track:0vFOzaXqZHahrZp6enQwQb"
+      },
+      {
+        "artist": "ABBA",
+        "title": "Money, Money, Money",
+        "uri": "spotify:track:3lKN03PDeBnXZS7sDukRBt"
+      },
+      {
+        "artist": "AC/DC",
+        "title": "Moneytalks",
+        "uri": "spotify:track:5u5F7qLDvZjBSktaDp4HxB"
+      },
+      {
+        "artist": "Britney Spears",
+        "title": "Lucky",
+        "uri": "spotify:track:2TTYIwTM2iLC1YOyHuhRMt"
+      },
+      {
+        "artist": "Basement Jaxx",
+        "title": "Good Luck",
+        "uri": "spotify:track:1loMHOGpWEgh1cFvpoSZf0"
+      },
+      {
+        "artist": "Social Distortion",
+        "title": "Bad Luck",
+        "uri": "spotify:track:6Y19VBGJBoixg6umIkE7ar"
+      },
+      {
+        "artist": "Bonnie Raitt",
+        "title": "Luck Of The Draw",
+        "uri": "spotify:track:0ABbh7ro3kLFdZfLlbeA3g"
+      },
+      {
+        "artist": "Tony Christie",
+        "title": "Las Vegas",
+        "uri": "spotify:track:6Yho0ryRLj7a75FwZpvl9l"
+      },
+      {
+        "artist": "Sheryl Crow",
+        "title": "Leaving Las Vegas",
+        "uri": "spotify:track:6MWJy3DXI0Je49FW3gDpLp"
+      },
+      {
+        "artist": "Mumford & Sons",
+        "title": "Snake Eyes",
+        "uri": "spotify:track:6BM4A4rhnKIxG61jN4A2jC"
+      },
+      {
+        "artist": "ABBA",
+        "title": "The Winner Takes It All",
+        "uri": "spotify:track:3oEkrIfXfSh9zGnE7eBzSV"
+      },
+      {
+        "artist": "Beck",
+        "title": "Loser",
+        "uri": "spotify:track:5PntSbMHC1ud6Vvl8x56qd"
+      },
+      {
+        "artist": "M.O.P.",
+        "title": "Ante Up",
+        "uri": "spotify:track:7rbJDW5JAhCAA1VYtQY4Kg"
+      },
+      {
+        "artist": "ABBA",
+        "title": "Take A Chance On Me",
+        "uri": "spotify:track:5BckPAYcKEJuYs1eV1BHHe"
+      },
+      {
+        "artist": "Ray Charles",
+        "title": "Blackjack",
+        "uri": "spotify:track:4Rs9oRN8uQrEbPSrEL6pp8"
+      },
+      {
+        "artist": "Radiohead",
+        "title": "House Of Cards",
+        "uri": "spotify:track:48X4D1FYOShPz2VF3YdfCF"
+      },
+      {
+        "artist": "Cheap Trick",
+        "title": "High Roller",
+        "uri": "spotify:track:3Wh23YSGado2WvecwytL7M"
+      },
+      {
+        "artist": "Rush",
+        "title": "The Big Money",
+        "uri": "spotify:track:4f6CJbnASHEtQspSwqoYlr"
+      },
+      {
+        "artist": "KISS",
+        "title": "Hard Luck Woman",
+        "uri": "spotify:track:1vcZBUX6P6FHXzG2mUfmCE"
+      },
+      {
+        "artist": "Cyndi Lauper",
+        "title": "Money Changes Everything",
+        "uri": "spotify:track:5C2O6Tr274KQNxcmPnk2t2"
+      },
+      {
+        "artist": "Steve Miller Band",
+        "title": "The Joker",
+        "uri": "spotify:track:1bp2IO61zbQrbWNmKKxg3f"
+      },
+      {
+        "artist": "Simply Red",
+        "title": "Money's Too Tight (To Mention)",
+        "uri": "spotify:track:0G6GYPY4ZWNSAy8qgWuWxY"
+      },
+      {
+        "artist": "The O'Jays",
+        "title": "For the Love of Money",
+        "uri": "spotify:track:3p1JoOEhVkEnTaa4JzTMSk"
+      },
+      {
+        "artist": "The Flying Lizards",
+        "title": "Money",
+        "uri": "spotify:track:5rgY6vN5CaEL3boucCi3CT"
+      },
+      {
+        "artist": "The Animals",
+        "title": "House Of The Rising Sun",
+        "uri": "spotify:track:7BY005dacJkbO6EPiOh2wb"
       }
     ]
   },

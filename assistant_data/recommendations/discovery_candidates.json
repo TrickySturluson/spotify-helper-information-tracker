@@ -26,6 +26,84 @@
     }
   },
   {
+    "spotify_id": "3lKN03PDeBnXZS7sDukRBt",
+    "spotify_uri": "spotify:track:3lKN03PDeBnXZS7sDukRBt",
+    "artist": "ABBA",
+    "track": "Money, Money, Money",
+    "album": "Arrival",
+    "duration_ms": 186426,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5BckPAYcKEJuYs1eV1BHHe",
+    "spotify_uri": "spotify:track:5BckPAYcKEJuYs1eV1BHHe",
+    "artist": "ABBA",
+    "track": "Take A Chance On Me",
+    "album": "The Album",
+    "duration_ms": 243933,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3oEkrIfXfSh9zGnE7eBzSV",
+    "spotify_uri": "spotify:track:3oEkrIfXfSh9zGnE7eBzSV",
+    "artist": "ABBA",
+    "track": "The Winner Takes It All",
+    "album": "Super Trouper",
+    "duration_ms": 294720,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "7f1WcvOOUVUoHdrilGw4Sr",
     "spotify_uri": "spotify:track:7f1WcvOOUVUoHdrilGw4Sr",
     "artist": "Abby Powledge",
@@ -66,6 +144,58 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5u5F7qLDvZjBSktaDp4HxB",
+    "spotify_uri": "spotify:track:5u5F7qLDvZjBSktaDp4HxB",
+    "artist": "AC/DC",
+    "track": "Moneytalks",
+    "album": "The Razors Edge",
+    "duration_ms": 225957,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3k1WwLG1OXCm6iQ13VrJEL",
+    "spotify_uri": "spotify:track:3k1WwLG1OXCm6iQ13VrJEL",
+    "artist": "AC/DC",
+    "track": "The Jack",
+    "album": "High Voltage",
+    "duration_ms": 353607,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -336,6 +466,32 @@
     }
   },
   {
+    "spotify_id": "1loMHOGpWEgh1cFvpoSZf0",
+    "spotify_uri": "spotify:track:1loMHOGpWEgh1cFvpoSZf0",
+    "artist": "Basement Jaxx",
+    "track": "Good Luck",
+    "album": "Kish Kash",
+    "duration_ms": 282306,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "5RWqaHs9ERIB2Wk8bs1CCH",
     "spotify_uri": "spotify:track:5RWqaHs9ERIB2Wk8bs1CCH",
     "artist": "Bay Ledges",
@@ -426,6 +582,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5PntSbMHC1ud6Vvl8x56qd",
+    "spotify_uri": "spotify:track:5PntSbMHC1ud6Vvl8x56qd",
+    "artist": "Beck",
+    "track": "Loser",
+    "album": "Mellow Gold",
+    "duration_ms": 235000,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -602,6 +784,84 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "691Wr3tOjDqic3OTPLouX3",
+    "spotify_uri": "spotify:track:691Wr3tOjDqic3OTPLouX3",
+    "artist": "Bob Seger",
+    "track": "Ramblin' Gamblin' Man",
+    "album": "Ramblin' Gamblin' Man",
+    "duration_ms": 145310,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0ABbh7ro3kLFdZfLlbeA3g",
+    "spotify_uri": "spotify:track:0ABbh7ro3kLFdZfLlbeA3g",
+    "artist": "Bonnie Raitt",
+    "track": "Luck Of The Draw",
+    "album": "Luck Of The Draw",
+    "duration_ms": 317040,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2TTYIwTM2iLC1YOyHuhRMt",
+    "spotify_uri": "spotify:track:2TTYIwTM2iLC1YOyHuhRMt",
+    "artist": "Britney Spears",
+    "track": "Lucky",
+    "album": "Oops!... I Did It Again",
+    "duration_ms": 206226,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -1012,6 +1272,32 @@
     }
   },
   {
+    "spotify_id": "3Wh23YSGado2WvecwytL7M",
+    "spotify_uri": "spotify:track:3Wh23YSGado2WvecwytL7M",
+    "artist": "Cheap Trick",
+    "track": "High Roller",
+    "album": "Heaven Tonight",
+    "duration_ms": 238103,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "3XlrbYlaUFnDYGfRcdoYRU",
     "spotify_uri": "spotify:track:3XlrbYlaUFnDYGfRcdoYRU",
     "artist": "chloe moriondo",
@@ -1230,6 +1516,32 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5C2O6Tr274KQNxcmPnk2t2",
+    "spotify_uri": "spotify:track:5C2O6Tr274KQNxcmPnk2t2",
+    "artist": "Cyndi Lauper",
+    "track": "Money Changes Everything",
+    "album": "She's So Unusual",
+    "duration_ms": 305417,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -1667,6 +1979,32 @@
     }
   },
   {
+    "spotify_id": "5Q7ayTarb9Tpmkik5cVMug",
+    "spotify_uri": "spotify:track:5Q7ayTarb9Tpmkik5cVMug",
+    "artist": "Elvis Presley",
+    "track": "Viva Las Vegas",
+    "album": "Elvis' Gold Records, Vol. 4",
+    "duration_ms": 144280,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2vZUbiX6DJDgCgz3olOAKM",
     "spotify_uri": "spotify:track:2vZUbiX6DJDgCgz3olOAKM",
     "artist": "Eric Christian",
@@ -1982,6 +2320,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7mPGSqaVpW2RBdyMq2goQ6",
+    "spotify_uri": "spotify:track:7mPGSqaVpW2RBdyMq2goQ6",
+    "artist": "Frank Sinatra",
+    "track": "Luck Be A Lady",
+    "album": "Sinatra ’65",
+    "duration_ms": 314306,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -2445,6 +2809,32 @@
     }
   },
   {
+    "spotify_id": "47J2U4dM6ArEhZmc3BiH1w",
+    "spotify_uri": "spotify:track:47J2U4dM6ArEhZmc3BiH1w",
+    "artist": "Grateful Dead",
+    "track": "Deal",
+    "album": "Live Albums Collection",
+    "duration_ms": 285613,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4T1i9YoZP9NlqA3dA2v7AN",
     "spotify_uri": "spotify:track:4T1i9YoZP9NlqA3dA2v7AN",
     "artist": "Ha Vay",
@@ -2771,6 +3161,32 @@
     }
   },
   {
+    "spotify_id": "463wBlCYhDPuOVvAU8bS1h",
+    "spotify_uri": "spotify:track:463wBlCYhDPuOVvAU8bS1h",
+    "artist": "Jimmy Eat World",
+    "track": "Big Casino",
+    "album": "Chase This Light",
+    "duration_ms": 220733,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "6sAcECONsANle5n0rnP2at",
     "spotify_uri": "spotify:track:6sAcECONsANle5n0rnP2at",
     "artist": "Johnny Mathis",
@@ -2946,6 +3362,32 @@
     }
   },
   {
+    "spotify_id": "6R6ib5FgDYlG0rPA9c5DVv",
+    "spotify_uri": "spotify:track:6R6ib5FgDYlG0rPA9c5DVv",
+    "artist": "Juice Newton",
+    "track": "Queen Of Hearts",
+    "album": "Juice",
+    "duration_ms": 205826,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0tKl8ZVM6xJkhznvJAS3Nq",
     "spotify_uri": "spotify:track:0tKl8ZVM6xJkhznvJAS3Nq",
     "artist": "Junior H",
@@ -3086,6 +3528,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5KqldkCunQ2rWxruMEtGh0",
+    "spotify_uri": "spotify:track:5KqldkCunQ2rWxruMEtGh0",
+    "artist": "Kenny Rogers",
+    "track": "The Gambler",
+    "album": "The Gambler",
+    "duration_ms": 214880,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -3248,6 +3716,32 @@
     }
   },
   {
+    "spotify_id": "1vcZBUX6P6FHXzG2mUfmCE",
+    "spotify_uri": "spotify:track:1vcZBUX6P6FHXzG2mUfmCE",
+    "artist": "KISS",
+    "track": "Hard Luck Woman",
+    "album": "Rock And Roll Over",
+    "duration_ms": 214666,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1Vzi0GvTiGWKhLpJP8q314",
     "spotify_uri": "spotify:track:1Vzi0GvTiGWKhLpJP8q314",
     "artist": "Koffin Kats",
@@ -3264,6 +3758,32 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5R8dQOPq8haW94K7mgERlO",
+    "spotify_uri": "spotify:track:5R8dQOPq8haW94K7mgERlO",
+    "artist": "Lady Gaga",
+    "track": "Poker Face",
+    "album": "The Fame",
+    "duration_ms": 237200,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -3566,6 +4086,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7rbJDW5JAhCAA1VYtQY4Kg",
+    "spotify_uri": "spotify:track:7rbJDW5JAhCAA1VYtQY4Kg",
+    "artist": "M.O.P.",
+    "track": "Ante Up",
+    "album": "Mash Out Posse",
+    "duration_ms": 203333,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -4105,6 +4651,58 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3CIOopLwvyMvXk97ZEksKO",
+    "spotify_uri": "spotify:track:3CIOopLwvyMvXk97ZEksKO",
+    "artist": "Motörhead",
+    "track": "Ace of Spades",
+    "album": "Ace of Spades (Expanded Edition)",
+    "duration_ms": 168320,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6BM4A4rhnKIxG61jN4A2jC",
+    "spotify_uri": "spotify:track:6BM4A4rhnKIxG61jN4A2jC",
+    "artist": "Mumford & Sons",
+    "track": "Snake Eyes",
+    "album": "Wilder Mind (Deluxe)",
+    "duration_ms": 248524,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -4747,6 +5345,32 @@
     }
   },
   {
+    "spotify_id": "0vFOzaXqZHahrZp6enQwQb",
+    "spotify_uri": "spotify:track:0vFOzaXqZHahrZp6enQwQb",
+    "artist": "Pink Floyd",
+    "track": "Money",
+    "album": "The Dark Side of the Moon",
+    "duration_ms": 380080,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1ljtQrsf55VCwjqXjro7Po",
     "spotify_uri": "spotify:track:1ljtQrsf55VCwjqXjro7Po",
     "artist": "PinkPantheress",
@@ -4998,6 +5622,58 @@
     }
   },
   {
+    "spotify_id": "48X4D1FYOShPz2VF3YdfCF",
+    "spotify_uri": "spotify:track:48X4D1FYOShPz2VF3YdfCF",
+    "artist": "Radiohead",
+    "track": "House Of Cards",
+    "album": "In Rainbows",
+    "duration_ms": 328293,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4Rs9oRN8uQrEbPSrEL6pp8",
+    "spotify_uri": "spotify:track:4Rs9oRN8uQrEbPSrEL6pp8",
+    "artist": "Ray Charles",
+    "track": "Blackjack",
+    "album": "Yes Indeed!",
+    "duration_ms": 139626,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2VOomzT6VavJOGBeySqaMc",
     "spotify_uri": "spotify:track:2VOomzT6VavJOGBeySqaMc",
     "artist": "Rihanna",
@@ -5064,6 +5740,58 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "58wZxW3Fz4jOlTeUnnnjnC",
+    "spotify_uri": "spotify:track:58wZxW3Fz4jOlTeUnnnjnC",
+    "artist": "Rush",
+    "track": "Roll the Bones",
+    "album": "Happy Classic Rock",
+    "duration_ms": 329906,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4f6CJbnASHEtQspSwqoYlr",
+    "spotify_uri": "spotify:track:4f6CJbnASHEtQspSwqoYlr",
+    "artist": "Rush",
+    "track": "The Big Money",
+    "album": "Power Windows",
+    "duration_ms": 334493,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -5452,6 +6180,32 @@
     }
   },
   {
+    "spotify_id": "6MWJy3DXI0Je49FW3gDpLp",
+    "spotify_uri": "spotify:track:6MWJy3DXI0Je49FW3gDpLp",
+    "artist": "Sheryl Crow",
+    "track": "Leaving Las Vegas",
+    "album": "Tuesday Night Music Club",
+    "duration_ms": 309200,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0yQPpUq5BJyqah5m2Q5Stt",
     "spotify_uri": "spotify:track:0yQPpUq5BJyqah5m2Q5Stt",
     "artist": "Sigur Rós",
@@ -5492,6 +6246,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0G6GYPY4ZWNSAy8qgWuWxY",
+    "spotify_uri": "spotify:track:0G6GYPY4ZWNSAy8qgWuWxY",
+    "artist": "Simply Red",
+    "track": "Money's Too Tight (To Mention)",
+    "album": "Picture Book",
+    "duration_ms": 247160,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -5618,6 +6398,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6Y19VBGJBoixg6umIkE7ar",
+    "spotify_uri": "spotify:track:6Y19VBGJBoixg6umIkE7ar",
+    "artist": "Social Distortion",
+    "track": "Bad Luck",
+    "album": "Somewhere Between Heaven And Hell",
+    "duration_ms": 264973,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -5801,6 +6607,58 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1ZhrREyOOeFV6TxDOyiPwu",
+    "spotify_uri": "spotify:track:1ZhrREyOOeFV6TxDOyiPwu",
+    "artist": "Steve Miller Band",
+    "track": "Take The Money And Run",
+    "album": "Fly Like An Eagle",
+    "duration_ms": 170173,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1bp2IO61zbQrbWNmKKxg3f",
+    "spotify_uri": "spotify:track:1bp2IO61zbQrbWNmKKxg3f",
+    "artist": "Steve Miller Band",
+    "track": "The Joker",
+    "album": "The Joker",
+    "duration_ms": 264503,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -6228,6 +7086,32 @@
     }
   },
   {
+    "spotify_id": "7BY005dacJkbO6EPiOh2wb",
+    "spotify_uri": "spotify:track:7BY005dacJkbO6EPiOh2wb",
+    "artist": "The Animals",
+    "track": "House Of The Rising Sun",
+    "album": "The Animals",
+    "duration_ms": 271280,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "3aa9zo0DxDjykGIFRTFRJH",
     "spotify_uri": "spotify:track:3aa9zo0DxDjykGIFRTFRJH",
     "artist": "The Army, The Navy",
@@ -6344,6 +7228,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3E1pzieZ3mm0bRjChBcOc0",
+    "spotify_uri": "spotify:track:3E1pzieZ3mm0bRjChBcOc0",
+    "artist": "The Clash",
+    "track": "The Card Cheat",
+    "album": "London Calling (Expanded Edition)",
+    "duration_ms": 229506,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -6690,6 +7600,32 @@
     }
   },
   {
+    "spotify_id": "5rgY6vN5CaEL3boucCi3CT",
+    "spotify_uri": "spotify:track:5rgY6vN5CaEL3boucCi3CT",
+    "artist": "The Flying Lizards",
+    "track": "Money",
+    "album": "The Flying Lizards",
+    "duration_ms": 338186,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "54kGnwVw5c1fh9XciEurwT",
     "spotify_uri": "spotify:track:54kGnwVw5c1fh9XciEurwT",
     "artist": "The Fuzztones",
@@ -6920,6 +7856,32 @@
     }
   },
   {
+    "spotify_id": "3p1JoOEhVkEnTaa4JzTMSk",
+    "spotify_uri": "spotify:track:3p1JoOEhVkEnTaa4JzTMSk",
+    "artist": "The O'Jays",
+    "track": "For the Love of Money",
+    "album": "Ship Ahoy (Expanded Edition)",
+    "duration_ms": 439866,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2mijcmCvkvig8SkNCgYZC5",
     "spotify_uri": "spotify:track:2mijcmCvkvig8SkNCgYZC5",
     "artist": "The Oh Hellos",
@@ -7011,6 +7973,32 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4hq0S6wznq7SHDyMOFXL9i",
+    "spotify_uri": "spotify:track:4hq0S6wznq7SHDyMOFXL9i",
+    "artist": "The Rolling Stones",
+    "track": "Tumbling Dice",
+    "album": "Exile On Main Street (2010 Re-Mastered)",
+    "duration_ms": 226333,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -7288,6 +8276,32 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6Yho0ryRLj7a75FwZpvl9l",
+    "spotify_uri": "spotify:track:6Yho0ryRLj7a75FwZpvl9l",
+    "artist": "Tony Christie",
+    "track": "Las Vegas",
+    "album": "Tony Christie",
+    "duration_ms": 206253,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
@@ -7665,6 +8679,32 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2zsVcKLJ9fWgxF2D7Rd6mZ",
+    "spotify_uri": "spotify:track:2zsVcKLJ9fWgxF2D7Rd6mZ",
+    "artist": "Wilco",
+    "track": "Casino Queen",
+    "album": "A.M.",
+    "duration_ms": 164666,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "poker_test_recommendation_preview",
+        "observed_at": "2026-11-08T04:52:09.784057+00:00",
+        "context": {
+          "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
+          "playlist_name": "Poker test",
+          "preview_date": "2026-11-08"
         }
       }
     ],
