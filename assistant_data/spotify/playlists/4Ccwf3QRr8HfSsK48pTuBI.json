@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-08T04:42:42.778868+00:00",
+  "id": "4Ccwf3QRr8HfSsK48pTuBI",
+  "name": "Poker test",
+  "description": "",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAAR0Wn5CE1dQmHZPLoHEAzkX5lZG7",
+  "total_items_reported": 0,
+  "item_count_fetched": 0,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-08T04:42:42.778879+00:00",
+  "items_snapshot_id": "AAAAAR0Wn5CE1dQmHZPLoHEAzkX5lZG7",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
+  "items": []
+}

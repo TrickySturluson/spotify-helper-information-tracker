@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-07T13:20:08.876500+00:00",
+  "captured_at": "2026-11-08T04:42:43.171418+00:00",
   "id": "4yUVHSMQySfWeEowfIMcx7",
   "name": "Tricky Daily",
   "description": "The algorithm has questionable taste.",
@@ -10,13 +10,13 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAAAWUJKmhsYsv2dOj5swnP2OrdZ5Vho",
-  "total_items_reported": 60,
-  "item_count_fetched": 60,
+  "snapshot_id": "AAAAX2pvzcMH0zw3OJS7KX6h70lL+cP8",
+  "total_items_reported": 54,
+  "item_count_fetched": 54,
   "items_accessible": true,
   "items_error": null,
-  "last_items_accessible_at": "2026-11-07T13:02:19.385579+00:00",
-  "items_snapshot_id": "AAAAWUJKmhsYsv2dOj5swnP2OrdZ5Vho",
+  "last_items_accessible_at": "2026-11-08T04:42:43.171423+00:00",
+  "items_snapshot_id": "AAAAX2pvzcMH0zw3OJS7KX6h70lL+cP8",
   "playability_market": "from_token",
   "playability_market_context": "spotify_user_account_country",
   "items": [
@@ -40,7 +40,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385298+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171163+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -71,7 +71,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385319+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171177+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -100,7 +100,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385329+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171183+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -129,7 +129,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385336+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171192+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -158,7 +158,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385340+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171197+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -187,7 +187,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385346+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171202+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -216,7 +216,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385352+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171206+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -245,7 +245,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385359+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171214+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -256,35 +256,6 @@
     },
     {
       "position": 8,
-      "added_at": "2026-11-07T10:52:00Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "2qV4oFPfGjIH4bg9L8mjkJ",
-      "uri": "spotify:track:2qV4oFPfGjIH4bg9L8mjkJ",
-      "name": "Good Die Young",
-      "artists": [
-        "Molly Kate Kestner"
-      ],
-      "artist_ids": [
-        "390x0qxDdsMmN20RAwspbf"
-      ],
-      "album": "Good Die Young",
-      "album_id": "1Lcii5tFpuOZEco0rQiubv",
-      "duration_ms": 208413,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385368+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USAT21603084"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 9,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -303,7 +274,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385374+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171221+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -313,7 +284,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 10,
+      "position": 9,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -332,7 +303,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385379+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171226+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -342,7 +313,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 11,
+      "position": 10,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -361,7 +332,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385384+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171230+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -371,7 +342,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 12,
+      "position": 11,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -390,7 +361,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385394+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171236+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -400,7 +371,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 13,
+      "position": 12,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -419,7 +390,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385399+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171240+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -429,65 +400,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 14,
-      "added_at": "2026-11-07T10:52:00Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "6r11Ejmq0FKkVQoawHfTFP",
-      "uri": "spotify:track:6r11Ejmq0FKkVQoawHfTFP",
-      "name": "astrology girl",
-      "artists": [
-        "Mind’s Eye"
-      ],
-      "artist_ids": [
-        "4o6dCIkmONTJL0ByDDUNYd"
-      ],
-      "album": "Long Nights and Wasted Affairs",
-      "album_id": "2YKrT7Izbd8U5muoR0ZNaL",
-      "duration_ms": 209767,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385403+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "SE6QE2309414"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 15,
-      "added_at": "2026-11-07T10:52:00Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "2gqTknJNepaQJpOl54zLUo",
-      "uri": "spotify:track:2gqTknJNepaQJpOl54zLUo",
-      "name": "L'amour",
-      "artists": [
-        "May Roosevelt"
-      ],
-      "artist_ids": [
-        "3Fs0Rcn2Ss2fqbrLvLN4Kt"
-      ],
-      "album": "Pearl",
-      "album_id": "59Q7xN6r4Bqsksxl8D4pkL",
-      "duration_ms": 290807,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385407+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USHM82333134"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 16,
+      "position": 13,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -506,7 +419,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385410+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171244+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -516,7 +429,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 17,
+      "position": 14,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -535,7 +448,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385413+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171247+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -545,67 +458,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 18,
-      "added_at": "2026-11-07T10:52:00Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "3gwbuvu5hYV9rQfHCTZYXB",
-      "uri": "spotify:track:3gwbuvu5hYV9rQfHCTZYXB",
-      "name": "erased",
-      "artists": [
-        "FINLINCE!",
-        "Lucas Lex"
-      ],
-      "artist_ids": [
-        "6QBAsmqSEXHYH3ES6AppN8",
-        "28Uv1faP5J3s97NkhCyKWU"
-      ],
-      "album": "erased",
-      "album_id": "4HAu8jbyniiNYWZxWHQSWy",
-      "duration_ms": 81418,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385419+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "QZKDK2014144"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 19,
-      "added_at": "2026-11-07T10:52:00Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "77FSmplFEEoyDMTu4xSm56",
-      "uri": "spotify:track:77FSmplFEEoyDMTu4xSm56",
-      "name": "Hand Of Blood",
-      "artists": [
-        "Bullet For My Valentine"
-      ],
-      "artist_ids": [
-        "7iWiAD5LLKyiox2grgfmUT"
-      ],
-      "album": "The Poison (20th Anniversary Edition)",
-      "album_id": "7ktT6Pab27CBgbpFBZ4lCy",
-      "duration_ms": 214600,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385422+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "GBHQD0400003"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 20,
+      "position": 15,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -624,7 +477,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385425+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171251+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -634,7 +487,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 21,
+      "position": 16,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -653,7 +506,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385428+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171255+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -663,7 +516,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 22,
+      "position": 17,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -682,7 +535,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385431+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171259+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -692,7 +545,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 23,
+      "position": 18,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -711,7 +564,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385434+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171264+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -721,36 +574,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 24,
-      "added_at": "2026-11-07T10:52:00Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "5vtMCt0sWVxCbsTUnPyCTh",
-      "uri": "spotify:track:5vtMCt0sWVxCbsTUnPyCTh",
-      "name": "Anything He Was",
-      "artists": [
-        "Tiny Habits"
-      ],
-      "artist_ids": [
-        "2QYdqWGgRorVkA8cJMMdrn"
-      ],
-      "album": "Anything He Was",
-      "album_id": "2FUew1tmYs8QW7YOmiZRDV",
-      "duration_ms": 239480,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385437+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USQE92600133"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 25,
+      "position": 19,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -769,7 +593,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385442+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171268+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -779,7 +603,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 26,
+      "position": 20,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -798,7 +622,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385444+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171272+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -808,7 +632,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 27,
+      "position": 21,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -827,7 +651,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385447+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171275+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -837,7 +661,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 28,
+      "position": 22,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -856,7 +680,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385452+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171279+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -866,7 +690,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 29,
+      "position": 23,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -885,7 +709,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385455+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171283+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -895,7 +719,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 30,
+      "position": 24,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -914,7 +738,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385458+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171288+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -924,7 +748,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 31,
+      "position": 25,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -943,7 +767,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385460+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171292+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -953,7 +777,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 32,
+      "position": 26,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -972,7 +796,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385463+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171297+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -982,7 +806,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 33,
+      "position": 27,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1001,7 +825,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385466+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171302+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1011,7 +835,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 34,
+      "position": 28,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1030,7 +854,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385469+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171308+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1040,7 +864,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 35,
+      "position": 29,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1059,7 +883,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385472+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171312+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1069,7 +893,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 36,
+      "position": 30,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1088,7 +912,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385475+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171316+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1098,7 +922,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 37,
+      "position": 31,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1123,7 +947,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385480+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171321+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1133,7 +957,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 38,
+      "position": 32,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1152,7 +976,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385484+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171325+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1162,7 +986,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 39,
+      "position": 33,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1181,7 +1005,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385487+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171329+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1191,7 +1015,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 40,
+      "position": 34,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1210,7 +1034,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385490+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171333+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1220,7 +1044,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 41,
+      "position": 35,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1239,7 +1063,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385493+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171337+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1249,7 +1073,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 42,
+      "position": 36,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1268,7 +1092,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385495+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171341+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1278,7 +1102,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 43,
+      "position": 37,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1297,7 +1121,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385514+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171347+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1307,7 +1131,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 44,
+      "position": 38,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1326,7 +1150,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385519+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171353+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1336,7 +1160,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 45,
+      "position": 39,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1355,7 +1179,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385523+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171357+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1365,7 +1189,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 46,
+      "position": 40,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1384,7 +1208,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385526+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171361+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1394,7 +1218,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 47,
+      "position": 41,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1413,7 +1237,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385529+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171365+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1423,7 +1247,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 48,
+      "position": 42,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1442,7 +1266,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385534+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171369+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1452,7 +1276,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 49,
+      "position": 43,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1471,7 +1295,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385536+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171372+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1481,7 +1305,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 50,
+      "position": 44,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1500,7 +1324,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385541+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171376+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1510,7 +1334,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 51,
+      "position": 45,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1529,7 +1353,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385544+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171382+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1539,7 +1363,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 52,
+      "position": 46,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1558,7 +1382,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385547+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171385+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1568,7 +1392,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 53,
+      "position": 47,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1587,7 +1411,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385550+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171389+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1597,7 +1421,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 54,
+      "position": 48,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1616,7 +1440,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385555+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171395+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1626,7 +1450,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 55,
+      "position": 49,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1645,7 +1469,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385558+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171398+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1655,7 +1479,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 56,
+      "position": 50,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1674,7 +1498,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385561+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171404+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1684,7 +1508,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 57,
+      "position": 51,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1703,7 +1527,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385564+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171408+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1713,7 +1537,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 58,
+      "position": 52,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1732,7 +1556,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385568+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171411+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1742,7 +1566,7 @@
       "available_markets_count": 0
     },
     {
-      "position": 59,
+      "position": 53,
       "added_at": "2026-11-07T10:52:00Z",
       "added_by": "a_thought",
       "type": "track",
@@ -1761,7 +1585,7 @@
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-07T13:02:19.385571+00:00",
+      "playability_checked_at": "2026-11-08T04:42:43.171415+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,

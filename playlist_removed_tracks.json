@@ -898,6 +898,55 @@
           "source": "manual removal detected by Tricky Daily live reconciliation",
           "detected_at": "2026-11-07T00:02:39.599569+00:00",
           "last_present_cycle": "2026-11-05T23:11:08.463502+00:00"
+        },
+        {
+          "uri": "spotify:track:77FSmplFEEoyDMTu4xSm56",
+          "name": "Hand Of Blood",
+          "artists": [
+            "Bullet For My Valentine"
+          ],
+          "album": "The Poison (20th Anniversary Edition)"
+        },
+        {
+          "uri": "spotify:track:3gwbuvu5hYV9rQfHCTZYXB",
+          "name": "erased",
+          "artists": [
+            "FINLINCE!",
+            "Lucas Lex"
+          ],
+          "album": "erased"
+        },
+        {
+          "uri": "spotify:track:2gqTknJNepaQJpOl54zLUo",
+          "name": "L'amour",
+          "artists": [
+            "May Roosevelt"
+          ],
+          "album": "Pearl"
+        },
+        {
+          "uri": "spotify:track:6r11Ejmq0FKkVQoawHfTFP",
+          "name": "astrology girl",
+          "artists": [
+            "Mind’s Eye"
+          ],
+          "album": "Long Nights and Wasted Affairs"
+        },
+        {
+          "uri": "spotify:track:2qV4oFPfGjIH4bg9L8mjkJ",
+          "name": "Good Die Young",
+          "artists": [
+            "Molly Kate Kestner"
+          ],
+          "album": "Good Die Young"
+        },
+        {
+          "uri": "spotify:track:5vtMCt0sWVxCbsTUnPyCTh",
+          "name": "Anything He Was",
+          "artists": [
+            "Tiny Habits"
+          ],
+          "album": "Anything He Was"
         }
       ],
       "whitelisted": []
@@ -916,6 +965,10 @@
     },
     "2dXmAFyjrI8TMmea1OILCX": {
       "name": "",
+      "removed": []
+    },
+    "4Ccwf3QRr8HfSsK48pTuBI": {
+      "name": "Poker test",
       "removed": []
     }
   }
