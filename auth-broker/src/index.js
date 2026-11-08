@@ -300,7 +300,7 @@ function pkcs8PrivateKey(pem) {
   return der(0x30, concat(Uint8Array.of(0x02, 0x01, 0x00), algorithm, der(0x04, pkcs1)));
 }
 
-async function githubAppJwt(env) {
+export async function githubAppJwt(env) {
   const pem = String(env.GITHUB_APP_PRIVATE_KEY || "");
   const key = await crypto.subtle.importKey(
     "pkcs8",
