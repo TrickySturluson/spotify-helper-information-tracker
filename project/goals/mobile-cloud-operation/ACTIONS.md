@@ -141,3 +141,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Expanded the broker suite from 18 to 23 tests. New tests exercise the Spotify Authorization Code + PKCE form exchange, generic/redacted provider failures, GitHub Actions public-key sealed-box encryption/decryption, exact secret payload shape, read-only health-workflow dispatch, dispatch failure after secret persistence, and fail-closed behavior when secret publication fails.
 - The GitHub API is mocked; the tests do not contact Spotify/GitHub, write repository secrets, or change playlists. They verify the actual encryption/decryption round trip using a generated test-only sodium keypair.
 - Source/test changes are on the feature branch and a fresh CI run is pending. The previous 18-test run passed with npm ci, high-severity dependency audit and Wrangler dry-run; latest full-history Gitleaks scan on the docs-updated branch passed.
+
+
+## 2026-11-08 — 23-test integration suite passed
+
+- The 23-test broker suite passed on CI commit `a244d1c379e1018c52c03ee3425c42022afac39c` using the committed lockfile via `npm ci`.
+- The same run passed `npm audit --audit-level=high` and Wrangler's non-deploying Worker bundle/configuration dry-run.
+- The new mocked tests verified the refresh token is sealed with the repository Actions public key, decrypts only with the generated test private key, and the API payload contains only `encrypted_value` and `key_id`. They also verified secret-update failure prevents dispatch, while dispatch failure is reported separately after the secret is already persisted.
+- The run's lockfile commit job also completed successfully without changing the already committed lockfile. No real GitHub secret or Spotify playlist was modified.
