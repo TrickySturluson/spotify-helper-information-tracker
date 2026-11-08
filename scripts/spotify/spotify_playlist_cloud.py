@@ -876,7 +876,7 @@ def main():
             lines.extend(f'  {row["artist"]} — {row["track"]} [{row["uri"]}]' for row in blocked)
             lines.append("OTHER EXCLUSIONS:")
             lines.extend(f'  {row}' for row in skipped)
-            result = "\\n".join(lines)
+            result = "\n".join(lines)
         else:
             intake = append_candidates(
                 [{
@@ -1113,10 +1113,10 @@ def main():
             ("Radiohead", "House of Cards"),
             ("The Allman Brothers Band", "Gamblin' Man"),
             ("Garth Brooks", "Two of a Kind, Workin' on a Full House"),
-            ("Elvis Presley", "King of the Whole Wide World"),
-            ("The B-52's", "Private Idaho"),
-            ("The Steve Miller Band", "The Joker"),
-            ("Kenny Rogers", "Lady"),
+            ("KISS", "Hard Luck Woman"),
+            ("The B-52's", "Roam"),
+            ("Steve Miller Band", "The Joker"),
+            ("Creedence Clearwater Revival", "Fortunate Son"),
             ("The O'Jays", "For the Love of Money"),
             ("Dire Straits", "Money for Nothing"),
             ("The Beatles", "The Fool on the Hill"),
@@ -1185,7 +1185,7 @@ def main():
                 "duration_ms": match.get("duration_ms"),
             })
         if len(resolved) != 40 or skipped or already_present:
-            result = "\\n".join([
+            result = "\n".join([
                 f'STAGING REPORT — {p.get("name")} [{pid}]',
                 "STATUS: BLOCKED — exact 40-track batch not available; nothing staged.",
                 f'Eligible: {len(resolved)}/40 | Already present: {len(already_present)} | Excluded: {len(skipped)}.',
