@@ -52,7 +52,11 @@ This requires a narrowly scoped GitHub App installed on this repository:
 
 If the App token is unavailable, cloud refresh fails closed **before contacting Spotify**, preventing an unpersisted token rotation. The shared Spotify client retries the secret update up to three times and stops if GitHub does not confirm persistence. Local development remains independent of this GitHub App.
 
-### Initial reauthorization (one-time recovery)
+### Mobile reauthorization replacement — planned, not deployed
+
+The current Codespaces/local callback procedure below is the legacy recovery path. The active workstream is [Mobile Cloud Operation & Spotify Reauthorization](../project/goals/mobile-cloud-operation/ROADMAP.md). The intended replacement is a managed HTTPS OAuth broker that authenticates the GitHub owner, uses Spotify PKCE, writes the refresh token directly to the repository Actions secret through a repository-scoped GitHub App, and triggers only the read-only auth-health workflow. This broker is not implemented or deployed yet. Until end-to-end verification is complete, do not claim mobile reauthorization is available. Never paste a refresh token into ChatGPT, an issue, a commit, or a log.
+
+### Initial reauthorization (legacy one-time recovery)
 
 The current repository secret has been rejected by Spotify (`invalid_grant`), so token-rotation persistence cannot repair it retroactively. Reauthorize the Spotify playlist manager once, then manually bootstrap the new token into GitHub Actions:
 

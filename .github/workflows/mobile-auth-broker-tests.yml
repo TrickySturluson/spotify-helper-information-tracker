@@ -1,0 +1,35 @@
+name: SHIT Mobile Auth Broker Tests
+
+on:
+  pull_request:
+    paths:
+      - "auth-broker/**"
+      - ".github/workflows/mobile-auth-broker-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: auth-broker
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: Install pinned broker dependencies
+        run: npm install --ignore-scripts
+      - name: Run broker security unit tests
+        run: npm test
+
+# FILE OVERVIEW
+# Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
+# Trigger: Pull requests touching auth-broker files; manual workflow_dispatch.
+# Credentials: None. This workflow never contacts Spotify, GitHub Secrets, or Cloudflare.
+# Side effects: Installs pinned dependencies on an ephemeral runner and runs local tests only.
+# Safety: No secrets or playlist permissions are available to this job.

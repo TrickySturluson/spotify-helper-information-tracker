@@ -1,4 +1,12 @@
-## Current policy overlay — 2026-11-06
+## Mobile Cloud Operation & Spotify Reauthorization — ACTIVE; DESIGN PHASE
+
+- User explicitly authorized a phone-first OAuth recovery path and Codespaces-independent SHIT operation on 2026-11-08.
+- Verified blocker: current Spotify refresh token returns `invalid_grant` (playlist-control run #42448656654). The local manager's PKCE callback binds port 8888; the existing cloud workflows cannot receive the initial browser callback.
+- Existing cloud playlist control, read-only auth-health workflow, and automatic refresh-token secret rotation are already present. Do not duplicate these systems or bypass the manager.
+- Proposed managed HTTPS broker must authenticate the GitHub owner, use Spotify PKCE, write the token directly to repository Actions Secrets via a repo-scoped GitHub App, then dispatch only read-only auth verification.
+- No broker implementation/deployment or external account/secret changes yet. See [mobile cloud operation roadmap](goals/mobile-cloud-operation/ROADMAP.md). Next: finish security/permissions audit, implement broker and tests, then deploy after required external setup.
+
+# Current policy overlay — 2026-11-06
 
 This section supersedes the older documentation-first freeze and Codex-worker descriptions below.
 
