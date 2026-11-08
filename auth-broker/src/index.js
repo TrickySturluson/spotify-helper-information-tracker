@@ -107,12 +107,13 @@ function redirect(url, headers = {}) {
   return response(null, 302, { Location: url, ...headers });
 }
 
-async function rateLimit(request, env, route) {
+export async function rateLimit(request, env, route) {
   if (!env.AUTH_RATE_LIMITER) throw new BrokerError("Rate limiter is not configured.");
-  const sessionId = parseCookies(request.headers.get("Cookie"))["__Host-shit_session"];
-  // Use the authenticated session for Spotify routes. Before GitHub identity
-  // exists, use a route-wide key rather than IP (mobile carriers share IPs).
-  const actor = route.startsWith("spotify-") && sessionId ? sessionId : "anonymous";
+  // Never trust a caller-supplied cookie as a rate-limit identity. Resolve the
+  // session against server-side state first; invalid/missing cookies share the
+  // anonymous bucket, while only a verified owner session gets its own bucket.
+  const session = route.startsWith("spotify-") ? await getSession(request, env) : null;
+  const actor = session ? session.id : "anonymous";
   const result = await env.AUTH_RATE_LIMITER.limit({ key: `${route}:${actor}` });
   if (!result.success) throw new BrokerError("Too many attempts.");
 }
