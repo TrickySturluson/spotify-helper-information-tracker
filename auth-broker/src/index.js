@@ -327,7 +327,7 @@ async function githubLoginCallback(request, env, url) {
   }
   const sessionId = randomValue(32);
   await env.OAUTH_KV.put(`session:${sessionId}`, JSON.stringify({ login: user.login }), { expirationTtl: SESSION_TTL });
-  return redirect(new URL("/spotify/start", url.origin).toString(), {
+  return redirect(new URL("/spotify/start", env.BROKER_BASE_URL).toString(), {
     "Set-Cookie": cookie("__Host-shit_session", sessionId, SESSION_TTL),
   });
 }
@@ -371,6 +371,10 @@ async function spotifyCallback(request, env, url) {
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
   try {
+    requireEnv(env, ["BROKER_BASE_URL"]);
+    if (url.origin !== new URL(env.BROKER_BASE_URL).origin) {
+      return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
+    }
     if (url.pathname === "/" && request.method === "GET") {
       return page("SHIT mobile authorization", "Sign in with the repository owner account, then approve Spotify. This process never edits playlists.", {
         href: "/auth/github/start",
