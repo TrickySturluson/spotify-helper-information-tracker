@@ -10,7 +10,7 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 4. The broker obtains a short-lived installation token from a GitHub App restricted to this repository. It checks for active Spotify-related Actions runs before replacing the credential and refuses to race an in-flight Spotify job.
 5. The broker encrypts the Spotify refresh token using GitHub's repository Actions secret public key and updates only SPOTIFY_REFRESH_TOKEN.
 6. Only after the secret update succeeds does it dispatch spotify-auth-health-check.yml. This workflow verifies authentication and does not edit playlists.
-7. The browser receives only status and a link to the auth-health workflow. The refresh token is never returned or stored in the Durable Object state store.
+7. The browser receives only status and a link to the auth-health workflow. The callback immediately redirects to a clean, one-time completion URL; only a short-lived non-secret account/status summary is stored in the Durable Object. The refresh token is never returned or stored in the Durable Object state store.
 
 ## Required Worker bindings and configuration
 
@@ -58,7 +58,8 @@ From Cloudflare and GitHub dashboards (no local PC is required):
 ## Security contract
 
 - GitHub App user access tokens are used only in memory to verify the GitHub identity; they are not stored. Only short-lived state, PKCE verifier and session metadata are stored in the strongly consistent Durable Object.
-- GitHub and Spotify state values, session IDs and PKCE verifiers are short-lived Durable Object records and are consumed transactionally on callback. Expired records are removed by the Durable Object alarm.
+- GitHub and Spotify state values, session IDs and PKCE verifiers are short-lived Durable Object records and are consumed transactionally on callback. Expired records are removed by the Durable Object alarm. The final completion summary is also one-time and contains only the Spotify account display name/ID and whether the read-only workflow dispatch started.
+- The Spotify callback redirects away from the query string containing the one-time authorization code before displaying the result.
 - The Spotify refresh token is held only in memory between token exchange and GitHub's encrypted secret update.
 - No token, code, verifier, session ID, private key, request URL, or provider response body is logged or returned. Worker observability is explicitly disabled in Wrangler because OAuth callbacks carry authorization codes in query parameters.
 - Cookies are Secure, HttpOnly, SameSite=Lax and host-only.
@@ -69,7 +70,7 @@ From Cloudflare and GitHub dashboards (no local PC is required):
 
 ## Tests
 
-Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, fail-closed workflow concurrency classification, transactional Durable Object replay/expiry, required runtime configuration, playlist-isolation boundaries and Spotify identity verification. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
+Run `npm install` and `npm test` in this directory. These tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, fail-closed workflow concurrency classification, transactional Durable Object replay/expiry, required runtime configuration, playlist-isolation boundaries, Spotify identity verification and one-time clean completion-page behavior. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
 
 ## Status
 
