@@ -5,6 +5,7 @@ import {
   handleRequest,
   hasRequiredScopes,
   isAuthorizedOwner,
+  OAuthStateStore,
   isSpotifyWorkflowPath,
   parseCookies,
   pkceChallenge,
@@ -81,4 +82,75 @@ test("mobile landing page is local, no-store and contains no third-party script"
   assert.equal(result.headers.get("cache-control"), "no-store");
   assert.match(body, /Continue with GitHub/);
   assert.doesNotMatch(body, /<script|https:\/\//i);
+});
+
+
+class MemoryDurableStorage {
+  constructor() { this.values = new Map(); this.alarmAt = null; }
+  async get(key) { return this.values.get(key); }
+  async put(key, value) { this.values.set(key, value); }
+  async delete(key) { return this.values.delete(key); }
+  async list({ prefix = "" } = {}) {
+    return new Map([...this.values.entries()].filter(([key]) => key.startsWith(prefix)));
+  }
+  async getAlarm() { return this.alarmAt; }
+  async setAlarm(value) { this.alarmAt = value; }
+  async transaction(callback) {
+    const before = new Map(this.values);
+    try { return await callback(); }
+    catch (error) { this.values = before; throw error; }
+  }
+}
+
+async function callStateStore(store, path, body) {
+  return store.fetch(new Request("https://state.internal" + path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  }));
+}
+
+test("Durable Object consumes Spotify state once and binds it to the session", async () => {
+  const storage = new MemoryDurableStorage();
+  const store = new OAuthStateStore({ storage });
+  const state = "state-one";
+  const stateKey = "oauth:spotify-state:" + state;
+  const activeKey = "oauth:spotify-active:session-one";
+  await callStateStore(store, "/put-spotify", {
+    key: stateKey,
+    value: { sessionId: "session-one", verifier: "pkce-verifier" },
+    activeKey,
+    activeValue: state,
+    ttl: 300,
+  });
+
+  const wrongSession = await callStateStore(store, "/consume-spotify", {
+    key: stateKey, activeKey, sessionId: "other-session", expectedState: state,
+  });
+  assert.equal(wrongSession.status, 404);
+
+  const consumed = await callStateStore(store, "/consume-spotify", {
+    key: stateKey, activeKey, sessionId: "session-one", expectedState: state,
+  });
+  assert.equal(consumed.status, 200);
+  assert.deepEqual((await consumed.json()).value, {
+    sessionId: "session-one",
+    verifier: "pkce-verifier",
+  });
+
+  const replay = await callStateStore(store, "/consume-spotify", {
+    key: stateKey, activeKey, sessionId: "session-one", expectedState: state,
+  });
+  assert.equal(replay.status, 404);
+});
+
+test("Durable Object expires and cleans abandoned OAuth records", async () => {
+  const storage = new MemoryDurableStorage();
+  const store = new OAuthStateStore({ storage });
+  await storage.put("oauth:expired", { value: "pending", expiresAt: Date.now() - 1 });
+  await storage.put("oauth:live", { value: "pending", expiresAt: Date.now() + 60_000 });
+  await store.alarm();
+  assert.equal(await storage.get("oauth:expired"), undefined);
+  assert.ok(await storage.get("oauth:live"));
+  assert.ok(storage.alarmAt > Date.now());
 });
