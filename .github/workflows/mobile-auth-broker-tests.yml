@@ -6,6 +6,12 @@ on:
       - "auth-broker/**"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
+      - "docs/WORKFLOWS.md"
+      - "docs/README.md"
+      - "docs/SPOTIFY_API_OPERATIONS.md"
+      - "project/ROADMAP.md"
+      - "project/goals/README.md"
+      - "project/goals/mobile-cloud-operation/**"
   push:
     branches:
       - "feature/**"
@@ -13,6 +19,12 @@ on:
       - "auth-broker/**"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
+      - "docs/WORKFLOWS.md"
+      - "docs/README.md"
+      - "docs/SPOTIFY_API_OPERATIONS.md"
+      - "project/ROADMAP.md"
+      - "project/goals/README.md"
+      - "project/goals/mobile-cloud-operation/**"
   workflow_dispatch:
 
 concurrency:
