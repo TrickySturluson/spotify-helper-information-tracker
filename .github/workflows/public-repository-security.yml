@@ -2,7 +2,7 @@ name: Public repository security scan
 
 on:
   push:
-    branches: [main]
+    branches: [main, "feature/**"]
   pull_request:
     branches: [main]
   schedule:
@@ -32,7 +32,7 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Scan the complete Git history for credential-like secrets.
-# Trigger: Runs on main pushes, pull requests, weekly, and manual dispatch.
+# Trigger: Runs on main and feature/** pushes, pull requests to main, weekly, and manual dispatch.
 # Behavior: Checks out all history and runs Gitleaks with redacted findings so
 #           suspected secret values are not printed in workflow logs.
 # Permissions: contents: read; no repository write token or external secrets.
