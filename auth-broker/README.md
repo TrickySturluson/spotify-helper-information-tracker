@@ -7,18 +7,19 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 1. The browser starts GitHub OAuth and the broker verifies the returned GitHub identity is exactly the repository owner.
 2. The broker creates a short-lived session and redirects to Spotify Authorization Code with PKCE.
 3. The broker validates one-time OAuth state and session binding, exchanges the code server-side, and requires all scopes used by the existing SHIT manager.
-4. The broker obtains a short-lived installation token from a GitHub App restricted to this repository.
+4. The broker obtains a short-lived installation token from a GitHub App restricted to this repository. It checks for active Spotify-related Actions runs before replacing the credential and refuses to race an in-flight Spotify job.
 5. The broker encrypts the Spotify refresh token using GitHub's repository Actions secret public key and updates only SPOTIFY_REFRESH_TOKEN.
 6. Only after the secret update succeeds does it dispatch spotify-auth-health-check.yml. This workflow verifies authentication and does not edit playlists.
 7. The browser receives only status and a link to the auth-health workflow. The refresh token is never returned or stored in KV.
 
 ## Required Worker bindings and configuration
 
-Create one Cloudflare Workers KV namespace and bind it as OAUTH_KV. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Replace the KV namespace placeholder and both callback host placeholders before deployment.
+Create one Cloudflare Workers KV namespace and bind it as OAUTH_KV. Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Replace the KV namespace placeholder and both callback host placeholders before deployment.
 
 Non-secret Worker variables:
 
 - GITHUB_OWNER=TrickySturluson
+- BROKER_BASE_URL (canonical HTTPS Worker origin)
 - GITHUB_REPOSITORY=spotify-helper-information-tracker
 - GITHUB_OAUTH_CLIENT_ID
 - GITHUB_OAUTH_REDIRECT_URI (exact Worker URL plus /auth/github/callback)
