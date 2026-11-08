@@ -42,7 +42,7 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - [x] Dispatch only spotify-auth-health-check.yml after confirmed secret persistence.
 - [x] Implement owner allowlisting, one-time state/replay protection, preflight checks for active Spotify workflows, rate limiting, secure cookies, security headers and strict log redaction.
 - [x] Add unit tests for owner allow/deny, scopes, cookies, HTML escaping, PKCE, canonical host, fail-closed workflow concurrency classification, Durable Object replay/expiry and required runtime configuration.
-- [ ] Add integration/failure tests for provider token exchange, GitHub encryption/API errors, fail-closed persistence and dispatch outcomes.
+- [x] Add mocked integration/failure tests for provider token exchange, GitHub public-key encryption, secret-update failures, fail-closed persistence and dispatch outcomes (23 tests total).
 
 ### M2 — Deployment pipeline and setup
 
@@ -79,7 +79,7 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - The rate-limiting binding is an approximate per-location abuse throttle, not a security boundary. Owner authentication, PKCE, session binding and transactional one-time state provide the actual controls.
 - A dedicated broker GitHub App, separate from the existing SHIT manager secret-writer App, is required. Install it only on this repository with Actions: write and Secrets: write; do not broaden the existing manager App's Secrets: write-only permissions. The app's web authorization flow (with PKCE) verifies the GitHub owner; the installation token is separately narrowed to this repository and those two permissions.
 - The broker checks for active Spotify-related Actions runs before consent, before code exchange and before secret publication. This reduces token-rotation races but is not an atomic lock against a new workflow starting between checks; complete live testing in a quiet maintenance window.
-- 18 broker security/unit tests passed on CI; the full dependency audit passed at the high-severity threshold; Wrangler bundle/config dry-run passed. The lockfile is committed and a subsequent `npm ci` run passed. Public repository full-history secret scans passed on earlier commits; the latest scan is still running. Deployment variables are injected from GitHub repository variables with Wrangler `--var`, avoiding drift from dashboard-managed variables. No external account, app, secret, redirect URI or playlist has been changed.
+- 18 broker security/unit tests passed on CI on the previous tested revision; the suite has since expanded to 23 with mocked OAuth/secret persistence cases and is awaiting its next CI run; the full dependency audit passed at the high-severity threshold; Wrangler bundle/config dry-run passed. The lockfile is committed and a subsequent `npm ci` run passed. Public repository full-history secret scans passed on earlier commits; the latest scan is still running. Deployment variables are injected from GitHub repository variables with Wrangler `--var`, avoiding drift from dashboard-managed variables. No external account, app, secret, redirect URI or playlist has been changed.
 
 ## Acceptance criteria
 
