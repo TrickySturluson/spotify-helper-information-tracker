@@ -5,6 +5,7 @@ import {
   handleRequest,
   hasRequiredScopes,
   isAuthorizedOwner,
+  isSpotifyWorkflowPath,
   parseCookies,
   pkceChallenge,
 } from "../src/index.js";
@@ -57,4 +58,14 @@ test("broker rejects requests sent to a non-canonical host", async () => {
     { BROKER_BASE_URL: "https://trusted.example" },
   );
   assert.equal(result.status, 400);
+});
+
+
+test("concurrency gate recognizes Spotify credential workflows but excludes broker jobs", () => {
+  assert.equal(isSpotifyWorkflowPath(".github/workflows/spotify-daily-midnight-cycle.yml"), true);
+  assert.equal(isSpotifyWorkflowPath(".github/workflows/spotify-auth-health-check.yml"), true);
+  assert.equal(isSpotifyWorkflowPath(".github/workflows/great-migration.yml"), true);
+  assert.equal(isSpotifyWorkflowPath(".github/workflows/daily-curator-tests.yml"), false);
+  assert.equal(isSpotifyWorkflowPath(".github/workflows/deploy-mobile-auth-broker.yml"), false);
+  assert.equal(isSpotifyWorkflowPath("auth-broker/src/index.js"), false);
 });
