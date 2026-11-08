@@ -39,6 +39,7 @@ test("required Spotify scopes must all be granted", () => {
 });
 
 test("cookie parser handles multiple values and ignores malformed fragments", () => {
+  assert.deepEqual(parseCookies(null), {});
   assert.deepEqual(parseCookies("a=one; __Host-session=abc_def; broken; b=two=three"), {
     a: "one",
     "__Host-session": "abc_def",
