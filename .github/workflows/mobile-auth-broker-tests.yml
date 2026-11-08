@@ -32,6 +32,8 @@ jobs:
         run: npm install --ignore-scripts
       - name: Run broker security unit tests
         run: npm test
+      - name: Validate Worker bundle and Wrangler configuration without deploying
+        run: npx wrangler deploy --dry-run
 
 # FILE OVERVIEW
 # Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
