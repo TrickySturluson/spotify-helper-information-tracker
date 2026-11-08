@@ -494,11 +494,11 @@ async function spotifyCallback(request, env, url) {
   }
   const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
   const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
-  await stateDelete(env, `oauth:session:${session.id}`);
   // Keep the callback URL (which contains a one-time authorization code) out
   // of the final browser address bar. Store only the non-secret result summary.
   const resultId = randomValue(24);
   await statePut(env, `oauth:result:${resultId}`, { spotifyIdentity, verificationStarted }, 120);
+  await stateDelete(env, `oauth:session:${session.id}`);
   return redirect(new URL(`/complete?result=${resultId}`, env.BROKER_BASE_URL).toString());
 }
 
