@@ -157,3 +157,9 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Added `OPERATIONS.md` documenting the exact issue contract, current command names/fields, ChatGPT's supported GitHub connector path, the distinction between issue-body commands and comments, user-confirmation rules, and actions that still require phone/dashboard consent.
 - Updated the goal README and index. Marked the first four M4 mobile-operation documentation/control-plane milestones complete; end-to-end test with the PC off remains pending until broker deployment and OAuth setup.
 - Confirmed issue #175 remains the existing Poker Test unlock request and its last execution failed on Spotify `invalid_grant`; do not retrigger it before reauthorization and read-only health verification.
+
+
+## 2026-11-08 — Preserve owner identity gate in mobile control flow
+
+- Clarified that GitHub connector issue creation/update is only usable for the owner-only command workflow if the resulting event sender is actually `TrickySturluson`.
+- Added an explicit M4 acceptance gate to verify this with a read-only `status` command after reauthorization. If the connector event identity is not the owner, the user must create/edit the issue manually in GitHub; do not weaken the sender gate.
