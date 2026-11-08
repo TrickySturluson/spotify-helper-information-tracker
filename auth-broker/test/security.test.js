@@ -69,3 +69,16 @@ test("concurrency gate recognizes Spotify credential workflows but excludes brok
   assert.equal(isSpotifyWorkflowPath(".github/workflows/deploy-mobile-auth-broker.yml"), false);
   assert.equal(isSpotifyWorkflowPath("auth-broker/src/index.js"), false);
 });
+
+
+test("mobile landing page is local, no-store and contains no third-party script", async () => {
+  const result = await handleRequest(
+    new Request("https://trusted.example/"),
+    { BROKER_BASE_URL: "https://trusted.example" },
+  );
+  const body = await result.text();
+  assert.equal(result.status, 200);
+  assert.equal(result.headers.get("cache-control"), "no-store");
+  assert.match(body, /Continue with GitHub/);
+  assert.doesNotMatch(body, /<script|https:\/\//i);
+});
