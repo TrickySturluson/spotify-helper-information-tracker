@@ -64,6 +64,7 @@ jobs:
           steps.parse-command.outputs.command == 'booze10_preview' ||
           steps.parse-command.outputs.command == 'booze20_preview' ||
           steps.parse-command.outputs.command == 'booze20_uri_preview' ||
+          steps.parse-command.outputs.command == 'poker_preview' ||
           steps.parse-command.outputs.command == 'horror_preview' ||
           steps.parse-command.outputs.command == 'daily_preview' ||
           (steps.parse-command.outputs.command == 'confirm' &&
