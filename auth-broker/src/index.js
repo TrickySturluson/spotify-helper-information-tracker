@@ -495,14 +495,11 @@ async function spotifyCallback(request, env, url) {
   const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
   const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
   await stateDelete(env, `oauth:session:${session.id}`);
-  const message = verificationStarted
-    ? `Spotify account verified: ${spotifyIdentity.displayName || "Spotify user"} (ID ${spotifyIdentity.id}). Your authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
-    : `Spotify account verified: ${spotifyIdentity.displayName || "Spotify user"} (ID ${spotifyIdentity.id}). Your authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open the Actions page and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
-  return page(
-    "Spotify authorization saved",
-    message,
-    { href: `https://github.com/${OWNER}/${REPOSITORY}/actions/workflows/${AUTH_WORKFLOW}`, label: "View SHIT authentication check" },
-  );
+  // Keep the callback URL (which contains a one-time authorization code) out
+  // of the final browser address bar. Store only the non-secret result summary.
+  const resultId = randomValue(24);
+  await statePut(env, `oauth:result:${resultId}`, { spotifyIdentity, verificationStarted }, 120);
+  return redirect(new URL(`/complete?result=${resultId}`, env.BROKER_BASE_URL).toString());
 }
 
 export async function handleRequest(request, env) {
@@ -585,6 +582,28 @@ export async function handleRequest(request, env) {
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_spotify_state"));
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_session"));
       return result;
+    }
+
+    if (url.pathname === "/complete" && request.method === "GET") {
+      await rateLimit(request, env, "complete");
+      const resultId = url.searchParams.get("result") || "";
+      if (!/^[A-Za-z0-9_-]{30,}$/.test(resultId)) {
+        return page("Authorization result unavailable", "Start a new authorization from the SHIT mobile authorization page.", { href: "/", label: "Start again" });
+      }
+      const result = await stateConsume(env, `oauth:result:${resultId}`);
+      if (!result || !result.spotifyIdentity) {
+        return page("Authorization result expired", "The one-time completion link has expired or was already used. Your saved credential is not affected.", { href: "/", label: "Return to SHIT authorization" });
+      }
+      const identity = result.spotifyIdentity;
+      const account = `${identity.displayName || "Spotify user"} (ID ${identity.id})`;
+      const message = result.verificationStarted
+        ? `Spotify account verified: ${account}. Your authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
+        : `Spotify account verified: ${account}. Your authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open Actions and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
+      return page(
+        "Spotify authorization saved",
+        message,
+        { href: `https://github.com/${OWNER}/${REPOSITORY}/actions/workflows/${AUTH_WORKFLOW}`, label: "View SHIT authentication check" },
+      );
     }
 
     return response("Not found.", 404, { "Content-Type": "text/plain; charset=utf-8" });
