@@ -13,6 +13,10 @@ on:
       - ".github/workflows/mobile-auth-broker-tests.yml"
   workflow_dispatch:
 
+concurrency:
+  group: mobile-auth-broker-tests-${{ github.event.pull_request.head.ref || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
