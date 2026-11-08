@@ -119,3 +119,13 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Corrected the README to describe the guide's actual branch/PR status without creating a broken local link. The follow-up test run must pass before PR #179 is considered merge-ready.
 - The full-history Gitleaks check passed on PR #179. No runtime code, credentials, workflow permissions, OAuth settings, playlist locks, snapshots, or playlists were changed.
 - PR #179 remains unmerged pending owner approval. Do not merge automatically.
+
+
+## 2026-11-08 — PR #179 merged; read-only control path retested
+
+- After the owner explicitly approved merge once the security scan passed, merged PR [#179](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/179) as `e8aafccfa5465911d661bb128e13578ed312303b`. The updated 519-test repository suite passed and the full-history Gitleaks scan passed.
+- Created owner-authored read-only `status` issue [#180](https://github.com/TrickySturluson/spotify-helper-information-tracker/issues/180). The issue was authored as `TrickySturluson` and triggered the owner-gated workflow [#42458239670](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42458239670). The control channel and test gate are now both proven.
+- The manager then attempted Spotify authentication and received `invalid_grant`. This is the known stale/revoked refresh-token blocker. No further Spotify API or playlist-control retries should be made until reauthorization succeeds.
+- Workflow backup artifact [#13607684091](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42458239670/artifacts/13607684091) was successfully uploaded; snapshot preservation and state/audit persistence steps completed. No playlist write or unlock occurred. Issue #180 was closed to prevent accidental rerun.
+- The old PR #177 branch is now behind/diverged from `main` because #179 merged. Created a fresh cleanup branch `fix/mobile-auth-main-cleanup-and-status-docs` from current `main`, removed only the three accidentally published scaffold files (`auth-broker/README.md`, `auth-broker/src/index.js`, `auth-broker/wrangler.toml`), and updated this goal's README with verified status. This will replace stale PR #177; it is not yet merged.
+- PR #176 remains unmerged. Its latest reviewed feature-branch head passed lockfile, test and Gitleaks checks, but must be reconciled with current `main` after the cleanup PR is accepted. No Worker deployment, GitHub App setting, Spotify callback or Actions secret has been changed.
