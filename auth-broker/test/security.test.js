@@ -265,7 +265,7 @@ test("GitHub App JWT builder signs a valid RS256 token from PKCS1 PEM", async ()
   assert.equal(payload.iss, "123456");
   assert.ok(payload.exp > payload.iat);
 
-  const publicDer = Buffer.from(publicKey.replace(/-----BEGIN PUBLIC KEY-----|-----END PUBLIC KEY-----|\\s/g, ""), "base64");
+  const publicDer = Buffer.from(publicKey.replace(/-----BEGIN PUBLIC KEY-----|-----END PUBLIC KEY-----|\s/g, ""), "base64");
   const verifyKey = await crypto.subtle.importKey(
     "spki",
     publicDer,
