@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 import {
   escapeHtml,
   handleRequest,
+  rateLimit,
   githubAppJwt,
   assertNoConcurrentSpotifyJobs,
   saveRefreshToken,
@@ -87,6 +88,35 @@ test("cookie parser handles multiple values and ignores malformed fragments", ()
     "__Host-session": "abc_def",
     b: "two=three",
   });
+});
+
+test("Spotify rate limits use only a verified owner session, never a caller-supplied cookie", async () => {
+  const validSessionId = "A".repeat(43);
+  const keys = [];
+  const env = {
+    AUTH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
+    OAUTH_STATE: {
+      idFromName: () => "state",
+      get: () => ({
+        fetch: async (_url, init) => {
+          const input = await new Request("https://state.internal", init).json();
+          if (input.key === `oauth:session:${validSessionId}`) {
+            return new Response(JSON.stringify({ value: { login: "TrickySturluson" } }), { status: 200 });
+          }
+          return new Response("{}", { status: 404 });
+        },
+      }),
+    },
+  };
+
+  await rateLimit(new Request("https://broker.example/spotify/start", {
+    headers: { Cookie: "__Host-shit_session=" + "B".repeat(43) },
+  }), env, "spotify-start");
+  await rateLimit(new Request("https://broker.example/spotify/start", {
+    headers: { Cookie: "__Host-shit_session=" + validSessionId },
+  }), env, "spotify-start");
+
+  assert.deepEqual(keys, ["spotify-start:anonymous", `spotify-start:${validSessionId}`]);
 });
 
 test("HTML output escapes untrusted text", () => {
