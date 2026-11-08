@@ -81,13 +81,13 @@ The existing owner-only issue workflow already allows ChatGPT to operate SHIT fr
 - Exact issue title: `SHIT — Playlist Control`.
 - The open issue body contains one exact JSON command object; sender must be `TrickySturluson`.
 - The workflow runs remotely in GitHub Actions, serializes control commands, persists state/audit, and comments the result.
-- The supported command list and procedure are documented in [OPERATIONS.md](OPERATIONS.md).
+- The supported command list and procedure are being maintained in the mobile-operation workstream; the detailed `OPERATIONS.md` guide is part of PR #176 and is not yet present on `main`.
 - ChatGPT can use GitHub issue/file/workflow tools to prepare, stage, inspect and verify. It cannot access an interactive Codespaces terminal or read Actions secret values.
 - Playlist mutations still require the manager's lock/unlock, preview, explicit confirmation, snapshot, audit and live read-back safeguards.
 
 ## Current implementation status
 
-- Broker validation: the latest branch revision passed 24 tests, `npm ci`, high-severity npm audit, Wrangler dry-run and full-history Gitleaks. The separate playlist-control workflow's repository suite currently has one documentation-contract failure because this goal directory was missing this required README on `main`.
+- Broker validation on the feature branch previously passed 24 tests, `npm ci`, high-severity npm audit, Wrangler dry-run and full-history Gitleaks; the latest feature-branch security checks must be confirmed before merge. PR #179 restores this required README on `main`. Its first test run reached 519 tests (518 passed) and exposed a second documentation-contract issue: this README linked to `OPERATIONS.md`, which exists on PR #176 but is not yet on `main`. The premature local link has been removed; rerun the suite before merge.
 - `auth-broker/package-lock.json` is committed.
 - Full-history Gitleaks scans passed on earlier branch revisions; the newest documentation-only scan is running.
 - PR #176 contains the broker implementation. PR #177 is a prerequisite cleanup of the initial scaffold accidentally committed to `main`; resolve it before merging #176.
