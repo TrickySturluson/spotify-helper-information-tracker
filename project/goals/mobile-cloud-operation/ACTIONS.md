@@ -139,3 +139,13 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Kept the current-main mobile README/ACTIONS/ROADMAP history instead of importing stale feature-branch versions. Updated the README to identify the reconciliation branch and the still-pending external setup.
 - No Worker deployment, Cloudflare account change, GitHub App creation/permission change, Spotify callback change, Actions secret update, playlist unlock or playlist write occurred. The saved Spotify credential remains blocked by the previously verified `invalid_grant`; do not rerun auth/playlist control until reauthorization is completed.
 - Next: inspect the reconciled diff and rerun broker tests, dependency audit, Wrangler dry-run, repository tests and full-history Gitleaks. Keep PR merge approval separate from the user's approval to merge PR #181.
+
+
+## 2026-11-08 — Reconciled broker CI passed on PR #182
+
+- PR [#182](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/182) is based directly on current `main` commit `b0b280ff7b0b6d71fcbcf8fa3ded2d0b0f7b8a22`; its verified head for this run was `e2b941180bf3b187ed13dc6f3a7d2d20e88afcd6` (19 commits ahead, 0 behind; GitHub reports mergeable/clean).
+- Broker CI run [#42460672005](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460672005) passed: `npm audit --audit-level=high`, 24/24 broker security tests, and Wrangler `--dry-run` bundle/config validation. No deployment occurred.
+- Repository suite [#42460671975](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460671975) passed all 519 tests, including the documentation contract, after compile/data/library checks.
+- Full-history Gitleaks passed on the PR run [#42460671996](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460671996) and feature-push run [#42460668354](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460668354). Each scanned 3,396 commits / about 815.6 MB and reported no leaks.
+- The broker lockfile job succeeded/skipped without changing the committed lockfile. All checks above apply to head `e2b9411`; any later commit requires fresh checks.
+- PR #182 is still unmerged and awaits separate explicit owner approval. No Worker deployment, Cloudflare/GitHub App configuration, Spotify OAuth, Actions secret update, playlist unlock or playlist write occurred. The saved Spotify refresh token remains rejected with `invalid_grant` until mobile reauthorization is completed.
