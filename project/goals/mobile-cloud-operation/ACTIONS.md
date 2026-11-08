@@ -58,3 +58,5 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Broker unit tests and Wrangler bundle/config dry-run both passed in run #42450723671 (the run checked out the complete broker source and config); GitHub App PKCE owner flow tests passed in #42450626017; earlier Durable Object transaction/replay tests passed in #42450572672 and #42450564312.
 - Daily curator tests and workflow-catalogue contract passed in run #42450186954 after adding the two new workflows to the catalogue. Public repository security scan passed in #42450186937 on that earlier commit; a final security scan after all source changes remains to be checked.
 - The PR remains #176; no secrets, external account settings, Spotify redirect registrations, GitHub App installations, live OAuth sessions, or playlists have been changed.
+
+- After switching Cloudflare rate-limit keys from client IPs to per-session (post-login) and route-wide (pre-login) identifiers, broker unit tests and Wrangler dry-run passed again in run #42450832707. This avoids false throttling for users behind shared mobile carrier IPs. The latest full-history Gitleaks scan is running as #42450865632.
