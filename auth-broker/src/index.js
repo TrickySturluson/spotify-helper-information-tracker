@@ -355,10 +355,13 @@ const SAFE_CONCURRENT_WORKFLOWS = new Set([
 // may overlap reauthorization. Unknown/missing workflow paths are treated as unsafe.
 export function isSpotifyWorkflowPath(path) {
   const value = String(path || "");
-  const match = value.match(/(?:^|\\/)\.github\\/workflows\\/([^@]+?\.ya?ml)(?:@|$)/i)
-    || value.match(/^\.github\/workflows\/([^@]+?\.ya?ml)(?:@|$)/i);
-  if (!match) return true;
-  return !SAFE_CONCURRENT_WORKFLOWS.has(match[1].toLowerCase());
+  const marker = ".github/workflows/";
+  const markerIndex = value.indexOf(marker);
+  if (markerIndex < 0) return true;
+  const remainder = value.slice(markerIndex + marker.length);
+  const workflowFile = remainder.split("@")[0].split("/")[0];
+  if (!workflowFile.endsWith(".yml") && !workflowFile.endsWith(".yaml")) return true;
+  return !SAFE_CONCURRENT_WORKFLOWS.has(workflowFile.toLowerCase());
 }
 
 async function assertNoConcurrentSpotifyJobs(token) {
