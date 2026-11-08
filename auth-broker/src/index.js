@@ -256,12 +256,19 @@ async function saveRefreshToken(env, refreshToken) {
     { encrypted_value: encryptedValue, key_id: publicKey.key_id },
   );
   // Only dispatch after GitHub confirms the encrypted secret update.
-  await githubApi(
-    `${path}/actions/workflows/${AUTH_WORKFLOW}/dispatches`,
-    token,
-    "POST",
-    { ref: "main" },
-  );
+  try {
+    await githubApi(
+      `${path}/actions/workflows/${AUTH_WORKFLOW}/dispatches`,
+      token,
+      "POST",
+      { ref: "main" },
+    );
+    return true;
+  } catch {
+    // The secret is already saved. Report that accurately and do not make the
+    // user repeat OAuth merely because the verification dispatch failed.
+    return false;
+  }
 }
 
 async function githubLoginCallback(request, env, url) {
@@ -326,11 +333,14 @@ async function spotifyCallback(request, env, url) {
   if (!hasRequiredScopes(tokenData.scope)) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
-  await saveRefreshToken(env, tokenData.refresh_token);
+  const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token);
   await env.OAUTH_KV.delete(`session:${session.id}`);
+  const message = verificationStarted
+    ? "Your Spotify authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed."
+    : "Your Spotify authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open the Actions page and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.";
   return page(
     "Spotify authorization saved",
-    "Your Spotify authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed.",
+    message,
     { href: `https://github.com/${OWNER}/${REPOSITORY}/actions/workflows/${AUTH_WORKFLOW}`, label: "View SHIT authentication check" },
   );
 }
