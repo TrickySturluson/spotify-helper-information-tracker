@@ -163,3 +163,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 
 - Clarified that GitHub connector issue creation/update is only usable for the owner-only command workflow if the resulting event sender is actually `TrickySturluson`.
 - Added an explicit M4 acceptance gate to verify this with a read-only `status` command after reauthorization. If the connector event identity is not the owner, the user must create/edit the issue manually in GitHub; do not weaken the sender gate.
+
+
+## 2026-11-08 — Final completion-page resilience test pass
+
+- Added a fail-safe for the post-secret-save completion step: if the short-lived non-secret result record cannot be stored, the broker now shows the accurate saved-credential state and auth-health link instead of presenting a false generic failure. Session cleanup is best-effort because the browser cookie is cleared and the record expires automatically.
+- The latest broker CI run `42452511284` passed after this code change: 23 tests, `npm ci`, high-severity dependency audit, and Wrangler dry-run all succeeded. The lockfile job is queued to confirm no lockfile drift.
+- This remains a non-deploying test run. No external provider settings, secrets or playlists were changed.
