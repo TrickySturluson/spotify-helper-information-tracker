@@ -34,7 +34,7 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 
 ### M1 — Broker implementation
 
-- [ ] Implement HTTPS broker with GitHub owner authentication.
+- [ ] Implement HTTPS broker with GitHub App web authorization + PKCE owner authentication.
 - [ ] Implement short-lived server-side OAuth state and PKCE verifier storage.
 - [ ] Implement Spotify authorization-code exchange and exact scope validation.
 - [ ] Implement GitHub App JWT and short-lived installation-token handling.
@@ -49,7 +49,7 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 - [ ] Document external secret/variable names only.
 - [ ] Deploy to a managed HTTPS runtime and register the exact Spotify callback URI.
 - [ ] Install the minimal repository-scoped GitHub App.
-- [ ] Configure owner-authentication app and runtime secrets.
+- [ ] Configure GitHub App web authorization and runtime secrets.
 - [ ] Confirm no persistent Spotify refresh-token storage exists in the broker.
 - [ ] Add a mobile-first authorization page with clear account/permission explanation and no third-party scripts.
 
