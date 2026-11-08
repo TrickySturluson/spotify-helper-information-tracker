@@ -164,19 +164,24 @@ test("Durable Object expires and cleans abandoned OAuth records", async () => {
 });
 
 
-test("Wrangler configuration declares every required public runtime variable", async () => {
+test("deployment workflow injects every public runtime variable without dashboard drift", async () => {
   const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
+  const workflow = await readFile(new URL("../../.github/workflows/deploy-mobile-auth-broker.yml", import.meta.url), "utf8");
+  assert.doesNotMatch(config, /^\\[vars\\]/m);
   for (const name of [
     "BROKER_BASE_URL",
-    "GITHUB_OWNER",
     "GITHUB_APP_CLIENT_ID",
     "GITHUB_APP_ID",
     "GITHUB_APP_REDIRECT_URI",
     "SPOTIFY_CLIENT_ID",
     "SPOTIFY_REDIRECT_URI",
   ]) {
-    assert.match(config, new RegExp("^" + name + " =", "m"), name + " must be configured");
+    assert.match(workflow, new RegExp("vars\\." + name), name + " must come from a GitHub Actions variable");
+    assert.match(workflow, new RegExp("--var \\"" + name + ":"), name + " must be passed to Wrangler");
   }
+  assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
+  assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
+  assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
 });
 
 
