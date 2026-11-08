@@ -149,3 +149,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The same run passed `npm audit --audit-level=high` and Wrangler's non-deploying Worker bundle/configuration dry-run.
 - The new mocked tests verified the refresh token is sealed with the repository Actions public key, decrypts only with the generated test private key, and the API payload contains only `encrypted_value` and `key_id`. They also verified secret-update failure prevents dispatch, while dispatch failure is reported separately after the secret is already persisted.
 - The run's lockfile commit job also completed successfully without changing the already committed lockfile. No real GitHub secret or Spotify playlist was modified.
+
+
+## 2026-11-08 — Codespaces-free mobile operation documented
+
+- Inspected the live owner-only issue-control workflow and the authoritative command parser. It accepts an exact JSON command body on an open issue titled `SHIT — Playlist Control`, requires the repository owner as sender, serializes runs, executes remotely in GitHub Actions, persists state/audit and comments results.
+- Added `OPERATIONS.md` documenting the exact issue contract, current command names/fields, ChatGPT's supported GitHub connector path, the distinction between issue-body commands and comments, user-confirmation rules, and actions that still require phone/dashboard consent.
+- Updated the goal README and index. Marked the first four M4 mobile-operation documentation/control-plane milestones complete; end-to-end test with the PC off remains pending until broker deployment and OAuth setup.
+- Confirmed issue #175 remains the existing Poker Test unlock request and its last execution failed on Spotify `invalid_grant`; do not retrigger it before reauthorization and read-only health verification.
