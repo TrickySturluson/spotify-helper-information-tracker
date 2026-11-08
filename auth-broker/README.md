@@ -14,7 +14,7 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 
 ## Required Worker bindings and configuration
 
-The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
+The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. SQLite-backed Durable Objects are currently available on Cloudflare's Free plan, with published daily read/write and storage limits; usage beyond included limits or plan changes may incur charges. See [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/) and [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/). Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
 
 Non-secret Worker variables:
 
@@ -43,16 +43,17 @@ The GitHub App must be installed only on this repository and grant only Actions:
 
 ## Deployment
 
-From a trusted development environment or Cloudflare's Git-connected deployment flow:
+From Cloudflare and GitHub dashboards (no local PC is required):
 
-1. Create the Worker. Its SQLite-backed Durable Object namespace is created automatically by the Wrangler migration.
-2. Replace the Worker host placeholders with the final HTTPS hostname.
-3. Set the non-secret variables and Worker secrets listed above.
-4. Deploy the Worker.
-5. Register the exact Spotify callback URI and GitHub App user-authorization callback URI.
-6. Open the Worker root URL on a phone and complete GitHub then Spotify authorization.
-7. Confirm the repository Actions secret metadata has been updated without retrieving its value.
-8. Confirm the triggered Spotify Auth Health Check succeeds. If automatic dispatch fails after secret storage, the page reports that the secret was saved and provides the workflow link for manual read-only verification.
+1. Create a Cloudflare Worker named `shit-mobile-auth-broker` in the dashboard first. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
+2. Enable its `workers.dev` hostname and note the exact HTTPS URL. Set `BROKER_BASE_URL`, `GITHUB_APP_REDIRECT_URI` and `SPOTIFY_REDIRECT_URI` to that same host with their respective callback paths.
+3. Create a Cloudflare API token scoped to this Worker with the Workers product `Editor` permission. Creating a brand-new Worker by API requires broader `Admin`; pre-creating it allows the narrower existing-Worker permission. Add the token as GitHub Actions secret `CLOUDFLARE_API_TOKEN` and the account ID as repository Actions variable `CLOUDFLARE_ACCOUNT_ID`.
+4. Set the non-secret Worker variables and the two Worker secrets listed above in Cloudflare. Keep the GitHub App private key and client secret out of GitHub repository files and out of this deployment workflow.
+5. Run the owner-only `Deploy SHIT Mobile Auth Broker` workflow from the repository's Actions tab. It deploys the existing Worker and its Durable Object migration; it does not contact Spotify or modify playlists.
+6. Register the exact Spotify callback URI and GitHub App user-authorization callback URI in their respective dashboards.
+7. Open the Worker root URL on a phone and complete GitHub then Spotify authorization.
+8. Confirm the repository Actions secret metadata has been updated without retrieving its value.
+9. Confirm the triggered Spotify Auth Health Check succeeds. If automatic dispatch fails after secret storage, the page reports that the secret was saved and provides the workflow link for manual read-only verification.
 
 ## Security contract
 
