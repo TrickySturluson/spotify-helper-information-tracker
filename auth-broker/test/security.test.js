@@ -232,7 +232,8 @@ test("clean completion URL consumes one-time non-secret authorization summary", 
     OAUTH_STATE: {
       idFromName: () => "state",
       get: () => ({
-        fetch: async (request) => {
+        fetch: async (url, init) => {
+          const request = new Request(url, init);
           const input = await request.json();
           if (input.key !== "oauth:result:" + resultId || consumed) {
             return new Response("{}", { status: 404 });
