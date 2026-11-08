@@ -97,4 +97,4 @@ Complete only when a user can reauthorize from a phone browser without Codespace
 
 ## Next action
 
-Finish the remaining broker integration/failure tests and obtain the external setup values through the user's Cloudflare, GitHub App and Spotify Developer dashboards. Then deploy the Worker and complete M3 end-to-end verification from a phone. Do not retry the invalid Spotify credential until a new token has been securely installed.
+Obtain the external setup values through the user's Cloudflare, dedicated GitHub App and Spotify Developer dashboards. Then deploy the Worker and complete M3 end-to-end verification from a phone. Do not retry the invalid Spotify credential until a new token has been securely installed.
