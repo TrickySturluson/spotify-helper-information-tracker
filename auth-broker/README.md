@@ -59,7 +59,7 @@ From a trusted development environment or Cloudflare's Git-connected deployment 
 - GitHub App user access tokens are used only in memory to verify the GitHub identity; they are not stored. Only short-lived state, PKCE verifier and session metadata are stored in the strongly consistent Durable Object.
 - GitHub and Spotify state values, session IDs and PKCE verifiers are short-lived Durable Object records and are consumed transactionally on callback. Expired records are removed by the Durable Object alarm.
 - The Spotify refresh token is held only in memory between token exchange and GitHub's encrypted secret update.
-- No token, code, verifier, session ID, private key, or provider response body is logged or returned.
+- No token, code, verifier, session ID, private key, request URL, or provider response body is logged or returned. Worker observability is explicitly disabled in Wrangler because OAuth callbacks carry authorization codes in query parameters.
 - Cookies are Secure, HttpOnly, SameSite=Lax and host-only.
 - Responses use no-store, no-referrer, frame-denial, content-type and CSP headers.
 - GitHub secret persistence failure stops the flow; the broker does not claim success or dispatch verification.
