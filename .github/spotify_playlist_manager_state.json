@@ -509,6 +509,12 @@
       "uri": "spotify:track:7BY005dacJkbO6EPiOh2wb",
       "album": "The Animals",
       "duration_ms": 271280
+    },
+    "rush|thebigmoney": {
+      "name": "The Big Money",
+      "uri": "spotify:track:4f6CJbnASHEtQspSwqoYlr",
+      "album": "Power Windows",
+      "duration_ms": 334493
     }
   },
   "pending": {
