@@ -90,7 +90,7 @@ The existing owner-only issue workflow already allows ChatGPT to operate SHIT fr
 - PR #179 merged on 2026-11-08 (merge commit `e8aafcc`), restoring this required README. The updated repository test run passed all 519 tests; the full-history Gitleaks scan also passed.
 - PR #181 was merged after explicit approval as `b0b280ff7b0b6d71fcbcf8fa3ded2d0b0f7b8a22`; it removed the three accidental scaffold files and recorded the verified control-channel status.
 - The original broker PR #176 was 7 commits behind and divergent from the new `main`, so its source and tests have been copied to a fresh branch from current `main` rather than force-merging old history. The reconciled branch is `feature/mobile-spotify-reauth-reconciled`.
-- The broker remains source-only and undeployed. Its 24-test suite, dependency audit, Wrangler dry-run and full-history Gitleaks must be rerun on the reconciled branch before merge.
+- The broker remains source-only and undeployed. Reconciled PR #182 passed 24 broker tests, dependency audit, Wrangler dry-run, 519 repository tests and full-history Gitleaks; see ACTIONS.md for exact runs. Any subsequent change requires fresh checks.
 - No Cloudflare Worker, dedicated GitHub App, Spotify callback, Actions secret or playlist has been changed. Phone OAuth is not available until the external setup and end-to-end checks are complete.
 
 ## Latest mobile control verification — 2026-11-08
