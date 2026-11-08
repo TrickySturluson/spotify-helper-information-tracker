@@ -206,6 +206,31 @@
     }
   },
   {
+    "spotify_id": "7fQhfuG00HDkshrdFp7CkT",
+    "spotify_uri": "spotify:track:7fQhfuG00HDkshrdFp7CkT",
+    "artist": "Active Minds",
+    "track": "1st Of October, 2017",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "6KTXHrliiM0il8gq7AkQPC",
     "spotify_uri": "spotify:track:6KTXHrliiM0il8gq7AkQPC",
     "artist": "AFI",
@@ -258,6 +283,31 @@
     }
   },
   {
+    "spotify_id": "7cwNfiLc34Ly4rdsARMSpl",
+    "spotify_uri": "spotify:track:7cwNfiLc34Ly4rdsARMSpl",
+    "artist": "AnHero",
+    "track": "come die with me",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "6ocbgoVGwYJhOv1GgI9NsF",
     "spotify_uri": "spotify:track:6ocbgoVGwYJhOv1GgI9NsF",
     "artist": "Ariana Grande",
@@ -298,6 +348,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0ztuGr2Rq4SssO6Aj5MXpZ",
+    "spotify_uri": "spotify:track:0ztuGr2Rq4SssO6Aj5MXpZ",
+    "artist": "Astoria Three",
+    "track": "A Knock On Your Door",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -373,6 +448,56 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7C794YeXiiSdlvGLxgabkd",
+    "spotify_uri": "spotify:track:7C794YeXiiSdlvGLxgabkd",
+    "artist": "Bad Religion",
+    "track": "21st Century (Digital Boy)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5JefdRnHo6B7iV9KDscen8",
+    "spotify_uri": "spotify:track:5JefdRnHo6B7iV9KDscen8",
+    "artist": "Badly Drawn Boy",
+    "track": "Everybody's Stalking",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -846,6 +971,81 @@
     }
   },
   {
+    "spotify_id": "5HH66Sx5PCkl4xw8TwZq3g",
+    "spotify_uri": "spotify:track:5HH66Sx5PCkl4xw8TwZq3g",
+    "artist": "Boys Noize",
+    "track": "1+1+1",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1fTMCSLuodIA7NyztT9pTC",
+    "spotify_uri": "spotify:track:1fTMCSLuodIA7NyztT9pTC",
+    "artist": "Brandon's Three",
+    "track": "24 hour stopover",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "09RdaH1uR3msnt5g4xfQFn",
+    "spotify_uri": "spotify:track:09RdaH1uR3msnt5g4xfQFn",
+    "artist": "Bratmobile",
+    "track": "Bitch Theme",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2TTYIwTM2iLC1YOyHuhRMt",
     "spotify_uri": "spotify:track:2TTYIwTM2iLC1YOyHuhRMt",
     "artist": "Britney Spears",
@@ -1272,6 +1472,31 @@
     }
   },
   {
+    "spotify_id": "4AJ9YHico3IUsQ0rhrvJyz",
+    "spotify_uri": "spotify:track:4AJ9YHico3IUsQ0rhrvJyz",
+    "artist": "Cheap Perfume",
+    "track": "Fauxminism",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "3Wh23YSGado2WvecwytL7M",
     "spotify_uri": "spotify:track:3Wh23YSGado2WvecwytL7M",
     "artist": "Cheap Trick",
@@ -1602,6 +1827,31 @@
     }
   },
   {
+    "spotify_id": "6YeUTstb4pY8jUE3xWhX0d",
+    "spotify_uri": "spotify:track:6YeUTstb4pY8jUE3xWhX0d",
+    "artist": "Danny Ryan Jazz Band",
+    "track": "Blueberry Street",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "3CJaDcjZKse7X7eVUukQJB",
     "spotify_uri": "spotify:track:3CJaDcjZKse7X7eVUukQJB",
     "artist": "Dannylux",
@@ -1844,6 +2094,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6jor9rSokwHvJjdY5g9UHW",
+    "spotify_uri": "spotify:track:6jor9rSokwHvJjdY5g9UHW",
+    "artist": "ECO VIRTUAL",
+    "track": "Breezy",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -2105,6 +2380,56 @@
     }
   },
   {
+    "spotify_id": "3qTvGKRsO1fkbFL9KnhRNL",
+    "spotify_uri": "spotify:track:3qTvGKRsO1fkbFL9KnhRNL",
+    "artist": "FEM&M",
+    "track": "Beep Beep Bag",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "07Lnncx7fTArEe4BHLnLWJ",
+    "spotify_uri": "spotify:track:07Lnncx7fTArEe4BHLnLWJ",
+    "artist": "femtanyl",
+    "track": "ALL THE TIME",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1CyTXPHBkfwwIfpoTuTU43",
     "spotify_uri": "spotify:track:1CyTXPHBkfwwIfpoTuTU43",
     "artist": "Film School",
@@ -2346,6 +2671,31 @@
           "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
           "playlist_name": "Poker test",
           "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5PuzKOyzxVAiltJIHAxWzm",
+    "spotify_uri": "spotify:track:5PuzKOyzxVAiltJIHAxWzm",
+    "artist": "Fried By Fluoride",
+    "track": "Dead By 30",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -2734,6 +3084,31 @@
     }
   },
   {
+    "spotify_id": "4HZC7RLZsdBlLVHWnMFIU3",
+    "spotify_uri": "spotify:track:4HZC7RLZsdBlLVHWnMFIU3",
+    "artist": "Gogol Bordello",
+    "track": "American Wedding",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "5wbg8kepMFoMzHOEuxiI0q",
     "spotify_uri": "spotify:track:5wbg8kepMFoMzHOEuxiI0q",
     "artist": "Gracie Abrams",
@@ -2825,6 +3200,56 @@
           "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
           "playlist_name": "Poker test",
           "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "0lvhEsN1zkMzfp2M1o17yy",
+    "spotify_uri": "spotify:track:0lvhEsN1zkMzfp2M1o17yy",
+    "artist": "Green Day",
+    "track": "Holiday",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1AQHHWxWaCZrMsqrdDTNng",
+    "spotify_uri": "spotify:track:1AQHHWxWaCZrMsqrdDTNng",
+    "artist": "Green Trio",
+    "track": "Little Bell",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -3011,6 +3436,81 @@
     }
   },
   {
+    "spotify_id": "62LIjQ7uet2hOT9577QYoq",
+    "spotify_uri": "spotify:track:62LIjQ7uet2hOT9577QYoq",
+    "artist": "Hunter Paige",
+    "track": "Affection",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "478Axf2lmFeyjw3ciJRbaE",
+    "spotify_uri": "spotify:track:478Axf2lmFeyjw3ciJRbaE",
+    "artist": "Ilaria Graziano",
+    "track": "Christmas in the Silent Forest",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "76JTrPTA8V58qkPHK1y7VY",
+    "spotify_uri": "spotify:track:76JTrPTA8V58qkPHK1y7VY",
+    "artist": "illuminati hotties",
+    "track": "(You're Better) Than Ever",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "51sN3VDJBVmKJVgp0trc7M",
     "spotify_uri": "spotify:track:51sN3VDJBVmKJVgp0trc7M",
     "artist": "Ivan Cornejo",
@@ -3051,6 +3551,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7wvEO3lImZfVnG6spsyCZ8",
+    "spotify_uri": "spotify:track:7wvEO3lImZfVnG6spsyCZ8",
+    "artist": "Jasmine Patterson",
+    "track": "Ain't No Small Fry",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -3227,6 +3752,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4XnXkrTZ9Ut0K95oRJ7DIh",
+    "spotify_uri": "spotify:track:4XnXkrTZ9Ut0K95oRJ7DIh",
+    "artist": "Joseph Arthur",
+    "track": "A Smile That Explodes",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -3428,6 +3978,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "33yAEqzKXexYM3WlOYtTfQ",
+    "spotify_uri": "spotify:track:33yAEqzKXexYM3WlOYtTfQ",
+    "artist": "Justice",
+    "track": "D.A.N.C.E.",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -3920,6 +4495,31 @@
     }
   },
   {
+    "spotify_id": "4NrTr3v3IvOfAqKrQ9V5P9",
+    "spotify_uri": "spotify:track:4NrTr3v3IvOfAqKrQ9V5P9",
+    "artist": "Les Sins",
+    "track": "Bellow",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "4uawMXx8VZ7WMrjAVOaCMe",
     "spotify_uri": "spotify:track:4uawMXx8VZ7WMrjAVOaCMe",
     "artist": "Lianne La Havas",
@@ -4020,6 +4620,31 @@
     }
   },
   {
+    "spotify_id": "5ovqTZt3VA1vVsVDv0ecE7",
+    "spotify_uri": "spotify:track:5ovqTZt3VA1vVsVDv0ecE7",
+    "artist": "Loft Trio",
+    "track": "Another Day Gone By",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2aQPNm5EtLWBHsqzNuAdcq",
     "spotify_uri": "spotify:track:2aQPNm5EtLWBHsqzNuAdcq",
     "artist": "Love and Rockets",
@@ -4096,6 +4721,31 @@
     }
   },
   {
+    "spotify_id": "64fsS4CW6wp2f7it4qjtIg",
+    "spotify_uri": "spotify:track:64fsS4CW6wp2f7it4qjtIg",
+    "artist": "LUCAS LEX",
+    "track": "BACKDOOR",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "7rbJDW5JAhCAA1VYtQY4Kg",
     "spotify_uri": "spotify:track:7rbJDW5JAhCAA1VYtQY4Kg",
     "artist": "M.O.P.",
@@ -4112,6 +4762,31 @@
           "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
           "playlist_name": "Poker test",
           "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2rQPHeQZmfSrS7R0HzshXj",
+    "spotify_uri": "spotify:track:2rQPHeQZmfSrS7R0HzshXj",
+    "artist": "Macintosh Plus",
+    "track": "ECCOと悪寒ダイビング",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -4212,6 +4887,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5HP9LwDRT5FGOokrN1HnZ3",
+    "spotify_uri": "spotify:track:5HP9LwDRT5FGOokrN1HnZ3",
+    "artist": "Mark Roswell Trio",
+    "track": "Blue Moon",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -4578,6 +5278,31 @@
     }
   },
   {
+    "spotify_id": "0wMyuPgOa2hQqckLP3AmYu",
+    "spotify_uri": "spotify:track:0wMyuPgOa2hQqckLP3AmYu",
+    "artist": "Miss Bashful",
+    "track": "NEIN SCHATZ",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "0tZSHcIwouL6HLgH0BBpUC",
     "spotify_uri": "spotify:track:0tZSHcIwouL6HLgH0BBpUC",
     "artist": "Molly Kate Kestner",
@@ -4651,6 +5376,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "1kM8SbnCIrxr5yXHVGbS4X",
+    "spotify_uri": "spotify:track:1kM8SbnCIrxr5yXHVGbS4X",
+    "artist": "Mommy Long Legs",
+    "track": "Alien",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -4763,6 +5513,31 @@
     }
   },
   {
+    "spotify_id": "2TjrM7ixQJRV47YsQsj75A",
+    "spotify_uri": "spotify:track:2TjrM7ixQJRV47YsQsj75A",
+    "artist": "Naofumi Hataya",
+    "track": "ルーヴル美術館侵入",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1qpVGPQyd18YJhuY2NeS7e",
     "spotify_uri": "spotify:track:1qpVGPQyd18YJhuY2NeS7e",
     "artist": "Nas",
@@ -4779,6 +5554,31 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4a1L4aWO22lQTfku6WLBTl",
+    "spotify_uri": "spotify:track:4a1L4aWO22lQTfku6WLBTl",
+    "artist": "Neet",
+    "track": "Bummed Out",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -4893,6 +5693,56 @@
     }
   },
   {
+    "spotify_id": "4dHX64tECKc1ozIkDspHTw",
+    "spotify_uri": "spotify:track:4dHX64tECKc1ozIkDspHTw",
+    "artist": "Neon Indian",
+    "track": "6669 (I Don't Know If You Know)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5tu555JJdfnt5xc1by9bbJ",
+    "spotify_uri": "spotify:track:5tu555JJdfnt5xc1by9bbJ",
+    "artist": "Newington Green",
+    "track": "A Job Promotion",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "04WCtUqAyuEr9TDt7Hm6Wi",
     "spotify_uri": "spotify:track:04WCtUqAyuEr9TDt7Hm6Wi",
     "artist": "Nick Hakim",
@@ -4983,6 +5833,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2sOncurUkrw3CYWliyxYSU",
+    "spotify_uri": "spotify:track:2sOncurUkrw3CYWliyxYSU",
+    "artist": "North West Trio",
+    "track": "A Quiet Place",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -5145,6 +6020,56 @@
     }
   },
   {
+    "spotify_id": "6JOMGVg1AVa8SuzgUdhDC8",
+    "spotify_uri": "spotify:track:6JOMGVg1AVa8SuzgUdhDC8",
+    "artist": "Oysterhead",
+    "track": "Army's on Ecstasy",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7hUadZNzjZsYLbQQHeqbkP",
+    "spotify_uri": "spotify:track:7hUadZNzjZsYLbQQHeqbkP",
+    "artist": "Panic Shack",
+    "track": "Baby",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "1CA9eJp8Tz3eU7qbngYcOr",
     "spotify_uri": "spotify:track:1CA9eJp8Tz3eU7qbngYcOr",
     "artist": "Pat The Bunny",
@@ -5185,6 +6110,56 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "44U31ReufqAcif83U3ACf1",
+    "spotify_uri": "spotify:track:44U31ReufqAcif83U3ACf1",
+    "artist": "Pearl Street Trio",
+    "track": "All Hands On Deck!",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3Xd3IXnA2rmyVawJL9tPVm",
+    "spotify_uri": "spotify:track:3Xd3IXnA2rmyVawJL9tPVm",
+    "artist": "Pennywise",
+    "track": "Alien",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -5335,6 +6310,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "460rySqUldXJjAxgFNRAha",
+    "spotify_uri": "spotify:track:460rySqUldXJjAxgFNRAha",
+    "artist": "Pimm's Trio",
+    "track": "Bad Day",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -5674,6 +6674,31 @@
     }
   },
   {
+    "spotify_id": "2zwaGoL1ckziFEOpY5Vfd9",
+    "spotify_uri": "spotify:track:2zwaGoL1ckziFEOpY5Vfd9",
+    "artist": "Renata Zeiguer",
+    "track": "Bug",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2VOomzT6VavJOGBeySqaMc",
     "spotify_uri": "spotify:track:2VOomzT6VavJOGBeySqaMc",
     "artist": "Rihanna",
@@ -5740,6 +6765,56 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2VGQ342iuqj6aSaYbyBQVJ",
+    "spotify_uri": "spotify:track:2VGQ342iuqj6aSaYbyBQVJ",
+    "artist": "Rise Against",
+    "track": "Prayer Of The Refugee",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2s3hqtfyxzGc6u2o8xXGT9",
+    "spotify_uri": "spotify:track:2s3hqtfyxzGc6u2o8xXGT9",
+    "artist": "Ron Sexsmith",
+    "track": "Gold In Them Hills",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -6054,6 +7129,31 @@
     }
   },
   {
+    "spotify_id": "41Ef4BxenqjId2W8FGOqZU",
+    "spotify_uri": "spotify:track:41Ef4BxenqjId2W8FGOqZU",
+    "artist": "Sean Patrick Flanery",
+    "track": "Grief (Alternate Version)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "7vD5aaLhbeBRbXEDOoVL0F",
     "spotify_uri": "spotify:track:7vD5aaLhbeBRbXEDOoVL0F",
     "artist": "Search Yiu",
@@ -6180,6 +7280,31 @@
     }
   },
   {
+    "spotify_id": "4J28eKrMo7vD217UlbcZat",
+    "spotify_uri": "spotify:track:4J28eKrMo7vD217UlbcZat",
+    "artist": "Shayfer James",
+    "track": "Blood Moon Love",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "6MWJy3DXI0Je49FW3gDpLp",
     "spotify_uri": "spotify:track:6MWJy3DXI0Je49FW3gDpLp",
     "artist": "Sheryl Crow",
@@ -6196,6 +7321,31 @@
           "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
           "playlist_name": "Poker test",
           "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6ffRiWfmk34Cw5oUyWMjkl",
+    "spotify_uri": "spotify:track:6ffRiWfmk34Cw5oUyWMjkl",
+    "artist": "Shogo Sakai",
+    "track": "City Trial (From \"Kirby Air Ride\")",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -6408,6 +7558,56 @@
     }
   },
   {
+    "spotify_id": "0GEHOgCdUU9b8uGQKjpugO",
+    "spotify_uri": "spotify:track:0GEHOgCdUU9b8uGQKjpugO",
+    "artist": "Slutever",
+    "track": "1994",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "7c26hw73UiVuLtb8ZsquCu",
+    "spotify_uri": "spotify:track:7c26hw73UiVuLtb8ZsquCu",
+    "artist": "Snake River Conspiracy",
+    "track": "Strangled",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "6Y19VBGJBoixg6umIkE7ar",
     "spotify_uri": "spotify:track:6Y19VBGJBoixg6umIkE7ar",
     "artist": "Social Distortion",
@@ -6424,6 +7624,31 @@
           "playlist_id": "4Ccwf3QRr8HfSsK48pTuBI",
           "playlist_name": "Poker test",
           "preview_date": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "2g9AeE8aV2PIekIXuxmDJn",
+    "spotify_uri": "spotify:track:2g9AeE8aV2PIekIXuxmDJn",
+    "artist": "Sorry Mom",
+    "track": "2006",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -6474,6 +7699,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -6745,6 +7978,56 @@
     }
   },
   {
+    "spotify_id": "4KacUpvbA3Mfo05gttTjhN",
+    "spotify_uri": "spotify:track:4KacUpvbA3Mfo05gttTjhN",
+    "artist": "Sum 41",
+    "track": "Fat Lip",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4BVFVaa1fDo20Ud1q5Gd2N",
+    "spotify_uri": "spotify:track:4BVFVaa1fDo20Ud1q5Gd2N",
+    "artist": "Superorganism",
+    "track": "Everybody Wants To Be Famous",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "7KAXxQfUG4kzRivltbD1UY",
     "spotify_uri": "spotify:track:7KAXxQfUG4kzRivltbD1UY",
     "artist": "Sweet Trip",
@@ -6768,6 +8051,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-06"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -6901,6 +8192,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3wnZZLJBf3wzL4UHmRix3u",
+    "spotify_uri": "spotify:track:3wnZZLJBf3wzL4UHmRix3u",
+    "artist": "Swordes",
+    "track": "Boyfriend la la la",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -7228,6 +8544,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "3ckJ50ZvwSPjzlq2m6bwXD",
+    "spotify_uri": "spotify:track:3ckJ50ZvwSPjzlq2m6bwXD",
+    "artist": "The Bouncing Souls",
+    "track": "Gasoline",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -7652,6 +8993,31 @@
     }
   },
   {
+    "spotify_id": "2FgLhm6EwB0Ix8XLHABFkC",
+    "spotify_uri": "spotify:track:2FgLhm6EwB0Ix8XLHABFkC",
+    "artist": "The Headliner Trio",
+    "track": "As Time Goes By",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "2kYcEUoIa394Bvdi1J916I",
     "spotify_uri": "spotify:track:2kYcEUoIa394Bvdi1J916I",
     "artist": "The Hellfreaks",
@@ -7947,6 +9313,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-05"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4GgIK9Dr0PCgWoxqC9aW5N",
+    "spotify_uri": "spotify:track:4GgIK9Dr0PCgWoxqC9aW5N",
+    "artist": "The Oozes",
+    "track": "Cryin’ (Like a Baby)",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -8437,6 +9828,31 @@
     }
   },
   {
+    "spotify_id": "1inKTlbxUmFESMXExqgV3h",
+    "spotify_uri": "spotify:track:1inKTlbxUmFESMXExqgV3h",
+    "artist": "Turin Brakes",
+    "track": "Keep Me Around",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "6koOXlPAL58lp78AwiwO4W",
     "spotify_uri": "spotify:track:6koOXlPAL58lp78AwiwO4W",
     "artist": "Um Jennifer?",
@@ -8527,6 +9943,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-07"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "5QkRJQFnzxixuWczbpJxRt",
+    "spotify_uri": "spotify:track:5QkRJQFnzxixuWczbpJxRt",
+    "artist": "VAPERROR",
+    "track": "808 Dreams",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],
@@ -8831,6 +10272,31 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "6gGZlkeGM73KD01zYVAJVO",
+    "spotify_uri": "spotify:track:6gGZlkeGM73KD01zYVAJVO",
+    "artist": "Yumi Zouma",
+    "track": "Astral Projection",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-08T11:00:43.789980+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-08"
         }
       }
     ],

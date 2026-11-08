@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+  "playlist_name": "Tricky Daily",
+  "cycle_date_eastern": "2026-11-08",
+  "run_id": "42473718615",
+  "created_at": "2026-11-08T11:00:44.785339+00:00",
+  "prewrite_snapshot_id": "AAAAX2pvzcMH0zw3OJS7KX6h70lL+cP8",
+  "prewrite_uris": [
+    "spotify:track:1Tqhk16VUBc4h3C4DYy1W9",
+    "spotify:track:6gjitvaInHSbArmOHI6vro",
+    "spotify:track:6x6Hn46un1jcqNrLWq29ZA",
+    "spotify:track:1WMawd1HhdmEojY4b1Ouyi",
+    "spotify:track:0S9w3jx4cO9rSBcGwB16in",
+    "spotify:track:3myu17ZPpaakVbzAOZREI8",
+    "spotify:track:3srxNYtbQJiZrTzjwEasyU",
+    "spotify:track:4WFWh42DCkPCjcjqITk54S",
+    "spotify:track:4gyCAjlJc23N510msOtq3U",
+    "spotify:track:78LMazmfqncADjyJVae8dN",
+    "spotify:track:3dM8rGWFIbq60PI9oUW9Nm",
+    "spotify:track:7Ichlrj4l5uV549sD6I4tN",
+    "spotify:track:1nfTQPof5WfMMs2xYOnmTT",
+    "spotify:track:4gS8ME5WHf7KrcQSI4MU8H",
+    "spotify:track:5O1ms8FzhDKZySsQPH5QF1",
+    "spotify:track:6uUBVBs7h8o7OITdJW8F2u",
+    "spotify:track:5H8s3dQTh4Mp7LcsXk3FQ1",
+    "spotify:track:4PiGUKtVlJvUSNdeFPVaSS",
+    "spotify:track:5H2kNIrzEsKfofmrt1B3SU",
+    "spotify:track:3bdO4r8zKFUruFwtqORbaW",
+    "spotify:track:6AMEHNhqK1qwCEJX9UBjEQ",
+    "spotify:track:4SC0RcnLhIof8hKa2igvSH",
+    "spotify:track:6QZp4bkCotnIA1ZHayOvXt",
+    "spotify:track:2mweWXUplavtY2YCANfmwO",
+    "spotify:track:7IBzp33O4Hjr92wXtH3yQJ",
+    "spotify:track:3eB2Bt0pl9LAgoeMr5MW1D",
+    "spotify:track:4MykYFVQhubOeoecu3rEk3",
+    "spotify:track:5WJU1ZM5sRmEFNFmrAdSYO",
+    "spotify:track:6Ro3eI4wdA9yXmU6t8UDrl",
+    "spotify:track:7zycM9Qcin9tyU4xB0Jj3I",
+    "spotify:track:5xIapfLMLmQp5DQqCukCTO",
+    "spotify:track:1Jj89srrESrwvvCzpMIaUw",
+    "spotify:track:0UXaslpoA81no74N7U56U9",
+    "spotify:track:2eg3CoqVGI21N8115BgdQA",
+    "spotify:track:60N0QZVNMIDZoxdZ2aQF1U",
+    "spotify:track:43qEiVrNStVMdSgy7DsQt2",
+    "spotify:track:4i4ca5BwYg6RVmA1lCske2",
+    "spotify:track:78QaOQvmxQ2F8ZeMtLZCAL",
+    "spotify:track:1R3e0aONAMejKbS2jne9kq",
+    "spotify:track:3hv5YHBWz1S1CPLsqQqP0o",
+    "spotify:track:7pyV1UPPIuFU7kI4U4D1zl",
+    "spotify:track:5SxXPHek3xsrNSkzTehdqa",
+    "spotify:track:2VYnlKxB8jpbCeLUjQsebc",
+    "spotify:track:5PjdC2gMATetx5xdnwGUu7",
+    "spotify:track:1s9QTZr0OE6R1NhVAdyeoq",
+    "spotify:track:46RNrAkGsqWTDrv2ZPOAbx",
+    "spotify:track:5RXjt2s4HBJw3TcaAzwSrD",
+    "spotify:track:44ChZXjeUF4T6TJtbYEJAG",
+    "spotify:track:0NFkELb7TjwEcCxWFpvX5I",
+    "spotify:track:0Pq9K4yZlPwjjRMeIkBCpg",
+    "spotify:track:6vNHkJiZZtKm4x8ESkfM4Q",
+    "spotify:track:70eQKtsthQ7IDNUuD241Oi",
+    "spotify:track:6N52mlzedgdIpaCqzeg7sP",
+    "spotify:track:4UCSbPweLRQNfkr5MCRooZ"
+  ],
+  "target_uris": [
+    "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr",
+    "spotify:track:33yAEqzKXexYM3WlOYtTfQ",
+    "spotify:track:3qTvGKRsO1fkbFL9KnhRNL",
+    "spotify:track:4AJ9YHico3IUsQ0rhrvJyz",
+    "spotify:track:76JTrPTA8V58qkPHK1y7VY",
+    "spotify:track:4J28eKrMo7vD217UlbcZat",
+    "spotify:track:7c26hw73UiVuLtb8ZsquCu",
+    "spotify:track:64fsS4CW6wp2f7it4qjtIg",
+    "spotify:track:4NrTr3v3IvOfAqKrQ9V5P9",
+    "spotify:track:6JOMGVg1AVa8SuzgUdhDC8",
+    "spotify:track:7KAXxQfUG4kzRivltbD1UY",
+    "spotify:track:4HZC7RLZsdBlLVHWnMFIU3",
+    "spotify:track:4KacUpvbA3Mfo05gttTjhN",
+    "spotify:track:6gGZlkeGM73KD01zYVAJVO",
+    "spotify:track:478Axf2lmFeyjw3ciJRbaE",
+    "spotify:track:4a1L4aWO22lQTfku6WLBTl",
+    "spotify:track:0wMyuPgOa2hQqckLP3AmYu",
+    "spotify:track:3wnZZLJBf3wzL4UHmRix3u",
+    "spotify:track:41Ef4BxenqjId2W8FGOqZU",
+    "spotify:track:5JefdRnHo6B7iV9KDscen8",
+    "spotify:track:5ovqTZt3VA1vVsVDv0ecE7",
+    "spotify:track:5QkRJQFnzxixuWczbpJxRt",
+    "spotify:track:1kM8SbnCIrxr5yXHVGbS4X",
+    "spotify:track:4GgIK9Dr0PCgWoxqC9aW5N",
+    "spotify:track:7fQhfuG00HDkshrdFp7CkT",
+    "spotify:track:7C794YeXiiSdlvGLxgabkd",
+    "spotify:track:7cwNfiLc34Ly4rdsARMSpl",
+    "spotify:track:3Xd3IXnA2rmyVawJL9tPVm",
+    "spotify:track:07Lnncx7fTArEe4BHLnLWJ",
+    "spotify:track:2s3hqtfyxzGc6u2o8xXGT9",
+    "spotify:track:460rySqUldXJjAxgFNRAha",
+    "spotify:track:5HP9LwDRT5FGOokrN1HnZ3",
+    "spotify:track:44U31ReufqAcif83U3ACf1",
+    "spotify:track:1fTMCSLuodIA7NyztT9pTC",
+    "spotify:track:2FgLhm6EwB0Ix8XLHABFkC",
+    "spotify:track:2TjrM7ixQJRV47YsQsj75A",
+    "spotify:track:0ztuGr2Rq4SssO6Aj5MXpZ",
+    "spotify:track:7hUadZNzjZsYLbQQHeqbkP",
+    "spotify:track:62LIjQ7uet2hOT9577QYoq",
+    "spotify:track:4XnXkrTZ9Ut0K95oRJ7DIh",
+    "spotify:track:2g9AeE8aV2PIekIXuxmDJn",
+    "spotify:track:5HH66Sx5PCkl4xw8TwZq3g",
+    "spotify:track:0lvhEsN1zkMzfp2M1o17yy",
+    "spotify:track:2rQPHeQZmfSrS7R0HzshXj",
+    "spotify:track:0GEHOgCdUU9b8uGQKjpugO",
+    "spotify:track:1AQHHWxWaCZrMsqrdDTNng",
+    "spotify:track:2VGQ342iuqj6aSaYbyBQVJ",
+    "spotify:track:09RdaH1uR3msnt5g4xfQFn",
+    "spotify:track:4BVFVaa1fDo20Ud1q5Gd2N",
+    "spotify:track:6YeUTstb4pY8jUE3xWhX0d",
+    "spotify:track:4dHX64tECKc1ozIkDspHTw",
+    "spotify:track:6jor9rSokwHvJjdY5g9UHW",
+    "spotify:track:2zwaGoL1ckziFEOpY5Vfd9",
+    "spotify:track:2sOncurUkrw3CYWliyxYSU",
+    "spotify:track:5PuzKOyzxVAiltJIHAxWzm",
+    "spotify:track:7wvEO3lImZfVnG6spsyCZ8",
+    "spotify:track:6ffRiWfmk34Cw5oUyWMjkl",
+    "spotify:track:3ckJ50ZvwSPjzlq2m6bwXD",
+    "spotify:track:1inKTlbxUmFESMXExqgV3h",
+    "spotify:track:5tu555JJdfnt5xc1by9bbJ"
+  ],
+  "candidate_tracks": [
+    {
+      "artist": "Sound of Ceres",
+      "track": "My Spiral Arm",
+      "uri": "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Justice",
+      "track": "D.A.N.C.E.",
+      "uri": "spotify:track:33yAEqzKXexYM3WlOYtTfQ",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "FEM&M",
+      "track": "Beep Beep Bag",
+      "uri": "spotify:track:3qTvGKRsO1fkbFL9KnhRNL",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Cheap Perfume",
+      "track": "Fauxminism",
+      "uri": "spotify:track:4AJ9YHico3IUsQ0rhrvJyz",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "illuminati hotties",
+      "track": "(You're Better) Than Ever",
+      "uri": "spotify:track:76JTrPTA8V58qkPHK1y7VY",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Shayfer James",
+      "track": "Blood Moon Love",
+      "uri": "spotify:track:4J28eKrMo7vD217UlbcZat",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Snake River Conspiracy",
+      "track": "Strangled",
+      "uri": "spotify:track:7c26hw73UiVuLtb8ZsquCu",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "LUCAS LEX",
+      "track": "BACKDOOR",
+      "uri": "spotify:track:64fsS4CW6wp2f7it4qjtIg",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Les Sins",
+      "track": "Bellow",
+      "uri": "spotify:track:4NrTr3v3IvOfAqKrQ9V5P9",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Oysterhead",
+      "track": "Army's on Ecstasy",
+      "uri": "spotify:track:6JOMGVg1AVa8SuzgUdhDC8",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sweet Trip",
+      "track": "Air Supply - 2021 Remaster",
+      "uri": "spotify:track:7KAXxQfUG4kzRivltbD1UY",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Gogol Bordello",
+      "track": "American Wedding",
+      "uri": "spotify:track:4HZC7RLZsdBlLVHWnMFIU3",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sum 41",
+      "track": "Fat Lip",
+      "uri": "spotify:track:4KacUpvbA3Mfo05gttTjhN",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Yumi Zouma",
+      "track": "Astral Projection",
+      "uri": "spotify:track:6gGZlkeGM73KD01zYVAJVO",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Ilaria Graziano",
+      "track": "Christmas in the Silent Forest",
+      "uri": "spotify:track:478Axf2lmFeyjw3ciJRbaE",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Neet",
+      "track": "Bummed Out",
+      "uri": "spotify:track:4a1L4aWO22lQTfku6WLBTl",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Miss Bashful",
+      "track": "NEIN SCHATZ",
+      "uri": "spotify:track:0wMyuPgOa2hQqckLP3AmYu",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Swordes",
+      "track": "Boyfriend la la la",
+      "uri": "spotify:track:3wnZZLJBf3wzL4UHmRix3u",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sean Patrick Flanery",
+      "track": "Grief (Alternate Version)",
+      "uri": "spotify:track:41Ef4BxenqjId2W8FGOqZU",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Badly Drawn Boy",
+      "track": "Everybody's Stalking",
+      "uri": "spotify:track:5JefdRnHo6B7iV9KDscen8",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Loft Trio",
+      "track": "Another Day Gone By",
+      "uri": "spotify:track:5ovqTZt3VA1vVsVDv0ecE7",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "VAPERROR",
+      "track": "808 Dreams",
+      "uri": "spotify:track:5QkRJQFnzxixuWczbpJxRt",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Mommy Long Legs",
+      "track": "Alien",
+      "uri": "spotify:track:1kM8SbnCIrxr5yXHVGbS4X",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "The Oozes",
+      "track": "Cryin’ (Like a Baby)",
+      "uri": "spotify:track:4GgIK9Dr0PCgWoxqC9aW5N",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Active Minds",
+      "track": "1st Of October, 2017",
+      "uri": "spotify:track:7fQhfuG00HDkshrdFp7CkT",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Bad Religion",
+      "track": "21st Century (Digital Boy)",
+      "uri": "spotify:track:7C794YeXiiSdlvGLxgabkd",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "AnHero",
+      "track": "come die with me",
+      "uri": "spotify:track:7cwNfiLc34Ly4rdsARMSpl",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Pennywise",
+      "track": "Alien",
+      "uri": "spotify:track:3Xd3IXnA2rmyVawJL9tPVm",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "femtanyl",
+      "track": "ALL THE TIME",
+      "uri": "spotify:track:07Lnncx7fTArEe4BHLnLWJ",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Ron Sexsmith",
+      "track": "Gold In Them Hills",
+      "uri": "spotify:track:2s3hqtfyxzGc6u2o8xXGT9",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Pimm's Trio",
+      "track": "Bad Day",
+      "uri": "spotify:track:460rySqUldXJjAxgFNRAha",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Mark Roswell Trio",
+      "track": "Blue Moon",
+      "uri": "spotify:track:5HP9LwDRT5FGOokrN1HnZ3",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Pearl Street Trio",
+      "track": "All Hands On Deck!",
+      "uri": "spotify:track:44U31ReufqAcif83U3ACf1",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Brandon's Three",
+      "track": "24 hour stopover",
+      "uri": "spotify:track:1fTMCSLuodIA7NyztT9pTC",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "The Headliner Trio",
+      "track": "As Time Goes By",
+      "uri": "spotify:track:2FgLhm6EwB0Ix8XLHABFkC",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Naofumi Hataya",
+      "track": "ルーヴル美術館侵入",
+      "uri": "spotify:track:2TjrM7ixQJRV47YsQsj75A",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Astoria Three",
+      "track": "A Knock On Your Door",
+      "uri": "spotify:track:0ztuGr2Rq4SssO6Aj5MXpZ",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Panic Shack",
+      "track": "Baby",
+      "uri": "spotify:track:7hUadZNzjZsYLbQQHeqbkP",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Hunter Paige",
+      "track": "Affection",
+      "uri": "spotify:track:62LIjQ7uet2hOT9577QYoq",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Joseph Arthur",
+      "track": "A Smile That Explodes",
+      "uri": "spotify:track:4XnXkrTZ9Ut0K95oRJ7DIh",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Sorry Mom",
+      "track": "2006",
+      "uri": "spotify:track:2g9AeE8aV2PIekIXuxmDJn",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Boys Noize",
+      "track": "1+1+1",
+      "uri": "spotify:track:5HH66Sx5PCkl4xw8TwZq3g",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Green Day",
+      "track": "Holiday",
+      "uri": "spotify:track:0lvhEsN1zkMzfp2M1o17yy",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Macintosh Plus",
+      "track": "ECCOと悪寒ダイビング",
+      "uri": "spotify:track:2rQPHeQZmfSrS7R0HzshXj",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Slutever",
+      "track": "1994",
+      "uri": "spotify:track:0GEHOgCdUU9b8uGQKjpugO",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Green Trio",
+      "track": "Little Bell",
+      "uri": "spotify:track:1AQHHWxWaCZrMsqrdDTNng",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Rise Against",
+      "track": "Prayer Of The Refugee",
+      "uri": "spotify:track:2VGQ342iuqj6aSaYbyBQVJ",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Bratmobile",
+      "track": "Bitch Theme",
+      "uri": "spotify:track:09RdaH1uR3msnt5g4xfQFn",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Superorganism",
+      "track": "Everybody Wants To Be Famous",
+      "uri": "spotify:track:4BVFVaa1fDo20Ud1q5Gd2N",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Danny Ryan Jazz Band",
+      "track": "Blueberry Street",
+      "uri": "spotify:track:6YeUTstb4pY8jUE3xWhX0d",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Neon Indian",
+      "track": "6669 (I Don't Know If You Know)",
+      "uri": "spotify:track:4dHX64tECKc1ozIkDspHTw",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "ECO VIRTUAL",
+      "track": "Breezy",
+      "uri": "spotify:track:6jor9rSokwHvJjdY5g9UHW",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Renata Zeiguer",
+      "track": "Bug",
+      "uri": "spotify:track:2zwaGoL1ckziFEOpY5Vfd9",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "North West Trio",
+      "track": "A Quiet Place",
+      "uri": "spotify:track:2sOncurUkrw3CYWliyxYSU",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Fried By Fluoride",
+      "track": "Dead By 30",
+      "uri": "spotify:track:5PuzKOyzxVAiltJIHAxWzm",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Jasmine Patterson",
+      "track": "Ain't No Small Fry",
+      "uri": "spotify:track:7wvEO3lImZfVnG6spsyCZ8",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Shogo Sakai",
+      "track": "City Trial (From \"Kirby Air Ride\")",
+      "uri": "spotify:track:6ffRiWfmk34Cw5oUyWMjkl",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "The Bouncing Souls",
+      "track": "Gasoline",
+      "uri": "spotify:track:3ckJ50ZvwSPjzlq2m6bwXD",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Turin Brakes",
+      "track": "Keep Me Around",
+      "uri": "spotify:track:1inKTlbxUmFESMXExqgV3h",
+      "artist_diversity_fallback": false
+    },
+    {
+      "artist": "Newington Green",
+      "track": "A Job Promotion",
+      "uri": "spotify:track:5tu555JJdfnt5xc1by9bbJ",
+      "artist_diversity_fallback": false
+    }
+  ],
+  "target_description": "Could be worse. Could be quiet.",
+  "backup_path": "playlist_backups/20261108T110044070856Z_4yUVHSMQySfWeEowfIMcx7.json",
+  "status": "staged_before_spotify_write",
+  "stage_mode": "production",
+  "payload_sha256": "2eed19e6e5780fb4da9ebea94eca2fcf2a67b4abd7a8fea09b79c2fb62ff8542"
+}
