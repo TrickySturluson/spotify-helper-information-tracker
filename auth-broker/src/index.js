@@ -405,7 +405,7 @@ export async function verifySpotifyIdentity(accessToken, fetchImpl = fetch) {
   };
 }
 
-async function saveRefreshToken(env, refreshToken, existingToken = null) {
+export async function saveRefreshToken(env, refreshToken, existingToken = null) {
   if (typeof refreshToken !== "string" || refreshToken.length < 20) {
     throw new BrokerError("Spotify did not return a usable refresh token.");
   }
