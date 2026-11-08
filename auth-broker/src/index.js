@@ -404,12 +404,13 @@ async function githubLoginCallback(request, env, url) {
   }
   const stateKey = `oauth:github-state:${state}`;
   const stateValue = await stateConsume(env, stateKey);
-  if (stateValue !== "pending") throw new BrokerError("GitHub sign-in expired. Start again.");
+  if (!stateValue || typeof stateValue.verifier !== "string") throw new BrokerError("GitHub sign-in expired. Start again.");
   const tokenData = await exchangeForm("https://github.com/login/oauth/access_token", {
-    client_id: env.GITHUB_OAUTH_CLIENT_ID,
-    client_secret: env.GITHUB_OAUTH_CLIENT_SECRET,
+    client_id: env.GITHUB_APP_CLIENT_ID,
+    client_secret: env.GITHUB_APP_CLIENT_SECRET,
     code,
-    redirect_uri: env.GITHUB_OAUTH_REDIRECT_URI,
+    redirect_uri: env.GITHUB_APP_REDIRECT_URI,
+    code_verifier: stateValue.verifier,
   });
   if (!tokenData.access_token) throw new BrokerError("GitHub sign-in failed.");
   const userResponse = await fetch("https://api.github.com/user", {
@@ -485,22 +486,25 @@ export async function handleRequest(request, env) {
 
     if (url.pathname === "/auth/github/start" && request.method === "GET") {
       await rateLimit(request, env, "github-start");
-      requireEnv(env, ["GITHUB_OAUTH_CLIENT_ID", "GITHUB_OAUTH_REDIRECT_URI"]);
+      requireEnv(env, ["GITHUB_APP_CLIENT_ID", "GITHUB_APP_REDIRECT_URI"]);
       const state = randomValue(24);
-      await statePut(env, `oauth:github-state:${state}`, "pending", OAUTH_TTL);
+      const verifier = randomValue(64);
+      const challenge = await pkceChallenge(verifier);
+      await statePut(env, `oauth:github-state:${state}`, { verifier }, OAUTH_TTL);
       const target = new URL("https://github.com/login/oauth/authorize");
       target.search = new URLSearchParams({
-        client_id: env.GITHUB_OAUTH_CLIENT_ID,
-        redirect_uri: env.GITHUB_OAUTH_REDIRECT_URI,
-        scope: "read:user",
+        client_id: env.GITHUB_APP_CLIENT_ID,
+        redirect_uri: env.GITHUB_APP_REDIRECT_URI,
         state,
+        code_challenge_method: "S256",
+        code_challenge: challenge,
       });
       return redirect(target.toString(), { "Set-Cookie": cookie("__Host-shit_gh_state", state, OAUTH_TTL) });
     }
 
     if (url.pathname === "/auth/github/callback" && request.method === "GET") {
       await rateLimit(request, env, "github-callback");
-      requireEnv(env, ["GITHUB_OAUTH_CLIENT_ID", "GITHUB_OAUTH_CLIENT_SECRET", "GITHUB_OAUTH_REDIRECT_URI", "GITHUB_OWNER"]);
+      requireEnv(env, ["GITHUB_APP_CLIENT_ID", "GITHUB_APP_CLIENT_SECRET", "GITHUB_APP_REDIRECT_URI", "GITHUB_OWNER"]);
       const result = await githubLoginCallback(request, env, url);
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_gh_state"));
       return result;
