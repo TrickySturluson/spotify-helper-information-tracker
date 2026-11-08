@@ -250,11 +250,10 @@ async function assertNoConcurrentSpotifyJobs(token) {
   }
   const active = (runs?.workflow_runs || []).filter((run) => {
     const path = String(run.path || "");
-    const name = String(run.name || "");
     const spotifyWorkflow = path.startsWith(".github/workflows/") &&
       (path.includes("spotify") || /great-migration|update\.yml|enrich-music-metadata|acoustic-metadata-enrichment|backfill-music-durations/i.test(path));
     const brokerWorkflow = /mobile-auth-broker-tests|deploy-mobile-auth-broker/i.test(path);
-    return spotifyWorkflow && !brokerWorkflow && name !== "SHIT — Spotify Auth Health Check";
+    return spotifyWorkflow && !brokerWorkflow;
   });
   if (active.length) {
     throw new BrokerError("A Spotify-related GitHub workflow is already running. Wait for it to finish before reauthorizing.");
