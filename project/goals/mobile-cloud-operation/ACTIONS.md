@@ -76,3 +76,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Replaced that classifier with a fail-closed allowlist: only six explicitly audited non-Spotify workflows may overlap OAuth; every other or unknown workflow path blocks authorization. Added tests for Spotify playlist, preview, migration and auth workflows plus safe CI/deployment workflows.
 - Added the required canonical HTTPS BROKER_BASE_URL to wrangler.toml. Without this value, the Worker would reject all requests; the new configuration test asserts every required public runtime variable is declared.
 - Latest changes are on feature/mobile-spotify-reauth-plan. Broker unit tests and Wrangler dry-run were passing on the preceding commit; new classifier/config tests are running now. No deployment or external configuration changes have occurred.
+
+
+## 2026-11-08 — Cloudflare deployment least-privilege review
+
+- Updated the deployment guide to pre-create the Worker in the Cloudflare dashboard, then deploy updates to that existing Worker. Cloudflare's current Workers authorization guide says deploying an existing Worker needs Workers Editor, while creating a new Worker through Wrangler needs Workers Admin; pre-creation avoids granting Admin to the CI token. Source: https://developers.cloudflare.com/workers/authorization/.
+- Cloudflare currently documents SQLite-backed Durable Objects as available on Free and Paid plans. Free-tier limits include 5 million row reads/day, 100,000 row writes/day and 5 GB SQLite storage; usage beyond included allocations may incur charges. Sources: https://developers.cloudflare.com/durable-objects/platform/limits/ and https://developers.cloudflare.com/workers/platform/pricing/.
+- Deployment remains disabled until the Worker exists and the user configures a Worker-scoped Cloudflare API token, repository secret CLOUDFLARE_API_TOKEN, repository variable CLOUDFLARE_ACCOUNT_ID, GitHub App secrets in Cloudflare, and exact callback URLs. No Cloudflare account or external setting has been changed.
