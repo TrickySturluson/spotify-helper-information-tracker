@@ -1116,10 +1116,10 @@ def main():
             ("KISS", "Hard Luck Woman"),
             ("Cyndi Lauper", "Money Changes Everything"),
             ("Steve Miller Band", "The Joker"),
-            ("Simply Red", "Money"),
+            ("Simply Red", "Money's Too Tight (To Mention)"),
             ("The O'Jays", "For the Love of Money"),
             ("Barrett Strong", "Money"),
-            ("Mumford & Sons", "The Cave"),
+            ("The Animals", "House of the Rising Sun"),
         ]
         pid = command["playlist_id"]
         p = owned_playlist(sp, pid, me)
