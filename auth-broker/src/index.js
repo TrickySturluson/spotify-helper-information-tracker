@@ -240,6 +240,14 @@ async function installationToken(env) {
   return token.token;
 }
 
+export function isSpotifyWorkflowPath(path) {
+  const value = String(path || "");
+  if (!value.startsWith(".github/workflows/")) return false;
+  if (/mobile-auth-broker-tests|deploy-mobile-auth-broker/i.test(value)) return false;
+  return value.includes("spotify") ||
+    /great-migration|update\.yml|enrich-music-metadata|acoustic-metadata-enrichment|backfill-music-durations/i.test(value);
+}
+
 async function assertNoConcurrentSpotifyJobs(token) {
   const runs = await githubApi(
     `/repos/${OWNER}/${REPOSITORY}/actions/runs?status=in_progress&per_page=100`,
@@ -248,13 +256,7 @@ async function assertNoConcurrentSpotifyJobs(token) {
   if ((runs?.total_count || 0) > 100) {
     throw new BrokerError("Too many active GitHub Actions runs to safely authorize. Wait and retry.");
   }
-  const active = (runs?.workflow_runs || []).filter((run) => {
-    const path = String(run.path || "");
-    const spotifyWorkflow = path.startsWith(".github/workflows/") &&
-      (path.includes("spotify") || /great-migration|update\.yml|enrich-music-metadata|acoustic-metadata-enrichment|backfill-music-durations/i.test(path));
-    const brokerWorkflow = /mobile-auth-broker-tests|deploy-mobile-auth-broker/i.test(path);
-    return spotifyWorkflow && !brokerWorkflow;
-  });
+  const active = (runs?.workflow_runs || []).filter((run) => isSpotifyWorkflowPath(run.path));
   if (active.length) {
     throw new BrokerError("A Spotify-related GitHub workflow is already running. Wait for it to finish before reauthorizing.");
   }
