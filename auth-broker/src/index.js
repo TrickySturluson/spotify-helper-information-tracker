@@ -475,7 +475,7 @@ async function githubLoginCallback(request, env, url) {
   });
   if (!userResponse.ok) throw new BrokerError("GitHub identity could not be verified.");
   const user = await userResponse.json();
-  if (!isAuthorizedOwner(user.login, env.GITHUB_OWNER || OWNER)) {
+  if (!isAuthorizedOwner(user.login)) {
     throw new BrokerError("This GitHub account is not authorized to manage SHIT.");
   }
   const sessionId = randomValue(32);
@@ -566,7 +566,7 @@ export async function handleRequest(request, env) {
 
     if (url.pathname === "/auth/github/callback" && request.method === "GET") {
       await rateLimit(request, env, "github-callback");
-      requireEnv(env, ["GITHUB_APP_CLIENT_ID", "GITHUB_APP_CLIENT_SECRET", "GITHUB_APP_REDIRECT_URI", "GITHUB_OWNER"]);
+      requireEnv(env, ["GITHUB_APP_CLIENT_ID", "GITHUB_APP_CLIENT_SECRET", "GITHUB_APP_REDIRECT_URI"]);
       const result = await githubLoginCallback(request, env, url);
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_gh_state"));
       return result;
