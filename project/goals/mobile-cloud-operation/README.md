@@ -44,7 +44,7 @@ The broker must:
 - GitHub identity and Spotify identity are distinct; verify both and report the authenticated Spotify account through the read-only workflow.
 - Use PKCE; do not introduce a Spotify client secret if the app is a public client.
 - Restrict the GitHub App to this repository. Request only Secrets: write and Actions: write for the broker; do not request Contents, Administration, or broad account permissions.
-- Do not persist the Spotify refresh token in the broker's KV/database after writing it to GitHub. Only short-lived PKCE/state records may be stored.
+- Do not persist the Spotify refresh token in the broker's Durable Object state store after writing it to GitHub. Only short-lived PKCE/state/session records may be stored.
 - Never put credentials in issue bodies/comments, workflow inputs, query strings, commits, artifacts, ChatGPT messages, browser storage, or logs.
 - Preserve every existing playlist lock, ownership check, allowlist, blacklist, preview/confirmation, snapshot, audit, rollback and live read-back gate.
 - OAuth completion must never trigger a playlist write.
