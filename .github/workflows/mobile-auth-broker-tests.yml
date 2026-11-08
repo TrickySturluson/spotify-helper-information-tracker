@@ -35,6 +35,8 @@ jobs:
           node-version: "22"
       - name: Install pinned broker dependencies
         run: npm install --ignore-scripts
+      - name: Audit complete broker dependency tree
+        run: npm audit --audit-level=high
       - name: Run broker security unit tests
         run: npm test
       - name: Validate Worker bundle and Wrangler configuration without deploying
