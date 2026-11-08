@@ -12,6 +12,7 @@ on:
     paths:
       - "auth-broker/**"
       - ".github/workflows/mobile-auth-broker-tests.yml"
+      - ".github/workflows/deploy-mobile-auth-broker.yml"
   workflow_dispatch:
 
 concurrency:
@@ -34,7 +35,12 @@ jobs:
         with:
           node-version: "22"
       - name: Install pinned broker dependencies
-        run: npm install --ignore-scripts
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --ignore-scripts
+          else
+            npm install --ignore-scripts
+          fi
       - name: Preserve generated dependency lockfile for review
         uses: actions/upload-artifact@v7.0.2
         with:
@@ -82,7 +88,7 @@ jobs:
 
 # FILE OVERVIEW
 # Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
-# Trigger: Pushes to feature/** and pull requests touching auth-broker files; manual workflow_dispatch.
-# Credentials: None. This workflow never contacts Spotify, GitHub Secrets, or Cloudflare.
-# Side effects: Installs pinned dependencies on an ephemeral runner and runs local tests only.
-# Safety: No secrets or playlist permissions are available to this job.
+# Trigger: Pushes to feature/** and pull requests touching broker source/deployment files; manual workflow_dispatch.
+# Credentials: Test job uses none; the owner-only lockfile commit job uses the scoped default GITHUB_TOKEN with contents: write.
+# Side effects: Installs audited dependencies, runs local tests/dry-run, and on an owner push to this feature branch commits only the generated package-lock.json.
+# Safety: No Spotify, Cloudflare, repository Secrets, or playlist permissions; write permission is isolated to the lockfile-only job.
