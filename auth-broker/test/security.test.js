@@ -225,22 +225,27 @@ test("Spotify identity verification fails closed on non-200 or missing identity"
 
 
 test("clean completion URL consumes one-time non-secret authorization summary", async () => {
-  const storage = new MemoryDurableStorage();
-  const store = new OAuthStateStore({ storage });
   const resultId = "abcdefghijklmnopqrstuvwxyzABCDEF";
-  await callStateStore(store, "/put", {
-    key: "oauth:result:" + resultId,
-    value: {
-      spotifyIdentity: { id: "spotify-id-123", displayName: "Example Listener" },
-      verificationStarted: true,
-    },
-    ttl: 120,
-  });
+  let consumed = false;
   const env = {
     BROKER_BASE_URL: "https://trusted.example",
     OAUTH_STATE: {
       idFromName: () => "state",
-      get: () => ({ fetch: (request) => store.fetch(request) }),
+      get: () => ({
+        fetch: async (request) => {
+          const input = await request.json();
+          if (input.key !== "oauth:result:" + resultId || consumed) {
+            return new Response("{}", { status: 404 });
+          }
+          consumed = true;
+          return new Response(JSON.stringify({
+            value: {
+              spotifyIdentity: { id: "spotify-id-123", displayName: "Example Listener" },
+              verificationStarted: true,
+            },
+          }), { status: 200, headers: { "Content-Type": "application/json" } });
+        },
+      }),
     },
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
   };
@@ -254,7 +259,6 @@ test("clean completion URL consumes one-time non-secret authorization summary", 
   const replay = await handleRequest(new Request("https://trusted.example/complete?result=" + resultId), env);
   assert.match(await replay.text(), /expired or was already used/);
 });
-
 
 test("GitHub App JWT builder signs a valid RS256 token from PKCS1 PEM", async () => {
   const { privateKey, publicKey } = generateKeyPairSync("rsa", {
