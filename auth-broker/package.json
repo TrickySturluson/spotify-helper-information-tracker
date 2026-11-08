@@ -1,0 +1,16 @@
+{
+  "name": "shit-mobile-auth-broker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "libsodium-wrappers": "0.8.4"
+  },
+  "devDependencies": {
+    "wrangler": "4.158.0"
+  }
+}

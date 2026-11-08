@@ -1,0 +1,108 @@
+name: SHIT Mobile Auth Broker Tests
+
+on:
+  pull_request:
+    paths:
+      - "auth-broker/**"
+      - ".github/workflows/mobile-auth-broker-tests.yml"
+      - ".github/workflows/deploy-mobile-auth-broker.yml"
+      - "docs/WORKFLOWS.md"
+      - "docs/README.md"
+      - "docs/SPOTIFY_API_OPERATIONS.md"
+      - "project/ROADMAP.md"
+      - "project/goals/README.md"
+      - "project/goals/mobile-cloud-operation/**"
+  push:
+    branches:
+      - "feature/**"
+    paths:
+      - "auth-broker/**"
+      - ".github/workflows/mobile-auth-broker-tests.yml"
+      - ".github/workflows/deploy-mobile-auth-broker.yml"
+      - "docs/WORKFLOWS.md"
+      - "docs/README.md"
+      - "docs/SPOTIFY_API_OPERATIONS.md"
+      - "project/ROADMAP.md"
+      - "project/goals/README.md"
+      - "project/goals/mobile-cloud-operation/**"
+  workflow_dispatch:
+
+concurrency:
+  group: mobile-auth-broker-tests-${{ github.event.pull_request.head.ref || github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: auth-broker
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: Install pinned broker dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --ignore-scripts
+          else
+            npm install --ignore-scripts
+          fi
+      - name: Preserve generated dependency lockfile for review
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: mobile-auth-broker-package-lock-${{ github.run_id }}
+          path: auth-broker/package-lock.json
+          retention-days: 7
+          if-no-files-found: error
+      - name: Audit complete broker dependency tree
+        run: npm audit --audit-level=high
+      - name: Run broker security unit tests
+        run: npm test
+      - name: Validate Worker bundle and Wrangler configuration without deploying
+        run: |
+          npx wrangler deploy --dry-run \
+            --var "BROKER_BASE_URL:https://broker.example.workers.dev" \
+            --var "GITHUB_APP_CLIENT_ID:example-client-id" \
+            --var "GITHUB_APP_ID:123456" \
+            --var "GITHUB_APP_REDIRECT_URI:https://broker.example.workers.dev/auth/github/callback" \
+            --var "SPOTIFY_CLIENT_ID:example-spotify-client-id" \
+            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback"
+
+  commit-lockfile:
+    needs: test
+    if: github.event_name == 'push' && github.actor == 'TrickySturluson' && github.ref == 'refs/heads/feature/mobile-spotify-reauth-reconciled'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: mobile-auth-broker-package-lock-${{ github.run_id }}
+          path: auth-broker
+      - name: Commit only the generated broker lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add auth-broker/package-lock.json
+          if git diff --cached --quiet; then
+            echo "Broker lockfile is already current."
+          else
+            git commit -m "Lock audited mobile auth broker dependencies"
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+# FILE OVERVIEW
+# Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
+# Trigger: Pushes to feature/** and pull requests touching broker source/deployment files; manual workflow_dispatch.
+# Credentials: Test job uses none; the owner-only lockfile commit job uses the scoped default GITHUB_TOKEN with contents: write.
+# Side effects: Installs audited dependencies, runs local tests/dry-run, and on an owner push to this feature branch commits only the generated package-lock.json.
+# Safety: No Spotify, Cloudflare, repository Secrets, or playlist permissions; write permission is isolated to the lockfile-only job.

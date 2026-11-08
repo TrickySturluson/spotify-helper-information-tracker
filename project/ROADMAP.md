@@ -35,11 +35,12 @@ Maintain a durable, reliable, cloud-operable music intelligence system that comb
 | Library Health & Maintenance | Read-only health, confidence and maintenance previews; guarded repair path | [ROADMAP](goals/library-health-maintenance/ROADMAP.md) |
 | Metadata Freshness | Timestamp/provenance recovery and safe freshness planning | [ROADMAP](goals/metadata-freshness/ROADMAP.md) |
 | Spotify Playability | Market-scoped availability evidence and refresh policy | [ROADMAP](goals/spotify-playability/ROADMAP.md) |
+| Mobile Cloud Operation & Spotify Reauthorization | Phone-based Spotify OAuth bootstrap and PC-independent SHIT control | [ROADMAP](goals/mobile-cloud-operation/ROADMAP.md) |
 | Library Confidence Verification | Identity confidence, duplicate review and evidence-preserving reconciliation | [ROADMAP](goals/library-confidence-verification/ROADMAP.md) |
 
 ## Cross-project priority order
 
-This is a coordination order, not a replacement for goal-specific roadmaps. The user's explicit current direction makes documentation the sole active workstream until its acceptance criteria pass. Do not advance lower-priority feature work during this phase. If a dependency or fresh failure changes the order, record why in NEXT_WORK and the affected roadmaps.
+This is a coordination order, not a replacement for goal-specific roadmaps. Babel documentation remains a priority, while the user has explicitly authorized the Mobile Cloud Operation & Spotify Reauthorization workstream to proceed in parallel because it removes a core PC/Codespaces dependency. Do not infer authorization for unrelated feature work. If a dependency or fresh failure changes the order, record why in NEXT_WORK and the affected roadmaps.
 
 1. **Complete documentation coverage and fresh-session continuity.** Audit maintained files and data contracts against source; verify every goal roadmap; reconcile links, operational guides, open PRs/issues and workflow evidence; improve automated checks; complete the fresh-session simulation. No feature development, playlist operations or unrelated project work until this is complete.
 2. **Protect canonical state and recoverability.** Resolve migration/publication loose ends, verify canonical Library integrity, and prevent unsafe concurrent writes.

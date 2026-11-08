@@ -40,7 +40,8 @@ Every maintained guide in `docs/` is listed below. Use the workstream roadmap an
 - [Code documentation standard](CODE_DOCUMENTATION.md) — file overviews, module docstrings, inline documentation and automated enforcement.
 - [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — published personal data, secret boundaries and repository exposure risks.
 - [Spotify API operations](SPOTIFY_API_OPERATIONS.md) — authentication, permissions, API behavior, token handling and cloud-operation constraints.
-- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 18 workflows, triggers, permissions, credentials, writes and operational boundaries.
+- [Mobile cloud operation & Spotify reauthorization](../project/goals/mobile-cloud-operation/README.md) — phone-first OAuth broker design, GitHub secret publication, security boundaries and deployment acceptance.
+- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 21 workflows, triggers, permissions, credentials, writes and operational boundaries.
 - [Great Migration guide](GREAT_MIGRATION.md) — canonical Library migration, validation, backup, publication and recovery.
 
 ### Canonical Library, identity and metadata
