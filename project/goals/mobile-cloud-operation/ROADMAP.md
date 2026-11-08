@@ -1,6 +1,6 @@
 # Mobile Cloud Operation & Spotify Reauthorization — Roadmap
 
-**Status:** Broker source implementation is complete in review PR #182; CI is rerunning on the reconciled branch. No broker is deployed.  
+**Status:** Broker source implementation is complete in review PR #182; reconciled-branch CI passed on head `e2b941180bf3b187ed13dc6f3a7d2d20e88afcd6`. No broker is deployed.  
 **Priority:** Active, explicitly authorized by the user on 2026-11-08.
 
 ## Problem
@@ -102,6 +102,6 @@ Complete review/CI for PR #182, obtain separate explicit approval before merging
 
 - PR #181 was merged as `b0b280ff7b0b6d71fcbcf8fa3ded2d0b0f7b8a22` after explicit approval; its 519-test suite and full-history Gitleaks scan passed.
 - The old broker PR #176 was 7 commits behind/divergent. Its reviewed broker implementation was copied onto a fresh branch based on the new `main`; PR [#182](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/182) is open, ahead 17 commits and behind 0 at the latest recorded comparison. Do not merge without separate explicit owner approval.
-- CI on the reconciled PR must finish successfully. The workflow catalogue, docs index, goal index and current-main mobile operation history are included in the PR; the prior PR #176 docs were not blindly copied over the newer PR #181 status.
+- CI on the reconciled PR passed on the recorded head. The workflow catalogue, docs index, goal index and current-main mobile operation history are included; the prior PR #176 docs were not blindly copied over the newer PR #181 status. Any new commit requires fresh checks.
 - Known design limitation: active Spotify workflow checks are repeated but are not an atomic lock against a new workflow starting after the final check. Schedule first OAuth in a quiet maintenance window; do not weaken fail-closed behavior.
 - No Worker deployment, external app configuration, callback registration, credential change or playlist operation has occurred. Spotify `invalid_grant` remains the live blocker.
