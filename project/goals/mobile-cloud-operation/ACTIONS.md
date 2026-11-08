@@ -68,3 +68,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Opened corrective revert PR [#177](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/177), deleting only those three files from `main`. PR #177 is mergeable; it has not been merged. Owner should merge #177 before the full operational PR #176 is reconciled/rechecked.
 - Full-history Gitleaks scan passed on the complete broker source/configuration branch in run [#42450865632](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42450865632). Broker unit tests and Wrangler dry-run passed in [#42450832707](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42450832707).
 - PR #176 remains open and not currently mergeable while `main` contains the three prematurely published files. Do not merge #176 until PR #177 is merged and #176 is refreshed/reconciled.
+
+
+## 2026-11-08 — Concurrency gate and deployment configuration hardening
+
+- Audited the branch's full workflow inventory. The initial classifier could miss active Spotify-using workflows whose filenames did not contain the word Spotify, and it failed open for missing workflow paths.
+- Replaced that classifier with a fail-closed allowlist: only six explicitly audited non-Spotify workflows may overlap OAuth; every other or unknown workflow path blocks authorization. Added tests for Spotify playlist, preview, migration and auth workflows plus safe CI/deployment workflows.
+- Added the required canonical HTTPS BROKER_BASE_URL to wrangler.toml. Without this value, the Worker would reject all requests; the new configuration test asserts every required public runtime variable is declared.
+- Latest changes are on feature/mobile-spotify-reauth-plan. Broker unit tests and Wrangler dry-run were passing on the preceding commit; new classifier/config tests are running now. No deployment or external configuration changes have occurred.
