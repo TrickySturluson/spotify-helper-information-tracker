@@ -2,15 +2,8 @@ name = "shit-mobile-auth-broker"
 main = "src/index.js"
 compatibility_date = "2026-11-08"
 
-[vars]
-GITHUB_OWNER = "TrickySturluson"
-BROKER_BASE_URL = "https://REPLACE_WITH_WORKER_HOST"
-GITHUB_APP_CLIENT_ID = "REPLACE_WITH_GITHUB_APP_CLIENT_ID"
-SPOTIFY_CLIENT_ID = "REPLACE_WITH_SPOTIFY_APP_CLIENT_ID"
-GITHUB_APP_ID = "REPLACE_WITH_GITHUB_APP_ID"
-GITHUB_APP_REDIRECT_URI = "https://REPLACE_WITH_WORKER_HOST/auth/github/callback"
-SPOTIFY_REDIRECT_URI = "https://REPLACE_WITH_WORKER_HOST/spotify/callback"
-
+# Public runtime variables are injected from GitHub Actions repository variables
+# by deploy-mobile-auth-broker.yml using Wrangler's --var flags.
 # SQLite-backed Durable Object provides strongly consistent, transactional OAuth state.
 [[durable_objects.bindings]]
 name = "OAUTH_STATE"
