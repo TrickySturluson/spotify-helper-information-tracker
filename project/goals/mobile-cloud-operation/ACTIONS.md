@@ -97,3 +97,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Added a server-side Spotify `GET /v1/me` check immediately after the authorization-code exchange and before writing the refresh token to GitHub. If Spotify identity cannot be verified, secret persistence stops.
 - The completion page now displays the authenticated Spotify display name and account ID, allowing the owner to notice if the wrong Spotify account was authorized. No identity is stored in the broker's Durable Object.
 - Added unit tests for successful identity retrieval and fail-closed handling of HTTP errors/missing IDs. Updated broker guide and roadmap.
+
+
+## 2026-11-08 — OAuth callback URL cleanup
+
+- Changed the Spotify callback to redirect immediately to a clean completion URL after the code is exchanged and the secret is saved. The one-time authorization code/state no longer remains in the final browser address bar.
+- The completion URL uses a random one-time handle to retrieve a 120-second Durable Object record containing only the Spotify account identity and verification-dispatch status. The record is consumed on first display; it contains no access or refresh token.
+- Added tests for completion identity rendering, expiry/replay rejection and one-time consumption. Updated the broker security guide. OAuth code exchange, GitHub secret update and workflow dispatch remain unchanged.
