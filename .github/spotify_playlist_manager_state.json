@@ -257,6 +257,216 @@
       "uri": "spotify:track:1OcDvY7VSrlB5wa5zQoBzb",
       "album": "Songs The Lord Taught Us",
       "duration_ms": 115440
+    },
+    "motörhead|aceofspades": {
+      "name": "Ace of Spades",
+      "uri": "spotify:track:3CIOopLwvyMvXk97ZEksKO",
+      "album": "Ace of Spades (Expanded Edition)",
+      "duration_ms": 168320
+    },
+    "ladygaga|pokerface": {
+      "name": "Poker Face",
+      "uri": "spotify:track:5R8dQOPq8haW94K7mgERlO",
+      "album": "The Fame",
+      "duration_ms": 237200
+    },
+    "kennyrogers|thegambler": {
+      "name": "The Gambler",
+      "uri": "spotify:track:5KqldkCunQ2rWxruMEtGh0",
+      "album": "The Gambler",
+      "duration_ms": 214880
+    },
+    "acdc|thejack": {
+      "name": "The Jack",
+      "uri": "spotify:track:3k1WwLG1OXCm6iQ13VrJEL",
+      "album": "High Voltage",
+      "duration_ms": 353607
+    },
+    "franksinatra|luckbealady": {
+      "name": "Luck Be A Lady",
+      "uri": "spotify:track:7mPGSqaVpW2RBdyMq2goQ6",
+      "album": "Sinatra ’65",
+      "duration_ms": 314306
+    },
+    "elvispresley|vivalasvegas": {
+      "name": "Viva Las Vegas",
+      "uri": "spotify:track:5Q7ayTarb9Tpmkik5cVMug",
+      "album": "Elvis' Gold Records, Vol. 4",
+      "duration_ms": 144280
+    },
+    "juicenewton|queenofhearts": {
+      "name": "Queen Of Hearts",
+      "uri": "spotify:track:6R6ib5FgDYlG0rPA9c5DVv",
+      "album": "Juice",
+      "duration_ms": 205826
+    },
+    "bobseger|ramblingamblinman": {
+      "name": "Ramblin' Gamblin' Man",
+      "uri": "spotify:track:691Wr3tOjDqic3OTPLouX3",
+      "album": "Ramblin' Gamblin' Man",
+      "duration_ms": 145310
+    },
+    "therollingstones|tumblingdice": {
+      "name": "Tumbling Dice",
+      "uri": "spotify:track:4hq0S6wznq7SHDyMOFXL9i",
+      "album": "Exile On Main Street (2010 Re-Mastered)",
+      "duration_ms": 226333
+    },
+    "rush|rollthebones": {
+      "name": "Roll the Bones",
+      "uri": "spotify:track:58wZxW3Fz4jOlTeUnnnjnC",
+      "album": "Happy Classic Rock",
+      "duration_ms": 329906
+    },
+    "jimmyeatworld|bigcasino": {
+      "name": "Big Casino",
+      "uri": "spotify:track:463wBlCYhDPuOVvAU8bS1h",
+      "album": "Chase This Light",
+      "duration_ms": 220733
+    },
+    "wilco|casinoqueen": {
+      "name": "Casino Queen",
+      "uri": "spotify:track:2zsVcKLJ9fWgxF2D7Rd6mZ",
+      "album": "A.M.",
+      "duration_ms": 164666
+    },
+    "theclash|thecardcheat": {
+      "name": "The Card Cheat",
+      "uri": "spotify:track:3E1pzieZ3mm0bRjChBcOc0",
+      "album": "London Calling (Expanded Edition)",
+      "duration_ms": 229506
+    },
+    "gratefuldead|deal": {
+      "name": "Deal",
+      "uri": "spotify:track:47J2U4dM6ArEhZmc3BiH1w",
+      "album": "Live Albums Collection",
+      "duration_ms": 285613
+    },
+    "stevemillerband|takethemoneyandrun": {
+      "name": "Take The Money And Run",
+      "uri": "spotify:track:1ZhrREyOOeFV6TxDOyiPwu",
+      "album": "Fly Like An Eagle",
+      "duration_ms": 170173
+    },
+    "pinkfloyd|money": {
+      "name": "Money",
+      "uri": "spotify:track:0vFOzaXqZHahrZp6enQwQb",
+      "album": "The Dark Side of the Moon",
+      "duration_ms": 380080
+    },
+    "abba|moneymoneymoney": {
+      "name": "Money, Money, Money",
+      "uri": "spotify:track:3lKN03PDeBnXZS7sDukRBt",
+      "album": "Arrival",
+      "duration_ms": 186426
+    },
+    "acdc|moneytalks": {
+      "name": "Moneytalks",
+      "uri": "spotify:track:5u5F7qLDvZjBSktaDp4HxB",
+      "album": "The Razors Edge",
+      "duration_ms": 225957
+    },
+    "basementjaxx|goodluck": {
+      "name": "Good Luck",
+      "uri": "spotify:track:1loMHOGpWEgh1cFvpoSZf0",
+      "album": "Kish Kash",
+      "duration_ms": 282306
+    },
+    "socialdistortion|badluck": {
+      "name": "Bad Luck",
+      "uri": "spotify:track:6Y19VBGJBoixg6umIkE7ar",
+      "album": "Somewhere Between Heaven And Hell",
+      "duration_ms": 264973
+    },
+    "bonnieraitt|luckofthedraw": {
+      "name": "Luck Of The Draw",
+      "uri": "spotify:track:0ABbh7ro3kLFdZfLlbeA3g",
+      "album": "Luck Of The Draw",
+      "duration_ms": 317040
+    },
+    "tonychristie|lasvegas": {
+      "name": "Las Vegas",
+      "uri": "spotify:track:6Yho0ryRLj7a75FwZpvl9l",
+      "album": "Tony Christie",
+      "duration_ms": 206253
+    },
+    "sherylcrow|leavinglasvegas": {
+      "name": "Leaving Las Vegas",
+      "uri": "spotify:track:6MWJy3DXI0Je49FW3gDpLp",
+      "album": "Tuesday Night Music Club",
+      "duration_ms": 309200
+    },
+    "abba|thewinnertakesitall": {
+      "name": "The Winner Takes It All",
+      "uri": "spotify:track:3oEkrIfXfSh9zGnE7eBzSV",
+      "album": "Super Trouper",
+      "duration_ms": 294720
+    },
+    "beck|loser": {
+      "name": "Loser",
+      "uri": "spotify:track:5PntSbMHC1ud6Vvl8x56qd",
+      "album": "Mellow Gold",
+      "duration_ms": 235000
+    },
+    "mop|anteup": {
+      "name": "Ante Up",
+      "uri": "spotify:track:7rbJDW5JAhCAA1VYtQY4Kg",
+      "album": "Mash Out Posse",
+      "duration_ms": 203333
+    },
+    "raycharles|blackjack": {
+      "name": "Blackjack",
+      "uri": "spotify:track:4Rs9oRN8uQrEbPSrEL6pp8",
+      "album": "Yes Indeed!",
+      "duration_ms": 139626
+    },
+    "radiohead|houseofcards": {
+      "name": "House Of Cards",
+      "uri": "spotify:track:48X4D1FYOShPz2VF3YdfCF",
+      "album": "In Rainbows",
+      "duration_ms": 328293
+    },
+    "kiss|hardluckwoman": {
+      "name": "Hard Luck Woman",
+      "uri": "spotify:track:1vcZBUX6P6FHXzG2mUfmCE",
+      "album": "Rock And Roll Over",
+      "duration_ms": 214666
+    },
+    "theb52s|roam": {
+      "name": "Roam",
+      "uri": "spotify:track:5fqcIHU6DhQtFKVO5XSdQs",
+      "album": "Cosmic Thing",
+      "duration_ms": 295133
+    },
+    "stevemillerband|thejoker": {
+      "name": "The Joker",
+      "uri": "spotify:track:1bp2IO61zbQrbWNmKKxg3f",
+      "album": "The Joker",
+      "duration_ms": 264503
+    },
+    "creedenceclearwaterrevival|fortunateson": {
+      "name": "Fortunate Son",
+      "uri": "spotify:track:4BP3uh0hFLFRb5cjsgLqDh",
+      "album": "Willy And The Poor Boys (Expanded Edition)",
+      "duration_ms": 140773
+    },
+    "theojays|fortheloveofmoney": {
+      "name": "For the Love of Money",
+      "uri": "spotify:track:3p1JoOEhVkEnTaa4JzTMSk",
+      "album": "Ship Ahoy (Expanded Edition)",
+      "duration_ms": 439866
+    },
+    "direstraits|moneyfornothing": {
+      "name": "Money for Nothing",
+      "uri": "spotify:track:4yqtwO7MQIIXqoiRBPHAgR",
+      "album": "Brothers in Arms",
+      "duration_ms": 506400
+    },
+    "thebeatles|thefoolonthehill": {
+      "name": "The Fool On The Hill",
+      "uri": "spotify:track:2xnHP0XnnsLmtdaX8POQ4M",
+      "album": "Love",
+      "duration_ms": 209713
     }
   },
   "pending": {
