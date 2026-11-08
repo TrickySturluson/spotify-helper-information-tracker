@@ -37,3 +37,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - No secrets, GitHub App permissions, Spotify developer settings, workflows, or playlists were changed.
 - Buddy's latest recorded run is from 2026-11-07; today's run (2026-11-08 Eastern) is pending and has not been independently reviewed.
 - Current next action: complete the infrastructure permission/redirect audit and implement the broker with automated tests.
+
+### Follow-up security/deployment audit
+
+- GitHub repository rulesets endpoint returned an empty list. The connected integration could not read branch protection (HTTP 403), so branch protection requirements remain unverified.
+- No supported connector endpoint exposes GitHub App private-key values, installation secrets, or Spotify Developer Dashboard redirect configuration. Those values/settings must be checked in their respective dashboards without disclosing secret values.
+- Added an initial Cloudflare Worker implementation, pinned package manifest, KV/rate-limiter configuration template, and isolated Node security-test workflow on this branch. These are implementation-in-progress, not deployed or end-to-end verified.
+- The broker's only intended GitHub side effects are updating the single `SPOTIFY_REFRESH_TOKEN` Actions secret and dispatching the read-only `spotify-auth-health-check.yml` workflow after the secret update succeeds. It does not have playlist endpoints or command-generation logic.
+- Current PR CI: Daily curator tests passed on the documentation-only commit; public repository security scan was still in progress at the last check. The dedicated broker test workflow is expected to run for the implementation changes.
