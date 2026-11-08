@@ -25,7 +25,6 @@ Non-secret Worker variables:
 - SPOTIFY_CLIENT_ID
 - SPOTIFY_REDIRECT_URI (exact Worker URL plus /spotify/callback)
 - GITHUB_APP_ID
-- GITHUB_APP_INSTALLATION_ID
 
 Worker secrets (set with Cloudflare's secret-management interface or Wrangler secrets; never commit them):
 
