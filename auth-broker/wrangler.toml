@@ -1,0 +1,24 @@
+name = "shit-mobile-auth-broker"
+main = "src/index.js"
+compatibility_date = "2026-11-08"
+
+[vars]
+GITHUB_OWNER = "TrickySturluson"
+BROKER_BASE_URL = "https://REPLACE_WITH_WORKER_HOST"
+GITHUB_OAUTH_CLIENT_ID = "REPLACE_WITH_GITHUB_OAUTH_APP_CLIENT_ID"
+SPOTIFY_CLIENT_ID = "REPLACE_WITH_SPOTIFY_APP_CLIENT_ID"
+GITHUB_APP_ID = "REPLACE_WITH_GITHUB_APP_ID"
+GITHUB_REPOSITORY = "spotify-helper-information-tracker"
+GITHUB_OAUTH_REDIRECT_URI = "https://REPLACE_WITH_WORKER_HOST/auth/github/callback"
+SPOTIFY_REDIRECT_URI = "https://REPLACE_WITH_WORKER_HOST/spotify/callback"
+
+# Create a KV namespace and replace this placeholder before deployment.
+[[kv_namespaces]]
+binding = "OAUTH_KV"
+id = "REPLACE_WITH_CLOUDFLARE_KV_NAMESPACE_ID"
+
+# Cloudflare's edge rate limiter protects each OAuth entry/callback route.
+[[ratelimits]]
+name = "AUTH_RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 20, period = 60 }
