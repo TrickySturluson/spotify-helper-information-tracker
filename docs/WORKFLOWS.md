@@ -1,6 +1,6 @@
 # GitHub Actions Workflow Catalogue
 
-**Last reviewed:** 2026-11-07. This catalogue summarizes the 21 workflows under .github/workflows in this branch. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
+**Last reviewed:** 2026-11-08. This catalogue summarizes the 21 workflows under .github/workflows in this branch. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
 
 ## Verification note — 2026-11-07
 
