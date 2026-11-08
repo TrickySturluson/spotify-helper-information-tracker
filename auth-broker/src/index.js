@@ -44,7 +44,7 @@ export async function pkceChallenge(verifier) {
 
 export function parseCookies(header = "") {
   const result = {};
-  for (const part of header.split(";")) {
+  for (const part of String(header || "").split(";")) {
     const index = part.indexOf("=");
     if (index < 1) continue;
     const key = part.slice(0, index).trim();
