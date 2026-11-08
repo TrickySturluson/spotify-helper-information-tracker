@@ -1,0 +1,1013 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-08T13:26:16.257102+00:00",
+  "id": "52fTS7KOWFC6HvQNiNIOsF",
+  "name": "Mom’s fav rap",
+  "description": "",
+  "owner": {
+    "id": "laurelree",
+    "display_name": "laurelree"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAANO2IuY3LUFF3BfbEpsMIubwgxvX0",
+  "total_items_reported": 33,
+  "item_count_fetched": 33,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-08T13:26:16.257106+00:00",
+  "items_snapshot_id": "AAAANO2IuY3LUFF3BfbEpsMIubwgxvX0",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-09-26T17:27:49Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5FEXPoPnzueFJQCPRIrC3c",
+      "uri": "spotify:track:5FEXPoPnzueFJQCPRIrC3c",
+      "name": "Day 'N' Nite (nightmare)",
+      "artists": [
+        "Kid Cudi"
+      ],
+      "artist_ids": [
+        "0fA0VVWsXO9YnASrzqfmYu"
+      ],
+      "album": "Man On The Moon: The End Of Day",
+      "album_id": "47y3PbX8oIDCkYAFylCJz0",
+      "duration_ms": 221266,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.256962+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70957500"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2026-09-26T17:28:07Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5iSEsR6NKjlC9SrIJkyL3k",
+      "uri": "spotify:track:5iSEsR6NKjlC9SrIJkyL3k",
+      "name": "Pursuit Of Happiness (Nightmare)",
+      "artists": [
+        "Kid Cudi",
+        "MGMT",
+        "Ratatat"
+      ],
+      "artist_ids": [
+        "0fA0VVWsXO9YnASrzqfmYu",
+        "0SwO7SWeDHJijQ3XNS7xEE",
+        "57dN52uHvrHOxijzpIgu3E"
+      ],
+      "album": "Man On The Moon: The End Of Day",
+      "album_id": "47y3PbX8oIDCkYAFylCJz0",
+      "duration_ms": 295293,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.256983+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70981907"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-09-26T17:28:29Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7s1zuCFsLb4ne97U3Hd6J3",
+      "uri": "spotify:track:7s1zuCFsLb4ne97U3Hd6J3",
+      "name": "Walk This Way (feat. Aerosmith)",
+      "artists": [
+        "Run–D.M.C.",
+        "Aerosmith"
+      ],
+      "artist_ids": [
+        "3CQIn7N5CuRDP8wEI7FiDA",
+        "7Ey4PD4MYsKc5I2dolUwbH"
+      ],
+      "album": "Raising Hell (Expanded Edition)",
+      "album_id": "53haOw4fOh1rNZK8xKgGY8",
+      "duration_ms": 309200,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.256989+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAR19900334"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-09-26T17:28:49Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5YIF6HSOtHN9HdcE5IPzMe",
+      "uri": "spotify:track:5YIF6HSOtHN9HdcE5IPzMe",
+      "name": "Funky Cold Medina",
+      "artists": [
+        "Tone-Loc"
+      ],
+      "artist_ids": [
+        "5Y8EphH8Vdqu5SLj6K5vjj"
+      ],
+      "album": "Loc-ed After Dark",
+      "album_id": "6xE6A0Vwd2LmopR6Mn8UFG",
+      "duration_ms": 248160,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.256993+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA370507637"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-09-26T17:28:55Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "2tY1gxCKslfXLFpFofYmJQ",
+      "uri": "spotify:track:2tY1gxCKslfXLFpFofYmJQ",
+      "name": "Brass Monkey",
+      "artists": [
+        "Beastie Boys"
+      ],
+      "artist_ids": [
+        "03r4iKL2g2442PT9n2UKsx"
+      ],
+      "album": "Licensed To Ill",
+      "album_id": "11oR0ZuqB3ucZwb5TGbZxb",
+      "duration_ms": 157440,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.256997+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USDJ28600011"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2026-09-26T17:29:03Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "0gljI0CtjpdZK6ecidfxto",
+      "uri": "spotify:track:0gljI0CtjpdZK6ecidfxto",
+      "name": "Wild Thing",
+      "artists": [
+        "Tone-Loc"
+      ],
+      "artist_ids": [
+        "5Y8EphH8Vdqu5SLj6K5vjj"
+      ],
+      "album": "Loc-ed After Dark",
+      "album_id": "6xE6A0Vwd2LmopR6Mn8UFG",
+      "duration_ms": 263573,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257003+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA370507633"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2026-09-26T17:29:11Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "3C5b21hX1FePgFAGdzk3Uc",
+      "uri": "spotify:track:3C5b21hX1FePgFAGdzk3Uc",
+      "name": "It's Tricky",
+      "artists": [
+        "Run–D.M.C."
+      ],
+      "artist_ids": [
+        "3CQIn7N5CuRDP8wEI7FiDA"
+      ],
+      "album": "Greatest Hits",
+      "album_id": "5CFj95du24x9CwW0raRnmF",
+      "duration_ms": 183626,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257006+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAR18600005"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2026-09-26T17:29:19Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "3g7zG6d1MLV5gVVdi1dg9F",
+      "uri": "spotify:track:3g7zG6d1MLV5gVVdi1dg9F",
+      "name": "I Need Love",
+      "artists": [
+        "LL COOL J"
+      ],
+      "artist_ids": [
+        "1P8IfcNKwrkQP5xJWuhaOC"
+      ],
+      "album": "Def Jam 25: DJ Bring That Back",
+      "album_id": "6x9b726D8KTyUDZcvQyzxd",
+      "duration_ms": 322826,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257013+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USDJ28700009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2026-09-26T17:29:28Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "0l8a9USuEnowlJld5uxp7F",
+      "uri": "spotify:track:0l8a9USuEnowlJld5uxp7F",
+      "name": "Going Back To Cali",
+      "artists": [
+        "LL COOL J"
+      ],
+      "artist_ids": [
+        "1P8IfcNKwrkQP5xJWuhaOC"
+      ],
+      "album": "Summer Road Trip (Vol. 2 / Fixed Playlist)",
+      "album_id": "0ql5LhNLolKQrSsKPHCEBV",
+      "duration_ms": 250266,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257018+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USDJ28900009"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2026-09-26T17:29:36Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7Lf7oSEVdzZqTA0kEDSlS5",
+      "uri": "spotify:track:7Lf7oSEVdzZqTA0kEDSlS5",
+      "name": "Cry Me a River",
+      "artists": [
+        "Justin Timberlake"
+      ],
+      "artist_ids": [
+        "31TPClRtHm23RisEBtV3X7"
+      ],
+      "album": "Justified",
+      "album_id": "6QPkyl04rXwTGlGlcYaRoW",
+      "duration_ms": 288333,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257024+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJI10200366"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2026-09-26T17:29:55Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "3pD0f7hSJg2XdQ6udw5Tey",
+      "uri": "spotify:track:3pD0f7hSJg2XdQ6udw5Tey",
+      "name": "What Goes Around.../...Comes Around (Interlude)",
+      "artists": [
+        "Justin Timberlake"
+      ],
+      "artist_ids": [
+        "31TPClRtHm23RisEBtV3X7"
+      ],
+      "album": "FutureSex/LoveSounds",
+      "album_id": "2scB1uhcCI1TSf6b9TCZK3",
+      "duration_ms": 448573,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257027+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJI10600479"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-09-26T17:30:02Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "1AWQoqb9bSvzTjaLralEkT",
+      "uri": "spotify:track:1AWQoqb9bSvzTjaLralEkT",
+      "name": "Rock Your Body",
+      "artists": [
+        "Justin Timberlake"
+      ],
+      "artist_ids": [
+        "31TPClRtHm23RisEBtV3X7"
+      ],
+      "album": "Justified",
+      "album_id": "6QPkyl04rXwTGlGlcYaRoW",
+      "duration_ms": 267266,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257031+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJI10200367"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2026-09-26T17:30:10Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "0O45fw2L5vsWpdsOdXwNAR",
+      "uri": "spotify:track:0O45fw2L5vsWpdsOdXwNAR",
+      "name": "SexyBack (feat. Timbaland)",
+      "artists": [
+        "Justin Timberlake",
+        "Timbaland"
+      ],
+      "artist_ids": [
+        "31TPClRtHm23RisEBtV3X7",
+        "5Y5TRrQiqgUO4S36tzjIRZ"
+      ],
+      "album": "FutureSex/LoveSounds",
+      "album_id": "2scB1uhcCI1TSf6b9TCZK3",
+      "duration_ms": 242733,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257033+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJI10600269"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-09-26T17:30:17Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5rb9QrpfcKFHM1EUbSIurX",
+      "uri": "spotify:track:5rb9QrpfcKFHM1EUbSIurX",
+      "name": "Yeah! (feat. Lil Jon & Ludacris)",
+      "artists": [
+        "USHER",
+        "Lil Jon",
+        "Ludacris"
+      ],
+      "artist_ids": [
+        "23zg3TcAtWQy7J6upgbUnj",
+        "7sfl4Xt5KmfyDs2T3SVSMK",
+        "3ipn9JLAPI5GUEo4y4jcoi"
+      ],
+      "album": "Confessions (Expanded Edition)",
+      "album_id": "1RM6MGv6bcl6NrAG8PGoZk",
+      "duration_ms": 250373,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257037+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAR10301423"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2026-09-26T17:30:45Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5j0McHPthKpOXRr3fBq8M0",
+      "uri": "spotify:track:5j0McHPthKpOXRr3fBq8M0",
+      "name": "Love in This Club (feat. Young Jeezy)",
+      "artists": [
+        "USHER",
+        "Jeezy"
+      ],
+      "artist_ids": [
+        "23zg3TcAtWQy7J6upgbUnj",
+        "4yBK75WVCQXej1p04GWqxH"
+      ],
+      "album": "Here I Stand",
+      "album_id": "2peB0xKYHSlIWc5boFA6PW",
+      "duration_ms": 259719,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257040+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLF20800001"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2026-09-26T17:31:00Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5p3SJ3CYqrmFbboAtfNo5n",
+      "uri": "spotify:track:5p3SJ3CYqrmFbboAtfNo5n",
+      "name": "Memories (feat. Kid Cudi)",
+      "artists": [
+        "David Guetta",
+        "Kid Cudi"
+      ],
+      "artist_ids": [
+        "1Cs0zKBU1kc0i8ypK3B9ai",
+        "0fA0VVWsXO9YnASrzqfmYu"
+      ],
+      "album": "One More Love",
+      "album_id": "5bRrEsH3Mjl8O0lpUgdIHI",
+      "duration_ms": 209226,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257042+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FRZID0902620"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2026-09-26T17:31:55Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "1bM50INir8voAkVoKuvEUI",
+      "uri": "spotify:track:1bM50INir8voAkVoKuvEUI",
+      "name": "OMG (feat. will.i.am)",
+      "artists": [
+        "USHER",
+        "will.i.am"
+      ],
+      "artist_ids": [
+        "23zg3TcAtWQy7J6upgbUnj",
+        "085pc2PYOi8bGKj0PNjekA"
+      ],
+      "album": "Raymond v Raymond (Expanded Edition)",
+      "album_id": "6A1F3Fkq5dYeYYNkXflcTX",
+      "duration_ms": 269493,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257046+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USLF20900103"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2026-10-14T22:30:49Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "1SAkL1mYNJlaqnBQxVZrRl",
+      "uri": "spotify:track:1SAkL1mYNJlaqnBQxVZrRl",
+      "name": "Baby Got Back",
+      "artists": [
+        "Sir Mix-A-Lot"
+      ],
+      "artist_ids": [
+        "3TQ9JTBI2n2hfo7aRONEYV"
+      ],
+      "album": "Mack Daddy",
+      "album_id": "6c62jxWCe2aisIudaDRcaP",
+      "duration_ms": 262826,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257049+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM19100221"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2026-10-14T22:31:04Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7L93GESzq43UkKUt5FsOCq",
+      "uri": "spotify:track:7L93GESzq43UkKUt5FsOCq",
+      "name": "Jump Around - 30 Years Remaster",
+      "artists": [
+        "House Of Pain"
+      ],
+      "artist_ids": [
+        "0AuW7OCyKfFrsMbtHrYgIV"
+      ],
+      "album": "House of Pain (Fine Malt Lyrics) [30 Years] [Deluxe Edition]",
+      "album_id": "1GYvmeraQXDxxSC9T3RDvM",
+      "duration_ms": 218546,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257053+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USTB12100088"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2026-10-14T22:31:33Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "4KTtYhxFtFL7mBwnjkKfLm",
+      "uri": "spotify:track:4KTtYhxFtFL7mBwnjkKfLm",
+      "name": "Glamorous",
+      "artists": [
+        "Fergie",
+        "Ludacris"
+      ],
+      "artist_ids": [
+        "3r17AfJCCUqC9Lf0OAc73G",
+        "3ipn9JLAPI5GUEo4y4jcoi"
+      ],
+      "album": "The Dutchess",
+      "album_id": "3t8HFQNlwLBW7htwLvFfzA",
+      "duration_ms": 246573,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257058+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70609119"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2026-10-14T22:32:04Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7KwZNVEaqikRSBSpyhXK2j",
+      "uri": "spotify:track:7KwZNVEaqikRSBSpyhXK2j",
+      "name": "Hypnotize - 2014 Remaster",
+      "artists": [
+        "The Notorious B.I.G."
+      ],
+      "artist_ids": [
+        "5me0Irg2ANcsgc93uaYrpb"
+      ],
+      "album": "Life After Death (2014 Remastered Edition)",
+      "album_id": "7dRdaGSxgcBdJnrOviQRuB",
+      "duration_ms": 229826,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257061+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21402725"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2026-10-14T22:32:34Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "0oJMv049q8hEkes9w0L1J4",
+      "uri": "spotify:track:0oJMv049q8hEkes9w0L1J4",
+      "name": "Imma Be",
+      "artists": [
+        "Black Eyed Peas"
+      ],
+      "artist_ids": [
+        "1yxSLGMDHlW21z4YXirZDS"
+      ],
+      "album": "THE E.N.D. (THE ENERGY NEVER DIES)",
+      "album_id": "3lng6RAtdksQ2q02Fk5jaB",
+      "duration_ms": 257560,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257063+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70967900"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2026-10-14T22:34:57Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "6b8Be6ljOzmkOmFslEb23P",
+      "uri": "spotify:track:6b8Be6ljOzmkOmFslEb23P",
+      "name": "24K Magic",
+      "artists": [
+        "Bruno Mars"
+      ],
+      "artist_ids": [
+        "0du5cEVh5yTK9QJze8zA0C"
+      ],
+      "album": "24K Magic",
+      "album_id": "4PgleR09JVnm3zY1fW3XBA",
+      "duration_ms": 225983,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257066+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAT21602944"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2026-10-14T22:38:32Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "3ia3dJETSOllPsv3LJkE35",
+      "uri": "spotify:track:3ia3dJETSOllPsv3LJkE35",
+      "name": "California Love - Original Version",
+      "artists": [
+        "2Pac",
+        "Roger",
+        "Dr. Dre"
+      ],
+      "artist_ids": [
+        "1ZwdS5xdxEREPySFridCfh",
+        "3GMoVpWJy4smKuxFuFTwXC",
+        "6DPYiyq5kWVQS4RGwxzPC7"
+      ],
+      "album": "Greatest Hits",
+      "album_id": "1WBZyULtlANBKed7Zf9cDP",
+      "duration_ms": 284906,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257069+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG10702628"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2026-10-14T22:55:27Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7LoGfKBAaOl0nxhodJ1240",
+      "uri": "spotify:track:7LoGfKBAaOl0nxhodJ1240",
+      "name": "Word Up",
+      "artists": [
+        "Cameo"
+      ],
+      "artist_ids": [
+        "545idYhdloaSlLGBY8E9u2"
+      ],
+      "album": "Word Up",
+      "album_id": "1W8kHQQC7DXg1inR7ZWqhA",
+      "duration_ms": 260000,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257072+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USPR39402457"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 25,
+      "added_at": "2026-10-14T22:56:38Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5BQRFMhj668P7SvqTEnGre",
+      "uri": "spotify:track:5BQRFMhj668P7SvqTEnGre",
+      "name": "Push It",
+      "artists": [
+        "Salt-N-Pepa"
+      ],
+      "artist_ids": [
+        "7wqtxqI3eo7Gn1P7SpP6cQ"
+      ],
+      "album": "Push It",
+      "album_id": "5QTWlTGkTAQafJ8wHdXVLC",
+      "duration_ms": 264522,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257075+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USIV30400109"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 26,
+      "added_at": "2026-10-14T22:57:06Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "5R8dQOPq8haW94K7mgERlO",
+      "uri": "spotify:track:5R8dQOPq8haW94K7mgERlO",
+      "name": "Poker Face",
+      "artists": [
+        "Lady Gaga"
+      ],
+      "artist_ids": [
+        "1HY2Jd0NmPuamShAr6KMms"
+      ],
+      "album": "The Fame",
+      "album_id": "1jpUMnKpRlng1OJN7LJauV",
+      "duration_ms": 237200,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257078+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70824409"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 27,
+      "added_at": "2026-10-14T22:57:33Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "07OzC5JlcaDwEkzWmvqp6y",
+      "uri": "spotify:track:07OzC5JlcaDwEkzWmvqp6y",
+      "name": "Nasty",
+      "artists": [
+        "Janet Jackson"
+      ],
+      "artist_ids": [
+        "4qwGe91Bz9K2T8jXTZ815W"
+      ],
+      "album": "Control",
+      "album_id": "7GWkceE5McMVfffd1RGL6Y",
+      "duration_ms": 243133,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257080+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USAM19500847"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 28,
+      "added_at": "2026-10-14T22:58:09Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7r4ZN8F22eBQeN0aMqwzgN",
+      "uri": "spotify:track:7r4ZN8F22eBQeN0aMqwzgN",
+      "name": "Don't You Want Me",
+      "artists": [
+        "Jody Watley",
+        "Michael Hutchinson",
+        "Francois Kevorkian"
+      ],
+      "artist_ids": [
+        "71aKjsWKYqASAffyIQaocZ",
+        "4K2MhZSPRWfoO6P3gtlu1d",
+        "30ZqCPhfRzzWcgIbXrbHnU"
+      ],
+      "album": "Jody Watley",
+      "album_id": "16Ekp385tuuCTdoEakzEv3",
+      "duration_ms": 253600,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257083+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USMC18621186"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2026-10-14T22:58:30Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "7BeV8s7R68eqPelMmvp5tu",
+      "uri": "spotify:track:7BeV8s7R68eqPelMmvp5tu",
+      "name": "Looking For A New Love - Radio Edit",
+      "artists": [
+        "Jody Watley",
+        "Louil Silas Jr."
+      ],
+      "artist_ids": [
+        "71aKjsWKYqASAffyIQaocZ",
+        "4aknOZmKFnayYvd03Avoz6"
+      ],
+      "album": "20th Century Masters: The Millennium Collection: Best Of Jody Watley",
+      "album_id": "2Fa9jKPOzCGh5Yw74wuSKE",
+      "duration_ms": 242400,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257088+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USMC18622159"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 30,
+      "added_at": "2026-10-21T23:57:24Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "1jWERbYyhBB72NSwb9jNHp",
+      "uri": "spotify:track:1jWERbYyhBB72NSwb9jNHp",
+      "name": "Uptown Funk (feat. Bruno Mars)",
+      "artists": [
+        "Mark Ronson",
+        "Bruno Mars"
+      ],
+      "artist_ids": [
+        "3hv9jJF3adDNsBSIQDqcjp",
+        "0du5cEVh5yTK9QJze8zA0C"
+      ],
+      "album": "Summer Songs: Tik Tok Hits",
+      "album_id": "7yMyVt6UBicleRklmgfyTF",
+      "duration_ms": 270626,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257091+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBARL1401524"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 31,
+      "added_at": "2026-10-28T17:17:23Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "131Svaar2WXaVMg4IByw9V",
+      "uri": "spotify:track:131Svaar2WXaVMg4IByw9V",
+      "name": "Rapture",
+      "artists": [
+        "Blondie"
+      ],
+      "artist_ids": [
+        "4tpUmLEVLCGFr93o8hFFIB"
+      ],
+      "album": "Once More Into The Bleach",
+      "album_id": "3KqhlIxtnXfWJfi445kI8X",
+      "duration_ms": 418160,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257096+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USCH38700028"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 32,
+      "added_at": "2026-10-28T19:37:34Z",
+      "added_by": "laurelree",
+      "type": "track",
+      "id": "71lebjkaaiB7UgOlGeqt7M",
+      "uri": "spotify:track:71lebjkaaiB7UgOlGeqt7M",
+      "name": "Wham Rap! (Enjoy What You Do?) - Special U.S. Remix",
+      "artists": [
+        "Wham!"
+      ],
+      "artist_ids": [
+        "5lpH0xAS4fVfLkACg9DAuM"
+      ],
+      "album": "Fantastic",
+      "album_id": "6vihnceXTNegYbpurc6qkR",
+      "duration_ms": 404440,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.257099+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBBBM8200001"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}

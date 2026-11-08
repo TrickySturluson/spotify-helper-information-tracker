@@ -1,0 +1,1784 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-08T13:26:16.529861+00:00",
+  "id": "4yUVHSMQySfWeEowfIMcx7",
+  "name": "Tricky Daily",
+  "description": "Could be worse. Could be quiet.",
+  "owner": {
+    "id": "a_thought",
+    "display_name": "Tricky Sturluson"
+  },
+  "public": true,
+  "collaborative": false,
+  "snapshot_id": "AAAAYZ2vv9RLqBpZsA0qHAMsQKntbSNr",
+  "total_items_reported": 60,
+  "item_count_fetched": 60,
+  "items_accessible": true,
+  "items_error": null,
+  "last_items_accessible_at": "2026-11-08T13:26:16.529866+00:00",
+  "items_snapshot_id": "AAAAYZ2vv9RLqBpZsA0qHAMsQKntbSNr",
+  "playability_market": "from_token",
+  "playability_market_context": "spotify_user_account_country",
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4nzJGrFj3nnE8e1vhf7Nnr",
+      "uri": "spotify:track:4nzJGrFj3nnE8e1vhf7Nnr",
+      "name": "My Spiral Arm",
+      "artists": [
+        "Sound of Ceres"
+      ],
+      "artist_ids": [
+        "6JaG7zUlBpWd43CweqURY6"
+      ],
+      "album": "Nostalgia for Infinity",
+      "album_id": "3iw8AtVaKBYUoIXhq1MAcF",
+      "duration_ms": 304335,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529547+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJZA1618704"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "33yAEqzKXexYM3WlOYtTfQ",
+      "uri": "spotify:track:33yAEqzKXexYM3WlOYtTfQ",
+      "name": "D.A.N.C.E.",
+      "artists": [
+        "Justice"
+      ],
+      "artist_ids": [
+        "1gR0gsQYfi6joyO1dlp76N"
+      ],
+      "album": "Justice",
+      "album_id": "4GGazqHvuKwxBjWLFaJkDL",
+      "duration_ms": 242266,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529567+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "FR0NT0700420"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3qTvGKRsO1fkbFL9KnhRNL",
+      "uri": "spotify:track:3qTvGKRsO1fkbFL9KnhRNL",
+      "name": "Beep Beep Bag",
+      "artists": [
+        "FEM&M"
+      ],
+      "artist_ids": [
+        "4vRAsoN6NRY7YDeX7zx8dq"
+      ],
+      "album": "Mentally sILLy",
+      "album_id": "584jbt2hHfMdIzvhFHx1ah",
+      "duration_ms": 132560,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529573+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN72574939"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4AJ9YHico3IUsQ0rhrvJyz",
+      "uri": "spotify:track:4AJ9YHico3IUsQ0rhrvJyz",
+      "name": "Fauxminism",
+      "artists": [
+        "Cheap Perfume"
+      ],
+      "artist_ids": [
+        "2vfwEEEv5PVpGMMnC5jajB"
+      ],
+      "album": "Burn It Down",
+      "album_id": "0EJeiarfxKlqDOvSmUT0GA",
+      "duration_ms": 124000,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529580+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "usl4q1981735"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "76JTrPTA8V58qkPHK1y7VY",
+      "uri": "spotify:track:76JTrPTA8V58qkPHK1y7VY",
+      "name": "(You're Better) Than Ever",
+      "artists": [
+        "illuminati hotties"
+      ],
+      "artist_ids": [
+        "3ztRX1UoIOsFqpD7dB6R8O"
+      ],
+      "album": "Kiss Yr Frenemies",
+      "album_id": "6fqL1LWBXMC1PnE66aERAC",
+      "duration_ms": 141133,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529586+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCADE1774114"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4J28eKrMo7vD217UlbcZat",
+      "uri": "spotify:track:4J28eKrMo7vD217UlbcZat",
+      "name": "Blood Moon Love",
+      "artists": [
+        "Shayfer James"
+      ],
+      "artist_ids": [
+        "0PftqT3Gvj1IszkeRLHK9G"
+      ],
+      "album": "Blood Moon Love",
+      "album_id": "19Tzd7YSXaZBlmekmwcCE8",
+      "duration_ms": 163420,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529591+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLRD52223535"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7c26hw73UiVuLtb8ZsquCu",
+      "uri": "spotify:track:7c26hw73UiVuLtb8ZsquCu",
+      "name": "Strangled",
+      "artists": [
+        "Snake River Conspiracy"
+      ],
+      "artist_ids": [
+        "4D9z4fup1x9lkmrPTOWw8A"
+      ],
+      "album": "Sonic Jihad",
+      "album_id": "393lg8s4V5bOSXosvsNANq",
+      "duration_ms": 283440,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529596+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRE10000290"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "64fsS4CW6wp2f7it4qjtIg",
+      "uri": "spotify:track:64fsS4CW6wp2f7it4qjtIg",
+      "name": "BACKDOOR",
+      "artists": [
+        "Lucas Lex"
+      ],
+      "artist_ids": [
+        "28Uv1faP5J3s97NkhCyKWU"
+      ],
+      "album": "BACKDOOR",
+      "album_id": "783cfJuMD8YfY2ChKEgG07",
+      "duration_ms": 161741,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529600+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6G2179534"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4NrTr3v3IvOfAqKrQ9V5P9",
+      "uri": "spotify:track:4NrTr3v3IvOfAqKrQ9V5P9",
+      "name": "Bellow",
+      "artists": [
+        "Les Sins"
+      ],
+      "artist_ids": [
+        "4gSTRpmeyYppvIXuFKjfAL"
+      ],
+      "album": "Michael",
+      "album_id": "5939HP7YP8YQB1Duq9acIV",
+      "duration_ms": 262573,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529605+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US22N1430107"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6JOMGVg1AVa8SuzgUdhDC8",
+      "uri": "spotify:track:6JOMGVg1AVa8SuzgUdhDC8",
+      "name": "Army's on Ecstasy",
+      "artists": [
+        "Oysterhead"
+      ],
+      "artist_ids": [
+        "29Ycxh689kUflTJhpxu2Nh"
+      ],
+      "album": "The Grand Pecking Order",
+      "album_id": "1CQ44PqZa4hAkSu98GdOvm",
+      "duration_ms": 269866,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529609+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USEE10100923"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 10,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7KAXxQfUG4kzRivltbD1UY",
+      "uri": "spotify:track:7KAXxQfUG4kzRivltbD1UY",
+      "name": "Air Supply - 2021 Remaster",
+      "artists": [
+        "Sweet Trip"
+      ],
+      "artist_ids": [
+        "5NtMqQLCzdVvL7F8vFp3zM"
+      ],
+      "album": "You Will Never Know Why (2021 Remaster)",
+      "album_id": "0kmPn6M3cue7rec6Unw6BD",
+      "duration_ms": 281694,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529614+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA4D2122202"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4HZC7RLZsdBlLVHWnMFIU3",
+      "uri": "spotify:track:4HZC7RLZsdBlLVHWnMFIU3",
+      "name": "American Wedding",
+      "artists": [
+        "Gogol Bordello"
+      ],
+      "artist_ids": [
+        "2SVw939fwuqSobLjF8u78b"
+      ],
+      "album": "Super Taranta!",
+      "album_id": "28TllsVsQxqfeXNtCec8uG",
+      "duration_ms": 217800,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529620+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA6G0733413"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 12,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4KacUpvbA3Mfo05gttTjhN",
+      "uri": "spotify:track:4KacUpvbA3Mfo05gttTjhN",
+      "name": "Fat Lip",
+      "artists": [
+        "Sum 41"
+      ],
+      "artist_ids": [
+        "0qT79UgT5tY4yudH9VfsdT"
+      ],
+      "album": "All Killer, No Filler",
+      "album_id": "2UCWsnmZEVg9HhnMeKTsim",
+      "duration_ms": 178266,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529625+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USIR20110124"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6gGZlkeGM73KD01zYVAJVO",
+      "uri": "spotify:track:6gGZlkeGM73KD01zYVAJVO",
+      "name": "Astral Projection",
+      "artists": [
+        "Yumi Zouma"
+      ],
+      "artist_ids": [
+        "4tPyCwWrsvZ8OKYl7QRavL"
+      ],
+      "album": "Present Tense",
+      "album_id": "2MWDzkDsRqaJcWdktGXhG5",
+      "duration_ms": 232907,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529631+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US3R42244610"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 14,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "478Axf2lmFeyjw3ciJRbaE",
+      "uri": "spotify:track:478Axf2lmFeyjw3ciJRbaE",
+      "name": "Christmas in the Silent Forest",
+      "artists": [
+        "Ilaria Graziano"
+      ],
+      "artist_ids": [
+        "57WViMLL9KfooFkVKsyODr"
+      ],
+      "album": "攻殻機動隊 STAND ALONE COMPLEX　O.S.T.3",
+      "album_id": "6LV6Mk6uHLvj4lKfYPjtsI",
+      "duration_ms": 413715,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529635+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPVI00520500"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 15,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4a1L4aWO22lQTfku6WLBTl",
+      "uri": "spotify:track:4a1L4aWO22lQTfku6WLBTl",
+      "name": "Bummed Out",
+      "artists": [
+        "NEET"
+      ],
+      "artist_ids": [
+        "5zkzVyXidwVcrhfFuhWtjR"
+      ],
+      "album": "Uneducated",
+      "album_id": "0Uk9xIfTPTvYhn86ljYRNu",
+      "duration_ms": 137391,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529640+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN92250556"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 16,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0wMyuPgOa2hQqckLP3AmYu",
+      "uri": "spotify:track:0wMyuPgOa2hQqckLP3AmYu",
+      "name": "NEIN SCHATZ",
+      "artists": [
+        "Miss Bashful",
+        "Ski Aggu",
+        "GDA"
+      ],
+      "artist_ids": [
+        "5skHU2PrWHKFfSTpq9y56C",
+        "6CP5wWvO8oIxedESJNCN4H",
+        "2qWlUlfE7zEJM20ec5Dk9T"
+      ],
+      "album": "NEIN SCHATZ",
+      "album_id": "5vW4Q7c98Sb7Z1hdBJbsgc",
+      "duration_ms": 141493,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529645+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DE1FB2500244"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 17,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3wnZZLJBf3wzL4UHmRix3u",
+      "uri": "spotify:track:3wnZZLJBf3wzL4UHmRix3u",
+      "name": "Boyfriend la la la",
+      "artists": [
+        "Swordes"
+      ],
+      "artist_ids": [
+        "7uMvaQWf3NvJ0sxnKhhWkb"
+      ],
+      "album": "Boyfriend la la la",
+      "album_id": "5y3aP9e35OQAvyZlMO8WOi",
+      "duration_ms": 199331,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529649+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZQAY2555505"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 18,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "41Ef4BxenqjId2W8FGOqZU",
+      "uri": "spotify:track:41Ef4BxenqjId2W8FGOqZU",
+      "name": "Grief (Alternate Version)",
+      "artists": [
+        "Sean Patrick Flanery",
+        "Terrance Zdunich"
+      ],
+      "artist_ids": [
+        "7tn8b4oyQkztsxZoXqY6pd",
+        "5uoVEu8oUMpTPcTSNLQN3r"
+      ],
+      "album": "The Devil's Carnival (Expanded Soundtrack)",
+      "album_id": "2po4RDoBg5kl5GJkVe4uZh",
+      "duration_ms": 195400,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529694+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6N21472464"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 19,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5JefdRnHo6B7iV9KDscen8",
+      "uri": "spotify:track:5JefdRnHo6B7iV9KDscen8",
+      "name": "Everybody's Stalking",
+      "artists": [
+        "Badly Drawn Boy"
+      ],
+      "artist_ids": [
+        "244fcyNSuyhbRlMGfMbYrO"
+      ],
+      "album": "The Hour of Bewilderbeast",
+      "album_id": "7y0QwysyQgSf9fyBFr6Q3x",
+      "duration_ms": 219626,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529699+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBBKS0000008"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 20,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5ovqTZt3VA1vVsVDv0ecE7",
+      "uri": "spotify:track:5ovqTZt3VA1vVsVDv0ecE7",
+      "name": "Another Day Gone By",
+      "artists": [
+        "Loft Trio"
+      ],
+      "artist_ids": [
+        "0deAuR6p2brrc0MsfMlQXI"
+      ],
+      "album": "Another Day Gone By",
+      "album_id": "46hpO6Ecbxhs5FTzJtySpo",
+      "duration_ms": 185593,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529706+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32308685"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 21,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5QkRJQFnzxixuWczbpJxRt",
+      "uri": "spotify:track:5QkRJQFnzxixuWczbpJxRt",
+      "name": "808 Dreams",
+      "artists": [
+        "VAPERROR"
+      ],
+      "artist_ids": [
+        "0AEVuiJFczDd4dkmZh2Kha"
+      ],
+      "album": "Mana Pool",
+      "album_id": "3bldb8xoLHFaGtN9oyMcz2",
+      "duration_ms": 162206,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529710+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA2P1507244"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 22,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1kM8SbnCIrxr5yXHVGbS4X",
+      "uri": "spotify:track:1kM8SbnCIrxr5yXHVGbS4X",
+      "name": "Alien",
+      "artists": [
+        "Mommy Long Legs"
+      ],
+      "artist_ids": [
+        "1cZJetf4bkK5CE3VeU18h0"
+      ],
+      "album": "Try Your Best",
+      "album_id": "7qhmQQY2gCrXnuTEfvrbt8",
+      "duration_ms": 115091,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529716+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QMEZE1827952"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 23,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4GgIK9Dr0PCgWoxqC9aW5N",
+      "uri": "spotify:track:4GgIK9Dr0PCgWoxqC9aW5N",
+      "name": "Cryin’ (Like a Baby)",
+      "artists": [
+        "The Oozes"
+      ],
+      "artist_ids": [
+        "48VgYEfRllDfyLl4BEMVSF"
+      ],
+      "album": "With Love, from The Oozes",
+      "album_id": "0nY1VtGxfhb2bvpgiENO4u",
+      "duration_ms": 105750,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529720+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6L2084469"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 24,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7fQhfuG00HDkshrdFp7CkT",
+      "uri": "spotify:track:7fQhfuG00HDkshrdFp7CkT",
+      "name": "1st Of October, 2017",
+      "artists": [
+        "Active Minds"
+      ],
+      "artist_ids": [
+        "5zn6a1bAw5Yz0BbILux5Bz"
+      ],
+      "album": "Things That Cannot Be Unseen",
+      "album_id": "117mWsLXA5UXLAohJwGvtL",
+      "duration_ms": 233999,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529726+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QT6EF2599049"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 25,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7C794YeXiiSdlvGLxgabkd",
+      "uri": "spotify:track:7C794YeXiiSdlvGLxgabkd",
+      "name": "21st Century (Digital Boy)",
+      "artists": [
+        "Bad Religion"
+      ],
+      "artist_ids": [
+        "2yJwXpWAQOOl5XFzbCxLs9"
+      ],
+      "album": "Against The Grain",
+      "album_id": "5QTyi6ndfGO5vF4DcNgM97",
+      "duration_ms": 169013,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529730+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USEP40403413"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 26,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7cwNfiLc34Ly4rdsARMSpl",
+      "uri": "spotify:track:7cwNfiLc34Ly4rdsARMSpl",
+      "name": "come die with me",
+      "artists": [
+        "Anhero"
+      ],
+      "artist_ids": [
+        "2t7WRrPQ5QMA4wqzjhBsAW"
+      ],
+      "album": "come die with me",
+      "album_id": "0a9DoNv90pIAQ4L6IK4LsO",
+      "duration_ms": 262500,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529736+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZK6K2619674"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 27,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3Xd3IXnA2rmyVawJL9tPVm",
+      "uri": "spotify:track:3Xd3IXnA2rmyVawJL9tPVm",
+      "name": "Alien",
+      "artists": [
+        "Pennywise"
+      ],
+      "artist_ids": [
+        "6i0KVTOvm96T55mbp742ks"
+      ],
+      "album": "Straight Ahead",
+      "album_id": "03ScC00zLbzJ5GrVp6Y5M1",
+      "duration_ms": 247133,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529758+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USEP40338210"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 28,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "07Lnncx7fTArEe4BHLnLWJ",
+      "uri": "spotify:track:07Lnncx7fTArEe4BHLnLWJ",
+      "name": "ALL THE TIME",
+      "artists": [
+        "femtanyl"
+      ],
+      "artist_ids": [
+        "53e9n1LucuH3guikmtv180"
+      ],
+      "album": "ALL THE TIME",
+      "album_id": "6DZxQpQzDRwsJhDxsKY6dH",
+      "duration_ms": 157591,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529762+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USSM12604640"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2s3hqtfyxzGc6u2o8xXGT9",
+      "uri": "spotify:track:2s3hqtfyxzGc6u2o8xXGT9",
+      "name": "Gold In Them Hills",
+      "artists": [
+        "Ron Sexsmith"
+      ],
+      "artist_ids": [
+        "2wXBWJhbm1gfEVjyEEuhDH"
+      ],
+      "album": "Cobblestone Runway",
+      "album_id": "7Jn53OcRkqIjpHScSOcSYP",
+      "duration_ms": 214240,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529765+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "CAL350200038"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 30,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "460rySqUldXJjAxgFNRAha",
+      "uri": "spotify:track:460rySqUldXJjAxgFNRAha",
+      "name": "Bad Day",
+      "artists": [
+        "Pimm's Trio"
+      ],
+      "artist_ids": [
+        "0vlyMzroosYUjkAfHLx6kF"
+      ],
+      "album": "Bad Day",
+      "album_id": "6BUJAJaGqeVKofT35AUpNb",
+      "duration_ms": 283218,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529767+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32204323"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 31,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5HP9LwDRT5FGOokrN1HnZ3",
+      "uri": "spotify:track:5HP9LwDRT5FGOokrN1HnZ3",
+      "name": "Blue Moon",
+      "artists": [
+        "Mark Roswell Trio"
+      ],
+      "artist_ids": [
+        "5LyofWLANV5qojc0VHqh6i"
+      ],
+      "album": "Blue Moon",
+      "album_id": "3BOJmn1f6TkOB1hNCvCnth",
+      "duration_ms": 198333,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529770+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32300172"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 32,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "44U31ReufqAcif83U3ACf1",
+      "uri": "spotify:track:44U31ReufqAcif83U3ACf1",
+      "name": "All Hands On Deck!",
+      "artists": [
+        "Pearl Street Trio"
+      ],
+      "artist_ids": [
+        "6vOQ06tNCXPAdGfaNV3L0k"
+      ],
+      "album": "All Hands On Deck!",
+      "album_id": "0k10IRpaCJf3Ql8gOfrvob",
+      "duration_ms": 193019,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529773+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32305454"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 33,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1fTMCSLuodIA7NyztT9pTC",
+      "uri": "spotify:track:1fTMCSLuodIA7NyztT9pTC",
+      "name": "24 hour stopover",
+      "artists": [
+        "Brandon's Three"
+      ],
+      "artist_ids": [
+        "2YPncTc0Vj6Ofh2DDooAbM"
+      ],
+      "album": "Jazz at Night",
+      "album_id": "6yrXqvS9A8uMHFoh0S9peN",
+      "duration_ms": 205829,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529778+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5IB2333271"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 34,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2FgLhm6EwB0Ix8XLHABFkC",
+      "uri": "spotify:track:2FgLhm6EwB0Ix8XLHABFkC",
+      "name": "As Time Goes By",
+      "artists": [
+        "The Headliner Trio"
+      ],
+      "artist_ids": [
+        "79XAL1YXeOMQ2ksDQjvFa7"
+      ],
+      "album": "As Time Goes By",
+      "album_id": "43blKT5tNQotndvCtQGMhg",
+      "duration_ms": 250540,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529781+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32203326"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 35,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2TjrM7ixQJRV47YsQsj75A",
+      "uri": "spotify:track:2TjrM7ixQJRV47YsQsj75A",
+      "name": "ルーヴル美術館侵入",
+      "artists": [
+        "Naofumi Hataya"
+      ],
+      "artist_ids": [
+        "16Zt0banJ38CasAMhXAqBm"
+      ],
+      "album": "リズム怪盗R 皇帝ナポレオンの遺産 オリジナル サウンドトラック (Vol. 1)",
+      "album_id": "2cjLwgvKJDcXxJD2jjv985",
+      "duration_ms": 116586,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529784+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPX301273840"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 36,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0ztuGr2Rq4SssO6Aj5MXpZ",
+      "uri": "spotify:track:0ztuGr2Rq4SssO6Aj5MXpZ",
+      "name": "A Knock On Your Door",
+      "artists": [
+        "Astoria Three"
+      ],
+      "artist_ids": [
+        "72pfIIbH2JQbShGyx4c7ri"
+      ],
+      "album": "A Knock On Your Door",
+      "album_id": "4kqingBkVO4kbYYgEqEu7b",
+      "duration_ms": 150961,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529788+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32604021"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 37,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7hUadZNzjZsYLbQQHeqbkP",
+      "uri": "spotify:track:7hUadZNzjZsYLbQQHeqbkP",
+      "name": "Baby",
+      "artists": [
+        "Panic Shack"
+      ],
+      "artist_ids": [
+        "26HCuM5PamldoaHII5Ifxc"
+      ],
+      "album": "Baby Shack",
+      "album_id": "5JMD9pmHaf2V6fpqj4ceow",
+      "duration_ms": 212598,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529791+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "UK4MC2100558"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 38,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "62LIjQ7uet2hOT9577QYoq",
+      "uri": "spotify:track:62LIjQ7uet2hOT9577QYoq",
+      "name": "Affection",
+      "artists": [
+        "Hunter Paige"
+      ],
+      "artist_ids": [
+        "4JNwhTb4YN98anDrWn2kIZ"
+      ],
+      "album": "Affection",
+      "album_id": "0xye9fPdkqLWvaW52XXpg5",
+      "duration_ms": 206993,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529794+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5IB2313167"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 39,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4XnXkrTZ9Ut0K95oRJ7DIh",
+      "uri": "spotify:track:4XnXkrTZ9Ut0K95oRJ7DIh",
+      "name": "A Smile That Explodes",
+      "artists": [
+        "Joseph Arthur"
+      ],
+      "artist_ids": [
+        "5aD0uh1BpYTN7AzhiSDgaO"
+      ],
+      "album": "Our Shadows Will Remain",
+      "album_id": "4KKJMmJtnOev5eR8IsujKV",
+      "duration_ms": 201853,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529796+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US3R80404013"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 40,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2g9AeE8aV2PIekIXuxmDJn",
+      "uri": "spotify:track:2g9AeE8aV2PIekIXuxmDJn",
+      "name": "2006",
+      "artists": [
+        "Sorry Mom"
+      ],
+      "artist_ids": [
+        "0KZzhF4tqJGaVOrXXONmCX"
+      ],
+      "album": "Juno Goes to the Big House",
+      "album_id": "0bPiaza1NaQbzdg8s1CJOn",
+      "duration_ms": 215585,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529799+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN32142625"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 41,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5HH66Sx5PCkl4xw8TwZq3g",
+      "uri": "spotify:track:5HH66Sx5PCkl4xw8TwZq3g",
+      "name": "1+1+1",
+      "artists": [
+        "Boys Noize",
+        "ZEP"
+      ],
+      "artist_ids": [
+        "62k5LKMhymqlDNo2DWOvvv",
+        "72OZwUYL9lvmwBvvsstpIV"
+      ],
+      "album": "1+1+1",
+      "album_id": "1TNi8B4kLbNAwnXmjK8NDM",
+      "duration_ms": 176958,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529802+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "DEDU22600038"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 42,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0lvhEsN1zkMzfp2M1o17yy",
+      "uri": "spotify:track:0lvhEsN1zkMzfp2M1o17yy",
+      "name": "Holiday",
+      "artists": [
+        "Green Day"
+      ],
+      "artist_ids": [
+        "7oPftvlwr6VrsViSDV7fJY"
+      ],
+      "album": "American Idiot (20th Anniversary Deluxe Edition)",
+      "album_id": "19ObsGobUuBr11M6ysFMug",
+      "duration_ms": 232826,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529804+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USRE11200336"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 43,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2rQPHeQZmfSrS7R0HzshXj",
+      "uri": "spotify:track:2rQPHeQZmfSrS7R0HzshXj",
+      "name": "ECCOと悪寒ダイビング",
+      "artists": [
+        "Macintosh Plus"
+      ],
+      "artist_ids": [
+        "2hkoUqWFI4KP39O9MViMY3"
+      ],
+      "album": "Floral Shoppe",
+      "album_id": "4XmPe9frGvfLk6CUMXnfI4",
+      "duration_ms": 402851,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529809+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM6N22621226"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 44,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0GEHOgCdUU9b8uGQKjpugO",
+      "uri": "spotify:track:0GEHOgCdUU9b8uGQKjpugO",
+      "name": "1994",
+      "artists": [
+        "Slutever"
+      ],
+      "artist_ids": [
+        "4TBQj88AvHlzsLhzP12GuD"
+      ],
+      "album": "1994",
+      "album_id": "0xNRLwCkjzt4FvHJ25Ppqq",
+      "duration_ms": 357587,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529812+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA6M1313301"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 45,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1AQHHWxWaCZrMsqrdDTNng",
+      "uri": "spotify:track:1AQHHWxWaCZrMsqrdDTNng",
+      "name": "Little Bell",
+      "artists": [
+        "Green Trio"
+      ],
+      "artist_ids": [
+        "6byy6cSUHfjBs0vgjgC5St"
+      ],
+      "album": "Little Bell",
+      "album_id": "3Co6xU6tpBJqppc2TNis78",
+      "duration_ms": 210960,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529814+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32203438"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 46,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2VGQ342iuqj6aSaYbyBQVJ",
+      "uri": "spotify:track:2VGQ342iuqj6aSaYbyBQVJ",
+      "name": "Prayer Of The Refugee",
+      "artists": [
+        "Rise Against"
+      ],
+      "artist_ids": [
+        "6Wr3hh341P84m3EI8qdn9O"
+      ],
+      "album": "The Sufferer & The Witness",
+      "album_id": "1Vr598HQXjJCwxHale9yQP",
+      "duration_ms": 199386,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529817+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70603971"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 47,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "09RdaH1uR3msnt5g4xfQFn",
+      "uri": "spotify:track:09RdaH1uR3msnt5g4xfQFn",
+      "name": "Bitch Theme",
+      "artists": [
+        "Bratmobile"
+      ],
+      "artist_ids": [
+        "3GTaO7e3uPaG0SJR7Hxy8L"
+      ],
+      "album": "Pottymouth",
+      "album_id": "7lzJitndL2gmgt4cP4tmnj",
+      "duration_ms": 91600,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529820+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USKRS0320810"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 48,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4BVFVaa1fDo20Ud1q5Gd2N",
+      "uri": "spotify:track:4BVFVaa1fDo20Ud1q5Gd2N",
+      "name": "Everybody Wants To Be Famous",
+      "artists": [
+        "Superorganism"
+      ],
+      "artist_ids": [
+        "0Wkm45quqfx3NepJpXDvwE"
+      ],
+      "album": "Superorganism",
+      "album_id": "15TFB6uLZlb3gnCysRrLix",
+      "duration_ms": 184986,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529822+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCEL1700580"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 49,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6YeUTstb4pY8jUE3xWhX0d",
+      "uri": "spotify:track:6YeUTstb4pY8jUE3xWhX0d",
+      "name": "Blueberry Street",
+      "artists": [
+        "Danny Ryan Jazz Band"
+      ],
+      "artist_ids": [
+        "3xs6vmsEWnke7fTjjn0n3j"
+      ],
+      "album": "Blueberry Street",
+      "album_id": "1RDmHgLLP027hDRFZxg0Fo",
+      "duration_ms": 255734,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529827+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZAKB2167391"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 50,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4dHX64tECKc1ozIkDspHTw",
+      "uri": "spotify:track:4dHX64tECKc1ozIkDspHTw",
+      "name": "6669 (I Don't Know If You Know)",
+      "artists": [
+        "Neon Indian"
+      ],
+      "artist_ids": [
+        "0KydPQPUUoTNhmiHKOg5Er"
+      ],
+      "album": "Psychic Chasms",
+      "album_id": "6orePWE5tyJN7FGR7jzmik",
+      "duration_ms": 200893,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529830+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US4HB1000006"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 51,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6jor9rSokwHvJjdY5g9UHW",
+      "uri": "spotify:track:6jor9rSokwHvJjdY5g9UHW",
+      "name": "Breezy",
+      "artists": [
+        "Eco Virtual"
+      ],
+      "artist_ids": [
+        "6LQyidnrgZ99WFftGtaA5f"
+      ],
+      "album": "Atmospheres 第4",
+      "album_id": "47ieFxj2Iat4Y1rH4wH09l",
+      "duration_ms": 98455,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529832+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GX3HH2326124"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 52,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2zwaGoL1ckziFEOpY5Vfd9",
+      "uri": "spotify:track:2zwaGoL1ckziFEOpY5Vfd9",
+      "name": "Bug",
+      "artists": [
+        "Renata Zeiguer"
+      ],
+      "artist_ids": [
+        "4PjjytFMesfTDa9BmydLGW"
+      ],
+      "album": "Old Ghost",
+      "album_id": "0SJwWAFX4ioCfuHUn6D1Os",
+      "duration_ms": 178907,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529835+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USWEX1700287"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 53,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2sOncurUkrw3CYWliyxYSU",
+      "uri": "spotify:track:2sOncurUkrw3CYWliyxYSU",
+      "name": "A Quiet Place",
+      "artists": [
+        "North West Trio"
+      ],
+      "artist_ids": [
+        "6xEHf5bkAwi6XDbFwRwUpa"
+      ],
+      "album": "A Quiet Place",
+      "album_id": "6pJy7KHyUogF78gFgqQOgu",
+      "duration_ms": 148901,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529840+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5W32201126"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 54,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5PuzKOyzxVAiltJIHAxWzm",
+      "uri": "spotify:track:5PuzKOyzxVAiltJIHAxWzm",
+      "name": "Dead By 30",
+      "artists": [
+        "Fried By Fluoride",
+        "UhOhSlater"
+      ],
+      "artist_ids": [
+        "0qwt0uuav6sDn54MRKrL1u",
+        "677Vmyo96P22x8MHTPzEqB"
+      ],
+      "album": "Fried",
+      "album_id": "7JqIRMhi4RXUQTqGrnOGP8",
+      "duration_ms": 149763,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529843+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWU2076948"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 55,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7wvEO3lImZfVnG6spsyCZ8",
+      "uri": "spotify:track:7wvEO3lImZfVnG6spsyCZ8",
+      "name": "Ain't No Small Fry",
+      "artists": [
+        "Jasmine Patterson"
+      ],
+      "artist_ids": [
+        "2MvVPVskst6WSd1JWA5311"
+      ],
+      "album": "Jasmine Patterson",
+      "album_id": "2NPlVwtmg9kOs8wllA8kZ5",
+      "duration_ms": 165795,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529846+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE5IB2101777"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 56,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6ffRiWfmk34Cw5oUyWMjkl",
+      "uri": "spotify:track:6ffRiWfmk34Cw5oUyWMjkl",
+      "name": "City Trial (From \"Kirby Air Ride\")",
+      "artists": [
+        "Shogo Sakai",
+        "Jun Ishikawa",
+        "Hirokazu Ando",
+        "Tadashi Ikegami",
+        "Akira Miyagawa",
+        "Will Pisani"
+      ],
+      "artist_ids": [
+        "6NoeeIzJie1sFTwDqN2aqi",
+        "5O81dakBu1oUmLsT48v5Gu",
+        "1Su0ZHLvQVYz45JybraVf2",
+        "1DTeij2KG9R3STra2p7UZL",
+        "4RuoKddjVczgp1vvFuQhtL",
+        "106vdkDVSve7wgeOIt4x2g"
+      ],
+      "album": "Aural Nostalgia, Vol. 2",
+      "album_id": "0pWjdyg3X0ahLrJoBoFHil",
+      "duration_ms": 137000,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529849+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZGWW2056193"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 57,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3ckJ50ZvwSPjzlq2m6bwXD",
+      "uri": "spotify:track:3ckJ50ZvwSPjzlq2m6bwXD",
+      "name": "Gasoline",
+      "artists": [
+        "The Bouncing Souls"
+      ],
+      "artist_ids": [
+        "3mvTAjG7rcyk7DQzLwauzV"
+      ],
+      "album": "Ghosts On the Boardwalk",
+      "album_id": "0LFQIA9uxRPhL8JzMXkISq",
+      "duration_ms": 243200,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529852+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USTCC0926245"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 58,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1inKTlbxUmFESMXExqgV3h",
+      "uri": "spotify:track:1inKTlbxUmFESMXExqgV3h",
+      "name": "Keep Me Around",
+      "artists": [
+        "Turin Brakes"
+      ],
+      "artist_ids": [
+        "1zrBQvkTNhFFby4V5UiK2L"
+      ],
+      "album": "Lost Property",
+      "album_id": "12UcTfMpcpODTMB1xdO1Gs",
+      "duration_ms": 189213,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529855+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "GBCEJ1501007"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 59,
+      "added_at": "2026-11-08T11:00:48Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5tu555JJdfnt5xc1by9bbJ",
+      "uri": "spotify:track:5tu555JJdfnt5xc1by9bbJ",
+      "name": "A Job Promotion",
+      "artists": [
+        "Newington Green"
+      ],
+      "artist_ids": [
+        "33hLFARszQC3uxE93PiNeE"
+      ],
+      "album": "A Job Promotion",
+      "album_id": "65qefGoRuealN5t4RdiRlJ",
+      "duration_ms": 186259,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-08T13:26:16.529858+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "SE69Z2440306"
+      },
+      "available_markets_count": 0
+    }
+  ]
+}
