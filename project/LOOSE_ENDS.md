@@ -4,7 +4,7 @@
 - Verified blocker: current Spotify refresh token returns `invalid_grant` (playlist-control run #42448656654). The local manager's PKCE callback binds port 8888; the existing cloud workflows cannot receive the initial browser callback.
 - Existing cloud playlist control, read-only auth-health workflow, and automatic refresh-token secret rotation are already present. Do not duplicate these systems or bypass the manager.
 - Proposed managed HTTPS broker must authenticate the GitHub owner, use Spotify PKCE, write the token directly to repository Actions Secrets via a repo-scoped GitHub App, then dispatch only read-only auth verification.
-- Initial broker source, Durable Object state store, unit tests, Wrangler dry-run and owner-triggered deployment workflow are implemented in PR #176; no broker deployment or external account/secret changes have occurred. See [mobile cloud operation roadmap](goals/mobile-cloud-operation/ROADMAP.md). Next: finish final security scan/review, then owner reviews/merges the PR and configures Cloudflare + the dedicated GitHub App before end-to-end mobile authorization.
+- Initial broker source, Durable Object state store, unit tests, Wrangler dry-run and owner-triggered deployment workflow are implemented in PR #176; no broker deployment or external account/secret changes have occurred. See [mobile cloud operation roadmap](goals/mobile-cloud-operation/ROADMAP.md). The feature-branch Gitleaks scan passed (#42450865632). A branch-targeting mistake placed three broker files on main; corrective PR #177 is mergeable and should be merged first. Then reconcile/recheck PR #176, owner-review/merge it, and configure Cloudflare + the dedicated GitHub App before end-to-end mobile authorization.
 
 # Current policy overlay — 2026-11-06
 
