@@ -426,3 +426,14 @@ export default {
     return handleRequest(request, env);
   },
 };
+
+
+// FILE OVERVIEW
+// Purpose: Mobile-first Spotify Authorization Code + PKCE bootstrap for SHIT.
+// Runtime: Cloudflare Worker with short-lived KV state and an edge rate limiter.
+// Credentials: GitHub OAuth secret and repository-scoped GitHub App private key are Worker secrets.
+// Side effects: Updates only the repository SPOTIFY_REFRESH_TOKEN Actions secret, then dispatches
+//              the read-only Spotify auth-health workflow. It has no playlist-write operations.
+// Safety: GitHub owner allowlist, single-use state, session binding, PKCE, secret encryption,
+//         short-lived installation token, no token logging/return, fail-closed secret persistence.
+// Related: auth-broker/README.md, project/goals/mobile-cloud-operation/ROADMAP.md.
