@@ -22,5 +22,5 @@ new_sqlite_classes = ["OAuthStateStore"]
 # Cloudflare's edge rate limiter protects each OAuth entry/callback route.
 [[ratelimits]]
 name = "AUTH_RATE_LIMITER"
-namespace_id = "1001"
+namespace_id = "20261108"
 simple = { limit = 20, period = 60 }
