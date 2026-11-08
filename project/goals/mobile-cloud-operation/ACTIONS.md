@@ -127,3 +127,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The earlier completion-page test failure exposed a real null-Cookie-header edge case. `parseCookies` now safely accepts an absent Cookie header; the completion route test then passed. This fix was tested on the same passing run.
 - Updated CI to generate a lockfile, preserve it as a short-lived artifact, and commit only that lockfile to this feature branch after successful owner-push CI. Future runs use `npm ci` once the lockfile exists. This avoids unpinned transitive dependencies while keeping write permission isolated to the lockfile-only job.
 - Latest branch workflow after adding the lockfile job is running separately; no lockfile commit has yet been confirmed.
+
+
+## 2026-11-08 — Dependency lockfile committed
+
+- The owner-only CI lockfile job successfully downloaded the generated artifact, rebased its lockfile-only commit onto the latest feature branch, and pushed commit `fd73165834c0870eb6cf4e5ac202414f2dbd934b`.
+- `auth-broker/package-lock.json` is now present (lockfile v3; 50,252 characters). The manifest pins libsodium-wrappers 0.8.4 and Wrangler 4.158.0. The preceding test run passed 18/18 tests, the high-severity npm audit and Wrangler dry-run; the next owner push will exercise the committed lockfile through `npm ci`.
+- A failed earlier lockfile push was due to the branch moving after the runner checkout; the job now fetches and rebases before pushing. A previous action-reference typo was corrected to `actions/download-artifact@v8.0.2`.
