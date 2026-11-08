@@ -342,12 +342,23 @@ async function installationToken(env) {
   return token.token;
 }
 
+const SAFE_CONCURRENT_WORKFLOWS = new Set([
+  "babel-ai-continuation.yml",
+  "daily-curator-tests.yml",
+  "deploy-mobile-auth-broker.yml",
+  "library-freshness-review.yml",
+  "mobile-auth-broker-tests.yml",
+  "public-repository-security.yml",
+]);
+
+// Fail closed: only workflows explicitly audited as not using Spotify credentials
+// may overlap reauthorization. Unknown/missing workflow paths are treated as unsafe.
 export function isSpotifyWorkflowPath(path) {
   const value = String(path || "");
-  if (!value.startsWith(".github/workflows/")) return false;
-  if (/mobile-auth-broker-tests|deploy-mobile-auth-broker/i.test(value)) return false;
-  return value.includes("spotify") ||
-    /great-migration|update\.yml|enrich-music-metadata|acoustic-metadata-enrichment|backfill-music-durations/i.test(value);
+  const match = value.match(/(?:^|\\/)\.github\\/workflows\\/([^@]+?\.ya?ml)(?:@|$)/i)
+    || value.match(/^\.github\/workflows\/([^@]+?\.ya?ml)(?:@|$)/i);
+  if (!match) return true;
+  return !SAFE_CONCURRENT_WORKFLOWS.has(match[1].toLowerCase());
 }
 
 async function assertNoConcurrentSpotifyJobs(token) {
