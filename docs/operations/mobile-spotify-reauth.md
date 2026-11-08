@@ -72,7 +72,7 @@ Set these **Worker secrets** in Cloudflare, not in GitHub variables:
 
 - [ ] Open the repository Actions tab.
 - [ ] Select **Deploy SHIT Mobile Auth Broker**.
-- [ ] Choose Run workflow on `main), initiated by the repository owner account.
+- [ ] Choose Run workflow on `main`, initiated by the repository owner account.
 - [ ] Confirm the deployment run succeeds.
 - [ ] Open the canonical Worker URL on the phone.
 - [ ] Complete GitHub owner authorization, then Spotify authorization.
