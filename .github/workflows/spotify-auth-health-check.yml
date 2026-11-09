@@ -8,7 +8,7 @@ on:
 
 permissions:
   contents: read
-  variables: write
+  actions: read
 
 concurrency:
   group: spotify-auth-health-check
@@ -26,59 +26,43 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           EVENT_NAME: ${{ github.event_name }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
         run: |
-          if [ "$EVENT_NAME" != "schedule" ]; then
-            if ! gh variable set SPOTIFY_AUTH_STATE --body pending --repo "$GITHUB_REPOSITORY"; then
-              echo "::error::Could not persist the pending auth state; refusing to contact Spotify."
-              exit 1
-            fi
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          set +e
-          state_output="$(gh variable get SPOTIFY_AUTH_STATE --repo "$GITHUB_REPOSITORY" 2>&1)"
-          result=$?
-          set -e
-          if [ "$result" -eq 0 ]; then
-            state="$state_output"
-          elif printf '%s' "$state_output" | grep -q "HTTP 404"; then
-            state=""
-          else
-            echo "::error::Could not read SPOTIFY_AUTH_STATE; refusing to contact Spotify."
-            exit 1
-          fi
-          case "$state" in
-            ""|healthy|provider_unavailable|provider_error)
-              ;;
-            rate_limited_until:*)
-              retry_until="${state#rate_limited_until:}"
-              if ! [[ "$retry_until" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_until" ]; then
-                echo "skip=true" >> "$GITHUB_OUTPUT"
-                {
-                  echo "## Spotify authentication check skipped"
-                  echo
-                  echo "The stored Spotify Retry-After deadline has not elapsed or is invalid. Scheduled checks remain paused."
-                } >> "$GITHUB_STEP_SUMMARY"
-                exit 0
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            runs="$(gh run list --workflow spotify-auth-health-check.yml --repo "$GITHUB_REPOSITORY" --limit 10 --json databaseId,status,createdAt)"
+            previous_run="$(printf '%s' "$runs" | jq -r --arg current "$CURRENT_RUN_ID" '[.[] | select((.databaseId|tostring) != $current and .status == "completed")] | sort_by(.createdAt) | last | .databaseId // empty')"
+            if [ -n "$previous_run" ]; then
+              if ! logs="$(gh run view "$previous_run" --repo "$GITHUB_REPOSITORY" --log 2>/dev/null)"; then
+                echo "::error::Could not inspect the previous auth-check result; refusing to contact Spotify."
+                exit 1
               fi
-              ;;
-            *)
-              echo "skip=true" >> "$GITHUB_OUTPUT"
-              {
-                echo "## Spotify authentication check skipped"
-                echo
-                echo "The durable auth state is '$state'. Scheduled checks remain paused until an owner-triggered recovery attempt succeeds."
-              } >> "$GITHUB_STEP_SUMMARY"
-              echo "Scheduled Spotify auth check skipped because the credential is latched for owner recovery."
-              exit 0
-              ;;
-          esac
-          # Mark the check pending before contacting Spotify. If the runner dies
-          # before reporting a result, the next scheduled run fails closed.
-          if ! gh variable set SPOTIFY_AUTH_STATE --body pending --repo "$GITHUB_REPOSITORY"; then
-            echo "::error::Could not persist the pending auth state; refusing to contact Spotify."
-            exit 1
+              previous_status="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_STATUS=[A-Za-z0-9_]*' | tail -n 1 | cut -d= -f2)"
+              retry_marker="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_RETRY_AFTER=[A-Za-z0-9_:-]*' | tail -n 1 | cut -d= -f2)"
+              case "$previous_status" in
+                healthy|provider_unavailable)
+                  ;;
+                rate_limited)
+                  if ! [[ "$retry_marker" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_marker" ]; then
+                    echo "::notice::AUTH_HEALTH_STATUS=rate_limited"
+                    echo "skip=true" >> "$GITHUB_OUTPUT"
+                    echo "Spotify auth check skipped until the recorded Retry-After deadline."
+                    exit 0
+                  fi
+                  ;;
+                *)
+                  echo "::notice::AUTH_HEALTH_STATUS=${previous_status:-unknown}"
+                  echo "skip=true" >> "$GITHUB_OUTPUT"
+                  {
+                    echo "## Spotify authentication check skipped"
+                    echo
+                    echo "The previous auth check ended in '${previous_status:-unknown}'. Scheduled checks are paused until a deliberate manual recovery attempt."
+                  } >> "$GITHUB_STEP_SUMMARY"
+                  exit 0
+                  ;;
+              esac
+            fi
           fi
+          echo "::notice::AUTH_HEALTH_STATUS=pending"
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
       - name: Validate required Spotify configuration
@@ -108,7 +92,6 @@ jobs:
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          GH_STATUS_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python - <<'PY'
@@ -125,28 +108,15 @@ jobs:
           import urllib.request
 
           def report(status, message, success=False, state_value=None):
-              # Only fixed, non-secret classifications/messages are written to GitHub.
+              # Emit only a fixed status marker; no provider response bodies or tokens.
               with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
                   output.write(f"status={status}\n")
               with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
                   summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
-              # Persist every result. A failed state write leaves "pending", which
-              # makes the next scheduled run fail closed instead of repeating blindly.
-              try:
-                  subprocess.run(
-                      ["gh", "variable", "set", "SPOTIFY_AUTH_STATE", "--body", state_value or status,
-                       "--repo", os.environ["GITHUB_REPOSITORY"]],
-                      check=True,
-                      stdout=subprocess.DEVNULL,
-                      stderr=subprocess.PIPE,
-                      env={**os.environ, "GH_TOKEN": os.environ["GH_STATUS_TOKEN"]},
-                  )
-              except subprocess.CalledProcessError:
-                  failure = "Authentication status could not be persisted; scheduled checks must be treated as unsafe."
-                  with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
-                      summary.write(f"\n**State persistence failure:** {failure}\n")
-                  print(f"::error::{failure}")
-                  raise SystemExit(1) from None
+              print(f"::notice::AUTH_HEALTH_STATUS={status}")
+              if state_value:
+                  retry_marker = state_value.split(":", 1)[1] if state_value.startswith("rate_limited_until:") else "unknown"
+                  print(f"::notice::AUTH_HEALTH_RETRY_AFTER={retry_marker}")
               if success:
                   print(message)
                   return
@@ -278,10 +248,10 @@ jobs:
 #          refreshes credentials, verifies /v1/me, persists token rotation, and
 #          reports distinct non-secret failure classes without playlist writes.
 # Trigger: workflow_dispatch only; scheduled monitoring is deferred until a durable reauthorization-required latch prevents repeated invalid_grant attempts.
-# Safety: No retry loop; invalid_grant and permanent setup failures latch the
-#         schedule until a verified manual recovery. 429/5xx/network failures are
-#         classified separately. GITHUB_TOKEN writes only the non-secret auth-state
-#         variable; the GitHub App token is scoped to Secrets write for rotation.
+# Safety: No retry loop; scheduled runs inspect the previous run's redacted status
+#         marker and pause on permanent blockers or interrupted runs. 429 respects
+#         Retry-After. GITHUB_TOKEN is Actions:read only; the GitHub App token is
+#         scoped to Secrets:write solely for refresh-token rotation.
 # Side effects: May replace SPOTIFY_REFRESH_TOKEN only after successful refresh;
 #               never modifies playlists, Library data, or repository contents.
 # -----------------------------------------------------------------------------
