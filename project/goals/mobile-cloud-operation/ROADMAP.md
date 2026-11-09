@@ -79,10 +79,12 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [ ] Complete owner-consented Spotify OAuth from phone and desktop browsers.
 
 ### M4 — Central auth gate
-- [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
+- [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`; see [WORKFLOW_MIGRATION_INVENTORY.md](WORKFLOW_MIGRATION_INVENTORY.md).
 - [ ] Define a reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
 - [x] Define the short critical-section OIDC-authenticated Durable Object lease design; see [REFRESH_TOKEN_SINGLE_FLIGHT.md](REFRESH_TOKEN_SINGLE_FLIGHT.md). No global Actions concurrency group is permitted.
-- [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; implementation and test results remain under CI review.
+- [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; keep isolated because a lease cannot fence GitHub Secrets writes.
+- [x] Implement isolated AES-256-GCM credential-store prototype with transactional refresh reservation, identity verification, encrypted rotation commit, replay rejection and fail-closed ambiguous outcomes; PR #187.
+- [ ] Add real Cloudflare Durable Object integration tests and key-version rotation/recovery design before binding or routing the credential store.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
 - [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
@@ -126,4 +128,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Design and implement the broker-owned encrypted credential store and OIDC-authorized refresh operation described in `BROKER_CONTROLLED_REFRESH.md`. Keep the lease coordinator isolated unless it has a separately justified role. Migrate all nine consumers only after operation fencing, concurrency tests, and the no-direct-refresh-token inventory test pass.
+Complete Cloudflare Durable Object integration validation for the encrypted credential-store prototype, then implement authenticated OIDC refresh routing and safe OAuth callback initialization. Use `WORKFLOW_MIGRATION_INVENTORY.md` to migrate all nine consumers only after operation fencing, concurrency tests, key rotation/recovery, and the no-direct-refresh-token inventory test pass.
