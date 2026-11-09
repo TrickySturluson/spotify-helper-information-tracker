@@ -117,7 +117,7 @@ jobs:
               with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
                   summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
                   if status == "reauthorization_required":
-                      broker_url = os.environ.get("BROKER_BASE_URL", "").strip()
+                      broker_url = os.environ.get("BROKER_BASE_URL", "").strip().rstrip("/")
                       parsed_broker = urllib.parse.urlsplit(broker_url)
                       if parsed_broker.scheme == "https" and parsed_broker.netloc and parsed_broker.path in ("", "/") and not parsed_broker.query and not parsed_broker.fragment and not parsed_broker.username and not parsed_broker.password:
                           summary.write(f"\n**Owner action:** [Open SHIT Spotify authorization]({broker_url}/) and complete the GitHub-owner then Spotify consent flow.\n")
