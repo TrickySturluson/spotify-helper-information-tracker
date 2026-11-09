@@ -52,10 +52,10 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [ ] Confirm deployment provider/account and cost limits.
 
 ### M1 — Automatic health monitoring
-- [ ] Add a conservative scheduled auth-health check.
-- [ ] Emit structured status categories without provider response bodies or credentials.
+- [x] Add a conservative daily scheduled auth-health check (09:00 UTC) plus manual dispatch.
+- [x] Emit structured redacted status categories without provider response bodies or credentials.
 - [ ] Persist a non-secret health record with timestamps, category and workflow-run evidence.
-- [ ] Add bounded retry rules: no retry for `invalid_grant`; honor Retry-After for 429; bounded retry for transient failures.
+- [x] Ensure one attempt per run: no retry for `invalid_grant`; report Retry-After for 429; classify transient failures without retry loops.
 - [ ] Add notification/owner action for reauthorization-required state.
 - [ ] Ensure monitoring cannot trigger playlist operations or generated-data writes.
 
@@ -120,4 +120,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Implement the conservative scheduled health monitor and structured failure classification, then add tests and workflow-level verification before rolling the gate out to other Spotify workflows.
+Add regression tests and workflow-level verification for the scheduled monitor, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
