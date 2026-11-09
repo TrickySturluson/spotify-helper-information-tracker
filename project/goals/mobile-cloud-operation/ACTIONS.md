@@ -250,3 +250,13 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - If the broker URL is not configured, the summary links to the owner-only deployment runbook instead of presenting a broken authorization link.
 - The broker URL is parsed and accepted only as an HTTPS origin with no credentials, path, query or fragment. The value is a non-secret repository variable.
 - Added regression assertions for both the broker action and runbook fallback. This does not create issues, send messages, deploy the broker, or change any credential.
+
+## 2026-11-08 — Replace run-history latch with durable GitHub commit status
+
+- Replaced the previous-run log parser with the GitHub Commit Status API. The workflow reads the latest `spotify-auth-health` context for the current commit SHA and writes `pending` before contacting Spotify.
+- The health result is stored as a non-secret commit status: `success/healthy`, `error/provider_unavailable`, or `failure` with the specific status in its description. For 429, the description carries `rate_limited_until:<epoch>`.
+- Scheduled runs pause on permanent failure or `pending`; manual dispatch bypasses permanent blockers but still respects an active rate-limit deadline. Missing/invalid Retry-After uses a conservative 24-hour fallback.
+- The workflow token now needs only `contents:read` and `statuses:write`. It no longer needs `actions:read`, does not inspect/download logs, and does not write repository variables or files. The separate GitHub App token remains Secrets:write only for refresh-token rotation.
+- This supersedes the prior run-history latch design and removes the 90-day log-retention dependency. If the status API cannot be read or the pending/result status cannot be written, the workflow fails closed.
+- Added/updated regression tests for the commit-status context, permission boundary, Retry-After state description, and no repository/run-log writes. The commit-status version has not yet received fresh CI; previous 528-test pass applies to the earlier run-history implementation.
+- No Spotify API request, secret rotation, OAuth, Cloudflare deployment, playlist write or repository variable change was performed.
