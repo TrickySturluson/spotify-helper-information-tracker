@@ -9,6 +9,16 @@ This section supersedes the older documentation-first freeze and Codex-worker de
 - Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside this authority and require separate user authorization.
 - The canonical rules are in [AGENTS.md](../AGENTS.md), [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../docs/BABEL_CHATGPT_BUDDY.md).
 
+## Authentication Management & Recovery — current evidence (2026-11-09)
+
+- Base broker #185 and diagnostic follow-ups #190/#191 are merged. Production Worker version 14 is active at 100% traffic, but it is still migration v2 and lacks `SPOTIFY_CREDENTIAL_STORE`, the encryption keyring and active-key version.
+- GitHub App client secret/private key metadata now reports `secret_text`; no values were read.
+- Spotify Authorization Code with PKCE refresh uses `client_id` in the form body and no Spotify client secret or Basic auth. This was confirmed against Spotify's current [refresh-token documentation](https://developer.spotify.com/documentation/web-api/tutorials/refreshing-tokens) and corrected in PR #187/#188.
+- PR #187 is closed as superseded by PR #188; PR #189 is closed because its Wrangler/build instructions were stale. PR #188 is based directly on `main`, mergeable and intentionally draft. Consolidated head `8c011f869c3b02be58cd7a6694705071d3b7ff9a` has tests #42600934839 queued and security scan #42600934784 in progress; its prior head `12ca9de8c4767277d96f0ec14cf6b55f215d4e27` passed all broker, Durable Object, Python, docs, dependency, Wrangler and security checks.
+- Redacted Workers Observability query (prior 24h ending 2026-11-09 10:08 UTC): six `GET /spotify/callback` errors; four on v13 at `broker.base_url_configuration`, two on v14 at `broker.route_dispatch` (`UnexpectedError`). Exception contents and all credentials/state were not retrieved.
+- Do not repeat OAuth consent until the integrated encrypted-store/OIDC version passes checks, is owner-deployed and receives 100% traffic. Then verify credential persistence and two independent read-only auth-health runs. No playlist writes are authorized by this workstream.
+- The only new production secret required is `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` as a Cloudflare Worker `secret_text` keyring with a secure backup. Active key version defaults to 1; the exact nine-workflow OIDC allowlist is generated. No Spotify client secret is required for PKCE.
+
 # SHIT — Consolidated Loose Ends & Verification Register
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
