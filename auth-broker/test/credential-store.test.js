@@ -163,13 +163,16 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
   try {
     const first = store.fetch(request("/refresh", { operationId: operation }));
     await started;
-    const second = store.fetch(request("/refresh", { operationId: "D".repeat(43) }));
+    const second = await store.fetch(request("/refresh", { operationId: "D".repeat(43) }));
+    assert.equal(second.status, 409);
+    assert.equal((await second.json()).error, "credential_busy");
     releaseProvider();
-    const [firstResponse, secondResponse] = await Promise.all([first, second]);
+    const firstResponse = await first;
     assert.equal(firstResponse.status, 200);
-    assert.equal(secondResponse.status, 200);
+    const secondRetry = await store.fetch(request("/refresh", { operationId: "D".repeat(43) }));
+    assert.equal(secondRetry.status, 200);
     const firstBody = await firstResponse.json();
-    const secondBody = await secondResponse.json();
+    const secondBody = await secondRetry.json();
     assert.equal(secondBody.accessToken, firstBody.accessToken);
     assert.equal(secondBody.cached, true);
   } finally {
@@ -236,12 +239,15 @@ test("a refresh reservation survives store-instance restart and blocks a second 
       SPOTIFY_CLIENT_ID: "client",
       SPOTIFY_CLIENT_SECRET: "secret",
     });
-    const second = restartedStore.fetch(request("/refresh", { operationId: "G".repeat(43) }));
+    const second = await restartedStore.fetch(request("/refresh", { operationId: "G".repeat(43) }));
+    assert.equal(second.status, 409);
+    assert.equal((await second.json()).error, "credential_busy");
     releaseProvider();
-    const [firstResponse, secondResponse] = await Promise.all([inFlight, second]);
+    const firstResponse = await inFlight;
     assert.equal(firstResponse.status, 200);
-    assert.equal(secondResponse.status, 200);
-    assert.equal((await secondResponse.json()).cached, true);
+    const secondRetry = await restartedStore.fetch(request("/refresh", { operationId: "G".repeat(43) }));
+    assert.equal(secondRetry.status, 200);
+    assert.equal((await secondRetry.json()).cached, true);
   } finally {
     releaseProvider();
     globalThis.fetch = originalFetch;
