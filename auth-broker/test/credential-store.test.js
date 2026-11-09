@@ -98,6 +98,9 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     const expired = await storage.get("credential");
     expired.accessTokenExpiresAt = Date.now() - 1000;
     await storage.put("credential", expired);
+    const expiredReplay = await store.fetch(request("/refresh", { operationId: operation }));
+    assert.equal(expiredReplay.status, 409);
+    assert.equal((await expiredReplay.json()).error, "operation_already_committed");
     const next = await store.fetch(request("/refresh", { operationId: "B".repeat(43) }));
     assert.equal(next.status, 200);
     assert.equal((await next.json()).credentialVersion, 3);
