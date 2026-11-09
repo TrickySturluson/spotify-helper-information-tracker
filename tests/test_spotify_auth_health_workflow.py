@@ -13,7 +13,7 @@ WORKFLOW = (ROOT / ".github" / "workflows" / "spotify-auth-health-check.yml").re
 
 def embedded_health_script():
     match = re.search(
-        r"(?ms)^          python - <<'PY'\\n(?P<script>.*?)^          PY$",
+        r"(?ms)^          python - <<'PY'\n(?P<script>.*?)^          PY$",
         WORKFLOW,
     )
     if not match:
