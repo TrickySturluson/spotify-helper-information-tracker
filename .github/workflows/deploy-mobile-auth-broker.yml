@@ -35,10 +35,9 @@ jobs:
           BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
-          SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION }}
-          SPOTIFY_REFRESH_WORKFLOW_REFS: ${{ vars.SPOTIFY_REFRESH_WORKFLOW_REFS }}
+          SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || '1' }}
         run: |
-          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL BROKER_GH_APP_CLIENT_ID BROKER_GH_APP_ID BROKER_GH_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION SPOTIFY_REFRESH_WORKFLOW_REFS; do
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL BROKER_GH_APP_CLIENT_ID BROKER_GH_APP_ID BROKER_GH_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION; do
             if [ -z "${!name}" ]; then
               echo "::error::Required deployment setting $name is missing."
               exit 1
@@ -62,10 +61,8 @@ jobs:
             *) echo "::error::SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION must be a positive integer."; exit 1 ;;
           esac
           expected_workflow_refs="$GITHUB_REPOSITORY/.github/workflows/spotify-auth-health-check.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-live-preflight.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-feedback-observation.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/tricky-daily-snapshot-refresh.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-reference-library.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-playlist-manager.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/great-migration.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/update.yml@refs/heads/main"
-          if [ "$SPOTIFY_REFRESH_WORKFLOW_REFS" != "$expected_workflow_refs" ]; then
-            echo "::error::The broker allowlist must exactly match the nine migrated main-branch Spotify workflow refs; wildcards and additional workflows are forbidden."
-            exit 1
-          fi
+          # Derive the exact allowlist from this workflow; it is not a manually maintained repository variable.
+          echo "SPOTIFY_REFRESH_WORKFLOW_REFS=$expected_workflow_refs" >> "$GITHUB_ENV"
       - name: Verify sensitive Worker bindings use Cloudflare secret storage
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
