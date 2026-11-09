@@ -16,7 +16,7 @@ The existing nine GitHub Actions consumers each received the rotating refresh to
 4. The Durable Object is the only component that decrypts and refreshes the long-lived credential.
 5. GitHub Actions jobs authenticate with signed OIDC JWTs. The Worker validates signature/JWKS, issuer, audience, repository, immutable owner ID, main ref, allowed event, exact workflow identity, run identity, and time claims.
 6. An authorized job receives only a short-lived Spotify access token and expiry. The refresh token is never returned.
-7. A successful refresh verifies `/v1/me` against the stored Spotify account before atomically committing the rotated encrypted credential.
+7. A successful refresh verifies `/v1/me` against the stored Spotify account before atomically committing the rotated encrypted refresh credential and an encrypted short-lived access-token cache. Concurrent authorized jobs wait for the same refresh and reuse the cached access token.
 8. Every Spotify workflow migrates to the broker. No workflow falls back to the legacy refresh-token secret or refreshes independently.
 9. After every consumer and rollback path is verified, the legacy GitHub Actions refresh-token secret can be retired with explicit owner approval.
 
@@ -25,7 +25,7 @@ The existing nine GitHub Actions consumers each received the rotating refresh to
 - `POST /internal/spotify/refresh` accepts only a minimal operation ID and requires the dedicated OIDC audience `shit-spotify-refresh`.
 - The Worker uses a fixed Durable Object identity (`spotify-primary`); caller-supplied account/owner claims are ignored.
 - The `SpotifyCredentialStore` `/authorize` operation initializes an empty store or restores a blocked credential only for the same Spotify account. It refuses to overwrite a ready or in-progress record and refuses silent account changes.
-- The refresh object reserves operations transactionally, rejects concurrent/replayed operations, checks account identity, and commits rotated ciphertext only after successful verification.
+- The refresh object reserves operations transactionally, rejects replayed operations, checks account identity, and commits rotated ciphertext only after successful verification. Concurrent callers wait for the active operation and reuse its encrypted access-token cache; a persistent Retry-After cooldown prevents refresh storms.
 - Versioned encryption keys are supported. Successful refresh re-encrypts under the active key version; historical keys must remain configured until migration is complete.
 - A definite provider HTTP 429 releases the reservation without changing the credential and propagates Retry-After. Ambiguous network/provider outcomes, identity mismatch, corrupted ciphertext, or uncertain commit block further refresh and require owner-consented recovery.
 - `scripts/spotify/broker_access_token.py` requests GitHub OIDC with the dedicated audience and has no legacy fallback.
