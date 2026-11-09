@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-08T13:26:16.259012+00:00",
+  "captured_at": "2026-11-09T16:21:56.423377+00:00",
   "id": "4Ccwf3QRr8HfSsK48pTuBI",
-  "name": "Poker test",
+  "name": "Bleeding Dying Hoarse",
   "description": "",
   "owner": {
     "id": "a_thought",
@@ -10,14 +10,305 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAAAAR0Wn5CE1dQmHZPLoHEAzkX5lZG7",
-  "total_items_reported": 0,
-  "item_count_fetched": 0,
+  "snapshot_id": "AAAAE+F+fFNb5dqLKPrxRVnA9XMmmESo",
+  "total_items_reported": 10,
+  "item_count_fetched": 10,
   "items_accessible": true,
   "items_error": null,
-  "last_items_accessible_at": "2026-11-08T04:42:42.778879+00:00",
-  "items_snapshot_id": "AAAAAR0Wn5CE1dQmHZPLoHEAzkX5lZG7",
+  "last_items_accessible_at": "2026-11-09T16:21:56.423383+00:00",
+  "items_snapshot_id": "AAAAE+F+fFNb5dqLKPrxRVnA9XMmmESo",
   "playability_market": "from_token",
   "playability_market_context": "spotify_user_account_country",
-  "items": []
+  "items": [
+    {
+      "position": 0,
+      "added_at": "2026-11-09T06:41:41Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6D3VUXF4ClDUmsoNGRIB8z",
+      "uri": "spotify:track:6D3VUXF4ClDUmsoNGRIB8z",
+      "name": "Dogs",
+      "artists": [
+        "Ergo, Bria"
+      ],
+      "artist_ids": [
+        "0AF9HrL08aOaZPsIiO8GmA"
+      ],
+      "album": "Dogs",
+      "album_id": "40d7Jww6oN3BnVj8gKfmlA",
+      "duration_ms": 142249,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423283+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZNWY2278140"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 1,
+      "added_at": "2026-11-09T06:42:27Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "0g9GhfqFotNeAt2TuggiEh",
+      "uri": "spotify:track:0g9GhfqFotNeAt2TuggiEh",
+      "name": "BEG!",
+      "artists": [
+        "Vana"
+      ],
+      "artist_ids": [
+        "6o2D1YBpFJDDaMwZYGyW3T"
+      ],
+      "album": "BEG!",
+      "album_id": "2J0StL6VInyddAmQvM7bRC",
+      "duration_ms": 162531,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423304+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZZ662450904"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-11-09T06:43:16Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "65hSNce7zMqpVxPnozO1Dn",
+      "uri": "spotify:track:65hSNce7zMqpVxPnozO1Dn",
+      "name": "Whisper is GOD or EVIL",
+      "artists": [
+        "BLIND GRAPH"
+      ],
+      "artist_ids": [
+        "6xOIJ3N7nlMOWc4WCPV6vu"
+      ],
+      "album": "SIx..",
+      "album_id": "3W5akORg0xBCv41bGF6eWb",
+      "duration_ms": 289186,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423314+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPO2185422"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-11-09T06:43:30Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "3IuMLaazy3BKpk7bxaeJG0",
+      "uri": "spotify:track:3IuMLaazy3BKpk7bxaeJG0",
+      "name": "Razorblade Kisses",
+      "artists": [
+        "Schoolyard Heroes"
+      ],
+      "artist_ids": [
+        "2umvffrPSrINnWYTrrJFAx"
+      ],
+      "album": "Abominations",
+      "album_id": "2o0pDDkycDELBilKgYhzFr",
+      "duration_ms": 211280,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423322+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUM70743220"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-11-09T06:44:02Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1nU7jUfUP0ZxIm6t5CkJME",
+      "uri": "spotify:track:1nU7jUfUP0ZxIm6t5CkJME",
+      "name": "My Goblin",
+      "artists": [
+        "AILIFDOPA"
+      ],
+      "artist_ids": [
+        "26MXGRtGUZF1lhlnGFwdxc"
+      ],
+      "album": "Exormantis",
+      "album_id": "0z7dEWZAorqatvPKXehTUy",
+      "duration_ms": 237250,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423330+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPZ922013767"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 5,
+      "added_at": "2026-11-09T06:44:56Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "7pMJJTDWG5h2lUrA1NgS8z",
+      "uri": "spotify:track:7pMJJTDWG5h2lUrA1NgS8z",
+      "name": "six",
+      "artists": [
+        "BLIND GRAPH"
+      ],
+      "artist_ids": [
+        "6xOIJ3N7nlMOWc4WCPV6vu"
+      ],
+      "album": "SIx..",
+      "album_id": "3W5akORg0xBCv41bGF6eWb",
+      "duration_ms": 231360,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423338+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "TCJPO2185417"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 6,
+      "added_at": "2026-11-09T06:50:38Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2yYX7KbfWZrezWVW1vN3iz",
+      "uri": "spotify:track:2yYX7KbfWZrezWVW1vN3iz",
+      "name": "Eyeless",
+      "artists": [
+        "Slipknot"
+      ],
+      "artist_ids": [
+        "05fG473iIaoy82BF1aGhL8"
+      ],
+      "album": "Slipknot",
+      "album_id": "5lOFvOWAdy9G6p44noRILU",
+      "duration_ms": 236360,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423345+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLA329980193"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 7,
+      "added_at": "2026-11-09T06:52:41Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2ytBAXBAH1umKobAxpt4GX",
+      "uri": "spotify:track:2ytBAXBAH1umKobAxpt4GX",
+      "name": "Surfacing",
+      "artists": [
+        "Slipknot"
+      ],
+      "artist_ids": [
+        "05fG473iIaoy82BF1aGhL8"
+      ],
+      "album": "Slipknot (25th Anniversary Edition)",
+      "album_id": "24uSmiCdGfRf5MReMeWvmO",
+      "duration_ms": 218093,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423356+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLA329980195"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 8,
+      "added_at": "2026-11-09T06:52:55Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "493y8DggkqJOkATIveaqYb",
+      "uri": "spotify:track:493y8DggkqJOkATIveaqYb",
+      "name": "右も左も支配する頭は今日も肉を食いヨダレを垂らす",
+      "artists": [
+        "BLEACH"
+      ],
+      "artist_ids": [
+        "5gRsPZZNgrkagQnDlyFZUC"
+      ],
+      "album": "右も左も支配する頭は今日も肉を食いヨダレを垂らす。",
+      "album_id": "3f8G5dy15JsmIlWromNYCF",
+      "duration_ms": 187613,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423365+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "JPB590515015"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 9,
+      "added_at": "2026-11-09T06:53:45Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "5mpUKTdskZea0gStWzeHUZ",
+      "uri": "spotify:track:5mpUKTdskZea0gStWzeHUZ",
+      "name": "Unsainted",
+      "artists": [
+        "Slipknot"
+      ],
+      "artist_ids": [
+        "05fG473iIaoy82BF1aGhL8"
+      ],
+      "album": "We Are Not Your Kind",
+      "album_id": "754RY5WpZ2LTUZsk8kDBju",
+      "duration_ms": 260773,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-09T16:21:56.423372+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "NLA321900089"
+      },
+      "available_markets_count": 0
+    }
+  ]
 }
