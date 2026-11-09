@@ -15,13 +15,6 @@ function parsePart(value) {
   return JSON.parse(new TextDecoder().decode(decodePart(value)));
 }
 
-function equalText(a, b) {
-  if (typeof a !== "string" || typeof b !== "string" || a.length !== b.length) return false;
-  let mismatch = 0;
-  for (let i = 0; i < a.length; i++) mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return mismatch === 0;
-}
-
 /**
  * Verify a GitHub Actions OIDC JWT. Never accept decoded-but-unverified claims.
  * allowedWorkflowRefs must be exact, repository-controlled workflow_ref values.
@@ -37,8 +30,8 @@ export async function verifyActionsOidc(token, {
   let header;
   let claims;
   try { header = parsePart(parts[0]); claims = parsePart(parts[1]); } catch { throw new Error("Untrusted workload identity."); }
-  if (header.alg !== "RS256" || typeof header.kid !== "string") throw new Error("Untrusted workload identity.");
-  const jwksResponse = await fetchImpl(ISSUER + "/.well-known/jwks", { headers: { Accept: "application/json" } });
+  if (header.alg !== "RS256" || header.typ !== "JWT" || typeof header.kid !== "string" || Object.hasOwn(header, "jku") || Object.hasOwn(header, "x5u")) throw new Error("Untrusted workload identity.");
+  let jwksResponse;\n  try { jwksResponse = await fetchImpl(ISSUER + "/.well-known/jwks", { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(5000) }); } catch { throw new Error("Workload identity verification unavailable."); }
   if (!jwksResponse.ok) throw new Error("Workload identity verification unavailable.");
   const jwks = await jwksResponse.json();
   const jwk = Array.isArray(jwks.keys) ? jwks.keys.find((key) => key.kid === header.kid && key.kty === "RSA" && key.use === "sig" && key.alg === "RS256") : null;
