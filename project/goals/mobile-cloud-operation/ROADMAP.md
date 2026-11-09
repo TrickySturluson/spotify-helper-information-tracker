@@ -1,18 +1,15 @@
-# Authentication Management & Recovery — Roadmap
+**Status:** Active integration and recovery work. Base broker PR #185 merged at `8cd28530081c519112fd947ac7bb05edc0ce7b04`; diagnostic follow-ups #190 and #191 merged at `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3` and `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`. The production Worker `shit-auth-broker` is deployed at 100% traffic on version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`, 2026-11-09 09:46 UTC). This is the base OAuth broker with Durable Object migration v2; it does **not** yet have the broker-owned `SPOTIFY_CREDENTIAL_STORE` binding or encryption keyring. GitHub App secret metadata now reports both app credentials as `secret_text`. Live Spotify authorization is still failing in the callback and is not complete.
 
-**Status:** Active implementation. PR #185 contains the broker source, tests and owner-only deployment workflow. Its latest Cloudflare preview build and automated broker/repository tests pass; the PR remains open and production is not deployed. The non-secret health endpoint has an automated test, but independent live HTTP health verification is still outstanding. Real Spotify reauthorization is not complete.  
-**Priority:** User-authorized on 2026-11-08.  
-**Scope:** SHIT-wide authentication health, safe automatic refresh/rotation, diagnosis and consent-based recovery. Phone and desktop are equally supported.
+**Active implementation PRs:** PR #187 (`feature/broker-owned-spotify-credential-store`) and PR #188 (`feature/oidc-broker-refresh-endpoint`) remain drafts and are not mergeable against their current bases. PR #187's broker unit tests and Wrangler dry-run pass on head `1c8e6b46c292525c3a13019325a270d91f97a84d` (run #42598447923); its security scan is still running (run #42598447639). PR #188's last fully green test/security head is `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` (tests #42598096634, security #42598096535). New callback-stage instrumentation is on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; its fresh CI is pending. PR #187 is 130 commits ahead / 3 behind main; PR #188 is 267 ahead / 5 behind PR #187's base. Resolve the stacked branch divergence before merge. PR #189 is a separate engineering/general draft and must not be modified by this workstream.
 
-## Latest validation snapshot (2026-11-09)
+## Latest production and diagnostic evidence (2026-11-09)
 
-- PR #185 head: `cf12955669d08db80c6d17f1ea5e70b83558ef58`.
-- Cloudflare preview build: `9e69be82-564e-49c6-97c3-1e7d96fdbc3f`, successful for code commit `828f3606b64c571837576378a45ab47f0d717057`; the branch preview URL is active.
-- Broker unit tests passed on this commit; broader repository tests and full-history secret scans are running.
-- The broker's `GET /health` endpoint passed both its automated test and an independent GitHub Actions HTTP probe against the deployed preview for this exact commit. Response: `{ "status": "ok", "service": "shit-auth-broker" }`.
-- No production Worker deployment, OAuth consent, refresh-token replacement, or playlist operation has been performed.
-- Production Worker metadata shows `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` as `plain_text`; they must be rotated and re-created as `secret_text` Worker Secrets before deployment. The deployment workflow now enforces this without reading secret values.
-- The cross-workflow OIDC lease is a tested prototype only. It is not integrated into the nine token-consuming workflows and cannot by itself fence a late GitHub Secrets API write. The broker-controlled encrypted credential store remains the recommended end state; see [BROKER_CONTROLLED_REFRESH.md](BROKER_CONTROLLED_REFRESH.md).
+- Cloudflare Workers Builds configuration: root `auth-broker`, empty build command, production upload command `npx wrangler versions upload`, preview command `npx wrangler preview`; automatic builds and previews are enabled. Production promotion remains a separate owner-controlled action.
+- Active production Worker version 14 is 100% of traffic and has only `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE` Durable Object bindings (migration tag v2). It has no `SPOTIFY_CREDENTIAL_STORE`, `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS`, `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION`, or Spotify client-secret binding. Do not attempt the new broker-owned refresh path until these are provisioned and the integrated version is deployed.
+- The Cloudflare Secrets metadata endpoint confirms `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` are both `secret_text`; values were not read.
+- A redacted Workers Observability query for the prior 24 hours found six `shit_auth_broker_request_failed` events, all on `GET /spotify/callback`: four on version 13 at `broker.base_url_configuration` (two `BrokerError`, two `UnexpectedError`), and two on version 14 at `broker.route_dispatch` (`UnexpectedError`). No exception text, OAuth codes, tokens, cookies, or state were retrieved.
+- PR #188 now adds fixed callback-stage diagnostics (GitHub App JWT, installation lookup/token, concurrent-workflow check, Spotify code exchange, scope/identity verification, encrypted credential write, health dispatch, completion-state write and redirect). The test commit and current CI must pass before another consent attempt. The latest production callback failure is not yet localized beyond route dispatch.
+- No Spotify credential was successfully saved, no auth-health workflow success was verified, and no playlist operation was performed.
 
 ## Problem and target
 
@@ -22,9 +19,9 @@ The desired end state is a system that continuously monitors auth, refreshes and
 
 ## Required invariants
 
-1. GitHub Actions Secrets remains the source of truth for `SPOTIFY_REFRESH_TOKEN`.
+1. Transitional credential ownership is explicit: `SPOTIFY_REFRESH_TOKEN` in GitHub Actions Secrets remains the legacy source on current `main`; after the broker-owned cutover, the encrypted SQLite Durable Object is the sole long-lived refresh-token store. Do not dual-write or silently fall back. Workflows receive only short-lived access tokens through OIDC.
 2. Refresh tokens and access tokens are never exposed in logs, artifacts, issues, chat, browser storage, URLs or repository files.
-3. Automatic refresh and token rotation are allowed only through existing narrow GitHub App secret-write boundaries.
+3. After cutover, automatic refresh and rotation occur only inside the broker-owned Durable Object critical section. The existing GitHub App secret-write path is legacy and must not remain as a parallel refresh writer.
 4. A replacement refresh token is persisted before the old value is discarded; persistence failure is a hard failure.
 5. `invalid_grant` means reauthorization is required; do not retry the same credential.
 6. 429 honors Retry-After for both scheduled and manual attempts; missing/invalid headers use a conservative 24-hour fallback. 5xx/network failures remain distinct from auth failures.
@@ -83,10 +80,13 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Implement repository-scoped secret encryption/update of only `SPOTIFY_REFRESH_TOKEN`.
 - [x] Dispatch only read-only auth-health verification after confirmed secret persistence.
 - [x] Add security tests and reproducible deployment configuration.
-- [ ] Review and merge the reconciled broker source/tests/deployment workflow to `main` (PR #185 remains open; the preview build is not a production deployment).
-- [ ] Configure/verify Cloudflare Worker secrets/variables and the dedicated repository-scoped GitHub App; never retrieve or disclose secret values.
-- [ ] Register exact HTTPS callback URLs and deploy the Worker.
-- [ ] Complete owner-consented Spotify OAuth from phone and desktop browsers.
+- [x] Merge the base broker source/tests/owner-only deployment workflow (#185); merge safe diagnostic follow-ups (#190 and #191). The base Worker is deployed as version 14 at 100% traffic, but this does not mean broker-owned credential storage or Spotify authorization is complete.
+- [ ] Reconcile and merge the encrypted credential store and OIDC refresh integration in PRs #187/#188; both remain drafts and their branches are divergent.
+- [x] Verify GitHub App client secret/private key metadata as Cloudflare `secret_text` bindings; never retrieve values.
+- [ ] Provision the versioned Spotify credential encryption keyring and Spotify client-secret binding for the broker-owned store, plus active-key version and exact OIDC workflow allowlist. Confirm required metadata before deployment.
+- [x] Deploy the base Worker and verify version 14 receives 100% production traffic.
+- [ ] Deploy the integrated v3 credential-store/OIDC version after key provisioning and owner-controlled promotion; then retest the exact HTTPS callbacks.
+- [ ] Complete a fresh owner-consented Spotify OAuth flow only after the integrated credential-store version is active; verify from phone and desktop browsers.
 
 ### M4 — Central auth gate
 - [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
@@ -136,4 +136,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Design and implement the broker-owned encrypted credential store and OIDC-authorized refresh operation described in `BROKER_CONTROLLED_REFRESH.md`. Keep the lease coordinator isolated unless it has a separately justified role. Migrate all nine consumers only after operation fencing, concurrency tests, and the no-direct-refresh-token inventory test pass.
+Finish the current callback-stage diagnostics on PR #188 and verify fresh CI. Resolve PR #187's divergence against current `main`, then reconcile the stacked PR #188 branch without losing its nine-workflow OIDC migration. Independently review the full combined diff and rerun broker security tests, Durable Object integration tests, all Python regressions, dependency audit, Wrangler dry-run and full-history secret scan. Only then provision the missing encryption keyring/Spotify client-secret bindings and use the owner-only deployment path. Do not ask the user to retry Spotify consent until the integrated Worker version is confirmed active at 100% traffic.
