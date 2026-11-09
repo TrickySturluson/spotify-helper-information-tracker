@@ -1,11 +1,11 @@
-# Mobile Cloud Operation & Spotify Reauthorization — Roadmap
+# Centralized Authentication & Mobile Cloud Operation — Roadmap
 
-**Status:** Broker source implementation is complete in review PR #182; reconciled-branch CI passed on head `e2b941180bf3b187ed13dc6f3a7d2d20e88afcd6`. No broker is deployed.  
+**Status:** Broker source and security tests were merged in PR #182. The owner identified the existing Worker as `shit-auth-broker` at `https://shit-auth-broker.trickysturluson.workers.dev`. PR #189 aligns Wrangler and the deployment runbook with that Worker and updates the centralized-auth documentation. Broker tests and Wrangler dry-run passed on the latest PR head; production deployment, external app/callback configuration, and end-to-end authorization remain unverified.  
 **Priority:** Active, explicitly authorized by the user on 2026-11-08.
 
 ## Problem
 
-SHIT already runs playlist operations in GitHub Actions, but recovery from an invalid/revoked Spotify refresh token still requires a local process to receive the OAuth callback on port 8888, followed by manual token transfer into GitHub Actions Secrets. The user wants mobile operation without Codespaces or a personal computer, while retaining all playlist security rules.
+SHIT already runs playlist operations in GitHub Actions, but recovery from an invalid/revoked Spotify refresh token still requires a local process to receive the OAuth callback on port 8888, followed by manual token transfer into GitHub Actions Secrets. The user wants centralized SHIT authentication and recovery without Codespaces or a personal computer; a phone-friendly browser is the owner-facing entry point, while the broker is intended to serve SHIT's cloud workflows. All existing playlist security rules remain unchanged.
 
 ## Required invariants
 
@@ -48,7 +48,9 @@ SHIT already runs playlist operations in GitHub Actions, but recovery from an in
 
 - [x] Add infrastructure configuration and reproducible deployment workflow.
 - [x] Document external secret/variable names only; keep values out of repository documentation.
-- [ ] Deploy to a managed HTTPS runtime and register the exact Spotify callback URI.
+- [ ] Confirm the existing `shit-auth-broker` Worker has its canonical `workers.dev` hostname enabled.
+- [ ] Configure GitHub App and Spotify callback URLs for `https://shit-auth-broker.trickysturluson.workers.dev` before deployment.
+- [ ] Deploy to the existing managed HTTPS Worker and verify its runtime configuration.
 - [ ] Install the minimal repository-scoped GitHub App.
 - [ ] Configure GitHub App web authorization and runtime secrets.
 - [x] Confirm no persistent Spotify refresh-token storage exists in the broker through source review and regression tests.
