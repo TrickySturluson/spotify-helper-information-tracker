@@ -10,6 +10,7 @@ permissions:
   contents: write
   issues: write
   actions: read
+  id-token: write
 
 concurrency:
   group: spotify-playlist-control
@@ -49,14 +50,10 @@ jobs:
               playlist_id = command.get("playlist_id") or (state.get("pending") or {}).get("playlist_id", "")
               output.write("playlist_id=" + str(playlist_id) + "\n")
           PY
-      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
-
-        id: spotify-secret-writer
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
-          permission-secrets: write
+      - name: Obtain central Spotify access token
+        env:
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
 
       - name: Refresh playlist removal history before protected staging or confirmation
         if: >-
@@ -72,9 +69,6 @@ jobs:
           steps.parse-command.outputs.pending_kind))
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
         run: |
           # The removal tracker uses the shared Spotify manager, which reads
@@ -112,9 +106,6 @@ jobs:
         id: command
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: python compat/spotify_playlist_cloud.py
@@ -122,9 +113,6 @@ jobs:
         if: steps.command.outcome == 'success' && steps.parse-command.outputs.playlist_id != ''
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           PLAYLIST_ID: ${{ steps.parse-command.outputs.playlist_id }}
         run: python compat/track_playlist_removals.py "$PLAYLIST_ID"
       - name: Preserve playlist snapshots
@@ -191,8 +179,7 @@ jobs:
 #           preview or explicitly confirmed operation through the playlist manager.
 # Writes: May mutate only playlists allowed by the manager's deny-by-default policy;
 #         persists manager state/audit and command results, and comments on the issue.
-# Credentials: Spotify client/refresh token, Last.fm key for relevant commands, and a
-#              narrowly scoped GitHub App token for refresh-token secret rotation.
+# Credentials: Short-lived Spotify access tokens from the OIDC broker; Last.fm key for relevant commands.
 # Safety: Serialized by spotify-playlist-control; ownership, lock/unlock, staging,
 #         explicit confirmation, blacklist, backup and read-back checks are mandatory.
 # Related: scripts/spotify/spotify_playlist_manager.py, spotify_playlist_cloud.py,
