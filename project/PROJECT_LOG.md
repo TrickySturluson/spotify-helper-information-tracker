@@ -114,6 +114,17 @@
 
 # SHIT Project Log
 
+## 2026-11-09 UTC — Central auth broker base deployment and callback diagnosis
+
+- PR #185 merged the base broker and owner-only deployment workflow; PR #190/#191 merged subsequent Cloudflare and safe diagnostic fixes.
+- Cloudflare production Worker `shit-auth-broker` version 14 now receives 100% traffic. Version metadata confirms migration v2 and the existing OAuth state/refresh-lease Durable Objects, but not the broker-owned credential-store binding/keyring. GitHub App secret metadata is `secret_text`.
+- A redacted observability query found six Spotify callback failures in the prior 24 hours: four on version 13 at `broker.base_url_configuration`, two on version 14 at `broker.route_dispatch`. The exception contents and credential material were not retrieved.
+- PR #187/#188 contain the encrypted credential store, OIDC refresh endpoint and nine-workflow migration. Prior checks are green on documented commits; latest callback-stage instrumentation needs fresh CI. Both PRs remain draft/unmergeable pending branch reconciliation.
+- The base Worker deployment is not end-to-end authentication success. No Spotify credential persistence or auth-health pass has been verified, and no playlist operation was performed.
+- Next: resolve PR branch ancestry, finish callback diagnostics, provision the missing keyring/client-secret bindings under the owner-controlled release gate, deploy the integrated version, then complete fresh owner consent and two read-only health checks.
+
+---
+
 ## 2026-11-06 — Future SHIT-wide health system deferred until Babel completion
 
 - **User direction:** once Babel is considered realistically as complete as it can be, revisit making Buddy a permanent part of SHIT's overall health.
