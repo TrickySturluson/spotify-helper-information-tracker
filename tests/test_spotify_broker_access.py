@@ -88,3 +88,12 @@ class BrokerAccessTokenTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Test the GitHub Actions OIDC client used to obtain broker-issued Spotify access tokens.
+# Coverage: OIDC audience, HTTPS validation, payload minimization, refresh-token rejection, and expiry.
+# Safety: Uses fake responses only; no GitHub, Cloudflare, or Spotify credentials or network calls.
+# Related: scripts/spotify/broker_access_token.py, auth-broker/src/index.js.
+# -----------------------------------------------------------------------------
