@@ -17,6 +17,7 @@ This module explores moving the long-lived Spotify refresh token out of GitHub A
 - The credential version increments only after identity verification and encrypted persistence.
 - The long-lived refresh token is never included in the response.
 - A committed operation ID cannot be replayed.
+- A same-account `reauthorize` operation can restore a blocked credential after a new owner-consented OAuth grant has been verified by the Worker callback. It increments the credential version, encrypts under the active key version, preserves replay protection, and rejects account changes or ready/in-progress records. This method is not exposed as a public Worker route; callback authorization/handoff remains unimplemented.
 - Provider errors, timeouts, invalid identity, corrupted ciphertext, or ambiguous outcomes fail closed and require owner reauthorization rather than retrying a possibly invalidated refresh token.
 
 ## Important limitations
