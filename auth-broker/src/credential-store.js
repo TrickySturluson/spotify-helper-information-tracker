@@ -10,7 +10,7 @@ function json(body, status = 200) {
 }
 
 function decodeBase64(value) {
-  if (typeof value !== "string" || !/^[A-Za-z0-9+/]{43}=$/.test(value)) {
+  if (typeof value !== "string" || value.length > 20_000 || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value)) {
     throw new CredentialStoreError("Credential encryption is not configured.");
   }
   const binary = atob(value);
