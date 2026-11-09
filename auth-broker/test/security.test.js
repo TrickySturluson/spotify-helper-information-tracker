@@ -275,7 +275,12 @@ test("broker source exposes only the Spotify refresh secret and read-only verifi
   assert.match(source, /actions\/secrets\/\$\{SECRET_NAME\}/);
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
-  assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
+  assert.doesNotMatch(source, /console\.(?:log|info|warn)/);
+  const diagnosticLog = source.match(/console\.error\(\{([\s\S]*?)\}\);/)?.[1] || "";
+  assert.match(diagnosticLog, /event: "shit_auth_broker_request_failed"/);
+  assert.match(diagnosticLog, /stage: diagnosticStage/);
+  assert.match(diagnosticLog, /error_class: expected \? "BrokerError" : "UnexpectedError"/);
+  assert.doesNotMatch(diagnosticLog, /error\.message|stack|token|cookie|state|url/i);
   assert.match(source, /isAuthorizedOwner\(user\.login\)/);
   assert.doesNotMatch(source, /env\.GITHUB_OWNER/);
 });
@@ -510,6 +515,29 @@ test("OAuth provider rejection returns a generic error without provider response
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("GitHub authorization start exposes a safe diagnostic stage when the rate limiter is unavailable", async () => {
+  const result = await handleRequest(new Request("https://broker.example/auth/github/start"), { BROKER_BASE_URL: "https://broker.example" });
+  const body = await result.text();
+  assert.equal(result.status, 200);
+  assert.match(body, /Diagnostic stage: github_start\.rate_limit/);
+  assert.doesNotMatch(body, /token|secret|cookie|state=/i);
+});
+
+test("GitHub authorization start identifies Durable Object state-storage failures without exposing details", async () => {
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    GITHUB_APP_CLIENT_ID: "public-client-id",
+    GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    OAUTH_STATE: { idFromName: () => "oauth-state", get: () => ({ fetch: async () => { throw new Error("sensitive internal detail"); } }) },
+  };
+  const result = await handleRequest(new Request("https://broker.example/auth/github/start"), env);
+  const body = await result.text();
+  assert.equal(result.status, 200);
+  assert.match(body, /Diagnostic stage: github_start\.oauth_state_storage/);
+  assert.doesNotMatch(body, /sensitive internal detail|public-client-id|state=/i);
 });
 
 test("public health endpoint is non-secret and does not require OAuth configuration", async () => {

@@ -45,4 +45,8 @@ namespace_id = "20261108"
 simple = { limit = 20, period = 60 }
 
 [observability]
-enabled = false
+enabled = true
+
+[observability.logs]
+invocation_logs = true
+head_sampling_rate = 1
