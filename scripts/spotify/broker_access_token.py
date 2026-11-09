@@ -82,7 +82,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
     oidc_url = str(env.get("ACTIONS_ID_TOKEN_REQUEST_URL", "")).strip()
     oidc_request_token = str(env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN", "")).strip()
     broker_base = str(env.get("SHIT_AUTH_BROKER_URL", "")).strip().rstrip("/")
-    if not oidc_url or not oidc_request_token or not broker_base or "\n" in oidc_request_token or "\r" in oidc_request_token:
+    if not oidc_url or not oidc_request_token or not broker_base or "\n" in oidc_request_token or "\r" in oidc_request_token or "\n" in broker_base or "\r" in broker_base:
         raise BrokerTokenError("GitHub OIDC or SHIT broker configuration is missing.")
 
     parsed_oidc = urllib.parse.urlsplit(oidc_url)
@@ -155,6 +155,7 @@ def main():
         print("::add-mask::" + access_token)
         with open(env_file, "a", encoding="utf-8") as handle:
             handle.write("SHIT_AUTH_MODE=broker\n")
+            handle.write("SHIT_AUTH_BROKER_URL=" + os.environ["SHIT_AUTH_BROKER_URL"].strip().rstrip("/") + "\n")
             handle.write("SHIT_BROKER_ACCESS_TOKEN=" + access_token + "\n")
             handle.write("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN=" + str(expires_in) + "\n")
     except BrokerTokenError as exc:
