@@ -81,7 +81,10 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ### M4 — Central auth gate
 - [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
 - [ ] Define a reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
-- [ ] Choose a cross-workflow single-flight strategy. Existing workflow concurrency groups are mostly separate; `update.yml` has no group. GitHub now supports `queue: max` (up to 100 pending runs), but a single global queue could let a long Great Migration run delay time-sensitive Daily work. Evaluate a job-level auth lock or split auth/operation jobs before changing workflow concurrency.
+- [x] Define the short critical-section OIDC-authenticated Durable Object lease design; see [REFRESH_TOKEN_SINGLE_FLIGHT.md](REFRESH_TOKEN_SINGLE_FLIGHT.md). No global Actions concurrency group is permitted.
+- [ ] Implement and test OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations.
+- [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist.
+- [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
 - [ ] Distinguish authentication from 429, 5xx, network, permission and configuration failures.
 - [ ] Block operations on known invalid credentials; do not silently skip the gate.
@@ -123,4 +126,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Add regression tests and workflow-level verification for the commit-status latch and scheduled skip/Retry-After behavior, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
+Implement the separately specified OIDC-authenticated Durable Object lease coordinator and concurrency/fencing tests. Do not roll out shared auth preflight until all nine refresh-token consumers use the lock and the inventory test passes.
