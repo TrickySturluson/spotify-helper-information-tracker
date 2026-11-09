@@ -374,3 +374,17 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Updated the consumer inventory and regression tests: auth-health is the first canary; eight direct refresh-token consumers remain. Updated broker README, credential-store status, controlled-refresh architecture, and roadmap.
 - Changes are on stacked draft PR #188 (base PR #187, itself based on PR #185). CI run #42567648435 was pending at the last check; later commits require fresh CI. No production deployment, Cloudflare key provisioning, live Spotify OAuth, external app permission change, repository secret rotation/deletion, or playlist/Library operation occurred.
 - Remaining blockers: passing CI and security review; real Cloudflare Durable Object integration; secure encryption-key provisioning/backup/rotation/recovery; live OIDC claim validation; two independent broker-backed auth-health checks; migration and verification of the remaining eight workflows; explicit owner approval before production cutover.
+
+
+## 2026-11-09 — All nine Spotify workflows migrated to the broker client
+
+- Migrated Daily live preflight, Daily midnight cycle, Daily feedback observation, Daily snapshot refresh, Spotify Reference Library, owner Playlist Manager, both Great Migration credential-verification jobs, and `update.yml` to obtain short-lived broker access tokens through GitHub OIDC.
+- The auth-health workflow remains the only consumer permitted to force a refresh after a cached access token receives an early 401. The broker rejects forced refresh from every other workflow identity.
+- Added encrypted access-token caching in the Durable Object. Concurrent workflow jobs wait for one in-flight refresh and reuse the same encrypted cached token; provider 429 cooldowns are persisted and propagated.
+- Added fail-closed `SHIT_AUTH_MODE=broker` to the shared Spotify manager. It refuses to read legacy token files or persist rotated refresh tokens when broker mode is active. Daily preflight, Daily snapshot, and Daily cycle no longer seed local refresh-token files in broker mode.
+- Reworked Great Migration's provider verifier to request an OIDC broker token and perform read-only `/v1/me`; it no longer contacts Spotify's token endpoint directly.
+- Removed all direct `SPOTIFY_REFRESH_TOKEN` inputs, secret-writer App steps, and token-file seeding from the nine workflow definitions. Existing playlist locks, snapshots, confirmation boundaries, audits, and write paths were not intentionally changed.
+- OIDC policy now allows `issues` only for the exact Playlist Manager and Great Migration workflow refs, and `issue_comment` only for Playlist Manager. The deployment allowlist is pinned to exactly nine main-branch workflow refs.
+- Updated the workflow inventory test to require zero legacy refresh-token workflow consumers and exact broker-client usage in all nine workflows.
+- No production deployment, Cloudflare key provisioning, live OAuth, GitHub App permission change, legacy secret deletion, playlist modification, or Library write occurred. Main remains unchanged until the stacked PRs are reviewed/merged and the owner approves coordinated cutover.
+- Validation remains pending on the latest branch head. Required before deployment: all CI/security checks, real Durable Object integration tests, exact OIDC claim validation for issue events, two independent read-only health checks, and key backup/rotation/recovery readiness.
