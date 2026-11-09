@@ -94,7 +94,7 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-The broker source, automated security tests, and owner-only deployment workflow are in PR #185. The centralized Worker preview for commit `1a641a6ff1ffb9ac04af1685e0b6cc2c48c8c952` completed successfully after correcting dependency discovery, preview configuration, and Cloudflare Preview URL routing. The automated broker tests (including the non-secret `/health` test) and repository security scans passed on that commit. This is preview-only: production deployment and live browser-based authorization have not been verified. Owner-reported provisioning is recorded in `project/goals/mobile-cloud-operation/README.md`; do not ask for secret values. Remaining gates:
+The broker source, automated security tests, and owner-only deployment workflow are in PR #185. The centralized Worker preview for code commit `828f3606b64c571837576378a45ab47f0d717057` completed successfully after correcting dependency discovery, preview configuration, and Cloudflare Preview URL routing. The automated broker tests passed, and a separate GitHub Actions smoke test made an HTTP request to the deployed preview's `/health` endpoint and verified `{ "status": "ok", "service": "shit-auth-broker" }`. This is preview-only: production deployment and live browser-based authorization have not been verified. Owner-reported provisioning is recorded in `project/goals/mobile-cloud-operation/README.md`; do not ask for secret values. Remaining gates:
 
 - Verify the pre-created Cloudflare Worker's canonical `workers.dev` URL and configured secret names.
 - Verify the dedicated broker GitHub App is installed only on this repository with Actions:write and Secrets:write.
