@@ -61,9 +61,9 @@ jobs:
             [1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]) ;;
             *) echo "::error::SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION must be a positive integer."; exit 1 ;;
           esac
-          expected_workflow_ref="$GITHUB_REPOSITORY/.github/workflows/spotify-auth-health-check.yml@refs/heads/main"
-          if [ "$SPOTIFY_REFRESH_WORKFLOW_REFS" != "$expected_workflow_ref" ]; then
-            echo "::error::Initial broker rollout must allowlist only the exact main-branch auth-health workflow ref."
+          expected_workflow_refs="$GITHUB_REPOSITORY/.github/workflows/spotify-auth-health-check.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-live-preflight.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-feedback-observation.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/tricky-daily-snapshot-refresh.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-reference-library.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-playlist-manager.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/great-migration.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/update.yml@refs/heads/main"
+          if [ "$SPOTIFY_REFRESH_WORKFLOW_REFS" != "$expected_workflow_refs" ]; then
+            echo "::error::The broker allowlist must exactly match the nine migrated main-branch Spotify workflow refs; wildcards and additional workflows are forbidden."
             exit 1
           fi
       - name: Deploy Worker
