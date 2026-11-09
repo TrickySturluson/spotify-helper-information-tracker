@@ -2,6 +2,8 @@ const SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token";
 const SPOTIFY_ME_URL = "https://api.spotify.com/v1/me";
 const MAX_BODY_BYTES = 16_384;
 const OPERATION_TTL_MS = 120_000;
+const REFRESH_WAIT_MS = 15_000;
+const REFRESH_POLL_MS = 100;
 const ENCRYPTION_KEY_VERSION = 1;
 
 class CredentialStoreError extends Error {}
@@ -96,6 +98,49 @@ async function decryptRefreshToken(record, key, accountId) {
   } catch {
     throw new CredentialStoreError("Stored Spotify credential could not be authenticated; reauthorization is required.");
   }
+}
+
+function accessTokenAssociatedData(version, accountId, keyVersion) {
+  return new TextEncoder().encode("SHIT:spotify-access-token:v1:" + keyVersion + ":" + version + ":" + accountId);
+}
+
+async function encryptAccessToken(token, key, version, accountId, keyVersion) {
+  if (typeof token !== "string" || !token || token.length > 8192 || /[\\r\\n]/.test(token)) {
+    throw new CredentialStoreError("Spotify did not return a usable access token.");
+  }
+  const nonce = randomBytes(12);
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv: nonce, additionalData: accessTokenAssociatedData(version, accountId, keyVersion), tagLength: 128 },
+    key,
+    new TextEncoder().encode(token),
+  );
+  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version };
+}
+
+async function decryptAccessToken(record, key, accountId) {
+  try {
+    const plaintext = await crypto.subtle.decrypt(
+      {
+        name: "AES-GCM",
+        iv: decodeBase64(record.nonce),
+        additionalData: accessTokenAssociatedData(record.version, accountId, record.keyVersion),
+        tagLength: 128,
+      },
+      key,
+      decodeBase64(record.ciphertext),
+    );
+    return new TextDecoder().decode(plaintext);
+  } catch {
+    throw new CredentialStoreError("Cached Spotify access token could not be authenticated.");
+  }
+}
+
+function retryAfterSeconds(value) {
+  const raw = String(value || "").trim();
+  if (/^\\d{1,8}$/.test(raw)) return Math.min(604800, Number(raw));
+  const timestamp = Date.parse(raw);
+  if (Number.isFinite(timestamp)) return Math.min(604800, Math.max(0, Math.ceil((timestamp - Date.now()) / 1000)));
+  return 86400;
 }
 
 async function parseSmallJson(request) {
