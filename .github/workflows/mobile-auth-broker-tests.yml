@@ -58,8 +58,10 @@ jobs:
           python-version: "3.11"
       - name: Install pinned broker dependencies and refresh lockfile
         run: |
+          npm install --global npm@10.9.4
+          npm --version
           rm -f package-lock.json
-          npm install --ignore-scripts --no-audit --no-fund
+          npm install --ignore-scripts --no-audit --no-fund --legacy-peer-deps
       - name: Preserve generated dependency lockfile for review
         uses: actions/upload-artifact@v7.0.2
         with:
