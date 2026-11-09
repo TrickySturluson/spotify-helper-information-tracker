@@ -82,8 +82,8 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
 - [ ] Define a reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
 - [x] Define the short critical-section OIDC-authenticated Durable Object lease design; see [REFRESH_TOKEN_SINGLE_FLIGHT.md](REFRESH_TOKEN_SINGLE_FLIGHT.md). No global Actions concurrency group is permitted.
-- [ ] Implement and test OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations.
-- [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist.
+- [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; implementation and test results remain under CI review.
+- [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
 - [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
 - [ ] Distinguish authentication from 429, 5xx, network, permission and configuration failures.
