@@ -57,11 +57,17 @@ test("all nine Spotify workflows use the central OIDC broker", async () => {
   for (const filename of EXPECTED_BROKER_CONSUMERS) {
     const source = await readFile(path.join(WORKFLOW_DIR, filename), "utf8");
     assert.match(source, /id-token:\s*write/, filename + " must request GitHub OIDC permission");
-    assert.ok(
-      source.includes("scripts/spotify/broker_access_token.py") ||
-      source.includes("scripts.spotify.broker_access_token"),
-      filename + " must obtain access through the broker client",
-    );
+    if (filename === "great-migration.yml") {
+      assert.ok(source.includes("verify_provider_credentials.py"));
+      const verifier = await readFile(path.join(ROOT, "scripts", "music", "verify_provider_credentials.py"), "utf8");
+      assert.ok(verifier.includes("scripts.spotify.broker_access_token"));
+    } else {
+      assert.ok(
+        source.includes("scripts/spotify/broker_access_token.py") ||
+        source.includes("scripts.spotify.broker_access_token"),
+        filename + " must obtain access through the broker client",
+      );
+    }
     assert.doesNotMatch(source, /SPOTIFY_REFRESH_TOKEN|SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN|spotify-secret-writer/,
       filename + " must not use legacy refresh-token storage");
   }
