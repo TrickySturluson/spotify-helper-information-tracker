@@ -99,6 +99,8 @@ jobs:
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
           GH_STATUS_TOKEN: ${{ github.token }}
           BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
         run: |
@@ -146,7 +148,8 @@ jobs:
                        f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['GITHUB_SHA']}",
                        "-f", f"state={commit_state}",
                        "-f", "context=spotify-auth-health",
-                       "-f", f"description={description}"],
+                       "-f", f"description={description}",
+                       "-f", f"target_url={os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}"],
                       check=True,
                       stdout=subprocess.DEVNULL,
                       stderr=subprocess.PIPE,
