@@ -140,9 +140,6 @@ export class SpotifyCredentialStore {
   }
 
   async refresh(input, key) {
-    if (!String(this.env.SPOTIFY_CLIENT_ID || "").trim() || !String(this.env.SPOTIFY_CLIENT_SECRET || "").trim()) {
-      return json({ error: "provider_configuration_error" }, 503);
-    }
     if (typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
       return json({ error: "invalid_operation" }, 400);
     }
@@ -165,11 +162,10 @@ export class SpotifyCredentialStore {
       const tokenResponse = await fetch(SPOTIFY_TOKEN_URL, {
         method: "POST",
         headers: {
-          Authorization: "Basic " + btoa(this.env.SPOTIFY_CLIENT_ID + ":" + this.env.SPOTIFY_CLIENT_SECRET),
           "Content-Type": "application/x-www-form-urlencoded",
           Accept: "application/json",
         },
-        body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: refreshToken }),
+        body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: refreshToken, client_id: this.env.SPOTIFY_CLIENT_ID }),
         signal: AbortSignal.timeout(12_000),
       });
       if (!tokenResponse.ok) {
