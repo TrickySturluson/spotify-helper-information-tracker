@@ -1,3 +1,9 @@
+# Current work overlay — 2026-11-09
+
+- **Cloud Development Environment:** initial Codespaces devcontainer, safe-use runbook, and secret-free CI validation are prepared on `feature/codespaces-development-environment`. Provisioning has not been verified. ChatGPT still has no interactive Codespaces terminal; repository and Actions access are not equivalent to shell access. See [the workstream roadmap](goals/cloud-development-environment/ROADMAP.md) and [runbook](../docs/operations/codespaces-development.md).
+- **Authentication Management & Recovery remains the primary operational objective.** Codespaces is development infrastructure only; it does not replace auth monitoring, refresh-token rotation, consent-based reauthorization, or the unresolved cross-workflow refresh-token single-flight design.
+- **Buddy status:** the daily Babel continuation automation is disabled and its latest recorded attempt failed on 2026-11-08; today's successful run is not present. Treat Buddy as pending/blocked, not complete.
+
 # Current policy overlay — 2026-11-07
 
 > This section supersedes older handoff language below that says Babel is the sole active SHIT workstream or that ChatGPT must wait for user review/merge for every documentation update. The authoritative rules are in [AGENTS.md](../AGENTS.md), [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../docs/BABEL_CHATGPT_BUDDY.md).
