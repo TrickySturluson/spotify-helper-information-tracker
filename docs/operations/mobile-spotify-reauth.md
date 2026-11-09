@@ -6,13 +6,13 @@ Deploy the SHIT OAuth broker so the owner can reauthorize Spotify from a phone o
 
 Repository: `TrickySturluson/spotify-helper-information-tracker`
 
-Deployment workflow: [Deploy SHIT Mobile Auth Broker](https://github.com/TrickySturluson/spotify-helper-information-tracker/blob/main/.github/workflows/deploy-mobile-auth-broker.yml)
+Deployment workflow: [Deploy SHIT Auth Broker](https://github.com/TrickySturluson/spotify-helper-information-tracker/blob/main/.github/workflows/deploy-mobile-auth-broker.yml)
 
 ## Current verified state
 
 - Broker source and tests are merged to `main`.
 - The deployment workflow exists and is owner-gated.
-- The Worker has **not** been deployed.
+- The Worker `shit-auth-broker` has been created but has **not** yet been deployed with the SHIT broker code.
 - No broker OAuth completion has been verified.
 - No current Spotify refresh token should be assumed valid.
 - Poker Test playlist `4Ccwf3QRr8HfSsK48pTuBI` remains blocked from modification until auth is healthy and the normal SHIT playlist-control sequence is followed.
@@ -23,9 +23,9 @@ Complete these steps in the relevant dashboards. Do not paste secrets, private k
 
 ### 1. Cloudflare
 
-- [ ] Create Worker `shit-mobile-auth-broker`.
+- [ ] Use the already-created Worker `shit-auth-broker`.
 - [ ] Enable its stable `workers.dev` hostname.
-- [ ] Record the exact HTTPS origin, e.g. `https://shit-mobile-auth-broker.<your-subdomain>.workers.dev`.
+- [ ] Record the exact HTTPS origin, e.g. `https://shit-auth-broker.<your-subdomain>.workers.dev`.
 - [ ] Record the Cloudflare Account ID.
 - [ ] Create a Cloudflare API token scoped to the existing Worker with Workers Editor permission.
 - [ ] Keep the API token available only for the GitHub Actions secret entry below.
@@ -71,7 +71,7 @@ Set these **Worker secrets** in Cloudflare, not in GitHub variables:
 ### 5. Deploy and verify
 
 - [ ] Open the repository Actions tab.
-- [ ] Select **Deploy SHIT Mobile Auth Broker**.
+- [ ] Select **Deploy SHIT Auth Broker**.
 - [ ] Choose Run workflow on `main`, initiated by the repository owner account.
 - [ ] Confirm the deployment run succeeds.
 - [ ] Open the canonical Worker URL in a phone or desktop browser.
