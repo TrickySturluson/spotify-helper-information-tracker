@@ -283,10 +283,19 @@ test("deployment workflow injects every public runtime variable without dashboar
     "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION",
     "SPOTIFY_REFRESH_WORKFLOW_REFS",
   ]) {
-    const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
-    assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
+    if (name !== "SPOTIFY_REFRESH_WORKFLOW_REFS") {
+      const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
+      assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
+    }
     assert.ok(workflow.includes('--var "' + name + ':'), name + ' must be passed to Wrangler');
   }
+  const allowlistMatch = workflow.match(/expected_workflow_refs="([^"]+)"/);
+  assert.ok(allowlistMatch, "deployment workflow must generate the exact OIDC workflow allowlist");
+  const workflowRefs = allowlistMatch[1].split(",");
+  assert.equal(workflowRefs.length, 9, "only the nine inventoried Spotify consumers are allowlisted");
+  assert.ok(workflowRefs.every((ref) => ref.endsWith("@refs/heads/main")));
+  assert.ok(workflowRefs.every((ref) => !ref.includes("*")));
+  assert.match(workflow, /SPOTIFY_REFRESH_WORKFLOW_REFS=\$expected_workflow_refs/);
   assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
   assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
   assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
