@@ -4,10 +4,7 @@ title = "SHIT public music-library identifier allowlist"
 useDefault = true
 
 [allowlist]
-description = "Exact known false positives only: public catalog identifiers and audited auth-state metadata fingerprints."
-regexes = [
-  '''SPOTIFY_AUTH_STATE_SHA: [a-f0-9]{40}''',
-]
+description = "Exact known false positives only: public catalog data and audited auth-state metadata fingerprints."
 paths = ['''assistant_data/music/library/library_index\.json''']
 fingerprints = [
   "550715ced0f0a001b4a1d509d713759e21afa4f4:.github/workflows/spotify-auth-health-check.yml:generic-api-key:11",
