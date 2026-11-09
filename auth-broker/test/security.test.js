@@ -40,6 +40,7 @@ test("readiness fails closed unless broker config and Durable Object keyring are
       SPOTIFY_CLIENT_ID: "public-client-id",
       SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
       SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+      AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
       SPOTIFY_CREDENTIAL_STORE: {
         idFromName: (name) => name,
         get: () => ({
@@ -54,6 +55,29 @@ test("readiness fails closed unless broker config and Durable Object keyring are
   assert.equal(ready.status, 200);
   assert.deepEqual(await ready.json(), { status: "ready", service: "shit-auth-broker" });
   assert.equal(probedUrl, "https://spotify-credential.internal/ready");
+});
+
+test("readiness is rate limited and fails closed when the limiter is missing", async () => {
+  const missing = await handleRequest(
+    new Request("https://broker.example/ready"),
+    {
+      BROKER_BASE_URL: "https://broker.example",
+      SPOTIFY_CLIENT_ID: "client",
+      SPOTIFY_REFRESH_WORKFLOW_REFS: "approved",
+      SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+      SPOTIFY_CREDENTIAL_STORE: { idFromName: (name) => name, get: () => ({ fetch: async () => Response.json({ status: "ready" }) }) },
+    },
+  );
+  assert.equal(missing.status, 503);
+  assert.deepEqual(await missing.json(), { status: "not_ready", service: "shit-auth-broker" });
+
+  let calls = 0;
+  const limited = await handleRequest(
+    new Request("https://broker.example/ready"),
+    { BROKER_BASE_URL: "https://broker.example", AUTH_RATE_LIMITER: { limit: async () => { calls += 1; return { success: false }; } } },
+  );
+  assert.equal(limited.status, 200); // Generic diagnostic page, no readiness data or secret details.
+  assert.equal(calls, 1);
 });
 
 test("broker reports missing canonical base URL at a dedicated safe stage", async () => {
