@@ -164,7 +164,7 @@ class Spotify:
                 broker_expires=int(os.environ.get("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN", "3600"))
             except (TypeError, ValueError):
                 raise ManagerError("SHIT broker access-token lifetime is invalid.")
-            if not 120 <= broker_expires <= 86400 or "\n" in broker_access_token or "\r" in broker_access_token:
+            if not 120 <= broker_expires <= 86400 or len(broker_access_token) > 8192 or "\n" in broker_access_token or "\r" in broker_access_token:
                 raise ManagerError("SHIT broker access token or lifetime is invalid.")
             self.t={"access_token":broker_access_token,"obtained_at":time.time(),"expires_in":broker_expires}
         else:
