@@ -73,6 +73,9 @@ Do not share secret values with ChatGPT or put them in issues, PRs, logs, or wor
 
 ## Failure and recovery semantics
 
+Worker observability remains enabled for operational diagnosis. Broker logs may contain only fixed diagnostic stage names and error classes; never log exception contents, OAuth codes, tokens, cookies, state values, or credential material.
+
+
 - OIDC identity, audience, workflow, repository, owner, ref, event, run, and timestamp checks fail closed.
 - The credential object reserves a refresh operation transactionally before contacting Spotify. Concurrent callers wait for the result and reuse the encrypted access-token cache rather than starting competing refreshes.
 - Concurrent refresh attempts are rejected. The refresh token is never returned to a workflow.
