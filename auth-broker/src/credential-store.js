@@ -78,7 +78,7 @@ async function encryptRefreshToken(token, key, version, accountId, keyVersion = 
     key,
     new TextEncoder().encode(token),
   );
-  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version, expiresAt };
+  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version };
 }
 
 async function decryptRefreshToken(record, key, accountId) {
@@ -113,7 +113,7 @@ async function encryptAccessToken(token, key, version, accountId, keyVersion, ex
     key,
     new TextEncoder().encode(token),
   );
-  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version };
+  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version, expiresAt };
 }
 
 async function decryptAccessToken(record, key, accountId) {
