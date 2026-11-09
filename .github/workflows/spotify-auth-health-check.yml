@@ -95,6 +95,7 @@ jobs:
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
         run: |
           python - <<'PY'
           import base64
@@ -115,6 +116,13 @@ jobs:
                   output.write(f"status={status}\n")
               with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
                   summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
+                  if status == "reauthorization_required":
+                      broker_url = os.environ.get("BROKER_BASE_URL", "").strip()
+                      parsed_broker = urllib.parse.urlsplit(broker_url)
+                      if parsed_broker.scheme == "https" and parsed_broker.netloc and parsed_broker.path in ("", "/") and not parsed_broker.query and not parsed_broker.fragment and not parsed_broker.username:
+                          summary.write(f"\n**Owner action:** [Open SHIT Spotify authorization]({broker_url}/) and complete the GitHub-owner then Spotify consent flow.\n")
+                      else:
+                          summary.write("\n**Owner action:** Fresh Spotify consent is required. If the broker is not yet deployed, follow docs/operations/mobile-spotify-reauth.md for the owner-only setup and deployment steps.\n")
               print(f"AUTH_HEALTH_STATUS={status}")
               if state_value:
                   retry_marker = state_value.split(":", 1)[1] if state_value.startswith("rate_limited_until:") else "unknown"
