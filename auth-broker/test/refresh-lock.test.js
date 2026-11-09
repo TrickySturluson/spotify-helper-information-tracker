@@ -60,6 +60,31 @@ test("OIDC verifier rejects wrong audience, repository, owner, branch, event, an
   await assert.rejects(verifyActionsOidc(token, { fetchImpl, now, allowedWorkflowRefs: [] }));
 });
 
+test("OIDC verifier allows owner issue events only for the two exact issue-command workflows", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = 1_800_000_000;
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const fetchImpl = async () => new Response(JSON.stringify({ keys: [{
+    ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key",
+  }] }), { status: 200 });
+  const playlistRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-playlist-manager.yml@refs/heads/main";
+  const migrationRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/great-migration.yml@refs/heads/main";
+  const dailyRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main";
+  for (const [eventName, workflowRef] of [["issues", playlistRef], ["issues", migrationRef], ["issue_comment", playlistRef]]) {
+    const claims = { ...validClaims(now), aud: "shit-spotify-refresh", event_name: eventName, workflow_ref: workflowRef };
+    const identity = await verifyActionsOidc(makeJwt(pair.privateKey, claims), {
+      fetchImpl, now, allowedWorkflowRefs: [workflowRef], audience: "shit-spotify-refresh",
+    });
+    assert.equal(identity.workflowRef, workflowRef);
+  }
+  for (const [eventName, workflowRef] of [["issues", dailyRef], ["issue_comment", migrationRef], ["issue_comment", dailyRef]]) {
+    const claims = { ...validClaims(now), aud: "shit-spotify-refresh", event_name: eventName, workflow_ref: workflowRef };
+    await assert.rejects(verifyActionsOidc(makeJwt(pair.privateKey, claims), {
+      fetchImpl, now, allowedWorkflowRefs: [workflowRef], audience: "shit-spotify-refresh",
+    }));
+  }
+});
+
 test("OIDC verifier rejects bad signatures, expired tokens and unknown signing keys", async () => {
   const a = generateKeyPairSync("rsa", { modulusLength: 2048 });
   const b = generateKeyPairSync("rsa", { modulusLength: 2048 });
