@@ -131,6 +131,25 @@ test("PKCE challenge is SHA-256 base64url without padding", async () => {
 });
 
 
+test("broker reports missing canonical base URL at a dedicated safe stage", async () => {
+  const result = await handleRequest(new Request("https://broker.example/"), {});
+  const body = await result.text();
+  assert.equal(result.status, 200);
+  assert.match(body, /Diagnostic stage: broker\\.base_url_presence/);
+  assert.doesNotMatch(body, /undefined|secret|token/i);
+});
+
+test("broker reports malformed canonical base URL at a dedicated safe stage", async () => {
+  const result = await handleRequest(
+    new Request("https://broker.example/"),
+    { BROKER_BASE_URL: "not-a-url" },
+  );
+  const body = await result.text();
+  assert.equal(result.status, 200);
+  assert.match(body, /Diagnostic stage: broker\\.base_url_parse/);
+  assert.doesNotMatch(body, /not-a-url|secret|token/i);
+});
+
 test("broker rejects requests sent to a non-canonical host", async () => {
   const result = await handleRequest(
     new Request("https://attacker.example/"),
