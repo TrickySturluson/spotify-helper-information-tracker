@@ -107,7 +107,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Known risks and constraints
 
 - A refresh token rejected with `invalid_grant` cannot be revived by refreshing again; owner consent is mandatory.
-- A scheduled monitor against an invalid credential must report reauthorization-required and latch that state; subsequent scheduled runs skip until an explicit owner-triggered recovery attempt succeeds. The `pending` state also blocks later scheduled runs if a runner exits before persisting its result.
+- A scheduled monitor against an invalid credential must report reauthorization-required and latch that state; subsequent scheduled runs skip until an explicit owner-triggered recovery attempt succeeds. The `pending` marker also blocks later scheduled runs if a runner exits before persisting its result. If previous run logs are unavailable/expired or cannot be inspected, the schedule fails closed and requires manual dispatch.
 - Multiple concurrent refreshes can race when Spotify rotates refresh tokens. Single-flight/concurrency coordination is a prerequisite for broad preflight rollout.
 - The broker's active-workflow checks reduce but do not eliminate races with newly started workflows; complete live testing in a quiet maintenance window.
 - Cloudflare quotas/storage billing apply; no zero-cost/unlimited assumption.
