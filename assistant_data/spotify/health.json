@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-09T16:22:08.479616+00:00",
+  "generated_at": "2026-11-09T16:40:08.367820+00:00",
   "playlists": {
     "total": 60,
     "accessible": 44,
@@ -25,7 +25,7 @@
     },
     "lastfm_status": "available",
     "liked_songs_status": "observed",
-    "updated_at": "2026-11-08T15:12:14.297692+00:00",
+    "updated_at": "2026-11-09T16:40:08.335425+00:00",
     "segments_file_in_sync_environment": false
   },
   "overall_status": "warning"
