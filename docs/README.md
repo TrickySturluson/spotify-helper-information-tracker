@@ -36,6 +36,8 @@ Every maintained guide in `docs/` is listed below. Use the workstream roadmap an
 
 ### Repository, privacy and operations
 
+- [Codespaces Development Environment](operations/codespaces-development.md) — reproducible cloud development, safe setup, test commands, credential boundaries, and the current ChatGPT terminal-access limitation.
+
 - [Repository file index](REPOSITORY_FILE_INDEX.md) — maintained code, workflows, data families, source-of-truth boundaries and verified inventory method.
 - [Code documentation standard](CODE_DOCUMENTATION.md) — file overviews, module docstrings, inline documentation and automated enforcement.
 - [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — published personal data, secret boundaries and repository exposure risks.
