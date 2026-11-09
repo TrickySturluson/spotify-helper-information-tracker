@@ -160,7 +160,7 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
     await started;
     const second = await store.fetch(request("/refresh", { operationId: "D".repeat(43) }));
     assert.equal(second.status, 409);
-    assert.equal((await second.json()).error, "credential_blocked");
+    assert.equal((await second.json()).error, "credential_busy");
     releaseProvider();
     assert.equal((await first).status, 200);
   } finally {
