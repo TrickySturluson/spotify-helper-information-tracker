@@ -396,7 +396,7 @@ export class SpotifyCredentialStore {
         tokenData.access_token.length > 8192 ||
         /[\r\n]/.test(tokenData.access_token) ||
         !Number.isSafeInteger(tokenData.expires_in) ||
-        tokenData.expires_in < 60 ||
+        tokenData.expires_in < 120 ||
         tokenData.expires_in > 86_400
       ) {
         await this.blockOperation(input.operationId, "provider_response_invalid");
