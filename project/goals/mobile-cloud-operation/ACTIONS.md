@@ -215,3 +215,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - GitHub's current Actions concurrency model now supports `queue: max` (up to 100 pending runs), which avoids the default one-pending-run replacement behavior, but this alone does not resolve the long-job scheduling tradeoff. Reference: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency.
 - M4 now records the inventory as complete and keeps the single-flight architecture decision open. Next design options: a narrow shared refresh lock around token-exchange only, split auth/operation jobs with safe token handoff, or carefully scoped global serialization that excludes non-Spotify Great Migration operations.
 - No workflow concurrency behavior was changed, no Spotify API request was made, and no playlist or credential state was modified.
+
+
+## 2026-11-08 — First authentication monitor implementation passed repository CI
+
+- PR #183 head `e01bec33c5d8ddb44536078fad684df7eb9db9cb` passed the complete repository workflow: **528 tests passed** in run #42540593870 (workflow run number 2238). The new `test_spotify_auth_health_workflow.py` tests were included and all nine passed.
+- The broker test/audit/Wrangler dry-run workflow passed in run #42540593852 (run number 163); `npm audit` reported zero vulnerabilities and Wrangler exited in dry-run mode without deployment.
+- Full-history Gitleaks passed in run #42540593842 (run number 2076): **no leaks found**.
+- These are source/build/security checks only. No live Spotify refresh, `/v1/me`, OAuth, secret rotation, Worker deployment or playlist operation was run.
+- The new auth-health workflow now uses the prior completed Actions run's redacted status markers as its schedule latch, with fail-closed behavior for missing/unreadable logs, permanent blockers and interrupted attempts. It honors Retry-After deadlines for 429 and provides manual-dispatch recovery.
+- PR #183 remains draft and unmerged. It is mergeable against current `main`, but requires the user's separate approval before merge. No deployment or external account setup has been performed.
+- Next implementation: add an owner-facing reauthorization notification/action, then resolve the cross-workflow refresh-token single-flight design before enabling broad auth preflight.
