@@ -8,7 +8,7 @@ on:
 
 permissions:
   contents: read
-  actions: read
+  statuses: write
 
 concurrency:
   group: spotify-auth-health-check
@@ -26,45 +26,48 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           EVENT_NAME: ${{ github.event_name }}
-          CURRENT_RUN_ID: ${{ github.run_id }}
+          CURRENT_SHA: ${{ github.sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
-          runs="$(gh run list --workflow spotify-auth-health-check.yml --repo "$GITHUB_REPOSITORY" --limit 10 --json databaseId,status,createdAt)"
-          previous_run="$(printf '%s' "$runs" | jq -r --arg current "$CURRENT_RUN_ID" '[.[] | select((.databaseId|tostring) != $current and .status == "completed")] | sort_by(.createdAt) | last | .databaseId // empty')"
-          if [ -n "$previous_run" ]; then
-            if ! logs="$(gh run view "$previous_run" --repo "$GITHUB_REPOSITORY" --log 2>/dev/null)"; then
-              echo "::error::Could not inspect the previous auth-check result; refusing to contact Spotify."
-              exit 1
-            fi
-            previous_status="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_STATUS=[A-Za-z0-9_]*' | tail -n 1 | cut -d= -f2)"
-            retry_marker="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_RETRY_AFTER=[A-Za-z0-9_:-]*' | tail -n 1 | cut -d= -f2)"
-            case "$previous_status" in
-              healthy|provider_unavailable)
-                ;;
-              rate_limited)
-                if ! [[ "$retry_marker" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_marker" ]; then
-                  echo "AUTH_HEALTH_STATUS=rate_limited"
-                  echo "AUTH_HEALTH_RETRY_AFTER=$retry_marker"
-                  echo "skip=true" >> "$GITHUB_OUTPUT"
-                  echo "Spotify auth check skipped until the recorded Retry-After deadline, including manual attempts."
-                  exit 0
-                fi
-                ;;
-              *)
-                if [ "$EVENT_NAME" = "schedule" ]; then
-                  echo "AUTH_HEALTH_STATUS=${previous_status:-unknown}"
-                  echo "skip=true" >> "$GITHUB_OUTPUT"
-                  {
-                    echo "## Spotify authentication check skipped"
-                    echo
-                    echo "The previous auth check ended in '${previous_status:-unknown}'. Scheduled checks are paused until a deliberate manual recovery attempt."
-                  } >> "$GITHUB_STEP_SUMMARY"
-                  exit 0
-                fi
-                echo "Manual recovery attempt explicitly bypasses previous status '${previous_status:-unknown}'."
-                ;;
-            esac
+          status_json="$(gh api "repos/$GITHUB_REPOSITORY/commits/$CURRENT_SHA/status" --jq '.statuses | map(select(.context == "spotify-auth-health")) | sort_by(.created_at) | last // {}')"
+          previous_state="$(printf '%s' "$status_json" | jq -r '.state // empty')"
+          previous_description="$(printf '%s' "$status_json" | jq -r '.description // empty')"
+          case "$previous_description" in
+            rate_limited_until:*)
+              retry_until="${previous_description#rate_limited_until:}"
+              if ! [[ "$retry_until" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_until" ]; then
+                echo "Spotify auth check skipped until the recorded Retry-After deadline, including manual attempts."
+                echo "skip=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+              ;;
+            *)
+              case "$previous_state" in
+                ""|success|error)
+                  ;;
+                *)
+                  if [ "$EVENT_NAME" = "schedule" ]; then
+                    echo "Scheduled Spotify auth check skipped because the prior commit status is '$previous_description' (state: $previous_state)."
+                    echo "skip=true" >> "$GITHUB_OUTPUT"
+                    {
+                      echo "## Spotify authentication check skipped"
+                      echo
+                      echo "The previous auth state is '$previous_description'. Scheduled checks are paused until a deliberate manual recovery attempt."
+                    } >> "$GITHUB_STEP_SUMMARY"
+                    exit 0
+                  fi
+                  echo "Manual recovery attempt explicitly bypasses previous auth state '$previous_description'."
+                  ;;
+              esac
+              ;;
+          esac
+          # Mark the current commit pending before contacting Spotify. If the
+          # runner exits unexpectedly, the next scheduled run fails closed.
+          if ! gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$CURRENT_SHA"             -f state=pending             -f context=spotify-auth-health             -f description=pending             -f target_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >/dev/null; then
+            echo "::error::Could not persist the pending auth status; refusing to contact Spotify."
+            exit 1
           fi
-          echo "AUTH_HEALTH_STATUS=pending"
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
       - name: Validate required Spotify configuration
@@ -95,6 +98,8 @@ jobs:
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          GH_STATUS_TOKEN: ${{ github.token }}
           BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
         run: |
           python - <<'PY'
@@ -111,22 +116,48 @@ jobs:
           import urllib.request
 
           def report(status, message, success=False, state_value=None):
-              # Emit only a fixed status marker; no provider response bodies or tokens.
+              # Emit only fixed, non-secret status and description values.
               with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
                   output.write(f"status={status}\n")
               with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
                   summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
                   if status == "reauthorization_required":
                       broker_url = os.environ.get("BROKER_BASE_URL", "").strip().rstrip("/")
-                      parsed_broker = urllib.parse.urlsplit(broker_url)
-                      if parsed_broker.scheme == "https" and parsed_broker.netloc and parsed_broker.path in ("", "/") and not parsed_broker.query and not parsed_broker.fragment and not parsed_broker.username and not parsed_broker.password:
+                      try:
+                          parsed_broker = urllib.parse.urlsplit(broker_url)
+                          _ = parsed_broker.port
+                          valid_broker = (
+                              parsed_broker.scheme == "https" and parsed_broker.netloc
+                              and parsed_broker.path in ("", "/") and not parsed_broker.query
+                              and not parsed_broker.fragment and not parsed_broker.username
+                              and not parsed_broker.password
+                          )
+                      except ValueError:
+                          valid_broker = False
+                      if valid_broker:
                           summary.write(f"\n**Owner action:** [Open SHIT Spotify authorization]({broker_url}/) and complete the GitHub-owner then Spotify consent flow.\n")
                       else:
                           summary.write("\n**Owner action:** Fresh Spotify consent is required. [Open the owner-only deployment runbook](https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/blob/main/docs/operations/mobile-spotify-reauth.md).\n")
-              print(f"AUTH_HEALTH_STATUS={status}")
-              if state_value:
-                  retry_marker = state_value.split(":", 1)[1] if state_value.startswith("rate_limited_until:") else "unknown"
-                  print(f"AUTH_HEALTH_RETRY_AFTER={retry_marker}")
+              commit_state = "success" if status == "healthy" else ("error" if status == "provider_unavailable" else "failure")
+              description = state_value if status == "rate_limited" and state_value else status
+              try:
+                  subprocess.run(
+                      ["gh", "api", "-X", "POST",
+                       f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['GITHUB_SHA']}",
+                       "-f", f"state={commit_state}",
+                       "-f", "context=spotify-auth-health",
+                       "-f", f"description={description}"],
+                      check=True,
+                      stdout=subprocess.DEVNULL,
+                      stderr=subprocess.PIPE,
+                      env={**os.environ, "GH_TOKEN": os.environ["GH_STATUS_TOKEN"]},
+                  )
+              except subprocess.CalledProcessError:
+                  failure = "Authentication result could not be persisted as a commit status; the prior pending status will keep scheduled checks paused."
+                  with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+                      summary.write(f"\n**Status persistence failure:** {failure}\n")
+                  print(f"::error::{failure}")
+                  raise SystemExit(1) from None
               if success:
                   print(message)
                   return
