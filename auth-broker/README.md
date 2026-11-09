@@ -16,14 +16,17 @@ This Worker is SHIT's managed, owner-consented recovery path for Spotify authent
 
 The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. SQLite-backed Durable Objects are currently available on Cloudflare's Free plan, with published daily read/write and storage limits; usage beyond included limits or plan changes may incur charges. See [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/) and [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/). Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
 
-Non-secret GitHub repository Actions variables (injected by the deployment workflow using Wrangler `--var`):
+Non-secret GitHub repository Actions variables (the deployment workflow maps these to the Worker runtime names using Wrangler `--var`):
 
-- BROKER_BASE_URL (canonical HTTPS Worker origin)
-- GITHUB_APP_CLIENT_ID
-- GITHUB_APP_REDIRECT_URI (exact Worker URL plus /auth/github/callback)
-- SPOTIFY_CLIENT_ID
-- SPOTIFY_REDIRECT_URI (exact Worker URL plus /spotify/callback)
-- GITHUB_APP_ID
+- `CLOUDFLARE_ACCOUNT_ID`
+- `BROKER_BASE_URL` (canonical HTTPS Worker origin)
+- `BROKER_GH_APP_CLIENT_ID` (mapped to runtime `GITHUB_APP_CLIENT_ID`)
+- `BROKER_GH_APP_ID` (mapped to runtime `GITHUB_APP_ID`)
+- `BROKER_GH_APP_REDIRECT_URI` (mapped to runtime `GITHUB_APP_REDIRECT_URI`; exact Worker URL plus `/auth/github/callback`)
+- `SPOTIFY_CLIENT_ID`
+- `SPOTIFY_REDIRECT_URI` (exact Worker URL plus `/spotify/callback`)
+
+Do not create repository variables named `GITHUB_APP_CLIENT_ID`, `GITHUB_APP_ID`, or `GITHUB_APP_REDIRECT_URI` for this broker deployment; those are Worker runtime names populated by the workflow. The `BROKER_GH_APP_*` prefix keeps these settings distinct from the existing SHIT manager GitHub App configuration.
 
 Worker secrets (set with Cloudflare's secret-management interface or Wrangler secrets; never commit them):
 
@@ -59,7 +62,7 @@ From Cloudflare and GitHub dashboards (no local PC is required):
 
 1. Use the pre-created Cloudflare Worker `shit-auth-broker` in the dashboard. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
 2. Enable its `workers.dev` hostname and note the exact HTTPS URL.
-3. Add these non-secret GitHub repository Actions variables: `CLOUDFLARE_ACCOUNT_ID`, `BROKER_BASE_URL`, `GITHUB_APP_CLIENT_ID`, `BROKER_GH_APP_ID`, `GITHUB_APP_REDIRECT_URI` and `SPOTIFY_CLIENT_ID`, `SPOTIFY_REDIRECT_URI`. The callback URLs must use the exact `BROKER_BASE_URL` host and end in `/auth/github/callback` and `/spotify/callback` respectively.
+3. Add these non-secret GitHub repository Actions variables: `CLOUDFLARE_ACCOUNT_ID`, `BROKER_BASE_URL`, `BROKER_GH_APP_CLIENT_ID`, `BROKER_GH_APP_ID`, `BROKER_GH_APP_REDIRECT_URI`, `SPOTIFY_CLIENT_ID`, and `SPOTIFY_REDIRECT_URI`. The callback URLs must use the exact `BROKER_BASE_URL` host and end in `/auth/github/callback` and `/spotify/callback` respectively.
 4. Create a Cloudflare API token scoped to this existing Worker with the Workers product `Editor` permission. Creating a brand-new Worker by API requires broader `Admin`; pre-creating it allows the narrower existing-Worker permission. Add the token as GitHub Actions secret `CLOUDFLARE_API_TOKEN`.
 5. Set the two Worker secrets `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` in Cloudflare. Keep the GitHub App private key and client secret out of GitHub repository files and out of this deployment workflow.
 6. Run the owner-only `Deploy SHIT Auth Broker` workflow from the repository's Actions tab. It injects the repository variables into Wrangler and deploys the existing Worker plus its Durable Object migration; it does not contact Spotify or modify playlists.
