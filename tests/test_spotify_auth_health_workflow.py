@@ -28,14 +28,14 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
 
     def test_workflow_is_scheduled_and_manually_recoverable(self):
         self.assertIn("workflow_dispatch:", WORKFLOW)
-        self.assertIn("SPOTIFY_AUTH_STATE_SHA: a4ac9def8be5b6e727b777e2660a7bb027a8e51b", WORKFLOW)
+        self.assertIn("SPOTIFY_AUTH_STATE_REF: auth-state-anchor", WORKFLOW)
         self.assertIn("if: github.ref == 'refs/heads/main'", WORKFLOW)
         self.assertIn('cron: "0 9 * * *"', WORKFLOW)
         self.assertIn('if [ "$EVENT_NAME" = "schedule" ]; then', WORKFLOW)
         self.assertIn('echo "skip=false" >> "$GITHUB_OUTPUT"', WORKFLOW)
 
     def test_schedule_uses_commit_status_and_fails_closed(self):
-        self.assertIn('gh api "repos/$GITHUB_REPOSITORY/commits/$SPOTIFY_AUTH_STATE_SHA/status"', WORKFLOW)
+        self.assertIn('gh api "repos/$GITHUB_REPOSITORY/commits/$AUTH_STATE_SHA/status"', WORKFLOW)
         self.assertIn("context=spotify-auth-health", WORKFLOW)
         self.assertIn("state=pending", WORKFLOW)
         self.assertIn("Scheduled checks are paused", WORKFLOW)
