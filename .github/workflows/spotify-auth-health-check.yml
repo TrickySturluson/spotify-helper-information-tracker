@@ -165,11 +165,38 @@ jobs:
               with urllib.request.urlopen(request, timeout=20) as response:
                   profile = json.loads(response.read(65536))
           except urllib.error.HTTPError as exc:
-              if exc.code == 429:
+              if exc.code == 401:
+                  # A cached access token can be revoked before its advertised expiry.
+                  # Only this exact auth-health workflow may request a forced broker refresh.
+                  try:
+                      access_token, _expires_in = request_broker_access_token(force_refresh=True)
+                      print("::add-mask::" + access_token)
+                      retry_request = urllib.request.Request(
+                          "https://api.spotify.com/v1/me",
+                          headers={"Authorization": "Bearer " + access_token, "Accept": "application/json"},
+                      )
+                      with urllib.request.urlopen(retry_request, timeout=20) as response:
+                          profile = json.loads(response.read(65536))
+                  except BrokerTokenError as broker_error:
+                      if broker_error.category == "reauthorization_required":
+                          report("reauthorization_required", "The central broker requires owner-consented Spotify recovery after access-token rejection.")
+                      if broker_error.category == "rate_limited":
+                          report("rate_limited", "The central broker is honoring Spotify's refresh cooldown.", state_value=retry_state(broker_error.retry_after))
+                      if broker_error.category == "configuration_error":
+                          report("configuration_error", "Spotify rejected the broker client configuration; no credential was changed.")
+                      report("broker_unavailable", "The central broker could not safely recover the rejected access token.")
+                  except urllib.error.HTTPError as retry_error:
+                      if retry_error.code == 429:
+                          report("rate_limited", "Spotify account verification remained rate-limited after one broker refresh.", state_value=retry_state(retry_error.headers.get("Retry-After")))
+                      report("identity_error", f"Spotify account verification still failed after one broker refresh (HTTP {retry_error.code}).")
+                  except (urllib.error.URLError, TimeoutError):
+                      report("provider_unavailable", "Could not reach Spotify after one broker access-token refresh.")
+              elif exc.code == 429:
                   report("rate_limited", "Spotify account verification was rate-limited; no retry was attempted.", state_value=retry_state(exc.headers.get("Retry-After")))
-              if exc.code >= 500:
+              elif exc.code >= 500:
                   report("provider_unavailable", f"Spotify account verification returned HTTP {exc.code}.")
-              report("identity_error", f"Spotify account verification failed with HTTP {exc.code}.")
+              else:
+                  report("identity_error", f"Spotify account verification failed with HTTP {exc.code}.")
           except (urllib.error.URLError, TimeoutError):
               report("provider_unavailable", "Could not reach Spotify account verification. The central credential was not changed.")
 
