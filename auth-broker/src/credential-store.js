@@ -469,18 +469,21 @@ export class SpotifyCredentialStore {
     }
   }
 
-  async releaseOperation(operationId) {
+  async releaseOperation(operationId, retryAfterSecondsValue = null) {
     await this.ctx.storage.transaction(async (txn) => {
       const current = await txn.get("credential");
       if (current?.status === "refreshing" && current.operationId === operationId) {
-        await txn.put("credential", {
-          status: "ready",
-          accountId: current.accountId,
-          version: current.version,
-          credential: current.credential,
-          lastOperationId: current.lastOperationId || null,
-          updatedAt: Date.now(),
-        });
+        const next = { ...current, status: "ready", updatedAt: Date.now() };
+        delete next.operationId;
+        delete next.startedAt;
+        delete next.expiresAt;
+        delete next.blockedReason;
+        delete next.blockedAt;
+        delete next.retryAfterAt;
+        if (Number.isSafeInteger(retryAfterSecondsValue) && retryAfterSecondsValue > 0) {
+          next.retryAfterAt = Date.now() + retryAfterSecondsValue * 1000;
+        }
+        await txn.put("credential", next);
       }
     });
   }
