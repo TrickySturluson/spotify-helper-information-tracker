@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Check previous auth result before scheduled retry
+      - name: Check previous auth result before retry
         id: auth-latch
         env:
           GH_TOKEN: ${{ github.token }}
@@ -28,29 +28,29 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           CURRENT_RUN_ID: ${{ github.run_id }}
         run: |
-          if [ "$EVENT_NAME" = "schedule" ]; then
-            runs="$(gh run list --workflow spotify-auth-health-check.yml --repo "$GITHUB_REPOSITORY" --limit 10 --json databaseId,status,createdAt)"
-            previous_run="$(printf '%s' "$runs" | jq -r --arg current "$CURRENT_RUN_ID" '[.[] | select((.databaseId|tostring) != $current and .status == "completed")] | sort_by(.createdAt) | last | .databaseId // empty')"
-            if [ -n "$previous_run" ]; then
-              if ! logs="$(gh run view "$previous_run" --repo "$GITHUB_REPOSITORY" --log 2>/dev/null)"; then
-                echo "::error::Could not inspect the previous auth-check result; refusing to contact Spotify."
-                exit 1
-              fi
-              previous_status="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_STATUS=[A-Za-z0-9_]*' | tail -n 1 | cut -d= -f2)"
-              retry_marker="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_RETRY_AFTER=[A-Za-z0-9_:-]*' | tail -n 1 | cut -d= -f2)"
-              case "$previous_status" in
-                healthy|provider_unavailable)
-                  ;;
-                rate_limited)
-                  if ! [[ "$retry_marker" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_marker" ]; then
-                    echo "AUTH_HEALTH_STATUS=rate_limited"
-                    echo "AUTH_HEALTH_RETRY_AFTER=$retry_marker"
-                    echo "skip=true" >> "$GITHUB_OUTPUT"
-                    echo "Spotify auth check skipped until the recorded Retry-After deadline."
-                    exit 0
-                  fi
-                  ;;
-                *)
+          runs="$(gh run list --workflow spotify-auth-health-check.yml --repo "$GITHUB_REPOSITORY" --limit 10 --json databaseId,status,createdAt)"
+          previous_run="$(printf '%s' "$runs" | jq -r --arg current "$CURRENT_RUN_ID" '[.[] | select((.databaseId|tostring) != $current and .status == "completed")] | sort_by(.createdAt) | last | .databaseId // empty')"
+          if [ -n "$previous_run" ]; then
+            if ! logs="$(gh run view "$previous_run" --repo "$GITHUB_REPOSITORY" --log 2>/dev/null)"; then
+              echo "::error::Could not inspect the previous auth-check result; refusing to contact Spotify."
+              exit 1
+            fi
+            previous_status="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_STATUS=[A-Za-z0-9_]*' | tail -n 1 | cut -d= -f2)"
+            retry_marker="$(printf '%s' "$logs" | grep -o 'AUTH_HEALTH_RETRY_AFTER=[A-Za-z0-9_:-]*' | tail -n 1 | cut -d= -f2)"
+            case "$previous_status" in
+              healthy|provider_unavailable)
+                ;;
+              rate_limited)
+                if ! [[ "$retry_marker" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_marker" ]; then
+                  echo "AUTH_HEALTH_STATUS=rate_limited"
+                  echo "AUTH_HEALTH_RETRY_AFTER=$retry_marker"
+                  echo "skip=true" >> "$GITHUB_OUTPUT"
+                  echo "Spotify auth check skipped until the recorded Retry-After deadline, including manual attempts."
+                  exit 0
+                fi
+                ;;
+              *)
+                if [ "$EVENT_NAME" = "schedule" ]; then
                   echo "AUTH_HEALTH_STATUS=${previous_status:-unknown}"
                   echo "skip=true" >> "$GITHUB_OUTPUT"
                   {
@@ -59,9 +59,10 @@ jobs:
                     echo "The previous auth check ended in '${previous_status:-unknown}'. Scheduled checks are paused until a deliberate manual recovery attempt."
                   } >> "$GITHUB_STEP_SUMMARY"
                   exit 0
-                  ;;
-              esac
-            fi
+                fi
+                echo "Manual recovery attempt explicitly bypasses previous status '${previous_status:-unknown}'."
+                ;;
+            esac
           fi
           echo "AUTH_HEALTH_STATUS=pending"
           echo "skip=false" >> "$GITHUB_OUTPUT"
