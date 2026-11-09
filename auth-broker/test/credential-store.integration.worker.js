@@ -93,10 +93,12 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect((await initialize(stub)).status).toBe(201);
 
     let providerStarted;
+    let tokenCalls = 0;
     const started = new Promise((resolve) => { providerStarted = resolve; });
     let releaseProvider;
     const providerGate = new Promise((resolve) => { releaseProvider = resolve; });
     network.use(...successfulSpotifyHandlers({ onTokenRequest: async () => {
+      tokenCalls += 1;
       providerStarted();
       await providerGate;
     } }));
@@ -115,6 +117,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     const secondBody = await secondRetry.json();
     expect(secondBody.accessToken).toBe(firstBody.accessToken);
     expect(secondBody.cached).toBe(true);
+    expect(tokenCalls).toBe(1);
   });
 
   it("keeps an ambiguous refresh blocked across a newly acquired Durable Object stub", async () => {
