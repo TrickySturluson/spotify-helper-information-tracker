@@ -28,7 +28,7 @@ class MemoryStorage {
 function setup() {
   const storage = new MemoryStorage();
   const key = Buffer.alloc(32, 7).toString("base64");
-  const env = { SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: JSON.stringify({ "1": key }), SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: "1", SPOTIFY_CLIENT_ID: "client", SPOTIFY_CLIENT_SECRET: "secret" };
+  const env = { SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: JSON.stringify({ "1": key }), SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: "1", SPOTIFY_CLIENT_ID: "client" };
   return { storage, store: new SpotifyCredentialStore({ storage }, env) };
 }
 function request(path, body) {
@@ -64,6 +64,8 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     calls.push(String(url));
     if (String(url).includes("/api/token")) {
       const body = new URLSearchParams(options.body);
+      assert.equal(options.headers.Authorization, undefined);
+      assert.equal(body.get("client_id"), "client");
       const suppliedRefreshToken = body.get("refresh_token");
       assert.ok([initialToken, "rotated-refresh-token-abcdef"].includes(suppliedRefreshToken));
       return new Response(JSON.stringify({
@@ -245,7 +247,6 @@ test("a refresh reservation survives store-instance restart and blocks a second 
       SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: JSON.stringify({ "1": Buffer.alloc(32, 7).toString("base64") }),
       SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: "1",
       SPOTIFY_CLIENT_ID: "client",
-      SPOTIFY_CLIENT_SECRET: "secret",
     });
     const second = await restartedStore.fetch(request("/refresh", { operationId: "G".repeat(43) }));
     assert.equal(second.status, 409);
