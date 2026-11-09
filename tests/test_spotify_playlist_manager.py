@@ -37,6 +37,24 @@ class PlaylistManagerTests(unittest.TestCase):
             self.assertEqual(spotify.bearer(), "short-lived-broker-access-token")
             token_post.assert_not_called()
 
+    def test_broker_required_mode_never_falls_back_to_legacy_token_file(self):
+        with patch.dict("os.environ", {"SHIT_AUTH_MODE": "broker"}, clear=True), patch.object(
+            manager, "check_spotify_cooldown"
+        ), patch.object(manager, "read", side_effect=AssertionError("legacy token file must not be read")):
+            with self.assertRaisesRegex(manager.ManagerError, "requires a broker-issued"):
+                manager.Spotify()
+
+    def test_broker_mode_forbids_refresh_token_secret_persistence(self):
+        with patch.dict("os.environ", {
+            "SHIT_AUTH_MODE": "broker",
+            "SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN": "1",
+            "GH_TOKEN": "must-not-be-used",
+            "GITHUB_REPOSITORY": "TrickySturluson/spotify-helper-information-tracker",
+        }, clear=True), patch.object(manager.subprocess, "run") as run:
+            with self.assertRaisesRegex(manager.ManagerError, "must never persist refresh tokens"):
+                manager.persist_refresh_token("sensitive-refresh-token")
+        run.assert_not_called()
+
     def test_expired_broker_access_token_fails_closed_without_direct_refresh(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.broker_managed = True
