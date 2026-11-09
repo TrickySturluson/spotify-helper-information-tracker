@@ -49,7 +49,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen):
     oidc_url = str(env.get("ACTIONS_ID_TOKEN_REQUEST_URL", "")).strip()
     oidc_request_token = str(env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN", "")).strip()
     broker_base = str(env.get("SHIT_AUTH_BROKER_URL", "")).strip().rstrip("/")
-    if not oidc_url or not oidc_request_token or not broker_base or "\\n" in oidc_request_token or "\\r" in oidc_request_token:
+    if not oidc_url or not oidc_request_token or not broker_base or "\n" in oidc_request_token or "\r" in oidc_request_token:
         raise BrokerTokenError("GitHub OIDC or SHIT broker configuration is missing.")
 
     parsed_oidc = urllib.parse.urlsplit(oidc_url)
@@ -69,7 +69,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen):
     )
     oidc_data = _read_json(opener, oidc_request)
     oidc_jwt = oidc_data.get("value")
-    if not isinstance(oidc_jwt, str) or not oidc_jwt or "\n" in oidc_jwt:
+    if not isinstance(oidc_jwt, str) or not oidc_jwt or len(oidc_jwt) > 16_384 or "\n" in oidc_jwt or "\r" in oidc_jwt:
         raise BrokerTokenError("GitHub did not issue a usable workload identity.")
 
     operation_id = secrets.token_urlsafe(32)
@@ -87,7 +87,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen):
     broker_data = _read_json(opener, broker_request)
     access_token = broker_data.get("accessToken")
     expires_in = broker_data.get("expiresIn")
-    if "refreshToken" in broker_data or not isinstance(access_token, str) or not access_token or "\n" in access_token:
+    if "refreshToken" in broker_data or not isinstance(access_token, str) or not access_token or len(access_token) > 8192 or "\n" in access_token or "\r" in access_token:
         raise BrokerTokenError("SHIT broker did not return a valid short-lived access token.")
     if not isinstance(expires_in, int) or isinstance(expires_in, bool) or not 60 <= expires_in <= 86_400:
         raise BrokerTokenError("SHIT broker returned an invalid access-token lifetime.")
