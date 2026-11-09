@@ -168,9 +168,7 @@ class DailyFeedbackWorkflowTests(unittest.TestCase):
         workflow = Path(".github/workflows/spotify-daily-feedback-observation.yml").read_text(
             encoding="utf-8"
         )
-        path_setup = workflow.index('sys.path.insert(0, "compat")')
-        manager_import = workflow.index("import spotify_playlist_manager as manager")
-        self.assertLess(path_setup, manager_import)
+        self.assertIn("python -m py_compile compat/spotify_playlist_manager.py compat/spotify_daily_feedback.py", workflow)
         self.assertIn("python compat/spotify_daily_feedback.py observe", workflow)
 
 
