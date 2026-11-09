@@ -2,6 +2,19 @@
 
 This Worker is SHIT's managed, owner-consented recovery path for Spotify authentication. It supports phone and desktop browsers equally; device type is not a system dependency. It is an authentication service only. It does not read or modify playlists.
 
+## Broker-owned refresh prototype (not enabled)
+
+The current feature branch adds a second, isolated refresh path intended to replace the GitHub Actions refresh-token secret after end-to-end validation:
+
+- `POST /internal/spotify/refresh` authenticates GitHub Actions with a signed OIDC JWT using the dedicated audience `shit-spotify-refresh` and exact configured workflow refs.
+- The route selects a fixed `SpotifyCredentialStore` SQLite Durable Object and forwards only an operation ID; caller-supplied account/owner fields are ignored.
+- The Durable Object stores the refresh token as AES-256-GCM ciphertext, verifies Spotify `/v1/me`, commits token rotation only after identity verification, and returns only a short-lived access token.
+- `scripts/spotify/broker_access_token.py` is the workflow-side OIDC client. The manager has a broker-only mode that does not load the old token file or refresh directly.
+- Current encryption metadata authenticates key version 1. Multi-key rotation/re-encryption and recovery are not implemented.
+
+This prototype is in stacked draft PRs #187 and #188. It is not deployed or enabled. The required Worker secret `SPOTIFY_CREDENTIAL_ENCRYPTION_KEY` and variable `SPOTIFY_REFRESH_WORKFLOW_REFS` are not configured. The OAuth callback still uses the existing GitHub Actions secret path, and none of the nine workflows has migrated. Do not configure or use the new route until callback initialization, key rotation/recovery, Cloudflare Durable Object integration tests, and the complete workflow migration are proven.
+
+
 ## Flow
 
 1. The browser starts the GitHub App web authorization flow with PKCE and the broker verifies the returned GitHub identity is exactly the repository owner.
@@ -14,7 +27,7 @@ This Worker is SHIT's managed, owner-consented recovery path for Spotify authent
 
 ## Required Worker bindings and configuration
 
-The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. SQLite-backed Durable Objects are currently available on Cloudflare's Free plan, with published daily read/write and storage limits; usage beyond included limits or plan changes may incur charges. See [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/) and [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/). Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
+The Worker declares SQLite-backed Durable Object bindings named OAUTH_STATE, SPOTIFY_REFRESH_LEASE, and SPOTIFY_CREDENTIAL_STORE in the feature branch. The refresh lease remains an isolated prototype; the credential-store binding is present in draft PR #188 but is not deployed. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. SQLite-backed Durable Objects are currently available on Cloudflare's Free plan, with published daily read/write and storage limits; usage beyond included limits or plan changes may incur charges. See [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/) and [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/). Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
 
 Non-secret GitHub repository Actions variables (injected by the deployment workflow using Wrangler `--var`):
 
@@ -29,6 +42,7 @@ Worker secrets (set with Cloudflare's secret-management interface or Wrangler se
 
 - GITHUB_APP_CLIENT_SECRET
 - GITHUB_APP_PRIVATE_KEY
+- SPOTIFY_CREDENTIAL_ENCRYPTION_KEY (only when the broker-owned credential-store design has passed its remaining gates; not currently configured)
 
 The dedicated broker GitHub App must be installed only on this repository. In the GitHub App settings UI, grant **Actions: Read and write** and **Secrets: Read and write**; GitHub's installation-token API represents these as `actions: write` and `secrets: write` (write includes the read operations the broker needs to list active workflow runs and fetch the repository secret public key). The broker requests only those two write-level permissions and only this repository. Keep it separate from the existing SHIT manager App, which remains Secrets: write only; do not widen that operational App's permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
 
@@ -74,7 +88,7 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-The broker source, automated security tests, and owner-only deployment workflow are in PR #185 and must be merged before deployment. The Cloudflare Worker `shit-auth-broker` exists, but deployment of this source and live browser-based authorization have not been verified. Owner-reported provisioning is recorded in `project/goals/mobile-cloud-operation/README.md`; do not ask for secret values. Remaining gates:
+The original OAuth broker and auth diagnosis foundation are in PR #185. The isolated encrypted credential store is in draft PR #187; the OIDC refresh route and workflow client are in stacked draft PR #188. These changes are not merged or deployed. The Cloudflare Worker `shit-auth-broker` exists, but deployment of this source and live browser-based authorization have not been verified. Owner-reported provisioning is recorded in `project/goals/mobile-cloud-operation/README.md`; do not ask for secret values. Remaining gates:
 
 - Verify the pre-created Cloudflare Worker's canonical `workers.dev` URL and configured secret names.
 - Verify the dedicated broker GitHub App is installed only on this repository with Actions:write and Secrets:write.
@@ -83,4 +97,4 @@ The broker source, automated security tests, and owner-only deployment workflow 
 - Verify the GitHub App client secret and private key exist as Cloudflare Worker secrets; never retrieve or disclose their values.
 - Run the owner-only deployment workflow, then complete owner-consented OAuth from a phone or desktop browser and verify the read-only auth health check.
 
-No Spotify refresh token has been replaced by this broker. Do not use it for live authorization until deployment and end-to-end acceptance checks above pass. The broker never unlocks or edits playlists.
+No Spotify refresh token has been replaced by this broker. The existing OAuth callback still updates the GitHub Actions secret. The broker-owned refresh prototype is not operational until its initialization, encryption key rotation, integration tests, and nine-workflow migration are complete. Do not use it for live authorization or refresh until deployment and end-to-end acceptance checks pass. The broker never unlocks or edits playlists.
