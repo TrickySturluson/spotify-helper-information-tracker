@@ -360,6 +360,7 @@ export class SpotifyCredentialStore {
       const previousKey = keyring.keys.get(previous.credential.keyVersion ?? ENCRYPTION_KEY_VERSION);
       if (!previousKey) throw new CredentialStoreError("Stored credential uses an unavailable encryption key; owner recovery is required.");
       refreshToken = await decryptRefreshToken(previous.credential, previousKey, previous.accountId);
+      // PKCE-issued refresh tokens use public-client semantics: client_id in the form body, no Basic auth or client secret.
       const tokenResponse = await fetch(SPOTIFY_TOKEN_URL, {
         method: "POST",
         headers: {
