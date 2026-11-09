@@ -318,7 +318,10 @@ export class SpotifyCredentialStore {
     const reservation = await this.ctx.storage.transaction(async (txn) => {
       const current = await txn.get("credential");
       if (!current) return { error: "credential_missing" };
-      if (current.lastOperationId === input.operationId) return { error: "operation_already_committed" };
+      if (current.lastOperationId === input.operationId) {
+        if (current.status === "ready" && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
+        return { error: "operation_already_committed" };
+      }
       if (current.status === "refreshing") return { error: "credential_busy" };
       if (current.status !== "ready") return { error: "credential_blocked" };
       if (current.retryAfterAt > now) return { rateLimitedUntil: current.retryAfterAt };
