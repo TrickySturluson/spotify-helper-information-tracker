@@ -135,7 +135,8 @@ jobs:
                           parsed = parsed.replace(tzinfo=timezone.utc)
                       deadline = int(parsed.timestamp())
                   except (TypeError, ValueError, OverflowError):
-                      return "rate_limited_unknown"
+                      # If Spotify omits/mangles Retry-After, wait a conservative 24 hours.
+                      deadline = int(time.time()) + 86400
               return f"rate_limited_until:{max(int(time.time()), deadline)}"
 
           client_id = os.environ["SPOTIFY_CLIENT_ID"].strip()
