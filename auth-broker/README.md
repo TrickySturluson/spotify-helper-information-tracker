@@ -53,7 +53,7 @@ This repository is a monorepo: the Worker project is in `auth-broker/`. The veri
 - **Production build command:** empty
 - **Production root directory:** `/auth-broker`
 - **Production build command:** empty
-- **Production build command:** `npx wrangler versions upload` (uploads a Worker version but does not promote it to production)
+- **Production deploy command:** `npx wrangler versions upload` (uploads a Worker version but does not promote it to production)
 - **Preview root directory:** `/auth-broker`
 - **Preview build command:** empty
 - **Preview deploy command:** `npx wrangler preview`
