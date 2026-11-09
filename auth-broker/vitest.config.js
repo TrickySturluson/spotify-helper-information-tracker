@@ -27,3 +27,9 @@ export default defineConfig({
     hookTimeout: 15_000,
   },
 });
+
+
+// FILE OVERVIEW
+// Purpose: Run focused broker Durable Object tests inside the Cloudflare Workers runtime.
+// Bindings: Uses test-only encryption keys and mock Spotify app credentials; no production secrets.
+// Related: auth-broker/wrangler.toml, test/credential-store.integration.test.js.
