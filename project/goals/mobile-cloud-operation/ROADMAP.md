@@ -70,8 +70,8 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ### M3 — Authorization broker
 - [x] Implement HTTPS broker source with GitHub App web authorization + Spotify PKCE.
 - [x] Implement short-lived transactional Durable Object state, owner checks, replay/expiry protection and active-workflow checks.
-- [x] Implement repository-scoped secret encryption/update of only `SPOTIFY_REFRESH_TOKEN`.
-- [x] Dispatch only read-only auth-health verification after confirmed secret persistence.
+- [x] Earlier broker iteration implemented repository-secret publication; superseded by central encrypted credential ownership and removed from the current OAuth callback.
+- [x] Dispatch only read-only auth-health verification after confirmed central credential-store initialization/recovery.
 - [x] Add security tests and reproducible deployment configuration.
 - [x] Review and merge the reconciled broker source/tests/deployment workflow to `main` (source is present; no Worker deployment is implied).
 - [ ] Configure Cloudflare Worker secrets/variables and dedicated repository-scoped GitHub App.
@@ -100,7 +100,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ### M5 — End-to-end acceptance
 - [ ] Verify unauthenticated and non-owner broker requests are denied.
 - [ ] Complete Spotify PKCE authorization and confirm expected Spotify identity/scopes.
-- [ ] Verify secret metadata changed without reading or exposing the secret value.
+- [ ] Verify the central Durable Object credential version advances without exposing ciphertext or plaintext secrets.
 - [ ] Verify only the read-only auth-health workflow is dispatched.
 - [ ] Pass two independent cloud auth-health runs after runner disposal.
 - [ ] Verify health state becomes healthy and stale reauthorization status clears.
@@ -111,7 +111,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Architecture decisions
 
 - **Authentication Health Monitor:** scheduled and on-demand read-only verification, token refresh, secure rotation persistence, structured diagnosis and durable non-secret status.
-- **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object; dedicated GitHub App with repository-scoped Actions: read only.
+- **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object; dedicated GitHub App with repository-scoped Actions: write (required only for active-run inspection and auth-health dispatch).
 - **Recovery Coordinator:** routes each failure category to bounded automatic repair, deferred retry, configuration correction or owner consent.
 - **Central Auth Gate:** shared preflight dependency for Spotify workflows. The broker must become the sole refresh-token holder and refresher; workflows receive only short-lived access tokens after OIDC authorization. No per-job refresh fan-out or direct refresh-token secret reads.
 - **Control plane separation:** GitHub issue commands are a separate remote operations interface. They are not the purpose of this auth workstream and must never bypass manager controls.
@@ -120,8 +120,8 @@ The desired end state is a system that continuously monitors auth, refreshes and
 
 - A refresh token rejected with `invalid_grant` cannot be revived by refreshing again; owner consent is mandatory.
 - A scheduled monitor against an invalid credential must report reauthorization-required; subsequent scheduled runs inspect the fixed anchor commit's `spotify-auth-health` status and skip until an explicit owner-triggered recovery attempt succeeds. The `pending` status also blocks later scheduled runs if a runner exits before persisting its result. If the commit-status API cannot be read or the pending/result status cannot be written, the workflow fails closed before it can proceed or leaves `pending` to block the next scheduled run.
-- Multiple concurrent refreshes can race when Spotify rotates refresh tokens. The OIDC Durable Object lease prototype does not fence GitHub Secrets writes and is not sufficient for production. Broker-controlled encrypted credential persistence is the recommended end state.
-- The broker's active-workflow check is advisory only and must not be represented as a global lock. Replace it with the broker-owned refresh/persistence critical section before production rollout.
+- Multiple concurrent refreshes previously raced when Spotify rotated refresh tokens. The lease prototype alone cannot fence GitHub Secrets writes; the broker-owned encrypted credential store is now the intended authority. The remaining eight workflows must migrate before the race is fully removed from production.
+- The broker's active-workflow check is advisory only and is used to avoid starting owner OAuth during active Spotify work. Refresh serialization and credential commit are enforced inside the single Durable Object.
 - Cloudflare quotas/storage billing apply; no zero-cost/unlimited assumption.
 - GitHub App private key belongs only in the broker's managed secret store. The broker App remains separate from the existing manager secret-writer App.
 - No external account, app, secret, redirect URI or playlist may be changed without the required user-side setup/consent.
