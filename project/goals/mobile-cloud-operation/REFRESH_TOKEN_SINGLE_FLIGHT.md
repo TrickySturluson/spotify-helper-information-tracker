@@ -1,6 +1,6 @@
 # Cross-Workflow Refresh Token Single-Flight Design
 
-**Status:** Design required before implementation; no lock is deployed.
+**Status:** Initial Worker/ Durable Object implementation added in PR #185; not yet CI-verified, integrated into any Actions workflow, or deployed.
 **Scope:** Serialize only Spotify refresh-token exchange and rotated-secret persistence across all SHIT workflows.
 
 ## Problem
@@ -80,7 +80,7 @@ A static Worker bearer secret would be copied to nine workflows and require inde
 - CI is not deployment evidence. Production rollout requires a Worker migration and verified end-to-end tests.
 - Never declare this solved until every token consumer is inventoried and the missing-lock test passes.
 
-## Open implementation decisions
+## Initial implementation in PR #185\n\n- Added `auth-broker/src/refresh-lock.js` with RS256 signature verification against GitHub's OIDC JWKS, strict issuer/audience/time checks, repository and immutable owner-ID checks (`337022631`), `main` branch/event restrictions, and exact `workflow_ref` allowlisting.\n- Added the `SpotifyRefreshLease` SQLite Durable Object with transactional exclusive acquisition, 120-second expiry, renew/release ownership checks, monotonically increasing fencing generations, and expiry alarm cleanup.\n- Added Worker routes `/internal/refresh-lock/acquire`, `/renew`, and `/release`. The Worker derives lease ownership from verified workflow identity; caller-supplied owner claims are ignored. The Worker fails closed when its binding or exact workflow allowlist is absent.\n- Added a separate Durable Object binding/migration and unit tests for signed OIDC trust, invalid claims/signatures, exclusive acquisition, fencing, renewal and malformed requests.\n- **Not complete:** tests are still running/fixing; no workflow currently calls these endpoints; the owner allowlist is not configured; no production Worker deployment or live OIDC claim validation has occurred. The current nine-workflow inventory is not yet protected by the lease.\n\n## Open implementation decisions
 
 - Confirm the immutable GitHub repository owner ID from a trusted GitHub API response and pin it as a non-secret Worker variable.
 - Validate real OIDC claims from a harmless non-production test workflow before enforcing workflow allowlists.
