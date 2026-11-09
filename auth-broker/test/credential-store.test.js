@@ -274,3 +274,50 @@ test("credential encryption key version is authenticated as associated data", as
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("refresh re-encrypts the credential with the active key version", async () => {
+  const { storage, store } = setup();
+  const keyV1 = Buffer.alloc(32, 7).toString("base64");
+  const keyV2 = Buffer.alloc(32, 8).toString("base64");
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({ "1": keyV1, "2": keyV2 });
+  store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION = "2";
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => String(url).includes("/api/token")
+    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 })
+    : new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
+  try {
+    const first = await store.fetch(request("/refresh", { operationId: "M".repeat(43) }));
+    assert.equal(first.status, 200);
+    assert.equal((await storage.get("credential")).credential.keyVersion, 2);
+    // Once the successful commit is encrypted under v2, v1 can be removed.
+    store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({ "2": keyV2 });
+    delete store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION;
+    const second = await store.fetch(request("/refresh", { operationId: "N".repeat(43) }));
+    assert.equal(second.status, 200);
+    assert.equal((await storage.get("credential")).credential.keyVersion, 2);
+    assert.equal((await storage.get("credential")).version, 3);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("missing historical encryption key fails closed without contacting Spotify", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({ "2": Buffer.alloc(32, 8).toString("base64") });
+  store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION = "2";
+  const originalFetch = globalThis.fetch;
+  let providerCalled = false;
+  globalThis.fetch = async () => { providerCalled = true; throw new Error("provider must not be called"); };
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "O".repeat(43) }));
+    assert.equal(result.status, 409);
+    assert.equal((await result.json()).error, "operation_outcome_uncertain_reauthorization_required");
+    assert.equal(providerCalled, false);
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
