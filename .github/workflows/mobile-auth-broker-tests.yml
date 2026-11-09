@@ -21,6 +21,7 @@ on:
       - "tests/test_spotify_playlist_manager.py"
       - "tests/test_spotify_broker_access.py"
       - "tests/test_spotify_auth_health_workflow.py"
+      - "tests/**"
       - "auth-broker/test/workflow-inventory.test.js"
       - ".github/workflows/spotify-auth-health-check.yml"
       - "scripts/spotify/broker_access_token.py"
