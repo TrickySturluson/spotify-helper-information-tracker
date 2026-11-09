@@ -92,7 +92,6 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
           SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION }}
-          SPOTIFY_REFRESH_WORKFLOW_REFS: ${{ vars.SPOTIFY_REFRESH_WORKFLOW_REFS }}
         run: |
           npx wrangler deploy \
             --var "BROKER_BASE_URL:$BROKER_BASE_URL" \
