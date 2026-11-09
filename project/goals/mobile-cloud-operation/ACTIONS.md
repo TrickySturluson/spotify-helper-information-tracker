@@ -312,3 +312,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 
 - Added `BROKER_CONTROLLED_REFRESH.md` with the recommended end state: broker-only refresh-token custody, encrypted Durable Object persistence, OIDC-authorized access-token delivery, operation-version fencing, a nine-workflow migration, and explicit production approval gates.
 - Updated the roadmap to make broker-owned credential persistence—not a lease-only solution—the next implementation milestone.
+
+## 2026-11-09 — Credential-store test correction and green broker validation
+
+- The first CI run after the refresh-test correction still failed because the replay assertion referenced an undefined shorthand variable (operationId) instead of the fixture's operation value. This was a test-only defect; the refresh implementation was not implicated by that failure.
+- Corrected the replay request to use the explicit operation ID fixture in commit `583d48eb669127b6796cafaaa0e0f23c6b78e3d3`.
+- Broker test workflow run [#42564037531](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42564037531) passed on that exact commit. All broker security unit tests, dependency audit, Worker bundle validation, and Wrangler configuration dry-run passed.
+- Public repository security scan [#42564037488](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42564037488) was still running at the time of this entry; do not mark the commit security-scan complete until its final result is checked.
+- This green run validates the isolated prototype only. The credential-store class remains unbound and unreachable from the Worker; no encryption key is configured, no OAuth callback handoff or OIDC credential route exists, and no workflow or production credential has migrated. The in-memory storage adapter is not a substitute for Cloudflare Durable Object integration tests.
