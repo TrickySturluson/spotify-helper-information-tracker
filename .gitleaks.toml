@@ -3,21 +3,13 @@ title = "SHIT public music-library identifier allowlist"
 [extend]
 useDefault = true
 
-# Existing catalog-data exception retained independently.
 [allowlist]
-description = "Public catalog identifiers in the generated music-library index only."
-paths = ['''assistant_data/music/library/library_index\.json''']
-
-# The auth-state anchor is public source metadata, not a credential.
-# Require BOTH the exact label/value shape and one of the two audited source files.
-[[allowlists]]
-description = "Public Spotify auth-state commit anchor in its workflow and regression test only."
-condition = "AND"
-regexTarget = "line"
+description = "Exact known false positives only: public catalog identifiers and audited auth-state metadata fingerprints."
 regexes = [
   '''SPOTIFY_AUTH_STATE_SHA: [a-f0-9]{40}''',
 ]
-paths = [
-  '''^\.github/workflows/spotify-auth-health-check\.yml$''',
-  '''^tests/test_spotify_auth_health_workflow\.py$''',
+paths = ['''assistant_data/music/library/library_index\.json''']
+fingerprints = [
+  "550715ced0f0a001b4a1d509d713759e21afa4f4:.github/workflows/spotify-auth-health-check.yml:generic-api-key:11",
+  "d434471555f51c767903dcebb8f8af588af256f9:tests/test_spotify_auth_health_workflow.py:generic-api-key:31",
 ]
