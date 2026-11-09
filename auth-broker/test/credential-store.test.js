@@ -49,6 +49,7 @@ test("credential initialization encrypts the token and never stores plaintext", 
   assert.equal(record.status, "ready");
   assert.equal(record.version, 1);
   assert.equal(record.credential.algorithm, "A256GCM");
+  assert.equal(record.credential.keyVersion, 1);
   assert.notEqual(record.credential.ciphertext, initialToken);
   assert.equal(JSON.stringify(record).includes(initialToken), false);
   assert.equal((await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }))).status, 409);
@@ -251,4 +252,25 @@ test("a stale operation cannot block or overwrite a newer credential operation",
   assert.equal(record.status, "refreshing");
   assert.equal(record.operationId, "H".repeat(43));
   assert.equal(record.blockedReason, undefined);
+});
+
+
+test("credential encryption key version is authenticated as associated data", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const record = await storage.get("credential");
+  record.credential.keyVersion = 2;
+  await storage.put("credential", record);
+  const originalFetch = globalThis.fetch;
+  let providerCalled = false;
+  globalThis.fetch = async () => { providerCalled = true; throw new Error("provider must not be called"); };
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "L".repeat(43) }));
+    assert.equal(result.status, 409);
+    assert.equal((await result.json()).error, "operation_outcome_uncertain_reauthorization_required");
+    assert.equal(providerCalled, false);
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
