@@ -91,12 +91,6 @@ jobs:
             python -m unittest discover -s tests -t . -v
           } 2>&1 | tee shit-library-run.log
 
-      - name: Obtain central Spotify access token
-        if: steps.request.outputs.command == 'verify'
-        env:
-          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
-        run: python scripts/spotify/broker_access_token.py
-
       - name: Verify provider credentials through the central broker
         if: steps.request.outputs.command == 'verify'
         env:
@@ -271,11 +265,6 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - name: Obtain central Spotify access token
-        id: broker-token
-        env:
-          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
-        run: python scripts/spotify/broker_access_token.py
       - name: Verify provider credentials through the central broker
         id: verify
         continue-on-error: true
