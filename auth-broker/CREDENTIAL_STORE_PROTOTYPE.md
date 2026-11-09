@@ -29,8 +29,8 @@ This is not a production implementation yet:
 - The existing OAuth callback does not yet hand off an initial token to this store.
 - GitHub Actions workflows still use the existing refresh-token secret path.
 - The OIDC refresh route has unit-tested identity/audience gates, but no live GitHub OIDC request or Cloudflare Durable Object integration has been exercised.
-- An interrupted operation intentionally remains blocked. Recovery and reauthorization UX still need implementation and tests.
-- Multi-key rotation/re-encryption, backup/restore, disaster recovery, account replacement, and operational monitoring still need design and validation. The `keyVersion` field is authenticated metadata, not a completed rotation system.
+- An interrupted operation intentionally remains blocked. The store has a same-account reauthorization primitive, but the owner-consented OAuth callback handoff and recovery UX are not wired or end-to-end tested.
+- Multi-key rotation-on-refresh is implemented and unit-tested, but backup/restore, disaster recovery, emergency key-loss recovery, explicit re-encryption without a Spotify refresh, account replacement, and operational monitoring still need design and validation.
 - Unit tests use an in-memory storage adapter; they do not replace Cloudflare Durable Object integration tests.
 
 ## Safety requirements before integration
