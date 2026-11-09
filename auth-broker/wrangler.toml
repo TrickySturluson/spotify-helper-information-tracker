@@ -2,6 +2,10 @@ name = "shit-auth-broker"
 main = "src/index.js"
 compatibility_date = "2026-11-08"
 
+# Cloudflare Workers Builds invokes `wrangler preview` for pull-request previews.
+# This empty block enables that preview command without changing production behavior.
+previews = {}
+
 # Public runtime variables are injected from GitHub Actions repository variables
 # by deploy-mobile-auth-broker.yml using Wrangler's --var flags.
 # SQLite-backed Durable Objects provide strongly consistent, transactional state.
