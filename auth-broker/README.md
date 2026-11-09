@@ -45,14 +45,18 @@ The dedicated broker GitHub App must be installed only on this repository. In th
 
 ## Cloudflare Workers Builds configuration
 
-This repository is a monorepo: the Worker project is in `auth-broker/`. If the Cloudflare Workers Builds Git integration is enabled, configure the Worker under **Settings → Build** as follows:
+This repository is a monorepo: the Worker project is in `auth-broker/`. The verified Cloudflare Workers Builds settings are:
 
-- **Root directory:** `auth-broker`
-- **Build command:** leave empty (the Worker is bundled by Wrangler during deployment)
-- **Deploy command:** `npx wrangler deploy`
-- **Preview command:** use the Cloudflare default unless a separate preview environment is deliberately configured
+- **Production root directory:** `/auth-broker`
+- **Production build command:** empty
+- **Production deploy command:** `npx wrangler deploy`
+- **Preview root directory:** `/auth-broker`
+- **Preview build command:** empty
+- **Preview deploy command:** `npx wrangler preview`
 
-The root directory must contain `wrangler.toml`, `package.json`, and `package-lock.json`. Wrangler then resolves `main = "src/index.js"` relative to this project directory and uses the pinned Wrangler version from the package manifest. Do not set the root directory to the repository root while using `--config auth-broker/wrangler.toml`; that bypasses the monorepo project-root setup and can leave dependency installation/build discovery pointed at the wrong directory.
+The root directory must contain `wrangler.toml`, `package.json`, and `package-lock.json`. Wrangler resolves `main = "src/index.js"` relative to this project directory and uses the pinned Wrangler version from the package manifest. Do not add `--config auth-broker/wrangler.toml` when the build root is already `/auth-broker`; that would resolve the config path incorrectly.
+
+The Wrangler config includes the required `previews` bindings for isolated Durable Object state and a separate preview rate-limit namespace. The Cloudflare Worker subdomain setting must also have **Preview URLs enabled**; the preview builds can succeed without producing a routable URL if `previews_enabled` is false. The production Worker URL and production settings are not changed by preview builds. The broker exposes a non-secret `GET /health` liveness endpoint; it deliberately does not report credentials or configuration values.
 
 Workers Builds preview deployments and the owner-only `Deploy SHIT Auth Broker` workflow are separate paths. A successful preview/build check is not proof that the production Worker was deployed or that OAuth works. Production deployment and end-to-end authorization remain explicit acceptance gates.
 
@@ -86,11 +90,11 @@ From Cloudflare and GitHub dashboards (no local PC is required):
 
 ## Tests
 
-Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrappers` 0.8.4 and Wrangler 4.158.0. The committed `package-lock.json` is installed with `npm ci`; owner-push CI regenerates and commits it only after the broker tests, high-severity audit and Wrangler dry-run all pass. These 24 tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, fail-closed workflow concurrency classification, transactional Durable Object replay/expiry, required runtime configuration, playlist-isolation boundaries, Spotify identity verification, one-time clean completion-page behavior, GitHub App JWT signature validation, OAuth provider exchange, encrypted GitHub secret publication and dispatch/persistence failure behavior. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
+Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrappers` 0.8.4 and Wrangler 4.158.0. The committed `package-lock.json` is installed with `npm ci`; owner-push CI regenerates and commits it only after the broker tests, high-severity audit and Wrangler dry-run all pass. The tests cover owner matching, scope enforcement, cookie parsing, HTML escaping, PKCE challenge generation, canonical-host enforcement, fail-closed workflow concurrency classification, transactional Durable Object replay/expiry, required runtime configuration, playlist-isolation boundaries, Spotify identity verification, one-time clean completion-page behavior, GitHub App JWT signature validation, OAuth provider exchange, encrypted GitHub secret publication and dispatch/persistence failure behavior. They are unit tests only; deployment, OAuth provider integration, GitHub secret publication and end-to-end mobile verification remain separate acceptance gates.
 
 ## Status
 
-The broker source, automated security tests, and owner-only deployment workflow are in PR #185 and must be merged before deployment. The Cloudflare Worker `shit-auth-broker` exists, but deployment of this source and live browser-based authorization have not been verified. Owner-reported provisioning is recorded in `project/goals/mobile-cloud-operation/README.md`; do not ask for secret values. Remaining gates:
+The broker source, automated security tests, and owner-only deployment workflow are in PR #185. The centralized Worker preview for commit `1a641a6ff1ffb9ac04af1685e0b6cc2c48c8c952` completed successfully after correcting dependency discovery, preview configuration, and Cloudflare Preview URL routing. The automated broker tests (including the non-secret `/health` test) and repository security scans passed on that commit. This is preview-only: production deployment and live browser-based authorization have not been verified. Owner-reported provisioning is recorded in `project/goals/mobile-cloud-operation/README.md`; do not ask for secret values. Remaining gates:
 
 - Verify the pre-created Cloudflare Worker's canonical `workers.dev` URL and configured secret names.
 - Verify the dedicated broker GitHub App is installed only on this repository with Actions:write and Secrets:write.
