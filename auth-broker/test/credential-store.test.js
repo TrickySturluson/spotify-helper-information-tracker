@@ -72,14 +72,14 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
         expires_in: 3600,
       }), { status: 200 });
     }
-    assert.equal(options.headers.Authorization, "Bearer short-lived-access-token");
+    assert.equal(options.headers.Authorization, "Bearer short-lived-access-token-" + (calls.filter((call) => call.includes("/api/token")).length === 1 ? "one" : "two"));
     return new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   };
   try {
     const response = await store.fetch(request("/refresh", { operationId: operation }));
     const result = await response.json();
     assert.equal(response.status, 200);
-    assert.equal(result.accessToken, "short-lived-access-token");
+    assert.equal(result.accessToken, "short-lived-access-token-one");
     assert.equal(result.accountId, "spotifyuser123");
     assert.equal(result.credentialVersion, 2);
     const record = await storage.get("credential");
