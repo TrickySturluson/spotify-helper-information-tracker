@@ -55,13 +55,29 @@ class PlaylistManagerTests(unittest.TestCase):
                 manager.persist_refresh_token("sensitive-refresh-token")
         run.assert_not_called()
 
-    def test_expired_broker_access_token_fails_closed_without_direct_refresh(self):
+    def test_expired_broker_access_token_renews_only_through_the_central_broker(self):
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.broker_managed = True
         spotify.t = {"access_token": "expired-broker-access-token", "obtained_at": 0, "expires_in": 60}
-        with patch.object(manager.time, "time", return_value=1000), patch.object(manager, "token_post") as token_post:
-            with self.assertRaisesRegex(manager.ManagerError, "direct Spotify refresh is disabled"):
+        with patch("scripts.spotify.broker_access_token.request_broker_access_token", side_effect=manager_error := RuntimeError("temporary broker failure")), patch.object(
+            manager.time, "time", return_value=1000
+        ), patch.object(manager, "token_post") as token_post:
+            with self.assertRaisesRegex(manager.ManagerError, "central broker could not renew"):
                 spotify.bearer()
+            token_post.assert_not_called()
+
+    def test_expired_broker_access_token_can_be_renewed_without_direct_refresh(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.broker_managed = True
+        spotify.t = {"access_token": "expired-broker-access-token", "obtained_at": 0, "expires_in": 60}
+        with patch("scripts.spotify.broker_access_token.request_broker_access_token", return_value=("renewed-broker-access-token", 3600)) as broker, patch.object(
+            manager.time, "time", return_value=1000
+        ), patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}, clear=True), patch("builtins.print") as output, patch.object(manager, "token_post") as token_post:
+            self.assertEqual(spotify.bearer(), "renewed-broker-access-token")
+            self.assertEqual(spotify.t["expires_in"], 3600)
+            self.assertEqual(os.environ["SHIT_BROKER_ACCESS_TOKEN"], "renewed-broker-access-token")
+            broker.assert_called_once_with()
+            output.assert_called_once_with("::add-mask::renewed-broker-access-token")
             token_post.assert_not_called()
 
     def test_unknown_playlists_are_locked_by_default(self):
