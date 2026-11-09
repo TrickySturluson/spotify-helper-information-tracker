@@ -66,6 +66,23 @@ jobs:
             echo "::error::The broker allowlist must exactly match the nine migrated main-branch Spotify workflow refs; wildcards and additional workflows are forbidden."
             exit 1
           fi
+      - name: Verify sensitive Worker bindings use Cloudflare secret storage
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          settings="$(curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/shit-auth-broker/secrets")"
+          for name in GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS; do
+            binding_type="$(jq -r --arg name "${name}" '[.result[]? | select(.name == $name) | .type] | first // empty' <<< "${settings}")"
+            if [ "${binding_type}" != "secret_text" ]; then
+              echo "::error::Worker binding ${name} must be stored as a Cloudflare Worker Secret (secret_text); found ${binding_type:-missing}. No deployment was performed."
+              exit 1
+            fi
+          done
+          echo "All required GitHub App and Spotify encryption bindings are present as Cloudflare Worker Secrets."
+
       - name: Deploy Worker
         working-directory: auth-broker
         env:
