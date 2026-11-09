@@ -6,9 +6,8 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const WORKFLOW_DIR = path.join(ROOT, ".github", "workflows");
-const EXPECTED_DIRECT_REFRESH_ENDPOINTS = new Set(["spotify-auth-health-check.yml"]);
+const EXPECTED_DIRECT_REFRESH_ENDPOINTS = new Set();
 const EXPECTED_CONSUMERS = new Set([
-  "spotify-auth-health-check.yml",
   "spotify-daily-live-preflight.yml",
   "spotify-daily-midnight-cycle.yml",
   "spotify-daily-feedback-observation.yml",
