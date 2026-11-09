@@ -52,8 +52,15 @@ export async function verifyActionsOidc(token, {
   if (!Number.isFinite(claims.exp) || claims.exp <= now || !Number.isFinite(claims.nbf) || claims.nbf > now + 30) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.iat) || claims.iat > now + 30 || now - claims.iat > MAX_TOKEN_AGE) throw new Error("Untrusted workload identity.");
   if (claims.repository !== REPOSITORY || String(claims.repository_owner_id) !== OWNER_ID) throw new Error("Untrusted workload identity.");
-  if (claims.ref !== "refs/heads/main" || !["push", "schedule", "workflow_dispatch"].includes(claims.event_name)) throw new Error("Untrusted workload identity.");
   if (typeof claims.workflow_ref !== "string" || !allowedWorkflowRefs.includes(claims.workflow_ref)) throw new Error("Unapproved workflow identity.");
+  const playlistControlRef = REPOSITORY + "/.github/workflows/spotify-playlist-manager.yml@refs/heads/main";
+  const greatMigrationRef = REPOSITORY + "/.github/workflows/great-migration.yml@refs/heads/main";
+  const standardEvent = ["push", "schedule", "workflow_dispatch"].includes(claims.event_name);
+  const ownerIssueEvent = claims.event_name === "issues" && [playlistControlRef, greatMigrationRef].includes(claims.workflow_ref);
+  const ownerCommentEvent = claims.event_name === "issue_comment" && claims.workflow_ref === playlistControlRef;
+  if (claims.ref !== "refs/heads/main" || !(standardEvent || ownerIssueEvent || ownerCommentEvent)) {
+    throw new Error("Untrusted workload identity.");
+  }
   if (typeof claims.run_id !== "string" || !/^\d+$/.test(claims.run_id) || typeof claims.run_attempt !== "string" || !/^\d+$/.test(claims.run_attempt)) throw new Error("Untrusted workload identity.");
   return Object.freeze({ repository: claims.repository, workflowRef: claims.workflow_ref, runId: claims.run_id, runAttempt: claims.run_attempt });
 }
