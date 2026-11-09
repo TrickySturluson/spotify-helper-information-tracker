@@ -151,7 +151,7 @@ jobs:
               access_token, _expires_in = request_broker_access_token()
           except BrokerTokenError as exc:
               if exc.category == "reauthorization_required":
-                  report("reauthorization_required", "The central broker reports that fresh owner-consented Spotify authorization is required.")
+                  report("reauthorization_required", "The central broker reports that the credential is blocked or the provider outcome could not be safely verified. Complete owner-consented Spotify authorization to recover.")
               if exc.category == "rate_limited":
                   report("rate_limited", "Spotify authentication is rate-limited. The central broker retained the credential and no retry was attempted.", state_value=retry_state(exc.retry_after))
               report("broker_unavailable", "The central authentication broker could not complete the request. No legacy refresh-token fallback was attempted.")
