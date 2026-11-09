@@ -96,5 +96,5 @@ test("owner-only deployment requires secret bindings and verifies runtime readin
   assert.ok(deployIndex >= 0 && readyIndex > deployIndex, "readiness must be checked after deployment");
   assert.match(source, /\$\{BROKER_BASE_URL\}\/ready/);
   assert.match(source, /\.status == "ready" and \.service == "shit-auth-broker"/);
-  assert.match(source, /Does not read or create a credential/);
+  assert.match(source, /does not read or create a credential/i);
 });
