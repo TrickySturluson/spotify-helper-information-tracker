@@ -50,14 +50,14 @@ Cloudflare Worker secrets (never commit or copy into GitHub Actions):
 - `GITHUB_APP_PRIVATE_KEY`
 - `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` — JSON map of key-version strings to base64-encoded 32-byte AES keys. Keep old key versions until every credential has been re-encrypted. Loss of the active/historical key can make the stored credential unrecoverable.
 
-The dedicated broker GitHub App is separate from SHIT's existing operational manager App. The broker App now needs only repository-scoped **Actions: Read** permission to inspect active workflow runs; it does not need Secrets, Contents, Administration, Issues, or account-wide permissions. Its client secret/private key remain Cloudflare Worker secrets. The OAuth callback no longer writes GitHub repository secrets.
+The dedicated broker GitHub App is separate from SHIT's existing operational manager App. The broker App now needs only repository-scoped **Actions: Write** permission to inspect active workflow runs; it does not need Secrets, Contents, Administration, Issues, or account-wide permissions. Its client secret/private key remain Cloudflare Worker secrets. The OAuth callback no longer writes GitHub repository secrets.
 
 ## Deployment and owner setup
 
 No deployment or external account changes are performed by PR CI. Before the owner-only deployment workflow can run:
 
 1. Confirm the pre-created Cloudflare Worker `shit-auth-broker` and its canonical `workers.dev` HTTPS URL.
-2. Install the dedicated broker GitHub App only on this repository with repository-scoped Actions: Read. Enable its user authorization flow and register the exact `/auth/github/callback` URI.
+2. Install the dedicated broker GitHub App only on this repository with repository-scoped Actions: Write. Enable its user authorization flow and register the exact `/auth/github/callback` URI.
 3. Register the exact `/spotify/callback` URI in the Spotify Developer Dashboard.
 4. Set the public GitHub repository variables listed above. The deployment workflow validates that the initial OIDC allowlist contains only the exact main-branch auth-health workflow.
 5. Generate a cryptographically random 32-byte AES key, base64 encode it, and configure `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` as a Cloudflare Worker secret, for example a JSON object with key version `1`. Set `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION=1`. Never paste the key into chat, source control, or a workflow log.
