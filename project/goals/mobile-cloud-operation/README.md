@@ -8,6 +8,8 @@ This workstream is independent of the device used. Phone and desktop browsers ar
 
 ## Current status — 2026-11-09
 
+The Spotify app uses Authorization Code with PKCE. For PKCE refreshes, Spotify requires `client_id` in the form body and does not require a client secret or HTTP Basic authentication; the broker must not provision or depend on a Spotify client secret. See [Spotify's refresh-token guide](https://developer.spotify.com/documentation/web-api/tutorials/refreshing-tokens).
+
 - Base broker PR #185, diagnostic follow-ups #190 and #191 are merged. Production Worker `shit-auth-broker` version 14 receives 100% traffic. The base OAuth broker is live, but its Spotify callback has two recent redacted `broker.route_dispatch` failures on version 14; end-to-end authorization is not verified.
 - Cloudflare metadata confirms the GitHub App client secret and private key are both `secret_text`. Version 14 has Durable Object migration v2 and only `OAUTH_STATE` / `SPOTIFY_REFRESH_LEASE`; it does not have the new `SPOTIFY_CREDENTIAL_STORE` binding or encryption keyring.
 - PR #187 adds the encrypted credential-store prototype. Its broker tests and Wrangler dry-run pass on head `1c8e6b46c292525c3a13019325a270d91f97a84d` (run #42598447923); its security scan is pending (run #42598447639).
@@ -80,7 +82,7 @@ The coordinator connects diagnosis to safe next steps:
 ## Current status
 
 - Broker source/tests/deployment workflow are under review in PR #185; broker tests, dependency audit and Wrangler dry-run passed in run #42540593852. The earlier authentication monitor and run-history-latch version passed the full 528-test repository suite in run #42540593870; the full-history Gitleaks scan passed with no leaks in run #42540593842. The commit-status latch is a later refinement and still needs fresh CI. These checks validate source contracts and build behavior, not live Spotify authentication. Any subsequent code change requires fresh checks.
-- Cloudflare metadata now confirms the GitHub App client secret/private key are `secret_text` Worker Secrets. The active Worker version still lacks the broker-owned credential-store binding, encryption keyring and Spotify client-secret binding required by the new refresh implementation. Never read secret values.
+- Cloudflare metadata now confirms the GitHub App client secret/private key are `secret_text` Worker Secrets. The active Worker version still lacks the broker-owned credential-store binding, encryption keyring required by the new refresh implementation. Never read secret values.
 - The saved credential remains blocked by the previously observed `invalid_grant`. Do not repeatedly dispatch Spotify commands until fresh consent and read-only verification succeed.
 
 ## Non-goals

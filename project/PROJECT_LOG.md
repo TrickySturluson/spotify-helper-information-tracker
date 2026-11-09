@@ -1,3 +1,11 @@
+## 2026-11-09 UTC — Spotify PKCE refresh contract corrected
+
+- Checked Spotify's current official refresh-token guide. For Authorization Code with PKCE, `client_id` belongs in the refresh form body; HTTP Basic client ID/secret authentication is only required for Authorization Code flow. The SHIT broker uses PKCE, so no Spotify client secret should be provisioned.
+- Corrected the encrypted credential-store refresh implementation on PR #187 and PR #188 to send `grant_type=refresh_token`, the stored refresh token, and `client_id`, without a Basic Authorization header. Removed the temporary incorrect client-secret requirement and added regression assertions that fixtures work without a Spotify client secret.
+- PR #187 latest head `1b55214b4b8362ee90f155e937e3252a9dd513ae`: fresh broker tests/security scan in progress. PR #188 latest head `6e269154ea2ba8454857efecfd985f6abd541d9e`: security scan in progress, broker tests pending. Earlier callback-stage diagnostics passed on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`.
+- Production version 14 still lacks the encrypted credential-store binding/keyring; no owner consent retry or Spotify credential write was attempted.
+
+---
 ## 2026-11-09 UTC — Central auth broker base deployment and callback diagnosis
 
 - PR #185 merged the base broker and owner-only deployment workflow; PR #190/#191 merged subsequent Cloudflare and safe diagnostic fixes.

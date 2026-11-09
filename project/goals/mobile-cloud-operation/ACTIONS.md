@@ -21,6 +21,13 @@
 - A Workers Observability query over the 24 hours ending 2026-11-09 10:08 UTC found six `shit_auth_broker_request_failed` events, all `GET /spotify/callback`: four on version 13 at `broker.base_url_configuration` (two BrokerError, two UnexpectedError), and two on version 14 at `broker.route_dispatch` (UnexpectedError).
 - No exception contents, OAuth codes, access/refresh tokens, cookies, state values, or secret values were retrieved. The two version-14 events prove the old base-URL failure was passed, but do not localize the later callback failure beyond route dispatch.
 
+### Spotify PKCE refresh contract correction
+
+- Reviewed Spotify's current official refresh-token and PKCE documentation. For Authorization Code with PKCE, the refresh request must include `client_id` in the form body; HTTP Basic client ID/secret authentication is only for the Authorization Code flow. No Spotify client secret should be provisioned.
+- Corrected both PR #187 and PR #188 credential-store refresh implementations to send `grant_type`, `refresh_token`, and `client_id` without a Basic Authorization header. Removed the temporary incorrect client-secret guard/test from PR #187; test fixtures now omit the Spotify client secret and assert the PKCE request shape.
+- Latest PR #187 head `1b55214b4b8362ee90f155e937e3252a9dd513ae`: broker tests #42599358532 and security scan #42599358504 in progress.
+- Latest PR #188 head `6e269154ea2ba8454857efecfd985f6abd541d9e`: security scan #42599375645 in progress; broker tests #42599375698 pending. Previous callback-diagnostic head `5e39177daeb0695d7230b199c9c37f6edc6999f2` passed both broker tests and security scan.
+
 ### PR and CI status
 
 - PR #187 (`feature/broker-owned-spotify-credential-store`) remains draft/unmergeable. Head `1c8e6b46c292525c3a13019325a270d91f97a84d`: broker tests and Wrangler dry-run passed in [run #42598447923](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598447923); security scan [#42598447639](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598447639) was still in progress at last check. The prior head failed only an overbroad console logging source assertion; the assertion was narrowed in the new head.
@@ -33,7 +40,7 @@
 
 1. Wait for fresh PR #187/#188 checks on their latest heads.
 2. Reconcile branch ancestry with current main and stack order; do not force-update or merge while unmergeable.
-3. Verify the combined source and tests, then add deployment gates for the missing encryption keyring, active key version, Spotify client secret and exact OIDC workflow allowlist.
+3. Verify the combined source and tests, then add deployment gates for the missing encryption keyring, active key version and exact OIDC workflow allowlist.
 4. Use owner-controlled deployment; verify the integrated version is active at 100% traffic before asking the user to repeat consent.
 5. Complete fresh owner consent, confirm encrypted credential persistence and two independent read-only auth-health checks. Keep playlists untouched.
 

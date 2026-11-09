@@ -14,19 +14,19 @@ Finish SHIT-wide centralized Spotify authentication: the broker owns the only lo
 ### Current work / branch / PR
 - Current main: `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
 - PR #185 merged `8cd28530081c519112fd947ac7bb05edc0ce7b04`; PR #190 merged `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3`; PR #191 merged `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
-- PR #187 branch `feature/broker-owned-spotify-credential-store`, head `1c8e6b46c292525c3a13019325a270d91f97a84d`, draft/unmergeable. Broker tests and Wrangler dry-run passed in #42598447923; security scan #42598447639 passed.
-- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `5e39177daeb0695d7230b199c9c37f6edc6999f2`, draft/unmergeable, stacked on PR #187. Previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, SQLite Durable Object integration, Python regression suite, documentation checks, dependency audit and Wrangler dry-run in #42598096634; security scan #42598096535 passed. New callback-stage diagnostics/tests are on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; security scan #42598778904 passed and broker tests #42598778973 were in progress at last check.
+- PR #187 branch `feature/broker-owned-spotify-credential-store`, head `1b55214b4b8362ee90f155e937e3252a9dd513ae`, draft/unmergeable. Latest broker tests #42599358532 and security scan #42599358504 are in progress; prior head `1c8e6b46c292525c3a13019325a270d91f97a84d` passed tests/dry-run and security scan.
+- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `6e269154ea2ba8454857efecfd985f6abd541d9e`, draft/unmergeable, stacked on PR #187. Its latest PKCE-corrected head has security scan #42599375645 in progress and broker tests #42599375698 pending. Previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, SQLite Durable Object integration, Python regression suite, documentation checks, dependency audit and Wrangler dry-run in #42598096634; security scan #42598096535 passed. New callback-stage diagnostics/tests are on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; security scan #42598778904 passed and broker tests #42598778973 were in progress at last check.
 - PR #187 is 130 ahead / 3 behind main; PR #188 is 267 ahead / 5 behind its PR #187 base. Resolve ancestry and conflicts before merge. Do not force-update.
 - PR #189 is a separate `engineering/general` draft and remains untouched.
 
 ### Production / provider findings
 - Cloudflare Worker `shit-auth-broker` version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`) is active at 100% traffic; created 2026-11-09 09:46:17 UTC.
-- Active version metadata shows migration tag v2 and only `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`; no `SPOTIFY_CREDENTIAL_STORE`, encryption keyring, active key version, or Spotify client-secret binding.
+- Active version metadata shows migration tag v2 and only `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`; no `SPOTIFY_CREDENTIAL_STORE`, encryption keyring, or active key version.
 - Cloudflare metadata confirms `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` are `secret_text`; values were not read.
 - Cloudflare Workers Builds config: root `auth-broker`, no build command, production upload `npx wrangler versions upload`, preview `npx wrangler preview`; auto-build/previews enabled. Production promotion remains owner-controlled.
 - Redacted Workers Observability query for the prior 24 hours (ending 2026-11-09 10:08 UTC) found six callback failures: four on version 13 at `broker.base_url_configuration`, two on version 14 at `broker.route_dispatch` (`UnexpectedError`). No exception contents, OAuth codes, tokens, cookies, state values or secret values were retrieved.
 - PR #188 adds safe fixed-stage callback instrumentation through GitHub App JWT/installation, concurrent-workflow check, Spotify exchange/scope/identity, encrypted store write, health dispatch, completion-state storage and redirect. Wait for fresh checks before another consent attempt.
-- No successful credential persistence, auth-health result, or playlist operation has been verified.
+- Spotify's PKCE refresh contract is now documented and corrected in both feature branches: send `client_id` in the form body and do not use a Spotify client secret. No successful credential persistence, auth-health result, or playlist operation has been verified.
 
 ### Buddy daily-check gate
 - Automation `SHIT Buddy — Babel documentation only` is disabled.
@@ -37,7 +37,7 @@ Finish SHIT-wide centralized Spotify authentication: the broker owns the only lo
 ### Next executable action
 1. Check fresh CI for PR #187/#188 latest heads.
 2. Reconcile the stacked branches with current main and independently inspect the combined diff; keep both drafts until mergeability and all checks are clean.
-3. Add fail-closed deployment checks for the missing encryption keyring, active key version, Spotify client secret and exact OIDC workflow allowlist.
+3. Add fail-closed deployment checks for the missing encryption keyring, active key version and exact OIDC workflow allowlist.
 4. After owner-controlled deployment, verify the integrated version receives 100% traffic, then ask the user to complete a fresh OAuth flow.
 5. Verify encrypted credential persistence and two independent read-only auth-health runs; keep all playlists untouched.
 
