@@ -56,10 +56,11 @@ class PlaylistManagerTests(unittest.TestCase):
         run.assert_not_called()
 
     def test_expired_broker_access_token_renews_only_through_the_central_broker(self):
+        from scripts.spotify.broker_access_token import BrokerTokenError
         spotify = manager.Spotify.__new__(manager.Spotify)
         spotify.broker_managed = True
         spotify.t = {"access_token": "expired-broker-access-token", "obtained_at": 0, "expires_in": 60}
-        with patch("scripts.spotify.broker_access_token.request_broker_access_token", side_effect=manager_error := RuntimeError("temporary broker failure")), patch.object(
+        with patch("scripts.spotify.broker_access_token.request_broker_access_token", side_effect=BrokerTokenError("temporary broker failure", category="broker_unavailable")), patch.object(
             manager.time, "time", return_value=1000
         ), patch.object(manager, "token_post") as token_post:
             with self.assertRaisesRegex(manager.ManagerError, "central broker could not renew"):
