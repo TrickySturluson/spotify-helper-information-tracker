@@ -26,6 +26,8 @@ The OIDC Durable Object lease prototype serializes lease acquisition, but the ni
 - Caller payload: a single unique operation ID. Caller-supplied account IDs and owner claims are ignored; the Worker selects the fixed `spotify-primary` Durable Object instance.
 - Durable Object binding/class: `SPOTIFY_CREDENTIAL_STORE` / `SpotifyCredentialStore`; SQLite migration tag `v3`.
 - Response: short-lived access token metadata only, after account verification and encrypted refresh-token commit. Responses are no-store. Missing binding/key/allowlist fails closed.
+- Added `scripts/spotify/broker_access_token.py`, a GitHub Actions client that requests the dedicated OIDC audience, calls the broker, masks the access token, and writes it only to the runner's ephemeral `GITHUB_ENV`. It rejects refresh-token fields and has no legacy fallback.
+- Updated the Spotify playlist manager to accept `SHIT_BROKER_ACCESS_TOKEN` / `SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN`. Broker-managed sessions never read the legacy token file or call Spotify's token endpoint; expired access tokens fail closed and require the job to restart.
 - Required Worker configuration before any non-production integration: secret `SPOTIFY_CREDENTIAL_ENCRYPTION_KEY` (32 random bytes, base64 encoded) and variable `SPOTIFY_REFRESH_WORKFLOW_REFS` containing exact approved workflow refs. These are not currently configured or deployed.
 - The existing OAuth callback still uses the legacy GitHub-secret path. No initial-token handoff to the new store exists yet, so this route cannot be considered operational until safe callback initialization and workflow migration are implemented.
 
@@ -53,7 +55,7 @@ The OIDC Durable Object lease prototype serializes lease acquisition, but the ni
 2. Complete the encrypted credential-store prototype review, then add Cloudflare Durable Object integration tests for restart, concurrency, transaction semantics, failed writes, and ambiguous outcomes. Define key-version rotation and owner recovery before integration.
 3. Extend the existing OAuth callback to populate the encrypted store safely while preserving current behavior until owner-reviewed cutover.
 4. Complete the OIDC-authorized broker refresh endpoint prototype and test exact workflow identity, audience separation, payload minimization, concurrent callers, token rotation, identity mismatch, failed verification, ambiguous provider outcomes, stale operation commits, and storage failures.
-5. Build a shared GitHub Action/client for workflows; migrate one low-risk read-only workflow first, then each remaining workflow.
+5. Build a shared GitHub Action/client for workflows; the Python OIDC client and manager's broker-only access-token mode are prototyped. Migrate one low-risk read-only workflow first, then each remaining workflow.
 6. Add a repository-wide inventory test that fails if any production workflow references the long-lived refresh-token secret or directly calls Spotify's token endpoint.
 7. Verify all nine workflows against the broker in non-production; then request explicit owner approval for production cutover and secret removal.
 8. Only after cutover, remove the GitHub secret refresh-token write path and mark the broker as the sole credential authority.
