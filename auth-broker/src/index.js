@@ -556,7 +556,7 @@ async function handleRefreshLock(request, env, url) {
   }
   let identity;
   try {
-    const allowed = String(env.REFRESH_LOCK_WORKFLOW_REFS).split(/[\\r\\n,]+/).map((item) => item.trim()).filter(Boolean);
+    const allowed = String(env.REFRESH_LOCK_WORKFLOW_REFS).split(",").map((item) => item.trim()).filter(Boolean);
     identity = await verifyActionsOidc(match[1], { allowedWorkflowRefs: allowed });
   } catch {
     return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
