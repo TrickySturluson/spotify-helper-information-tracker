@@ -24,7 +24,7 @@ function post(stub, path, body) {
 }
 
 async function initialize(stub) {
-  return post(stub, "/initialize", { accountId: ACCOUNT_ID, refreshToken: INITIAL_REFRESH });
+  return post(stub, "/authorize", { accountId: ACCOUNT_ID, refreshToken: INITIAL_REFRESH });
 }
 
 async function storedRecord(stub) {
@@ -120,7 +120,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect((await blocked.json()).error).toBe("credential_blocked");
   });
 
-  it("restores a blocked credential only after same-account reauthorization", async () => {
+  it("initializes and restores credentials through the owner-consented authorize path", async () => {
     const { stub } = newStore("reauthorize");
     expect((await initialize(stub)).status).toBe(201);
     network.use(
@@ -135,7 +135,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect(failed.status).toBe(409);
     expect((await storedRecord(stub)).status).toBe("reauthorization_required");
 
-    const mismatch = await post(stub, "/reauthorize", {
+    const mismatch = await post(stub, "/authorize", {
       accountId: "differentaccount",
       refreshToken: "owner-approved-new-refresh-token-for-same-account",
     });
