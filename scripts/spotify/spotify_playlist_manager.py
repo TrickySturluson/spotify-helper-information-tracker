@@ -152,9 +152,20 @@ def authorize():
 class Spotify:
     def __init__(self):
         check_spotify_cooldown()
-        self.t=read(TOKEN,None) or authorize()
+        broker_access_token=os.environ.get("SHIT_BROKER_ACCESS_TOKEN", "").strip()
+        self.broker_managed=bool(broker_access_token)
+        if self.broker_managed:
+            try:
+                broker_expires=int(os.environ.get("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN", "3600"))
+            except (TypeError, ValueError):
+                raise ManagerError("SHIT broker access-token lifetime is invalid.")
+            if not 60 <= broker_expires <= 86400 or "\\n" in broker_access_token:
+                raise ManagerError("SHIT broker access token or lifetime is invalid.")
+            self.t={"access_token":broker_access_token,"obtained_at":time.time(),"expires_in":broker_expires}
+        else:
+            self.t=read(TOKEN,None) or authorize()
         self.refresh_token_rotated=False
-        self.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
+        self.request_metrics = {"total_requests": 0, "by_endpoint": {}, "elapsed_ms": 0}
     @staticmethod
     def metric_endpoint(path):
         # Remove query strings and Spotify IDs; metrics must not expose playlist IDs or search terms.
@@ -173,6 +184,10 @@ class Spotify:
         metrics["total_requests"] += 1
         metrics["elapsed_ms"] += round(elapsed_ms, 2)
     def bearer(self):
+        if self.broker_managed:
+            if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
+                raise ManagerError("SHIT broker access token expired. Restart this workflow to request a new short-lived token; direct Spotify refresh is disabled for broker-managed sessions.")
+            return self.t["access_token"]
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
             if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") == "1" and (not os.environ.get("GH_TOKEN", "").strip() or not os.environ.get("GITHUB_REPOSITORY", "").strip()):
