@@ -269,6 +269,68 @@ export class SpotifyCredentialStore {
       : json({ reauthorized: true, version: outcome.version });
   }
 
+  async clearCachedAccessToken(record) {
+    await this.ctx.storage.transaction(async (txn) => {
+      const current = await txn.get("credential");
+      if (
+        current &&
+        current.version === record.version &&
+        current.accessToken?.ciphertext === record.accessToken?.ciphertext
+      ) {
+        const next = { ...current };
+        delete next.accessToken;
+        delete next.accessTokenExpiresAt;
+        await txn.put("credential", next);
+      }
+    });
+  }
+
+  async cachedAccessToken(record, keyring) {
+    const remainingMs = Number(record.accessTokenExpiresAt) - Date.now();
+    if (!record.accessToken || !Number.isFinite(remainingMs) || remainingMs <= 60_000) return null;
+    const key = keyring.keys.get(record.accessToken.keyVersion);
+    if (!key) {
+      await this.clearCachedAccessToken(record);
+      return null;
+    }
+    let accessToken;
+    try {
+      accessToken = await decryptAccessToken(record.accessToken, key, record.accountId);
+    } catch {
+      await this.clearCachedAccessToken(record);
+      return null;
+    }
+    return json({
+      accessToken,
+      tokenType: "Bearer",
+      expiresIn: Math.floor(remainingMs / 1000),
+      accountId: record.accountId,
+      credentialVersion: record.version,
+      cached: true,
+    });
+  }
+
+  async waitForRefresh(keyring) {
+    const deadline = Date.now() + REFRESH_WAIT_MS;
+    while (Date.now() < deadline) {
+      await new Promise((resolve) => setTimeout(resolve, REFRESH_POLL_MS));
+      const current = await this.ctx.storage.get("credential");
+      if (!current) return json({ error: "credential_missing" }, 409);
+      if (current.status === "reauthorization_required") return json({ error: "credential_blocked" }, 409);
+      if (current.status === "ready") {
+        if (current.retryAfterAt > Date.now()) {
+          const seconds = Math.max(1, Math.ceil((current.retryAfterAt - Date.now()) / 1000));
+          return json({ error: "provider_rate_limited" }, 429, { "Retry-After": String(seconds) });
+        }
+        const cached = await this.cachedAccessToken(current, keyring);
+        if (cached) return cached;
+        return json({ error: "credential_busy" }, 409);
+      }
+      if (current.status !== "refreshing") return json({ error: "credential_busy" }, 409);
+    }
+    return json({ error: "credential_busy" }, 409);
+  }
+
   async refresh(input, keyring) {
     if (typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
       return json({ error: "invalid_operation" }, 400);
