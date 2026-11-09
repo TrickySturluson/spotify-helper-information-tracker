@@ -5,7 +5,7 @@ Each major SHIT objective has its own folder containing its scope, design decisi
 
 ## Cross-project status
 
-**Current coordination priority: Babel documentation completion remains active.** The user has explicitly authorized the Mobile Cloud Operation & Spotify Reauthorization workstream to proceed in parallel; this does not reopen unrelated feature work. Other non-documentation goal workspaces retain their documented feature actions until separately authorized. See [the current handoff](../NEXT_WORK.md), [the documentation roadmap](maintainability-documentation/ROADMAP.md), and [the mobile cloud operation roadmap](mobile-cloud-operation/ROADMAP.md).
+**Current coordination priority: Babel documentation completion remains active.** The user has explicitly authorized Authentication Management & Recovery to proceed in parallel; this does not reopen unrelated feature work. Other non-documentation goal workspaces retain their documented feature actions until separately authorized. See [the current handoff](../NEXT_WORK.md), [the documentation roadmap](maintainability-documentation/ROADMAP.md), and [the mobile cloud operation roadmap](mobile-cloud-operation/ROADMAP.md).
 
 See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification blockers across all goal areas. The detailed history belongs in each goal's `ACTIONS.md`.
 
