@@ -99,7 +99,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     await started;
     const second = await post(stub, "/refresh", { operationId: "C".repeat(43) });
     expect(second.status).toBe(409);
-    expect((await second.json()).error).toBe("credential_blocked");
+    expect((await second.json()).error).toBe("credential_busy");
     releaseProvider();
     expect((await first).status).toBe(200);
   });
