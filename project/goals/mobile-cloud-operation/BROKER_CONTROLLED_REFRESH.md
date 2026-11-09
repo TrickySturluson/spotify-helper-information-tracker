@@ -1,6 +1,6 @@
 # Broker-Controlled Spotify Refresh and Credential Persistence
 
-**Status:** Architecture proposal; not implemented or deployed.
+**Status:** Isolated encrypted credential-store prototype implemented in PR #187; not integrated, bound, or deployed. See [WORKFLOW_MIGRATION_INVENTORY.md](WORKFLOW_MIGRATION_INVENTORY.md) for the verified nine-consumer baseline.
 **Parent:** Authentication Management & Recovery (PR #185).
 **Purpose:** Eliminate cross-workflow refresh-token races by making the broker the sole owner of the rotating Spotify refresh token and the refresh/persistence critical section.
 
@@ -39,8 +39,8 @@ The OIDC Durable Object lease prototype serializes lease acquisition, but the ni
 
 ## Migration sequence
 
-1. Finish tests/security review of the OIDC coordinator prototype; retain it as a non-production experiment unless it proves useful for other coordination.
-2. Implement and test the encrypted credential Durable Object, key-version handling, operation fencing, and failure recovery in isolation.
+1. Keep the OIDC coordinator isolated; its lease cannot fence GitHub Secrets writes and it is not the production refresh authority.
+2. Complete the encrypted credential-store prototype review, then add Cloudflare Durable Object integration tests for restart, concurrency, transaction semantics, failed writes, and ambiguous outcomes. Define key-version rotation and owner recovery before integration.
 3. Extend the existing OAuth callback to populate the encrypted store safely while preserving current behavior until owner-reviewed cutover.
 4. Implement OIDC-authorized broker refresh endpoint and tests for concurrent callers, token rotation, identity mismatch, failed verification, ambiguous provider outcomes, stale operation commits, and storage failures.
 5. Build a shared GitHub Action/client for workflows; migrate one low-risk read-only workflow first, then each remaining workflow.
