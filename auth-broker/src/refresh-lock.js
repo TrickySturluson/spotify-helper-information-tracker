@@ -47,8 +47,9 @@ export async function verifyActionsOidc(token, {
   );
   if (!signatureValid) throw new Error("Untrusted workload identity.");
   const issuer = claims.iss;
-  const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
-  if (issuer !== ISSUER || !audiences.includes(audience)) throw new Error("Untrusted workload identity.");
+  // GitHub issues a single audience for this workflow token. Reject audience
+  // arrays rather than accepting a token minted for multiple relying parties.
+  if (issuer !== ISSUER || claims.aud !== audience) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.exp) || claims.exp <= now || !Number.isFinite(claims.nbf) || claims.nbf > now + 30) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.iat) || claims.iat > now + 30 || now - claims.iat > MAX_TOKEN_AGE) throw new Error("Untrusted workload identity.");
   if (claims.repository !== REPOSITORY || String(claims.repository_owner_id) !== OWNER_ID) throw new Error("Untrusted workload identity.");
