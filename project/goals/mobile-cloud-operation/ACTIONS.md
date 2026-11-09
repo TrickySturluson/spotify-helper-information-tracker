@@ -309,3 +309,6 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Security scan had passed on earlier head `8c60906d6a2b997971a07ca1d1fe999394e15db6`; full-history scan for the latest code remains pending.
 - Critical unresolved issue: GitHub Actions Secrets writes cannot be conditionally committed against a fencing generation. A Durable Object lease alone cannot prevent a stale workflow from finishing an already-started secret write. The coordinator is a prototype only and must not be integrated as sufficient protection until refresh and persistence move behind a broker-controlled critical section or another fencing-enforcing downstream store.
 - No workflow consumes the new lease yet. The allowlist is not configured, no OIDC claims have been validated from a real non-production Actions job, and no Worker deployment, production secret change, Spotify request, or playlist operation has occurred.
+
+- Added `BROKER_CONTROLLED_REFRESH.md` with the recommended end state: broker-only refresh-token custody, encrypted Durable Object persistence, OIDC-authorized access-token delivery, operation-version fencing, a nine-workflow migration, and explicit production approval gates.
+- Updated the roadmap to make broker-owned credential persistence—not a lease-only solution—the next implementation milestone.
