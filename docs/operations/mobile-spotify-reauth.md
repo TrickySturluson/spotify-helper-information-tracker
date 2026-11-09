@@ -6,7 +6,7 @@ Deploy SHIT's centralized OAuth broker so the owner can reauthorize Spotify from
 
 Repository: `TrickySturluson/spotify-helper-information-tracker`
 
-Deployment workflow: [Deploy SHIT Mobile Auth Broker](https://github.com/TrickySturluson/spotify-helper-information-tracker/blob/main/.github/workflows/deploy-mobile-auth-broker.yml)
+Deployment workflow: [Deploy SHIT Auth Broker](https://github.com/TrickySturluson/spotify-helper-information-tracker/blob/main/.github/workflows/deploy-mobile-auth-broker.yml)
 
 ## Current verified state
 
@@ -70,7 +70,7 @@ Set these **Worker secrets** in Cloudflare, not in GitHub variables:
 ### 5. Deploy and verify
 
 - [ ] Open the repository Actions tab.
-- [ ] Select **Deploy SHIT Mobile Auth Broker**.
+- [ ] Select **Deploy SHIT Auth Broker**.
 - [ ] Choose Run workflow on `main`, initiated by the repository owner account.
 - [ ] Confirm the deployment run succeeds.
 - [ ] Open the canonical Worker URL on the phone.
