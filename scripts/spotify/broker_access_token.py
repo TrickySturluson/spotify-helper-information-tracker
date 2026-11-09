@@ -48,6 +48,7 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
             "credential_blocked",
             "operation_outcome_uncertain_reauthorization_required",
             "provider_outcome_uncertain_reauthorization_required",
+            "provider_response_invalid_reauthorization_required",
             "identity_mismatch",
             "identity_verification_failed",
             "identity_verification_failed",
