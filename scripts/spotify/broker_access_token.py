@@ -126,11 +126,11 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
             broker_data = _read_json(opener, broker_request)
             break
         except BrokerTokenError as exc:
-            if exc.category != "busy" or attempt == 15:
+            if exc.category not in ("busy", "broker_unavailable") or attempt == 15:
                 raise
             # If another job is already refreshing, let it finish and consume
             # its cached result rather than launching a second forced rotation.
-            if attempt == 0 and force_refresh:
+            if exc.category == "busy" and attempt == 0 and force_refresh:
                 broker_payload.pop("forceRefresh", None)
                 payload = json.dumps(broker_payload, separators=(",", ":")).encode()
             time.sleep(min(0.1 * (2 ** min(attempt, 4)), 1.0))
