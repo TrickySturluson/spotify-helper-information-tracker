@@ -20,7 +20,7 @@ SHIT should:
 ## Verified baseline
 
 - `SPOTIFY_REFRESH_TOKEN` in repository Actions Secrets is the cloud credential source of truth.
-- The existing manager and `spotify-auth-health-check.yml` already support refresh-token rotation persistence through a narrowly scoped GitHub App.
+- The existing manager and `spotify-auth-health-check.yml` support refresh-token rotation persistence through a narrowly scoped GitHub App. The workflow is now configured for a daily 09:00 UTC check and manual dispatch, with redacted failure categories and no automatic retry loop.
 - The current saved refresh token was previously rejected with `invalid_grant`. That error cannot be repaired by retrying the same credential; fresh Spotify consent is required.
 - A managed OAuth broker implementation exists on the reconciled feature work described in the roadmap. It is source code only until its PR is reviewed/merged and external provisioning and end-to-end checks are completed.
 - The owner-authored GitHub issue command path can operate SHIT remotely, but it is not the authentication system's purpose. It remains a separate control plane for authorized SHIT operations.
@@ -68,7 +68,7 @@ The coordinator connects diagnosis to safe next steps:
 
 ## Current status
 
-- Broker source and tests are implemented in the reconciled feature work; previous reported checks included 24 broker tests, dependency audit, Wrangler dry-run, 519 repository tests and full-history Gitleaks. Any subsequent code change requires fresh checks.
+- Broker source and tests are implemented in the reconciled feature work; previous reported checks included 24 broker tests, dependency audit, Wrangler dry-run, 519 repository tests and full-history Gitleaks. Any subsequent code change requires fresh checks. The scheduled auth-health monitor and failure classifier are now implemented on `feature/authentication-management-recovery`; this new workflow change has not yet passed CI.
 - No Cloudflare Worker deployment, dedicated broker GitHub App installation, Spotify callback registration, OAuth completion or Actions secret replacement is confirmed.
 - The saved credential remains blocked by the previously observed `invalid_grant`. Do not repeatedly dispatch Spotify commands until fresh consent and read-only verification succeed.
 
