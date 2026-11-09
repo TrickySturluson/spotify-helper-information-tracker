@@ -739,11 +739,12 @@ export default {
 
 
 // FILE OVERVIEW
-// Purpose: SHIT-wide Spotify Authorization Code + PKCE bootstrap for phone and desktop browsers.
-// Runtime: Cloudflare Worker with strongly consistent Durable Object OAuth state and an edge rate limiter.
-// Credentials: GitHub OAuth secret and repository-scoped GitHub App private key are Worker secrets.
-// Side effects: Updates only the repository SPOTIFY_REFRESH_TOKEN Actions secret, then dispatches
-//              the read-only Spotify auth-health workflow. It has no playlist-write operations.
-// Safety: GitHub owner allowlist, single-use state, session binding, PKCE, secret encryption,
-//         short-lived installation token, no token logging/return, fail-closed secret persistence.
+// Purpose: SHIT-wide OAuth recovery broker and OIDC-authenticated refresh prototype.
+// Runtime: Cloudflare Worker with transactional OAuth state, refresh coordination, credential storage and rate limiting.
+// Credentials: GitHub App credentials and (future, not yet configured) credential-store encryption key are Worker secrets.
+// Side effects: Legacy OAuth callback updates SPOTIFY_REFRESH_TOKEN and dispatches read-only auth health;
+//               OIDC refresh route returns only a short-lived access token after encrypted credential commit.
+// Safety: Exact GitHub owner/workflow identity, PKCE, one-time state, AES-GCM credential records,
+//         no token logging, no refresh-token return, no playlist endpoints or writes.
+// Status: Credential-store/OIDC route are draft prototypes; not deployed or enabled.
 // Related: auth-broker/README.md, project/goals/mobile-cloud-operation/ROADMAP.md.
