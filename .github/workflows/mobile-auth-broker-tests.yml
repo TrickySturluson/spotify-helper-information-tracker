@@ -7,6 +7,9 @@ on:
       - "scripts/spotify/broker_access_token.py"
       - "scripts/spotify/spotify_playlist_manager.py"
       - "tests/test_spotify_broker_access.py"
+      - "tests/test_spotify_auth_health_workflow.py"
+      - "auth-broker/test/workflow-inventory.test.js"
+      - ".github/workflows/spotify-auth-health-check.yml"
       - "tests/test_spotify_playlist_manager.py"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
@@ -72,7 +75,7 @@ jobs:
         run: npm run test:durable-objects
       - name: Test broker access-token client and manager mode
         working-directory: .
-        run: python -m unittest tests.test_spotify_broker_access tests.test_spotify_playlist_manager -v
+        run: python -m unittest tests.test_spotify_broker_access tests.test_spotify_playlist_manager tests.test_spotify_auth_health_workflow -v
       - name: Check maintained Python script documentation
         working-directory: .
         run: python -m unittest tests.test_script_layout -v
@@ -84,7 +87,9 @@ jobs:
             --var "GITHUB_APP_ID:123456" \
             --var "GITHUB_APP_REDIRECT_URI:https://broker.example.workers.dev/auth/github/callback" \
             --var "SPOTIFY_CLIENT_ID:example-spotify-client-id" \
-            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback"
+            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback" \\
+            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:1" \\
+            --var "SPOTIFY_REFRESH_WORKFLOW_REFS:TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main"
 
   commit-lockfile:
     needs: test
