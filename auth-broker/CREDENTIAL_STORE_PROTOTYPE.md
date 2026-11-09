@@ -16,7 +16,7 @@ Move the long-lived Spotify refresh token out of GitHub Actions and into a singl
 - The object durably reserves refresh operations before contacting Spotify. Concurrent operations are rejected.
 - Spotify `/v1/me` identity is checked against the stored account ID before a rotated credential is committed.
 - A verified short-lived access token is encrypted under the same versioned keyring and cached until its expiry. Concurrent authorized workflows wait for the in-flight refresh and reuse that cached token, avoiding competing rotations. Only the short-lived access token, expiry, account ID, and credential version are returned; the refresh token is never returned.
-- Operation IDs cannot be replayed after a successful commit.
+- A repeated operation ID idempotently returns the same encrypted cached access token while it remains valid; once the cache expires, that operation ID is rejected.
 - A definite Spotify 429 releases the reservation, preserves the existing encrypted credential, persists a bounded cooldown, and propagates Retry-After. Ambiguous network/provider outcomes, invalid identity, corrupted ciphertext, and uncertain commits block refresh and require owner-consented recovery.
 
 ## First workflow integration
