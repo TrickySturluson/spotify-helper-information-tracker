@@ -1,6 +1,6 @@
 # SHIT Spotify Authorization Broker
 
-This Worker is SHIT's managed, owner-consented replacement for the local port-8888 OAuth callback used by the Spotify playlist manager. It supports a normal browser on phone or desktop; device type is not a system dependency. It is an authentication bootstrap only. It does not read or modify playlists.
+This Worker is SHIT's managed, owner-consented replacement for the local port-8888 OAuth callback used by the Spotify playlist manager. It supports a normal browser on desktop or mobile; device type is not a system dependency. It is an authentication bootstrap only. It does not read or modify playlists.
 
 ## Flow
 
@@ -44,12 +44,12 @@ The dedicated broker GitHub App must be installed only on this repository. In th
 
 From Cloudflare and GitHub dashboards (no local PC is required):
 
-1. Create a Cloudflare Worker named `shit-mobile-auth-broker` in the dashboard first. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
+1. Use the pre-created Cloudflare Worker `shit-auth-broker` in the dashboard. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
 2. Enable its `workers.dev` hostname and note the exact HTTPS URL.
 3. Add these non-secret GitHub repository Actions variables: `CLOUDFLARE_ACCOUNT_ID`, `BROKER_BASE_URL`, `GITHUB_APP_CLIENT_ID`, `GITHUB_APP_ID`, `GITHUB_APP_REDIRECT_URI` and `SPOTIFY_CLIENT_ID`, `SPOTIFY_REDIRECT_URI`. The callback URLs must use the exact `BROKER_BASE_URL` host and end in `/auth/github/callback` and `/spotify/callback` respectively.
 4. Create a Cloudflare API token scoped to this existing Worker with the Workers product `Editor` permission. Creating a brand-new Worker by API requires broader `Admin`; pre-creating it allows the narrower existing-Worker permission. Add the token as GitHub Actions secret `CLOUDFLARE_API_TOKEN`.
 5. Set the two Worker secrets `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` in Cloudflare. Keep the GitHub App private key and client secret out of GitHub repository files and out of this deployment workflow.
-6. Run the owner-only `Deploy SHIT Mobile Auth Broker` workflow from the repository's Actions tab. It injects the repository variables into Wrangler and deploys the existing Worker plus its Durable Object migration; it does not contact Spotify or modify playlists.
+6. Run the owner-only `Deploy SHIT Auth Broker` workflow from the repository's Actions tab. It injects the repository variables into Wrangler and deploys the existing Worker plus its Durable Object migration; it does not contact Spotify or modify playlists.
 7. Register the exact Spotify callback URI and GitHub App user-authorization callback URI in their respective dashboards.
 8. Open the Worker root URL on a phone and complete GitHub then Spotify authorization.
 9. Confirm the repository Actions secret metadata has been updated without retrieving its value.
@@ -74,9 +74,9 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. **The Worker is not deployed and live browser-based authorization from phone or desktop is not available yet.** Deployment is blocked on external account provisioning, not unfinished broker code:
+The broker source, automated security tests, and owner-only deployment workflow are in the authentication recovery pull request and must be merged before deployment. The Cloudflare Worker `shit-auth-broker` has been created, but it is not yet deployed with SHIT code and live browser-based authorization is not available. Remaining gates:
 
-- Create the Cloudflare Worker and configure its canonical `workers.dev` URL.
+- Configure the pre-created Cloudflare Worker's canonical `workers.dev` URL.
 - Create and install the dedicated broker GitHub App with only repository Actions:write and Secrets:write.
 - Register the exact GitHub and Spotify callback URLs.
 - Add the required repository Actions variables and the Cloudflare deployment token.
