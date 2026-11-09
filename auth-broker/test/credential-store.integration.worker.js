@@ -54,6 +54,14 @@ function successfulSpotifyHandlers({ onTokenRequest } = {}) {
 }
 
 describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () => {
+  it("reports configured keyring readiness without requiring a saved credential", async () => {
+    const { stub } = newStore("readiness");
+    const result = await stub.fetch("https://credential-store.internal/ready");
+    expect(result.status).toBe(200);
+    expect(await result.json()).toEqual({ status: "ready" });
+    expect(await storedRecord(stub)).toBeUndefined();
+  });
+
   it("persists only ciphertext and commits rotation after /v1/me identity verification", async () => {
     const { id, stub } = newStore("success");
     const initialized = await initialize(stub);
