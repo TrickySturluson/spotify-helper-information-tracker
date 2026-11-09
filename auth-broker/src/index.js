@@ -545,13 +545,18 @@ async function handleRefreshLock(request, env, url) {
   if (length > 2048 || !request.headers.get("Content-Type")?.toLowerCase().startsWith("application/json")) {
     return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
   }
+  let rawBody;
+  try { rawBody = await request.text(); } catch {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  if (rawBody.length > 2048) return response(JSON.stringify({ error: "invalid_request" }), 413, { "Content-Type": "application/json" });
   let body;
-  try { body = await request.json(); } catch {
+  try { body = JSON.parse(rawBody); } catch {
     return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
   }
   let identity;
   try {
-    const allowed = String(env.REFRESH_LOCK_WORKFLOW_REFS).split("\\n").flatMap((line) => line.split(",")).map((item) => item.trim()).filter(Boolean);
+    const allowed = String(env.REFRESH_LOCK_WORKFLOW_REFS).split(/[\\r\\n,]+/).map((item) => item.trim()).filter(Boolean);
     identity = await verifyActionsOidc(match[1], { allowedWorkflowRefs: allowed });
   } catch {
     return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
