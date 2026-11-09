@@ -86,6 +86,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Implement isolated AES-256-GCM credential-store prototype with transactional refresh reservation, identity verification, encrypted rotation commit, replay rejection and fail-closed ambiguous outcomes; PR #187.
 - [x] Add OIDC-authenticated `POST /internal/spotify/refresh` route with a dedicated audience, exact workflow allowlist, fixed credential Durable Object identity and minimal operation-ID payload; stacked draft PR #188.
 - [x] Add a GitHub Actions OIDC client and broker-only Spotify manager mode; broker sessions do not load refresh-token files or refresh directly, and expired access tokens fail closed.
+- [x] Authenticate explicit credential encryption key-version metadata in AES-GCM associated data; multi-key rotation/re-encryption remains outstanding.
 - [ ] Add real Cloudflare Durable Object integration tests and key-version rotation/recovery design before enabling the credential store in any environment.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
 - [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
