@@ -19,7 +19,7 @@ OIDC_AUDIENCE = "shit-spotify-refresh"
 
 
 class BrokerTokenError(RuntimeError):
-    def __init__(self, message, category="broker_error", retry_after=None):
+    def __init__(self, message, category="broker_unavailable", retry_after=None):
         super().__init__(message)
         self.category = category
         self.retry_after = retry_after
@@ -35,16 +35,20 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
             if status < 200 or status >= 300:
                 raise BrokerTokenError("Authentication broker request failed.")
     except urllib.error.HTTPError as exc:
-        category = "broker_error"
+        category = "broker_unavailable"
         try:
-            detail = json.loads(exc.read(MAX_RESPONSE_BYTES).decode("utf-8")).get("error")
+            payload = json.loads(exc.read(MAX_RESPONSE_BYTES).decode("utf-8"))
+            detail = payload.get("error") if isinstance(payload, dict) else None
+            body_retry_after = payload.get("retryAfter") if isinstance(payload, dict) else None
         except (ValueError, UnicodeDecodeError, AttributeError):
             detail = None
+            body_retry_after = None
         if detail in {
             "reauthorization_required",
             "credential_blocked",
             "operation_outcome_uncertain_reauthorization_required",
             "identity_mismatch",
+            "identity_verification_failed",
             "credential_commit_uncertain_reauthorization_required",
         }:
             category = "reauthorization_required"
@@ -52,12 +56,12 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
         elif detail == "provider_rate_limited":
             category = "rate_limited"
             message = "Spotify authentication is rate-limited; retry after the provider cooldown."
-            retry_after = exc.headers.get("Retry-After") if exc.headers else None
+            retry_after = body_retry_after or (exc.headers.get("Retry-After") if exc.headers else None)
         else:
             message = "Authentication broker request failed."
         raise BrokerTokenError(message, category=category, retry_after=retry_after if category == "rate_limited" else None) from None
-    except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        raise BrokerTokenError("Authentication broker is unavailable.") from exc
+    except (urllib.error.URLError, TimeoutError, OSError):
+        raise BrokerTokenError("Authentication broker is unavailable.", category="broker_unavailable") from None
     try:
         value = json.loads(raw)
     except (ValueError, UnicodeDecodeError) as exc:
