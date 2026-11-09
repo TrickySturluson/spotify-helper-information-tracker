@@ -660,7 +660,14 @@ export async function handleRequest(request, env) {
           { "Content-Type": "application/json; charset=utf-8" },
         );
       }
-      await rateLimit(request, env, "readiness");
+      const readinessLimit = await env.AUTH_RATE_LIMITER.limit({ key: "readiness:anonymous" });
+      if (!readinessLimit.success) {
+        return response(
+          JSON.stringify({ status: "rate_limited", service: "shit-auth-broker" }),
+          429,
+          { "Content-Type": "application/json; charset=utf-8", "Retry-After": "60" },
+        );
+      }
       if (
         !env.SPOTIFY_CREDENTIAL_STORE ||
         !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
