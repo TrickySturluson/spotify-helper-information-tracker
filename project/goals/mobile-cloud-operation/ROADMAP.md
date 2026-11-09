@@ -7,9 +7,9 @@
 ## Latest validation snapshot (2026-11-09)
 
 - PR #185 head: `cf12955669d08db80c6d17f1ea5e70b83558ef58`.
-- Cloudflare preview build: `a4bc882b-2a55-4335-8091-cca4c7fd1135`, successful; preview URL routing is enabled and the preview is tied to the PR branch.
-- Broker unit tests and repository tests passed on the preceding code commit `1a641a6ff1ffb9ac04af1685e0b6cc2c48c8c952`; the latest documentation-only commit is running the same checks.
-- The broker's `GET /health` endpoint is covered by an automated test. An independent live HTTP probe of the preview is not yet verified.
+- Cloudflare preview build: `9e69be82-564e-49c6-97c3-1e7d96fdbc3f`, successful for code commit `828f3606b64c571837576378a45ab47f0d717057`; the branch preview URL is active.
+- Broker unit tests passed on this commit; broader repository tests and full-history secret scans are running.
+- The broker's `GET /health` endpoint passed both its automated test and an independent GitHub Actions HTTP probe against the deployed preview for this exact commit. Response: `{ "status": "ok", "service": "shit-auth-broker" }`.
 - No production Worker deployment, OAuth consent, refresh-token replacement, or playlist operation has been performed.
 - The cross-workflow OIDC lease is a tested prototype only. It is not integrated into the nine token-consuming workflows and cannot by itself fence a late GitHub Secrets API write. The broker-controlled encrypted credential store remains the recommended end state; see [BROKER_CONTROLLED_REFRESH.md](BROKER_CONTROLLED_REFRESH.md).
 
