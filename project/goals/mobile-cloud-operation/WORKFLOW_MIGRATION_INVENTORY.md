@@ -1,14 +1,14 @@
 # Spotify Credential Consumer Inventory
 
-**Status:** Baseline inventory verified against `feature/broker-owned-spotify-credential-store` on 2026-11-09. All listed consumers still read `secrets.SPOTIFY_REFRESH_TOKEN` directly. None has been migrated to broker-issued access tokens.
+**Status:** Updated on `feature/oidc-broker-refresh-endpoint` on 2026-11-09. The auth-health workflow is migrated in this feature branch to broker-issued OIDC access tokens; the other eight consumers still read `secrets.SPOTIFY_REFRESH_TOKEN` directly. The broker canary is not merged, deployed, or production-verified.
 
-This inventory is a migration control, not permission to change production workflows. The shared OIDC client and manager broker-only mode now exist, but no workflow uses them yet. Each workflow must be migrated and tested before the legacy refresh-token secret path is removed.
+This inventory is a migration control. The shared OIDC client, encrypted credential store, owner-consented initialization path, and manager broker-only mode exist on the stacked feature branch. The auth-health workflow is the first canary. Each remaining workflow must be migrated and tested before the legacy refresh-token secret path is removed.
 
 ## Direct refresh-token consumers
 
 | Workflow | Current role | Current credential behavior | Migration order |
 |---|---|---|---|
-| `.github/workflows/spotify-auth-health-check.yml` | Scheduled/manual auth health diagnosis | Reads refresh secret, calls Spotify token endpoint, verifies `/v1/me`, may write rotated secret | 1 — migrate first as broker canary |
+| `.github/workflows/spotify-auth-health-check.yml` | Scheduled/manual auth health diagnosis | Uses GitHub OIDC to obtain a short-lived broker access token, then verifies `/v1/me`; no refresh secret access | Migrated first as broker canary (feature branch only; CI/deployment verification pending) |
 | `.github/workflows/spotify-daily-live-preflight.yml` | Daily live preflight | Reads refresh secret for Spotify preflight | 2 — after broker canary |
 | `.github/workflows/spotify-daily-midnight-cycle.yml` | Daily playlist cycle | Reads refresh secret and initializes manager token state | 3 |
 | `.github/workflows/spotify-daily-feedback-observation.yml` | Daily feedback observation | Reads refresh secret and initializes manager token state; may persist rotation | 4 |
@@ -18,7 +18,7 @@ This inventory is a migration control, not permission to change production workf
 | `.github/workflows/great-migration.yml` | Migration and verification jobs | Multiple jobs read refresh secret and may persist rotation | 8 — split and migrate each job independently |
 | `.github/workflows/update.yml` | General update workflow | Reads refresh secret and initializes manager token state; may persist rotation | 9 |
 
-## Explicitly checked adjacent workflows
+## Remaining direct refresh-token consumers\n\nThe eight workflows below remain on the legacy secret path and are the remaining migration backlog.\n\n## Explicitly checked adjacent workflows
 
 These were inspected and did not expose the refresh-token secret in the searched workflow source at this baseline:
 
@@ -44,4 +44,4 @@ A workflow with no direct secret reference may still invoke code that requires S
 
 ## Baseline verification
 
-The baseline search inspected the workflow files listed above for `SPOTIFY_REFRESH_TOKEN`, `accounts.spotify.com/api/token`, and refresh-token setup/rotation references. The inventory must be refreshed whenever workflows are added, renamed, split, or changed.
+The updated search inspected all active workflow YAML files for `SPOTIFY_REFRESH_TOKEN`, `accounts.spotify.com/api/token`, and refresh-token setup/rotation references. The auth-health workflow no longer contains a direct secret or token-endpoint path. Eight consumers remain. Refresh this inventory whenever workflows are added, renamed, split, or changed.
