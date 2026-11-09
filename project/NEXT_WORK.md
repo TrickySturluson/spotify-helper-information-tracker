@@ -1,3 +1,18 @@
+# Current session handoff — 2026-11-09
+
+This session is actively continuing the user-authorized Authentication Management & Recovery workstream in parallel with the Jockey's Tricky Daily priority. Do not reassign the Jockey or modify its branch/PR.
+
+- Base broker PR #185 and diagnostic follow-ups #190/#191 are merged. Production Worker `shit-auth-broker` version 14 is active at 100% traffic, but it is still the v2 base broker and does not have the broker-owned credential-store binding or encryption keyring.
+- PR #187 (encrypted credential store) and PR #188 (OIDC refresh endpoint plus nine-workflow migration) remain draft/unmergeable. PR #187 tests/dry-run passed on head `1c8e6b46c292525c3a13019325a270d91f97a84d`; security scan was pending. PR #188's prior head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker, Durable Object, Python, documentation, audit and Wrangler checks; its new callback-stage diagnostics are on head `5e39177daeb0695d7230b199c9c37f6edc6999f2` and need fresh checks.
+- PR #187 is 130 ahead / 3 behind main; PR #188 is 267 ahead / 5 behind its base. Resolve stacked-branch divergence before merge; do not force-update. PR #189 is an engineering/general draft and remains untouched.
+- Production version 14 has only `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE` bindings (migration v2). The required credential store/keyring/active-key/Spotify client-secret bindings are absent. GitHub App secret metadata is correctly `secret_text`.
+- Last 24h Workers Observability query found six Spotify callback errors: four on v13 at `broker.base_url_configuration`, two on v14 at `broker.route_dispatch` (`UnexpectedError`). The latest branch adds finer safe callback-stage diagnostics; do not ask for another consent attempt until fresh checks pass and integrated version is deployed.
+- No successful Spotify credential persistence or auth-health verification has occurred; no playlist was touched.
+- Babel gate: Buddy automation is disabled; last successful report-bearing run Nov 7, Nov 8 run failed, and no successful Nov 9 run exists. Record **Buddy pending today — disabled**. Do not change Buddy's automation or branch.
+
+**Next:** validate latest PR checks; reconcile PR #187/#188 ancestry with main and review the complete combined diff; add fail-closed provisioning checks for encryption keyring, active version, Spotify client secret and exact OIDC workflow allowlist; then use the owner-only deployment path and verify 100% traffic before requesting fresh OAuth consent.
+
+---
 # Current policy overlay — 2026-11-07
 
 > This section supersedes older handoff language below that says Babel is the sole active SHIT workstream or that ChatGPT must wait for user review/merge for every documentation update. The authoritative rules are in [AGENTS.md](../AGENTS.md), [DOCUMENTATION_RULES.md](DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../docs/BABEL_CHATGPT_BUDDY.md).
