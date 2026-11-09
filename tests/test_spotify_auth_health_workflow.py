@@ -101,7 +101,7 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("GITHUB_RUN_ID", WORKFLOW)
         self.assertIn("GITHUB_SERVER_URL", WORKFLOW)
         self.assertIn('description = state_value if status == "rate_limited" and state_value else status', script)
-        self.assertIn("statuses/{os.environ['SPOTIFY_AUTH_STATE_SHA']}", script)
+        self.assertIn("statuses/{os.environ['AUTH_STATE_COMMIT']}", script)
         self.assertNotIn("gh run view", WORKFLOW)
         self.assertNotIn("gh variable set", WORKFLOW)
 
