@@ -184,6 +184,8 @@ jobs:
                           report("rate_limited", "The central broker is honoring Spotify's refresh cooldown.", state_value=retry_state(broker_error.retry_after))
                       if broker_error.category == "configuration_error":
                           report("configuration_error", "Spotify rejected the broker client configuration; no credential was changed.")
+                      if broker_error.category == "busy":
+                          report("credential_busy", "Another workflow is completing the central refresh; the health check did not start a competing refresh.")
                       report("broker_unavailable", "The central broker could not safely recover the rejected access token.")
                   except urllib.error.HTTPError as retry_error:
                       if retry_error.code == 429:
