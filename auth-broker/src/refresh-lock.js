@@ -82,11 +82,11 @@ export class SpotifyRefreshLease {
     const result = await this.ctx.storage.transaction(async (txn) => {
       const current = await txn.get("lease");
       let generation = await txn.get("generation") || 0;
+      if (typeof body.owner !== "string" || body.owner.length > 512) return { status: 400, body: { error: "invalid_request" } };
       if (url.pathname === "/acquire") {
         if (current && current.expiresAt > now) return { status: 409, body: { acquired: false, retryAfterSeconds: Math.max(1, Math.ceil((current.expiresAt - now) / 1000)) } };
         generation += 1;
         await txn.put("generation", generation);
-        if (typeof body.owner !== "string" || body.owner.length > 512) return { status: 400, body: { error: "invalid_request" } };
         await txn.put("lease", { leaseId: body.leaseId, owner: body.owner, generation, expiresAt: now + LEASE_TTL_MS });
         return { status: 200, body: { acquired: true, generation, expiresAt: now + LEASE_TTL_MS } };
       }
