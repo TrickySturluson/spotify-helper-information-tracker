@@ -8,6 +8,7 @@ on:
       - "auth-broker/**"
       - ".github/workflows/auth-broker-preview-health.yml"
       - "docs/WORKFLOWS.md"
+      - "project/goals/mobile-cloud-operation/**"
 
 permissions:
   checks: read
