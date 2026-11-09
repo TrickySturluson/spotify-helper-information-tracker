@@ -5,17 +5,18 @@ useDefault = true
 
 [allowlist]
 description = "Public catalog identifiers in the generated music-library index only."
-paths = ['''assistant_data/music/library/library_index\.json''']
+paths = ['''assistant_data/music/library/library_index\\.json''']
 
 [[allowlists]]
-description = "Exact historical auth-state commit-reference false positives in two audited source locations."
+description = "Historical workflow environment label false positive; exact source line and file only."
 condition = "AND"
 regexTarget = "line"
-regexes = [
-  '''SPOTIFY_AUTH_STATE_SHA: \$\{\{ steps\.auth-latch\.outputs\.state_sha \}\}''',
-  '''SPOTIFY_AUTH_STATE_SHA: ''',
-]
-paths = [
-  '''^\.github/workflows/spotify-auth-health-check\.yml$''',
-  '''^tests/test_spotify_auth_health_workflow\.py$''',
-]
+regexes = ['''^\\s*SPOTIFY_AUTH_STATE_SHA: \\$\\{\\{ steps\\.auth-latch\\.outputs\\.state_sha \\}\\}\\s*$''']
+paths = ['''^\\.github/workflows/spotify-auth-health-check\\.yml$''']
+
+[[allowlists]]
+description = "Historical regression assertion false positive; exact source line and file only."
+condition = "AND"
+regexTarget = "line"
+regexes = ['''SPOTIFY_AUTH_STATE_SHA: ''']
+paths = ['''^tests/test_spotify_auth_health_workflow\\.py$''']
