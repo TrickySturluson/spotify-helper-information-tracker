@@ -76,7 +76,9 @@ test("readiness is rate limited and fails closed when the limiter is missing", a
     new Request("https://broker.example/ready"),
     { BROKER_BASE_URL: "https://broker.example", AUTH_RATE_LIMITER: { limit: async () => { calls += 1; return { success: false }; } } },
   );
-  assert.equal(limited.status, 200); // Generic diagnostic page, no readiness data or secret details.
+  assert.equal(limited.status, 429);
+  assert.equal(limited.headers.get("Retry-After"), "60");
+  assert.deepEqual(await limited.json(), { status: "rate_limited", service: "shit-auth-broker" });
   assert.equal(calls, 1);
 });
 
