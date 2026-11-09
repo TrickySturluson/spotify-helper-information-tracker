@@ -55,6 +55,7 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("The same credential will not be retried", script)
         self.assertIn("reauthorization_required", WORKFLOW)
         self.assertIn("Open SHIT Spotify authorization", script)
+        self.assertIn('.strip().rstrip("/")', script)
         self.assertIn("docs/operations/mobile-spotify-reauth.md", script)
 
     def test_provider_failures_are_distinct_and_redacted(self):
