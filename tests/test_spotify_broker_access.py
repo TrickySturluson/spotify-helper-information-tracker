@@ -148,10 +148,10 @@ class BrokerAccessTokenTests(unittest.TestCase):
 
         result = request_broker_access_token(self.environ, opener, force_refresh=True)
         self.assertEqual(result, ("short-lived-access-token", 3600))
-        self.assertEqual(json.loads(requests[1].data), {
-            "operationId": json.loads(requests[1].data)["operationId"],
-            "forceRefresh": True,
-        })
+        body = json.loads(requests[1].data)
+        self.assertEqual(set(body), {"operationId", "forceRefresh"})
+        self.assertEqual(len(body["operationId"]), 43)
+        self.assertIs(body["forceRefresh"], True)
 
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
