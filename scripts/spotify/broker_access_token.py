@@ -111,7 +111,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
         broker_payload["forceRefresh"] = True
     payload = json.dumps(broker_payload, separators=(",", ":")).encode()
     broker_data = None
-    for attempt in range(16):
+    for attempt in range(24):
         broker_request = urllib.request.Request(
             broker_base + "/internal/spotify/refresh",
             data=payload,
@@ -126,7 +126,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
             broker_data = _read_json(opener, broker_request)
             break
         except BrokerTokenError as exc:
-            if exc.category not in ("busy", "broker_unavailable") or attempt == 15:
+            if exc.category not in ("busy", "broker_unavailable") or attempt == 23:
                 raise
             # If another job is already refreshing, let it finish and consume
             # its cached result rather than launching a second forced rotation.
