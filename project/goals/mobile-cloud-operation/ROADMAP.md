@@ -11,6 +11,7 @@
 - Broker unit tests passed on this commit; broader repository tests and full-history secret scans are running.
 - The broker's `GET /health` endpoint passed both its automated test and an independent GitHub Actions HTTP probe against the deployed preview for this exact commit. Response: `{ "status": "ok", "service": "shit-auth-broker" }`.
 - No production Worker deployment, OAuth consent, refresh-token replacement, or playlist operation has been performed.
+- Production Worker metadata shows `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` as `plain_text`; they must be rotated and re-created as `secret_text` Worker Secrets before deployment. The deployment workflow now enforces this without reading secret values.
 - The cross-workflow OIDC lease is a tested prototype only. It is not integrated into the nine token-consuming workflows and cannot by itself fence a late GitHub Secrets API write. The broker-controlled encrypted credential store remains the recommended end state; see [BROKER_CONTROLLED_REFRESH.md](BROKER_CONTROLLED_REFRESH.md).
 
 ## Problem and target
