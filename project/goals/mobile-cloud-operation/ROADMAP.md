@@ -57,7 +57,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Persist non-secret health status markers in Actions logs, with workflow-run timestamps and evidence.
 - [x] Ensure one attempt per run: no retry for `invalid_grant`; report Retry-After for 429; classify transient failures without retry loops.
 - [x] Add a fail-closed run-history latch: scheduled checks skip permanent blockers/interrupted attempts, respect Retry-After deadlines and resume after a deliberate manual recovery attempt.
-- [ ] Add an owner notification/action with a direct reauthorization entry point when the state is `reauthorization_required`.
+- [x] Add an owner-facing reauthorization action to the failed health-check summary: link to the HTTPS broker root when configured, otherwise link to the deployment runbook. GitHub's normal workflow-failure notification remains the alert channel.
 - [ ] Ensure monitoring cannot trigger playlist operations or generated-data writes.
 
 ### M2 — Safe refresh and token rotation
