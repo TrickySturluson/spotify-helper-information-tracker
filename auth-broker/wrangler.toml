@@ -21,6 +21,14 @@ new_sqlite_classes = ["OAuthStateStore"]
 tag = "v2"
 new_sqlite_classes = ["SpotifyRefreshLease"]
 
+[[durable_objects.bindings]]
+name = "SPOTIFY_CREDENTIAL_STORE"
+class_name = "SpotifyCredentialStore"
+
+[[migrations]]
+tag = "v3"
+new_sqlite_classes = ["SpotifyCredentialStore"]
+
 # Cloudflare's edge rate limiter protects each OAuth entry/callback route.
 [[ratelimits]]
 name = "AUTH_RATE_LIMITER"
