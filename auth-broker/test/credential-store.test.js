@@ -197,3 +197,58 @@ test("malformed requests and missing encryption configuration fail closed", asyn
   assert.equal((await unconfigured.fetch(request("/initialize", { accountId: "x", refreshToken: initialToken }))).status, 503);
   assert.equal(CREDENTIAL_OPERATION_TTL_MS, 120_000);
 });
+
+
+test("a refresh reservation survives store-instance restart and blocks a second worker", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  let releaseProvider;
+  let providerStarted;
+  const started = new Promise((resolve) => { providerStarted = resolve; });
+  const providerGate = new Promise((resolve) => { releaseProvider = resolve; });
+  globalThis.fetch = async (url) => {
+    if (String(url).includes("/api/token")) {
+      providerStarted();
+      await providerGate;
+      return new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 });
+    }
+    return new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
+  };
+  try {
+    const inFlight = store.fetch(request("/refresh", { operationId: "F".repeat(43) }));
+    await started;
+    // A new class instance represents a restarted Worker/DO caller sharing
+    // the same persistent Durable Object storage.
+    const restartedStore = new SpotifyCredentialStore({ storage }, {
+      SPOTIFY_CREDENTIAL_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString("base64"),
+      SPOTIFY_CLIENT_ID: "client",
+      SPOTIFY_CLIENT_SECRET: "secret",
+    });
+    const second = await restartedStore.fetch(request("/refresh", { operationId: "G".repeat(43) }));
+    assert.equal(second.status, 409);
+    assert.equal((await second.json()).error, "credential_blocked");
+    assert.equal((await storage.get("credential")).operationId, "F".repeat(43));
+    releaseProvider();
+    assert.equal((await inFlight).status, 200);
+  } finally {
+    releaseProvider();
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("a stale operation cannot block or overwrite a newer credential operation", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  await storage.put("credential", {
+    ...(await storage.get("credential")),
+    status: "refreshing",
+    operationId: "H".repeat(43),
+    expiresAt: Date.now() + CREDENTIAL_OPERATION_TTL_MS,
+  });
+  await store.blockOperation("I".repeat(43), "stale_operation");
+  const record = await storage.get("credential");
+  assert.equal(record.status, "refreshing");
+  assert.equal(record.operationId, "H".repeat(43));
+  assert.equal(record.blockedReason, undefined);
+});
