@@ -21,7 +21,7 @@ export default defineConfig({
     }),
   ],
   test: {
-    include: ["test/credential-store.integration.test.js"],
+    include: ["test/credential-store.integration.worker.js"],
     setupFiles: ["test/worker-setup.js"],
     testTimeout: 15_000,
     hookTimeout: 15_000,
