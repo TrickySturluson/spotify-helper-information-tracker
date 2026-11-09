@@ -446,3 +446,36 @@ test("explicit Spotify 429 releases the reservation and preserves the existing c
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("invalid_grant blocks refresh and requires owner-consented recovery", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ error: "invalid_grant" }), { status: 400 });
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "T".repeat(43) }));
+    assert.equal(result.status, 409);
+    assert.equal((await result.json()).error, "reauthorization_required");
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("invalid client configuration releases the reservation without invalidating the credential", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ error: "invalid_client" }), { status: 401 });
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "U".repeat(43) }));
+    assert.equal(result.status, 503);
+    assert.equal((await result.json()).error, "provider_configuration_error");
+    const record = await storage.get("credential");
+    assert.equal(record.status, "ready");
+    assert.equal(record.version, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
