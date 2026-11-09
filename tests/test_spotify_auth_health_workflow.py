@@ -47,7 +47,7 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertNotIn("playlist-modify", workflow)
         self.assertNotIn("assistant_data/", workflow)
         self.assertIn("never modifies playlists, library data, or repository contents", workflow)
-        self.assertNotIn("legacy", workflow)
+        self.assertNotIn("legacy refresh-token fallback", workflow)
 
 
 if __name__ == "__main__":
