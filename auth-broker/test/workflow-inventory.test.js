@@ -29,7 +29,7 @@ async function workflowFiles(directory) {
   return files;
 }
 
-test("direct refresh-token workflow inventory matches the documented nine-consumer baseline", async () => {
+test("direct refresh-token workflow inventory matches the documented eight-consumer migration backlog", async () => {
   const consumers = new Set();
   for (const file of await workflowFiles(WORKFLOW_DIR)) {
     const source = await readFile(file, "utf8");
