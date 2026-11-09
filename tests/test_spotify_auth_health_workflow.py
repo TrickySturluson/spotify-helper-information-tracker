@@ -1,6 +1,9 @@
 """Regression checks for the broker-backed Spotify authentication health workflow."""
 
+import ast
 from pathlib import Path
+import re
+import textwrap
 import unittest
 
 
@@ -8,7 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "spotify-auth-health-check.yml").read_text(encoding="utf-8")
 
 
+def embedded_health_script():
+    match = re.search(
+        r"(?ms)^          python - <<'PY'\\n(?P<script>.*?)^          PY$",
+        WORKFLOW,
+    )
+    if not match:
+        raise AssertionError("Could not locate the embedded broker health-check script.")
+    return textwrap.dedent(match.group("script"))
+
+
 class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
+    def test_embedded_python_script_is_syntactically_valid(self):
+        ast.parse(embedded_health_script())
+
     def test_workflow_is_scheduled_and_manually_recoverable(self):
         self.assertIn("workflow_dispatch:", WORKFLOW)
         self.assertIn("SPOTIFY_AUTH_STATE_REF: auth-state-anchor", WORKFLOW)
