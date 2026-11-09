@@ -50,6 +50,7 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
             "provider_outcome_uncertain_reauthorization_required",
             "identity_mismatch",
             "identity_verification_failed",
+            "identity_verification_failed",
             "credential_commit_uncertain_reauthorization_required",
         }:
             category = "reauthorization_required"
