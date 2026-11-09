@@ -1,5 +1,8 @@
 import json
+import io
 import unittest
+import urllib.error
+from email.message import Message
 
 from scripts.spotify.broker_access_token import BrokerTokenError, request_broker_access_token
 
@@ -76,6 +79,36 @@ class BrokerAccessTokenTests(unittest.TestCase):
                     "refreshToken": "must-never-be-returned",
                 }),
             )
+
+    def test_broker_rate_limit_preserves_retry_after_and_reauthorization_is_classified(self):
+        def rate_limited_opener(request, timeout=0):
+            self.calls.append((request, timeout))
+            if len(self.calls) == 1:
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            headers = Message()
+            headers["Retry-After"] = "120"
+            raise urllib.error.HTTPError(
+                request.full_url, 429, "Too Many Requests", headers,
+                io.BytesIO(json.dumps({"error": "provider_rate_limited"}).encode()),
+            )
+
+        with self.assertRaises(BrokerTokenError) as rate_error:
+            request_broker_access_token(self.environ, rate_limited_opener)
+        self.assertEqual(rate_error.exception.category, "rate_limited")
+        self.assertEqual(rate_error.exception.retry_after, "120")
+
+        def reauthorization_opener(request, timeout=0):
+            if "pipelines.actions.githubusercontent.com" in request.full_url:
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            headers = Message()
+            raise urllib.error.HTTPError(
+                request.full_url, 409, "Conflict", headers,
+                io.BytesIO(json.dumps({"error": "identity_verification_failed"}).encode()),
+            )
+
+        with self.assertRaises(BrokerTokenError) as reauth_error:
+            request_broker_access_token(self.environ, reauthorization_opener)
+        self.assertEqual(reauth_error.exception.category, "reauthorization_required")
 
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
