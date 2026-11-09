@@ -399,3 +399,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Restricted forced refresh to the exact main-branch auth-health workflow. It is used only after Spotify rejects a cached access token with HTTP 401; all other workflow identities are explicitly denied.
 - Adjusted Cloudflare Workers SQLite integration coverage to verify encrypted persistence and sequential cache reuse. The Vitest DO harness raised a cross-DO I/O-context error when the test itself held an external MSW response gate across concurrent requests, so concurrent contention is tested in the isolated store/client unit suites instead. Real cross-job concurrency remains a live deployment acceptance check, not a claimed completed integration result.
 - Added client tests for busy retry, network-response-loss idempotency, forced-refresh flag handling, and manager broker-only fail-closed behavior.
+
+
+## 2026-11-09 — Long-running workflow token renewal
+
+- The shared Spotify manager now renews an expiring broker-issued access token in-process by requesting a fresh GitHub OIDC identity and using the central broker. It never calls Spotify's refresh-token endpoint in broker mode.
+- The broker helper now persists the validated HTTPS broker origin alongside the ephemeral access token in `GITHUB_ENV`, allowing later manager requests in the same job to renew safely.
+- Manager broker mode validates token size/CRLF and requires at least 120 seconds of lifetime, preserving its 60-second request safety margin. Renewed tokens are masked and kept in process memory; they are not written to files or artifacts.
+- Added manager tests for successful in-process broker renewal, fail-closed broker outage, and no direct token refresh or legacy secret persistence.
