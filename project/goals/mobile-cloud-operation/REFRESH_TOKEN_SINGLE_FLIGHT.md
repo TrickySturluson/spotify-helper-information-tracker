@@ -13,7 +13,7 @@ The broker's current active-workflow check is advisory and has a check-then-act 
 
 ## Decision
 
-Use a dedicated Cloudflare Durable Object as a short critical-section lease coordinator authenticated by GitHub Actions OIDC. Do not hold a lease for an entire workflow. Do not send Spotify credentials to the coordinator. Store only opaque lease metadata.
+Use a dedicated Cloudflare Durable Object as a short critical-section lease coordinator authenticated by GitHub Actions OIDC. Do not hold a lease for an entire workflow. Do not send Spotify credentials to the coordinator. Store only opaque lease metadata.\n\n**Critical downstream-fencing limitation:** GitHub's Actions Secrets API does not expose a conditional write keyed by a fencing generation. A lease alone cannot guarantee that an expired workflow will not finish an already-started secret write after a successor acquires the lease. Therefore this coordinator must not be integrated as sufficient protection for token persistence. The next design step must place refresh and rotated-secret persistence behind one broker-controlled operation (or another downstream store that enforces fencing), with bounded provider/API timeouts and ownership checks. The current coordinator is a prototype, not a rollout-ready solution.
 
 ## Trust and request validation
 
