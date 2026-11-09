@@ -243,3 +243,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Updated the broker landing page to say it supports a phone or desktop browser; renamed its user-facing title to SHIT Spotify authorization. Updated the broker README and legacy deployment runbook to match.
 - Updated the broker landing-page test to assert the device-neutral phone/desktop message and retained the no-third-party-script/no-store checks.
 - No Worker deployment, Cloudflare setting, GitHub App permission/installation, Spotify callback, Actions secret, OAuth, or playlist operation occurred. The current `invalid_grant` still requires fresh owner consent.
+
+## 2026-11-08 — Owner-facing reauthorization action in health-check summary
+
+- When the health monitor classifies `invalid_grant`, its run summary now provides a direct link to the configured HTTPS broker root (`BROKER_BASE_URL`) so the owner can start the GitHub-owner then Spotify consent flow from phone or desktop.
+- If the broker URL is not configured, the summary links to the owner-only deployment runbook instead of presenting a broken authorization link.
+- The broker URL is parsed and accepted only as an HTTPS origin with no credentials, path, query or fragment. The value is a non-secret repository variable.
+- Added regression assertions for both the broker action and runbook fallback. This does not create issues, send messages, deploy the broker, or change any credential.
