@@ -597,17 +597,25 @@ async function handleBrokerRefresh(request, env) {
   if (!input || typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
     return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
   }
+  if (input.forceRefresh !== undefined && typeof input.forceRefresh !== "boolean") {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  let verifiedClaims;
   try {
     const allowed = String(env.SPOTIFY_REFRESH_WORKFLOW_REFS).split(",").map((item) => item.trim()).filter(Boolean);
-    await verifyActionsOidc(match[1], { allowedWorkflowRefs: allowed, audience: "shit-spotify-refresh" });
+    verifiedClaims = await verifyActionsOidc(match[1], { allowedWorkflowRefs: allowed, audience: "shit-spotify-refresh" });
   } catch {
     return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
+  }
+  const authHealthWorkflowRef = `${OWNER}/${REPOSITORY}/.github/workflows/spotify-auth-health-check.yml@refs/heads/main`;
+  if (input.forceRefresh === true && verifiedClaims.workflowRef !== authHealthWorkflowRef) {
+    return response(JSON.stringify({ error: "force_refresh_not_allowed" }), 403, { "Content-Type": "application/json" });
   }
   const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
   const result = await stub.fetch("https://spotify-credential.internal/refresh", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ operationId: input.operationId }),
+    body: JSON.stringify({ operationId: input.operationId, forceRefresh: input.forceRefresh === true }),
   });
   const output = await result.text();
   const headers = { "Content-Type": "application/json" };
