@@ -124,7 +124,7 @@ def token_post(data):
         except (ValueError, UnicodeDecodeError):
             detail={}
         if data.get("grant_type")=="refresh_token" and detail.get("error")=="invalid_grant":
-            raise ManagerError("Spotify rejected the refresh token (invalid_grant). It may be expired, revoked, or an older token invalidated by refresh-token rotation. Reauthorize the playlist manager and update the SPOTIFY_REFRESH_TOKEN GitHub Actions secret; do not repeatedly retry this credential.") from e
+            raise ManagerError("Spotify rejected the configured refresh token (invalid_grant). It may be expired, revoked, or invalidated by rotation. Reauthorize through the active authentication mode; do not repeatedly retry this credential.") from e
         reason=detail.get("error_description") or detail.get("error") or "unknown token error"
         raise ManagerError(f"Spotify token request failed (HTTP {e.code}): {reason}") from e
 def authorize():
@@ -549,15 +549,16 @@ if __name__=="__main__": raise SystemExit(main())
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Local OAuth-backed Spotify playlist administration and guarded mutation CLI.
+# Purpose: Shared Spotify playlist administration for local OAuth sessions and broker-backed cloud workflows.
 # Commands: list/inspect, lock/unlock, create, export-refresh-token, and apply a validated JSON operation plan.
-# Inputs/state: Reads .spotify_playlist_token.json and .spotify_playlist_manager.json; the deny-by-default
-#               assistant_data/spotify/managed_playlists.json registry controls which playlists may be edited.
-# Safety: Editing requires account ownership, registry authorization, and an explicit unlocked state.
-#         Unlocking cannot authorize an unregistered playlist. apply previews the plan, requires typed
-#         APPLY/REPLACE confirmation, and revalidates lock and Spotify snapshot state before writing.
-# Recovery/audit: Each mutation is bracketed by before/after snapshots in playlist_backups/ and events in
-#                  playlist_manager_audit.jsonl; API cooldown state is read from .github/spotify_api_cooldown.json.
+# Inputs/state: Local mode reads .spotify_playlist_token.json; broker mode requires SHIT_AUTH_MODE=broker,
+#               an ephemeral broker access token, and GitHub OIDC for automatic in-process renewal.
+#               The deny-by-default assistant_data/spotify/managed_playlists.json registry controls edits.
+# Safety: Broker mode fails closed without a broker token, never reads local refresh-token files, and never
+#         persists refresh tokens to GitHub Secrets. Editing still requires ownership, registry authorization,
+#         explicit unlock, preview, typed APPLY/REPLACE confirmation, and fresh snapshot validation.
+# Recovery/audit: Mutations are bracketed by before/after snapshots and audit events; API cooldown state is read
+#                 from .github/spotify_api_cooldown.json. Local OAuth remains available outside broker mode.
 # Run: python compat/spotify_playlist_manager.py {list|inspect|lock|unlock|create|apply} ...
-# Security: export-refresh-token prints a credential for manual secret transfer; never commit or paste it.
+# Security: export-refresh-token is a local-only manual export; never use it in broker workflows or paste it into chat.
 # -----------------------------------------------------------------------------
