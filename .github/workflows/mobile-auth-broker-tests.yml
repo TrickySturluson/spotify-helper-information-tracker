@@ -74,6 +74,9 @@ jobs:
       - name: Test broker access-token client and manager mode
         working-directory: .
         run: python -m unittest tests.test_spotify_broker_access tests.test_spotify_playlist_manager -v
+      - name: Check maintained Python script documentation
+        working-directory: .
+        run: python -m unittest tests.test_script_layout -v
       - name: Validate Worker bundle and Wrangler configuration without deploying
         run: |
           npx wrangler deploy --dry-run \
