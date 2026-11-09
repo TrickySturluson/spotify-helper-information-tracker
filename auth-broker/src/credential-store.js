@@ -257,6 +257,13 @@ export class SpotifyCredentialStore {
         signal: AbortSignal.timeout(12_000),
       });
       if (!tokenResponse.ok) {
+        let providerError = null;
+        try {
+          const providerBody = await tokenResponse.json();
+          if (providerBody && typeof providerBody.error === "string") providerError = providerBody.error;
+        } catch {
+          // Provider response bodies are never returned or logged.
+        }
         if (tokenResponse.status === 429) {
           // A definite provider rate limit is not evidence that the refresh
           // token was consumed. Release this reservation and honor Retry-After.
@@ -267,8 +274,18 @@ export class SpotifyCredentialStore {
             { "Retry-After": tokenResponse.headers.get("Retry-After") || "86400" },
           );
         }
-        await this.blockOperation(input.operationId, "provider_rejected");
-        return json({ error: "reauthorization_required" }, 409);
+        if (providerError === "invalid_grant") {
+          await this.blockOperation(input.operationId, "invalid_grant");
+          return json({ error: "reauthorization_required" }, 409);
+        }
+        if ([400, 401, 403].includes(tokenResponse.status)) {
+          await this.releaseOperation(input.operationId);
+          return json({ error: "provider_configuration_error" }, 503);
+        }
+        // A server error or unreadable provider outcome may have happened
+        // after token rotation. Never retry the previous refresh token.
+        await this.blockOperation(input.operationId, "provider_outcome_uncertain");
+        return json({ error: "provider_outcome_uncertain_reauthorization_required" }, 409);
       }
       const tokenData = await tokenResponse.json();
       if (typeof tokenData.access_token !== "string" || !tokenData.access_token) {
