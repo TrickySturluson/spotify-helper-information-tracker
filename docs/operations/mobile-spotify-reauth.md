@@ -1,8 +1,8 @@
-# Mobile Spotify Reauthorization — Deployment Runbook
+# Spotify Authorization Broker — Deployment Runbook
 
 ## Purpose
 
-Deploy the SHIT mobile OAuth broker so the owner can reauthorize Spotify from a phone without a local machine, then verify the new credential through the read-only Spotify Auth Health Check.
+Deploy the SHIT OAuth broker so the owner can reauthorize Spotify from a phone or desktop browser without a local machine, then verify the new credential through the read-only Spotify Auth Health Check.
 
 Repository: `TrickySturluson/spotify-helper-information-tracker`
 
@@ -74,7 +74,7 @@ Set these **Worker secrets** in Cloudflare, not in GitHub variables:
 - [ ] Select **Deploy SHIT Mobile Auth Broker**.
 - [ ] Choose Run workflow on `main`, initiated by the repository owner account.
 - [ ] Confirm the deployment run succeeds.
-- [ ] Open the canonical Worker URL on the phone.
+- [ ] Open the canonical Worker URL in a phone or desktop browser.
 - [ ] Complete GitHub owner authorization, then Spotify authorization.
 - [ ] Confirm the completion page shows the intended Spotify account.
 - [ ] Confirm only the `SPOTIFY_REFRESH_TOKEN` repository secret metadata changed; never retrieve or display its value.
