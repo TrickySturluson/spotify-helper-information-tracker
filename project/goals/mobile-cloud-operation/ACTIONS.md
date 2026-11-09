@@ -1,4 +1,4 @@
-# Mobile Cloud Operation & Spotify Reauthorization — Action Log
+# Authentication Management & Recovery — Action Log
 
 ## 2026-11-08 — Initial baseline audit and architecture
 
@@ -149,3 +149,104 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Full-history Gitleaks passed on the PR run [#42460671996](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460671996) and feature-push run [#42460668354](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460668354). Each scanned 3,396 commits / about 815.6 MB and reported no leaks.
 - The broker lockfile job succeeded/skipped without changing the committed lockfile. All checks above apply to head `e2b9411`; any later commit requires fresh checks.
 - PR #182 is still unmerged and awaits separate explicit owner approval. No Worker deployment, Cloudflare/GitHub App configuration, Spotify OAuth, Actions secret update, playlist unlock or playlist write occurred. The saved Spotify refresh token remains rejected with `invalid_grant` until mobile reauthorization is completed.
+
+
+## 2026-11-08 — Reframe as SHIT-wide Authentication Management & Recovery
+
+- User clarified that this is not merely a mobile feature: SHIT must monitor Spotify authentication health, automatically repair what can be repaired, and request owner consent only when Spotify requires it.
+- Renamed the workstream conceptually to **Authentication Management & Recovery**. Phone and desktop are supported clients, not the purpose of the project. GitHub issue-based mobile operation remains a separate control-plane capability.
+- Reworked the scope around three components: Authentication Health Monitor, Authorization Broker, and Recovery Coordinator; added a future Central Auth Gate milestone for Spotify-dependent workflows.
+- Defined distinct states for healthy, reauthorization-required, rate-limited, provider-unavailable, configuration-error, identity-mismatch, secret-persistence-failed and verification-pending.
+- Preserved hard boundaries: no retries of `invalid_grant`; honor Retry-After; do not confuse 429/5xx/network faults with revoked credentials; never expose tokens; no auth recovery path may unlock or modify playlists.
+- Confirmed current workflow baseline: `spotify-auth-health-check.yml` is manual-only today, performs token refresh plus `GET /v1/me`, and can persist refresh-token rotation through a narrowly scoped GitHub App. It does not currently provide scheduled monitoring or a durable structured health state.
+- Confirmed the broker is not deployed and no fresh Spotify consent has occurred. Existing credential remains blocked by the previously observed `invalid_grant`; no further Spotify status/playlist retries should be attempted until reauthorization.
+- Created branch `feature/authentication-management-recovery` from current `main` for this work. No merge, deployment, external account changes, secret changes, OAuth, or playlist operations were performed.
+- Next implementation: add conservative scheduled health monitoring and structured failure classification, test rotation/error paths, then design the shared auth preflight to avoid concurrent refresh-token races.
+
+
+## 2026-11-08 — First scheduled Authentication Health Monitor implementation
+
+- Updated `.github/workflows/spotify-auth-health-check.yml` to run daily at 09:00 UTC as well as on manual dispatch. The workflow remains serialized and makes one refresh attempt per run.
+- Added redacted outcome categories: `reauthorization_required` for `invalid_grant`, `rate_limited` with Retry-After, `provider_unavailable` for 5xx/network failures, `configuration_error`, `scope_or_identity_error`, `identity_error`, `provider_error`, `secret_persistence_failed`, and `healthy`.
+- The monitor never logs provider response bodies, access tokens or refresh tokens. It masks returned tokens and persists a rotated refresh token only after successful `GET /v1/me` verification.
+- No retry loop was added. In particular, the same `invalid_grant` credential is never retried by the workflow; it reports that owner-consented reauthorization is required. Rate limits are reported with Retry-After rather than retried.
+- Updated `docs/WORKFLOWS.md`, the goal README and roadmap to reflect the new schedule and current implementation status.
+- This change is on `feature/authentication-management-recovery`; it has not yet been validated by GitHub Actions. The workflow's scheduled trigger is not an auth-recovery mechanism for a revoked grant; the broker and owner consent remain required.
+- No Spotify request, OAuth, Actions secret change, Cloudflare deployment, playlist operation, Library write or other provider operation was performed in this session.
+- Next: validate workflow syntax and behavior, add regression coverage for status classification/redaction/rotation failure, and then design a concurrency-safe shared auth preflight for Spotify-dependent workflows.
+
+
+## 2026-11-08 — Safety correction: defer scheduled retries until invalid-grant latch exists
+
+- A design review found that a daily schedule would retry the same refresh token after `invalid_grant`, contradicting the no-futile-retry invariant. A schedule alone is not safe monitoring.
+- Removed the scheduled trigger. The auth-health workflow remains manual-dispatch only until a durable reauthorization-required latch can make subsequent scheduled runs skip automatically.
+- Updated the workflow catalogue, README and roadmap to make this prerequisite explicit.
+- The durable latch must be cleared only by a deliberate recovery attempt or confirmed replacement credential; transient 429/5xx/network failures must remain separately classified and eligible for bounded retry after their cooldown.
+- This is a deliberate safety gate, not a retreat from automatic monitoring. It prevents SHIT from repeatedly sending a known-invalid credential while the recovery coordinator is still being built.
+
+
+## 2026-11-08 — Durable auth-state latch enables safe scheduled monitoring
+
+- Added a daily 09:00 UTC schedule back after implementing a durable non-secret repository variable, `SPOTIFY_AUTH_STATE`.
+- Every manual or scheduled run writes `pending` before contacting Spotify. If the runner exits unexpectedly or cannot persist a result, the next scheduled run sees the unresolved state and fails closed rather than sending the same credential again.
+- Scheduled runs proceed only when the prior state is absent, `healthy`, or a retryable provider/rate-limit state. Permanent blockers and unknown states pause the schedule. Manual dispatch bypasses the latch, writes `pending`, and allows an owner-directed recovery attempt.
+- Every classified result is persisted to `SPOTIFY_AUTH_STATE`; only a verified `healthy` run clears a previous blocker. State-write failure fails the run and leaves `pending`.
+- The health workflow now requests `variables: write` for its own `GITHUB_TOKEN` to manage this non-secret status. The existing manager GitHub App remains unchanged and retains only its existing Secrets:write purpose; the broker App remains separate.
+- Updated the workflow catalogue and roadmap. The scheduled monitor still needs CI/source review and a live dry-run strategy; do not dispatch it against the known-invalid credential just to test the latch.
+- Remaining safety nuance: rate-limit retry eligibility must eventually be tied to the actual Retry-After deadline, not merely the next daily run. Add this before broad production reliance.
+
+
+## 2026-11-08 — Replace repository-variable latch with read-only run-history latch
+
+- Corrected the initial latch design after checking GitHub's current workflow-token permission model: `variables` is not an available `GITHUB_TOKEN` permission. Do not ship a workflow that declares unsupported `variables: write`.
+- Removed all repository-variable reads/writes and the proposed `SPOTIFY_AUTH_STATE` variable. The workflow now uses only `contents: read` and `actions: read` for its own `GITHUB_TOKEN`; the existing GitHub App token remains limited to Secrets:write for refresh-token rotation.
+- Scheduled runs inspect the most recent completed auth-health run's logs for fixed, non-secret `AUTH_HEALTH_STATUS` and optional `AUTH_HEALTH_RETRY_AFTER` markers. Permanent blockers, unknown states, pending/interrupted runs, and unavailable logs fail closed. Manual dispatch bypasses the prior status latch and records a new pending marker.
+- A 429 marker carries an absolute Retry-After deadline; scheduled runs skip until that deadline has elapsed. Missing/unparseable Retry-After is fail-closed until manual dispatch.
+- Every health outcome emits a status marker; the workflow never writes repository contents, variables, or playlist state.
+- This latch depends on GitHub Actions run-log retention. If the previous run's logs have expired or cannot be inspected, scheduled checks stop and require a manual dispatch rather than assuming health.
+- The earlier same-date note describing a repository-variable latch is superseded by this entry. No variable was created or changed, no Spotify request was made, and no secret or playlist was touched.
+
+
+## 2026-11-08 — Spotify workflow inventory and refresh-token concurrency audit
+
+- Searched the repository workflow sources for `SPOTIFY_REFRESH_TOKEN` and inspected the nine consumers: `update.yml`, `spotify-playlist-manager.yml`, `spotify-reference-library.yml`, `spotify-auth-health-check.yml`, `spotify-daily-midnight-cycle.yml`, `spotify-daily-live-preflight.yml`, `tricky-daily-snapshot-refresh.yml`, `spotify-daily-feedback-observation.yml`, and `great-migration.yml`.
+- Most currently use independent concurrency groups; `update.yml` has no concurrency group. This means existing per-workflow serialization does not guarantee single-flight refresh-token rotation across different workflows.
+- Do not naively assign every workflow one global group without considering scheduling impact. Great Migration can run for up to six hours, while Tricky Daily has time-sensitive Eastern-midnight delivery. A global queue may serialize safely but delay those operations.
+- GitHub's current Actions concurrency model now supports `queue: max` (up to 100 pending runs), which avoids the default one-pending-run replacement behavior, but this alone does not resolve the long-job scheduling tradeoff. Reference: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency.
+- M4 now records the inventory as complete and keeps the single-flight architecture decision open. Next design options: a narrow shared refresh lock around token-exchange only, split auth/operation jobs with safe token handoff, or carefully scoped global serialization that excludes non-Spotify Great Migration operations.
+- No workflow concurrency behavior was changed, no Spotify API request was made, and no playlist or credential state was modified.
+
+
+## 2026-11-08 — First authentication monitor implementation passed repository CI
+
+- PR #183 head `e01bec33c5d8ddb44536078fad684df7eb9db9cb` passed the complete repository workflow: **528 tests passed** in run #42540593870 (workflow run number 2238). The new `test_spotify_auth_health_workflow.py` tests were included and all nine passed.
+- The broker test/audit/Wrangler dry-run workflow passed in run #42540593852 (run number 163); `npm audit` reported zero vulnerabilities and Wrangler exited in dry-run mode without deployment.
+- Full-history Gitleaks passed in run #42540593842 (run number 2076): **no leaks found**.
+- These are source/build/security checks only. No live Spotify refresh, `/v1/me`, OAuth, secret rotation, Worker deployment or playlist operation was run.
+- The new auth-health workflow now uses the prior completed Actions run's redacted status markers as its schedule latch, with fail-closed behavior for missing/unreadable logs, permanent blockers and interrupted attempts. It honors Retry-After deadlines for 429 and provides manual-dispatch recovery.
+- PR #183 remains draft and unmerged. It is mergeable against current `main`, but requires the user's separate approval before merge. No deployment or external account setup has been performed.
+- Next implementation: add an owner-facing reauthorization notification/action, then resolve the cross-workflow refresh-token single-flight design before enabling broad auth preflight.
+
+
+## 2026-11-08 — Enforce Retry-After for manual recovery too
+
+- Changed the run-history latch to inspect the previous completed auth-health run for both scheduled and manual events.
+- Manual recovery bypasses permanent blockers such as `reauthorization_required`, configuration errors and interrupted runs, but it cannot bypass an active 429 cooldown.
+- Retry-After accepts either integer seconds or an HTTP date. If Spotify omits or returns an invalid header, the monitor waits a conservative 24 hours before another scheduled or manual attempt.
+- Preserved the Retry-After marker when a scheduled run is skipped, so later scheduled runs continue evaluating the same deadline rather than losing it.
+- Added a regression assertion for the 24-hour fallback and manual cooldown behavior. Full CI is being rerun for this refinement.
+
+## 2026-11-08 — Correct broker source status and make authorization UI device-neutral
+
+- Re-inspected the current `main` tree and confirmed `auth-broker/src/index.js`, the pinned package/test suite, Wrangler configuration and owner-only deployment workflow are already present on `main`. The broker README also records these source assets as merged. Earlier same-day action-log text saying PR #182 remained unmerged is historical and superseded; the current blocker is external provisioning/deployment and live OAuth, not source merge.
+- Updated the goal README and roadmap to reflect that the broker source/tests/deploy workflow are on `main`, while keeping Worker deployment and Spotify consent explicitly incomplete.
+- Updated the broker landing page to say it supports a phone or desktop browser; renamed its user-facing title to SHIT Spotify authorization. Updated the broker README and legacy deployment runbook to match.
+- Updated the broker landing-page test to assert the device-neutral phone/desktop message and retained the no-third-party-script/no-store checks.
+- No Worker deployment, Cloudflare setting, GitHub App permission/installation, Spotify callback, Actions secret, OAuth, or playlist operation occurred. The current `invalid_grant` still requires fresh owner consent.
+
+## 2026-11-08 — Owner-facing reauthorization action in health-check summary
+
+- When the health monitor classifies `invalid_grant`, its run summary now provides a direct link to the configured HTTPS broker root (`BROKER_BASE_URL`) so the owner can start the GitHub-owner then Spotify consent flow from phone or desktop.
+- If the broker URL is not configured, the summary links to the owner-only deployment runbook instead of presenting a broken authorization link.
+- The broker URL is parsed and accepted only as an HTTPS origin with no credentials, path, query or fragment. The value is a non-secret repository variable.
+- Added regression assertions for both the broker action and runbook fallback. This does not create issues, send messages, deploy the broker, or change any credential.
