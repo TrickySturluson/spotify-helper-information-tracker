@@ -590,12 +590,20 @@ export async function handleRequest(request, env) {
         { "Content-Type": "application/json; charset=utf-8" },
       );
     }
-    diagnosticStage = "broker.base_url_configuration";
+    diagnosticStage = "broker.base_url_presence";
     requireEnv(env, ["BROKER_BASE_URL"]);
-    const canonicalOrigin = new URL(env.BROKER_BASE_URL);
+    diagnosticStage = "broker.base_url_parse";
+    let canonicalOrigin;
+    try {
+      canonicalOrigin = new URL(String(env.BROKER_BASE_URL).trim());
+    } catch {
+      throw new BrokerError("The authorization service base URL is invalid.");
+    }
+    diagnosticStage = "broker.canonical_host_check";
     if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
+    diagnosticStage = "broker.route_dispatch";
     if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);
 
     if (url.pathname === "/" && request.method === "GET") {
