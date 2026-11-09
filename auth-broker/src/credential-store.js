@@ -2,8 +2,6 @@ const SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token";
 const SPOTIFY_ME_URL = "https://api.spotify.com/v1/me";
 const MAX_BODY_BYTES = 16_384;
 const OPERATION_TTL_MS = 120_000;
-const REFRESH_WAIT_MS = 15_000;
-const REFRESH_POLL_MS = 100;
 const ACCESS_TOKEN_MIN_REMAINING_MS = 120_000;
 const ENCRYPTION_KEY_VERSION = 1;
 
@@ -311,26 +309,6 @@ export class SpotifyCredentialStore {
     });
   }
 
-  async waitForRefresh(keyring) {
-    const deadline = Date.now() + REFRESH_WAIT_MS;
-    while (Date.now() < deadline) {
-      await new Promise((resolve) => setTimeout(resolve, REFRESH_POLL_MS));
-      const current = await this.ctx.storage.get("credential");
-      if (!current) return json({ error: "credential_missing" }, 409);
-      if (current.status === "reauthorization_required") return json({ error: "credential_blocked" }, 409);
-      if (current.status === "ready") {
-        if (current.retryAfterAt > Date.now()) {
-          const seconds = Math.max(1, Math.ceil((current.retryAfterAt - Date.now()) / 1000));
-          return json({ error: "provider_rate_limited" }, 429, { "Retry-After": String(seconds) });
-        }
-        const cached = await this.cachedAccessToken(current, keyring);
-        if (cached) return cached;
-        return json({ error: "credential_busy" }, 409);
-      }
-      if (current.status !== "refreshing") return json({ error: "credential_busy" }, 409);
-    }
-    return json({ error: "credential_busy" }, 409);
-  }
 
   async refresh(input, keyring) {
     if (typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
@@ -341,7 +319,7 @@ export class SpotifyCredentialStore {
       const current = await txn.get("credential");
       if (!current) return { error: "credential_missing" };
       if (current.lastOperationId === input.operationId) return { error: "operation_already_committed" };
-      if (current.status === "refreshing") return { wait: true };
+      if (current.status === "refreshing") return { error: "credential_busy" };
       if (current.status !== "ready") return { error: "credential_blocked" };
       if (current.retryAfterAt > now) return { rateLimitedUntil: current.retryAfterAt };
       if (input.forceRefresh !== true && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
@@ -350,7 +328,6 @@ export class SpotifyCredentialStore {
       return { record: next };
     });
     if (reservation.error) return json({ error: reservation.error }, 409);
-    if (reservation.wait) return await this.waitForRefresh(keyring);
     if (reservation.rateLimitedUntil) {
       const seconds = Math.max(1, Math.ceil((reservation.rateLimitedUntil - Date.now()) / 1000));
       return json({ error: "provider_rate_limited" }, 429, { "Retry-After": String(seconds) });
