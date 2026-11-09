@@ -503,3 +503,11 @@ test("OAuth provider rejection returns a generic error without provider response
     globalThis.fetch = originalFetch;
   }
 });
+
+test("public health endpoint is non-secret and does not require OAuth configuration", async () => {
+  const result = await handleRequest(new Request("https://broker.example/health"), {});
+  assert.equal(result.status, 200);
+  assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
+  assert.equal(result.headers.get("cache-control"), "no-store");
+  assert.equal(result.headers.get("x-content-type-options"), "nosniff");
+});
