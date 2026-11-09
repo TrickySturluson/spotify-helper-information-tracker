@@ -12,7 +12,7 @@ const ROTATED_REFRESH = "rotated-refresh-token-for-integration-tests";
 
 function newStore(label) {
   const id = env.SPOTIFY_CREDENTIAL_STORE.idFromName(label + "-" + crypto.randomUUID());
-  return env.SPOTIFY_CREDENTIAL_STORE.get(id);
+  return { id, stub: env.SPOTIFY_CREDENTIAL_STORE.get(id) };
 }
 
 function post(stub, path, body) {
@@ -55,7 +55,7 @@ function successfulSpotifyHandlers({ onTokenRequest } = {}) {
 
 describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () => {
   it("persists only ciphertext and commits rotation after /v1/me identity verification", async () => {
-    const stub = newStore("success");
+    const { id, stub } = newStore("success");
     const initialized = await initialize(stub);
     expect(initialized.status).toBe(201);
 
@@ -73,11 +73,8 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect(result.accountId).toBe(ACCOUNT_ID);
     expect(result.credentialVersion).toBe(2);
 
-    const reacquiredStub = env.SPOTIFY_CREDENTIAL_STORE.get(
-      env.SPOTIFY_CREDENTIAL_STORE.idFromName("success-placeholder"),
-    );
-    // Re-read the same named object through the original durable ID via the stub.
-    const finalRecord = await storedRecord(stub);
+    const reacquiredStub = env.SPOTIFY_CREDENTIAL_STORE.get(id);
+    const finalRecord = await storedRecord(reacquiredStub);
     expect(finalRecord.status).toBe("ready");
     expect(finalRecord.version).toBe(2);
     expect(finalRecord.credential.keyVersion).toBe(1);
@@ -86,7 +83,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
   });
 
   it("uses the SQLite transaction to reject a concurrent refresh reservation", async () => {
-    const stub = newStore("concurrent");
+    const { stub } = newStore("concurrent");
     expect((await initialize(stub)).status).toBe(201);
 
     let providerStarted;
@@ -108,7 +105,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
   });
 
   it("keeps an ambiguous refresh blocked across a newly acquired Durable Object stub", async () => {
-    const stub = newStore("ambiguous");
+    const { id, stub } = newStore("ambiguous");
     expect((await initialize(stub)).status).toBe(201);
     network.use(http.post(TOKEN_URL, () => HttpResponse.error()));
 
@@ -117,16 +114,14 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect((await failed.json()).error).toBe("operation_outcome_uncertain_reauthorization_required");
     expect((await storedRecord(stub)).status).toBe("reauthorization_required");
 
-    const id = env.SPOTIFY_CREDENTIAL_STORE.idFromName("ambiguous-placeholder");
     const sameStub = env.SPOTIFY_CREDENTIAL_STORE.get(id);
-    expect(sameStub).toBeDefined();
-    const blocked = await post(stub, "/refresh", { operationId: "E".repeat(43) });
+    const blocked = await post(sameStub, "/refresh", { operationId: "E".repeat(43) });
     expect(blocked.status).toBe(409);
     expect((await blocked.json()).error).toBe("credential_blocked");
   });
 
   it("restores a blocked credential only after same-account reauthorization", async () => {
-    const stub = newStore("reauthorize");
+    const { stub } = newStore("reauthorize");
     expect((await initialize(stub)).status).toBe(201);
     network.use(
       http.post(TOKEN_URL, () => HttpResponse.json({
