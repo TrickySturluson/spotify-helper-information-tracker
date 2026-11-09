@@ -379,3 +379,70 @@ test("owner reauthorization cannot overwrite a ready or in-progress credential",
   assert.equal(refreshing.status, 409);
   assert.equal((await storage.get("credential")).operationId, "Q".repeat(43));
 });
+
+
+test("owner-consented authorization initializes the central credential store exactly once", async () => {
+  const { storage, store } = setup();
+  const first = await store.fetch(request("/authorize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  assert.equal(first.status, 201);
+  assert.deepEqual(await first.json(), { initialized: true, version: 1 });
+  const record = await storage.get("credential");
+  assert.equal(record.status, "ready");
+  assert.equal(record.accountId, "spotifyuser123");
+  assert.equal(JSON.stringify(record).includes(initialToken), false);
+  const replay = await store.fetch(request("/authorize", { accountId: "spotifyuser123", refreshToken: "second-owner-approved-refresh-token" }));
+  assert.equal(replay.status, 409);
+  assert.equal((await storage.get("credential")).version, 1);
+});
+
+test("owner-consented authorization recovers only a blocked credential for the same Spotify account", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new Error("ambiguous provider outcome"); };
+  try {
+    const failed = await store.fetch(request("/refresh", { operationId: "R".repeat(43) }));
+    assert.equal(failed.status, 409);
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+  const wrong = await store.fetch(request("/authorize", {
+    accountId: "differentspotifyuser",
+    refreshToken: "new-owner-approved-refresh-token",
+  }));
+  assert.equal(wrong.status, 409);
+  assert.equal((await wrong.json()).error, "spotify_account_change_requires_owner_review");
+  const restored = await store.fetch(request("/authorize", {
+    accountId: "spotifyuser123",
+    refreshToken: "new-owner-approved-refresh-token",
+  }));
+  assert.equal(restored.status, 200);
+  assert.deepEqual(await restored.json(), { reauthorized: true, version: 2 });
+  const record = await storage.get("credential");
+  assert.equal(record.status, "ready");
+  assert.equal(record.version, 2);
+  assert.equal(JSON.stringify(record).includes("new-owner-approved-refresh-token"), false);
+});
+
+test("explicit Spotify 429 releases the reservation and preserves the existing credential", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ error: "rate_limited" }), {
+    status: 429,
+    headers: { "Retry-After": "120" },
+  });
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "S".repeat(43) }));
+    assert.equal(result.status, 429);
+    assert.equal(result.headers.get("Retry-After"), "120");
+    assert.equal((await result.json()).error, "provider_rate_limited");
+    const record = await storage.get("credential");
+    assert.equal(record.status, "ready");
+    assert.equal(record.version, 1);
+    assert.equal(record.credential.version, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
