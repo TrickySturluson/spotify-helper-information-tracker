@@ -44,6 +44,7 @@ jobs:
                 rate_limited)
                   if ! [[ "$retry_marker" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_marker" ]; then
                     echo "AUTH_HEALTH_STATUS=rate_limited"
+                    echo "AUTH_HEALTH_RETRY_AFTER=$retry_marker"
                     echo "skip=true" >> "$GITHUB_OUTPUT"
                     echo "Spotify auth check skipped until the recorded Retry-After deadline."
                     exit 0
