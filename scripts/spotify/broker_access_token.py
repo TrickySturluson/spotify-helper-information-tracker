@@ -138,6 +138,7 @@ def main():
         # GitHub masks the token before any later step can accidentally echo it.
         print("::add-mask::" + access_token)
         with open(env_file, "a", encoding="utf-8") as handle:
+            handle.write("SHIT_AUTH_MODE=broker\n")
             handle.write("SHIT_BROKER_ACCESS_TOKEN=" + access_token + "\n")
             handle.write("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN=" + str(expires_in) + "\n")
     except BrokerTokenError as exc:
