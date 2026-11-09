@@ -34,7 +34,7 @@ The OIDC Durable Object lease prototype serializes lease acquisition, but the ni
 ## Durable storage and cryptography requirements
 
 - Use a dedicated `SpotifyCredentialStore` Durable Object, not the lease coordinator's metadata object.
-- Store versioned ciphertext, 96-bit random AES-GCM nonce, key version, and update timestamp. Bind repository/credential purpose and record version as authenticated additional data.
+- Store versioned ciphertext, 96-bit random AES-GCM nonce, key version, and update timestamp. The prototype now authenticates key version, credential version, and Spotify account ID as additional data; it currently supports key version 1 only. Multi-key rotation/re-encryption remains a pre-deployment requirement.
 - Use Web Crypto AES-GCM with a key imported from a Worker secret; never hardcode or commit the key. Define a key-rotation procedure before production.
 - Ensure every write is transactional and version checked inside the same Durable Object. A single object serializes refresh operations and atomically commits the next ciphertext version.
 - Keep Spotify network calls outside a long-held storage transaction. Use an explicit refresh-in-progress record with unique operation ID, short expiry, and recovery rules; commit only if the operation still owns the current record version. Prevent an expired operation from committing after a successor.
