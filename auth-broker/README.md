@@ -51,12 +51,16 @@ This repository is a monorepo: the Worker project is in `auth-broker/`. The veri
 
 - **Production root directory:** `/auth-broker`
 - **Production build command:** empty
-- **Production deploy command:** `npx wrangler deploy`
+- **Production root directory:** `/auth-broker`
+- **Production build command:** empty
+- **Production build command:** `npx wrangler versions upload` (uploads a Worker version but does not promote it to production)
 - **Preview root directory:** `/auth-broker`
 - **Preview build command:** empty
 - **Preview deploy command:** `npx wrangler preview`
 
 The root directory must contain `wrangler.toml`, `package.json`, and `package-lock.json`. Wrangler resolves `main = "src/index.js"` relative to this project directory and uses the pinned Wrangler version from the package manifest. Do not add `--config auth-broker/wrangler.toml` when the build root is already `/auth-broker`; that would resolve the config path incorrectly.
+
+**Production release control:** the Cloudflare production Workers Builds command is deliberately set to `npx wrangler versions upload`, not `npx wrangler deploy`. Main-branch pushes may build and upload a candidate Worker version, but they do not change live production traffic. The owner-only GitHub Actions workflow `Deploy SHIT Auth Broker` is the only intended promotion path and runs `npx wrangler deploy` after validating required configuration and confirming the GitHub App private key and client secret are Cloudflare `secret_text` bindings. Do not change the Cloudflare production command back to `wrangler deploy` unless the owner explicitly approves automatic production deployment and the equivalent security gates are enforced there.
 
 The Wrangler config includes the required `previews` bindings for isolated Durable Object state and a separate preview rate-limit namespace. The Cloudflare Worker subdomain setting must also have **Preview URLs enabled**; the preview builds can succeed without producing a routable URL if `previews_enabled` is false. The production Worker URL and production settings are not changed by preview builds. The broker exposes a non-secret `GET /health` liveness endpoint; it deliberately does not report credentials or configuration values.
 
