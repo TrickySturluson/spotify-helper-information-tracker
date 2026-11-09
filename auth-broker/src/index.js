@@ -700,7 +700,9 @@ export async function handleRequest(request, env) {
     // provider responses, OAuth codes, tokens, cookies, state values, or request URLs.
     const expected = error instanceof BrokerError;
     console.error({ event: "shit_auth_broker_request_failed", stage: diagnosticStage, error_class: expected ? "BrokerError" : "UnexpectedError" });
-    const message = expected ? error.message : `The authorization service encountered an unexpected error. Diagnostic stage: ${diagnosticStage}.`;
+    const message = expected
+      ? `${error.message} Diagnostic stage: ${diagnosticStage}.`
+      : `The authorization service encountered an unexpected error. Diagnostic stage: ${diagnosticStage}.`;
     return page("Authorization not completed", message, { href: "/", label: "Start again" });
   }
 }
