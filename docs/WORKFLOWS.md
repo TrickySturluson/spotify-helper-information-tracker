@@ -1,6 +1,6 @@
 # GitHub Actions Workflow Catalogue
 
-**Last reviewed:** 2026-11-08. This catalogue summarizes the 21 workflows under .github/workflows on the reconciled branch. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
+**Last reviewed:** 2026-11-08. This catalogue summarizes the 22 workflows under .github/workflows on the reconciled branch. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
 
 ## Verification note — 2026-11-07
 
@@ -31,6 +31,8 @@ The trigger and schedule matrix was cross-checked against the current workflow Y
 | spotify-playlist-manager.yml | Issues opened/edited and issue comments created | contents: write; issues: write; actions: read; narrowly scoped GitHub App token may write Spotify secret | Spotify client/refresh token, Last.fm key, GitHub App credentials | Processes control-issue commands, validates operation type, refreshes removal history, handles backup/preview/confirmation and approved playlist actions, updates state/audit and comments results. Write-capable: follow the playlist manager's deny-by-default locks and explicit confirmation contract. |
 | spotify-reference-library.yml | Push to main when this workflow file changes; manual dispatch; daily schedule (06:13 UTC) | contents: write; narrowly scoped GitHub App token may write Spotify secret | Spotify client/refresh token and GitHub App credentials | Tests, seeds removal baseline from prior complete snapshots, refreshes Spotify reference snapshots, validates priority/audition snapshots, updates removal feedback, and writes canonical MusicLibrary identity/playlist-source context plus market-scoped playability observations. Snapshot refresh is read-only against Spotify; repository snapshots, canonical Library evidence and feedback files are written. |
 | update.yml | Push to main when this workflow file changes; manual dispatch; daily schedule (06:17 UTC) | contents: write; narrowly scoped GitHub App token may write Spotify secret | Spotify client/refresh token, Last.fm key and GitHub App credentials | Runs tests, refreshes Spotify reference data read-only, updates canonical Last.fm history, performs bounded music metadata enrichment, rebuilds analytics and validates outputs, then commits data/assistant_data/playback_data. This is a broad scheduled data-refresh pipeline. |
+
+| codespaces-devcontainer-check.yml | Pull requests and pushes to main on devcontainer, broker, and Codespaces guide/workspace paths | contents: read | None | Validates devcontainer JSON and asserts no production credential injection; installs pinned broker dependencies with lifecycle scripts disabled; runs isolated broker tests. No provider calls, secret writes, Worker deployment, playlist changes, or Library writes. |
 
 ## Babel AI continuation worker
 

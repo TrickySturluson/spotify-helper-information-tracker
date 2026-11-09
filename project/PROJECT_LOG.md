@@ -233,3 +233,13 @@ Chronological handoff record for substantial project work. New entries go at the
 ## 2026-11-06 — ChatGPT-initiated Buddy trigger
 
 ChatGPT successfully created branch `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`). This is the first verified ChatGPT-initiated GitHub trigger write for Buddy. The workflow's actual run and job outcomes have not yet been verified; see the Maintainability & Documentation action log and `project/ACTIVE_SESSION_BRIEF.md`.
+
+
+## 2026-11-09 — Codespaces development environment prepared
+
+- The user approved combining Codespaces as optional development infrastructure with the original Authentication Management & Recovery workstream.
+- Added a secret-free devcontainer baseline for Python 3.11, Node.js 22, GitHub CLI, and pinned broker dependencies installed with lifecycle scripts disabled.
+- Added a read-only CI workflow to validate the devcontainer and run isolated auth-broker tests without production credentials.
+- Added the Codespaces runbook and a dedicated Cloud Development Environment goal workspace; indexed it in the project and documentation catalogues.
+- Work is on feature branch `feature/codespaces-development-environment`. Actual Codespace provisioning and in-Codespace test execution remain unverified. Current ChatGPT GitHub tools do not expose interactive Codespaces terminal access.
+- No production secrets, provider calls, OAuth actions, Cloudflare deployment, playlist operations, or Library writes were performed.

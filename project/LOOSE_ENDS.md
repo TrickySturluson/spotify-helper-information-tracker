@@ -1,3 +1,10 @@
+## Current work overlay — 2026-11-09
+
+- **Codespaces setup is not yet provisioned.** The repository contains a proposed devcontainer and safe CI checks on `feature/codespaces-development-environment`; actual Codespace creation and in-Codespace test execution remain unverified.
+- **No direct ChatGPT terminal attachment exists in the current integration.** Do not create an arbitrary remote-shell endpoint or pass production secrets into Codespaces as a workaround. Use GitHub branches, pull requests, and Actions evidence until a supported scoped terminal integration is available.
+- **Auth remains operationally incomplete:** PR #185 is open and unmerged; cross-workflow token-refresh serialization/single-flight remains unresolved. Codespaces does not resolve this runtime race.
+- **Buddy:** daily continuation automation is disabled; latest recorded attempt failed on 2026-11-08. A successful run for the current Eastern date has not been verified.
+
 ## Current policy overlay — 2026-11-06
 
 This section supersedes the older documentation-first freeze and Codex-worker descriptions below.

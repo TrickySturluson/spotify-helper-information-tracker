@@ -29,6 +29,7 @@ See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification block
 | Tricky Daily | [ROADMAP](tricky-daily/ROADMAP.md) | [README](tricky-daily/README.md) | [ACTIONS](tricky-daily/ACTIONS.md) |
 | Playlist Sequencing | [ROADMAP](playlist-sequencing/ROADMAP.md) | [README](playlist-sequencing/README.md) | [ACTIONS](playlist-sequencing/ACTIONS.md) |
 | Mobile Cloud Operation & Spotify Reauthorization | [ROADMAP](mobile-cloud-operation/ROADMAP.md) | [README](mobile-cloud-operation/README.md) · [OPERATIONS](mobile-cloud-operation/OPERATIONS.md) | [ACTIONS](mobile-cloud-operation/ACTIONS.md) |
+| Cloud Development Environment | [ROADMAP](cloud-development-environment/ROADMAP.md) | [README](cloud-development-environment/README.md) | [ACTIONS](cloud-development-environment/ACTIONS.md) |
 | Maintainability & Documentation | [ROADMAP](maintainability-documentation/ROADMAP.md) | [README](maintainability-documentation/README.md) | [ACTIONS](maintainability-documentation/ACTIONS.md) |
 | Library Health & Maintenance | [ROADMAP](library-health-maintenance/ROADMAP.md) | [README](library-health-maintenance/README.md) | [ACTIONS](library-health-maintenance/ACTIONS.md) |
 | Metadata Freshness | [ROADMAP](metadata-freshness/ROADMAP.md) | [README](metadata-freshness/README.md) | [ACTIONS](metadata-freshness/ACTIONS.md) |
