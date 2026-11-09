@@ -579,12 +579,31 @@ async function handleRefreshLock(request, env, url) {
 
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
+  let diagnosticStage = "request.initialization";
   try {
+    // Non-secret liveness endpoint for deployment verification. It deliberately
+    // bypasses OAuth configuration checks and reveals no credential/config values.
+    if (url.pathname === "/health" && request.method === "GET") {
+      return response(
+        JSON.stringify({ status: "ok", service: "shit-auth-broker" }),
+        200,
+        { "Content-Type": "application/json; charset=utf-8" },
+      );
+    }
+    diagnosticStage = "broker.base_url_presence";
     requireEnv(env, ["BROKER_BASE_URL"]);
-    const canonicalOrigin = new URL(env.BROKER_BASE_URL);
+    diagnosticStage = "broker.base_url_parse";
+    let canonicalOrigin;
+    try {
+      canonicalOrigin = new URL(String(env.BROKER_BASE_URL).trim());
+    } catch {
+      throw new BrokerError("The authorization service base URL is invalid.");
+    }
+    diagnosticStage = "broker.canonical_host_check";
     if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
+    diagnosticStage = "broker.route_dispatch";
     if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);
 
     if (url.pathname === "/" && request.method === "GET") {
@@ -680,8 +699,13 @@ export async function handleRequest(request, env) {
 
     return response("Not found.", 404, { "Content-Type": "text/plain; charset=utf-8" });
   } catch (error) {
-    // Never log provider responses, OAuth codes, tokens, state values, or exception details.
-    const message = error instanceof BrokerError ? error.message : "The authorization service encountered an unexpected error.";
+    // Log only a fixed diagnostic stage and error class. Never log exception text,
+    // provider responses, OAuth codes, tokens, cookies, state values, or request URLs.
+    const expected = error instanceof BrokerError;
+    console.error({ event: "shit_auth_broker_request_failed", stage: diagnosticStage, error_class: expected ? "BrokerError" : "UnexpectedError" });
+    const message = expected
+      ? `${error.message} Diagnostic stage: ${diagnosticStage}.`
+      : `The authorization service encountered an unexpected error. Diagnostic stage: ${diagnosticStage}.`;
     return page("Authorization not completed", message, { href: "/", label: "Start again" });
   }
 }
