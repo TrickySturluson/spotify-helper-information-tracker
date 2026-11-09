@@ -79,7 +79,9 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [ ] Complete owner-consented Spotify OAuth from phone and desktop browsers.
 
 ### M4 — Central auth gate
-- [ ] Define reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
+- [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
+- [ ] Define a reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
+- [ ] Choose a cross-workflow single-flight strategy. Existing workflow concurrency groups are mostly separate; `update.yml` has no group. GitHub now supports `queue: max` (up to 100 pending runs), but a single global queue could let a long Great Migration run delay time-sensitive Daily work. Evaluate a job-level auth lock or split auth/operation jobs before changing workflow concurrency.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
 - [ ] Distinguish authentication from 429, 5xx, network, permission and configuration failures.
 - [ ] Block operations on known invalid credentials; do not silently skip the gate.
