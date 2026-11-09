@@ -183,3 +183,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Updated the workflow catalogue, README and roadmap to make this prerequisite explicit.
 - The durable latch must be cleared only by a deliberate recovery attempt or confirmed replacement credential; transient 429/5xx/network failures must remain separately classified and eligible for bounded retry after their cooldown.
 - This is a deliberate safety gate, not a retreat from automatic monitoring. It prevents SHIT from repeatedly sending a known-invalid credential while the recovery coordinator is still being built.
+
+
+## 2026-11-08 — Durable auth-state latch enables safe scheduled monitoring
+
+- Added a daily 09:00 UTC schedule back after implementing a durable non-secret repository variable, `SPOTIFY_AUTH_STATE`.
+- Every manual or scheduled run writes `pending` before contacting Spotify. If the runner exits unexpectedly or cannot persist a result, the next scheduled run sees the unresolved state and fails closed rather than sending the same credential again.
+- Scheduled runs proceed only when the prior state is absent, `healthy`, or a retryable provider/rate-limit state. Permanent blockers and unknown states pause the schedule. Manual dispatch bypasses the latch, writes `pending`, and allows an owner-directed recovery attempt.
+- Every classified result is persisted to `SPOTIFY_AUTH_STATE`; only a verified `healthy` run clears a previous blocker. State-write failure fails the run and leaves `pending`.
+- The health workflow now requests `variables: write` for its own `GITHUB_TOKEN` to manage this non-secret status. The existing manager GitHub App remains unchanged and retains only its existing Secrets:write purpose; the broker App remains separate.
+- Updated the workflow catalogue and roadmap. The scheduled monitor still needs CI/source review and a live dry-run strategy; do not dispatch it against the known-invalid credential just to test the latch.
+- Remaining safety nuance: rate-limit retry eligibility must eventually be tied to the actual Retry-After deadline, not merely the next daily run. Add this before broad production reliance.
