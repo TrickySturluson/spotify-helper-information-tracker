@@ -42,6 +42,8 @@ The dedicated broker GitHub App must be installed only on this repository and gr
 
 ## Deployment
 
+**Important deployment distinction:** the repository has a Cloudflare Workers GitHub integration check for `shit-auth-broker`. Cloudflare documents that its GitHub integration deploys when a pull request is merged. Treat merging a PR that changes this Worker as a production deployment event. The Cloudflare `Workers Builds: shit-auth-broker` check must pass before merge; if it fails, inspect its Cloudflare build log and correct the build configuration first. The broker's separate owner-only GitHub Actions deployment workflow is an explicit alternative deployment path; do not assume a PR build or a successful Wrangler dry-run means production is deployed.
+
 From Cloudflare and GitHub dashboards (no local PC is required):
 
 1. Reuse the existing Cloudflare Worker named `shit-auth-broker`; do not create a duplicate. Its canonical URL is `https://shit-auth-broker.trickysturluson.workers.dev` (the owner-provided URL). The first Wrangler deployment applies the SQLite Durable Object migration to this Worker.
