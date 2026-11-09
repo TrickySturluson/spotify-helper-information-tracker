@@ -119,10 +119,10 @@ jobs:
                   if status == "reauthorization_required":
                       broker_url = os.environ.get("BROKER_BASE_URL", "").strip()
                       parsed_broker = urllib.parse.urlsplit(broker_url)
-                      if parsed_broker.scheme == "https" and parsed_broker.netloc and parsed_broker.path in ("", "/") and not parsed_broker.query and not parsed_broker.fragment and not parsed_broker.username:
+                      if parsed_broker.scheme == "https" and parsed_broker.netloc and parsed_broker.path in ("", "/") and not parsed_broker.query and not parsed_broker.fragment and not parsed_broker.username and not parsed_broker.password:
                           summary.write(f"\n**Owner action:** [Open SHIT Spotify authorization]({broker_url}/) and complete the GitHub-owner then Spotify consent flow.\n")
                       else:
-                          summary.write("\n**Owner action:** Fresh Spotify consent is required. If the broker is not yet deployed, follow docs/operations/mobile-spotify-reauth.md for the owner-only setup and deployment steps.\n")
+                          summary.write("\n**Owner action:** Fresh Spotify consent is required. [Open the owner-only deployment runbook](https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/blob/main/docs/operations/mobile-spotify-reauth.md).\n")
               print(f"AUTH_HEALTH_STATUS={status}")
               if state_value:
                   retry_marker = state_value.split(":", 1)[1] if state_value.startswith("rate_limited_until:") else "unknown"
