@@ -10,7 +10,7 @@ The current feature branch adds a second, isolated refresh path intended to repl
 - The route selects a fixed `SpotifyCredentialStore` SQLite Durable Object and forwards only an operation ID; caller-supplied account/owner fields are ignored.
 - The Durable Object stores the refresh token as AES-256-GCM ciphertext, verifies Spotify `/v1/me`, commits token rotation only after identity verification, and returns only a short-lived access token.
 - `scripts/spotify/broker_access_token.py` is the workflow-side OIDC client. The manager has a broker-only mode that does not load the old token file or refresh directly.
-- Current encryption metadata authenticates key version 1. Multi-key rotation/re-encryption and recovery are not implemented.
+- The versioned keyring can retain old decrypt keys and re-encrypt to the active key version on a successful refresh. Backup/restore, emergency key-loss recovery, and owner callback wiring remain unimplemented.
 
 This prototype is in stacked draft PRs #187 and #188. It is not deployed or enabled. The required Worker secret `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` and variable `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION` / `SPOTIFY_REFRESH_WORKFLOW_REFS` are not configured. The OAuth callback still uses the existing GitHub Actions secret path, and none of the nine workflows has migrated. Do not configure or use the new route until callback initialization, key rotation/recovery, Cloudflare Durable Object integration tests, and the complete workflow migration are proven.
 
