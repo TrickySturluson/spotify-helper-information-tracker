@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
   group: spotify-reference-library
@@ -33,46 +34,17 @@ jobs:
         run: |
           python -m py_compile compat/spotify_playlist_manager.py compat/spotify_reference_library.py compat/spotify_daily_feedback.py
           python -m unittest discover -s tests -t . -v
-      - name: Verify Spotify credentials are configured
+      - name: Obtain central Spotify access token
         env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
-        run: |
-          test -n "$SPOTIFY_CLIENT_ID" || (echo "Missing repository variable SPOTIFY_CLIENT_ID"; exit 1)
-          test -n "$SPOTIFY_REFRESH_TOKEN" || (echo "Missing repository secret SPOTIFY_REFRESH_TOKEN"; exit 1)
-      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
-        id: spotify-secret-writer
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
-          permission-secrets: write
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
 
       - name: Seed removal baseline from the previous complete snapshots
         run: python compat/track_playlist_removals.py --seed-from-reference-library
       - name: Refresh Spotify reference library
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
-        run: |
-          python - <<'PY'
-          import os
-          import sys
-          from pathlib import Path
-          sys.path.insert(0, "compat")
-          import spotify_playlist_manager as manager
-          manager.TOKEN = Path(".spotify_playlist_token.json")
-          manager.write(manager.TOKEN, {
-              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-              "obtained_at": 0,
-              "expires_in": 0,
-          })
-          PY
-          python compat/spotify_reference_library.py sync
+        run: python compat/spotify_reference_library.py sync
       - name: Verify priority and sorter audition playlist snapshots are complete and current
         run: |
           python - <<'PY'
