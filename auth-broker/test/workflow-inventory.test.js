@@ -85,3 +85,16 @@ test("deployment workflow pins the exact nine main-branch OIDC workflow identiti
   assert.match(source, /SPOTIFY_REFRESH_WORKFLOW_REFS=\$expected_workflow_refs/);
   assert.doesNotMatch(source, /vars\.SPOTIFY_REFRESH_WORKFLOW_REFS/);
 });
+
+
+test("owner-only deployment requires secret bindings and verifies runtime readiness after deploy", async () => {
+  const source = await readFile(path.join(WORKFLOW_DIR, "deploy-mobile-auth-broker.yml"), "utf8");
+  assert.match(source, /Verify sensitive Worker bindings use Cloudflare secret storage/);
+  assert.match(source, /SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS/);
+  const deployIndex = source.indexOf("- name: Deploy Worker");
+  const readyIndex = source.indexOf("- name: Verify deployed broker readiness");
+  assert.ok(deployIndex >= 0 && readyIndex > deployIndex, "readiness must be checked after deployment");
+  assert.match(source, /\$\{BROKER_BASE_URL\}\/ready/);
+  assert.match(source, /\.status == "ready" and \.service == "shit-auth-broker"/);
+  assert.match(source, /Does not read or create a credential/);
+});
