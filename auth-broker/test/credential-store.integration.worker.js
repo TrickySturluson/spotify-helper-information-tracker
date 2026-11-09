@@ -103,13 +103,16 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
 
     const first = post(stub, "/refresh", { operationId: "B".repeat(43) });
     await started;
-    const second = post(stub, "/refresh", { operationId: "C".repeat(43) });
+    const second = await post(stub, "/refresh", { operationId: "C".repeat(43) });
+    expect(second.status).toBe(409);
+    expect((await second.json()).error).toBe("credential_busy");
     releaseProvider();
-    const [firstResponse, secondResponse] = await Promise.all([first, second]);
+    const firstResponse = await first;
     expect(firstResponse.status).toBe(200);
-    expect(secondResponse.status).toBe(200);
+    const secondRetry = await post(stub, "/refresh", { operationId: "C".repeat(43) });
+    expect(secondRetry.status).toBe(200);
     const firstBody = await firstResponse.json();
-    const secondBody = await secondResponse.json();
+    const secondBody = await secondRetry.json();
     expect(secondBody.accessToken).toBe(firstBody.accessToken);
     expect(secondBody.cached).toBe(true);
   });
