@@ -98,7 +98,7 @@ def persist_refresh_token(refresh_token):
     gh_token = os.environ.get("GH_TOKEN", "").strip()
     repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
     if not gh_token or not repository:
-        raise ManagerError("Cloud Spotify refresh is blocked: the narrowly scoped GitHub App secret-writer token is unavailable. Configure SHIT_GITHUB_APP_CLIENT_ID and SHIT_GITHUB_APP_PRIVATE_KEY before retrying; no refresh request was sent.")
+        raise ManagerError("Legacy cloud refresh is blocked before contacting Spotify because its secret-persistence credential is unavailable. Use central broker mode for cloud workflows; no refresh request was sent.")
     env = os.environ.copy()
     env["GH_TOKEN"] = gh_token
     last_error = None
