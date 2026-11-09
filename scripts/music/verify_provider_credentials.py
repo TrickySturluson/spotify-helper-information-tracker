@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Read-only verification of SHIT provider credentials and API connectivity.
 
-Never prints or returns credential values. A replacement Spotify refresh token is persisted only
-through the narrowly scoped GitHub App token in authenticated cloud runs. Optional providers are
-reported as skipped when unconfigured; required providers fail the command.
+Spotify authentication is broker-only: the script obtains a short-lived access token through
+GitHub Actions OIDC and never handles a refresh token. Optional providers are reported as skipped
+when unconfigured; required providers fail the command.
 """
 import json
 import os
@@ -38,73 +38,38 @@ def result(name, status, detail, required=False, **extra):
 
 
 def verify_spotify():
-    client_id = os.environ.get("SPOTIFY_CLIENT_ID", "").strip()
-    refresh = os.environ.get("SPOTIFY_REFRESH_TOKEN", "").strip()
-    if not client_id or not refresh:
-        missing = [key for key, value in (("SPOTIFY_CLIENT_ID", client_id), ("SPOTIFY_REFRESH_TOKEN", refresh)) if not value]
-        return [result("Spotify", "missing", "Missing " + ", ".join(missing), True)]
-    payload = urllib.parse.urlencode({
-        "grant_type": "refresh_token",
-        "refresh_token": refresh,
-        "client_id": client_id,
-    }).encode()
-    code, body, _ = request(
-        "https://accounts.spotify.com/api/token",
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-        data=payload,
-    )
-    if code != 200:
-        detail = {
-            400: "Refresh token rejected or malformed (check token validity and app pairing).",
-            401: "Spotify rejected the client authentication.",
-            429: "Spotify rate limited the verification request; retry later.",
-            0: "Could not reach Spotify Accounts; check network access.",
-        }.get(code, f"Spotify token endpoint returned HTTP {code}.")
-        return [result("Spotify", "failed", detail, True)]
+    from scripts.spotify.broker_access_token import BrokerTokenError, request_broker_access_token
+
     try:
-        token_data = json.loads(body.decode("utf-8"))
-        access = token_data.get("access_token", "")
-    except (ValueError, AttributeError):
-        access = ""
-        token_data = {}
-    if not access:
-        return [result("Spotify", "failed", "Token endpoint returned no access token.", True)]
+        access, _expires_in = request_broker_access_token()
+    except BrokerTokenError as exc:
+        category = getattr(exc, "category", "broker_error")
+        details = {
+            "reauthorization_required": "The central broker requires owner-consented Spotify authorization.",
+            "rate_limited": "Spotify authentication is rate-limited; respect the broker Retry-After cooldown.",
+            "configuration_error": "Spotify rejected the configured broker client credentials.",
+            "busy": "Another SHIT workflow is completing the shared credential refresh; retry later.",
+        }
+        return [result("Spotify", "failed", details.get(category, "The central Spotify authentication broker is unavailable."), True)]
     code, body, _ = request(
         "https://api.spotify.com/v1/me",
         headers={"Authorization": "Bearer " + access},
     )
     if code != 200:
         detail = {
-            401: "Access token was issued but Spotify rejected it at /me.",
-            403: "Token lacks the required account-read permission.",
-            429: "Spotify rate limited the account verification request.",
+            401: "Spotify rejected the broker-issued access token at /me.",
+            403: "Broker-issued token lacks the required account-read permission.",
+            429: "Spotify rate-limited the read-only account verification request.",
             0: "Could not reach the Spotify Web API.",
         }.get(code, f"Spotify account endpoint returned HTTP {code}.")
         return [result("Spotify", "failed", detail, True)]
     try:
         profile = json.loads(body.decode("utf-8"))
-        account = "authenticated Spotify account"
+        if not isinstance(profile, dict) or not isinstance(profile.get("id"), str) or not profile["id"]:
+            raise ValueError("missing account identity")
     except (ValueError, AttributeError):
-        account = "authenticated account"
-    rotated = bool(token_data.get("refresh_token"))
-    detail = "Refresh-token exchange and read-only GET /me succeeded; " + account + "."
-    status = "passed"
-    if rotated:
-        if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") == "1":
-            try:
-                sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[2] / "compat"))
-                import spotify_playlist_manager as manager
-                manager.persist_refresh_token(token_data["refresh_token"])
-                detail += " Spotify's replacement refresh token was immediately persisted to the repository secret."
-            except Exception:
-                status = "failed"
-                detail += " Spotify returned a replacement refresh token, but secure repository-secret persistence failed; do not start another Spotify workflow until this is resolved."
-        else:
-            status = "failed"
-            detail += " Spotify returned a replacement refresh token; this local verification cannot update the GitHub repository secret."
-    return [result(
-        "Spotify", status, detail, True, refresh_token_rotation_returned=rotated,
-    )]
+        return [result("Spotify", "failed", "Spotify /v1/me returned no usable account identity.", True)]
+    return [result("Spotify", "passed", "Central broker issued a short-lived access token and read-only GET /me succeeded.", True)]
 
 
 def verify_lastfm():
@@ -186,13 +151,10 @@ if __name__ == "__main__":
 
 # FILE OVERVIEW
 # Purpose: Verify configured SHIT provider credentials before the Great Migration.
-# Checks: Spotify refresh-token exchange + read-only /me; Last.fm API key;
+# Checks: Broker-issued Spotify access token + read-only /me; Last.fm API key;
 #         optional Discogs identity token and GetSongBPM API key.
-# Safety: No playlist or canonical Library writes; never prints credential values or
-#         provider response bodies. In authenticated cloud runs with
-#         SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN=1, a replacement Spotify refresh token may be
-#         persisted to the repository Actions secret through the scoped GitHub App.
-#         Local verification does not persist tokens.
+# Safety: Spotify is broker-only and never reads/refreshes/persists a refresh token. No playlist
+#         or canonical Library writes; never prints credential values or provider response bodies.
 # Exit: 0 required checks pass; 1 optional configured provider fails; 2 a
 #       required provider is missing or invalid.
 # Run: python scripts/music/verify_provider_credentials.py
