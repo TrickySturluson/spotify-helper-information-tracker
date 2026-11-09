@@ -184,7 +184,7 @@ class Spotify:
         metrics["total_requests"] += 1
         metrics["elapsed_ms"] += round(elapsed_ms, 2)
     def bearer(self):
-        if self.broker_managed:
+        if getattr(self, "broker_managed", False):
             if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
                 raise ManagerError("SHIT broker access token expired. Restart this workflow to request a new short-lived token; direct Spotify refresh is disabled for broker-managed sessions.")
             return self.t["access_token"]
