@@ -540,7 +540,7 @@ export async function handleRequest(request, env) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
     if (url.pathname === "/" && request.method === "GET") {
-      return page("SHIT mobile authorization", "Sign in with the repository owner account, then approve Spotify. This process never edits playlists.", {
+      return page("SHIT Spotify authorization", "Use this secure browser flow from a phone or desktop. Sign in with the repository owner account, then approve Spotify. This process never edits playlists.", {
         href: "/auth/github/start",
         label: "Continue with GitHub",
       });
@@ -617,7 +617,7 @@ export async function handleRequest(request, env) {
       await rateLimit(request, env, "complete");
       const resultId = url.searchParams.get("result") || "";
       if (!/^[A-Za-z0-9_-]{30,}$/.test(resultId)) {
-        return page("Authorization result unavailable", "Start a new authorization from the SHIT mobile authorization page.", { href: "/", label: "Start again" });
+        return page("Authorization result unavailable", "Start a new authorization from the SHIT Spotify authorization page.", { href: "/", label: "Start again" });
       }
       const result = await stateConsume(env, `oauth:result:${resultId}`);
       if (!result || !result.spotifyIdentity) {
