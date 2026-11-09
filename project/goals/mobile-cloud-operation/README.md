@@ -68,7 +68,7 @@ The coordinator connects diagnosis to safe next steps:
 
 ## Current status
 
-- Broker source and tests are implemented in the reconciled feature work; previous reported checks included 24 broker tests, dependency audit, Wrangler dry-run, 519 repository tests and full-history Gitleaks. Any subsequent code change requires fresh checks. The scheduled auth-health monitor, structured failure classifier and durable auth-state latch are implemented on `feature/authentication-management-recovery`; this workflow change has not yet passed CI.
+- Broker source and tests are implemented in the reconciled feature work; previous reported checks included 24 broker tests, dependency audit, Wrangler dry-run, 519 repository tests and full-history Gitleaks. Any subsequent code change requires fresh checks. The scheduled auth-health monitor, structured failure classifier and run-history recovery latch are implemented on `feature/authentication-management-recovery`; this workflow change has not yet passed CI.
 - No Cloudflare Worker deployment, dedicated broker GitHub App installation, Spotify callback registration, OAuth completion or Actions secret replacement is confirmed.
 - The saved credential remains blocked by the previously observed `invalid_grant`. Do not repeatedly dispatch Spotify commands until fresh consent and read-only verification succeed.
 
