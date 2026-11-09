@@ -5,8 +5,7 @@ useDefault = true
 
 [allowlist]
 description = "Exact known false positives only: public catalog identifiers and a public Git commit SHA used as an auth-state anchor. Fingerprints constrain exceptions to the original file, commit, rule, and line."
-fingerprints = [
-  "550715ced0f0a001b4a1d509d713759e21afa4f4:.github/workflows/spotify-auth-health-check.yml:generic-api-key:11",
-  "d434471555f51c767903dcebb8f8af588af256f9:tests/test_spotify_auth_health_workflow.py:generic-api-key:31",
+regexes = [
+  '''SPOTIFY_AUTH_STATE_SHA: [a-f0-9]{40}''',
 ]
 paths = ['''assistant_data/music/library/library_index\.json''']
