@@ -49,10 +49,6 @@ async function importEncryptionKeyring(env) {
     if (!encodedKeys || typeof encodedKeys !== "object" || Array.isArray(encodedKeys)) {
       throw new CredentialStoreError("Credential encryption is not configured.");
     }
-  } else if (env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY) {
-    // Temporary v1 compatibility for isolated tests; production should use the
-    // versioned keyring so rotation can retain old decrypt keys during rollout.
-    encodedKeys = { "1": env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY };
   }
   const versions = Object.keys(encodedKeys);
   if (!versions.length || versions.length > 5 || versions.some((version) => !/^[1-9][0-9]{0,3}$/.test(version))) {
@@ -129,7 +125,7 @@ export class SpotifyCredentialStore {
     if (request.method !== "POST") return json({ error: "not_found" }, 404);
     const path = new URL(request.url).pathname;
     if (path !== "/initialize" && path !== "/refresh" && path !== "/reauthorize") return json({ error: "not_found" }, 404);
-    if (!String(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY || "")) {
+    if (!String(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "")) {
       return json({ error: "credential_store_unavailable" }, 503);
     }
     let input;
