@@ -1,8 +1,8 @@
-# Mobile Spotify Reauthorization — Deployment Runbook
+# SHIT Spotify Reauthorization — Deployment Runbook
 
 ## Purpose
 
-Deploy the SHIT mobile OAuth broker so the owner can reauthorize Spotify from a phone without a local machine, then verify the new credential through the read-only Spotify Auth Health Check.
+Deploy SHIT's centralized OAuth broker so the owner can reauthorize Spotify from a phone or desktop without a local machine, then verify the new credential through the read-only Spotify Auth Health Check. The browser is only the owner-facing entry point; the broker is a shared SHIT authentication service.
 
 Repository: `TrickySturluson/spotify-helper-information-tracker`
 
@@ -12,10 +12,10 @@ Deployment workflow: [Deploy SHIT Mobile Auth Broker](https://github.com/TrickyS
 
 - Broker source and tests are merged to `main`.
 - The deployment workflow exists and is owner-gated.
-- The Worker has **not** been deployed.
+- The existing Worker is `shit-auth-broker` at `https://shit-auth-broker.trickysturluson.workers.dev` (URL supplied by the owner); its production deployment and runtime configuration have **not** yet been verified.
 - No broker OAuth completion has been verified.
 - No current Spotify refresh token should be assumed valid.
-- Poker Test playlist `4Ccwf3QRr8HfSsK48pTuBI` remains blocked from modification until auth is healthy and the normal SHIT playlist-control sequence is followed.
+- `Bleeding Dying Hoarse` playlist `4Ccwf3QRr8HfSsK48pTuBI` remains blocked from modification until auth is healthy and the normal SHIT playlist-control sequence is followed.
 
 ## Owner-side provisioning checklist
 
@@ -23,9 +23,8 @@ Complete these steps in the relevant dashboards. Do not paste secrets, private k
 
 ### 1. Cloudflare
 
-- [ ] Create Worker `shit-mobile-auth-broker`.
-- [ ] Enable its stable `workers.dev` hostname.
-- [ ] Record the exact HTTPS origin, e.g. `https://shit-mobile-auth-broker.<your-subdomain>.workers.dev`.
+- [ ] Reuse the existing Worker `shit-auth-broker`; do not create a duplicate.
+- [ ] Confirm its stable `workers.dev` hostname is enabled: `https://shit-auth-broker.trickysturluson.workers.dev`.
 - [ ] Record the Cloudflare Account ID.
 - [ ] Create a Cloudflare API token scoped to the existing Worker with Workers Editor permission.
 - [ ] Keep the API token available only for the GitHub Actions secret entry below.
@@ -35,7 +34,7 @@ Complete these steps in the relevant dashboards. Do not paste secrets, private k
 Create a new broker-specific GitHub App; do not broaden the existing SHIT manager App.
 
 - [ ] Enable the user authorization flow.
-- [ ] Set callback URL to `<BROKER_BASE_URL>/auth/github/callback`.
+- [ ] Set callback URL to `https://shit-auth-broker.trickysturluson.workers.dev/auth/github/callback`.
 - [ ] Grant only repository permissions: Actions: Read and write; Secrets: Read and write (the deployment/runtime implementation needs write; do not grant unrelated permissions).
 - [ ] Install it only on `TrickySturluson/spotify-helper-information-tracker`.
 - [ ] Record App ID, Client ID, Client Secret, and generate a private key.
@@ -44,7 +43,7 @@ Create a new broker-specific GitHub App; do not broaden the existing SHIT manage
 ### 3. Spotify Developer Dashboard
 
 - [ ] Use the same Spotify application/client ID already configured for SHIT.
-- [ ] Add exact redirect URI `<BROKER_BASE_URL>/spotify/callback`.
+- [ ] Add exact redirect URI `https://shit-auth-broker.trickysturluson.workers.dev/spotify/callback`.
 - [ ] Do not add a Spotify client secret to this PKCE flow.
 
 ### 4. GitHub repository configuration
@@ -52,12 +51,12 @@ Create a new broker-specific GitHub App; do not broaden the existing SHIT manage
 Add these Actions **variables** under repository Settings → Secrets and variables → Actions → Variables:
 
 - [ ] `CLOUDFLARE_ACCOUNT_ID`
-- [ ] `BROKER_BASE_URL` — HTTPS origin only; no path or trailing slash
+- [ ] `BROKER_BASE_URL` — `https://shit-auth-broker.trickysturluson.workers.dev` (HTTPS origin only; no path or trailing slash)
 - [ ] `GITHUB_APP_CLIENT_ID`
 - [ ] `GITHUB_APP_ID`
-- [ ] `GITHUB_APP_REDIRECT_URI` — exact origin plus `/auth/github/callback`
+- [ ] `GITHUB_APP_REDIRECT_URI` — `https://shit-auth-broker.trickysturluson.workers.dev/auth/github/callback`
 - [ ] `SPOTIFY_CLIENT_ID`
-- [ ] `SPOTIFY_REDIRECT_URI` — exact origin plus `/spotify/callback`
+- [ ] `SPOTIFY_REDIRECT_URI` — `https://shit-auth-broker.trickysturluson.workers.dev/spotify/callback`
 
 Add this Actions **secret**:
 
@@ -80,6 +79,8 @@ Set these **Worker secrets** in Cloudflare, not in GitHub variables:
 - [ ] Confirm only the `SPOTIFY_REFRESH_TOKEN` repository secret metadata changed; never retrieve or display its value.
 - [ ] Confirm the automatically dispatched **SHIT — Spotify Auth Health Check** succeeds.
 - [ ] Independently run the read-only health check again and confirm `/v1/me` returns the intended Spotify account.
+
+A Cloudflare GitHub integration check may build the PR, but a successful build is not proof that the production Worker is deployed with its required runtime variables and secrets. The repository also has an owner-only manual deployment workflow; do not start OAuth until the target Worker responds on its canonical URL and configuration is verified.
 
 A successful deployment alone is not successful reauthorization. A successful OAuth completion alone is not sufficient until the read-only health check passes.
 
