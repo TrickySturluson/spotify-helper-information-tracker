@@ -7,6 +7,7 @@ on:
     paths:
       - "auth-broker/**"
       - ".github/workflows/auth-broker-preview-health.yml"
+      - ".github/workflows/deploy-mobile-auth-broker.yml"
       - "docs/WORKFLOWS.md"
       - "project/goals/mobile-cloud-operation/**"
 
