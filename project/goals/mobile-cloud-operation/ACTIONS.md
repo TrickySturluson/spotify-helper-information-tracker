@@ -388,3 +388,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Updated the workflow inventory test to require zero legacy refresh-token workflow consumers and exact broker-client usage in all nine workflows.
 - No production deployment, Cloudflare key provisioning, live OAuth, GitHub App permission change, legacy secret deletion, playlist modification, or Library write occurred. Main remains unchanged until the stacked PRs are reviewed/merged and the owner approves coordinated cutover.
 - Validation remains pending on the latest branch head. Required before deployment: all CI/security checks, real Durable Object integration tests, exact OIDC claim validation for issue events, two independent read-only health checks, and key backup/rotation/recovery readiness.
+
+
+## 2026-11-09 — Broker retry and multi-job correctness refinements
+
+- Added an encrypted short-lived access-token cache with a two-minute minimum remaining lifetime before a workflow receives a cached token. This leaves the shared manager's 60-second expiry safety margin intact.
+- Changed concurrent refresh handling to return an immediate transient `credential_busy` result from the Durable Object. The Python OIDC client retries with the same operation ID and OIDC identity; after another job commits, the retry receives the cached token. If a forced auth-health refresh collides with another in-flight refresh, the retry drops the force flag and reuses the winning result.
+- Made successful refresh operation IDs idempotent while their encrypted cached access token remains valid. This allows a client to recover from a lost broker HTTP response without performing a second refresh-token rotation; expired replays remain rejected.
+- Persisted bounded Retry-After cooldowns after Spotify 429 responses and made subsequent broker calls return the remaining cooldown without contacting Spotify.
+- Restricted forced refresh to the exact main-branch auth-health workflow. It is used only after Spotify rejects a cached access token with HTTP 401; all other workflow identities are explicitly denied.
+- Adjusted Cloudflare Workers SQLite integration coverage to verify encrypted persistence and sequential cache reuse. The Vitest DO harness raised a cross-DO I/O-context error when the test itself held an external MSW response gate across concurrent requests, so concurrent contention is tested in the isolated store/client unit suites instead. Real cross-job concurrency remains a live deployment acceptance check, not a claimed completed integration result.
+- Added client tests for busy retry, network-response-loss idempotency, forced-refresh flag handling, and manager broker-only fail-closed behavior.
