@@ -153,3 +153,10 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect(record.lastOperationId).toBe("F".repeat(43));
   });
 });
+
+
+// FILE OVERVIEW
+// Purpose: Exercise SpotifyCredentialStore against real SQLite Durable Objects in the Workers runtime.
+// Coverage: Ciphertext persistence, verified token rotation, transactional concurrency, blocked state, and reauthorization.
+// Network: MSW intercepts Spotify token and identity endpoints; tests make no external Spotify requests.
+// Related: auth-broker/src/credential-store.js, auth-broker/vitest.config.js.
