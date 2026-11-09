@@ -1,4 +1,4 @@
-import sodium from "libsodium-wrappers";\nexport { SpotifyRefreshLease } from "./refresh-lock.js";
+import sodium from "libsodium-wrappers";\nimport { SpotifyRefreshLease, verifyActionsOidc } from "./refresh-lock.js";\nexport { SpotifyRefreshLease };
 
 const OWNER = "TrickySturluson";
 const REPOSITORY = "spotify-helper-information-tracker";
@@ -531,6 +531,44 @@ async function spotifyCallback(request, env, url) {
   return redirect(new URL(`/complete?result=${resultId}`, env.BROKER_BASE_URL).toString());
 }
 
+async function handleRefreshLock(request, env, url) {
+  if (request.method !== "POST") return response("Not found.", 404);
+  if (!env.SPOTIFY_REFRESH_LEASE || !String(env.REFRESH_LOCK_WORKFLOW_REFS || "").trim()) {
+    return response(JSON.stringify({ error: "lock_unavailable" }), 503, { "Content-Type": "application/json" });
+  }
+  const authorization = request.headers.get("Authorization") || "";
+  const match = authorization.match(/^Bearer ([A-Za-z0-9._-]+)$/);
+  if (!match) return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
+  const length = Number(request.headers.get("Content-Length") || 0);
+  if (length > 2048 || !request.headers.get("Content-Type")?.toLowerCase().startsWith("application/json")) {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  let body;
+  try { body = await request.json(); } catch {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  let identity;
+  try {
+    const allowed = String(env.REFRESH_LOCK_WORKFLOW_REFS).split("\\n").flatMap((line) => line.split(",")).map((item) => item.trim()).filter(Boolean);
+    identity = await verifyActionsOidc(match[1], { allowedWorkflowRefs: allowed });
+  } catch {
+    return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
+  }
+  const owner = identity.workflowRef + ":" + identity.runId + ":" + identity.runAttempt;
+  const operation = url.pathname.slice("/internal/refresh-lock/".length);
+  if (!["acquire", "renew", "release"].includes(operation)) {
+    return response(JSON.stringify({ error: "not_found" }), 404, { "Content-Type": "application/json" });
+  }
+  const stub = env.SPOTIFY_REFRESH_LEASE.get(env.SPOTIFY_REFRESH_LEASE.idFromName("spotify-refresh-token"));
+  const result = await stub.fetch("https://refresh-lease.internal/" + operation, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...body, owner }),
+  });
+  const output = await result.text();
+  return response(output, result.status, { "Content-Type": "application/json" });
+}
+
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
   try {
@@ -539,7 +577,7 @@ export async function handleRequest(request, env) {
     if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
-    if (url.pathname === "/" && request.method === "GET") {
+    if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);\n\n    if (url.pathname === "/" && request.method === "GET") {
       return page("SHIT Spotify authorization", "Use this secure browser flow from a phone or desktop. Sign in with the repository owner account, then approve Spotify. This process never edits playlists.", {
         href: "/auth/github/start",
         label: "Continue with GitHub",
