@@ -260,3 +260,10 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - This supersedes the prior run-history latch design and removes the 90-day log-retention dependency. If the status API cannot be read or the pending/result status cannot be written, the workflow fails closed.
 - Added/updated regression tests for the commit-status context, permission boundary, Retry-After state description, and no repository/run-log writes. The commit-status version has not yet received fresh CI; previous 528-test pass applies to the earlier run-history implementation.
 - No Spotify API request, secret rotation, OAuth, Cloudflare deployment, playlist write or repository variable change was performed.
+## 2026-11-08 — Pin health status to a stable anchor commit
+
+- Found that storing auth status on the latest workflow SHA would reset the latch on every unrelated code/data commit, allowing repeated `invalid_grant` attempts.
+- Pinned the `spotify-auth-health` commit-status context to fixed main commit `a4ac9def8be5b6e727b777e2660a7bb027a8e51b`. That commit is the current `main` base and remains reachable as history advances; normal commits no longer reset auth state.
+- Restricted the health-check job to `refs/heads/main`, so a manual dispatch from a feature branch cannot overwrite the global auth state.
+- The fixed status anchor is non-secret and is intentionally hard-coded in the workflow. If repository history is ever rewritten, update this anchor as a deliberate migration.
+- Added regression assertions for the fixed SHA and main-only execution. The latest CI run is still pending; no Spotify request was made.
