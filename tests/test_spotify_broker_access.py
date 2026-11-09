@@ -153,6 +153,26 @@ class BrokerAccessTokenTests(unittest.TestCase):
         self.assertEqual(len(body["operationId"]), 43)
         self.assertIs(body["forceRefresh"], True)
 
+    def test_busy_retry_reuses_operation_id_and_drops_force_flag_after_another_refresh_starts(self):
+        requests = []
+
+        def opener(request, timeout=0):
+            requests.append(request)
+            if len(requests) == 1:
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            if len(requests) == 2:
+                body = io.BytesIO(json.dumps({"error": "credential_busy"}).encode())
+                raise urllib.error.HTTPError(request.full_url, 409, "busy", {}, body)
+            return FakeResponse({"accessToken": "short-lived-access-token", "expiresIn": 3600})
+
+        result = request_broker_access_token(self.environ, opener, force_refresh=True)
+        self.assertEqual(result, ("short-lived-access-token", 3600))
+        first_payload = json.loads(requests[1].data)
+        retry_payload = json.loads(requests[2].data)
+        self.assertEqual(first_payload["operationId"], retry_payload["operationId"])
+        self.assertIs(first_payload["forceRefresh"], True)
+        self.assertNotIn("forceRefresh", retry_payload)
+
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
             with self.subTest(expires=expires), self.assertRaises(BrokerTokenError):
