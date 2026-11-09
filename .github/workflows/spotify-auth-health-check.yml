@@ -2,9 +2,17 @@ name: SHIT — Spotify Auth Health Check
 
 on:
   workflow_dispatch:
+  schedule:
+    # A durable commit-status latch prevents futile invalid_grant retries.
+    - cron: "0 9 * * *"
+
+# This immutable branch pins auth state across ordinary SHIT commits.
+env:
+  SPOTIFY_AUTH_STATE_REF: auth-state-anchor
 
 permissions:
   contents: read
+  statuses: write
 
 concurrency:
   group: spotify-auth-health-check
@@ -12,11 +20,64 @@ concurrency:
 
 jobs:
   verify:
+    if: github.ref == 'refs/heads/main'
     name: Verify Spotify refresh authentication
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - name: Check previous auth result before retry
+        id: auth-latch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          AUTH_STATE_SHA="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SPOTIFY_AUTH_STATE_REF" --jq '.sha')"
+          status_json="$(gh api "repos/$GITHUB_REPOSITORY/commits/$AUTH_STATE_SHA/status" --jq '.statuses | map(select(.context == "spotify-auth-health")) | sort_by(.created_at) | last // {}')"
+          previous_state="$(printf '%s' "$status_json" | jq -r '.state // empty')"
+          previous_description="$(printf '%s' "$status_json" | jq -r '.description // empty')"
+          case "$previous_description" in
+            rate_limited_until:*)
+              retry_until="${previous_description#rate_limited_until:}"
+              if ! [[ "$retry_until" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_until" ]; then
+                echo "Spotify auth check skipped until the recorded Retry-After deadline, including manual attempts."
+                echo "skip=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+              ;;
+            *)
+              case "$previous_state" in
+                ""|success|error)
+                  ;;
+                *)
+                  if [ "$EVENT_NAME" = "schedule" ]; then
+                    echo "Scheduled Spotify auth check skipped because the prior commit status is '$previous_description' (state: $previous_state)."
+                    echo "skip=true" >> "$GITHUB_OUTPUT"
+                    {
+                      echo "## Spotify authentication check skipped"
+                      echo
+                      echo "The previous auth state is '$previous_description'. Scheduled checks are paused until a deliberate manual recovery attempt."
+                    } >> "$GITHUB_STEP_SUMMARY"
+                    exit 0
+                  fi
+                  echo "Manual recovery attempt explicitly bypasses previous auth state '$previous_description'."
+                  ;;
+              esac
+              ;;
+          esac
+          # Mark the current commit pending before contacting Spotify. If the
+          # runner exits unexpectedly, the next scheduled run fails closed.
+          if ! gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$AUTH_STATE_SHA"             -f state=pending             -f context=spotify-auth-health             -f description=pending             -f target_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >/dev/null; then
+            echo "::error::Could not persist the pending auth status; refusing to contact Spotify."
+            exit 1
+          fi
+          echo "state_sha=$AUTH_STATE_SHA" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
       - name: Validate required Spotify configuration
+        if: steps.auth-latch.outputs.skip != 'true'
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
@@ -26,6 +87,7 @@ jobs:
           echo "Required Spotify configuration is present."
 
       - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
+        if: steps.auth-latch.outputs.skip != 'true'
         id: spotify-secret-writer
         uses: actions/create-github-app-token@v3
         with:
@@ -34,72 +96,182 @@ jobs:
           permission-secrets: write
 
       - name: Refresh Spotify access and verify the current account
+        if: steps.auth-latch.outputs.skip != 'true'
+        id: health
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          AUTH_STATE_COMMIT: ${{ steps.auth-latch.outputs.state_sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GH_STATUS_TOKEN: ${{ github.token }}
+          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
         run: |
           python - <<'PY'
           import base64
           import json
           import os
+          import time
+          from datetime import timezone
+          from email.utils import parsedate_to_datetime
           import subprocess
           import sys
           import urllib.error
           import urllib.parse
           import urllib.request
 
+          def report(status, message, success=False, state_value=None):
+              # Emit only fixed, non-secret status and description values.
+              with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+                  output.write(f"status={status}\n")
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+                  summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
+                  if status == "reauthorization_required":
+                      broker_url = os.environ.get("BROKER_BASE_URL", "").strip().rstrip("/")
+                      try:
+                          parsed_broker = urllib.parse.urlsplit(broker_url)
+                          _ = parsed_broker.port
+                          valid_broker = (
+                              parsed_broker.scheme == "https" and parsed_broker.netloc
+                              and parsed_broker.path in ("", "/") and not parsed_broker.query
+                              and not parsed_broker.fragment and not parsed_broker.username
+                              and not parsed_broker.password
+                          )
+                      except ValueError:
+                          valid_broker = False
+                      if valid_broker:
+                          summary.write(f"\n**Owner action:** [Open SHIT Spotify authorization]({broker_url}/) and complete the GitHub-owner then Spotify consent flow.\n")
+                      else:
+                          summary.write("\n**Owner action:** Fresh Spotify consent is required. [Open the owner-only deployment runbook](https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/blob/main/docs/operations/mobile-spotify-reauth.md).\n")
+              commit_state = "success" if status == "healthy" else ("error" if status == "provider_unavailable" else "failure")
+              description = state_value if status == "rate_limited" and state_value else status
+              try:
+                  subprocess.run(
+                      ["gh", "api", "-X", "POST",
+                       f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['AUTH_STATE_COMMIT']}",
+                       "-f", f"state={commit_state}",
+                       "-f", "context=spotify-auth-health",
+                       "-f", f"description={description}",
+                       "-f", f"target_url={os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}"],
+                      check=True,
+                      stdout=subprocess.DEVNULL,
+                      stderr=subprocess.PIPE,
+                      env={**os.environ, "GH_TOKEN": os.environ["GH_STATUS_TOKEN"]},
+                  )
+              except subprocess.CalledProcessError:
+                  failure = "Authentication result could not be persisted as a commit status; the prior pending status will keep scheduled checks paused."
+                  with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+                      summary.write(f"\n**Status persistence failure:** {failure}\n")
+                  print(f"::error::{failure}")
+                  raise SystemExit(1) from None
+              if success:
+                  print(message)
+                  return
+              print(f"::error::{message}")
+              raise SystemExit(1)
+
+          def retry_state(header):
+              try:
+                  deadline = int(time.time()) + max(0, int(header))
+              except (TypeError, ValueError):
+                  try:
+                      parsed = parsedate_to_datetime(str(header))
+                      if parsed.tzinfo is None:
+                          parsed = parsed.replace(tzinfo=timezone.utc)
+                      deadline = int(parsed.timestamp())
+                  except (TypeError, ValueError, OverflowError):
+                      # If Spotify omits/mangles Retry-After, wait a conservative 24 hours.
+                      deadline = int(time.time()) + 86400
+              return f"rate_limited_until:{max(int(time.time()), deadline)}"
+
           client_id = os.environ["SPOTIFY_CLIENT_ID"].strip()
           refresh_token = os.environ["SPOTIFY_REFRESH_TOKEN"].strip()
           if not client_id or not refresh_token:
-              raise SystemExit("Required Spotify credentials are missing.")
+              report("configuration_error", "Spotify client ID or refresh-token secret is missing.")
 
-          def request(url, data=None, headers=None):
-              req = urllib.request.Request(url, data=data, headers=headers or {})
-              try:
-                  with urllib.request.urlopen(req, timeout=20) as response:
-                      return response.status, response.read()
-              except urllib.error.HTTPError as exc:
-                  # Never print response bodies: authentication endpoints can echo sensitive context.
-                  raise RuntimeError(f"Spotify request failed with HTTP {exc.code}.") from None
-              except urllib.error.URLError:
-                  raise RuntimeError("Could not reach Spotify; check runner network connectivity.") from None
-
-          basic = base64.b64encode(
-              (client_id + ":" + os.environ.get("SPOTIFY_CLIENT_SECRET", "")).encode()
-          ).decode()
-          # Spotify's current app configuration uses a client ID and refresh token.
-          # Public clients omit the client secret; confidential clients may provide it.
           fields = {"grant_type": "refresh_token", "refresh_token": refresh_token}
           secret = os.environ.get("SPOTIFY_CLIENT_SECRET", "").strip()
           if secret:
-              basic = base64.b64encode((client_id + ":" + secret).encode()).decode()
-              headers = {"Authorization": "Basic " + basic}
+              headers = {
+                  "Authorization": "Basic " + base64.b64encode((client_id + ":" + secret).encode()).decode(),
+                  "Content-Type": "application/x-www-form-urlencoded",
+              }
           else:
               fields["client_id"] = client_id
               headers = {"Content-Type": "application/x-www-form-urlencoded"}
-          status, body = request(
+
+          request = urllib.request.Request(
               "https://accounts.spotify.com/api/token",
-              urllib.parse.urlencode(fields).encode(),
-              headers,
+              data=urllib.parse.urlencode(fields).encode(),
+              headers=headers,
           )
-          if status != 200:
-              raise SystemExit("Spotify token refresh did not return HTTP 200.")
-          token_data = json.loads(body)
+          try:
+              with urllib.request.urlopen(request, timeout=20) as response:
+                  token_status = response.status
+                  token_body = response.read()
+          except urllib.error.HTTPError as exc:
+              # Parse only the provider's stable error code. Never log the body or description.
+              try:
+                  detail = json.loads(exc.read(4096)).get("error")
+              except (ValueError, AttributeError):
+                  detail = None
+              if detail == "invalid_grant":
+                  report("reauthorization_required", "Spotify rejected the refresh grant (invalid_grant). The same credential will not be retried; owner-consented Spotify reauthorization is required.")
+              if exc.code == 429:
+                  retry_after = exc.headers.get("Retry-After", "")
+                  safe_retry_after = (str(retry_after).splitlines()[0][:64] if retry_after else "unspecified")
+                  report("rate_limited", f"Spotify rate-limited the auth check (HTTP 429). Retry-After: {safe_retry_after}. No retry was attempted.", state_value=retry_state(retry_after))
+              if exc.code >= 500:
+                  report("provider_unavailable", f"Spotify token service returned HTTP {exc.code}. Preserve the existing credential and retry only after bounded backoff.")
+              if exc.code in (400, 401, 403) or detail in ("invalid_client", "unauthorized_client"):
+                  report("configuration_error", f"Spotify rejected the client configuration (HTTP {exc.code}). Review app/client configuration; do not treat this as an expired user grant.")
+              report("provider_error", f"Spotify token refresh failed with HTTP {exc.code}; response details were intentionally suppressed.")
+          except urllib.error.URLError:
+              report("provider_unavailable", "Could not reach Spotify token service. The credential was not changed.")
+
+          if token_status != 200:
+              report("provider_error", f"Spotify token service returned unexpected HTTP {token_status}.")
+          try:
+              token_data = json.loads(token_body)
+          except (ValueError, TypeError):
+              report("provider_error", "Spotify returned an unreadable token response.")
           access_token = token_data.get("access_token")
           if not access_token:
-              raise SystemExit("Spotify token response did not contain an access token.")
+              report("provider_error", "Spotify token response did not contain an access token.")
           print(f"::add-mask::{access_token}")
 
-          status, _ = request(
+          me_request = urllib.request.Request(
               "https://api.spotify.com/v1/me",
               headers={"Authorization": "Bearer " + access_token},
           )
-          if status != 200:
-              raise SystemExit("Spotify account verification did not return HTTP 200.")
-          print("Spotify refresh-token exchange succeeded.")
-          print("Spotify /v1/me authenticated successfully.")
+          try:
+              with urllib.request.urlopen(me_request, timeout=20) as response:
+                  me_status = response.status
+                  me_body = response.read()
+          except urllib.error.HTTPError as exc:
+              if exc.code == 429:
+                  retry_after = exc.headers.get("Retry-After", "")
+                  safe_retry_after = (str(retry_after).splitlines()[0][:64] if retry_after else "unspecified")
+                  report("rate_limited", f"Spotify account verification was rate-limited (HTTP 429). Retry-After: {safe_retry_after}.", state_value=retry_state(retry_after))
+              if exc.code >= 500:
+                  report("provider_unavailable", f"Spotify account service returned HTTP {exc.code}.")
+              if exc.code in (401, 403):
+                  report("scope_or_identity_error", f"Spotify token exchange succeeded, but account verification returned HTTP {exc.code}. Review granted scopes and account authorization.")
+              report("provider_error", f"Spotify account verification failed with HTTP {exc.code}; response details were suppressed.")
+          except urllib.error.URLError:
+              report("provider_unavailable", "Could not reach Spotify account service. The credential was not changed.")
+
+          if me_status != 200:
+              report("provider_error", f"Spotify account verification returned unexpected HTTP {me_status}.")
+          try:
+              account = json.loads(me_body)
+              if not account.get("id"):
+                  report("identity_error", "Spotify account verification returned no account identifier.")
+          except (ValueError, TypeError):
+              report("identity_error", "Spotify account verification returned an unreadable identity response.")
 
           rotated = token_data.get("refresh_token")
           if rotated and rotated != refresh_token:
@@ -115,19 +287,23 @@ jobs:
                       stderr=subprocess.PIPE,
                   )
               except subprocess.CalledProcessError:
-                  raise SystemExit(
-                      "Spotify authentication succeeded, but rotated-token persistence failed."
-                  ) from None
-              print("A rotated Spotify refresh token was securely saved to the repository.")
-          else:
-              print("No refresh-token rotation was returned; the existing repository secret remains valid.")
+                  report("secret_persistence_failed", "Spotify authentication succeeded, but secure refresh-token rotation persistence failed. Do not start Spotify-dependent operations.")
+              report("healthy", "Spotify authentication and /v1/me verification succeeded; a rotated refresh token was securely persisted.", success=True)
+              raise SystemExit(0)
+          report("healthy", "Spotify authentication and /v1/me verification succeeded. No refresh-token rotation was returned; the existing secret remains valid.", success=True)
           PY
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Manually verify Spotify refresh-token authentication without touching
-#          playlists, library data, or repository contents.
-# Trigger: workflow_dispatch only.
-# Safety: Uses a GitHub App token scoped to repository Secrets write solely so a
-#         rotated Spotify refresh token can be persisted. No token values are logged.
+# Purpose: Scheduled and manually dispatched Spotify authentication monitor;
+#          refreshes credentials, verifies /v1/me, persists token rotation, and
+#          reports distinct non-secret failure classes without playlist writes.
+# Trigger: Daily schedule (09:00 UTC) and workflow_dispatch. Scheduled runs
+#          inspect the prior commit's redacted auth status before retrying.
+# Safety: No retry loop; scheduled runs inspect the prior commit status and pause
+#         on permanent blockers or interrupted runs. 429 respects Retry-After.
+#         GITHUB_TOKEN is limited to commit-status write; the GitHub App token is
+#         scoped to Secrets:write solely for refresh-token rotation.
+# Side effects: May replace SPOTIFY_REFRESH_TOKEN only after successful refresh;
+#               never modifies playlists, Library data, or repository contents.
 # -----------------------------------------------------------------------------

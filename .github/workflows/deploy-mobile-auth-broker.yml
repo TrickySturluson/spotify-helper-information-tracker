@@ -1,4 +1,4 @@
-name: Deploy SHIT Mobile Auth Broker
+name: Deploy SHIT Auth Broker
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shit-mobile-auth-broker-deploy
+  group: shit-auth-broker-deploy
   cancel-in-progress: false
 
 jobs:
@@ -30,13 +30,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
-          GITHUB_APP_CLIENT_ID: ${{ vars.GITHUB_APP_CLIENT_ID }}
-          GITHUB_APP_ID: ${{ vars.GITHUB_APP_ID }}
-          GITHUB_APP_REDIRECT_URI: ${{ vars.GITHUB_APP_REDIRECT_URI }}
+          BROKER_GH_APP_CLIENT_ID: ${{ vars.BROKER_GH_APP_CLIENT_ID }}
+          BROKER_GH_APP_ID: ${{ vars.BROKER_GH_APP_ID }}
+          BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
         run: |
-          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL GITHUB_APP_CLIENT_ID GITHUB_APP_ID GITHUB_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI; do
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL BROKER_GH_APP_CLIENT_ID BROKER_GH_APP_ID BROKER_GH_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI; do
             if [ -z "${!name}" ]; then
               echo "::error::Required deployment setting $name is missing."
               exit 1
@@ -47,7 +47,7 @@ jobs:
             https://*) ;;
             *) echo "::error::BROKER_BASE_URL must use HTTPS."; exit 1 ;;
           esac
-          case "$GITHUB_APP_REDIRECT_URI" in
+          case "$BROKER_GH_APP_REDIRECT_URI" in
             "$BROKER_BASE_URL"/auth/github/callback) ;;
             *) echo "::error::GitHub callback URI must match BROKER_BASE_URL."; exit 1 ;;
           esac
@@ -55,29 +55,46 @@ jobs:
             "$BROKER_BASE_URL"/spotify/callback) ;;
             *) echo "::error::Spotify callback URI must match BROKER_BASE_URL."; exit 1 ;;
           esac
+      - name: Verify sensitive Worker bindings use Cloudflare secret storage
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          settings="$(curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/shit-auth-broker/secrets")"
+          for name in GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY; do
+            binding_type="$(jq -r --arg name "${name}" '[.result[]? | select(.name == $name) | .type] | first // empty' <<< "${settings}")"
+            if [ "${binding_type}" != "secret_text" ]; then
+              echo "::error::Worker binding ${name} must be stored as a Cloudflare Worker Secret (secret_text); found ${binding_type:-missing}. No deployment was performed."
+              exit 1
+            fi
+          done
+          echo "Required GitHub App bindings are present as Cloudflare Worker Secrets."
+
       - name: Deploy Worker
         working-directory: auth-broker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
-          GITHUB_APP_CLIENT_ID: ${{ vars.GITHUB_APP_CLIENT_ID }}
-          GITHUB_APP_ID: ${{ vars.GITHUB_APP_ID }}
-          GITHUB_APP_REDIRECT_URI: ${{ vars.GITHUB_APP_REDIRECT_URI }}
+          BROKER_GH_APP_CLIENT_ID: ${{ vars.BROKER_GH_APP_CLIENT_ID }}
+          BROKER_GH_APP_ID: ${{ vars.BROKER_GH_APP_ID }}
+          BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
         run: |
           npx wrangler deploy \
             --var "BROKER_BASE_URL:$BROKER_BASE_URL" \
-            --var "GITHUB_APP_CLIENT_ID:$GITHUB_APP_CLIENT_ID" \
-            --var "GITHUB_APP_ID:$GITHUB_APP_ID" \
-            --var "GITHUB_APP_REDIRECT_URI:$GITHUB_APP_REDIRECT_URI" \
+            --var "GITHUB_APP_CLIENT_ID:$BROKER_GH_APP_CLIENT_ID" \
+            --var "GITHUB_APP_ID:$BROKER_GH_APP_ID" \
+            --var "GITHUB_APP_REDIRECT_URI:$BROKER_GH_APP_REDIRECT_URI" \
             --var "SPOTIFY_CLIENT_ID:$SPOTIFY_CLIENT_ID" \
             --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI"
 
 # FILE OVERVIEW
-# Purpose: Deploy the phone-first Spotify OAuth broker to the configured Cloudflare Worker.
+# Purpose: Deploy the SHIT-wide Spotify OAuth broker to the configured Cloudflare Worker.
 # Trigger: Owner-only manual workflow_dispatch on main.
-# Credentials: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; public runtime IDs/URLs come from repository variables.
+# Credentials: CLOUDFLARE_API_TOKEN (Workers Scripts Read + Write) and CLOUDFLARE_ACCOUNT_ID; public runtime IDs/URLs come from repository variables. GitHub App client secret/private key must be Cloudflare secret_text bindings.
 # Side effects: Publishes the Worker source/configuration to the configured Cloudflare account.
 # Safety: Does not contact Spotify, write GitHub repository secrets, or modify playlists.

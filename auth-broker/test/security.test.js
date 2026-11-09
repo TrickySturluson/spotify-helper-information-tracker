@@ -153,7 +153,7 @@ test("concurrency gate allows only explicitly audited non-Spotify workflows", ()
 });
 
 
-test("mobile landing page is local, no-store and contains no third-party script", async () => {
+test("authorization landing page supports phone and desktop browsers without third-party scripts", async () => {
   const result = await handleRequest(
     new Request("https://trusted.example/"),
     { BROKER_BASE_URL: "https://trusted.example" },
@@ -162,6 +162,7 @@ test("mobile landing page is local, no-store and contains no third-party script"
   assert.equal(result.status, 200);
   assert.equal(result.headers.get("cache-control"), "no-store");
   assert.match(body, /Continue with GitHub/);
+  assert.match(body, /phone or desktop/);
   assert.doesNotMatch(body, /<script|https:\/\//i);
 });
 
@@ -249,12 +250,21 @@ test("deployment workflow injects every public runtime variable without dashboar
     "SPOTIFY_CLIENT_ID",
     "SPOTIFY_REDIRECT_URI",
   ]) {
-    assert.match(workflow, new RegExp("vars\\." + name), name + " must come from a GitHub Actions variable");
+    const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
+    assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
     assert.ok(workflow.includes('--var "' + name + ':'), name + ' must be passed to Wrangler');
   }
   assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
   assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
   assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
+  assert.match(workflow, /workers\/scripts\/shit-auth-broker\/secrets/);
+  assert.match(workflow, /secret_text/);
+  assert.match(workflow, /GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY/);
+  assert.ok(
+    workflow.indexOf("Verify sensitive Worker bindings use Cloudflare secret storage") < workflow.indexOf("Deploy Worker"),
+    "secret binding preflight must run before deployment",
+  );
+  assert.doesNotMatch(workflow, /workers\/scripts\/shit-auth-broker\/settings/);
 });
 
 
@@ -500,4 +510,12 @@ test("OAuth provider rejection returns a generic error without provider response
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("public health endpoint is non-secret and does not require OAuth configuration", async () => {
+  const result = await handleRequest(new Request("https://broker.example/health"), {});
+  assert.equal(result.status, 200);
+  assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
+  assert.equal(result.headers.get("cache-control"), "no-store");
+  assert.equal(result.headers.get("x-content-type-options"), "nosniff");
 });

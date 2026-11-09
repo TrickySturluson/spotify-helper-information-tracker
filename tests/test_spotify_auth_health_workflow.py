@@ -28,14 +28,16 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
 
     def test_workflow_is_scheduled_and_manually_recoverable(self):
         self.assertIn("workflow_dispatch:", WORKFLOW)
+        self.assertIn("SPOTIFY_AUTH_STATE_REF: auth-state-anchor", WORKFLOW)
+        self.assertIn("if: github.ref == 'refs/heads/main'", WORKFLOW)
         self.assertIn('cron: "0 9 * * *"', WORKFLOW)
         self.assertIn('if [ "$EVENT_NAME" = "schedule" ]; then', WORKFLOW)
         self.assertIn('echo "skip=false" >> "$GITHUB_OUTPUT"', WORKFLOW)
 
-    def test_schedule_uses_previous_run_status_and_fails_closed(self):
-        self.assertIn("gh run list --workflow spotify-auth-health-check.yml", WORKFLOW)
-        self.assertIn('gh run view "$previous_run"', WORKFLOW)
-        self.assertIn("AUTH_HEALTH_STATUS=pending", WORKFLOW)
+    def test_schedule_uses_commit_status_and_fails_closed(self):
+        self.assertIn('gh api "repos/$GITHUB_REPOSITORY/commits/$AUTH_STATE_SHA/status"', WORKFLOW)
+        self.assertIn("context=spotify-auth-health", WORKFLOW)
+        self.assertIn("state=pending", WORKFLOW)
         self.assertIn("Scheduled checks are paused", WORKFLOW)
         self.assertIn("refusing to contact Spotify", WORKFLOW)
 
@@ -44,14 +46,18 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("def retry_state(header):", script)
         self.assertIn("parsedate_to_datetime", script)
         self.assertIn("rate_limited_until:", script)
-        self.assertIn("AUTH_HEALTH_RETRY_AFTER=", script)
+        self.assertIn("86400", script)
+        self.assertIn('description = state_value if status == "rate_limited" and state_value else status', script)
+        self.assertIn("including manual attempts", WORKFLOW)
         self.assertIn('date +%s', WORKFLOW)
 
     def test_invalid_grant_is_a_manual_reauthorization_blocker(self):
         script = embedded_health_script()
         self.assertIn('report("reauthorization_required"', script)
         self.assertIn("The same credential will not be retried", script)
-        self.assertIn("reauthorization_required", WORKFLOW)
+        self.assertIn("Open SHIT Spotify authorization", script)
+        self.assertIn('.strip().rstrip("/")', script)
+        self.assertIn("docs/operations/mobile-spotify-reauth.md", script)
 
     def test_provider_failures_are_distinct_and_redacted(self):
         script = embedded_health_script()
@@ -79,21 +85,25 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn('"SPOTIFY_REFRESH_TOKEN"', script)
         self.assertIn("::add-mask::", script)
 
-    def test_workflow_token_permissions_remain_read_only_for_repository_data(self):
+    def test_workflow_token_permissions_are_limited_to_commit_status(self):
         permissions = WORKFLOW.split("permissions:", 1)[1].split("\n\n", 1)[0]
         self.assertIn("contents: read", permissions)
-        self.assertIn("actions: read", permissions)
+        self.assertIn("statuses: write", permissions)
+        self.assertNotIn("actions: write", permissions)
         self.assertNotIn("contents: write", permissions)
         self.assertNotIn("variables:", permissions)
         self.assertNotIn("issues: write", permissions)
 
-    def test_run_history_latch_uses_status_markers_without_repository_writes(self):
+    def test_commit_status_latch_avoids_repository_and_run_log_writes(self):
         script = embedded_health_script()
-        self.assertIn('print(f"AUTH_HEALTH_STATUS={status}")', script)
-        self.assertIn("AUTH_HEALTH_RETRY_AFTER=", script)
-        self.assertIn("gh run view", WORKFLOW)
+        self.assertIn("context=spotify-auth-health", script)
+        self.assertIn("target_url=", script)
+        self.assertIn("GITHUB_RUN_ID", WORKFLOW)
+        self.assertIn("GITHUB_SERVER_URL", WORKFLOW)
+        self.assertIn('description = state_value if status == "rate_limited" and state_value else status', script)
+        self.assertIn("statuses/{os.environ['AUTH_STATE_COMMIT']}", script)
+        self.assertNotIn("gh run view", WORKFLOW)
         self.assertNotIn("gh variable set", WORKFLOW)
-        self.assertNotIn("variables:", WORKFLOW)
 
     def test_health_check_has_no_playlist_or_library_write_path(self):
         workflow = WORKFLOW.lower()
@@ -108,8 +118,8 @@ if __name__ == "__main__":
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Protect the Spotify auth-health workflow's schedule/latch behavior,
-#          retry-after handling, status classification, token redaction, and
+# Purpose: Protect the Spotify auth-health workflow's commit-status latch,
+#          Retry-After handling, status classification, token redaction, and
 #          read-only playlist boundary.
 # Inputs: Reads the maintained GitHub Actions YAML and extracts its embedded
 #         Python refresh/verification script for syntax and contract checks.
