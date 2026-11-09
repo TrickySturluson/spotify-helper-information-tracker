@@ -1,6 +1,6 @@
 # Authentication Management & Recovery — Roadmap
 
-**Status:** Active implementation. Broker source, tests and owner-only deployment workflow are merged to `main`; external deployment and real Spotify reauthorization are not complete.  
+**Status:** Active implementation. Broker source, tests and owner-only deployment workflow are under review in PR #185; they are not yet merged or deployed. External deployment and real Spotify reauthorization are not complete.  
 **Priority:** User-authorized on 2026-11-08.  
 **Scope:** SHIT-wide authentication health, safe automatic refresh/rotation, diagnosis and consent-based recovery. Phone and desktop are equally supported.
 
