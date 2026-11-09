@@ -325,7 +325,16 @@ export class SpotifyCredentialStore {
         if (current.status === "ready" && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
         return { error: "operation_already_committed" };
       }
-      if (current.status === "refreshing") return { error: "credential_busy" };
+      if (current.status === "refreshing") {
+        if (Number.isFinite(current.expiresAt) && current.expiresAt > now) return { error: "credential_busy" };
+        const blocked = { ...current, status: "reauthorization_required", reason: "refresh_operation_expired", blockedAt: now };
+        delete blocked.operationId;
+        delete blocked.forceRefresh;
+        delete blocked.startedAt;
+        delete blocked.expiresAt;
+        await txn.put("credential", blocked);
+        return { error: "credential_blocked" };
+      }
       if (current.status !== "ready") return { error: "credential_blocked" };
       if (current.retryAfterAt > now) return { rateLimitedUntil: current.retryAfterAt };
       if (input.forceRefresh !== true && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
