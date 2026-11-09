@@ -40,6 +40,19 @@ The dedicated broker GitHub App must be installed only on this repository. In th
 - Use separate callback URLs for GitHub and Spotify as shown above.
 - The Worker URL must be HTTPS. Do not use a preview URL that changes between deployments.
 
+## Cloudflare Workers Builds configuration
+
+This repository is a monorepo: the Worker project is in `auth-broker/`. If the Cloudflare Workers Builds Git integration is enabled, configure the Worker under **Settings → Build** as follows:
+
+- **Root directory:** `auth-broker`
+- **Build command:** leave empty (the Worker is bundled by Wrangler during deployment)
+- **Deploy command:** `npx wrangler deploy`
+- **Preview command:** use the Cloudflare default unless a separate preview environment is deliberately configured
+
+The root directory must contain `wrangler.toml`, `package.json`, and `package-lock.json`. Wrangler then resolves `main = "src/index.js"` relative to this project directory and uses the pinned Wrangler version from the package manifest. Do not set the root directory to the repository root while using `--config auth-broker/wrangler.toml`; that bypasses the monorepo project-root setup and can leave dependency installation/build discovery pointed at the wrong directory.
+
+Workers Builds preview deployments and the owner-only `Deploy SHIT Auth Broker` workflow are separate paths. A successful preview/build check is not proof that the production Worker was deployed or that OAuth works. Production deployment and end-to-end authorization remain explicit acceptance gates.
+
 ## Deployment
 
 From Cloudflare and GitHub dashboards (no local PC is required):
