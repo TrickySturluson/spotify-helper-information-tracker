@@ -288,9 +288,17 @@ export class SpotifyCredentialStore {
         return json({ error: "provider_outcome_uncertain_reauthorization_required" }, 409);
       }
       const tokenData = await tokenResponse.json();
-      if (typeof tokenData.access_token !== "string" || !tokenData.access_token) {
+      if (
+        typeof tokenData.access_token !== "string" ||
+        !tokenData.access_token ||
+        tokenData.access_token.length > 8192 ||
+        /[\\r\\n]/.test(tokenData.access_token) ||
+        !Number.isSafeInteger(tokenData.expires_in) ||
+        tokenData.expires_in < 60 ||
+        tokenData.expires_in > 86_400
+      ) {
         await this.blockOperation(input.operationId, "provider_response_invalid");
-        return json({ error: "reauthorization_required" }, 409);
+        return json({ error: "provider_response_invalid_reauthorization_required" }, 409);
       }
       const identityResponse = await fetch(SPOTIFY_ME_URL, {
         headers: { Authorization: "Bearer " + tokenData.access_token, Accept: "application/json" },
