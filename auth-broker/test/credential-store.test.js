@@ -549,6 +549,11 @@ test("failed forced refresh discards the cached access token already rejected by
   const { storage, store } = setup();
   await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => String(url).includes("/api/token")
+    ? new Response(JSON.stringify({ access_token: "cached-access-token", refresh_token: "rotated-refresh-token-abcdef", expires_in: 3600 }), { status: 200 })
+    : new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
+  const primed = await store.fetch(request("/refresh", { operationId: "P".repeat(43) }));
+  assert.equal(primed.status, 200);
   globalThis.fetch = async (url) => {
     if (String(url).includes("/api/token")) {
       return new Response(JSON.stringify({ error: "invalid_client" }), { status: 401 });
