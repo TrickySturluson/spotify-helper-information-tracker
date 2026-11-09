@@ -149,3 +149,16 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Full-history Gitleaks passed on the PR run [#42460671996](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460671996) and feature-push run [#42460668354](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42460668354). Each scanned 3,396 commits / about 815.6 MB and reported no leaks.
 - The broker lockfile job succeeded/skipped without changing the committed lockfile. All checks above apply to head `e2b9411`; any later commit requires fresh checks.
 - PR #182 is still unmerged and awaits separate explicit owner approval. No Worker deployment, Cloudflare/GitHub App configuration, Spotify OAuth, Actions secret update, playlist unlock or playlist write occurred. The saved Spotify refresh token remains rejected with `invalid_grant` until mobile reauthorization is completed.
+
+
+## 2026-11-08 — Reframe as SHIT-wide Authentication Management & Recovery
+
+- User clarified that this is not merely a mobile feature: SHIT must monitor Spotify authentication health, automatically repair what can be repaired, and request owner consent only when Spotify requires it.
+- Renamed the workstream conceptually to **Authentication Management & Recovery**. Phone and desktop are supported clients, not the purpose of the project. GitHub issue-based mobile operation remains a separate control-plane capability.
+- Reworked the scope around three components: Authentication Health Monitor, Authorization Broker, and Recovery Coordinator; added a future Central Auth Gate milestone for Spotify-dependent workflows.
+- Defined distinct states for healthy, reauthorization-required, rate-limited, provider-unavailable, configuration-error, identity-mismatch, secret-persistence-failed and verification-pending.
+- Preserved hard boundaries: no retries of `invalid_grant`; honor Retry-After; do not confuse 429/5xx/network faults with revoked credentials; never expose tokens; no auth recovery path may unlock or modify playlists.
+- Confirmed current workflow baseline: `spotify-auth-health-check.yml` is manual-only today, performs token refresh plus `GET /v1/me`, and can persist refresh-token rotation through a narrowly scoped GitHub App. It does not currently provide scheduled monitoring or a durable structured health state.
+- Confirmed the broker is not deployed and no fresh Spotify consent has occurred. Existing credential remains blocked by the previously observed `invalid_grant`; no further Spotify status/playlist retries should be attempted until reauthorization.
+- Created branch `feature/authentication-management-recovery` from current `main` for this work. No merge, deployment, external account changes, secret changes, OAuth, or playlist operations were performed.
+- Next implementation: add conservative scheduled health monitoring and structured failure classification, test rotation/error paths, then design the shared auth preflight to avoid concurrent refresh-token races.
