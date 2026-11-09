@@ -30,7 +30,7 @@ Worker secrets (set with Cloudflare's secret-management interface or Wrangler se
 - GITHUB_APP_CLIENT_SECRET
 - GITHUB_APP_PRIVATE_KEY
 
-The dedicated broker GitHub App must be installed only on this repository and grant only Actions: write and Secrets: write. Keep it separate from the existing SHIT manager App, which is documented as Secrets: write only; do not widen that operational App's permissions. The installation token request further narrows the token to this one repository and those two permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
+The dedicated broker GitHub App must be installed only on this repository. In the GitHub App settings UI, grant **Actions: Read and write** and **Secrets: Read and write**; GitHub's installation-token API represents these as `actions: write` and `secrets: write` (write includes the read operations the broker needs to list active workflow runs and fetch the repository secret public key). The broker requests only those two write-level permissions and only this repository. Keep it separate from the existing SHIT manager App, which remains Secrets: write only; do not widen that operational App's permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
 
 ## GitHub App and Spotify app setup
 
