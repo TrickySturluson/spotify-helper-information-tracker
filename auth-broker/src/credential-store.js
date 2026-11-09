@@ -257,8 +257,18 @@ export class SpotifyCredentialStore {
         signal: AbortSignal.timeout(12_000),
       });
       if (!tokenResponse.ok) {
+        if (tokenResponse.status === 429) {
+          // A definite provider rate limit is not evidence that the refresh
+          // token was consumed. Release this reservation and honor Retry-After.
+          await this.releaseOperation(input.operationId);
+          return json(
+            { error: "provider_rate_limited" },
+            429,
+            { "Retry-After": tokenResponse.headers.get("Retry-After") || "86400" },
+          );
+        }
         await this.blockOperation(input.operationId, "provider_rejected");
-        return json({ error: tokenResponse.status === 429 ? "provider_rate_limited" : "reauthorization_required" }, 409);
+        return json({ error: "reauthorization_required" }, 409);
       }
       const tokenData = await tokenResponse.json();
       if (typeof tokenData.access_token !== "string" || !tokenData.access_token) {
@@ -310,6 +320,22 @@ export class SpotifyCredentialStore {
     } finally {
       refreshToken = undefined;
     }
+  }
+
+  async releaseOperation(operationId) {
+    await this.ctx.storage.transaction(async (txn) => {
+      const current = await txn.get("credential");
+      if (current?.status === "refreshing" && current.operationId === operationId) {
+        await txn.put("credential", {
+          status: "ready",
+          accountId: current.accountId,
+          version: current.version,
+          credential: current.credential,
+          lastOperationId: current.lastOperationId || null,
+          updatedAt: Date.now(),
+        });
+      }
+    });
   }
 
   async blockOperation(operationId, reason) {
