@@ -387,12 +387,10 @@ export class SpotifyCredentialStore {
         if (tokenResponse.status === 429) {
           // A definite provider rate limit is not evidence that the refresh
           // token was consumed. Release this reservation and honor Retry-After.
-          await this.releaseOperation(input.operationId);
-          return json(
-            { error: "provider_rate_limited" },
-            429,
-            { "Retry-After": tokenResponse.headers.get("Retry-After") || "86400" },
-          );
+          const retryAfter = tokenResponse.headers.get("Retry-After") || "86400";
+          const seconds = retryAfterSeconds(retryAfter);
+          await this.releaseOperation(input.operationId, seconds);
+          return json({ error: "provider_rate_limited" }, 429, { "Retry-After": String(seconds) });
         }
         if (providerError === "invalid_grant") {
           await this.blockOperation(input.operationId, "invalid_grant");
@@ -438,6 +436,8 @@ export class SpotifyCredentialStore {
         : refreshToken;
       const nextVersion = previous.version + 1;
       const nextCredential = await encryptRefreshToken(nextRefreshToken, keyring.activeKey, nextVersion, previous.accountId, keyring.activeVersion);
+      const nextAccessToken = await encryptAccessToken(tokenData.access_token, keyring.activeKey, nextVersion, previous.accountId, keyring.activeVersion);
+      const accessTokenExpiresAt = Date.now() + tokenData.expires_in * 1000;
       const committed = await this.ctx.storage.transaction(async (txn) => {
         const current = await txn.get("credential");
         if (!current || current.status !== "refreshing" || current.operationId !== input.operationId || current.version !== previous.version) return false;
@@ -446,6 +446,8 @@ export class SpotifyCredentialStore {
           accountId: previous.accountId,
           version: nextVersion,
           credential: nextCredential,
+          accessToken: nextAccessToken,
+          accessTokenExpiresAt,
           lastOperationId: input.operationId,
           updatedAt: Date.now(),
         });
