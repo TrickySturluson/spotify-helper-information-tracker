@@ -4,7 +4,7 @@
 
 This inventory is a migration control. The shared OIDC client, encrypted credential store, owner-consented initialization path, and manager broker-only mode exist on the stacked feature branch. The auth-health workflow is the first canary. Each remaining workflow must be migrated and tested before the legacy refresh-token secret path is removed.
 
-## Direct refresh-token consumers
+## Main-branch direct refresh-token consumers
 
 | Workflow | Current role | Current credential behavior | Migration order |
 |---|---|---|---|
@@ -18,7 +18,12 @@ This inventory is a migration control. The shared OIDC client, encrypted credent
 | `.github/workflows/great-migration.yml` | Migration and verification jobs | Multiple jobs read refresh secret and may persist rotation | 8 — split and migrate each job independently |
 | `.github/workflows/update.yml` | General update workflow | Reads refresh secret and initializes manager token state; may persist rotation | 9 |
 
-## Remaining direct refresh-token consumers\n\nThe eight workflows below remain on the legacy secret path and are the remaining migration backlog.\n\n## Explicitly checked adjacent workflows
+## Remaining direct refresh-token consumers\n\nThe eight workflows below remain on the legacy secret path and are the remaining migration backlog.\n\n## PR #188 candidate migration
+
+- `.github/workflows/spotify-auth-health-check.yml` no longer references the refresh-token secret or calls Spotify's token endpoint on the PR branch. It requests an OIDC broker access token and independently verifies `/v1/me`.
+- This is a code candidate only. Do not merge/enable it before the broker has an initialized credential and all other consumers are ready for the coordinated cutover.
+
+## Explicitly checked adjacent workflows
 
 These were inspected and did not expose the refresh-token secret in the searched workflow source at this baseline:
 
@@ -29,10 +34,11 @@ A workflow with no direct secret reference may still invoke code that requires S
 
 ## Migration rules
 
-1. Migrate the auth-health workflow first and prove that an OIDC-authenticated broker call returns a short-lived access token only to the authorized job.
-2. Migrate each remaining consumer without changing its playlist lock, preview/confirmation, snapshot, audit, state persistence, or rollback behavior.
-3. For multi-job workflows, inventory every job and every Python/script invocation separately. Do not assume a single workflow-level change covers all credential consumers.
-4. Add a repository-wide automated test that scans all active workflow files and rejects:
+1. Complete and test the OAuth callback's initial credential handoff and same-account reauthorization against the encrypted store before any workflow requests a broker token.
+2. Because Spotify refresh-token rotation is shared, do not run the broker refresh canary while legacy consumers remain active: a broker rotation can invalidate the token still held by legacy workflows. Stage all nine migrations, then perform a coordinated cutover by pausing legacy schedules/in-flight jobs, initializing the broker store, and enabling the broker-backed workflows together.
+3. Migrate each consumer without changing its playlist lock, preview/confirmation, snapshot, audit, state persistence, or rollback behavior.
+4. For multi-job workflows, inventory every job and every Python/script invocation separately. Do not assume a single workflow-level change covers all credential consumers.
+5. Add a repository-wide automated test that scans all active workflow files and rejects:
    - `secrets.SPOTIFY_REFRESH_TOKEN` references;
    - environment variables or generated token files populated from the long-lived secret;
    - direct calls to `https://accounts.spotify.com/api/token` from workflow-owned scripts/jobs;
