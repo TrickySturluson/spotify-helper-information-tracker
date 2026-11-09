@@ -1,5 +1,50 @@
 # Authentication Management & Recovery — Action Log
 
+## 2026-11-09 — Broker production reconciliation and callback diagnosis
+
+**Authorization:** Continued the previously authorized centralized SHIT authentication work. No secret values were read or changed, no Spotify credential was saved, and no playlist operation was performed.
+
+### Babel / continuity gate
+
+- Read `AGENTS.md`, mandatory documentation rules, Babel identity/operation guides, current handoff/loose ends, and the authentication workstream records.
+- Buddy automation `SHIT Buddy — Babel documentation only` is disabled. Its latest report-bearing successful result is dated 2026-11-07; its 2026-11-08 run is recorded failed. There is no successful report-bearing Buddy run for 2026-11-09. Record **Buddy pending today — disabled**; do not re-enable or modify Buddy's branch/PR as part of auth work.
+
+### Merged baseline and live Worker
+
+- PR #185 merged at `8cd28530081c519112fd947ac7bb05edc0ce7b04`; PR #190 merged at `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3`; PR #191 merged at `50202a4a394ea68582f02a4ab18ce9091f7f3e4b` (current main).
+- Cloudflare production Worker `shit-auth-broker` has active version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`) receiving 100% traffic; deployment created 2026-11-09 09:46:17 UTC. Version metadata shows migration tag v2 and only `OAUTH_STATE` / `SPOTIFY_REFRESH_LEASE` Durable Object bindings. It does not have `SPOTIFY_CREDENTIAL_STORE` or the encryption keyring/active-key bindings.
+- Cloudflare secret-binding metadata confirms `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` are `secret_text`; values were not read.
+- Workers Builds configuration was read back: root `auth-broker`, empty build command, production upload `npx wrangler versions upload`, preview command `npx wrangler preview`, automatic builds and previews enabled. Production promotion remains owner-controlled.
+
+### Redacted production diagnostic evidence
+
+- A Workers Observability query over the 24 hours ending 2026-11-09 10:08 UTC found six `shit_auth_broker_request_failed` events, all `GET /spotify/callback`: four on version 13 at `broker.base_url_configuration` (two BrokerError, two UnexpectedError), and two on version 14 at `broker.route_dispatch` (UnexpectedError).
+- No exception contents, OAuth codes, access/refresh tokens, cookies, state values, or secret values were retrieved. The two version-14 events prove the old base-URL failure was passed, but do not localize the later callback failure beyond route dispatch.
+
+### Spotify PKCE refresh contract correction
+
+- Reviewed Spotify's current official refresh-token and PKCE documentation. For Authorization Code with PKCE, the refresh request must include `client_id` in the form body; HTTP Basic client ID/secret authentication is only for the Authorization Code flow. No Spotify client secret should be provisioned.
+- Corrected both PR #187 and PR #188 credential-store refresh implementations to send `grant_type`, `refresh_token`, and `client_id` without a Basic Authorization header. Removed the temporary incorrect client-secret guard/test from PR #187; test fixtures now omit the Spotify client secret and assert the PKCE request shape.
+- Latest PR #187 head `1b55214b4b8362ee90f155e937e3252a9dd513ae`: broker tests #42599358532 and security scan #42599358504 in progress.
+- Latest PR #188 head `6e269154ea2ba8454857efecfd985f6abd541d9e`: security scan #42599375645 in progress; broker tests #42599375698 pending. Previous callback-diagnostic head `5e39177daeb0695d7230b199c9c37f6edc6999f2` passed both broker tests and security scan.
+
+### PR and CI status
+
+- PR #187 (`feature/broker-owned-spotify-credential-store`) remains draft/unmergeable. Head `1c8e6b46c292525c3a13019325a270d91f97a84d`: broker tests and Wrangler dry-run passed in [run #42598447923](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598447923); security scan [#42598447639](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598447639) was still in progress at last check. The prior head failed only an overbroad console logging source assertion; the assertion was narrowed in the new head.
+- PR #188 (`feature/oidc-broker-refresh-endpoint`) remains draft/unmergeable and stacks on PR #187. Head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker security tests, Cloudflare SQLite Durable Object integration tests, all Python regression tests, script documentation checks, dependency audit and Wrangler dry-run in [run #42598096634](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598096634); full-history security scan [#42598096535](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598096535) passed.
+- The earlier PR #188 test failure was the same overbroad prohibition on all `console.error`; it was corrected to allow only fixed-stage redacted diagnostics.
+- Added callback-stage instrumentation to PR #188 source commit `09c12353034d83804080df8c4d906fc29733635f` and a regression test in `5e39177daeb0695d7230b199c9c37f6edc6999f2`. It distinguishes rate-limit/config/session/state, GitHub App JWT/installation, active-workflow check, Spotify exchange/scope/identity, encrypted credential persistence, health dispatch, completion-state storage and redirect. The security scan [#42598778904](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598778904) passed; broker tests [#42598778973](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42598778973) were still in progress at last check.
+- PR #187 is 130 commits ahead / 3 behind main. PR #188 is 267 ahead / 5 behind PR #187's base. Resolve branch divergence and independently review the combined diff before merging. PR #189 is a separate engineering/general draft and was left untouched.
+
+### Next
+
+1. Wait for fresh PR #187/#188 checks on their latest heads.
+2. Reconcile branch ancestry with current main and stack order; do not force-update or merge while unmergeable.
+3. Verify the combined source and tests, then add deployment gates for the missing encryption keyring, active key version and exact OIDC workflow allowlist.
+4. Use owner-controlled deployment; verify the integrated version is active at 100% traffic before asking the user to repeat consent.
+5. Complete fresh owner consent, confirm encrypted credential persistence and two independent read-only auth-health checks. Keep playlists untouched.
+
+
 ## 2026-11-08 — Initial baseline audit and architecture
 
 **User authorization:** The user explicitly requested that ChatGPT be able to reauthorize Spotify and build a way to operate SHIT without depending on Codespaces.
@@ -320,12 +365,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Broker test workflow run [#42564037531](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42564037531) passed on that exact commit. All broker security unit tests, dependency audit, Worker bundle validation, and Wrangler configuration dry-run passed.
 - Public repository security scan [#42564037488](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42564037488) was still running at the time of this entry; do not mark the commit security-scan complete until its final result is checked.
 - This green run validates the isolated prototype only. The credential-store class remains unbound and unreachable from the Worker; no encryption key is configured, no OAuth callback handoff or OIDC credential route exists, and no workflow or production credential has migrated. The in-memory storage adapter is not a substitute for Cloudflare Durable Object integration tests.
+
 ## 2026-11-09 — Verified workflow migration inventory
 
 - Inspected the active workflow sources and confirmed nine direct consumers of `SPOTIFY_REFRESH_TOKEN`: `spotify-auth-health-check.yml`, `spotify-daily-live-preflight.yml`, `spotify-daily-midnight-cycle.yml`, `spotify-daily-feedback-observation.yml`, `tricky-daily-snapshot-refresh.yml`, `spotify-reference-library.yml`, `spotify-playlist-manager.yml`, `great-migration.yml`, and `update.yml`.
 - Added `WORKFLOW_MIGRATION_INVENTORY.md` with each consumer's role, current credential behavior, proposed migration order, adjacent workflows checked, and a no-fallback migration contract.
 - Updated `BROKER_CONTROLLED_REFRESH.md` and `ROADMAP.md`: the encrypted credential store is now accurately marked as an isolated prototype implemented in PR #187, not merely a proposal; Cloudflare Durable Object integration tests and key rotation/recovery remain mandatory before binding or routing it.
 - No workflow was modified, no secret was removed or read, and no production credential path was changed. All nine workflows continue using the existing secret until an end-to-end replacement is proven and production cutover is explicitly approved.
+
 ## 2026-11-09 — Automated consumer inventory and restart/concurrency coverage
 
 - Added `auth-broker/test/workflow-inventory.test.js`. It asserts that the exact nine documented workflow consumers remain accounted for and that the only workflow definition directly containing the Spotify token endpoint is the existing read-only auth-health checker. This is a baseline guard; it will be tightened to require zero direct consumers after migration.
@@ -334,6 +381,7 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Broker workflow run [#42564440402](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42564440402) passed on commit `df6b2a04b6875225c71568b84e37fb2b3f4749e1`: dependency audit, all broker security unit tests (including the new inventory and restart tests), Worker bundle validation, and Wrangler dry-run.
 - Public repository security scan [#42564440515](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42564440515) was still running at this entry; verify its conclusion before marking this commit fully validated.
 - The tests still use an in-memory storage adapter. Cloudflare Durable Object restart/transaction integration tests remain a hard gate before the class can be bound or routed.
+
 ## 2026-11-09 — OIDC broker refresh route prototype
 
 - Created stacked draft work branch `feature/oidc-broker-refresh-endpoint` from the credential-store work. Added the `SpotifyCredentialStore` SQLite Durable Object binding and migration tag `v3` to Wrangler configuration, and exported the class from the Worker entry point.
@@ -342,6 +390,7 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Added documentation for the route contract and required future Worker configuration: `SPOTIFY_CREDENTIAL_ENCRYPTION_KEY` secret and exact `SPOTIFY_REFRESH_WORKFLOW_REFS` variable. Neither is configured; the Worker is not deployed.
 - The existing OAuth callback still writes the legacy GitHub Actions secret. Initial credential handoff, key rotation/recovery, real Cloudflare DO integration tests, and all nine workflow migrations remain outstanding. The new route is therefore an isolated, disabled prototype and is not used by any workflow.
 - Opened stacked draft PR [#188](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/188) for the OIDC refresh-route prototype, based on PR #187. Broker tests passed on the route implementation commit before documentation-only follow-ups; final-head CI and security scan are being verified separately.
+
 ## 2026-11-09 — Workflow client and manager broker-only mode
 
 - Added `scripts/spotify/broker_access_token.py`. It obtains a GitHub OIDC JWT with the dedicated audience, requests a broker access token using a random operation ID, bounds and validates responses, rejects any refresh-token field, masks the access token, and writes it only to the ephemeral Actions `GITHUB_ENV`. It never prints the token as ordinary output and has no legacy fallback.
@@ -350,12 +399,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - These are client capabilities only. No GitHub Actions workflow has been migrated yet because the broker has no initialized credential in a deployed environment. The existing nine workflows remain on the current secret path until the full migration can be tested safely.
 - The broker CI workflow now also runs `tests.test_spotify_broker_access` and `tests.test_spotify_playlist_manager` on changes to the client/manager. The first run exposed a backward-compatibility issue in tests that construct the manager with `__new__`; the broker-mode guard now uses a safe default for legacy instances.
 - Broker workflow run [#42565467507](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42565467507) passed on commit `73482d2453b653a4ed5055fa5a76a7f90e926f17`, including Node security tests, Python broker-client/manager tests, dependency audit, Worker bundle validation, and Wrangler dry-run. The public repository security scan was still running at the time of this entry.
+
 ## 2026-11-09 — OIDC client validation and credential key-version binding
 
 - The broker client/manager tests are now part of the dedicated broker CI workflow, along with the maintained Python script documentation contract. This caught and corrected the missing test-file overview before final validation.
 - Added authenticated `keyVersion` metadata to AES-GCM credential records and included it in the authenticated additional data alongside account ID and credential version. The prototype currently uses key version 1; multi-key rotation/re-encryption is still a production gate.
 - Broker workflow run [#42565806213](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42565806213) passed on commit `66ac7921ff885477ec569e70620b8bc40f564e7a`: Node broker tests, Python OIDC client and manager tests, script-layout documentation tests, dependency audit, Worker bundle validation, and Wrangler dry-run.
 - Public repository security scan [#42565800935](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42565800935) was still running at this entry. No production deployment, key provisioning, callback cutover, or workflow migration has occurred.
+
 ## 2026-11-09 — Keyring rotation, owner recovery, and CI resilience
 
 - Added a versioned AES-GCM keyring. Credential records authenticate the key version; refresh decrypts using the retained record key and commits under the configured active key version. Tests cover rotation from v1 to v2, removing v1 only after successful re-encryption, and failing closed when a historical key is missing.
@@ -375,7 +426,6 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Changes are on stacked draft PR #188 (base PR #187, itself based on PR #185). CI run #42567648435 was pending at the last check; later commits require fresh CI. No production deployment, Cloudflare key provisioning, live Spotify OAuth, external app permission change, repository secret rotation/deletion, or playlist/Library operation occurred.
 - Remaining blockers: passing CI and security review; real Cloudflare Durable Object integration; secure encryption-key provisioning/backup/rotation/recovery; live OIDC claim validation; two independent broker-backed auth-health checks; migration and verification of the remaining eight workflows; explicit owner approval before production cutover.
 
-
 ## 2026-11-09 — All nine Spotify workflows migrated to the broker client
 
 - Migrated Daily live preflight, Daily midnight cycle, Daily feedback observation, Daily snapshot refresh, Spotify Reference Library, owner Playlist Manager, both Great Migration credential-verification jobs, and `update.yml` to obtain short-lived broker access tokens through GitHub OIDC.
@@ -389,7 +439,6 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - No production deployment, Cloudflare key provisioning, live OAuth, GitHub App permission change, legacy secret deletion, playlist modification, or Library write occurred. Main remains unchanged until the stacked PRs are reviewed/merged and the owner approves coordinated cutover.
 - Validation remains pending on the latest branch head. Required before deployment: all CI/security checks, real Durable Object integration tests, exact OIDC claim validation for issue events, two independent read-only health checks, and key backup/rotation/recovery readiness.
 
-
 ## 2026-11-09 — Broker retry and multi-job correctness refinements
 
 - Added an encrypted short-lived access-token cache with a two-minute minimum remaining lifetime before a workflow receives a cached token. This leaves the shared manager's 60-second expiry safety margin intact.
@@ -399,7 +448,6 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Restricted forced refresh to the exact main-branch auth-health workflow. It is used only after Spotify rejects a cached access token with HTTP 401; all other workflow identities are explicitly denied.
 - Adjusted Cloudflare Workers SQLite integration coverage to verify encrypted persistence and sequential cache reuse. The Vitest DO harness raised a cross-DO I/O-context error when the test itself held an external MSW response gate across concurrent requests, so concurrent contention is tested in the isolated store/client unit suites instead. Real cross-job concurrency remains a live deployment acceptance check, not a claimed completed integration result.
 - Added client tests for busy retry, network-response-loss idempotency, forced-refresh flag handling, and manager broker-only fail-closed behavior.
-
 
 ## 2026-11-09 — Long-running workflow token renewal
 
