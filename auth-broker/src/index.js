@@ -337,7 +337,7 @@ async function installationToken(env) {
     "POST",
     {
       repositories: [REPOSITORY],
-      permissions: { actions: "write", secrets: "write" },
+      permissions: { actions: "read" },
     },
   );
   if (!token?.token) throw new BrokerError("GitHub App installation token was not issued.");
