@@ -10,7 +10,7 @@ This module explores moving the long-lived Spotify refresh token out of GitHub A
 
 - AES-256-GCM encrypts the refresh token before it is written to Durable Object storage.
 - A fresh 96-bit nonce is generated for every encryption.
-- Authenticated additional data binds ciphertext to the record version, explicit encryption key version, and Spotify account ID. Current prototype records use key version 1; multi-key rotation/re-encryption is not implemented.
+- Authenticated additional data binds ciphertext to the record version, explicit encryption key version, and Spotify account ID. Current prototype supports a versioned keyring. On a successful refresh, it decrypts with the record's retained key version and re-encrypts under the active key version before commit. Retain old keys until every credential record has moved to the new version; missing historical keys fail closed. Backup/restore and emergency key-loss recovery remain unresolved.
 - The object reserves a refresh operation durably before calling Spotify.
 - Concurrent operations are rejected while a refresh is in progress.
 - The Spotify account identity is checked through `/v1/me` before a rotated credential is committed.
