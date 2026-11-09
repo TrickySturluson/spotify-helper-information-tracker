@@ -22,7 +22,7 @@ SHIT should:
 - `SPOTIFY_REFRESH_TOKEN` in repository Actions Secrets is the cloud credential source of truth.
 - The existing manager and `spotify-auth-health-check.yml` support refresh-token rotation persistence through a narrowly scoped GitHub App. The workflow now runs daily and on manual dispatch, reports redacted failure categories, and performs one bounded attempt per run. The workflow emits non-secret status markers into its Actions run logs. Scheduled checks inspect the prior run, pause on permanent blockers or interrupted attempts, and honor Retry-After deadlines. Manual recovery bypasses permanent blockers but still respects an active rate-limit cooldown; missing/invalid Retry-After uses a conservative 24-hour fallback.
 - The current saved refresh token was previously rejected with `invalid_grant`. That error cannot be repaired by retrying the same credential; fresh Spotify consent is required.
-- A managed OAuth broker implementation exists on the reconciled feature work described in the roadmap. It is source code only until its PR is reviewed/merged and external provisioning and end-to-end checks are completed.
+- A managed OAuth broker implementation, its security tests and owner-only deployment workflow are merged to `main`. It remains source code only until external provisioning, deployment and end-to-end checks are completed.
 - Nine current GitHub Actions workflows consume `SPOTIFY_REFRESH_TOKEN`. Most use independent concurrency groups and `update.yml` has none; a cross-workflow refresh-token single-flight design is still required before broad preflight rollout.
 - The owner-authored GitHub issue command path can operate SHIT remotely, but it is not the authentication system's purpose. It remains a separate control plane for authorized SHIT operations.
 
@@ -69,7 +69,7 @@ The coordinator connects diagnosis to safe next steps:
 
 ## Current status
 
-- Broker tests, dependency audit and Wrangler dry-run passed in run #42540593852. The authentication monitor and run-history latch passed the full 528-test repository suite in run #42540593870; the full-history Gitleaks scan passed with no leaks in run #42540593842. These checks validate source contracts and build behavior, not live Spotify authentication. Any subsequent code change requires fresh checks.
+- Broker source/tests/deployment workflow are merged to `main`; broker tests, dependency audit and Wrangler dry-run passed in run #42540593852. The authentication monitor and run-history latch passed the full 528-test repository suite in run #42540593870; the full-history Gitleaks scan passed with no leaks in run #42540593842. These checks validate source contracts and build behavior, not live Spotify authentication. Any subsequent code change requires fresh checks.
 - No Cloudflare Worker deployment, dedicated broker GitHub App installation, Spotify callback registration, OAuth completion or Actions secret replacement is confirmed.
 - The saved credential remains blocked by the previously observed `invalid_grant`. Do not repeatedly dispatch Spotify commands until fresh consent and read-only verification succeed.
 
