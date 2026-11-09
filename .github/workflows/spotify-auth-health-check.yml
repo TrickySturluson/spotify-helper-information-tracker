@@ -104,7 +104,7 @@ jobs:
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          SPOTIFY_AUTH_STATE_SHA: ${{ steps.auth-latch.outputs.state_sha }}
+          AUTH_STATE_COMMIT: ${{ steps.auth-latch.outputs.state_sha }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GH_STATUS_TOKEN: ${{ github.token }}
@@ -151,7 +151,7 @@ jobs:
               try:
                   subprocess.run(
                       ["gh", "api", "-X", "POST",
-                       f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['SPOTIFY_AUTH_STATE_SHA']}",
+                       f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['AUTH_STATE_COMMIT']}",
                        "-f", f"state={commit_state}",
                        "-f", "context=spotify-auth-health",
                        "-f", f"description={description}",
