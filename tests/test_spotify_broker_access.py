@@ -191,6 +191,21 @@ class BrokerAccessTokenTests(unittest.TestCase):
         self.assertEqual(first_payload, retry_payload)
         self.assertIs(retry_payload["forceRefresh"], True)
 
+    def test_permanent_broker_unauthorized_response_is_not_retried(self):
+        requests = []
+
+        def opener(request, timeout=0):
+            requests.append(request)
+            if len(requests) == 1:
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            body = io.BytesIO(json.dumps({"error": "unauthorized"}).encode())
+            raise urllib.error.HTTPError(request.full_url, 401, "unauthorized", {}, body)
+
+        with self.assertRaises(BrokerTokenError) as raised:
+            request_broker_access_token(self.environ, opener)
+        self.assertEqual(raised.exception.category, "broker_error")
+        self.assertEqual(len(requests), 2)
+
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
             with self.subTest(expires=expires), self.assertRaises(BrokerTokenError):
