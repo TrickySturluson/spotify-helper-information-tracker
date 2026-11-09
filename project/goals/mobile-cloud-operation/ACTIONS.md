@@ -298,3 +298,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Added `REFRESH_TOKEN_SINGLE_FLIGHT.md` specifying a dedicated Cloudflare Durable Object lease coordinator authenticated with GitHub Actions OIDC.
 - The design uses short critical-section leases, atomic storage transactions, renewal, crash expiry, fencing generations, exact repository/workflow identity validation, and fail-closed behavior. The coordinator stores no Spotify credentials and cannot call Spotify, GitHub APIs, modify secrets, or touch playlists.
 - Updated M4 in the roadmap. Implementation, JWT verification, lease concurrency tests, workflow rollout and the all-consumer coverage test remain open. No Worker deployment or production workflow change was made.
+
+## 2026-11-09 — Initial OIDC lease coordinator implementation
+
+- Added `auth-broker/src/refresh-lock.js`: GitHub OIDC RS256 verification against GitHub JWKS, exact issuer/audience, time claims, repository and immutable owner ID, main-branch/event restrictions, and exact workflow-ref allowlisting.
+- Added the `SpotifyRefreshLease` SQLite Durable Object, bound it in `wrangler.toml`, and added the v2 migration. Lease state is metadata only; no Spotify token or provider secret is stored in the coordinator.
+- Added Worker routes `/internal/refresh-lock/acquire`, `renew`, and `release`. The Worker derives owner identity from verified OIDC claims and rate-limits requests.
+- Added unit tests for valid and invalid OIDC signatures/claims, exclusive concurrent acquisition, monotonic fencing generations, wrong-owner/stale-owner rejection, renewal, and malformed requests.
+- CI exposed and corrected malformed line breaks in the Wrangler TOML and Worker route/module source. The broker test workflow passed on commit `dee009212309b6cbd705da87d8145fa960d8a34a` after the TOML repair; a subsequent JWKS timeout hardening change is being re-tested on the current head.
+- Security scan had passed on earlier head `8c60906d6a2b997971a07ca1d1fe999394e15db6`; full-history scan for the latest code remains pending.
+- Critical unresolved issue: GitHub Actions Secrets writes cannot be conditionally committed against a fencing generation. A Durable Object lease alone cannot prevent a stale workflow from finishing an already-started secret write. The coordinator is a prototype only and must not be integrated as sufficient protection until refresh and persistence move behind a broker-controlled critical section or another fencing-enforcing downstream store.
+- No workflow consumes the new lease yet. The allowlist is not configured, no OIDC claims have been validated from a real non-production Actions job, and no Worker deployment, production secret change, Spotify request, or playlist operation has occurred.
