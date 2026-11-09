@@ -10,7 +10,7 @@ This module explores moving the long-lived Spotify refresh token out of GitHub A
 
 - AES-256-GCM encrypts the refresh token before it is written to Durable Object storage.
 - A fresh 96-bit nonce is generated for every encryption.
-- Authenticated additional data binds ciphertext to the record version and Spotify account ID.
+- Authenticated additional data binds ciphertext to the record version, explicit encryption key version, and Spotify account ID. Current prototype records use key version 1; multi-key rotation/re-encryption is not implemented.
 - The object reserves a refresh operation durably before calling Spotify.
 - Concurrent operations are rejected while a refresh is in progress.
 - The Spotify account identity is checked through `/v1/me` before a rotated credential is committed.
@@ -29,7 +29,7 @@ This is not a production implementation yet:
 - GitHub Actions workflows still use the existing refresh-token secret path.
 - The OIDC refresh route has unit-tested identity/audience gates, but no live GitHub OIDC request or Cloudflare Durable Object integration has been exercised.
 - An interrupted operation intentionally remains blocked. Recovery and reauthorization UX still need implementation and tests.
-- Key rotation, backup/restore, disaster recovery, account replacement, and operational monitoring still need design and validation.
+- Multi-key rotation/re-encryption, backup/restore, disaster recovery, account replacement, and operational monitoring still need design and validation. The `keyVersion` field is authenticated metadata, not a completed rotation system.
 - Unit tests use an in-memory storage adapter; they do not replace Cloudflare Durable Object integration tests.
 
 ## Safety requirements before integration
