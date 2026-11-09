@@ -339,14 +339,26 @@ export class SpotifyCredentialStore {
     const reservation = await this.ctx.storage.transaction(async (txn) => {
       const current = await txn.get("credential");
       if (!current) return { error: "credential_missing" };
-      if (current.status === "refreshing") return { error: "credential_busy" };
-      if (current.status !== "ready") return { error: "credential_blocked" };
       if (current.lastOperationId === input.operationId) return { error: "operation_already_committed" };
+      if (current.status === "refreshing") return { wait: true };
+      if (current.status !== "ready") return { error: "credential_blocked" };
+      if (current.retryAfterAt > now) return { rateLimitedUntil: current.retryAfterAt };
+      if (current.accessToken && current.accessTokenExpiresAt > now + 60_000) return { cached: current };
       const next = { ...current, status: "refreshing", operationId: input.operationId, startedAt: now, expiresAt: now + OPERATION_TTL_MS };
       await txn.put("credential", next);
       return { record: next };
     });
     if (reservation.error) return json({ error: reservation.error }, 409);
+    if (reservation.wait) return await this.waitForRefresh(keyring);
+    if (reservation.rateLimitedUntil) {
+      const seconds = Math.max(1, Math.ceil((reservation.rateLimitedUntil - Date.now()) / 1000));
+      return json({ error: "provider_rate_limited" }, 429, { "Retry-After": String(seconds) });
+    }
+    if (reservation.cached) {
+      const cached = await this.cachedAccessToken(reservation.cached, keyring);
+      if (cached) return cached;
+      return await this.refresh(input, keyring);
+    }
 
     const previous = reservation.record;
     let refreshToken;
