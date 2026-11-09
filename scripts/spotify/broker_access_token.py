@@ -49,14 +49,14 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen):
     oidc_url = str(env.get("ACTIONS_ID_TOKEN_REQUEST_URL", "")).strip()
     oidc_request_token = str(env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN", "")).strip()
     broker_base = str(env.get("SHIT_AUTH_BROKER_URL", "")).strip().rstrip("/")
-    if not oidc_url or not oidc_request_token or not broker_base:
+    if not oidc_url or not oidc_request_token or not broker_base or "\\n" in oidc_request_token or "\\r" in oidc_request_token:
         raise BrokerTokenError("GitHub OIDC or SHIT broker configuration is missing.")
 
     parsed_oidc = urllib.parse.urlsplit(oidc_url)
     parsed_broker = urllib.parse.urlsplit(broker_base)
     if parsed_oidc.scheme != "https" or not parsed_oidc.netloc:
         raise BrokerTokenError("GitHub OIDC endpoint must use HTTPS.")
-    if parsed_broker.scheme != "https" or not parsed_broker.netloc or parsed_broker.query or parsed_broker.fragment:
+    if parsed_broker.scheme != "https" or not parsed_broker.netloc or parsed_broker.path not in ("", "/") or parsed_broker.query or parsed_broker.fragment or parsed_broker.username or parsed_broker.password:
         raise BrokerTokenError("SHIT authentication broker URL must be a canonical HTTPS origin.")
 
     query = urllib.parse.parse_qsl(parsed_oidc.query, keep_blank_values=True)
