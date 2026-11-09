@@ -205,3 +205,13 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Every health outcome emits a status marker; the workflow never writes repository contents, variables, or playlist state.
 - This latch depends on GitHub Actions run-log retention. If the previous run's logs have expired or cannot be inspected, scheduled checks stop and require a manual dispatch rather than assuming health.
 - The earlier same-date note describing a repository-variable latch is superseded by this entry. No variable was created or changed, no Spotify request was made, and no secret or playlist was touched.
+
+
+## 2026-11-08 — Spotify workflow inventory and refresh-token concurrency audit
+
+- Searched the repository workflow sources for `SPOTIFY_REFRESH_TOKEN` and inspected the nine consumers: `update.yml`, `spotify-playlist-manager.yml`, `spotify-reference-library.yml`, `spotify-auth-health-check.yml`, `spotify-daily-midnight-cycle.yml`, `spotify-daily-live-preflight.yml`, `tricky-daily-snapshot-refresh.yml`, `spotify-daily-feedback-observation.yml`, and `great-migration.yml`.
+- Most currently use independent concurrency groups; `update.yml` has no concurrency group. This means existing per-workflow serialization does not guarantee single-flight refresh-token rotation across different workflows.
+- Do not naively assign every workflow one global group without considering scheduling impact. Great Migration can run for up to six hours, while Tricky Daily has time-sensitive Eastern-midnight delivery. A global queue may serialize safely but delay those operations.
+- GitHub's current Actions concurrency model now supports `queue: max` (up to 100 pending runs), which avoids the default one-pending-run replacement behavior, but this alone does not resolve the long-job scheduling tradeoff. Reference: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency.
+- M4 now records the inventory as complete and keeps the single-flight architecture decision open. Next design options: a narrow shared refresh lock around token-exchange only, split auth/operation jobs with safe token handoff, or carefully scoped global serialization that excludes non-Spotify Great Migration operations.
+- No workflow concurrency behavior was changed, no Spotify API request was made, and no playlist or credential state was modified.
