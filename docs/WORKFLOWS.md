@@ -1,6 +1,6 @@
 # GitHub Actions Workflow Catalogue
 
-**Last reviewed:** 2026-11-08. This catalogue summarizes the 21 workflows under .github/workflows on the reconciled branch. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
+**Last reviewed:** 2026-11-09. This catalogue summarizes the 22 workflows under .github/workflows on the reconciled branch. The YAML source is authoritative: when triggers, permissions, secrets, or side effects change, update this page in the same change. Never copy secret values into documentation.
 
 ## Verification note — 2026-11-07
 
@@ -10,6 +10,7 @@ The trigger and schedule matrix was cross-checked against the current workflow Y
 
 | Workflow | Trigger | Permissions | Credentials/configuration | Main behavior and side effects |
 |---|---|---|---|---|
+| auth-broker-preview-health.yml | Push to `feature/authentication-management-recovery-final` when auth-broker files or this workflow change | checks: read | Short-lived `GITHUB_TOKEN` with checks:read | Waits for the Cloudflare preview build for the exact commit, then performs an unauthenticated GET of the branch preview `/health` endpoint and verifies the non-secret service/status response. No Spotify, Cloudflare or repository secrets; no credential, playlist or repository writes. |
 | acoustic-metadata-enrichment.yml | Push on matching workflow/compat paths (any branch); manual dispatch; daily schedule (07:23 UTC) | contents: write | Optional GETSONGBPM_API_KEY | Resolves recording IDs, fetches AcousticBrainz and optional GetSongBPM metadata, commits updated music audio profiles and lookup state. Provider requests are bounded by workflow inputs/environment limits. |
 | babel-ai-continuation.yml | Every six hours (`17 */6 * * *` UTC); manual dispatch; push to `babel/dispatch-*` when `.github/babel/dispatch.json` changes | Preflight and agent: contents: read. Separate publisher: contents: write; pull-requests: write | `OPENAI_API_KEY` (OpenAI API billing; never stored in repository files) | Runs the OpenAI Codex GitHub Action against Babel's current handoff and continuation prompt. The isolated Codex agent job runs on `ubuntu-24.04` for compatibility with the action's `drop-sudo` sandbox; preflight, validation and publisher use `ubuntu-latest`. The agent edits only documentation and two named documentation-contract test modules. A separate read-only validation job applies the candidate patch, enforces the path allowlist, and runs full unittest discovery without the API key or a write-capable GitHub token. A final publisher rechecks paths and alone pushes `babel/agent-progress` and creates/updates a review PR without executing candidate code. It never auto-merges and has no Spotify/provider credentials. Scheduled runs stop when `project/BABEL_AGENT_STATE.md` is explicitly marked complete. |
 | backfill-music-durations.yml | Manual dispatch | contents: write | LASTFM_API_KEY | Runs bounded cached-duration backfill, rebuilds assistant summary, validates outputs, commits assistant_data changes. |
