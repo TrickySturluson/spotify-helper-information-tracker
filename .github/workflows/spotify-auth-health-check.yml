@@ -3,7 +3,7 @@ name: SHIT — Spotify Auth Health Check
 on:
   workflow_dispatch:
   schedule:
-    # The durable repository-variable latch prevents futile invalid_grant retries.
+    # The prior run's redacted status marker prevents futile invalid_grant retries.
     - cron: "0 9 * * *"
 
 permissions:
@@ -43,14 +43,14 @@ jobs:
                   ;;
                 rate_limited)
                   if ! [[ "$retry_marker" =~ ^[0-9]+$ ]] || [ "$(date +%s)" -lt "$retry_marker" ]; then
-                    echo "::notice::AUTH_HEALTH_STATUS=rate_limited"
+                    echo "AUTH_HEALTH_STATUS=rate_limited"
                     echo "skip=true" >> "$GITHUB_OUTPUT"
                     echo "Spotify auth check skipped until the recorded Retry-After deadline."
                     exit 0
                   fi
                   ;;
                 *)
-                  echo "::notice::AUTH_HEALTH_STATUS=${previous_status:-unknown}"
+                  echo "AUTH_HEALTH_STATUS=${previous_status:-unknown}"
                   echo "skip=true" >> "$GITHUB_OUTPUT"
                   {
                     echo "## Spotify authentication check skipped"
@@ -62,7 +62,7 @@ jobs:
               esac
             fi
           fi
-          echo "::notice::AUTH_HEALTH_STATUS=pending"
+          echo "AUTH_HEALTH_STATUS=pending"
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
       - name: Validate required Spotify configuration
@@ -113,10 +113,10 @@ jobs:
                   output.write(f"status={status}\n")
               with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
                   summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
-              print(f"::notice::AUTH_HEALTH_STATUS={status}")
+              print(f"AUTH_HEALTH_STATUS={status}")
               if state_value:
                   retry_marker = state_value.split(":", 1)[1] if state_value.startswith("rate_limited_until:") else "unknown"
-                  print(f"::notice::AUTH_HEALTH_RETRY_AFTER={retry_marker}")
+                  print(f"AUTH_HEALTH_RETRY_AFTER={retry_marker}")
               if success:
                   print(message)
                   return
