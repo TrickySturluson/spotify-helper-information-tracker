@@ -1,4 +1,4 @@
-name: Deploy SHIT Mobile Auth Broker
+name: Deploy SHIT Auth Broker
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shit-mobile-auth-broker-deploy
+  group: shit-auth-broker-deploy
   cancel-in-progress: false
 
 jobs:
@@ -76,7 +76,7 @@ jobs:
             --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI"
 
 # FILE OVERVIEW
-# Purpose: Deploy the phone-first Spotify OAuth broker to the configured Cloudflare Worker.
+# Purpose: Deploy the SHIT-wide Spotify OAuth broker to the configured Cloudflare Worker.
 # Trigger: Owner-only manual workflow_dispatch on main.
 # Credentials: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; public runtime IDs/URLs come from repository variables.
 # Side effects: Publishes the Worker source/configuration to the configured Cloudflare account.
