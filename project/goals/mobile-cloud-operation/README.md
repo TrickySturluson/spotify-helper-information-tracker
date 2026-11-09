@@ -4,7 +4,17 @@
 
 Make Spotify authentication a maintained SHIT capability rather than a one-time mobile setup task. SHIT should continuously know whether its Spotify credential is healthy, automatically perform safe refresh and token-rotation recovery, identify the exact class of failure, and guide the owner through fresh consent only when Spotify requires it.
 
-This workstream is independent of the device used. Phone and desktop browsers are both supported clients for owner-consented reauthorization. GitHub remains the source of truth for code, operational state and the repository Actions secret; GitHub Actions and a narrowly scoped managed broker are the execution plane.
+This workstream is independent of the device used. Phone and desktop browsers are both supported clients for owner-consented reauthorization. GitHub remains the source of truth for code and workflow definitions. The repository Actions secret is the legacy credential source on current `main`; the target architecture moves long-lived refresh-token custody into an encrypted SQLite Durable Object and gives workflows only short-lived access tokens through OIDC.
+
+## Current status — 2026-11-09
+
+- Base broker PR #185, diagnostic follow-ups #190 and #191 are merged. Production Worker `shit-auth-broker` version 14 receives 100% traffic. The base OAuth broker is live, but its Spotify callback has two recent redacted `broker.route_dispatch` failures on version 14; end-to-end authorization is not verified.
+- Cloudflare metadata confirms the GitHub App client secret and private key are both `secret_text`. Version 14 has Durable Object migration v2 and only `OAUTH_STATE` / `SPOTIFY_REFRESH_LEASE`; it does not have the new `SPOTIFY_CREDENTIAL_STORE` binding or encryption keyring.
+- PR #187 adds the encrypted credential-store prototype. Its broker tests and Wrangler dry-run pass on head `1c8e6b46c292525c3a13019325a270d91f97a84d` (run #42598447923); its security scan is pending (run #42598447639).
+- PR #188 adds the OIDC-authorized refresh endpoint and migrates all nine current token consumers to short-lived broker access tokens. Its previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, Cloudflare SQLite Durable Object integration tests, the full Python suite, script documentation checks, dependency audit and Wrangler dry-run (run #42598096634); its full-history security scan passed (run #42598096535). Additional callback-stage diagnostics are on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; fresh checks are pending.
+- PRs #187 and #188 remain drafts and their branches are divergent. The current production version is not the broker-owned credential architecture. The user must not retry OAuth until the integrated version is deployed and verified.
+- The previously saved credential was rejected with `invalid_grant`; fresh owner consent will be required after the integrated flow is ready. No token values are to be requested or exposed.
+- No auth-health success, credential replacement, or playlist operation has been verified.
 
 ## User-facing target
 
@@ -19,10 +29,10 @@ SHIT should:
 
 ## Verified baseline
 
-- `SPOTIFY_REFRESH_TOKEN` in repository Actions Secrets is the cloud credential source of truth.
+- Current `main` still uses `SPOTIFY_REFRESH_TOKEN` in repository Actions Secrets as its legacy cloud credential source. The target broker-owned architecture in PRs #187/#188 moves the long-lived refresh token into encrypted Durable Object storage and removes direct refresh-secret reads from all nine workflows; this target is not yet merged/deployed.
 - The existing manager and `spotify-auth-health-check.yml` support refresh-token rotation persistence through a narrowly scoped GitHub App. The workflow now runs daily and on manual dispatch, reports redacted failure categories, and performs one bounded attempt per run. The workflow persists non-secret health state in the `spotify-auth-health` GitHub commit status on a fixed anchor commit (`a4ac9def8be5b6e727b777e2660a7bb027a8e51b`), so ordinary code/data commits do not reset the latch. The workflow only runs on `main`. Scheduled checks pause on permanent blockers or interrupted attempts and honor Retry-After deadlines; status API/read/write failure is fail-closed. Manual recovery bypasses permanent blockers but still respects an active rate-limit cooldown; missing/invalid Retry-After uses a conservative 24-hour fallback.
 - The current saved refresh token was previously rejected with `invalid_grant`. That error cannot be repaired by retrying the same credential; fresh Spotify consent is required.
-- A managed OAuth broker implementation, its security tests and owner-only deployment workflow are in PR #185 and remain unmerged. The Worker remains source code only until merge, controlled deployment and end-to-end checks are completed.
+- The base managed OAuth broker, its security tests and owner-only deployment workflow are merged in PR #185; diagnostic fixes #190/#191 are also merged. The base Worker is deployed as production version 14 at 100% traffic, but Spotify callback completion remains failing/unverified and the broker-owned credential-store migration is still in PRs #187/#188.
 - Nine current GitHub Actions workflows consume `SPOTIFY_REFRESH_TOKEN`. Most use independent concurrency groups and `update.yml` has none; a cross-workflow refresh-token single-flight design is still required before broad preflight rollout.
 - The owner-authored GitHub issue command path can operate SHIT remotely, but it is not the authentication system's purpose. It remains a separate control plane for authorized SHIT operations.
 
@@ -70,7 +80,7 @@ The coordinator connects diagnosis to safe next steps:
 ## Current status
 
 - Broker source/tests/deployment workflow are under review in PR #185; broker tests, dependency audit and Wrangler dry-run passed in run #42540593852. The earlier authentication monitor and run-history-latch version passed the full 528-test repository suite in run #42540593870; the full-history Gitleaks scan passed with no leaks in run #42540593842. The commit-status latch is a later refinement and still needs fresh CI. These checks validate source contracts and build behavior, not live Spotify authentication. Any subsequent code change requires fresh checks.
-- The owner has reported completing the dedicated broker GitHub App setup, Worker secrets, Spotify callback, repository variables and Cloudflare deployment-token setup. These dashboard values are not independently readable through the repository connector. The Worker source is not confirmed deployed; OAuth completion and Actions secret replacement remain unverified.
+- Cloudflare metadata now confirms the GitHub App client secret/private key are `secret_text` Worker Secrets. The active Worker version still lacks the broker-owned credential-store binding, encryption keyring and Spotify client-secret binding required by the new refresh implementation. Never read secret values.
 - The saved credential remains blocked by the previously observed `invalid_grant`. Do not repeatedly dispatch Spotify commands until fresh consent and read-only verification succeed.
 
 ## Non-goals
