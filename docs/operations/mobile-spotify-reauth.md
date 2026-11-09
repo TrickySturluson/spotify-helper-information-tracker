@@ -36,7 +36,7 @@ Create a new broker-specific GitHub App; do not broaden the existing SHIT manage
 
 - [ ] Enable the user authorization flow.
 - [ ] Set callback URL to `<BROKER_BASE_URL>/auth/github/callback`.
-- [ ] Grant only repository permissions: Actions: Read and write; Secrets: Read and write (the deployment/runtime implementation needs write; do not grant unrelated permissions).
+- [ ] Grant only repository permissions: **Actions: Read and write** and **Secrets: Read and write**. These are the GitHub App settings UI labels; the broker requests the corresponding `actions: write` and `secrets: write` installation-token permissions. Do not grant unrelated permissions.
 - [ ] Install it only on `TrickySturluson/spotify-helper-information-tracker`.
 - [ ] Record App ID, Client ID, Client Secret, and generate a private key.
 - [ ] Keep Client Secret and private key out of GitHub files and chat.
