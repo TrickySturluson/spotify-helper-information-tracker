@@ -13,7 +13,7 @@ SHIT should:
 2. Refresh access tokens and securely persist any rotated refresh token automatically.
 3. Classify outcomes as healthy, reauthorization required, transient provider/network failure, rate-limited, configuration failure, or secret-persistence failure.
 4. Avoid repeated calls when a failure cannot be repaired automatically.
-5. When fresh consent is required, present a trusted owner-only Spotify authorization flow from either phone or desktop.
+5. When fresh consent is required, present a trusted owner-only Spotify authorization flow from either phone or desktop; the failed health-check summary links directly to the broker when configured, otherwise to the deployment runbook.
 6. Verify the resulting Spotify identity and required scopes, then independently confirm the new credential works in a second cloud run.
 7. Resume normal Spotify workflows only after health is verified; authentication recovery itself must never mutate playlists.
 
