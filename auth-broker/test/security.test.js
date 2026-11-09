@@ -257,6 +257,14 @@ test("deployment workflow injects every public runtime variable without dashboar
   assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
   assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
   assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
+  assert.match(workflow, /workers\/scripts\/shit-auth-broker\/secrets/);
+  assert.match(workflow, /secret_text/);
+  assert.match(workflow, /GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY/);
+  assert.ok(
+    workflow.indexOf("Verify sensitive Worker bindings use Cloudflare secret storage") < workflow.indexOf("Deploy Worker"),
+    "secret binding preflight must run before deployment",
+  );
+  assert.doesNotMatch(workflow, /workers\/scripts\/shit-auth-broker\/settings/);
 });
 
 
