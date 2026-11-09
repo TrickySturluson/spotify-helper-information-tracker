@@ -114,7 +114,7 @@ jobs:
         run: npm run test:durable-objects
       - name: Test broker access-token client and manager mode
         working-directory: .
-        run: python -m unittest tests.test_spotify_broker_access tests.test_spotify_playlist_manager tests.test_spotify_auth_health_workflow -v
+        run: python -m unittest discover -s tests -t . -v
       - name: Check maintained Python script documentation
         working-directory: .
         run: python -m unittest tests.test_script_layout -v
@@ -157,8 +157,8 @@ jobs:
           fi
 
 # FILE OVERVIEW
-# Purpose: Run Node broker tests, Python access-token client tests, and real Workers SQLite Durable Object integration tests.
-# Trigger: Pushes to feature/** and pull requests touching broker source/deployment files; manual workflow_dispatch.
+# Purpose: Run broker Node/Workers integration tests and the complete repository Python regression suite for all migrated Spotify workflows.
+# Trigger: Pushes to feature/** and pull requests touching broker source, shared Spotify manager, migrated workflows, or authentication documentation; manual workflow_dispatch.
 # Credentials: Test job uses none; the owner-only lockfile commit job uses the scoped default GITHUB_TOKEN with contents: write.
 # Side effects: Installs audited dependencies, runs local tests/dry-run, and on an owner push to this feature branch commits only the generated package-lock.json.
 # Safety: No Spotify, Cloudflare, repository Secrets, or playlist permissions; write permission is isolated to the lockfile-only job.
