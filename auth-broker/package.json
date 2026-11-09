@@ -1,5 +1,5 @@
 {
-  "name": "shit-mobile-auth-broker",
+  "name": "shit-authentication-broker",
   "private": true,
   "version": "0.1.0",
   "type": "module",
