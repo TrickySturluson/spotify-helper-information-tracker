@@ -50,7 +50,8 @@ test("OIDC verifier rejects wrong audience, repository, owner, branch, event, an
   const jwk = pair.publicKey.export({ format: "jwk" });
   const fetchImpl = async () => new Response(JSON.stringify({ keys: [{ ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key" }] }), { status: 200 });
   for (const change of [
-    { aud: "wrong" }, { repository: "attacker/repo" }, { repository_owner_id: "1" },
+    { aud: "wrong" }, { aud: ["shit-spotify-refresh-lock", "other-relying-party"] },
+    { repository: "attacker/repo" }, { repository_owner_id: "1" },
     { ref: "refs/heads/feature" }, { event_name: "pull_request" },
   ]) {
     const token = makeJwt(pair.privateKey, { ...base, ...change });
