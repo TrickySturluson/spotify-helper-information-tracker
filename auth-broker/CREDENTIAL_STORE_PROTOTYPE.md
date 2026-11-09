@@ -29,16 +29,16 @@ All nine inventoried workflows have been migrated to the OIDC broker client on t
 
 - Cloudflare Worker deployment and real SQLite Durable Object integration tests.
 - Provisioning and controlled backup/rotation of `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS`; key loss can make the credential unrecoverable.
-- Exact repository variable `SPOTIFY_REFRESH_WORKFLOW_REFS` configured for the initial canary and expanded only as each workflow is migrated.
-- Live GitHub OIDC validation from the exact main-branch auth-health workflow.
+- Exact repository variable `SPOTIFY_REFRESH_WORKFLOW_REFS` configured with the nine migrated main-branch workflow refs; the deployment workflow rejects missing, extra, or wildcard identities.
+- Live GitHub OIDC validation from all nine exact main-branch workflow identities, including the restricted owner issue/comment events.
 - Real owner-consented initial OAuth handoff and same-account recovery validation.
-- Passing CI and end-to-end verification of all nine migrated workflows.
+- Passing CI and end-to-end verification of all nine migrated workflows. The Workers SQLite integration suite verifies encrypted persistence and sequential cache reuse; contention/retry logic is covered by isolated unit tests, and real cross-job concurrency remains a live deployment acceptance check.
 - Two independent post-deployment auth-health checks and a rollback/recovery exercise.
 - Explicit owner approval before production cutover or removal of the legacy GitHub Actions refresh-token secret.
 
 ## Safety boundaries
 
-- No refresh token or encryption key in GitHub Actions environment, output, artifact, issue, logs, repository files, or ChatGPT.
+- No refresh token or encryption key in broker-backed workflow environments, outputs, artifacts, issues, logs, repository files, or ChatGPT. The legacy Actions secret remains on deployed main until coordinated cutover.
 - No refresh-token fallback for a broker-enabled workflow.
 - No automatic retry of a token after an ambiguous provider outcome.
 - No credential overwrite when the store is ready or a refresh is in progress.
