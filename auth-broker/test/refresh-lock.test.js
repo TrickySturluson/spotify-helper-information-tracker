@@ -123,6 +123,8 @@ test("stale owners cannot renew or release a successor lease", async () => {
   const firstId = "A".repeat(43);
   const secondId = "B".repeat(43);
   const first = await (await lease.fetch(post("/acquire", { leaseId: firstId, generation: 0, owner: "wf:123:1" }))).json();
+  const wrongOwner = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation, owner: "attacker:999:1" }));
+  assert.equal(wrongOwner.status, 409);
   const stale = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation + 1, owner: "wf:123:1" }));
   assert.equal(stale.status, 409);
   const release = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation, owner: "wf:123:1" }));
