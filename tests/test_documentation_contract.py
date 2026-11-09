@@ -308,11 +308,12 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("audit/verify-catalogue instantiate MusicLibrary", migration_workflow)
         self.assertIn("may rebuild library_index.json", migration_workflow)
         self.assertIn("health is the strictly read-only structural scan", migration_workflow)
-        self.assertIn("verify may persist a rotated Spotify refresh token as an Actions", migration_workflow)
-        self.assertIn("Verify provider credentials (may persist rotated refresh token)", migration_workflow)
-        self.assertNotIn("Verify provider credentials (read-only)", migration_workflow)
-        self.assertIn("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN=1", credential_verifier)
-        self.assertIn("replacement Spotify refresh token may be", credential_verifier)
+        self.assertIn("verify checks Spotify through the central broker without writing", migration_workflow)
+        self.assertIn("Verify provider credentials through the central broker", migration_workflow)
+        self.assertNotIn("may persist rotated refresh token", migration_workflow)
+        self.assertIn("request_broker_access_token", credential_verifier)
+        self.assertIn("broker-issued access token", credential_verifier)
+        self.assertNotIn("SPOTIFY_REFRESH_TOKEN", credential_verifier)
 
     def test_great_migration_previews_are_zero_write(self):
         guide = (ROOT / "docs" / "GREAT_MIGRATION.md").read_text(encoding="utf-8")
