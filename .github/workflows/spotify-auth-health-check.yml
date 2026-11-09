@@ -112,7 +112,7 @@ jobs:
                       broker = os.environ.get("SHIT_AUTH_BROKER_URL", "").strip().rstrip("/")
                       if broker.startswith("https://") and "/" not in broker[len("https://"):]:
                           summary.write(f"\n**Owner action:** [Open SHIT Spotify authorization]({broker}/) and complete the owner-consented flow.\n")
-              commit_state = "success" if success else ("error" if status in ("broker_unavailable", "provider_unavailable") else "failure")
+              commit_state = "success" if success else ("error" if status in ("broker_unavailable", "provider_unavailable", "credential_busy") else "failure")
               description = state_value or status
               try:
                   subprocess.run(
