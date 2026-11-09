@@ -36,7 +36,8 @@ Non-secret GitHub repository Actions variables (injected by the deployment workf
 - GITHUB_APP_REDIRECT_URI (exact Worker URL plus /auth/github/callback)
 - SPOTIFY_CLIENT_ID
 - SPOTIFY_REDIRECT_URI (exact Worker URL plus /spotify/callback)
-- SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION (integer key version selected for new credential writes; defaults to 1)\n- SPOTIFY_REFRESH_WORKFLOW_REFS (comma-separated exact workflow_ref allowlist; not configured)
+- SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION (integer key version selected for new credential writes; defaults to 1)
+- SPOTIFY_REFRESH_WORKFLOW_REFS (comma-separated exact workflow_ref allowlist; not configured)
 - GITHUB_APP_ID
 
 Worker secrets (set with Cloudflare's secret-management interface or Wrangler secrets; never commit them):
