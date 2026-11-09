@@ -653,6 +653,14 @@ export async function handleRequest(request, env) {
       );
     }
     if (url.pathname === "/ready" && request.method === "GET") {
+      if (!env.AUTH_RATE_LIMITER) {
+        return response(
+          JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
+          503,
+          { "Content-Type": "application/json; charset=utf-8" },
+        );
+      }
+      await rateLimit(request, env, "readiness");
       if (
         !env.SPOTIFY_CREDENTIAL_STORE ||
         !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
