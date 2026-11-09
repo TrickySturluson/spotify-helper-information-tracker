@@ -251,7 +251,7 @@ test("deployment workflow injects every public runtime variable without dashboar
     "SPOTIFY_REDIRECT_URI",
   ]) {
     const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
-    assert.match(workflow, new RegExp("vars\." + sourceVariable), name + " must come from a GitHub Actions variable");
+    assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
     assert.ok(workflow.includes('--var "' + name + ':'), name + ' must be passed to Wrangler');
   }
   assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
