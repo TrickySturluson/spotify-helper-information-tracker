@@ -36,7 +36,7 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
             if status < 200 or status >= 300:
                 raise BrokerTokenError("Authentication broker request failed.")
     except urllib.error.HTTPError as exc:
-        category = "broker_unavailable"
+        category = "broker_error"
         try:
             payload = json.loads(exc.read(MAX_RESPONSE_BYTES).decode("utf-8"))
             detail = payload.get("error") if isinstance(payload, dict) else None
