@@ -40,6 +40,33 @@ async function importEncryptionKey(encoded) {
   return crypto.subtle.importKey("raw", raw, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
 }
 
+async function importEncryptionKeyring(env) {
+  let encodedKeys = {};
+  const serialized = String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "");
+  if (serialized) {
+    if (serialized.length > 20_000) throw new CredentialStoreError("Credential encryption is not configured.");
+    try { encodedKeys = JSON.parse(serialized); } catch { throw new CredentialStoreError("Credential encryption is not configured."); }
+    if (!encodedKeys || typeof encodedKeys !== "object" || Array.isArray(encodedKeys)) {
+      throw new CredentialStoreError("Credential encryption is not configured.");
+    }
+  } else if (env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY) {
+    // Temporary v1 compatibility for isolated tests; production should use the
+    // versioned keyring so rotation can retain old decrypt keys during rollout.
+    encodedKeys = { "1": env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY };
+  }
+  const versions = Object.keys(encodedKeys);
+  if (!versions.length || versions.length > 5 || versions.some((version) => !/^[1-9][0-9]{0,3}$/.test(version))) {
+    throw new CredentialStoreError("Credential encryption is not configured.");
+  }
+  const activeVersion = Number(env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || 1);
+  if (!Number.isSafeInteger(activeVersion) || !encodedKeys[String(activeVersion)]) {
+    throw new CredentialStoreError("Active credential encryption key is unavailable.");
+  }
+  const keys = new Map();
+  for (const version of versions) keys.set(Number(version), await importEncryptionKey(encodedKeys[version]));
+  return { keys, activeVersion, activeKey: keys.get(activeVersion) };
+}
+
 function associatedData(version, accountId, keyVersion) {
   return new TextEncoder().encode("SHIT:spotify-refresh-token:v1:" + keyVersion + ":" + version + ":" + accountId);
 }
@@ -102,7 +129,7 @@ export class SpotifyCredentialStore {
     if (request.method !== "POST") return json({ error: "not_found" }, 404);
     const path = new URL(request.url).pathname;
     if (path !== "/initialize" && path !== "/refresh") return json({ error: "not_found" }, 404);
-    if (!String(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY || "")) {
+    if (!String(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY || "")) {
       return json({ error: "credential_store_unavailable" }, 503);
     }
     let input;
@@ -110,20 +137,20 @@ export class SpotifyCredentialStore {
       return json({ error: error instanceof CredentialStoreError ? error.message : "invalid_request" }, 400);
     }
     try {
-      const key = await importEncryptionKey(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY);
-      if (path === "/initialize") return await this.initialize(input, key);
-      return await this.refresh(input, key);
+      const keyring = await importEncryptionKeyring(this.env);
+      if (path === "/initialize") return await this.initialize(input, keyring);
+      return await this.refresh(input, keyring);
     } catch (error) {
       const message = error instanceof CredentialStoreError ? error.message : "Credential operation failed safely.";
       return json({ error: message }, 409);
     }
   }
 
-  async initialize(input, key) {
+  async initialize(input, keyring) {
     if (typeof input.accountId !== "string" || !/^[A-Za-z0-9]{1,128}$/.test(input.accountId)) {
       return json({ error: "verified_account_required" }, 400);
     }
-    const encrypted = await encryptRefreshToken(input.refreshToken, key, 1, input.accountId);
+    const encrypted = await encryptRefreshToken(input.refreshToken, keyring.activeKey, 1, input.accountId, keyring.activeVersion);
     const record = {
       status: "ready",
       accountId: input.accountId,
@@ -140,7 +167,7 @@ export class SpotifyCredentialStore {
     return outcome ? json({ initialized: true, version: 1 }, 201) : json({ error: "credential_already_exists" }, 409);
   }
 
-  async refresh(input, key) {
+  async refresh(input, keyring) {
     if (typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
       return json({ error: "invalid_operation" }, 400);
     }
@@ -159,7 +186,9 @@ export class SpotifyCredentialStore {
     const previous = reservation.record;
     let refreshToken;
     try {
-      refreshToken = await decryptRefreshToken(previous.credential, key, previous.accountId);
+      const previousKey = keyring.keys.get(previous.credential.keyVersion ?? ENCRYPTION_KEY_VERSION);
+      if (!previousKey) throw new CredentialStoreError("Stored credential uses an unavailable encryption key; owner recovery is required.");
+      refreshToken = await decryptRefreshToken(previous.credential, previousKey, previous.accountId);
       const tokenResponse = await fetch(SPOTIFY_TOKEN_URL, {
         method: "POST",
         headers: {
@@ -196,7 +225,7 @@ export class SpotifyCredentialStore {
         ? tokenData.refresh_token
         : refreshToken;
       const nextVersion = previous.version + 1;
-      const nextCredential = await encryptRefreshToken(nextRefreshToken, key, nextVersion, previous.accountId);
+      const nextCredential = await encryptRefreshToken(nextRefreshToken, keyring.activeKey, nextVersion, previous.accountId, keyring.activeVersion);
       const committed = await this.ctx.storage.transaction(async (txn) => {
         const current = await txn.get("credential");
         if (!current || current.status !== "refreshing" || current.operationId !== input.operationId || current.version !== previous.version) return false;
