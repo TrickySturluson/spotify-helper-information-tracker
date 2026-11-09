@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Check durable reauthorization latch
+      - name: Check previous auth result before scheduled retry
         id: auth-latch
         env:
           GH_TOKEN: ${{ github.token }}
@@ -247,7 +247,8 @@ jobs:
 # Purpose: Scheduled and manually dispatched Spotify authentication monitor;
 #          refreshes credentials, verifies /v1/me, persists token rotation, and
 #          reports distinct non-secret failure classes without playlist writes.
-# Trigger: workflow_dispatch only; scheduled monitoring is deferred until a durable reauthorization-required latch prevents repeated invalid_grant attempts.
+# Trigger: Daily schedule (09:00 UTC) and workflow_dispatch. Scheduled runs
+#          inspect the previous run's redacted status markers before retrying.
 # Safety: No retry loop; scheduled runs inspect the previous run's redacted status
 #         marker and pause on permanent blockers or interrupted runs. 429 respects
 #         Retry-After. GITHUB_TOKEN is Actions:read only; the GitHub App token is
