@@ -24,6 +24,38 @@ test("health endpoint is non-secret and bypasses OAuth configuration", async () 
   assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
 });
 
+test("readiness fails closed unless broker config and Durable Object keyring are ready", async () => {
+  const missing = await handleRequest(
+    new Request("https://broker.example/ready"),
+    { BROKER_BASE_URL: "https://broker.example" },
+  );
+  assert.equal(missing.status, 503);
+  assert.deepEqual(await missing.json(), { status: "not_ready", service: "shit-auth-broker" });
+
+  let probedUrl = "";
+  const ready = await handleRequest(
+    new Request("https://broker.example/ready"),
+    {
+      BROKER_BASE_URL: "https://broker.example",
+      SPOTIFY_CLIENT_ID: "public-client-id",
+      SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
+      SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+      SPOTIFY_CREDENTIAL_STORE: {
+        idFromName: (name) => name,
+        get: () => ({
+          fetch: async (url) => {
+            probedUrl = String(url);
+            return Response.json({ status: "ready" });
+          },
+        }),
+      },
+    },
+  );
+  assert.equal(ready.status, 200);
+  assert.deepEqual(await ready.json(), { status: "ready", service: "shit-auth-broker" });
+  assert.equal(probedUrl, "https://spotify-credential.internal/ready");
+});
+
 test("broker reports missing canonical base URL at a dedicated safe stage", async () => {
   const originalError = console.error;
   let diagnostic;
