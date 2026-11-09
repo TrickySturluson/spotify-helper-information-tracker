@@ -140,7 +140,7 @@ Finish CI/source review for the stacked PRs, validate Cloudflare Durable Object 
 - Added a Durable Object `/authorize` operation that initializes an empty credential store or restores a blocked credential for the same verified Spotify account. Ready/in-progress records and account changes are rejected.
 - Wired the Spotify OAuth callback to verify `/v1/me` and hand the refresh token directly to the encrypted credential store. The broker no longer writes the long-lived token to GitHub Actions Secrets.
 - Migrated `spotify-auth-health-check.yml` to the broker OIDC client and a short-lived access token. The workflow retains the durable commit-status latch, Retry-After handling, and read-only playlist/Library boundary.
-- Narrowed the broker GitHub App installation token to repository Actions: Read; secret-write permission is no longer required by the callback.
+- Narrowed the broker GitHub App installation token to repository Actions: Write, the minimum needed both to inspect active runs and dispatch the read-only auth-health workflow; Secrets: write is no longer required.
 - Corrected credential-store rate-limit handling: a definite Spotify 429 releases the refresh reservation, preserves the existing encrypted credential, and propagates Retry-After rather than permanently blocking the credential.
 - Updated the workflow inventory guard: auth-health is the first migrated canary; eight direct refresh-token consumers remain.
 - Source and documentation changes are on stacked draft PR #187/#188. CI is pending. No Cloudflare deployment, encryption-key provisioning, Spotify OAuth, GitHub App configuration, production secret migration, or playlist operation was performed.
