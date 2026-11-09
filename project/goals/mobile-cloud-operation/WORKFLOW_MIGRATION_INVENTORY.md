@@ -26,7 +26,7 @@ This inventory is a migration control. The feature branch contains the encrypted
 - The broker Durable Object encrypts the short-lived access token and caches it until expiry. Concurrent jobs wait for one refresh and reuse the cached result; they do not race rotating refresh tokens.
 - A definite Spotify 429 persists a bounded Retry-After cooldown. An ambiguous provider outcome blocks refresh until owner-consented recovery.
 - Only the exact auth-health workflow may request a forced refresh after an early 401. Playlist, Library, Daily, and migration workflows cannot bypass the shared access-token cache or provider cooldown.
-- The broker allowlist contains exactly the nine workflow refs above, each pinned to `refs/heads/main`. Wildcards, forks, pull-request refs, and arbitrary caller-supplied workflow identities are forbidden.
+- The broker allowlist contains exactly the nine workflow refs above, each pinned to `refs/heads/main`. The owner-only deployment workflow generates this exact list directly from its code; it is not a manually maintained repository variable. Wildcards, forks, pull-request refs, and arbitrary caller-supplied workflow identities are forbidden.
 - `issues` events are accepted only for the exact Playlist Manager and Great Migration workflows. `issue_comment` is accepted only for the exact Playlist Manager workflow. Standard workflows accept only `push`, `schedule`, and `workflow_dispatch`.
 - The broker GitHub App has repository-scoped Actions: Write only, for active-run inspection and auth-health dispatch. It no longer needs Secrets: Write.
 
