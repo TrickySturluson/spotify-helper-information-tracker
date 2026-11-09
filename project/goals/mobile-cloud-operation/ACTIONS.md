@@ -226,3 +226,12 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The new auth-health workflow now uses the prior completed Actions run's redacted status markers as its schedule latch, with fail-closed behavior for missing/unreadable logs, permanent blockers and interrupted attempts. It honors Retry-After deadlines for 429 and provides manual-dispatch recovery.
 - PR #183 remains draft and unmerged. It is mergeable against current `main`, but requires the user's separate approval before merge. No deployment or external account setup has been performed.
 - Next implementation: add an owner-facing reauthorization notification/action, then resolve the cross-workflow refresh-token single-flight design before enabling broad auth preflight.
+
+
+## 2026-11-08 — Enforce Retry-After for manual recovery too
+
+- Changed the run-history latch to inspect the previous completed auth-health run for both scheduled and manual events.
+- Manual recovery bypasses permanent blockers such as `reauthorization_required`, configuration errors and interrupted runs, but it cannot bypass an active 429 cooldown.
+- Retry-After accepts either integer seconds or an HTTP date. If Spotify omits or returns an invalid header, the monitor waits a conservative 24 hours before another scheduled or manual attempt.
+- Preserved the Retry-After marker when a scheduled run is skipped, so later scheduled runs continue evaluating the same deadline rather than losing it.
+- Added a regression assertion for the 24-hour fallback and manual cooldown behavior. Full CI is being rerun for this refinement.
