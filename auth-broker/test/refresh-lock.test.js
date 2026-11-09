@@ -247,7 +247,7 @@ test("forced access-token refresh is rejected for every workflow except the exac
   const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
   const now = Math.floor(Date.now() / 1000);
   const workflowRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main";
-  const claims = { ...validClaims(now), workflow_ref: workflowRef };
+  const claims = { ...validClaims(now), aud: "shit-spotify-refresh", workflow_ref: workflowRef };
   const token = makeJwt(pair.privateKey, claims);
   const jwk = pair.publicKey.export({ format: "jwk" });
   const originalFetch = globalThis.fetch;
