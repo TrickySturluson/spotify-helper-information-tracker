@@ -54,9 +54,10 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ### M1 — Automatic health monitoring
 - [x] Add daily scheduled and manual auth-health checks with structured diagnosis.
 - [x] Emit structured redacted status categories without provider response bodies or credentials.
-- [ ] Persist a non-secret health record with timestamps, category and workflow-run evidence.
+- [x] Persist non-secret health status markers in Actions logs, with workflow-run timestamps and evidence.
 - [x] Ensure one attempt per run: no retry for `invalid_grant`; report Retry-After for 429; classify transient failures without retry loops.
-- [ ] Add a durable reauthorization-required latch and owner notification/action; scheduled checks must skip while latched until an explicit reauthorization or manual recovery attempt.
+- [x] Add a fail-closed run-history latch: scheduled checks skip permanent blockers/interrupted attempts, respect Retry-After deadlines and resume after a deliberate manual recovery attempt.
+- [ ] Add an owner notification/action with a direct reauthorization entry point when the state is `reauthorization_required`.
 - [ ] Ensure monitoring cannot trigger playlist operations or generated-data writes.
 
 ### M2 — Safe refresh and token rotation
@@ -107,7 +108,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Known risks and constraints
 
 - A refresh token rejected with `invalid_grant` cannot be revived by refreshing again; owner consent is mandatory.
-- A scheduled monitor against an invalid credential must report reauthorization-required and latch that state; subsequent scheduled runs skip until an explicit owner-triggered recovery attempt succeeds. The `pending` marker also blocks later scheduled runs if a runner exits before persisting its result. If previous run logs are unavailable/expired or cannot be inspected, the schedule fails closed and requires manual dispatch.
+- A scheduled monitor against an invalid credential must report reauthorization-required; subsequent scheduled runs inspect the prior run's status marker and skip until an explicit owner-triggered recovery attempt succeeds. The `pending` marker also blocks later scheduled runs if a runner exits before persisting its result. If previous run logs are unavailable/expired or cannot be inspected, the schedule fails closed and requires manual dispatch.
 - Multiple concurrent refreshes can race when Spotify rotates refresh tokens. Single-flight/concurrency coordination is a prerequisite for broad preflight rollout.
 - The broker's active-workflow checks reduce but do not eliminate races with newly started workflows; complete live testing in a quiet maintenance window.
 - Cloudflare quotas/storage billing apply; no zero-cost/unlimited assumption.
@@ -120,4 +121,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Add regression tests and workflow-level verification for the latch and scheduled skip behavior, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
+Add regression tests and workflow-level verification for the run-history latch and scheduled skip/Retry-After behavior, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
