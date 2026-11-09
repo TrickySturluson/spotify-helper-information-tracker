@@ -8,9 +8,6 @@
     "deploy": "wrangler deploy",
     "test:durable-objects": "vitest run --config vitest.config.js"
   },
-  "dependencies": {
-    "libsodium-wrappers": "0.8.4"
-  },
   "devDependencies": {
     "wrangler": "4.158.0",
     "@cloudflare/vitest-plugin": "1.6.0",
