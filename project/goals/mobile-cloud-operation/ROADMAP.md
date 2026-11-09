@@ -17,7 +17,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 3. Automatic refresh and token rotation are allowed only through existing narrow GitHub App secret-write boundaries.
 4. A replacement refresh token is persisted before the old value is discarded; persistence failure is a hard failure.
 5. `invalid_grant` means reauthorization is required; do not retry the same credential.
-6. 429 honors Retry-After; 5xx/network failures use bounded backoff and remain distinct from auth failures.
+6. 429 honors Retry-After for both scheduled and manual attempts; missing/invalid headers use a conservative 24-hour fallback. 5xx/network failures remain distinct from auth failures.
 7. Missing configuration, insufficient scopes, wrong Spotify identity and secret-write failures have distinct statuses.
 8. Health checks are read-only with respect to playlists, Library data and user-facing content.
 9. OAuth uses Authorization Code + PKCE, owner authentication, exact HTTPS callbacks, one-time state and replay protection.
