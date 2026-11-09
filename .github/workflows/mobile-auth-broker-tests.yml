@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - "auth-broker/**"
+      - "scripts/spotify/broker_access_token.py"
+      - "scripts/spotify/spotify_playlist_manager.py"
+      - "tests/test_spotify_broker_access.py"
+      - "tests/test_spotify_playlist_manager.py"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
       - "docs/WORKFLOWS.md"
@@ -46,6 +50,9 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: "22"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
       - name: Install pinned broker dependencies
         run: |
           if [ -f package-lock.json ]; then
@@ -64,6 +71,9 @@ jobs:
         run: npm audit --audit-level=high
       - name: Run broker security unit tests
         run: npm test
+      - name: Test broker access-token client and manager mode
+        working-directory: .
+        run: python -m unittest tests.test_spotify_broker_access tests.test_spotify_playlist_manager -v
       - name: Validate Worker bundle and Wrangler configuration without deploying
         run: |
           npx wrangler deploy --dry-run \
