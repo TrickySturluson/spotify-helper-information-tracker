@@ -1,5 +1,48 @@
 # Active SHIT Session Brief
 
+## Current authentication session overlay — 2026-11-09
+
+### Current objective and success criteria
+Finish SHIT-wide centralized Spotify authentication: the broker owns the only long-lived refresh credential, performs serialized refresh/rotation inside its encrypted Durable Object, and gives authorized GitHub Actions jobs only short-lived access tokens through OIDC. Complete fresh owner consent only after the integrated Worker is deployed and verified. Authentication must never modify playlists.
+
+### Material decisions and boundaries
+- Continue the previously user-authorized auth implementation in parallel with the Jockey's Tricky Daily priority; do not reassign or edit Jockey work.
+- Target architecture is broker-owned encrypted refresh-token custody, not a permanent GitHub Actions `SPOTIFY_REFRESH_TOKEN` secret. The secret remains legacy on current `main` until the migration is merged and verified; no dual-write or fallback.
+- Keep production release owner-controlled. Do not read or change secret values, initiate consent on the user's behalf, or touch Spotify playlists.
+- PR #189 belongs to the separate `engineering/general` branch; leave it untouched.
+
+### Current work / branch / PR
+- Current main: `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
+- PR #185 merged `8cd28530081c519112fd947ac7bb05edc0ce7b04`; PR #190 merged `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3`; PR #191 merged `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
+- PR #187 branch `feature/broker-owned-spotify-credential-store`, head `1c8e6b46c292525c3a13019325a270d91f97a84d`, draft/unmergeable. Broker tests and Wrangler dry-run passed in #42598447923; security scan #42598447639 was pending at last check.
+- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `5e39177daeb0695d7230b199c9c37f6edc6999f2`, draft/unmergeable, stacked on PR #187. Previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, SQLite Durable Object integration, Python regression suite, documentation checks, dependency audit and Wrangler dry-run in #42598096634; security scan #42598096535 passed. New callback-stage diagnostics/tests are awaiting fresh CI.
+- PR #187 is 130 ahead / 3 behind main; PR #188 is 267 ahead / 5 behind its PR #187 base. Resolve ancestry and conflicts before merge. Do not force-update.
+- PR #189 is a separate `engineering/general` draft and remains untouched.
+
+### Production / provider findings
+- Cloudflare Worker `shit-auth-broker` version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`) is active at 100% traffic; created 2026-11-09 09:46:17 UTC.
+- Active version metadata shows migration tag v2 and only `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`; no `SPOTIFY_CREDENTIAL_STORE`, encryption keyring, active key version, or Spotify client-secret binding.
+- Cloudflare metadata confirms `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` are `secret_text`; values were not read.
+- Cloudflare Workers Builds config: root `auth-broker`, no build command, production upload `npx wrangler versions upload`, preview `npx wrangler preview`; auto-build/previews enabled. Production promotion remains owner-controlled.
+- Redacted Workers Observability query for the prior 24 hours (ending 2026-11-09 10:08 UTC) found six callback failures: four on version 13 at `broker.base_url_configuration`, two on version 14 at `broker.route_dispatch` (`UnexpectedError`). No exception contents, OAuth codes, tokens, cookies, state values or secret values were retrieved.
+- PR #188 adds safe fixed-stage callback instrumentation through GitHub App JWT/installation, concurrent-workflow check, Spotify exchange/scope/identity, encrypted store write, health dispatch, completion-state storage and redirect. Wait for fresh checks before another consent attempt.
+- No successful credential persistence, auth-health result, or playlist operation has been verified.
+
+### Buddy daily-check gate
+- Automation `SHIT Buddy — Babel documentation only` is disabled.
+- Latest successful report-bearing Buddy result: 2026-11-07.
+- 2026-11-08 run recorded failed; no successful report-bearing run exists for 2026-11-09.
+- Status: **Buddy pending today — disabled**. Do not enable it or modify its branch/PR without user direction.
+
+### Next executable action
+1. Check fresh CI for PR #187/#188 latest heads.
+2. Reconcile the stacked branches with current main and independently inspect the combined diff; keep both drafts until mergeability and all checks are clean.
+3. Add fail-closed deployment checks for the missing encryption keyring, active key version, Spotify client secret and exact OIDC workflow allowlist.
+4. After owner-controlled deployment, verify the integrated version receives 100% traffic, then ask the user to complete a fresh OAuth flow.
+5. Verify encrypted credential persistence and two independent read-only auth-health runs; keep all playlists untouched.
+
+---
+
 > **Purpose:** This is the curated context bridge between active ChatGPT work, the scheduled ChatGPT Buddy task, and the separate repository-hosted Codex experiment. It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
 
 ## Current policy and session overlay — 2026-11-07
