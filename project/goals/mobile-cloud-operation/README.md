@@ -1,8 +1,8 @@
-# Mobile Cloud Operation & Spotify Reauthorization
+# Centralized Authentication & Mobile Cloud Operation
 
 ## Purpose
 
-Make SHIT operable from ChatGPT and a phone without requiring the user to open a local terminal, start a Codespace, or keep a personal computer online. GitHub remains the source of truth; GitHub Actions remains the controlled execution plane.
+Make SHIT operable from ChatGPT, phone, or desktop without requiring the user to open a local terminal, start a Codespace, or keep a personal computer online. The OAuth broker is a centralized SHIT authentication service; mobile is one convenient owner-facing entry point, not the feature boundary. GitHub remains the source of truth; GitHub Actions remains the controlled execution plane while the broker-owned credential/OIDC migration remains unfinished.
 
 This workstream closes the first-time Spotify authorization gap. Existing playlist control already runs in GitHub Actions, and the manager already persists rotated refresh tokens through a narrowly scoped GitHub App token. Initial recovery still starts a local HTTP callback server on port 8888, writes a local token cache, and asks the user to copy the refresh token into GitHub Actions Secrets.
 
@@ -23,7 +23,7 @@ Codespaces and local checkouts become optional developer tools, not requirements
 
 ## Proposed architecture
 
-Use the Cloudflare Worker in `auth-broker/` as a narrow managed HTTPS bridge between the phone browser, Spotify PKCE, and GitHub Actions Secrets. It uses a SQLite-backed Durable Object for transactional one-time state. Source and tests are on PR #176; the Worker is not deployed.
+Use the existing Cloudflare Worker `shit-auth-broker` at `https://shit-auth-broker.trickysturluson.workers.dev` as a narrow managed HTTPS bridge between the owner-facing browser, Spotify PKCE, and GitHub Actions Secrets. It uses a SQLite-backed Durable Object for transactional one-time state. Broker source and tests were merged in PR #182; PR #189 aligns the Wrangler target and deployment documentation with the existing Worker. Production deployment and OAuth acceptance remain pending.
 
 The broker must:
 
@@ -40,7 +40,7 @@ The broker must:
 
 ## Security boundaries
 
-- The broker is an authentication bootstrap, not a second playlist manager.
+- The broker is SHIT's centralized owner-reauthorization entry point, not a second playlist manager. It currently writes only the `SPOTIFY_REFRESH_TOKEN` Actions secret; the in-progress broker-owned credential/OIDC work is a separate migration and must not be described as live until deployed and verified.
 - The existing GitHub issue-command workflow is the mobile control plane for playlist operations. It accepts owner-authored JSON in an open issue titled `SHIT — Playlist Control`; ChatGPT can create/update the issue and inspect Actions runs through the GitHub connector. This was verified on 2026-11-08: issue #178 proved owner identity and trigger; after PR #179 merged, issue #180 reached the manager and executed the read-only status path until Spotify returned `invalid_grant`. See the action log. The user does not need Codespaces or a local terminal.
 - GitHub identity and Spotify identity are distinct; verify both and report the authenticated Spotify account through the read-only workflow.
 - Use PKCE; do not introduce a Spotify client secret if the app is a public client.
@@ -52,7 +52,7 @@ The broker must:
 
 ## Deployment dependencies
 
-A phone-only setup after initial infrastructure bootstrap still requires owner configuration:
+Initial provisioning still requires owner configuration; routine reauthorization should then require only the owner to open the broker and approve the two identity/consent steps:
 
 - A managed HTTPS runtime such as Cloudflare Workers.
 - A dedicated repository-scoped GitHub App with minimal Secrets: write and Actions: write permissions, separate from the existing manager App.
