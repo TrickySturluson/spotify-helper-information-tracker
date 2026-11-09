@@ -571,3 +571,30 @@ test("failed forced refresh discards the cached access token already rejected by
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("an expired in-flight refresh reservation blocks for owner recovery instead of retrying an ambiguous token", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const record = await storage.get("credential");
+  record.status = "refreshing";
+  record.operationId = "R".repeat(43);
+  record.startedAt = Date.now() - 121_000;
+  record.expiresAt = Date.now() - 1;
+  await storage.put("credential", record);
+  const originalFetch = globalThis.fetch;
+  let providerCalls = 0;
+  globalThis.fetch = async () => { providerCalls += 1; throw new Error("must not contact Spotify"); };
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "S".repeat(43) }));
+    assert.equal(result.status, 409);
+    assert.equal((await result.json()).error, "credential_blocked");
+    const blocked = await storage.get("credential");
+    assert.equal(blocked.status, "reauthorization_required");
+    assert.equal(blocked.reason, "refresh_operation_expired");
+    assert.equal(blocked.operationId, undefined);
+    assert.equal(providerCalls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
