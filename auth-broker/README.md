@@ -1,6 +1,6 @@
-# SHIT Mobile Spotify Authorization Broker
+# SHIT Centralized Spotify Authorization Broker
 
-This Worker is the planned mobile replacement for the local port-8888 OAuth callback used by the Spotify playlist manager. It is an authentication bootstrap only. It does not read or modify playlists.
+This Cloudflare Worker is SHIT's owner-controlled Spotify reauthorization entry point. It is intended to provide one centrally managed authorization path for SHIT's cloud workflows. The current broker flow updates only the repository's `SPOTIFY_REFRESH_TOKEN` Actions secret and dispatches a read-only health check; it does not read or modify playlists. Downstream workflows continue to consume the GitHub Actions secret until the separate broker-owned credential and OIDC migration work is completed, reviewed, deployed, and verified.
 
 ## Flow
 
@@ -14,7 +14,7 @@ This Worker is the planned mobile replacement for the local port-8888 OAuth call
 
 ## Required Worker bindings and configuration
 
-The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. SQLite-backed Durable Objects are currently available on Cloudflare's Free plan, with published daily read/write and storage limits; usage beyond included limits or plan changes may incur charges. See [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/) and [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/). Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Replace the canonical Worker host and both callback host placeholders before deployment.
+The Worker declares a SQLite-backed Durable Object binding named OAUTH_STATE. Cloudflare creates its namespace through the first deployment migration; no separate KV namespace is needed. SQLite-backed Durable Objects are currently available on Cloudflare's Free plan, with published daily read/write and storage limits; usage beyond included limits or plan changes may incur charges. See [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/) and [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/). Configure the canonical Worker URL in BROKER_BASE_URL; requests arriving through a different host are rejected. Configure the rate-limiter binding AUTH_RATE_LIMITER as shown in wrangler.toml. Cloudflare's Worker rate-limit API is approximate and per location; it is an abuse throttle, not the owner-authentication or replay-protection boundary. Set `BROKER_BASE_URL` to the canonical HTTPS origin of the existing Worker and make both registered callback URLs match that origin exactly.
 
 Non-secret GitHub repository Actions variables (injected by the deployment workflow using Wrangler `--var`):
 
@@ -44,14 +44,14 @@ The dedicated broker GitHub App must be installed only on this repository and gr
 
 From Cloudflare and GitHub dashboards (no local PC is required):
 
-1. Use the existing Cloudflare Worker named `shit-auth-broker`; do not create a duplicate. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
-2. Enable its `workers.dev` hostname and note the exact HTTPS URL.
-3. Add these non-secret GitHub repository Actions variables: `CLOUDFLARE_ACCOUNT_ID`, `BROKER_BASE_URL`, `GITHUB_APP_CLIENT_ID`, `GITHUB_APP_ID`, `GITHUB_APP_REDIRECT_URI` and `SPOTIFY_CLIENT_ID`, `SPOTIFY_REDIRECT_URI`. The callback URLs must use the exact `BROKER_BASE_URL` host and end in `/auth/github/callback` and `/spotify/callback` respectively.
-4. Create a Cloudflare API token scoped to this existing Worker with the Workers product `Editor` permission. Creating a brand-new Worker by API requires broader `Admin`; pre-creating it allows the narrower existing-Worker permission. Add the token as GitHub Actions secret `CLOUDFLARE_API_TOKEN`.
-5. Set the two Worker secrets `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` in Cloudflare. Keep the GitHub App private key and client secret out of GitHub repository files and out of this deployment workflow.
-6. Run the owner-only `Deploy SHIT Mobile Auth Broker` workflow from the repository's Actions tab. It injects the repository variables into Wrangler and deploys the existing Worker plus its Durable Object migration; it does not contact Spotify or modify playlists.
-7. Register the exact Spotify callback URI and GitHub App user-authorization callback URI in their respective dashboards.
-8. Open the Worker root URL on a phone and complete GitHub then Spotify authorization.
+1. Reuse the existing Cloudflare Worker named `shit-auth-broker`; do not create a duplicate. Its canonical URL is `https://shit-auth-broker.trickysturluson.workers.dev` (the owner-provided URL). The first Wrangler deployment applies the SQLite Durable Object migration to this Worker.
+2. Confirm the `workers.dev` hostname is enabled and that the URL above resolves to this Worker.
+3. Before deploying, register `https://shit-auth-broker.trickysturluson.workers.dev/auth/github/callback` as the dedicated GitHub App's user-authorization callback and `https://shit-auth-broker.trickysturluson.workers.dev/spotify/callback` in the Spotify Developer Dashboard. The GitHub App must have user authorization enabled; keep its repository installation limited to this repository and the two permissions listed above.
+4. Add these non-secret GitHub repository Actions variables: `CLOUDFLARE_ACCOUNT_ID`, `BROKER_BASE_URL`, `GITHUB_APP_CLIENT_ID`, `GITHUB_APP_ID`, `GITHUB_APP_REDIRECT_URI`, `SPOTIFY_CLIENT_ID`, and `SPOTIFY_REDIRECT_URI`. Set `BROKER_BASE_URL` to `https://shit-auth-broker.trickysturluson.workers.dev`, `GITHUB_APP_REDIRECT_URI` to that origin plus `/auth/github/callback`, and `SPOTIFY_REDIRECT_URI` to that origin plus `/spotify/callback`.
+5. Create a Cloudflare API token scoped to this existing Worker with the Workers product `Editor` permission. Creating a brand-new Worker by API requires broader `Admin`; pre-creating it allows the narrower existing-Worker permission. Add the token as GitHub Actions secret `CLOUDFLARE_API_TOKEN`.
+6. Set the two Worker secrets `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` in Cloudflare. Keep the GitHub App private key and client secret out of GitHub repository files and out of this deployment workflow.
+7. Run the owner-only `Deploy SHIT Mobile Auth Broker` workflow from the repository's Actions tab. It injects the repository variables into Wrangler and deploys the existing Worker plus its Durable Object migration; it does not contact Spotify or modify playlists. Verify the run targets the `shit-auth-broker` Worker before proceeding.
+8. Open `https://shit-auth-broker.trickysturluson.workers.dev/` and complete GitHub then Spotify authorization.
 9. Confirm the repository Actions secret metadata has been updated without retrieving its value.
 10. Confirm the triggered Spotify Auth Health Check succeeds. If automatic dispatch fails after secret storage, the page reports that the secret was saved and provides the workflow link for manual read-only verification.
 
@@ -74,9 +74,9 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. The existing Worker is named `shit-auth-broker`; live deployment and authorization still require the external configuration and verification steps below. Deployment is blocked on external account provisioning, not unfinished broker code:
+The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. The target is the owner-provided existing Worker `shit-auth-broker` at `https://shit-auth-broker.trickysturluson.workers.dev`. Its production deployment and live authorization have not yet been verified. Deployment is blocked on external account configuration and verification, not unfinished broker source code:
 
-- Create the Cloudflare Worker and configure its canonical `workers.dev` URL.
+- Confirm the existing `shit-auth-broker` Worker has its `workers.dev` hostname enabled and configure its canonical URL in repository variables.
 - Create and install the dedicated broker GitHub App with only repository Actions:write and Secrets:write.
 - Register the exact GitHub and Spotify callback URLs.
 - Add the required repository Actions variables and the Cloudflare deployment token.
