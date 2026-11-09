@@ -1,8 +1,17 @@
 # Authentication Management & Recovery — Roadmap
 
-**Status:** Active implementation. Broker source, tests and owner-only deployment workflow are under review in PR #185; they are not yet merged or deployed. External deployment and real Spotify reauthorization are not complete.  
+**Status:** Active implementation. PR #185 contains the broker source, tests and owner-only deployment workflow. Its latest Cloudflare preview build and automated broker/repository tests pass; the PR remains open and production is not deployed. The non-secret health endpoint has an automated test, but independent live HTTP health verification is still outstanding. Real Spotify reauthorization is not complete.  
 **Priority:** User-authorized on 2026-11-08.  
 **Scope:** SHIT-wide authentication health, safe automatic refresh/rotation, diagnosis and consent-based recovery. Phone and desktop are equally supported.
+
+## Latest validation snapshot (2026-11-09)
+
+- PR #185 head: `cf12955669d08db80c6d17f1ea5e70b83558ef58`.
+- Cloudflare preview build: `a4bc882b-2a55-4335-8091-cca4c7fd1135`, successful; preview URL routing is enabled and the preview is tied to the PR branch.
+- Broker unit tests and repository tests passed on the preceding code commit `1a641a6ff1ffb9ac04af1685e0b6cc2c48c8c952`; the latest documentation-only commit is running the same checks.
+- The broker's `GET /health` endpoint is covered by an automated test. An independent live HTTP probe of the preview is not yet verified.
+- No production Worker deployment, OAuth consent, refresh-token replacement, or playlist operation has been performed.
+- The cross-workflow OIDC lease is a tested prototype only. It is not integrated into the nine token-consuming workflows and cannot by itself fence a late GitHub Secrets API write. The broker-controlled encrypted credential store remains the recommended end state; see [BROKER_CONTROLLED_REFRESH.md](BROKER_CONTROLLED_REFRESH.md).
 
 ## Problem and target
 
@@ -73,8 +82,8 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Implement repository-scoped secret encryption/update of only `SPOTIFY_REFRESH_TOKEN`.
 - [x] Dispatch only read-only auth-health verification after confirmed secret persistence.
 - [x] Add security tests and reproducible deployment configuration.
-- [x] Review and merge the reconciled broker source/tests/deployment workflow to `main` (source is present; no Worker deployment is implied).
-- [ ] Configure Cloudflare Worker secrets/variables and dedicated repository-scoped GitHub App.
+- [ ] Review and merge the reconciled broker source/tests/deployment workflow to `main` (PR #185 remains open; the preview build is not a production deployment).
+- [ ] Configure/verify Cloudflare Worker secrets/variables and the dedicated repository-scoped GitHub App; never retrieve or disclose secret values.
 - [ ] Register exact HTTPS callback URLs and deploy the Worker.
 - [ ] Complete owner-consented Spotify OAuth from phone and desktop browsers.
 
@@ -82,7 +91,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
 - [ ] Define a reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
 - [x] Define the short critical-section OIDC-authenticated Durable Object lease design; see [REFRESH_TOKEN_SINGLE_FLIGHT.md](REFRESH_TOKEN_SINGLE_FLIGHT.md). No global Actions concurrency group is permitted.
-- [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; implementation and test results remain under CI review.
+- [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; automated unit tests pass, but no Actions workflow is integrated and the lease is not sufficient to fence GitHub Secrets API writes.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
 - [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
