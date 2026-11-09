@@ -18,6 +18,49 @@ import {
   verifySpotifyIdentity,
 } from "../src/index.js";
 
+test("health endpoint is non-secret and bypasses OAuth configuration", async () => {
+  const result = await handleRequest(new Request("https://broker.example/health"), {});
+  assert.equal(result.status, 200);
+  assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
+});
+
+test("broker reports missing canonical base URL at a dedicated safe stage", async () => {
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/"), {});
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.ok(body.includes("Diagnostic stage: broker.base_url_presence"));
+    assert.doesNotMatch(body, /undefined|secret|token/i);
+    assert.equal(diagnostic.stage, "broker.base_url_presence");
+    assert.equal(diagnostic.error_class, "BrokerError");
+  } finally {
+    console.error = originalError;
+  }
+});
+
+test("broker reports malformed canonical base URL at a dedicated safe stage", async () => {
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  try {
+    const result = await handleRequest(
+      new Request("https://broker.example/"),
+      { BROKER_BASE_URL: "not-a-url" },
+    );
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.ok(body.includes("Diagnostic stage: broker.base_url_parse"));
+    assert.doesNotMatch(body, /not-a-url|secret|token/i);
+    assert.equal(diagnostic.stage, "broker.base_url_parse");
+    assert.equal(diagnostic.error_class, "BrokerError");
+  } finally {
+    console.error = originalError;
+  }
+});
+
 test("GitHub owner check is case-insensitive but rejects other identities", () => {
   assert.equal(isAuthorizedOwner("TrickySturluson"), true);
   assert.equal(isAuthorizedOwner("trickysturluson"), true);
