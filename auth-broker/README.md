@@ -94,12 +94,21 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-- Central encrypted credential store and versioned keyring: implemented in the stacked draft branch; Cloudflare integration and key provisioning remain.
-- Owner-consented initial credential handoff and same-account recovery: wired in the stacked draft branch; not deployed or exercised with real credentials.
-- OIDC-authenticated refresh endpoint and Python client: implemented and unit-tested; exact allowlist/configuration and live GitHub OIDC validation remain.
-- Auth-health workflow: first OIDC consumer migrated in the feature branch; CI validation is pending.
-- All nine workflow consumers: migrated to broker-only authentication on the stacked feature branch; live validation pending.
-- Production deployment, owner OAuth, and end-to-end verification: not performed.
-- Legacy GitHub Actions refresh-token secret: retained on the deployed main branch until merge, deployment, two independent broker-backed health checks, and production cutover approval; the broker callback no longer writes it.
+Verified on PR #188 head `b82acade864a7e7fea80e755215eb7baa1fb4108`:
 
-The broker never unlocks or edits playlists. Do not merge, deploy, or perform production cutover until the staged PRs have passing validation, the owner has completed the external setup, and the remaining consumer migration and rollback plan are reviewed.
+- GitHub CI is green for the exact head: Mobile Auth Broker Tests, Daily curator tests, and the public-repository secret scan.
+- Cloudflare Workers Builds completed the branch preview build for that exact SHA (`31c6a56a-708a-40d0-bb5c-aba8bdbcfe6a`).
+- The GitHub check **Verify deployed auth broker preview** passed for that SHA, including its exact-commit build wait and live non-secret `GET /health` probe.
+- The preview proves build and liveness only. It does not prove OAuth, credential encryption, Durable Object refresh behavior with real credentials, GitHub OIDC refresh, or production readiness.
+
+Still pending:
+
+- Central encrypted credential store and versioned keyring: implemented in the stacked draft branch; production keyring and binding setup remain.
+- Owner-consented initial credential handoff and same-account recovery: wired in the stacked draft branch; not exercised with real credentials.
+- OIDC-authenticated refresh endpoint and Python client: implemented and unit-tested; live GitHub OIDC validation remains.
+- All nine workflow consumers: migrated to broker-only authentication on the stacked feature branch; production end-to-end verification remains.
+- Production deployment, owner OAuth, real Spotify refresh/identity verification, refresh-token rotation persistence, and interrupted-operation recovery: not performed.
+- Legacy GitHub Actions refresh-token secret: retained on deployed main until merge, guarded deployment, two independent broker-backed health checks, and explicit production cutover approval. The broker callback no longer writes it.
+
+The broker never unlocks or edits playlists. Do not merge, deploy, or perform production cutover until the owner has completed the external setup and the remaining acceptance and rollback checks are reviewed.
+
