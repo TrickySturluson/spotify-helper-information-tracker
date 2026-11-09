@@ -174,3 +174,12 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - This change is on `feature/authentication-management-recovery`; it has not yet been validated by GitHub Actions. The workflow's scheduled trigger is not an auth-recovery mechanism for a revoked grant; the broker and owner consent remain required.
 - No Spotify request, OAuth, Actions secret change, Cloudflare deployment, playlist operation, Library write or other provider operation was performed in this session.
 - Next: validate workflow syntax and behavior, add regression coverage for status classification/redaction/rotation failure, and then design a concurrency-safe shared auth preflight for Spotify-dependent workflows.
+
+
+## 2026-11-08 — Safety correction: defer scheduled retries until invalid-grant latch exists
+
+- A design review found that a daily schedule would retry the same refresh token after `invalid_grant`, contradicting the no-futile-retry invariant. A schedule alone is not safe monitoring.
+- Removed the scheduled trigger. The auth-health workflow remains manual-dispatch only until a durable reauthorization-required latch can make subsequent scheduled runs skip automatically.
+- Updated the workflow catalogue, README and roadmap to make this prerequisite explicit.
+- The durable latch must be cleared only by a deliberate recovery attempt or confirmed replacement credential; transient 429/5xx/network failures must remain separately classified and eligible for bounded retry after their cooldown.
+- This is a deliberate safety gate, not a retreat from automatic monitoring. It prevents SHIT from repeatedly sending a known-invalid credential while the recovery coordinator is still being built.
