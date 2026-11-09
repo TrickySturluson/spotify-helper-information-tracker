@@ -1,6 +1,6 @@
 # Authentication Management & Recovery — Roadmap
 
-**Status:** Active implementation. Broker source, tests and owner-only deployment workflow are under review in PR #185; they are not yet merged or deployed. External deployment and real Spotify reauthorization are not complete.  
+**Status:** Active implementation. Authentication foundation PR #185 and stacked credential-store/OIDC PRs #187/#188 remain open and are not deployed. Central OAuth handoff and the first auth-health OIDC canary are implemented on the feature branch; eight workflow consumers and production acceptance remain outstanding.  
 **Priority:** User-authorized on 2026-11-08.  
 **Scope:** SHIT-wide authentication health, safe automatic refresh/rotation, diagnosis and consent-based recovery. Phone and desktop are equally supported.
 
@@ -12,7 +12,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 
 ## Required invariants
 
-1. GitHub Actions Secrets remains the source of truth for `SPOTIFY_REFRESH_TOKEN`.
+1. The central broker is the source of truth for migrated workflows; the legacy GitHub Actions secret remains temporarily available only to unmigrated consumers until explicit cutover.
 2. Refresh tokens and access tokens are never exposed in logs, artifacts, issues, chat, browser storage, URLs or repository files.
 3. Automatic refresh and token rotation are allowed only through existing narrow GitHub App secret-write boundaries.
 4. A replacement refresh token is persisted before the old value is discarded; persistence failure is a hard failure.
@@ -87,10 +87,10 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Add OIDC-authenticated `POST /internal/spotify/refresh` route with a dedicated audience, exact workflow allowlist, fixed credential Durable Object identity and minimal operation-ID payload; stacked draft PR #188.
 - [x] Add a GitHub Actions OIDC client and broker-only Spotify manager mode; broker sessions do not load refresh-token files or refresh directly, and expired access tokens fail closed.
 - [x] Authenticate explicit credential encryption key-version metadata in AES-GCM associated data and support staged multi-key rotation on successful refresh.
-- [x] Add a same-account owner-reauthorization store operation that restores blocked credentials without allowing silent account replacement; callback integration remains outstanding.
+- [x] Add same-account owner reauthorization and wire the owner-consented OAuth callback to initialize/recover the encrypted credential store.
 - [ ] Add real Cloudflare Durable Object integration tests and key-version rotation/recovery design before enabling the credential store in any environment.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
-- [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
+- [x] Migrate auth-health first as the read-only OIDC canary in the feature branch; [ ] migrate the remaining eight consumers individually and preserve their operational boundaries.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
 - [ ] Distinguish authentication from 429, 5xx, network, permission and configuration failures.
 - [ ] Block operations on known invalid credentials; do not silently skip the gate.
@@ -111,7 +111,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Architecture decisions
 
 - **Authentication Health Monitor:** scheduled and on-demand read-only verification, token refresh, secure rotation persistence, structured diagnosis and durable non-secret status.
-- **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object; dedicated GitHub App with only Actions: write and Secrets: write.
+- **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object; dedicated GitHub App with repository-scoped Actions: read only.
 - **Recovery Coordinator:** routes each failure category to bounded automatic repair, deferred retry, configuration correction or owner consent.
 - **Central Auth Gate:** shared preflight dependency for Spotify workflows. The broker must become the sole refresh-token holder and refresher; workflows receive only short-lived access tokens after OIDC authorization. No per-job refresh fan-out or direct refresh-token secret reads.
 - **Control plane separation:** GitHub issue commands are a separate remote operations interface. They are not the purpose of this auth workstream and must never bypass manager controls.
@@ -132,4 +132,15 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Complete Cloudflare Durable Object integration validation for the encrypted credential-store prototype, then implement authenticated OIDC refresh routing and safe OAuth callback initialization. Use `WORKFLOW_MIGRATION_INVENTORY.md` to migrate all nine consumers only after operation fencing, concurrency tests, key rotation/recovery, and the no-direct-refresh-token inventory test pass.
+Finish CI/source review for the stacked PRs, validate Cloudflare Durable Object integration and key recovery, then deploy only after owner setup/approval. Prove the auth-health OIDC canary with two independent read-only checks, then migrate the remaining eight consumers using `WORKFLOW_MIGRATION_INVENTORY.md` and preserve every existing playlist/snapshot/rollback boundary.
+
+
+## 2026-11-09 — Central credential ownership and first OIDC canary
+
+- Added a Durable Object `/authorize` operation that initializes an empty credential store or restores a blocked credential for the same verified Spotify account. Ready/in-progress records and account changes are rejected.
+- Wired the Spotify OAuth callback to verify `/v1/me` and hand the refresh token directly to the encrypted credential store. The broker no longer writes the long-lived token to GitHub Actions Secrets.
+- Migrated `spotify-auth-health-check.yml` to the broker OIDC client and a short-lived access token. The workflow retains the durable commit-status latch, Retry-After handling, and read-only playlist/Library boundary.
+- Narrowed the broker GitHub App installation token to repository Actions: Read; secret-write permission is no longer required by the callback.
+- Corrected credential-store rate-limit handling: a definite Spotify 429 releases the refresh reservation, preserves the existing encrypted credential, and propagates Retry-After rather than permanently blocking the credential.
+- Updated the workflow inventory guard: auth-health is the first migrated canary; eight direct refresh-token consumers remain.
+- Source and documentation changes are on stacked draft PR #187/#188. CI is pending. No Cloudflare deployment, encryption-key provisioning, Spotify OAuth, GitHub App configuration, production secret migration, or playlist operation was performed.
