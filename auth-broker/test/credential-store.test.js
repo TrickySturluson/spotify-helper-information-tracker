@@ -181,7 +181,7 @@ test("tampered ciphertext is rejected and blocks the credential", async () => {
   try {
     const response = await store.fetch(request("/refresh", { operationId: "E".repeat(43) }));
     assert.equal(response.status, 409);
-    assert.equal((await response.json()).error, "Stored Spotify credential could not be authenticated; reauthorization is required.");
+    assert.equal((await response.json()).error, "operation_outcome_uncertain_reauthorization_required");
     assert.equal(providerCalled, false);
     assert.equal((await storage.get("credential")).status, "reauthorization_required");
   } finally {
