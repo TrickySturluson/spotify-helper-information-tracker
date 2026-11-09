@@ -168,6 +168,7 @@ jobs:
               except subprocess.CalledProcessError:
                   report("secret_persistence_failed", "Spotify authentication succeeded, but secure refresh-token rotation persistence failed. Do not start Spotify-dependent operations.")
               report("healthy", "Spotify authentication and /v1/me verification succeeded; a rotated refresh token was securely persisted.", success=True)
+              raise SystemExit(0)
           report("healthy", "Spotify authentication and /v1/me verification succeeded. No refresh-token rotation was returned; the existing secret remains valid.", success=True)
           PY
 
