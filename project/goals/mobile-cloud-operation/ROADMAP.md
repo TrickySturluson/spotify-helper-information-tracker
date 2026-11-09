@@ -52,11 +52,11 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [ ] Confirm deployment provider/account and cost limits.
 
 ### M1 — Automatic health monitoring
-- [x] Add a conservative daily scheduled auth-health check (09:00 UTC) plus manual dispatch.
+- [x] Add an on-demand auth-health check with structured diagnosis; keep it manual-only until a durable invalid-grant latch exists.
 - [x] Emit structured redacted status categories without provider response bodies or credentials.
 - [ ] Persist a non-secret health record with timestamps, category and workflow-run evidence.
 - [x] Ensure one attempt per run: no retry for `invalid_grant`; report Retry-After for 429; classify transient failures without retry loops.
-- [ ] Add notification/owner action for reauthorization-required state.
+- [ ] Add a durable reauthorization-required latch and owner notification/action; scheduled checks must skip while latched until an explicit reauthorization or manual recovery attempt.
 - [ ] Ensure monitoring cannot trigger playlist operations or generated-data writes.
 
 ### M2 — Safe refresh and token rotation
@@ -107,7 +107,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Known risks and constraints
 
 - A refresh token rejected with `invalid_grant` cannot be revived by refreshing again; owner consent is mandatory.
-- A scheduled monitor against an invalid credential must report reauthorization-required and stop; it must not loop or consume repeated API quota.
+- A scheduled monitor against an invalid credential must report reauthorization-required and latch that state; subsequent scheduled runs must skip until an explicit reauthorization or manual recovery attempt. Do not enable scheduling before this latch exists.
 - Multiple concurrent refreshes can race when Spotify rotates refresh tokens. Single-flight/concurrency coordination is a prerequisite for broad preflight rollout.
 - The broker's active-workflow checks reduce but do not eliminate races with newly started workflows; complete live testing in a quiet maintenance window.
 - Cloudflare quotas/storage billing apply; no zero-cost/unlimited assumption.
@@ -120,4 +120,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Add regression tests and workflow-level verification for the scheduled monitor, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
+Add regression tests and workflow-level verification for the diagnostic workflow; then implement a durable invalid-grant latch before enabling scheduled monitoring, and design the shared auth preflight before rolling the gate out to other Spotify workflows.
