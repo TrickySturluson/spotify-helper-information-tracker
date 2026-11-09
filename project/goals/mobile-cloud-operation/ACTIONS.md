@@ -278,3 +278,15 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Security review confirms the broker's GitHub side effects remain limited to repository secret publication and dispatch of the read-only auth-health workflow. It has no playlist endpoint or playlist-write capability.
 - Known unresolved design item: active-workflow checks are not an atomic global single-flight lock. A Spotify workflow could start after the broker's check; central coordination remains required before claiming all Spotify-dependent operations are race-safe.
 - No secret values were read, copied, logged, or changed. No Spotify API/OAuth call, Cloudflare deployment, GitHub App permission change, or playlist operation was performed.
+
+
+## 2026-11-09 — Security-scan false-positive remediation and documentation consistency
+
+- Latest completed CI before this revision: broker tests passed and Daily curator tests passed on `f1d0a58d11b3aef60cf51a3e4c0804132bede2df`; full-history Gitleaks failed on exactly two generic-api-key false positives: the auth-state commit-reference environment binding and its regression-test assertion.
+- Inspected the actual redacted findings and corrected the allowlist to match the exact source-line shapes, restricted by AND-combined path checks to the auth-health workflow and its test. Earlier fingerprint entries did not suppress the findings and were removed.
+- Renamed the runtime environment key from `SPOTIFY_AUTH_STATE_SHA` to `AUTH_STATE_COMMIT` in the health workflow and its regression test so new history no longer repeats the detector-triggering label.
+- Updated `auth-broker/README.md` to use the actual `BROKER_GH_APP_*` repository-variable names, describe SHIT-wide phone/desktop support, and reflect owner-reported provisioning without asserting deployment.
+- Latest branch head at this log entry: `5ea3ae0adc6e834fa256fa00a8fb656ca04c10ac`. Broker test workflow #42553298788 was pending at the last check; no fresh green status or full-history scan result is yet confirmed for this head.
+- Source review confirmed: the Worker has no playlist API; secret persistence is encrypted using GitHub's Actions public key; dispatch occurs only after secret update; GitHub and Spotify identity checks are separate; OAuth state is short-lived and consumed once; the auth-health workflow verifies `/v1/me` before persisting refresh-token rotation.
+- Remaining architectural risk: preflight enumerates active workflow runs but is not a globally atomic lock. Do not enable a claim of race-free refresh across all Spotify workflows until a true shared coordination mechanism is designed and tested.
+- No OAuth flow, external API call, Worker deployment, secret mutation, or playlist operation was performed.
