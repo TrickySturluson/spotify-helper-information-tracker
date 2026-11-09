@@ -81,5 +81,7 @@ test("deployment workflow pins the exact nine main-branch OIDC workflow identiti
       "Missing exact OIDC allowlist entry for " + filename,
     );
   }
-  assert.match(source, /wildcards and additional workflows are forbidden/);
+  assert.match(source, /expected_workflow_refs="[^"]+"/);
+  assert.match(source, /SPOTIFY_REFRESH_WORKFLOW_REFS=\$expected_workflow_refs/);
+  assert.doesNotMatch(source, /vars\.SPOTIFY_REFRESH_WORKFLOW_REFS/);
 });
