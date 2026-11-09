@@ -137,6 +137,22 @@ class BrokerAccessTokenTests(unittest.TestCase):
             request_broker_access_token(self.environ, opener)
         self.assertEqual(raised.exception.category, "busy")
 
+    def test_force_refresh_is_an_explicit_broker_request_flag(self):
+        requests = []
+
+        def opener(request, timeout=0):
+            requests.append(request)
+            if len(requests) == 1:
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            return FakeResponse({"accessToken": "short-lived-access-token", "expiresIn": 3600})
+
+        result = request_broker_access_token(self.environ, opener, force_refresh=True)
+        self.assertEqual(result, ("short-lived-access-token", 3600))
+        self.assertEqual(json.loads(requests[1].data), {
+            "operationId": json.loads(requests[1].data)["operationId"],
+            "forceRefresh": True,
+        })
+
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
             with self.subTest(expires=expires), self.assertRaises(BrokerTokenError):
