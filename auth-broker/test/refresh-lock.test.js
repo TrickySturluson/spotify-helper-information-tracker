@@ -74,16 +74,22 @@ test("OIDC verifier rejects bad signatures, expired tokens and unknown signing k
 function makeStore() {
   const values = new Map();
   let alarm = null;
+  let transactionTail = Promise.resolve();
+  const transactionStore = {
+    get: async (key) => values.get(key),
+    put: async (key, value) => values.set(key, value),
+    delete: async (key) => values.delete(key),
+  };
   const storage = {
     get: async (key) => values.get(key),
     put: async (key, value) => values.set(key, value),
     delete: async (key) => values.delete(key),
     setAlarm: async (when) => { alarm = when; },
-    transaction: async (fn) => fn({
-      get: async (key) => values.get(key),
-      put: async (key, value) => values.set(key, value),
-      delete: async (key) => values.delete(key),
-    }),
+    transaction: (fn) => {
+      const current = transactionTail.then(() => fn(transactionStore));
+      transactionTail = current.catch(() => {});
+      return current;
+    },
   };
   return { storage, values, get alarm() { return alarm; } };
 }
