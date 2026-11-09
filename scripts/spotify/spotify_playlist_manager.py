@@ -194,6 +194,7 @@ class Spotify:
             access_token, expires_in = request_broker_access_token()
         except BrokerTokenError as exc:
             raise ManagerError("SHIT central broker could not renew the short-lived access token (" + exc.category + ").") from None
+        self.broker_access_token = access_token
         self.t = {"access_token": access_token, "obtained_at": time.time(), "expires_in": expires_in}
         os.environ["SHIT_BROKER_ACCESS_TOKEN"] = access_token
         os.environ["SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN"] = str(expires_in)
