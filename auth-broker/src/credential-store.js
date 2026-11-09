@@ -6,8 +6,8 @@ const ENCRYPTION_KEY_VERSION = 1;
 
 class CredentialStoreError extends Error {}
 
-function json(body, status = 200) {
-  return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
+function json(body, status = 200, headers = {}) {
+  return Response.json(body, { status, headers: { "Cache-Control": "no-store", ...headers } });
 }
 
 function decodeBase64(value) {
