@@ -148,6 +148,7 @@ export class SpotifyCredentialStore {
       const current = await txn.get("credential");
       if (!current) return { error: "credential_missing" };
       if (current.status !== "ready") return { error: "credential_blocked" };
+      if (current.lastOperationId === input.operationId) return { error: "operation_already_committed" };
       const next = { ...current, status: "refreshing", operationId: input.operationId, startedAt: now, expiresAt: now + OPERATION_TTL_MS };
       await txn.put("credential", next);
       return { record: next };
@@ -203,6 +204,7 @@ export class SpotifyCredentialStore {
           accountId: previous.accountId,
           version: nextVersion,
           credential: nextCredential,
+          lastOperationId: input.operationId,
           updatedAt: Date.now(),
         });
         return true;
