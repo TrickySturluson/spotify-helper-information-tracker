@@ -94,6 +94,7 @@ jobs:
       - name: Verify provider credentials through the central broker
         if: steps.request.outputs.command == 'verify'
         env:
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           DISCOGS_USER_TOKEN: ${{ secrets.DISCOGS_USER_TOKEN }}
