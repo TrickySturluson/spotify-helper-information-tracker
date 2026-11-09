@@ -53,13 +53,8 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
-      - name: Install pinned broker dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci --ignore-scripts
-          else
-            npm install --ignore-scripts
-          fi
+      - name: Install pinned broker dependencies and refresh lockfile
+        run: npm install --ignore-scripts
       - name: Preserve generated dependency lockfile for review
         uses: actions/upload-artifact@v7.0.2
         with:
@@ -71,6 +66,8 @@ jobs:
         run: npm audit --audit-level=high
       - name: Run broker security unit tests
         run: npm test
+      - name: Run Cloudflare SQLite Durable Object integration tests
+        run: npm run test:durable-objects
       - name: Test broker access-token client and manager mode
         working-directory: .
         run: python -m unittest tests.test_spotify_broker_access tests.test_spotify_playlist_manager -v
@@ -89,7 +86,7 @@ jobs:
 
   commit-lockfile:
     needs: test
-    if: github.event_name == 'push' && github.actor == 'TrickySturluson' && github.ref == 'refs/heads/feature/mobile-spotify-reauth-reconciled'
+    if: github.event_name == 'push' && github.actor == 'TrickySturluson' && (github.ref == 'refs/heads/feature/mobile-spotify-reauth-reconciled' || github.ref == 'refs/heads/feature/oidc-broker-refresh-endpoint')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -114,7 +111,7 @@ jobs:
           fi
 
 # FILE OVERVIEW
-# Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
+# Purpose: Run Node broker tests, Python access-token client tests, and real Workers SQLite Durable Object integration tests.
 # Trigger: Pushes to feature/** and pull requests touching broker source/deployment files; manual workflow_dispatch.
 # Credentials: Test job uses none; the owner-only lockfile commit job uses the scoped default GITHUB_TOKEN with contents: write.
 # Side effects: Installs audited dependencies, runs local tests/dry-run, and on an owner push to this feature branch commits only the generated package-lock.json.
