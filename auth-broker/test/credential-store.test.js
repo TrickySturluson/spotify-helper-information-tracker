@@ -495,3 +495,23 @@ test("owner authorization fails closed when the configured active encryption key
   assert.equal((await result.json()).error, "Active credential encryption key is unavailable.");
   assert.equal(await storage.get("credential"), undefined);
 });
+
+
+test("invalid Spotify access-token lifetime blocks an uncertain refresh response", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({
+    access_token: "short-lived-access-token",
+    refresh_token: "rotated-refresh-token-abcdef",
+    expires_in: 30,
+  }), { status: 200 });
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "V".repeat(43) }));
+    assert.equal(result.status, 409);
+    assert.equal((await result.json()).error, "provider_response_invalid_reauthorization_required");
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
