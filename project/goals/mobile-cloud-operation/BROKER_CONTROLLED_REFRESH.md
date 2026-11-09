@@ -1,6 +1,6 @@
 # Broker-Controlled Spotify Refresh and Credential Persistence
 
-**Status:** Isolated encrypted credential-store prototype implemented in PR #187; not integrated, bound, or deployed. See [WORKFLOW_MIGRATION_INVENTORY.md](WORKFLOW_MIGRATION_INVENTORY.md) for the verified nine-consumer baseline.
+**Status:** Encrypted credential-store prototype and OIDC-gated refresh route implemented on stacked draft PR #188; not deployed or enabled. The Worker binding is source configuration only; the encryption key and exact workflow allowlist are not configured. See [WORKFLOW_MIGRATION_INVENTORY.md](WORKFLOW_MIGRATION_INVENTORY.md) for the verified nine-consumer baseline.
 **Parent:** Authentication Management & Recovery (PR #185).
 **Purpose:** Eliminate cross-workflow refresh-token races by making the broker the sole owner of the rotating Spotify refresh token and the refresh/persistence critical section.
 
@@ -18,6 +18,16 @@ The OIDC Durable Object lease prototype serializes lease acquisition, but the ni
 6. All nine existing workflows migrate from reading `SPOTIFY_REFRESH_TOKEN` and refreshing independently to requesting a broker-issued access token. The inventory test must prove no workflow reads or writes the long-lived refresh token directly.
 7. OAuth reauthorization writes the newly issued refresh token into the same encrypted credential store only after GitHub owner authentication, Spotify owner identity verification, and required scope checks pass.
 8. Once every consumer is migrated and verified, remove the GitHub Actions refresh-token secret and the old secret-write code path. Keep an audited, owner-consented recovery flow.
+
+## Implemented route prototype
+
+- Worker route: `POST /internal/spotify/refresh`.
+- Authentication: GitHub Actions OIDC JWT with the dedicated audience `shit-spotify-refresh`, verified signature/JWKS, issuer, time claims, repository, immutable owner ID, `main` ref, permitted event, exact `workflow_ref` allowlist, and run identity.
+- Caller payload: a single unique operation ID. Caller-supplied account IDs and owner claims are ignored; the Worker selects the fixed `spotify-primary` Durable Object instance.
+- Durable Object binding/class: `SPOTIFY_CREDENTIAL_STORE` / `SpotifyCredentialStore`; SQLite migration tag `v3`.
+- Response: short-lived access token metadata only, after account verification and encrypted refresh-token commit. Responses are no-store. Missing binding/key/allowlist fails closed.
+- Required Worker configuration before any non-production integration: secret `SPOTIFY_CREDENTIAL_ENCRYPTION_KEY` (32 random bytes, base64 encoded) and variable `SPOTIFY_REFRESH_WORKFLOW_REFS` containing exact approved workflow refs. These are not currently configured or deployed.
+- The existing OAuth callback still uses the legacy GitHub-secret path. No initial-token handoff to the new store exists yet, so this route cannot be considered operational until safe callback initialization and workflow migration are implemented.
 
 ## Durable storage and cryptography requirements
 
@@ -42,7 +52,7 @@ The OIDC Durable Object lease prototype serializes lease acquisition, but the ni
 1. Keep the OIDC coordinator isolated; its lease cannot fence GitHub Secrets writes and it is not the production refresh authority.
 2. Complete the encrypted credential-store prototype review, then add Cloudflare Durable Object integration tests for restart, concurrency, transaction semantics, failed writes, and ambiguous outcomes. Define key-version rotation and owner recovery before integration.
 3. Extend the existing OAuth callback to populate the encrypted store safely while preserving current behavior until owner-reviewed cutover.
-4. Implement OIDC-authorized broker refresh endpoint and tests for concurrent callers, token rotation, identity mismatch, failed verification, ambiguous provider outcomes, stale operation commits, and storage failures.
+4. Complete the OIDC-authorized broker refresh endpoint prototype and test exact workflow identity, audience separation, payload minimization, concurrent callers, token rotation, identity mismatch, failed verification, ambiguous provider outcomes, stale operation commits, and storage failures.
 5. Build a shared GitHub Action/client for workflows; migrate one low-risk read-only workflow first, then each remaining workflow.
 6. Add a repository-wide inventory test that fails if any production workflow references the long-lived refresh-token secret or directly calls Spotify's token endpoint.
 7. Verify all nine workflows against the broker in non-production; then request explicit owner approval for production cutover and secret removal.
