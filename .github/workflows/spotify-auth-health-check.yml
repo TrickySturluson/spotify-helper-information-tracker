@@ -59,9 +59,9 @@ jobs:
           def report(status, message, success=False):
               # Only fixed, non-secret classifications/messages are written to GitHub.
               with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-                  output.write(f"status={status}\\n")
+                  output.write(f"status={status}\n")
               with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
-                  summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\\n\\n{message}\\n")
+                  summary.write(f"## Spotify authentication: {status.replace('_', ' ').title()}\n\n{message}\n")
               if success:
                   print(message)
                   return
