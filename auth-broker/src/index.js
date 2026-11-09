@@ -646,7 +646,7 @@ export default {
 
 
 // FILE OVERVIEW
-// Purpose: Mobile-first Spotify Authorization Code + PKCE bootstrap for SHIT.
+// Purpose: SHIT-wide Spotify Authorization Code + PKCE bootstrap for phone and desktop browsers.
 // Runtime: Cloudflare Worker with strongly consistent Durable Object OAuth state and an edge rate limiter.
 // Credentials: GitHub OAuth secret and repository-scoped GitHub App private key are Worker secrets.
 // Side effects: Updates only the repository SPOTIFY_REFRESH_TOKEN Actions secret, then dispatches
