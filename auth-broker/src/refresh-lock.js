@@ -86,7 +86,8 @@ export class SpotifyRefreshLease {
         if (current && current.expiresAt > now) return { status: 409, body: { acquired: false, retryAfterSeconds: Math.max(1, Math.ceil((current.expiresAt - now) / 1000)) } };
         generation += 1;
         await txn.put("generation", generation);
-        if (typeof body.owner !== "string" || body.owner.length > 512) return { status: 400, body: { error: "invalid_request" } };\n        await txn.put("lease", { leaseId: body.leaseId, owner: body.owner, generation, expiresAt: now + LEASE_TTL_MS });
+        if (typeof body.owner !== "string" || body.owner.length > 512) return { status: 400, body: { error: "invalid_request" } };
+        await txn.put("lease", { leaseId: body.leaseId, owner: body.owner, generation, expiresAt: now + LEASE_TTL_MS });
         return { status: 200, body: { acquired: true, generation, expiresAt: now + LEASE_TTL_MS } };
       }
       if (!current || current.expiresAt <= now || current.leaseId !== body.leaseId || current.owner !== body.owner || current.generation !== body.generation) {
