@@ -28,7 +28,7 @@ class MemoryStorage {
 function setup() {
   const storage = new MemoryStorage();
   const key = Buffer.alloc(32, 7).toString("base64");
-  const env = { SPOTIFY_CREDENTIAL_ENCRYPTION_KEY: key, SPOTIFY_CLIENT_ID: "client", SPOTIFY_CLIENT_SECRET: "secret" };
+  const env = { SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: JSON.stringify({ "1": key }), SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: "1", SPOTIFY_CLIENT_ID: "client", SPOTIFY_CLIENT_SECRET: "secret" };
   return { storage, store: new SpotifyCredentialStore({ storage }, env) };
 }
 function request(path, body) {
@@ -222,7 +222,8 @@ test("a refresh reservation survives store-instance restart and blocks a second 
     // A new class instance represents a restarted Worker/DO caller sharing
     // the same persistent Durable Object storage.
     const restartedStore = new SpotifyCredentialStore({ storage }, {
-      SPOTIFY_CREDENTIAL_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString("base64"),
+      SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: JSON.stringify({ "1": Buffer.alloc(32, 7).toString("base64") }),
+      SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: "1",
       SPOTIFY_CLIENT_ID: "client",
       SPOTIFY_CLIENT_SECRET: "secret",
     });
