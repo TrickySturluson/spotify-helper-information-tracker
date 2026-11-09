@@ -78,7 +78,7 @@ async function encryptRefreshToken(token, key, version, accountId, keyVersion = 
     key,
     new TextEncoder().encode(token),
   );
-  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version };
+  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version, expiresAt };
 }
 
 async function decryptRefreshToken(record, key, accountId) {
@@ -99,17 +99,17 @@ async function decryptRefreshToken(record, key, accountId) {
   }
 }
 
-function accessTokenAssociatedData(version, accountId, keyVersion) {
-  return new TextEncoder().encode("SHIT:spotify-access-token:v1:" + keyVersion + ":" + version + ":" + accountId);
+function accessTokenAssociatedData(version, accountId, keyVersion, expiresAt) {
+  return new TextEncoder().encode("SHIT:spotify-access-token:v1:" + keyVersion + ":" + version + ":" + accountId + ":" + expiresAt);
 }
 
-async function encryptAccessToken(token, key, version, accountId, keyVersion) {
+async function encryptAccessToken(token, key, version, accountId, keyVersion, expiresAt) {
   if (typeof token !== "string" || !token || token.length > 8192 || /[\r\n]/.test(token)) {
     throw new CredentialStoreError("Spotify did not return a usable access token.");
   }
   const nonce = randomBytes(12);
   const ciphertext = await crypto.subtle.encrypt(
-    { name: "AES-GCM", iv: nonce, additionalData: accessTokenAssociatedData(version, accountId, keyVersion), tagLength: 128 },
+    { name: "AES-GCM", iv: nonce, additionalData: accessTokenAssociatedData(version, accountId, keyVersion, expiresAt), tagLength: 128 },
     key,
     new TextEncoder().encode(token),
   );
@@ -122,7 +122,7 @@ async function decryptAccessToken(record, key, accountId) {
       {
         name: "AES-GCM",
         iv: decodeBase64(record.nonce),
-        additionalData: accessTokenAssociatedData(record.version, accountId, record.keyVersion),
+        additionalData: accessTokenAssociatedData(record.version, accountId, record.keyVersion, record.expiresAt),
         tagLength: 128,
       },
       key,
@@ -286,7 +286,10 @@ export class SpotifyCredentialStore {
 
   async cachedAccessToken(record, keyring) {
     const remainingMs = Number(record.accessTokenExpiresAt) - Date.now();
-    if (!record.accessToken || !Number.isFinite(remainingMs) || remainingMs <= ACCESS_TOKEN_MIN_REMAINING_MS) return null;
+    if (!record.accessToken || record.accessToken.version !== record.version || Number(record.accessToken.expiresAt) !== Number(record.accessTokenExpiresAt) || !Number.isFinite(remainingMs) || remainingMs <= ACCESS_TOKEN_MIN_REMAINING_MS) {
+      if (record.accessToken) await this.clearCachedAccessToken(record);
+      return null;
+    }
     const key = keyring.keys.get(record.accessToken.keyVersion);
     if (!key) {
       await this.clearCachedAccessToken(record);
@@ -417,8 +420,8 @@ export class SpotifyCredentialStore {
         : refreshToken;
       const nextVersion = previous.version + 1;
       const nextCredential = await encryptRefreshToken(nextRefreshToken, keyring.activeKey, nextVersion, previous.accountId, keyring.activeVersion);
-      const nextAccessToken = await encryptAccessToken(tokenData.access_token, keyring.activeKey, nextVersion, previous.accountId, keyring.activeVersion);
       const accessTokenExpiresAt = Date.now() + tokenData.expires_in * 1000;
+      const nextAccessToken = await encryptAccessToken(tokenData.access_token, keyring.activeKey, nextVersion, previous.accountId, keyring.activeVersion, accessTokenExpiresAt);
       const committed = await this.ctx.storage.transaction(async (txn) => {
         const current = await txn.get("credential");
         if (!current || current.status !== "refreshing" || current.operationId !== input.operationId || current.version !== previous.version) return false;
