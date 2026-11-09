@@ -2,10 +2,6 @@ name: SHIT — Spotify Auth Health Check
 
 on:
   workflow_dispatch:
-  schedule:
-    # Daily low-frequency monitor. A failed invalid_grant run is diagnostic only;
-    # it must never retry the same credential or trigger playlist operations.
-    - cron: "0 9 * * *"
 
 permissions:
   contents: read
@@ -177,7 +173,7 @@ jobs:
 # Purpose: Scheduled and manually dispatched Spotify authentication monitor;
 #          refreshes credentials, verifies /v1/me, persists token rotation, and
 #          reports distinct non-secret failure classes without playlist writes.
-# Trigger: Daily schedule (09:00 UTC) and workflow_dispatch.
+# Trigger: workflow_dispatch only; scheduled monitoring is deferred until a durable reauthorization-required latch prevents repeated invalid_grant attempts.
 # Safety: No retry loop; invalid_grant requires owner consent; 429/5xx/network
 #         failures are not misclassified as revoked credentials. GitHub App token
 #         is scoped to repository Secrets write solely for refresh-token rotation.
