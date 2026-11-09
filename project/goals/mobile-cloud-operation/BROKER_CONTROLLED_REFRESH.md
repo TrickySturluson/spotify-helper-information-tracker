@@ -61,7 +61,7 @@ The repository inventory test must reject direct references to `SPOTIFY_REFRESH_
 
 - Exact workflow allowlist; no wildcards, forks, pull-request events, feature refs, or caller-supplied identity.
 - Separate OIDC audience for broker refresh and any legacy lease-coordinator route.
-- The broker GitHub App now needs only repository-scoped Actions: Read to inspect active workflow runs. It does not need Secrets: write because the callback no longer writes GitHub Actions secrets.
+- The broker GitHub App now needs only repository-scoped Actions: Write to inspect active workflow runs and dispatch the read-only auth-health workflow. It does not need Secrets: write because the callback no longer writes GitHub Actions secrets.
 - The Worker encryption key remains a Cloudflare secret and is never exposed to workflows.
 - Broker outage fails closed. Migrated workflows must not fall back to a legacy secret.
 - Owner OAuth remains explicit; invalid_grant cannot be repaired without fresh owner consent.
