@@ -22,7 +22,7 @@ This inventory is a migration control. The feature branch contains the encrypted
 
 - Every migrated job obtains a short-lived access token from `scripts/spotify/broker_access_token.py`, or uses the same helper directly in the auth-health workflow.
 - The helper writes `SHIT_AUTH_MODE=broker` and the short-lived access token only to the runner's ephemeral `GITHUB_ENV`.
-- The shared Spotify manager fails closed when `SHIT_AUTH_MODE=broker` is set but no broker token is present. It does not read a local refresh-token file, run the local OAuth flow, or directly refresh.
+- The shared Spotify manager fails closed when `SHIT_AUTH_MODE=broker` is set but no broker token is present. It does not read a local refresh-token file or run local OAuth. When its short-lived token approaches expiry during a long job, it obtains a new OIDC broker token in-process; it never directly refreshes.
 - The broker Durable Object encrypts the short-lived access token and caches it until expiry. Concurrent jobs wait for one refresh and reuse the cached result; they do not race rotating refresh tokens.
 - A definite Spotify 429 persists a bounded Retry-After cooldown. An ambiguous provider outcome blocks refresh until owner-consented recovery.
 - Only the exact auth-health workflow may request a forced refresh after an early 401. Playlist, Library, Daily, and migration workflows cannot bypass the shared access-token cache or provider cooldown.
