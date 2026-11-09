@@ -1,11 +1,9 @@
-import sodium from "libsodium-wrappers";
 import { SpotifyRefreshLease, verifyActionsOidc } from "./refresh-lock.js";
 import { SpotifyCredentialStore } from "./credential-store.js";
 export { SpotifyRefreshLease, SpotifyCredentialStore };
 
 const OWNER = "TrickySturluson";
 const REPOSITORY = "spotify-helper-information-tracker";
-const SECRET_NAME = "SPOTIFY_REFRESH_TOKEN";
 const AUTH_WORKFLOW = "spotify-auth-health-check.yml";
 const REQUIRED_SCOPES = [
   "user-read-private",
@@ -441,40 +439,6 @@ export async function verifySpotifyIdentity(accessToken, fetchImpl = fetch) {
   };
 }
 
-export async function saveRefreshToken(env, refreshToken, existingToken = null) {
-  if (typeof refreshToken !== "string" || refreshToken.length < 20) {
-    throw new BrokerError("Spotify did not return a usable refresh token.");
-  }
-  await sodium.ready;
-  const token = existingToken || await installationToken(env);
-  await assertNoConcurrentSpotifyJobs(token);
-  const path = `/repos/${OWNER}/${REPOSITORY}`;
-  const publicKey = await githubApi(`${path}/actions/secrets/public-key`, token);
-  const key = sodium.from_base64(publicKey.key, sodium.base64_variants.ORIGINAL);
-  const encrypted = sodium.crypto_box_seal(sodium.from_string(refreshToken), key);
-  const encryptedValue = sodium.to_base64(encrypted, sodium.base64_variants.ORIGINAL);
-  await githubApi(
-    `${path}/actions/secrets/${SECRET_NAME}`,
-    token,
-    "PUT",
-    { encrypted_value: encryptedValue, key_id: publicKey.key_id },
-  );
-  // Only dispatch after GitHub confirms the encrypted secret update.
-  try {
-    await githubApi(
-      `${path}/actions/workflows/${AUTH_WORKFLOW}/dispatches`,
-      token,
-      "POST",
-      { ref: "main" },
-    );
-    return true;
-  } catch {
-    // The secret is already saved. Report that accurately and do not make the
-    // user repeat OAuth merely because the verification dispatch failed.
-    return false;
-  }
-}
-
 async function githubLoginCallback(request, env, url) {
   const cookies = parseCookies(request.headers.get("Cookie"));
   const state = url.searchParams.get("state") || "";
@@ -773,7 +737,7 @@ export default {
 // Purpose: SHIT-wide OAuth recovery broker and OIDC-authenticated refresh prototype.
 // Runtime: Cloudflare Worker with transactional OAuth state, refresh coordination, credential storage and rate limiting.
 // Credentials: GitHub App credentials and (future, not yet configured) credential-store encryption key are Worker secrets.
-// Side effects: Legacy OAuth callback updates SPOTIFY_REFRESH_TOKEN and dispatches read-only auth health;
+// Side effects: Owner-consented OAuth stores credentials only in the encrypted Durable Object and dispatches read-only auth health;
 //               OIDC refresh route returns only a short-lived access token after encrypted credential commit.
 // Safety: Exact GitHub owner/workflow identity, PKCE, one-time state, AES-GCM credential records,
 //         no token logging, no refresh-token return, no playlist endpoints or writes.
