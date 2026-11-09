@@ -197,12 +197,12 @@ test("broker refresh route authenticates exact OIDC workflow and forwards only o
     const request = new Request("https://broker.example/internal/spotify/refresh", {
       method: "POST",
       headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
-      body: JSON.stringify({ operationId: "J".repeat(43), accountId: "attacker-controlled", owner: "attacker" }),
+      body: JSON.stringify({ operationId: "J".repeat(43), accountId: "attacker-controlled", owner: "attacker", forceRefresh: true }),
     });
     const result = await handleRequest(request, env);
     assert.equal(result.status, 200);
     assert.deepEqual(await result.json(), { accessToken: "short-lived-access-token", expiresIn: 3600 });
-    assert.deepEqual(forwarded, { operationId: "J".repeat(43) });
+    assert.deepEqual(forwarded, { operationId: "J".repeat(43), forceRefresh: true });
     assert.equal(calls, 1);
   } finally {
     globalThis.fetch = originalFetch;
@@ -236,6 +236,41 @@ test("broker refresh route rejects wrong-audience OIDC before touching credentia
       body: JSON.stringify({ operationId: "K".repeat(43) }),
     }), env);
     assert.equal(result.status, 401);
+    assert.equal(calls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+
+test("forced access-token refresh is rejected for every workflow except the exact auth-health workflow", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = Math.floor(Date.now() / 1000);
+  const workflowRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main";
+  const claims = { ...validClaims(now), workflow_ref: workflowRef };
+  const token = makeJwt(pair.privateKey, claims);
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const originalFetch = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => new Response(JSON.stringify({ keys: [{
+    ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key",
+  }] }), { status: 200 });
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_REFRESH_WORKFLOW_REFS: workflowRef,
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: () => "credential-id",
+      get: () => ({ fetch: async () => { calls += 1; return Response.json({}); } }),
+    },
+  };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/internal/spotify/refresh", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({ operationId: "L".repeat(43), forceRefresh: true }),
+    }), env);
+    assert.equal(result.status, 403);
     assert.equal(calls, 0);
   } finally {
     globalThis.fetch = originalFetch;
