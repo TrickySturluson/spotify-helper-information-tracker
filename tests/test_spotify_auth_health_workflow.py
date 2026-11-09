@@ -58,6 +58,8 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("retry_state(exc.retry_after)", WORKFLOW)
         self.assertIn("credential_busy", WORKFLOW)
         self.assertIn("Another SHIT workflow is currently refreshing", WORKFLOW)
+        self.assertIn("request_broker_access_token(force_refresh=True)", WORKFLOW)
+        self.assertIn("if exc.code == 401", WORKFLOW)
 
     def test_health_check_is_read_only_and_has_no_legacy_fallback(self):
         workflow = WORKFLOW.lower()
