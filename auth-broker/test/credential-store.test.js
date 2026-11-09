@@ -28,7 +28,7 @@ class MemoryStorage {
 function setup() {
   const storage = new MemoryStorage();
   const key = Buffer.alloc(32, 7).toString("base64");
-  const env = { SPOTIFY_CREDENTIAL_ENCRYPTION_KEY: key, SPOTIFY_CLIENT_ID: "client", SPOTIFY_CLIENT_SECRET: "secret" };
+  const env = { SPOTIFY_CREDENTIAL_ENCRYPTION_KEY: key, SPOTIFY_CLIENT_ID: "client" };
   return { storage, store: new SpotifyCredentialStore({ storage }, env) };
 }
 function request(path, body) {
@@ -63,6 +63,8 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     calls.push(String(url));
     if (String(url).includes("/api/token")) {
       const body = new URLSearchParams(options.body);
+      assert.equal(options.headers.Authorization, undefined);
+      assert.equal(body.get("client_id"), "client");
       const suppliedRefreshToken = body.get("refresh_token");
       assert.ok([initialToken, "rotated-refresh-token-abcdef"].includes(suppliedRefreshToken));
       return new Response(JSON.stringify({
@@ -223,7 +225,6 @@ test("a refresh reservation survives store-instance restart and blocks a second 
     const restartedStore = new SpotifyCredentialStore({ storage }, {
       SPOTIFY_CREDENTIAL_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString("base64"),
       SPOTIFY_CLIENT_ID: "client",
-      SPOTIFY_CLIENT_SECRET: "secret",
     });
     const second = await restartedStore.fetch(request("/refresh", { operationId: "G".repeat(43) }));
     assert.equal(second.status, 409);
@@ -251,22 +252,4 @@ test("a stale operation cannot block or overwrite a newer credential operation",
   assert.equal(record.status, "refreshing");
   assert.equal(record.operationId, "H".repeat(43));
   assert.equal(record.blockedReason, undefined);
-});
-
-test("missing Spotify client secret fails closed before reserving or contacting the provider", async () => {
-  const { storage, store } = setup();
-  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
-  store.env.SPOTIFY_CLIENT_SECRET = "";
-  const originalFetch = globalThis.fetch;
-  let providerCalls = 0;
-  globalThis.fetch = async () => { providerCalls += 1; throw new Error("must not contact Spotify"); };
-  try {
-    const result = await store.fetch(request("/refresh", { operationId: "M".repeat(43) }));
-    assert.equal(result.status, 503);
-    assert.equal((await result.json()).error, "provider_configuration_error");
-    assert.equal((await storage.get("credential")).status, "ready");
-    assert.equal(providerCalls, 0);
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
 });
