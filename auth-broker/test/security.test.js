@@ -153,7 +153,7 @@ test("concurrency gate allows only explicitly audited non-Spotify workflows", ()
 });
 
 
-test("mobile landing page is local, no-store and contains no third-party script", async () => {
+test("authorization landing page supports phone and desktop browsers without third-party scripts", async () => {
   const result = await handleRequest(
     new Request("https://trusted.example/"),
     { BROKER_BASE_URL: "https://trusted.example" },
@@ -162,6 +162,7 @@ test("mobile landing page is local, no-store and contains no third-party script"
   assert.equal(result.status, 200);
   assert.equal(result.headers.get("cache-control"), "no-store");
   assert.match(body, /Continue with GitHub/);
+  assert.match(body, /phone or desktop/);
   assert.doesNotMatch(body, /<script|https:\/\//i);
 });
 
