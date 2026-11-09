@@ -182,7 +182,7 @@ export class SpotifyCredentialStore {
         accountId: current.accountId,
         version: nextVersion,
         credential: encrypted,
-        lastOperationId: current.lastOperationId,
+        lastOperationId: current.lastOperationId ?? current.operationId,
         updatedAt: Date.now(),
         reauthorizedAt: Date.now(),
       });
