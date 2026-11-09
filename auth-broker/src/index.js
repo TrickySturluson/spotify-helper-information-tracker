@@ -585,7 +585,9 @@ export async function handleRequest(request, env) {
     if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
-    if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);\n\n    if (url.pathname === "/" && request.method === "GET") {
+    if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);
+
+    if (url.pathname === "/" && request.method === "GET") {
       return page("SHIT Spotify authorization", "Use this secure browser flow from a phone or desktop. Sign in with the repository owner account, then approve Spotify. This process never edits playlists.", {
         href: "/auth/github/start",
         label: "Continue with GitHub",
