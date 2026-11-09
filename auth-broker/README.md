@@ -16,6 +16,8 @@ The intended production path is:
 
 The credential store is keyed to one fixed Durable Object identity (`spotify-primary`); caller-supplied account IDs are not accepted on the refresh route. A verified short-lived access token is also encrypted in the object until expiry so multiple jobs can reuse one refresh result without racing Spotify's rotating refresh token. Concurrent callers wait for the in-flight operation and receive the cached token; a durable Retry-After cooldown prevents repeated requests after a 429. The refresh-token secret path is removed from the broker callback. There is no automatic fallback to GitHub Actions secrets or local token files.
 
+The unauthenticated `GET /health` endpoint is deliberately liveness-only and reveals no configuration. The separate `GET /ready` endpoint checks that the Worker has its credential-store binding, encryption keyring, active key version, Spotify client ID, and OIDC workflow allowlist, then asks the fixed Durable Object to import and validate its keyring. It does not read, create, or expose a stored credential. The owner-only deployment workflow runs this readiness probe after publishing the Worker and fails if the binding, migration, or encryption configuration is not usable.
+
 ## Current implementation and rollout boundary
 
 The first broker consumer is `.github/workflows/spotify-auth-health-check.yml`. Its feature-branch implementation requests OIDC with audience `shit-spotify-refresh`, calls the central broker, verifies `/v1/me`, and retains the durable commit-status latch and Retry-After behavior.
@@ -94,12 +96,7 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Verified on PR #188 head `b82acade864a7e7fea80e755215eb7baa1fb4108`:
-
-- GitHub CI is green for the exact head: Mobile Auth Broker Tests, Daily curator tests, and the public-repository secret scan.
-- Cloudflare Workers Builds completed the branch preview build for that exact SHA (`31c6a56a-708a-40d0-bb5c-aba8bdbcfe6a`).
-- The GitHub check **Verify deployed auth broker preview** passed for that SHA, including its exact-commit build wait and live non-secret `GET /health` probe.
-- The preview proves build and liveness only. It does not prove OAuth, credential encryption, Durable Object refresh behavior with real credentials, GitHub OIDC refresh, or production readiness.
+Latest completed checkpoint: PR #188 head `b82acade864a7e7fea80e755215eb7baa1fb4108` passed all GitHub CI checks and its exact-commit Cloudflare preview build plus non-secret `GET /health` probe. A new readiness gate is now implemented on the branch; its tests, deployment-workflow contract, and preview checks are running on the newer head. The new `/ready` endpoint has not yet been exercised against production and does not prove that a Spotify credential has been initialized.
 
 Still pending:
 
