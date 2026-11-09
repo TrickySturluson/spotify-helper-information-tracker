@@ -20,7 +20,7 @@ SHIT should:
 ## Verified baseline
 
 - `SPOTIFY_REFRESH_TOKEN` in repository Actions Secrets is the cloud credential source of truth.
-- The existing manager and `spotify-auth-health-check.yml` support refresh-token rotation persistence through a narrowly scoped GitHub App. The workflow now runs daily and on manual dispatch, reports redacted failure categories, and performs one bounded attempt per run. A non-secret `SPOTIFY_AUTH_STATE` repository variable is set to `pending` before Spotify is contacted; permanent blockers and interrupted runs pause scheduled checks until an owner-triggered recovery attempt succeeds.
+- The existing manager and `spotify-auth-health-check.yml` support refresh-token rotation persistence through a narrowly scoped GitHub App. The workflow now runs daily and on manual dispatch, reports redacted failure categories, and performs one bounded attempt per run. The workflow emits non-secret status markers into its Actions run logs. Scheduled checks inspect the prior run, pause on permanent blockers or interrupted attempts, and honor a stored Retry-After deadline; manual recovery attempts bypass the latch.
 - The current saved refresh token was previously rejected with `invalid_grant`. That error cannot be repaired by retrying the same credential; fresh Spotify consent is required.
 - A managed OAuth broker implementation exists on the reconciled feature work described in the roadmap. It is source code only until its PR is reviewed/merged and external provisioning and end-to-end checks are completed.
 - The owner-authored GitHub issue command path can operate SHIT remotely, but it is not the authentication system's purpose. It remains a separate control plane for authorized SHIT operations.
