@@ -252,3 +252,21 @@ test("a stale operation cannot block or overwrite a newer credential operation",
   assert.equal(record.operationId, "H".repeat(43));
   assert.equal(record.blockedReason, undefined);
 });
+
+test("missing Spotify client secret fails closed before reserving or contacting the provider", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  store.env.SPOTIFY_CLIENT_SECRET = "";
+  const originalFetch = globalThis.fetch;
+  let providerCalls = 0;
+  globalThis.fetch = async () => { providerCalls += 1; throw new Error("must not contact Spotify"); };
+  try {
+    const result = await store.fetch(request("/refresh", { operationId: "M".repeat(43) }));
+    assert.equal(result.status, 503);
+    assert.equal((await result.json()).error, "provider_configuration_error");
+    assert.equal((await storage.get("credential")).status, "ready");
+    assert.equal(providerCalls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
