@@ -91,7 +91,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [ ] Add real Cloudflare Durable Object integration tests and key-version rotation/recovery design before enabling the credential store in any environment.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
 - [x] Migrate auth-health first as the read-only OIDC canary in the feature branch; [ ] migrate the remaining eight consumers individually and preserve their operational boundaries.
-- [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
+- [x] Cache the verified short-lived access token encrypted in the central Durable Object so concurrent/multi-job consumers share one refresh result; waiters reuse the cache and provider 429 cooldowns are persisted.
 - [ ] Distinguish authentication from 429, 5xx, network, permission and configuration failures.
 - [ ] Block operations on known invalid credentials; do not silently skip the gate.
 - [ ] Preserve each workflow's existing authorization and playlist safeguards.
@@ -144,3 +144,5 @@ Finish CI/source review for the stacked PRs, validate Cloudflare Durable Object 
 - Corrected credential-store rate-limit handling: a definite Spotify 429 releases the refresh reservation, preserves the existing encrypted credential, and propagates Retry-After rather than permanently blocking the credential.
 - Updated the workflow inventory guard: auth-health is the first migrated canary; eight direct refresh-token consumers remain.
 - Source and documentation changes are on stacked draft PR #187/#188. CI is pending. No Cloudflare deployment, encryption-key provisioning, Spotify OAuth, GitHub App configuration, production secret migration, or playlist operation was performed.
+
+- Added an encrypted short-lived access-token cache to the Durable Object. Concurrent workflow callers wait for one in-flight refresh and receive the same cached access token; explicit 429 responses persist a cooldown to prevent subsequent consumers from hammering Spotify.
