@@ -44,6 +44,14 @@ The dedicated broker GitHub App must be installed only on this repository and gr
 
 **Important deployment distinction:** the repository has a Cloudflare Workers GitHub integration check for `shit-auth-broker`. Cloudflare documents that its GitHub integration deploys when a pull request is merged. Treat merging a PR that changes this Worker as a production deployment event. The Cloudflare `Workers Builds: shit-auth-broker` check must pass before merge; if it fails, inspect its Cloudflare build log and correct the build configuration first. The broker's separate owner-only GitHub Actions deployment workflow is an explicit alternative deployment path; do not assume a PR build or a successful Wrangler dry-run means production is deployed.
 
+**Cloudflare Git integration build configuration:** the Worker config lives at `auth-broker/wrangler.toml`, not the repository root. The current Cloudflare build command `npx wrangler deploy` runs from the repository root and, without an explicit config path, Wrangler treats the project as a static-assets deployment. Configure the Cloudflare Worker build command as:
+
+```sh
+npx wrangler deploy --config auth-broker/wrangler.toml
+```
+
+Keep the build's repository root at the repository root when using this command. Alternatively, set the Cloudflare build root directory to `auth-broker` and retain `npx wrangler deploy`; do not combine both path adjustments. This setting is in the Cloudflare dashboard's Worker build/deployment configuration, not in `wrangler.toml`, so a repository commit alone cannot change the already-configured dashboard command. Re-run the PR build after changing it and confirm the log invokes the config under `auth-broker/` and identifies the Worker as `shit-auth-broker`.
+
 From Cloudflare and GitHub dashboards (no local PC is required):
 
 1. Reuse the existing Cloudflare Worker named `shit-auth-broker`; do not create a duplicate. Its canonical URL is `https://shit-auth-broker.trickysturluson.workers.dev` (the owner-provided URL). The first Wrangler deployment applies the SQLite Durable Object migration to this Worker.
