@@ -140,7 +140,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
     expires_in = broker_data.get("expiresIn")
     if "refreshToken" in broker_data or not isinstance(access_token, str) or not access_token or len(access_token) > 8192 or "\n" in access_token or "\r" in access_token:
         raise BrokerTokenError("SHIT broker did not return a valid short-lived access token.")
-    if not isinstance(expires_in, int) or isinstance(expires_in, bool) or not 60 <= expires_in <= 86_400:
+    if not isinstance(expires_in, int) or isinstance(expires_in, bool) or not 120 <= expires_in <= 86_400:
         raise BrokerTokenError("SHIT broker returned an invalid access-token lifetime.")
     return access_token, expires_in
 
