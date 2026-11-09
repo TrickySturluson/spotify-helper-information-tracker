@@ -51,6 +51,14 @@ test("readiness confirms a valid keyring without requiring an initialized creden
   const unavailable = await unconfigured.fetch(new Request("https://credential-store.internal/ready"));
   assert.equal(unavailable.status, 503);
   assert.deepEqual(await unavailable.json(), { error: "credential_store_unavailable" });
+
+  const malformed = new SpotifyCredentialStore({ storage: new MemoryStorage() }, {
+    SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: JSON.stringify({ "1": Buffer.alloc(16, 7).toString("base64") }),
+    SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: "1",
+  });
+  const invalidKey = await malformed.fetch(new Request("https://credential-store.internal/ready"));
+  assert.equal(invalidKey.status, 503);
+  assert.deepEqual(await invalidKey.json(), { error: "credential_store_unavailable" });
 });
 
 test("credential initialization encrypts the token and never stores plaintext", async () => {
