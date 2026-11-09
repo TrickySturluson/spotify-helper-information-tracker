@@ -7,7 +7,9 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const WORKFLOW_DIR = path.join(ROOT, ".github", "workflows");
 const EXPECTED_DIRECT_REFRESH_ENDPOINTS = new Set();
-const EXPECTED_CONSUMERS = new Set([
+const EXPECTED_CONSUMERS = new Set();
+const EXPECTED_BROKER_CONSUMERS = new Set([
+  "spotify-auth-health-check.yml",
   "spotify-daily-live-preflight.yml",
   "spotify-daily-midnight-cycle.yml",
   "spotify-daily-feedback-observation.yml",
@@ -29,7 +31,7 @@ async function workflowFiles(directory) {
   return files;
 }
 
-test("direct refresh-token workflow inventory matches the documented eight-consumer migration backlog", async () => {
+test("no active workflow reads or persists the legacy Spotify refresh-token secret", async () => {
   const consumers = new Set();
   for (const file of await workflowFiles(WORKFLOW_DIR)) {
     const source = await readFile(file, "utf8");
@@ -49,4 +51,30 @@ test("no workflow directly calls Spotify's refresh-token endpoint", async () => 
   }
   assert.deepEqual(offenders.sort(), [...EXPECTED_DIRECT_REFRESH_ENDPOINTS].map((name) => path.join(".github", "workflows", name)).sort(),
     "Direct token endpoint callers changed. Migrate them behind the broker and update the documented baseline.");
+});
+
+test("all nine Spotify workflows use the central OIDC broker", async () => {
+  for (const filename of EXPECTED_BROKER_CONSUMERS) {
+    const source = await readFile(path.join(WORKFLOW_DIR, filename), "utf8");
+    assert.match(source, /id-token:\\s*write/, filename + " must request GitHub OIDC permission");
+    assert.ok(
+      source.includes("scripts/spotify/broker_access_token.py") ||
+      source.includes("scripts.spotify.broker_access_token"),
+      filename + " must obtain access through the broker client",
+    );
+    assert.doesNotMatch(source, /SPOTIFY_REFRESH_TOKEN|SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN|spotify-secret-writer/,
+      filename + " must not use legacy refresh-token storage");
+  }
+});
+
+test("deployment workflow pins the exact nine main-branch OIDC workflow identities", async () => {
+  const source = await readFile(path.join(WORKFLOW_DIR, "deploy-mobile-auth-broker.yml"), "utf8");
+  for (const filename of EXPECTED_BROKER_CONSUMERS) {
+    assert.ok(
+      source.includes(`/.github/workflows/${filename}@refs/heads/main`) ||
+      source.includes(`/.github/workflows/${filename}\\@refs/heads/main`),
+      "Missing exact OIDC allowlist entry for " + filename,
+    );
+  }
+  assert.match(source, /wildcards and additional workflows are forbidden/);
 });
