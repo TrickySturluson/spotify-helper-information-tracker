@@ -327,10 +327,13 @@ export async function githubAppJwt(env) {
   return `${signingInput}.${base64Url(signature)}`;
 }
 
-async function installationToken(env) {
+async function installationToken(env, setDiagnosticStage = () => {}) {
+  setDiagnosticStage("spotify_callback.github_app_jwt");
   const jwt = await githubAppJwt(env);
+  setDiagnosticStage("spotify_callback.github_installation_lookup");
   const installation = await githubApi(`/repos/${OWNER}/${REPOSITORY}/installation`, jwt);
   if (!installation?.id) throw new BrokerError("GitHub App is not installed on the SHIT repository.");
+  setDiagnosticStage("spotify_callback.github_installation_token_creation");
   const token = await githubApi(
     `/app/installations/${installation.id}/access_tokens`,
     jwt,
@@ -477,20 +480,25 @@ async function githubLoginCallback(request, env, url) {
   });
 }
 
-async function spotifyCallback(request, env, url) {
+async function spotifyCallback(request, env, url, setDiagnosticStage = () => {}) {
+  setDiagnosticStage("spotify_callback.session_lookup");
   const cookies = parseCookies(request.headers.get("Cookie"));
   const session = await getSession(request, env);
+  setDiagnosticStage("spotify_callback.state_validation");
   const state = url.searchParams.get("state") || "";
   const code = url.searchParams.get("code") || "";
   if (!session || !state || state !== cookies["__Host-shit_spotify_state"] || !code) {
     throw new BrokerError("Spotify authorization could not be verified. Start again.");
   }
+  setDiagnosticStage("spotify_callback.state_consumption");
   const key = `oauth:spotify-state:${state}`;
   const activeKey = `oauth:spotify-active:${session.id}`;
   const stateData = await stateConsumeSpotify(env, key, activeKey, session.id, state);
   if (!stateData) throw new BrokerError("Spotify authorization expired, was replayed, or was superseded. Start again.");
-  const githubToken = await installationToken(env);
+  const githubToken = await installationToken(env, setDiagnosticStage);
+  setDiagnosticStage("spotify_callback.concurrent_workflow_check");
   await assertNoConcurrentSpotifyJobs(githubToken);
+  setDiagnosticStage("spotify_callback.spotify_code_exchange");
   const tokenData = await exchangeForm("https://accounts.spotify.com/api/token", {
     client_id: env.SPOTIFY_CLIENT_ID,
     grant_type: "authorization_code",
@@ -498,16 +506,21 @@ async function spotifyCallback(request, env, url) {
     redirect_uri: env.SPOTIFY_REDIRECT_URI,
     code_verifier: stateData.verifier,
   });
+  setDiagnosticStage("spotify_callback.scope_validation");
   if (!hasRequiredScopes(tokenData.scope)) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
+  setDiagnosticStage("spotify_callback.spotify_identity_verification");
   const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
   // Hand the long-lived credential directly to the encrypted Durable Object.
   // It is never written to a GitHub Actions secret or returned to the browser.
+  setDiagnosticStage("spotify_callback.central_credential_write");
   await authorizeCentralCredential(env, tokenData.refresh_token, spotifyIdentity.id);
+  setDiagnosticStage("spotify_callback.health_workflow_dispatch");
   const verificationStarted = await dispatchAuthHealthCheck(githubToken);
   // Keep the callback URL (which contains a one-time authorization code) out
   // of the final browser address bar. Store only the non-secret result summary.
+  setDiagnosticStage("spotify_callback.completion_state_storage");
   const resultId = randomValue(24);
   try {
     await statePut(env, `oauth:result:${resultId}`, { spotifyIdentity, verificationStarted }, 120);
@@ -522,7 +535,9 @@ async function spotifyCallback(request, env, url) {
   }
   // The session contains no provider credential and expires automatically.
   // Cleanup is best-effort because the browser cookie is cleared on this response.
+  setDiagnosticStage("spotify_callback.session_cleanup");
   try { await stateDelete(env, `oauth:session:${session.id}`); } catch {}
+  setDiagnosticStage("spotify_callback.completion_redirect");
   return redirect(new URL(`/complete?result=${resultId}`, env.BROKER_BASE_URL).toString());
 }
 
@@ -720,9 +735,11 @@ export async function handleRequest(request, env) {
     }
 
     if (url.pathname === "/spotify/callback" && request.method === "GET") {
+      diagnosticStage = "spotify_callback.rate_limit";
       await rateLimit(request, env, "spotify-callback");
+      diagnosticStage = "spotify_callback.configuration";
       requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_PRIVATE_KEY"]);
-      const result = await spotifyCallback(request, env, url);
+      const result = await spotifyCallback(request, env, url, (stage) => { diagnosticStage = stage; });
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_spotify_state"));
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_session"));
       return result;
