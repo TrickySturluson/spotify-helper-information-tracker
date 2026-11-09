@@ -322,3 +322,59 @@ test("missing historical encryption key fails closed without contacting Spotify"
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("owner reauthorization restores a blocked credential only for the same verified Spotify account", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => String(url).includes("/api/token")
+    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 })
+    : new Response(JSON.stringify({ id: "wrong-account" }), { status: 200 });
+  try {
+    const failed = await store.fetch(request("/refresh", { operationId: "P".repeat(43) }));
+    assert.equal(failed.status, 409);
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+    const wrongAccount = await store.fetch(request("/reauthorize", {
+      accountId: "differentspotifyuser",
+      refreshToken: "new-owner-approved-refresh-token-123",
+    }));
+    assert.equal(wrongAccount.status, 409);
+    assert.equal((await wrongAccount.json()).error, "spotify_account_change_requires_owner_review");
+    const restored = await store.fetch(request("/reauthorize", {
+      accountId: "spotifyuser123",
+      refreshToken: "new-owner-approved-refresh-token-123",
+    }));
+    assert.equal(restored.status, 200);
+    assert.deepEqual(await restored.json(), { reauthorized: true, version: 2 });
+    const record = await storage.get("credential");
+    assert.equal(record.status, "ready");
+    assert.equal(record.accountId, "spotifyuser123");
+    assert.equal(record.version, 2);
+    assert.equal(record.lastOperationId, "P".repeat(43));
+    assert.equal(JSON.stringify(record).includes("new-owner-approved-refresh-token-123"), false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("owner reauthorization cannot overwrite a ready or in-progress credential", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const ready = await store.fetch(request("/reauthorize", {
+    accountId: "spotifyuser123",
+    refreshToken: "new-owner-approved-refresh-token-123",
+  }));
+  assert.equal(ready.status, 409);
+  await storage.put("credential", {
+    ...(await storage.get("credential")),
+    status: "refreshing",
+    operationId: "Q".repeat(43),
+  });
+  const refreshing = await store.fetch(request("/reauthorize", {
+    accountId: "spotifyuser123",
+    refreshToken: "new-owner-approved-refresh-token-123",
+  }));
+  assert.equal(refreshing.status, 409);
+  assert.equal((await storage.get("credential")).operationId, "Q".repeat(43));
+});
