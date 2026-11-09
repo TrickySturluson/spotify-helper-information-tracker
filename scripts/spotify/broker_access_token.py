@@ -19,7 +19,9 @@ OIDC_AUDIENCE = "shit-spotify-refresh"
 
 
 class BrokerTokenError(RuntimeError):
-    pass
+    def __init__(self, message, category="broker_error"):
+        super().__init__(message)
+        self.category = category
 
 
 def _read_json(opener, request: urllib.request.Request) -> dict:
@@ -32,7 +34,26 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
             if status < 200 or status >= 300:
                 raise BrokerTokenError("Authentication broker request failed.")
     except urllib.error.HTTPError as exc:
-        raise BrokerTokenError("Authentication broker request failed.") from exc
+        category = "broker_error"
+        try:
+            detail = json.loads(exc.read(MAX_RESPONSE_BYTES).decode("utf-8")).get("error")
+        except (ValueError, UnicodeDecodeError, AttributeError):
+            detail = None
+        if detail in {
+            "reauthorization_required",
+            "credential_blocked",
+            "operation_outcome_uncertain_reauthorization_required",
+            "identity_mismatch",
+            "credential_commit_uncertain_reauthorization_required",
+        }:
+            category = "reauthorization_required"
+            message = "Spotify owner reauthorization is required."
+        elif detail == "provider_rate_limited":
+            category = "rate_limited"
+            message = "Spotify authentication is rate-limited; retry after the provider cooldown."
+        else:
+            message = "Authentication broker request failed."
+        raise BrokerTokenError(message, category=category) from None
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         raise BrokerTokenError("Authentication broker is unavailable.") from exc
     try:
