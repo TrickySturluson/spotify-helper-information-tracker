@@ -89,7 +89,7 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
   });
 
   it("shares one encrypted access token across sequential SQLite Durable Object callers", async () => {
-    const stub = newStore();
+    const { stub } = newStore("cache");
     await initialize(stub);
     let tokenCalls = 0;
     network.use(...successfulSpotifyHandlers({ onTokenRequest: () => { tokenCalls += 1; } }));
