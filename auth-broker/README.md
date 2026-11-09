@@ -44,6 +44,8 @@ Non-secret GitHub repository Actions variables injected by the deployment workfl
 - `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION` — positive integer
 - `SPOTIFY_REFRESH_WORKFLOW_REFS` — exact comma-separated allowlist of all nine migrated main-branch workflow refs: auth-health, Daily preflight, Daily midnight cycle, Daily feedback observation, Daily snapshot refresh, Reference Library, Playlist Manager, Great Migration, and `update.yml`. The deployment workflow rejects wildcards, missing refs, and extra refs.
 
+The Spotify integration uses Authorization Code with PKCE as a public client. Do not configure or require a Spotify client secret: refresh requests send `client_id` in the form body and do not use HTTP Basic authentication, matching Spotify's PKCE refresh contract.
+
 Cloudflare Worker secrets (never commit or copy into GitHub Actions):
 
 - `GITHUB_APP_CLIENT_SECRET`
