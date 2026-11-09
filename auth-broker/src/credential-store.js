@@ -293,7 +293,7 @@ export class SpotifyCredentialStore {
         typeof tokenData.access_token !== "string" ||
         !tokenData.access_token ||
         tokenData.access_token.length > 8192 ||
-        /[\\r\\n]/.test(tokenData.access_token) ||
+        /[\r\n]/.test(tokenData.access_token) ||
         !Number.isSafeInteger(tokenData.expires_in) ||
         tokenData.expires_in < 60 ||
         tokenData.expires_in > 86_400
