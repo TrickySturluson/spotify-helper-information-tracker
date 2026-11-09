@@ -289,7 +289,7 @@ test("refresh re-encrypts the credential with the active key version", async () 
     : new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   try {
     const first = await store.fetch(request("/refresh", { operationId: "M".repeat(43) }));
-    assert.equal(first.status, 200);
+    assert.equal(first.status, 200, JSON.stringify(await first.clone().json()));
     assert.equal((await storage.get("credential")).credential.keyVersion, 2);
     // Once the successful commit is encrypted under v2, v1 can be removed.
     store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({ "2": keyV2 });
