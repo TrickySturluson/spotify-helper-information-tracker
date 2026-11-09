@@ -538,6 +538,7 @@ async function handleRefreshLock(request, env, url) {
   if (!env.SPOTIFY_REFRESH_LEASE || !String(env.REFRESH_LOCK_WORKFLOW_REFS || "").trim()) {
     return response(JSON.stringify({ error: "lock_unavailable" }), 503, { "Content-Type": "application/json" });
   }
+  await rateLimit(request, env, "refresh-lock");
   const authorization = request.headers.get("Authorization") || "";
   const match = authorization.match(/^Bearer ([A-Za-z0-9._-]+)$/);
   if (!match) return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
