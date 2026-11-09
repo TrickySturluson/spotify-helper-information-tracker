@@ -57,7 +57,7 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("86400", WORKFLOW)
         self.assertIn("retry_state(exc.retry_after)", WORKFLOW)
         self.assertIn("credential_busy", WORKFLOW)
-        self.assertIn("Another SHIT workflow is currently refreshing", WORKFLOW)
+        self.assertIn("Another SHIT workflow is currently refreshing", Path("scripts/spotify/broker_access_token.py").read_text(encoding="utf-8"))
         self.assertIn("request_broker_access_token(force_refresh=True)", WORKFLOW)
         self.assertIn("if exc.code == 401", WORKFLOW)
 
@@ -67,7 +67,9 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertNotIn("playlist-modify", workflow)
         self.assertNotIn("assistant_data/", workflow)
         self.assertIn("never modifies playlists, library data, or repository contents", workflow)
-        self.assertNotIn("legacy refresh-token fallback", workflow)
+        self.assertNotIn("SPOTIFY_REFRESH_TOKEN", workflow)
+        self.assertNotIn("refresh_token", embedded_health_script())
+        self.assertNotIn("accounts.spotify.com/api/token", workflow)
 
 
 if __name__ == "__main__":
