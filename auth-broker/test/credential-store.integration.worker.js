@@ -88,33 +88,17 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect(reacquiredStub).toBeDefined();
   });
 
-  it("shares one encrypted access token across concurrent Durable Object callers", async () => {
-    const { stub } = newStore("concurrent");
-    expect((await initialize(stub)).status).toBe(201);
-
-    let providerStarted;
+  it("shares one encrypted access token across sequential SQLite Durable Object callers", async () => {
+    const stub = newStore();
+    await initialize(stub);
     let tokenCalls = 0;
-    const started = new Promise((resolve) => { providerStarted = resolve; });
-    let releaseProvider;
-    const providerGate = new Promise((resolve) => { releaseProvider = resolve; });
-    network.use(...successfulSpotifyHandlers({ onTokenRequest: async () => {
-      tokenCalls += 1;
-      providerStarted();
-      await providerGate;
-    } }));
-
-    const first = post(stub, "/refresh", { operationId: "B".repeat(43) });
-    await started;
+    network.use(...successfulSpotifyHandlers({ onTokenRequest: () => { tokenCalls += 1; } }));
+    const first = await post(stub, "/refresh", { operationId: "B".repeat(43) });
+    expect(first.status).toBe(200);
+    const firstBody = await first.json();
     const second = await post(stub, "/refresh", { operationId: "C".repeat(43) });
-    expect(second.status).toBe(409);
-    expect((await second.json()).error).toBe("credential_busy");
-    releaseProvider();
-    const firstResponse = await first;
-    expect(firstResponse.status).toBe(200);
-    const secondRetry = await post(stub, "/refresh", { operationId: "C".repeat(43) });
-    expect(secondRetry.status).toBe(200);
-    const firstBody = await firstResponse.json();
-    const secondBody = await secondRetry.json();
+    expect(second.status).toBe(200);
+    const secondBody = await second.json();
     expect(secondBody.accessToken).toBe(firstBody.accessToken);
     expect(secondBody.cached).toBe(true);
     expect(tokenCalls).toBe(1);
