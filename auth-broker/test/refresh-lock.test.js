@@ -105,8 +105,8 @@ test("lease acquisition is exclusive and returns a monotonically increasing fenc
   const firstId = "A".repeat(43);
   const secondId = "B".repeat(43);
   const [first, second] = await Promise.all([
-    lease.fetch(post("/acquire", { leaseId: firstId, generation: 0 })),
-    lease.fetch(post("/acquire", { leaseId: secondId, generation: 0 })),
+    lease.fetch(post("/acquire", { leaseId: firstId, generation: 0, owner: "wf:123:1" })),
+    lease.fetch(post("/acquire", { leaseId: secondId, generation: 0, owner: "wf:456:1" })),
   ]);
   assert.deepEqual([first.status, second.status].sort(), [200, 409]);
   const winner = first.status === 200 ? first : second;
@@ -122,14 +122,14 @@ test("stale owners cannot renew or release a successor lease", async () => {
   const lease = new SpotifyRefreshLease(ctx);
   const firstId = "A".repeat(43);
   const secondId = "B".repeat(43);
-  const first = await (await lease.fetch(post("/acquire", { leaseId: firstId, generation: 0 }))).json();
-  const stale = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation + 1 }));
+  const first = await (await lease.fetch(post("/acquire", { leaseId: firstId, generation: 0, owner: "wf:123:1" }))).json();
+  const stale = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation + 1, owner: "wf:123:1" }));
   assert.equal(stale.status, 409);
-  const release = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation }));
+  const release = await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation, owner: "wf:123:1" }));
   assert.equal(release.status, 200);
-  const second = await (await lease.fetch(post("/acquire", { leaseId: secondId, generation: 0 }))).json();
+  const second = await (await lease.fetch(post("/acquire", { leaseId: secondId, generation: 0, owner: "wf:456:1" }))).json();
   assert.equal(second.generation, 2);
-  assert.equal((await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation }))).status, 409);
+  assert.equal((await lease.fetch(post("/release", { leaseId: firstId, generation: first.generation, owner: "wf:123:1" }))).status, 409);
   assert.equal((await ctx.storage.get("lease")).leaseId, secondId);
 });
 
@@ -137,11 +137,11 @@ test("lease renewal extends expiry and malformed requests fail closed", async ()
   const ctx = makeStore();
   const lease = new SpotifyRefreshLease(ctx);
   const id = "C".repeat(43);
-  const acquired = await (await lease.fetch(post("/acquire", { leaseId: id, generation: 0 }))).json();
-  const renewed = await lease.fetch(post("/renew", { leaseId: id, generation: acquired.generation }));
+  const acquired = await (await lease.fetch(post("/acquire", { leaseId: id, generation: 0, owner: "wf:789:1" }))).json();
+  const renewed = await lease.fetch(post("/renew", { leaseId: id, generation: acquired.generation, owner: "wf:789:1" }));
   assert.equal(renewed.status, 200);
   assert.equal((await renewed.json()).ok, true);
   assert.equal(REFRESH_LEASE_TTL_MS, 120_000);
-  assert.equal((await lease.fetch(post("/acquire", { leaseId: "short", generation: 0 }))).status, 400);
+  assert.equal((await lease.fetch(post("/acquire", { leaseId: "short", generation: 0, owner: "wf:789:1" }))).status, 400);
   assert.equal((await lease.fetch(new Request("https://lease.internal/acquire", { method: "GET" }))).status, 404);
 });
