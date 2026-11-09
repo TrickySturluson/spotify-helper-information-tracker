@@ -87,9 +87,12 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     assert.equal(record.version, 2);
     assert.equal(JSON.stringify(record).includes("rotated-refresh-token-abcdef"), false);
     assert.deepEqual(calls, ["https://accounts.spotify.com/api/token", "https://api.spotify.com/v1/me"]);
-    const replay = await store.fetch(request("/refresh", { operationId: "B".repeat(43) }));
-    assert.equal(replay.status, 200);
-    assert.equal((await replay.json()).credentialVersion, 3);
+    const replay = await store.fetch(request("/refresh", { operationId }));
+    assert.equal(replay.status, 409);
+    assert.equal((await replay.json()).error, "operation_already_committed");
+    const next = await store.fetch(request("/refresh", { operationId: "B".repeat(43) }));
+    assert.equal(next.status, 200);
+    assert.equal((await next.json()).credentialVersion, 3);
   } finally {
     globalThis.fetch = originalFetch;
   }
