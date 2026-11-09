@@ -115,8 +115,7 @@ jobs:
 #           completeness for priority/audition playlists, updates removal feedback,
 #           audits project data, and commits refreshed assistant_data/spotify plus
 #           related Library/removal state.
-# Credentials: Spotify client/refresh token and narrowly scoped GitHub App token for
-#              persisting rotated refresh-token secrets.
+# Credentials: Short-lived Spotify access tokens issued by the central OIDC broker.
 # Safety: Serialized by spotify-reference-library; Spotify access is read-only.
 #         Incomplete/ambiguous priority snapshots fail closed instead of replacing good data.
 # Related: scripts/spotify/spotify_reference_library.py, track_playlist_removals.py,
