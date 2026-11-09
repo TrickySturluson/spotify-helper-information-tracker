@@ -543,3 +543,26 @@ test("invalid Spotify access-token lifetime blocks an uncertain refresh response
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("failed forced refresh discards the cached access token already rejected by Spotify", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    if (String(url).includes("/api/token")) {
+      return new Response(JSON.stringify({ error: "invalid_client" }), { status: 401 });
+    }
+    throw new Error("unexpected identity request");
+  };
+  try {
+    const failed = await store.fetch(request("/refresh", { operationId: "X".repeat(43) }));
+    assert.equal(failed.status, 503);
+    const record = await storage.get("credential");
+    assert.equal(record.status, "ready");
+    assert.equal(record.accessToken, undefined);
+    assert.equal(record.accessTokenExpiresAt, undefined);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
