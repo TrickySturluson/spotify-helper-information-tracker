@@ -93,6 +93,9 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     const replay = await store.fetch(request("/refresh", { operationId: operation }));
     assert.equal(replay.status, 409);
     assert.equal((await replay.json()).error, "operation_already_committed");
+    const expired = await storage.get("credential");
+    expired.accessTokenExpiresAt = Date.now() - 1000;
+    await storage.put("credential", expired);
     const next = await store.fetch(request("/refresh", { operationId: "B".repeat(43) }));
     assert.equal(next.status, 200);
     assert.equal((await next.json()).credentialVersion, 3);
@@ -302,6 +305,9 @@ test("refresh re-encrypts the credential with the active key version", async () 
     // Once the successful commit is encrypted under v2, v1 can be removed.
     store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({ "2": keyV2 });
     store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION = "2";
+    const expired = await storage.get("credential");
+    expired.accessTokenExpiresAt = Date.now() - 1000;
+    await storage.put("credential", expired);
     const second = await store.fetch(request("/refresh", { operationId: "N".repeat(43) }));
     assert.equal(second.status, 200);
     assert.equal((await storage.get("credential")).credential.keyVersion, 2);
