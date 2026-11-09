@@ -128,7 +128,7 @@ export class SpotifyCredentialStore {
   async fetch(request) {
     if (request.method !== "POST") return json({ error: "not_found" }, 404);
     const path = new URL(request.url).pathname;
-    if (path !== "/initialize" && path !== "/refresh") return json({ error: "not_found" }, 404);
+    if (path !== "/initialize" && path !== "/refresh" && path !== "/reauthorize") return json({ error: "not_found" }, 404);
     if (!String(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEY || "")) {
       return json({ error: "credential_store_unavailable" }, 503);
     }
@@ -139,6 +139,7 @@ export class SpotifyCredentialStore {
     try {
       const keyring = await importEncryptionKeyring(this.env);
       if (path === "/initialize") return await this.initialize(input, keyring);
+      if (path === "/reauthorize") return await this.reauthorize(input, keyring);
       return await this.refresh(input, keyring);
     } catch (error) {
       const message = error instanceof CredentialStoreError ? error.message : "Credential operation failed safely.";
@@ -165,6 +166,35 @@ export class SpotifyCredentialStore {
       return true;
     });
     return outcome ? json({ initialized: true, version: 1 }, 201) : json({ error: "credential_already_exists" }, 409);
+  }
+
+  async reauthorize(input, keyring) {
+    if (typeof input.accountId !== "string" || !/^[A-Za-z0-9]{1,128}$/.test(input.accountId)) {
+      return json({ error: "verified_account_required" }, 400);
+    }
+    const outcome = await this.ctx.storage.transaction(async (txn) => {
+      const current = await txn.get("credential");
+      if (!current) return { error: "credential_missing" };
+      if (current.status !== "reauthorization_required") return { error: "credential_not_eligible_for_reauthorization" };
+      if (current.accountId !== input.accountId) return { error: "spotify_account_change_requires_owner_review" };
+      const nextVersion = current.version + 1;
+      const encrypted = await encryptRefreshToken(
+        input.refreshToken, keyring.activeKey, nextVersion, current.accountId, keyring.activeVersion,
+      );
+      await txn.put("credential", {
+        status: "ready",
+        accountId: current.accountId,
+        version: nextVersion,
+        credential: encrypted,
+        lastOperationId: current.lastOperationId,
+        updatedAt: Date.now(),
+        reauthorizedAt: Date.now(),
+      });
+      return { version: nextVersion };
+    });
+    return outcome.error
+      ? json({ error: outcome.error }, 409)
+      : json({ reauthorized: true, version: outcome.version });
   }
 
   async refresh(input, keyring) {
