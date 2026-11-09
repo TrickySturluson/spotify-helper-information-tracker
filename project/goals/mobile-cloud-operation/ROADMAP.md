@@ -56,7 +56,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Emit structured redacted status categories without provider response bodies or credentials.
 - [x] Persist non-secret health state in the `spotify-auth-health` commit status, with GitHub commit/run timestamps and evidence.
 - [x] Ensure one attempt per run: no retry for `invalid_grant`; report Retry-After for 429; classify transient failures without retry loops.
-- [x] Add a fail-closed run-history latch: scheduled checks skip permanent blockers/interrupted attempts, respect Retry-After deadlines and resume after a deliberate manual recovery attempt.
+- [x] Add a fail-closed GitHub commit-status latch: scheduled checks skip permanent blockers/interrupted attempts, respect Retry-After deadlines and resume after a deliberate manual recovery attempt. Manual dispatch bypasses permanent blockers only.
 - [x] Add an owner-facing reauthorization action to the failed health-check summary: link to the HTTPS broker root when configured, otherwise link to the deployment runbook. GitHub's normal workflow-failure notification remains the alert channel.
 - [ ] Ensure monitoring cannot trigger playlist operations or generated-data writes.
 
@@ -110,7 +110,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Known risks and constraints
 
 - A refresh token rejected with `invalid_grant` cannot be revived by refreshing again; owner consent is mandatory.
-- A scheduled monitor against an invalid credential must report reauthorization-required; subsequent scheduled runs inspect the prior run's status marker and skip until an explicit owner-triggered recovery attempt succeeds. The `pending` marker also blocks later scheduled runs if a runner exits before persisting its result. If the commit-status API cannot be read or the pending/result status cannot be written, the workflow fails closed before it can proceed or leaves `pending` to block the next scheduled run.
+- A scheduled monitor against an invalid credential must report reauthorization-required; subsequent scheduled runs inspect the current commit's `spotify-auth-health` status and skip until an explicit owner-triggered recovery attempt succeeds. The `pending` status also blocks later scheduled runs if a runner exits before persisting its result. If the commit-status API cannot be read or the pending/result status cannot be written, the workflow fails closed before it can proceed or leaves `pending` to block the next scheduled run.
 - Multiple concurrent refreshes can race when Spotify rotates refresh tokens. Single-flight/concurrency coordination is a prerequisite for broad preflight rollout.
 - The broker's active-workflow checks reduce but do not eliminate races with newly started workflows; complete live testing in a quiet maintenance window.
 - Cloudflare quotas/storage billing apply; no zero-cost/unlimited assumption.
@@ -123,4 +123,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Add regression tests and workflow-level verification for the run-history latch and scheduled skip/Retry-After behavior, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
+Add regression tests and workflow-level verification for the commit-status latch and scheduled skip/Retry-After behavior, then design the shared auth preflight before rolling the gate out to other Spotify workflows.
