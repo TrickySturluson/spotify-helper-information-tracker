@@ -652,6 +652,38 @@ export async function handleRequest(request, env) {
         { "Content-Type": "application/json; charset=utf-8" },
       );
     }
+    if (url.pathname === "/ready" && request.method === "GET") {
+      if (
+        !env.SPOTIFY_CREDENTIAL_STORE ||
+        !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
+        !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim() ||
+        !String(env.SPOTIFY_CLIENT_ID || "").trim()
+      ) {
+        return response(
+          JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
+          503,
+          { "Content-Type": "application/json; charset=utf-8" },
+        );
+      }
+      try {
+        const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
+        const probe = await stub.fetch("https://spotify-credential.internal/ready");
+        if (!probe.ok) throw new Error("credential store unavailable");
+        const result = await probe.json();
+        if (result.status !== "ready") throw new Error("credential store unavailable");
+        return response(
+          JSON.stringify({ status: "ready", service: "shit-auth-broker" }),
+          200,
+          { "Content-Type": "application/json; charset=utf-8" },
+        );
+      } catch {
+        return response(
+          JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
+          503,
+          { "Content-Type": "application/json; charset=utf-8" },
+        );
+      }
+    }
     diagnosticStage = "broker.base_url_presence";
     requireEnv(env, ["BROKER_BASE_URL"]);
     diagnosticStage = "broker.base_url_parse";
