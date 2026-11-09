@@ -1,4 +1,4 @@
-# Mobile Cloud Operation & Spotify Reauthorization — Action Log
+# Authentication Management & Recovery — Action Log
 
 ## 2026-11-08 — Initial baseline audit and architecture
 
