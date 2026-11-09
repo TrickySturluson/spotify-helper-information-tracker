@@ -107,15 +107,15 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - **Authentication Health Monitor:** scheduled and on-demand read-only verification, token refresh, secure rotation persistence, structured diagnosis and durable non-secret status.
 - **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object; dedicated GitHub App with only Actions: write and Secrets: write.
 - **Recovery Coordinator:** routes each failure category to bounded automatic repair, deferred retry, configuration correction or owner consent.
-- **Central Auth Gate:** shared preflight dependency for Spotify workflows. Design must account for concurrent Actions jobs and rotating refresh tokens; no naive per-job refresh fan-out.
+- **Central Auth Gate:** shared preflight dependency for Spotify workflows. The broker must become the sole refresh-token holder and refresher; workflows receive only short-lived access tokens after OIDC authorization. No per-job refresh fan-out or direct refresh-token secret reads.
 - **Control plane separation:** GitHub issue commands are a separate remote operations interface. They are not the purpose of this auth workstream and must never bypass manager controls.
 
 ## Known risks and constraints
 
 - A refresh token rejected with `invalid_grant` cannot be revived by refreshing again; owner consent is mandatory.
 - A scheduled monitor against an invalid credential must report reauthorization-required; subsequent scheduled runs inspect the fixed anchor commit's `spotify-auth-health` status and skip until an explicit owner-triggered recovery attempt succeeds. The `pending` status also blocks later scheduled runs if a runner exits before persisting its result. If the commit-status API cannot be read or the pending/result status cannot be written, the workflow fails closed before it can proceed or leaves `pending` to block the next scheduled run.
-- Multiple concurrent refreshes can race when Spotify rotates refresh tokens. Single-flight/concurrency coordination is a prerequisite for broad preflight rollout.
-- The broker's active-workflow checks reduce but do not eliminate races with newly started workflows; complete live testing in a quiet maintenance window.
+- Multiple concurrent refreshes can race when Spotify rotates refresh tokens. The OIDC Durable Object lease prototype does not fence GitHub Secrets writes and is not sufficient for production. Broker-controlled encrypted credential persistence is the recommended end state.
+- The broker's active-workflow check is advisory only and must not be represented as a global lock. Replace it with the broker-owned refresh/persistence critical section before production rollout.
 - Cloudflare quotas/storage billing apply; no zero-cost/unlimited assumption.
 - GitHub App private key belongs only in the broker's managed secret store. The broker App remains separate from the existing manager secret-writer App.
 - No external account, app, secret, redirect URI or playlist may be changed without the required user-side setup/consent.
@@ -126,4 +126,4 @@ Complete only when SHIT can monitor authentication, automatically refresh and pe
 
 ## Next action
 
-Implement the separately specified OIDC-authenticated Durable Object lease coordinator and concurrency/fencing tests. Do not roll out shared auth preflight until all nine refresh-token consumers use the lock and the inventory test passes.
+Design and implement the broker-owned encrypted credential store and OIDC-authorized refresh operation described in `BROKER_CONTROLLED_REFRESH.md`. Keep the lease coordinator isolated unless it has a separately justified role. Migrate all nine consumers only after operation fencing, concurrency tests, and the no-direct-refresh-token inventory test pass.
