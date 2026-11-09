@@ -87,6 +87,8 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     assert.equal(record.status, "ready");
     assert.equal(record.version, 2);
     assert.equal(JSON.stringify(record).includes("rotated-refresh-token-abcdef"), false);
+    assert.equal(JSON.stringify(record).includes("short-lived-access-token-one"), false);
+    assert.ok(record.accessToken?.ciphertext);
     assert.deepEqual(calls, ["https://accounts.spotify.com/api/token", "https://api.spotify.com/v1/me"]);
     const replay = await store.fetch(request("/refresh", { operationId: operation }));
     assert.equal(replay.status, 409);
@@ -158,11 +160,15 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
   try {
     const first = store.fetch(request("/refresh", { operationId: operation }));
     await started;
-    const second = await store.fetch(request("/refresh", { operationId: "D".repeat(43) }));
-    assert.equal(second.status, 409);
-    assert.equal((await second.json()).error, "credential_busy");
+    const second = store.fetch(request("/refresh", { operationId: "D".repeat(43) }));
     releaseProvider();
-    assert.equal((await first).status, 200);
+    const [firstResponse, secondResponse] = await Promise.all([first, second]);
+    assert.equal(firstResponse.status, 200);
+    assert.equal(secondResponse.status, 200);
+    const firstBody = await firstResponse.json();
+    const secondBody = await secondResponse.json();
+    assert.equal(secondBody.accessToken, firstBody.accessToken);
+    assert.equal(secondBody.cached, true);
   } finally {
     releaseProvider();
     globalThis.fetch = originalFetch;
