@@ -168,6 +168,27 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
   }
 });
 
+
+test("tampered ciphertext is rejected and blocks the credential", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const record = await storage.get("credential");
+  record.credential.ciphertext = record.credential.ciphertext.slice(0, -4) + "AAAA";
+  await storage.put("credential", record);
+  const originalFetch = globalThis.fetch;
+  let providerCalled = false;
+  globalThis.fetch = async () => { providerCalled = true; throw new Error("must not call provider"); };
+  try {
+    const response = await store.fetch(request("/refresh", { operationId: "E".repeat(43) }));
+    assert.equal(response.status, 409);
+    assert.equal((await response.json()).error, "Stored Spotify credential could not be authenticated; reauthorization is required.");
+    assert.equal(providerCalled, false);
+    assert.equal((await storage.get("credential")).status, "reauthorization_required");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("malformed requests and missing encryption configuration fail closed", async () => {
   const { store } = setup();
   assert.equal((await store.fetch(new Request("https://x/refresh", { method: "GET" }))).status, 404);
