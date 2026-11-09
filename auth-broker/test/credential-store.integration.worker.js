@@ -65,7 +65,8 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect(initialRecord.credential.keyVersion).toBe(1);
     expect(JSON.stringify(initialRecord)).not.toContain(INITIAL_REFRESH);
 
-    network.use(...successfulSpotifyHandlers());
+    let tokenCalls = 0;
+    network.use(...successfulSpotifyHandlers({ onTokenRequest: () => { tokenCalls += 1; } }));
     const refreshed = await post(stub, "/refresh", { operationId: "A".repeat(43) });
     expect(refreshed.status).toBe(200);
     const result = await refreshed.json();
@@ -79,10 +80,15 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
     expect(finalRecord.version).toBe(2);
     expect(finalRecord.credential.keyVersion).toBe(1);
     expect(JSON.stringify(finalRecord)).not.toContain(ROTATED_REFRESH);
+    expect(JSON.stringify(finalRecord)).not.toContain("short-lived-integration-access-token");
+    const cached = await post(reacquiredStub, "/refresh", { operationId: "Z".repeat(43) });
+    expect(cached.status).toBe(200);
+    expect((await cached.json()).cached).toBe(true);
+    expect(tokenCalls).toBe(1);
     expect(reacquiredStub).toBeDefined();
   });
 
-  it("uses the SQLite transaction to reject a concurrent refresh reservation", async () => {
+  it("shares one encrypted access token across concurrent Durable Object callers", async () => {
     const { stub } = newStore("concurrent");
     expect((await initialize(stub)).status).toBe(201);
 
@@ -97,11 +103,15 @@ describe("SpotifyCredentialStore on the Cloudflare Workers SQLite runtime", () =
 
     const first = post(stub, "/refresh", { operationId: "B".repeat(43) });
     await started;
-    const second = await post(stub, "/refresh", { operationId: "C".repeat(43) });
-    expect(second.status).toBe(409);
-    expect((await second.json()).error).toBe("credential_busy");
+    const second = post(stub, "/refresh", { operationId: "C".repeat(43) });
     releaseProvider();
-    expect((await first).status).toBe(200);
+    const [firstResponse, secondResponse] = await Promise.all([first, second]);
+    expect(firstResponse.status).toBe(200);
+    expect(secondResponse.status).toBe(200);
+    const firstBody = await firstResponse.json();
+    const secondBody = await secondResponse.json();
+    expect(secondBody.accessToken).toBe(firstBody.accessToken);
+    expect(secondBody.cached).toBe(true);
   });
 
   it("keeps an ambiguous refresh blocked across a newly acquired Durable Object stub", async () => {
