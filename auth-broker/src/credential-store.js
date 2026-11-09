@@ -140,6 +140,9 @@ export class SpotifyCredentialStore {
   }
 
   async refresh(input, key) {
+    if (!String(this.env.SPOTIFY_CLIENT_ID || "").trim() || !String(this.env.SPOTIFY_CLIENT_SECRET || "").trim()) {
+      return json({ error: "provider_configuration_error" }, 503);
+    }
     if (typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
       return json({ error: "invalid_operation" }, 400);
     }
