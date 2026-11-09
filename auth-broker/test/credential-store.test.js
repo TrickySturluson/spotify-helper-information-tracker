@@ -141,6 +141,9 @@ test("ambiguous provider failure fails closed and forbids retry with old refresh
     const record = await storage.get("credential");
     assert.equal(record.status, "reauthorization_required");
     assert.equal(record.version, 1);
+    const sameOperationRetry = await store.fetch(request("/refresh", { operationId: operation }));
+    assert.equal(sameOperationRetry.status, 409);
+    assert.equal((await sameOperationRetry.json()).error, "credential_blocked");
     const retry = await store.fetch(request("/refresh", { operationId: "C".repeat(43) }));
     assert.equal(retry.status, 409);
     assert.equal((await retry.json()).error, "credential_blocked");
