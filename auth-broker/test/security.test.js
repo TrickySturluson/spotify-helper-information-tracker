@@ -61,6 +61,35 @@ test("broker reports malformed canonical base URL at a dedicated safe stage", as
   }
 });
 
+test("Spotify callback reports a fixed safe stage when owner session validation fails", async () => {
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  try {
+    const result = await handleRequest(
+      new Request("https://broker.example/spotify/callback"),
+      {
+        BROKER_BASE_URL: "https://broker.example",
+        SPOTIFY_CLIENT_ID: "spotify-client",
+        SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+        GITHUB_APP_ID: "123456",
+        GITHUB_APP_PRIVATE_KEY: "not-used-by-this-invalid-session-test",
+        AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+      },
+    );
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.ok(body.includes("Spotify authorization could not be verified"));
+    assert.deepEqual(diagnostic, {
+      event: "shit_auth_broker_request_failed",
+      stage: "spotify_callback.state_validation",
+      error_class: "BrokerError",
+    });
+  } finally {
+    console.error = originalError;
+  }
+});
+
 test("GitHub owner check is case-insensitive but rejects other identities", () => {
   assert.equal(isAuthorizedOwner("TrickySturluson"), true);
   assert.equal(isAuthorizedOwner("trickysturluson"), true);
