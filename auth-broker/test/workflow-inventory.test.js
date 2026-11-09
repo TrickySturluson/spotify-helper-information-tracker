@@ -56,7 +56,7 @@ test("no workflow directly calls Spotify's refresh-token endpoint", async () => 
 test("all nine Spotify workflows use the central OIDC broker", async () => {
   for (const filename of EXPECTED_BROKER_CONSUMERS) {
     const source = await readFile(path.join(WORKFLOW_DIR, filename), "utf8");
-    assert.match(source, /id-token:\\s*write/, filename + " must request GitHub OIDC permission");
+    assert.match(source, /id-token:\s*write/, filename + " must request GitHub OIDC permission");
     assert.ok(
       source.includes("scripts/spotify/broker_access_token.py") ||
       source.includes("scripts.spotify.broker_access_token"),
@@ -71,8 +71,7 @@ test("deployment workflow pins the exact nine main-branch OIDC workflow identiti
   const source = await readFile(path.join(WORKFLOW_DIR, "deploy-mobile-auth-broker.yml"), "utf8");
   for (const filename of EXPECTED_BROKER_CONSUMERS) {
     assert.ok(
-      source.includes(`/.github/workflows/${filename}@refs/heads/main`) ||
-      source.includes(`/.github/workflows/${filename}\\@refs/heads/main`),
+      source.includes(`/.github/workflows/${filename}@refs/heads/main`),
       "Missing exact OIDC allowlist entry for " + filename,
     );
   }
