@@ -454,6 +454,10 @@ test("explicit Spotify 429 releases the reservation and preserves the existing c
     assert.equal(record.status, "ready");
     assert.equal(record.version, 1);
     assert.equal(record.credential.version, 1);
+    const deferred = await store.fetch(request("/refresh", { operationId: "W".repeat(43) }));
+    assert.equal(deferred.status, 429);
+    assert.equal(deferred.headers.get("Retry-After"), "120");
+    assert.equal((await storage.get("credential")).status, "ready");
   } finally {
     globalThis.fetch = originalFetch;
   }
