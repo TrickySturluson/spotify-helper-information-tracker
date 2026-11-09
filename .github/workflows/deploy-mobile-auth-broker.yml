@@ -47,7 +47,7 @@ jobs:
             https://*) ;;
             *) echo "::error::BROKER_BASE_URL must use HTTPS."; exit 1 ;;
           esac
-          case "$GITHUB_APP_REDIRECT_URI" in
+          case "$BROKER_GH_APP_REDIRECT_URI" in
             "$BROKER_BASE_URL"/auth/github/callback) ;;
             *) echo "::error::GitHub callback URI must match BROKER_BASE_URL."; exit 1 ;;
           esac
