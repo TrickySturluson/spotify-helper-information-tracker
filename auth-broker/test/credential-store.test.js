@@ -41,6 +41,18 @@ function request(path, body) {
 const initialToken = "initial-spotify-refresh-token-123456";
 const operation = "A".repeat(43);
 
+test("readiness confirms a valid keyring without requiring an initialized credential", async () => {
+  const { storage, store } = setup();
+  const ready = await store.fetch(new Request("https://credential-store.internal/ready"));
+  assert.equal(ready.status, 200);
+  assert.deepEqual(await ready.json(), { status: "ready" });
+  assert.equal(await storage.get("credential"), undefined);
+  const unconfigured = new SpotifyCredentialStore({ storage: new MemoryStorage() }, {});
+  const unavailable = await unconfigured.fetch(new Request("https://credential-store.internal/ready"));
+  assert.equal(unavailable.status, 503);
+  assert.deepEqual(await unavailable.json(), { error: "credential_store_unavailable" });
+});
+
 test("credential initialization encrypts the token and never stores plaintext", async () => {
   const { storage, store } = setup();
   const result = await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
