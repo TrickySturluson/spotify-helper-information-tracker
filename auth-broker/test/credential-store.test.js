@@ -479,3 +479,19 @@ test("invalid client configuration releases the reservation without invalidating
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("owner authorization fails closed when the configured active encryption key is absent", async () => {
+  const { storage, store } = setup();
+  store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({
+    "2": Buffer.alloc(32, 8).toString("base64"),
+  });
+  store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION = "1";
+  const result = await store.fetch(request("/authorize", {
+    accountId: "spotifyuser123",
+    refreshToken: initialToken,
+  }));
+  assert.equal(result.status, 409);
+  assert.equal((await result.json()).error, "Active credential encryption key is unavailable.");
+  assert.equal(await storage.get("credential"), undefined);
+});
