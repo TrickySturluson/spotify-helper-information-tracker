@@ -2,7 +2,7 @@
 
 **Status:** Baseline inventory verified against `feature/broker-owned-spotify-credential-store` on 2026-11-09. All listed consumers still read `secrets.SPOTIFY_REFRESH_TOKEN` directly. None has been migrated to broker-issued access tokens.
 
-This inventory is a migration control, not permission to change production workflows. Each workflow must be migrated and tested before the legacy refresh-token secret path is removed.
+This inventory is a migration control, not permission to change production workflows. The shared OIDC client and manager broker-only mode now exist, but no workflow uses them yet. Each workflow must be migrated and tested before the legacy refresh-token secret path is removed.
 
 ## Direct refresh-token consumers
 
