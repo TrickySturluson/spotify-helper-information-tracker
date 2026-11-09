@@ -9,15 +9,15 @@ Finish SHIT-wide centralized Spotify authentication: the broker owns the only lo
 - Continue the previously user-authorized auth implementation in parallel with the Jockey's Tricky Daily priority; do not reassign or edit Jockey work.
 - Target architecture is broker-owned encrypted refresh-token custody, not a permanent GitHub Actions `SPOTIFY_REFRESH_TOKEN` secret. The secret remains legacy on current `main` until the migration is merged and verified; no dual-write or fallback.
 - Keep production release owner-controlled. Do not read or change secret values, initiate consent on the user's behalf, or touch Spotify playlists.
-- PR #189 belongs to the separate `engineering/general` branch; leave it untouched.
+- PR #189 (`engineering/general`) was reviewed and closed as superseded because its Wrangler/build instructions were stale and conflicted with the verified Cloudflare configuration.
 
 ### Current work / branch / PR
 - Current main: `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
 - PR #185 merged `8cd28530081c519112fd947ac7bb05edc0ce7b04`; PR #190 merged `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3`; PR #191 merged `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
-- PR #187 branch `feature/broker-owned-spotify-credential-store`, head `1b55214b4b8362ee90f155e937e3252a9dd513ae`, draft/unmergeable. Latest broker tests #42599358532 and security scan #42599358504 are in progress; prior head `1c8e6b46c292525c3a13019325a270d91f97a84d` passed tests/dry-run and security scan.
-- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `6e269154ea2ba8454857efecfd985f6abd541d9e`, draft/unmergeable, stacked on PR #187. Its latest PKCE-corrected head has security scan #42599375645 in progress and broker tests #42599375698 pending. Previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, SQLite Durable Object integration, Python regression suite, documentation checks, dependency audit and Wrangler dry-run in #42598096634; security scan #42598096535 passed. New callback-stage diagnostics/tests are on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; security scan #42598778904 passed and broker tests #42598778973 were in progress at last check.
-- PR #187 is 130 ahead / 3 behind main; PR #188 is 267 ahead / 5 behind its PR #187 base. Resolve ancestry and conflicts before merge. Do not force-update.
-- PR #189 is a separate `engineering/general` draft and remains untouched.
+- PR #187 was closed as superseded by integrated PR #188; its credential-store prototype and passing tests are preserved in the combined branch.
+- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `8c011f869c3b02be58cd7a6694705071d3b7ff9a`, is based directly on `main`, mergeable and intentionally draft. The previous head `12ca9de8c4767277d96f0ec14cf6b55f215d4e27` passed broker, Durable Object, Python, documentation, dependency, Wrangler and security checks. Consolidated head tests #42600934839 are queued and security scan #42600934784 is in progress.
+- Branch ancestry is reconciled: PR #188 has current `main` as a parent and compare reports zero commits behind. Do not force-update.
+- PR #189 was closed as superseded; its stale build instructions were not merged.
 
 ### Production / provider findings
 - Cloudflare Worker `shit-auth-broker` version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`) is active at 100% traffic; created 2026-11-09 09:46:17 UTC.
@@ -35,7 +35,7 @@ Finish SHIT-wide centralized Spotify authentication: the broker owns the only lo
 - Status: **Buddy pending today — disabled**. Do not enable it or modify its branch/PR without user direction.
 
 ### Next executable action
-1. Check fresh CI for PR #187/#188 latest heads.
+1. Check fresh CI for consolidated PR #188 head `8c011f869c3b02be58cd7a6694705071d3b7ff9a`, then provision the encryption keyring and deploy owner-controlled.
 2. Reconcile the stacked branches with current main and independently inspect the combined diff; keep both drafts until mergeability and all checks are clean.
 3. Add fail-closed deployment checks for the missing encryption keyring, active key version and exact OIDC workflow allowlist.
 4. After owner-controlled deployment, verify the integrated version receives 100% traffic, then ask the user to complete a fresh OAuth flow.
