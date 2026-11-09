@@ -4,6 +4,7 @@ const MAX_BODY_BYTES = 16_384;
 const OPERATION_TTL_MS = 120_000;
 const REFRESH_WAIT_MS = 15_000;
 const REFRESH_POLL_MS = 100;
+const ACCESS_TOKEN_MIN_REMAINING_MS = 120_000;
 const ENCRYPTION_KEY_VERSION = 1;
 
 class CredentialStoreError extends Error {}
@@ -287,7 +288,7 @@ export class SpotifyCredentialStore {
 
   async cachedAccessToken(record, keyring) {
     const remainingMs = Number(record.accessTokenExpiresAt) - Date.now();
-    if (!record.accessToken || !Number.isFinite(remainingMs) || remainingMs <= 60_000) return null;
+    if (!record.accessToken || !Number.isFinite(remainingMs) || remainingMs <= ACCESS_TOKEN_MIN_REMAINING_MS) return null;
     const key = keyring.keys.get(record.accessToken.keyVersion);
     if (!key) {
       await this.clearCachedAccessToken(record);
@@ -343,7 +344,7 @@ export class SpotifyCredentialStore {
       if (current.status === "refreshing") return { wait: true };
       if (current.status !== "ready") return { error: "credential_blocked" };
       if (current.retryAfterAt > now) return { rateLimitedUntil: current.retryAfterAt };
-      if (input.forceRefresh !== true && current.accessToken && current.accessTokenExpiresAt > now + 60_000) return { cached: current };
+      if (input.forceRefresh !== true && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
       const next = { ...current, status: "refreshing", operationId: input.operationId, startedAt: now, expiresAt: now + OPERATION_TTL_MS };
       await txn.put("credential", next);
       return { record: next };
