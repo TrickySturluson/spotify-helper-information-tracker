@@ -12,7 +12,7 @@ The current feature branch adds a second, isolated refresh path intended to repl
 - `scripts/spotify/broker_access_token.py` is the workflow-side OIDC client. The manager has a broker-only mode that does not load the old token file or refresh directly.
 - Current encryption metadata authenticates key version 1. Multi-key rotation/re-encryption and recovery are not implemented.
 
-This prototype is in stacked draft PRs #187 and #188. It is not deployed or enabled. The required Worker secret `SPOTIFY_CREDENTIAL_ENCRYPTION_KEY` and variable `SPOTIFY_REFRESH_WORKFLOW_REFS` are not configured. The OAuth callback still uses the existing GitHub Actions secret path, and none of the nine workflows has migrated. Do not configure or use the new route until callback initialization, key rotation/recovery, Cloudflare Durable Object integration tests, and the complete workflow migration are proven.
+This prototype is in stacked draft PRs #187 and #188. It is not deployed or enabled. The required Worker secret `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` and variable `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION` / `SPOTIFY_REFRESH_WORKFLOW_REFS` are not configured. The OAuth callback still uses the existing GitHub Actions secret path, and none of the nine workflows has migrated. Do not configure or use the new route until callback initialization, key rotation/recovery, Cloudflare Durable Object integration tests, and the complete workflow migration are proven.
 
 
 ## Flow
@@ -36,13 +36,14 @@ Non-secret GitHub repository Actions variables (injected by the deployment workf
 - GITHUB_APP_REDIRECT_URI (exact Worker URL plus /auth/github/callback)
 - SPOTIFY_CLIENT_ID
 - SPOTIFY_REDIRECT_URI (exact Worker URL plus /spotify/callback)
+- SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION (integer key version selected for new credential writes; defaults to 1)\n- SPOTIFY_REFRESH_WORKFLOW_REFS (comma-separated exact workflow_ref allowlist; not configured)
 - GITHUB_APP_ID
 
 Worker secrets (set with Cloudflare's secret-management interface or Wrangler secrets; never commit them):
 
 - GITHUB_APP_CLIENT_SECRET
 - GITHUB_APP_PRIVATE_KEY
-- SPOTIFY_CREDENTIAL_ENCRYPTION_KEY (only when the broker-owned credential-store design has passed its remaining gates; not currently configured)
+- SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS (JSON key-version map; only when the broker-owned credential-store design has passed its remaining gates; not currently configured)
 
 The dedicated broker GitHub App must be installed only on this repository. In the GitHub App settings UI, grant **Actions: Read and write** and **Secrets: Read and write**; GitHub's installation-token API represents these as `actions: write` and `secrets: write` (write includes the read operations the broker needs to list active workflow runs and fetch the repository secret public key). The broker requests only those two write-level permissions and only this repository. Keep it separate from the existing SHIT manager App, which remains Secrets: write only; do not widen that operational App's permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
 
