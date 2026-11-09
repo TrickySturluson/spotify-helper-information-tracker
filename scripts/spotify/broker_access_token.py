@@ -55,7 +55,7 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
         }:
             category = "reauthorization_required"
             message = "Spotify owner reauthorization is required."
-        elif detail == "provider_rate_limited":
+        elif exc.code == 429 or detail == "provider_rate_limited":
             category = "rate_limited"
             message = "Spotify authentication is rate-limited; retry after the provider cooldown."
             retry_after = body_retry_after or (exc.headers.get("Retry-After") if exc.headers else None)
