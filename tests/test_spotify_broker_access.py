@@ -125,6 +125,18 @@ class BrokerAccessTokenTests(unittest.TestCase):
         self.assertEqual(raised.exception.category, "rate_limited")
         self.assertEqual(raised.exception.retry_after, "120")
 
+    def test_concurrent_refresh_contention_is_not_misclassified_as_reauthorization(self):
+        def opener(request, timeout=0):
+            if len(self.calls) == 0:
+                self.calls.append(request)
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            body = io.BytesIO(json.dumps({"error": "credential_busy"}).encode())
+            raise urllib.error.HTTPError(request.full_url, 409, "busy", {}, body)
+
+        with self.assertRaises(BrokerTokenError) as raised:
+            request_broker_access_token(self.environ, opener)
+        self.assertEqual(raised.exception.category, "busy")
+
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
             with self.subTest(expires=expires), self.assertRaises(BrokerTokenError):
