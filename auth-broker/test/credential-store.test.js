@@ -104,7 +104,7 @@ test("identity mismatch blocks credential and never commits rotated token", asyn
   await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => String(url).includes("/api/token")
-    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 })
+    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef", expires_in: 3600 }), { status: 200 })
     : new Response(JSON.stringify({ id: "different-user" }), { status: 200 });
   try {
     const result = await store.fetch(request("/refresh", { operationId: operation }));
@@ -151,7 +151,7 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
     if (String(url).includes("/api/token")) {
       providerStarted();
       await providerGate;
-      return new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 });
+      return new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef", expires_in: 3600 }), { status: 200 });
     }
     return new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   };
@@ -212,7 +212,7 @@ test("a refresh reservation survives store-instance restart and blocks a second 
     if (String(url).includes("/api/token")) {
       providerStarted();
       await providerGate;
-      return new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 });
+      return new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef", expires_in: 3600 }), { status: 200 });
     }
     return new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   };
@@ -286,7 +286,7 @@ test("refresh re-encrypts the credential with the active key version", async () 
   store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION = "2";
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => String(url).includes("/api/token")
-    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 })
+    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef", expires_in: 3600 }), { status: 200 })
     : new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   try {
     const first = await store.fetch(request("/refresh", { operationId: "M".repeat(43) }));
@@ -330,7 +330,7 @@ test("owner reauthorization restores a blocked credential only for the same veri
   await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => String(url).includes("/api/token")
-    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 })
+    ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef", expires_in: 3600 }), { status: 200 })
     : new Response(JSON.stringify({ id: "wrong-account" }), { status: 200 });
   try {
     const failed = await store.fetch(request("/refresh", { operationId: "P".repeat(43) }));
