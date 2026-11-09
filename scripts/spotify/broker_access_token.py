@@ -76,7 +76,7 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
     return value
 
 
-def request_broker_access_token(environ=None, opener=urllib.request.urlopen):
+def request_broker_access_token(environ=None, opener=urllib.request.urlopen, force_refresh=False):
     env = os.environ if environ is None else environ
     oidc_url = str(env.get("ACTIONS_ID_TOKEN_REQUEST_URL", "")).strip()
     oidc_request_token = str(env.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN", "")).strip()
@@ -105,7 +105,10 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen):
         raise BrokerTokenError("GitHub did not issue a usable workload identity.")
 
     operation_id = secrets.token_urlsafe(32)
-    payload = json.dumps({"operationId": operation_id}, separators=(",", ":")).encode()
+    broker_payload = {"operationId": operation_id}
+    if force_refresh:
+        broker_payload["forceRefresh"] = True
+    payload = json.dumps(broker_payload, separators=(",", ":")).encode()
     broker_request = urllib.request.Request(
         broker_base + "/internal/spotify/refresh",
         data=payload,
