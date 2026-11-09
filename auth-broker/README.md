@@ -16,7 +16,7 @@ The intended production path is:
 
 The credential store is keyed to one fixed Durable Object identity (`spotify-primary`); caller-supplied account IDs are not accepted on the refresh route. A verified short-lived access token is also encrypted in the object until expiry so multiple jobs can reuse one refresh result without racing Spotify's rotating refresh token. Concurrent callers wait for the in-flight operation and receive the cached token; a durable Retry-After cooldown prevents repeated requests after a 429. The refresh-token secret path is removed from the broker callback. There is no automatic fallback to GitHub Actions secrets or local token files.
 
-The unauthenticated `GET /health` endpoint is deliberately liveness-only and reveals no configuration. The separate `GET /ready` endpoint checks that the Worker has its credential-store binding, encryption keyring, active key version, Spotify client ID, and OIDC workflow allowlist, then asks the fixed Durable Object to import and validate its keyring. It does not read, create, or expose a stored credential. The owner-only deployment workflow runs this readiness probe after publishing the Worker and fails if the binding, migration, or encryption configuration is not usable.
+The unauthenticated `GET /health` endpoint is deliberately liveness-only and reveals no configuration. The separate, rate-limited `GET /ready` endpoint checks that the Worker has its credential-store binding, encryption keyring, active key version, Spotify client ID, and OIDC workflow allowlist, then asks the fixed Durable Object to import and validate its keyring. It does not read, create, or expose a stored credential. The owner-only deployment workflow runs this readiness probe after publishing the Worker and fails if the binding, migration, or encryption configuration is not usable.
 
 ## Current implementation and rollout boundary
 
@@ -96,16 +96,25 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Latest completed checkpoint: PR #188 head `b82acade864a7e7fea80e755215eb7baa1fb4108` passed all GitHub CI checks and its exact-commit Cloudflare preview build plus non-secret `GET /health` probe. A new readiness gate is now implemented on the branch; its tests, deployment-workflow contract, and preview checks are running on the newer head. The new `/ready` endpoint has not yet been exercised against production and does not prove that a Spotify credential has been initialized.
+Verified on PR #188 head `596c8dfb3dc12c64516e3447382b0475fa972080`:
+
+- Cloudflare Workers Builds successfully built the exact-head preview (`af01c52d-3b8f-467c-8892-1036f28e78ff`).
+- The exact-head GitHub preview check passed, including the non-secret live `GET /health` probe.
+- Mobile Auth Broker Tests passed: dependency audit, broker security unit tests, Cloudflare SQLite Durable Object integration tests (including readiness), Python broker-client/manager tests, maintained-script documentation, and non-deploying Wrangler validation.
+- Daily curator regression tests passed.
+- The full Git-history secret scan passed.
+- The new readiness contract tests verify that a valid keyring and Durable Object binding are required, malformed/missing keys fail closed, the probe is rate-limited, and no credential is read or created.
+- The owner-only deployment workflow now performs a read-only `GET /ready` check after deployment and fails if the deployed keyring or Durable Object binding/migration is unusable.
 
 Still pending:
 
-- Central encrypted credential store and versioned keyring: implemented in the stacked draft branch; production keyring and binding setup remain.
-- Owner-consented initial credential handoff and same-account recovery: wired in the stacked draft branch; not exercised with real credentials.
-- OIDC-authenticated refresh endpoint and Python client: implemented and unit-tested; live GitHub OIDC validation remains.
-- All nine workflow consumers: migrated to broker-only authentication on the stacked feature branch; production end-to-end verification remains.
-- Production deployment, owner OAuth, real Spotify refresh/identity verification, refresh-token rotation persistence, and interrupted-operation recovery: not performed.
-- Legacy GitHub Actions refresh-token secret: retained on deployed main until merge, guarded deployment, two independent broker-backed health checks, and explicit production cutover approval. The broker callback no longer writes it.
+- Cloudflare production encryption keyring and required Worker bindings have not been provisioned.
+- Owner-consented initial credential handoff and same-account recovery have not been exercised with real credentials.
+- Live GitHub OIDC refresh, real Spotify refresh/identity verification, rotation persistence, and interrupted-operation recovery remain untested.
+- All nine migrated workflows still require production end-to-end verification.
+- The legacy GitHub Actions refresh-token secret remains on deployed main until merge, guarded deployment, two independent broker-backed health checks, and explicit production cutover approval.
+- No production deployment, OAuth authorization, credential change, or playlist operation has been performed.
+
 
 The broker never unlocks or edits playlists. Do not merge, deploy, or perform production cutover until the owner has completed the external setup and the remaining acceptance and rollback checks are reviewed.
 
