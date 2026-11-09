@@ -42,7 +42,7 @@ SHIT should:
 A managed HTTPS service (Cloudflare Worker with SQLite-backed Durable Object state) provides owner-consented recovery:
 - GitHub owner authentication and Spotify Authorization Code + PKCE.
 - One-time state, session binding, replay protection, expiry and active-workflow checks.
-- A dedicated repository-scoped GitHub App, separate from the existing manager secret-writer App, with only Actions: write and Secrets: write.
+- A dedicated repository-scoped GitHub App, separate from the existing manager App, with Actions: read only. The OAuth callback no longer writes repository secrets.
 - Writes only the encrypted `SPOTIFY_REFRESH_TOKEN` Actions secret, then dispatches only the read-only auth-health workflow.
 - No refresh token in browser JavaScript, HTML, URLs, chat, issues, artifacts, logs or Durable Object storage.
 - No playlist API, unlock, preview approval or playlist write capability.
@@ -54,7 +54,7 @@ The coordinator connects diagnosis to safe next steps:
 - Reauthorization required: stop Spotify-dependent operations and request owner consent.
 - Rate limited / provider unavailable: defer until eligible; do not mislabel as expired credentials.
 - Configuration or secret-write failure: fail closed and report the exact non-secret setup issue.
-- After consent: verify account identity, scopes, secret persistence and two independent read-only cloud checks before declaring recovery complete.
+- After consent: verify account identity/scopes, initialize or recover the encrypted central credential store, and pass two independent read-only broker-backed cloud checks before declaring recovery complete.
 
 ## Security boundaries
 
@@ -84,3 +84,8 @@ The coordinator connects diagnosis to safe next steps:
 ## Resume instructions
 
 Read `ROADMAP.md` and `ACTIONS.md`. Inspect the auth-health workflow, broker source/tests, Spotify manager token rotation, all Spotify-dependent workflow entry points, GitHub App permissions, repository rules and Spotify redirect configuration. Update this roadmap and action log with every meaningful implementation or verification result. Never ask the user to paste a token into chat.
+
+
+## 2026-11-09 implementation status
+
+The central credential-store handoff and first OIDC consumer are wired on stacked draft PRs #187/#188. The OAuth callback stores the refresh token only as AES-GCM ciphertext in the broker Durable Object. The auth-health workflow obtains short-lived access tokens through GitHub OIDC and verifies Spotify `/v1/me`. Eight other workflows still use the legacy refresh-token secret and remain to be migrated. No deployment, Cloudflare key provisioning, live OAuth, or production cutover has occurred.
