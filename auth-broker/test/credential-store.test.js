@@ -294,7 +294,7 @@ test("refresh re-encrypts the credential with the active key version", async () 
     assert.equal((await storage.get("credential")).credential.keyVersion, 2);
     // Once the successful commit is encrypted under v2, v1 can be removed.
     store.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS = JSON.stringify({ "2": keyV2 });
-    delete store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION;
+    store.env.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION = "2";
     const second = await store.fetch(request("/refresh", { operationId: "N".repeat(43) }));
     assert.equal(second.status, 200);
     assert.equal((await storage.get("credential")).credential.keyVersion, 2);
