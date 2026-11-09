@@ -580,6 +580,15 @@ async function handleRefreshLock(request, env, url) {
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
   try {
+    // Non-secret liveness endpoint for deployment verification. It deliberately
+    // bypasses OAuth configuration checks and reveals no credential/config values.
+    if (url.pathname === "/health" && request.method === "GET") {
+      return response(
+        JSON.stringify({ status: "ok", service: "shit-auth-broker" }),
+        200,
+        { "Content-Type": "application/json; charset=utf-8" },
+      );
+    }
     requireEnv(env, ["BROKER_BASE_URL"]);
     const canonicalOrigin = new URL(env.BROKER_BASE_URL);
     if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
