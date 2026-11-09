@@ -2,6 +2,7 @@ const SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token";
 const SPOTIFY_ME_URL = "https://api.spotify.com/v1/me";
 const MAX_BODY_BYTES = 16_384;
 const OPERATION_TTL_MS = 120_000;
+const ENCRYPTION_KEY_VERSION = 1;
 
 class CredentialStoreError extends Error {}
 
@@ -39,21 +40,21 @@ async function importEncryptionKey(encoded) {
   return crypto.subtle.importKey("raw", raw, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
 }
 
-function associatedData(version, accountId) {
-  return new TextEncoder().encode("SHIT:spotify-refresh-token:v1:" + version + ":" + accountId);
+function associatedData(version, accountId, keyVersion) {
+  return new TextEncoder().encode("SHIT:spotify-refresh-token:v1:" + keyVersion + ":" + version + ":" + accountId);
 }
 
-async function encryptRefreshToken(token, key, version, accountId) {
+async function encryptRefreshToken(token, key, version, accountId, keyVersion = ENCRYPTION_KEY_VERSION) {
   if (typeof token !== "string" || token.length < 20 || token.length > 8192) {
     throw new CredentialStoreError("Spotify did not return a usable refresh token.");
   }
   const nonce = randomBytes(12);
   const ciphertext = await crypto.subtle.encrypt(
-    { name: "AES-GCM", iv: nonce, additionalData: associatedData(version, accountId), tagLength: 128 },
+    { name: "AES-GCM", iv: nonce, additionalData: associatedData(version, accountId, keyVersion), tagLength: 128 },
     key,
     new TextEncoder().encode(token),
   );
-  return { algorithm: "A256GCM", nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version };
+  return { algorithm: "A256GCM", keyVersion, nonce: encodeBase64(nonce), ciphertext: encodeBase64(new Uint8Array(ciphertext)), version };
 }
 
 async function decryptRefreshToken(record, key, accountId) {
@@ -62,7 +63,7 @@ async function decryptRefreshToken(record, key, accountId) {
       {
         name: "AES-GCM",
         iv: decodeBase64(record.nonce),
-        additionalData: associatedData(record.version, accountId),
+        additionalData: associatedData(record.version, accountId, record.keyVersion ?? ENCRYPTION_KEY_VERSION),
         tagLength: 128,
       },
       key,
