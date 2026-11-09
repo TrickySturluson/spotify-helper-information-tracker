@@ -322,6 +322,7 @@ export class SpotifyCredentialStore {
       const current = await txn.get("credential");
       if (!current) return { error: "credential_missing" };
       if (current.lastOperationId === input.operationId) {
+        if (current.status === "reauthorization_required") return { error: "credential_blocked" };
         if (current.status === "ready" && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
         return { error: "operation_already_committed" };
       }
