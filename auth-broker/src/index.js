@@ -646,7 +646,10 @@ async function handleBrokerRefresh(request, env) {
     body: JSON.stringify({ operationId: input.operationId }),
   });
   const output = await result.text();
-  return response(output, result.status, { "Content-Type": "application/json" });
+  const headers = { "Content-Type": "application/json" };
+  const retryAfter = result.headers.get("Retry-After");
+  if (retryAfter && /^\\d{1,8}$/.test(retryAfter)) headers["Retry-After"] = retryAfter;
+  return response(output, result.status, headers);
 }
 
 export async function handleRequest(request, env) {
