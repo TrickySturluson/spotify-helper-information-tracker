@@ -208,6 +208,8 @@ test("deployment workflow injects every public runtime variable without dashboar
     "GITHUB_APP_REDIRECT_URI",
     "SPOTIFY_CLIENT_ID",
     "SPOTIFY_REDIRECT_URI",
+    "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION",
+    "SPOTIFY_REFRESH_WORKFLOW_REFS",
   ]) {
     const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
     assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
