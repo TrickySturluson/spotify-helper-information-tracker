@@ -1,4 +1,6 @@
-import sodium from "libsodium-wrappers";\nimport { SpotifyRefreshLease, verifyActionsOidc } from "./refresh-lock.js";\nexport { SpotifyRefreshLease };
+import sodium from "libsodium-wrappers";
+import { SpotifyRefreshLease, verifyActionsOidc } from "./refresh-lock.js";
+export { SpotifyRefreshLease };
 
 const OWNER = "TrickySturluson";
 const REPOSITORY = "spotify-helper-information-tracker";
