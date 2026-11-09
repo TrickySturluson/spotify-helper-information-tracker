@@ -90,7 +90,9 @@ def audit(**event):
     try: AUDIT.chmod(0o600)
     except OSError: pass
 def persist_refresh_token(refresh_token):
-    """Persist a rotated Spotify refresh token to the repository secret in cloud runs."""
+    """Persist a rotated token only for explicitly legacy-managed workflows."""
+    if os.environ.get("SHIT_AUTH_MODE", "").strip().lower() == "broker":
+        raise ManagerError("Broker-managed workflows must never persist refresh tokens to GitHub Secrets.")
     if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") != "1":
         return
     gh_token = os.environ.get("GH_TOKEN", "").strip()
@@ -153,7 +155,10 @@ class Spotify:
     def __init__(self):
         check_spotify_cooldown()
         broker_access_token=os.environ.get("SHIT_BROKER_ACCESS_TOKEN", "").strip()
+        broker_required=os.environ.get("SHIT_AUTH_MODE", "").strip().lower() == "broker"
         self.broker_managed=bool(broker_access_token)
+        if broker_required and not self.broker_managed:
+            raise ManagerError("SHIT_AUTH_MODE=broker requires a broker-issued SHIT_BROKER_ACCESS_TOKEN; legacy token files and direct refresh are disabled.")
         if self.broker_managed:
             try:
                 broker_expires=int(os.environ.get("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN", "3600"))
