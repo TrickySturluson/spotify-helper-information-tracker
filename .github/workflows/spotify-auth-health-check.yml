@@ -6,6 +6,10 @@ on:
     # A durable commit-status latch prevents futile invalid_grant retries.
     - cron: "0 9 * * *"
 
+# Fixed anchor commit keeps auth state stable across ordinary SHIT commits.
+env:
+  SPOTIFY_AUTH_STATE_SHA: a4ac9def8be5b6e727b777e2660a7bb027a8e51b
+
 permissions:
   contents: read
   statuses: write
@@ -16,6 +20,7 @@ concurrency:
 
 jobs:
   verify:
+    if: github.ref == 'refs/heads/main'
     name: Verify Spotify refresh authentication
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -26,11 +31,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           EVENT_NAME: ${{ github.event_name }}
-          CURRENT_SHA: ${{ github.sha }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
-          status_json="$(gh api "repos/$GITHUB_REPOSITORY/commits/$CURRENT_SHA/status" --jq '.statuses | map(select(.context == "spotify-auth-health")) | sort_by(.created_at) | last // {}')"
+          status_json="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SPOTIFY_AUTH_STATE_SHA/status" --jq '.statuses | map(select(.context == "spotify-auth-health")) | sort_by(.created_at) | last // {}')"
           previous_state="$(printf '%s' "$status_json" | jq -r '.state // empty')"
           previous_description="$(printf '%s' "$status_json" | jq -r '.description // empty')"
           case "$previous_description" in
@@ -64,7 +68,7 @@ jobs:
           esac
           # Mark the current commit pending before contacting Spotify. If the
           # runner exits unexpectedly, the next scheduled run fails closed.
-          if ! gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$CURRENT_SHA"             -f state=pending             -f context=spotify-auth-health             -f description=pending             -f target_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >/dev/null; then
+          if ! gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/$SPOTIFY_AUTH_STATE_SHA"             -f state=pending             -f context=spotify-auth-health             -f description=pending             -f target_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >/dev/null; then
             echo "::error::Could not persist the pending auth status; refusing to contact Spotify."
             exit 1
           fi
@@ -98,7 +102,7 @@ jobs:
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_SHA: ${{ github.sha }}
+          SPOTIFY_AUTH_STATE_SHA: ${{ env.SPOTIFY_AUTH_STATE_SHA }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GH_STATUS_TOKEN: ${{ github.token }}
@@ -145,7 +149,7 @@ jobs:
               try:
                   subprocess.run(
                       ["gh", "api", "-X", "POST",
-                       f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['GITHUB_SHA']}",
+                       f"repos/{os.environ['GITHUB_REPOSITORY']}/statuses/{os.environ['SPOTIFY_AUTH_STATE_SHA']}",
                        "-f", f"state={commit_state}",
                        "-f", "context=spotify-auth-health",
                        "-f", f"description={description}",
