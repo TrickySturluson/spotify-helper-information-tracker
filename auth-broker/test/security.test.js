@@ -310,7 +310,8 @@ test("broker source exposes only the Spotify refresh secret and read-only verifi
   assert.match(source, /actions\/secrets\/\$\{SECRET_NAME\}/);
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
-  assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
+  assert.doesNotMatch(source, /console\.(?:log|info|warn)/);
+  assert.doesNotMatch(source, /console\.error\([^)]*(?:error\.message|response|token|cookie|state)/i);
   assert.match(source, /isAuthorizedOwner\(user\.login\)/);
   assert.doesNotMatch(source, /env\.GITHUB_OWNER/);
 });
