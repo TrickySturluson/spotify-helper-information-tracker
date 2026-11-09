@@ -105,7 +105,7 @@ function accessTokenAssociatedData(version, accountId, keyVersion) {
 }
 
 async function encryptAccessToken(token, key, version, accountId, keyVersion) {
-  if (typeof token !== "string" || !token || token.length > 8192 || /[\\r\\n]/.test(token)) {
+  if (typeof token !== "string" || !token || token.length > 8192 || /[\r\n]/.test(token)) {
     throw new CredentialStoreError("Spotify did not return a usable access token.");
   }
   const nonce = randomBytes(12);
@@ -137,7 +137,7 @@ async function decryptAccessToken(record, key, accountId) {
 
 function retryAfterSeconds(value) {
   const raw = String(value || "").trim();
-  if (/^\\d{1,8}$/.test(raw)) return Math.min(604800, Number(raw));
+  if (/^\d{1,8}$/.test(raw)) return Math.min(604800, Number(raw));
   const timestamp = Date.parse(raw);
   if (Number.isFinite(timestamp)) return Math.min(604800, Math.max(0, Math.ceil((timestamp - Date.now()) / 1000)));
   return 86400;
