@@ -271,7 +271,11 @@ test("broker source uses central encrypted storage and never writes a refresh-to
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
   assert.doesNotMatch(source, /actions\/secrets|SPOTIFY_REFRESH_TOKEN|saveRefreshToken/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
-  assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
+  assert.doesNotMatch(source, /console\.(?:log|info|warn)/);
+  assert.match(
+    source,
+    /console\.error\(\{ event: "shit_auth_broker_request_failed", stage: diagnosticStage, error_class:/,
+  );
   assert.match(source, /isAuthorizedOwner\(user\.login\)/);
   assert.doesNotMatch(source, /env\.GITHUB_OWNER/);
 });
