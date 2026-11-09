@@ -23,11 +23,11 @@ This module explores moving the long-lived Spotify refresh token out of GitHub A
 
 This is not a production implementation yet:
 
-- The class is not bound in `wrangler.toml` and no Worker route calls it.
+- The class and SQLite migration are declared in `wrangler.toml` on stacked draft PR #188, and an OIDC-gated Worker refresh route is present. Neither has been deployed or enabled; the encryption key and exact workflow allowlist are not configured.
 - No encryption key has been provisioned; no production secrets or credentials were changed.
 - The existing OAuth callback does not yet hand off an initial token to this store.
 - GitHub Actions workflows still use the existing refresh-token secret path.
-- There is no end-to-end OIDC authorization flow to this Durable Object.
+- The OIDC refresh route has unit-tested identity/audience gates, but no live GitHub OIDC request or Cloudflare Durable Object integration has been exercised.
 - An interrupted operation intentionally remains blocked. Recovery and reauthorization UX still need implementation and tests.
 - Key rotation, backup/restore, disaster recovery, account replacement, and operational monitoring still need design and validation.
 - Unit tests use an in-memory storage adapter; they do not replace Cloudflare Durable Object integration tests.
