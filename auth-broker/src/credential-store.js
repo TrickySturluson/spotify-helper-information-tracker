@@ -166,8 +166,16 @@ export class SpotifyCredentialStore {
   }
 
   async fetch(request) {
-    if (request.method !== "POST") return json({ error: "not_found" }, 404);
     const path = new URL(request.url).pathname;
+    if (request.method === "GET" && path === "/ready") {
+      try {
+        await importEncryptionKeyring(this.env);
+        return json({ status: "ready" });
+      } catch {
+        return json({ error: "credential_store_unavailable" }, 503);
+      }
+    }
+    if (request.method !== "POST") return json({ error: "not_found" }, 404);
     if (path !== "/initialize" && path !== "/refresh" && path !== "/reauthorize" && path !== "/authorize") return json({ error: "not_found" }, 404);
     if (!String(this.env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "")) {
       return json({ error: "credential_store_unavailable" }, 503);
