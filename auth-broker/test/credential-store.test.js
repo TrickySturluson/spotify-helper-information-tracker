@@ -43,7 +43,7 @@ const operation = "A".repeat(43);
 
 test("credential initialization encrypts the token and never stores plaintext", async () => {
   const { storage, store } = setup();
-  const result = await store.fetch(request("/initialize", { accountId: "spotify-user-123", refreshToken: initialToken }));
+  const result = await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   assert.equal(result.status, 201);
   const record = await storage.get("credential");
   assert.equal(record.status, "ready");
@@ -51,12 +51,12 @@ test("credential initialization encrypts the token and never stores plaintext", 
   assert.equal(record.credential.algorithm, "A256GCM");
   assert.notEqual(record.credential.ciphertext, initialToken);
   assert.equal(JSON.stringify(record).includes(initialToken), false);
-  assert.equal((await store.fetch(request("/initialize", { accountId: "spotify-user-123", refreshToken: initialToken }))).status, 409);
+  assert.equal((await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }))).status, 409);
 });
 
 test("refresh rotates encrypted credential only after Spotify identity verification", async () => {
   const { storage, store } = setup();
-  await store.fetch(request("/initialize", { accountId: "spotify-user-123", refreshToken: initialToken }));
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
   const calls = [];
   globalThis.fetch = async (url, options) => {
@@ -72,14 +72,14 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
       }), { status: 200 });
     }
     assert.equal(options.headers.Authorization, "Bearer short-lived-access-token");
-    return new Response(JSON.stringify({ id: "spotify-user-123" }), { status: 200 });
+    return new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   };
   try {
     const response = await store.fetch(request("/refresh", { operationId: operation }));
     const result = await response.json();
     assert.equal(response.status, 200);
     assert.equal(result.accessToken, "short-lived-access-token");
-    assert.equal(result.accountId, "spotify-user-123");
+    assert.equal(result.accountId, "spotifyuser123");
     assert.equal(result.credentialVersion, 2);
     const record = await storage.get("credential");
     assert.equal(record.status, "ready");
@@ -96,7 +96,7 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
 
 test("identity mismatch blocks credential and never commits rotated token", async () => {
   const { storage, store } = setup();
-  await store.fetch(request("/initialize", { accountId: "spotify-user-123", refreshToken: initialToken }));
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => String(url).includes("/api/token")
     ? new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 })
@@ -116,7 +116,7 @@ test("identity mismatch blocks credential and never commits rotated token", asyn
 
 test("ambiguous provider failure fails closed and forbids retry with old refresh token", async () => {
   const { storage, store } = setup();
-  await store.fetch(request("/initialize", { accountId: "spotify-user-123", refreshToken: initialToken }));
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => { throw new Error("network disconnected after request send"); };
   try {
@@ -136,7 +136,7 @@ test("ambiguous provider failure fails closed and forbids retry with old refresh
 
 test("concurrent refresh attempts reserve one durable operation only", async () => {
   const { storage, store } = setup();
-  await store.fetch(request("/initialize", { accountId: "spotify-user-123", refreshToken: initialToken }));
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
   const originalFetch = globalThis.fetch;
   let releaseProvider;
   let providerStarted;
@@ -148,7 +148,7 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
       await providerGate;
       return new Response(JSON.stringify({ access_token: "short-lived-access-token", refresh_token: "rotated-refresh-token-abcdef" }), { status: 200 });
     }
-    return new Response(JSON.stringify({ id: "spotify-user-123" }), { status: 200 });
+    return new Response(JSON.stringify({ id: "spotifyuser123" }), { status: 200 });
   };
   try {
     const first = store.fetch(request("/refresh", { operationId: operation }));
