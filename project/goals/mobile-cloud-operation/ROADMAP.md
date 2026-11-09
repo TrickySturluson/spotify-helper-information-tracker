@@ -84,7 +84,8 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Define the short critical-section OIDC-authenticated Durable Object lease design; see [REFRESH_TOKEN_SINGLE_FLIGHT.md](REFRESH_TOKEN_SINGLE_FLIGHT.md). No global Actions concurrency group is permitted.
 - [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; keep isolated because a lease cannot fence GitHub Secrets writes.
 - [x] Implement isolated AES-256-GCM credential-store prototype with transactional refresh reservation, identity verification, encrypted rotation commit, replay rejection and fail-closed ambiguous outcomes; PR #187.
-- [ ] Add real Cloudflare Durable Object integration tests and key-version rotation/recovery design before binding or routing the credential store.
+- [x] Add OIDC-authenticated `POST /internal/spotify/refresh` route with a dedicated audience, exact workflow allowlist, fixed credential Durable Object identity and minimal operation-ID payload; stacked draft PR #188.
+- [ ] Add real Cloudflare Durable Object integration tests and key-version rotation/recovery design before enabling the credential store in any environment.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
 - [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
