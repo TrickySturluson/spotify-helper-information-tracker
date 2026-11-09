@@ -162,3 +162,15 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Confirmed the broker is not deployed and no fresh Spotify consent has occurred. Existing credential remains blocked by the previously observed `invalid_grant`; no further Spotify status/playlist retries should be attempted until reauthorization.
 - Created branch `feature/authentication-management-recovery` from current `main` for this work. No merge, deployment, external account changes, secret changes, OAuth, or playlist operations were performed.
 - Next implementation: add conservative scheduled health monitoring and structured failure classification, test rotation/error paths, then design the shared auth preflight to avoid concurrent refresh-token races.
+
+
+## 2026-11-08 — First scheduled Authentication Health Monitor implementation
+
+- Updated `.github/workflows/spotify-auth-health-check.yml` to run daily at 09:00 UTC as well as on manual dispatch. The workflow remains serialized and makes one refresh attempt per run.
+- Added redacted outcome categories: `reauthorization_required` for `invalid_grant`, `rate_limited` with Retry-After, `provider_unavailable` for 5xx/network failures, `configuration_error`, `scope_or_identity_error`, `identity_error`, `provider_error`, `secret_persistence_failed`, and `healthy`.
+- The monitor never logs provider response bodies, access tokens or refresh tokens. It masks returned tokens and persists a rotated refresh token only after successful `GET /v1/me` verification.
+- No retry loop was added. In particular, the same `invalid_grant` credential is never retried by the workflow; it reports that owner-consented reauthorization is required. Rate limits are reported with Retry-After rather than retried.
+- Updated `docs/WORKFLOWS.md`, the goal README and roadmap to reflect the new schedule and current implementation status.
+- This change is on `feature/authentication-management-recovery`; it has not yet been validated by GitHub Actions. The workflow's scheduled trigger is not an auth-recovery mechanism for a revoked grant; the broker and owner consent remain required.
+- No Spotify request, OAuth, Actions secret change, Cloudflare deployment, playlist operation, Library write or other provider operation was performed in this session.
+- Next: validate workflow syntax and behavior, add regression coverage for status classification/redaction/rotation failure, and then design a concurrency-safe shared auth preflight for Spotify-dependent workflows.
