@@ -556,7 +556,7 @@ test("failed forced refresh discards the cached access token already rejected by
     throw new Error("unexpected identity request");
   };
   try {
-    const failed = await store.fetch(request("/refresh", { operationId: "X".repeat(43) }));
+    const failed = await store.fetch(request("/refresh", { operationId: "X".repeat(43), forceRefresh: true }));
     assert.equal(failed.status, 503);
     const record = await storage.get("credential");
     assert.equal(record.status, "ready");
