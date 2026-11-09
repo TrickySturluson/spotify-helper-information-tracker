@@ -44,7 +44,7 @@ The dedicated broker GitHub App must be installed only on this repository and gr
 
 From Cloudflare and GitHub dashboards (no local PC is required):
 
-1. Create a Cloudflare Worker named `shit-mobile-auth-broker` in the dashboard first. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
+1. Use the existing Cloudflare Worker named `shit-auth-broker`; do not create a duplicate. The first Wrangler deployment then updates this existing Worker and applies the SQLite Durable Object migration.
 2. Enable its `workers.dev` hostname and note the exact HTTPS URL.
 3. Add these non-secret GitHub repository Actions variables: `CLOUDFLARE_ACCOUNT_ID`, `BROKER_BASE_URL`, `GITHUB_APP_CLIENT_ID`, `GITHUB_APP_ID`, `GITHUB_APP_REDIRECT_URI` and `SPOTIFY_CLIENT_ID`, `SPOTIFY_REDIRECT_URI`. The callback URLs must use the exact `BROKER_BASE_URL` host and end in `/auth/github/callback` and `/spotify/callback` respectively.
 4. Create a Cloudflare API token scoped to this existing Worker with the Workers product `Editor` permission. Creating a brand-new Worker by API requires broader `Admin`; pre-creating it allows the narrower existing-Worker permission. Add the token as GitHub Actions secret `CLOUDFLARE_API_TOKEN`.
@@ -74,7 +74,7 @@ Run `npm ci` and `npm test` in this directory. The manifest pins `libsodium-wrap
 
 ## Status
 
-The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. **The Worker is not deployed and live mobile authorization is not available yet.** Deployment is blocked on external account provisioning, not unfinished broker code:
+The broker source, automated security tests, and owner-only deployment workflow are merged to `main`. The existing Worker is named `shit-auth-broker`; live deployment and authorization still require the external configuration and verification steps below. Deployment is blocked on external account provisioning, not unfinished broker code:
 
 - Create the Cloudflare Worker and configure its canonical `workers.dev` URL.
 - Create and install the dedicated broker GitHub App with only repository Actions:write and Secrets:write.
