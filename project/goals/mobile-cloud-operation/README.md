@@ -19,11 +19,11 @@ SHIT should:
 
 ## Verified baseline
 
-- `SPOTIFY_REFRESH_TOKEN` in repository Actions Secrets is the cloud credential source of truth.
+- The central encrypted broker credential store is the source of truth for migrated workflows. The legacy `SPOTIFY_REFRESH_TOKEN` Actions secret remains temporarily for the eight unmigrated consumers.
 - The existing manager and `spotify-auth-health-check.yml` support refresh-token rotation persistence through a narrowly scoped GitHub App. The workflow now runs daily and on manual dispatch, reports redacted failure categories, and performs one bounded attempt per run. The workflow persists non-secret health state in the `spotify-auth-health` GitHub commit status on a fixed anchor commit (`a4ac9def8be5b6e727b777e2660a7bb027a8e51b`), so ordinary code/data commits do not reset the latch. The workflow only runs on `main`. Scheduled checks pause on permanent blockers or interrupted attempts and honor Retry-After deadlines; status API/read/write failure is fail-closed. Manual recovery bypasses permanent blockers but still respects an active rate-limit cooldown; missing/invalid Retry-After uses a conservative 24-hour fallback.
 - The current saved refresh token was previously rejected with `invalid_grant`. That error cannot be repaired by retrying the same credential; fresh Spotify consent is required.
 - A managed OAuth broker implementation, its security tests and owner-only deployment workflow are in PR #185 and remain unmerged. The Worker remains source code only until merge, controlled deployment and end-to-end checks are completed.
-- Nine current GitHub Actions workflows consume `SPOTIFY_REFRESH_TOKEN`. Most use independent concurrency groups and `update.yml` has none; a cross-workflow refresh-token single-flight design is still required before broad preflight rollout.
+- The auth-health workflow is the first OIDC broker canary on the feature branch. Eight other workflows still consume `SPOTIFY_REFRESH_TOKEN` and must be migrated individually.
 - The owner-authored GitHub issue command path can operate SHIT remotely, but it is not the authentication system's purpose. It remains a separate control plane for authorized SHIT operations.
 
 ## Architecture
@@ -43,7 +43,7 @@ A managed HTTPS service (Cloudflare Worker with SQLite-backed Durable Object sta
 - GitHub owner authentication and Spotify Authorization Code + PKCE.
 - One-time state, session binding, replay protection, expiry and active-workflow checks.
 - A dedicated repository-scoped GitHub App, separate from the existing manager App, with Actions: read only. The OAuth callback no longer writes repository secrets.
-- Writes only the encrypted `SPOTIFY_REFRESH_TOKEN` Actions secret, then dispatches only the read-only auth-health workflow.
+- Stores owner-consented refresh credentials only as AES-GCM ciphertext in the broker Durable Object, then dispatches the read-only auth-health workflow. It no longer writes GitHub Actions secrets.
 - No refresh token in browser JavaScript, HTML, URLs, chat, issues, artifacts, logs or Durable Object storage.
 - No playlist API, unlock, preview approval or playlist write capability.
 
