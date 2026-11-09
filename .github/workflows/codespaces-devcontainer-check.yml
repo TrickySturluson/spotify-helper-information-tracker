@@ -1,0 +1,67 @@
+name: Codespaces development environment checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".devcontainer/**"
+      - ".github/workflows/codespaces-devcontainer-check.yml"
+      - "auth-broker/**"
+      - "docs/operations/codespaces-development.md"
+      - "project/goals/cloud-development-environment/**"
+  push:
+    branches: [main]
+    paths:
+      - ".devcontainer/**"
+      - ".github/workflows/codespaces-devcontainer-check.yml"
+      - "auth-broker/**"
+      - "docs/operations/codespaces-development.md"
+      - "project/goals/cloud-development-environment/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Codespaces configuration and broker test toolchain
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: Validate devcontainer JSON and safe configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          config = json.loads(Path(".devcontainer/devcontainer.json").read_text(encoding="utf-8"))
+          assert config["image"] == "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm"
+          assert config["features"]["ghcr.io/devcontainers/features/node:1"]["version"] == "22"
+          assert config["remoteUser"] == "vscode"
+          assert config["postCreateCommand"] == "npm ci --prefix auth-broker --ignore-scripts"
+          serialized = json.dumps(config).lower()
+          for forbidden in ("spotify_client_secret", "spotify_refresh_token", "github_app_private_key", "cloudflare_api_token"):
+              assert forbidden not in serialized, f"Production credential reference found: {forbidden}"
+          print("Codespaces configuration is valid and contains no production credential injection.")
+          PY
+      - name: Install broker dependencies without lifecycle scripts
+        run: npm ci --prefix auth-broker --ignore-scripts
+      - name: Run isolated auth broker tests
+        run: npm test --prefix auth-broker
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Secret-free validation of the SHIT Codespaces devcontainer and its
+#          Node/Python toolchain, including isolated auth-broker unit tests.
+# Trigger: Pull requests and pushes to main that change the devcontainer,
+#          this workflow, broker test sources, or the Codespaces guide/workspace.
+# Permissions: contents:read only; no provider credentials or write tokens.
+# Safety: Never deploys the broker, contacts Spotify, changes Actions secrets,
+#         writes playlists, or modifies canonical/generated Library data.
+# -----------------------------------------------------------------------------
