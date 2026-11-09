@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { generateKeyPairSync, sign } from "node:crypto";
 import { SpotifyRefreshLease, verifyActionsOidc, REFRESH_LEASE_TTL_MS } from "../src/refresh-lock.js";
+import { handleRequest } from "../src/index.js";
 
 function b64url(value) { return Buffer.from(value).toString("base64url"); }
 function makeJwt(privateKey, claims, kid = "test-key") {
@@ -146,4 +147,97 @@ test("lease renewal extends expiry and malformed requests fail closed", async ()
   assert.equal(REFRESH_LEASE_TTL_MS, 120_000);
   assert.equal((await lease.fetch(post("/acquire", { leaseId: "short", generation: 0, owner: "wf:789:1" }))).status, 400);
   assert.equal((await lease.fetch(new Request("https://lease.internal/acquire", { method: "GET" }))).status, 404);
+});
+
+
+test("OIDC verifier supports a distinct broker-refresh audience", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = 1_800_000_000;
+  const claims = { ...validClaims(now), aud: "shit-spotify-refresh" };
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const fetchImpl = async () => new Response(JSON.stringify({ keys: [{ ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key" }] }), { status: 200 });
+  await verifyActionsOidc(makeJwt(pair.privateKey, claims), {
+    fetchImpl, now, allowedWorkflowRefs: [claims.workflow_ref], audience: "shit-spotify-refresh",
+  });
+  await assert.rejects(verifyActionsOidc(makeJwt(pair.privateKey, claims), {
+    fetchImpl, now, allowedWorkflowRefs: [claims.workflow_ref],
+  }));
+});
+
+test("broker refresh route authenticates exact OIDC workflow and forwards only operation ID", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = Math.floor(Date.now() / 1000);
+  const claims = { ...validClaims(now), aud: "shit-spotify-refresh" };
+  const token = makeJwt(pair.privateKey, claims);
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const originalFetch = globalThis.fetch;
+  let calls = 0;
+  let forwarded;
+  globalThis.fetch = async () => new Response(JSON.stringify({ keys: [{
+    ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key",
+  }] }), { status: 200 });
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_REFRESH_WORKFLOW_REFS: claims.workflow_ref,
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: (name) => { assert.equal(name, "spotify-primary"); return "credential-id"; },
+      get: (id) => {
+        assert.equal(id, "credential-id");
+        return { fetch: async (url, init) => {
+          calls += 1;
+          assert.equal(url, "https://spotify-credential.internal/refresh");
+          forwarded = JSON.parse(init.body);
+          return Response.json({ accessToken: "short-lived-access-token", expiresIn: 3600 });
+        } };
+      },
+    },
+  };
+  try {
+    const request = new Request("https://broker.example/internal/spotify/refresh", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({ operationId: "J".repeat(43), accountId: "attacker-controlled", owner: "attacker" }),
+    });
+    const result = await handleRequest(request, env);
+    assert.equal(result.status, 200);
+    assert.deepEqual(await result.json(), { accessToken: "short-lived-access-token", expiresIn: 3600 });
+    assert.deepEqual(forwarded, { operationId: "J".repeat(43) });
+    assert.equal(calls, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("broker refresh route rejects wrong-audience OIDC before touching credential storage", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = Math.floor(Date.now() / 1000);
+  const claims = validClaims(now); // Lease audience is not valid for credential refresh.
+  const token = makeJwt(pair.privateKey, claims);
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const originalFetch = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => new Response(JSON.stringify({ keys: [{
+    ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key",
+  }] }), { status: 200 });
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_REFRESH_WORKFLOW_REFS: claims.workflow_ref,
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: () => "credential-id",
+      get: () => ({ fetch: async () => { calls += 1; return Response.json({}); } }),
+    },
+  };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/internal/spotify/refresh", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({ operationId: "K".repeat(43) }),
+    }), env);
+    assert.equal(result.status, 401);
+    assert.equal(calls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
