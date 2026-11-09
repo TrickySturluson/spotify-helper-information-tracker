@@ -267,3 +267,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Restricted the health-check job to `refs/heads/main`, so a manual dispatch from a feature branch cannot overwrite the global auth state.
 - The fixed status anchor is non-secret and is intentionally hard-coded in the workflow. If repository history is ever rewritten, update this anchor as a deliberate migration.
 - Added regression assertions for the fixed SHA and main-only execution. The latest CI run is still pending; no Spotify request was made.
+
+## 2026-11-09 — SHIT-wide monitoring and recovery hardening
+
+- Reframed the project from a phone-only reauthorization path to **Authentication Management & Recovery**, with phone and desktop as equivalent clients.
+- PR #185 (`feature/authentication-management-recovery-final`) contains the auth-health monitor, durable status latch, OAuth broker, tests, and owner-only Worker deployment workflow. It remains open and unmerged; no live Worker deployment or OAuth run was performed.
+- Latest confirmed broker CI on commit `49aa94a7fce965d35ccba5f8aa290a529a3dfe66`: broker tests passed; Daily curator tests passed; Gitleaks failed on two known auth-state metadata false positives. The first regex-based allowlist adjustment did not resolve those findings.
+- Replaced the broad regex attempt with exact Gitleaks fingerprints for the two audited occurrences and removed the broad auth-state regex. Latest branch commit at this log update: `9398ff2f7ea4bcb76820cbc22c700d9855b9fa46`. Fresh broker, Daily, and full-history Gitleaks runs were triggered; their results must be checked before claiming green.
+- Updated the runbook to reflect the actual variable names (`BROKER_GH_APP_*`), owner-reported provisioning, explicit deployment boundary, current PR status, and known cross-workflow race. Updated the source overview and goal documentation to stop describing the feature as mobile-only.
+- Security review confirms the broker's GitHub side effects remain limited to repository secret publication and dispatch of the read-only auth-health workflow. It has no playlist endpoint or playlist-write capability.
+- Known unresolved design item: active-workflow checks are not an atomic global single-flight lock. A Spotify workflow could start after the broker's check; central coordination remains required before claiming all Spotify-dependent operations are race-safe.
+- No secret values were read, copied, logged, or changed. No Spotify API/OAuth call, Cloudflare deployment, GitHub App permission change, or playlist operation was performed.
