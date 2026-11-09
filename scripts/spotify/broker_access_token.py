@@ -43,7 +43,10 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
         except (ValueError, UnicodeDecodeError, AttributeError):
             detail = None
             body_retry_after = None
-        if detail in {
+        if detail == "credential_busy":
+            category = "busy"
+            message = "Another SHIT workflow is currently refreshing the shared Spotify credential."
+        elif detail in {
             "reauthorization_required",
             "credential_blocked",
             "operation_outcome_uncertain_reauthorization_required",
