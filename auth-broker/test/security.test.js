@@ -1,6 +1,5 @@
 import test from "node:test";
 import { generateKeyPairSync } from "node:crypto";
-import sodium from "libsodium-wrappers";
 import { readFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import {
@@ -9,7 +8,6 @@ import {
   rateLimit,
   githubAppJwt,
   assertNoConcurrentSpotifyJobs,
-  saveRefreshToken,
   exchangeForm,
   hasRequiredScopes,
   isAuthorizedOwner,
@@ -19,45 +17,6 @@ import {
   pkceChallenge,
   verifySpotifyIdentity,
 } from "../src/index.js";
-
-async function makeGitHubApiMock({ secretStatus = 201, dispatchStatus = 204 } = {}) {
-  await sodium.ready;
-  const keypair = sodium.crypto_box_keypair();
-  const calls = { savedTokens: [], dispatches: [], secretBodies: [] };
-  const fetch = async (input, init = {}) => {
-    const url = new URL(typeof input === "string" ? input : input.url);
-    const method = init.method || "GET";
-    if (url.pathname.endsWith("/actions/runs")) {
-      return new Response(JSON.stringify({ total_count: 0, workflow_runs: [] }), { status: 200 });
-    }
-    if (url.pathname.endsWith("/actions/secrets/public-key")) {
-      return new Response(JSON.stringify({
-        key_id: "test-key-id",
-        key: sodium.to_base64(keypair.publicKey, sodium.base64_variants.ORIGINAL),
-      }), { status: 200 });
-    }
-    if (url.pathname.endsWith("/actions/secrets/SPOTIFY_REFRESH_TOKEN") && method === "PUT") {
-      const body = JSON.parse(init.body);
-      calls.secretBodies.push(body);
-      if (secretStatus >= 400) return new Response("failure", { status: secretStatus });
-      const clear = sodium.crypto_box_seal_open(
-        sodium.from_base64(body.encrypted_value, sodium.base64_variants.ORIGINAL),
-        keypair.publicKey,
-        keypair.privateKey,
-      );
-      calls.savedTokens.push(sodium.to_string(clear));
-      return new Response(JSON.stringify({ updated: true }), { status: secretStatus });
-    }
-    if (url.pathname.endsWith("/actions/workflows/spotify-auth-health-check.yml/dispatches") && method === "POST") {
-      calls.dispatches.push(JSON.parse(init.body));
-      return dispatchStatus === 204
-        ? new Response(null, { status: 204 })
-        : new Response("failure", { status: dispatchStatus });
-    }
-    throw new Error("Unexpected GitHub API request in test: " + method + " " + url.pathname);
-  };
-  return { fetch, calls };
-}
 
 test("GitHub owner check is case-insensitive but rejects other identities", () => {
   assert.equal(isAuthorizedOwner("TrickySturluson"), true);
@@ -260,12 +219,12 @@ test("deployment workflow injects every public runtime variable without dashboar
 });
 
 
-test("broker source exposes only the Spotify refresh secret and read-only verification dispatch", async () => {
+test("broker source uses central encrypted storage and never writes a refresh-token secret", async () => {
   const source = await readFile(new URL("../src/index.js", import.meta.url), "utf8");
-  assert.match(source, /const SECRET_NAME = "SPOTIFY_REFRESH_TOKEN"/);
   assert.match(source, /const AUTH_WORKFLOW = "spotify-auth-health-check\.yml"/);
-  assert.match(source, /actions\/secrets\/\$\{SECRET_NAME\}/);
+  assert.match(source, /authorizeCentralCredential\(env, tokenData\.refresh_token, spotifyIdentity\.id\)/);
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
+  assert.doesNotMatch(source, /actions\/secrets|SPOTIFY_REFRESH_TOKEN|saveRefreshToken/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
   assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
   assert.match(source, /isAuthorizedOwner\(user\.login\)/);
@@ -273,7 +232,7 @@ test("broker source exposes only the Spotify refresh secret and read-only verifi
 });
 
 
-test("Spotify account identity is verified before secret persistence", async () => {
+test("Spotify account identity is verified before central credential initialization", async () => {
   let calledUrl = "";
   let authorization = "";
   const identity = await verifySpotifyIdentity("short-lived-access-token", async (url, options) => {
@@ -402,51 +361,6 @@ test("workflow preflight fails closed when GitHub run data is incomplete", async
       assertNoConcurrentSpotifyJobs("installation-token"),
       /Could not safely inspect/,
     );
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
-});
-
-
-test("refresh token is sealed to GitHub's public key and only the read-only health workflow is dispatched", async () => {
-  const originalFetch = globalThis.fetch;
-  const mock = await makeGitHubApiMock();
-  globalThis.fetch = mock.fetch;
-  const refreshToken = "spotify-refresh-token-for-integration-test";
-  try {
-    assert.equal(await saveRefreshToken({}, refreshToken, "repository-scoped-installation-token"), true);
-    assert.deepEqual(mock.calls.savedTokens, [refreshToken]);
-    assert.deepEqual(mock.calls.secretBodies.map((body) => Object.keys(body).sort()), [["encrypted_value", "key_id"]]);
-    assert.deepEqual(mock.calls.dispatches, [{ ref: "main" }]);
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
-});
-
-test("failed auth-health dispatch is reported separately after secret persistence", async () => {
-  const originalFetch = globalThis.fetch;
-  const mock = await makeGitHubApiMock({ dispatchStatus: 503 });
-  globalThis.fetch = mock.fetch;
-  try {
-    assert.equal(await saveRefreshToken({}, "spotify-refresh-token-for-integration-test", "repository-scoped-installation-token"), false);
-    assert.equal(mock.calls.savedTokens.length, 1);
-    assert.equal(mock.calls.dispatches.length, 1);
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
-});
-
-test("failed GitHub secret update stops before auth-health dispatch", async () => {
-  const originalFetch = globalThis.fetch;
-  const mock = await makeGitHubApiMock({ secretStatus: 500 });
-  globalThis.fetch = mock.fetch;
-  try {
-    await assert.rejects(
-      saveRefreshToken({}, "spotify-refresh-token-for-integration-test", "repository-scoped-installation-token"),
-      /GitHub could not complete the secure credential update/,
-    );
-    assert.equal(mock.calls.savedTokens.length, 0);
-    assert.equal(mock.calls.dispatches.length, 0);
   } finally {
     globalThis.fetch = originalFetch;
   }
