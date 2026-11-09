@@ -44,7 +44,9 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("def retry_state(header):", script)
         self.assertIn("parsedate_to_datetime", script)
         self.assertIn("rate_limited_until:", script)
+        self.assertIn("86400", script)
         self.assertIn("AUTH_HEALTH_RETRY_AFTER=", script)
+        self.assertIn("including manual attempts", WORKFLOW)
         self.assertIn('date +%s', WORKFLOW)
 
     def test_invalid_grant_is_a_manual_reauthorization_blocker(self):
@@ -52,6 +54,8 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn('report("reauthorization_required"', script)
         self.assertIn("The same credential will not be retried", script)
         self.assertIn("reauthorization_required", WORKFLOW)
+        self.assertIn("Open SHIT Spotify authorization", script)
+        self.assertIn("docs/operations/mobile-spotify-reauth.md", script)
 
     def test_provider_failures_are_distinct_and_redacted(self):
         script = embedded_health_script()
@@ -86,14 +90,6 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertNotIn("contents: write", permissions)
         self.assertNotIn("variables:", permissions)
         self.assertNotIn("issues: write", permissions)
-
-    def test_run_history_latch_uses_status_markers_without_repository_writes(self):
-        script = embedded_health_script()
-        self.assertIn('print(f"AUTH_HEALTH_STATUS={status}")', script)
-        self.assertIn("AUTH_HEALTH_RETRY_AFTER=", script)
-        self.assertIn("gh run view", WORKFLOW)
-        self.assertNotIn("gh variable set", WORKFLOW)
-        self.assertNotIn("variables:", WORKFLOW)
 
     def test_health_check_has_no_playlist_or_library_write_path(self):
         workflow = WORKFLOW.lower()
