@@ -1,6 +1,6 @@
 # Authentication Management & Recovery — Roadmap
 
-**Status:** Active implementation. Broker source exists in an unmerged/reviewable feature line; external deployment and real Spotify reauthorization are not complete.  
+**Status:** Active implementation. Broker source, tests and owner-only deployment workflow are merged to `main`; external deployment and real Spotify reauthorization are not complete.  
 **Priority:** User-authorized on 2026-11-08.  
 **Scope:** SHIT-wide authentication health, safe automatic refresh/rotation, diagnosis and consent-based recovery. Phone and desktop are equally supported.
 
@@ -73,7 +73,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 - [x] Implement repository-scoped secret encryption/update of only `SPOTIFY_REFRESH_TOKEN`.
 - [x] Dispatch only read-only auth-health verification after confirmed secret persistence.
 - [x] Add security tests and reproducible deployment configuration.
-- [ ] Review and approve the reconciled broker PR; do not merge without explicit approval.
+- [x] Review and merge the reconciled broker source/tests/deployment workflow to `main` (source is present; no Worker deployment is implied).
 - [ ] Configure Cloudflare Worker secrets/variables and dedicated repository-scoped GitHub App.
 - [ ] Register exact HTTPS callback URLs and deploy the Worker.
 - [ ] Complete owner-consented Spotify OAuth from phone and desktop browsers.
