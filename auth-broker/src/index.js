@@ -394,8 +394,33 @@ export async function assertNoConcurrentSpotifyJobs(token) {
 function authorizationSavedMessage(spotifyIdentity, verificationStarted) {
   const account = `${spotifyIdentity.displayName || "Spotify user"} (ID ${spotifyIdentity.id})`;
   return verificationStarted
-    ? `Spotify account verified: ${account}. Your authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
-    : `Spotify account verified: ${account}. Your authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open Actions and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
+    ? `Spotify account verified: ${account}. Your refresh credential is encrypted in the central SHIT authentication broker. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
+    : `Spotify account verified: ${account}. Your refresh credential is encrypted in the central SHIT authentication broker, but the read-only check could not be started. Open Actions and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
+}
+
+async function authorizeCentralCredential(env, refreshToken, accountId) {
+  if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim()) {
+    throw new BrokerError("Central Spotify credential storage is not configured; no credential was saved.");
+  }
+  const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
+  const result = await stub.fetch("https://spotify-credential.internal/authorize", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ accountId, refreshToken }),
+  });
+  if (!result.ok) {
+    throw new BrokerError("Central Spotify credential storage rejected this authorization. No existing credential was overwritten.");
+  }
+  return result.json();
+}
+
+async function dispatchAuthHealthCheck(token) {
+  try {
+    await githubApi(`/repos/${OWNER}/${REPOSITORY}/actions/workflows/${AUTH_WORKFLOW}/dispatches`, token, "POST", { ref: "main" });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export async function verifySpotifyIdentity(accessToken, fetchImpl = fetch) {
@@ -513,7 +538,10 @@ async function spotifyCallback(request, env, url) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
   const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
-  const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
+  // Hand the long-lived credential directly to the encrypted Durable Object.
+  // It is never written to a GitHub Actions secret or returned to the browser.
+  await authorizeCentralCredential(env, tokenData.refresh_token, spotifyIdentity.id);
+  const verificationStarted = await dispatchAuthHealthCheck(githubToken);
   // Keep the callback URL (which contains a one-time authorization code) out
   // of the final browser address bar. Store only the non-secret result summary.
   const resultId = randomValue(24);
