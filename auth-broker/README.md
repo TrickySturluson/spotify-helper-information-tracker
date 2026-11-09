@@ -85,7 +85,7 @@ Do not share secret values with ChatGPT or put them in issues, PRs, logs, or wor
 
 Run `npm ci` and `npm test` in this directory. Run the Cloudflare SQLite Durable Object integration suite with `npm run test:durable-objects`. The broker CI also tests the Python OIDC client, manager broker-only mode, auth-health workflow contract, documentation layout, dependency audit, and a non-deploying Wrangler dry run.
 
-Unit tests do not prove production readiness. Required end-to-end evidence includes real Cloudflare Durable Object transactions, owner-consented initial credential handoff, same-account recovery, OIDC verification from the exact main workflow, real Spotify refresh/identity verification, refresh-token rotation persistence, and fail-closed recovery after interrupted operations. The eight remaining workflows must be migrated and tested before retiring the legacy secret.
+Unit tests do not prove production readiness. Required end-to-end evidence includes real Cloudflare Durable Object transactions, owner-consented initial credential handoff, same-account recovery, OIDC verification from the exact main workflow, real Spotify refresh/identity verification, refresh-token rotation persistence, and fail-closed recovery after interrupted operations. All nine migrated workflows must pass CI and end-to-end verification before retiring the legacy secret.
 
 ## Current status
 
