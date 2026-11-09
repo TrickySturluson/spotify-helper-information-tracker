@@ -4,12 +4,49 @@ on:
   pull_request:
     paths:
       - "auth-broker/**"
+      - ".github/workflows/spotify-daily-live-preflight.yml"
+      - ".github/workflows/spotify-daily-midnight-cycle.yml"
+      - ".github/workflows/spotify-daily-feedback-observation.yml"
+      - ".github/workflows/tricky-daily-snapshot-refresh.yml"
+      - ".github/workflows/spotify-reference-library.yml"
+      - ".github/workflows/spotify-playlist-manager.yml"
+      - ".github/workflows/great-migration.yml"
+      - ".github/workflows/update.yml"
+      - "scripts/music/verify_provider_credentials.py"
+      - "scripts/spotify/spotify_daily_preflight.py"
+      - "scripts/spotify/spotify_daily_snapshot.py"
+      - "scripts/spotify/spotify_daily_cycle.py"
+      - "scripts/spotify/spotify_playlist_manager.py"
+      - "scripts/spotify/broker_access_token.py"
+      - "tests/test_spotify_playlist_manager.py"
+      - "tests/test_spotify_broker_access.py"
+      - "tests/test_spotify_auth_health_workflow.py"
+      - "auth-broker/test/workflow-inventory.test.js"
+      - ".github/workflows/spotify-auth-health-check.yml"
       - "scripts/spotify/broker_access_token.py"
       - "scripts/spotify/spotify_playlist_manager.py"
       - "tests/test_spotify_broker_access.py"
       - "tests/test_spotify_auth_health_workflow.py"
       - "auth-broker/test/workflow-inventory.test.js"
       - ".github/workflows/spotify-auth-health-check.yml"
+      - ".github/workflows/spotify-daily-live-preflight.yml"
+      - ".github/workflows/spotify-daily-midnight-cycle.yml"
+      - ".github/workflows/spotify-daily-feedback-observation.yml"
+      - ".github/workflows/tricky-daily-snapshot-refresh.yml"
+      - ".github/workflows/spotify-reference-library.yml"
+      - ".github/workflows/spotify-playlist-manager.yml"
+      - ".github/workflows/great-migration.yml"
+      - ".github/workflows/update.yml"
+      - "scripts/music/verify_provider_credentials.py"
+      - "scripts/spotify/spotify_daily_preflight.py"
+      - "scripts/spotify/spotify_daily_snapshot.py"
+      - "scripts/spotify/spotify_daily_cycle.py"
+      - "scripts/spotify/spotify_playlist_manager.py"
+      - "scripts/spotify/broker_access_token.py"
+      - "tests/test_spotify_playlist_manager.py"
+      - "tests/test_spotify_broker_access.py"
+      - "tests/test_spotify_auth_health_workflow.py"
+      - "auth-broker/test/workflow-inventory.test.js"
       - "tests/test_spotify_playlist_manager.py"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
@@ -89,8 +126,8 @@ jobs:
             --var "GITHUB_APP_ID:123456" \
             --var "GITHUB_APP_REDIRECT_URI:https://broker.example.workers.dev/auth/github/callback" \
             --var "SPOTIFY_CLIENT_ID:example-spotify-client-id" \
-            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback" \\
-            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:1" \\
+            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback" \
+            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:1" \
             --var "SPOTIFY_REFRESH_WORKFLOW_REFS:TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-live-preflight.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-feedback-observation.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/tricky-daily-snapshot-refresh.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-reference-library.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-playlist-manager.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/great-migration.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/update.yml@refs/heads/main"
 
   commit-lockfile:
