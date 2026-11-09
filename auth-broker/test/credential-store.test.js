@@ -39,7 +39,7 @@ function request(path, body) {
   });
 }
 const initialToken = "initial-spotify-refresh-token-123456";
-const operation = "A".repeat(43;
+const operation = "A".repeat(43);
 
 test("credential initialization encrypts the token and never stores plaintext", async () => {
   const { storage, store } = setup();
