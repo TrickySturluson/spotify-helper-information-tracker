@@ -44,7 +44,9 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn("def retry_state(header):", script)
         self.assertIn("parsedate_to_datetime", script)
         self.assertIn("rate_limited_until:", script)
+        self.assertIn("86400", script)
         self.assertIn("AUTH_HEALTH_RETRY_AFTER=", script)
+        self.assertIn("including manual attempts", WORKFLOW)
         self.assertIn('date +%s', WORKFLOW)
 
     def test_invalid_grant_is_a_manual_reauthorization_blocker(self):
