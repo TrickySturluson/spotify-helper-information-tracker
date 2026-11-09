@@ -290,3 +290,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Source review confirmed: the Worker has no playlist API; secret persistence is encrypted using GitHub's Actions public key; dispatch occurs only after secret update; GitHub and Spotify identity checks are separate; OAuth state is short-lived and consumed once; the auth-health workflow verifies `/v1/me` before persisting refresh-token rotation.
 - Remaining architectural risk: preflight enumerates active workflow runs but is not a globally atomic lock. Do not enable a claim of race-free refresh across all Spotify workflows until a true shared coordination mechanism is designed and tested.
 - No OAuth flow, external API call, Worker deployment, secret mutation, or playlist operation was performed.
+
+
+## 2026-11-09 — Cross-workflow refresh-token coordination design
+
+- Confirmed the race is not safely solved by existing per-workflow concurrency groups or a single global Actions group. Nine workflows consume the same rotating refresh token; a global group risks pending-run replacement and Daily starvation behind long migration work.
+- Added `REFRESH_TOKEN_SINGLE_FLIGHT.md` specifying a dedicated Cloudflare Durable Object lease coordinator authenticated with GitHub Actions OIDC.
+- The design uses short critical-section leases, atomic storage transactions, renewal, crash expiry, fencing generations, exact repository/workflow identity validation, and fail-closed behavior. The coordinator stores no Spotify credentials and cannot call Spotify, GitHub APIs, modify secrets, or touch playlists.
+- Updated M4 in the roadmap. Implementation, JWT verification, lease concurrency tests, workflow rollout and the all-consumer coverage test remain open. No Worker deployment or production workflow change was made.
