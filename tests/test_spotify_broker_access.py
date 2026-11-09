@@ -110,6 +110,21 @@ class BrokerAccessTokenTests(unittest.TestCase):
             request_broker_access_token(self.environ, reauthorization_opener)
         self.assertEqual(reauth_error.exception.category, "reauthorization_required")
 
+    def test_broker_error_categories_and_retry_after_are_preserved(self):
+        def opener(request, timeout=0):
+            if len(self.calls) == 0:
+                self.calls.append(request)
+                return FakeResponse({"value": "signed-github-oidc-jwt"})
+            raise urllib.error.HTTPError(
+                request.full_url, 429, "rate limited",
+                {"Retry-After": "120"}, None,
+            )
+
+        with self.assertRaises(BrokerTokenError) as raised:
+            request_broker_access_token(self.environ, opener)
+        self.assertEqual(raised.exception.category, "rate_limited")
+        self.assertEqual(raised.exception.retry_after, "120")
+
     def test_invalid_access_token_lifetime_is_rejected(self):
         for expires in (0, 59, 86_401, True, "3600"):
             with self.subTest(expires=expires), self.assertRaises(BrokerTokenError):
