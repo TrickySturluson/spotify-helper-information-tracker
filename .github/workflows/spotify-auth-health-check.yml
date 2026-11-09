@@ -189,6 +189,6 @@ jobs:
 #         on permanent blockers or interrupted runs. 429 respects Retry-After.
 #         GITHUB_TOKEN is limited to commit-status write; the GitHub App token is
 #         scoped to Secrets:write solely for refresh-token rotation.
-# Side effects: May replace SPOTIFY_REFRESH_TOKEN only after successful refresh;
+# Side effects: Requests a short-lived access token from the central broker and records non-secret auth status;
 #               never modifies playlists, Library data, or repository contents.
 # -----------------------------------------------------------------------------
