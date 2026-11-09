@@ -275,7 +275,12 @@ test("broker source exposes only the Spotify refresh secret and read-only verifi
   assert.match(source, /actions\/secrets\/\$\{SECRET_NAME\}/);
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
-  assert.doesNotMatch(source, /console\.(?:log|info|warn|error)/);
+  assert.doesNotMatch(source, /console\.(?:log|info|warn)/);
+  const diagnosticLog = source.match(/console\.error\(\{([\s\S]*?)\}\);/)?.[1] || "";
+  assert.match(diagnosticLog, /event: "shit_auth_broker_request_failed"/);
+  assert.match(diagnosticLog, /stage: diagnosticStage/);
+  assert.match(diagnosticLog, /error_class: expected \? "BrokerError" : "UnexpectedError"/);
+  assert.doesNotMatch(diagnosticLog, /error\.message|stack|token|cookie|state|url/i);
   assert.match(source, /isAuthorizedOwner\(user\.login\)/);
   assert.doesNotMatch(source, /env\.GITHUB_OWNER/);
 });
