@@ -165,7 +165,7 @@ class Spotify:
         else:
             self.t=read(TOKEN,None) or authorize()
         self.refresh_token_rotated=False
-        self.request_metrics = {"total_requests": 0, "by_endpoint": {}, "elapsed_ms": 0}
+        self.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
     @staticmethod
     def metric_endpoint(path):
         # Remove query strings and Spotify IDs; metrics must not expose playlist IDs or search terms.
