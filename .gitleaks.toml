@@ -8,15 +8,13 @@ description = "Public catalog identifiers in the generated music-library index o
 paths = ['''.*assistant_data/music/library/library_index\.json$''']
 
 [[allowlists]]
-description = "Historical workflow environment label false positive; exact source line and file only."
+description = "Exact historical false-positive workflow environment label; only this commit and file."
 condition = "AND"
-regexTarget = "line"
-regexes = ['''^\s*SPOTIFY_AUTH_STATE_SHA: \$\{\{ steps\.auth-latch\.outputs\.state_sha \}\}\s*$''']
-paths = ['''.*\.github/workflows/spotify-auth-health-check\.yml$''']
+commits = ["550715ced0f0a001b4a1d509d713759e21afa4f4"]
+paths = ['''\.github/workflows/spotify-auth-health-check\.yml$''']
 
 [[allowlists]]
-description = "Historical regression assertion false positive; exact source line and file only."
+description = "Exact historical false-positive regression assertion; only this commit and file."
 condition = "AND"
-regexTarget = "line"
-regexes = ['''SPOTIFY_AUTH_STATE_SHA: ''']
-paths = ['''.*tests/test_spotify_auth_health_workflow\.py$''']
+commits = ["d434471555f51c767903dcebb8f8af588af256f9"]
+paths = ['''tests/test_spotify_auth_health_workflow\.py$''']
