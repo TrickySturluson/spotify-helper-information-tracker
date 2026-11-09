@@ -113,3 +113,15 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Obtain a short-lived Spotify access token from the SHIT auth broker.
+# Runtime: GitHub Actions only; requires Actions OIDC permission and broker URL.
+# Credentials: Uses the runner-provided OIDC request token; never reads refresh secrets.
+# Output: Masks the access token and writes it only to the ephemeral GITHUB_ENV file.
+# Safety: No legacy fallback, no token printing, bounded responses, HTTPS-only broker.
+# Related: auth-broker/src/credential-store.js, auth-broker/src/index.js,
+#          scripts/spotify/spotify_playlist_manager.py.
+# -----------------------------------------------------------------------------
