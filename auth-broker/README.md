@@ -1,6 +1,6 @@
-# SHIT Mobile Spotify Authorization Broker
+# SHIT Spotify Authorization Broker
 
-This Worker is the planned mobile replacement for the local port-8888 OAuth callback used by the Spotify playlist manager. It is an authentication bootstrap only. It does not read or modify playlists.
+This Worker is SHIT's managed, owner-consented replacement for the local port-8888 OAuth callback used by the Spotify playlist manager. It supports a normal browser on phone or desktop; device type is not a system dependency. It is an authentication bootstrap only. It does not read or modify playlists.
 
 ## Flow
 
