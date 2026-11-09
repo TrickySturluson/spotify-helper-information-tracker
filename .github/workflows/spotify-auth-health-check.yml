@@ -28,6 +28,10 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           if [ "$EVENT_NAME" != "schedule" ]; then
+            if ! gh variable set SPOTIFY_AUTH_STATE --body pending --repo "$GITHUB_REPOSITORY"; then
+              echo "::error::Could not persist the pending auth state; refusing to contact Spotify."
+              exit 1
+            fi
             echo "skip=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
