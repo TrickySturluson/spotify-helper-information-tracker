@@ -235,3 +235,11 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - Retry-After accepts either integer seconds or an HTTP date. If Spotify omits or returns an invalid header, the monitor waits a conservative 24 hours before another scheduled or manual attempt.
 - Preserved the Retry-After marker when a scheduled run is skipped, so later scheduled runs continue evaluating the same deadline rather than losing it.
 - Added a regression assertion for the 24-hour fallback and manual cooldown behavior. Full CI is being rerun for this refinement.
+
+## 2026-11-08 — Correct broker source status and make authorization UI device-neutral
+
+- Re-inspected the current `main` tree and confirmed `auth-broker/src/index.js`, the pinned package/test suite, Wrangler configuration and owner-only deployment workflow are already present on `main`. The broker README also records these source assets as merged. Earlier same-day action-log text saying PR #182 remained unmerged is historical and superseded; the current blocker is external provisioning/deployment and live OAuth, not source merge.
+- Updated the goal README and roadmap to reflect that the broker source/tests/deploy workflow are on `main`, while keeping Worker deployment and Spotify consent explicitly incomplete.
+- Updated the broker landing page to say it supports a phone or desktop browser; renamed its user-facing title to SHIT Spotify authorization. Updated the broker README and legacy deployment runbook to match.
+- Updated the broker landing-page test to assert the device-neutral phone/desktop message and retained the no-third-party-script/no-store checks.
+- No Worker deployment, Cloudflare setting, GitHub App permission/installation, Spotify callback, Actions secret, OAuth, or playlist operation occurred. The current `invalid_grant` still requires fresh owner consent.
