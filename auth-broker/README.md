@@ -33,6 +33,8 @@ Worker secrets (set with Cloudflare's secret-management interface or Wrangler se
 - GITHUB_APP_CLIENT_SECRET
 - GITHUB_APP_PRIVATE_KEY
 
+**Security prerequisite — 2026-11-09:** Cloudflare production Worker metadata currently reports both bindings above as `plain_text`, not `secret_text`. Treat the existing values as exposed: rotate the dedicated GitHub App client secret and generate a new private key, then enter the new values directly in Cloudflare as Worker Secrets. Remove the old plain-text bindings after the secure replacements are confirmed. Do not read, copy, or paste the old values. The owner-only deployment workflow now checks binding types through Cloudflare metadata and fails closed unless both are `secret_text`. Its Cloudflare API token needs Workers Scripts Read and Write permissions.
+
 The dedicated broker GitHub App must be installed only on this repository. In the GitHub App settings UI, grant **Actions: Read and write** and **Secrets: Read and write**; GitHub's installation-token API represents these as `actions: write` and `secrets: write` (write includes the read operations the broker needs to list active workflow runs and fetch the repository secret public key). The broker requests only those two write-level permissions and only this repository. Keep it separate from the existing SHIT manager App, which remains Secrets: write only; do not widen that operational App's permissions. Use this same App's web authorization flow for owner identity; no separate GitHub OAuth App is needed. Do not grant Contents, Administration, Issues, or account-wide permissions.
 
 ## GitHub App and Spotify app setup
