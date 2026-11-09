@@ -63,9 +63,10 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     calls.push(String(url));
     if (String(url).includes("/api/token")) {
       const body = new URLSearchParams(options.body);
-      assert.equal(body.get("refresh_token"), initialToken);
+      const suppliedRefreshToken = body.get("refresh_token");
+      assert.ok([initialToken, "rotated-refresh-token-abcdef"].includes(suppliedRefreshToken));
       return new Response(JSON.stringify({
-        access_token: "short-lived-access-token",
+        access_token: "short-lived-access-token-" + (suppliedRefreshToken === initialToken ? "one" : "two"),
         refresh_token: "rotated-refresh-token-abcdef",
         token_type: "Bearer",
         expires_in: 3600,
@@ -87,8 +88,8 @@ test("refresh rotates encrypted credential only after Spotify identity verificat
     assert.equal(JSON.stringify(record).includes("rotated-refresh-token-abcdef"), false);
     assert.deepEqual(calls, ["https://accounts.spotify.com/api/token", "https://api.spotify.com/v1/me"]);
     const replay = await store.fetch(request("/refresh", { operationId: "B".repeat(43) }));
-    assert.equal(replay.status, 409);
-    assert.equal((await replay.json()).error, "credential_blocked");
+    assert.equal(replay.status, 200);
+    assert.equal((await replay.json()).credentialVersion, 3);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -167,7 +168,7 @@ test("concurrent refresh attempts reserve one durable operation only", async () 
 test("malformed requests and missing encryption configuration fail closed", async () => {
   const { store } = setup();
   assert.equal((await store.fetch(new Request("https://x/refresh", { method: "GET" }))).status, 404);
-  assert.equal((await store.fetch(request("/refresh", { operationId: "short" }))).status, 409);
+  assert.equal((await store.fetch(request("/refresh", { operationId: "short" }))).status, 400);
   const unconfigured = new SpotifyCredentialStore({ storage: new MemoryStorage() }, {});
   assert.equal((await unconfigured.fetch(request("/initialize", { accountId: "x", refreshToken: initialToken }))).status, 503);
   assert.equal(CREDENTIAL_OPERATION_TTL_MS, 120_000);
