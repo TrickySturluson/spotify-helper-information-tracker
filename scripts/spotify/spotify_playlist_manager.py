@@ -164,7 +164,7 @@ class Spotify:
                 broker_expires=int(os.environ.get("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN", "3600"))
             except (TypeError, ValueError):
                 raise ManagerError("SHIT broker access-token lifetime is invalid.")
-            if not 60 <= broker_expires <= 86400 or "\n" in broker_access_token:
+            if not 120 <= broker_expires <= 86400 or "\n" in broker_access_token or "\r" in broker_access_token:
                 raise ManagerError("SHIT broker access token or lifetime is invalid.")
             self.t={"access_token":broker_access_token,"obtained_at":time.time(),"expires_in":broker_expires}
         else:
@@ -188,10 +188,22 @@ class Spotify:
         metrics["by_status"][status_key] = metrics["by_status"].get(status_key, 0) + 1
         metrics["total_requests"] += 1
         metrics["elapsed_ms"] += round(elapsed_ms, 2)
+    def renew_broker_access_token(self):
+        try:
+            from scripts.spotify.broker_access_token import BrokerTokenError, request_broker_access_token
+            access_token, expires_in = request_broker_access_token()
+        except BrokerTokenError as exc:
+            raise ManagerError("SHIT central broker could not renew the short-lived access token (" + exc.category + ").") from None
+        self.t = {"access_token": access_token, "obtained_at": time.time(), "expires_in": expires_in}
+        os.environ["SHIT_BROKER_ACCESS_TOKEN"] = access_token
+        os.environ["SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN"] = str(expires_in)
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            print("::add-mask::" + access_token)
+        return access_token
     def bearer(self):
         if getattr(self, "broker_managed", False):
-            if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
-                raise ManagerError("SHIT broker access token expired. Restart this workflow to request a new short-lived token; direct Spotify refresh is disabled for broker-managed sessions.")
+            if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",0)-60:
+                return self.renew_broker_access_token()
             return self.t["access_token"]
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
