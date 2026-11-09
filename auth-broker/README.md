@@ -20,7 +20,7 @@ The credential store is keyed to one fixed Durable Object identity (`spotify-pri
 
 The first broker consumer is `.github/workflows/spotify-auth-health-check.yml`. Its feature-branch implementation requests OIDC with audience `shit-spotify-refresh`, calls the central broker, verifies `/v1/me`, and retains the durable commit-status latch and Retry-After behavior.
 
-The remaining eight direct consumers are still on the legacy GitHub Actions refresh-token path and must be migrated individually. Their workflow permissions, multi-job boundaries, playlist locks, snapshots, audits, rollback behavior, and side effects must remain unchanged. Do not remove the legacy repository secret until every consumer is migrated and production cutover is explicitly approved.
+All nine inventoried Spotify workflow consumers have now been migrated to the broker client on the stacked feature branch. Each job obtains its own OIDC token; the encrypted access-token cache lets concurrent jobs share one serialized refresh result. The existing playlist locks, snapshots, audits, rollback behavior, and side effects are preserved. The deployed main branch still uses the legacy secret until the stacked PRs are merged and the broker is deployed; do not remove that secret before live end-to-end verification and explicit owner approval.
 
 The central callback, credential-store initialization/recovery, and auth-health OIDC canary are implemented on the stacked feature branch PRs #187/#188. They are not merged or deployed. The Cloudflare encryption key and exact OIDC workflow allowlist are not yet provisioned. Do not claim production centralization until deployment and end-to-end verification pass.
 
@@ -42,7 +42,7 @@ Non-secret GitHub repository Actions variables injected by the deployment workfl
 - `SPOTIFY_CLIENT_ID`
 - `SPOTIFY_REDIRECT_URI` — exact Worker URL plus `/spotify/callback`
 - `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION` — positive integer
-- `SPOTIFY_REFRESH_WORKFLOW_REFS` — initially exactly `TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main`
+- `SPOTIFY_REFRESH_WORKFLOW_REFS` — exact comma-separated allowlist of all nine migrated main-branch workflow refs: auth-health, Daily preflight, Daily midnight cycle, Daily feedback observation, Daily snapshot refresh, Reference Library, Playlist Manager, Great Migration, and `update.yml`. The deployment workflow rejects wildcards, missing refs, and extra refs.
 
 Cloudflare Worker secrets (never commit or copy into GitHub Actions):
 
@@ -59,7 +59,7 @@ No deployment or external account changes are performed by PR CI. Before the own
 1. Confirm the pre-created Cloudflare Worker `shit-auth-broker` and its canonical `workers.dev` HTTPS URL.
 2. Install the dedicated broker GitHub App only on this repository with repository-scoped Actions: Write. Enable its user authorization flow and register the exact `/auth/github/callback` URI.
 3. Register the exact `/spotify/callback` URI in the Spotify Developer Dashboard.
-4. Set the public GitHub repository variables listed above. The deployment workflow validates that the initial OIDC allowlist contains only the exact main-branch auth-health workflow.
+4. Set the public GitHub repository variables listed above. The deployment workflow validates that the OIDC allowlist exactly matches the nine migrated main-branch workflows.
 5. Generate a cryptographically random 32-byte AES key, base64 encode it, and configure `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` as a Cloudflare Worker secret, for example a JSON object with key version `1`. Set `SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION=1`. Never paste the key into chat, source control, or a workflow log.
 6. Add the scoped Cloudflare API token as GitHub Actions secret `CLOUDFLARE_API_TOKEN`. It should update only the existing Worker and its declared Durable Object migration.
 7. Run the owner-only `Deploy SHIT Auth Broker` workflow from the repository's Actions tab.
@@ -93,8 +93,8 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 - Owner-consented initial credential handoff and same-account recovery: wired in the stacked draft branch; not deployed or exercised with real credentials.
 - OIDC-authenticated refresh endpoint and Python client: implemented and unit-tested; exact allowlist/configuration and live GitHub OIDC validation remain.
 - Auth-health workflow: first OIDC consumer migrated in the feature branch; CI validation is pending.
-- Other eight workflow consumers: not migrated.
+- All nine workflow consumers: migrated to broker-only authentication on the stacked feature branch; live validation pending.
 - Production deployment, owner OAuth, and end-to-end verification: not performed.
-- Legacy GitHub Actions refresh-token secret: retained for the eight unmigrated consumers; the broker callback no longer writes it.
+- Legacy GitHub Actions refresh-token secret: retained on the deployed main branch until merge, deployment, two independent broker-backed health checks, and production cutover approval; the broker callback no longer writes it.
 
 The broker never unlocks or edits playlists. Do not merge, deploy, or perform production cutover until the staged PRs have passing validation, the owner has completed the external setup, and the remaining consumer migration and rollback plan are reviewed.
