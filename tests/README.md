@@ -17,7 +17,7 @@ For focused checks, run `python -m unittest tests.test_documentation_contract -v
 - **Metadata and discovery:** provider enrichment, recording identity, acoustic descriptors, lyrics, mood inference, and candidate ingestion.
 - **Playlist intelligence:** fit scoring, feedback calibration, previews, sequencing, discovery, and removal feedback.
 - **Tricky Daily:** cycle scheduling and force/idempotency, durable ordered stage hashing/commit/read-back, same-date pending-stage guard, repository-head concurrency checks, pre-write live snapshot/lock/blacklist rechecks, exact post-write order/count/uniqueness/blacklist validation, ambiguous Spotify write reconciliation, no-write stage-only mode, feedback scoring, playlist generation, read-only preflight/snapshot/catalog/index refresh, and maintained-source import precedence.
-- **Spotify operations:** playlist management, reference-library synchronization, descriptions, and playback observations.
+- **Spotify operations:** playlist management, reference-library synchronization, descriptions, and playback observations. `test_spotify_auth_health_workflow.py` protects the scheduled auth-check latch, Retry-After handling, failure classification, token redaction, and no-playlist-write boundary.
 
 Test filenames provide the detailed inventory. Use the relevant workstream roadmap and action log to understand why a behavior is protected and what live verification remains necessary.
 
