@@ -23,7 +23,7 @@ Move the long-lived Spotify refresh token out of GitHub Actions and into a singl
 
 `.github/workflows/spotify-auth-health-check.yml` is the first OIDC canary on the feature branch. It requests the dedicated audience `shit-spotify-refresh`, is restricted to its exact main-branch workflow identity, obtains a broker access token, verifies Spotify `/v1/me`, and records the existing non-secret commit-status health latch. It does not read the old refresh-token secret or call Spotify's token endpoint directly.
 
-Eight other workflows remain on the legacy refresh-token path. They must be migrated one at a time with their existing workflow, playlist, snapshot, audit, and rollback boundaries preserved.
+All nine inventoried workflows have been migrated to the OIDC broker client on the stacked feature branch, with their existing workflow, playlist, snapshot, audit, and rollback boundaries preserved. The deployed main branch remains on the legacy path until merge/deployment and end-to-end verification.
 
 ## Outstanding production requirements
 
@@ -32,7 +32,7 @@ Eight other workflows remain on the legacy refresh-token path. They must be migr
 - Exact repository variable `SPOTIFY_REFRESH_WORKFLOW_REFS` configured for the initial canary and expanded only as each workflow is migrated.
 - Live GitHub OIDC validation from the exact main-branch auth-health workflow.
 - Real owner-consented initial OAuth handoff and same-account recovery validation.
-- Migration and testing of the remaining eight workflows.
+- Passing CI and end-to-end verification of all nine migrated workflows.
 - Two independent post-deployment auth-health checks and a rollback/recovery exercise.
 - Explicit owner approval before production cutover or removal of the legacy GitHub Actions refresh-token secret.
 
