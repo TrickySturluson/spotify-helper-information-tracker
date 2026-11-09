@@ -1,6 +1,10 @@
+# Authentication Management & Recovery — Roadmap
+
+**Last reviewed:** 2026-11-09
+
 **Status:** Active integration and recovery work. Base broker PR #185 merged at `8cd28530081c519112fd947ac7bb05edc0ce7b04`; diagnostic follow-ups #190 and #191 merged at `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3` and `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`. The production Worker `shit-auth-broker` is deployed at 100% traffic on version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`, 2026-11-09 09:46 UTC). This is the base OAuth broker with Durable Object migration v2; it does **not** yet have the broker-owned `SPOTIFY_CREDENTIAL_STORE` binding or encryption keyring. GitHub App secret metadata now reports both app credentials as `secret_text`. Live Spotify authorization is still failing in the callback and is not complete.
 
-**Active implementation PRs:** PR #187 (`feature/broker-owned-spotify-credential-store`) and PR #188 (`feature/oidc-broker-refresh-endpoint`) remain drafts and are not mergeable against their current bases. PR #187's broker unit tests and Wrangler dry-run pass on head `1c8e6b46c292525c3a13019325a270d91f97a84d` (run #42598447923); its security scan is still running (run #42598447639). PR #188's last fully green test/security head is `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` (tests #42598096634, security #42598096535). New callback-stage instrumentation is on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; its fresh CI is pending. PR #187 is 130 commits ahead / 3 behind main; PR #188 is 267 ahead / 5 behind PR #187's base. Resolve the stacked branch divergence before merge. PR #189 is a separate engineering/general draft and must not be modified by this workstream.
+**Active implementation PRs:** PR #187 (`feature/broker-owned-spotify-credential-store`) and PR #188 (`feature/oidc-broker-refresh-endpoint`) remain drafts and are not mergeable against their current bases. PR #187's broker unit tests and Wrangler dry-run pass on head `1c8e6b46c292525c3a13019325a270d91f97a84d` (run #42598447923); its security scan passed (run #42598447639). PR #188's previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed tests #42598096634 and security #42598096535. Latest head `5e39177daeb0695d7230b199c9c37f6edc6999f2` has security scan #42598778904 passed and broker tests #42598778973 in progress. PR #187 is 130 commits ahead / 3 behind main; PR #188 is 267 ahead / 5 behind PR #187's base. Resolve the stacked branch divergence before merge. PR #189 is a separate engineering/general draft and must not be modified by this workstream.
 
 ## Latest production and diagnostic evidence (2026-11-09)
 
@@ -77,11 +81,12 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ### M3 — Authorization broker
 - [x] Implement HTTPS broker source with GitHub App web authorization + Spotify PKCE.
 - [x] Implement short-lived transactional Durable Object state, owner checks, replay/expiry protection and active-workflow checks.
-- [x] Implement repository-scoped secret encryption/update of only `SPOTIFY_REFRESH_TOKEN`.
-- [x] Dispatch only read-only auth-health verification after confirmed secret persistence.
+- [x] Implement the temporary base-broker GitHub Actions secret write path for `SPOTIFY_REFRESH_TOKEN` (PR #185); this is legacy-only and must be removed after broker-owned storage is live.
+- [x] Base broker dispatches read-only auth-health after confirmed legacy secret persistence; target PR #188 dispatches only after encrypted Durable Object persistence.
 - [x] Add security tests and reproducible deployment configuration.
 - [x] Merge the base broker source/tests/owner-only deployment workflow (#185); merge safe diagnostic follow-ups (#190 and #191). The base Worker is deployed as version 14 at 100% traffic, but this does not mean broker-owned credential storage or Spotify authorization is complete.
 - [ ] Reconcile and merge the encrypted credential store and OIDC refresh integration in PRs #187/#188; both remain drafts and their branches are divergent.
+- [ ] Retire the legacy Actions-secret writer at cutover; the target broker GitHub App must need only Actions: write, not Secrets: write.
 - [x] Verify GitHub App client secret/private key metadata as Cloudflare `secret_text` bindings; never retrieve values.
 - [ ] Provision the versioned Spotify credential encryption keyring and Spotify client-secret binding for the broker-owned store, plus active-key version and exact OIDC workflow allowlist. Confirm required metadata before deployment.
 - [x] Deploy the base Worker and verify version 14 receives 100% production traffic.
@@ -90,11 +95,11 @@ The desired end state is a system that continuously monitors auth, refreshes and
 
 ### M4 — Central auth gate
 - [x] Inventory the nine current workflows that consume `SPOTIFY_REFRESH_TOKEN`.
-- [ ] Define a reusable workflow/action or shared preflight contract for all Spotify-dependent workflows.
+- [ ] Merge/deploy the shared OIDC broker access-token client and nine-workflow migration implemented in PR #188; it remains draft and not active on `main`.
 - [x] Define the short critical-section OIDC-authenticated Durable Object lease design; see [REFRESH_TOKEN_SINGLE_FLIGHT.md](REFRESH_TOKEN_SINGLE_FLIGHT.md). No global Actions concurrency group is permitted.
 - [x] Add initial OIDC JWT verification, atomic lease acquisition/renewal/release, expiry recovery and fencing generations in `auth-broker/src/refresh-lock.js`; automated unit tests pass, but no Actions workflow is integrated and the lease is not sufficient to fence GitHub Secrets API writes.
 - [ ] Validate real OIDC claims using a harmless non-production workflow before enforcing the workflow allowlist (not yet performed).
-- [ ] Roll out the lock to auth-health first, then migrate all nine token consumers; add an inventory test that rejects any uncoordinated refresh-token consumer.
+- [ ] Enable the broker-owned single-flight refresh path for auth-health first, then all nine consumers; add an inventory test that rejects any direct refresh-token consumer or legacy fallback.
 - [ ] Ensure a single auth check can satisfy multiple jobs in a run without parallel refresh storms.
 - [ ] Distinguish authentication from 429, 5xx, network, permission and configuration failures.
 - [ ] Block operations on known invalid credentials; do not silently skip the gate.
@@ -104,7 +109,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ### M5 — End-to-end acceptance
 - [ ] Verify unauthenticated and non-owner broker requests are denied.
 - [ ] Complete Spotify PKCE authorization and confirm expected Spotify identity/scopes.
-- [ ] Verify secret metadata changed without reading or exposing the secret value.
+- [ ] Verify encrypted Durable Object credential persistence and key version without reading or exposing the credential; verify the broker no longer writes GitHub Actions secrets.
 - [ ] Verify only the read-only auth-health workflow is dispatched.
 - [ ] Pass two independent cloud auth-health runs after runner disposal.
 - [ ] Verify health state becomes healthy and stale reauthorization status clears.
@@ -115,7 +120,7 @@ The desired end state is a system that continuously monitors auth, refreshes and
 ## Architecture decisions
 
 - **Authentication Health Monitor:** scheduled and on-demand read-only verification, token refresh, secure rotation persistence, structured diagnosis and durable non-secret status.
-- **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object; dedicated GitHub App with only Actions: write and Secrets: write.
+- **Authorization Broker:** managed HTTPS owner-consent flow; Cloudflare Worker + SQLite Durable Object. The merged base broker currently has a legacy Actions-secret writer (Actions: write + Secrets: write); the target broker-owned design in PR #188 removes Secrets: write and retains only repository-scoped Actions: write.
 - **Recovery Coordinator:** routes each failure category to bounded automatic repair, deferred retry, configuration correction or owner consent.
 - **Central Auth Gate:** shared preflight dependency for Spotify workflows. The broker must become the sole refresh-token holder and refresher; workflows receive only short-lived access tokens after OIDC authorization. No per-job refresh fan-out or direct refresh-token secret reads.
 - **Control plane separation:** GitHub issue commands are a separate remote operations interface. They are not the purpose of this auth workstream and must never bypass manager controls.

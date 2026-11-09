@@ -1,3 +1,14 @@
+## 2026-11-09 UTC — Central auth broker base deployment and callback diagnosis
+
+- PR #185 merged the base broker and owner-only deployment workflow; PR #190/#191 merged subsequent Cloudflare and safe diagnostic fixes.
+- Cloudflare production Worker `shit-auth-broker` version 14 now receives 100% traffic. Version metadata confirms migration v2 and the existing OAuth state/refresh-lease Durable Objects, but not the broker-owned credential-store binding/keyring. GitHub App secret metadata is `secret_text`.
+- A redacted observability query found six Spotify callback failures in the prior 24 hours: four on version 13 at `broker.base_url_configuration`, two on version 14 at `broker.route_dispatch`. The exception contents and credential material were not retrieved.
+- PR #187/#188 contain the encrypted credential store, OIDC refresh endpoint and nine-workflow migration. Prior checks are green on documented commits; latest callback-stage instrumentation needs fresh CI. Both PRs remain draft/unmergeable pending branch reconciliation.
+- The base Worker deployment is not end-to-end authentication success. No Spotify credential persistence or auth-health pass has been verified, and no playlist operation was performed.
+- Next: resolve PR branch ancestry, finish callback diagnostics, provision the missing keyring/client-secret bindings under the owner-controlled release gate, deploy the integrated version, then complete fresh owner consent and two read-only health checks.
+
+---
+
 ## 2026-11-07 UTC / 2026-11-06 Eastern — Percent-encoded saved-item request verified
 
 - Updated the shared Daily saved-item lookup to percent-encode each Spotify URI and retain the documented 40-URI maximum.
@@ -114,133 +125,3 @@
 
 # SHIT Project Log
 
-## 2026-11-09 UTC — Central auth broker base deployment and callback diagnosis
-
-- PR #185 merged the base broker and owner-only deployment workflow; PR #190/#191 merged subsequent Cloudflare and safe diagnostic fixes.
-- Cloudflare production Worker `shit-auth-broker` version 14 now receives 100% traffic. Version metadata confirms migration v2 and the existing OAuth state/refresh-lease Durable Objects, but not the broker-owned credential-store binding/keyring. GitHub App secret metadata is `secret_text`.
-- A redacted observability query found six Spotify callback failures in the prior 24 hours: four on version 13 at `broker.base_url_configuration`, two on version 14 at `broker.route_dispatch`. The exception contents and credential material were not retrieved.
-- PR #187/#188 contain the encrypted credential store, OIDC refresh endpoint and nine-workflow migration. Prior checks are green on documented commits; latest callback-stage instrumentation needs fresh CI. Both PRs remain draft/unmergeable pending branch reconciliation.
-- The base Worker deployment is not end-to-end authentication success. No Spotify credential persistence or auth-health pass has been verified, and no playlist operation was performed.
-- Next: resolve PR branch ancestry, finish callback diagnostics, provision the missing keyring/client-secret bindings under the owner-controlled release gate, deploy the integrated version, then complete fresh owner consent and two read-only health checks.
-
----
-
-## 2026-11-06 — Future SHIT-wide health system deferred until Babel completion
-
-- **User direction:** once Babel is considered realistically as complete as it can be, revisit making Buddy a permanent part of SHIT's overall health.
-- **Future concept:** a coordinated Integrity, Diagnostics & Recovery workstream with monitoring across data/docs/tests/workflows, root-cause diagnostics, tightly bounded recovery/repair, Buddy-led documentation/continuity guardianship, and a systemic improvement backlog.
-- **Role boundary:** Buddy contributes documentation and continuity evidence but is not the sole health authority and does not self-authorize risky repairs.
-- **Gate:** explicitly deferred until Babel's roadmap acceptance criteria and fresh-session cold-start simulation pass. No runtime implementation is authorized by this entry.
-- **Safety:** preserve canonical data and provenance; distinguish Last.fm scrobbles from optional Spotify playback observations; never invent or silently discard uncertain records; require scoped deterministic repairs, backups, reversibility, audit trails, post-repair verification and user approval for consequential/ambiguous changes.
-- **Next at revisit:** create a dedicated goal workspace and specify health dimensions, ownership, severity, autonomy levels, repair boundaries and acceptance criteria.
-
-# SHIT Project Log
-
-## 2026-11-06 — 28 source overviews corrected and broad anti-placeholder coverage
-
-- **Additional analytics documentation:** specified the exact input/output contracts for advanced analytics, assistant analytics, listening-time summary, and music analytics builders.
-- **Total:** 28 maintained implementation overviews now describe concrete inputs, outputs, provider behavior, identity semantics, safety boundaries, and invocation rather than generic fallback prose.
-- **Automated protection:** placeholder detection now covers maintained Python implementations, compatibility launchers, test modules, and workflow YAML files.
-- **Verification:** Daily curator run #42168360237 passed 460 tests on `8fb80589968a7868fd50bba5e13af7f787ed5c15`; security scan #42168221944 passed on the previous source-overview commit. Latest security scan #42168360298 was still in progress.
-- **Operational exception:** Enrich Music Metadata run #42166959478 remains in progress after being triggered by the source-comment path filter; duration, artist-profile, and recording-ID stages succeeded, with track-tag enrichment active. Reconcile generated-data publication when it finishes.
-
-## 2026-11-06 — Documentation identity, overview guardrails, and CI verification
-
-- **Naming:** SHIT Documentation & Continuity is the public-facing name; Babel is its internal codename. The canonical guide is `docs/BABEL.md`.
-- **Documentation:** 24 generic implementation overviews replaced with concrete module-specific contracts; anti-placeholder test now scans every Python file under `scripts/`. Documentation index and fresh-session tests explicitly enforce Babel identity and links.
-- **Verification:** Daily curator run #42167849568 passed **460 tests** on `da3be75844e3ce28eacd46ce8d87960493402503`; public repository security scan #42167849588 passed on the same commit.
-- **Operational exception:** Enrich Music Metadata run #42166959478 is still active at the MusicBrainz duration stage after a source-comment edit matched its push filter. It may publish generated metadata; no playlist-write step is part of this workflow. Reconcile the run and any resulting bot commit before declaring the repository state stable.
-- **Status:** Babel naming and automated documentation guardrails are implemented and verified. Full semantic audit and fresh-session acceptance remain open.
-
-## 2026-11-06 — Twenty-four maintained module overviews corrected
-
-- **Goal:** replace generic per-file boilerplate with accurate module-specific operating contracts to improve fresh-session continuity.
-- **Work:** updated 24 maintained modules spanning Spotify playlist management/cloud control/reference snapshots/feedback/discovery, Last.fm import, music metadata and provider enrichment, lyrics/audio analysis, historical analytics, playback tracking, and playlist intelligence.
-- **Automation:** added a regression assertion that rejects known generic fallback phrases in maintained `scripts/` overviews; CI verification of this new assertion is pending.
-- **Verification:** Daily curator tests run #42167054690 passed on commit `0c055578` with 458 tests, before the new anti-placeholder assertion was added. Naming/link checks passed on `9f2c788a`; the security scan passed there too.
-- **Operational exception:** a comment-only update to a source path matched Enrich Music Metadata's push filter and triggered run #42166959478. It was in its MusicBrainz duration stage at last inspection; reconcile any provider calls and generated-data commit. No playlist writes are part of that workflow.
-- **Status:** documentation quality improved; full semantic audit and fresh-session acceptance remain incomplete.
-
-## 2026-11-06 — Documentation system named SHIT Documentation & Continuity (codename Babel)
-
-- **Decision:** the documentation/continuity system's public-facing name is **SHIT Documentation & Continuity**; its internal codename is **Babel**. The parent product and repository remain Spotify Helper & Information Tracker (SHIT).
-- **Rationale:** first-time contributors and AI sessions should understand the system's purpose immediately. The codename is useful only after it has been defined.
-- **Canonical contract:** [docs/BABEL.md](../docs/BABEL.md). The convention is surfaced in the root README, AGENTS.md, docs index, mandatory documentation rules, current handoff, project roadmap, and Maintainability & Documentation workspace.
-- **Status:** naming documentation published to main. Link and CI verification after these commits remains pending; the broader semantic documentation audit is still in progress.
-- **Next:** validate the naming entry points and continue the source-to-document semantic audit. Documentation remains the sole active priority.
-
-## 2026-11-01 — Per-goal workspaces established
-
-- **Goal:** make individual project objectives independently recallable without loading unrelated history.
-- **Work:** added `project/goals/` index and seven goal workspaces: Great Migration, Library Enrichment, Metadata Coverage & Retries, Discovery & Recommendations, Listening Analytics, Playlist Intelligence, and Maintainability & Documentation. Each contains a `README.md` for scope/design/status/resume instructions and an `ACTIONS.md` for dated work, verification, and next actions.
-- **Central workflow:** updated project control-centre guidance and session handoff to direct new sessions to the relevant goal folder and require action-log updates after meaningful work.
-- **Verification:** files created on branch `codex/goal-workspaces`; links and completeness must be checked before merge. Documentation-only change; no Library records, provider state, listening history, or playlists modified.
-- **Outcome:** pending PR/merge and link verification.
-- **Next action:** verify all 15 goal files and links, then merge documentation change.
-
-
-Chronological handoff record for substantial project work. New entries go at the top, newest first. Record verified outcomes, not intentions as completed work.
-
-## 2026-11-01 — Continuity system and consolidated project goals
-
-- **Goal:** make the repository, rather than cross-chat memory, the durable source of truth for project decisions, active work, test evidence, blockers, and next actions.
-- **Work completed in this branch:** created the `project/` control-centre structure with a project index, chronological log, current handoff, and retry-queue design contract. Expanded `NEXT_WORK.md` to capture migration recovery, bounded enrichment, provider retry semantics, recommendation/discovery ingestion, playlist intelligence/safety, and documentation requirements.
-- **Files:** `project/README.md`, `project/PROJECT_LOG.md`, `project/NEXT_WORK.md`, `project/RETRY_QUEUE_SPEC.md`.
-- **Migration status:** Great Migration run #17 failed during Git rebase/publication. Publication and final verification remain unconfirmed. Do not treat counts from a generated artifact as published Library state. Inspect the artifact, backup, and run logs before retrying or reconciling generated files.
-- **Run reference:** https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
-- **Related open work:** PR #65 proposes a read-only coverage planner; PR #60 proposes recommendation intake with evidence separation. Both require CI/code verification before being treated as complete.
-- **Verification:** documentation changes only. No canonical Library records, provider checkpoints, listening history, or Spotify playlists were modified by this documentation work. Retry queue is a specification only; no queue was generated or executed.
-- **Outcome:** partial — continuity documentation is prepared on the PR branch; not yet merged into `main`.
-- **Next action:** inspect Great Migration run #17 artifacts and audit result; then continue with the next-work priorities.
-
-## 2026-11-01 — Project control centre proposed
-
-- **Goal:** establish one durable place to track work completed, work in progress, next steps, blockers, and metadata that needs another provider lookup.
-- **Changes proposed:** add `project/NEXT_WORK.md`, this log, and a retry-queue specification; keep the machine-maintained retry queue beside music metadata state, not inside the canonical Library records.
-- **Safety:** project notes are separate from music data; retry entries must preserve the distinction between definitive negative results and transient/provider failures.
-- **Verification:** documentation structure only at this stage. The retry queue still needs an implementation that builds it from canonical records and provider checkpoints.
-- **Related work:** read-only Library coverage planner is proposed in PR #65: https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/65
-- **Migration note:** Great Migration run #17 failed in the Git publish/rebase stage. Its output artifact and backup must be inspected before attempting recovery or another write-heavy migration. Run: https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/41357689889
-
-## Entry template
-
-### YYYY-MM-DD — Short task name
-- **Goal:**
-- **Work completed:**
-- **Files/workflows affected:**
-- **Verification:**
-- **Outcome:** complete / partial / blocked
-- **Next action:**
-- **References:** PRs, commits, workflow runs, issues
-
-
-## 2026-11-02 — GitHub-hosted, PC-independent product requirement
-
-- **User direction:** SHIT is intended to be a feature-rich conversational ChatGPT–Spotify experience that remains available with the user's PC powered off. GitHub is to remain the central project and operations home; local-PC development is not to be used unless explicitly requested.
-- **Documentation:** added the target architecture, central source-of-truth rules, PC-independence acceptance criteria, and current OAuth/token synchronization gap to the Spotify operations guide and project control center.
-- **Verified current boundary:** the playlist-control workflow runs on GitHub Actions. The manager's OAuth callback still uses `127.0.0.1:8888`, and optional playback tracking depends on a local process; these are setup/local-only limits and must not be represented as always-on cloud features.
-- **Decision:** use GitHub branches, pull requests, and Actions as the canonical path for code and remote operations. Treat the local token file as a cache only, never as the Actions credential source of truth. Do not build on the user's PC unless explicitly requested.
-
-
-## 2026-11-05 — Mandatory roadmap and documentation-maintenance standard
-
-- **User direction:** every project/workstream must have a durable roadmap specifically so a future assistant can reference plans without previous chat knowledge. Documentation must always be maintained and must explicitly instruct future assistants to keep it current.
-- **Work completed:** added `project/DOCUMENTATION_RULES.md`; created `ROADMAP.md` for all 11 existing goal workspaces; updated repository/project entry points and the goal index to make the standard mandatory.
-- **Required structure:** each goal maintains `ROADMAP.md` (plan/status/next action/acceptance criteria), `README.md` (scope/design/invariants), and `ACTIONS.md` (dated implementation and verification evidence). Central `NEXT_WORK.md`, `LOOSE_ENDS.md`, and `PROJECT_LOG.md` remain the repository-level continuity records.
-- **Operating rule:** read the relevant roadmap before work and update documentation in the same session as implementation, testing, failures, decisions, or blockers. Never leave project knowledge only in chat; never claim planned work is implemented or a merged change is operationally verified without evidence.
-- **Verification:** documentation-only changes. Roadmap files were created for all 11 indexed goal folders; index and entry-point updates link to the rules and roadmaps. No code, Library data, provider state, listening history, or Spotify playlists were changed.
-- **Next action:** audit all goal folders for missing/stale `ACTIONS.md`/README files and reconcile each roadmap against latest main, open PRs, issues, and workflow runs. Then apply this standard to any new independent project/workstream.
-
-
-## 2026-11-05 — Documentation control centre and active playlist workspaces expanded
-
-- Added root AGENTS.md, docs/README.md, project/ROADMAP.md, automated documentation-contract tests, and a corrected source/data-family index after finding the prior exhaustive snapshot had become stale as the canonical music Library expanded.
-- Added dedicated ROADMAP/README/ACTIONS workspaces for Tricky Daily and Playlist Sequencing so their independent user requirements, safety constraints, evidence and next actions survive chat boundaries.
-- CI evidence: Daily curator tests #42143513931 passed on 7d23db6 (including documentation contract and directory guides); #42143770161 passed on 79af1f9 after the Daily workspace was added. Playlist Sequencing was added afterward and passed in Daily curator run #42143913729. A later run #42144349548 passed after adding the workflow catalogue and correcting the primary Markdown-link parser.
-- No playlist writes, Library data changes, provider state changes, or listening-history changes were performed as part of this documentation work.
-- Next: verify the latest CI run after the Playlist Sequencing workspace; then audit file-level overviews and reconcile all workstream roadmaps with current code/workflow evidence.
-
-
-## 2026-11-06 — ChatGPT-initiated Buddy trigger
-
-ChatGPT successfully created branch `babel/dispatch-20261106-01` from `main` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`). This is the first verified ChatGPT-initiated GitHub trigger write for Buddy. The workflow's actual run and job outcomes have not yet been verified; see the Maintainability & Documentation action log and `project/ACTIVE_SESSION_BRIEF.md`.

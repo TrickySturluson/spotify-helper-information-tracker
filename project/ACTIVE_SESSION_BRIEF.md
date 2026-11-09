@@ -14,8 +14,8 @@ Finish SHIT-wide centralized Spotify authentication: the broker owns the only lo
 ### Current work / branch / PR
 - Current main: `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
 - PR #185 merged `8cd28530081c519112fd947ac7bb05edc0ce7b04`; PR #190 merged `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3`; PR #191 merged `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
-- PR #187 branch `feature/broker-owned-spotify-credential-store`, head `1c8e6b46c292525c3a13019325a270d91f97a84d`, draft/unmergeable. Broker tests and Wrangler dry-run passed in #42598447923; security scan #42598447639 was pending at last check.
-- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `5e39177daeb0695d7230b199c9c37f6edc6999f2`, draft/unmergeable, stacked on PR #187. Previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, SQLite Durable Object integration, Python regression suite, documentation checks, dependency audit and Wrangler dry-run in #42598096634; security scan #42598096535 passed. New callback-stage diagnostics/tests are awaiting fresh CI.
+- PR #187 branch `feature/broker-owned-spotify-credential-store`, head `1c8e6b46c292525c3a13019325a270d91f97a84d`, draft/unmergeable. Broker tests and Wrangler dry-run passed in #42598447923; security scan #42598447639 passed.
+- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `5e39177daeb0695d7230b199c9c37f6edc6999f2`, draft/unmergeable, stacked on PR #187. Previous head `f4889ae4ef37b6e1aeaff5d25cb04fe0b99bef45` passed broker tests, SQLite Durable Object integration, Python regression suite, documentation checks, dependency audit and Wrangler dry-run in #42598096634; security scan #42598096535 passed. New callback-stage diagnostics/tests are on head `5e39177daeb0695d7230b199c9c37f6edc6999f2`; security scan #42598778904 passed and broker tests #42598778973 were in progress at last check.
 - PR #187 is 130 ahead / 3 behind main; PR #188 is 267 ahead / 5 behind its PR #187 base. Resolve ancestry and conflicts before merge. Do not force-update.
 - PR #189 is a separate `engineering/general` draft and remains untouched.
 
