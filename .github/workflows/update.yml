@@ -159,8 +159,7 @@ jobs:
 #           imports Last.fm scrobbles; performs bounded artist/track/duration/recording-ID
 #           and AcousticBrainz enrichment; rebuilds historical, advanced, music and
 #           measured-playback analytics; validates outputs and commits refreshed data.
-# Credentials: LASTFM_API_KEY, Spotify client/refresh token, and a narrowly scoped
-#              GitHub App token used only to persist rotated Spotify refresh-token secrets.
+# Credentials: LASTFM_API_KEY, broker-issued short-lived Spotify access token, and optional metadata-provider keys.
 # Writes: Canonical Last.fm data, assistant_data/, and playback_data/ when present;
 #         contents:write is required for publication.
 # Safety: Spotify reference sync is read-only; this workflow does not mutate playlists.
