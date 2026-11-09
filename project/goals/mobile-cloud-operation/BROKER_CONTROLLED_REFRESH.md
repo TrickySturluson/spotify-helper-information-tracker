@@ -35,7 +35,7 @@ The existing nine GitHub Actions consumers each received the rotating refresh to
 
 ## Remaining direct consumers
 
-The other eight workflows remain on the legacy refresh-token path and must be migrated individually:
+All nine inventoried workflow consumers have now been migrated to the OIDC broker client on the stacked feature branch:
 
 1. `spotify-daily-live-preflight.yml`
 2. `spotify-daily-midnight-cycle.yml`
@@ -72,8 +72,8 @@ The repository inventory test must reject direct references to `SPOTIFY_REFRESH_
 2. Configure the canonical Cloudflare Worker, exact callbacks, required public variables, and encrypted keyring secret.
 3. Deploy only after owner approval; run the owner-consented initial OAuth flow and verify the expected Spotify account.
 4. Validate real Cloudflare SQLite Durable Object transactions, restarts, concurrency, failed writes, interrupted operations, and same-account recovery.
-5. Validate OIDC from the exact main-branch auth-health workflow and obtain two independent successful read-only health checks.
-6. Migrate each of the eight remaining consumers. Preserve each workflow's existing playlist locks, preview/confirmation boundaries, snapshots, audits, state persistence, and rollback semantics.
+5. Validate OIDC from each exact main-branch workflow identity and obtain two independent successful read-only auth-health checks.
+6. Verify all nine consumers preserve their existing playlist locks, preview/confirmation boundaries, snapshots, audits, state persistence, and rollback semantics.
 7. Verify the repository-wide inventory contains no direct refresh-token consumers or token-endpoint callers.
 8. Test broker outage, rate limiting, invalid_grant, identity mismatch, encryption-key rotation, key loss, and owner reauthorization.
 9. Obtain explicit owner approval for production cutover and only then retire the legacy GitHub Actions refresh-token secret.
@@ -95,7 +95,7 @@ The repository inventory test must reject direct references to `SPOTIFY_REFRESH_
 | Same-account recovery | Implemented in store; live validation pending |
 | OIDC refresh endpoint and client | Implemented; live OIDC validation pending |
 | Auth-health OIDC canary | Migrated in feature branch; CI pending |
-| Eight remaining workflow consumers | Not migrated |
+| All nine workflow consumers | Migrated on feature branch; live verification pending |
 | Backup/restore and key-loss recovery | Design pending |
 | Production deployment and two independent health checks | Not performed |
-| Legacy secret retirement | Blocked pending all consumers and explicit owner approval |
+| Legacy secret retirement | Blocked pending production deployment, two independent health checks, rollback validation, and explicit owner approval |
