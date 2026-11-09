@@ -1,3 +1,10 @@
+## Current work overlay — 2026-11-09
+
+- User approved combining Codespaces development infrastructure with (not replacing) Authentication Management & Recovery. Initial devcontainer and runbook are on `feature/codespaces-development-environment`; Python 3.11, Node 22, GitHub CLI, and isolated broker tests are configured. Production credentials are intentionally excluded. Actual Codespace provisioning and tests inside it remain unverified.
+- Current ChatGPT GitHub tools do not provide an interactive Codespaces terminal. Do not claim direct shell access or build an arbitrary remote command endpoint. Repository changes and CI evidence remain the supported collaboration loop.
+- Authentication Management & Recovery remains the primary operational goal. PR #185 is open/unmerged; its cross-workflow refresh-token single-flight design remains unresolved. No production auth, Spotify, Cloudflare, secret, playlist, or Library operation was performed in this Codespaces setup.
+- Buddy daily continuation automation is disabled; its latest recorded attempt failed on 2026-11-08. No successful Buddy run for 2026-11-09 Eastern has been verified; treat it as pending/blocked.
+
 # Active SHIT Session Brief
 
 > **Purpose:** This is the curated context bridge between active ChatGPT work, the scheduled ChatGPT Buddy task, and the separate repository-hosted Codex experiment. It is not a raw chat transcript, does not contain private conversation material, and is not a real-time message channel.
