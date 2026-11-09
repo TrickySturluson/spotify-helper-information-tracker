@@ -579,6 +579,7 @@ async function handleRefreshLock(request, env, url) {
 
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
+  let diagnosticStage = "request.initialization";
   try {
     // Non-secret liveness endpoint for deployment verification. It deliberately
     // bypasses OAuth configuration checks and reveals no credential/config values.
@@ -589,6 +590,7 @@ export async function handleRequest(request, env) {
         { "Content-Type": "application/json; charset=utf-8" },
       );
     }
+    diagnosticStage = "broker.base_url_configuration";
     requireEnv(env, ["BROKER_BASE_URL"]);
     const canonicalOrigin = new URL(env.BROKER_BASE_URL);
     if (canonicalOrigin.protocol !== "https:" || url.origin !== canonicalOrigin.origin) {
@@ -604,12 +606,17 @@ export async function handleRequest(request, env) {
     }
 
     if (url.pathname === "/auth/github/start" && request.method === "GET") {
+      diagnosticStage = "github_start.rate_limit";
       await rateLimit(request, env, "github-start");
+      diagnosticStage = "github_start.configuration";
       requireEnv(env, ["GITHUB_APP_CLIENT_ID", "GITHUB_APP_REDIRECT_URI"]);
+      diagnosticStage = "github_start.pkce";
       const state = randomValue(24);
       const verifier = randomValue(64);
       const challenge = await pkceChallenge(verifier);
+      diagnosticStage = "github_start.oauth_state_storage";
       await statePut(env, `oauth:github-state:${state}`, { verifier }, OAUTH_TTL);
+      diagnosticStage = "github_start.redirect";
       const target = new URL("https://github.com/login/oauth/authorize");
       target.search = new URLSearchParams({
         client_id: env.GITHUB_APP_CLIENT_ID,
@@ -689,8 +696,11 @@ export async function handleRequest(request, env) {
 
     return response("Not found.", 404, { "Content-Type": "text/plain; charset=utf-8" });
   } catch (error) {
-    // Never log provider responses, OAuth codes, tokens, state values, or exception details.
-    const message = error instanceof BrokerError ? error.message : "The authorization service encountered an unexpected error.";
+    // Log only a fixed diagnostic stage and error class. Never log exception text,
+    // provider responses, OAuth codes, tokens, cookies, state values, or request URLs.
+    const expected = error instanceof BrokerError;
+    console.error({ event: "shit_auth_broker_request_failed", stage: diagnosticStage, error_class: expected ? "BrokerError" : "UnexpectedError" });
+    const message = expected ? error.message : `The authorization service encountered an unexpected error. Diagnostic stage: ${diagnosticStage}.`;
     return page("Authorization not completed", message, { href: "/", label: "Start again" });
   }
 }
