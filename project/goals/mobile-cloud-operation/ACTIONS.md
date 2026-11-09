@@ -194,3 +194,14 @@ The broker must not persist the Spotify refresh token, return it to browser/Chat
 - The health workflow now requests `variables: write` for its own `GITHUB_TOKEN` to manage this non-secret status. The existing manager GitHub App remains unchanged and retains only its existing Secrets:write purpose; the broker App remains separate.
 - Updated the workflow catalogue and roadmap. The scheduled monitor still needs CI/source review and a live dry-run strategy; do not dispatch it against the known-invalid credential just to test the latch.
 - Remaining safety nuance: rate-limit retry eligibility must eventually be tied to the actual Retry-After deadline, not merely the next daily run. Add this before broad production reliance.
+
+
+## 2026-11-08 — Replace repository-variable latch with read-only run-history latch
+
+- Corrected the initial latch design after checking GitHub's current workflow-token permission model: `variables` is not an available `GITHUB_TOKEN` permission. Do not ship a workflow that declares unsupported `variables: write`.
+- Removed all repository-variable reads/writes and the proposed `SPOTIFY_AUTH_STATE` variable. The workflow now uses only `contents: read` and `actions: read` for its own `GITHUB_TOKEN`; the existing GitHub App token remains limited to Secrets:write for refresh-token rotation.
+- Scheduled runs inspect the most recent completed auth-health run's logs for fixed, non-secret `AUTH_HEALTH_STATUS` and optional `AUTH_HEALTH_RETRY_AFTER` markers. Permanent blockers, unknown states, pending/interrupted runs, and unavailable logs fail closed. Manual dispatch bypasses the prior status latch and records a new pending marker.
+- A 429 marker carries an absolute Retry-After deadline; scheduled runs skip until that deadline has elapsed. Missing/unparseable Retry-After is fail-closed until manual dispatch.
+- Every health outcome emits a status marker; the workflow never writes repository contents, variables, or playlist state.
+- This latch depends on GitHub Actions run-log retention. If the previous run's logs have expired or cannot be inspected, scheduled checks stop and require a manual dispatch rather than assuming health.
+- The earlier same-date note describing a repository-variable latch is superseded by this entry. No variable was created or changed, no Spotify request was made, and no secret or playlist was touched.
