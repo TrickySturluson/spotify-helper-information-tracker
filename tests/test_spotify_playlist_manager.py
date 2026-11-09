@@ -24,6 +24,28 @@ class PlaylistManagerTests(unittest.TestCase):
                 spotify.bearer()
         token_post.assert_not_called()
 
+    def test_broker_access_token_is_used_without_loading_or_refreshing_a_refresh_token(self):
+        with patch.dict("os.environ", {
+            "SHIT_BROKER_ACCESS_TOKEN": "short-lived-broker-access-token",
+            "SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN": "3600",
+        }, clear=True), patch.object(manager, "check_spotify_cooldown"), patch.object(
+            manager, "read", side_effect=AssertionError("broker mode must not read the legacy token file")
+        ), patch.object(manager, "token_post") as token_post:
+            spotify = manager.Spotify()
+            self.assertTrue(spotify.broker_managed)
+            self.assertNotIn("refresh_token", spotify.t)
+            self.assertEqual(spotify.bearer(), "short-lived-broker-access-token")
+            token_post.assert_not_called()
+
+    def test_expired_broker_access_token_fails_closed_without_direct_refresh(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.broker_managed = True
+        spotify.t = {"access_token": "expired-broker-access-token", "obtained_at": 0, "expires_in": 60}
+        with patch.object(manager.time, "time", return_value=1000), patch.object(manager, "token_post") as token_post:
+            with self.assertRaisesRegex(manager.ManagerError, "direct Spotify refresh is disabled"):
+                spotify.bearer()
+            token_post.assert_not_called()
+
     def test_unknown_playlists_are_locked_by_default(self):
         with tempfile.TemporaryDirectory() as directory:
             config_path = Path(directory) / "permissions.json"
