@@ -10,6 +10,7 @@ import json
 import os
 import secrets
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -109,17 +110,32 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
     if force_refresh:
         broker_payload["forceRefresh"] = True
     payload = json.dumps(broker_payload, separators=(",", ":")).encode()
-    broker_request = urllib.request.Request(
-        broker_base + "/internal/spotify/refresh",
-        data=payload,
-        headers={
-            "Authorization": "Bearer " + oidc_jwt,
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
-        method="POST",
-    )
-    broker_data = _read_json(opener, broker_request)
+    broker_data = None
+    for attempt in range(16):
+        broker_request = urllib.request.Request(
+            broker_base + "/internal/spotify/refresh",
+            data=payload,
+            headers={
+                "Authorization": "Bearer " + oidc_jwt,
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            method="POST",
+        )
+        try:
+            broker_data = _read_json(opener, broker_request)
+            break
+        except BrokerTokenError as exc:
+            if exc.category != "busy" or attempt == 15:
+                raise
+            # If another job is already refreshing, let it finish and consume
+            # its cached result rather than launching a second forced rotation.
+            if attempt == 0 and force_refresh:
+                broker_payload.pop("forceRefresh", None)
+                payload = json.dumps(broker_payload, separators=(",", ":")).encode()
+            time.sleep(min(0.1 * (2 ** min(attempt, 4)), 1.0))
+    if broker_data is None:
+        raise BrokerTokenError("The central Spotify credential refresh remained busy.", category="busy")
     access_token = broker_data.get("accessToken")
     expires_in = broker_data.get("expiresIn")
     if "refreshToken" in broker_data or not isinstance(access_token, str) or not access_token or len(access_token) > 8192 or "\n" in access_token or "\r" in access_token:
