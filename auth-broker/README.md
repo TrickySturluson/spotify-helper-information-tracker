@@ -14,7 +14,7 @@ The intended production path is:
 6. The Durable Object serializes refresh, verifies the account identity after refresh, commits rotated credentials only after verification, and returns only the short-lived access token.
 7. The health workflow independently calls Spotify `/v1/me` and persists a non-secret health status. It never receives or stores the refresh token.
 
-The credential store is keyed to one fixed Durable Object identity (`spotify-primary`); caller-supplied account IDs are not accepted on the refresh route. The refresh-token secret path is removed from the broker callback. There is no automatic fallback to GitHub Actions secrets or local token files.
+The credential store is keyed to one fixed Durable Object identity (`spotify-primary`); caller-supplied account IDs are not accepted on the refresh route. A verified short-lived access token is also encrypted in the object until expiry so multiple jobs can reuse one refresh result without racing Spotify's rotating refresh token. Concurrent callers wait for the in-flight operation and receive the cached token; a durable Retry-After cooldown prevents repeated requests after a 429. The refresh-token secret path is removed from the broker callback. There is no automatic fallback to GitHub Actions secrets or local token files.
 
 ## Current implementation and rollout boundary
 
@@ -72,7 +72,7 @@ Do not share secret values with ChatGPT or put them in issues, PRs, logs, or wor
 ## Failure and recovery semantics
 
 - OIDC identity, audience, workflow, repository, owner, ref, event, run, and timestamp checks fail closed.
-- The credential object reserves a refresh operation transactionally before contacting Spotify.
+- The credential object reserves a refresh operation transactionally before contacting Spotify. Concurrent callers wait for the result and reuse the encrypted access-token cache rather than starting competing refreshes.
 - Concurrent refresh attempts are rejected. The refresh token is never returned to a workflow.
 - A successful refresh verifies `/v1/me` against the stored account ID before committing the rotated refresh token.
 - An explicit Spotify 429 releases the reservation without changing the credential and propagates `Retry-After`; it does not permanently block the credential.
