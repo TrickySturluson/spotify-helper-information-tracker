@@ -181,14 +181,13 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Scheduled and manually dispatched Spotify authentication monitor;
-#          refreshes credentials, verifies /v1/me, persists token rotation, and
-#          reports distinct non-secret failure classes without playlist writes.
+#          obtains a short-lived access token from the central broker and verifies /v1/me.
 # Trigger: Daily schedule (09:00 UTC) and workflow_dispatch. Scheduled runs
-#          inspect the prior commit's redacted auth status before retrying.
-# Safety: No retry loop; scheduled runs inspect the prior commit status and pause
-#         on permanent blockers or interrupted runs. 429 respects Retry-After.
-#         GITHUB_TOKEN is limited to commit-status write; the GitHub App token is
-#         scoped to Secrets:write solely for refresh-token rotation.
+#          inspect the fixed anchor commit's redacted auth status before retrying.
+# Safety: OIDC identity is restricted by the broker to this exact main-branch workflow.
+#         No refresh-token secret, client secret, or independent token refresh is used.
+#         GITHUB_TOKEN is limited to contents:read and statuses:write; id-token:write
+#         is used only to obtain the short-lived GitHub workload identity.
 # Side effects: Requests a short-lived access token from the central broker and records non-secret auth status;
 #               never modifies playlists, Library data, or repository contents.
 # -----------------------------------------------------------------------------
