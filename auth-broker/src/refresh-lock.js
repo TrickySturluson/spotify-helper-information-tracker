@@ -23,6 +23,7 @@ export async function verifyActionsOidc(token, {
   fetchImpl = fetch,
   now = Math.floor(Date.now() / 1000),
   allowedWorkflowRefs = [],
+  audience = AUDIENCE,
 } = {}) {
   if (typeof token !== "string" || token.length > 16_384) throw new Error("Untrusted workload identity.");
   const parts = token.split(".");
@@ -47,7 +48,7 @@ export async function verifyActionsOidc(token, {
   if (!signatureValid) throw new Error("Untrusted workload identity.");
   const issuer = claims.iss;
   const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
-  if (issuer !== ISSUER || !audiences.includes(AUDIENCE)) throw new Error("Untrusted workload identity.");
+  if (issuer !== ISSUER || !audiences.includes(audience)) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.exp) || claims.exp <= now || !Number.isFinite(claims.nbf) || claims.nbf > now + 30) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.iat) || claims.iat > now + 30 || now - claims.iat > MAX_TOKEN_AGE) throw new Error("Untrusted workload identity.");
   if (claims.repository !== REPOSITORY || String(claims.repository_owner_id) !== OWNER_ID) throw new Error("Untrusted workload identity.");
