@@ -33,9 +33,9 @@ class SpotifyAuthHealthWorkflowTests(unittest.TestCase):
         self.assertIn('echo "skip=false" >> "$GITHUB_OUTPUT"', WORKFLOW)
 
     def test_schedule_uses_previous_run_status_and_fails_closed(self):
-        self.assertIn("gh run list --workflow spotify-auth-health-check.yml", WORKFLOW)
-        self.assertIn('gh run view "$previous_run"', WORKFLOW)
-        self.assertIn("AUTH_HEALTH_STATUS=pending", WORKFLOW)
+        self.assertIn('gh api "repos/$GITHUB_REPOSITORY/commits/$CURRENT_SHA/status"', WORKFLOW)
+        self.assertIn("context=spotify-auth-health", WORKFLOW)
+        self.assertIn("state=pending", WORKFLOW)
         self.assertIn("Scheduled checks are paused", WORKFLOW)
         self.assertIn("refusing to contact Spotify", WORKFLOW)
 
