@@ -329,7 +329,7 @@ export class SpotifyCredentialStore {
       if (current.status !== "ready") return { error: "credential_blocked" };
       if (current.retryAfterAt > now) return { rateLimitedUntil: current.retryAfterAt };
       if (input.forceRefresh !== true && current.accessToken && current.accessTokenExpiresAt > now + ACCESS_TOKEN_MIN_REMAINING_MS) return { cached: current };
-      const next = { ...current, status: "refreshing", operationId: input.operationId, startedAt: now, expiresAt: now + OPERATION_TTL_MS };
+      const next = { ...current, status: "refreshing", operationId: input.operationId, forceRefresh: input.forceRefresh === true, startedAt: now, expiresAt: now + OPERATION_TTL_MS };
       await txn.put("credential", next);
       return { record: next };
     });
@@ -458,7 +458,12 @@ export class SpotifyCredentialStore {
       const current = await txn.get("credential");
       if (current?.status === "refreshing" && current.operationId === operationId) {
         const next = { ...current, status: "ready", updatedAt: Date.now() };
+        if (current.forceRefresh === true) {
+          delete next.accessToken;
+          delete next.accessTokenExpiresAt;
+        }
         delete next.operationId;
+        delete next.forceRefresh;
         delete next.startedAt;
         delete next.expiresAt;
         delete next.blockedReason;
