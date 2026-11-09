@@ -54,6 +54,8 @@ This is a coordination order, not a replacement for goal-specific roadmaps. Babe
 
 A workstream is not complete merely because code exists or a PR merged. Its roadmap must name the acceptance criteria and evidence. Depending on the task, evidence may include passing tests, a clean audit, a successful workflow run, a fresh read-back, or a verified live operation. Keep planned, implemented, merged, deployed, and verified states separate.
 
+| Cloud Development Environment | Reproducible Codespaces development, safe credentials boundary, and CI validation | [ROADMAP](goals/cloud-development-environment/ROADMAP.md) |
+
 ## Current handoff
 
 Read [NEXT_WORK.md](NEXT_WORK.md) for the single active cross-project task. Read [LOOSE_ENDS.md](LOOSE_ENDS.md) before selecting additional work. Detailed histories are in each goal's ACTIONS file and [PROJECT_LOG.md](PROJECT_LOG.md).
