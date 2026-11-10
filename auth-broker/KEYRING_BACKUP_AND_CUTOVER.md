@@ -70,7 +70,14 @@ The workflow must pass all preflight gates before deployment:
 - Required non-secret variables and exact callback URL checks
 - Required Cloudflare secret binding names and `secret_text` types
 
-After deployment it verifies query-string redaction and polls `/ready`. Readiness must return HTTP 200 with `status: ready`. The readiness probe checks OAuth configuration, GitHub App private-key parseability, both rate limiters, OIDC allowlist, encryption keyring import, and the credential-store Durable Object. It does not create or read a Spotify credential.
+Deployment is deliberately two-phase:
+
+1. The first Worker deployment sets `SPOTIFY_OAUTH_ENABLED=false`. The public health endpoint remains available, but OAuth browser routes and the broker refresh route return 503.
+2. The workflow verifies Cloudflare query-string redaction. If this check fails, the Worker remains disabled and the workflow stops.
+3. Only after redaction passes does a second deployment set `SPOTIFY_OAUTH_ENABLED=true`.
+4. The workflow verifies redaction again and polls `/ready`. Readiness must return HTTP 200 with `status: ready`.
+
+The readiness probe checks OAuth configuration, GitHub App private-key parseability, both rate limiters, OIDC allowlist, encryption keyring import, and the credential-store Durable Object. It does not create or read a Spotify credential.
 
 If deployment or readiness fails, stop. Do not begin Spotify OAuth or remove legacy credentials. Inspect the fixed diagnostic stage and Worker configuration without exposing secret values.
 
