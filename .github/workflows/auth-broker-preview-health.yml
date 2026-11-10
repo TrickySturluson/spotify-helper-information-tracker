@@ -77,6 +77,9 @@ jobs:
             "${PREVIEW_URL}/" || true)"
           if [ "${status}" != "503" ] || ! jq -e '.error == "broker_not_activated"' /tmp/broker-disabled.json >/dev/null 2>&1; then
             echo "::error::The branch preview must remain OAuth-disabled unless explicitly activated by the guarded production workflow."
+            echo "Observed preview root HTTP status: ${status}"
+            echo "Non-secret preview root response (first 500 bytes):"
+            head -c 500 /tmp/broker-disabled.json || true
             exit 1
           fi
           echo "Preview is live but OAuth remains disabled by default."
