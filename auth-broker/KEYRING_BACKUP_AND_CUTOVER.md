@@ -76,6 +76,7 @@ Deployment is deliberately two-phase:
 2. The workflow verifies Cloudflare query-string redaction. If this check fails, the Worker remains disabled and the workflow stops.
 3. Only after redaction passes does a second deployment set `SPOTIFY_OAUTH_ENABLED=true`.
 4. The workflow verifies redaction again and polls `/ready`. Readiness must return HTTP 200 with `status: ready`.
+5. If any check after the first deployment fails, a final failure handler redeploys the Worker with `SPOTIFY_OAUTH_ENABLED=false`. Confirm the workflow reports this fallback succeeded before any retry.
 
 The readiness probe checks OAuth configuration, GitHub App private-key parseability, both rate limiters, OIDC allowlist, encryption keyring import, and the credential-store Durable Object. It does not create or read a Spotify credential.
 
