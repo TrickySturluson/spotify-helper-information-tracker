@@ -103,6 +103,21 @@ jobs:
             --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" \
             --var "SPOTIFY_REFRESH_WORKFLOW_REFS:$SPOTIFY_REFRESH_WORKFLOW_REFS"
 
+      - name: Verify OAuth query-string redaction
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          settings="$(curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/shit-auth-broker/script-settings")"
+          redact_query_string="$(jq -r '.result.observability.redact_query_string // false' <<< "${settings}")"
+          if [ "${redact_query_string}" != "true" ]; then
+            echo "::error::Worker observability must redact query strings before OAuth callbacks can be used."
+            exit 1
+          fi
+          echo "Worker observability query-string redaction is enabled."
+
       - name: Verify deployed broker readiness
         env:
           BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}

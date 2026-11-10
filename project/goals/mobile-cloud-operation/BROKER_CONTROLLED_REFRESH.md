@@ -1,6 +1,6 @@
 # Broker-Controlled Spotify Refresh and Credential Persistence
 
-**Status:** Central encrypted credential store, owner-consented callback handoff, OIDC refresh endpoint, and first auth-health workflow consumer are implemented on stacked draft PRs #187/#188. They are not merged, deployed, or production-verified. Eight direct workflow consumers remain.  
+**Status:** The broker-owned encrypted credential store, owner-consented callback handoff, OIDC refresh endpoint/client, and all nine workflow consumers are implemented on open draft PR #188. Exact-head CI and preview checks passed on `9b5fbe49229431f333d9eea5a560cfe029698507` (2026-11-09). PR #185 was merged on 2026-11-09; PR #189 was closed unmerged as superseded by #188. PR #188 remains unmerged and undeployed. Cloudflare metadata confirms the encryption-key secret is present as `secret_text`, but the production Worker still lacks the `SPOTIFY_CREDENTIAL_STORE` binding/migration and continues using the legacy secret-writing source. No live OIDC/Spotify validation has occurred.  
 **Parent:** Authentication Management & Recovery (PR #185).  
 **Purpose:** Make the broker the sole owner of the rotating Spotify refresh token and the serialized refresh/persistence critical section.
 
@@ -33,7 +33,7 @@ The existing nine GitHub Actions consumers each received the rotating refresh to
 - The OAuth callback now stores credentials in the encrypted Durable Object. The broker no longer writes `SPOTIFY_REFRESH_TOKEN` to GitHub Actions secrets.
 - The auth-health workflow is the first OIDC canary in the feature branch. It retains the fixed commit-status latch, requests a broker token, verifies `/v1/me`, and performs no playlist or Library writes.
 
-## Remaining direct consumers
+## Migrated workflow consumers
 
 All nine inventoried workflow consumers have now been migrated to the OIDC broker client on the stacked feature branch:
 
@@ -56,6 +56,7 @@ The repository inventory test must reject direct references to `SPOTIFY_REFRESH_
 - Spotify network calls happen outside a long-held storage transaction. A unique operation ID and record version protect the final commit from stale operations.
 - Do not automatically reclaim an expired or ambiguous operation and retry the old refresh token.
 - Bound provider calls, response sizes, and request sizes. Never log tokens, ciphertext, OIDC JWTs, authorization headers, or provider response bodies.
+- Keep `redact_query_string = true` in Wrangler while invocation logs are enabled: OAuth callback URLs contain one-time `code` and `state` query parameters. The owner-only deployment workflow now verifies the live Cloudflare setting after deployment. Current production metadata still reports query-string redaction disabled, so production OAuth remains blocked until the setting is applied.
 
 ## Authorization and least privilege
 
@@ -90,12 +91,13 @@ The repository inventory test must reject direct references to `SPOTIFY_REFRESH_
 
 | Requirement | Status |
 |---|---|
-| Encrypted credential store | Implemented; Cloudflare integration and key provisioning pending |
+| Encrypted credential store | Implemented in PR #188; keyring secret metadata is present as `secret_text`; production Durable Object binding/migration is not deployed |
 | Owner-consented initial credential handoff | Wired in source; live validation pending |
 | Same-account recovery | Implemented in store; live validation pending |
-| OIDC refresh endpoint and client | Implemented; live OIDC validation pending |
-| Auth-health OIDC canary | Migrated in feature branch; CI pending |
-| All nine workflow consumers | Migrated on feature branch; live verification pending |
-| Backup/restore and key-loss recovery | Design pending |
+| OIDC refresh endpoint and client | Implemented; exact-head CI passed; live OIDC validation pending |
+| Auth-health OIDC canary | Migrated on PR #188; exact-head CI passed; live verification pending |
+| All nine workflow consumers | Migrated on PR #188; exact-head CI passed; live verification pending |
+| OAuth query-string log redaction | Wrangler config and post-deploy metadata gate added; production setting still disabled until guarded deployment |
+| Backup/restore and key-loss recovery | Design pending; independent key backup not verified |
 | Production deployment and two independent health checks | Not performed |
 | Legacy secret retirement | Blocked pending production deployment, two independent health checks, rollback validation, and explicit owner approval |

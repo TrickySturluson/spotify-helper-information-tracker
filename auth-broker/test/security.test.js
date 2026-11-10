@@ -360,6 +360,21 @@ test("deployment workflow injects every public runtime variable without dashboar
 });
 
 
+test("Worker observability redacts OAuth callback query strings", async () => {
+  const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
+  const start = config.indexOf("[observability]\n");
+  assert.ok(start >= 0, "Worker observability configuration must be explicit");
+  const nextSection = config.indexOf("\n[", start + 1);
+  const observability = config.slice(start, nextSection < 0 ? undefined : nextSection);
+  assert.match(observability, /^enabled = true$/m);
+  assert.match(observability, /^redact_query_string = true$/m,
+    "OAuth code and state query parameters must be removed from observability URLs");
+  const logsStart = config.indexOf("[observability.logs]");
+  assert.ok(logsStart > start);
+  assert.match(config.slice(logsStart), /^invocation_logs = true$/m);
+});
+
+
 test("broker source uses central encrypted storage and never writes a refresh-token secret", async () => {
   const source = await readFile(new URL("../src/index.js", import.meta.url), "utf8");
   assert.match(source, /const AUTH_WORKFLOW = "spotify-auth-health-check\.yml"/);
