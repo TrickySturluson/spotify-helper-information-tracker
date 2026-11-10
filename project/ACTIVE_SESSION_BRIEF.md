@@ -16,8 +16,8 @@ Complete SHIT-wide centralized Spotify authentication. The Cloudflare broker mus
 - PR #185 merged the base broker; PR #190 and #191 merged safe diagnostic follow-ups.
 - PR #188 (`feature/oidc-broker-refresh-endpoint`) is the integrated draft containing the encrypted credential store, OIDC refresh endpoint, and all nine workflow migrations. It remains open and draft; not merged or deployed.
 - Current PR branch head: `cb25552e4578f4dbf35a7a8d8f9a59d5b7870413`. It includes the rate-limit hardening described below.
-- GitHub compare at the time of this update reports 450 commits ahead, 11 behind, and 42 changed files. The 11 intervening mainline commits comprise ten Daily/Library state/data updates and the previous active-session brief refresh; none of their changed paths overlap the PR's 42 changed files. This brief refresh adds one more docs-only mainline commit, so the PR will be 12 behind after publication. Preserve the unrelated mainline changes; do not force-push or rewrite branch history.
-- Latest exact-head CI runs: Mobile Auth Broker Tests #42861563408 is in progress; its broker security unit tests and Cloudflare SQLite Durable Object integration tests have passed, and the Python broker-client/manager step is running. Daily curator tests #42861563244 passed. Public repository security scan #42861563507 is still in progress. Do not mark the new hardening green until all three exact-head runs complete.
+- GitHub compare before this status refresh reported 450 commits ahead, 12 behind, and 42 changed files. The 12 intervening mainline commits comprise ten Daily/Library state/data updates and two active-session brief refreshes; none of their changed paths overlap the PR's 42 changed files. This brief refresh adds one more docs-only mainline commit, so the PR will be 13 behind after publication. Preserve the unrelated mainline changes; do not force-push or rewrite branch history.
+- Latest exact-head CI is green: Mobile Auth Broker Tests #42861563408 passed (broker security unit tests, Cloudflare SQLite Durable Object integration tests, broker client/manager tests, dependency audit, Python documentation and Wrangler validation); Daily curator tests #42861563244 passed; Public repository security scan #42861563507 passed.
 - No PR review submissions or inline review threads were present at the preceding inspection.
 
 ### Authentication implementation / latest hardening
@@ -46,7 +46,7 @@ Complete SHIT-wide centralized Spotify authentication. The Cloudflare broker mus
 ### Actions in the current continuation
 - Refreshed this session brief on `main` and the PR #188 description with verified repository and production state.
 - Added per-IP and verified-workflow rate-limit buckets, a dedicated 60/minute broker limiter with isolated preview/production namespaces, readiness enforcement, and regression tests to the PR branch.
-- The first CI attempt exposed missing test fixtures for the new binding; those fixtures were corrected. The latest broker unit and Durable Object integration stages now pass; remaining exact-head checks are still running.
+- The first CI attempt exposed missing test fixtures for the new binding; those fixtures were corrected. All three latest exact-head workflows subsequently passed.
 - No production deployment, Worker setting change, Spotify OAuth exchange, credential-store initialization, GitHub secret mutation, playlist operation, or Library write was performed.
 
 ---
