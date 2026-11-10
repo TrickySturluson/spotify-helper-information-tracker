@@ -73,7 +73,13 @@ export async function verifyActionsOidc(token, {
     throw new Error("Untrusted workload identity.");
   }
   if (typeof claims.run_id !== "string" || !/^\d+$/.test(claims.run_id) || typeof claims.run_attempt !== "string" || !/^\d+$/.test(claims.run_attempt)) throw new Error("Untrusted workload identity.");
-  return Object.freeze({ repository: claims.repository, workflowRef: claims.workflow_ref, runId: claims.run_id, runAttempt: claims.run_attempt });
+  return Object.freeze({
+    repository: claims.repository,
+    workflowRef: claims.workflow_ref,
+    actorId: String(claims.actor_id || ""),
+    runId: claims.run_id,
+    runAttempt: claims.run_attempt,
+  });
 }
 
 export class SpotifyRefreshLease {
