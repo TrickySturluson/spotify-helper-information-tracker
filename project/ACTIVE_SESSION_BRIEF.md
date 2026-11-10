@@ -16,8 +16,9 @@ Complete SHIT-wide centralized Spotify authentication. The Cloudflare broker mus
 - PR #185 merged the base broker; PR #190 and #191 merged safe diagnostic follow-ups.
 - PR #188 (`feature/oidc-broker-refresh-endpoint`) is the integrated draft containing the encrypted credential store, OIDC refresh endpoint, and all nine workflow migrations. It remains open and draft; not merged or deployed.
 - Current PR branch head: `cb25552e4578f4dbf35a7a8d8f9a59d5b7870413`. It includes the rate-limit hardening described below.
-- GitHub compare before this status refresh reported 450 commits ahead, 12 behind, and 42 changed files. The 12 intervening mainline commits comprise ten Daily/Library state/data updates and two active-session brief refreshes; none of their changed paths overlap the PR's 42 changed files. This brief refresh adds one more docs-only mainline commit, so the PR will be 13 behind after publication. Preserve the unrelated mainline changes; do not force-push or rewrite branch history.
+- GitHub compare before this status refresh reported 450 commits ahead, 13 behind, and 42 changed files. The 13 intervening mainline commits comprise ten Daily/Library state/data updates and three active-session brief refreshes; none of their changed paths overlap the PR's 42 changed files. This brief refresh adds one more docs-only mainline commit, so the PR will be 14 behind after publication. Preserve the unrelated mainline changes; do not force-push or rewrite branch history.
 - Latest exact-head CI is green: Mobile Auth Broker Tests #42861563408 passed (broker security unit tests, Cloudflare SQLite Durable Object integration tests, broker client/manager tests, dependency audit, Python documentation and Wrangler validation); Daily curator tests #42861563244 passed; Public repository security scan #42861563507 passed.
+- Cloudflare Workers Builds independently deployed the exact same branch head to its isolated preview: build `195d4c73-69d1-4020-947f-60be95ea4552`, outcome `success`, commit `cb25552e4578f4dbf35a7a8d8f9a59d5b7870413`. Wrangler reported preview URL `https://feature-oidc-broker-refresh-endpoint-shit-auth-broker.trickysturluson.workers.dev` and unique deployment URL `https://d2d2f501-shit-auth-broker.trickysturluson.workers.dev`. The preview deploy command completed successfully; an independent HTTP `/health` probe has not yet been recorded.
 - No PR review submissions or inline review threads were present at the preceding inspection.
 
 ### Authentication implementation / latest hardening
@@ -36,7 +37,7 @@ Complete SHIT-wide centralized Spotify authentication. The Cloudflare broker mus
 
 ### Remaining production gates
 1. Confirm the encryption keyring has a secure independent backup. Never paste the key into chat, logs, or Git.
-2. Complete exact-head CI for PR #188 after the rate-limit changes. Keep the PR draft until broker, Durable Object, Python, Wrangler, Daily and full-history security checks pass.
+2. Keep PR #188 in draft pending an independent review of the integrated diff and a clean reconciliation plan for its 450-ahead/14-behind history. Exact-head broker, Durable Object, Python, Wrangler, Daily and full-history security checks pass; the exact-head Cloudflare preview deployment also succeeds. The separate HTTP `/health` probe remains unverified.
 3. Reconcile/merge the auth-only PR while preserving unrelated mainline Daily/Library updates; inspect the final combined diff.
 4. Run the owner-only deployment workflow. Verify the new credential-store and broker-rate-limit bindings/migrations, live query-string redaction, and `/ready` before Spotify consent.
 5. Complete owner-consented PKCE authorization; verify encrypted credential persistence without reading it back, then pass two independent broker-backed read-only auth-health checks.
