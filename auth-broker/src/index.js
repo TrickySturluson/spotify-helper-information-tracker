@@ -108,13 +108,14 @@ function redirect(url, headers = {}) {
   return response(null, 302, { Location: url, ...headers });
 }
 
-export async function rateLimit(request, env, route) {
+export async function rateLimit(request, env, route, actorOverride = null) {
   if (!env.AUTH_RATE_LIMITER) throw new BrokerError("Rate limiter is not configured.");
   // Never trust a caller-supplied cookie as a rate-limit identity. Resolve the
   // session against server-side state first; invalid/missing cookies share the
   // anonymous bucket, while only a verified owner session gets its own bucket.
-  const session = route.startsWith("spotify-") ? await getSession(request, env) : null;
-  const actor = session ? session.id : "anonymous";
+  // Internal OIDC routes may pass a verified workflow identity after JWT validation.
+  const session = actorOverride === null && route.startsWith("spotify-") ? await getSession(request, env) : null;
+  const actor = actorOverride ?? (session ? session.id : "anonymous");
   const result = await env.AUTH_RATE_LIMITER.limit({ key: `${route}:${actor}` });
   if (!result.success) throw new BrokerError("Too many attempts.");
 }
@@ -591,7 +592,6 @@ async function handleBrokerRefresh(request, env) {
   if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()) {
     return response(JSON.stringify({ error: "credential_store_unavailable" }), 503, { "Content-Type": "application/json" });
   }
-  await rateLimit(request, env, "broker-refresh");
   const authorization = request.headers.get("Authorization") || "";
   const match = authorization.match(/^Bearer ([A-Za-z0-9._-]+)$/);
   if (!match) return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
@@ -626,6 +626,9 @@ async function handleBrokerRefresh(request, env) {
   if (input.forceRefresh === true && verifiedClaims.workflowRef !== authHealthWorkflowRef) {
     return response(JSON.stringify({ error: "force_refresh_not_allowed" }), 403, { "Content-Type": "application/json" });
   }
+  // Rate-limit only after OIDC verification and isolate buckets by the verified
+  // workflow_ref. Anonymous traffic cannot exhaust a shared bucket for all jobs.
+  await rateLimit(request, env, "broker-refresh", verifiedClaims.workflowRef);
   const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
   const result = await stub.fetch("https://spotify-credential.internal/refresh", {
     method: "POST",
