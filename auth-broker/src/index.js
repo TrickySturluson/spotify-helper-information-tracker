@@ -605,6 +605,19 @@ async function credentialStoreReady(env) {
     !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()
   ) return false;
   try {
+    const brokerOrigin = new URL(String(env.BROKER_BASE_URL));
+    if (
+      brokerOrigin.protocol !== "https:" ||
+      brokerOrigin.pathname !== "/" ||
+      brokerOrigin.search ||
+      brokerOrigin.hash ||
+      !/^\\d+$/.test(String(env.GITHUB_APP_ID)) ||
+      env.GITHUB_APP_REDIRECT_URI !== brokerOrigin.origin + "/auth/github/callback" ||
+      env.SPOTIFY_REDIRECT_URI !== brokerOrigin.origin + "/spotify/callback"
+    ) return false;
+    // Validate the configured App private key locally without making a GitHub
+    // API call or exposing any credential material to the readiness response.
+    await githubAppJwt(env);
     const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
     const probe = await stub.fetch("https://spotify-credential.internal/ready");
     if (!probe.ok) return false;
