@@ -2,6 +2,10 @@
 
 The Cloudflare Worker is SHIT's central, owner-consented Spotify authentication authority. It supports phone and desktop browsers equally and has no dependency on a local PC or Codespace. It is an authentication service only: it never unlocks, edits, snapshots, or otherwise operates Spotify playlists.
 
+## Production cutover runbook
+
+See [KEYRING_BACKUP_AND_CUTOVER.md](./KEYRING_BACKUP_AND_CUTOVER.md) for the owner-only encryption-key backup, deployment, Spotify consent, nine-workflow verification, and rollback sequence. The production workflow is intentionally blocked until the independent key backup is confirmed.
+
 ## Central architecture
 
 The intended production path is:
