@@ -167,6 +167,25 @@ jobs:
           fi
           echo "OAuth remains active only with query-string redaction enabled."
 
+      - name: Verify deployed broker readiness
+        env:
+          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
+        run: |
+          for attempt in $(seq 1 12); do
+            status="$(curl --silent --show-error --max-time 10 \
+              --output /tmp/broker-ready.json \
+              --write-out "%{http_code}" \
+              "${BROKER_BASE_URL}/ready" || true)"
+            if [ "${status}" = "200" ] && jq -e '.status == "ready" and .service == "shit-auth-broker"' /tmp/broker-ready.json >/dev/null 2>&1; then
+              echo "Broker configuration and credential-store readiness verified."
+              cat /tmp/broker-ready.json
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Deployed broker is not ready. Check Worker secret names, active key version, and Durable Object migration/binding."
+          exit 1
+
       - name: Fail closed by disabling OAuth if activation verification fails
         if: failure() && steps.initial_deploy.outcome == 'success'
         working-directory: auth-broker
@@ -192,25 +211,6 @@ jobs:
             --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" \
             --var "SPOTIFY_REFRESH_WORKFLOW_REFS:$SPOTIFY_REFRESH_WORKFLOW_REFS"
           echo "::warning::OAuth activation verification failed; the broker was redeployed with OAuth disabled."
-
-      - name: Verify deployed broker readiness
-        env:
-          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
-        run: |
-          for attempt in $(seq 1 12); do
-            status="$(curl --silent --show-error --max-time 10 \
-              --output /tmp/broker-ready.json \
-              --write-out "%{http_code}" \
-              "${BROKER_BASE_URL}/ready" || true)"
-            if [ "${status}" = "200" ] && jq -e '.status == "ready" and .service == "shit-auth-broker"' /tmp/broker-ready.json >/dev/null 2>&1; then
-              echo "Broker configuration and credential-store readiness verified."
-              cat /tmp/broker-ready.json
-              exit 0
-            fi
-            sleep 5
-          done
-          echo "::error::Deployed broker is not ready. Check Worker secret names, active key version, and Durable Object migration/binding."
-          exit 1
 
 
 # FILE OVERVIEW
