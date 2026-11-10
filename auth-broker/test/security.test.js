@@ -488,6 +488,9 @@ test("Durable Object expires and cleans abandoned OAuth records", async () => {
 test("deployment workflow injects every public runtime variable without dashboard drift", async () => {
   const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
   const workflow = await readFile(new URL("../../.github/workflows/deploy-mobile-auth-broker.yml", import.meta.url), "utf8");
+  const previewWorkflow = await readFile(new URL("../../.github/workflows/auth-broker-preview-health.yml", import.meta.url), "utf8");
+  assert.match(previewWorkflow, /\/health/);
+  assert.match(previewWorkflow, /broker_not_activated/);
   assert.match(config, /name = "BROKER_REFRESH_RATE_LIMITER"/);
   assert.match(config, /simple = \{ limit = 60, period = 60 \}/);
   assert.doesNotMatch(config, /^\[vars\]/m);
