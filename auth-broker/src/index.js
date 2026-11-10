@@ -736,6 +736,10 @@ export async function handleRequest(request, env) {
         { "Content-Type": "application/json; charset=utf-8" },
       );
     }
+    const oauthRoutes = new Set(["/", "/auth/github/start", "/auth/github/callback", "/spotify/start", "/spotify/callback", "/complete", "/internal/spotify/refresh"]);
+    if (oauthRoutes.has(url.pathname) && env.SPOTIFY_OAUTH_ENABLED !== "true") {
+      return response(JSON.stringify({ error: "broker_not_activated" }), 503, { "Content-Type": "application/json; charset=utf-8" });
+    }
     diagnosticStage = "broker.base_url_presence";
     requireEnv(env, ["BROKER_BASE_URL"]);
     diagnosticStage = "broker.base_url_parse";
@@ -750,10 +754,6 @@ export async function handleRequest(request, env) {
       return response("Invalid host.", 400, { "Content-Type": "text/plain; charset=utf-8" });
     }
     diagnosticStage = "broker.route_dispatch";
-    const oauthRoutes = new Set(["/", "/auth/github/start", "/auth/github/callback", "/spotify/start", "/spotify/callback", "/complete", "/internal/spotify/refresh"]);
-    if (oauthRoutes.has(url.pathname) && env.SPOTIFY_OAUTH_ENABLED !== "true") {
-      return response(JSON.stringify({ error: "broker_not_activated" }), 503, { "Content-Type": "application/json; charset=utf-8" });
-    }
     if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);
     if (url.pathname === "/internal/spotify/refresh") return await handleBrokerRefresh(request, env);
 
