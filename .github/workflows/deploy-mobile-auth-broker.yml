@@ -210,7 +210,15 @@ jobs:
             --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI" \
             --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" \
             --var "SPOTIFY_REFRESH_WORKFLOW_REFS:$SPOTIFY_REFRESH_WORKFLOW_REFS"
-          echo "::warning::OAuth activation verification failed; the broker was redeployed with OAuth disabled."
+          status="$(curl --silent --show-error --max-time 10 \
+            --output /tmp/broker-disabled.json \
+            --write-out "%{http_code}" \
+            "${BROKER_BASE_URL}/" || true)"
+          if [ "${status}" != "503" ] || ! jq -e '.error == "broker_not_activated"' /tmp/broker-disabled.json >/dev/null 2>&1; then
+            echo "::error::The OAuth-disabled fallback could not be verified."
+            exit 1
+          fi
+          echo "::warning::OAuth activation verification failed; the broker was redeployed and verified with OAuth disabled."
 
 
 # FILE OVERVIEW
