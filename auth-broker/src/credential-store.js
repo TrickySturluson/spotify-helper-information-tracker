@@ -219,7 +219,7 @@ export class SpotifyCredentialStore {
       const encrypted = await encryptRefreshToken(input.refreshToken, keyring.activeKey, nextVersion, current.accountId, keyring.activeVersion);
       await txn.put("credential", {
         status: "ready", accountId: current.accountId, version: nextVersion,
-        credential: encrypted, lastOperationId: current.lastOperationId || null, updatedAt: Date.now(),
+        credential: encrypted, lastOperationId: current.lastOperationId ?? current.operationId ?? null, updatedAt: Date.now(),
       });
       return { reauthorized: true, version: nextVersion };
     });
