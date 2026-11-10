@@ -93,13 +93,14 @@ The following is a read-only reconciliation of the live Cloudflare account. Secr
 Worker observability remains enabled for operational diagnosis. Broker logs may contain only fixed diagnostic stage names and error classes; never log exception contents, OAuth codes, tokens, cookies, state values, or credential material.
 
 
-- OIDC identity, audience, workflow, repository, owner, ref, event, run, and timestamp checks fail closed.
+- OIDC identity, audience, workflow, repository, owner, ref, event, run, and timestamp checks fail closed. Manual and issue-triggered runs also require the owner `actor_id`; only the broker-dispatched, read-only auth-health workflow is exempt from the manual-dispatch owner check.
 - The credential object reserves a refresh operation transactionally before contacting Spotify. Concurrent callers wait for the result and reuse the encrypted access-token cache rather than starting competing refreshes.
 - Concurrent refresh attempts are rejected. The refresh token is never returned to a workflow.
+- The Spotify consent start route checks the same credential-store readiness probe as `/ready` before redirecting to Spotify. A missing Durable Object binding, invalid keyring, or incomplete broker configuration stops consent before the owner is sent to Spotify.
 - A successful refresh verifies `/v1/me` against the stored account ID before committing the rotated refresh token.
 - An explicit Spotify 429 releases the reservation without changing the credential and propagates `Retry-After`; it does not permanently block the credential.
 - Ambiguous network/provider outcomes, invalid identity, corrupted ciphertext, or uncertain commits block further refresh and require owner-consented recovery. The old token is never blindly retried.
-- Owner reauthorization can initialize an empty store or recover a blocked credential for the same verified Spotify account. A different account cannot silently replace the stored identity.
+- Owner reauthorization can initialize an empty store or recover a blocked credential for the same verified Spotify account. A different account cannot silently replace the stored identity. Recovery preserves the last refresh operation ID so a previously issued OIDC operation cannot be replayed after reauthorization.
 - Broker outage fails closed. Migrated workflows must not fall back to the old secret or refresh independently.
 - OAuth completion never unlocks or edits a playlist.
 
