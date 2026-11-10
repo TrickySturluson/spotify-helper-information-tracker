@@ -1,45 +1,48 @@
 # Active SHIT Session Brief
 
-## Current authentication session overlay — 2026-11-09
+## Current authentication session overlay — 2026-11-10
 
-### Current objective and success criteria
-Finish SHIT-wide centralized Spotify authentication: the broker owns the only long-lived refresh credential, performs serialized refresh/rotation inside its encrypted Durable Object, and gives authorized GitHub Actions jobs only short-lived access tokens through OIDC. Complete fresh owner consent only after the integrated Worker is deployed and verified. Authentication must never modify playlists.
+### Objective
+Complete SHIT-wide centralized Spotify authentication. The Cloudflare broker must own the only long-lived refresh credential, serialize refresh/rotation inside its encrypted Durable Object, and issue short-lived access tokens only to the exact allowlisted GitHub Actions workflows through OIDC. Authentication must never modify playlists.
 
-### Material decisions and boundaries
-- Continue the previously user-authorized auth implementation in parallel with the Jockey's Tricky Daily priority; do not reassign or edit Jockey work.
-- Target architecture is broker-owned encrypted refresh-token custody, not a permanent GitHub Actions `SPOTIFY_REFRESH_TOKEN` secret. The secret remains legacy on current `main` until the migration is merged and verified; no dual-write or fallback.
-- Keep production release owner-controlled. Do not read or change secret values, initiate consent on the user's behalf, or touch Spotify playlists.
-- PR #189 (`engineering/general`) was reviewed and closed as superseded because its Wrangler/build instructions were stale and conflicted with the verified Cloudflare configuration.
+### Decisions and safety boundaries
+- Continue the previously authorized Authentication Management & Recovery workstream. Do not reassign or edit Jockey/Tricky Daily work.
+- The target is broker-owned encrypted refresh-token custody. Do not retain a permanent GitHub Actions `SPOTIFY_REFRESH_TOKEN` secret after cutover; keep the legacy secret until the new path is deployed and independently verified. No dual-write or silent fallback.
+- Production deployment remains owner-controlled. Never read or expose secret values, start Spotify OAuth on the owner's behalf, delete legacy credentials, or modify playlists.
+- Spotify PKCE uses `client_id` in the form body and does not require a Spotify client secret or HTTP Basic authentication.
+- PR #187 is superseded by #188. PR #189 is closed as a stale deployment-alignment draft.
 
-### Current work / branch / PR
-- Current main: `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
-- PR #185 merged `8cd28530081c519112fd947ac7bb05edc0ce7b04`; PR #190 merged `0266b0f124c67fdecae8b83ef89ffe0c6aa478b3`; PR #191 merged `50202a4a394ea68582f02a4ab18ce9091f7f3e4b`.
-- PR #187 was closed as superseded by integrated PR #188; its credential-store prototype and passing tests are preserved in the combined branch.
-- PR #188 branch `feature/oidc-broker-refresh-endpoint`, head `8c011f869c3b02be58cd7a6694705071d3b7ff9a`, is based directly on `main`, mergeable and intentionally draft. The previous head `12ca9de8c4767277d96f0ec14cf6b55f215d4e27` passed broker, Durable Object, Python, documentation, dependency, Wrangler and security checks. Consolidated head tests #42600934839 are queued and security scan #42600934784 is in progress.
-- Branch ancestry is reconciled: PR #188 has current `main` as a parent and compare reports zero commits behind. Do not force-update.
-- PR #189 was closed as superseded; its stale build instructions were not merged.
+### Repository / PR state (read-only checked 2026-11-10)
+- Current `main`: `8454272cb2a2602a0e0da3b29b2cef25510d15d0`.
+- PR #185 merged the base broker; PR #190 and #191 merged safe diagnostic follow-ups.
+- PR #188 (`feature/oidc-broker-refresh-endpoint`) is the integrated draft containing the encrypted credential store, OIDC refresh endpoint, and all nine workflow migrations.
+- PR #188's current documentation-only head is `0ec6151a45dd896d20cd51e58679bdcd2ce333ab`; the last code-bearing head is `4634c8ae41688665fb16efe9e4b9e3565265f7bb`. No code changed after that validated code-bearing head, according to the PR record.
+- Current exact-head GitHub Actions runs independently inspected: Mobile Auth Broker Tests #42823044272 passed (including broker security tests, Cloudflare SQLite Durable Object integration tests, broker-client/manager tests, dependency audit and Wrangler validation); Daily curator tests #42823045101 passed; Public repository security scan #42823044261 passed.
+- The branch compares as 439 commits ahead and 10 behind `main`, with 42 changed files. The ten newer main commits are Daily/Library state and data refreshes, not auth implementation changes. Do not merge or rewrite branch history blindly; reconcile the auth-only diff against current main and preserve unrelated state.
+- No PR review submissions or inline review threads were present at the latest inspection.
 
-### Production / provider findings
-- Cloudflare Worker `shit-auth-broker` version 14 (`06bb7f3a-da70-449f-9f51-72423c693fa1`) is active at 100% traffic; created 2026-11-09 09:46:17 UTC.
-- Active version metadata shows migration tag v2 and only `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`; no `SPOTIFY_CREDENTIAL_STORE`, encryption keyring, or active key version.
-- Cloudflare metadata confirms `GITHUB_APP_CLIENT_SECRET` and `GITHUB_APP_PRIVATE_KEY` are `secret_text`; values were not read.
-- Cloudflare Workers Builds config: root `auth-broker`, no build command, production upload `npx wrangler versions upload`, preview `npx wrangler preview`; auto-build/previews enabled. Production promotion remains owner-controlled.
-- Redacted Workers Observability query for the prior 24 hours (ending 2026-11-09 10:08 UTC) found six callback failures: four on version 13 at `broker.base_url_configuration`, two on version 14 at `broker.route_dispatch` (`UnexpectedError`). No exception contents, OAuth codes, tokens, cookies, state values or secret values were retrieved.
-- PR #188 adds safe fixed-stage callback instrumentation through GitHub App JWT/installation, concurrent-workflow check, Spotify exchange/scope/identity, encrypted store write, health dispatch, completion-state storage and redirect. Wait for fresh checks before another consent attempt.
-- Spotify's PKCE refresh contract is now documented and corrected in both feature branches: send `client_id` in the form body and do not use a Spotify client secret. No successful credential persistence, auth-health result, or playlist operation has been verified.
+### Cloudflare production state (read-only checked 2026-11-10)
+- Worker: `shit-auth-broker`. The latest production deployment remains `cc312856-c717-49a1-a20a-45d3ed7950d2`, with version `c166ef6f-d7aa-4b8f-951a-fff565636b17` receiving 100% traffic.
+- Live Worker bindings include `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`, but not `SPOTIFY_CREDENTIAL_STORE`. The live version therefore does not yet implement broker-owned credential storage or `/internal/spotify/refresh`.
+- Cloudflare secret-binding metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are all `secret_text`. Secret values were not read. The owner provisioned the encryption-key secret; an independent secure backup is not verified.
+- Production observability currently has `redact_query_string = false`. This is a hard release blocker because OAuth callback URLs contain one-time `code` and `state` parameters. Do not initiate OAuth until the integrated deployment has enabled and independently verified query-string redaction.
+- The integrated PR config adds Durable Object migration v3 / `SPOTIFY_CREDENTIAL_STORE`, enables `redact_query_string = true`, and its owner-only deployment workflow checks required secret bindings, then verifies redaction and `/ready` after deployment.
+- Cloudflare Workers Builds remains upload-only (`npx wrangler versions upload`) with production root `auth-broker`; it must not promote traffic. The owner-only GitHub Actions deployment workflow is the intended production promotion path.
 
-### Buddy daily-check gate
-- Automation `SHIT Buddy — Babel documentation only` is disabled.
-- Latest successful report-bearing Buddy result: 2026-11-07.
-- 2026-11-08 run recorded failed; no successful report-bearing run exists for 2026-11-09.
-- Status: **Buddy pending today — disabled**. Do not enable it or modify its branch/PR without user direction.
+### Remaining production gates
+1. Confirm the encryption keyring has a secure independent backup. Never paste the key into chat, logs, or Git.
+2. Reconcile PR #188's 10-commit-behind branch against current main without importing unrelated Daily/Library data changes; independently inspect the complete auth-only diff.
+3. Keep PR #188 draft until the branch is cleanly reconciled and all exact-head checks pass.
+4. After merge, run the owner-only deployment workflow. Verify the credential-store binding/migration, live query-string redaction, and `/ready` before any Spotify consent.
+5. Complete owner-consented PKCE authorization; verify encrypted credential persistence without reading it back, then pass two independent broker-backed read-only auth-health checks.
+6. Verify all nine workflows end-to-end while preserving playlist locks, previews/confirmation, snapshots, audits, rollback, and no-playlist-side-effect boundaries.
+7. Only after the new path and rollback are verified, retire the legacy GitHub Actions refresh-token secret and remove obsolete App permissions with explicit owner approval.
 
-### Next executable action
-1. Check fresh CI for consolidated PR #188 head `8c011f869c3b02be58cd7a6694705071d3b7ff9a`, then provision the encryption keyring and deploy owner-controlled.
-2. Reconcile the stacked branches with current main and independently inspect the combined diff; keep both drafts until mergeability and all checks are clean.
-3. Add fail-closed deployment checks for the missing encryption keyring, active key version and exact OIDC workflow allowlist.
-4. After owner-controlled deployment, verify the integrated version receives 100% traffic, then ask the user to complete a fresh OAuth flow.
-5. Verify encrypted credential persistence and two independent read-only auth-health runs; keep all playlists untouched.
+### Actions taken in this continuation
+- Read-only inspection of PR #188, its current CI runs, branch comparison, code/configuration, and Cloudflare Worker metadata.
+- Confirmed all three required Cloudflare secret bindings are present as `secret_text`; no secret values were retrieved.
+- Confirmed production traffic is still on the legacy Worker version and query-string redaction remains disabled.
+- No production deployment, Worker setting change, Spotify OAuth exchange, credential-store initialization, GitHub secret mutation, playlist operation, or Library write was performed.
 
 ---
 
