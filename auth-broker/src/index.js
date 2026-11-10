@@ -611,7 +611,7 @@ async function credentialStoreReady(env) {
       brokerOrigin.pathname !== "/" ||
       brokerOrigin.search ||
       brokerOrigin.hash ||
-      !/^\\d+$/.test(String(env.GITHUB_APP_ID)) ||
+      !/^\d+$/.test(String(env.GITHUB_APP_ID)) ||
       env.GITHUB_APP_REDIRECT_URI !== brokerOrigin.origin + "/auth/github/callback" ||
       env.SPOTIFY_REDIRECT_URI !== brokerOrigin.origin + "/spotify/callback"
     ) return false;
