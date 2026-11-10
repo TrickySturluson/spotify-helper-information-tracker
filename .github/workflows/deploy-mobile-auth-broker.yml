@@ -187,7 +187,7 @@ jobs:
           exit 1
 
       - name: Fail closed by disabling OAuth if activation verification fails
-        if: failure() && steps.initial_deploy.outcome == 'success'
+        if: failure() && steps.initial_deploy.outcome != 'skipped'
         working-directory: auth-broker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
