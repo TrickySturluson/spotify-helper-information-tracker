@@ -37,7 +37,13 @@ test("readiness fails closed unless broker config and Durable Object keyring are
     new Request("https://broker.example/ready"),
     {
       BROKER_BASE_URL: "https://broker.example",
+      GITHUB_APP_ID: "12345",
+      GITHUB_APP_CLIENT_ID: "github-client-id",
+      GITHUB_APP_CLIENT_SECRET: "github-client-secret",
+      GITHUB_APP_PRIVATE_KEY: "private-key",
+      GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
       SPOTIFY_CLIENT_ID: "public-client-id",
+      SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
       SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
       SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
       AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
