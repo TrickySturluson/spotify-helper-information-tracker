@@ -7,6 +7,12 @@ const ENCRYPTION_KEY_VERSION = 1;
 
 class CredentialStoreError extends Error {}
 
+// Spotify user IDs are opaque provider identifiers, not restricted to alphanumerics.
+// Reject whitespace/control characters and bound the value before using it in storage/AAD.
+export function isValidSpotifyAccountId(value) {
+  return typeof value === "string" && /^[^\s\p{Cc}]{1,256}$/u.test(value);
+}
+
 function json(body, status = 200, headers = {}) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store", ...headers } });
 }
@@ -200,7 +206,7 @@ export class SpotifyCredentialStore {
   // or restores an existing blocked credential for the same Spotify identity.
   // A ready/in-progress credential is never overwritten by another OAuth grant.
   async authorize(input, keyring) {
-    if (typeof input.accountId !== "string" || !/^[A-Za-z0-9]{1,128}$/.test(input.accountId)) {
+    if (!isValidSpotifyAccountId(input.accountId)) {
       return json({ error: "verified_account_required" }, 400);
     }
     const outcome = await this.ctx.storage.transaction(async (txn) => {

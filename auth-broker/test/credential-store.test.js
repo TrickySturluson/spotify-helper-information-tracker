@@ -428,6 +428,18 @@ test("owner reauthorization cannot overwrite a ready or in-progress credential",
 });
 
 
+test("owner authorization accepts opaque Spotify IDs with punctuation but rejects whitespace/control characters", async () => {
+  const { storage, store } = setup();
+  const accountId = "spotify-user:abc_123-xyz";
+  const accepted = await store.fetch(request("/authorize", { accountId, refreshToken: initialToken }));
+  assert.equal(accepted.status, 201);
+  assert.equal((await storage.get("credential")).accountId, accountId);
+
+  const invalid = await store.fetch(request("/authorize", { accountId: "spotify user\\nwith-control", refreshToken: initialToken }));
+  assert.equal(invalid.status, 400);
+  assert.deepEqual(await invalid.json(), { error: "verified_account_required" });
+});
+
 test("owner-consented authorization initializes the central credential store exactly once", async () => {
   const { storage, store } = setup();
   const first = await store.fetch(request("/authorize", { accountId: "spotifyuser123", refreshToken: initialToken }));

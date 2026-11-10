@@ -1,5 +1,5 @@
 import { SpotifyRefreshLease, verifyActionsOidc } from "./refresh-lock.js";
-import { SpotifyCredentialStore } from "./credential-store.js";
+import { SpotifyCredentialStore, isValidSpotifyAccountId } from "./credential-store.js";
 export { SpotifyRefreshLease, SpotifyCredentialStore };
 
 const OWNER = "TrickySturluson";
@@ -405,7 +405,7 @@ async function authorizeCentralCredential(env, refreshToken, accountId) {
   if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim()) {
     throw new BrokerError("Central Spotify credential storage is not configured; no credential was saved.");
   }
-  if (typeof accountId !== "string" || !/^[A-Za-z0-9]{1,128}$/.test(accountId)) {
+  if (!isValidSpotifyAccountId(accountId)) {
     throw new BrokerError("Spotify account identity was not valid for central storage; no credential was saved.");
   }
   if (typeof refreshToken !== "string" || refreshToken.length < 20 || refreshToken.length > 8192) {
