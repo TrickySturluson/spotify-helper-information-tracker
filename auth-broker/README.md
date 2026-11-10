@@ -93,7 +93,7 @@ The following is a read-only reconciliation of the live Cloudflare account. Secr
 Worker observability remains enabled for operational diagnosis. Broker logs may contain only fixed diagnostic stage names and error classes; never log exception contents, OAuth codes, tokens, cookies, state values, or credential material.
 
 
-- OIDC identity, audience, workflow, repository, owner, ref, event, run, and timestamp checks fail closed. Manual and issue-triggered runs also require the owner `actor_id`; only the broker-dispatched, read-only auth-health workflow is exempt from the manual-dispatch owner check.
+- OIDC identity, audience, workflow, repository, owner, ref, event, run, and timestamp checks fail closed. Manual and issue-triggered runs require the owner `actor_id`. The broker-dispatched auth-health workflow is the sole manual-dispatch exception for ordinary token retrieval; a forced refresh additionally requires the owner `actor_id`, even on that workflow.
 - The credential object reserves a refresh operation transactionally before contacting Spotify. Concurrent callers wait for the result and reuse the encrypted access-token cache rather than starting competing refreshes.
 - Concurrent refresh attempts are rejected. The refresh token is never returned to a workflow.
 - The Spotify consent start route checks the same credential-store readiness probe as `/ready` before redirecting to Spotify. A missing Durable Object binding, invalid keyring, or incomplete broker configuration stops consent before the owner is sent to Spotify.
