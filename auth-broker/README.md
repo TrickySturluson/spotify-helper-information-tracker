@@ -89,12 +89,12 @@ The following is a read-only reconciliation of the live Cloudflare account. Secr
 - Workers Builds is connected to this repository's `main` branch with automatic builds and previews enabled.
 - Production build configuration: root directory `/auth-broker`, empty build command, deploy command `npx wrangler versions upload`. This uploads a candidate Worker version; it does not promote that version to production traffic.
 - Preview build configuration: root directory `/auth-broker`, empty build command, deploy command `npx wrangler preview`. Worker preview URLs are enabled.
-- Keep the upload/promotion split. The owner-only `Deploy SHIT Auth Broker` workflow is the intended production promotion path: it checks secret-binding metadata, runs `npx wrangler deploy`, then performs read-only post-deploy checks. Do not change the Workers Builds production command to `wrangler deploy`.
+- Keep the upload/promotion split. The owner-only `Deploy SHIT Auth Broker` workflow is the intended production promotion path: it checks secret-binding metadata, deploys first with OAuth disabled, verifies query-string redaction, activates OAuth in a second deployment, rechecks redaction and `/ready`, and attempts a disabled redeploy if any step after an initial deployment attempt fails. Do not change the Workers Builds production command to `wrangler deploy`.
 - The latest production deployment observed was `cc312856-c717-49a1-a20a-45d3ed7950d2`, serving version `c166ef6f-d7aa-4b8f-951a-fff565636b17` at 100% traffic. The deployed source still contains the legacy GitHub Actions refresh-secret writer and does not contain `/internal/spotify/refresh` or `SpotifyCredentialStore`.
 - Production secret metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are all `secret_text` bindings. Their values were not read. The keyring's independent backup is not verified.
 - Production Durable Object bindings currently include `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`, but not `SPOTIFY_CREDENTIAL_STORE`; the PR's v3 credential-store migration has not been applied.
 - Production observability and invocation logs are enabled, but metadata currently reports `redact_query_string = false`. OAuth callback requests contain one-time `code` and `state` query parameters. Treat this as a production release blocker: do not use the production OAuth callback until query-string redaction is active. This PR now sets `redact_query_string = true` in Wrangler and verifies the live setting after deployment.
-- The PR #188 preview for exact head `4634c8ae41688665fb16efe9e4b9e3565265f7bb` built and deployed successfully; its non-secret `GET /health` check passed. Preview success is not production deployment, credential-store readiness, or live OAuth verification.
+- The PR #188 preview for code-bearing head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` built and its non-secret `GET /health` check passed. The latest preview workflow additionally checks that the preview root stays disabled with HTTP 503 `broker_not_activated`; that exact-head smoke-test update is still being validated. Preview success is not production deployment, credential-store readiness, or live OAuth verification.
 
 ## Failure and recovery semantics
 
@@ -120,15 +120,14 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Latest code-bearing PR #188 commit `4634c8ae41688665fb16efe9e4b9e3565265f7bb` passed exact-head CI and preview checks on 2026-11-10. The subsequent documentation-only status sync `7721ae6b7e6f449253f1adce3e197b019032fecd` also passed CI and preview checks; no code changed after the validated code-bearing commit:
+Code-bearing PR #188 head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` passed the full Mobile Auth Broker Tests suite and exact-head Cloudflare preview health check on 2026-11-10. The latest branch head `90efc16430c35797d4db8e775624274e9597fe0c` adds a live preview assertion that OAuth remains disabled by default; its exact-head validation is still running.
 
-- Cloudflare Workers Builds built and deployed the exact-head preview for `4634c8ae41688665fb16efe9e4b9e3565265f7bb`; the matching GitHub preview-health check passed.
-- The exact-head GitHub preview check passed, including the non-secret live `GET /health` probe.
-- Mobile Auth Broker Tests passed: dependency audit, broker security unit tests, Cloudflare SQLite Durable Object integration tests (including readiness), Python broker-client/manager tests, maintained-script documentation, and non-deploying Wrangler validation.
-- Daily curator regression tests passed.
-- The full Git-history secret scan passed.
-- The new readiness contract tests verify that a valid keyring and Durable Object binding are required, malformed/missing keys fail closed, the probe is rate-limited, and no credential is read or created.
-- The owner-only deployment workflow now performs a read-only `GET /ready` check after deployment and fails if the deployed keyring or Durable Object binding/migration is unusable.
+- Cloudflare Workers Builds successfully built the exact code-bearing head `8848b5b07782cb7b316eaf333ed68c3c05c8c946`; the matching preview check confirmed the non-secret `GET /health` response.
+- Mobile Auth Broker Tests passed on that code-bearing head: dependency audit, broker security unit tests, Cloudflare SQLite Durable Object integration tests, Python broker-client/manager tests, maintained-script documentation, and non-deploying Wrangler validation.
+- Daily curator regression tests and the complete-history secret scan passed.
+- Readiness tests verify that the OAuth activation flag, canonical HTTPS origin, callback URLs, GitHub App configuration and parseable private key, rate limiters, OIDC allowlist, encryption keyring, and credential-store Durable Object must all be ready. Missing or malformed configuration fails closed without creating or reading a credential.
+- The two-phase production deployment contract is tested: deploy disabled, verify query redaction, activate, reverify redaction and `/ready`, then attempt a disabled redeploy and verify the public route returns `503 broker_not_activated` if an activation/readiness step fails.
+- The owner-only deployment workflow performs a read-only `GET /ready` check after activation and fails if the deployed keyring or Durable Object binding/migration is unusable.
 
 Still pending:
 
