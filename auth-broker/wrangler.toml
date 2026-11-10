@@ -21,6 +21,11 @@ name = "AUTH_RATE_LIMITER"
 namespace_id = "20261109"
 simple = { limit = 20, period = 60 }
 
+[[previews.ratelimits]]
+name = "BROKER_REFRESH_RATE_LIMITER"
+namespace_id = "20261111"
+simple = { limit = 60, period = 60 }
+
 
 # Public runtime variables are injected from GitHub Actions repository variables
 # by deploy-mobile-auth-broker.yml using Wrangler's --var flags.
@@ -54,6 +59,11 @@ new_sqlite_classes = ["SpotifyCredentialStore"]
 name = "AUTH_RATE_LIMITER"
 namespace_id = "20261108"
 simple = { limit = 20, period = 60 }
+
+[[ratelimits]]
+name = "BROKER_REFRESH_RATE_LIMITER"
+namespace_id = "20261110"
+simple = { limit = 60, period = 60 }
 
 [observability]
 enabled = true
