@@ -100,7 +100,7 @@ Worker observability remains enabled for operational diagnosis. Broker logs may 
 - A successful refresh verifies `/v1/me` against the stored account ID before committing the rotated refresh token.
 - An explicit Spotify 429 releases the reservation without changing the credential and propagates `Retry-After`; it does not permanently block the credential.
 - Ambiguous network/provider outcomes, invalid identity, corrupted ciphertext, or uncertain commits block further refresh and require owner-consented recovery. The old token is never blindly retried.
-- Owner reauthorization can initialize an empty store or recover a blocked credential for the same verified Spotify account. A different account cannot silently replace the stored identity. Recovery preserves the last refresh operation ID so a previously issued OIDC operation cannot be replayed after reauthorization.
+- Owner reauthorization can initialize an empty store or recover a blocked or expired-refresh credential for the same verified Spotify account; an expired reservation does not require an extra workflow run to become recoverable. A different account cannot silently replace the stored identity. Recovery preserves the last refresh operation ID so a previously issued OIDC operation cannot be replayed after reauthorization.
 - Broker outage fails closed. Migrated workflows must not fall back to the old secret or refresh independently.
 - OAuth completion never unlocks or edits a playlist.
 
