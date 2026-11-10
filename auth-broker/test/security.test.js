@@ -208,6 +208,25 @@ test("Spotify rate limits use only a verified owner session, never a caller-supp
   assert.deepEqual(keys, ["spotify-start:anonymous", `spotify-start:${validSessionId}`]);
 });
 
+test("broker refresh rate limits use the verified workflow identity instead of one shared anonymous bucket", async () => {
+  const keys = [];
+  let sessionLookups = 0;
+  const env = {
+    AUTH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
+    OAUTH_STATE: {
+      idFromName: () => "state",
+      get: () => {
+        sessionLookups += 1;
+        throw new Error("OIDC rate limiting must not depend on a browser session");
+      },
+    },
+  };
+  const workflowRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
+  await rateLimit(new Request("https://broker.example/internal/spotify/refresh", { method: "POST" }), env, "broker-refresh", workflowRef);
+  assert.deepEqual(keys, ["broker-refresh:" + workflowRef]);
+  assert.equal(sessionLookups, 0);
+});
+
 test("HTML output escapes untrusted text", () => {
   assert.equal(escapeHtml("<script>alert('x')</script>"), "&lt;script&gt;alert(&#39;x&#39;)&lt;/script&gt;");
 });
