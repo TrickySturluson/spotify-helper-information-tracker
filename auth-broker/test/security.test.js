@@ -26,7 +26,6 @@ test("health endpoint is non-secret and bypasses OAuth configuration", async () 
 
 test("OAuth browser routes and broker refresh stay disabled until explicit activation", async () => {
   const env = {
-    BROKER_BASE_URL: "https://broker.example",
     SPOTIFY_OAUTH_ENABLED: "false",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
