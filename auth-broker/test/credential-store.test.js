@@ -66,7 +66,7 @@ test("Spotify account identifiers preserve opaque legacy values without control 
   assert.equal(isValidSpotifyAccountId("legacy spotify username"), true);
   assert.equal(isValidSpotifyAccountId("user@example.com"), true);
   assert.equal(isValidSpotifyAccountId(""), false);
-  assert.equal(isValidSpotifyAccountId("spotify\\naccount"), false);
+  assert.equal(isValidSpotifyAccountId("spotify" + String.fromCharCode(10) + "account"), false);
   assert.equal(isValidSpotifyAccountId("x".repeat(257)), false);
 });
 
