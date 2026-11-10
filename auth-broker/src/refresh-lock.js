@@ -56,9 +56,19 @@ export async function verifyActionsOidc(token, {
   if (typeof claims.workflow_ref !== "string" || !allowedWorkflowRefs.includes(claims.workflow_ref)) throw new Error("Unapproved workflow identity.");
   const playlistControlRef = REPOSITORY + "/.github/workflows/spotify-playlist-manager.yml@refs/heads/main";
   const greatMigrationRef = REPOSITORY + "/.github/workflows/great-migration.yml@refs/heads/main";
-  const standardEvent = ["push", "schedule", "workflow_dispatch"].includes(claims.event_name);
-  const ownerIssueEvent = claims.event_name === "issues" && [playlistControlRef, greatMigrationRef].includes(claims.workflow_ref);
-  const ownerCommentEvent = claims.event_name === "issue_comment" && claims.workflow_ref === playlistControlRef;
+  const authHealthRef = REPOSITORY + "/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
+  // OIDC actor_id is the personal account that initiated the workflow run.
+  // Require the repository owner for manual and issue-driven execution. The
+  // auth-health workflow is the sole exception: the broker's GitHub App
+  // dispatches this read-only diagnostic after successful owner PKCE auth.
+  const ownerActor = String(claims.actor_id || "") === OWNER_ID;
+  const ownerWorkflowDispatch = claims.event_name === "workflow_dispatch" &&
+    (ownerActor || claims.workflow_ref === authHealthRef);
+  const standardEvent = ["push", "schedule"].includes(claims.event_name) || ownerWorkflowDispatch;
+  const ownerIssueEvent = claims.event_name === "issues" && ownerActor &&
+    [playlistControlRef, greatMigrationRef].includes(claims.workflow_ref);
+  const ownerCommentEvent = claims.event_name === "issue_comment" && ownerActor &&
+    claims.workflow_ref === playlistControlRef;
   if (claims.ref !== "refs/heads/main" || !(standardEvent || ownerIssueEvent || ownerCommentEvent)) {
     throw new Error("Untrusted workload identity.");
   }
