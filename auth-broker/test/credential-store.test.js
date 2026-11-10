@@ -476,6 +476,32 @@ test("owner-consented authorization recovers only a blocked credential for the s
   assert.equal((await replay.json()).error, "operation_already_committed");
 });
 
+test("owner-consented authorization recovers an expired refresh reservation without a workflow retry", async () => {
+  const { storage, store } = setup();
+  await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
+  const operationId = "T".repeat(43);
+  await storage.put("credential", {
+    ...(await storage.get("credential")),
+    status: "refreshing",
+    operationId,
+    startedAt: Date.now() - CREDENTIAL_OPERATION_TTL_MS - 1,
+    expiresAt: Date.now() - 1,
+  });
+  const restored = await store.fetch(request("/authorize", {
+    accountId: "spotifyuser123",
+    refreshToken: "owner-recovered-refresh-token-123",
+  }));
+  assert.equal(restored.status, 200);
+  assert.deepEqual(await restored.json(), { reauthorized: true, version: 2 });
+  const record = await storage.get("credential");
+  assert.equal(record.status, "ready");
+  assert.equal(record.lastOperationId, operationId);
+  assert.equal(record.operationId, undefined);
+  const replay = await store.fetch(request("/refresh", { operationId }));
+  assert.equal(replay.status, 409);
+  assert.equal((await replay.json()).error, "operation_already_committed");
+});
+
 test("explicit Spotify 429 releases the reservation and preserves the existing credential", async () => {
   const { storage, store } = setup();
   await store.fetch(request("/initialize", { accountId: "spotifyuser123", refreshToken: initialToken }));
