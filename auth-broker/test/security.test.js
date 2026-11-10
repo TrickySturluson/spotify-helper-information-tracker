@@ -501,7 +501,9 @@ test("deployment workflow injects every public runtime variable without dashboar
   assert.ok(redactionCheck < enabledDeploy && enabledDeploy < redactionRecheck);
   assert.ok(redactionRecheck < readinessCheck && readinessCheck < failClosedFallback);
   assert.match(workflow, /if: failure\(\) && steps\.initial_deploy\.outcome == 'success'/);
-  assert.match(workflow, /OAuth activation verification failed; the broker was redeployed with OAuth disabled/);
+  assert.match(workflow, /broker-disabled\.json/);
+  assert.match(workflow, /broker_not_activated/);
+  assert.match(workflow, /OAuth activation verification failed; the broker was redeployed and verified with OAuth disabled/);
 });
 
 
