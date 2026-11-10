@@ -219,8 +219,12 @@ export class SpotifyCredentialStore {
       if (current.status === "refreshing" && Number.isFinite(current.expiresAt) && current.expiresAt <= Date.now()) {
         current = { ...current, status: "reauthorization_required", lastOperationId: current.lastOperationId ?? current.operationId };
       }
-      if (current.status !== "reauthorization_required") return { error: "credential_not_eligible_for_reauthorization" };
+      // Repeated owner consent for the already-linked account is idempotent:
+      // retain the existing encrypted credential and let auth-health verify it.
+      // Never replace a ready credential merely because a fresh OAuth grant arrived.
       if (current.accountId !== input.accountId) return { error: "spotify_account_change_requires_owner_review" };
+      if (current.status === "ready") return { alreadyInitialized: true, version: current.version };
+      if (current.status !== "reauthorization_required") return { error: "credential_not_eligible_for_reauthorization" };
       const nextVersion = current.version + 1;
       const encrypted = await encryptRefreshToken(input.refreshToken, keyring.activeKey, nextVersion, current.accountId, keyring.activeVersion);
       await txn.put("credential", {

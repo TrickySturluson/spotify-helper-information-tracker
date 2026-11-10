@@ -438,8 +438,12 @@ test("owner-consented authorization initializes the central credential store exa
   assert.equal(record.accountId, "spotifyuser123");
   assert.equal(JSON.stringify(record).includes(initialToken), false);
   const replay = await store.fetch(request("/authorize", { accountId: "spotifyuser123", refreshToken: "second-owner-approved-refresh-token" }));
-  assert.equal(replay.status, 409);
-  assert.equal((await storage.get("credential")).version, 1);
+  assert.equal(replay.status, 200);
+  assert.deepEqual(await replay.json(), { alreadyInitialized: true, version: 1 });
+  const retained = await storage.get("credential");
+  assert.equal(retained.version, 1);
+  assert.equal(retained.status, "ready");
+  assert.equal(JSON.stringify(retained).includes("second-owner-approved-refresh-token"), false);
 });
 
 test("owner-consented authorization recovers only a blocked credential for the same Spotify account", async () => {
