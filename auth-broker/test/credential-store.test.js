@@ -435,9 +435,11 @@ test("owner authorization accepts opaque Spotify IDs with punctuation but reject
   assert.equal(accepted.status, 201);
   assert.equal((await storage.get("credential")).accountId, accountId);
 
-  const invalid = await store.fetch(request("/authorize", { accountId: "spotify user\\nwith-control", refreshToken: initialToken }));
-  assert.equal(invalid.status, 400);
-  assert.deepEqual(await invalid.json(), { error: "verified_account_required" });
+  for (const invalidAccountId of ["spotify-user\nwith-control", "spotify-user\u0000control"]) {
+    const invalid = await store.fetch(request("/authorize", { accountId: invalidAccountId, refreshToken: initialToken }));
+    assert.equal(invalid.status, 400);
+    assert.deepEqual(await invalid.json(), { error: "verified_account_required" });
+  }
 });
 
 test("owner-consented authorization initializes the central credential store exactly once", async () => {
