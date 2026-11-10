@@ -36,7 +36,12 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
           SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || '1' }}
+          SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED: ${{ vars.SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED }}
         run: |
+          if [ "$SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED" != "true" ]; then
+            echo "::error::Independent backup of the Spotify credential encryption keyring must be verified before production deployment. Set SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true only after confirming a recoverable backup outside this Worker."
+            exit 1
+          fi
           for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL BROKER_GH_APP_CLIENT_ID BROKER_GH_APP_ID BROKER_GH_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION; do
             if [ -z "${!name}" ]; then
               echo "::error::Required deployment setting $name is missing."
