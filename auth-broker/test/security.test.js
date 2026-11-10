@@ -198,6 +198,7 @@ test("Spotify callback reports a fixed safe stage when owner session validation 
       new Request("https://broker.example/spotify/callback"),
       {
         BROKER_BASE_URL: "https://broker.example",
+        SPOTIFY_OAUTH_ENABLED: "true",
         SPOTIFY_CLIENT_ID: "spotify-client",
         SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
         GITHUB_APP_ID: "123456",
@@ -225,6 +226,7 @@ test("Spotify consent is not started until the central credential store is ready
   console.error = (value) => { diagnostic = value; };
   const env = {
     BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     SPOTIFY_CLIENT_ID: "spotify-client",
     SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
     GITHUB_APP_ID: "123456",
@@ -375,7 +377,7 @@ test("concurrency gate allows only explicitly audited non-Spotify workflows", ()
 test("authorization landing page supports phone and desktop browsers without third-party scripts", async () => {
   const result = await handleRequest(
     new Request("https://trusted.example/"),
-    { BROKER_BASE_URL: "https://trusted.example" },
+    { BROKER_BASE_URL: "https://trusted.example", SPOTIFY_OAUTH_ENABLED: "true" },
   );
   const body = await result.text();
   assert.equal(result.status, 200);
@@ -573,6 +575,7 @@ test("clean completion URL consumes one-time non-secret authorization summary", 
   let consumed = false;
   const env = {
     BROKER_BASE_URL: "https://trusted.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     OAUTH_STATE: {
       idFromName: () => "state",
       get: () => ({
