@@ -7,41 +7,46 @@ Complete SHIT-wide centralized Spotify authentication. The Cloudflare broker mus
 
 ### Decisions and safety boundaries
 - Continue the previously authorized Authentication Management & Recovery workstream. Do not reassign or edit Jockey/Tricky Daily work.
-- The target is broker-owned encrypted refresh-token custody. Do not retain a permanent GitHub Actions `SPOTIFY_REFRESH_TOKEN` secret after cutover; keep the legacy secret until the new path is deployed and independently verified. No dual-write or silent fallback.
+- The target is broker-owned encrypted refresh-token custody. Keep the legacy GitHub Actions `SPOTIFY_REFRESH_TOKEN` secret until the new path is deployed and independently verified; no dual-write or silent fallback.
 - Production deployment remains owner-controlled. Never read or expose secret values, start Spotify OAuth on the owner's behalf, delete legacy credentials, or modify playlists.
 - Spotify PKCE uses `client_id` in the form body and does not require a Spotify client secret or HTTP Basic authentication.
 - PR #187 is superseded by #188. PR #189 is closed as a stale deployment-alignment draft.
 
-### Repository / PR state (read-only checked 2026-11-10)
-- Current `main`: `8454272cb2a2602a0e0da3b29b2cef25510d15d0`.
+### Repository / PR state (checked 2026-11-10)
 - PR #185 merged the base broker; PR #190 and #191 merged safe diagnostic follow-ups.
-- PR #188 (`feature/oidc-broker-refresh-endpoint`) is the integrated draft containing the encrypted credential store, OIDC refresh endpoint, and all nine workflow migrations.
-- PR #188's current documentation-only head is `0ec6151a45dd896d20cd51e58679bdcd2ce333ab`; the last code-bearing head is `4634c8ae41688665fb16efe9e4b9e3565265f7bb`. No code changed after that validated code-bearing head, according to the PR record.
-- Current exact-head GitHub Actions runs independently inspected: Mobile Auth Broker Tests #42823044272 passed (including broker security tests, Cloudflare SQLite Durable Object integration tests, broker-client/manager tests, dependency audit and Wrangler validation); Daily curator tests #42823045101 passed; Public repository security scan #42823044261 passed.
-- The branch compares as 439 commits ahead and 10 behind `main`, with 42 changed files. The ten newer main commits are Daily/Library state and data refreshes, not auth implementation changes. Do not merge or rewrite branch history blindly; reconcile the auth-only diff against current main and preserve unrelated state.
-- No PR review submissions or inline review threads were present at the latest inspection.
+- PR #188 (`feature/oidc-broker-refresh-endpoint`) is the integrated draft containing the encrypted credential store, OIDC refresh endpoint, and all nine workflow migrations. It remains open and draft; not merged or deployed.
+- Current PR branch head: `cb25552e4578f4dbf35a7a8d8f9a59d5b7870413`. It includes the rate-limit hardening described below.
+- GitHub compare at the time of this update reports 450 commits ahead, 11 behind, and 42 changed files. The 11 intervening mainline commits comprise ten Daily/Library state/data updates and the previous active-session brief refresh; none of their changed paths overlap the PR's 42 changed files. This brief refresh adds one more docs-only mainline commit, so the PR will be 12 behind after publication. Preserve the unrelated mainline changes; do not force-push or rewrite branch history.
+- Latest exact-head CI runs: Mobile Auth Broker Tests #42861563408 is in progress; its broker security unit tests and Cloudflare SQLite Durable Object integration tests have passed, and the Python broker-client/manager step is running. Daily curator tests #42861563244 passed. Public repository security scan #42861563507 is still in progress. Do not mark the new hardening green until all three exact-head runs complete.
+- No PR review submissions or inline review threads were present at the preceding inspection.
+
+### Authentication implementation / latest hardening
+- The integrated broker uses AES-256-GCM encrypted refresh-token and access-token records in a broker-owned SQLite Durable Object, transactional single-flight refresh, idempotent operation IDs, Retry-After cooldowns, and Spotify `/v1/me` identity verification before rotated-token commit.
+- GitHub Actions consumers obtain short-lived access tokens via OIDC; no workflow has a direct Spotify refresh-token call or legacy refresh-token fallback. Nine workflow identities are exact-allowlisted on `refs/heads/main`.
+- New hardening isolates broker-refresh rate limiting from browser OAuth limits: a dedicated `BROKER_REFRESH_RATE_LIMITER` uses 60 requests/minute with separate preview and production namespaces. Requests are first limited by Cloudflare's `CF-Connecting-IP` before JWKS verification, then by the verified OIDC `workflow_ref`. This avoids a single shared anonymous bucket starving all nine workflows and allows the broker client's bounded busy retries.
+- Broker readiness now fails closed if either rate-limit binding, the encryption keyring, OIDC allowlist, Spotify client ID, or credential-store Durable Object is unavailable.
+- The deployment workflow remains owner-only, verifies required secret bindings, deploys with Wrangler, and checks live query-string redaction plus `/ready` afterward.
 
 ### Cloudflare production state (read-only checked 2026-11-10)
-- Worker: `shit-auth-broker`. The latest production deployment remains `cc312856-c717-49a1-a20a-45d3ed7950d2`, with version `c166ef6f-d7aa-4b8f-951a-fff565636b17` receiving 100% traffic.
-- Live Worker bindings include `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`, but not `SPOTIFY_CREDENTIAL_STORE`. The live version therefore does not yet implement broker-owned credential storage or `/internal/spotify/refresh`.
-- Cloudflare secret-binding metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are all `secret_text`. Secret values were not read. The owner provisioned the encryption-key secret; an independent secure backup is not verified.
-- Production observability currently has `redact_query_string = false`. This is a hard release blocker because OAuth callback URLs contain one-time `code` and `state` parameters. Do not initiate OAuth until the integrated deployment has enabled and independently verified query-string redaction.
-- The integrated PR config adds Durable Object migration v3 / `SPOTIFY_CREDENTIAL_STORE`, enables `redact_query_string = true`, and its owner-only deployment workflow checks required secret bindings, then verifies redaction and `/ready` after deployment.
-- Cloudflare Workers Builds remains upload-only (`npx wrangler versions upload`) with production root `auth-broker`; it must not promote traffic. The owner-only GitHub Actions deployment workflow is the intended production promotion path.
+- Worker: `shit-auth-broker`. Production deployment `cc312856-c717-49a1-a20a-45d3ed7950d2` still sends 100% traffic to legacy version `c166ef6f-d7aa-4b8f-951a-fff565636b17`.
+- Live bindings include `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`, but not `SPOTIFY_CREDENTIAL_STORE`; production does not yet serve `/internal/spotify/refresh`.
+- Cloudflare metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are `secret_text` bindings. Values were not read. The owner provisioned the encryption-key secret; independent secure backup remains unverified.
+- Production observability still has `redact_query_string = false`. This blocks OAuth because callback URLs contain one-time `code` and `state` parameters. Do not initiate OAuth until the integrated deployment enables and independently verifies query-string redaction.
+- PR config adds Durable Object migration v3 / `SPOTIFY_CREDENTIAL_STORE`, `BROKER_REFRESH_RATE_LIMITER`, and `redact_query_string = true`. Workers Builds remains upload-only (`npx wrangler versions upload`) under root `auth-broker`; production traffic promotion is owner-controlled through GitHub Actions.
 
 ### Remaining production gates
 1. Confirm the encryption keyring has a secure independent backup. Never paste the key into chat, logs, or Git.
-2. Reconcile PR #188's 10-commit-behind branch against current main without importing unrelated Daily/Library data changes; independently inspect the complete auth-only diff.
-3. Keep PR #188 draft until the branch is cleanly reconciled and all exact-head checks pass.
-4. After merge, run the owner-only deployment workflow. Verify the credential-store binding/migration, live query-string redaction, and `/ready` before any Spotify consent.
+2. Complete exact-head CI for PR #188 after the rate-limit changes. Keep the PR draft until broker, Durable Object, Python, Wrangler, Daily and full-history security checks pass.
+3. Reconcile/merge the auth-only PR while preserving unrelated mainline Daily/Library updates; inspect the final combined diff.
+4. Run the owner-only deployment workflow. Verify the new credential-store and broker-rate-limit bindings/migrations, live query-string redaction, and `/ready` before Spotify consent.
 5. Complete owner-consented PKCE authorization; verify encrypted credential persistence without reading it back, then pass two independent broker-backed read-only auth-health checks.
 6. Verify all nine workflows end-to-end while preserving playlist locks, previews/confirmation, snapshots, audits, rollback, and no-playlist-side-effect boundaries.
 7. Only after the new path and rollback are verified, retire the legacy GitHub Actions refresh-token secret and remove obsolete App permissions with explicit owner approval.
 
-### Actions taken in this continuation
-- Read-only inspection of PR #188, its current CI runs, branch comparison, code/configuration, and Cloudflare Worker metadata.
-- Confirmed all three required Cloudflare secret bindings are present as `secret_text`; no secret values were retrieved.
-- Confirmed production traffic is still on the legacy Worker version and query-string redaction remains disabled.
+### Actions in the current continuation
+- Refreshed this session brief on `main` and the PR #188 description with verified repository and production state.
+- Added per-IP and verified-workflow rate-limit buckets, a dedicated 60/minute broker limiter with isolated preview/production namespaces, readiness enforcement, and regression tests to the PR branch.
+- The first CI attempt exposed missing test fixtures for the new binding; those fixtures were corrected. The latest broker unit and Durable Object integration stages now pass; remaining exact-head checks are still running.
 - No production deployment, Worker setting change, Spotify OAuth exchange, credential-store initialization, GitHub secret mutation, playlist operation, or Library write was performed.
 
 ---
