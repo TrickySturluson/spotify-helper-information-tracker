@@ -495,9 +495,12 @@ test("deployment workflow injects every public runtime variable without dashboar
   const enabledDeploy = workflow.indexOf('--var "SPOTIFY_OAUTH_ENABLED:true"');
   const redactionRecheck = workflow.indexOf("- name: Reverify OAuth query-string redaction after activation");
   const readinessCheck = workflow.indexOf("- name: Verify deployed broker readiness");
+  const failClosedFallback = workflow.indexOf("- name: Fail closed by disabling OAuth if activation verification fails");
   assert.ok(disabledDeploy >= 0 && disabledDeploy < redactionCheck);
   assert.ok(redactionCheck < enabledDeploy && enabledDeploy < redactionRecheck);
-  assert.ok(redactionRecheck < readinessCheck);
+  assert.ok(redactionRecheck < readinessCheck && readinessCheck < failClosedFallback);
+  assert.match(workflow, /if: failure\(\) && steps\.initial_deploy\.outcome == 'success'/);
+  assert.match(workflow, /OAuth activation verification failed; the broker was redeployed with OAuth disabled/);
 });
 
 
