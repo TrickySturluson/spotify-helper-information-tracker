@@ -590,11 +590,19 @@ async function handleRefreshLock(request, env, url) {
 
 async function credentialStoreReady(env) {
   if (
+    !env.AUTH_RATE_LIMITER ||
     !env.BROKER_REFRESH_RATE_LIMITER ||
     !env.SPOTIFY_CREDENTIAL_STORE ||
+    !String(env.BROKER_BASE_URL || "").trim() ||
+    !String(env.GITHUB_APP_ID || "").trim() ||
+    !String(env.GITHUB_APP_CLIENT_ID || "").trim() ||
+    !String(env.GITHUB_APP_CLIENT_SECRET || "").trim() ||
+    !String(env.GITHUB_APP_PRIVATE_KEY || "").trim() ||
+    !String(env.GITHUB_APP_REDIRECT_URI || "").trim() ||
+    !String(env.SPOTIFY_CLIENT_ID || "").trim() ||
+    !String(env.SPOTIFY_REDIRECT_URI || "").trim() ||
     !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
-    !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim() ||
-    !String(env.SPOTIFY_CLIENT_ID || "").trim()
+    !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()
   ) return false;
   try {
     const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
