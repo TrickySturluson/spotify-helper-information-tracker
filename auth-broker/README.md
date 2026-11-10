@@ -120,7 +120,7 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Code-bearing PR #188 head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` passed the full Mobile Auth Broker Tests suite and exact-head Cloudflare preview health check on 2026-11-10. The latest branch head `90efc16430c35797d4db8e775624274e9597fe0c` adds a live preview assertion that OAuth remains disabled by default; its exact-head validation is still running.
+Code-bearing PR #188 head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` passed the full Mobile Auth Broker Tests suite and exact-head Cloudflare preview health check on 2026-11-10. The latest branch head `23ba1e829cb9b9b27e57e82f552b2c28ce6bb49c` includes the live preview assertion that OAuth remains disabled by default; its exact-head validation is still running.
 
 - Cloudflare Workers Builds successfully built the exact code-bearing head `8848b5b07782cb7b316eaf333ed68c3c05c8c946`; the matching preview check confirmed the non-secret `GET /health` response.
 - Mobile Auth Broker Tests passed on that code-bearing head: dependency audit, broker security unit tests, Cloudflare SQLite Durable Object integration tests, Python broker-client/manager tests, maintained-script documentation, and non-deploying Wrangler validation.
