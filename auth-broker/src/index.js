@@ -109,14 +109,15 @@ function redirect(url, headers = {}) {
 }
 
 export async function rateLimit(request, env, route, actorOverride = null) {
-  if (!env.AUTH_RATE_LIMITER) throw new BrokerError("Rate limiter is not configured.");
+  const limiter = route.startsWith("broker-refresh-") ? env.BROKER_REFRESH_RATE_LIMITER : env.AUTH_RATE_LIMITER;
+  if (!limiter) throw new BrokerError("Rate limiter is not configured.");
   // Never trust a caller-supplied cookie as a rate-limit identity. Resolve the
   // session against server-side state first; invalid/missing cookies share the
   // anonymous bucket, while only a verified owner session gets its own bucket.
-  // Internal OIDC routes may pass a verified workflow identity after JWT validation.
+  // Internal OIDC routes pass an IP or verified workflow identity explicitly.
   const session = actorOverride === null && route.startsWith("spotify-") ? await getSession(request, env) : null;
   const actor = actorOverride ?? (session ? session.id : "anonymous");
-  const result = await env.AUTH_RATE_LIMITER.limit({ key: `${route}:${actor}` });
+  const result = await limiter.limit({ key: `${route}:${actor}` });
   if (!result.success) throw new BrokerError("Too many attempts.");
 }
 
