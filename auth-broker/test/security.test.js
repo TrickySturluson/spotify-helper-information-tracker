@@ -64,6 +64,31 @@ test("readiness fails closed unless broker config and Durable Object keyring are
   assert.equal(probedUrl, "https://spotify-credential.internal/ready");
 });
 
+test("readiness rejects missing GitHub App OAuth credentials before probing the credential store", async () => {
+  let storeProbes = 0;
+  const result = await handleRequest(new Request("https://broker.example/ready"), {
+    BROKER_BASE_URL: "https://broker.example",
+    GITHUB_APP_ID: "12345",
+    GITHUB_APP_CLIENT_ID: "github-client-id",
+    GITHUB_APP_CLIENT_SECRET: "github-client-secret",
+    GITHUB_APP_PRIVATE_KEY: "",
+    GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
+    SPOTIFY_CLIENT_ID: "spotify-client-id",
+    SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+    SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
+    SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: (name) => name,
+      get: () => ({ fetch: async () => { storeProbes += 1; return Response.json({ status: "ready" }); } }),
+    },
+  });
+  assert.equal(result.status, 503);
+  assert.deepEqual(await result.json(), { status: "not_ready", service: "shit-auth-broker" });
+  assert.equal(storeProbes, 0);
+});
+
 test("readiness is rate limited and fails closed when the limiter is missing", async () => {
   const missing = await handleRequest(
     new Request("https://broker.example/ready"),
