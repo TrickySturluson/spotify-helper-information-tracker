@@ -126,7 +126,7 @@ Only after those checks pass should the owner approve a separate change to retir
 
 ## Current known blockers (2026-11-10)
 
-- The production Worker still lacks the new credential-store Durable Object binding/migration and dedicated broker refresh rate limiter.
-- Production query-string redaction is currently disabled and must be enabled by the guarded deployment before OAuth callbacks are used.
-- The Cloudflare keyring secret exists, but its independent backup has not been verified.
-- Production centralization and live Spotify OAuth have not been demonstrated. The PR preview has passed its non-secret health check only.
+- The production Worker still lacks the new credential-store Durable Object binding/migration and dedicated broker refresh rate limiter; the integrated Worker has not been deployed.
+- Production query-string redaction was enabled and independently read back from Cloudflare on 2026-11-10. The guarded deployment must verify that it remains enabled before OAuth callbacks are used.
+- The Cloudflare keyring secret exists, but its independent backup has not yet been explicitly confirmed by the owner.
+- Production centralization and live Spotify OAuth have not been demonstrated. The PR preview health checks do not prove production credential persistence or end-to-end Spotify authorization.
