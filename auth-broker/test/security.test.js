@@ -182,7 +182,7 @@ test("broker reports missing canonical base URL at a dedicated safe stage", asyn
   let diagnostic;
   console.error = (value) => { diagnostic = value; };
   try {
-    const result = await handleRequest(new Request("https://broker.example/"), {});
+    const result = await handleRequest(new Request("https://broker.example/"), { SPOTIFY_OAUTH_ENABLED: "true" });
     const body = await result.text();
     assert.equal(result.status, 200);
     assert.ok(body.includes("Diagnostic stage: broker.base_url_presence"));
@@ -201,7 +201,7 @@ test("broker reports malformed canonical base URL at a dedicated safe stage", as
   try {
     const result = await handleRequest(
       new Request("https://broker.example/"),
-      { BROKER_BASE_URL: "not-a-url" },
+      { BROKER_BASE_URL: "not-a-url", SPOTIFY_OAUTH_ENABLED: "true" },
     );
     const body = await result.text();
     assert.equal(result.status, 200);
@@ -380,7 +380,7 @@ test("PKCE challenge is SHA-256 base64url without padding", async () => {
 test("broker rejects requests sent to a non-canonical host", async () => {
   const result = await handleRequest(
     new Request("https://attacker.example/"),
-    { BROKER_BASE_URL: "https://trusted.example" },
+    { BROKER_BASE_URL: "https://trusted.example", SPOTIFY_OAUTH_ENABLED: "true" },
   );
   assert.equal(result.status, 400);
 });
