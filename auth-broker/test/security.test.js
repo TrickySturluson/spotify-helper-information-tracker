@@ -41,6 +41,7 @@ test("readiness fails closed unless broker config and Durable Object keyring are
       SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
       SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
       AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+      BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
       SPOTIFY_CREDENTIAL_STORE: {
         idFromName: (name) => name,
         get: () => ({
@@ -74,7 +75,7 @@ test("readiness is rate limited and fails closed when the limiter is missing", a
   let calls = 0;
   const limited = await handleRequest(
     new Request("https://broker.example/ready"),
-    { BROKER_BASE_URL: "https://broker.example", AUTH_RATE_LIMITER: { limit: async () => { calls += 1; return { success: false }; } } },
+    { BROKER_BASE_URL: "https://broker.example", AUTH_RATE_LIMITER: { limit: async () => { calls += 1; return { success: false }; } }, BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) } },
   );
   assert.equal(limited.status, 429);
   assert.equal(limited.headers.get("Retry-After"), "60");
@@ -183,7 +184,7 @@ test("Spotify rate limits use only a verified owner session, never a caller-supp
   const validSessionId = "A".repeat(43);
   const keys = [];
   const env = {
-    AUTH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
     OAUTH_STATE: {
       idFromName: () => "state",
       get: () => ({
@@ -350,6 +351,8 @@ test("Durable Object expires and cleans abandoned OAuth records", async () => {
 test("deployment workflow injects every public runtime variable without dashboard drift", async () => {
   const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
   const workflow = await readFile(new URL("../../.github/workflows/deploy-mobile-auth-broker.yml", import.meta.url), "utf8");
+  assert.match(config, /name = "BROKER_REFRESH_RATE_LIMITER"/);
+  assert.match(config, /simple = \\{ limit = 60, period = 60 \\}/);
   assert.doesNotMatch(config, /^\[vars\]/m);
   for (const name of [
     "BROKER_BASE_URL",
