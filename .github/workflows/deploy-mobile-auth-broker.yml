@@ -217,5 +217,5 @@ jobs:
 # Purpose: Deploy the SHIT-wide Spotify OAuth broker to the configured Cloudflare Worker.
 # Trigger: Owner-only manual workflow_dispatch on main.
 # Credentials: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; public runtime IDs/URLs come from repository variables.
-# Side effects: Publishes the Worker source/configuration to the configured Cloudflare account, then performs a read-only /ready probe.
-# Safety: Does not contact Spotify, write GitHub repository secrets, or modify playlists. The post-deploy readiness probe validates only the credential-store binding and encryption-key configuration; it does not read or create a credential.
+# Side effects: Deploys the Worker disabled, verifies query-string redaction, activates OAuth in a second deployment, then performs a read-only /ready probe.
+# Safety: Does not contact Spotify, write GitHub repository secrets, or modify playlists. A post-deploy failure redeploys with OAuth disabled; readiness does not read or create a credential.
