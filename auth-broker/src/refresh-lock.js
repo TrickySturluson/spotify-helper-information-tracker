@@ -23,6 +23,7 @@ export async function verifyActionsOidc(token, {
   fetchImpl = fetch,
   now = Math.floor(Date.now() / 1000),
   allowedWorkflowRefs = [],
+  audience = AUDIENCE,
 } = {}) {
   if (typeof token !== "string" || token.length > 16_384) throw new Error("Untrusted workload identity.");
   const parts = token.split(".");
@@ -46,15 +47,39 @@ export async function verifyActionsOidc(token, {
   );
   if (!signatureValid) throw new Error("Untrusted workload identity.");
   const issuer = claims.iss;
-  const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
-  if (issuer !== ISSUER || !audiences.includes(AUDIENCE)) throw new Error("Untrusted workload identity.");
+  // GitHub issues a single audience for this workflow token. Reject audience
+  // arrays rather than accepting a token minted for multiple relying parties.
+  if (issuer !== ISSUER || claims.aud !== audience) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.exp) || claims.exp <= now || !Number.isFinite(claims.nbf) || claims.nbf > now + 30) throw new Error("Untrusted workload identity.");
   if (!Number.isFinite(claims.iat) || claims.iat > now + 30 || now - claims.iat > MAX_TOKEN_AGE) throw new Error("Untrusted workload identity.");
   if (claims.repository !== REPOSITORY || String(claims.repository_owner_id) !== OWNER_ID) throw new Error("Untrusted workload identity.");
-  if (claims.ref !== "refs/heads/main" || !["push", "schedule", "workflow_dispatch"].includes(claims.event_name)) throw new Error("Untrusted workload identity.");
   if (typeof claims.workflow_ref !== "string" || !allowedWorkflowRefs.includes(claims.workflow_ref)) throw new Error("Unapproved workflow identity.");
+  const playlistControlRef = REPOSITORY + "/.github/workflows/spotify-playlist-manager.yml@refs/heads/main";
+  const greatMigrationRef = REPOSITORY + "/.github/workflows/great-migration.yml@refs/heads/main";
+  const authHealthRef = REPOSITORY + "/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
+  // OIDC actor_id is the personal account that initiated the workflow run.
+  // Require the repository owner for manual and issue-driven execution. The
+  // auth-health workflow is the sole exception: the broker's GitHub App
+  // dispatches this read-only diagnostic after successful owner PKCE auth.
+  const ownerActor = String(claims.actor_id || "") === OWNER_ID;
+  const ownerWorkflowDispatch = claims.event_name === "workflow_dispatch" &&
+    (ownerActor || claims.workflow_ref === authHealthRef);
+  const standardEvent = ["push", "schedule"].includes(claims.event_name) || ownerWorkflowDispatch;
+  const ownerIssueEvent = claims.event_name === "issues" && ownerActor &&
+    [playlistControlRef, greatMigrationRef].includes(claims.workflow_ref);
+  const ownerCommentEvent = claims.event_name === "issue_comment" && ownerActor &&
+    claims.workflow_ref === playlistControlRef;
+  if (claims.ref !== "refs/heads/main" || !(standardEvent || ownerIssueEvent || ownerCommentEvent)) {
+    throw new Error("Untrusted workload identity.");
+  }
   if (typeof claims.run_id !== "string" || !/^\d+$/.test(claims.run_id) || typeof claims.run_attempt !== "string" || !/^\d+$/.test(claims.run_attempt)) throw new Error("Untrusted workload identity.");
-  return Object.freeze({ repository: claims.repository, workflowRef: claims.workflow_ref, runId: claims.run_id, runAttempt: claims.run_attempt });
+  return Object.freeze({
+    repository: claims.repository,
+    workflowRef: claims.workflow_ref,
+    actorId: String(claims.actor_id || ""),
+    runId: claims.run_id,
+    runAttempt: claims.run_attempt,
+  });
 }
 
 export class SpotifyRefreshLease {

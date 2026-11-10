@@ -1,6 +1,5 @@
 import test from "node:test";
 import { generateKeyPairSync } from "node:crypto";
-import sodium from "libsodium-wrappers";
 import { readFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import {
@@ -9,7 +8,6 @@ import {
   rateLimit,
   githubAppJwt,
   assertNoConcurrentSpotifyJobs,
-  saveRefreshToken,
   exchangeForm,
   hasRequiredScopes,
   isAuthorizedOwner,
@@ -20,44 +18,272 @@ import {
   verifySpotifyIdentity,
 } from "../src/index.js";
 
-async function makeGitHubApiMock({ secretStatus = 201, dispatchStatus = 204 } = {}) {
-  await sodium.ready;
-  const keypair = sodium.crypto_box_keypair();
-  const calls = { savedTokens: [], dispatches: [], secretBodies: [] };
-  const fetch = async (input, init = {}) => {
-    const url = new URL(typeof input === "string" ? input : input.url);
-    const method = init.method || "GET";
-    if (url.pathname.endsWith("/actions/runs")) {
-      return new Response(JSON.stringify({ total_count: 0, workflow_runs: [] }), { status: 200 });
-    }
-    if (url.pathname.endsWith("/actions/secrets/public-key")) {
-      return new Response(JSON.stringify({
-        key_id: "test-key-id",
-        key: sodium.to_base64(keypair.publicKey, sodium.base64_variants.ORIGINAL),
-      }), { status: 200 });
-    }
-    if (url.pathname.endsWith("/actions/secrets/SPOTIFY_REFRESH_TOKEN") && method === "PUT") {
-      const body = JSON.parse(init.body);
-      calls.secretBodies.push(body);
-      if (secretStatus >= 400) return new Response("failure", { status: secretStatus });
-      const clear = sodium.crypto_box_seal_open(
-        sodium.from_base64(body.encrypted_value, sodium.base64_variants.ORIGINAL),
-        keypair.publicKey,
-        keypair.privateKey,
-      );
-      calls.savedTokens.push(sodium.to_string(clear));
-      return new Response(JSON.stringify({ updated: true }), { status: secretStatus });
-    }
-    if (url.pathname.endsWith("/actions/workflows/spotify-auth-health-check.yml/dispatches") && method === "POST") {
-      calls.dispatches.push(JSON.parse(init.body));
-      return dispatchStatus === 204
-        ? new Response(null, { status: 204 })
-        : new Response("failure", { status: dispatchStatus });
-    }
-    throw new Error("Unexpected GitHub API request in test: " + method + " " + url.pathname);
+test("health endpoint is non-secret and bypasses OAuth configuration", async () => {
+  const result = await handleRequest(new Request("https://broker.example/health"), {});
+  assert.equal(result.status, 200);
+  assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
+});
+
+test("OAuth browser routes and broker refresh stay disabled until explicit activation", async () => {
+  const env = {
+    SPOTIFY_OAUTH_ENABLED: "false",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
   };
-  return { fetch, calls };
-}
+  const landing = await handleRequest(new Request("https://broker.example/"), env);
+  assert.equal(landing.status, 503);
+  assert.deepEqual(await landing.json(), { error: "broker_not_activated" });
+
+  const refresh = await handleRequest(new Request("https://broker.example/internal/spotify/refresh", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ operationId: "R".repeat(43) }),
+  }), env);
+  assert.equal(refresh.status, 503);
+  assert.deepEqual(await refresh.json(), { error: "broker_not_activated" });
+
+  let storeProbes = 0;
+  const readiness = await handleRequest(new Request("https://broker.example/ready"), {
+    ...env,
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: (name) => name,
+      get: () => ({ fetch: async () => { storeProbes += 1; return Response.json({ status: "ready" }); } }),
+    },
+    SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+    SPOTIFY_REFRESH_WORKFLOW_REFS: "approved",
+    SPOTIFY_CLIENT_ID: "client",
+  });
+  assert.equal(readiness.status, 503);
+  assert.deepEqual(await readiness.json(), { status: "not_ready", service: "shit-auth-broker" });
+  assert.equal(storeProbes, 0);
+});
+
+test("readiness fails closed unless broker config and Durable Object keyring are ready", async () => {
+  const missing = await handleRequest(
+    new Request("https://broker.example/ready"),
+    { BROKER_BASE_URL: "https://broker.example" },
+  );
+  assert.equal(missing.status, 503);
+  assert.deepEqual(await missing.json(), { status: "not_ready", service: "shit-auth-broker" });
+
+  let probedUrl = "";
+  const appPrivateKey = generateKeyPairSync("rsa", { modulusLength: 2048 }).privateKey.export({ type: "pkcs8", format: "pem" });
+  const ready = await handleRequest(
+    new Request("https://broker.example/ready"),
+    {
+      BROKER_BASE_URL: "https://broker.example",
+      SPOTIFY_OAUTH_ENABLED: "true",
+      GITHUB_APP_ID: "12345",
+      GITHUB_APP_CLIENT_ID: "github-client-id",
+      GITHUB_APP_CLIENT_SECRET: "github-client-secret",
+      GITHUB_APP_PRIVATE_KEY: appPrivateKey,
+      GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
+      SPOTIFY_CLIENT_ID: "public-client-id",
+      SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+      SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
+      SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+      AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+      BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+      SPOTIFY_CREDENTIAL_STORE: {
+        idFromName: (name) => name,
+        get: () => ({
+          fetch: async (url) => {
+            probedUrl = String(url);
+            return Response.json({ status: "ready" });
+          },
+        }),
+      },
+    },
+  );
+  assert.equal(ready.status, 200);
+  assert.deepEqual(await ready.json(), { status: "ready", service: "shit-auth-broker" });
+  assert.equal(probedUrl, "https://spotify-credential.internal/ready");
+});
+
+test("readiness rejects missing GitHub App OAuth credentials before probing the credential store", async () => {
+  let storeProbes = 0;
+  const result = await handleRequest(new Request("https://broker.example/ready"), {
+    BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
+    GITHUB_APP_ID: "12345",
+    GITHUB_APP_CLIENT_ID: "github-client-id",
+    GITHUB_APP_CLIENT_SECRET: "github-client-secret",
+    GITHUB_APP_PRIVATE_KEY: "",
+    GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
+    SPOTIFY_CLIENT_ID: "spotify-client-id",
+    SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+    SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
+    SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: (name) => name,
+      get: () => ({ fetch: async () => { storeProbes += 1; return Response.json({ status: "ready" }); } }),
+    },
+  });
+  assert.equal(result.status, 503);
+  assert.deepEqual(await result.json(), { status: "not_ready", service: "shit-auth-broker" });
+  assert.equal(storeProbes, 0);
+});
+
+test("readiness rejects a malformed nonempty GitHub App private key", async () => {
+  let storeProbes = 0;
+  const result = await handleRequest(new Request("https://broker.example/ready"), {
+    BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
+    GITHUB_APP_ID: "12345",
+    GITHUB_APP_CLIENT_ID: "github-client-id",
+    GITHUB_APP_CLIENT_SECRET: "github-client-secret",
+    GITHUB_APP_PRIVATE_KEY: "not-a-valid-PEM-key",
+    GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
+    SPOTIFY_CLIENT_ID: "spotify-client-id",
+    SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+    SPOTIFY_REFRESH_WORKFLOW_REFS: "approved-workflow-ref",
+    SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: (name) => name,
+      get: () => ({ fetch: async () => { storeProbes += 1; return Response.json({ status: "ready" }); } }),
+    },
+  });
+  assert.equal(result.status, 503);
+  assert.deepEqual(await result.json(), { status: "not_ready", service: "shit-auth-broker" });
+  assert.equal(storeProbes, 0);
+});
+
+test("readiness is rate limited and fails closed when the limiter is missing", async () => {
+  const missing = await handleRequest(
+    new Request("https://broker.example/ready"),
+    {
+      BROKER_BASE_URL: "https://broker.example",
+      SPOTIFY_CLIENT_ID: "client",
+      SPOTIFY_REFRESH_WORKFLOW_REFS: "approved",
+      SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+      SPOTIFY_CREDENTIAL_STORE: { idFromName: (name) => name, get: () => ({ fetch: async () => Response.json({ status: "ready" }) }) },
+    },
+  );
+  assert.equal(missing.status, 503);
+  assert.deepEqual(await missing.json(), { status: "not_ready", service: "shit-auth-broker" });
+
+  let calls = 0;
+  const limited = await handleRequest(
+    new Request("https://broker.example/ready"),
+    { BROKER_BASE_URL: "https://broker.example", AUTH_RATE_LIMITER: { limit: async () => { calls += 1; return { success: false }; } }, BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) } },
+  );
+  assert.equal(limited.status, 429);
+  assert.equal(limited.headers.get("Retry-After"), "60");
+  assert.deepEqual(await limited.json(), { status: "rate_limited", service: "shit-auth-broker" });
+  assert.equal(calls, 1);
+});
+
+test("broker reports missing canonical base URL at a dedicated safe stage", async () => {
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/"), { SPOTIFY_OAUTH_ENABLED: "true" });
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.ok(body.includes("Diagnostic stage: broker.base_url_presence"));
+    assert.doesNotMatch(body, /undefined|secret|token/i);
+    assert.equal(diagnostic.stage, "broker.base_url_presence");
+    assert.equal(diagnostic.error_class, "BrokerError");
+  } finally {
+    console.error = originalError;
+  }
+});
+
+test("broker reports malformed canonical base URL at a dedicated safe stage", async () => {
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  try {
+    const result = await handleRequest(
+      new Request("https://broker.example/"),
+      { BROKER_BASE_URL: "not-a-url", SPOTIFY_OAUTH_ENABLED: "true" },
+    );
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.ok(body.includes("Diagnostic stage: broker.base_url_parse"));
+    assert.doesNotMatch(body, /not-a-url|secret|token/i);
+    assert.equal(diagnostic.stage, "broker.base_url_parse");
+    assert.equal(diagnostic.error_class, "BrokerError");
+  } finally {
+    console.error = originalError;
+  }
+});
+
+test("Spotify callback reports a fixed safe stage when owner session validation fails", async () => {
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  try {
+    const result = await handleRequest(
+      new Request("https://broker.example/spotify/callback"),
+      {
+        BROKER_BASE_URL: "https://broker.example",
+        SPOTIFY_OAUTH_ENABLED: "true",
+        SPOTIFY_CLIENT_ID: "spotify-client",
+        SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+        GITHUB_APP_ID: "123456",
+        GITHUB_APP_PRIVATE_KEY: "not-used-by-this-invalid-session-test",
+        AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+      },
+    );
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.ok(body.includes("Spotify authorization could not be verified"));
+    assert.deepEqual(diagnostic, {
+      event: "shit_auth_broker_request_failed",
+      stage: "spotify_callback.state_validation",
+      error_class: "BrokerError",
+    });
+  } finally {
+    console.error = originalError;
+  }
+});
+
+test("Spotify consent is not started until the central credential store is ready", async () => {
+  const sessionId = "S".repeat(43);
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
+    SPOTIFY_CLIENT_ID: "spotify-client",
+    SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+    GITHUB_APP_ID: "123456",
+    GITHUB_APP_PRIVATE_KEY: "not-used-before-readiness",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    OAUTH_STATE: {
+      idFromName: () => "state",
+      get: () => ({
+        fetch: async (_url, init) => {
+          const input = await new Request("https://state.internal", init).json();
+          if (input.key === "oauth:session:" + sessionId) {
+            return Response.json({ value: { login: "TrickySturluson" } });
+          }
+          return new Response("{}", { status: 404 });
+        },
+      }),
+    },
+  };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/spotify/start", {
+      headers: { Cookie: "__Host-shit_session=" + sessionId },
+    }), env);
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.match(body, /No Spotify authorization was started/);
+    assert.equal(result.headers.get("Location"), null);
+    assert.equal(diagnostic.stage, "spotify_start.credential_store_readiness");
+  } finally {
+    console.error = originalError;
+  }
+});
 
 test("GitHub owner check is case-insensitive but rejects other identities", () => {
   assert.equal(isAuthorizedOwner("TrickySturluson"), true);
@@ -119,6 +345,26 @@ test("Spotify rate limits use only a verified owner session, never a caller-supp
   assert.deepEqual(keys, ["spotify-start:anonymous", `spotify-start:${validSessionId}`]);
 });
 
+test("broker refresh rate limits separate client IPs and verified workflows", async () => {
+  const keys = [];
+  let sessionLookups = 0;
+  const env = {
+    BROKER_REFRESH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
+    OAUTH_STATE: {
+      idFromName: () => "state",
+      get: () => {
+        sessionLookups += 1;
+        throw new Error("OIDC rate limiting must not depend on a browser session");
+      },
+    },
+  };
+  const workflowRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
+  await rateLimit(new Request("https://broker.example/internal/spotify/refresh", { method: "POST" }), env, "broker-refresh-ip", "203.0.113.10");
+  await rateLimit(new Request("https://broker.example/internal/spotify/refresh", { method: "POST" }), env, "broker-refresh-workflow", workflowRef);
+  assert.deepEqual(keys, ["broker-refresh-ip:203.0.113.10", "broker-refresh-workflow:" + workflowRef]);
+  assert.equal(sessionLookups, 0);
+});
+
 test("HTML output escapes untrusted text", () => {
   assert.equal(escapeHtml("<script>alert('x')</script>"), "&lt;script&gt;alert(&#39;x&#39;)&lt;/script&gt;");
 });
@@ -131,29 +377,10 @@ test("PKCE challenge is SHA-256 base64url without padding", async () => {
 });
 
 
-test("broker reports missing canonical base URL at a dedicated safe stage", async () => {
-  const result = await handleRequest(new Request("https://broker.example/"), {});
-  const body = await result.text();
-  assert.equal(result.status, 200);
-  assert.ok(body.includes("Diagnostic stage: broker.base_url_presence"));
-  assert.doesNotMatch(body, /undefined|secret|token/i);
-});
-
-test("broker reports malformed canonical base URL at a dedicated safe stage", async () => {
-  const result = await handleRequest(
-    new Request("https://broker.example/"),
-    { BROKER_BASE_URL: "not-a-url" },
-  );
-  const body = await result.text();
-  assert.equal(result.status, 200);
-  assert.ok(body.includes("Diagnostic stage: broker.base_url_parse"));
-  assert.doesNotMatch(body, /not-a-url|secret|token/i);
-});
-
 test("broker rejects requests sent to a non-canonical host", async () => {
   const result = await handleRequest(
     new Request("https://attacker.example/"),
-    { BROKER_BASE_URL: "https://trusted.example" },
+    { BROKER_BASE_URL: "https://trusted.example", SPOTIFY_OAUTH_ENABLED: "true" },
   );
   assert.equal(result.status, 400);
 });
@@ -175,7 +402,7 @@ test("concurrency gate allows only explicitly audited non-Spotify workflows", ()
 test("authorization landing page supports phone and desktop browsers without third-party scripts", async () => {
   const result = await handleRequest(
     new Request("https://trusted.example/"),
-    { BROKER_BASE_URL: "https://trusted.example" },
+    { BROKER_BASE_URL: "https://trusted.example", SPOTIFY_OAUTH_ENABLED: "true" },
   );
   const body = await result.text();
   assert.equal(result.status, 200);
@@ -260,6 +487,11 @@ test("Durable Object expires and cleans abandoned OAuth records", async () => {
 test("deployment workflow injects every public runtime variable without dashboard drift", async () => {
   const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
   const workflow = await readFile(new URL("../../.github/workflows/deploy-mobile-auth-broker.yml", import.meta.url), "utf8");
+  const previewWorkflow = await readFile(new URL("../../.github/workflows/auth-broker-preview-health.yml", import.meta.url), "utf8");
+  assert.match(previewWorkflow, /\/health/);
+  assert.match(previewWorkflow, /broker_not_activated/);
+  assert.match(config, /name = "BROKER_REFRESH_RATE_LIMITER"/);
+  assert.match(config, /simple = \{ limit = 60, period = 60 \}/);
   assert.doesNotMatch(config, /^\[vars\]/m);
   for (const name of [
     "BROKER_BASE_URL",
@@ -268,44 +500,77 @@ test("deployment workflow injects every public runtime variable without dashboar
     "GITHUB_APP_REDIRECT_URI",
     "SPOTIFY_CLIENT_ID",
     "SPOTIFY_REDIRECT_URI",
+    "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION",
+    "SPOTIFY_REFRESH_WORKFLOW_REFS",
   ]) {
-    const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
-    assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
+    if (name !== "SPOTIFY_REFRESH_WORKFLOW_REFS") {
+      const sourceVariable = ({ GITHUB_APP_CLIENT_ID: "BROKER_GH_APP_CLIENT_ID", GITHUB_APP_ID: "BROKER_GH_APP_ID", GITHUB_APP_REDIRECT_URI: "BROKER_GH_APP_REDIRECT_URI" })[name] || name;
+      assert.match(workflow, new RegExp("vars\\." + sourceVariable), name + " must come from a GitHub Actions variable");
+    }
     assert.ok(workflow.includes('--var "' + name + ':'), name + ' must be passed to Wrangler');
   }
+  const allowlistMatch = workflow.match(/expected_workflow_refs="([^"]+)"/);
+  assert.ok(allowlistMatch, "deployment workflow must generate the exact OIDC workflow allowlist");
+  const workflowRefs = allowlistMatch[1].split(",");
+  assert.equal(workflowRefs.length, 9, "only the nine inventoried Spotify consumers are allowlisted");
+  assert.ok(workflowRefs.every((ref) => ref.endsWith("@refs/heads/main")));
+  assert.ok(workflowRefs.every((ref) => !ref.includes("*")));
+  assert.match(workflow, /SPOTIFY_REFRESH_WORKFLOW_REFS=\$expected_workflow_refs/);
   assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
+  assert.match(workflow, /SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED/);
+  assert.match(workflow, /if: github\.actor_id == '337022631'/);
   assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
   assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
-  assert.match(workflow, /workers\/scripts\/shit-auth-broker\/secrets/);
-  assert.match(workflow, /secret_text/);
-  assert.match(workflow, /GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY/);
-  assert.ok(
-    workflow.indexOf("Verify sensitive Worker bindings use Cloudflare secret storage") < workflow.indexOf("Deploy Worker"),
-    "secret binding preflight must run before deployment",
-  );
-  assert.doesNotMatch(workflow, /workers\/scripts\/shit-auth-broker\/settings/);
+  const disabledDeploy = workflow.indexOf('--var "SPOTIFY_OAUTH_ENABLED:false"');
+  const redactionCheck = workflow.indexOf("- name: Verify OAuth query-string redaction");
+  const enabledDeploy = workflow.indexOf('--var "SPOTIFY_OAUTH_ENABLED:true"');
+  const redactionRecheck = workflow.indexOf("- name: Reverify OAuth query-string redaction after activation");
+  const readinessCheck = workflow.indexOf("- name: Verify deployed broker readiness");
+  const failClosedFallback = workflow.indexOf("- name: Fail closed by disabling OAuth if activation verification fails");
+  assert.ok(disabledDeploy >= 0 && disabledDeploy < redactionCheck);
+  assert.ok(redactionCheck < enabledDeploy && enabledDeploy < redactionRecheck);
+  assert.ok(redactionRecheck < readinessCheck && readinessCheck < failClosedFallback);
+  assert.match(workflow, /if: failure\(\) && steps\.initial_deploy\.outcome != 'skipped'/);
+  assert.match(workflow, /broker-disabled\.json/);
+  assert.match(workflow, /broker_not_activated/);
+  assert.match(workflow, /OAuth activation verification failed; the broker was redeployed and verified with OAuth disabled/);
 });
 
 
-test("broker source exposes only the Spotify refresh secret and read-only verification dispatch", async () => {
+test("Worker observability redacts OAuth callback query strings", async () => {
+  const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
+  const start = config.indexOf("[observability]\n");
+  assert.ok(start >= 0, "Worker observability configuration must be explicit");
+  const nextSection = config.indexOf("\n[", start + 1);
+  const observability = config.slice(start, nextSection < 0 ? undefined : nextSection);
+  assert.match(observability, /^enabled = true$/m);
+  assert.match(observability, /^redact_query_string = true$/m,
+    "OAuth code and state query parameters must be removed from observability URLs");
+  const logsStart = config.indexOf("[observability.logs]");
+  assert.ok(logsStart > start);
+  assert.match(config.slice(logsStart), /^invocation_logs = true$/m);
+});
+
+
+test("broker source uses central encrypted storage and never writes a refresh-token secret", async () => {
   const source = await readFile(new URL("../src/index.js", import.meta.url), "utf8");
-  assert.match(source, /const SECRET_NAME = "SPOTIFY_REFRESH_TOKEN"/);
   assert.match(source, /const AUTH_WORKFLOW = "spotify-auth-health-check\.yml"/);
-  assert.match(source, /actions\/secrets\/\$\{SECRET_NAME\}/);
+  assert.match(source, /env\.SPOTIFY_OAUTH_ENABLED !== "true"/);
+  assert.match(source, /authorizeCentralCredential\(env, tokenData\.refresh_token, spotifyIdentity\.id\)/);
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
+  assert.doesNotMatch(source, /actions\/secrets|SPOTIFY_REFRESH_TOKEN|saveRefreshToken/);
   assert.doesNotMatch(source, /\/v1\/playlists|\/playlists\/|playlist-items/i);
   assert.doesNotMatch(source, /console\.(?:log|info|warn)/);
-  const diagnosticLog = source.match(/console\.error\(\{([\s\S]*?)\}\);/)?.[1] || "";
-  assert.match(diagnosticLog, /event: "shit_auth_broker_request_failed"/);
-  assert.match(diagnosticLog, /stage: diagnosticStage/);
-  assert.match(diagnosticLog, /error_class: expected \? "BrokerError" : "UnexpectedError"/);
-  assert.doesNotMatch(diagnosticLog, /error\.message|stack|token|cookie|state|url/i);
+  assert.match(
+    source,
+    /console\.error\(\{ event: "shit_auth_broker_request_failed", stage: diagnosticStage, error_class:/,
+  );
   assert.match(source, /isAuthorizedOwner\(user\.login\)/);
   assert.doesNotMatch(source, /env\.GITHUB_OWNER/);
 });
 
 
-test("Spotify account identity is verified before secret persistence", async () => {
+test("Spotify account identity is verified before central credential initialization", async () => {
   let calledUrl = "";
   let authorization = "";
   const identity = await verifySpotifyIdentity("short-lived-access-token", async (url, options) => {
@@ -338,6 +603,7 @@ test("clean completion URL consumes one-time non-secret authorization summary", 
   let consumed = false;
   const env = {
     BROKER_BASE_URL: "https://trusted.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     OAUTH_STATE: {
       idFromName: () => "state",
       get: () => ({
@@ -440,51 +706,6 @@ test("workflow preflight fails closed when GitHub run data is incomplete", async
 });
 
 
-test("refresh token is sealed to GitHub's public key and only the read-only health workflow is dispatched", async () => {
-  const originalFetch = globalThis.fetch;
-  const mock = await makeGitHubApiMock();
-  globalThis.fetch = mock.fetch;
-  const refreshToken = "spotify-refresh-token-for-integration-test";
-  try {
-    assert.equal(await saveRefreshToken({}, refreshToken, "repository-scoped-installation-token"), true);
-    assert.deepEqual(mock.calls.savedTokens, [refreshToken]);
-    assert.deepEqual(mock.calls.secretBodies.map((body) => Object.keys(body).sort()), [["encrypted_value", "key_id"]]);
-    assert.deepEqual(mock.calls.dispatches, [{ ref: "main" }]);
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
-});
-
-test("failed auth-health dispatch is reported separately after secret persistence", async () => {
-  const originalFetch = globalThis.fetch;
-  const mock = await makeGitHubApiMock({ dispatchStatus: 503 });
-  globalThis.fetch = mock.fetch;
-  try {
-    assert.equal(await saveRefreshToken({}, "spotify-refresh-token-for-integration-test", "repository-scoped-installation-token"), false);
-    assert.equal(mock.calls.savedTokens.length, 1);
-    assert.equal(mock.calls.dispatches.length, 1);
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
-});
-
-test("failed GitHub secret update stops before auth-health dispatch", async () => {
-  const originalFetch = globalThis.fetch;
-  const mock = await makeGitHubApiMock({ secretStatus: 500 });
-  globalThis.fetch = mock.fetch;
-  try {
-    await assert.rejects(
-      saveRefreshToken({}, "spotify-refresh-token-for-integration-test", "repository-scoped-installation-token"),
-      /GitHub could not complete the secure credential update/,
-    );
-    assert.equal(mock.calls.savedTokens.length, 0);
-    assert.equal(mock.calls.dispatches.length, 0);
-  } finally {
-    globalThis.fetch = originalFetch;
-  }
-});
-
-
 test("OAuth provider code exchange posts PKCE fields in the form body, not the URL", async () => {
   const originalFetch = globalThis.fetch;
   let captured;
@@ -534,35 +755,4 @@ test("OAuth provider rejection returns a generic error without provider response
   } finally {
     globalThis.fetch = originalFetch;
   }
-});
-
-test("GitHub authorization start exposes a safe diagnostic stage when the rate limiter is unavailable", async () => {
-  const result = await handleRequest(new Request("https://broker.example/auth/github/start"), { BROKER_BASE_URL: "https://broker.example" });
-  const body = await result.text();
-  assert.equal(result.status, 200);
-  assert.match(body, /Diagnostic stage: github_start\.rate_limit/);
-  assert.doesNotMatch(body, /token|secret|cookie|state=/i);
-});
-
-test("GitHub authorization start identifies Durable Object state-storage failures without exposing details", async () => {
-  const env = {
-    BROKER_BASE_URL: "https://broker.example",
-    GITHUB_APP_CLIENT_ID: "public-client-id",
-    GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
-    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
-    OAUTH_STATE: { idFromName: () => "oauth-state", get: () => ({ fetch: async () => { throw new Error("sensitive internal detail"); } }) },
-  };
-  const result = await handleRequest(new Request("https://broker.example/auth/github/start"), env);
-  const body = await result.text();
-  assert.equal(result.status, 200);
-  assert.match(body, /Diagnostic stage: github_start\.oauth_state_storage/);
-  assert.doesNotMatch(body, /sensitive internal detail|public-client-id|state=/i);
-});
-
-test("public health endpoint is non-secret and does not require OAuth configuration", async () => {
-  const result = await handleRequest(new Request("https://broker.example/health"), {});
-  assert.equal(result.status, 200);
-  assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
-  assert.equal(result.headers.get("cache-control"), "no-store");
-  assert.equal(result.headers.get("x-content-type-options"), "nosniff");
 });

@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   update:
@@ -29,44 +30,15 @@ jobs:
       - name: Run unit tests
         run: python -m unittest discover -s tests -t . -v
 
-      - name: Validate Spotify credentials
+      - name: Obtain central Spotify access token
         env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
-        run: |
-          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing repository variable SPOTIFY_CLIENT_ID" >&2; exit 1; }
-          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing repository secret SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
-
-      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
-        id: spotify-secret-writer
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
-          permission-secrets: write
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
 
       - name: Refresh Spotify reference library (read-only)
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
         run: |
-          python - <<'PY'
-          import os
-          import sys
-          from pathlib import Path
-          sys.path.insert(0, "compat")
-          import spotify_playlist_manager as manager
-          manager.TOKEN = Path(".spotify_playlist_token.json")
-          manager.write(manager.TOKEN, {
-              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-              "obtained_at": 0,
-              "expires_in": 0,
-          })
-          PY
           python compat/spotify_reference_library.py sync
           python compat/spotify_reference_library.py health
 
@@ -187,8 +159,7 @@ jobs:
 #           imports Last.fm scrobbles; performs bounded artist/track/duration/recording-ID
 #           and AcousticBrainz enrichment; rebuilds historical, advanced, music and
 #           measured-playback analytics; validates outputs and commits refreshed data.
-# Credentials: LASTFM_API_KEY, Spotify client/refresh token, and a narrowly scoped
-#              GitHub App token used only to persist rotated Spotify refresh-token secrets.
+# Credentials: LASTFM_API_KEY, broker-issued short-lived Spotify access token, and optional metadata-provider keys.
 # Writes: Canonical Last.fm data, assistant_data/, and playback_data/ when present;
 #         contents:write is required for publication.
 # Safety: Spotify reference sync is read-only; this workflow does not mutate playlists.

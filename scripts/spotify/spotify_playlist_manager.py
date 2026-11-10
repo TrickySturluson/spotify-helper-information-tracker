@@ -90,13 +90,15 @@ def audit(**event):
     try: AUDIT.chmod(0o600)
     except OSError: pass
 def persist_refresh_token(refresh_token):
-    """Persist a rotated Spotify refresh token to the repository secret in cloud runs."""
+    """Persist a rotated token only for explicitly legacy-managed workflows."""
+    if os.environ.get("SHIT_AUTH_MODE", "").strip().lower() == "broker":
+        raise ManagerError("Broker-managed workflows must never persist refresh tokens to GitHub Secrets.")
     if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") != "1":
         return
     gh_token = os.environ.get("GH_TOKEN", "").strip()
     repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
     if not gh_token or not repository:
-        raise ManagerError("Cloud Spotify refresh is blocked: the narrowly scoped GitHub App secret-writer token is unavailable. Configure SHIT_GITHUB_APP_CLIENT_ID and SHIT_GITHUB_APP_PRIVATE_KEY before retrying; no refresh request was sent.")
+        raise ManagerError("Legacy cloud refresh is blocked before contacting Spotify because its secret-persistence credential is unavailable. Use central broker mode for cloud workflows; no refresh request was sent.")
     env = os.environ.copy()
     env["GH_TOKEN"] = gh_token
     last_error = None
@@ -122,7 +124,7 @@ def token_post(data):
         except (ValueError, UnicodeDecodeError):
             detail={}
         if data.get("grant_type")=="refresh_token" and detail.get("error")=="invalid_grant":
-            raise ManagerError("Spotify rejected the refresh token (invalid_grant). It may be expired, revoked, or an older token invalidated by refresh-token rotation. Reauthorize the playlist manager and update the SPOTIFY_REFRESH_TOKEN GitHub Actions secret; do not repeatedly retry this credential.") from e
+            raise ManagerError("Spotify rejected the configured refresh token (invalid_grant). It may be expired, revoked, or invalidated by rotation. Reauthorize through the active authentication mode; do not repeatedly retry this credential.") from e
         reason=detail.get("error_description") or detail.get("error") or "unknown token error"
         raise ManagerError(f"Spotify token request failed (HTTP {e.code}): {reason}") from e
 def authorize():
@@ -152,7 +154,21 @@ def authorize():
 class Spotify:
     def __init__(self):
         check_spotify_cooldown()
-        self.t=read(TOKEN,None) or authorize()
+        broker_access_token=os.environ.get("SHIT_BROKER_ACCESS_TOKEN", "").strip()
+        broker_required=os.environ.get("SHIT_AUTH_MODE", "").strip().lower() == "broker"
+        self.broker_managed=bool(broker_access_token)
+        if broker_required and not self.broker_managed:
+            raise ManagerError("SHIT_AUTH_MODE=broker requires a broker-issued SHIT_BROKER_ACCESS_TOKEN; legacy token files and direct refresh are disabled.")
+        if self.broker_managed:
+            try:
+                broker_expires=int(os.environ.get("SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN", "3600"))
+            except (TypeError, ValueError):
+                raise ManagerError("SHIT broker access-token lifetime is invalid.")
+            if not 120 <= broker_expires <= 86400 or len(broker_access_token) > 8192 or "\n" in broker_access_token or "\r" in broker_access_token:
+                raise ManagerError("SHIT broker access token or lifetime is invalid.")
+            self.t={"access_token":broker_access_token,"obtained_at":time.time(),"expires_in":broker_expires}
+        else:
+            self.t=read(TOKEN,None) or authorize()
         self.refresh_token_rotated=False
         self.request_metrics = {"total_requests": 0, "by_endpoint": {}, "by_status": {}, "elapsed_ms": 0}
     @staticmethod
@@ -172,7 +188,24 @@ class Spotify:
         metrics["by_status"][status_key] = metrics["by_status"].get(status_key, 0) + 1
         metrics["total_requests"] += 1
         metrics["elapsed_ms"] += round(elapsed_ms, 2)
+    def renew_broker_access_token(self):
+        try:
+            from scripts.spotify.broker_access_token import BrokerTokenError, request_broker_access_token
+            access_token, expires_in = request_broker_access_token()
+        except BrokerTokenError as exc:
+            raise ManagerError("SHIT central broker could not renew the short-lived access token (" + exc.category + ").") from None
+        self.broker_access_token = access_token
+        self.t = {"access_token": access_token, "obtained_at": time.time(), "expires_in": expires_in}
+        os.environ["SHIT_BROKER_ACCESS_TOKEN"] = access_token
+        os.environ["SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN"] = str(expires_in)
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            print("::add-mask::" + access_token)
+        return access_token
     def bearer(self):
+        if getattr(self, "broker_managed", False):
+            if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",0)-60:
+                return self.renew_broker_access_token()
+            return self.t["access_token"]
         if time.time()>=self.t.get("obtained_at",0)+self.t.get("expires_in",3600)-60:
             old=self.t
             if os.environ.get("SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN") == "1" and (not os.environ.get("GH_TOKEN", "").strip() or not os.environ.get("GITHUB_REPOSITORY", "").strip()):
@@ -517,15 +550,16 @@ if __name__=="__main__": raise SystemExit(main())
 
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
-# Purpose: Local OAuth-backed Spotify playlist administration and guarded mutation CLI.
+# Purpose: Shared Spotify playlist administration for local OAuth sessions and broker-backed cloud workflows.
 # Commands: list/inspect, lock/unlock, create, export-refresh-token, and apply a validated JSON operation plan.
-# Inputs/state: Reads .spotify_playlist_token.json and .spotify_playlist_manager.json; the deny-by-default
-#               assistant_data/spotify/managed_playlists.json registry controls which playlists may be edited.
-# Safety: Editing requires account ownership, registry authorization, and an explicit unlocked state.
-#         Unlocking cannot authorize an unregistered playlist. apply previews the plan, requires typed
-#         APPLY/REPLACE confirmation, and revalidates lock and Spotify snapshot state before writing.
-# Recovery/audit: Each mutation is bracketed by before/after snapshots in playlist_backups/ and events in
-#                  playlist_manager_audit.jsonl; API cooldown state is read from .github/spotify_api_cooldown.json.
+# Inputs/state: Local mode reads .spotify_playlist_token.json; broker mode requires SHIT_AUTH_MODE=broker,
+#               an ephemeral broker access token, and GitHub OIDC for automatic in-process renewal.
+#               The deny-by-default assistant_data/spotify/managed_playlists.json registry controls edits.
+# Safety: Broker mode fails closed without a broker token, never reads local refresh-token files, and never
+#         persists refresh tokens to GitHub Secrets. Editing still requires ownership, registry authorization,
+#         explicit unlock, preview, typed APPLY/REPLACE confirmation, and fresh snapshot validation.
+# Recovery/audit: Mutations are bracketed by before/after snapshots and audit events; API cooldown state is read
+#                 from .github/spotify_api_cooldown.json. Local OAuth remains available outside broker mode.
 # Run: python compat/spotify_playlist_manager.py {list|inspect|lock|unlock|create|apply} ...
-# Security: export-refresh-token prints a credential for manual secret transfer; never commit or paste it.
+# Security: export-refresh-token is a local-only manual export; never use it in broker workflows or paste it into chat.
 # -----------------------------------------------------------------------------

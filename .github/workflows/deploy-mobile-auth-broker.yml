@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.actor == 'TrickySturluson'
+    if: github.actor_id == '337022631'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -35,8 +35,14 @@ jobs:
           BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
+          SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || '1' }}
+          SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED: ${{ vars.SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED }}
         run: |
-          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL BROKER_GH_APP_CLIENT_ID BROKER_GH_APP_ID BROKER_GH_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI; do
+          if [ "$SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED" != "true" ]; then
+            echo "::error::Independent backup of the Spotify credential encryption keyring must be verified before production deployment. Set SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true only after confirming a recoverable backup outside this Worker."
+            exit 1
+          fi
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BROKER_BASE_URL BROKER_GH_APP_CLIENT_ID BROKER_GH_APP_ID BROKER_GH_APP_REDIRECT_URI SPOTIFY_CLIENT_ID SPOTIFY_REDIRECT_URI SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION; do
             if [ -z "${!name}" ]; then
               echo "::error::Required deployment setting $name is missing."
               exit 1
@@ -55,6 +61,13 @@ jobs:
             "$BROKER_BASE_URL"/spotify/callback) ;;
             *) echo "::error::Spotify callback URI must match BROKER_BASE_URL."; exit 1 ;;
           esac
+          case "$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" in
+            [1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]) ;;
+            *) echo "::error::SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION must be a positive integer."; exit 1 ;;
+          esac
+          expected_workflow_refs="$GITHUB_REPOSITORY/.github/workflows/spotify-auth-health-check.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-live-preflight.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-daily-feedback-observation.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/tricky-daily-snapshot-refresh.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-reference-library.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/spotify-playlist-manager.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/great-migration.yml@refs/heads/main,$GITHUB_REPOSITORY/.github/workflows/update.yml@refs/heads/main"
+          # Derive the exact allowlist from this workflow; it is not a manually maintained repository variable.
+          echo "SPOTIFY_REFRESH_WORKFLOW_REFS=$expected_workflow_refs" >> "$GITHUB_ENV"
       - name: Verify sensitive Worker bindings use Cloudflare secret storage
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -63,16 +76,17 @@ jobs:
           settings="$(curl --fail --silent --show-error \
             -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/shit-auth-broker/secrets")"
-          for name in GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY; do
+          for name in GITHUB_APP_CLIENT_SECRET GITHUB_APP_PRIVATE_KEY SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS; do
             binding_type="$(jq -r --arg name "${name}" '[.result[]? | select(.name == $name) | .type] | first // empty' <<< "${settings}")"
             if [ "${binding_type}" != "secret_text" ]; then
               echo "::error::Worker binding ${name} must be stored as a Cloudflare Worker Secret (secret_text); found ${binding_type:-missing}. No deployment was performed."
               exit 1
             fi
           done
-          echo "Required GitHub App bindings are present as Cloudflare Worker Secrets."
+          echo "All required GitHub App and Spotify encryption bindings are present as Cloudflare Worker Secrets."
 
-      - name: Deploy Worker
+      - name: Deploy Worker with OAuth disabled
+        id: initial_deploy
         working-directory: auth-broker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -83,18 +97,136 @@ jobs:
           BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
+          SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || '1' }}
         run: |
           npx wrangler deploy \
+            --var "SPOTIFY_OAUTH_ENABLED:false" \
             --var "BROKER_BASE_URL:$BROKER_BASE_URL" \
             --var "GITHUB_APP_CLIENT_ID:$BROKER_GH_APP_CLIENT_ID" \
             --var "GITHUB_APP_ID:$BROKER_GH_APP_ID" \
             --var "GITHUB_APP_REDIRECT_URI:$BROKER_GH_APP_REDIRECT_URI" \
             --var "SPOTIFY_CLIENT_ID:$SPOTIFY_CLIENT_ID" \
-            --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI"
+            --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI" \
+            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" \
+            --var "SPOTIFY_REFRESH_WORKFLOW_REFS:$SPOTIFY_REFRESH_WORKFLOW_REFS"
+
+      - name: Verify OAuth query-string redaction
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          settings="$(curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/shit-auth-broker/script-settings")"
+          redact_query_string="$(jq -r '.result.observability.redact_query_string // false' <<< "${settings}")"
+          if [ "${redact_query_string}" != "true" ]; then
+            echo "::error::Worker observability must redact query strings before OAuth callbacks can be used."
+            exit 1
+          fi
+          echo "Worker observability query-string redaction is enabled."
+
+      - name: Activate broker OAuth after query redaction is verified
+        working-directory: auth-broker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
+          BROKER_GH_APP_CLIENT_ID: ${{ vars.BROKER_GH_APP_CLIENT_ID }}
+          BROKER_GH_APP_ID: ${{ vars.BROKER_GH_APP_ID }}
+          BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
+          SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || '1' }}
+        run: |
+          # The first deployment remains disabled if the preceding redaction
+          # verification fails. Only this second owner-controlled deployment
+          # turns on OAuth after query-string redaction has been confirmed.
+          npx wrangler deploy \
+            --var "SPOTIFY_OAUTH_ENABLED:true" \
+            --var "BROKER_BASE_URL:$BROKER_BASE_URL" \
+            --var "GITHUB_APP_CLIENT_ID:$BROKER_GH_APP_CLIENT_ID" \
+            --var "GITHUB_APP_ID:$BROKER_GH_APP_ID" \
+            --var "GITHUB_APP_REDIRECT_URI:$BROKER_GH_APP_REDIRECT_URI" \
+            --var "SPOTIFY_CLIENT_ID:$SPOTIFY_CLIENT_ID" \
+            --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI" \
+            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" \
+            --var "SPOTIFY_REFRESH_WORKFLOW_REFS:$SPOTIFY_REFRESH_WORKFLOW_REFS"
+
+      - name: Reverify OAuth query-string redaction after activation
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          settings="$(curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/shit-auth-broker/script-settings")"
+          redact_query_string="$(jq -r '.result.observability.redact_query_string // false' <<< "${settings}")"
+          if [ "${redact_query_string}" != "true" ]; then
+            echo "::error::Worker observability query-string redaction was not retained after activation."
+            exit 1
+          fi
+          echo "OAuth remains active only with query-string redaction enabled."
+
+      - name: Verify deployed broker readiness
+        env:
+          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
+        run: |
+          for attempt in $(seq 1 12); do
+            status="$(curl --silent --show-error --max-time 10 \
+              --output /tmp/broker-ready.json \
+              --write-out "%{http_code}" \
+              "${BROKER_BASE_URL}/ready" || true)"
+            if [ "${status}" = "200" ] && jq -e '.status == "ready" and .service == "shit-auth-broker"' /tmp/broker-ready.json >/dev/null 2>&1; then
+              echo "Broker configuration and credential-store readiness verified."
+              cat /tmp/broker-ready.json
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Deployed broker is not ready. Check Worker secret names, active key version, and Durable Object migration/binding."
+          exit 1
+
+      - name: Fail closed by disabling OAuth if activation verification fails
+        if: failure() && steps.initial_deploy.outcome != 'skipped'
+        working-directory: auth-broker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          BROKER_BASE_URL: ${{ vars.BROKER_BASE_URL }}
+          BROKER_GH_APP_CLIENT_ID: ${{ vars.BROKER_GH_APP_CLIENT_ID }}
+          BROKER_GH_APP_ID: ${{ vars.BROKER_GH_APP_ID }}
+          BROKER_GH_APP_REDIRECT_URI: ${{ vars.BROKER_GH_APP_REDIRECT_URI }}
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REDIRECT_URI: ${{ vars.SPOTIFY_REDIRECT_URI }}
+          SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION: ${{ vars.SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION || '1' }}
+        run: |
+          npx wrangler deploy \
+            --var "SPOTIFY_OAUTH_ENABLED:false" \
+            --var "BROKER_BASE_URL:$BROKER_BASE_URL" \
+            --var "GITHUB_APP_CLIENT_ID:$BROKER_GH_APP_CLIENT_ID" \
+            --var "GITHUB_APP_ID:$BROKER_GH_APP_ID" \
+            --var "GITHUB_APP_REDIRECT_URI:$BROKER_GH_APP_REDIRECT_URI" \
+            --var "SPOTIFY_CLIENT_ID:$SPOTIFY_CLIENT_ID" \
+            --var "SPOTIFY_REDIRECT_URI:$SPOTIFY_REDIRECT_URI" \
+            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:$SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION" \
+            --var "SPOTIFY_REFRESH_WORKFLOW_REFS:$SPOTIFY_REFRESH_WORKFLOW_REFS"
+          for attempt in $(seq 1 12); do
+            status="$(curl --silent --show-error --max-time 10 \
+              --output /tmp/broker-disabled.json \
+              --write-out "%{http_code}" \
+              "${BROKER_BASE_URL}/" || true)"
+            if [ "${status}" = "503" ] && jq -e '.error == "broker_not_activated"' /tmp/broker-disabled.json >/dev/null 2>&1; then
+              echo "::warning::OAuth activation verification failed; the broker was redeployed and verified with OAuth disabled."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::The OAuth-disabled fallback could not be verified after deployment."
+
 
 # FILE OVERVIEW
 # Purpose: Deploy the SHIT-wide Spotify OAuth broker to the configured Cloudflare Worker.
 # Trigger: Owner-only manual workflow_dispatch on main.
-# Credentials: CLOUDFLARE_API_TOKEN (Workers Scripts Read + Write) and CLOUDFLARE_ACCOUNT_ID; public runtime IDs/URLs come from repository variables. GitHub App client secret/private key must be Cloudflare secret_text bindings.
-# Side effects: Publishes the Worker source/configuration to the configured Cloudflare account.
-# Safety: Does not contact Spotify, write GitHub repository secrets, or modify playlists.
+# Credentials: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; public runtime IDs/URLs come from repository variables.
+# Side effects: Deploys the Worker disabled, verifies query-string redaction, activates OAuth in a second deployment, then performs a read-only /ready probe.
+# Safety: Does not contact Spotify, write GitHub repository secrets, or modify playlists. A post-deploy failure redeploys with OAuth disabled; readiness does not read or create a credential.

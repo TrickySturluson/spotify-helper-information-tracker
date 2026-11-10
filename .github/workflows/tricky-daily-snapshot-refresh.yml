@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
   group: tricky-daily-snapshot-refresh
@@ -34,26 +35,13 @@ jobs:
         run: |
           python -m py_compile scripts/spotify/spotify_daily_snapshot.py scripts/spotify/spotify_daily_cycle.py scripts/spotify/spotify_discovery.py scripts/spotify/spotify_reference_library.py scripts/spotify/spotify_playlist_manager.py scripts/spotify/spotify_daily_feedback.py
           python -m unittest tests.test_spotify_daily_cycle_schedule tests.test_spotify_daily_snapshot tests.test_spotify_daily_feedback_scoring -v
-      - name: Validate Spotify credentials
+      - name: Obtain central Spotify access token
         env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-        run: |
-          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
-          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
-      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
-        id: spotify-secret-writer
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
-          permission-secrets: write
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
       - name: Refresh Tricky Daily snapshot and reconcile manual removals
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
         run: python scripts/spotify/spotify_daily_snapshot.py
       - name: Publish Daily-only snapshot and removal state
         if: always()
@@ -90,7 +78,7 @@ jobs:
 # FILE OVERVIEW
 # Purpose: Refresh only Tricky Daily's saved Spotify snapshot every day.
 # Trigger: Daily at 06:25 UTC, manual dispatch, or this workflow's main-branch edit.
-# Spotify operations: GET-only; no playlist writes or description changes.
+# Spotify operations: broker-issued access token, GET-only; no playlist writes or description changes.
 # Reconciliation: Detects tracks removed since the last accepted Daily cycle and
 #                 preserves the blacklist, records explicit user-removal feedback, and advances the removal baseline.
 # Publication: Commits only the Daily snapshot/history, removal baseline/blacklist/feedback,

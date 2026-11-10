@@ -48,16 +48,18 @@ def main():
     manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
     manager.TOKEN = Path(".spotify_daily_preflight_token.json")
     manager.CONFIG = Path(".github/spotify_playlist_manager_state.json")
-    manager.write(manager.TOKEN, {
-        "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-        "obtained_at": 0,
-        "expires_in": 0,
-    })
+    if os.environ.get("SHIT_AUTH_MODE", "").strip().lower() != "broker":
+        manager.write(manager.TOKEN, {
+            "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+            "obtained_at": 0,
+            "expires_in": 0,
+        })
     try:
         report = validate_live_playlist(manager.Spotify())
         print(json.dumps(report, indent=2))
     finally:
-        manager.TOKEN.unlink(missing_ok=True)
+        if os.environ.get("SHIT_AUTH_MODE", "").strip().lower() != "broker":
+            manager.TOKEN.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

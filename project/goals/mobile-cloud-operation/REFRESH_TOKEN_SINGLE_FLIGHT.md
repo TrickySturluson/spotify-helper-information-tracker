@@ -1,6 +1,6 @@
 # Cross-Workflow Refresh Token Single-Flight Design
 
-**Status:** Initial Worker/Durable Object implementation added in PR #185 and its automated unit tests pass. It is not integrated into any Actions workflow or deployed; the downstream fencing limitation below still prevents treating the lease as sufficient protection.
+**Status:** Initial Worker/ Durable Object implementation added in PR #185; not yet CI-verified, integrated into any Actions workflow, or deployed.
 **Scope:** Serialize only Spotify refresh-token exchange and rotated-secret persistence across all SHIT workflows.
 
 ## Problem

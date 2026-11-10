@@ -1,10 +1,9 @@
-import sodium from "libsodium-wrappers";
 import { SpotifyRefreshLease, verifyActionsOidc } from "./refresh-lock.js";
-export { SpotifyRefreshLease };
+import { SpotifyCredentialStore } from "./credential-store.js";
+export { SpotifyRefreshLease, SpotifyCredentialStore };
 
 const OWNER = "TrickySturluson";
 const REPOSITORY = "spotify-helper-information-tracker";
-const SECRET_NAME = "SPOTIFY_REFRESH_TOKEN";
 const AUTH_WORKFLOW = "spotify-auth-health-check.yml";
 const REQUIRED_SCOPES = [
   "user-read-private",
@@ -109,14 +108,16 @@ function redirect(url, headers = {}) {
   return response(null, 302, { Location: url, ...headers });
 }
 
-export async function rateLimit(request, env, route) {
-  if (!env.AUTH_RATE_LIMITER) throw new BrokerError("Rate limiter is not configured.");
+export async function rateLimit(request, env, route, actorOverride = null) {
+  const limiter = route.startsWith("broker-refresh-") ? env.BROKER_REFRESH_RATE_LIMITER : env.AUTH_RATE_LIMITER;
+  if (!limiter) throw new BrokerError("Rate limiter is not configured.");
   // Never trust a caller-supplied cookie as a rate-limit identity. Resolve the
   // session against server-side state first; invalid/missing cookies share the
   // anonymous bucket, while only a verified owner session gets its own bucket.
-  const session = route.startsWith("spotify-") ? await getSession(request, env) : null;
-  const actor = session ? session.id : "anonymous";
-  const result = await env.AUTH_RATE_LIMITER.limit({ key: `${route}:${actor}` });
+  // Internal OIDC routes pass an IP or verified workflow identity explicitly.
+  const session = actorOverride === null && route.startsWith("spotify-") ? await getSession(request, env) : null;
+  const actor = actorOverride ?? (session ? session.id : "anonymous");
+  const result = await limiter.limit({ key: `${route}:${actor}` });
   if (!result.success) throw new BrokerError("Too many attempts.");
 }
 
@@ -328,17 +329,20 @@ export async function githubAppJwt(env) {
   return `${signingInput}.${base64Url(signature)}`;
 }
 
-async function installationToken(env) {
+async function installationToken(env, setDiagnosticStage = () => {}) {
+  setDiagnosticStage("spotify_callback.github_app_jwt");
   const jwt = await githubAppJwt(env);
+  setDiagnosticStage("spotify_callback.github_installation_lookup");
   const installation = await githubApi(`/repos/${OWNER}/${REPOSITORY}/installation`, jwt);
   if (!installation?.id) throw new BrokerError("GitHub App is not installed on the SHIT repository.");
+  setDiagnosticStage("spotify_callback.github_installation_token_creation");
   const token = await githubApi(
     `/app/installations/${installation.id}/access_tokens`,
     jwt,
     "POST",
     {
       repositories: [REPOSITORY],
-      permissions: { actions: "write", secrets: "write" },
+      permissions: { actions: "write" },
     },
   );
   if (!token?.token) throw new BrokerError("GitHub App installation token was not issued.");
@@ -393,8 +397,33 @@ export async function assertNoConcurrentSpotifyJobs(token) {
 function authorizationSavedMessage(spotifyIdentity, verificationStarted) {
   const account = `${spotifyIdentity.displayName || "Spotify user"} (ID ${spotifyIdentity.id})`;
   return verificationStarted
-    ? `Spotify account verified: ${account}. Your authorization was securely saved to GitHub. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
-    : `Spotify account verified: ${account}. Your authorization was securely saved to GitHub, but the automatic read-only check could not be started. Open Actions and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
+    ? `Spotify account verified: ${account}. Your refresh credential is encrypted in the central SHIT authentication broker. SHIT has started a read-only authentication check. No playlist was unlocked or changed.`
+    : `Spotify account verified: ${account}. Your refresh credential is encrypted in the central SHIT authentication broker, but the read-only check could not be started. Open Actions and run the Spotify Auth Health Check manually. No playlist was unlocked or changed.`;
+}
+
+async function authorizeCentralCredential(env, refreshToken, accountId) {
+  if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim()) {
+    throw new BrokerError("Central Spotify credential storage is not configured; no credential was saved.");
+  }
+  const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
+  const result = await stub.fetch("https://spotify-credential.internal/authorize", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ accountId, refreshToken }),
+  });
+  if (!result.ok) {
+    throw new BrokerError("Central Spotify credential storage rejected this authorization. No existing credential was overwritten.");
+  }
+  return result.json();
+}
+
+async function dispatchAuthHealthCheck(token) {
+  try {
+    await githubApi(`/repos/${OWNER}/${REPOSITORY}/actions/workflows/${AUTH_WORKFLOW}/dispatches`, token, "POST", { ref: "main" });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export async function verifySpotifyIdentity(accessToken, fetchImpl = fetch) {
@@ -413,40 +442,6 @@ export async function verifySpotifyIdentity(accessToken, fetchImpl = fetch) {
     id: profile.id,
     displayName: typeof profile.display_name === "string" ? profile.display_name : "",
   };
-}
-
-export async function saveRefreshToken(env, refreshToken, existingToken = null) {
-  if (typeof refreshToken !== "string" || refreshToken.length < 20) {
-    throw new BrokerError("Spotify did not return a usable refresh token.");
-  }
-  await sodium.ready;
-  const token = existingToken || await installationToken(env);
-  await assertNoConcurrentSpotifyJobs(token);
-  const path = `/repos/${OWNER}/${REPOSITORY}`;
-  const publicKey = await githubApi(`${path}/actions/secrets/public-key`, token);
-  const key = sodium.from_base64(publicKey.key, sodium.base64_variants.ORIGINAL);
-  const encrypted = sodium.crypto_box_seal(sodium.from_string(refreshToken), key);
-  const encryptedValue = sodium.to_base64(encrypted, sodium.base64_variants.ORIGINAL);
-  await githubApi(
-    `${path}/actions/secrets/${SECRET_NAME}`,
-    token,
-    "PUT",
-    { encrypted_value: encryptedValue, key_id: publicKey.key_id },
-  );
-  // Only dispatch after GitHub confirms the encrypted secret update.
-  try {
-    await githubApi(
-      `${path}/actions/workflows/${AUTH_WORKFLOW}/dispatches`,
-      token,
-      "POST",
-      { ref: "main" },
-    );
-    return true;
-  } catch {
-    // The secret is already saved. Report that accurately and do not make the
-    // user repeat OAuth merely because the verification dispatch failed.
-    return false;
-  }
 }
 
 async function githubLoginCallback(request, env, url) {
@@ -487,20 +482,25 @@ async function githubLoginCallback(request, env, url) {
   });
 }
 
-async function spotifyCallback(request, env, url) {
+async function spotifyCallback(request, env, url, setDiagnosticStage = () => {}) {
+  setDiagnosticStage("spotify_callback.session_lookup");
   const cookies = parseCookies(request.headers.get("Cookie"));
   const session = await getSession(request, env);
+  setDiagnosticStage("spotify_callback.state_validation");
   const state = url.searchParams.get("state") || "";
   const code = url.searchParams.get("code") || "";
   if (!session || !state || state !== cookies["__Host-shit_spotify_state"] || !code) {
     throw new BrokerError("Spotify authorization could not be verified. Start again.");
   }
+  setDiagnosticStage("spotify_callback.state_consumption");
   const key = `oauth:spotify-state:${state}`;
   const activeKey = `oauth:spotify-active:${session.id}`;
   const stateData = await stateConsumeSpotify(env, key, activeKey, session.id, state);
   if (!stateData) throw new BrokerError("Spotify authorization expired, was replayed, or was superseded. Start again.");
-  const githubToken = await installationToken(env);
+  const githubToken = await installationToken(env, setDiagnosticStage);
+  setDiagnosticStage("spotify_callback.concurrent_workflow_check");
   await assertNoConcurrentSpotifyJobs(githubToken);
+  setDiagnosticStage("spotify_callback.spotify_code_exchange");
   const tokenData = await exchangeForm("https://accounts.spotify.com/api/token", {
     client_id: env.SPOTIFY_CLIENT_ID,
     grant_type: "authorization_code",
@@ -508,13 +508,21 @@ async function spotifyCallback(request, env, url) {
     redirect_uri: env.SPOTIFY_REDIRECT_URI,
     code_verifier: stateData.verifier,
   });
+  setDiagnosticStage("spotify_callback.scope_validation");
   if (!hasRequiredScopes(tokenData.scope)) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
   }
+  setDiagnosticStage("spotify_callback.spotify_identity_verification");
   const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
-  const verificationStarted = await saveRefreshToken(env, tokenData.refresh_token, githubToken);
+  // Hand the long-lived credential directly to the encrypted Durable Object.
+  // It is never written to a GitHub Actions secret or returned to the browser.
+  setDiagnosticStage("spotify_callback.central_credential_write");
+  await authorizeCentralCredential(env, tokenData.refresh_token, spotifyIdentity.id);
+  setDiagnosticStage("spotify_callback.health_workflow_dispatch");
+  const verificationStarted = await dispatchAuthHealthCheck(githubToken);
   // Keep the callback URL (which contains a one-time authorization code) out
   // of the final browser address bar. Store only the non-secret result summary.
+  setDiagnosticStage("spotify_callback.completion_state_storage");
   const resultId = randomValue(24);
   try {
     await statePut(env, `oauth:result:${resultId}`, { spotifyIdentity, verificationStarted }, 120);
@@ -529,7 +537,9 @@ async function spotifyCallback(request, env, url) {
   }
   // The session contains no provider credential and expires automatically.
   // Cleanup is best-effort because the browser cookie is cleared on this response.
+  setDiagnosticStage("spotify_callback.session_cleanup");
   try { await stateDelete(env, `oauth:session:${session.id}`); } catch {}
+  setDiagnosticStage("spotify_callback.completion_redirect");
   return redirect(new URL(`/complete?result=${resultId}`, env.BROKER_BASE_URL).toString());
 }
 
@@ -577,6 +587,113 @@ async function handleRefreshLock(request, env, url) {
   return response(output, result.status, { "Content-Type": "application/json" });
 }
 
+
+async function credentialStoreReady(env) {
+  if (
+    env.SPOTIFY_OAUTH_ENABLED !== "true" ||
+    !env.AUTH_RATE_LIMITER ||
+    !env.BROKER_REFRESH_RATE_LIMITER ||
+    !env.SPOTIFY_CREDENTIAL_STORE ||
+    !String(env.BROKER_BASE_URL || "").trim() ||
+    !String(env.GITHUB_APP_ID || "").trim() ||
+    !String(env.GITHUB_APP_CLIENT_ID || "").trim() ||
+    !String(env.GITHUB_APP_CLIENT_SECRET || "").trim() ||
+    !String(env.GITHUB_APP_PRIVATE_KEY || "").trim() ||
+    !String(env.GITHUB_APP_REDIRECT_URI || "").trim() ||
+    !String(env.SPOTIFY_CLIENT_ID || "").trim() ||
+    !String(env.SPOTIFY_REDIRECT_URI || "").trim() ||
+    !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
+    !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()
+  ) return false;
+  try {
+    const brokerOrigin = new URL(String(env.BROKER_BASE_URL));
+    if (
+      brokerOrigin.protocol !== "https:" ||
+      brokerOrigin.pathname !== "/" ||
+      brokerOrigin.search ||
+      brokerOrigin.hash ||
+      !/^\d+$/.test(String(env.GITHUB_APP_ID)) ||
+      env.GITHUB_APP_REDIRECT_URI !== brokerOrigin.origin + "/auth/github/callback" ||
+      env.SPOTIFY_REDIRECT_URI !== brokerOrigin.origin + "/spotify/callback"
+    ) return false;
+    // Validate the configured App private key locally without making a GitHub
+    // API call or exposing any credential material to the readiness response.
+    await githubAppJwt(env);
+    const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
+    const probe = await stub.fetch("https://spotify-credential.internal/ready");
+    if (!probe.ok) return false;
+    const result = await probe.json();
+    return result.status === "ready";
+  } catch {
+    return false;
+  }
+}
+
+async function handleBrokerRefresh(request, env) {
+  if (request.method !== "POST") return response("Not found.", 404, { "Content-Type": "text/plain; charset=utf-8" });
+  if (env.SPOTIFY_OAUTH_ENABLED !== "true") {
+    return response(JSON.stringify({ error: "broker_not_activated" }), 503, { "Content-Type": "application/json" });
+  }
+  if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()) {
+    return response(JSON.stringify({ error: "credential_store_unavailable" }), 503, { "Content-Type": "application/json" });
+  }
+  // Apply an edge-level per-client-IP limit before expensive JWT/JWKS work.
+  // CF-Connecting-IP is supplied by Cloudflare; never trust X-Forwarded-For.
+  const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
+  await rateLimit(request, env, "broker-refresh-ip", clientIp);
+  const authorization = request.headers.get("Authorization") || "";
+  const match = authorization.match(/^Bearer ([A-Za-z0-9._-]+)$/);
+  if (!match) return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
+  const contentType = request.headers.get("Content-Type") || "";
+  if (!contentType.toLowerCase().startsWith("application/json")) {
+    return response(JSON.stringify({ error: "invalid_request" }), 415, { "Content-Type": "application/json" });
+  }
+  const length = Number(request.headers.get("Content-Length") || 0);
+  if (length > 2048) return response(JSON.stringify({ error: "invalid_request" }), 413, { "Content-Type": "application/json" });
+  let input;
+  try {
+    const raw = await request.text();
+    if (raw.length > 2048) return response(JSON.stringify({ error: "invalid_request" }), 413, { "Content-Type": "application/json" });
+    input = JSON.parse(raw);
+  } catch {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  if (!input || typeof input.operationId !== "string" || !/^[A-Za-z0-9_-]{32,128}$/.test(input.operationId)) {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  if (input.forceRefresh !== undefined && typeof input.forceRefresh !== "boolean") {
+    return response(JSON.stringify({ error: "invalid_request" }), 400, { "Content-Type": "application/json" });
+  }
+  let verifiedClaims;
+  try {
+    const allowed = String(env.SPOTIFY_REFRESH_WORKFLOW_REFS).split(",").map((item) => item.trim()).filter(Boolean);
+    verifiedClaims = await verifyActionsOidc(match[1], { allowedWorkflowRefs: allowed, audience: "shit-spotify-refresh" });
+  } catch {
+    return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
+  }
+  const authHealthWorkflowRef = `${OWNER}/${REPOSITORY}/.github/workflows/spotify-auth-health-check.yml@refs/heads/main`;
+  if (
+    input.forceRefresh === true &&
+    (verifiedClaims.workflowRef !== authHealthWorkflowRef || verifiedClaims.actorId !== "337022631")
+  ) {
+    return response(JSON.stringify({ error: "force_refresh_not_allowed" }), 403, { "Content-Type": "application/json" });
+  }
+  // Rate-limit only after OIDC verification and isolate buckets by the verified
+  // workflow_ref. Anonymous traffic cannot exhaust a shared bucket for all jobs.
+  await rateLimit(request, env, "broker-refresh", verifiedClaims.workflowRef);
+  const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
+  const result = await stub.fetch("https://spotify-credential.internal/refresh", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ operationId: input.operationId, forceRefresh: input.forceRefresh === true }),
+  });
+  const output = await result.text();
+  const headers = { "Content-Type": "application/json" };
+  const retryAfter = result.headers.get("Retry-After");
+  if (retryAfter && retryAfter.length <= 128 && !/[\r\n]/.test(retryAfter) && (/^\d{1,8}$/.test(retryAfter) || Number.isFinite(Date.parse(retryAfter)))) headers["Retry-After"] = retryAfter;
+  return response(output, result.status, headers);
+}
+
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
   let diagnosticStage = "request.initialization";
@@ -589,6 +706,39 @@ export async function handleRequest(request, env) {
         200,
         { "Content-Type": "application/json; charset=utf-8" },
       );
+    }
+    if (url.pathname === "/ready" && request.method === "GET") {
+      if (!env.AUTH_RATE_LIMITER || !env.BROKER_REFRESH_RATE_LIMITER) {
+        return response(
+          JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
+          503,
+          { "Content-Type": "application/json; charset=utf-8" },
+        );
+      }
+      const readinessLimit = await env.AUTH_RATE_LIMITER.limit({ key: "readiness:anonymous" });
+      if (!readinessLimit.success) {
+        return response(
+          JSON.stringify({ status: "rate_limited", service: "shit-auth-broker" }),
+          429,
+          { "Content-Type": "application/json; charset=utf-8", "Retry-After": "60" },
+        );
+      }
+      if (!(await credentialStoreReady(env))) {
+        return response(
+          JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
+          503,
+          { "Content-Type": "application/json; charset=utf-8" },
+        );
+      }
+      return response(
+        JSON.stringify({ status: "ready", service: "shit-auth-broker" }),
+        200,
+        { "Content-Type": "application/json; charset=utf-8" },
+      );
+    }
+    const oauthRoutes = new Set(["/", "/auth/github/start", "/auth/github/callback", "/spotify/start", "/spotify/callback", "/complete", "/internal/spotify/refresh"]);
+    if (oauthRoutes.has(url.pathname) && env.SPOTIFY_OAUTH_ENABLED !== "true") {
+      return response(JSON.stringify({ error: "broker_not_activated" }), 503, { "Content-Type": "application/json; charset=utf-8" });
     }
     diagnosticStage = "broker.base_url_presence";
     requireEnv(env, ["BROKER_BASE_URL"]);
@@ -605,6 +755,7 @@ export async function handleRequest(request, env) {
     }
     diagnosticStage = "broker.route_dispatch";
     if (url.pathname.startsWith("/internal/refresh-lock/")) return await handleRefreshLock(request, env, url);
+    if (url.pathname === "/internal/spotify/refresh") return await handleBrokerRefresh(request, env);
 
     if (url.pathname === "/" && request.method === "GET") {
       return page("SHIT Spotify authorization", "Use this secure browser flow from a phone or desktop. Sign in with the repository owner account, then approve Spotify. This process never edits playlists.", {
@@ -614,17 +765,12 @@ export async function handleRequest(request, env) {
     }
 
     if (url.pathname === "/auth/github/start" && request.method === "GET") {
-      diagnosticStage = "github_start.rate_limit";
       await rateLimit(request, env, "github-start");
-      diagnosticStage = "github_start.configuration";
       requireEnv(env, ["GITHUB_APP_CLIENT_ID", "GITHUB_APP_REDIRECT_URI"]);
-      diagnosticStage = "github_start.pkce";
       const state = randomValue(24);
       const verifier = randomValue(64);
       const challenge = await pkceChallenge(verifier);
-      diagnosticStage = "github_start.oauth_state_storage";
       await statePut(env, `oauth:github-state:${state}`, { verifier }, OAUTH_TTL);
-      diagnosticStage = "github_start.redirect";
       const target = new URL("https://github.com/login/oauth/authorize");
       target.search = new URLSearchParams({
         client_id: env.GITHUB_APP_CLIENT_ID,
@@ -649,6 +795,10 @@ export async function handleRequest(request, env) {
       requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_PRIVATE_KEY"]);
       const session = await getSession(request, env);
       if (!session) return redirect("/auth/github/start");
+      diagnosticStage = "spotify_start.credential_store_readiness";
+      if (!(await credentialStoreReady(env))) {
+        throw new BrokerError("The central Spotify credential store is not ready. No Spotify authorization was started.");
+      }
       // Do not send the user into Spotify consent while a Spotify workflow is active.
       const githubToken = await installationToken(env);
       await assertNoConcurrentSpotifyJobs(githubToken);
@@ -677,9 +827,11 @@ export async function handleRequest(request, env) {
     }
 
     if (url.pathname === "/spotify/callback" && request.method === "GET") {
+      diagnosticStage = "spotify_callback.rate_limit";
       await rateLimit(request, env, "spotify-callback");
+      diagnosticStage = "spotify_callback.configuration";
       requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_PRIVATE_KEY"]);
-      const result = await spotifyCallback(request, env, url);
+      const result = await spotifyCallback(request, env, url, (stage) => { diagnosticStage = stage; });
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_spotify_state"));
       result.headers.append("Set-Cookie", clearCookie("__Host-shit_session"));
       return result;
@@ -723,11 +875,12 @@ export default {
 
 
 // FILE OVERVIEW
-// Purpose: SHIT-wide Spotify Authorization Code + PKCE bootstrap for phone and desktop browsers.
-// Runtime: Cloudflare Worker with strongly consistent Durable Object OAuth state and an edge rate limiter.
-// Credentials: GitHub OAuth secret and repository-scoped GitHub App private key are Worker secrets.
-// Side effects: Updates only the repository SPOTIFY_REFRESH_TOKEN Actions secret, then dispatches
-//              the read-only Spotify auth-health workflow. It has no playlist-write operations.
-// Safety: GitHub owner allowlist, single-use state, session binding, PKCE, secret encryption,
-//         short-lived installation token, no token logging/return, fail-closed secret persistence.
+// Purpose: SHIT-wide OAuth recovery broker and OIDC-authenticated refresh prototype.
+// Runtime: Cloudflare Worker with transactional OAuth state, refresh coordination, credential storage and rate limiting.
+// Credentials: GitHub App credentials and (future, not yet configured) credential-store encryption key are Worker secrets.
+// Side effects: Owner-consented OAuth stores credentials only in the encrypted Durable Object and dispatches read-only auth health;
+//               OIDC refresh route returns only a short-lived access token after encrypted credential commit.
+// Safety: Exact GitHub owner/workflow identity, PKCE, one-time state, AES-GCM credential records,
+//         no token logging, no refresh-token return, no playlist endpoints or writes.
+// Status: Credential-store/OIDC route are draft prototypes; not deployed or enabled.
 // Related: auth-broker/README.md, project/goals/mobile-cloud-operation/ROADMAP.md.

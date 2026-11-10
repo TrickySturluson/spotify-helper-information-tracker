@@ -387,11 +387,12 @@ def configure():
     manager.CONFIG = Path(".github/spotify_playlist_manager_state.json")
     manager.AUDIT = Path(".github/spotify_playlist_manager_audit.jsonl")
     manager.BACKUPS = Path("playlist_backups")
-    manager.write(manager.TOKEN, {
-        "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-        "obtained_at": 0,
-        "expires_in": 0,
-    })
+    if os.environ.get("SHIT_AUTH_MODE", "").strip().lower() != "broker":
+        manager.write(manager.TOKEN, {
+            "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
+            "obtained_at": 0,
+            "expires_in": 0,
+        })
 
 
 def main():

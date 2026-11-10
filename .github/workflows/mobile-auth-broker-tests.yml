@@ -1,30 +1,50 @@
-name: SHIT Mobile Auth Broker Tests
+name: Mobile Auth Broker Tests
 
 on:
   pull_request:
     paths:
       - "auth-broker/**"
+      - ".github/workflows/spotify-auth-health-check.yml"
+      - ".github/workflows/spotify-daily-live-preflight.yml"
+      - ".github/workflows/spotify-daily-midnight-cycle.yml"
+      - ".github/workflows/spotify-daily-feedback-observation.yml"
+      - ".github/workflows/tricky-daily-snapshot-refresh.yml"
+      - ".github/workflows/spotify-reference-library.yml"
+      - ".github/workflows/spotify-playlist-manager.yml"
+      - ".github/workflows/great-migration.yml"
+      - ".github/workflows/update.yml"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
+      - "scripts/spotify/**"
+      - "scripts/music/verify_provider_credentials.py"
+      - "tests/**"
+      - "project/goals/mobile-cloud-operation/**"
       - "docs/WORKFLOWS.md"
       - "docs/README.md"
       - "docs/SPOTIFY_API_OPERATIONS.md"
-      - "project/ROADMAP.md"
-      - "project/goals/README.md"
-      - "project/goals/mobile-cloud-operation/**"
   push:
     branches:
       - "feature/**"
     paths:
       - "auth-broker/**"
+      - ".github/workflows/spotify-auth-health-check.yml"
+      - ".github/workflows/spotify-daily-live-preflight.yml"
+      - ".github/workflows/spotify-daily-midnight-cycle.yml"
+      - ".github/workflows/spotify-daily-feedback-observation.yml"
+      - ".github/workflows/tricky-daily-snapshot-refresh.yml"
+      - ".github/workflows/spotify-reference-library.yml"
+      - ".github/workflows/spotify-playlist-manager.yml"
+      - ".github/workflows/great-migration.yml"
+      - ".github/workflows/update.yml"
       - ".github/workflows/mobile-auth-broker-tests.yml"
       - ".github/workflows/deploy-mobile-auth-broker.yml"
+      - "scripts/spotify/**"
+      - "scripts/music/verify_provider_credentials.py"
+      - "tests/**"
+      - "project/goals/mobile-cloud-operation/**"
       - "docs/WORKFLOWS.md"
       - "docs/README.md"
       - "docs/SPOTIFY_API_OPERATIONS.md"
-      - "project/ROADMAP.md"
-      - "project/goals/README.md"
-      - "project/goals/mobile-cloud-operation/**"
   workflow_dispatch:
 
 concurrency:
@@ -37,7 +57,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: auth-broker
@@ -46,13 +66,15 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: "22"
-      - name: Install pinned broker dependencies
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Install pinned broker dependencies and refresh lockfile
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci --ignore-scripts
-          else
-            npm install --ignore-scripts
-          fi
+          npm install --global npm@10.9.4
+          npm --version
+          rm -f package-lock.json
+          npm install --ignore-scripts --no-audit --no-fund --legacy-peer-deps
       - name: Preserve generated dependency lockfile for review
         uses: actions/upload-artifact@v7.0.2
         with:
@@ -64,6 +86,14 @@ jobs:
         run: npm audit --audit-level=high
       - name: Run broker security unit tests
         run: npm test
+      - name: Run Cloudflare SQLite Durable Object integration tests
+        run: npm run test:durable-objects
+      - name: Test broker access-token client and manager mode
+        working-directory: .
+        run: python -m unittest discover -s tests -t . -v
+      - name: Check maintained Python script documentation
+        working-directory: .
+        run: python -m unittest tests.test_script_layout -v
       - name: Validate Worker bundle and Wrangler configuration without deploying
         run: |
           npx wrangler deploy --dry-run \
@@ -72,11 +102,13 @@ jobs:
             --var "GITHUB_APP_ID:123456" \
             --var "GITHUB_APP_REDIRECT_URI:https://broker.example.workers.dev/auth/github/callback" \
             --var "SPOTIFY_CLIENT_ID:example-spotify-client-id" \
-            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback"
+            --var "SPOTIFY_REDIRECT_URI:https://broker.example.workers.dev/spotify/callback" \
+            --var "SPOTIFY_CREDENTIAL_ACTIVE_KEY_VERSION:1" \
+            --var "SPOTIFY_REFRESH_WORKFLOW_REFS:TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-live-preflight.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-midnight-cycle.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-daily-feedback-observation.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/tricky-daily-snapshot-refresh.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-reference-library.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-playlist-manager.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/great-migration.yml@refs/heads/main,TrickySturluson/spotify-helper-information-tracker/.github/workflows/update.yml@refs/heads/main"
 
   commit-lockfile:
     needs: test
-    if: github.event_name == 'push' && github.actor == 'TrickySturluson' && github.ref == 'refs/heads/feature/mobile-spotify-reauth-reconciled'
+    if: github.event_name == 'push' && github.actor == 'TrickySturluson' && (github.ref == 'refs/heads/feature/mobile-spotify-reauth-reconciled' || github.ref == 'refs/heads/feature/oidc-broker-refresh-endpoint')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -101,8 +133,8 @@ jobs:
           fi
 
 # FILE OVERVIEW
-# Purpose: Run isolated Node tests for the mobile Spotify OAuth broker.
-# Trigger: Pushes to feature/** and pull requests touching broker source/deployment files; manual workflow_dispatch.
+# Purpose: Run broker Node/Workers integration tests and the complete repository Python regression suite for all migrated Spotify workflows.
+# Trigger: Pushes to feature/** and pull requests touching broker source, shared Spotify manager, migrated workflows, or authentication documentation; manual workflow_dispatch.
 # Credentials: Test job uses none; the owner-only lockfile commit job uses the scoped default GITHUB_TOKEN with contents: write.
 # Side effects: Installs audited dependencies, runs local tests/dry-run, and on an owner push to this feature branch commits only the generated package-lock.json.
 # Safety: No Spotify, Cloudflare, repository Secrets, or playlist permissions; write permission is isolated to the lockfile-only job.

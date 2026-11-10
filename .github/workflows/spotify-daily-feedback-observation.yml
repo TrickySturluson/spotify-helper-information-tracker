@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
   group: spotify-daily-feedback-observation
@@ -30,44 +31,15 @@ jobs:
         run: |
           python -m py_compile compat/spotify_playlist_manager.py compat/spotify_daily_feedback.py
           python -m unittest discover -s tests -t . -v
-      - name: Validate Spotify credentials
+      - name: Obtain central Spotify access token
         env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
-        run: |
-          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing repository variable SPOTIFY_CLIENT_ID" >&2; exit 1; }
-          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing repository secret SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
-      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
-        id: spotify-secret-writer
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
-          permission-secrets: write
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
 
       - name: Observe Daily outcomes
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
-        run: |
-          python - <<'PY'
-          import os
-          from pathlib import Path
-          import sys
-          sys.path.insert(0, "compat")
-          import spotify_playlist_manager as manager
-          manager.TOKEN = Path(".spotify_playlist_token.json")
-          manager.write(manager.TOKEN, {
-              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-              "obtained_at": 0,
-              "expires_in": 0,
-          })
-          PY
-          python compat/spotify_daily_feedback.py observe
+        run: python compat/spotify_daily_feedback.py observe
       - name: Audit refreshed project data
         run: python compat/audit_project.py
       - name: Persist feedback observations
@@ -88,8 +60,7 @@ jobs:
 # Behavior: Runs tests, authenticates to Spotify, executes
 #           compat/spotify_daily_feedback.py observe, audits generated data, and
 #           commits assistant_data/spotify/daily_feedback.json when it changes.
-# Credentials: Spotify client/refresh token plus a narrowly scoped GitHub App token
-#              that may persist a rotated Spotify refresh-token secret.
+# Credentials: Short-lived Spotify access tokens issued by the central OIDC broker.
 # Safety: Observation/read operations only; does not add, remove or reorder tracks.
 # API: Saved-item lookups percent-encode URIs and batch at the documented 40-URI maximum.
 #         Repository feedback state is written with contents:write.

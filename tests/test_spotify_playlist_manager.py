@@ -1,3 +1,4 @@
+import os
 import tempfile
 import io
 import urllib.error
@@ -23,6 +24,63 @@ class PlaylistManagerTests(unittest.TestCase):
             with self.assertRaisesRegex(manager.ManagerError, "blocked before contacting Spotify"):
                 spotify.bearer()
         token_post.assert_not_called()
+
+    def test_broker_access_token_is_used_without_loading_or_refreshing_a_refresh_token(self):
+        with patch.dict("os.environ", {
+            "SHIT_BROKER_ACCESS_TOKEN": "short-lived-broker-access-token",
+            "SHIT_BROKER_ACCESS_TOKEN_EXPIRES_IN": "3600",
+        }, clear=True), patch.object(manager, "check_spotify_cooldown"), patch.object(
+            manager, "read", side_effect=AssertionError("broker mode must not read the legacy token file")
+        ), patch.object(manager, "token_post") as token_post:
+            spotify = manager.Spotify()
+            self.assertTrue(spotify.broker_managed)
+            self.assertNotIn("refresh_token", spotify.t)
+            self.assertEqual(spotify.bearer(), "short-lived-broker-access-token")
+            token_post.assert_not_called()
+
+    def test_broker_required_mode_never_falls_back_to_legacy_token_file(self):
+        with patch.dict("os.environ", {"SHIT_AUTH_MODE": "broker"}, clear=True), patch.object(
+            manager, "check_spotify_cooldown"
+        ), patch.object(manager, "read", side_effect=AssertionError("legacy token file must not be read")):
+            with self.assertRaisesRegex(manager.ManagerError, "requires a broker-issued"):
+                manager.Spotify()
+
+    def test_broker_mode_forbids_refresh_token_secret_persistence(self):
+        with patch.dict("os.environ", {
+            "SHIT_AUTH_MODE": "broker",
+            "SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN": "1",
+            "GH_TOKEN": "must-not-be-used",
+            "GITHUB_REPOSITORY": "TrickySturluson/spotify-helper-information-tracker",
+        }, clear=True), patch.object(manager.subprocess, "run") as run:
+            with self.assertRaisesRegex(manager.ManagerError, "must never persist refresh tokens"):
+                manager.persist_refresh_token("sensitive-refresh-token")
+        run.assert_not_called()
+
+    def test_expired_broker_access_token_renews_only_through_the_central_broker(self):
+        from scripts.spotify.broker_access_token import BrokerTokenError
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.broker_managed = True
+        spotify.t = {"access_token": "expired-broker-access-token", "obtained_at": 0, "expires_in": 60}
+        with patch("scripts.spotify.broker_access_token.request_broker_access_token", side_effect=BrokerTokenError("temporary broker failure", category="broker_unavailable")), patch.object(
+            manager.time, "time", return_value=1000
+        ), patch.object(manager, "token_post") as token_post:
+            with self.assertRaisesRegex(manager.ManagerError, "central broker could not renew"):
+                spotify.bearer()
+            token_post.assert_not_called()
+
+    def test_expired_broker_access_token_can_be_renewed_without_direct_refresh(self):
+        spotify = manager.Spotify.__new__(manager.Spotify)
+        spotify.broker_managed = True
+        spotify.t = {"access_token": "expired-broker-access-token", "obtained_at": 0, "expires_in": 60}
+        with patch("scripts.spotify.broker_access_token.request_broker_access_token", return_value=("renewed-broker-access-token", 3600)) as broker, patch.object(
+            manager.time, "time", return_value=1000
+        ), patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}, clear=True), patch("builtins.print") as output, patch.object(manager, "token_post") as token_post:
+            self.assertEqual(spotify.bearer(), "renewed-broker-access-token")
+            self.assertEqual(spotify.t["expires_in"], 3600)
+            self.assertEqual(os.environ["SHIT_BROKER_ACCESS_TOKEN"], "renewed-broker-access-token")
+            broker.assert_called_once_with()
+            output.assert_called_once_with("::add-mask::renewed-broker-access-token")
+            token_post.assert_not_called()
 
     def test_unknown_playlists_are_locked_by_default(self):
         with tempfile.TemporaryDirectory() as directory:

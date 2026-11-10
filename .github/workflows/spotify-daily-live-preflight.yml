@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: tricky-daily-live-preflight
@@ -31,13 +32,15 @@ jobs:
           python-version: "3.11"
       - name: Compile preflight and manager
         run: python -m py_compile scripts/spotify/spotify_daily_preflight.py scripts/spotify/spotify_playlist_manager.py
+      - name: Obtain central Spotify access token
+        env:
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
       - name: Verify live Spotify authentication and Tricky Daily access (read-only)
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
         run: |
           test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
-          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
           python scripts/spotify/spotify_daily_preflight.py
       - name: Confirm no playlist mutation is permitted
         run: |
@@ -48,5 +51,5 @@ jobs:
 # FILE OVERVIEW
 # Purpose: Periodically validate live Spotify auth and Tricky Daily access.
 # Trigger: Push of the dedicated test trigger, manual dispatch, and every six hours.
-# Safety: Read-only Spotify GET requests; contents:read; never changes playlists.
+# Safety: OIDC broker access; read-only Spotify GET requests; contents:read and id-token:write; never changes playlists.
 # -----------------------------------------------------------------------------

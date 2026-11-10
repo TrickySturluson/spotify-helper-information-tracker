@@ -4,13 +4,15 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "test": "node --test",
-    "deploy": "wrangler deploy"
-  },
-  "dependencies": {
-    "libsodium-wrappers": "0.8.4"
+    "test": "node --test test/*.test.js",
+    "deploy": "wrangler deploy",
+    "test:durable-objects": "vitest run --config vitest.config.js"
   },
   "devDependencies": {
-    "wrangler": "4.158.0"
+    "wrangler": "4.158.0",
+    "@cloudflare/vitest-plugin": "1.6.0",
+    "@msw/cloudflare": "0.2.0",
+    "msw": "3.0.4",
+    "vitest": "4.1.11"
   }
 }

@@ -2,6 +2,7 @@ name: SHIT — Tricky Daily Midnight Cycle
 
 on:
   push:
+    branches: [main]
     paths:
       - ".github/test-triggers/tricky-daily-live-cycle.json"
   workflow_dispatch:
@@ -21,6 +22,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
   group: tricky-daily-midnight-cycle
@@ -41,51 +43,18 @@ jobs:
         run: |
           python -m py_compile compat/spotify_daily_cycle.py compat/spotify_playlist_manager.py compat/spotify_discovery.py compat/spotify_daily_feedback.py compat/spotify_listening_trends.py
           python -m unittest discover -s tests -t . -v
-      - name: Validate Spotify credentials
+      - name: Validate non-Spotify credentials
         env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: |
-          test -n "$SPOTIFY_CLIENT_ID" || { echo "Missing SPOTIFY_CLIENT_ID" >&2; exit 1; }
-          test -n "$SPOTIFY_REFRESH_TOKEN" || { echo "Missing SPOTIFY_REFRESH_TOKEN" >&2; exit 1; }
-          test -n "$LASTFM_API_KEY" || { echo "Missing LASTFM_API_KEY" >&2; exit 1; }
-      - name: Mint narrowly scoped GitHub App token for Spotify secret rotation
-        id: spotify-secret-writer
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.SHIT_GITHUB_APP_CLIENT_ID }}
-          private-key: ${{ secrets.SHIT_GITHUB_APP_PRIVATE_KEY }}
-          permission-secrets: write
-
-      - name: Prepare Spotify token
+        run: test -n "$LASTFM_API_KEY" || { echo "Missing LASTFM_API_KEY" >&2; exit 1; }
+      - name: Obtain central Spotify access token
         env:
-          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
-        run: |
-          python - <<'PY'
-          import os
-          from pathlib import Path
-          import sys
-          sys.path.insert(0, "compat")
-          import spotify_playlist_manager as manager
-          manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
-          manager.TOKEN = Path(".spotify_playlist_token.json")
-          manager.write(manager.TOKEN, {
-              "refresh_token": os.environ["SPOTIFY_REFRESH_TOKEN"],
-              "obtained_at": 0,
-              "expires_in": 0,
-          })
-          PY
+          SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
+        run: python scripts/spotify/broker_access_token.py
       - name: Cycle Tricky Daily
         id: daily-cycle
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          GH_TOKEN: ${{ steps.spotify-secret-writer.outputs.token }}
-          SHIT_PERSIST_ROTATED_SPOTIFY_TOKEN: "1"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
         run: |

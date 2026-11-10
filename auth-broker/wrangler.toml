@@ -3,9 +3,7 @@ main = "src/index.js"
 compatibility_date = "2026-11-08"
 preview_urls = true
 
-# Cloudflare Workers Builds invokes `wrangler preview` for pull-request previews.
-# This empty block enables that preview command without changing production behavior.
-# Previews use isolated Durable Object namespaces and a separate rate-limit namespace.
+# Pull-request previews use isolated Durable Object namespaces and a separate rate-limit namespace.
 [[previews.durable_objects.bindings]]
 name = "OAUTH_STATE"
 class_name = "OAuthStateStore"
@@ -14,10 +12,20 @@ class_name = "OAuthStateStore"
 name = "SPOTIFY_REFRESH_LEASE"
 class_name = "SpotifyRefreshLease"
 
+[[previews.durable_objects.bindings]]
+name = "SPOTIFY_CREDENTIAL_STORE"
+class_name = "SpotifyCredentialStore"
+
 [[previews.ratelimits]]
 name = "AUTH_RATE_LIMITER"
 namespace_id = "20261109"
 simple = { limit = 20, period = 60 }
+
+[[previews.ratelimits]]
+name = "BROKER_REFRESH_RATE_LIMITER"
+namespace_id = "20261111"
+simple = { limit = 60, period = 60 }
+
 
 # Public runtime variables are injected from GitHub Actions repository variables
 # by deploy-mobile-auth-broker.yml using Wrangler's --var flags.
@@ -38,14 +46,28 @@ new_sqlite_classes = ["OAuthStateStore"]
 tag = "v2"
 new_sqlite_classes = ["SpotifyRefreshLease"]
 
+[[durable_objects.bindings]]
+name = "SPOTIFY_CREDENTIAL_STORE"
+class_name = "SpotifyCredentialStore"
+
+[[migrations]]
+tag = "v3"
+new_sqlite_classes = ["SpotifyCredentialStore"]
+
 # Cloudflare's edge rate limiter protects each OAuth entry/callback route.
 [[ratelimits]]
 name = "AUTH_RATE_LIMITER"
 namespace_id = "20261108"
 simple = { limit = 20, period = 60 }
 
+[[ratelimits]]
+name = "BROKER_REFRESH_RATE_LIMITER"
+namespace_id = "20261110"
+simple = { limit = 60, period = 60 }
+
 [observability]
 enabled = true
+redact_query_string = true
 
 [observability.logs]
 invocation_logs = true
