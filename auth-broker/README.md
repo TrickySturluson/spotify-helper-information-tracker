@@ -111,7 +111,7 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Verified on current PR #188 head `4634c8ae41688665fb16efe9e4b9e3565265f7bb` (2026-11-10):
+Latest code-bearing PR #188 commit `4634c8ae41688665fb16efe9e4b9e3565265f7bb` passed exact-head CI and preview checks on 2026-11-10. The subsequent documentation-only status sync `7721ae6b7e6f449253f1adce3e197b019032fecd` also passed CI and preview checks; no code changed after the validated code-bearing commit:
 
 - Cloudflare Workers Builds built and deployed the exact-head preview for `4634c8ae41688665fb16efe9e4b9e3565265f7bb`; the matching GitHub preview-health check passed.
 - The exact-head GitHub preview check passed, including the non-secret live `GET /health` probe.
