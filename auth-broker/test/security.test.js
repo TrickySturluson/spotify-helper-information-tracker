@@ -184,7 +184,7 @@ test("Spotify rate limits use only a verified owner session, never a caller-supp
   const validSessionId = "A".repeat(43);
   const keys = [];
   const env = {
-    BROKER_REFRESH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
+    AUTH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
     OAUTH_STATE: {
       idFromName: () => "state",
       get: () => ({
