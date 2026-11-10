@@ -149,6 +149,46 @@ test("Spotify callback reports a fixed safe stage when owner session validation 
   }
 });
 
+test("Spotify consent is not started until the central credential store is ready", async () => {
+  const sessionId = "S".repeat(43);
+  const originalError = console.error;
+  let diagnostic;
+  console.error = (value) => { diagnostic = value; };
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_CLIENT_ID: "spotify-client",
+    SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
+    GITHUB_APP_ID: "123456",
+    GITHUB_APP_PRIVATE_KEY: "not-used-before-readiness",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    OAUTH_STATE: {
+      idFromName: () => "state",
+      get: () => ({
+        fetch: async (_url, init) => {
+          const input = await new Request("https://state.internal", init).json();
+          if (input.key === "oauth:session:" + sessionId) {
+            return Response.json({ value: { login: "TrickySturluson" } });
+          }
+          return new Response("{}", { status: 404 });
+        },
+      }),
+    },
+  };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/spotify/start", {
+      headers: { Cookie: "__Host-shit_session=" + sessionId },
+    }), env);
+    const body = await result.text();
+    assert.equal(result.status, 200);
+    assert.match(body, /No Spotify authorization was started/);
+    assert.equal(result.headers.get("Location"), null);
+    assert.equal(diagnostic.stage, "spotify_start.credential_store_readiness");
+  } finally {
+    console.error = originalError;
+  }
+});
+
 test("GitHub owner check is case-insensitive but rejects other identities", () => {
   assert.equal(isAuthorizedOwner("TrickySturluson"), true);
   assert.equal(isAuthorizedOwner("trickysturluson"), true);
