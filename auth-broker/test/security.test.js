@@ -208,7 +208,7 @@ test("Spotify rate limits use only a verified owner session, never a caller-supp
   assert.deepEqual(keys, ["spotify-start:anonymous", `spotify-start:${validSessionId}`]);
 });
 
-test("broker refresh rate limits use the verified workflow identity instead of one shared anonymous bucket", async () => {
+test("broker refresh rate limits separate client IPs and verified workflows", async () => {
   const keys = [];
   let sessionLookups = 0;
   const env = {
@@ -222,8 +222,9 @@ test("broker refresh rate limits use the verified workflow identity instead of o
     },
   };
   const workflowRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
-  await rateLimit(new Request("https://broker.example/internal/spotify/refresh", { method: "POST" }), env, "broker-refresh", workflowRef);
-  assert.deepEqual(keys, ["broker-refresh:" + workflowRef]);
+  await rateLimit(new Request("https://broker.example/internal/spotify/refresh", { method: "POST" }), env, "broker-refresh-ip", "203.0.113.10");
+  await rateLimit(new Request("https://broker.example/internal/spotify/refresh", { method: "POST" }), env, "broker-refresh-workflow", workflowRef);
+  assert.deepEqual(keys, ["broker-refresh-ip:203.0.113.10", "broker-refresh-workflow:" + workflowRef]);
   assert.equal(sessionLookups, 0);
 });
 
