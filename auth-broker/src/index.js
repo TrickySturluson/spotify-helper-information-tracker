@@ -592,6 +592,10 @@ async function handleBrokerRefresh(request, env) {
   if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()) {
     return response(JSON.stringify({ error: "credential_store_unavailable" }), 503, { "Content-Type": "application/json" });
   }
+  // Apply an edge-level per-client-IP limit before expensive JWT/JWKS work.
+  // CF-Connecting-IP is supplied by Cloudflare; never trust X-Forwarded-For.
+  const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
+  await rateLimit(request, env, "broker-refresh-ip", clientIp);
   const authorization = request.headers.get("Authorization") || "";
   const match = authorization.match(/^Bearer ([A-Za-z0-9._-]+)$/);
   if (!match) return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
