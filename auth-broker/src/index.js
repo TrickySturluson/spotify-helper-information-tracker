@@ -588,6 +588,25 @@ async function handleRefreshLock(request, env, url) {
 }
 
 
+async function credentialStoreReady(env) {
+  if (
+    !env.BROKER_REFRESH_RATE_LIMITER ||
+    !env.SPOTIFY_CREDENTIAL_STORE ||
+    !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
+    !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim() ||
+    !String(env.SPOTIFY_CLIENT_ID || "").trim()
+  ) return false;
+  try {
+    const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
+    const probe = await stub.fetch("https://spotify-credential.internal/ready");
+    if (!probe.ok) return false;
+    const result = await probe.json();
+    return result.status === "ready";
+  } catch {
+    return false;
+  }
+}
+
 async function handleBrokerRefresh(request, env) {
   if (request.method !== "POST") return response("Not found.", 404, { "Content-Type": "text/plain; charset=utf-8" });
   if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim()) {
@@ -676,36 +695,18 @@ export async function handleRequest(request, env) {
           { "Content-Type": "application/json; charset=utf-8", "Retry-After": "60" },
         );
       }
-      if (
-        !env.SPOTIFY_CREDENTIAL_STORE ||
-        !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim() ||
-        !String(env.SPOTIFY_REFRESH_WORKFLOW_REFS || "").trim() ||
-        !String(env.SPOTIFY_CLIENT_ID || "").trim()
-      ) {
+      if (!(await credentialStoreReady(env))) {
         return response(
           JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
           503,
           { "Content-Type": "application/json; charset=utf-8" },
         );
       }
-      try {
-        const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
-        const probe = await stub.fetch("https://spotify-credential.internal/ready");
-        if (!probe.ok) throw new Error("credential store unavailable");
-        const result = await probe.json();
-        if (result.status !== "ready") throw new Error("credential store unavailable");
-        return response(
-          JSON.stringify({ status: "ready", service: "shit-auth-broker" }),
-          200,
-          { "Content-Type": "application/json; charset=utf-8" },
-        );
-      } catch {
-        return response(
-          JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
-          503,
-          { "Content-Type": "application/json; charset=utf-8" },
-        );
-      }
+      return response(
+        JSON.stringify({ status: "ready", service: "shit-auth-broker" }),
+        200,
+        { "Content-Type": "application/json; charset=utf-8" },
+      );
     }
     diagnosticStage = "broker.base_url_presence";
     requireEnv(env, ["BROKER_BASE_URL"]);
@@ -762,6 +763,10 @@ export async function handleRequest(request, env) {
       requireEnv(env, ["SPOTIFY_CLIENT_ID", "SPOTIFY_REDIRECT_URI", "GITHUB_APP_ID", "GITHUB_APP_PRIVATE_KEY"]);
       const session = await getSession(request, env);
       if (!session) return redirect("/auth/github/start");
+      diagnosticStage = "spotify_start.credential_store_readiness";
+      if (!(await credentialStoreReady(env))) {
+        throw new BrokerError("The central Spotify credential store is not ready. No Spotify authorization was started.");
+      }
       // Do not send the user into Spotify consent while a Spotify workflow is active.
       const githubToken = await installationToken(env);
       await assertNoConcurrentSpotifyJobs(githubToken);
