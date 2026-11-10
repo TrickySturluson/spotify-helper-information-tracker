@@ -490,6 +490,14 @@ test("deployment workflow injects every public runtime variable without dashboar
   assert.match(workflow, /if: github\.actor_id == '337022631'/);
   assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
   assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
+  const disabledDeploy = workflow.indexOf('--var "SPOTIFY_OAUTH_ENABLED:false"');
+  const redactionCheck = workflow.indexOf("- name: Verify OAuth query-string redaction");
+  const enabledDeploy = workflow.indexOf('--var "SPOTIFY_OAUTH_ENABLED:true"');
+  const redactionRecheck = workflow.indexOf("- name: Reverify OAuth query-string redaction after activation");
+  const readinessCheck = workflow.indexOf("- name: Verify deployed broker readiness");
+  assert.ok(disabledDeploy >= 0 && disabledDeploy < redactionCheck);
+  assert.ok(redactionCheck < enabledDeploy && enabledDeploy < redactionRecheck);
+  assert.ok(redactionRecheck < readinessCheck);
 });
 
 
@@ -511,6 +519,7 @@ test("Worker observability redacts OAuth callback query strings", async () => {
 test("broker source uses central encrypted storage and never writes a refresh-token secret", async () => {
   const source = await readFile(new URL("../src/index.js", import.meta.url), "utf8");
   assert.match(source, /const AUTH_WORKFLOW = "spotify-auth-health-check\.yml"/);
+  assert.match(source, /env\.SPOTIFY_OAUTH_ENABLED !== "true"/);
   assert.match(source, /authorizeCentralCredential\(env, tokenData\.refresh_token, spotifyIdentity\.id\)/);
   assert.match(source, /actions\/workflows\/\$\{AUTH_WORKFLOW\}\/dispatches/);
   assert.doesNotMatch(source, /actions\/secrets|SPOTIFY_REFRESH_TOKEN|saveRefreshToken/);
