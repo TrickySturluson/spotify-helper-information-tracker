@@ -418,6 +418,7 @@ test("deployment workflow injects every public runtime variable without dashboar
   assert.ok(workflowRefs.every((ref) => !ref.includes("*")));
   assert.match(workflow, /SPOTIFY_REFRESH_WORKFLOW_REFS=\$expected_workflow_refs/);
   assert.match(workflow, /BROKER_BASE_URL must use HTTPS/);
+  assert.match(workflow, /SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED/);
   assert.match(workflow, /GitHub callback URI must match BROKER_BASE_URL/);
   assert.match(workflow, /Spotify callback URI must match BROKER_BASE_URL/);
 });
