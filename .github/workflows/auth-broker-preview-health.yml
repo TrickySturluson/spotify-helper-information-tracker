@@ -67,9 +67,23 @@ jobs:
           echo "::error::Preview health endpoint did not return the expected non-secret readiness response."
           exit 1
 
+      - name: Verify the preview stays OAuth-disabled by default
+        env:
+          PREVIEW_URL: https://feature-oidc-broker-refresh-endpoint-shit-auth-broker.trickysturluson.workers.dev
+        run: |
+          status="$(curl --silent --show-error --max-time 10 \
+            --output /tmp/broker-disabled.json \
+            --write-out "%{http_code}" \
+            "${PREVIEW_URL}/" || true)"
+          if [ "${status}" != "503" ] || ! jq -e '.error == "broker_not_activated"' /tmp/broker-disabled.json >/dev/null 2>&1; then
+            echo "::error::The branch preview must remain OAuth-disabled unless explicitly activated by the guarded production workflow."
+            exit 1
+          fi
+          echo "Preview is live but OAuth remains disabled by default."
+
 # FILE OVERVIEW
 # Purpose: Independently probe the deployed Cloudflare auth-broker preview after its exact-commit build succeeds.
 # Trigger: Pushes to the consolidated PR #188 OIDC integration branch when broker code or this smoke-test workflow changes.
 # Credentials: Uses only the short-lived GitHub Actions GITHUB_TOKEN with checks:read; the HTTP health probe is unauthenticated and reveals no secrets.
-# Side effects: Read-only GitHub check polling and GET /health on the PR #188 branch preview. No OAuth, credential, Worker, playlist, or repository writes.
-# Safety: Waits for the Cloudflare check on GITHUB_SHA before probing; tests only the non-secret liveness response.
+# Side effects: Read-only GitHub check polling and GET /health plus GET / on the PR #188 branch preview. No OAuth, credential, Worker, playlist, or repository writes.
+# Safety: Waits for the Cloudflare check on GITHUB_SHA before probing; confirms liveness and that the preview remains OAuth-disabled by default.
