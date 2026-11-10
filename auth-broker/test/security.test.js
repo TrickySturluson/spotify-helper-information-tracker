@@ -33,6 +33,7 @@ test("readiness fails closed unless broker config and Durable Object keyring are
   assert.deepEqual(await missing.json(), { status: "not_ready", service: "shit-auth-broker" });
 
   let probedUrl = "";
+  const appPrivateKey = generateKeyPairSync("rsa", { modulusLength: 2048 }).privateKey.export({ type: "pkcs8", format: "pem" });
   const ready = await handleRequest(
     new Request("https://broker.example/ready"),
     {
@@ -40,7 +41,7 @@ test("readiness fails closed unless broker config and Durable Object keyring are
       GITHUB_APP_ID: "12345",
       GITHUB_APP_CLIENT_ID: "github-client-id",
       GITHUB_APP_CLIENT_SECRET: "github-client-secret",
-      GITHUB_APP_PRIVATE_KEY: "private-key",
+      GITHUB_APP_PRIVATE_KEY: appPrivateKey,
       GITHUB_APP_REDIRECT_URI: "https://broker.example/auth/github/callback",
       SPOTIFY_CLIENT_ID: "public-client-id",
       SPOTIFY_REDIRECT_URI: "https://broker.example/spotify/callback",
