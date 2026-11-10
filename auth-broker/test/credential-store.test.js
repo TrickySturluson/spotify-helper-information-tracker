@@ -469,7 +469,11 @@ test("owner-consented authorization recovers only a blocked credential for the s
   const record = await storage.get("credential");
   assert.equal(record.status, "ready");
   assert.equal(record.version, 2);
+  assert.equal(record.lastOperationId, "R".repeat(43));
   assert.equal(JSON.stringify(record).includes("new-owner-approved-refresh-token"), false);
+  const replay = await store.fetch(request("/refresh", { operationId: "R".repeat(43) }));
+  assert.equal(replay.status, 409);
+  assert.equal((await replay.json()).error, "operation_already_committed");
 });
 
 test("explicit Spotify 429 releases the reservation and preserves the existing credential", async () => {
