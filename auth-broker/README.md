@@ -86,7 +86,7 @@ The following is a read-only reconciliation of the live Cloudflare account. Secr
 - Production secret metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are all `secret_text` bindings. Their values were not read. The keyring's independent backup is not verified.
 - Production Durable Object bindings currently include `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`, but not `SPOTIFY_CREDENTIAL_STORE`; the PR's v3 credential-store migration has not been applied.
 - Production observability and invocation logs are enabled, but metadata currently reports `redact_query_string = false`. OAuth callback requests contain one-time `code` and `state` query parameters. Treat this as a production release blocker: do not use the production OAuth callback until query-string redaction is active. This PR now sets `redact_query_string = true` in Wrangler and verifies the live setting after deployment.
-- The PR #188 preview for exact head `9b5fbe49229431f333d9eea5a560cfe029698507` built and deployed successfully; its non-secret `GET /health` check passed. Preview success is not production deployment, credential-store readiness, or live OAuth verification.
+- The PR #188 preview for exact head `4634c8ae41688665fb16efe9e4b9e3565265f7bb` built and deployed successfully; its non-secret `GET /health` check passed. Preview success is not production deployment, credential-store readiness, or live OAuth verification.
 
 ## Failure and recovery semantics
 
@@ -111,9 +111,9 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Verified on PR #188 head `9b5fbe49229431f333d9eea5a560cfe029698507` (2026-11-10):
+Verified on current PR #188 head `4634c8ae41688665fb16efe9e4b9e3565265f7bb` (2026-11-10):
 
-- Cloudflare Workers Builds built and deployed the exact-head preview (`19102e32-a9bb-4b63-98c1-ecaa5953fd22`); the matching GitHub preview-health check passed.
+- Cloudflare Workers Builds built and deployed the exact-head preview for `4634c8ae41688665fb16efe9e4b9e3565265f7bb`; the matching GitHub preview-health check passed.
 - The exact-head GitHub preview check passed, including the non-secret live `GET /health` probe.
 - Mobile Auth Broker Tests passed: dependency audit, broker security unit tests, Cloudflare SQLite Durable Object integration tests (including readiness), Python broker-client/manager tests, maintained-script documentation, and non-deploying Wrangler validation.
 - Daily curator regression tests passed.
