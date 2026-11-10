@@ -94,7 +94,7 @@ The following is a read-only reconciliation of the live Cloudflare account. Secr
 - Production secret metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are all `secret_text` bindings. Their values were not read. The keyring's independent backup is not verified.
 - Production Durable Object bindings currently include `OAUTH_STATE` and `SPOTIFY_REFRESH_LEASE`, but not `SPOTIFY_CREDENTIAL_STORE`; the PR's v3 credential-store migration has not been applied.
 - Production observability and invocation logs are enabled, but metadata currently reports `redact_query_string = false`. OAuth callback requests contain one-time `code` and `state` query parameters. Treat this as a production release blocker: do not use the production OAuth callback until query-string redaction is active. This PR now sets `redact_query_string = true` in Wrangler and verifies the live setting after deployment.
-- The PR #188 preview for code-bearing head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` built and its non-secret `GET /health` check passed. The latest preview workflow also checks that the preview root stays disabled with HTTP 503 `broker_not_activated`. The disabled-route guard now runs before canonical base-URL validation so the disabled state remains explicit even when preview-only configuration is incomplete; exact-head validation is in progress. Preview success is not production deployment, credential-store readiness, or live OAuth verification.
+- The PR #188 preview for exact head `065fbb5f4da6b2e7c5ec4c21bf5fe4e2ad50561f` built successfully. Its exact-head smoke test confirmed `GET /health` returns 200 and the root route returns HTTP 503 `broker_not_activated`; the branch preview is live but OAuth remains disabled by default. Preview success is not production deployment, credential-store readiness, or live OAuth verification.
 
 ## Failure and recovery semantics
 
@@ -120,7 +120,7 @@ Unit tests do not prove production readiness. Required end-to-end evidence inclu
 
 ## Current status
 
-Code-bearing PR #188 head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` passed the full Mobile Auth Broker Tests suite and exact-head Cloudflare preview health check on 2026-11-10. The latest branch head `59b403c630aa8be910386a98e2addf3e1d476ae7` includes the live preview assertion and the earlier fail-closed activation guard; its exact-head validation is running.
+Code-bearing PR #188 head `8848b5b07782cb7b316eaf333ed68c3c05c8c946` passed the full Mobile Auth Broker Tests suite and exact-head Cloudflare preview health check on 2026-11-10. The latest branch head `065fbb5f4da6b2e7c5ec4c21bf5fe4e2ad50561f` includes the live preview assertion and the earlier fail-closed activation guard. Its exact-head preview smoke test passed; broker security unit tests and Durable Object integration tests have also passed on this head, with the remaining client/documentation/Wrangler checks still running.
 
 - Cloudflare Workers Builds successfully built the exact code-bearing head `8848b5b07782cb7b316eaf333ed68c3c05c8c946`; the matching preview check confirmed the non-secret `GET /health` response.
 - Mobile Auth Broker Tests passed on that code-bearing head: dependency audit, broker security unit tests, Cloudflare SQLite Durable Object integration tests, Python broker-client/manager tests, maintained-script documentation, and non-deploying Wrangler validation.
