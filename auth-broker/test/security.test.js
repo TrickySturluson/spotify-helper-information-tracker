@@ -24,6 +24,41 @@ test("health endpoint is non-secret and bypasses OAuth configuration", async () 
   assert.deepEqual(await result.json(), { status: "ok", service: "shit-auth-broker" });
 });
 
+test("OAuth browser routes and broker refresh stay disabled until explicit activation", async () => {
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "false",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+  };
+  const landing = await handleRequest(new Request("https://broker.example/"), env);
+  assert.equal(landing.status, 503);
+  assert.deepEqual(await landing.json(), { error: "broker_not_activated" });
+
+  const refresh = await handleRequest(new Request("https://broker.example/internal/spotify/refresh", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ operationId: "R".repeat(43) }),
+  }), env);
+  assert.equal(refresh.status, 503);
+  assert.deepEqual(await refresh.json(), { error: "broker_not_activated" });
+
+  let storeProbes = 0;
+  const readiness = await handleRequest(new Request("https://broker.example/ready"), {
+    ...env,
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: (name) => name,
+      get: () => ({ fetch: async () => { storeProbes += 1; return Response.json({ status: "ready" }); } }),
+    },
+    SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS: "configured",
+    SPOTIFY_REFRESH_WORKFLOW_REFS: "approved",
+    SPOTIFY_CLIENT_ID: "client",
+  });
+  assert.equal(readiness.status, 503);
+  assert.deepEqual(await readiness.json(), { status: "not_ready", service: "shit-auth-broker" });
+  assert.equal(storeProbes, 0);
+});
+
 test("readiness fails closed unless broker config and Durable Object keyring are ready", async () => {
   const missing = await handleRequest(
     new Request("https://broker.example/ready"),
