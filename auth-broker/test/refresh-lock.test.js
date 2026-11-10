@@ -205,6 +205,7 @@ test("broker refresh route authenticates exact OIDC workflow and forwards only o
   const env = {
     BROKER_BASE_URL: "https://broker.example",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: claims.workflow_ref,
     SPOTIFY_CREDENTIAL_STORE: {
       idFromName: (name) => { assert.equal(name, "spotify-primary"); return "credential-id"; },
@@ -249,6 +250,7 @@ test("broker refresh route rejects wrong-audience OIDC before touching credentia
   const env = {
     BROKER_BASE_URL: "https://broker.example",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: claims.workflow_ref,
     SPOTIFY_CREDENTIAL_STORE: {
       idFromName: () => "credential-id",
@@ -284,6 +286,7 @@ test("forced access-token refresh is rejected for every workflow except the exac
   const env = {
     BROKER_BASE_URL: "https://broker.example",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: workflowRef,
     SPOTIFY_CREDENTIAL_STORE: {
       idFromName: () => "credential-id",
