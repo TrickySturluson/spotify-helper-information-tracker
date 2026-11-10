@@ -204,7 +204,7 @@ export class SpotifyCredentialStore {
       return json({ error: "verified_account_required" }, 400);
     }
     const outcome = await this.ctx.storage.transaction(async (txn) => {
-      const current = await txn.get("credential");
+      let current = await txn.get("credential");
       if (!current) {
         const encrypted = await encryptRefreshToken(input.refreshToken, keyring.activeKey, 1, input.accountId, keyring.activeVersion);
         await txn.put("credential", {
@@ -212,6 +212,12 @@ export class SpotifyCredentialStore {
           credential: encrypted, updatedAt: Date.now(),
         });
         return { initialized: true, version: 1 };
+      }
+      // A worker may have died after reserving a refresh. Once its durable
+      // operation TTL has elapsed, owner-consented OAuth can recover directly
+      // instead of requiring an extra workflow run to mark it blocked.
+      if (current.status === "refreshing" && Number.isFinite(current.expiresAt) && current.expiresAt <= Date.now()) {
+        current = { ...current, status: "reauthorization_required", lastOperationId: current.lastOperationId ?? current.operationId };
       }
       if (current.status !== "reauthorization_required") return { error: "credential_not_eligible_for_reauthorization" };
       if (current.accountId !== input.accountId) return { error: "spotify_account_change_requires_owner_review" };
