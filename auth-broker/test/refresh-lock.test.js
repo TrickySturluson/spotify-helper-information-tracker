@@ -243,6 +243,7 @@ test("broker refresh route authenticates exact OIDC workflow and forwards only o
   }] }), { status: 200 });
   const env = {
     BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: claims.workflow_ref,
@@ -288,6 +289,7 @@ test("broker refresh route rejects wrong-audience OIDC before touching credentia
   }] }), { status: 200 });
   const env = {
     BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: claims.workflow_ref,
@@ -324,6 +326,7 @@ test("forced refresh requires the owner actor even for the auth-health workflow"
   }] }), { status: 200 });
   const env = {
     BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: workflowRef,
@@ -360,6 +363,7 @@ test("forced access-token refresh is rejected for every workflow except the exac
   }] }), { status: 200 });
   const env = {
     BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
     SPOTIFY_REFRESH_WORKFLOW_REFS: workflowRef,
