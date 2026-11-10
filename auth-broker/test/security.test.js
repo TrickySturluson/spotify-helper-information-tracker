@@ -213,7 +213,7 @@ test("broker refresh rate limits separate client IPs and verified workflows", as
   const keys = [];
   let sessionLookups = 0;
   const env = {
-    AUTH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } },
     OAUTH_STATE: {
       idFromName: () => "state",
       get: () => {
@@ -352,7 +352,7 @@ test("deployment workflow injects every public runtime variable without dashboar
   const config = await readFile(new URL("../wrangler.toml", import.meta.url), "utf8");
   const workflow = await readFile(new URL("../../.github/workflows/deploy-mobile-auth-broker.yml", import.meta.url), "utf8");
   assert.match(config, /name = "BROKER_REFRESH_RATE_LIMITER"/);
-  assert.match(config, /simple = \\{ limit = 60, period = 60 \\}/);
+  assert.match(config, /simple = \{ limit = 60, period = 60 \}/);
   assert.doesNotMatch(config, /^\[vars\]/m);
   for (const name of [
     "BROKER_BASE_URL",
