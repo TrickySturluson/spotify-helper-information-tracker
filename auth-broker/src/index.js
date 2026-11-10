@@ -647,7 +647,10 @@ async function handleBrokerRefresh(request, env) {
     return response(JSON.stringify({ error: "unauthorized" }), 401, { "Content-Type": "application/json" });
   }
   const authHealthWorkflowRef = `${OWNER}/${REPOSITORY}/.github/workflows/spotify-auth-health-check.yml@refs/heads/main`;
-  if (input.forceRefresh === true && verifiedClaims.workflowRef !== authHealthWorkflowRef) {
+  if (
+    input.forceRefresh === true &&
+    (verifiedClaims.workflowRef !== authHealthWorkflowRef || verifiedClaims.actorId !== "337022631")
+  ) {
     return response(JSON.stringify({ error: "force_refresh_not_allowed" }), 403, { "Content-Type": "application/json" });
   }
   // Rate-limit only after OIDC verification and isolate buckets by the verified
