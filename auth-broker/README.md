@@ -9,7 +9,7 @@ The intended production path is:
 1. The owner completes GitHub identity verification and Spotify PKCE consent in the broker's browser flow.
 2. The Worker verifies the Spotify account through `/v1/me`.
 3. The Worker passes the refresh token directly to the fixed `SpotifyCredentialStore` Durable Object. The object encrypts it with AES-256-GCM and stores only ciphertext plus account/version metadata.
-4. Initial authorization initializes the store. A later owner-consented authorization can recover a blocked credential only for the same Spotify account. A ready or in-progress credential cannot be overwritten, and changing Spotify accounts requires separate owner review.
+4. Initial authorization initializes the store. A later owner-consented authorization can recover a blocked credential or an expired refresh reservation only for the same Spotify account. A ready or unexpired in-progress credential cannot be overwritten, and changing Spotify accounts requires separate owner review.
 5. The auth-health workflow obtains a short-lived access token using GitHub Actions OIDC. The broker verifies the signed token, exact repository owner ID, repository, main ref, allowed event, audience, workflow file, run identity, and time claims.
 6. The Durable Object serializes refresh, verifies the account identity after refresh, commits rotated credentials only after verification, and returns only the short-lived access token.
 7. The health workflow independently calls Spotify `/v1/me` and persists a non-secret health status. It never receives or stores the refresh token.
