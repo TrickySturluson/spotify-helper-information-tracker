@@ -105,6 +105,7 @@ test("readiness rejects missing GitHub App OAuth credentials before probing the 
   let storeProbes = 0;
   const result = await handleRequest(new Request("https://broker.example/ready"), {
     BROKER_BASE_URL: "https://broker.example",
+    SPOTIFY_OAUTH_ENABLED: "true",
     GITHUB_APP_ID: "12345",
     GITHUB_APP_CLIENT_ID: "github-client-id",
     GITHUB_APP_CLIENT_SECRET: "github-client-secret",
