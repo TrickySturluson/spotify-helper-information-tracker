@@ -40,6 +40,8 @@ The Worker uses SQLite-backed Durable Objects:
 - `SPOTIFY_REFRESH_LEASE`: existing cross-workflow refresh lease prototype; retain until its consumers are audited and removed.
 - `SPOTIFY_CREDENTIAL_STORE`: encrypted long-lived Spotify credential, refresh reservation, rotation, and recovery.
 
+The deployment workflow owns the runtime variable `SPOTIFY_OAUTH_ENABLED`; it is not manually configured. The initial deployment sets it to `false`, and the second deployment changes it to `true` only after query-string redaction passes. The failure handler restores `false` if any later activation/readiness check fails.
+
 Non-secret GitHub repository Actions variables injected by the deployment workflow:
 
 - `CLOUDFLARE_ACCOUNT_ID`
