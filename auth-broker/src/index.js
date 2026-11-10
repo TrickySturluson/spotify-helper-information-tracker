@@ -661,7 +661,7 @@ export async function handleRequest(request, env) {
       );
     }
     if (url.pathname === "/ready" && request.method === "GET") {
-      if (!env.AUTH_RATE_LIMITER) {
+      if (!env.AUTH_RATE_LIMITER || !env.BROKER_REFRESH_RATE_LIMITER) {
         return response(
           JSON.stringify({ status: "not_ready", service: "shit-auth-broker" }),
           503,
