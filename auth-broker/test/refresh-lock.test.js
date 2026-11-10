@@ -41,6 +41,7 @@ test("OIDC verifier accepts a signed, exact repository/workflow identity", async
   }] }), { status: 200 });
   const identity = await verifyActionsOidc(token, { fetchImpl, now, allowedWorkflowRefs: [claims.workflow_ref] });
   assert.equal(identity.repository, claims.repository);
+  assert.equal(identity.actorId, "337022631");
   assert.equal(identity.runId, "123456");
 });
 
@@ -308,6 +309,42 @@ test("broker refresh route rejects wrong-audience OIDC before touching credentia
   }
 });
 
+
+test("forced refresh requires the owner actor even for the auth-health workflow", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = Math.floor(Date.now() / 1000);
+  const workflowRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
+  const claims = { ...validClaims(now), aud: "shit-spotify-refresh", workflow_ref: workflowRef, actor_id: "987654321" };
+  const token = makeJwt(pair.privateKey, claims);
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const originalFetch = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => new Response(JSON.stringify({ keys: [{
+    ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key",
+  }] }), { status: 200 });
+  const env = {
+    BROKER_BASE_URL: "https://broker.example",
+    AUTH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    BROKER_REFRESH_RATE_LIMITER: { limit: async () => ({ success: true }) },
+    SPOTIFY_REFRESH_WORKFLOW_REFS: workflowRef,
+    SPOTIFY_CREDENTIAL_STORE: {
+      idFromName: () => "credential-id",
+      get: () => ({ fetch: async () => { calls += 1; return Response.json({}); } }),
+    },
+  };
+  try {
+    const result = await handleRequest(new Request("https://broker.example/internal/spotify/refresh", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({ operationId: "M".repeat(43), forceRefresh: true }),
+    }), env);
+    assert.equal(result.status, 403);
+    assert.deepEqual(await result.json(), { error: "force_refresh_not_allowed" });
+    assert.equal(calls, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
 
 test("forced access-token refresh is rejected for every workflow except the exact auth-health workflow", async () => {
   const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
