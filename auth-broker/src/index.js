@@ -405,6 +405,12 @@ async function authorizeCentralCredential(env, refreshToken, accountId) {
   if (!env.SPOTIFY_CREDENTIAL_STORE || !String(env.SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS || "").trim()) {
     throw new BrokerError("Central Spotify credential storage is not configured; no credential was saved.");
   }
+  if (typeof accountId !== "string" || !/^[A-Za-z0-9]{1,128}$/.test(accountId)) {
+    throw new BrokerError("Spotify account identity was not valid for central storage; no credential was saved.");
+  }
+  if (typeof refreshToken !== "string" || refreshToken.length < 20 || refreshToken.length > 8192) {
+    throw new BrokerError("Spotify did not provide a usable refresh token. The existing central credential was not changed.");
+  }
   const stub = env.SPOTIFY_CREDENTIAL_STORE.get(env.SPOTIFY_CREDENTIAL_STORE.idFromName("spotify-primary"));
   const result = await stub.fetch("https://spotify-credential.internal/authorize", {
     method: "POST",
@@ -412,6 +418,21 @@ async function authorizeCentralCredential(env, refreshToken, accountId) {
     body: JSON.stringify({ accountId, refreshToken }),
   });
   if (!result.ok) {
+    let code = null;
+    try {
+      const body = await result.json();
+      if (typeof body?.error === "string") code = body.error;
+    } catch {}
+    // Only fixed, non-secret Durable Object error codes may influence diagnostics.
+    if (code === "spotify_account_change_requires_owner_review") {
+      throw new BrokerError("The Spotify account differs from the account already linked to SHIT. No existing credential was changed.");
+    }
+    if (code === "credential_not_eligible_for_reauthorization") {
+      throw new BrokerError("The central Spotify credential is in a state that requires a safe recovery check. No existing credential was changed.");
+    }
+    if (code === "verified_account_required") {
+      throw new BrokerError("Spotify account identity could not be validated for central storage. No existing credential was changed.");
+    }
     throw new BrokerError("Central Spotify credential storage rejected this authorization. No existing credential was overwritten.");
   }
   return result.json();
@@ -511,6 +532,10 @@ async function spotifyCallback(request, env, url, setDiagnosticStage = () => {})
   setDiagnosticStage("spotify_callback.scope_validation");
   if (!hasRequiredScopes(tokenData.scope)) {
     throw new BrokerError("Spotify did not grant every permission required by SHIT. Start again and approve all requested permissions.");
+  }
+  setDiagnosticStage("spotify_callback.refresh_token_validation");
+  if (typeof tokenData.refresh_token !== "string" || tokenData.refresh_token.length < 20 || tokenData.refresh_token.length > 8192) {
+    throw new BrokerError("Spotify approved access, but did not return a usable refresh token. The existing central credential was not changed.");
   }
   setDiagnosticStage("spotify_callback.spotify_identity_verification");
   const spotifyIdentity = await verifySpotifyIdentity(tokenData.access_token);
