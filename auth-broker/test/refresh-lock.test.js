@@ -20,6 +20,7 @@ function validClaims(now) {
     exp: now + 240,
     repository: "TrickySturluson/spotify-helper-information-tracker",
     repository_owner_id: "337022631",
+    actor_id: "337022631",
     ref: "refs/heads/main",
     event_name: "workflow_dispatch",
     workflow_ref: "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main",
@@ -84,6 +85,43 @@ test("OIDC verifier allows owner issue events only for the two exact issue-comma
       fetchImpl, now, allowedWorkflowRefs: [workflowRef], audience: "shit-spotify-refresh",
     }));
   }
+});
+
+test("OIDC verifier restricts manual and issue-triggered runs to the repository owner", async () => {
+  const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const now = 1_800_000_000;
+  const jwk = pair.publicKey.export({ format: "jwk" });
+  const fetchImpl = async () => new Response(JSON.stringify({ keys: [{
+    ...jwk, kty: "RSA", use: "sig", alg: "RS256", kid: "test-key",
+  }] }), { status: 200 });
+  const playlistRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-playlist-manager.yml@refs/heads/main";
+  const authHealthRef = "TrickySturluson/spotify-helper-information-tracker/.github/workflows/spotify-auth-health-check.yml@refs/heads/main";
+  for (const eventName of ["workflow_dispatch", "issues", "issue_comment"]) {
+    const claims = {
+      ...validClaims(now),
+      aud: "shit-spotify-refresh",
+      event_name: eventName,
+      workflow_ref: playlistRef,
+      actor_id: "12345",
+    };
+    await assert.rejects(verifyActionsOidc(makeJwt(pair.privateKey, claims), {
+      fetchImpl, now, allowedWorkflowRefs: [playlistRef], audience: "shit-spotify-refresh",
+    }));
+  }
+
+  // The GitHub App dispatches only the read-only auth-health workflow after
+  // owner-consented PKCE authorization, so that single workflow is exempt.
+  const appDispatch = {
+    ...validClaims(now),
+    aud: "shit-spotify-refresh",
+    event_name: "workflow_dispatch",
+    workflow_ref: authHealthRef,
+    actor_id: "987654321",
+  };
+  const identity = await verifyActionsOidc(makeJwt(pair.privateKey, appDispatch), {
+    fetchImpl, now, allowedWorkflowRefs: [authHealthRef], audience: "shit-spotify-refresh",
+  });
+  assert.equal(identity.workflowRef, authHealthRef);
 });
 
 test("OIDC verifier rejects bad signatures, expired tokens and unknown signing keys", async () => {
