@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-18T17:25:39.166928+00:00",
+  "generated_at": "2026-11-19T17:32:55.816047+00:00",
   "source_scrobbles": 152005,
   "primary_estimate": {
     "method": "legacy_average_duration",
@@ -13,12 +13,12 @@
     "note": "Includes every archived scrobble, including tracks with unknown duration. An archive-wide estimate, not measured playback."
   },
   "verified_duration_subset": {
-    "scrobbles_with_duration": 139803,
-    "unknown_duration_scrobbles": 12202,
-    "coverage_fraction": 0.919726,
-    "coverage_percent": 91.97,
-    "full_track_equivalent_hours": 7845.14,
-    "minimum_qualifying_hours": 3886.21,
+    "scrobbles_with_duration": 139810,
+    "unknown_duration_scrobbles": 12195,
+    "coverage_fraction": 0.919772,
+    "coverage_percent": 91.98,
+    "full_track_equivalent_hours": 7845.46,
+    "minimum_qualifying_hours": 3886.37,
     "note": "Subset only: calculated from matched track durations. It is not actual playback measurement."
   },
   "measured_spotify_playback": {
