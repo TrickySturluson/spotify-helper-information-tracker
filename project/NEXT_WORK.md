@@ -10,6 +10,8 @@
 
 **Separate auth gate:** centralized authentication remains an owner-controlled production cutover requiring the documented keyring-backup, deployment/readiness, owner-consented OAuth, encrypted persistence, and independent health checks. Jockey does not touch secrets, OAuth, Cloudflare production, or that workstream, and does not treat it as accepted.
 
+**Buddy review checkpoint:** report-bearing run `54ea442a-ca08-8326-b910-2ba2f6a15428` completed 2026-11-20 14:46:56 UTC. PR #163 is still open/draft/unmergeable, 46 ahead and 347 behind current main. Its 13-file diff is documentation-only, but it incorrectly applies ChatGPT's direct-main publication policy to Buddy; mainline keeps ChatGPT's routine documentation authority separate from Buddy's draft-only role. Existing head checks passed but are stale. Buddy is disabled; do not modify or merge its branch/PR.
+
 Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_ENDS.md), and [the Daily roadmap](goals/tricky-daily/ROADMAP.md) before continuing.
 
 ---
