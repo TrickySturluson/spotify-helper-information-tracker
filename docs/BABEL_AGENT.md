@@ -12,7 +12,7 @@ This guide documents a **separate, historical repository-hosted Codex/API experi
 
 The sections below describe the repository-hosted Codex workflow as built and tested in November 2026. They are retained for audit and recovery context only; they do not describe Buddy's current execution path. The scheduled ChatGPT Buddy uses the connected GitHub app and its own persistent draft-PR branch.
 
-Before reading the other continuation records, Buddy must read `project/ACTIVE_SESSION_BRIEF.md`. It is a curated SHIT project brief maintained by ChatGPT during active work—not a raw transcript and not a real-time message channel. ChatGPT updates it after material decisions, source findings, changes, tests, failures, and blockers, alongside the affected goal roadmap/action log. Buddy must reconcile the brief against the checked-out repository and newer evidence. It sees only committed changes on a subsequent run; updates do not wake an active job. Never include unrelated personal conversation or secret values.
+The historical Codex continuation prompt also required its agent to read `project/ACTIVE_SESSION_BRIEF.md`. The active scheduled ChatGPT Buddy has the same continuity requirement: it must reconcile the curated SHIT brief against current repository source and newer evidence. The brief is maintained by ChatGPT during active work, is not a raw transcript or real-time message channel, and must exclude unrelated personal conversation and secret values.
 
 ## How continuation works
 
