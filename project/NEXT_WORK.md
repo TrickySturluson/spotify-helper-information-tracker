@@ -1,5 +1,10 @@
 # Current handoff — 2026-11-20 08:29 UTC
 
+## New coordination workstream — 2026-11-20
+
+The user has authorized a self-maintaining Buddy → Jockey → Boots → Buddy handoff cycle so the trio can remain usable during extended absences. The initial [Trio Coordination Protocol](TRIO_COORDINATION_PROTOCOL.md) and goal workspace are being established on a dedicated draft PR. Phase 1 is read-only successor-readiness checking; do not enable cross-repair or change another worker's automation configuration, prompt, environment, branch, or PR. Current audit evidence: Buddy's latest result reported a blocker on obsolete PR #163; Jockey's latest run failed with a generic scheduled-task error; Boots' last recorded run is 2026-11-08. All three automation records currently report enabled. Recheck live state before acting. See [Trio Coordination roadmap](goals/trio-coordination/ROADMAP.md).
+
+
 **Authentication remains the sole focused engineering priority.** PR #198 has merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker, Daily, security, and Cloudflare preview build/deployment checks passed. The identity-validation correction is now in main; it is not a production deployment or proof of Spotify credential persistence.
 
 **Next owner action:** the Cloudflare Worker secrets metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are `secret_text`. The independent backup of the encryption keyring and repository variable `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` still need confirmation. Once confirmed, open GitHub Actions → **Deploy SHIT Auth Broker** on `main` and run the owner-only workflow. It deploys OAuth disabled first, verifies query-string redaction, then activates OAuth and checks `/ready`; failure triggers an OAuth-disabled fallback. Verify the resulting production version and 100% traffic before requesting fresh Spotify consent.
