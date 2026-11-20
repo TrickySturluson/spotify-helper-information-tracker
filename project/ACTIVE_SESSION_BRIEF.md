@@ -6,11 +6,11 @@ The current user-assigned Jockey priority is **Tricky Daily reliability**. This 
 
 ## Daily state and active PR
 
-- Persistent Jockey branch: `engineering/priority`, based on main `b606fe0fa7712c01cb8f793eae85afd609187677`.
-- Single Jockey draft PR: [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current PR head `ec1312c8405a115bdaab8ea9c745d02b1928510c`. It adds strict EDT/EST cron matching and durable description-only before/after snapshots. Exact-head CI is pending; the PR remains draft and must not be merged by Jockey.
+- Persistent Jockey branch: `engineering/priority`, originally forked from main `b606fe0fa7712c01cb8f793eae85afd609187677`. Current main is `3b7f9fe830bfc67dc8263518defb47b32377bbc7`; the priority branch is 31 commits ahead and 2 behind. The two mainline commits since the fork are generated listening/Library refreshes and do not overlap the 12 priority-PR files; GitHub reports the PR mergeable. No rebase, force-push, or replacement branch was performed.
+- Single Jockey draft PR: [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current PR head `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`. It adds strict EDT/EST cron matching, durable description-only before/after snapshots, and after-snapshot path/ID persistence in the accepted-but-pending state. Exact-head Daily tests, broker tests, secret scan, and Cloudflare preview build all pass. The PR remains draft and must not be merged by Jockey.
 - Mainline user-authorized cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) was a push-triggered `action: cycle`, not a scheduled run. It completed 60 tracks, committed the stage and pre-write recovery backup, persisted completed state/audit, and uploaded the recovery artifact. Mainline state records 60 ordered after-URIs and after-snapshot ID `AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua`.
 - The subsequent GET-only snapshot at `2026-11-20T15:38:03.306427Z` contains 60 accessible unique items. The test trigger is back in read-only `verify-only` mode.
-- A real scheduled EDT/EST run and same-date duplicate no-op are still required; the push-triggered cycle does not satisfy that gate.
+- A real scheduled EDT/EST run and same-date duplicate no-op are still required; the push-triggered cycle does not satisfy that gate. The current PR's Cloudflare result is a preview build only, not production.
 - Current recommendation evidence is split between candidate discovery history and the track-level feedback ledger. It is not yet the full Daily-specific recommendation event/outcome memory required by the roadmap. Playback-tracker coverage remains unknown; Last.fm and liked observations remain distinct.
 
 ## Buddy daily checkpoint — 2026-11-20
@@ -26,7 +26,7 @@ The current user-assigned Jockey priority is **Tricky Daily reliability**. This 
 
 - Jockey may change Daily product code, tests, safe workflow code, and Daily/project handoff documentation on `engineering/priority` only. Keep one priority-owned draft PR.
 - Do not modify playlist-manager state/audit, generated Library data, live playlists, Spotify/Last.fm data, OAuth credentials, secrets, Cloudflare settings, or production deployments. Do not dispatch live workflows.
-- Next: finish exact-head CI and independent full-diff review for PR #200; then wait for owner-controlled merge and verify the scheduled path, duplicate no-op, and guided recovery. Only after the operational gate, implement the approved recommendation memory.
+- Next: exact-head CI and independent full-diff review are complete. Wait for owner-controlled merge, then verify the scheduled path and same-date duplicate no-op, complete guided recovery, and only after the operational gate implement the approved recommendation memory.
 - Centralized authentication remains a separate owner-controlled production gate. Jockey does not touch that workstream or treat it as completed.
 
 ---

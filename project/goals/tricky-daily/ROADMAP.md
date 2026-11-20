@@ -1,7 +1,7 @@
 # Tricky Daily — Roadmap
 
 **Last reviewed:** 2026-11-20 UTC / 2026-11-20 Eastern  
-**Status:** Mainline's latest user-authorized push-triggered cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) completed a 60-track publication and persisted completed state/audit. The later GET-only snapshot at 15:38 UTC contains 60 accessible unique tracks. This is not a scheduled run. Jockey draft PR #200 adds strict cron-to-DST matching and durable description-only before/after snapshots; CI and scheduled live proof remain pending. Guided recovery and Daily recommendation memory remain open workstreams.
+**Status:** Mainline's latest user-authorized push-triggered cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) completed a 60-track publication and persisted completed state/audit. The later GET-only snapshot at 15:38 UTC contains 60 accessible unique tracks. This is not a scheduled run. Jockey draft PR #200 adds strict cron-to-DST matching and durable description-only before/after snapshots; exact-head CI and independent diff review now pass, but the changes remain unmerged and scheduled live proof is pending. Guided recovery and Daily recommendation memory remain open workstreams.
 
 ## Purpose
 Maintain a reliable daily 60-track discovery playlist that balances familiar taste with fresh discoveries, learns from meaningful feedback, and never overrides explicit user exclusions or playlist safety controls.
@@ -92,8 +92,8 @@ A successful live push-triggered cycle is not proof of the schedule. On 2026-11-
 
 ## Current gaps and verification requirements
 - The 2026-11-20 publication proves one user-authorized push-triggered cycle, not the automatic scheduled path. Verify a scheduled Eastern-midnight run after PR #200 is merged, including the exact cron/offset decision and a same-date duplicate no-op.
-- Draft PR #200 adds strict cron-to-DST matching; its exact-head CI and a scheduled live run remain pending.
-- Draft PR #200 adds durable before/after snapshots for description-only updates; its exact-head CI and a live description-only verification remain pending.
+- Draft PR #200 adds strict cron-to-DST matching; exact-head CI passes on `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`, but merge and a scheduled live run remain pending.
+- Draft PR #200 adds durable before/after snapshots for description-only updates; exact-head CI passes, but merge and a live description-only verification remain pending. The accepted-but-pending state also stores the committed after-snapshot path and Spotify snapshot ID.
 - Guided resume/rollback/discard from a surviving production stage remains open. A pending or ambiguous stage must continue to block blind regeneration; implement explicit audited recovery before calling the workflow fully self-healing.
 - Spotify quota can still be exhausted. The workflow now persists Retry-After cooldown state even when discovery fails before staging; do not clear a non-expiring manual-clear state without provider evidence.
 - Playback-tracker coverage remains unknown because `playback_data/segments.jsonl` is absent. Last.fm coverage is available and liked-song observations are recorded; missing playback data is not zero plays.
@@ -110,7 +110,7 @@ Draft PR #200 is Jockey-owned and contains strict schedule offset matching plus 
 
 ## Next action
 
-1. Complete exact-head CI and independent diff review for Jockey draft PR #200; keep it draft and do not merge from the automation.
+1. Wait for owner-controlled merge of green draft PR #200; Jockey must not merge or dispatch live workflows.
 2. After owner-controlled merge, verify a real scheduled Eastern-midnight cycle, exact 60-track read-back, state/audit persistence, and a same-date duplicate no-op. Keep the manual trigger in read-only `verify-only` mode.
 3. Implement and failure-test guided resume/rollback/discard for a surviving production stage so interrupted publication is recoverable without blind regeneration.
 4. After operational reliability and recovery are proven, design and implement Daily recommendation memory, preserving separate Spotify playback, Last.fm scrobbles, likes, manual removals, retention, ignored, not-yet-observed, and unknown coverage.
