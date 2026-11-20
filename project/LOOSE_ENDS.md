@@ -1,3 +1,14 @@
+## 2026-11-20 — Authentication recovery is the active cross-project blocker
+
+- PR #188's integrated broker-owned credential-store/OIDC migration is merged into main. The account-identity validation correction is now isolated in [PR #198](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), based on current main; exact-head broker, Daily, and security checks were still running when recorded.
+- The superseded PR #196 is stale (9 commits behind main); do not merge it.
+- Production Worker latest observed deployment is `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, at 100% traffic. The integrated architecture's production deployment and credential-store binding readiness remain unverified.
+- Auth-health #44581567494 and Daily preflight #44692745648 failed during central broker access. Credential persistence and two independent broker-backed health checks remain unverified.
+- Next gates: PR #198 green checks and diff review; owner-controlled production deployment/readiness/query-redaction verification; owner-consented Spotify authorization; encrypted persistence verification; two independent read-only auth-health successes; nine OIDC consumer checks.
+- User directed that Buddy, Jockey, and Boots remain paused during focused auth recovery, then resume as non-overlapping background development lanes only after the authentication acceptance gate passes.
+
+---
+
 ## Current policy overlay — 2026-11-06
 
 This section supersedes the older documentation-first freeze and Codex-worker descriptions below.
