@@ -8,7 +8,7 @@ const ENCRYPTION_KEY_VERSION = 1;
 class CredentialStoreError extends Error {}
 
 // Spotify user IDs are opaque provider identifiers, not restricted to alphanumerics.
-// Reject whitespace/control characters and bound the value before using it in storage/AAD.
+// Preserve ordinary whitespace exactly; reject control characters and bound the value before using it in storage/AAD.
 export function isValidSpotifyAccountId(value) {
   return typeof value === "string" && /^[^\p{Cc}]{1,256}$/u.test(value);
 }
