@@ -1,3 +1,18 @@
+# Current handoff — 2026-11-20: Authentication is the focused priority
+
+The user has explicitly asked to finish centralized Spotify authentication before returning the SHIT engineering trio to background development.
+
+1. **Immediate PR:** [#198 — Accept opaque Spotify account identifiers](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), branch `fix/opaque-spotify-account-identifiers-mainline`, head `1146b0cc51d855b438c15fa7b4697186bfecbfad`, based on current main `2eecf2592c5dec2977277ba9b8880e7ff57d7fe5`. Exact-head broker tests #44701998659, Daily curator tests #44701998530, and security scan #44701998525 were running at the last check. Inspect results before merging.
+2. **Production gate:** read-only Cloudflare metadata shows deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic, created 2026-11-10 20:12:11 UTC. Do not assume it contains the merged v3 credential-store/OIDC code. Use the owner-only deployment workflow after PR #198 is merged and required keyring/secret metadata is verified. Never read secret values.
+3. **Failure evidence:** auth-health #44581567494 (Nov 19) failed during central broker request; Daily preflight #44692745648 (Nov 20) failed obtaining the central access token. No successful credential persistence or independent auth-health success is verified.
+4. **OAuth gate:** no fresh consent until production readiness and query-string redaction are independently confirmed. Owner must complete the consent flow. Verify encrypted credential persistence without reading the credential, then require two independent broker-backed read-only auth-health successes and validate the nine OIDC consumers.
+5. **Safety:** no secret/key mutation, credential rotation/deletion, production deployment, OAuth initiation, or playlist/Library write by the assistant. Authentication health tests must remain read-only with respect to playlists and Library.
+6. **Trio:** SHIT Buddy (Babel), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) are disabled. Keep them paused during focused auth work. Resume them as background lanes only after credential persistence and two independent health checks pass; Buddy stays documentation-only, Jockey owns the highest-priority product implementation, Boots owns other general engineering.
+
+The authentication roadmap and action log are in [mobile-cloud-operation](goals/mobile-cloud-operation/ROADMAP.md). Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_ENDS.md), and that goal's README/ACTIONS before continuing.
+
+---
+
 # Current session handoff — 2026-11-09
 
 This session is actively continuing the user-authorized Authentication Management & Recovery workstream in parallel with the Jockey's Tricky Daily priority. Do not reassign the Jockey or modify its branch/PR.
