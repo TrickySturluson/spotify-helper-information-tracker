@@ -1,3 +1,19 @@
+## 2026-11-20 — Reconcile merged OIDC architecture and port opaque-ID correction to current main
+
+- Confirmed PR #188 is merged. Its integrated broker-owned credential-store/OIDC implementation is part of main; do not continue treating PR #188 as an open draft.
+- Confirmed current main at `2eecf2592c5dec2977277ba9b8880e7ff57d7fe5` still rejects ordinary whitespace in `auth-broker/src/credential-store.js:isValidSpotifyAccountId()`. The exact provider identity must be preserved as an opaque value; ordinary spaces are valid, while empty IDs, control characters, and values longer than 256 characters remain invalid.
+- The prior PR #196 is based on an older mainline and is 9 commits behind. Did not merge or rebase that stale branch. Ported only its narrowly scoped validator/test correction onto fresh branch `fix/opaque-spotify-account-identifiers-mainline`.
+- Opened [PR #198](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), head `1146b0cc51d855b438c15fa7b4697186bfecbfad`, based on current main. Changed files: `auth-broker/src/credential-store.js` and `auth-broker/test/credential-store.test.js`. PR checks #44701998659 (Mobile Auth Broker Tests), #44701998530 (Daily curator tests), and #44701998525 (Public repository security scan) were in progress when recorded. No result is assumed.
+- Read-only Cloudflare deployment listing: latest production deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, created 2026-11-10 20:12:11 UTC, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5` at 100%. This does not prove the integrated v3 credential-store/OIDC release is live.
+- Current operational failures: auth-health run #44581567494 (2026-11-19) failed during the central broker request; Daily live preflight #44692745648 (2026-11-20) failed while obtaining the central access token. No token/exception payload was retrieved.
+- Updated the daily auth-recovery monitor to track PR #198, exact-head preview health, production deployment metadata, credential persistence, and the two-health-check acceptance gate. It remains read-only and must not deploy, alter secrets, initiate OAuth, or modify playlists.
+- SHIT Buddy, Jockey, and Boots are currently disabled. User's intended transition: keep the trio paused during focused auth recovery, then resume them as non-overlapping background development lanes after credential persistence and two independent auth-health checks pass.
+- No production deployment, secret/key change, OAuth consent, credential read/write, Spotify playlist operation, or Library mutation was performed.
+
+**Next:** wait for PR #198 checks; review their exact-head results and complete diff; merge only after green checks. Then hand off the owner-controlled production deployment and verify the deployed architecture before requesting fresh consent.
+
+---
+
 ## 2026-11-09 UTC — Consolidate the integrated broker and retire superseded drafts
 
 - Checked Babel and reconciled the current authentication roadmap, action history, active-session brief, NEXT_WORK and LOOSE_ENDS against the live GitHub and Cloudflare state.
