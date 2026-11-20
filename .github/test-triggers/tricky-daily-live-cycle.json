@@ -1,6 +1,6 @@
 {
-  "action": "verify-only",
+  "action": "cycle",
   "force": true,
-  "reason": "Read-only post-cycle verification after fixing the same-date guard: verify the live 60-track playlist, unique URIs, zero blacklist matches, and accepted description. This action must not replace tracks or update description.",
-  "verification_attempt": "2026-11-07-post-cycle-verification-guard-fix"
+  "reason": "User explicitly requested an immediate Tricky Daily refresh on 2026-11-20 after the centralized Spotify auth broker was restored and verified. Run the normal safeguarded 60-track cycle with durable pre-write snapshot/stage, removal protections, and post-write verification.",
+  "requested_at": "2026-11-20"
 }
