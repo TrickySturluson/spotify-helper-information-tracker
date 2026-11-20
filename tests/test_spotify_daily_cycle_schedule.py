@@ -488,10 +488,17 @@ class DailyCycleScheduleTests(unittest.TestCase):
     def test_description_update_precedes_readback_and_retries_spotify_lag(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
-        description_at = source.index("update_description_and_verify(sp, next_description)", replace_at)
-        verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', description_at)
+        description_at = source.index(
+            "update_description_and_capture_after_snapshot(sp, next_description, cycle_date)", replace_at
+        )
+        wrapper = source[
+            source.index("def update_description_and_capture_after_snapshot("):
+            source.index("def configure():")
+        ]
+        update_at = wrapper.index("update_description_and_verify(sp, description)")
+        snapshot_at = wrapper.index("capture_and_persist_after_snapshot(sp, cycle_date)")
         self.assertLess(replace_at, description_at)
-        self.assertLess(description_at, verify_at)
+        self.assertLess(update_at, snapshot_at)
         self.assertIn("for attempt in range(5)", source)
         self.assertIn('sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": description})', source)
 
@@ -510,11 +517,13 @@ class DailyCycleScheduleTests(unittest.TestCase):
         persist_at = source.index("manager.write(manager.CONFIG, config)", replace_at)
         output_at = source.index('set_action_output("cycled", "true")', persist_at)
         audit_at = source.index('event="daily_cycle_replacement_accepted"', output_at)
-        verify_at = source.index('updated = sp.call("GET", f"/playlists/{DAILY_ID}")', audit_at)
+        snapshot_at = source.index(
+            "update_description_and_capture_after_snapshot(sp, next_description, cycle_date)", audit_at
+        )
         self.assertLess(replace_at, persist_at)
         self.assertLess(persist_at, output_at)
         self.assertLess(output_at, audit_at)
-        self.assertLess(audit_at, verify_at)
+        self.assertLess(audit_at, snapshot_at)
 
     def test_workflow_persists_accepted_replacement_even_after_later_step_failure(self):
         workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
@@ -773,3 +782,117 @@ if __name__ == "__main__":
 # Related: scripts/spotify/spotify_daily_cycle.py and the midnight-cycle workflow.
 # -----------------------------------------------------------------------------
 
+
+
+
+class DailyPostWriteSnapshotTests(unittest.TestCase):
+    def test_after_snapshot_commit_is_linked_from_pending_cycle_state(self):
+        from unittest.mock import Mock
+        playlist = {
+            "id": daily_cycle.DAILY_ID,
+            "snapshot_id": "after-snapshot",
+            "tracks": {"total": daily_cycle.DAILY_TARGET_SIZE},
+        }
+        snapshot = {
+            "playlist": playlist,
+            "items": [
+                {"uri": f"spotify:track:{index:022d}"}
+                for index in range(daily_cycle.DAILY_TARGET_SIZE)
+            ],
+        }
+        spotify = Mock()
+        spotify.call.return_value = playlist
+        config = {
+            "daily_cycle": {
+                "status": "replacement_accepted_pending_verification",
+                "last_cycle_date_eastern": "2026-11-20",
+            }
+        }
+        with patch.object(daily_cycle.manager, "snapshot", return_value=snapshot), patch.object(
+            daily_cycle.manager, "save_snapshot", return_value="playlist_backups/after.json"
+        ), patch.object(daily_cycle.manager, "audit") as audit, patch.object(
+            daily_cycle.manager, "config", return_value=config
+        ), patch.object(daily_cycle.manager, "write") as write, patch.object(
+            daily_cycle, "persist_daily_snapshot", return_value="after-commit"
+        ) as persist, patch.object(daily_cycle, "assert_repository_head_unchanged") as head_guard:
+            updated, saved_snapshot, path = daily_cycle.capture_and_persist_after_snapshot(
+                spotify, "2026-11-20"
+            )
+
+        self.assertIs(updated, playlist)
+        self.assertIs(saved_snapshot, snapshot)
+        self.assertEqual(path, "playlist_backups/after.json")
+        self.assertEqual(config["daily_cycle"]["after_snapshot_path"], path)
+        self.assertEqual(config["daily_cycle"]["after_snapshot_id"], "after-snapshot")
+        persist.assert_called_once_with(path, "2026-11-20", "after")
+        head_guard.assert_called_once_with("after-commit")
+        write.assert_called_once_with(daily_cycle.manager.CONFIG, config)
+        audit.assert_called_once()
+        self.assertEqual(audit.call_args.kwargs["event"], "daily_post_change_snapshot_saved")
+        spotify.call.assert_called_once_with("GET", f"/playlists/{daily_cycle.DAILY_ID}")
+
+    def test_after_snapshot_is_attempted_when_description_verification_fails(self):
+        from unittest.mock import Mock
+        events = []
+        description_error = daily_cycle.manager.ManagerError("description read-back failed")
+
+        def fail_description(*args):
+            events.append("description")
+            raise description_error
+
+        def capture_after(*args):
+            events.append("after-snapshot")
+            return ({"id": daily_cycle.DAILY_ID}, {"items": []}, "playlist_backups/after.json")
+
+        with patch.object(daily_cycle, "update_description_and_verify", side_effect=fail_description), patch.object(
+            daily_cycle, "capture_and_persist_after_snapshot", side_effect=capture_after
+        ):
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "description read-back failed"):
+                daily_cycle.update_description_and_capture_after_snapshot(
+                    Mock(), "New description", "2026-11-20"
+                )
+
+        self.assertEqual(events, ["description", "after-snapshot"])
+
+    def test_failed_after_snapshot_capture_is_audited_and_keeps_cycle_pending(self):
+        from unittest.mock import Mock
+        with patch.object(
+            daily_cycle, "update_description_and_verify",
+            side_effect=daily_cycle.manager.ManagerError("description failed"),
+        ), patch.object(
+            daily_cycle, "capture_and_persist_after_snapshot",
+            side_effect=daily_cycle.manager.ManagerError("snapshot failed"),
+        ), patch.object(daily_cycle.manager, "audit") as audit:
+            with self.assertRaisesRegex(
+                daily_cycle.manager.ManagerError, "after snapshot could not be preserved"
+            ):
+                daily_cycle.update_description_and_capture_after_snapshot(
+                    Mock(), "New description", "2026-11-20"
+                )
+        audit.assert_called_once()
+        self.assertEqual(
+            audit.call_args.kwargs["event"], "daily_post_change_snapshot_capture_failed"
+        )
+
+    def test_successful_description_update_is_followed_by_after_snapshot(self):
+        from unittest.mock import Mock
+        events = []
+        result = ({"id": daily_cycle.DAILY_ID}, {"items": []}, "playlist_backups/after.json")
+
+        def update(*args):
+            events.append("description")
+
+        def capture(*args):
+            events.append("after-snapshot")
+            return result
+
+        with patch.object(daily_cycle, "update_description_and_verify", side_effect=update), patch.object(
+            daily_cycle, "capture_and_persist_after_snapshot", side_effect=capture
+        ):
+            self.assertEqual(
+                daily_cycle.update_description_and_capture_after_snapshot(
+                    Mock(), "New description", "2026-11-20"
+                ),
+                result,
+            )
+        self.assertEqual(events, ["description", "after-snapshot"])

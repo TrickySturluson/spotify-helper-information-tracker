@@ -165,7 +165,7 @@ def persist_daily_stage(stage_path, backup_path, cycle_date):
 
 
 def persist_daily_snapshot(snapshot_path, cycle_date, phase):
-    """Commit one exact Daily description snapshot and its audit before/after a write."""
+    """Commit one exact Daily snapshot and its audit before/after a playlist mutation."""
     if phase not in ("before", "after"):
         raise manager.ManagerError("Daily description snapshot phase must be before or after.")
     if os.environ.get("GITHUB_ACTIONS", "").lower() != "true":
@@ -198,7 +198,7 @@ def persist_daily_snapshot(snapshot_path, cycle_date, phase):
     subprocess.run(
         [
             "git", "commit", "--only", "-m",
-            f"Preserve Tricky Daily {phase} description snapshot for {cycle_date}",
+            f"Preserve Tricky Daily {phase} snapshot for {cycle_date}",
             "--", str(path), str(audit_path),
         ],
         check=True,
@@ -624,6 +624,70 @@ def run_description_only(sp, playlist, owner_id, cycle_date):
     return 0
 
 
+def capture_and_persist_after_snapshot(sp, cycle_date):
+    """Capture, commit, and reference the live playlist after an accepted mutation."""
+    updated = sp.call("GET", f"/playlists/{DAILY_ID}")
+    if not isinstance(updated, dict) or updated.get("id") != DAILY_ID:
+        raise manager.ManagerError(
+            "Post-change snapshot could not confirm the exact Tricky Daily playlist."
+        )
+    snapshot = manager.snapshot(sp, updated)
+    after_snapshot_path = str(manager.save_snapshot(snapshot))
+    after_snapshot_id = updated.get("snapshot_id") or (snapshot.get("playlist") or {}).get("snapshot_id")
+    manager.audit(
+        event="daily_post_change_snapshot_saved",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        snapshot=after_snapshot_path,
+        snapshot_id=after_snapshot_id,
+        item_count=len(snapshot.get("items") or []),
+    )
+    config = manager.config()
+    daily_state = config.setdefault("daily_cycle", {})
+    if not isinstance(daily_state, dict):
+        raise manager.ManagerError(
+            "Tricky Daily cycle state is malformed; refusing after-snapshot state update."
+        )
+    daily_state.update({
+        "after_snapshot_path": after_snapshot_path,
+        "after_snapshot_id": after_snapshot_id,
+    })
+    manager.write(manager.CONFIG, config)
+    after_commit_sha = persist_daily_snapshot(after_snapshot_path, cycle_date, "after")
+    assert_repository_head_unchanged(after_commit_sha)
+    return updated, snapshot, after_snapshot_path
+
+
+def update_description_and_capture_after_snapshot(sp, description, cycle_date):
+    """Attempt an after snapshot even when description PUT/read-back verification fails."""
+    description_error = None
+    try:
+        update_description_and_verify(sp, description)
+    except Exception as error:
+        description_error = error
+
+    try:
+        result = capture_and_persist_after_snapshot(sp, cycle_date)
+    except Exception as snapshot_error:
+        manager.audit(
+            event="daily_post_change_snapshot_capture_failed",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            snapshot_error_type=type(snapshot_error).__name__,
+            snapshot_error=str(snapshot_error),
+            description_error_type=type(description_error).__name__ if description_error else None,
+            description_error=str(description_error) if description_error else None,
+        )
+        raise manager.ManagerError(
+            "Tricky Daily replacement was accepted, but the after snapshot could not be preserved; "
+            "cycle remains pending verification."
+        ) from snapshot_error
+
+    if description_error is not None:
+        raise description_error
+    return result
+
+
 def configure():
     manager.CID = os.environ["SPOTIFY_CLIENT_ID"]
     manager.TOKEN = Path(".spotify_playlist_token.json")
@@ -904,21 +968,20 @@ def main():
         [{"uri": row.get("uri"), "track": row.get("track"), "artist": row.get("artist")} for row in recommendations],
         config["daily_cycle"]["last_cycle_at"],
     )
-    update_description_and_verify(sp, next_description)
     manager.audit(
         event="daily_cycle_replacement_accepted",
         playlist_id=DAILY_ID,
         cycle_date_eastern=cycle_date,
         backup=backup,
     )
-
-    updated = sp.call("GET", f"/playlists/{DAILY_ID}")
+    updated, updated_snapshot, after_snapshot_path = update_description_and_capture_after_snapshot(
+        sp, next_description, cycle_date
+    )
     if html.unescape(updated.get("description") or "") != next_description:
         raise manager.ManagerError(
             "Tricky Daily tracks were replaced, but Spotify read-back did not confirm "
             "the new playlist description; cycle remains pending verification."
         )
-    updated_snapshot = manager.snapshot(sp, updated)
     verified_items = updated_snapshot["items"]
     try:
         verified_artists = validate_daily_post_write(
@@ -939,9 +1002,6 @@ def main():
             f"{error} Cycle remains pending verification; do not retry blindly."
         )
     verified_artist_counts = {artist: verified_artists.count(artist) for artist in set(verified_artists)}
-    after_snapshot = manager.save_snapshot(updated_snapshot)
-    manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
-                  snapshot=after_snapshot, cycle_date_eastern=cycle_date)
     config = manager.config()
     config["daily_cycle"] = {
         "last_cycle_date_eastern": cycle_date,
@@ -949,12 +1009,15 @@ def main():
         "playlist_id": DAILY_ID,
         "description": next_description,
         "status": "completed",
+        "after_snapshot_path": after_snapshot_path,
+        "after_snapshot_id": updated.get("snapshot_id"),
     }
     config["last_completed"] = {
         "playlist_id": DAILY_ID,
         "backup": backup,
         "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
         "after_snapshot_id": updated.get("snapshot_id"),
+        "after_snapshot_path": after_snapshot_path,
         "after_uris": [row.get("uri") for row in updated_snapshot["items"]],
         "kind": "daily",
         "cycle_date_eastern": cycle_date,
@@ -978,7 +1041,7 @@ def main():
     manager.audit(
         event="daily_cycle_completed", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), removed_by_rotation=len(old_uris - new_uris),
-        backup=backup, spotify_requests=sp.request_metrics,
+        backup=backup, after_snapshot=after_snapshot_path, spotify_requests=sp.request_metrics,
     )
 
     try:
