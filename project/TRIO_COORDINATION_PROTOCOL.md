@@ -41,6 +41,12 @@ Record one status:
 - **READY WITH WARNINGS:** the worker can proceed safely, but a non-blocking issue should be visible in its handoff.
 - **BLOCKED:** a required prerequisite is absent, the task is disabled, access is unavailable, the branch/PR state is unsafe, or the next task cannot be selected without conflicting work or crossing an authorization boundary.
 
+## Broken-chain fallback
+
+A failed worker must not silently break the monitoring chain. If the immediate successor's latest run is failed, incomplete, missing, or has not produced a report after its expected window, the outgoing worker must also perform a lightweight readiness check of the following worker in the cycle. For example, if Jockey has failed, Buddy checks both Jockey and Boots; it still reports Jockey's failure and does not assume Boots has taken over Jockey's work. This is detection redundancy, not permission to reassign work or change another task.
+
+The next worker must also perform its normal startup checks on its own branch, task scope, and dependencies. A predecessor's READY result never substitutes for the worker's own preflight.
+
 ## Phase 1 authority: inspect and prepare
 
 Phase 1 is read-only with respect to the next worker's automation configuration and owned branch/PR.
