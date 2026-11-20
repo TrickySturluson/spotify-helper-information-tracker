@@ -154,7 +154,7 @@ jobs:
                   report("reauthorization_required", "The central broker reports that the credential is blocked or the provider outcome could not be safely verified. Complete owner-consented Spotify authorization to recover.")
               if exc.category == "rate_limited":
                   report("rate_limited", "Spotify authentication is rate-limited. The central broker retained the credential and no retry was attempted.", state_value=retry_state(exc.retry_after))
-              report("broker_unavailable", "The central authentication broker could not complete the request. No legacy refresh-token fallback was attempted.")
+              report("broker_unavailable", f"Authentication request failed at {exc.stage} (category: {exc.category}, HTTP: {exc.http_status or 'none'}). No legacy refresh-token fallback was attempted.")
 
           print("::add-mask::" + access_token)
           request = urllib.request.Request(
