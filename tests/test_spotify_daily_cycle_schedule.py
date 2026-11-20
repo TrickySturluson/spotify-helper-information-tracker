@@ -562,6 +562,37 @@ class DailyScheduleOffsetTests(unittest.TestCase):
 
 
 class DailyDescriptionSnapshotTests(unittest.TestCase):
+    def test_description_acceptance_callback_runs_after_put_before_readback(self):
+        events = []
+        spotify = __import__("unittest").mock.Mock()
+
+        def call(method, endpoint, payload=None):
+            events.append(method)
+            if method == "GET":
+                return {"description": "New description"}
+            return {}
+
+        spotify.call.side_effect = call
+        daily_cycle.update_description_and_verify(
+            spotify, "New description", on_accepted=lambda: events.append("accepted")
+        )
+        self.assertEqual(events, ["PUT", "accepted", "GET"])
+
+    def test_description_acceptance_callback_does_not_run_when_put_fails(self):
+        events = []
+        spotify = __import__("unittest").mock.Mock()
+
+        def call(method, endpoint, payload=None):
+            events.append(method)
+            raise daily_cycle.manager.ManagerError("PUT failed")
+
+        spotify.call.side_effect = call
+        with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "PUT failed"):
+            daily_cycle.update_description_and_verify(
+                spotify, "New description", on_accepted=lambda: events.append("accepted")
+            )
+        self.assertEqual(events, ["PUT"])
+
     def make_snapshots(self):
         items = [
             {"uri": f"spotify:track:{i:022d}", "name": f"Track {i}", "artists": [f"Artist {i}"]}
