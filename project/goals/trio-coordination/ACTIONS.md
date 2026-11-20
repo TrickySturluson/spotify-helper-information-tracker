@@ -5,6 +5,7 @@
 - **User direction:** the three scheduled workers should check the next worker before handing off, verify that it can run at its scheduled time, and ultimately repair safe blockers so SHIT can continue during a roughly two-week user absence.
 - **Design decision:** use a shared protocol, not a fourth worker. Sequence: Buddy → Jockey → Boots → Buddy.
 - **Phase boundary:** first implement documented, read-only readiness checks and truthful handoff reports. Do not enable cross-repair until the first phase is exercised and its safety is reviewed.
+- **Future repair candidates:** after Phase 1, consider restoring a task to its documented enabled/schedule state, restoring a previously approved prompt snapshot, or archiving a stale no-PR branch before refreshing it from current main. These are design candidates only; they are not enabled or performed.
 - **Live automation audit:**
   - Buddy `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled. Latest run `54ea442a-ca08-8326-b910-2ba2f6a15428` completed with a blocker report concerning obsolete PR #163; the saved automation currently reports enabled despite that run's text saying it paused itself. Its prompt has since been updated to use `babel/chatgpt-buddy-v2`; fresh execution is needed to verify.
   - Jockey `6af1645551a48191900c77833073fdfd` is enabled. Latest run `aac1531b-53d0-832f-918c-9e21a3a46772` failed with a generic scheduled-task error and no actionable diagnostic.
