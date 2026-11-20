@@ -34,7 +34,9 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 ## How to resume safely
 1. Read the Daily roadmap, action history, and current project handoff.
 2. Read the Daily TODO and cycle guide; inspect the current implementation and tests rather than assuming the docs reflect current main.
+
 **Current Jockey draft PR #200:** strict EDT/EST cron matching and description-only before/after snapshot persistence are proposed but not merged. Mainline schedule behavior and live scheduled proof remain separate acceptance gates.
+
 3. Inspect the latest relevant workflow runs and live preflight. Distinguish successful candidate generation, Spotify write acceptance, read-back verification, description verification and completed cycle state.
 4. Inspect current live playlist contents and playlist-manager authorization/lock state before proposing a write.
 5. Preview and validate the exact 60-track set, blacklist/whitelist reconciliation, deduplication, artist fallback, and description behavior.
