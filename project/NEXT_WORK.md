@@ -35,7 +35,7 @@ Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_E
 
 ## Superseded handoff — 2026-11-20: Authentication was the focused priority before the Jockey assignment
 
-The user has explicitly asked to finish centralized Spotify authentication before returning the SHIT engineering trio to background development.
+Historical direction at that time: the user asked to finish centralized Spotify authentication before resuming the engineering trio. The newer Jockey assignment above reactivates Daily reliability only; it does not complete or bypass the owner-controlled auth gate.
 
 1. **Immediate PR:** [#198 — Accept opaque Spotify account identifiers](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), branch `fix/opaque-spotify-account-identifiers-mainline`, head `1146b0cc51d855b438c15fa7b4697186bfecbfad`, based on current main `2eecf2592c5dec2977277ba9b8880e7ff57d7fe5`. Exact-head broker tests #44701998659, Daily curator tests #44701998530, and security scan #44701998525 were running at the last check. Inspect results before merging.
 2. **Production gate:** read-only Cloudflare metadata shows deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic, created 2026-11-10 20:12:11 UTC. Do not assume it contains the merged v3 credential-store/OIDC code. Use the owner-only deployment workflow after PR #198 is merged and required keyring/secret metadata is verified. Never read secret values.
