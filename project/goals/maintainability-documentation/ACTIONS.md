@@ -271,3 +271,14 @@ Newest entries first. Record verified outcomes separately from plans, assumption
 - **Safety:** the trigger is constrained by branch pattern and exact path; no secret or executable instruction is placed in the marker. Existing read-only agent/validation and separate allowlisted publisher architecture is unchanged.
 - **Attempt:** the connected GitHub branch-creation action was blocked by the platform's safety checks before a dispatch branch was created. Therefore no workflow run has been triggered or verified by this attempt.
 - **Next:** use the Actions UI for this first run, or establish an approved GitHub action/connection that permits ChatGPT to create the dispatch branch. Do not mark Buddy active until a successful run and proposal review are confirmed.
+
+
+## 2026-11-20 — Scheduled ChatGPT Buddy repaired and reactivated
+
+- **User request:** make sure the SHIT workers are working; repair Buddy now and revisit Boots later.
+- **Diagnosis:** the scheduled ChatGPT Buddy automation was disabled. Its former persistent branch `babel/chatgpt-buddy` was 46 commits ahead and 349 commits behind current `main`; draft PR #163 was unmergeable and contained stale worker-model guidance.
+- **Recovery:** preserved the old branch for historical reference, closed draft PR #163 without merging, and created `babel/chatgpt-buddy-v2` from current `main` at `3b7f9fe830bfc67dc8263518defb47b32377bbc7`. Updated the scheduled task instructions to use the replacement branch and re-enabled the daily automation.
+- **Documentation batch:** reconcile the current worker identity across this goal README, `docs/BABEL_AGENT.md`, `docs/BABEL_CHATGPT_BUDDY.md`, and this roadmap/action history. Mark the Codex/API workflow as a separate dormant experiment; it must not be retried without explicit user reauthorization.
+- **Execution:** an immediate Buddy run was requested after reactivation. Its result and any draft PR/CI evidence must be checked separately; automation acceptance is not proof of completion.
+- **Verification:** GitHub read-back and documentation checks are pending after the branch changes. No runtime, workflow, credential, provider, Library, or Spotify changes were made.
+- **Next:** complete the documentation edits on `babel/chatgpt-buddy-v2`, inspect the full diff, run relevant safe checks, and open/update one draft PR. Then independently verify the immediate Buddy run and re-check its schedule. Boots is intentionally deferred.
