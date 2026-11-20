@@ -20,13 +20,15 @@ OIDC_AUDIENCE = "shit-spotify-refresh"
 
 
 class BrokerTokenError(RuntimeError):
-    def __init__(self, message, category="broker_unavailable", retry_after=None):
+    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None):
         super().__init__(message)
         self.category = category
         self.retry_after = retry_after
+        self.stage = stage
+        self.http_status = http_status
 
 
-def _read_json(opener, request: urllib.request.Request) -> dict:
+def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
     try:
         with opener(request, timeout=15) as response:
             raw = response.read(MAX_RESPONSE_BYTES + 1)
@@ -65,9 +67,19 @@ def _read_json(opener, request: urllib.request.Request) -> dict:
             retry_after = body_retry_after or (exc.headers.get("Retry-After") if exc.headers else None)
         else:
             message = "Authentication broker request failed."
-        raise BrokerTokenError(message, category=category, retry_after=retry_after if category == "rate_limited" else None) from None
-    except (urllib.error.URLError, TimeoutError, OSError):
-        raise BrokerTokenError("Authentication broker is unavailable.", category="broker_unavailable") from None
+        raise BrokerTokenError(
+            message, category=category,
+            retry_after=retry_after if category == "rate_limited" else None,
+            stage=stage, http_status=exc.code,
+        ) from None
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        reason = getattr(exc, "reason", None)
+        # Expose only a stable exception class, never URLs, headers, or credentials.
+        reason_type = type(reason).__name__ if reason is not None else type(exc).__name__
+        raise BrokerTokenError(
+            f"Authentication request failed during {stage} ({reason_type}).",
+            category="broker_unavailable", stage=stage,
+        ) from None
     try:
         value = json.loads(raw)
     except (ValueError, UnicodeDecodeError) as exc:
@@ -100,7 +112,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
         oidc_target,
         headers={"Authorization": "Bearer " + oidc_request_token, "Accept": "application/json"},
     )
-    oidc_data = _read_json(opener, oidc_request)
+    oidc_data = _read_json(opener, oidc_request, stage="github_oidc")
     oidc_jwt = oidc_data.get("value")
     if not isinstance(oidc_jwt, str) or not oidc_jwt or len(oidc_jwt) > 16_384 or "\n" in oidc_jwt or "\r" in oidc_jwt:
         raise BrokerTokenError("GitHub did not issue a usable workload identity.")
@@ -123,7 +135,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
             method="POST",
         )
         try:
-            broker_data = _read_json(opener, broker_request)
+            broker_data = _read_json(opener, broker_request, stage="broker_refresh")
             break
         except BrokerTokenError as exc:
             if exc.category not in ("busy", "broker_unavailable") or attempt == 23:
