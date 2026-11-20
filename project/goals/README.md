@@ -1,3 +1,9 @@
+# Cross-project priority update — 2026-11-20
+
+Centralized Spotify authentication is now the sole focused engineering priority by explicit user direction. Keep SHIT Buddy (Babel documentation), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) paused during this recovery phase. Resume them as background development lanes only after broker-owned credential persistence and two independent broker-backed auth-health checks pass. See [current handoff](../NEXT_WORK.md) and [authentication roadmap](mobile-cloud-operation/ROADMAP.md).
+
+---
+
 # Project Goal Workspaces
 > **Required for every goal:** maintain `ROADMAP.md`, `README.md`, and `ACTIONS.md`. Read the roadmap before work and update all relevant documentation in the same session. See [mandatory documentation rules](../DOCUMENTATION_RULES.md).
 
