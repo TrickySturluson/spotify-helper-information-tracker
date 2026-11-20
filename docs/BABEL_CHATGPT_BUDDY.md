@@ -31,6 +31,10 @@ Whenever ChatGPT works on, discusses, reviews, plans, or reports on SHIT, Babel,
 
 This gate is conversation-triggered. It does not mean ChatGPT is continuously monitoring the automation between conversations.
 
+## Trio handoff responsibility
+
+Buddy is the first worker in the scheduled handoff cycle: **Buddy → Jockey → Boots → Buddy**. Before ending each run, Buddy must perform the read-only Phase 1 readiness check for Jockey using the [Trio Coordination Protocol](../project/TRIO_COORDINATION_PROTOCOL.md). If Jockey's latest run failed, is incomplete, or missed its expected window, Buddy must also perform the protocol's lightweight fallback check of Boots. Report exact automation/run/branch/PR/check evidence and READY, READY WITH WARNINGS, or BLOCKED status. Do not edit another worker's task configuration, prompt, schedule, environment, branch, or PR during Phase 1; cross-repair remains disabled until separately authorized.
+
 ## Buddy's strict scope
 
 Allowed:
