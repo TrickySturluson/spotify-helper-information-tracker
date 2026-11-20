@@ -64,15 +64,16 @@ If the next worker is blocked by something outside the outgoing worker's authori
 
 ## Phase 2: bounded cross-repair (not yet enabled)
 
-Cross-repair will be considered only after Phase 1 has been exercised and reviewed. Its eventual allowlist should be limited to reversible, low-risk readiness defects with clear ownership and deterministic verification, such as stale handoff links or missing non-sensitive documentation prerequisites.
+Cross-repair will be considered only after Phase 1 has been exercised and reviewed. The following are candidate repairs for a future, explicitly authorized allowlist; none is enabled in Phase 1:
 
-Cross-repair must not include:
-- changing schedules, enabling/disabling automations, or modifying task prompts;
-- modifying another worker's branch or PR;
-- changing code outside the repairing worker's remit;
-- secrets, credentials, permissions, security controls, production deployments, external accounts, provider writes, playlist/Library data, or irreversible actions.
+- **Task enablement/schedule:** restore a task to a previously user-approved enabled state and documented schedule only when there is no evidence of an intentional user pause. If intent is ambiguous, escalate.
+- **Task prompt:** restore a damaged or stale prompt only from a versioned, previously approved snapshot. Do not invent or broaden another worker's scope. Save the before/after versions and verify the resulting task record.
+- **Persistent branch:** if the successor has no open PR and no active run, preserve the exact old head on a separate archival branch before creating a fresh worker branch from current main. Never delete or force-push the old branch. If an open PR exists, do not cross-repair its branch; leave it to the owner or ChatGPT technical lead.
+- **Repository prerequisites:** repair stale handoff links or missing non-sensitive documentation prerequisites when the fix is reversible and the repairing worker has permission to change that path.
 
-Any future expansion must be explicitly documented, tested on a harmless scenario, and authorized before the automation prompts are changed.
+Cross-repair must never include merging, approving, marking ready, or closing another worker's PR; changing code outside the repairing worker's remit; secrets, credentials, permissions, security controls, production deployments, external accounts, provider writes, playlist/Library data, or irreversible actions.
+
+Any future allowlist must be explicitly documented, tested on harmless scenarios, and authorized before automation prompts are changed. Each repair must preserve a recoverable before-state, make at most one attempt per blocker, and verify the successor's resulting readiness.
 
 ## Loop and conflict prevention
 
