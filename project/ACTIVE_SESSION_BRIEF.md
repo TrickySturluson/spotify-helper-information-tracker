@@ -161,15 +161,15 @@ Updating this file does not wake Buddy, alter an already-running job, or deliver
 - Buddy is a documentation partner only. It may audit and improve documentation, continuity records, roadmaps, action logs, and narrowly scoped documentation-contract tests. It must not perform SHIT runtime/product development or Spotify/Last.fm operations.
 - ChatGPT may independently publish verified documentation-only maintenance directly to `main` under `AGENTS.md` and `project/DOCUMENTATION_RULES.md`. Buddy is separate and proposal-only: it may update its dedicated branch and draft PR, but may not write to `main`, approve, mark ready, close, merge, or self-merge.
 
-## Current priority
+## Current work policy
 
-**Babel remains active, and explicitly authorized SHIT workstreams may proceed in parallel.** ChatGPT may resume bounded SHIT feature work while Buddy remains focused on Babel. Operational/runtime changes, provider operations, generated data, and playlist writes still require specific user authorization and must follow the relevant workstream safeguards.
+**The current Jockey assignment is Tricky Daily reliability**, as recorded in the top overlay and `project/NEXT_WORK.md`. Jockey owns Daily implementation only; Boots owns all other SHIT implementation work outside Daily; Buddy remains documentation-only. Babel remains Buddy's documentation scope and must not be used to absorb feature implementation. Operational/runtime changes, provider operations, generated data, and playlist writes still require their specific user authorization and safeguards.
 
 Success means a new assistant with no prior chat history can identify the repository's goals, current verified state, constraints, evidence, unresolved risks, and next executable action from repository files alone.
 
 ## Deferred post-Babel objective — SHIT-wide integrity, diagnostics and recovery
 
-After Babel is judged as complete and realistically as good as it can be, revisit a dedicated SHIT-wide **Integrity, Diagnostics & Recovery** workstream. This is explicitly deferred; it does not expand the current documentation-only priority or authorize runtime implementation now.
+After Babel is judged as complete and realistically as good as it can be, revisit a dedicated SHIT-wide **Integrity, Diagnostics & Recovery** workstream. This remains deferred; it does not expand the current Jockey Daily scope or authorize unassigned runtime implementation.
 
 The intended design is a coordinated health system: (1) health monitoring across project data, documentation, tests and workflows; (2) diagnostics that trace symptoms to likely root causes; (3) bounded recovery/repair for deterministic, reversible cases; (4) Buddy as the permanent Documentation & Continuity Guardian, checking documentation drift, roadmaps, handoffs and evidence; and (5) an improvement backlog for recurring failures and systemic weaknesses. Buddy contributes evidence and documentation maintenance but is not the sole health authority and must not approve its own risky repairs.
 
