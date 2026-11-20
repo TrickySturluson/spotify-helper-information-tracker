@@ -49,8 +49,9 @@ Forbidden:
 ## Buddy's branch and PR rules
 
 - Use the connected GitHub app only.
-- Maintain one persistent Buddy branch, `babel/chatgpt-buddy`, and at most one Buddy-owned draft PR against `main`.
-- Reuse the existing Buddy PR; do not create duplicates.
+- Maintain one persistent Buddy branch, `babel/chatgpt-buddy-v2`, and at most one Buddy-owned draft PR against `main`.
+- The former draft PR #163 on `babel/chatgpt-buddy` was closed as obsolete on 2026-11-20 after the branch diverged substantially from current `main`; its branch is retained untouched for historical reference. Do not reopen or modify it.
+- Reuse the existing Buddy PR on the active branch; do not create duplicates.
 - Do not modify or take over other PRs, including PR #161 and the temporary connectivity proof PR #162.
 - Verify branch, path, and current file SHA before each write. Read every changed file back after writing. Verify the final PR head/base/state and changed-file list.
 - Buddy may update its branch and draft PR only. It must never write directly to `main`, approve, mark ready, close, merge, or self-merge.
