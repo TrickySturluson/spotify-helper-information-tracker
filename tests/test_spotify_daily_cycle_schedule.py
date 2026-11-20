@@ -1,4 +1,5 @@
 """Regression tests for Tricky Daily scheduled-run timing and outputs."""
+import json
 import os
 import sys
 import tempfile
@@ -18,23 +19,23 @@ EASTERN = ZoneInfo("America/New_York")
 class DailyCycleScheduleTests(unittest.TestCase):
     def test_delayed_scheduled_run_catches_up_during_same_eastern_day(self):
         delayed = datetime(2026, 11, 5, 6, 47, tzinfo=EASTERN)
-        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
+        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule", schedule_cron="0 5 * * *"))
 
     def test_scheduled_run_catches_up_after_one_am(self):
         delayed = datetime(2026, 11, 5, 1, 5, tzinfo=EASTERN)
-        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
+        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule", schedule_cron="15 5 * * *"))
 
     def test_scheduled_run_can_catch_up_late_in_same_eastern_day(self):
         delayed = datetime(2026, 11, 5, 22, 45, tzinfo=EASTERN)
-        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule"))
+        self.assertTrue(daily_cycle.should_run_cycle(delayed, event_name="schedule", schedule_cron="0 5 * * *"))
 
     def test_standard_time_early_cron_before_midnight_is_ignored(self):
         early_cron = datetime(2026, 11, 4, 23, 0, tzinfo=EASTERN)
-        self.assertFalse(daily_cycle.should_run_cycle(early_cron, event_name="schedule"))
+        self.assertFalse(daily_cycle.should_run_cycle(early_cron, event_name="schedule", schedule_cron="0 4 * * *"))
 
     def test_late_standard_time_cron_occurrence_is_also_ignored(self):
         late_early_cron = datetime(2026, 11, 4, 23, 59, tzinfo=EASTERN)
-        self.assertFalse(daily_cycle.should_run_cycle(late_early_cron, event_name="schedule"))
+        self.assertFalse(daily_cycle.should_run_cycle(late_early_cron, event_name="schedule", schedule_cron="15 4 * * *"))
 
     def test_manual_dispatch_remains_midnight_gated_without_force(self):
         daytime = datetime(2026, 11, 5, 6, 47, tzinfo=EASTERN)
@@ -131,7 +132,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
              patch.object(daily_cycle.manager, "config", return_value=completed), \
              patch.object(daily_cycle.manager, "Spotify") as spotify, \
              patch.object(daily_cycle, "set_action_output"), \
-             patch.dict(os.environ, {"GITHUB_EVENT_NAME": "schedule"}), \
+             patch.dict(os.environ, {"GITHUB_EVENT_NAME": "schedule", "SCHEDULE_CRON": "0 5 * * *"}), \
              patch.object(sys, "argv", ["spotify_daily_cycle.py"]):
             self.assertEqual(daily_cycle.main(), 0)
         spotify.assert_not_called()
@@ -497,9 +498,11 @@ class DailyCycleScheduleTests(unittest.TestCase):
     def test_description_only_mode_is_present_and_does_not_replace_tracks(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         branch = source[source.index("if args.description_only:"):source.index("# Re-read immediately before planning/mutation")]
-        self.assertIn("update_description_and_verify(sp, next_description)", branch)
-        self.assertNotIn("cloud.replace_playlist", branch)
-        self.assertIn('set_action_output("description_updated", "true")', branch)
+        helper = source[source.index("def run_description_only("):source.index("def configure():")]
+        self.assertIn("run_description_only(sp, playlist, me.get(\"id\"), cycle_date)", branch)
+        self.assertIn("persist_daily_snapshot(backup, cycle_date, \"before\")", helper)
+        self.assertIn("persist_daily_snapshot(after_snapshot_path, cycle_date, \"after\")", helper)
+        self.assertNotIn("cloud.replace_playlist", helper)
 
     def test_replacement_state_is_persisted_before_post_change_read(self):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
@@ -515,7 +518,9 @@ class DailyCycleScheduleTests(unittest.TestCase):
 
     def test_workflow_persists_accepted_replacement_even_after_later_step_failure(self):
         workflow = (ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml").read_text(encoding="utf-8")
-        self.assertIn('- cron: "15 4,5 * * *"', workflow)
+        for cron in ("0 4 * * *", "15 4 * * *", "0 5 * * *", "15 5 * * *"):
+            self.assertIn(f'- cron: "{cron}"', workflow)
+        self.assertIn("SCHEDULE_CRON: ${{ github.event.schedule }}", workflow)
         self.assertIn("steps.daily-cycle.outputs.cycled == 'true' || steps.daily-cycle.outputs.description_updated == 'true'", workflow)
 
     def test_workflow_persists_spotify_cooldown_even_when_cycle_fails(self):
@@ -533,6 +538,191 @@ class DailyCycleScheduleTests(unittest.TestCase):
             with patch.dict(os.environ, {"GITHUB_OUTPUT": str(output)}):
                 daily_cycle.set_action_output("cycled", "true")
             self.assertEqual(output.read_text(encoding="utf-8"), "cycled=true" + chr(10))
+
+
+class DailyScheduleOffsetTests(unittest.TestCase):
+    def test_edt_primary_and_recovery_crons_match_daylight_offset(self):
+        now = datetime(2026, 7, 1, 0, 10, tzinfo=EASTERN)
+        self.assertTrue(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="0 4 * * *"))
+        self.assertTrue(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="15 4 * * *"))
+        self.assertFalse(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="0 5 * * *"))
+        self.assertFalse(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="15 5 * * *"))
+
+    def test_est_primary_and_recovery_crons_match_standard_offset(self):
+        now = datetime(2026, 11, 5, 0, 10, tzinfo=EASTERN)
+        self.assertTrue(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="0 5 * * *"))
+        self.assertTrue(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="15 5 * * *"))
+        self.assertFalse(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="0 4 * * *"))
+        self.assertFalse(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="15 4 * * *"))
+
+    def test_unknown_or_missing_scheduled_cron_fails_closed(self):
+        now = datetime(2026, 11, 5, 0, 10, tzinfo=EASTERN)
+        self.assertFalse(daily_cycle.should_run_cycle(now, event_name="schedule"))
+        self.assertFalse(daily_cycle.should_run_cycle(now, event_name="schedule", schedule_cron="0 3 * * *"))
+
+
+class DailyDescriptionSnapshotTests(unittest.TestCase):
+    def make_snapshots(self):
+        items = [
+            {"uri": f"spotify:track:{i:022d}", "name": f"Track {i}", "artists": [f"Artist {i}"]}
+            for i in range(60)
+        ]
+        before = {
+            "playlist": {
+                "id": daily_cycle.DAILY_ID, "name": "Tricky Daily",
+                "description": "Old description", "snapshot_id": "before",
+            },
+            "items": items,
+        }
+        after = {
+            "playlist": {
+                "id": daily_cycle.DAILY_ID, "name": "Tricky Daily",
+                "description": "New description", "snapshot_id": "after",
+            },
+            "items": items,
+        }
+        playlist = {
+            "id": daily_cycle.DAILY_ID, "name": "Tricky Daily",
+            "owner": {"id": "owner"}, "description": "New description",
+            "snapshot_id": "after", "items": {"total": 60},
+        }
+        return items, before, after, playlist
+
+    def run_helper(self, update_side_effect):
+        items, before, after, updated_playlist = self.make_snapshots()
+        config = {"daily_cycle": {"last_cycle_date_eastern": "2026-11-20", "status": "completed"}}
+        spotify = __import__("unittest").mock.Mock()
+        spotify.call.return_value = updated_playlist
+        with patch.object(daily_cycle.manager, "snapshot", side_effect=[before, after]) as snapshot, \
+             patch.object(daily_cycle.manager, "save_snapshot", side_effect=[
+                 "playlist_backups/before.json", "playlist_backups/after.json"
+             ]) as save_snapshot, \
+             patch.object(daily_cycle, "persist_daily_snapshot", side_effect=["before-commit", "after-commit"]) as persist, \
+             patch.object(daily_cycle, "assert_repository_head_unchanged") as head_guard, \
+             patch.object(daily_cycle, "assert_live_snapshot_unchanged", return_value=(
+                 {"id": daily_cycle.DAILY_ID, "description": "Old description"}, before
+             )), \
+             patch.object(daily_cycle, "choose_daily_description", return_value="New description"), \
+             patch.object(daily_cycle, "update_description_and_verify", side_effect=update_side_effect), \
+             patch.object(daily_cycle.manager, "config", return_value=config), \
+             patch.object(daily_cycle.manager, "write") as write, \
+             patch.object(daily_cycle.manager, "audit") as audit, \
+             patch.object(daily_cycle, "set_action_output") as output:
+            daily_cycle.run_description_only(
+                spotify,
+                {"id": daily_cycle.DAILY_ID, "description": "Old description"},
+                "owner",
+                "2026-11-20",
+            )
+        return {
+            "items": items, "config": config, "snapshot": snapshot,
+            "save_snapshot": save_snapshot, "persist": persist,
+            "head_guard": head_guard, "write": write, "audit": audit,
+            "output": output, "spotify": spotify,
+        }
+
+    def test_description_only_update_persists_before_and_after_snapshots(self):
+        def accept(sp, description, on_accepted=None):
+            if on_accepted:
+                on_accepted()
+
+        result = self.run_helper(accept)
+        self.assertEqual(result["save_snapshot"].call_count, 2)
+        self.assertEqual(
+            result["persist"].call_args_list,
+            [
+                unittest.mock.call("playlist_backups/before.json", "2026-11-20", "before"),
+                unittest.mock.call("playlist_backups/after.json", "2026-11-20", "after"),
+            ],
+        )
+        self.assertEqual(result["head_guard"].call_count, 2)
+        self.assertEqual(result["config"]["daily_cycle"]["description_status"], "completed")
+        self.assertEqual(
+            result["config"]["daily_cycle"]["description_before_snapshot"],
+            "playlist_backups/before.json",
+        )
+        self.assertEqual(
+            result["config"]["daily_cycle"]["description_after_snapshot"],
+            "playlist_backups/after.json",
+        )
+        events = [call.kwargs.get("event") for call in result["audit"].call_args_list]
+        self.assertIn("daily_description_update_started", events)
+        self.assertIn("daily_description_update_accepted", events)
+        self.assertIn("daily_description_postchange_snapshot_saved", events)
+        self.assertIn("daily_description_update_completed", events)
+        result["output"].assert_called_once_with("description_updated", "true")
+        result["spotify"].call.assert_called_once_with("GET", f"/playlists/{daily_cycle.DAILY_ID}")
+
+    def test_after_snapshot_is_preserved_when_description_readback_fails(self):
+        def fail_after_acceptance(sp, description, on_accepted=None):
+            if on_accepted:
+                on_accepted()
+            raise daily_cycle.manager.ManagerError("simulated read-after-write failure")
+
+        items, before, after, updated_playlist = self.make_snapshots()
+        config = {"daily_cycle": {}}
+        spotify = __import__("unittest").mock.Mock()
+        spotify.call.return_value = updated_playlist
+        with patch.object(daily_cycle.manager, "snapshot", side_effect=[before, after]), \
+             patch.object(daily_cycle.manager, "save_snapshot", side_effect=[
+                 "playlist_backups/before.json", "playlist_backups/after.json"
+             ]) as save_snapshot, \
+             patch.object(daily_cycle, "persist_daily_snapshot", side_effect=["before-commit", "after-commit"]) as persist, \
+             patch.object(daily_cycle, "assert_repository_head_unchanged"), \
+             patch.object(daily_cycle, "assert_live_snapshot_unchanged", return_value=(
+                 {"id": daily_cycle.DAILY_ID, "description": "Old description"}, before
+             )), \
+             patch.object(daily_cycle, "choose_daily_description", return_value="New description"), \
+             patch.object(daily_cycle, "update_description_and_verify", side_effect=fail_after_acceptance), \
+             patch.object(daily_cycle.manager, "config", return_value=config), \
+             patch.object(daily_cycle.manager, "write"), \
+             patch.object(daily_cycle.manager, "audit"):
+            with self.assertRaisesRegex(daily_cycle.manager.ManagerError, "read-after-write failure"):
+                daily_cycle.run_description_only(
+                    spotify,
+                    {"id": daily_cycle.DAILY_ID, "description": "Old description"},
+                    "owner",
+                    "2026-11-20",
+                )
+        self.assertEqual(save_snapshot.call_count, 2)
+        self.assertEqual(persist.call_count, 2)
+        self.assertEqual(config["daily_cycle"]["description_status"], "accepted_pending_verification")
+
+    def test_persist_daily_snapshot_commits_only_exact_snapshot_and_audit(self):
+        snapshot_text = json.dumps({
+            "playlist": {"id": daily_cycle.DAILY_ID},
+            "items": [],
+        }, ensure_ascii=False) + "\n"
+        with tempfile.TemporaryDirectory(dir=".") as temp:
+            relative = Path(os.path.relpath(temp, os.getcwd()))
+            backup_dir = relative / "playlist_backups"
+            backup_dir.mkdir()
+            snapshot_path = backup_dir / "before.json"
+            snapshot_path.write_text(snapshot_text, encoding="utf-8")
+            audit_path = relative / "audit.jsonl"
+            audit_path.write_text("{\"event\":\"before\"}\n", encoding="utf-8")
+            calls = []
+
+            def fake_run(args, **kwargs):
+                calls.append(args)
+                if args[:2] == ["git", "show"]:
+                    return daily_cycle.subprocess.CompletedProcess(args, 0, stdout=snapshot_text, stderr="")
+                if args[:3] == ["git", "rev-parse", "HEAD"]:
+                    return daily_cycle.subprocess.CompletedProcess(args, 0, stdout="snapshot-commit\n", stderr="")
+                return daily_cycle.subprocess.CompletedProcess(args, 0, stdout="", stderr="")
+
+            with patch.object(daily_cycle.manager, "BACKUPS", backup_dir), \
+                 patch.object(daily_cycle.manager, "AUDIT", audit_path), \
+                 patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}), \
+                 patch.object(daily_cycle.subprocess, "run", side_effect=fake_run):
+                commit = daily_cycle.persist_daily_snapshot(str(snapshot_path), "2026-11-20", "before")
+
+        self.assertEqual(commit, "snapshot-commit")
+        self.assertIn(["git", "add", "-f", "--", str(snapshot_path)], calls)
+        commit_call = next(call for call in calls if call[:3] == ["git", "commit", "--only"])
+        self.assertIn(str(snapshot_path), commit_call)
+        self.assertIn(str(audit_path), commit_call)
+        self.assertIn(["git", "push", "origin", "HEAD:main"], calls)
 
 
 if __name__ == "__main__":
