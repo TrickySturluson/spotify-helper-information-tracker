@@ -207,6 +207,14 @@ def persist_daily_snapshot(snapshot_path, cycle_date, phase):
     result = subprocess.run(
         ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
     )
+    committed = subprocess.run(
+        ["git", "show", f"HEAD:{path.as_posix()}"],
+        check=True, capture_output=True, text=True,
+    )
+    if committed.stdout != path.read_text(encoding="utf-8"):
+        raise manager.ManagerError(
+            "Committed Daily description snapshot differs from the saved recovery file."
+        )
     return result.stdout.strip()
 
 
