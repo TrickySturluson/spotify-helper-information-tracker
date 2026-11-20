@@ -1,6 +1,6 @@
 # Trio Coordination — Roadmap
 
-**Status:** In progress — Phase 1 protocol documented; task prompts and runtime handoffs not yet updated or verified.  
+**Status:** In progress — Phase 1 protocol drafted in [PR #202](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/202); not merged. Task prompts and runtime handoffs are not yet updated or verified.  
 **Last reviewed:** 2026-11-20
 
 ## User goal
