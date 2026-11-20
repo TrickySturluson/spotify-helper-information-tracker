@@ -23,7 +23,7 @@ Make SHIT understandable, maintainable, and recoverable by a contributor or assi
 - [Documentation index](../../../docs/README.md): navigation to technical references and workstreams.
 - [Project roadmap](../../ROADMAP.md): cross-workstream priorities and dependencies.
 - [NEXT_WORK.md](../../NEXT_WORK.md), [LOOSE_ENDS.md](../../LOOSE_ENDS.md), and [PROJECT_LOG.md](../../PROJECT_LOG.md): current handoff, unresolved work, and chronology.
-- [Goal index](../README.md): 13 goal workspaces, each expected to contain ROADMAP, README and ACTIONS.
+- [Goal index](../README.md): 14 goal workspaces, each expected to contain ROADMAP, README and ACTIONS.
 - [Repository file index](../../../docs/REPOSITORY_FILE_INDEX.md): tracked file and directory inventory.
 
 ## Required per-file documentation
@@ -50,11 +50,14 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [ ] Perform a cold-start simulation proving the brief and repository docs are sufficient without prior chat history.
 - [ ] Confirm privacy boundaries: curated SHIT context only; no raw chat dumps, unrelated personal context, or secret values.
 
-## Controlled ChatGPT dispatch
+## Scheduled ChatGPT Buddy — current continuation path
 
-- [x] Add a narrowly scoped `push` trigger for fresh `babel/dispatch-*` branches, filtered to `.github/babel/dispatch.json`; retain manual dispatch and the six-hour schedule.
-- [x] Ensure the dispatch branch is only an event trigger: preflight and all work jobs continue to select `main` or `babel/agent-progress`, never treating the marker branch as a work base.
-- [ ] Execute the first ChatGPT-triggered run and verify Codex, independent validation, and isolated PR publication.
+- [x] Establish the daily scheduled ChatGPT/GitHub-app task with documentation-only scope and a draft-PR publication boundary.
+- [x] Repair the stale Buddy branch safely: retain the former `babel/chatgpt-buddy` branch for reference, close obsolete draft PR #163 without merging, and create `babel/chatgpt-buddy-v2` from current `main`.
+- [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate dormant experiment.
+- [x] Re-enable the daily Buddy automation and request an immediate run on 2026-11-20.
+- [ ] Verify the fresh draft PR #201's CI checks and independently review the final PR head/diff.
+- [ ] Perform the fresh-session simulation using merged repository documentation.
 
 ## Deferred successor: SHIT-wide Integrity, Diagnostics & Recovery
 
@@ -86,7 +89,7 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - Meaningful work updates relevant documentation in the same session; status claims cite exact evidence.
 
 ## Automated guardrails — core checks implemented and CI-verified
-- `tests/test_documentation_contract.py` enforces required control documents, all 13 goal workspaces' ROADMAP/README/ACTIONS files, AGENTS continuity requirements, major documentation-domain coverage, Babel identity and local links from primary entry points.
+- `tests/test_documentation_contract.py` dynamically enforces ROADMAP/README/ACTIONS coverage for every goal workspace, AGENTS continuity requirements, major documentation-domain coverage, Babel identity and local links from primary entry points.
 - `tests/test_script_layout.py` checks compatibility delegation, package layout, and bottom `FILE OVERVIEW` presence across maintained Python implementations, compatibility launchers, test modules and workflow YAMLs. Its known-placeholder guard scans those same maintained file families.
 - Daily curator run #42168520574 passed all 460 tests on commit `8153028e4123d2be9307983b0eccff47fcaf07f9`; public repository security scan #42168520598 also passed on that commit. The later metadata-enrichment publication is separately validated by run #42166959478 and the post-enrichment integrity audit.
 
