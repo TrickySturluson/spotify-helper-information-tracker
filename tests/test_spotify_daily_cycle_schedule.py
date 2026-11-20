@@ -723,6 +723,7 @@ class DailyDescriptionSnapshotTests(unittest.TestCase):
         self.assertIn(str(snapshot_path), commit_call)
         self.assertIn(str(audit_path), commit_call)
         self.assertIn(["git", "push", "origin", "HEAD:main"], calls)
+        self.assertIn(["git", "show", f"HEAD:{snapshot_path.as_posix()}"], calls)
 
 
 if __name__ == "__main__":
