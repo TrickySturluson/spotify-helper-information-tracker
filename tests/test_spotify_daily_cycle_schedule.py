@@ -882,13 +882,88 @@ class DailyPostWriteSnapshotTests(unittest.TestCase):
             )
         self.assertEqual(events, ["description", "after-snapshot"])
 
+class DailySchedulePreflightTests(unittest.TestCase):
+    def test_rejected_schedule_check_exits_before_auth_or_spotify_client(self):
+        class FrozenDateTime:
+            @staticmethod
+            def now(tz):
+                return datetime(2026, 11, 5, 1, 0, tzinfo=tz)
+
+        now = datetime(2026, 11, 5, 1, 0, tzinfo=EASTERN)
+        with patch.object(daily_cycle, "datetime", FrozenDateTime), \
+             patch.object(daily_cycle, "should_run_cycle", return_value=False) as gate, \
+             patch.object(daily_cycle, "configure") as configure, \
+             patch.object(daily_cycle.manager, "check_spotify_cooldown") as cooldown, \
+             patch.object(daily_cycle.manager, "Spotify") as spotify, \
+             patch.object(daily_cycle.manager, "config") as config, \
+             patch.object(daily_cycle, "set_action_output") as output, \
+             patch.dict(os.environ, {
+                 "GITHUB_EVENT_NAME": "schedule",
+                 "SCHEDULE_CRON": "0 4 * * *",
+             }), \
+             patch.object(daily_cycle.sys, "argv", [
+                 "spotify_daily_cycle.py", "--schedule-check-only"
+             ]):
+            self.assertEqual(daily_cycle.main(), 0)
+
+        gate.assert_called_once_with(
+            now, force=False, event_name="schedule", schedule_cron="0 4 * * *"
+        )
+        output.assert_called_once_with("schedule_allowed", "false")
+        configure.assert_not_called()
+        cooldown.assert_not_called()
+        spotify.assert_not_called()
+        config.assert_not_called()
+
+    def test_forced_schedule_check_accepts_without_configuring_spotify(self):
+        class FrozenDateTime:
+            @staticmethod
+            def now(tz):
+                return datetime(2026, 11, 5, 14, 0, tzinfo=tz)
+
+        now = datetime(2026, 11, 5, 14, 0, tzinfo=EASTERN)
+        with patch.object(daily_cycle, "datetime", FrozenDateTime), \
+             patch.object(daily_cycle, "should_run_cycle", return_value=True) as gate, \
+             patch.object(daily_cycle, "configure") as configure, \
+             patch.object(daily_cycle.manager, "Spotify") as spotify, \
+             patch.object(daily_cycle, "set_action_output") as output, \
+             patch.dict(os.environ, {"GITHUB_EVENT_NAME": "workflow_dispatch"}), \
+             patch.object(daily_cycle.sys, "argv", [
+                 "spotify_daily_cycle.py", "--force", "--schedule-check-only"
+             ]):
+            self.assertEqual(daily_cycle.main(), 0)
+
+        gate.assert_called_once_with(
+            now, force=True, event_name="workflow_dispatch", schedule_cron=""
+        )
+        output.assert_called_once_with("schedule_allowed", "true")
+        configure.assert_not_called()
+        spotify.assert_not_called()
+
+    def test_workflow_runs_provider_free_gate_before_token_acquisition(self):
+        workflow = (
+            ROOT / ".github" / "workflows" / "spotify-daily-midnight-cycle.yml"
+        ).read_text(encoding="utf-8")
+        gate_at = workflow.index("name: Check schedule window before authentication")
+        token_at = workflow.index("name: Obtain central Spotify access token")
+        cycle_at = workflow.index("name: Cycle Tricky Daily")
+        gate_step = workflow[gate_at:token_at]
+        token_step = workflow[token_at:cycle_at]
+        cycle_step = workflow[cycle_at:workflow.index("name: Preserve recovery snapshots")]
+        self.assertLess(gate_at, token_at)
+        self.assertLess(token_at, cycle_at)
+        self.assertIn("--schedule-check-only", gate_step)
+        self.assertIn("steps.schedule-gate.outputs.schedule_allowed == 'true'", token_step)
+        self.assertIn("steps.schedule-gate.outputs.schedule_allowed == 'true'", cycle_step)
+
+
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Regression-test Tricky Daily scheduling, 60-track validation, staged publication,
 #          force/idempotency behavior, and recovery after accepted playlist mutations.
 # Scope: Unit and source-contract tests with mocked provider interactions; no live Spotify writes.
-# Coverage: EDT/EST cron matching, duplicate suppression, immutable staging, description
-#          before/after snapshots, accepted-pending state, and workflow persistence.
+# Coverage: EDT/EST cron matching, provider-free pre-auth gating, duplicate suppression,
+#          immutable staging, description before/after snapshots, and accepted-pending state.
 # Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
 # Related: scripts/spotify/spotify_daily_cycle.py, .github/workflows/spotify-daily-midnight-cycle.yml,
 #          docs/TRICKY_DAILY_CYCLE.md, and project/goals/tricky-daily/ROADMAP.md.
