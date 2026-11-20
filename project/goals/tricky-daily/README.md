@@ -12,6 +12,7 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 - Artist diversity may be relaxed progressively only after retrying alternatives. Never relax uniqueness or exclusions.
 - Forced runs bypass the schedule gate only, not safety or verification.
 - Update and read back the rotating description on successful forced and scheduled cycles.
+- Every playlist mutation, including description-only updates, requires durable before/after snapshots and an accepted/pending state if Spotify accepts a write before read-back completes.
 - Last.fm scrobbles, measured Spotify playback, likes/saves, playlist exposure and removals are distinct evidence.
 - Missing playback coverage and an unplayed exposed track are not automatically negative preference.
 - Only the explicitly authorized Tricky Daily playlist may be written under its documented controls.
@@ -21,6 +22,7 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 |---|---|
 | Candidate generation and 60-track assembly | scripts/spotify/spotify_daily_playlist.py |
 | Cycle orchestration and recovery state | scripts/spotify/spotify_daily_cycle.py |
+| Description-only snapshot transaction | `persist_daily_snapshot()` in scripts/spotify/spotify_daily_cycle.py |
 | Feedback learning | scripts/spotify/spotify_daily_feedback.py and assistant_data/spotify/daily_feedback.json |
 | Read-only live preflight | scripts/spotify/spotify_daily_preflight.py |
 | Trend context | scripts/spotify/spotify_listening_trends.py |
@@ -32,6 +34,7 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 ## How to resume safely
 1. Read the Daily roadmap, action history, and current project handoff.
 2. Read the Daily TODO and cycle guide; inspect the current implementation and tests rather than assuming the docs reflect current main.
+3. Current Jockey draft PR #200 contains strict EDT/EST cron matching and description-only before/after snapshot persistence. It is not merged; mainline schedule behavior and live scheduled proof remain separate acceptance gates.
 3. Inspect the latest relevant workflow runs and live preflight. Distinguish successful candidate generation, Spotify write acceptance, read-back verification, description verification and completed cycle state.
 4. Inspect current live playlist contents and playlist-manager authorization/lock state before proposing a write.
 5. Preview and validate the exact 60-track set, blacklist/whitelist reconciliation, deduplication, artist fallback, and description behavior.
