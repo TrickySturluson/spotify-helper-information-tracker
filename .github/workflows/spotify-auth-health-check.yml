@@ -154,7 +154,9 @@ jobs:
               return f"rate_limited_until:{max(int(time.time()), deadline)}"
 
           try:
-              access_token, _expires_in = request_broker_access_token()
+              # One-time owner-authorized smoke test: force the central broker to refresh
+          # its encrypted Spotify credential rather than serving a cached access token.
+          access_token, _expires_in = request_broker_access_token(force_refresh=True)
           except BrokerTokenError as exc:
               if exc.category == "reauthorization_required":
                   report("reauthorization_required", "The central broker reports that the credential is blocked or the provider outcome could not be safely verified. Complete owner-consented Spotify authorization to recover.")
