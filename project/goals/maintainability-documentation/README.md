@@ -15,7 +15,7 @@ Each maintained implementation file should explain purpose and supported goal, i
 
 **Status:** the repository file index and per-file overview system exist. All 14 goal workspaces now have ROADMAP.md, README.md, and ACTIONS.md; semantic accuracy and current-state reconciliation remain under audit. The 28 known generic or underspecified module overviews have been replaced, and automated tests now reject known generic placeholders across maintained Python implementations, compatibility launchers, test modules and GitHub Actions workflow YAML files.
 
-**Resume:** use the verified committed-tree inventory and source-specific checks to audit the remaining implementation overviews, compatibility launchers, test modules, workflow contracts, technical guides and all goal workspaces. Keep documentation as the sole active workstream until a fresh-session simulation passes.
+**Resume:** use the verified committed-tree inventory and source-specific checks to audit the remaining implementation overviews, compatibility launchers, test modules, workflow contracts, technical guides and all goal workspaces. Babel continues alongside other explicitly authorized SHIT workstreams; keep this roadmap and ACTIONS current, and complete the fresh-session simulation before declaring Babel complete.
 
 ## Documentation and resume
 
