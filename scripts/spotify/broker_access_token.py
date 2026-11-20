@@ -20,12 +20,14 @@ OIDC_AUDIENCE = "shit-spotify-refresh"
 
 
 class BrokerTokenError(RuntimeError):
-    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None):
+    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None, error_code=None, server=None):
         super().__init__(message)
         self.category = category
         self.retry_after = retry_after
         self.stage = stage
         self.http_status = http_status
+        self.error_code = error_code
+        self.server = server
 
 
 def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
@@ -67,10 +69,14 @@ def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
             retry_after = body_retry_after or (exc.headers.get("Retry-After") if exc.headers else None)
         else:
             message = "Authentication broker request failed."
+        safe_code = detail if isinstance(detail, str) and len(detail) <= 64 and detail.replace("_", "").isalnum() else None
+        safe_server = exc.headers.get("Server") if exc.headers else None
+        if not isinstance(safe_server, str) or len(safe_server) > 64 or not safe_server.replace("-", "").isalnum():
+            safe_server = None
         raise BrokerTokenError(
             message, category=category,
             retry_after=retry_after if category == "rate_limited" else None,
-            stage=stage, http_status=exc.code,
+            stage=stage, http_status=exc.code, error_code=safe_code, server=safe_server,
         ) from None
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         reason = getattr(exc, "reason", None)
