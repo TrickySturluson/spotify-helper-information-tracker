@@ -1,3 +1,13 @@
+# Coordination session overlay — 2026-11-20
+
+- User authorized a self-maintaining handoff cycle for the scheduled trio: Buddy → Jockey → Boots → Buddy. The objective is to prevent silent worker failure during extended absences, including roughly two weeks away.
+- A new Trio Coordination goal and canonical protocol are proposed on branch §coordination/trio-readiness-handoffs§. Phase 1 is read-only successor-readiness checking; cross-repair is a later, separately gated phase. Do not change another worker's task prompt, schedule, enablement, environment, branch or PR during Phase 1.
+- Live automation audit: Buddy is enabled; latest run §54ea442a-ca08-8326-b910-2ba2f6a15428§ completed with a blocker report referencing obsolete PR #163. Jockey is enabled; latest run §aac1531b-53d0-832f-918c-9e21a3a46772§ failed with a generic scheduled-task error. Boots is enabled; latest recorded run §1e3d1069-f10c-8331-9a81-2fb71b707e11§ completed on 2026-11-08, with its next scheduled run 2026-11-20 4:30 PM Eastern. These are point-in-time observations; recheck live records before action.
+- No automation prompt/schedule/enablement, runtime code, workflow, credential, provider, playlist or canonical Library changes have been made in this coordination batch.
+- Next: finish repository navigation and review the protocol diff; open a draft PR; then, after the documentation is merged, add read-only successor checks to all three saved task prompts and observe one full cycle before considering bounded cross-repair.
+
+---
+
 # Verified continuation overlay — 2026-11-20 08:29 UTC
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.
