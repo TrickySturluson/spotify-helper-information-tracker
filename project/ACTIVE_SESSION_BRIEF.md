@@ -42,7 +42,7 @@ The current user-assigned Jockey priority is **Tricky Daily reliability**. This 
 
 ---
 
-# Current session overlay — 2026-11-20
+## Superseded session overlay — 2026-11-20 (authentication-only priority before Jockey reassignment)
 
 ## Focus: centralized Spotify authentication
 
