@@ -61,6 +61,8 @@ Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tr
 
 The workflow also supports a repository test-trigger push to `.github/test-triggers/tricky-daily-live-cycle.json`. That push forces the runner, with an explicit `action` value of `cycle`, `description-only`, or `verify-only`; if the key is absent, it defaults to `description-only`. This is a deliberate test hook, not the normal schedule.
 
+Manual dispatch remains midnight-gated unless `--force` is explicitly supplied. **Force bypasses the clock gate only**; the same-Eastern-date completion guard remains active for full cycles and is checked before Spotify client construction. Force does not bypass ownership, managed-playlist permission, unlock, whitelist/blacklist reconciliation, staging, validation, snapshot, audit, or read-back safeguards.
+
 ## Rotating description
 
 Every successful full cycle also updates the short editorial description using
