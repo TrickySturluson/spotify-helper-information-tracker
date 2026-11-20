@@ -31,7 +31,7 @@ The current user-assigned Jockey priority is **Tricky Daily reliability**. This 
 
 ---
 
-# Verified continuation overlay — 2026-11-20 08:29 UTC
+## Superseded continuation overlay — 2026-11-20 08:29 UTC (authentication-only status at that time)
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.
 - Production is **not** verified: latest read-only deployment remains `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic. Do not equate merged code or preview deployment with production activation or successful Spotify auth.
