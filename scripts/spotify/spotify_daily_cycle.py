@@ -708,15 +708,28 @@ def main():
     parser.add_argument("--description-only", action="store_true", help="Rotate and verify only the Tricky Daily description; leave tracks untouched.")
     parser.add_argument("--verify-only", action="store_true", help="Verify the live Daily playlist without changing tracks or description.")
     parser.add_argument("--stage-only", action="store_true", help="Build and durably verify a Daily payload without changing Spotify.")
+    parser.add_argument("--schedule-check-only", action="store_true", help="Evaluate the schedule/force gate without configuring Spotify or making network requests.")
     args = parser.parse_args()
     if args.stage_only and (args.description_only or args.verify_only):
         raise manager.ManagerError("--stage-only cannot be combined with --description-only or --verify-only.")
+    if args.schedule_check_only and (args.description_only or args.verify_only or args.stage_only):
+        raise manager.ManagerError("--schedule-check-only cannot be combined with a Spotify action.")
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
     schedule_cron = os.environ.get("SCHEDULE_CRON", "")
-    if not should_run_cycle(
+    schedule_allowed = should_run_cycle(
         local_now, force=args.force, event_name=event_name, schedule_cron=schedule_cron
-    ):
+    )
+    if args.schedule_check_only:
+        set_action_output("schedule_allowed", str(schedule_allowed).lower())
+        result = "accepted" if schedule_allowed else "rejected"
+        print(
+            f"Tricky Daily schedule gate {result} "
+            f"({local_now.isoformat()}, event={event_name or 'manual'}, "
+            f"schedule={schedule_cron or 'n/a'}); no Spotify authentication or API requests sent."
+        )
+        return 0
+    if not schedule_allowed:
         print(f"Outside the allowed Tricky Daily cycle window ({local_now.isoformat()}, event={event_name or 'manual'}); no Spotify requests sent.")
         set_action_output("cycled", "false")
         return 0
@@ -1084,7 +1097,7 @@ if __name__ == "__main__":
 #         pre-change backup and 60-track read-back. Same-Eastern-date idempotency guard
 #         remains active even when --force bypasses the clock-window gate.
 # Feedback: Rotation removals are neutral curator_rotation events, never negative preference.
-# Dispatch: --force bypasses only the clock window; --description-only and --verify-only
-#           are separate actions.
+# Dispatch: --force bypasses only the clock window; --schedule-check-only evaluates it
+#           before auth acquisition; --description-only and --verify-only are separate actions.
 # Recovery: Workflow uploads the pre-change backup and links it in manager state.
 # -----------------------------------------------------------------------------
