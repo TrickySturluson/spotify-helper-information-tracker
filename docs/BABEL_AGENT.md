@@ -1,14 +1,16 @@
-# SHIT Documentation & Continuity — AI continuation worker
+# Repository-hosted Codex/API experiment (historical)
 
 > **Internal codename: Babel**
 
 ## Purpose and status
 
-Babel has an optional repository-hosted AI worker that continues the documentation audit from GitHub rather than relying on a previous ChatGPT conversation. The worker is implemented in .github/workflows/babel-ai-continuation.yml and uses OpenAI's official openai/codex-action.
+This guide documents a **separate, historical repository-hosted Codex/API experiment**. It is not the active SHIT documentation continuation worker. The current worker is the scheduled ChatGPT task using the connected GitHub app; see [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md).
 
-**Integration status:** repository configuration is committed and the user reports that the `OPENAI_API_KEY` repository Actions secret has been added. The first dispatch was received by GitHub, but run #42181953313 failed in Codex action sandbox setup before the agent prompt ran. After pinning the Codex job to Ubuntu 24.04, retry #42183337573 reached Codex but the API returned a quota-exceeded error; **Activation is pending** until API quota is available and an end-to-end run succeeds. Do not describe the worker as operational yet.
+**Experiment status:** the runner compatibility workaround was verified, but the Codex attempt was blocked by API quota before validation or publication (runs [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) and [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573)). The experiment is dormant. Do not dispatch it, request API funding, or treat it as operational unless the user explicitly reauthorizes that separate API-based experiment.
 
-## Active-session context bridge
+## Historical Codex experiment architecture
+
+The sections below describe the repository-hosted Codex workflow as built and tested in November 2026. They are retained for audit and recovery context only; they do not describe Buddy's current execution path. The scheduled ChatGPT Buddy uses the connected GitHub app and its own persistent draft-PR branch.
 
 Before reading the other continuation records, Buddy must read `project/ACTIVE_SESSION_BRIEF.md`. It is a curated SHIT project brief maintained by ChatGPT during active work—not a raw transcript and not a real-time message channel. ChatGPT updates it after material decisions, source findings, changes, tests, failures, and blockers, alongside the affected goal roadmap/action log. Buddy must reconcile the brief against the checked-out repository and newer evidence. It sees only committed changes on a subsequent run; updates do not wake an active job. Never include unrelated personal conversation or secret values.
 
@@ -34,7 +36,7 @@ The workflow rejects deletions and all other changed paths. In particular, the w
 
 The Codex job has no GitHub write token. Candidate tests run in a separate read-only job with neither the OpenAI API key nor a write-capable GitHub token, so even a malicious test change cannot steal publishing credentials. The publisher is the only job that can push; it only reapplies the validated patch, rechecks changed paths, and publishes without running candidate code. The agent is instructed to keep the state active unless every Maintainability & Documentation acceptance criterion is evidenced, including a successful fresh-session simulation.
 
-## One-time activation
+## Historical activation procedure — do not use without explicit reauthorization
 
 1. Create an API key in the OpenAI API platform: https://platform.openai.com/api-keys
 2. Confirm the repository Actions secret `OPENAI_API_KEY` exists. The user reports that it has been added; never read, print, or share its value.
@@ -50,7 +52,7 @@ The first ChatGPT-triggered push run is [#42181953313](https://github.com/Tricky
 
 The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), passed preflight and successfully completed the `drop-sudo` socket-restriction step on Ubuntu 24.04. Codex then returned **`Quota exceeded. Check your plan and billing details.`** Validation and publishing were skipped; no patch, continuation branch, or PR was produced. This proves the runner workaround, but not the agent task or publishing pipeline.
 
-**Next action:** the repository owner must check the OpenAI API platform's billing/usage limits and ensure the API project or organization has available quota/credits. ChatGPT subscription access does not provide API credits. Do not expose or paste the API key. Do not retry until quota is available; then trigger a fresh dispatch and verify Codex output, independent validation/full tests, and isolated PR publication. Do not switch to `unsafe` to bypass sandbox failures.
+**Current action:** none. This experiment remains dormant and must not be retried without the user's explicit reauthorization. Do not ask the user to add credits or expose API credentials. The active ChatGPT Buddy path is independent of this workflow.
 
 ## Recovery and operations
 
@@ -62,7 +64,7 @@ The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper
 - **Out-of-scope patch or failed tests:** publisher fails without pushing. Inspect the run log and Codex final-message output, then fix the prompt or documentation manually before retrying.
 - **Completion:** only the explicit status: complete sentinel stops future scheduled runs. A no-op is not completion.
 
-The branch is intentionally separate from main; the worker's commits are proposals until human review and merge. This workflow does not promise that the same ChatGPT browser conversation will reopen or receive a new message. It is an independent Codex agent operating from repository state.
+This historical workflow used a separate proposal branch and did not reopen the active ChatGPT browser conversation. It is an independent Codex agent operating from repository state, not the current Buddy task.
 
 ## Source files
 
