@@ -1,6 +1,6 @@
 {
-  "action": "cycle",
+  "action": "verify-only",
   "force": true,
-  "reason": "User explicitly requested an immediate Tricky Daily refresh on 2026-11-20 after the centralized Spotify auth broker was restored and verified. Run the normal safeguarded 60-track cycle with durable pre-write snapshot/stage, removal protections, and post-write verification.",
-  "requested_at": "2026-11-20"
+  "reason": "Return the manual test trigger to read-only verification mode after the user-authorized 2026-11-20 Tricky Daily rotation. Do not replace tracks or update the description.",
+  "verification_attempt": "2026-11-20-post-refresh-read-only-verification"
 }
