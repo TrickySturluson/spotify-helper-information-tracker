@@ -370,7 +370,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("no general network/GitHub API access", prompt)
         self.assertIn("status: active", state)
         self.assertIn("babel-ai-continuation.yml", catalogue)
-        self.assertIn("Activation is pending", guide)
+        self.assertIn("The experiment is dormant.", guide)
+        self.assertIn("The current worker is the scheduled ChatGPT task", guide)
 
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
