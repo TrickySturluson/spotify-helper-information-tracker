@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SpotifyCredentialStore, CREDENTIAL_OPERATION_TTL_MS } from "../src/credential-store.js";
+import { SpotifyCredentialStore, CREDENTIAL_OPERATION_TTL_MS, isValidSpotifyAccountId } from "../src/credential-store.js";
 
 class MemoryStorage {
   constructor() { this.values = new Map(); let tail = Promise.resolve(); this.tail = () => tail; }
@@ -40,6 +40,28 @@ function request(path, body) {
 }
 const initialToken = "initial-spotify-refresh-token-123456";
 const operation = "A".repeat(43);
+
+test("Spotify account identifiers preserve opaque legacy values without control characters", () => {
+  assert.equal(isValidSpotifyAccountId("spotify-account-id"), true);
+  assert.equal(isValidSpotifyAccountId("legacy spotify username"), true);
+  assert.equal(isValidSpotifyAccountId("user@example.com"), true);
+  assert.equal(isValidSpotifyAccountId(""), false);
+  assert.equal(isValidSpotifyAccountId("spotify" + String.fromCharCode(10) + "account"), false);
+  assert.equal(isValidSpotifyAccountId("x".repeat(257)), false);
+});
+
+test("owner authorization preserves an opaque Spotify account identifier exactly", async () => {
+  const { storage, store } = setup();
+  const accountId = "legacy spotify username";
+  const result = await store.fetch(request("/authorize", { accountId, refreshToken: initialToken }));
+  assert.equal(result.status, 201);
+  assert.deepEqual(await result.json(), { initialized: true, version: 1 });
+  const record = await storage.get("credential");
+  assert.equal(record.accountId, accountId);
+  assert.equal(record.status, "ready");
+  assert.equal(JSON.stringify(record).includes(initialToken), false);
+});
+
 
 test("readiness confirms a valid keyring without requiring an initialized credential", async () => {
   const { storage, store } = setup();
