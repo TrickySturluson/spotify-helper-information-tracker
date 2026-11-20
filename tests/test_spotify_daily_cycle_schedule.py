@@ -489,7 +489,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         source = (ROOT / "scripts" / "spotify" / "spotify_daily_cycle.py").read_text(encoding="utf-8")
         replace_at = source.index("cloud.replace_playlist(sp, DAILY_ID, uris, expected_before_uris=before_uris)")
         description_at = source.index(
-            "update_description_and_capture_after_snapshot(sp, next_description, cycle_date)", replace_at
+            "update_description_and_capture_after_snapshot(", replace_at
         )
         wrapper = source[
             source.index("def update_description_and_capture_after_snapshot("):
@@ -518,7 +518,7 @@ class DailyCycleScheduleTests(unittest.TestCase):
         output_at = source.index('set_action_output("cycled", "true")', persist_at)
         audit_at = source.index('event="daily_cycle_replacement_accepted"', output_at)
         snapshot_at = source.index(
-            "update_description_and_capture_after_snapshot(sp, next_description, cycle_date)", audit_at
+            "update_description_and_capture_after_snapshot(", audit_at
         )
         self.assertLess(replace_at, persist_at)
         self.assertLess(persist_at, output_at)
@@ -769,21 +769,6 @@ class DailyDescriptionSnapshotTests(unittest.TestCase):
         self.assertIn(["git", "show", f"HEAD:{snapshot_path.as_posix()}"], calls)
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
-# -----------------------------------------------------------------------------
-# FILE OVERVIEW
-# Purpose: Regression tests for Tricky Daily scheduled-run timing and outputs.
-# Coverage: Delayed catch-up, EST cron boundary, manual dispatch, force, early
-#           duplicate no-op, accepted-mutation persistence, and Actions outputs.
-# Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
-# Related: scripts/spotify/spotify_daily_cycle.py and the midnight-cycle workflow.
-# -----------------------------------------------------------------------------
-
-
-
 
 class DailyPostWriteSnapshotTests(unittest.TestCase):
     def test_after_snapshot_commit_is_linked_from_pending_cycle_state(self):
@@ -896,3 +881,19 @@ class DailyPostWriteSnapshotTests(unittest.TestCase):
                 result,
             )
         self.assertEqual(events, ["description", "after-snapshot"])
+
+# -----------------------------------------------------------------------------
+# FILE OVERVIEW
+# Purpose: Regression-test Tricky Daily scheduling, 60-track validation, staged publication,
+#          force/idempotency behavior, and recovery after accepted playlist mutations.
+# Scope: Unit and source-contract tests with mocked provider interactions; no live Spotify writes.
+# Coverage: EDT/EST cron matching, duplicate suppression, immutable staging, description
+#          before/after snapshots, accepted-pending state, and workflow persistence.
+# Run: python -m unittest tests.test_spotify_daily_cycle_schedule -v
+# Related: scripts/spotify/spotify_daily_cycle.py, .github/workflows/spotify-daily-midnight-cycle.yml,
+#          docs/TRICKY_DAILY_CYCLE.md, and project/goals/tricky-daily/ROADMAP.md.
+# -----------------------------------------------------------------------------
+
+
+if __name__ == "__main__":
+    unittest.main()
