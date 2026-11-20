@@ -1,3 +1,9 @@
+# Cross-project priority — 2026-11-20 08:29 UTC
+
+Authentication remains the sole focused engineering priority. PR #198 is merged and the account-ID correction has passed its exact-head broker, Daily, security, and Cloudflare preview build checks. Production deployment, encrypted credential persistence, and two independent auth-health checks are still pending. Keep SHIT Buddy, Jockey, and Boots disabled until those acceptance criteria pass; then resume them as non-overlapping background development lanes. See [current handoff](../NEXT_WORK.md) and [authentication roadmap](mobile-cloud-operation/ROADMAP.md).
+
+---
+
 # Cross-project priority update — 2026-11-20
 
 Centralized Spotify authentication is now the sole focused engineering priority by explicit user direction. Keep SHIT Buddy (Babel documentation), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) paused during this recovery phase. Resume them as background development lanes only after broker-owned credential persistence and two independent broker-backed auth-health checks pass. See [current handoff](../NEXT_WORK.md) and [authentication roadmap](mobile-cloud-operation/ROADMAP.md).

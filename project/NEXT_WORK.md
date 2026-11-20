@@ -1,3 +1,19 @@
+# Current handoff — 2026-11-20 08:29 UTC
+
+**Authentication remains the sole focused engineering priority.** PR #198 has merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker, Daily, security, and Cloudflare preview build/deployment checks passed. The identity-validation correction is now in main; it is not a production deployment or proof of Spotify credential persistence.
+
+**Next owner action:** the Cloudflare Worker secrets metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are `secret_text`. The independent backup of the encryption keyring and repository variable `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` still need confirmation. Once confirmed, open GitHub Actions → **Deploy SHIT Auth Broker** on `main` and run the owner-only workflow. It deploys OAuth disabled first, verifies query-string redaction, then activates OAuth and checks `/ready`; failure triggers an OAuth-disabled fallback. Verify the resulting production version and 100% traffic before requesting fresh Spotify consent.
+
+**Production evidence:** latest read-only deployment is `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic, created 2026-11-10 20:12:11 UTC. It has not been verified as the integrated v3 credential-store/OIDC release. Auth-health #44581567494 and Daily preflight #44692745648 failed at the central broker/access-token request. Post-merge mainline CI #44702801378 and #44702801377 was still running at the last check.
+
+After deployment, owner-consented OAuth must initialize encrypted credential storage. Verify persistence without reading the credential, then require two independent broker-backed read-only auth-health successes and verify the nine OIDC workflow consumers. No playlist changes are part of this work.
+
+**Background trio:** keep SHIT Buddy (Babel), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) disabled until credential persistence and two independent health checks pass. Then resume them as non-overlapping background development lanes.
+
+Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_ENDS.md), and [the authentication roadmap](goals/mobile-cloud-operation/ROADMAP.md) before continuing.
+
+---
+
 # Current handoff — 2026-11-20: Authentication is the focused priority
 
 The user has explicitly asked to finish centralized Spotify authentication before returning the SHIT engineering trio to background development.

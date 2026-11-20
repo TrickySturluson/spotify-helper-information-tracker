@@ -1,3 +1,14 @@
+# Verified continuation overlay — 2026-11-20 08:29 UTC
+
+- PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.
+- Production is **not** verified: latest read-only deployment remains `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic. Do not equate merged code or preview deployment with production activation or successful Spotify auth.
+- Cloudflare secret-binding metadata confirms the GitHub App client secret, GitHub App private key, and Spotify credential encryption keyring exist as `secret_text`. No secret values were read. Keyring independent backup and repository variable `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` remain unverified.
+- Post-merge mainline tests #44702801378 and security scan #44702801377 were still in progress. Auth-health #44581567494 and Daily preflight #44692745648 remain the latest verified operational failures.
+- Owner-controlled next step: confirm independent encryption-key backup and required variable; run Actions → Deploy SHIT Auth Broker. Verify 100% traffic, query redaction, and `/ready`; then owner performs fresh consent. Verify encrypted credential persistence without reading it and two independent read-only health successes.
+- Buddy/Jockey/Boots remain disabled until the authentication acceptance gate passes; then resume as background lanes with separate scopes.
+
+---
+
 # Current session overlay — 2026-11-20
 
 ## Focus: centralized Spotify authentication

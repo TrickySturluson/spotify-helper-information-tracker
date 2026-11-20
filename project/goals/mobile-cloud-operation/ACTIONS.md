@@ -1,3 +1,18 @@
+## 2026-11-20 08:29 UTC — Opaque account-ID correction merged
+
+- Merged [PR #198](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198) as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; final head `31f6f5fe49fb081bff7f3ff62ef31b3457f18725`.
+- Exact-head checks all passed: Mobile Auth Broker Tests #44702575255, Daily curator tests #44702575185, Public repository security scan #44702575262. Cloudflare Workers preview build/deployment succeeded: build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`. No independent preview health probe was available in the connected web surface.
+- Final change preserves ordinary whitespace in Spotify account identifiers exactly while continuing to reject empty values, control characters, and values longer than 256 characters. The source comment now accurately describes this behavior. The test covers opaque ID validation and exact preservation through `/authorize`.
+- The earlier PR #196 branch remains stale and must not be merged.
+- Read-only Cloudflare secret metadata confirms all three required sensitive bindings exist as `secret_text`: `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS`. No values were read. Independent keyring backup and `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` remain unverified.
+- Production remains on deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic. The integrated v3 credential-store/OIDC architecture has not been proven live. Post-merge mainline runs #44702801378 (Daily tests) and #44702801377 (security scan) were in progress.
+- Updated the authentication monitor to follow PR #198 and the complete production/credential/health acceptance sequence. It remains read-only.
+- No production deployment, secret/key change, OAuth consent, credential persistence operation, playlist write, or Library mutation occurred.
+
+**Next:** verify post-merge CI; owner confirms the encryption keyring is independently backed up and sets the required backup-confirmation variable; owner dispatches Actions → Deploy SHIT Auth Broker. Verify the integrated production version, 100% traffic, query-string redaction, and `/ready`; then owner performs fresh Spotify consent. Require credential persistence and two independent read-only health checks before resuming the background trio.
+
+---
+
 ## 2026-11-20 — Reconcile merged OIDC architecture and port opaque-ID correction to current main
 
 - Confirmed PR #188 is merged. Its integrated broker-owned credential-store/OIDC implementation is part of main; do not continue treating PR #188 as an open draft.

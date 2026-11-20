@@ -1,3 +1,13 @@
+## 2026-11-20 08:29 UTC — Authentication code correction merged; production cutover pending
+
+- PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker tests #44702575255, Daily tests #44702575185, security scan #44702575262, and Cloudflare preview build/deployment passed.
+- Production remains on deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic. Integrated v3 credential-store/OIDC production activation is not verified.
+- Cloudflare secret metadata confirms the two GitHub App secrets and Spotify credential keyring are `secret_text`; values were not read. Independent keyring backup and `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` remain unverified.
+- Owner must dispatch the protected Deploy SHIT Auth Broker workflow after backup confirmation. Verify production 100% traffic, query-string redaction, and `/ready` before fresh owner-consented OAuth. Then verify encrypted persistence, two independent health successes, and nine OIDC consumers.
+- Buddy/Jockey/Boots remain disabled until the auth acceptance gate passes; then resume background development lanes.
+
+---
+
 ## 2026-11-20 — Authentication recovery is the active cross-project blocker
 
 - PR #188's integrated broker-owned credential-store/OIDC migration is merged into main. The account-identity validation correction is now isolated in [PR #198](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), based on current main; exact-head broker, Daily, and security checks were still running when recorded.
