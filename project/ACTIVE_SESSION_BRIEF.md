@@ -1,3 +1,20 @@
+# Current SHIT continuation overlay — 2026-11-20 19:20 UTC
+
+## Current worker and project state
+- **Authentication:** the implementation/infrastructure phase is being treated as complete for now; end-to-end production authorization, encrypted credential persistence, and independent broker-health acceptance remain unverified. Do not claim full production auth completion.
+- **Buddy / Babel:** scheduled ChatGPT task using the connected GitHub app is enabled again. The previous run (2026-11-20, 09:46 Eastern) completed with a blocked report because the old Buddy branch had diverged. The old branch `babel/chatgpt-buddy` is preserved; obsolete draft PR #163 was closed without merging. New active branch `babel/chatgpt-buddy-v2` is based on current main and has one repair draft, PR [#201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), head `83607d753f93018c2ea58d866bd1a86090db0ea7`. Its latest Daily curator tests and public security scan were still running at the last check. The task's next scheduled run is 2026-11-21 around 09:00 Eastern. An immediate run request returned an inline execution in the active ChatGPT session; do not confuse that with a separate recorded scheduled-run result.
+- **Jockey / Tricky Daily:** automation remains enabled. Its 2026-11-20 scheduled execution recorded a generic task failure, not a PR CI failure. Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), head `4db7f9736a23128e1ef599337b7249ae95658cfe`, has passing Daily curator tests (#44786099249), broker tests (#44786099230), and security scan (#44786099377). Keep scheduled Daily rotation verification and recommendation memory open; a green PR check is not proof of a midnight cycle.
+- **Boots / general engineering:** intentionally not inspected or modified in this session. The user asked to revisit Boots later.
+- **Current Buddy repair proposal:** PR #201 changes only documentation under `docs/` and `project/`; no runtime, workflow, secret, permission, provider, canonical Library, or playlist operations were performed. Keep it draft pending green checks and independent diff review.
+
+## Immediate continuation
+1. Check PR #201's exact-head Daily curator tests and public repository security scan; independently review the complete diff and read-back.
+2. Keep Buddy enabled and verify its next scheduled run produces a new recorded result on the repaired branch.
+3. Do not inspect or change Boots until the user asks to circle back.
+4. Keep Jockey's scheduled-task execution failure distinct from PR #200's passing CI and investigate the automation failure separately if it repeats.
+
+---
+
 # Verified continuation overlay — 2026-11-20 08:29 UTC
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.
