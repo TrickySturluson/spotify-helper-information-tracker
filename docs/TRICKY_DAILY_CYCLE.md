@@ -51,7 +51,7 @@ calibration.
 
 Mainline currently declares combined UTC cron expressions `0 4,5 * * *` and `15 4,5 * * *`. Its runner uses the Eastern local-hour gate and same-date completion guard, but does not inspect the exact scheduled cron string. This can produce extra same-date deliveries during EDT and does not prove which UTC entry matched the active offset.
 
-Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) splits the schedule into four explicit entries (`0 4`, `15 4`, `0 5`, `15 5` UTC), passes `github.event.schedule` as `SCHEDULE_CRON`, and accepts only entries whose expected offset matches the current `America/New_York` offset. Missing/unknown schedule strings fail closed. Delayed matching-offset deliveries may still catch up later on that Eastern date; the existing date guard prevents duplicate publication. These semantics are implemented only on the PR branch; exact-head CI and a live scheduled delivery remain pending.
+Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) splits the schedule into four explicit entries (`0 4`, `15 4`, `0 5`, `15 5` UTC), passes `github.event.schedule` as `SCHEDULE_CRON`, and accepts only entries whose expected offset matches the current `America/New_York` offset. Missing/unknown schedule strings fail closed. Delayed matching-offset deliveries may still catch up later on that Eastern date; the existing date guard prevents duplicate publication. Exact-head CI passed on code head `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`; these semantics remain branch-only until owner-controlled merge, and a live scheduled delivery remains pending.
 
 - During EDT, only the 04:00/04:15 UTC entries are accepted; 05:00/05:15 entries are rejected as the wrong offset.
 - During EST, only the 05:00/05:15 UTC entries are accepted; 04:00/04:15 entries are rejected as pre-midnight deliveries.
@@ -83,9 +83,12 @@ pre-change snapshot plus audit before the PUT, persists an accepted/pending
 state immediately after Spotify accepts the PUT, then saves and commits the
 post-change snapshot. It does this post-change capture even if description
 read-after-write verification fails, so an accepted-but-unverified update is
-not repeated blindly. Completion requires the exact description and unchanged
-ordered 60-track contents. It never replaces tracks. These changes remain in
-a draft PR pending CI and live operational verification.
+not repeated blindly. The accepted-but-pending state records the committed
+after-snapshot path and Spotify snapshot ID before final validation, so the
+snapshot remains directly addressable if verification fails. Completion
+requires the exact description and unchanged ordered 60-track contents. It
+never replaces tracks. Exact-head CI passes; merge and live operational
+verification remain pending.
 
 ## Live preflight
 
