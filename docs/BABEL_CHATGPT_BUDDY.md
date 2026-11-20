@@ -50,6 +50,7 @@ Forbidden:
 
 - Use the connected GitHub app only.
 - Maintain one persistent Buddy branch, `babel/chatgpt-buddy-v2`, and at most one Buddy-owned draft PR against `main`.
+- Current repair proposal: [draft PR #201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), subject to CI and independent review.
 - The former draft PR #163 on `babel/chatgpt-buddy` was closed as obsolete on 2026-11-20 after the branch diverged substantially from current `main`; its branch is retained untouched for historical reference. Do not reopen or modify it.
 - Reuse the existing Buddy PR on the active branch; do not create duplicates.
 - Do not modify or take over other PRs, including PR #161 and the temporary connectivity proof PR #162.
