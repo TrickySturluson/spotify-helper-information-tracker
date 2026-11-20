@@ -14,11 +14,14 @@ on:
         type: choice
         options: ["false", "true"]
   schedule:
-    # Primary EST/EDT midnight entries, plus a 15-minute recovery delivery.
-    # Script gate skips 23:xx EST pre-midnight entries; date guard makes
-    # duplicate deliveries cheap no-ops after the first accepted rotation.
-    - cron: "0 4,5 * * *"
-    - cron: "15 4,5 * * *"
+    # Keep each EST/EDT entry separate so github.event.schedule can be checked
+    # against the active America/New_York UTC offset before any Spotify request.
+    # Matching-offset recovery entries may catch up later; the date guard keeps
+    # duplicate deliveries idempotent.
+    - cron: "0 4 * * *"
+    - cron: "15 4 * * *"
+    - cron: "0 5 * * *"
+    - cron: "15 5 * * *"
 
 permissions:
   contents: write
@@ -57,6 +60,7 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
         run: |
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
             # A committed trigger file can request a real forced track cycle.
@@ -128,8 +132,8 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Automatically rotate Tricky Daily at midnight America/New_York.
-# Schedule: Dual EST/EDT cron entries with a 15-minute recovery delivery;
-#           the script gate and per-date guard make delayed/duplicate runs safe.
+# Schedule: Separate EST/EDT primary and 15-minute recovery cron entries;
+#           the script validates github.event.schedule against the current offset.
 # Safety: Requires credentials, exact playlist ownership, managed-playlist permission,
 #         explicit unlock, exactly 60 valid unique track URIs, and a pre-change backup.
 # Force bypasses only the clock-window gate; the same-Eastern-date completion
