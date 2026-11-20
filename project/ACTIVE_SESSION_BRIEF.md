@@ -7,7 +7,7 @@ The current user-assigned Jockey priority is **Tricky Daily reliability**. This 
 ## Daily state and active PR
 
 - Persistent Jockey branch: `engineering/priority`, based on main `b606fe0fa7712c01cb8f793eae85afd609187677`.
-- Single Jockey draft PR: [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current code head before documentation updates `27d921dc65f38ada0bdaae5e920ebb6b8d46d7b2`. It adds strict EDT/EST cron matching and durable description-only before/after snapshots. Exact-head CI is pending; the PR remains draft and must not be merged by Jockey.
+- Single Jockey draft PR: [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current PR head `ec1312c8405a115bdaab8ea9c745d02b1928510c`. It adds strict EDT/EST cron matching and durable description-only before/after snapshots. Exact-head CI is pending; the PR remains draft and must not be merged by Jockey.
 - Mainline user-authorized cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) was a push-triggered `action: cycle`, not a scheduled run. It completed 60 tracks, committed the stage and pre-write recovery backup, persisted completed state/audit, and uploaded the recovery artifact. Mainline state records 60 ordered after-URIs and after-snapshot ID `AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua`.
 - The subsequent GET-only snapshot at `2026-11-20T15:38:03.306427Z` contains 60 accessible unique items. The test trigger is back in read-only `verify-only` mode.
 - A real scheduled EDT/EST run and same-date duplicate no-op are still required; the push-triggered cycle does not satisfy that gate.
@@ -15,9 +15,12 @@ The current user-assigned Jockey priority is **Tricky Daily reliability**. This 
 
 ## Buddy daily checkpoint — 2026-11-20
 
-- Buddy automation remains disabled. Its report-bearing check for the current Eastern date found no repository changes to publish.
-- Buddy's existing draft PR #163 remains open and unmergeable. Its branch head is `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`; comparison with current main reports 46 commits ahead and 347 behind (diverged). Its tests and security checks passed on that stale head, which does not validate it against current main.
-- No Buddy branch, PR, automation, or Babel documentation was modified by Jockey. Reconcile the branch and re-review its complete diff only within Buddy's documentation-only ownership.
+- **Report-bearing run:** Buddy automation run `54ea442a-ca08-8326-b910-2ba2f6a15428`, started 2026-11-20 14:42:43 UTC and completed 14:46:56 UTC. It reported no repository changes and paused because the existing branch was unsafe to update. The automation is disabled.
+- **Reviewed PR:** #163, head `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`, open/draft/unmergeable. Current comparison against main `b606fe0fa7712c01cb8f793eae85afd609187677` is diverged: 46 commits ahead, 347 behind, merge base `ec7e8b369d1e2c6249563dba9094929f3a3b6767`.
+- **Complete diff review:** all 13 changed files were inspected; changes are documentation-only (AGENTS, Babel guides/index, documentation rules, active brief/handoffs/log, and the Maintainability & Documentation goal files). No runtime code, workflows, secrets, or provider state are changed.
+- **Independent finding:** the PR proposes a policy that ChatGPT must never publish directly to `main`. Current mainline `AGENTS.md` and `project/DOCUMENTATION_RULES.md` explicitly allow ChatGPT to publish routine, independently verified documentation-only maintenance directly to `main` when available; Buddy remains restricted to its dedicated draft PR. The PR conflates those two roles. Current main already contains the mandatory daily-check rule and the ChatGPT-versus-Codex distinction, so the old branch also repeats material already on main.
+- **CI:** the PR head's Daily curator tests and public security scan both completed successfully, but those checks validate the stale branch head only. They do not make its 347-commit divergence safe to integrate.
+- **Outcome:** **NEEDS CHANGES / DO NOT MERGE AS-IS.** Do not rebase, force-push, replace, or otherwise modify the Buddy branch/PR. No Buddy branch/PR/automation/Babel documentation was modified by Jockey. User action is not currently required; Buddy remains paused until its owner safely reconciles the existing branch and resolves the publication-authority contradiction.
 
 ## Scope boundaries and next gates
 
