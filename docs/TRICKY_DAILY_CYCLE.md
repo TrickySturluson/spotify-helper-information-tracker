@@ -49,39 +49,17 @@ calibration.
 
 ## Automatic schedule and recovery
 
-Mainline currently still declares the combined cron expressions `0 4,5 * * *` and `15 4,5 * * *`. The mainline runner uses the Eastern local hour and same-date completion guard, but does not inspect the exact scheduled cron string. This permits extra same-date deliveries during EDT and does not prove which UTC entry matched the active offset.
+Mainline currently declares combined UTC cron expressions `0 4,5 * * *` and `15 4,5 * * *`. Its runner uses the Eastern local-hour gate and same-date completion guard, but does not inspect the exact scheduled cron string. This can produce extra same-date deliveries during EDT and does not prove which UTC entry matched the active offset.
 
-Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) splits the schedule into four explicit entries (`0 4`, `15 4`, `0 5`, `15 5` UTC), passes `github.event.schedule` as `SCHEDULE_CRON`, and accepts only the entries whose expected offset matches the current `America/New_York` offset. Unknown/missing schedule strings fail closed. A delayed matching-offset delivery may still catch up later on that Eastern date; the existing date guard prevents duplicate publication. PR checks and a live scheduled delivery remain pending. The stale user-owned PR #159 was not modified.
+Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) splits the schedule into four explicit entries (`0 4`, `15 4`, `0 5`, `15 5` UTC), passes `github.event.schedule` as `SCHEDULE_CRON`, and accepts only entries whose expected offset matches the current `America/New_York` offset. Missing/unknown schedule strings fail closed. Delayed matching-offset deliveries may still catch up later on that Eastern date; the existing date guard prevents duplicate publication. These semantics are implemented only on the PR branch; exact-head CI and a live scheduled delivery remain pending.
 
 - During EDT, only the 04:00/04:15 UTC entries are accepted; 05:00/05:15 entries are rejected as the wrong offset.
 - During EST, only the 05:00/05:15 UTC entries are accepted; 04:00/04:15 entries are rejected as pre-midnight deliveries.
-- The 15-minute entry remains a recovery opportunity for the matching offset. A same-date completed state makes any later accepted delivery a local no-op before Spotify client creation.
-- Mainline `should_run_cycle()` still uses the Eastern local-hour gate until the Jockey draft PR #200 is integrated. The strict schedule-string/offset check is implemented only on the PR branch. Historical scheduled runs #42212368912 and #42214834581 were delayed into the morning and failed on HTTP 429 before cooldown persistence was fixed; PR #168 now commits the cooldown on failed cycles. The 2026-11-20 user-authorized push-triggered cycle #44708292405 succeeded after cooldown expiry, but the next scheduled delivery remains unverified.
-
-**Pending DST improvement:** Jockey draft [PR #200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) is the current focused proposal for separate EDT/EST primary and recovery cron entries plus exact offset validation. The older user-owned [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) was not modified and is stale; do not merge it blindly. PR #200's CI and a live scheduled run are still pending.
+- The 15-minute entry is a recovery opportunity for the matching offset. A same-date completed state makes any later accepted delivery a local no-op before Spotify client creation.
+- Historical scheduled runs #42212368912 and #42214834581 were delayed into the morning and failed on HTTP 429 before cooldown persistence was fixed. PR #168 now commits the cooldown on failed cycles. The 2026-11-20 user-authorized push-triggered cycle #44708292405 succeeded, but it is not schedule evidence.
+- The older user-owned [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) was not modified and is stale; do not merge it blindly.
 
 The workflow also supports a repository test-trigger push to `.github/test-triggers/tricky-daily-live-cycle.json`. That push forces the runner, with an explicit `action` value of `cycle`, `description-only`, or `verify-only`; if the key is absent, it defaults to `description-only`. This is a deliberate test hook, not the normal schedule.
-
-GitHub may delay scheduled events. The current gate allows a scheduled catch-up later on the same Eastern calendar date, while refusing the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated deliveries idempotent and is checked before Spotify is contacted, so a backup delivery after a successful cycle is a local no-op.
-
-Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
-
-**Force/idempotency correction (CI-verified 2026-11-06):** `should_run_cycle()` allows `--force` to bypass the clock-window gate, but `cycle_already_completed(config, cycle_date)` is called independently without a force override. Force bypasses the clock gate only. Duplicate forced dispatches are blocked before Spotify client construction. Full safe CI run #42268351897 passed 500 tests. See [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
-
-
-After Spotify accepts the playlist replacement, the runner immediately writes
-a `replacement_accepted_pending_verification` state and publishes the
-`cycled=true` Actions output. The workflow persists that state even if the
-subsequent playlist read-back or feedback observation fails. A successful
-read-back advances the state to `completed`. A pending-verification state is
-evidence that Spotify accepted the write, not proof that the post-change
-snapshot was verified; inspect the audit and recovery artifact before retrying.
-
-### What automatic post-write verification actually proves
-
-The candidate builder filters exact negative track keys/URIs and selects unique candidate URIs before publication. The normal cycle caller also validates exactly 60 recommendations, non-empty primary artists, Spotify track-URI shape and URI uniqueness before it saves a backup and calls the protected replacement helper. After the write, the automatic read-back confirms the new description, exactly 60 returned items and a valid primary artist on every item, then saves the resulting snapshot and marks the cycle completed.
-
-**Automatic post-write verification now enforces the staged publication contract.** The returned playlist must have complete pagination, exactly 60 entries, exact ordered URI equality with the committed/hash-verified stage, unique valid track URIs, valid primary artists, and no current blacklist hits. A mismatch leaves the cycle pending verification and must not be retried blindly. This was exercised live in workflow #42316296314: the exact staged order, 60 unique valid URIs, primary artists, blacklist exclusion, and description read-back all passed.
 
 ## Rotating description
 
