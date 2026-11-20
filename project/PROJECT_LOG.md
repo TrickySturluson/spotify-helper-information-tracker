@@ -1,3 +1,13 @@
+## 2026-11-20 UTC — Jockey priority assigned back to Tricky Daily reliability
+
+- User's current Jockey assignment makes Tricky Daily reliability the highest-priority SHIT implementation workstream. Jockey owns Daily only on persistent branch `engineering/priority`; Boots owns other SHIT engineering outside Daily; Buddy remains documentation-only. This supersedes the earlier auth-only trio-pause wording for Jockey's scope.
+- Mainline cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) was a user-authorized push-triggered publication, not a schedule run. It completed with 60 ordered tracks, a committed pre-write stage/recovery backup, completed state/audit, and a later GET-only snapshot containing 60 accessible unique tracks.
+- Draft PR #200 adds strict EDT/EST cron-to-offset matching and durable before/after snapshots for description-only updates. Exact-head CI and live scheduled proof remain pending. No merge or live provider operation was performed by Jockey.
+- Daily recommendation memory remains an approved P1 requirement. Current candidate history records source/context and the feedback ledger stores track-level observations, but the complete event/outcome ledger is not yet implemented.
+- The centralized authentication production cutover remains an independent owner-controlled gate. Jockey does not modify credentials, secrets, OAuth, Cloudflare production, or the auth branch/PR.
+
+---
+
 ## 2026-11-09 UTC — Consolidate auth integration and close superseded drafts
 
 - Merged current `main` ancestry into the integrated PR #188 branch and retargeted PR #188 directly to `main`. GitHub now reports zero commits behind and the PR is mergeable; it remains draft pending keyring provisioning and deployment review.
