@@ -1,3 +1,23 @@
+# Current session overlay — 2026-11-20
+
+## Focus: centralized Spotify authentication
+
+- User explicitly authorized continued work to get SHIT's centralized authentication functioning. Keep authentication the sole focused engineering priority until acceptance is met.
+- PR #188 is merged. Current main is `2eecf2592c5dec2977277ba9b8880e7ff57d7fe5`. The remaining immediate identity-validation correction was ported cleanly from stale PR #196 to fresh branch `fix/opaque-spotify-account-identifiers-mainline`, PR #198, head `1146b0cc51d855b438c15fa7b4697186bfecbfad`.
+- PR #198 changes only `auth-broker/src/credential-store.js` and `auth-broker/test/credential-store.test.js`. It allows ordinary whitespace in opaque provider IDs without normalization; still rejects empty, control-character, and over-256-character values. Exact account ID is preserved for storage and encryption associated data.
+- Exact-head checks #44701998659 (broker), #44701998530 (Daily curator), and #44701998525 (security scan) were running at the time of this update. Do not merge until complete and green.
+- Read-only Cloudflare deployment metadata: latest production deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic, created 2026-11-10 20:12:11 UTC. Integrated v3 credential-store/OIDC production deployment is not yet verified.
+- Auth-health run #44581567494 failed on 2026-11-19 at the broker request. Daily preflight #44692745648 failed on 2026-11-20 while obtaining the central access token. No successful credential persistence or two independent health checks are established.
+- Updated auth-recovery monitor task `6af195417fe88191859e30f9958dcc02` to track PR #198 and the full production/credential/health acceptance path. It remains read-only.
+- Safety: do not read/expose secrets, rotate or delete credentials, initiate OAuth, deploy production, or write to Spotify/Last.fm. Owner-controlled deployment and owner-consented OAuth remain explicit gates. No playlist writes.
+- **Trio transition:** Buddy (Babel), Jockey (priority engineering), and Boots (general engineering) remain disabled during focused auth recovery. After credential persistence and two independent auth-health checks pass, resume the three as background lanes with non-overlapping scopes; do not reactivate them early.
+
+## Next executable action
+
+Inspect exact-head checks for PR #198. If all required checks pass, independently review the complete two-file diff and merge. Then prepare the owner-controlled production deployment handoff, verify 100% traffic/readiness/query redaction, and only then ask the owner to perform fresh Spotify consent.
+
+---
+
 # Active SHIT Session Brief
 
 ## Current authentication session overlay — 2026-11-10
