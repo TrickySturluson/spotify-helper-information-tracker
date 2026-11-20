@@ -1,3 +1,33 @@
+# Current Jockey priority overlay — 2026-11-20
+
+## Assigned workstream
+
+The current user-assigned Jockey priority is **Tricky Daily reliability**. This supersedes the older paused-trio wording below for Jockey's scope only. Jockey owns Daily implementation until the documented operational/recovery acceptance criteria are met; Boots owns all other SHIT implementation work and must not overlap Daily; Buddy remains documentation-only. Jockey does not modify Boots or Buddy branches/PRs.
+
+## Daily state and active PR
+
+- Persistent Jockey branch: `engineering/priority`, based on main `b606fe0fa7712c01cb8f793eae85afd609187677`.
+- Single Jockey draft PR: [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current code head before documentation updates `27d921dc65f38ada0bdaae5e920ebb6b8d46d7b2`. It adds strict EDT/EST cron matching and durable description-only before/after snapshots. Exact-head CI is pending; the PR remains draft and must not be merged by Jockey.
+- Mainline user-authorized cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) was a push-triggered `action: cycle`, not a scheduled run. It completed 60 tracks, committed the stage and pre-write recovery backup, persisted completed state/audit, and uploaded the recovery artifact. Mainline state records 60 ordered after-URIs and after-snapshot ID `AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua`.
+- The subsequent GET-only snapshot at `2026-11-20T15:38:03.306427Z` contains 60 accessible unique items. The test trigger is back in read-only `verify-only` mode.
+- A real scheduled EDT/EST run and same-date duplicate no-op are still required; the push-triggered cycle does not satisfy that gate.
+- Current recommendation evidence is split between candidate discovery history and the track-level feedback ledger. It is not yet the full Daily-specific recommendation event/outcome memory required by the roadmap. Playback-tracker coverage remains unknown; Last.fm and liked observations remain distinct.
+
+## Buddy daily checkpoint — 2026-11-20
+
+- Buddy automation remains disabled. Its report-bearing check for the current Eastern date found no repository changes to publish.
+- Buddy's existing draft PR #163 remains open and unmergeable. Its branch head is `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`; comparison with current main reports 46 commits ahead and 347 behind (diverged). Its tests and security checks passed on that stale head, which does not validate it against current main.
+- No Buddy branch, PR, automation, or Babel documentation was modified by Jockey. Reconcile the branch and re-review its complete diff only within Buddy's documentation-only ownership.
+
+## Scope boundaries and next gates
+
+- Jockey may change Daily product code, tests, safe workflow code, and Daily/project handoff documentation on `engineering/priority` only. Keep one priority-owned draft PR.
+- Do not modify playlist-manager state/audit, generated Library data, live playlists, Spotify/Last.fm data, OAuth credentials, secrets, Cloudflare settings, or production deployments. Do not dispatch live workflows.
+- Next: finish exact-head CI and independent full-diff review for PR #200; then wait for owner-controlled merge and verify the scheduled path, duplicate no-op, and guided recovery. Only after the operational gate, implement the approved recommendation memory.
+- Centralized authentication remains a separate owner-controlled production gate. Jockey does not touch that workstream or treat it as completed.
+
+---
+
 # Verified continuation overlay — 2026-11-20 08:29 UTC
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.
