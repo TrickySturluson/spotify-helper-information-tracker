@@ -35,7 +35,7 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 1. Read the Daily roadmap, action history, and current project handoff.
 2. Read the Daily TODO and cycle guide; inspect the current implementation and tests rather than assuming the docs reflect current main.
 
-**Current Jockey draft PR #200:** strict EDT/EST cron matching and description-only before/after snapshot persistence are implemented on branch head `12df987b1b80dc54400cad09e17fc03355e4282b`; the exact-head code checks passed on `e36743c6f63e02837bd1802e5f29dcf5b3090cf8` before a docs-only handoff follow-up. The pending description state retains the after-snapshot path and Spotify snapshot ID if final verification fails. The PR remains draft; mainline schedule behavior and live scheduled proof are still separate acceptance gates.
+**Current Jockey draft PR #200:** strict EDT/EST cron matching and description-only before/after snapshot persistence are implemented on branch head `656556651f1bccf0160cef284d5bc357c51c1cdc`; the exact-head code checks passed on `e36743c6f63e02837bd1802e5f29dcf5b3090cf8` before a docs-only handoff follow-up. The pending description state retains the after-snapshot path and Spotify snapshot ID if final verification fails. The PR remains draft; mainline schedule behavior and live scheduled proof are still separate acceptance gates.
 
 3. Inspect the latest relevant workflow runs and live preflight. Distinguish successful candidate generation, Spotify write acceptance, read-back verification, description verification and completed cycle state.
 4. Inspect current live playlist contents and playlist-manager authorization/lock state before proposing a write.
