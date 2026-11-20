@@ -8652,6 +8652,15 @@
           "Bandai Namco Game Music"
         ],
         "album": "SOULCALIBUR Ⅱ ORIGINAL SOUNDTRACK"
+      },
+      {
+        "uri": "spotify:track:5Eas5g6bzn3WtYChUtzZ1S",
+        "name": "EIYU NO TAKUTO - KIGEN -",
+        "artists": [
+          "Kenichiro Suehiro",
+          "Re:ZERO Music"
+        ],
+        "album": "OVA「Re:ZERO -Starting Life in Another World- Memory Snow」Memory Album"
       }
     ],
     "5wRSUXlFbT8EX9p1kfa6GG": [
@@ -23454,6 +23463,23 @@
           "Tape"
         ],
         "album": "Luminarium"
+      },
+      {
+        "uri": "spotify:track:6anCRrgCX42ipxrv00DqW9",
+        "name": "Waiting For You",
+        "artists": [
+          "Alex G"
+        ],
+        "album": "Revive #2"
+      },
+      {
+        "uri": "spotify:track:0E8q2Fx2XuzXCO2NSAppkR",
+        "name": "In A Sentimental Mood",
+        "artists": [
+          "Duke Ellington",
+          "John Coltrane"
+        ],
+        "album": "Duke Ellington & John Coltrane"
       }
     ],
     "5meDjtqrqOe5oHpvZGWRMz": [
@@ -27964,7 +27990,7 @@
       }
     ]
   },
-  "seeded_from_reference_library_at": "2026-11-10T14:54:30.063493+00:00",
+  "seeded_from_reference_library_at": "2026-11-20T15:28:50.960442+00:00",
   "seeded_playlist_count": 0,
   "daily_cycle_marker": "2026-11-20T09:10:56.375782+00:00",
   "daily_cycle_playlist_id": "4yUVHSMQySfWeEowfIMcx7"

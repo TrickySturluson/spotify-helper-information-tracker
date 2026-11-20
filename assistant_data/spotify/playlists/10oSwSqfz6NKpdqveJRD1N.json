@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-10T14:54:33.461030+00:00",
+  "captured_at": "2026-11-20T15:28:55.869962+00:00",
   "id": "10oSwSqfz6NKpdqveJRD1N",
   "name": "Late night",
   "description": "",
@@ -10,8 +10,8 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAAB+WbGz3FjI2uGpSTRGbS1GZmUnml7",
-  "total_items_reported": 471,
+  "snapshot_id": "AAACDxuIpEgYCHccMo8Cqs2FHdK4scSr",
+  "total_items_reported": 485,
   "item_count_fetched": 0,
   "items_accessible": false,
   "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",

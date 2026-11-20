@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-10T14:54:35.372827+00:00",
+  "captured_at": "2026-11-20T15:28:58.254796+00:00",
   "id": "6c6Ra1iI1JjhADV2gnT7p6",
   "name": "Compact Cassette",
   "description": "A weekly rotation of new indie,  alternative, dreampop, electronic, postpunk and lofi music 💜",
@@ -10,8 +10,8 @@
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AABn5iHImZEKYRsyN92T6NMNDWOdEZxh",
-  "total_items_reported": 2165,
+  "snapshot_id": "AABqoc5wd7GgJIwwPUuIWKkST3ehtzD0",
+  "total_items_reported": 1987,
   "item_count_fetched": 0,
   "items_accessible": false,
   "items_error": "Spotify API returned HTTP 403 while fetching playlist items; contents are unavailable and are not treated as an empty playlist.",
