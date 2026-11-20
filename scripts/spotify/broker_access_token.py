@@ -20,7 +20,7 @@ OIDC_AUDIENCE = "shit-spotify-refresh"
 
 
 class BrokerTokenError(RuntimeError):
-    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None, error_code=None, server=None):
+    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None, error_code=None, server=None, cf_ray=None, cf_mitigated=None):
         super().__init__(message)
         self.category = category
         self.retry_after = retry_after
@@ -28,6 +28,8 @@ class BrokerTokenError(RuntimeError):
         self.http_status = http_status
         self.error_code = error_code
         self.server = server
+        self.cf_ray = cf_ray
+        self.cf_mitigated = cf_mitigated
 
 
 def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
@@ -73,10 +75,17 @@ def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
         safe_server = exc.headers.get("Server") if exc.headers else None
         if not isinstance(safe_server, str) or len(safe_server) > 64 or not safe_server.replace("-", "").isalnum():
             safe_server = None
+        cf_ray = exc.headers.get("CF-Ray") if exc.headers else None
+        if not isinstance(cf_ray, str) or len(cf_ray) > 64 or not cf_ray.replace("-", "").isalnum():
+            cf_ray = None
+        cf_mitigated = exc.headers.get("cf-mitigated") if exc.headers else None
+        if not isinstance(cf_mitigated, str) or len(cf_mitigated) > 32 or not cf_mitigated.isalnum():
+            cf_mitigated = None
         raise BrokerTokenError(
             message, category=category,
             retry_after=retry_after if category == "rate_limited" else None,
             stage=stage, http_status=exc.code, error_code=safe_code, server=safe_server,
+            cf_ray=cf_ray, cf_mitigated=cf_mitigated,
         ) from None
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         reason = getattr(exc, "reason", None)
