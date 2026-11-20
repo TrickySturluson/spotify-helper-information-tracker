@@ -158,6 +158,7 @@ def request_broker_access_token(environ=None, opener=urllib.request.urlopen, for
                 "Authorization": "Bearer " + oidc_jwt,
                 "Content-Type": "application/json",
                 "Accept": "application/json",
+                "User-Agent": "SHIT-Auth-Health-Check/1.0",
             },
             method="POST",
         )
