@@ -504,6 +504,7 @@ def run_description_only(sp, playlist, owner_id, cycle_date):
                 "description_status": "accepted_pending_verification",
                 "description_before_snapshot": backup,
                 "description_after_snapshot": None,
+                "description_after_snapshot_id": None,
             })
             manager.write(manager.CONFIG, config)
         finally:
@@ -547,6 +548,17 @@ def run_description_only(sp, playlist, owner_id, cycle_date):
                 ordered_contents_unchanged=ordered_contents_unchanged,
             )
             after_commit_sha = persist_daily_snapshot(after_snapshot_path, cycle_date, "after")
+            # Keep the accepted-but-pending state linked to the exact after
+            # snapshot even when later content/description verification fails.
+            config = manager.config()
+            daily_state = config.setdefault("daily_cycle", {})
+            if not isinstance(daily_state, dict):
+                raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing after-snapshot state update.")
+            daily_state.update({
+                "description_after_snapshot": after_snapshot_path,
+                "description_after_snapshot_id": updated.get("snapshot_id"),
+            })
+            manager.write(manager.CONFIG, config)
             assert_repository_head_unchanged(after_commit_sha)
 
             if update_error is None:
@@ -597,6 +609,7 @@ def run_description_only(sp, playlist, owner_id, cycle_date):
         "description_status": "completed",
         "description_before_snapshot": backup,
         "description_after_snapshot": after_snapshot_path,
+        "description_after_snapshot_id": (updated_snapshot.get("playlist") or {}).get("snapshot_id"),
     })
     manager.write(manager.CONFIG, config)
     manager.audit(

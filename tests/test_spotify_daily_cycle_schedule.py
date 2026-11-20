@@ -676,6 +676,7 @@ class DailyDescriptionSnapshotTests(unittest.TestCase):
             result["config"]["daily_cycle"]["description_after_snapshot"],
             "playlist_backups/after.json",
         )
+        self.assertEqual(result["config"]["daily_cycle"]["description_after_snapshot_id"], "after")
         events = [call.kwargs.get("event") for call in result["audit"].call_args_list]
         self.assertIn("daily_description_update_started", events)
         self.assertIn("daily_description_update_accepted", events)
@@ -718,6 +719,8 @@ class DailyDescriptionSnapshotTests(unittest.TestCase):
         self.assertEqual(save_snapshot.call_count, 2)
         self.assertEqual(persist.call_count, 2)
         self.assertEqual(config["daily_cycle"]["description_status"], "accepted_pending_verification")
+        self.assertEqual(config["daily_cycle"]["description_after_snapshot"], "playlist_backups/after.json")
+        self.assertEqual(config["daily_cycle"]["description_after_snapshot_id"], "after")
 
     def test_persist_daily_snapshot_commits_only_exact_snapshot_and_audit(self):
         snapshot_text = json.dumps({
