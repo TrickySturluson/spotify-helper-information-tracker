@@ -30,10 +30,10 @@ The user wants to be able to leave SHIT unattended for roughly two weeks without
 
 ### Phase 2 — Bounded cross-repair
 - [ ] Review Phase 1 evidence and failure patterns.
-- [ ] Propose an explicit allowlist of reversible, low-risk cross-repairs.
-- [ ] Keep schedule, prompt, environment, branch/PR ownership, credentials, permissions, deployments, provider writes and user data outside autonomous repair.
+- [ ] Propose an explicit allowlist of reversible, low-risk cross-repairs: restoring a documented task enablement/schedule, restoring an approved prompt snapshot, archiving and refreshing a stale branch with no open PR, and fixing non-sensitive documentation prerequisites.
+- [ ] Keep ambiguous pauses, environment changes, open-PR branch changes, credentials, permissions, deployments, provider writes and user data outside autonomous repair.
 - [ ] Obtain user authorization for the specific cross-repair allowlist before enabling it.
-- [ ] Test one harmless repair and prove one-attempt/loop-prevention behavior.
+- [ ] Test one harmless repair and prove backup, read-back, one-attempt and loop-prevention behavior.
 
 ### Phase 3 — Extended-absence reliability
 - [ ] Observe at least two complete cycles without overlapping writes or scope violations.
