@@ -484,28 +484,33 @@ def run_description_only(sp, playlist, owner_id, cycle_date):
     def record_accepted():
         nonlocal accepted
         accepted = True
-        set_action_output("description_updated", "true")
-        manager.audit(
-            event="daily_description_update_accepted",
-            playlist_id=DAILY_ID,
-            cycle_date_eastern=cycle_date,
-            description=next_description,
-            before_snapshot=backup,
-            before_snapshot_id=before_snapshot_id,
-        )
-        config = manager.config()
-        daily_state = config.setdefault("daily_cycle", {})
-        if not isinstance(daily_state, dict):
-            raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing description-state update.")
-        daily_state.update({
-            "playlist_id": DAILY_ID,
-            "description": next_description,
-            "last_description_date_eastern": cycle_date,
-            "description_status": "accepted_pending_verification",
-            "description_before_snapshot": backup,
-            "description_after_snapshot": None,
-        })
-        manager.write(manager.CONFIG, config)
+        try:
+            manager.audit(
+                event="daily_description_update_accepted",
+                playlist_id=DAILY_ID,
+                cycle_date_eastern=cycle_date,
+                description=next_description,
+                before_snapshot=backup,
+                before_snapshot_id=before_snapshot_id,
+            )
+            config = manager.config()
+            daily_state = config.setdefault("daily_cycle", {})
+            if not isinstance(daily_state, dict):
+                raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing description-state update.")
+            daily_state.update({
+                "playlist_id": DAILY_ID,
+                "description": next_description,
+                "last_description_date_eastern": cycle_date,
+                "description_status": "accepted_pending_verification",
+                "description_before_snapshot": backup,
+                "description_after_snapshot": None,
+            })
+            manager.write(manager.CONFIG, config)
+        finally:
+            # The Spotify PUT was accepted even if local persistence fails. This
+            # output makes the workflow's always-run persistence step attempt to
+            # commit the pending state/audit instead of treating it as no write.
+            set_action_output("description_updated", "true")
 
     update_error = None
     try:
