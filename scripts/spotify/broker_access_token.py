@@ -20,7 +20,7 @@ OIDC_AUDIENCE = "shit-spotify-refresh"
 
 
 class BrokerTokenError(RuntimeError):
-    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None, error_code=None, server=None, cf_ray=None, cf_mitigated=None):
+    def __init__(self, message, category="broker_unavailable", retry_after=None, stage="unknown", http_status=None, error_code=None, server=None, cf_ray=None, cf_mitigated=None, edge_error=None, content_type=None):
         super().__init__(message)
         self.category = category
         self.retry_after = retry_after
@@ -30,6 +30,8 @@ class BrokerTokenError(RuntimeError):
         self.server = server
         self.cf_ray = cf_ray
         self.cf_mitigated = cf_mitigated
+        self.edge_error = edge_error
+        self.content_type = content_type
 
 
 def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
@@ -72,6 +74,16 @@ def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
         else:
             message = "Authentication broker request failed."
         safe_code = detail if isinstance(detail, str) and len(detail) <= 64 and detail.replace("_", "").isalnum() else None
+        try:
+            error_body = exc.read(4096).decode("utf-8", errors="ignore")
+        except OSError:
+            error_body = ""
+        import re
+        edge_match = re.search(r"(?:Error|error code)\s*(?:#|:)?\s*(10\d\d|11\d\d|52\d)", error_body)
+        edge_error = edge_match.group(1) if edge_match else None
+        content_type = exc.headers.get("Content-Type") if exc.headers else None
+        if not isinstance(content_type, str) or len(content_type) > 64 or not re.fullmatch(r"[A-Za-z0-9.+/-]+", content_type):
+            content_type = None
         safe_server = exc.headers.get("Server") if exc.headers else None
         if not isinstance(safe_server, str) or len(safe_server) > 64 or not safe_server.replace("-", "").isalnum():
             safe_server = None
@@ -85,7 +97,7 @@ def _read_json(opener, request: urllib.request.Request, stage="broker") -> dict:
             message, category=category,
             retry_after=retry_after if category == "rate_limited" else None,
             stage=stage, http_status=exc.code, error_code=safe_code, server=safe_server,
-            cf_ray=cf_ray, cf_mitigated=cf_mitigated,
+            cf_ray=cf_ray, cf_mitigated=cf_mitigated, edge_error=edge_error, content_type=content_type,
         ) from None
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         reason = getattr(exc, "reason", None)
