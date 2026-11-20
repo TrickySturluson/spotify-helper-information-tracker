@@ -15,6 +15,7 @@ The user wants to be able to leave SHIT unattended for roughly two weeks without
 - Use explicit READY / READY WITH WARNINGS / BLOCKED states.
 - Do not infer success from enabled state, timestamps, green unrelated CI, or old reports.
 - Keep handoffs actionable and auditable.
+- If the immediate successor has failed or missed its run, perform a lightweight fallback check of the following worker so one failed task does not break the monitoring chain.
 - Avoid repair loops, conflicting writes, and scope creep.
 - Require human approval for secrets, permissions, production settings/deployments, external accounts, provider writes, irreversible changes and ambiguous repairs.
 
