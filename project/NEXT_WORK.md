@@ -48,7 +48,7 @@ The authentication roadmap and action log are in [mobile-cloud-operation](goals/
 
 ---
 
-# Current session handoff — 2026-11-09
+## Historical session handoff — 2026-11-09
 
 This session is actively continuing the user-authorized Authentication Management & Recovery workstream in parallel with the Jockey's Tricky Daily priority. Do not reassign the Jockey or modify its branch/PR.
 
