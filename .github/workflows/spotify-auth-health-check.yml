@@ -2,6 +2,12 @@ name: SHIT — Spotify Auth Health Check
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/spotify-auth-health-check.yml"
+      - "scripts/spotify/broker_access_token.py"
   schedule:
     # A durable commit-status latch prevents futile invalid_grant retries.
     - cron: "0 9 * * *"
