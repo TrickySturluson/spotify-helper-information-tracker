@@ -1,3 +1,15 @@
+# Current status — 2026-11-20
+
+**Status:** Authentication recovery is the sole focused engineering priority. The integrated broker-owned encrypted credential store and GitHub Actions OIDC migration from PR #188 is now merged into main (the PR is closed/merged; verify the current main tree before relying on individual branch claims). The remaining immediate source defect is that `isValidSpotifyAccountId()` still rejects ordinary whitespace in opaque Spotify account IDs. A clean two-file port is open as [PR #198](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), based directly on main commit `2eecf2592c5dec2977277ba9b8880e7ff57d7fe5`, head `1146b0cc51d855b438c15fa7b4697186bfecbfad`. It relaxes only the whitespace restriction and adds exact-preservation tests; it continues rejecting empty IDs, control characters, and values over 256 characters. Its broker tests, Daily curator tests, and full-history security scan were started as runs #44701998659, #44701998530, and #44701998525; at the time of this update they were in progress. Do not merge until all required checks complete successfully and the final diff is reviewed.
+
+**Production is not yet verified on the integrated architecture.** Read-only Cloudflare deployment metadata shows the latest production deployment created 2026-11-10 20:12:11 UTC, deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, serving version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5` at 100% traffic. The integrated v3 credential-store/OIDC production cutover has not been proven. The 2026-11-19 auth-health workflow #44581567494 failed at its central-broker request; the 2026-11-20 Daily live preflight #44692745648 also failed while obtaining a central access token. No successful credential persistence or two independent broker-backed health checks are verified. No OAuth retry, secret change, production deployment, or playlist operation was performed in this session.
+
+**Immediate sequence:** finish and independently review PR #198 checks; merge the narrowly scoped correction; follow the owner-controlled `.github/workflows/deploy-mobile-auth-broker.yml` deployment path; verify the integrated bindings/readiness/query-string redaction and 100% production traffic without reading secret values; then request owner-consented Spotify authorization. Verify encrypted credential persistence without reading it back, followed by two independent read-only auth-health successes and all nine OIDC workflow consumers.
+
+**Background trio transition:** SHIT Buddy (Babel), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) are currently disabled. Keep them paused during focused authentication recovery. Once the broker credential persistence and two independent health checks pass, resume them as background development lanes with non-overlapping scopes: Buddy = documentation only; Jockey = current highest-priority product implementation; Boots = other general engineering. Authentication remains protected from unrelated work until its acceptance criteria are met.
+
+---
+
 # Authentication Management & Recovery — Roadmap
 
 **Last reviewed:** 2026-11-09
