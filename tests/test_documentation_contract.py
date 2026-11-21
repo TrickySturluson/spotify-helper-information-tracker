@@ -370,7 +370,9 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("no general network/GitHub API access", prompt)
         self.assertIn("status: active", state)
         self.assertIn("babel-ai-continuation.yml", catalogue)
-        self.assertIn("The experiment is dormant.", guide)
+        self.assertIn("not the active SHIT documentation continuation worker", guide)
+        self.assertIn("repository-level enabled/disabled state could not be confirmed", guide)
+        self.assertIn("The workflow YAML still declares a six-hour schedule", guide)
         self.assertIn("The current worker is the scheduled ChatGPT task", guide)
 
     def test_agent_entry_point_requires_documentation_rules(self):
