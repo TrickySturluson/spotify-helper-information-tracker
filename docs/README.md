@@ -8,7 +8,7 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 
 1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
 2. [ChatGPT scheduled Buddy and publication policy](BABEL_CHATGPT_BUDDY.md) — daily verification, worker scope, and ChatGPT's separate documentation-only publication authority.
-3. [Repository-hosted Codex continuation worker](BABEL_AGENT.md) — separate API-based experiment, branch/PR publishing, security boundaries, activation and recovery.
+3. [Historical repository-hosted Codex/API experiment](BABEL_AGENT.md) — separate API-based workflow definition, trigger/stop conditions, quota blocker, and recovery boundaries.
 4. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
 5. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
 6. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
