@@ -26,7 +26,7 @@ The historical Codex continuation prompt also required its agent to read `projec
 
 ## Execution-control caveat
 
-The workflow source still defines automatic and manual triggers. The `status: active` value in [project/BABEL_AGENT_STATE.md](../project/BABEL_AGENT_STATE.md) means Babel's acceptance criteria remain open; it is not a disable switch. The workflow stops only on the exact `status: complete` sentinel, which must not be used to suppress API execution because Babel is not complete. Repository-level workflow enablement was not verified in this audit. If the owner wants to prevent any scheduled Codex/API attempt, the owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings or dispatch the experiment.
+The workflow source still defines automatic and manual triggers. The `status: active` value in [project/BABEL_AGENT_STATE.md](../project/BABEL_AGENT_STATE.md) means Babel's acceptance criteria remain open; it is not a disable switch. The preflight skips the agent when the state file is exactly `status: complete` or when `OPENAI_API_KEY` is absent. This audit did not inspect the secret value or verify its presence. The completion sentinel must not be used to suppress API execution because Babel is not complete. Repository-level workflow enablement was not verified in this audit. If the owner wants to prevent any scheduled Codex/API attempt, the owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings or dispatch the experiment.
 
 ## Scope and safety boundary
 
@@ -66,7 +66,7 @@ The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper
 - **Interrupted run:** no progress is assumed unless it was committed to the legacy branch. Reconcile current main and the legacy branch before any reauthorized continuation.
 - **No changes:** the workflow reports a no-op; it does not create empty commits.
 - **Out-of-scope patch or failed tests:** the publisher fails without pushing. Do not retry without reauthorization.
-- **Completion:** only the exact `status: complete` sentinel stops future scheduled runs. A no-op is not completion, and the sentinel must not be used as a pause switch.
+- **Completion:** the exact `status: complete` sentinel stops continuation at preflight; the agent is also skipped when `OPENAI_API_KEY` is absent. This audit did not inspect the secret value or verify its presence. A no-op is not completion, and the sentinel must not be used as a pause switch.
 
 This historical workflow used a separate proposal branch and did not reopen the active ChatGPT browser conversation. It is an independent Codex agent operating from repository state, not the current Buddy task.
 
