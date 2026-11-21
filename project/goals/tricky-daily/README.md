@@ -35,7 +35,9 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 1. Read the Daily roadmap, action history, and current project handoff.
 2. Read the Daily TODO and cycle guide; inspect the current implementation and tests rather than assuming the docs reflect current main.
 
-**Current Jockey draft PR #200:** strict EDT/EST cron matching and description-only before/after snapshot persistence are implemented on the current Jockey branch; the exact-head code checks passed on `e36743c6f63e02837bd1802e5f29dcf5b3090cf8` before subsequent docs-only handoff updates. The pending description state retains the after-snapshot path and Spotify snapshot ID if final verification fails. The PR remains draft; mainline schedule behavior and live scheduled proof are still separate acceptance gates.
+**Current Jockey draft PR #200:** strict EDT/EST cron matching and description-only before/after snapshot persistence are implemented on the current Jockey branch. The persistent branch `engineering/priority` is now current with main via merge commit `b2de95585fa9656ba86c238ca879d767030e4cfa` (41 ahead, zero behind); PR #200 remains draft and owner-controlled. Exact-head tests, secret scan, and Cloudflare preview build passed on that head. Preview is not production deployment.
+
+**Latest operational evidence:** mainline scheduled cycle #44901651168 completed a 60-track publication with stage, recovery backup, and completed state/audit; same-date scheduled delivery #44904728622 was a duplicate no-op; GET-only snapshot #44915825720 confirmed 60 accessible unique items and matching snapshot ID. This proves one scheduled publication under the old mainline gate, not strict cron-to-DST matching. PR #200's strict offset gate remains unmerged. Guided recovery is the next P0; Daily recommendation memory remains P1.
 
 3. Inspect the latest relevant workflow runs and live preflight. Distinguish successful candidate generation, Spotify write acceptance, read-back verification, description verification and completed cycle state.
 4. Inspect current live playlist contents and playlist-manager authorization/lock state before proposing a write.
