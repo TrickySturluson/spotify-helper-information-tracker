@@ -35,6 +35,7 @@ import spotify_discovery as discovery
 import spotify_daily_feedback as daily_feedback
 import spotify_listening_trends as listening_trends
 import spotify_playlist_cloud as cloud
+import daily_stage_recovery as daily_recovery
 from scripts.music.discovery_ingestion import append_candidates
 
 DAILY_ID = "4yUVHSMQySfWeEowfIMcx7"
@@ -42,6 +43,8 @@ EASTERN = ZoneInfo("America/New_York")
 DAILY_TARGET_SIZE = 60
 MINIMUM_RECOMMENDATIONS = DAILY_TARGET_SIZE
 DAILY_STAGE_DIR = Path("assistant_data/spotify/staging/tricky_daily")
+DAILY_RECOVERY_CONFIRMATION = daily_recovery.DAILY_RECOVERY_CONFIRMATION
+DAILY_RECOVERY_RESOLVED_STATUSES = daily_recovery.DAILY_RECOVERY_RESOLVED_STATUSES
 
 # Short, user-approved-in-spirit rotating lines for the daily discovery queue.
 # This is deliberately separate from the metadata description generator: Daily
@@ -111,17 +114,36 @@ def set_action_output(name, value):
             handle.write(f"{name}={value}\n")
 
 
-def assert_no_pending_daily_stage(cycle_date):
-    """Block same-date retries when a durable pre-write stage survives a failed run."""
+def assert_no_pending_daily_stage(cycle_date, config=None):
+    """Block unresolved production stages; only a hash-matched audited resolution clears one."""
     if not DAILY_STAGE_DIR.exists():
         return
-    pending = sorted(DAILY_STAGE_DIR.glob(f"{cycle_date}-*.json"))
+    config = manager.config() if config is None else config
+    resolutions = config.get("daily_recovery", {})
+    if not isinstance(resolutions, dict):
+        raise manager.ManagerError("Tricky Daily recovery state is malformed; refusing an automatic retry.")
+    pending = []
+    for path in sorted(DAILY_STAGE_DIR.glob(f"{cycle_date}-*.json")):
+        resolution = resolutions.get(path.as_posix())
+        if not isinstance(resolution, dict) or resolution.get("status") not in DAILY_RECOVERY_RESOLVED_STATUSES:
+            pending.append(path)
+            continue
+        try:
+            stage, _backup, verified_path = daily_recovery.load_verified_daily_stage(sys.modules[__name__], path.as_posix())
+        except manager.ManagerError:
+            pending.append(path)
+            continue
+        if (
+            verified_path.as_posix() != path.as_posix()
+            or resolution.get("payload_sha256") != stage.get("payload_sha256")
+        ):
+            pending.append(path)
     if pending:
         examples = ", ".join(str(path) for path in pending[:3])
         raise manager.ManagerError(
-            f"A durable Tricky Daily stage already exists for {cycle_date} Eastern "
-            f"({examples}). Automatic retry is blocked until the staged payload and live "
-            "playlist are inspected."
+            f"A durable Tricky Daily stage remains unresolved for {cycle_date} Eastern "
+            f"({examples}). Automatic retry is blocked until an owner completes audited "
+            "resume, rollback, or discard recovery."
         )
 
 
@@ -167,27 +189,27 @@ def persist_daily_stage(stage_path, backup_path, cycle_date):
 def persist_daily_snapshot(snapshot_path, cycle_date, phase):
     """Commit one exact Daily snapshot and its audit before/after a playlist mutation."""
     if phase not in ("before", "after"):
-        raise manager.ManagerError("Daily description snapshot phase must be before or after.")
+        raise manager.ManagerError("Daily snapshot phase must be before or after.")
     if os.environ.get("GITHUB_ACTIONS", "").lower() != "true":
         return False
     path = Path(snapshot_path)
     if path.is_absolute() or path.parent != Path(manager.BACKUPS) or not path.is_file():
         raise manager.ManagerError(
-            "Daily description snapshot is missing or outside the managed backup directory."
+            "Daily snapshot is missing or outside the managed backup directory."
         )
     try:
         snapshot = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError, TypeError) as error:
-        raise manager.ManagerError("Daily description snapshot is unreadable; refusing playlist mutation.") from error
+        raise manager.ManagerError("Daily snapshot is unreadable; refusing playlist mutation.") from error
     if (
         not isinstance(snapshot, dict)
         or (snapshot.get("playlist") or {}).get("id") != DAILY_ID
         or not isinstance(snapshot.get("items"), list)
     ):
-        raise manager.ManagerError("Daily description snapshot does not contain the exact playlist and item list.")
+        raise manager.ManagerError("Daily snapshot does not contain the exact playlist and item list.")
     audit_path = Path(manager.AUDIT)
     if not audit_path.is_file():
-        raise manager.ManagerError("Daily description snapshot audit is missing; refusing playlist mutation.")
+        raise manager.ManagerError("Daily snapshot audit is missing; refusing playlist mutation.")
 
     subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(
@@ -709,7 +731,31 @@ def main():
     parser.add_argument("--verify-only", action="store_true", help="Verify the live Daily playlist without changing tracks or description.")
     parser.add_argument("--stage-only", action="store_true", help="Build and durably verify a Daily payload without changing Spotify.")
     parser.add_argument("--schedule-check-only", action="store_true", help="Evaluate the schedule/force gate without configuring Spotify or making network requests.")
+    parser.add_argument("--recover-stage", help="Committed Tricky Daily production-stage path for owner-confirmed recovery.")
+    parser.add_argument("--recovery-action", choices=("resume", "rollback", "discard"), help="Owner-confirmed action for one surviving Daily stage.")
+    parser.add_argument("--recovery-confirmation", help="Must exactly equal the documented recovery confirmation phrase.")
     args = parser.parse_args()
+    recovery_requested = any(value is not None for value in (
+        args.recover_stage, args.recovery_action, args.recovery_confirmation
+    ))
+    if recovery_requested:
+        if not args.recover_stage or not args.recovery_action or args.recovery_confirmation != DAILY_RECOVERY_CONFIRMATION:
+            raise manager.ManagerError("Daily recovery requires a stage path, action, and exact owner confirmation phrase.")
+        if args.force or args.description_only or args.verify_only or args.stage_only or args.schedule_check_only:
+            raise manager.ManagerError("Daily recovery cannot be combined with normal cycle, force, or schedule-check options.")
+        if os.environ.get("GITHUB_EVENT_NAME") != "workflow_dispatch":
+            raise manager.ManagerError("Daily recovery is available only through an explicit manual workflow dispatch.")
+        if os.environ.get("GITHUB_ACTOR") != "TrickySturluson":
+            raise manager.ManagerError("Daily recovery is restricted to the repository owner.")
+        if os.environ.get("GITHUB_REPOSITORY") != "TrickySturluson/spotify-helper-information-tracker":
+            raise manager.ManagerError("Daily recovery is restricted to the canonical SHIT repository.")
+        if os.environ.get("SHIT_AUTH_MODE", "").strip().lower() != "broker":
+            raise manager.ManagerError("Daily recovery requires the central SHIT auth broker; legacy token fallback is disabled.")
+        configure()
+        manager.check_spotify_cooldown()
+        sp = manager.Spotify()
+        me = sp.me()
+        return daily_recovery.run_daily_stage_recovery(sys.modules[__name__], sp, args.recover_stage, args.recovery_action, me.get("id"))
     if args.stage_only and (args.description_only or args.verify_only):
         raise manager.ManagerError("--stage-only cannot be combined with --description-only or --verify-only.")
     if args.schedule_check_only and (args.description_only or args.verify_only or args.stage_only):
@@ -806,7 +852,7 @@ def main():
         print(f"Tricky Daily already cycled for {cycle_date} Eastern; skipping duplicate run.")
         set_action_output("cycled", "false")
         return 0
-    assert_no_pending_daily_stage(cycle_date)
+    assert_no_pending_daily_stage(cycle_date, config)
 
     before = manager.snapshot(sp, playlist)
     before_uris = [row.get("uri") for row in before.get("items", [])]
