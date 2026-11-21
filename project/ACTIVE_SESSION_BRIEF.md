@@ -1,35 +1,30 @@
-# Current Jockey priority overlay — 2026-11-20
+# Current Jockey priority overlay — 2026-11-21
 
 ## Assigned workstream
 
-The current user-assigned Jockey priority is **Tricky Daily reliability**. This supersedes the older paused-trio wording below for Jockey's scope only. Jockey owns Daily implementation until the documented operational/recovery acceptance criteria are met; Boots owns all other SHIT implementation work and must not overlap Daily; Buddy remains documentation-only. Jockey does not modify Boots or Buddy branches/PRs.
+Tricky Daily reliability remains the explicit Jockey priority. Jockey owns Daily implementation until schedule, recovery, and Daily-specific recommendation-memory acceptance criteria are met. Boots owns all other SHIT implementation and must avoid Daily code/tests/workflows/PRs. Buddy remains documentation-only. Jockey does not modify Boots or Buddy branches/PRs.
 
 ## Daily state and active PR
 
-- Persistent Jockey branch: `engineering/priority`, originally forked from main `b606fe0fa7712c01cb8f793eae85afd609187677`. Current main is `3b7f9fe830bfc67dc8263518defb47b32377bbc7`; the priority branch is 2 commits behind current main and GitHub reports the PR mergeable. The two mainline commits since the fork are generated listening/Library refreshes and do not overlap the 12 priority-PR files. It remains the single persistent Jockey branch; no rebase, force-push, or replacement branch was performed.
-- Single Jockey draft PR: [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current PR head is the live head shown by PR #200; the last code-tested commit is `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`, followed only by documentation/handoff updates. The code head `e36743c6f63e02837bd1802e5f29dcf5b3090cf8` adds strict EDT/EST cron matching, durable description-only before/after snapshots, and after-snapshot path/ID persistence in the accepted-but-pending state. Exact-head Daily tests, broker tests, secret scan, and Cloudflare preview build all passed on that code head. The PR remains draft and must not be merged by Jockey.
-- Mainline user-authorized cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) was a push-triggered `action: cycle`, not a scheduled run. It completed 60 tracks, committed the stage and pre-write recovery backup, persisted completed state/audit, and uploaded the recovery artifact. Mainline state records 60 ordered after-URIs and after-snapshot ID `AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua`.
-- The subsequent GET-only snapshot at `2026-11-20T15:38:03.306427Z` contains 60 accessible unique items. The test trigger is back in read-only `verify-only` mode.
-- A real scheduled EDT/EST run and same-date duplicate no-op are still required; the push-triggered cycle does not satisfy that gate. The current PR's Cloudflare result is a preview build only, not production.
-- Current recommendation evidence is split between candidate discovery history and the track-level feedback ledger. It is not yet the full Daily-specific recommendation event/outcome memory required by the roadmap. Playback-tracker coverage remains unknown; Last.fm and liked observations remain distinct.
+- Persistent branch `engineering/priority`; one draft PR [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), current head `b2de95585fa9656ba86c238ca879d767030e4cfa`. It is 41 ahead/0 behind current main `7547946eb3d44746e48a65de1c8d8285cab68990`, mergeable clean. The branch was reconciled with current main; generated Library, playlist-manager state, and audit paths were preserved.
+- PR #200 implements strict EDT/EST cron-to-offset matching and durable before/after snapshots for description-only mutations. Exact-head Daily/full tests, broker tests, full-history secret scan, and Cloudflare preview build passed; lockfile check skipped. Preview is not production deployment. PR remains draft and Jockey must not merge, approve, mark ready, or dispatch live workflows.
+- Mainline scheduled cycle #44901651168 completed a real 60-track publication and persisted stage, backup, state, and audit. Same-date scheduled delivery #44904728622 was a duplicate no-op. GET-only snapshot #44915825720 confirmed 60 accessible unique tracks and a matching post-cycle snapshot ID. This proves one scheduled cycle on the legacy gate, not strict cron-to-offset selection or multi-day reliability.
+- The live test trigger remains read-only `verify-only`. Daily's recommendation candidate history and track-feedback ledger are partial memory; the approved Daily-specific recommendation event/outcome memory is still unimplemented. Playback-tracker coverage remains unknown; Last.fm and liked observations remain distinct.
 
-## Buddy daily checkpoint — 2026-11-20
+## Buddy daily checkpoint — 2026-11-21
 
-- **Report-bearing run:** Buddy automation run `54ea442a-ca08-8326-b910-2ba2f6a15428`, started 2026-11-20 14:42:43 UTC and completed 14:46:56 UTC. It reported no repository changes and paused because the existing branch was unsafe to update. The automation is disabled.
-- **Reviewed PR:** #163, head `c8e4a2ad74b8c50868a6806abf9869b9da4b5725`, open/draft/unmergeable. Current comparison against main `b606fe0fa7712c01cb8f793eae85afd609187677` is diverged: 46 commits ahead, 347 behind, merge base `ec7e8b369d1e2c6249563dba9094929f3a3b6767`.
-- **Complete diff review:** all 13 changed files were inspected; changes are documentation-only (AGENTS, Babel guides/index, documentation rules, active brief/handoffs/log, and the Maintainability & Documentation goal files). No runtime code, workflows, secrets, or provider state are changed.
-- **Independent finding:** the PR proposes a policy that ChatGPT must never publish directly to `main`. Current mainline `AGENTS.md` and `project/DOCUMENTATION_RULES.md` explicitly allow ChatGPT to publish routine, independently verified documentation-only maintenance directly to `main` when available; Buddy remains restricted to its dedicated draft PR. The PR conflates those two roles. Current main already contains the mandatory daily-check rule and the ChatGPT-versus-Codex distinction, so the old branch also repeats material already on main.
-- **CI:** the PR head's Daily curator tests and public security scan both completed successfully, but those checks validate the stale branch head only. They do not make its 347-commit divergence safe to integrate.
-- **Outcome:** **NEEDS CHANGES / DO NOT MERGE AS-IS.** Do not rebase, force-push, replace, or otherwise modify the Buddy branch/PR. No Buddy branch/PR/automation/Babel documentation was modified by Jockey. User action is not currently required; Buddy remains paused until its owner safely reconciles the existing branch and resolves the publication-authority contradiction.
+- PR #201 head `396597cbf78ee91120a6172a969a93e79227d1f7` has 12 changed files (11 Markdown and one documentation-contract test), despite the run report claiming nine Markdown files. The diff includes `project/ACTIVE_SESSION_BRIEF.md` despite the report saying it was left untouched. Exact-head tests and security scan passed. No runtime code, workflow, secret, or provider-state changes were found.
+- Independent review outcome: **NEEDS CHANGES** for report/handoff accuracy and overlap with Boots PR #202 on shared handoff files. Jockey did not modify Buddy's branch, PR, automation, or Babel documentation.
 
 ## Scope boundaries and next gates
 
 - Jockey may change Daily product code, tests, safe workflow code, and Daily/project handoff documentation on `engineering/priority` only. Keep one priority-owned draft PR.
 - Do not modify playlist-manager state/audit, generated Library data, live playlists, Spotify/Last.fm data, OAuth credentials, secrets, Cloudflare settings, or production deployments. Do not dispatch live workflows.
-- Next: exact-head CI and independent full-diff review are complete. Wait for owner-controlled merge, then verify the scheduled path and same-date duplicate no-op, complete guided recovery, and only after the operational gate implement the approved recommendation memory.
+- Next: implement audited, fail-closed resume/rollback/discard for a surviving production stage; keep PR #200 draft-only pending owner merge; after merge verify strict cron-to-offset behavior. Implement Daily recommendation memory only after recovery is proven, then consult the project-wide roadmap for the next workstream.
 - Centralized authentication remains a separate owner-controlled production gate. Jockey does not touch that workstream or treat it as completed.
 
 ---
+
 
 ## Superseded continuation overlay — 2026-11-20 08:29 UTC (authentication-only status at that time)
 
