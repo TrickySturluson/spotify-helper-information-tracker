@@ -1,6 +1,6 @@
 # SHIT — Project-wide Roadmap
 
-**Last reviewed:** 2026-11-06  
+**Last reviewed:** 2026-11-21  
 **Status:** Active; cross-workstream index. Detailed implementation plans and acceptance evidence remain in each goal's roadmap.
 
 ## Mission
@@ -27,7 +27,7 @@ Maintain a durable, reliable, cloud-operable music intelligence system that comb
 | Library Enrichment | Bounded, provider-aware recording/artist/album enrichment with provenance | [ROADMAP](goals/library-enrichment/ROADMAP.md) |
 | Metadata Coverage & Retries | Coverage measurement, cooldown-aware retries, retry queue contract | [ROADMAP](goals/metadata-coverage-retries/ROADMAP.md) |
 | Discovery & Recommendations | Preserve discovery provenance and separate candidates from listening evidence | [ROADMAP](goals/discovery-recommendations/ROADMAP.md) |
-| Listening Analytics | Accurate Last.fm analytics and explicitly bounded Spotify playback observations | [ROADMAP](goals/listening-analytics/ROADMAP.md) |
+| Listening Analytics | Accurate Last.fm analytics, explicitly bounded Spotify playback observations, and reproducible annual/all-time SHIT Wrapped | [ROADMAP](goals/listening-analytics/ROADMAP.md) |
 | Playlist Intelligence & Safety | Shared fit model, sorter, learner, generated-playlist safeguards and Booze workflow | [ROADMAP](goals/playlist-intelligence/ROADMAP.md) |
 | Tricky Daily | Dedicated 60-track discovery rotation, feedback, schedule, safety, recovery and description verification | [ROADMAP](goals/tricky-daily/ROADMAP.md) |
 | Playlist Sequencing | Evidence-aware transition scoring, user-controlled energy journeys, presets and preview-first ordering | [ROADMAP](goals/playlist-sequencing/ROADMAP.md) |
