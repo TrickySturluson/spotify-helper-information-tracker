@@ -13,7 +13,7 @@ Buddy remains focused on Babel and documentation-only work. ChatGPT may work on 
 ## Execution and capability boundary
 
 - The recurring task uses the connected GitHub app from a scheduled ChatGPT task. It does not require a local PC to remain powered on or an OpenAI API key.
-- The separate repository-hosted Codex workflow is an API-based experiment and is currently blocked by API quota. Do not dispatch it, retry it, or ask the user to fund it unless the user explicitly reauthorizes that separate experiment.
+- The separate repository-hosted Codex workflow is an API-based experiment; its last verified attempt was blocked by API quota. Its workflow YAML still declares a six-hour schedule, manual dispatch, and a push trigger, but the repository-level enabled/disabled state was not confirmed in this audit. Do not manually dispatch, retry, re-enable, or request API funding without explicit user reauthorization. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings or dispatch it.
 - The GitHub-app connectivity proof is recorded in [PR #162](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/162). It proves that a scheduled task successfully performed a GitHub-app write and opened a draft PR once; it does not guarantee every future run will succeed.
 - Buddy's daily task is scheduled for approximately 9:00 AM Eastern in `America/New_York`. Treat the automation status and latest run result as authoritative; do not infer success from the schedule or last-run timestamp alone.
 
