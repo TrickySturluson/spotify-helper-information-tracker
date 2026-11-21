@@ -14,11 +14,14 @@ on:
         type: choice
         options: ["false", "true"]
   schedule:
-    # Primary EST/EDT midnight entries, plus a 15-minute recovery delivery.
-    # Script gate skips 23:xx EST pre-midnight entries; date guard makes
-    # duplicate deliveries cheap no-ops after the first accepted rotation.
-    - cron: "0 4,5 * * *"
-    - cron: "15 4,5 * * *"
+    # Keep each EST/EDT entry separate so github.event.schedule can be checked
+    # against the active America/New_York UTC offset before broker authentication.
+    # A provider-free schedule gate runs before access-token acquisition. Matching-
+    # offset recovery entries may catch up later; the date guard keeps duplicates safe.
+    - cron: "0 4 * * *"
+    - cron: "15 4 * * *"
+    - cron: "0 5 * * *"
+    - cron: "15 5 * * *"
 
 permissions:
   contents: write
@@ -47,16 +50,30 @@ jobs:
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: test -n "$LASTFM_API_KEY" || { echo "Missing LASTFM_API_KEY" >&2; exit 1; }
+      - name: Check schedule window before authentication
+        id: schedule-gate
+        env:
+          FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
+        run: |
+          if [ "$FORCE_CYCLE" = "true" ]; then
+            python compat/spotify_daily_cycle.py --force --schedule-check-only
+          else
+            python compat/spotify_daily_cycle.py --schedule-check-only
+          fi
       - name: Obtain central Spotify access token
+        if: steps.schedule-gate.outputs.schedule_allowed == 'true'
         env:
           SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
         run: python scripts/spotify/broker_access_token.py
       - name: Cycle Tricky Daily
+        if: steps.schedule-gate.outputs.schedule_allowed == 'true'
         id: daily-cycle
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
         run: |
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
             # A committed trigger file can request a real forced track cycle.
@@ -128,8 +145,8 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Automatically rotate Tricky Daily at midnight America/New_York.
-# Schedule: Dual EST/EDT cron entries with a 15-minute recovery delivery;
-#           the script gate and per-date guard make delayed/duplicate runs safe.
+# Schedule: Separate EST/EDT primary and 15-minute recovery cron entries;
+#           a provider-free script gate validates github.event.schedule before auth.
 # Safety: Requires credentials, exact playlist ownership, managed-playlist permission,
 #         explicit unlock, exactly 60 valid unique track URIs, and a pre-change backup.
 # Force bypasses only the clock-window gate; the same-Eastern-date completion

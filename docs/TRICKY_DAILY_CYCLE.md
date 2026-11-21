@@ -16,13 +16,13 @@ room for exploration outside current patterns.
 > Future work and prioritized implementation checklist: [Tricky Daily TODO](TRICKY_DAILY_TODO.md).
 > The TODO is a planning backlog, not a statement that unchecked items are already implemented.
 
-## Latest repository snapshot state — 2026-11-07 UTC / 2026-11-06 Eastern
+## Latest repository snapshot state — 2026-11-20 UTC / 2026-11-20 Eastern
 
-The live Tricky Daily cycle completed in workflow [#42316296314](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316296314): exactly 60 tracks were published, with 26 previous tracks rotated out neutrally. The committed production stage and recovery backup preceded the Spotify write. The cycle's post-write read-back verified exact staged order, 60 unique valid URIs, zero blacklist hits, and description `Today's detour starts here.`.
+The latest mainline user-authorized Tricky Daily publication was workflow [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405). It was a **push-triggered** `action: cycle` run, not a scheduled cron delivery. It started at 2026-11-20 09:09:18 UTC (04:09 Eastern) and completed successfully at 09:11:02 UTC. The runner committed stage `assistant_data/spotify/staging/tricky_daily/2026-11-20-44708292405.json` (payload SHA-256 `c8ad07b1e7f8745ac08db4a2ea7378b8439384015169227d62bffbb035443e49`) and recovery backup `playlist_backups/20261120T091051361667Z_4yUVHSMQySfWeEowfIMcx7.json` before the Spotify write. The completed state records 60 ordered after-URIs, description `A little familiar, a little unhinged.`, and post-cycle snapshot ID `AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua`. The run's cycle, recovery-snapshot, and state/feedback persistence steps all succeeded.
 
-The follow-up read-only verification [#42316824364](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316824364) independently confirmed 60 unique tracks, zero blacklist hits, and the accepted description. The current snapshot workflow [#42316906860](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42316906860) then refreshed the Daily-only saved snapshot at `2026-11-07T00:13:46.604200+00:00`: 60 accessible items, 60 unique URIs, zero new manual removals, 58 blacklisted entries, and 3 removal-feedback events reconciled. The Daily reference catalog and removal baseline also contain 60 items. Snapshot/catalog/baseline commit: `bae0cb6c435c6c12672b97bde88138ddbd9be0fe`.
+The subsequent GET-only snapshot refresh committed as mainline `b606fe0fa7712c01cb8f793eae85afd609187677` and captured `2026-11-20T15:38:03.306427Z`: 60 accessible items, 60 unique Spotify track URIs, and the same verified description. This confirms one actual playlist publication plus persisted state/audit and a later snapshot refresh. It does **not** prove the automatic schedule, DST selection, or a same-date scheduled duplicate no-op.
 
-The current playback-tracker status remains unknown because `playback_data/segments.jsonl` is absent. Last.fm and liked-song observations are available; do not infer zero plays from missing playback coverage. Feedback observation run #42318532288 checked 123 Daily feedback rows using percent-encoded batches of at most 40 and recorded current liked status for all 60 live Daily tracks (all 60 were unliked at observation time). The earlier live cycle's `liked_at_add` baseline is still unknown because its pre-fix 50-URI request returned HTTP 400; do not backfill that historical baseline from the later observation. Future cycles now use the corrected 40-URI helper.
+Feedback coverage remains explicit: Last.fm is available, liked-song observations are present, and Spotify playback-tracker coverage is unknown because `playback_data/segments.jsonl` is absent. Missing playback coverage is not zero plays or rejection.
 
 ## Trend profile
 
@@ -49,36 +49,19 @@ calibration.
 
 ## Automatic schedule and recovery
 
-`.github/workflows/spotify-daily-midnight-cycle.yml` currently declares two cron expressions: `0 4,5 * * *` and `15 4,5 * * *`. This produces scheduled deliveries at both 04:00 and 05:00 UTC, plus a 15-minute recovery delivery for each. It is **not** yet a strict cron-to-DST-offset match.
+Mainline currently declares combined UTC cron expressions `0 4,5 * * *` and `15 4,5 * * *`. Its runner uses the Eastern local-hour gate and same-date completion guard, but does not inspect the exact scheduled cron string. This can produce extra same-date deliveries during EDT and does not prove which UTC entry matched the active offset.
 
-- During Eastern Standard Time, 04:00/04:15 UTC are 23:00/23:15 Eastern on the preceding date; the current script gate skips scheduled events when the local Eastern hour is 23. The 05:00/05:15 UTC deliveries are 00:00/00:15 Eastern and can run.
-- During Eastern Daylight Time, 04:00/04:15 UTC are 00:00/00:15 Eastern. The 05:00/05:15 UTC deliveries are 01:00/01:15 Eastern; the current gate permits these same-date catch-up/duplicate deliveries. The persisted `last_cycle_date_eastern` guard makes later deliveries local no-ops after a successful cycle.
-- The current `should_run_cycle()` checks the Eastern local hour for scheduled events; it does not inspect GitHub's exact `github.event.schedule` string to reject the stale DST counterpart. Scheduled runs #42212368912 and #42214834581 were delayed into the morning and failed on HTTP 429 before cooldown persistence was fixed. PR #168 now commits the cooldown on failed cycles. The manual live cycle #42316296314 succeeded after cooldown expiry, but the next scheduled delivery after this fix remains unverified.
+Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) splits the schedule into four explicit entries (`0 4`, `15 4`, `0 5`, `15 5` UTC), passes `github.event.schedule` as `SCHEDULE_CRON`, and accepts only entries whose expected offset matches the current `America/New_York` offset. Missing/unknown schedule strings fail closed. Delayed matching-offset deliveries may still catch up later on that Eastern date; the existing date guard prevents duplicate publication. Exact-head CI passed on code head `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`; these semantics remain branch-only until owner-controlled merge, and a live scheduled delivery remains pending.
 
-**Pending DST improvement:** open, unmerged [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) proposes separate 04:00/05:00 UTC cron entries, passes the exact scheduled cron string into the runner, and rejects a cron whose UTC offset does not match the current Eastern offset. Those stricter semantics are proposed, not current mainline behavior; do not document them as implemented until PR #159 is merged and verified.
+- During EDT, only the 04:00/04:15 UTC entries are accepted; 05:00/05:15 entries are rejected as the wrong offset.
+- During EST, only the 05:00/05:15 UTC entries are accepted; 04:00/04:15 entries are rejected as pre-midnight deliveries.
+- The 15-minute entry is a recovery opportunity for the matching offset. A same-date completed state makes any later accepted delivery a local no-op before Spotify client creation.
+- Historical scheduled runs #42212368912 and #42214834581 were delayed into the morning and failed on HTTP 429 before cooldown persistence was fixed. PR #168 now commits the cooldown on failed cycles. The 2026-11-20 user-authorized push-triggered cycle #44708292405 succeeded, but it is not schedule evidence.
+- The older user-owned [PR #159](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/159) was not modified and is stale; do not merge it blindly.
 
 The workflow also supports a repository test-trigger push to `.github/test-triggers/tricky-daily-live-cycle.json`. That push forces the runner, with an explicit `action` value of `cycle`, `description-only`, or `verify-only`; if the key is absent, it defaults to `description-only`. This is a deliberate test hook, not the normal schedule.
 
-GitHub may delay scheduled events. The current gate allows a scheduled catch-up later on the same Eastern calendar date, while refusing the 23:00 hour. The persisted `last_cycle_date_eastern` guard makes repeated deliveries idempotent and is checked before Spotify is contacted, so a backup delivery after a successful cycle is a local no-op.
-
-Manual dispatch remains midnight-gated unless its `force` input is explicitly set to `true`. The separate remote-verification workflow is safe-test-only: it compiles modules and runs tests without contacting Spotify or changing a playlist.
-
-**Force/idempotency correction (CI-verified 2026-11-06):** `should_run_cycle()` allows `--force` to bypass the clock-window gate, but `cycle_already_completed(config, cycle_date)` is called independently without a force override. Force bypasses the clock gate only. Duplicate forced dispatches are blocked before Spotify client construction. Full safe CI run #42268351897 passed 500 tests. See [TRICKY_DAILY_TODO.md](TRICKY_DAILY_TODO.md) and the [Daily roadmap](../project/goals/tricky-daily/ROADMAP.md).
-
-
-After Spotify accepts the playlist replacement, the runner immediately writes
-a `replacement_accepted_pending_verification` state and publishes the
-`cycled=true` Actions output. The workflow persists that state even if the
-subsequent playlist read-back or feedback observation fails. A successful
-read-back advances the state to `completed`. A pending-verification state is
-evidence that Spotify accepted the write, not proof that the post-change
-snapshot was verified; inspect the audit and recovery artifact before retrying.
-
-### What automatic post-write verification actually proves
-
-The candidate builder filters exact negative track keys/URIs and selects unique candidate URIs before publication. The normal cycle caller also validates exactly 60 recommendations, non-empty primary artists, Spotify track-URI shape and URI uniqueness before it saves a backup and calls the protected replacement helper. After the write, the automatic read-back confirms the new description, exactly 60 returned items and a valid primary artist on every item, then saves the resulting snapshot and marks the cycle completed.
-
-**Automatic post-write verification now enforces the staged publication contract.** The returned playlist must have complete pagination, exactly 60 entries, exact ordered URI equality with the committed/hash-verified stage, unique valid track URIs, valid primary artists, and no current blacklist hits. A mismatch leaves the cycle pending verification and must not be retried blindly. This was exercised live in workflow #42316296314: the exact staged order, 60 unique valid URIs, primary artists, blacklist exclusion, and description read-back all passed.
+Manual dispatch remains midnight-gated unless `--force` is explicitly supplied. **Force bypasses the clock gate only**; the same-Eastern-date completion guard remains active for full cycles and is checked before Spotify client construction. Force does not bypass ownership, managed-playlist permission, unlock, whitelist/blacklist reconciliation, staging, validation, snapshot, audit, or read-back safeguards.
 
 ## Rotating description
 
@@ -91,9 +74,21 @@ non-empty manual descriptions on other playlists.
 The description PUT is followed by a fresh playlist GET. The cycle is only
 marked fully completed when Spotify returns the exact new description. The
 accepted description and its verification status are persisted independently
-from the track-cycle date guard. A description-only mode is available for a
-one-shot live verification; it updates and reads back the description without
-replacing tracks.
+from the track-cycle date guard.
+
+The description-only path is also a playlist mutation and must be bracketed by
+durable snapshots. Draft PR #200 adds a guarded flow that requires the current
+playlist to contain exactly 60 unique valid tracks, saves and commits the
+pre-change snapshot plus audit before the PUT, persists an accepted/pending
+state immediately after Spotify accepts the PUT, then saves and commits the
+post-change snapshot. It does this post-change capture even if description
+read-after-write verification fails, so an accepted-but-unverified update is
+not repeated blindly. The accepted-but-pending state records the committed
+after-snapshot path and Spotify snapshot ID before final validation, so the
+snapshot remains directly addressable if verification fails. Completion
+requires the exact description and unchanged ordered 60-track contents. It
+never replaces tracks. Exact-head CI passes; merge and live operational
+verification remain pending.
 
 ## Live preflight
 

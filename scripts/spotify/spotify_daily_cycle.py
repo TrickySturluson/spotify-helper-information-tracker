@@ -13,7 +13,7 @@ import secrets
 import subprocess
 import sys
 import time
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -71,19 +71,27 @@ def choose_daily_description(cycle_date, current_description=""):
     raise manager.ManagerError("No distinct Tricky Daily description is available.")
 
 
-def should_run_cycle(local_now, force=False, event_name=None):
-    """Allow delayed scheduled runs to catch up once per Eastern date.
+def should_run_cycle(local_now, force=False, event_name=None, schedule_cron=None):
+    """Allow delayed scheduled runs only when their UTC cron matches Eastern DST.
 
-    GitHub may queue scheduled workflows well after their nominal cron time.
-    The daily_cycle date guard below makes catch-up safe and idempotent. During
-    standard time, the 04:00 UTC cron lands at 23:00 Eastern on the prior date;
-    that occurrence must wait for the 05:00 UTC midnight occurrence.
-    Manual dispatches remain restricted unless --force is explicitly supplied.
+    The four primary/recovery cron strings map to either EDT (-04:00) or EST
+    (-05:00). GitHub may queue a matching event well after midnight, so the
+    local-time gate intentionally permits same-offset catch-up; the persisted
+    Eastern-date guard still prevents a second accepted cycle. Unknown/missing
+    schedule strings fail closed. Manual dispatches remain midnight-gated unless
+    --force is explicitly supplied; force bypasses only this clock/event gate.
     """
     if force:
         return True
     if event_name == "schedule":
-        return local_now.hour != 23
+        expected_offsets = {
+            "0 4 * * *": timedelta(hours=-4),
+            "15 4 * * *": timedelta(hours=-4),
+            "0 5 * * *": timedelta(hours=-5),
+            "15 5 * * *": timedelta(hours=-5),
+        }
+        expected_offset = expected_offsets.get(schedule_cron)
+        return expected_offset is not None and local_now.utcoffset() == expected_offset
     return local_now.hour == 0 and local_now.minute < 30
 
 
@@ -153,6 +161,60 @@ def persist_daily_stage(stage_path, backup_path, cycle_date):
     result = subprocess.run(
         ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
     )
+    return result.stdout.strip()
+
+
+def persist_daily_snapshot(snapshot_path, cycle_date, phase):
+    """Commit one exact Daily snapshot and its audit before/after a playlist mutation."""
+    if phase not in ("before", "after"):
+        raise manager.ManagerError("Daily description snapshot phase must be before or after.")
+    if os.environ.get("GITHUB_ACTIONS", "").lower() != "true":
+        return False
+    path = Path(snapshot_path)
+    if path.is_absolute() or path.parent != Path(manager.BACKUPS) or not path.is_file():
+        raise manager.ManagerError(
+            "Daily description snapshot is missing or outside the managed backup directory."
+        )
+    try:
+        snapshot = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError) as error:
+        raise manager.ManagerError("Daily description snapshot is unreadable; refusing playlist mutation.") from error
+    if (
+        not isinstance(snapshot, dict)
+        or (snapshot.get("playlist") or {}).get("id") != DAILY_ID
+        or not isinstance(snapshot.get("items"), list)
+    ):
+        raise manager.ManagerError("Daily description snapshot does not contain the exact playlist and item list.")
+    audit_path = Path(manager.AUDIT)
+    if not audit_path.is_file():
+        raise manager.ManagerError("Daily description snapshot audit is missing; refusing playlist mutation.")
+
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"],
+        check=True,
+    )
+    subprocess.run(["git", "add", "-f", "--", str(path)], check=True)
+    subprocess.run(
+        [
+            "git", "commit", "--only", "-m",
+            f"Preserve Tricky Daily {phase} snapshot for {cycle_date}",
+            "--", str(path), str(audit_path),
+        ],
+        check=True,
+    )
+    subprocess.run(["git", "push", "origin", "HEAD:main"], check=True)
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+    )
+    committed = subprocess.run(
+        ["git", "show", f"HEAD:{path.as_posix()}"],
+        check=True, capture_output=True, text=True,
+    )
+    if committed.stdout != path.read_text(encoding="utf-8"):
+        raise manager.ManagerError(
+            "Committed Daily description snapshot differs from the saved recovery file."
+        )
     return result.stdout.strip()
 
 
@@ -364,9 +426,16 @@ def validate_daily_post_write(updated_playlist, updated_snapshot, expected_uris,
     return artists
 
 
-def update_description_and_verify(sp, description):
-    """Apply Daily's rotating line and tolerate brief Spotify read-after-write lag."""
+def update_description_and_verify(sp, description, on_accepted=None):
+    """Apply Daily's rotating line and tolerate brief Spotify read-after-write lag.
+
+    The optional callback runs immediately after Spotify accepts the PUT and
+    before read-after-write verification, allowing callers to persist a
+    pending-verification state without risking a blind repeat.
+    """
     sp.call("PUT", f"/playlists/{DAILY_ID}", {"description": description})
+    if on_accepted is not None:
+        on_accepted()
     last_seen = None
     for attempt in range(5):
         verified = sp.call("GET", f"/playlists/{DAILY_ID}")
@@ -379,6 +448,244 @@ def update_description_and_verify(sp, description):
         "Spotify accepted the Tricky Daily description update but read-back "
         f"did not confirm it after retries (last value: {last_seen!r})."
     )
+
+
+def run_description_only(sp, playlist, owner_id, cycle_date):
+    """Rotate only Daily's description with durable before/after snapshots."""
+    before = manager.snapshot(sp, playlist)
+    before_items = before.get("items") or []
+    before_uris = [row.get("uri") for row in before_items]
+    if (
+        len(before_uris) != DAILY_TARGET_SIZE
+        or len(set(before_uris)) != DAILY_TARGET_SIZE
+        or any(not isinstance(uri, str) or not uri.startswith("spotify:track:") for uri in before_uris)
+    ):
+        raise manager.ManagerError(
+            "Description-only update requires a complete Daily snapshot of exactly 60 unique valid tracks."
+        )
+
+    backup = manager.save_snapshot(before)
+    before_snapshot_id = (before.get("playlist") or {}).get("snapshot_id")
+    manager.audit(
+        event="daily_description_update_started",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        before_snapshot=backup,
+        before_snapshot_id=before_snapshot_id,
+        before_track_count=len(before_uris),
+    )
+    before_commit_sha = persist_daily_snapshot(backup, cycle_date, "before")
+    assert_repository_head_unchanged(before_commit_sha)
+    playlist, _ = assert_live_snapshot_unchanged(sp, before, owner_id)
+    next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
+
+    accepted = False
+
+    def record_accepted():
+        nonlocal accepted
+        accepted = True
+        try:
+            manager.audit(
+                event="daily_description_update_accepted",
+                playlist_id=DAILY_ID,
+                cycle_date_eastern=cycle_date,
+                description=next_description,
+                before_snapshot=backup,
+                before_snapshot_id=before_snapshot_id,
+            )
+            config = manager.config()
+            daily_state = config.setdefault("daily_cycle", {})
+            if not isinstance(daily_state, dict):
+                raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing description-state update.")
+            daily_state.update({
+                "playlist_id": DAILY_ID,
+                "description": next_description,
+                "last_description_date_eastern": cycle_date,
+                "description_status": "accepted_pending_verification",
+                "description_before_snapshot": backup,
+                "description_after_snapshot": None,
+                "description_after_snapshot_id": None,
+            })
+            manager.write(manager.CONFIG, config)
+        finally:
+            # The Spotify PUT was accepted even if local persistence fails. This
+            # output makes the workflow's always-run persistence step attempt to
+            # commit the pending state/audit instead of treating it as no write.
+            set_action_output("description_updated", "true")
+
+    update_error = None
+    try:
+        update_description_and_verify(sp, next_description, on_accepted=record_accepted)
+    except Exception as error:
+        update_error = error
+
+    after_snapshot_path = None
+    if accepted:
+        try:
+            updated = sp.call("GET", f"/playlists/{DAILY_ID}")
+            if not isinstance(updated, dict) or updated.get("id") != DAILY_ID:
+                raise manager.ManagerError(
+                    "Daily description update was accepted, but the exact playlist could not be read back."
+                )
+            updated_snapshot = manager.snapshot(sp, updated)
+            after_items = updated_snapshot.get("items") or []
+            after_uris = [row.get("uri") for row in after_items]
+            after_snapshot_path = manager.save_snapshot(updated_snapshot)
+            observed_description = html.unescape(updated.get("description") or "")
+            reported = (updated.get("items") or updated.get("tracks") or {}).get("total")
+            ordered_contents_unchanged = after_uris == before_uris
+            manager.audit(
+                event="daily_description_postchange_snapshot_saved",
+                playlist_id=DAILY_ID,
+                cycle_date_eastern=cycle_date,
+                before_snapshot=backup,
+                after_snapshot=after_snapshot_path,
+                before_snapshot_id=before_snapshot_id,
+                after_snapshot_id=updated.get("snapshot_id"),
+                observed_description=observed_description,
+                observed_track_count=len(after_items),
+                reported_track_count=reported,
+                ordered_contents_unchanged=ordered_contents_unchanged,
+            )
+            after_commit_sha = persist_daily_snapshot(after_snapshot_path, cycle_date, "after")
+            # Keep the accepted-but-pending state linked to the exact after
+            # snapshot even when later content/description verification fails.
+            config = manager.config()
+            daily_state = config.setdefault("daily_cycle", {})
+            if not isinstance(daily_state, dict):
+                raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing after-snapshot state update.")
+            daily_state.update({
+                "description_after_snapshot": after_snapshot_path,
+                "description_after_snapshot_id": updated.get("snapshot_id"),
+            })
+            manager.write(manager.CONFIG, config)
+            assert_repository_head_unchanged(after_commit_sha)
+
+            if update_error is None:
+                if observed_description != next_description:
+                    update_error = manager.ManagerError(
+                        "Spotify accepted the Daily description update, but the final snapshot read-back differs."
+                    )
+                elif not isinstance(reported, int) or reported != len(after_items):
+                    update_error = manager.ManagerError(
+                        "Daily description post-change snapshot pagination is incomplete."
+                    )
+                elif (
+                    len(after_uris) != DAILY_TARGET_SIZE
+                    or len(set(after_uris)) != DAILY_TARGET_SIZE
+                    or after_uris != before_uris
+                ):
+                    update_error = manager.ManagerError(
+                        "Daily track contents changed during a description-only update; inspect the saved after snapshot."
+                    )
+        except Exception as snapshot_error:
+            manager.audit(
+                event="daily_description_postchange_snapshot_failed",
+                playlist_id=DAILY_ID,
+                cycle_date_eastern=cycle_date,
+                before_snapshot=backup,
+                after_snapshot=after_snapshot_path,
+                error_type=type(snapshot_error).__name__,
+                error=str(snapshot_error),
+            )
+            if update_error is None:
+                update_error = snapshot_error
+
+    if update_error is not None:
+        raise update_error
+    if not accepted or not after_snapshot_path:
+        raise manager.ManagerError(
+            "Daily description update did not reach a verified state with both before and after snapshots."
+        )
+
+    config = manager.config()
+    daily_state = config.setdefault("daily_cycle", {})
+    if not isinstance(daily_state, dict):
+        raise manager.ManagerError("Tricky Daily cycle state is malformed; refusing completion.")
+    daily_state.update({
+        "playlist_id": DAILY_ID,
+        "description": next_description,
+        "last_description_date_eastern": cycle_date,
+        "description_status": "completed",
+        "description_before_snapshot": backup,
+        "description_after_snapshot": after_snapshot_path,
+        "description_after_snapshot_id": (updated_snapshot.get("playlist") or {}).get("snapshot_id"),
+    })
+    manager.write(manager.CONFIG, config)
+    manager.audit(
+        event="daily_description_update_completed",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        description=next_description,
+        before_snapshot=backup,
+        after_snapshot=after_snapshot_path,
+    )
+    print(f"Tricky Daily description updated and verified: {next_description}")
+    return 0
+
+
+def capture_and_persist_after_snapshot(sp, cycle_date):
+    """Capture, commit, and reference the live playlist after an accepted mutation."""
+    updated = sp.call("GET", f"/playlists/{DAILY_ID}")
+    if not isinstance(updated, dict) or updated.get("id") != DAILY_ID:
+        raise manager.ManagerError(
+            "Post-change snapshot could not confirm the exact Tricky Daily playlist."
+        )
+    snapshot = manager.snapshot(sp, updated)
+    after_snapshot_path = str(manager.save_snapshot(snapshot))
+    after_snapshot_id = updated.get("snapshot_id") or (snapshot.get("playlist") or {}).get("snapshot_id")
+    manager.audit(
+        event="daily_post_change_snapshot_saved",
+        playlist_id=DAILY_ID,
+        cycle_date_eastern=cycle_date,
+        snapshot=after_snapshot_path,
+        snapshot_id=after_snapshot_id,
+        item_count=len(snapshot.get("items") or []),
+    )
+    config = manager.config()
+    daily_state = config.setdefault("daily_cycle", {})
+    if not isinstance(daily_state, dict):
+        raise manager.ManagerError(
+            "Tricky Daily cycle state is malformed; refusing after-snapshot state update."
+        )
+    daily_state.update({
+        "after_snapshot_path": after_snapshot_path,
+        "after_snapshot_id": after_snapshot_id,
+    })
+    manager.write(manager.CONFIG, config)
+    after_commit_sha = persist_daily_snapshot(after_snapshot_path, cycle_date, "after")
+    assert_repository_head_unchanged(after_commit_sha)
+    return updated, snapshot, after_snapshot_path
+
+
+def update_description_and_capture_after_snapshot(sp, description, cycle_date):
+    """Attempt an after snapshot even when description PUT/read-back verification fails."""
+    description_error = None
+    try:
+        update_description_and_verify(sp, description)
+    except Exception as error:
+        description_error = error
+
+    try:
+        result = capture_and_persist_after_snapshot(sp, cycle_date)
+    except Exception as snapshot_error:
+        manager.audit(
+            event="daily_post_change_snapshot_capture_failed",
+            playlist_id=DAILY_ID,
+            cycle_date_eastern=cycle_date,
+            snapshot_error_type=type(snapshot_error).__name__,
+            snapshot_error=str(snapshot_error),
+            description_error_type=type(description_error).__name__ if description_error else None,
+            description_error=str(description_error) if description_error else None,
+        )
+        raise manager.ManagerError(
+            "Tricky Daily replacement was accepted, but the after snapshot could not be preserved; "
+            "cycle remains pending verification."
+        ) from snapshot_error
+
+    if description_error is not None:
+        raise description_error
+    return result
 
 
 def configure():
@@ -401,12 +708,28 @@ def main():
     parser.add_argument("--description-only", action="store_true", help="Rotate and verify only the Tricky Daily description; leave tracks untouched.")
     parser.add_argument("--verify-only", action="store_true", help="Verify the live Daily playlist without changing tracks or description.")
     parser.add_argument("--stage-only", action="store_true", help="Build and durably verify a Daily payload without changing Spotify.")
+    parser.add_argument("--schedule-check-only", action="store_true", help="Evaluate the schedule/force gate without configuring Spotify or making network requests.")
     args = parser.parse_args()
     if args.stage_only and (args.description_only or args.verify_only):
         raise manager.ManagerError("--stage-only cannot be combined with --description-only or --verify-only.")
+    if args.schedule_check_only and (args.description_only or args.verify_only or args.stage_only):
+        raise manager.ManagerError("--schedule-check-only cannot be combined with a Spotify action.")
     local_now = datetime.now(EASTERN)
     event_name = os.environ.get("GITHUB_EVENT_NAME", "")
-    if not should_run_cycle(local_now, force=args.force, event_name=event_name):
+    schedule_cron = os.environ.get("SCHEDULE_CRON", "")
+    schedule_allowed = should_run_cycle(
+        local_now, force=args.force, event_name=event_name, schedule_cron=schedule_cron
+    )
+    if args.schedule_check_only:
+        set_action_output("schedule_allowed", str(schedule_allowed).lower())
+        result = "accepted" if schedule_allowed else "rejected"
+        print(
+            f"Tricky Daily schedule gate {result} "
+            f"({local_now.isoformat()}, event={event_name or 'manual'}, "
+            f"schedule={schedule_cron or 'n/a'}); no Spotify authentication or API requests sent."
+        )
+        return 0
+    if not schedule_allowed:
         print(f"Outside the allowed Tricky Daily cycle window ({local_now.isoformat()}, event={event_name or 'manual'}); no Spotify requests sent.")
         set_action_output("cycled", "false")
         return 0
@@ -436,39 +759,7 @@ def main():
         raise manager.ManagerError("Tricky Daily is locked; automatic rotation will not override the lock.")
 
     if args.description_only:
-        next_description = choose_daily_description(cycle_date, playlist.get("description", ""))
-        update_description_and_verify(sp, next_description)
-        config = manager.config()
-        daily_state = config.setdefault("daily_cycle", {})
-        daily_state.update({
-            "playlist_id": DAILY_ID,
-            "description": next_description,
-            "last_description_date_eastern": cycle_date,
-            "description_status": "accepted_pending_verification",
-        })
-        manager.write(manager.CONFIG, config)
-        set_action_output("description_updated", "true")
-        manager.audit(
-            event="daily_description_update_accepted",
-            playlist_id=DAILY_ID,
-            cycle_date_eastern=cycle_date,
-            description=next_description,
-        )
-        config = manager.config()
-        config.setdefault("daily_cycle", {}).update({
-            "description": next_description,
-            "last_description_date_eastern": cycle_date,
-            "description_status": "completed",
-        })
-        manager.write(manager.CONFIG, config)
-        manager.audit(
-            event="daily_description_update_completed",
-            playlist_id=DAILY_ID,
-            cycle_date_eastern=cycle_date,
-            description=next_description,
-        )
-        print(f"Tricky Daily description updated and verified: {next_description}")
-        return 0
+        return run_description_only(sp, playlist, me.get("id"), cycle_date)
 
     if args.verify_only:
         snapshot = manager.snapshot(sp, playlist)
@@ -690,21 +981,20 @@ def main():
         [{"uri": row.get("uri"), "track": row.get("track"), "artist": row.get("artist")} for row in recommendations],
         config["daily_cycle"]["last_cycle_at"],
     )
-    update_description_and_verify(sp, next_description)
     manager.audit(
         event="daily_cycle_replacement_accepted",
         playlist_id=DAILY_ID,
         cycle_date_eastern=cycle_date,
         backup=backup,
     )
-
-    updated = sp.call("GET", f"/playlists/{DAILY_ID}")
+    updated, updated_snapshot, after_snapshot_path = update_description_and_capture_after_snapshot(
+        sp, next_description, cycle_date
+    )
     if html.unescape(updated.get("description") or "") != next_description:
         raise manager.ManagerError(
             "Tricky Daily tracks were replaced, but Spotify read-back did not confirm "
             "the new playlist description; cycle remains pending verification."
         )
-    updated_snapshot = manager.snapshot(sp, updated)
     verified_items = updated_snapshot["items"]
     try:
         verified_artists = validate_daily_post_write(
@@ -725,9 +1015,6 @@ def main():
             f"{error} Cycle remains pending verification; do not retry blindly."
         )
     verified_artist_counts = {artist: verified_artists.count(artist) for artist in set(verified_artists)}
-    after_snapshot = manager.save_snapshot(updated_snapshot)
-    manager.audit(event="daily_post_change_snapshot_saved", playlist_id=DAILY_ID,
-                  snapshot=after_snapshot, cycle_date_eastern=cycle_date)
     config = manager.config()
     config["daily_cycle"] = {
         "last_cycle_date_eastern": cycle_date,
@@ -735,12 +1022,15 @@ def main():
         "playlist_id": DAILY_ID,
         "description": next_description,
         "status": "completed",
+        "after_snapshot_path": after_snapshot_path,
+        "after_snapshot_id": updated.get("snapshot_id"),
     }
     config["last_completed"] = {
         "playlist_id": DAILY_ID,
         "backup": backup,
         "backup_run_id": os.environ.get("GITHUB_RUN_ID", ""),
         "after_snapshot_id": updated.get("snapshot_id"),
+        "after_snapshot_path": after_snapshot_path,
         "after_uris": [row.get("uri") for row in updated_snapshot["items"]],
         "kind": "daily",
         "cycle_date_eastern": cycle_date,
@@ -764,7 +1054,7 @@ def main():
     manager.audit(
         event="daily_cycle_completed", playlist_id=DAILY_ID, cycle_date_eastern=cycle_date,
         recommendation_count=len(recommendations), removed_by_rotation=len(old_uris - new_uris),
-        backup=backup, spotify_requests=sp.request_metrics,
+        backup=backup, after_snapshot=after_snapshot_path, spotify_requests=sp.request_metrics,
     )
 
     try:
@@ -801,12 +1091,13 @@ if __name__ == "__main__":
 # Purpose: Rotate Tricky Daily to exactly 60 tracks once per Eastern calendar day.
 # Candidates: Seek one track per primary artist; after alternate search-page retries, relax
 #             the artist cap from two only as needed to reach 60 unique URIs; audit fallback.
-# Schedule: UTC cron 04:00/04:15 and 05:00/05:15; ZoneInfo selects Eastern midnight.
+# Schedule: Separate UTC cron strings are matched to the active Eastern UTC offset;
+#           only the matching 04:00/04:15 EDT or 05:00/05:15 EST entries can run.
 # Safety: Exact playlist identity/owner, managed policy, explicit unlock, URI/deduplication,
 #         pre-change backup and 60-track read-back. Same-Eastern-date idempotency guard
 #         remains active even when --force bypasses the clock-window gate.
 # Feedback: Rotation removals are neutral curator_rotation events, never negative preference.
-# Dispatch: --force bypasses only the clock window; --description-only and --verify-only
-#           are separate actions.
+# Dispatch: --force bypasses only the clock window; --schedule-check-only evaluates it
+#           before auth acquisition; --description-only and --verify-only are separate actions.
 # Recovery: Workflow uploads the pre-change backup and links it in manager state.
 # -----------------------------------------------------------------------------

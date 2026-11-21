@@ -1,21 +1,30 @@
-## 2026-11-20 08:29 UTC — Authentication code correction merged; production cutover pending
+## Current ownership and priority — 2026-11-20
+
+- **Jockey priority:** Tricky Daily reliability is the current user-assigned implementation priority. Jockey owns the Daily workstream on `engineering/priority` / draft PR #200 only. Boots owns all other SHIT implementation work and must avoid Daily. Buddy remains documentation-only; Jockey does not modify Buddy's branch or PR.
+- **Daily evidence:** user-authorized push-triggered cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) completed 60 tracks and persisted completed state/audit; the later GET-only snapshot at 2026-11-20 15:38 UTC reports 60 accessible unique tracks. This was not a scheduled cron run. Strict EDT/EST cron matching and description-only before/after snapshot commits are in Jockey draft PR #200; exact-head Daily tests, broker tests, secret scan and Cloudflare preview build passed on head `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`. Scheduled live proof remains pending.
+- **Buddy checkpoint:** report-bearing run `54ea442a-ca08-8326-b910-2ba2f6a15428` completed 2026-11-20 14:46:56 UTC with no repository changes; Buddy is disabled. PR #163 remains open/draft/unmergeable with a diverged branch (46 ahead, 347 behind current main); its passing checks are on the stale head only. The 13-file diff is documentation-only but contains a publication-authority contradiction: it applies ChatGPT's direct-main documentation authority to Buddy, while current main keeps Buddy draft-only. Do not merge or modify the branch until its owner reconciles it.
+- **Separate auth blocker:** centralized authentication production cutover remains owner-controlled and unverified. It is not Jockey's current priority. Do not infer successful production credential persistence from merged code or preview checks; Jockey made no secret, OAuth, or Cloudflare production changes.
+
+---
+
+## Superseded 2026-11-20 08:29 UTC — Authentication code correction merged; production cutover pending
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker tests #44702575255, Daily tests #44702575185, security scan #44702575262, and Cloudflare preview build/deployment passed.
 - Production remains on deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic. Integrated v3 credential-store/OIDC production activation is not verified.
 - Cloudflare secret metadata confirms the two GitHub App secrets and Spotify credential keyring are `secret_text`; values were not read. Independent keyring backup and `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` remain unverified.
 - Owner must dispatch the protected Deploy SHIT Auth Broker workflow after backup confirmation. Verify production 100% traffic, query-string redaction, and `/ready` before fresh owner-consented OAuth. Then verify encrypted persistence, two independent health successes, and nine OIDC consumers.
-- Buddy/Jockey/Boots remain disabled until the auth acceptance gate passes; then resume background development lanes.
+- Historical pause at that time: Buddy/Jockey/Boots were disabled until the auth acceptance gate passed. The current Jockey assignment above supersedes that pause for Daily reliability only.
 
 ---
 
-## 2026-11-20 — Authentication recovery is the active cross-project blocker
+## Superseded 2026-11-20 — Authentication recovery was the active cross-project blocker before the Jockey assignment
 
 - PR #188's integrated broker-owned credential-store/OIDC migration is merged into main. The account-identity validation correction is now isolated in [PR #198](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), based on current main; exact-head broker, Daily, and security checks were still running when recorded.
 - The superseded PR #196 is stale (9 commits behind main); do not merge it.
 - Production Worker latest observed deployment is `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, at 100% traffic. The integrated architecture's production deployment and credential-store binding readiness remain unverified.
 - Auth-health #44581567494 and Daily preflight #44692745648 failed during central broker access. Credential persistence and two independent broker-backed health checks remain unverified.
 - Next gates: PR #198 green checks and diff review; owner-controlled production deployment/readiness/query-redaction verification; owner-consented Spotify authorization; encrypted persistence verification; two independent read-only auth-health successes; nine OIDC consumer checks.
-- User directed that Buddy, Jockey, and Boots remain paused during focused auth recovery, then resume as non-overlapping background development lanes only after the authentication acceptance gate passes.
+- Historical direction: Buddy, Jockey, and Boots were paused during focused auth recovery. The newer Jockey assignment above reactivates Daily reliability; Boots owns non-Daily engineering and Buddy remains documentation-only.
 
 ---
 
@@ -44,7 +53,7 @@ This section supersedes the older documentation-first freeze and Codex-worker de
 
 This is the cross-project register of known unfinished work discovered from the repository, open issues/PRs, workflow status, and prior project conversations. It is a tracking index, not proof that any implementation is complete. Goal-specific histories remain in `goals/<goal>/ACTIONS.md`.
 
-**Last reviewed:** 2026-11-06 (Daily snapshot/index and publication-safety implementation; latest verified full safe CI run #42268351897)  
+**Last reviewed:** 2026-11-20 (Daily reliability handoff; live cycle #44708292405 and snapshot refresh verified)  
 **Review scope:** current main, active Babel documentation work, Tricky Daily safeguards, workflow outcomes, committed-tree inventory, open PRs and high-risk operational contracts.
 
 ## Babel AI continuation — INTEGRATED; RUNNER FIX VERIFIED; API QUOTA BLOCKER

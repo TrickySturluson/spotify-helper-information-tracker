@@ -1,6 +1,25 @@
-# Current handoff — 2026-11-20 08:29 UTC
+# Current handoff — 2026-11-20: Tricky Daily reliability (Jockey priority)
 
-**Authentication remains the sole focused engineering priority.** PR #198 has merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker, Daily, security, and Cloudflare preview build/deployment checks passed. The identity-validation correction is now in main; it is not a production deployment or proof of Spotify credential persistence.
+**Current priority:** Tricky Daily reliability, explicitly assigned to Jockey for this workstream. This current handoff supersedes the earlier 08:29 UTC auth-only priority overlay below for Jockey's scope. Jockey owns Daily implementation until the documented operational/recovery acceptance criteria are met. **Boots owns all other SHIT implementation work outside Daily** and must avoid Daily code/PRs. **Buddy remains documentation-only** and must not be redirected to feature implementation or have its branch/PR modified by Jockey.
+
+**Jockey branch/PR:** persistent branch `engineering/priority`; one draft PR [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), the current head shown by PR #200 (docs-only follow-up to code-tested commit `e36743c6f63e02837bd1802e5f29dcf5b3090cf8`). It adds explicit EDT/EST cron-to-offset validation, durable before/after snapshots for description-only updates, and after-snapshot path/ID persistence in pending state. Exact-head CI and independent complete-diff review passed on the code head. The branch is 2 commits behind current main (generated Library refreshes only; no overlap) and GitHub reports mergeable. PR remains draft. Jockey must not merge, approve, mark ready, or run live workflows.
+
+**Verified mainline evidence:** user-authorized push-triggered cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) completed with 60 tracks, committed stage/recovery backup, persisted completed state/audit, and uploaded a recovery artifact. The later GET-only snapshot at `2026-11-20T15:38:03.306427Z` has 60 accessible unique items. The cycle was triggered by push, not cron; scheduled EDT/EST delivery and a same-date duplicate no-op remain unverified. The manual test trigger is reset to `verify-only`.
+
+**Next gates:** owner-controlled merge; verify a real scheduled rotation and duplicate no-op; complete audited resume/rollback/discard for surviving stages; then implement the approved Daily recommendation event/outcome memory. Exact-head CI and full-diff review are already complete. The candidate-history and track-feedback files are only partial memory today.
+
+**Separate auth gate:** centralized authentication remains an owner-controlled production cutover requiring the documented keyring-backup, deployment/readiness, owner-consented OAuth, encrypted persistence, and independent health checks. Jockey does not touch secrets, OAuth, Cloudflare production, or that workstream, and does not treat it as accepted.
+
+**Buddy review checkpoint:** report-bearing run `54ea442a-ca08-8326-b910-2ba2f6a15428` completed 2026-11-20 14:46:56 UTC. PR #163 is still open/draft/unmergeable, 46 ahead and 347 behind current main. Its 13-file diff is documentation-only, but it incorrectly applies ChatGPT's direct-main publication policy to Buddy; mainline keeps ChatGPT's routine documentation authority separate from Buddy's draft-only role. Existing head checks passed but are stale. Buddy is disabled; do not modify or merge its branch/PR.
+
+Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_ENDS.md), and [the Daily roadmap](goals/tricky-daily/ROADMAP.md) before continuing.
+
+---
+
+## Superseded handoff — 2026-11-20 08:29 UTC (authentication-only Jockey pause)
+
+
+At the time of this superseded handoff, Authentication was the sole focused engineering priority. PR #198 had merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker, Daily, security, and Cloudflare preview build/deployment checks passed. The identity-validation correction is now in main; it is not a production deployment or proof of Spotify credential persistence.
 
 **Next owner action:** the Cloudflare Worker secrets metadata confirms `GITHUB_APP_CLIENT_SECRET`, `GITHUB_APP_PRIVATE_KEY`, and `SPOTIFY_CREDENTIAL_ENCRYPTION_KEYS` are `secret_text`. The independent backup of the encryption keyring and repository variable `SPOTIFY_CREDENTIAL_KEY_BACKUP_CONFIRMED=true` still need confirmation. Once confirmed, open GitHub Actions → **Deploy SHIT Auth Broker** on `main` and run the owner-only workflow. It deploys OAuth disabled first, verifies query-string redaction, then activates OAuth and checks `/ready`; failure triggers an OAuth-disabled fallback. Verify the resulting production version and 100% traffic before requesting fresh Spotify consent.
 
@@ -8,28 +27,28 @@
 
 After deployment, owner-consented OAuth must initialize encrypted credential storage. Verify persistence without reading the credential, then require two independent broker-backed read-only auth-health successes and verify the nine OIDC workflow consumers. No playlist changes are part of this work.
 
-**Background trio:** keep SHIT Buddy (Babel), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) disabled until credential persistence and two independent health checks pass. Then resume them as non-overlapping background development lanes.
+**Historical trio pause:** the earlier auth-only handoff paused Buddy, Jockey, and Boots pending credential persistence and two independent health checks. The newer Jockey assignment above reactivates Jockey for Daily reliability only; Boots owns non-Daily engineering and Buddy remains documentation-only.
 
 Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_ENDS.md), and [the authentication roadmap](goals/mobile-cloud-operation/ROADMAP.md) before continuing.
 
 ---
 
-# Current handoff — 2026-11-20: Authentication is the focused priority
+## Superseded handoff — 2026-11-20: Authentication was the focused priority before the Jockey assignment
 
-The user has explicitly asked to finish centralized Spotify authentication before returning the SHIT engineering trio to background development.
+Historical direction at that time: the user asked to finish centralized Spotify authentication before resuming the engineering trio. The newer Jockey assignment above reactivates Daily reliability only; it does not complete or bypass the owner-controlled auth gate.
 
 1. **Immediate PR:** [#198 — Accept opaque Spotify account identifiers](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/198), branch `fix/opaque-spotify-account-identifiers-mainline`, head `1146b0cc51d855b438c15fa7b4697186bfecbfad`, based on current main `2eecf2592c5dec2977277ba9b8880e7ff57d7fe5`. Exact-head broker tests #44701998659, Daily curator tests #44701998530, and security scan #44701998525 were running at the last check. Inspect results before merging.
 2. **Production gate:** read-only Cloudflare metadata shows deployment `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic, created 2026-11-10 20:12:11 UTC. Do not assume it contains the merged v3 credential-store/OIDC code. Use the owner-only deployment workflow after PR #198 is merged and required keyring/secret metadata is verified. Never read secret values.
 3. **Failure evidence:** auth-health #44581567494 (Nov 19) failed during central broker request; Daily preflight #44692745648 (Nov 20) failed obtaining the central access token. No successful credential persistence or independent auth-health success is verified.
 4. **OAuth gate:** no fresh consent until production readiness and query-string redaction are independently confirmed. Owner must complete the consent flow. Verify encrypted credential persistence without reading the credential, then require two independent broker-backed read-only auth-health successes and validate the nine OIDC consumers.
 5. **Safety:** no secret/key mutation, credential rotation/deletion, production deployment, OAuth initiation, or playlist/Library write by the assistant. Authentication health tests must remain read-only with respect to playlists and Library.
-6. **Trio:** SHIT Buddy (Babel), SHIT Jockey (priority engineering), and SHIT Boots (general engineering) are disabled. Keep them paused during focused auth work. Resume them as background lanes only after credential persistence and two independent health checks pass; Buddy stays documentation-only, Jockey owns the highest-priority product implementation, Boots owns other general engineering.
+6. **Historical trio status:** Buddy, Jockey, and Boots were paused during the auth-only period. The current handoff above supersedes that state: Jockey is active on Daily reliability, Boots owns non-Daily engineering, and Buddy remains documentation-only.
 
 The authentication roadmap and action log are in [mobile-cloud-operation](goals/mobile-cloud-operation/ROADMAP.md). Read [ACTIVE_SESSION_BRIEF.md](ACTIVE_SESSION_BRIEF.md), [LOOSE_ENDS.md](LOOSE_ENDS.md), and that goal's README/ACTIONS before continuing.
 
 ---
 
-# Current session handoff — 2026-11-09
+## Historical session handoff — 2026-11-09
 
 This session is actively continuing the user-authorized Authentication Management & Recovery workstream in parallel with the Jockey's Tricky Daily priority. Do not reassign the Jockey or modify its branch/PR.
 
