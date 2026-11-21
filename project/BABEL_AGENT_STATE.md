@@ -9,14 +9,14 @@ branch: babel/agent-progress (legacy Codex branch; separate from babel/chatgpt-b
 trigger: workflow YAML declares a six-hour schedule, manual dispatch, and push to babel/dispatch-* when .github/babel/dispatch.json changes; repository-level enabled/disabled state not confirmed
 publication: legacy dedicated branch and one reviewable pull request; never auto-merge
 scope: documentation, continuity records, and narrowly scoped documentation-contract tests only
-last_result: last verified Codex attempt #42183337573 passed preflight and ubuntu-24.04 drop-sudo, then returned API quota exceeded; validation/publisher skipped; no later Codex execution independently verified in the 2026-11-21 audit
+last_result: scheduled runs #44808721608 (2026-11-20) and #44878119328 (2026-11-21) passed preflight, then Codex agent failed with API quota exceeded; validation/publisher skipped; no candidate patch or PR; no manual dispatch by ChatGPT Buddy
 completion_rule: all Maintainability & Documentation roadmap acceptance criteria plus a successful cold-start simulation, with exact test and workflow evidence
 
 ## Operating contract
 
 - This is an automation aid for **SHIT Documentation & Continuity (internal codename: Babel)**, not a replacement for source review or human approval.
 - This state file belongs only to the repository-hosted Codex/API experiment. It does not describe or control the current scheduled ChatGPT Buddy.
-- The workflow YAML still declares scheduled, manual, and push triggers. Its preflight also skips the agent when `OPENAI_API_KEY` is absent; this audit did not inspect the secret value or verify its presence. The repository-level enabled/disabled state was not confirmed; do not describe the workflow as disabled or guaranteed dormant.
+- The workflow YAML still declares scheduled, manual, and push triggers. GitHub recorded scheduled runs #44808721608 and #44878119328; both passed preflight and failed in the Codex agent with quota exceeded. These runs prove the schedule triggered at those times, but the available read-only API did not expose the current workflow enabled/disabled setting. Preflight also skips the agent when `OPENAI_API_KEY` is absent; this audit did not inspect the secret value.
 - `status: active` is not a pause switch. The state-file stop condition is the exact `status: complete` value; preflight also skips the agent if `OPENAI_API_KEY` is absent. Never misuse the completion sentinel to suppress Codex execution because it would falsely mark Babel complete.
 - If no Codex API execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow settings/logic or dispatch it.
 - Repository documentation is the durable memory. Every run must read the current handoff and relevant goal records before acting.
@@ -40,7 +40,7 @@ completion_rule: all Maintainability & Documentation roadmap acceptance criteria
 - Workflow run: [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), event `push`, completed with failure.
 - `preflight`: success. The agent job checked out the latest source on `ubuntu-24.04`; its `drop-sudo` isolation successfully restricted `/run/snapd-snap.socket`. Codex then returned `Quota exceeded. Check your plan and billing details.`
 - `validate` and `publish`: skipped. No candidate patch, `babel/agent-progress` branch, or Buddy PR was produced.
-- **Conclusion:** the Ubuntu runner compatibility workaround is verified. The current blocker is OpenAI API quota/billing availability. Do not trigger repeated retries until the repository owner confirms quota is available. Never weaken the sandbox to `unsafe`.
+- **Conclusion:** the Ubuntu runner compatibility workaround is verified, but the two latest scheduled runs still failed with API quota exceeded before validation/publication. No manual retry is authorized; do not ask the user to fund API usage or weaken the sandbox to `unsafe`. If scheduled Codex attempts are unwanted, the repository owner must disable the workflow in GitHub Actions; Buddy must not change workflow settings or logic.
 
 ## Recovery
 
