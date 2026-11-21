@@ -2,6 +2,20 @@
 
 Newest entries first. Record verified outcomes separately from plans, assumptions and unverified artifacts.
 
+## 2026-11-21 — SHIT Wrapped approved for roadmap
+
+- **User direction:** approved adding a permanent SHIT Wrapped generator after reviewing a historical/all-time Wrapped assembled from repository analytics.
+- **Decision:** track this as a planned feature in the Listening Analytics workstream, not as an immediate implementation task. The existing documentation-only priority and project-wide dependency order remain unchanged.
+- **Scope:** reproducible annual and all-time editions; top artists/tracks/albums; listening volume/time and temporal patterns; discovery/diversity measures; milestones; playful metric-backed awards and listening-personality summaries; selectable year; regeneration from refreshed canonical archive data.
+- **Source and integrity rules:** Last.fm remains authoritative for historical scrobbles. Spotify playback-tracker observations must be separately sourced and coverage-qualified. Explicitly disclose archive period/freshness, missing months/dates, timezone, estimated versus measured duration, and incomplete tracker coverage. Never fabricate missing data or present estimates as measured listening.
+- **Implementation sequence:** after the documentation pause, audit current archive/manifests and analytics outputs; define report schema and canonical calculation fixtures; implement calculations and tests; add report presentation and documented/automated regeneration; verify annual and all-time outputs against canonical source totals.
+- **Changes:** `project/goals/listening-analytics/ROADMAP.md`; cross-workstream index in `project/ROADMAP.md`.
+- **Execution:** documentation-only GitHub update; no analytics workflow, provider call, generated-data mutation, or Spotify playlist operation.
+- **Verification:** pending read-back of committed documentation.
+- **Outcome:** planned; not implemented.
+- **Next action:** resume only after the active documentation-only priority permits feature work.
+
+
 ## 2026-11-06 — Documentation-only pause recorded
 
 - The repository-wide priority remains completion of SHIT Documentation & Continuity (internal codename: Babel).
