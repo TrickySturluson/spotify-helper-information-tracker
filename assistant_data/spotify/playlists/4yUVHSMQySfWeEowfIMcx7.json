@@ -1,120 +1,33 @@
 {
   "schema_version": 1,
-  "captured_at": "2026-11-20T15:38:03.306427+00:00",
+  "captured_at": "2026-11-21T14:40:42.415733+00:00",
   "id": "4yUVHSMQySfWeEowfIMcx7",
   "name": "Tricky Daily",
-  "description": "A little familiar, a little unhinged.",
+  "description": "No skips promised. Good luck.",
   "owner": {
     "id": "a_thought",
     "display_name": "Tricky Sturluson"
   },
   "public": true,
   "collaborative": false,
-  "snapshot_id": "AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua",
+  "snapshot_id": "AAAAeu09d2bu354ZxalAyWqCpM6Yeye5",
   "total_items_reported": 60,
   "item_count_fetched": 60,
   "items_accessible": true,
   "items_error": null,
-  "last_items_accessible_at": "2026-11-20T15:28:53.091061+00:00",
-  "items_snapshot_id": "AAAAd7gRBY+iCM4wXDnz0UJ8x+Sq39Ua",
+  "last_items_accessible_at": "2026-11-21T14:40:42.415738+00:00",
+  "items_snapshot_id": "AAAAeu09d2bu354ZxalAyWqCpM6Yeye5",
   "playability_market": "from_token",
   "playability_market_context": "spotify_user_account_country",
   "items": [
     {
       "position": 0,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "6Vmu4Slw2QMbazjdd33ziq",
-      "uri": "spotify:track:6Vmu4Slw2QMbazjdd33ziq",
-      "name": "Hand of Winter",
-      "artists": [
-        "Sound of Ceres"
-      ],
-      "artist_ids": [
-        "6JaG7zUlBpWd43CweqURY6"
-      ],
-      "album": "Nostalgia for Infinity",
-      "album_id": "3iw8AtVaKBYUoIXhq1MAcF",
-      "duration_ms": 294084,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090823+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USJZA1618705"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 1,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "45aFTetHclmsBLKwoeK2K3",
-      "uri": "spotify:track:45aFTetHclmsBLKwoeK2K3",
-      "name": "Boy is Dead",
-      "artists": [
-        "Biting Elbows"
-      ],
-      "artist_ids": [
-        "4iVgJuw0Isvvxb69DzS1Oy"
-      ],
-      "album": "Shorten the Longing",
-      "album_id": "4P3EzDwHm3MYE3KrZ4Ozqw",
-      "duration_ms": 229506,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090835+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "RUB862000036"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 2,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "3edXLmc4WGO8r2g5gjh0Ux",
-      "uri": "spotify:track:3edXLmc4WGO8r2g5gjh0Ux",
-      "name": "Do Hot Girls Like Chords?",
-      "artists": [
-        "KNOWER"
-      ],
-      "artist_ids": [
-        "7fVp0A6oCMfiQJihMnY0SZ"
-      ],
-      "album": "KNOWER FOREVER",
-      "album_id": "4HLzhoSO67xRwfZa1T343L",
-      "duration_ms": 212782,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090839+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "QZTAS2363418"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 3,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "74T3zmxmqjEZnkbrN8xeDz",
-      "uri": "spotify:track:74T3zmxmqjEZnkbrN8xeDz",
-      "name": "Planet Drool",
+      "id": "1cPFDzrQvnGL0aQy3Nq8p2",
+      "uri": "spotify:track:1cPFDzrQvnGL0aQy3Nq8p2",
+      "name": "Roadkill",
       "artists": [
         "VIAL"
       ],
@@ -123,84 +36,142 @@
       ],
       "album": "LOUDMOUTH",
       "album_id": "6c59AK2EBIAHeCMUOGAIuS",
-      "duration_ms": 147191,
+      "duration_ms": 157452,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090844+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415429+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USA2B2100987"
+        "isrc": "USA2B2100993"
       },
       "available_markets_count": 0
     },
     {
-      "position": 4,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 1,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "5hzAq3YMt60plv1Cil3vj9",
-      "uri": "spotify:track:5hzAq3YMt60plv1Cil3vj9",
-      "name": "2017",
+      "id": "3QdvgBVYTRr8iQrsQGoPTn",
+      "uri": "spotify:track:3QdvgBVYTRr8iQrsQGoPTn",
+      "name": "It’s All Nothing Until It’s Everything",
+      "artists": [
+        "KNOWER"
+      ],
+      "artist_ids": [
+        "7fVp0A6oCMfiQJihMnY0SZ"
+      ],
+      "album": "KNOWER FOREVER",
+      "album_id": "4HLzhoSO67xRwfZa1T343L",
+      "duration_ms": 308000,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415450+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZTAS2363415"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 2,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2aMCzbkgN7n1e4KUFQsg2G",
+      "uri": "spotify:track:2aMCzbkgN7n1e4KUFQsg2G",
+      "name": "Ember Age",
+      "artists": [
+        "Sound of Ceres"
+      ],
+      "artist_ids": [
+        "6JaG7zUlBpWd43CweqURY6"
+      ],
+      "album": "Nostalgia for Infinity",
+      "album_id": "3iw8AtVaKBYUoIXhq1MAcF",
+      "duration_ms": 319281,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415457+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USJZA1618703"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 3,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "18VFNz29K08xzDsV2yq2wC",
+      "uri": "spotify:track:18VFNz29K08xzDsV2yq2wC",
+      "name": "A Held Breath",
       "artists": [
         "German Error Message"
       ],
       "artist_ids": [
         "4Zjxd2hv7Hb8zJMIy8A1TM"
       ],
-      "album": "2017",
-      "album_id": "7inKBcCup3ZAfnmt8RRuXI",
-      "duration_ms": 132544,
+      "album": "Haunts",
+      "album_id": "14FJZ8lMDdwqYST25duwWG",
+      "duration_ms": 234955,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090849+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415463+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QZ4JJ1679134"
+        "isrc": "QM7281450019"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 4,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2PnZshFzhKj08VNZcbqpGf",
+      "uri": "spotify:track:2PnZshFzhKj08VNZcbqpGf",
+      "name": "Alone",
+      "artists": [
+        "Biting Elbows"
+      ],
+      "artist_ids": [
+        "4iVgJuw0Isvvxb69DzS1Oy"
+      ],
+      "album": "Shorten the Longing",
+      "album_id": "4P3EzDwHm3MYE3KrZ4Ozqw",
+      "duration_ms": 180929,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415470+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "RUB862000035"
       },
       "available_markets_count": 0
     },
     {
       "position": 5,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "5bYL1NmH0bmqCb9PvwXrhl",
-      "uri": "spotify:track:5bYL1NmH0bmqCb9PvwXrhl",
-      "name": "Fart City - Demo Version",
-      "artists": [
-        "Caroline Konstnar"
-      ],
-      "artist_ids": [
-        "0zySf6MZDNGa0gsCx3lJgw"
-      ],
-      "album": "Fart City (Demo Version)",
-      "album_id": "2CNgPPA3YGjNZQIAn6KRgd",
-      "duration_ms": 100833,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090853+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "QTA2Y2691560"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 6,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "3aPlQWU07jGgyHaBHVS5TS",
-      "uri": "spotify:track:3aPlQWU07jGgyHaBHVS5TS",
+      "id": "6eCsRg7OBi1zT2CEKKyoXN",
+      "uri": "spotify:track:6eCsRg7OBi1zT2CEKKyoXN",
       "name": "Fever",
       "artists": [
         "Peggy Lee"
@@ -208,87 +179,87 @@
       "artist_ids": [
         "602DnpaSXJB4b9DZrvxbDc"
       ],
-      "album": "Things Are Swingin'",
-      "album_id": "0puYTmfXiL5UZLyl33nXKT",
-      "duration_ms": 199600,
+      "album": "Great Ladies Of Song / Spotlight On Peggy Lee",
+      "album_id": "0MX57ntrC0wpRZpTOXhWEF",
+      "duration_ms": 202506,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090858+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415475+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USCA20000950"
+        "isrc": "USCA29500518"
       },
       "available_markets_count": 0
     },
     {
-      "position": 7,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 6,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "66KC0kVmx75RDtD4qryL7b",
-      "uri": "spotify:track:66KC0kVmx75RDtD4qryL7b",
-      "name": "Buffalo Stars",
+      "id": "6E78oPQHLEMI6ceoCDdd0r",
+      "uri": "spotify:track:6E78oPQHLEMI6ceoCDdd0r",
+      "name": "Hipster Bitch",
       "artists": [
         "Lelia Broussard"
       ],
       "artist_ids": [
         "4lN8IYTePwhNUi2ESHEHip"
       ],
-      "album": "Buffalo Stars",
-      "album_id": "0VrDzm3J1k4RqbWrXCZc2n",
-      "duration_ms": 237548,
+      "album": "Masquerade",
+      "album_id": "0Khcll4PmjglX6tv7tPXPH",
+      "duration_ms": 188013,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090865+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415483+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "GBKPL1378778"
+        "isrc": "GBKPL1410871"
       },
       "available_markets_count": 0
     },
     {
-      "position": 8,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 7,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4iN8pASVxwgHsYr0HImyyc",
-      "uri": "spotify:track:4iN8pASVxwgHsYr0HImyyc",
-      "name": "A Dream's End",
+      "id": "3gNEUjzw7G2CauxXLeh9h3",
+      "uri": "spotify:track:3gNEUjzw7G2CauxXLeh9h3",
+      "name": "Endless Season",
       "artists": [
         "Minuano"
       ],
       "artist_ids": [
         "4gBAA2nKYYBUsr01k0EVY4"
       ],
-      "album": "Spring Lovers",
-      "album_id": "5B10Jy0L9Lbks24hqhRC8D",
-      "duration_ms": 303893,
+      "album": "Butterfly Dream",
+      "album_id": "1Rt4KWfYebrRbfWBRo9nZL",
+      "duration_ms": 253964,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090870+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415491+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "JPH901000090"
+        "isrc": "JPZ921908523"
       },
       "available_markets_count": 0
     },
     {
-      "position": 9,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 8,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "42520w4QprrUBMS0OI9eN9",
-      "uri": "spotify:track:42520w4QprrUBMS0OI9eN9",
-      "name": "Barterers And Their Wives",
+      "id": "5QT0t5IaAHnpoCxepbba9x",
+      "uri": "spotify:track:5QT0t5IaAHnpoCxepbba9x",
+      "name": "Evening Gown",
       "artists": [
         "The Left Banke"
       ],
@@ -297,56 +268,56 @@
       ],
       "album": "Walk Away Renée/Pretty Ballerina",
       "album_id": "6TZEatFHi7FJiAFBJpf1iC",
-      "duration_ms": 180866,
+      "duration_ms": 106640,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090873+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415498+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USUM71918799"
+        "isrc": "USIR20200106"
       },
       "available_markets_count": 0
     },
     {
-      "position": 10,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 9,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "6yzNy75IjX1rxsnteh23Av",
-      "uri": "spotify:track:6yzNy75IjX1rxsnteh23Av",
-      "name": "12:30",
+      "id": "4OzPafRS0Env1bEbqfvPdR",
+      "uri": "spotify:track:4OzPafRS0Env1bEbqfvPdR",
+      "name": "melatonin",
       "artists": [
         "Cardinal Bloom"
       ],
       "artist_ids": [
         "1kL35cnfsVSfKJ6xLk0K9f"
       ],
-      "album": "The Only Place I’ve Ever Known",
-      "album_id": "4tcuLVRZhuYJDShTGyD76w",
-      "duration_ms": 231773,
+      "album": "melatonin",
+      "album_id": "5TpoGt8J9CsEKRND45Uhh3",
+      "duration_ms": 219265,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090877+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415503+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USHM82486520"
+        "isrc": "USHM92659523"
       },
       "available_markets_count": 0
     },
     {
-      "position": 11,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 10,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "33E5u0qmzBlsHkhU1bTBWa",
-      "uri": "spotify:track:33E5u0qmzBlsHkhU1bTBWa",
-      "name": "Chapstick",
+      "id": "555poPmhRmQWPsMDGwkifG",
+      "uri": "spotify:track:555poPmhRmQWPsMDGwkifG",
+      "name": "Cutie",
       "artists": [
         "COIN"
       ],
@@ -355,175 +326,173 @@
       ],
       "album": "Uncanny Valley",
       "album_id": "6ep7RptFPcLPi3qAhwi8l6",
-      "duration_ms": 193299,
+      "duration_ms": 184315,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090880+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415508+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QZJ842001241"
+        "isrc": "QZJ842001416"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 11,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6l70xzvmZdAJnM41s0iPDD",
+      "uri": "spotify:track:6l70xzvmZdAJnM41s0iPDD",
+      "name": "deathwish (feat. nothing,nowhere.)",
+      "artists": [
+        "Stand Atlantic",
+        "nothing,nowhere."
+      ],
+      "artist_ids": [
+        "1W2Fv4YUnjC8hx2qQd6fGh",
+        "7FngGIEGgN3Iwauw1MvO4P"
+      ],
+      "album": "f.e.a.r.",
+      "album_id": "0Owl0jFW9adxA4WJVEWQZA",
+      "duration_ms": 147907,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415513+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USHR22111801"
       },
       "available_markets_count": 0
     },
     {
       "position": 12,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "0Z6z1KU68UErqE3kjMUSDn",
-      "uri": "spotify:track:0Z6z1KU68UErqE3kjMUSDn",
-      "name": "Coffee at Midnight",
-      "artists": [
-        "Stand Atlantic"
-      ],
-      "artist_ids": [
-        "1W2Fv4YUnjC8hx2qQd6fGh"
-      ],
-      "album": "Sidewinder",
-      "album_id": "0iP2b1LVY0E6Zv7EFCv5sw",
-      "duration_ms": 224866,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090885+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "ITH711700065"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 13,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "0AlyVZNcCdIxECdhM4Husm",
-      "uri": "spotify:track:0AlyVZNcCdIxECdhM4Husm",
-      "name": "Crazy",
+      "id": "25rn08Z5ZR2GSXqLs6lGnj",
+      "uri": "spotify:track:25rn08Z5ZR2GSXqLs6lGnj",
+      "name": "Don't Label Me Bitch",
       "artists": [
         "Scotty Vanity"
       ],
       "artist_ids": [
         "49d6KlVYHblchyQ1pbSZ7C"
       ],
-      "album": "Crazy",
-      "album_id": "6vxQSsPkcbtB7NMqvSDVKx",
-      "duration_ms": 218275,
+      "album": "Don't Label Me Bitch - Single",
+      "album_id": "61EnVO4kBbRtSEakicXStE",
+      "duration_ms": 203107,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090889+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415517+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "TCAAS1018962"
+        "isrc": "TCAAZ1106507"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 13,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "4znq2zjtVCctHhDmzkY25g",
+      "uri": "spotify:track:4znq2zjtVCctHhDmzkY25g",
+      "name": "Bahia Funk - Remastered",
+      "artists": [
+        "Lee Ritenour"
+      ],
+      "artist_ids": [
+        "1nDqTUspmq8IXhcEZT93iq"
+      ],
+      "album": "Color Rit (Remastered)",
+      "album_id": "2POg8hhJjfzlSm95YmYTfQ",
+      "duration_ms": 292066,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415521+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USC4R1504096"
       },
       "available_markets_count": 0
     },
     {
       "position": 14,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "1Nuc55H7P0XuRkJTQy51GW",
-      "uri": "spotify:track:1Nuc55H7P0XuRkJTQy51GW",
-      "name": "A Little Bumpin'",
-      "artists": [
-        "Lee Ritenour",
-        "Harvey Mason",
-        "Bob James"
-      ],
-      "artist_ids": [
-        "1nDqTUspmq8IXhcEZT93iq",
-        "2MNNVXEpagQ3QWiOkXjQyT",
-        "6ryjbFyWBZho9KGXqKZdqQ"
-      ],
-      "album": "Wes Bound",
-      "album_id": "7y35M86n09A0RxQbI030R7",
-      "duration_ms": 269333,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090892+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USGR19900731"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 15,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "11ftaqijxIgRVBHaOYLUpu",
-      "uri": "spotify:track:11ftaqijxIgRVBHaOYLUpu",
-      "name": "往事只能回味",
+      "id": "1uTU21oMzMr9YQG6xLKYym",
+      "uri": "spotify:track:1uTU21oMzMr9YQG6xLKYym",
+      "name": "昨夜星辰",
       "artists": [
         "林淑容"
       ],
       "artist_ids": [
         "4raETyX2cN5RazteTR1FMT"
       ],
-      "album": "林淑容 - 难忘怀念曲 2",
-      "album_id": "5IEFUSVOtMDwfReFptMtQc",
-      "duration_ms": 194773,
+      "album": "媽媽請你多保重",
+      "album_id": "7aqG4xo4spW0l72W9aB8Ey",
+      "duration_ms": 193413,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090895+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415526+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "MYSW10890821"
+        "isrc": "MYSW10890223"
       },
       "available_markets_count": 0
     },
     {
-      "position": 16,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 15,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3GWIXGRxySo6XWH4lkrjWR",
-      "uri": "spotify:track:3GWIXGRxySo6XWH4lkrjWR",
-      "name": "Be Good or Be Gone",
+      "id": "72xjEGzvtjyioPKM7T4oiJ",
+      "uri": "spotify:track:72xjEGzvtjyioPKM7T4oiJ",
+      "name": "Dogwood Blossom",
       "artists": [
         "Fionn Regan"
       ],
       "artist_ids": [
         "0WJc0VDtzsLIk33XRB20Dy"
       ],
-      "album": "The End of History",
-      "album_id": "5bvfidjZt9hMw7yRRvZi6v",
-      "duration_ms": 199840,
+      "album": "100 Acres of Sycamore",
+      "album_id": "6gZrKlcyQ4SP6wczPhijzI",
+      "duration_ms": 204853,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090900+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415532+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "GBBRP0611901"
+        "isrc": "GBUM71102505"
       },
       "available_markets_count": 0
     },
     {
-      "position": 17,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 16,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "0B3CiXqWGEVVNotPWIPt3G",
-      "uri": "spotify:track:0B3CiXqWGEVVNotPWIPt3G",
+      "id": "1p0Qy4TNA99gtn3z2ImP6D",
+      "uri": "spotify:track:1p0Qy4TNA99gtn3z2ImP6D",
       "name": "等著你回來",
       "artists": [
         "白光"
@@ -531,58 +500,58 @@
       "artist_ids": [
         "7thwsuVqcX7BytxdLNT51E"
       ],
-      "album": "Shanghai Lounge Divas",
-      "album_id": "29J8GTjd6CtENvDKSsbuO9",
-      "duration_ms": 181666,
+      "album": "群星會 22 白光 (珍藏系列)",
+      "album_id": "1znQgbnGgNEAkB9F7SvZ7P",
+      "duration_ms": 181293,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090903+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415539+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "HKB124301028"
+        "isrc": "FR96X1999599"
       },
       "available_markets_count": 0
     },
     {
-      "position": 18,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 17,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "5Q3ZzcBqQuS8s522kWyCcU",
-      "uri": "spotify:track:5Q3ZzcBqQuS8s522kWyCcU",
-      "name": "Fresh Blood",
+      "id": "5zjD95M2XMZ5LJCDsJekkT",
+      "uri": "spotify:track:5zjD95M2XMZ5LJCDsJekkT",
+      "name": "I Need Some Sleep",
       "artists": [
         "Eels"
       ],
       "artist_ids": [
         "3zunDAtRDg7kflREzWAhxl"
       ],
-      "album": "Hombre Lobo",
-      "album_id": "5KVxlY0HM8gaTeE9nff9bp",
-      "duration_ms": 264666,
+      "album": "Shrek 2 (Original Motion Picture Soundtrack)",
+      "album_id": "009d83fu2guwouIwqr7i9E",
+      "duration_ms": 148000,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090907+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415543+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USZXT0907782"
+        "isrc": "USDW10400089"
       },
       "available_markets_count": 0
     },
     {
-      "position": 19,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 18,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "7rcrlV45wCgTi8jkAf6bNb",
-      "uri": "spotify:track:7rcrlV45wCgTi8jkAf6bNb",
-      "name": "P.C.C.",
+      "id": "1NmQY9XzHSVwHBBTlC6tlk",
+      "uri": "spotify:track:1NmQY9XzHSVwHBBTlC6tlk",
+      "name": "Rehab Doll",
       "artists": [
         "Green River"
       ],
@@ -591,27 +560,27 @@
       ],
       "album": "Dry as a Bone/Rehab Doll",
       "album_id": "1yfs3jV84tLJf7i3dSHEDU",
-      "duration_ms": 224440,
+      "duration_ms": 203093,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090910+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415548+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USSUB0701102"
+        "isrc": "USSUB0701110"
       },
       "available_markets_count": 0
     },
     {
-      "position": 20,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 19,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "0oILjoZUhewgY2pR7Iw0e5",
-      "uri": "spotify:track:0oILjoZUhewgY2pR7Iw0e5",
-      "name": "Crescendo",
+      "id": "5FCpXVj6dePAF1A93HeqwZ",
+      "uri": "spotify:track:5FCpXVj6dePAF1A93HeqwZ",
+      "name": "Darker Love",
       "artists": [
         "Niall McCabe"
       ],
@@ -620,26 +589,26 @@
       ],
       "album": "Stranger",
       "album_id": "7I615gjBujLiSiobf1PfdL",
-      "duration_ms": 248783,
+      "duration_ms": 235355,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090914+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415552+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QZWFU2484852"
+        "isrc": "QZRP42443793"
       },
       "available_markets_count": 0
     },
     {
-      "position": 21,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 20,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "1Chjeu7itQhIgeL1HpVDuN",
-      "uri": "spotify:track:1Chjeu7itQhIgeL1HpVDuN",
+      "id": "4b3FN7tBCRrkLcbN5ae4v9",
+      "uri": "spotify:track:4b3FN7tBCRrkLcbN5ae4v9",
       "name": "Antimatter",
       "artists": [
         "Silent Planet"
@@ -647,13 +616,13 @@
       "artist_ids": [
         "0JGTiwfinlCuANGu4Gq2XU"
       ],
-      "album": "SUPERBLOOM",
-      "album_id": "38eyJBCScUf3CnlH3JhYrc",
+      "album": "Antimatter",
+      "album_id": "21WE0VYFRtAKg4hEA1ppmZ",
       "duration_ms": 221340,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090918+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415557+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -663,13 +632,13 @@
       "available_markets_count": 0
     },
     {
-      "position": 22,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 21,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3ILhrRlVzA4wosf1XMP6ME",
-      "uri": "spotify:track:3ILhrRlVzA4wosf1XMP6ME",
-      "name": "Forest",
+      "id": "7n5S59fN77Z1sgo57X87UB",
+      "uri": "spotify:track:7n5S59fN77Z1sgo57X87UB",
+      "name": "Hypoinsomniac",
       "artists": [
         "Verax"
       ],
@@ -678,201 +647,143 @@
       ],
       "album": "Omega Fantasy",
       "album_id": "4N6EGWrdBh0mFV3Ra2nspC",
-      "duration_ms": 206613,
+      "duration_ms": 219800,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090922+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415561+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "GBKPL1135858"
+        "isrc": "GBKPL1135857"
       },
       "available_markets_count": 0
     },
     {
-      "position": 23,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 22,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "7KAXxQfUG4kzRivltbD1UY",
-      "uri": "spotify:track:7KAXxQfUG4kzRivltbD1UY",
-      "name": "Air Supply - 2021 Remaster",
-      "artists": [
-        "Sweet Trip"
-      ],
-      "artist_ids": [
-        "5NtMqQLCzdVvL7F8vFp3zM"
-      ],
-      "album": "You Will Never Know Why (2021 Remaster)",
-      "album_id": "0kmPn6M3cue7rec6Unw6BD",
-      "duration_ms": 281694,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090926+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USA4D2122202"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 24,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "15IF4wSCMrAo2Rq0eytARR",
-      "uri": "spotify:track:15IF4wSCMrAo2Rq0eytARR",
-      "name": "can't slow down",
+      "id": "5Jpj3lCgX06bu6STIjUYKN",
+      "uri": "spotify:track:5Jpj3lCgX06bu6STIjUYKN",
+      "name": "cough drops",
       "artists": [
         "almost monday"
       ],
       "artist_ids": [
         "42FzVuyJH8YbkhzWSR2n8E"
       ],
-      "album": "DIVE",
-      "album_id": "0jfgGNDWmjcBLPKMyIMLYP",
-      "duration_ms": 175720,
+      "album": "cough drops",
+      "album_id": "4gM0KEbTRLuejffBFA1kph",
+      "duration_ms": 163990,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090929+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415565+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USHR12448141"
+        "isrc": "USHR12244066"
       },
       "available_markets_count": 0
     },
     {
-      "position": 25,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 23,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "64WtHwNC5X0VzGfzA0IES3",
-      "uri": "spotify:track:64WtHwNC5X0VzGfzA0IES3",
-      "name": "Dial Tones",
+      "id": "0KvlvootDUnrXPdZLq57tn",
+      "uri": "spotify:track:0KvlvootDUnrXPdZLq57tn",
+      "name": "I MISS 2003",
       "artists": [
         "AS IT IS"
       ],
       "artist_ids": [
         "3IXtskFMls8KXRipcIJT9y"
       ],
-      "album": "Never Happy, Ever After",
-      "album_id": "2fxvurudVER6VB5DBxo7S4",
-      "duration_ms": 199679,
+      "album": "I WENT TO HELL AND BACK",
+      "album_id": "0C9MH7ojRpjgfFJ5CNiEZu",
+      "duration_ms": 222617,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090969+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415569+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "US5261520899"
+        "isrc": "US5262124430"
       },
       "available_markets_count": 0
     },
     {
-      "position": 26,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 24,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "5yHSqWWUpU27n9s8kbZ94g",
-      "uri": "spotify:track:5yHSqWWUpU27n9s8kbZ94g",
-      "name": "Breakin' Away",
+      "id": "4TxBGpTxrNvRNhF39Dl3NQ",
+      "uri": "spotify:track:4TxBGpTxrNvRNhF39Dl3NQ",
+      "name": "Mornin'",
       "artists": [
         "Al Jarreau"
       ],
       "artist_ids": [
         "3YR92OLKlvkK5oKNekSqXe"
       ],
-      "album": "Breakin' Away",
-      "album_id": "5rMktOHgYGeV65qjHk6W2X",
-      "duration_ms": 253933,
+      "album": "Jarreau",
+      "album_id": "3shAfFQ9RZWalGR5JSgnTb",
+      "duration_ms": 258399,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090973+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415574+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USWB10902590"
+        "isrc": "USRH10801285"
       },
       "available_markets_count": 0
     },
     {
-      "position": 27,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 25,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "5K43AHQPTJTqlyRZ3uBGKz",
-      "uri": "spotify:track:5K43AHQPTJTqlyRZ3uBGKz",
-      "name": "A Good Song Never Dies",
+      "id": "2Iq6HhIquO7JKr0KfTNLzU",
+      "uri": "spotify:track:2Iq6HhIquO7JKr0KfTNLzU",
+      "name": "My Type",
       "artists": [
         "Saint Motel"
       ],
       "artist_ids": [
         "1dWEYMPtNmvSVaDNLgB6NV"
       ],
-      "album": "The Original Motion Picture Soundtrack",
-      "album_id": "5aAfgCIEc9zBKbwFO6jixe",
-      "duration_ms": 201013,
+      "album": "My Type EP",
+      "album_id": "2r69WsAMyjbgLf8c4woaUr",
+      "duration_ms": 204811,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090977+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415578+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USAT22000985"
+        "isrc": "GBAYE1400856"
       },
       "available_markets_count": 0
     },
     {
-      "position": 28,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 26,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4R2kfaDFhslZEMJqAFNpdd",
-      "uri": "spotify:track:4R2kfaDFhslZEMJqAFNpdd",
-      "name": "cardigan",
-      "artists": [
-        "Taylor Swift"
-      ],
-      "artist_ids": [
-        "06HL4z0CvFAxyc27GXpf02"
-      ],
-      "album": "folklore",
-      "album_id": "2fenSS68JI1h4Fo296JfGr",
-      "duration_ms": 239560,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090979+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USUG12002836"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 29,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "1QcUGVrFdJW7zaAlUdTRnE",
-      "uri": "spotify:track:1QcUGVrFdJW7zaAlUdTRnE",
-      "name": "echo sonata",
+      "id": "1mrAlj4btJnjnAlD2cSJrT",
+      "uri": "spotify:track:1mrAlj4btJnjnAlD2cSJrT",
+      "name": "further eden",
       "artists": [
         "ERRA"
       ],
@@ -881,56 +792,114 @@
       ],
       "album": "silence outlives the earth",
       "album_id": "78YcVZNpzM357BBvAOKS6H",
-      "duration_ms": 268213,
+      "duration_ms": 211560,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090982+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415620+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "AUI442500232"
+        "isrc": "AUI442500461"
       },
       "available_markets_count": 0
     },
     {
-      "position": 30,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 27,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3J2uT83LcOHzzmDf965GwW",
-      "uri": "spotify:track:3J2uT83LcOHzzmDf965GwW",
-      "name": "C.N.T.",
+      "id": "29zMkTIeRP0yFn2fjr0oBL",
+      "uri": "spotify:track:29zMkTIeRP0yFn2fjr0oBL",
+      "name": "Countenance",
       "artists": [
         "The Royal They"
       ],
       "artist_ids": [
         "6PScjU4Y5AJ8EZp2aW4TA2"
       ],
-      "album": "Foreign Being",
-      "album_id": "63LJ2cFtUkZun7xquuLfHi",
-      "duration_ms": 197717,
+      "album": "The Royal They",
+      "album_id": "4oJvLQk4aJ8feombYas5YH",
+      "duration_ms": 239407,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090985+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415626+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QZAPG1861403"
+        "isrc": "QM4DW1770995"
       },
       "available_markets_count": 0
     },
     {
-      "position": 31,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 28,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "1BqzzWlA868p8J5VIbp50A",
-      "uri": "spotify:track:1BqzzWlA868p8J5VIbp50A",
-      "name": "Better Days",
+      "id": "6AMEHNhqK1qwCEJX9UBjEQ",
+      "uri": "spotify:track:6AMEHNhqK1qwCEJX9UBjEQ",
+      "name": "Chocolate Matter",
+      "artists": [
+        "Sweet Trip"
+      ],
+      "artist_ids": [
+        "5NtMqQLCzdVvL7F8vFp3zM"
+      ],
+      "album": "Velocity: Design: Comfort.",
+      "album_id": "0eUUQ4rly8Q8PyJPWLgde2",
+      "duration_ms": 243706,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415630+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USA4D0313610"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 29,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "53iuhJlwXhSER5J2IYYv1W",
+      "uri": "spotify:track:53iuhJlwXhSER5J2IYYv1W",
+      "name": "The Fate of Ophelia",
+      "artists": [
+        "Taylor Swift"
+      ],
+      "artist_ids": [
+        "06HL4z0CvFAxyc27GXpf02"
+      ],
+      "album": "The Life of a Showgirl",
+      "album_id": "4a6NzYL1YHRUgx9e3YZI6I",
+      "duration_ms": 226073,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415633+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USUG12506436"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 30,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1zNBVe8QG37iPLLQHlUS2u",
+      "uri": "spotify:track:1zNBVe8QG37iPLLQHlUS2u",
+      "name": "Kill the Ache",
       "artists": [
         "Currents"
       ],
@@ -939,56 +908,56 @@
       ],
       "album": "The Way It Ends",
       "album_id": "2pVCexIJwUK0Mg9cFtDhxr",
-      "duration_ms": 247747,
+      "duration_ms": 233355,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090987+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415636+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "DED831901341"
+        "isrc": "DED831901335"
       },
       "available_markets_count": 0
     },
     {
-      "position": 32,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 31,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "5aejtAMTPonqopEygQgOkq",
-      "uri": "spotify:track:5aejtAMTPonqopEygQgOkq",
-      "name": "Cardiac Arrest",
+      "id": "2ZRQixbe1MCJxpcO96Zj1y",
+      "uri": "spotify:track:2ZRQixbe1MCJxpcO96Zj1y",
+      "name": "Daft Pretty Boys",
       "artists": [
         "Bad Suns"
       ],
       "artist_ids": [
         "0YhUSm86okLWldQVwJkLlP"
       ],
-      "album": "Language & Perspective",
-      "album_id": "4TPjqLZkA2ekWLEQ8GvMr9",
-      "duration_ms": 182467,
+      "album": "Disappear Here",
+      "album_id": "3fSYQvcrQJJhTv9PYYMkY5",
+      "duration_ms": 187013,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090989+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415639+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USVR91316301"
+        "isrc": "QMRSZ1600419"
       },
       "available_markets_count": 0
     },
     {
-      "position": 33,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 32,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "45bNxwgD9C7IhiSlruJZkb",
-      "uri": "spotify:track:45bNxwgD9C7IhiSlruJZkb",
-      "name": "Nowhere Near My Heart",
+      "id": "6rVsAMC7Ry972qHIyaKtjA",
+      "uri": "spotify:track:6rVsAMC7Ry972qHIyaKtjA",
+      "name": "Gray",
       "artists": [
         "Kori Pop"
       ],
@@ -997,26 +966,26 @@
       ],
       "album": "From the Outskirts",
       "album_id": "7ADrQqd2DiBdV7io6yfTJs",
-      "duration_ms": 207400,
+      "duration_ms": 275920,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090993+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415644+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "CA1OV1000001"
+        "isrc": "CA1OV1000006"
       },
       "available_markets_count": 0
     },
     {
-      "position": 34,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 33,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "48vIfHaK7by6x0T6ucpODL",
-      "uri": "spotify:track:48vIfHaK7by6x0T6ucpODL",
+      "id": "4YMsS8OqXICdQXF5HNUxFq",
+      "uri": "spotify:track:4YMsS8OqXICdQXF5HNUxFq",
       "name": "make you mine",
       "artists": [
         "Madison Beer"
@@ -1024,13 +993,13 @@
       "artist_ids": [
         "2kRfqPViCqYdSGhYSM9R0Q"
       ],
-      "album": "make you mine",
-      "album_id": "62g7jm7YqkuQOhfhFpDQXC",
+      "album": "locket",
+      "album_id": "766kQKYQvONQk339t5payy",
       "duration_ms": 221709,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090995+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415647+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1040,13 +1009,13 @@
       "available_markets_count": 0
     },
     {
-      "position": 35,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 34,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3wWkvbfPxa66IdRtb6Ebaz",
-      "uri": "spotify:track:3wWkvbfPxa66IdRtb6Ebaz",
-      "name": "Beeswing",
+      "id": "6fxSiGZCY4y2S1GYj16Hi9",
+      "uri": "spotify:track:6fxSiGZCY4y2S1GYj16Hi9",
+      "name": "Big Strong Man",
       "artists": [
         "Ceol"
       ],
@@ -1055,27 +1024,56 @@
       ],
       "album": "Ceol",
       "album_id": "6ph35sfpcPx6xFaCdmplyD",
-      "duration_ms": 238633,
+      "duration_ms": 142287,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.090997+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415649+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "TCAGC2276455"
+        "isrc": "TCAGX2357748"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 35,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "13o809dZq6zk19lHuc4y43",
+      "uri": "spotify:track:13o809dZq6zk19lHuc4y43",
+      "name": "I Pissed Myself",
+      "artists": [
+        "Caroline Konstnar"
+      ],
+      "artist_ids": [
+        "0zySf6MZDNGa0gsCx3lJgw"
+      ],
+      "album": "This Is Underwhelming at Best",
+      "album_id": "5A9k1DULcTjrr17Hs4q03S",
+      "duration_ms": 105534,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415652+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QZHN31989707"
       },
       "available_markets_count": 0
     },
     {
       "position": 36,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "68gDM0Ehvi24HIYzkq2gdk",
-      "uri": "spotify:track:68gDM0Ehvi24HIYzkq2gdk",
-      "name": "Anchors Make Good Shoes (If You Have Issues)",
+      "id": "6iRtqW6oe1jSITUb5Krjb5",
+      "uri": "spotify:track:6iRtqW6oe1jSITUb5Krjb5",
+      "name": "Barricade",
       "artists": [
         "Courage My Love"
       ],
@@ -1084,56 +1082,56 @@
       ],
       "album": "For Now",
       "album_id": "79Daasf9K9t4SnLDxSmFsx",
-      "duration_ms": 191586,
+      "duration_ms": 238195,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091001+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415657+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "CA4DB1100005"
+        "isrc": "CA4DB1100003"
       },
       "available_markets_count": 0
     },
     {
       "position": 37,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "0qel33bA3NWFz5ppfDiuHc",
-      "uri": "spotify:track:0qel33bA3NWFz5ppfDiuHc",
-      "name": "Down the Line",
+      "id": "700ptoNpqWqnU9H7iUGz04",
+      "uri": "spotify:track:700ptoNpqWqnU9H7iUGz04",
+      "name": "En Espiral",
       "artists": [
         "Bridges to Nowhere"
       ],
       "artist_ids": [
         "5uTcO7VHOAcXLbz1k45gBk"
       ],
-      "album": "Down the Line",
-      "album_id": "63XVfsdr0RUQ3qWsKc7GNv",
-      "duration_ms": 202189,
+      "album": "I Know What You're Thinking",
+      "album_id": "4nR3tpfmZqtEcO3lTBIEnK",
+      "duration_ms": 197215,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091003+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415659+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "GBSMU8116204"
+        "isrc": "GBSMU6126841"
       },
       "available_markets_count": 0
     },
     {
       "position": 38,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4E23uX1BDdUTk9x56nEbla",
-      "uri": "spotify:track:4E23uX1BDdUTk9x56nEbla",
-      "name": "Bitches Brew",
+      "id": "3rbs4YknbRTpNGI68IHb6C",
+      "uri": "spotify:track:3rbs4YknbRTpNGI68IHb6C",
+      "name": "Option",
       "artists": [
         "✝✝✝ (Crosses)"
       ],
@@ -1142,377 +1140,346 @@
       ],
       "album": "††† (Crosses)",
       "album_id": "0nmLUAAUIUfm8q8Mq3mRAV",
-      "duration_ms": 208714,
+      "duration_ms": 264620,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091005+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415662+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USYFZ1448003"
+        "isrc": "USYFZ1448010"
       },
       "available_markets_count": 0
     },
     {
       "position": 39,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "6C42ex32idi2azb3A9NyXc",
-      "uri": "spotify:track:6C42ex32idi2azb3A9NyXc",
-      "name": "Diamonds Are A Girl's Best Friend",
+      "id": "1pA7B5yYdhsopaWPCOKDac",
+      "uri": "spotify:track:1pA7B5yYdhsopaWPCOKDac",
+      "name": "Diamonds Are a Girl's Best Friend (From \"Gentlemen Prefer Blondes\")",
       "artists": [
         "Marilyn Monroe"
       ],
       "artist_ids": [
         "5sEocv1pFst7o3pam69obY"
       ],
-      "album": "Marilyn Monroe - Limited Edition",
-      "album_id": "5ba8XXsMjBYDVv38c79Cx7",
-      "duration_ms": 212200,
+      "album": "Diamonds Are a Girl's Best Friend",
+      "album_id": "6ASRxQ9TCAD5XbL1jPiuvw",
+      "duration_ms": 211133,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091008+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415665+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USKO10405412"
+        "isrc": "DEBL60496405"
       },
       "available_markets_count": 0
     },
     {
       "position": 40,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "1mfV2kv9RwFKVI8kEQlmOJ",
-      "uri": "spotify:track:1mfV2kv9RwFKVI8kEQlmOJ",
-      "name": "All Day and All of the Night",
+      "id": "4Tjs8b6jL1s18sjURJtswp",
+      "uri": "spotify:track:4Tjs8b6jL1s18sjURJtswp",
+      "name": "Lola (2020 Stereo Remaster)",
       "artists": [
         "The Kinks"
       ],
       "artist_ids": [
         "1SQRv42e4PjEYfPhS0Tk9E"
       ],
-      "album": "Kinks (Deluxe Edition)",
-      "album_id": "6HrqKlhAQiv4GjFjwmuxDQ",
-      "duration_ms": 142226,
+      "album": "Lola Versus Powerman and the Moneygoround, Pt. 1",
+      "album_id": "6cv47fKkAyi9Lm5wwud4It",
+      "duration_ms": 241991,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091010+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415667+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "GBAJE6400007"
+        "isrc": "GB5KW2001995"
       },
       "available_markets_count": 0
     },
     {
       "position": 41,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "1EryAkZ0VHstC6haIxVBiE",
-      "uri": "spotify:track:1EryAkZ0VHstC6haIxVBiE",
-      "name": "Sextape",
-      "artists": [
-        "Deftones"
-      ],
-      "artist_ids": [
-        "6Ghvu1VvMGScGpOUJBAHNH"
-      ],
-      "album": "Diamond Eyes",
-      "album_id": "1GjjBpY2iDwSQs5bykQI5e",
-      "duration_ms": 241533,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091012+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USRE11000115"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 42,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "5cbpoIu3YjoOwbBDGUEp3P",
-      "uri": "spotify:track:5cbpoIu3YjoOwbBDGUEp3P",
-      "name": "Car Radio",
+      "id": "23OXdR7YuUBVWh5hSnYJau",
+      "uri": "spotify:track:23OXdR7YuUBVWh5hSnYJau",
+      "name": "Chlorine",
       "artists": [
         "Twenty One Pilots"
       ],
       "artist_ids": [
         "3YQKmKGau1PzlVlkL1iodx"
       ],
-      "album": "Vessel",
-      "album_id": "2r2r78NE05YjyHyVbVgqFn",
-      "duration_ms": 267720,
+      "album": "Trench",
+      "album_id": "621cXqrTSSJi1WqDMSLmbL",
+      "duration_ms": 324466,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091014+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415672+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USAT21203515"
+        "isrc": "USAT21810687"
       },
       "available_markets_count": 0
     },
     {
-      "position": 43,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 42,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "2Zd9RpkzMbWXhYhjIJQlqL",
-      "uri": "spotify:track:2Zd9RpkzMbWXhYhjIJQlqL",
-      "name": "nothing (in my head)",
-      "artists": [
-        "Pinkshift"
-      ],
-      "artist_ids": [
-        "3bfSaJqEYosPcdoCN06G3P"
-      ],
-      "album": "Love Me Forever",
-      "album_id": "5OmaMjzlejoRXpeKATzfLB",
-      "duration_ms": 185319,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091016+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "USHR22115601"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 44,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "5oOE30DUdGLOqz3zKLddl8",
-      "uri": "spotify:track:5oOE30DUdGLOqz3zKLddl8",
-      "name": "Dance With Me",
+      "id": "7MJBBBCfhjj716IaUq4HVG",
+      "uri": "spotify:track:7MJBBBCfhjj716IaUq4HVG",
+      "name": "Doc",
       "artists": [
         "Earl Klugh"
       ],
       "artist_ids": [
         "00Nnsh2ykMBYnCDsSFGXSY"
       ],
-      "album": "Finger Paintings",
-      "album_id": "0w6f4X8Hu5ZA0BFhwRbWwR",
-      "duration_ms": 206266,
+      "album": "Dream Come True",
+      "album_id": "5aY7j8FtsBcTnD7G1vSGHt",
+      "duration_ms": 286733,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091018+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415675+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USBN27700011"
+        "isrc": "USBN28700311"
       },
       "available_markets_count": 0
     },
     {
-      "position": 45,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 43,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3XmwAZpIMNpTJy8faw3ajD",
-      "uri": "spotify:track:3XmwAZpIMNpTJy8faw3ajD",
-      "name": "expectations (feat. Chappell Roan)",
+      "id": "4Ilw2lD6z4WBqh65vUUZUf",
+      "uri": "spotify:track:4Ilw2lD6z4WBqh65vUUZUf",
+      "name": "my way",
       "artists": [
-        "Olivia Rodrigo",
-        "Chappell Roan"
+        "Olivia Rodrigo"
       ],
       "artist_ids": [
-        "1McMsnEElThX1knmY4oliG",
-        "7GlBOeep6PqTfFi59PTUUN"
+        "1McMsnEElThX1knmY4oliG"
       ],
-      "album": "expectations (feat. Chappell Roan)",
-      "album_id": "1q9LM9xC5ebSY216u31FOx",
-      "duration_ms": 223935,
+      "album": "you seem pretty sad for a girl so in love",
+      "album_id": "3WZZF72ihlKPZBS4zSsNHl",
+      "duration_ms": 180720,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091021+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415677+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USUG12609027"
+        "isrc": "USUG12601727"
       },
       "available_markets_count": 0
     },
     {
-      "position": 46,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 44,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "6EDAapFVNckXJuDvx59agU",
-      "uri": "spotify:track:6EDAapFVNckXJuDvx59agU",
-      "name": "Hypochondriac",
+      "id": "2lz9pdjqQy6mVT2OekH9fT",
+      "uri": "spotify:track:2lz9pdjqQy6mVT2OekH9fT",
+      "name": "I Used To Hate My Body But Now I Just Hate You",
       "artists": [
         "Fenne Lily"
       ],
       "artist_ids": [
         "7iPH2BRBF9wKa6ljxvdext"
       ],
-      "album": "Hypochondriac",
-      "album_id": "4Q0ZHIymPlc5zpNtYQQ5FK",
-      "duration_ms": 192853,
+      "album": "BREACH",
+      "album_id": "0KsNopmZLaB71o6i2nw95I",
+      "duration_ms": 269053,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091025+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415680+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USJ5G2022101"
+        "isrc": "USJ5G2020909"
       },
       "available_markets_count": 0
     },
     {
-      "position": 47,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 45,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3AnYWjo0lKeixBEm1DNikP",
-      "uri": "spotify:track:3AnYWjo0lKeixBEm1DNikP",
-      "name": "Both Sides Of The Story",
+      "id": "1xoZihD7GhBI5mBA3QZkYR",
+      "uri": "spotify:track:1xoZihD7GhBI5mBA3QZkYR",
+      "name": "Dreaming Out Loud",
       "artists": [
         "We Are The In Crowd"
       ],
       "artist_ids": [
         "1BSXtdFlVDUOS6g1T3tmME"
       ],
-      "album": "Guaranteed To Disagree",
-      "album_id": "1mrYu2CrsOcDUGDU6GvOpH",
-      "duration_ms": 179333,
+      "album": "Weird Kids",
+      "album_id": "3c7e5GQ2om1QZd0uuXqQeB",
+      "duration_ms": 186720,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091027+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415683+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "USHR21063004"
+        "isrc": "USHR21263012"
       },
       "available_markets_count": 0
     },
     {
-      "position": 48,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 46,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "2f0uekb8fxtGo8eRGFVM2B",
-      "uri": "spotify:track:2f0uekb8fxtGo8eRGFVM2B",
-      "name": "Cannonballers",
+      "id": "5zYduVIUSgSWmv56IwBmRl",
+      "uri": "spotify:track:5zYduVIUSgSWmv56IwBmRl",
+      "name": "Silhouettes",
       "artists": [
         "Colony House"
       ],
       "artist_ids": [
         "6R664N4cEza3eORSqKSgO4"
       ],
-      "album": "The Cannonballers",
-      "album_id": "12T59Aqwe8DMlcmZrOHpQW",
-      "duration_ms": 172000,
+      "album": "When I Was Younger",
+      "album_id": "4A9oVHInBqtXG9ogUXQiKN",
+      "duration_ms": 177773,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091030+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415691+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QMBZ92260649"
+        "isrc": "USA5W1400128"
       },
       "available_markets_count": 0
     },
     {
-      "position": 49,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 47,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4SQLQfcR0vhyIN4uPBlc0d",
-      "uri": "spotify:track:4SQLQfcR0vhyIN4uPBlc0d",
-      "name": "Bang!",
+      "id": "2QKLrgXNQtK2c8QbLRO3XC",
+      "uri": "spotify:track:2QKLrgXNQtK2c8QbLRO3XC",
+      "name": "Burn The House Down",
       "artists": [
         "AJR"
       ],
       "artist_ids": [
         "6s22t5Y3prQHyaHWUN1R1C"
       ],
-      "album": "OK ORCHESTRA",
-      "album_id": "0KC9H4iFOOWiKEa5IzKKOE",
-      "duration_ms": 170858,
+      "album": "The Click (Deluxe Edition)",
+      "album_id": "3fhEairiL0g4qfXVUTFtF1",
+      "duration_ms": 212373,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091032+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415694+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QMRSZ2000128"
+        "isrc": "QMRSZ1702960"
       },
       "available_markets_count": 0
     },
     {
-      "position": 50,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 48,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "2MkWiQZFdno4xhQTOgwgtq",
-      "uri": "spotify:track:2MkWiQZFdno4xhQTOgwgtq",
-      "name": "Another Spring",
+      "id": "70L6nHORQsblY813yNqUR3",
+      "uri": "spotify:track:70L6nHORQsblY813yNqUR3",
+      "name": "Cherry Waves",
+      "artists": [
+        "Deftones"
+      ],
+      "artist_ids": [
+        "6Ghvu1VvMGScGpOUJBAHNH"
+      ],
+      "album": "Saturday Night Wrist",
+      "album_id": "4ilqDlqD37nilewk9x8tyZ",
+      "duration_ms": 317706,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415697+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "USMV20600284"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 49,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "2CamkFYDdWR4qH2uAJG1MD",
+      "uri": "spotify:track:2CamkFYDdWR4qH2uAJG1MD",
+      "name": "Blues of Summer",
       "artists": [
         "Danica Dora"
       ],
       "artist_ids": [
         "4hnjUN6vIRhfSmtSFZvY2p"
       ],
-      "album": "Another Spring",
-      "album_id": "7FifOyGBC0P2uxSGHtQro4",
-      "duration_ms": 223262,
+      "album": "Blues of Summer",
+      "album_id": "5PQnTs4kfcqm33OOfuSbVR",
+      "duration_ms": 188235,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091034+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415699+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "QZDA42479952"
+        "isrc": "TCAGI2210678"
       },
       "available_markets_count": 0
     },
     {
-      "position": 51,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 50,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "3MXSSHH091jK50ZL0NOVKs",
-      "uri": "spotify:track:3MXSSHH091jK50ZL0NOVKs",
-      "name": "Bad Attraction",
+      "id": "1o0mSf3ll5CbCSDl5DzWRl",
+      "uri": "spotify:track:1o0mSf3ll5CbCSDl5DzWRl",
+      "name": "Borderline",
       "artists": [
         "Brad Sucks"
       ],
@@ -1521,143 +1488,145 @@
       ],
       "album": "I Don't Know What I'm Doing",
       "album_id": "5JuoWId7VBeIeVKVwGUi0g",
-      "duration_ms": 195946,
+      "duration_ms": 196760,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091036+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415702+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "ushm90558128"
+        "isrc": "ushm90558130"
       },
       "available_markets_count": 0
     },
     {
-      "position": 52,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 51,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "61OJxhoY3Ix50rYVKo8zRK",
-      "uri": "spotify:track:61OJxhoY3Ix50rYVKo8zRK",
-      "name": "Can I Call You Tonight?",
+      "id": "50PyquzZ9BaBwLZZd1AuuV",
+      "uri": "spotify:track:50PyquzZ9BaBwLZZd1AuuV",
+      "name": "Close To You",
       "artists": [
         "Dayglow"
       ],
       "artist_ids": [
         "6eJa3zG1QZLRB3xgRuyxbm"
       ],
-      "album": "Fuzzybrain",
-      "album_id": "7GYzQIMfdDWo2XC4BDLHPk",
-      "duration_ms": 278769,
+      "album": "Harmony House",
+      "album_id": "0brMHlMYz5t58uT1Q4bkdF",
+      "duration_ms": 194693,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091038+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415704+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "TCADL1825079"
+        "isrc": "GBKPL2035998"
       },
       "available_markets_count": 0
     },
     {
-      "position": 53,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 52,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4lz2VHSTLkTNZvNvfY7sJF",
-      "uri": "spotify:track:4lz2VHSTLkTNZvNvfY7sJF",
-      "name": "Devil's Got My Secret",
+      "id": "5s9CL6Py7LlbEfB9ReTdzY",
+      "uri": "spotify:track:5s9CL6Py7LlbEfB9ReTdzY",
+      "name": "I Haven't Even Started With You",
       "artists": [
         "Mieka Pauley"
       ],
       "artist_ids": [
         "2og9VJY8XMDSjB78m06tPV"
       ],
-      "album": "Elijah Drop Your Gun",
-      "album_id": "5PYcFPZ2kRrvs69O10aRuV",
-      "duration_ms": 275293,
+      "album": "The Science of Making Choices",
+      "album_id": "3tfLFvFD5JPRFinIGBIoeI",
+      "duration_ms": 268586,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091041+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415707+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "usl4q0774547"
+        "isrc": "USTUW1100059"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 53,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "6oyJip5XQHRqcsy6hOTqw3",
+      "uri": "spotify:track:6oyJip5XQHRqcsy6hOTqw3",
+      "name": "Little Lion Man",
+      "artists": [
+        "Tonight Alive",
+        "Dave Petrovic"
+      ],
+      "artist_ids": [
+        "5pjCYG6hPLBO3y4swxu3dh",
+        "3jqy0lRa0e09KPyUhMELsC"
+      ],
+      "album": "Punk Goes Pop, Vol. 4",
+      "album_id": "5hhohR69grzBTGp1IZKYIG",
+      "duration_ms": 233146,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415712+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "US5261115902"
       },
       "available_markets_count": 0
     },
     {
       "position": 54,
-      "added_at": "2026-11-20T09:10:55Z",
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4OksKbVshpt8eJkmRAG3cc",
-      "uri": "spotify:track:4OksKbVshpt8eJkmRAG3cc",
-      "name": "Breaking & Entering",
-      "artists": [
-        "Tonight Alive"
-      ],
-      "artist_ids": [
-        "5pjCYG6hPLBO3y4swxu3dh"
-      ],
-      "album": "What Are You So Scared Of?",
-      "album_id": "5wL3fTKHuQ9qqXPid5RQlL",
-      "duration_ms": 213026,
-      "is_local": false,
-      "is_playable": true,
-      "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091043+00:00",
-      "playability_market": "from_token",
-      "restrictions": {},
-      "linked_from": null,
-      "external_ids": {
-        "isrc": "AUBM01100190"
-      },
-      "available_markets_count": 0
-    },
-    {
-      "position": 55,
-      "added_at": "2026-11-20T09:10:55Z",
-      "added_by": "a_thought",
-      "type": "track",
-      "id": "37jwgpi6wPwqP2VGWDsequ",
-      "uri": "spotify:track:37jwgpi6wPwqP2VGWDsequ",
-      "name": "Among All Of God's Creatures",
+      "id": "0AOQ6jhkN9vpigU1KA2XD3",
+      "uri": "spotify:track:0AOQ6jhkN9vpigU1KA2XD3",
+      "name": "Barbed Wire",
       "artists": [
         "Rachael Sage"
       ],
       "artist_ids": [
         "7EedWEoxpzbiPNkqkDp3Vw"
       ],
-      "album": "Painting Of A Painting",
-      "album_id": "5BTS9G3yoYZKSJT2EfPKJn",
-      "duration_ms": 233933,
+      "album": "Blue Roses",
+      "album_id": "5GveJP2SnAzqWqZXh6mE7n",
+      "duration_ms": 238426,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091045+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415715+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "US35K0454005"
+        "isrc": "US35K1418804"
       },
       "available_markets_count": 0
     },
     {
-      "position": 56,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 55,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "0N5lacME7vbJ0xcLQTqXW5",
-      "uri": "spotify:track:0N5lacME7vbJ0xcLQTqXW5",
-      "name": "Arbour",
+      "id": "3B5GUqlFlkUNoTFJ5khCJl",
+      "uri": "spotify:track:3B5GUqlFlkUNoTFJ5khCJl",
+      "name": "Aurillac",
       "artists": [
         "Anna Mieke"
       ],
@@ -1666,26 +1635,26 @@
       ],
       "album": "Idle Mind",
       "album_id": "5jz07RajgJtqxfBAwWULOW",
-      "duration_ms": 263640,
+      "duration_ms": 274925,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091048+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415718+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "SEYOK1816226"
+        "isrc": "IEPVX1900004"
       },
       "available_markets_count": 0
     },
     {
-      "position": 57,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 56,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "20jbSiX29FDX4oQxBXyUEi",
-      "uri": "spotify:track:20jbSiX29FDX4oQxBXyUEi",
+      "id": "3iy2QuCtCzpWnR6tia39AB",
+      "uri": "spotify:track:3iy2QuCtCzpWnR6tia39AB",
       "name": "hate that i made you love me",
       "artists": [
         "Ariana Grande"
@@ -1693,13 +1662,13 @@
       "artist_ids": [
         "66CXWjxzNUsdJxJ2JdwvnR"
       ],
-      "album": "hate that i made you love me",
-      "album_id": "1x159B5VzbDWAGBik5cr1z",
+      "album": "petal",
+      "album_id": "2k4FmEtXR0WiDW0Ac2QArT",
       "duration_ms": 197949,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091050+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415723+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
@@ -1709,13 +1678,13 @@
       "available_markets_count": 0
     },
     {
-      "position": 58,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 57,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "7zksuGSqGbCioevwkEhfGi",
-      "uri": "spotify:track:7zksuGSqGbCioevwkEhfGi",
-      "name": "Anchorage",
+      "id": "1iDosOQOVRv4tAwRQQjQox",
+      "uri": "spotify:track:1iDosOQOVRv4tAwRQQjQox",
+      "name": "Dear Mister Darcy",
       "artists": [
         "Marian Call"
       ],
@@ -1724,27 +1693,27 @@
       ],
       "album": "Something Fierce",
       "album_id": "3nm6dnzDvsbQh6uwhL5kUN",
-      "duration_ms": 460813,
+      "duration_ms": 333920,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091053+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415725+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "ushm91165146"
+        "isrc": "ushm91165130"
       },
       "available_markets_count": 0
     },
     {
-      "position": 59,
-      "added_at": "2026-11-20T09:10:55Z",
+      "position": 58,
+      "added_at": "2026-11-21T12:01:04Z",
       "added_by": "a_thought",
       "type": "track",
-      "id": "4b6jdpUJGDQ9ImXMDpEt7l",
-      "uri": "spotify:track:4b6jdpUJGDQ9ImXMDpEt7l",
-      "name": "Carousel",
+      "id": "7CtVxDOnti17HLLVTii46F",
+      "uri": "spotify:track:7CtVxDOnti17HLLVTii46F",
+      "name": "Closer To The Sun",
       "artists": [
         "Eat Your Heart Out"
       ],
@@ -1753,16 +1722,45 @@
       ],
       "album": "Florescence",
       "album_id": "3n2ojq6Qep62sxOgseUC33",
-      "duration_ms": 235000,
+      "duration_ms": 157480,
       "is_local": false,
       "is_playable": true,
       "is_playable_present": true,
-      "playability_checked_at": "2026-11-20T15:28:53.091056+00:00",
+      "playability_checked_at": "2026-11-21T14:40:42.415728+00:00",
       "playability_market": "from_token",
       "restrictions": {},
       "linked_from": null,
       "external_ids": {
-        "isrc": "US5261923109"
+        "isrc": "US5261923128"
+      },
+      "available_markets_count": 0
+    },
+    {
+      "position": 59,
+      "added_at": "2026-11-21T12:01:04Z",
+      "added_by": "a_thought",
+      "type": "track",
+      "id": "1CLRYGKMwpi6n6rNgOgwfh",
+      "uri": "spotify:track:1CLRYGKMwpi6n6rNgOgwfh",
+      "name": "Bad Dream Baby",
+      "artists": [
+        "Hippo Campus"
+      ],
+      "artist_ids": [
+        "1btWGBz4Uu1HozTwb2Lm8A"
+      ],
+      "album": "Good Dog, Bad Dream",
+      "album_id": "1E5WY8NbdOkxJr05k5Ld4R",
+      "duration_ms": 178150,
+      "is_local": false,
+      "is_playable": true,
+      "is_playable_present": true,
+      "playability_checked_at": "2026-11-21T14:40:42.415730+00:00",
+      "playability_market": "from_token",
+      "restrictions": {},
+      "linked_from": null,
+      "external_ids": {
+        "isrc": "QM5BK1900457"
       },
       "available_markets_count": 0
     }
