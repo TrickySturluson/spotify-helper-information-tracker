@@ -25,6 +25,6 @@ Read [ACTIONS.md](ACTIONS.md) for dated work and evidence. After each meaningful
 
 Babel's active recurring documentation worker is the scheduled ChatGPT task using the connected GitHub app. It works from repository state, makes bounded documentation-only changes, and publishes through a single draft PR. It does not require a local PC, repository-hosted Codex execution, or an OpenAI API key. Its operating rules and current branch/PR status are documented in [docs/BABEL_CHATGPT_BUDDY.md](../../../docs/BABEL_CHATGPT_BUDDY.md).
 
-## Separate Codex/API experiment — dormant
+## Separate Codex/API experiment — quota-blocked; workflow enablement unverified
 
-The repository-hosted Codex workflow is a separate historical experiment. Its runner workaround was verified, but execution was blocked by API quota before validation or publication. It must not be retried without explicit user reauthorization; see [docs/BABEL_AGENT.md](../../../docs/BABEL_AGENT.md).
+The repository-hosted Codex workflow is separate from the current ChatGPT Buddy. Its last verified attempt was blocked by API quota before validation or publication. The workflow YAML still declares a six-hour schedule, manual dispatch, and a push trigger; the repository-level enabled/disabled state was not confirmed in this audit. Do not manually dispatch, retry, or assume it is disabled without explicit user reauthorization. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings; see [docs/BABEL_AGENT.md](../../../docs/BABEL_AGENT.md).
