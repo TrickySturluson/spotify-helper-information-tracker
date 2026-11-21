@@ -9073,11 +9073,19 @@
         }
       ],
       "playback_observations": [],
-      "removal_events": [],
+      "removal_events": [
+        {
+          "at": "2026-11-21T12:00:00.079251+00:00",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": "2026-11-20T09:10:56.375782+00:00"
+        }
+      ],
       "liked_at_add": false,
       "last_added_at": "2026-11-20T09:10:56.409993+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-21T12:01:07.478957+00:00"
+      "lastfm_observed_at": "2026-11-21T12:01:07.478957+00:00",
+      "last_removed_at": "2026-11-21T12:00:00.079251+00:00"
     },
     "spotify:track:3edXLmc4WGO8r2g5gjh0Ux": {
       "uri": "spotify:track:3edXLmc4WGO8r2g5gjh0Ux",
@@ -12228,5 +12236,5 @@
       "file_present": false
     }
   },
-  "updated_at": "2026-11-21T12:01:07.479131+00:00"
+  "updated_at": "2026-11-21T14:48:41.970149+00:00"
 }
