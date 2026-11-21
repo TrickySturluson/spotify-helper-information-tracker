@@ -54,10 +54,18 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 
 - [x] Establish the daily scheduled ChatGPT/GitHub-app task with documentation-only scope and a draft-PR publication boundary.
 - [x] Repair the stale Buddy branch safely: retain the former `babel/chatgpt-buddy` branch for reference, close obsolete draft PR #163 without merging, and create `babel/chatgpt-buddy-v2` from current `main`.
-- [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate dormant experiment.
+- [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate quota-blocked experiment, while keeping its repository-level enabled/disabled state explicitly unverified.
 - [x] Re-enable the daily Buddy automation and request an immediate run on 2026-11-20.
 - [ ] Verify the fresh draft PR #201's CI checks and independently review the final PR head/diff.
 - [ ] Perform the fresh-session simulation using merged repository documentation.
+
+## Legacy Codex/API workflow — execution-state safety
+
+- [x] Reconcile the Codex experiment's documentation with the current workflow source: the YAML still declares a six-hour schedule, manual dispatch, and push trigger.
+- [x] Preserve the distinction between the current scheduled ChatGPT Buddy and the separate repository-hosted Codex/API experiment.
+- [x] Document that the repository-level workflow enabled/disabled state is not confirmed by the available read-only GitHub access. Do not call the workflow disabled or guaranteed dormant.
+- [ ] Repository owner confirms the legacy Codex workflow is disabled in GitHub Actions if no scheduled API execution is wanted, or explicitly reauthorizes a separate workflow change. Buddy must not change workflow logic/settings or dispatch it.
+- [ ] Keep `project/BABEL_AGENT_STATE.md` at `status: active` while Babel acceptance remains open. The workflow's `status: complete` sentinel is not a pause switch and must not be used to suppress API execution.
 
 ## Deferred successor: SHIT-wide Integrity, Diagnostics & Recovery
 
