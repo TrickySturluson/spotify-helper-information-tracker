@@ -1,7 +1,7 @@
 # Babel AI continuation state — repository-hosted Codex/API experiment
 
 # This file is consumed by .github/workflows/babel-ai-continuation.yml.
-# status: active means Babel acceptance remains open; only status: complete stops that workflow.
+# status: active means Babel acceptance remains open; status: complete is the state-file stop sentinel.
 status: active
 worker: historical OpenAI Codex experiment through openai/codex-action; not the current SHIT Buddy
 current_buddy: scheduled ChatGPT task using the connected GitHub app; see docs/BABEL_CHATGPT_BUDDY.md
@@ -16,8 +16,8 @@ completion_rule: all Maintainability & Documentation roadmap acceptance criteria
 
 - This is an automation aid for **SHIT Documentation & Continuity (internal codename: Babel)**, not a replacement for source review or human approval.
 - This state file belongs only to the repository-hosted Codex/API experiment. It does not describe or control the current scheduled ChatGPT Buddy.
-- The workflow YAML still declares scheduled, manual, and push triggers. The repository-level enabled/disabled state was not confirmed in this audit; do not describe the workflow as disabled or guaranteed dormant.
-- `status: active` is not a pause switch. The workflow stops only when the value is exactly `status: complete`; never misuse that sentinel to suppress Codex execution because it would falsely mark Babel complete.
+- The workflow YAML still declares scheduled, manual, and push triggers. Its preflight also skips the agent when `OPENAI_API_KEY` is absent; this audit did not inspect the secret value or verify its presence. The repository-level enabled/disabled state was not confirmed; do not describe the workflow as disabled or guaranteed dormant.
+- `status: active` is not a pause switch. The state-file stop condition is the exact `status: complete` value; preflight also skips the agent if `OPENAI_API_KEY` is absent. Never misuse the completion sentinel to suppress Codex execution because it would falsely mark Babel complete.
 - If no Codex API execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow settings/logic or dispatch it.
 - Repository documentation is the durable memory. Every run must read the current handoff and relevant goal records before acting.
 - Every run must read `project/ACTIVE_SESSION_BRIEF.md` first, then reconcile its claims against the checked-out repository and current evidence. The brief is a curated, privacy-safe context bridge, not a raw chat transcript or live message channel.
