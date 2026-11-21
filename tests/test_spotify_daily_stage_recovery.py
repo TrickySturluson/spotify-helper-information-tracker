@@ -30,6 +30,7 @@ class DailyStageRecoveryTests(unittest.TestCase):
         self.audit_path = self.github_dir / "audit.jsonl"
 
         self._patchers = [
+            patch.dict(os.environ, {"GITHUB_ACTIONS": "false"}),
             patch.object(daily_cycle, "DAILY_STAGE_DIR", self.stage_dir),
             patch.object(daily_cycle.manager, "BACKUPS", self.backup_dir),
             patch.object(daily_cycle.manager, "CONFIG", self.state_path),
