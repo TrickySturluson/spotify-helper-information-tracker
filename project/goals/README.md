@@ -1,3 +1,9 @@
+# Trio coordination update — 2026-11-20
+
+The user has requested a self-maintaining handoff cycle for Buddy → Jockey → Boots → Buddy. The three automations currently report enabled, but their latest run evidence is uneven: Buddy's latest result reported a blocker on obsolete PR #163, Jockey's latest run failed with a generic scheduled-task error, and Boots' latest recorded run is 2026-11-08. This supersedes older statements below that the trio must remain disabled. No schedule or prompt was changed in this initial coordination batch. See [Trio Coordination](trio-coordination/ROADMAP.md) and the [handoff protocol](../TRIO_COORDINATION_PROTOCOL.md).
+
+---
+
 # Cross-project priority — 2026-11-20 08:29 UTC
 
 Authentication remains the sole focused engineering priority. PR #198 is merged and the account-ID correction has passed its exact-head broker, Daily, security, and Cloudflare preview build checks. Production deployment, encrypted credential persistence, and two independent auth-health checks are still pending. Keep SHIT Buddy, Jockey, and Boots disabled until those acceptance criteria pass; then resume them as non-overlapping background development lanes. See [current handoff](../NEXT_WORK.md) and [authentication roadmap](mobile-cloud-operation/ROADMAP.md).
@@ -46,5 +52,6 @@ See [LOOSE_ENDS.md](../LOOSE_ENDS.md) for unresolved work and verification block
 | Metadata Freshness | [ROADMAP](metadata-freshness/ROADMAP.md) | [README](metadata-freshness/README.md) | [ACTIONS](metadata-freshness/ACTIONS.md) |
 | Spotify Playability | [ROADMAP](spotify-playability/ROADMAP.md) | [README](spotify-playability/README.md) | [ACTIONS](spotify-playability/ACTIONS.md) |
 | Library Confidence Verification | [ROADMAP](library-confidence-verification/ROADMAP.md) | [README](library-confidence-verification/README.md) | [ACTIONS](library-confidence-verification/ACTIONS.md) |
+| Trio Coordination | [ROADMAP](trio-coordination/ROADMAP.md) | [README](trio-coordination/README.md) | [ACTIONS](trio-coordination/ACTIONS.md) |
 
 Every goal folder must contain all three files: `ROADMAP.md`, `README.md`, and `ACTIONS.md`. Roadmaps are maintained plans, READMEs are design/scope references, and ACTIONS are dated evidence logs. Record verified outcomes separately from plans and hypotheses; link to PRs, commits, workflow runs, and reports. Never store credentials or private account data here.
