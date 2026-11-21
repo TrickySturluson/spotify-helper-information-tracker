@@ -56,7 +56,8 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Repair the stale Buddy branch safely: retain the former `babel/chatgpt-buddy` branch for reference, close obsolete draft PR #163 without merging, and create `babel/chatgpt-buddy-v2` from current `main`.
 - [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate quota-blocked experiment, while keeping its repository-level enabled/disabled state explicitly unverified.
 - [x] Re-enable the daily Buddy automation and request an immediate run on 2026-11-20.
-- [ ] Verify the fresh draft PR #201's CI checks and independently review the final PR head/diff.
+- [x] Independently reviewed Buddy PR #201 at audit-start head `67df681f8227b04b4cfe6137a7fcfce544fb25cb`; its exact-head test, security, and Workers Builds checks passed. The review found stale Codex/activation wording and workflow counts corrected in this batch.
+- [ ] Re-review the updated PR #201 head and confirm fresh exact-head checks after this batch.
 - [ ] Perform the fresh-session simulation using merged repository documentation.
 
 ## Legacy Codex/API workflow — execution-state safety
@@ -75,17 +76,17 @@ The intended system should monitor integrity and operational health across canon
 
 Preserve strict safety boundaries: canonical data/provenance remain authoritative; Last.fm scrobbles are not conflated with optional Spotify playback observations; no fabricated or silently discarded records; deterministic repairs only, with explicit scope, backups, reversibility, audit trails and post-repair verification; user approval for consequential or ambiguous mutations. At the revisit, establish a dedicated goal workspace, ownership, severity model, autonomy levels, repair policy, reporting cadence and acceptance tests before implementation.
 
-## Buddy activation test — first attempt diagnosed
+## Historical Codex/API experiment — first attempt diagnosed
 
 - First ChatGPT-triggered run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) was received; preflight passed, but Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. Validation and publication were skipped.
 - The failure matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The Codex agent job is pinned to `ubuntu-24.04` as a compatibility workaround, without changing the security strategy or permission separation.
-- Activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication.
+- This historical Codex/API experiment is not the active Buddy path and is not authorized for retry. Its runner compatibility workaround is verified; successful Codex execution, independent validation, and isolated PR publication remain unverified.
 
-## Buddy activation retest — runner fixed; API quota remains blocked
+## Historical Codex/API experiment — retry reached Codex; API quota blocked
 
 - Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) ran the Codex job on Ubuntu 24.04. Preflight and `drop-sudo` isolation succeeded, confirming the Ubuntu 26.04 compatibility workaround.
 - Codex then returned `Quota exceeded. Check your plan and billing details.` Validation and publication were skipped; no candidate patch or PR was produced. The worker is not yet operationally verified.
-- The repository owner must ensure the OpenAI API project/organization has available quota/credits and a usable billing limit. Do not retry until quota is confirmed. Keep `drop-sudo`, workspace restrictions, read-only validation and isolated publisher unchanged.
+- No retry is currently authorized. Do not ask the user to fund API quota or re-enable the experiment. Any future activation requires explicit user reauthorization and owner-controlled GitHub Actions configuration. Preserve the historical runner/sandbox evidence; never weaken `drop-sudo` or workspace restrictions.
 - Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests and security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`.
 
 ## Acceptance criteria
@@ -114,11 +115,11 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - Maintained files: 55 Python implementation modules (60 files including five package initializers), 40 compatibility launchers (41 Python files including initializer), 44 test modules (45 Python files including initializer), 17 workflow YAMLs, 21 technical guides and 13 goal workspaces.
 - **Outcome:** committed-tree inventory acceptance item is satisfied for this snapshot. Refresh after structural/generated-data changes. See `docs/REPOSITORY_FILE_INDEX.md`.
 
-**Current count note:** the committed-tree snapshot above recorded 17 workflow YAMLs. The live repository now contains 18 after the Babel AI continuation workflow was added; the inventory snapshot remains historical until refreshed.
+**Current count note — 2026-11-21:** the current source tree contains 22 workflow YAMLs, and `docs/WORKFLOWS.md` catalogs all 22. The current goal index lists 14 workspaces, and a recursive tree check confirmed every one has `ROADMAP.md`, `README.md`, and `ACTIONS.md`. The `docs/` tree contains 26 Markdown files including `README.md` (25 other Markdown documents). These are structural counts, not proof of semantic completeness. The 2026-11-06 inventory snapshot remains historical; a fresh maintained-file inventory is still required.
 
 ## Workflow catalogue and local-link checks — CI-verified
 
-- `docs/WORKFLOWS.md` summarizes all 18 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
+- `docs/WORKFLOWS.md` summarizes all 22 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - The current mainline test validates local links from the primary entry points. A repository-wide all-Markdown local-link check remains a candidate guardrail from draft PR #161 and must be ported/adapted before being treated as implemented.
 
 ## 2026-11-06 — Module overview semantic correction
@@ -145,25 +146,24 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - Great Migration `preview` and `prepare-preview` were traced through the workflow, preparation script, CLI dispatcher, and full migrator. The dry-run path returns before resolver construction, backup creation, or canonical Library writes; no provider requests or Spotify playlist writes occur. A regression test now guards this call chain. The new test is pending CI execution.
 
 ## Current gaps / uncertainty
-- Structural inventory is complete for the stated commit; semantic accuracy of all 55 implementation overviews, 40 compatibility launchers, 44 test modules and 17 workflow overviews remains under review.
-- The 21 technical guides and 13 goal workspaces still require a source-to-document freshness pass, including exact inputs/outputs, provider budgets, credentials, permissions, publication behavior and recovery paths.
+- The 2026-11-06 inventory counts (55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflows, 21 guides, and 13 goal workspaces) are historical. The 2026-11-21 structural check confirms 22 workflow YAMLs, 14 goal workspaces with all required files, and 26 Markdown files under `docs/` including the index; the broader maintained-file inventory still needs a fresh tree-based refresh.
+- Semantic accuracy remains under review across maintained implementations, compatibility launchers, tests, all 22 workflow overviews, and 25 non-index Markdown documents. Do not treat the historical module/launcher/test counts as current until the inventory is refreshed.
 - All-Markdown local-link validation and comprehensive workflow/goal cross-contract tests are not yet on main; the draft PR #161 contains candidate implementations that must be reconciled rather than blindly merged.
-- The current open PR/issue set and domain-specific loose ends must be rechecked against live GitHub state; old historical checkpoints are not current evidence.
+- The current open PR/issue set and domain-specific loose ends must be rechecked against live GitHub state. Buddy PR #201 and the separate trio-coordination PR #202 are both open drafts and overlap on shared index/handoff files; keep ownership separate and reconcile their merge order before changing additional overlapping files.
 
-## AI continuation infrastructure — implemented; activation pending
+## Historical repository-hosted Codex/API workflow — source committed; execution quota-blocked
 
-- Added the repository-hosted Codex worker in .github/workflows/babel-ai-continuation.yml, with its task contract in .github/babel/CONTINUATION_PROMPT.md and durable stop/recovery state in project/BABEL_AGENT_STATE.md.
-- The worker runs every six hours or by manual dispatch, resumes from the dedicated babel/agent-progress branch, and is designed to create/update one review PR rather than commit to main.
-- The agent job is read-only at the GitHub API level and workspace-scoped for local edits. A separate read-only validation job enforces the strict documentation/test allowlist, rejects deletions/out-of-scope paths, and runs full unittest discovery without the API key or write-capable GitHub token. The final publisher alone receives contents:write / pull-requests:write and does not execute candidate code.
-- The workflow has no music-provider or Spotify credentials and is forbidden from feature implementation, generated-data changes, playlist operations, or provider calls.
-- **Status distinction:** workflow/prompt/state/docs are committed; successful execution is not yet verified. Activation requires the repository secret OPENAI_API_KEY. API usage is billed separately from a ChatGPT subscription. Configure the repository setting that allows GitHub Actions to create pull requests if it is currently disabled.
-- Guide: docs/BABEL_AGENT.md. Do not mark the worker operational until the first Actions run passes and its branch/PR is inspected.
-
-
-**2026-11-06 dispatch milestone:** ChatGPT successfully created `babel/dispatch-20261106-01` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`), proving the connected GitHub integration can emit the configured push trigger. First workflow execution and all job outcomes remain unverified; inspect the Actions run before marking activation complete.
+- The source remains committed at `.github/workflows/babel-ai-continuation.yml` with a six-hour schedule, manual dispatch, and a push trigger for `babel/dispatch-*`. This is a separate historical Codex/API experiment, not the current scheduled ChatGPT Buddy.
+- Last verified Codex attempt [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) passed preflight and the Ubuntu 24.04 `drop-sudo` isolation step, then returned an API quota error. Validation and publishing were skipped; no candidate patch or Codex PR was produced. No later Codex execution was independently verified in the 2026-11-21 audit.
+- Workflow preflight stops when `project/BABEL_AGENT_STATE.md` contains the exact `status: complete` sentinel and also skips the agent when `OPENAI_API_KEY` is absent. The state remains `status: active` because Babel acceptance is open. The secret's presence/value was not inspected.
+- Repository-level workflow enablement is unverified. Do not describe the workflow as disabled or dormant. Do not dispatch, retry, request API funding, or change workflow settings without explicit user reauthorization. If no scheduled Codex execution is wanted, the repository owner must disable it in GitHub Actions; Buddy must not change workflow logic/settings.
+- The historical workflow was designed with a read-only Codex job, isolated validation, and a separate publisher. This is source-configuration evidence, not proof of a successful recent Codex run.
+- The current continuation worker is the scheduled ChatGPT Buddy using the connected GitHub app and the `babel/chatgpt-buddy-v2` branch; see [docs/BABEL_CHATGPT_BUDDY.md](../../../docs/BABEL_CHATGPT_BUDDY.md).
 
 ## Next action
-Continue the semantic audit of all 55 maintained implementation modules, 40 compatibility launchers, 44 test modules and 17 workflow overviews. Prioritize write-capable Spotify tools, scheduled workflows, authentication/secret rotation, shared generated-state writers, migration/recovery paths and data provenance. Reconcile all 21 technical guides, all 13 goal workspaces, open PRs/issues and the cross-project loose-ends register. Add targeted regression checks for real operational contracts, then complete a fresh-session resume simulation. Keep documentation as the only active project priority until that acceptance test passes.
+Continue the source-to-guide semantic audit and refresh the maintained-file inventory from the current Git tree. The current Buddy repair proposal is PR #201; its audit-start head `67df681f8227b04b4cfe6137a7fcfce544fb25cb` passed exact-head test, security, and Workers Builds checks, and the review identified stale count/activation wording corrected in this batch. Re-review the updated head and its fresh checks before treating the draft as review-clean.
+
+PR #202 is a separate trio-coordination draft that edits several shared index/handoff files also touched by PR #201. Do not modify its branch or PR; reconcile the two drafts' overlap and merge order before making further shared handoff edits. PR #161 and #162 remain separate human-review items. The fresh-session simulation and full semantic audit remain open. Babel continues alongside other explicitly authorized SHIT workstreams; Buddy remains documentation-only and must not describe Babel as the sole SHIT priority.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
