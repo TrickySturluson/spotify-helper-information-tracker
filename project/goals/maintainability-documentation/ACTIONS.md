@@ -1,3 +1,14 @@
+## 2026-11-21 — Reconciled latest scheduled Codex/API failures
+
+- **Selected task:** verify whether the historical Codex/API workflow had run after the earlier quota report, then reconcile its execution status across Babel guides and state.
+- **New evidence:** GitHub recorded scheduled workflow run [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) on 2026-11-20 20:09 UTC and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) on 2026-11-21 06:59 UTC. Both were `event: schedule`, both had successful preflight, both failed in the Codex agent with the exact response `Quota exceeded. Check your plan and billing details.`, and both skipped validation and publication. No candidate patch or PR was produced.
+- **Interpretation:** these runs prove the scheduled workflow triggered at those times and reached the Codex API; they do not expose the workflow's current enabled/disabled setting. The available read-only GitHub API did not provide that setting. No secret value or credential was inspected.
+- **Safety:** Buddy did not manually dispatch, retry, disable, or change the Codex workflow. Do not request API funding or retry it. If scheduled Codex execution is unwanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings.
+- **Files reconciled:** `docs/BABEL.md`, `docs/BABEL_AGENT.md`, `docs/BABEL_CHATGPT_BUDDY.md`, `docs/WORKFLOWS.md`, `project/BABEL_AGENT_STATE.md`, and the Maintainability & Documentation README/ROADMAP/ACTIONS now distinguish these scheduled failures from the active ChatGPT Buddy.
+- **Handoff limitation:** `project/LOOSE_ENDS.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/NEXT_WORK.md` also contain Codex/worker status but overlap with the separate draft PR #202. They are intentionally left untouched until the PR #201/#202 shared-file merge order is reconciled. PR #202 and all other user-owned branches/PRs remain unmodified.
+- **Verification:** workflow run job records show preflight success, agent failure, validate/publish skipped; agent logs were inspected only for the quota error and no secret values were exposed. No workflow was manually dispatched and no tests were run manually. The documentation changes require fresh PR #201 CI and complete-diff/read-back verification.
+- **Next:** re-read the updated files, inspect the final PR #201 head/checks, then reconcile the overlapping handoff files without modifying PR #202. Babel remains in progress.
+
 ## 2026-11-21 — Independently reviewed Buddy repair proposal and corrected stale roadmap claims
 
 - **Selected task:** independently review the existing Buddy draft PR and reconcile the Maintainability & Documentation roadmap's remaining Codex/activation and inventory-count contradictions.
