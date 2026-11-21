@@ -9,7 +9,7 @@
 - Jockey's separate draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) has passing exact-head tests, security and broker checks, while its latest automation run failed generically. Do not modify its implementation branch or take over its work.
 - User-owned PRs #161 and #162 remain open/draft and untouched; legacy PR #163 remains closed. The older current-priority paragraphs below still require reconciliation against the live worker assignments and current owner-approved priority.
 
-------
+---
 
 ## 2026-11-20 08:29 UTC — Authentication code correction merged; production cutover pending
 
