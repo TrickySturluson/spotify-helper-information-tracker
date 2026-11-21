@@ -13,7 +13,7 @@ Buddy remains focused on Babel and documentation-only work. ChatGPT may work on 
 ## Execution and capability boundary
 
 - The recurring task uses the connected GitHub app from a scheduled ChatGPT task. It does not require a local PC to remain powered on or an OpenAI API key.
-- The separate repository-hosted Codex workflow is an API-based experiment and is currently blocked by API quota. Do not dispatch it, retry it, or ask the user to fund it unless the user explicitly reauthorizes that separate experiment.
+- The separate repository-hosted Codex workflow is a historical API-based experiment, not the current Buddy path. Scheduled runs [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) passed preflight but failed in the Codex agent with API quota exceeded; validation and publication were skipped. These runs prove the schedule triggered on 2026-11-20 and 2026-11-21, but the current workflow enabled/disabled setting was not exposed by the available read-only API. Do not manually dispatch, retry, re-enable, or request API funding. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings or dispatch it.
 - The GitHub-app connectivity proof is recorded in [PR #162](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/162). It proves that a scheduled task successfully performed a GitHub-app write and opened a draft PR once; it does not guarantee every future run will succeed.
 - Buddy's daily task is scheduled for approximately 9:00 AM Eastern in `America/New_York`. Treat the automation status and latest run result as authoritative; do not infer success from the schedule or last-run timestamp alone.
 
@@ -49,8 +49,10 @@ Forbidden:
 ## Buddy's branch and PR rules
 
 - Use the connected GitHub app only.
-- Maintain one persistent Buddy branch, `babel/chatgpt-buddy`, and at most one Buddy-owned draft PR against `main`.
-- Reuse the existing Buddy PR; do not create duplicates.
+- Maintain one persistent Buddy branch, `babel/chatgpt-buddy-v2`, and at most one Buddy-owned draft PR against `main`.
+- Current repair proposal: [draft PR #201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), subject to CI and independent review.
+- The former draft PR #163 on `babel/chatgpt-buddy` was closed as obsolete on 2026-11-20 after the branch diverged substantially from current `main`; its branch is retained untouched for historical reference. Do not reopen or modify it.
+- Reuse the existing Buddy PR on the active branch; do not create duplicates.
 - Do not modify or take over other PRs, including PR #161 and the temporary connectivity proof PR #162.
 - Verify branch, path, and current file SHA before each write. Read every changed file back after writing. Verify the final PR head/base/state and changed-file list.
 - Buddy may update its branch and draft PR only. It must never write directly to `main`, approve, mark ready, close, merge, or self-merge.

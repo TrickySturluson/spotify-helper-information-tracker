@@ -1,3 +1,30 @@
+# Babel continuation audit — 2026-11-21 14:41 UTC
+
+- **Current Buddy automation:** enabled. Its current execution was marked in progress when this audit began; no completed result was yet available.
+- **Buddy PR at audit start:** [#201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), branch `babel/chatgpt-buddy-v2`, head `6028a605fe75bf40446b20760d409a61f7898e83`, 7 changed files, 14 commits ahead / 3 behind current main `efbb13fa5098501567c3e399d810adb652ff1a56`. GitHub reported mergeable/clean. Exact-head check runs for tests, security, and Workers Builds were successful; commit-lockfile was skipped. No review submissions or inline review threads existed.
+- **Legacy Codex workflow safety:** `.github/workflows/babel-ai-continuation.yml` still declares a six-hour schedule, manual dispatch, and push trigger. The available read-only GitHub access did not confirm repository-level workflow enablement. Do not call it disabled or guaranteed dormant; do not manually dispatch or retry it. `project/BABEL_AGENT_STATE.md` remains `status: active` because Babel is incomplete; `status: complete` is the state-file completion stop sentinel; preflight also skips the agent when `OPENAI_API_KEY` is absent. The secret's presence/value was not inspected. The completion sentinel must not be used as a pause switch.
+- **Other PRs:** former PR #163 is closed. User-owned PRs #161 and #162 remain open/draft with no submitted reviews or inline threads; both were inspected read-only and left untouched.
+- **Scope:** no workflow, runtime, secret, permission, provider, playlist, canonical Library, or generated-data changes were made. This overlay records the state at audit start; the final branch/PR head and checks must be re-fetched after the documentation batch.
+
+---
+
+# Current SHIT continuation overlay — 2026-11-20 19:27 UTC
+
+## Current worker and project state
+- **Authentication:** the implementation/infrastructure phase is being treated as complete for now; end-to-end production authorization, encrypted credential persistence, and independent broker-health acceptance remain unverified. Do not claim full production auth completion.
+- **Buddy / Babel:** scheduled ChatGPT task using the connected GitHub app is enabled. Its latest recorded scheduled run remains the 2026-11-20 09:46 Eastern blocked report against the obsolete, diverged branch; no new separate scheduled execution has been recorded. The old branch `babel/chatgpt-buddy` is preserved; obsolete draft PR #163 was closed without merging. Active branch `babel/chatgpt-buddy-v2` is based on current main and has one repair draft, PR [#201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), latest head `dda76ec159bb2e3a4a887c4a902fe0e212ed4963`. Exact-head Daily curator tests [#44801634399](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44801634399), public repository security scan [#44801634699](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44801634699), and Mobile Auth Broker Tests [#44801634200](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44801634200) all passed. Daily curator job log confirms full unittest discovery: 541 tests, OK. PR #201 remains draft; no submitted reviews or inline review threads exist. The next Buddy schedule is 2026-11-21 around 09:00 Eastern. Do not confuse this PR CI evidence or this active ChatGPT session with a new recorded Buddy scheduled run.
+- **Jockey / Tricky Daily:** automation remains enabled. Its 2026-11-20 scheduled execution recorded a generic task failure, not a PR CI failure. Draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200), head `4db7f9736a23128e1ef599337b7249ae95658cfe`, has passing Daily curator tests (#44786099249), broker tests (#44786099230), and security scan (#44786099377). Keep scheduled Daily rotation verification and recommendation memory open; a green PR check is not proof of a midnight cycle.
+- **Boots / general engineering:** intentionally not inspected or modified in this session. The user asked to revisit Boots later.
+- **Current Buddy repair proposal:** PR #201 changes six Markdown documents plus one narrowly scoped documentation-contract test. The previous stale assertion was replaced with checks for the dormant Codex experiment and active scheduled ChatGPT Buddy. No runtime, workflow logic, secrets, permissions, provider, canonical Library, or playlist operations were performed. Independent review found no PR review submissions or inline threads; PR remains draft pending final review and merge authorization.
+
+## Immediate continuation
+1. Reconcile the full PR #201 diff against current main and verify the current branch/PR metadata after any new commit.
+2. Keep Buddy enabled and verify its next scheduled run produces a new recorded result on the repaired branch.
+3. Do not inspect or change Boots until the user asks to circle back.
+4. Keep Jockey's scheduled-task execution failure distinct from PR #200's passing CI and investigate the automation failure separately if it repeats.
+
+---
+
 # Verified continuation overlay — 2026-11-20 08:29 UTC
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.

@@ -8,7 +8,7 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 
 1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
 2. [ChatGPT scheduled Buddy and publication policy](BABEL_CHATGPT_BUDDY.md) — daily verification, worker scope, and ChatGPT's separate documentation-only publication authority.
-3. [Repository-hosted Codex continuation worker](BABEL_AGENT.md) — separate API-based experiment, branch/PR publishing, security boundaries, activation and recovery.
+3. [Historical repository-hosted Codex/API experiment](BABEL_AGENT.md) — separate API-based workflow definition, trigger/stop conditions, quota blocker, and recovery boundaries.
 4. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
 5. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
 6. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
@@ -41,7 +41,7 @@ Every maintained guide in `docs/` is listed below. Use the workstream roadmap an
 - [Public repository privacy](PUBLIC_REPOSITORY_PRIVACY.md) — published personal data, secret boundaries and repository exposure risks.
 - [Spotify API operations](SPOTIFY_API_OPERATIONS.md) — authentication, permissions, API behavior, token handling and cloud-operation constraints.
 - [Authentication Management & Recovery](../project/goals/mobile-cloud-operation/README.md) — SHIT-wide auth health, automatic token rotation, failure diagnosis, owner-consented OAuth recovery and security boundaries.
-- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 21 workflows, triggers, permissions, credentials, writes and operational boundaries.
+- [GitHub Actions workflow catalogue](WORKFLOWS.md) — all 22 workflows, triggers, permissions, credentials, writes and operational boundaries.
 - [Great Migration guide](GREAT_MIGRATION.md) — canonical Library migration, validation, backup, publication and recovery.
 
 ### Canonical Library, identity and metadata

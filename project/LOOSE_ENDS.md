@@ -1,3 +1,16 @@
+## 2026-11-21 — Legacy Codex workflow scheduled failures; handoff reconciliation pending
+
+- The current documentation worker is the scheduled ChatGPT Buddy using the connected GitHub app. The repository-hosted Codex/API workflow is a separate historical experiment, not the current Buddy path.
+- GitHub recorded scheduled runs [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) (2026-11-20 20:09 UTC) and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) (2026-11-21 06:59 UTC). Both passed preflight, failed in the Codex agent with API quota exceeded, and skipped validation/publication. These runs supersede the older #42183337573-only checkpoint and prove the schedule triggered at those times.
+- The workflow source still declares a six-hour schedule, manual dispatch, and push trigger. The available read-only GitHub API did not expose the current enabled/disabled setting. Do not manually dispatch, retry, or request API funding. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions; Buddy must not change workflow settings or logic.
+- `project/BABEL_AGENT_STATE.md` remains `status: active` because Babel acceptance is open. `status: complete` is the completion stop sentinel, not a pause switch; preflight also skips the agent when `OPENAI_API_KEY` is absent. Secret presence/value was not inspected.
+- Buddy automation is enabled. Current run `3642fab3-e500-832c-aeee-494a8dcf5904` was in progress at the 2026-11-21 audit. At audit-start, PR [#201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201) was open/draft on `babel/chatgpt-buddy-v2`, head `6ef42b3948d1378903581d4f33c91d6da23f7c86`, 54 commits ahead / 4 behind main. Exact-head tests and Workers Builds passed; the full-history security scan was still running. Re-fetch the final head/checks after this batch.
+- Separate draft PR [#202](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/202) contains a stale trio-status snapshot: it says Boots is enabled and Buddy is 14 ahead/0 behind with a latest blocker on obsolete PR #163. Live records instead show Buddy enabled/current run in progress, Jockey enabled with its latest scheduled run failed generically, and Boots disabled. PR #202 also overlaps shared handoff/index files; do not modify its branch or treat its snapshot as current.
+- Jockey's separate draft PR [#200](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200) has passing exact-head tests, security and broker checks, while its latest automation run failed generically. Do not modify its implementation branch or take over its work.
+- User-owned PRs #161 and #162 remain open/draft and untouched; legacy PR #163 remains closed. The older current-priority paragraphs below still require reconciliation against the live worker assignments and current owner-approved priority.
+
+---
+
 ## 2026-11-20 08:29 UTC — Authentication code correction merged; production cutover pending
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker tests #44702575255, Daily tests #44702575185, security scan #44702575262, and Cloudflare preview build/deployment passed.

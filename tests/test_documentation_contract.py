@@ -352,7 +352,10 @@ class DocumentationContractTests(unittest.TestCase):
         prompt = (ROOT / ".github" / "babel" / "CONTINUATION_PROMPT.md").read_text(encoding="utf-8")
         state = (ROOT / "project" / "BABEL_AGENT_STATE.md").read_text(encoding="utf-8")
         catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        index = (ROOT / "docs" / "README.md").read_text(encoding="utf-8")
 
+        self.assertIn("Historical repository-hosted Codex/API experiment", index)
+        self.assertIn("## Legacy Babel Codex/API workflow", catalogue)
         self.assertIn("openai/codex-action@v1", workflow)
         self.assertIn('cron: "17 */6 * * *"', workflow)
         self.assertIn("workflow_dispatch", workflow)
@@ -370,7 +373,12 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("no general network/GitHub API access", prompt)
         self.assertIn("status: active", state)
         self.assertIn("babel-ai-continuation.yml", catalogue)
-        self.assertIn("Activation is pending", guide)
+        self.assertIn("not the active SHIT documentation continuation worker", guide)
+        self.assertIn("repository-level enabled/disabled state could not be confirmed", guide)
+        self.assertIn("The workflow YAML still declares a six-hour schedule", guide)
+        self.assertIn("The preflight skips the agent when the state file is exactly `status: complete` or when `OPENAI_API_KEY` is absent.", guide)
+        self.assertIn('if [ -z "${OPENAI_API_KEY:-}" ]; then', workflow)
+        self.assertIn("The current worker is the scheduled ChatGPT task", guide)
 
     def test_agent_entry_point_requires_documentation_rules(self):
         source = (ROOT / "AGENTS.md").read_text(encoding="utf-8")

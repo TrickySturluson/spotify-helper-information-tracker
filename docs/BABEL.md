@@ -70,7 +70,7 @@ Every major workstream must maintain:
 
 ## AI-assisted continuation
 
-The current recurring documentation worker is the scheduled ChatGPT task using the connected GitHub app. Its operating model, daily verification gate, strict scope, and publication boundary are documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md). The separate repository-hosted Codex/API experiment is documented in [BABEL_AGENT.md](BABEL_AGENT.md); it is quota-blocked and must not be retried without explicit user reauthorization.
+The current recurring documentation worker is the scheduled ChatGPT task using the connected GitHub app. Its operating model, daily verification gate, strict scope, and publication boundary are documented in [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md). The separate repository-hosted Codex/API experiment is documented in [BABEL_AGENT.md](BABEL_AGENT.md); GitHub recorded later scheduled attempts [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) (2026-11-20) and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) (2026-11-21); both passed preflight, failed in the Codex agent with an explicit quota-exceeded response, and skipped validation/publication. These runs prove the schedule triggered at those times, but the available read-only API did not expose the workflow's current enabled/disabled setting. Do not manually dispatch, retry, or request API funding. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. This is not the current worker.
 
 ## Definition of success
 
