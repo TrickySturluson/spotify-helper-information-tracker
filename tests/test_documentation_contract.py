@@ -352,7 +352,10 @@ class DocumentationContractTests(unittest.TestCase):
         prompt = (ROOT / ".github" / "babel" / "CONTINUATION_PROMPT.md").read_text(encoding="utf-8")
         state = (ROOT / "project" / "BABEL_AGENT_STATE.md").read_text(encoding="utf-8")
         catalogue = (ROOT / "docs" / "WORKFLOWS.md").read_text(encoding="utf-8")
+        index = (ROOT / "docs" / "README.md").read_text(encoding="utf-8")
 
+        self.assertIn("Historical repository-hosted Codex/API experiment", index)
+        self.assertIn("## Legacy Babel Codex/API workflow", catalogue)
         self.assertIn("openai/codex-action@v1", workflow)
         self.assertIn('cron: "17 */6 * * *"', workflow)
         self.assertIn("workflow_dispatch", workflow)
