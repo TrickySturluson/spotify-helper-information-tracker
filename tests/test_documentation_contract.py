@@ -373,6 +373,8 @@ class DocumentationContractTests(unittest.TestCase):
         self.assertIn("not the active SHIT documentation continuation worker", guide)
         self.assertIn("repository-level enabled/disabled state could not be confirmed", guide)
         self.assertIn("The workflow YAML still declares a six-hour schedule", guide)
+        self.assertIn("The preflight skips the agent when the state file is exactly `status: complete` or when `OPENAI_API_KEY` is absent.", guide)
+        self.assertIn('if [ -z "${OPENAI_API_KEY:-}" ]; then', workflow)
         self.assertIn("The current worker is the scheduled ChatGPT task", guide)
 
     def test_agent_entry_point_requires_documentation_rules(self):
