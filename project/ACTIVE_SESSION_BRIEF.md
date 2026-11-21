@@ -1,3 +1,13 @@
+# Babel continuation audit — 2026-11-21 14:41 UTC
+
+- **Current scheduled Buddy run:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled. Run `3642fab3-e500-832c-aeee-494a8dcf5904` started at 2026-11-21T14:41:40Z and was still in progress when this audit began; no completed result for this run was available yet.
+- **Buddy PR at audit start:** [#201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), branch `babel/chatgpt-buddy-v2`, head `6028a605fe75bf40446b20760d409a61f7898e83`, 7 changed files, 14 commits ahead / 3 behind current main `efbb13fa5098501567c3e399d810adb652ff1a56`. GitHub reported mergeable/clean. Exact-head check runs for tests, security, and Workers Builds were successful; commit-lockfile was skipped. No review submissions or inline review threads existed.
+- **Legacy Codex workflow safety:** `.github/workflows/babel-ai-continuation.yml` still declares a six-hour schedule, manual dispatch, and push trigger. The available read-only GitHub access did not confirm repository-level workflow enablement. Do not call it disabled or guaranteed dormant; do not manually dispatch or retry it. `project/BABEL_AGENT_STATE.md` remains `status: active` because Babel is incomplete; only `status: complete` stops the legacy workflow, and that sentinel must not be used as a pause switch.
+- **Other PRs:** former PR #163 is closed. User-owned PRs #161 and #162 remain open/draft with no submitted reviews or inline threads; both were inspected read-only and left untouched.
+- **Scope:** no workflow, runtime, secret, permission, provider, playlist, canonical Library, or generated-data changes were made. This overlay records the state at audit start; the final branch/PR head and checks must be re-fetched after the documentation batch.
+
+---
+
 # Current SHIT continuation overlay — 2026-11-20 19:27 UTC
 
 ## Current worker and project state
