@@ -6,7 +6,7 @@
 
 This guide documents a **separate, historical repository-hosted Codex/API experiment**. It is not the active SHIT documentation continuation worker. The current worker is the scheduled ChatGPT task using the connected GitHub app; see [BABEL_CHATGPT_BUDDY.md](BABEL_CHATGPT_BUDDY.md).
 
-**Experiment status:** the runner compatibility workaround was verified, but the Codex attempt was blocked by API quota before validation or publication (runs [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) and [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573)). The experiment is dormant. Do not dispatch it, request API funding, or treat it as operational unless the user explicitly reauthorizes that separate API-based experiment.
+**Execution status:** the runner compatibility workaround was verified, but the last verified Codex attempt was blocked by API quota before validation or publication (runs [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) and [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573)). The workflow YAML still declares a six-hour schedule, manual dispatch, and a push trigger. The repository-level enabled/disabled state could not be confirmed through the available read-only GitHub access; do not describe the workflow as disabled or guaranteed dormant. It is not the active SHIT documentation continuation worker. Do not manually dispatch, retry, re-enable, or request API funding without explicit user reauthorization. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy will not change workflow settings or logic.
 
 ## Historical Codex experiment architecture
 
@@ -23,6 +23,10 @@ The historical Codex continuation prompt also required its agent to read `projec
 5. A separate validation job has contents: read, no OpenAI API key, and no write-capable GitHub token. It applies the candidate patch, enforces the path allowlist, rejects deletions/out-of-scope changes, and runs full unittest discovery. A final publisher job receives contents: write and pull-requests: write; it reapplies the already-validated patch, rechecks paths, and publishes without executing candidate code.
 6. If validation passes and there are changes, the publisher commits to babel/agent-progress and creates or updates one review pull request against main. Later scheduled runs resume from that branch and add further commits to the same PR.
 7. The workflow never auto-merges. A human must review and merge the final work. When all acceptance criteria and the cold-start simulation genuinely pass, the agent may set status: complete; subsequent scheduled runs then stop.
+
+## Execution-control caveat
+
+The workflow source still defines automatic and manual triggers. The `status: active` value in [project/BABEL_AGENT_STATE.md](../project/BABEL_AGENT_STATE.md) means Babel's acceptance criteria remain open; it is not a disable switch. The workflow stops only on the exact `status: complete` sentinel, which must not be used to suppress API execution because Babel is not complete. Repository-level workflow enablement was not verified in this audit. If the owner wants to prevent any scheduled Codex/API attempt, the owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings or dispatch the experiment.
 
 ## Scope and safety boundary
 
@@ -52,17 +56,17 @@ The first ChatGPT-triggered push run is [#42181953313](https://github.com/Tricky
 
 The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), passed preflight and successfully completed the `drop-sudo` socket-restriction step on Ubuntu 24.04. Codex then returned **`Quota exceeded. Check your plan and billing details.`** Validation and publishing were skipped; no patch, continuation branch, or PR was produced. This proves the runner workaround, but not the agent task or publishing pipeline.
 
-**Current action:** none. This experiment remains dormant and must not be retried without the user's explicit reauthorization. Do not ask the user to add credits or expose API credentials. The active ChatGPT Buddy path is independent of this workflow.
+**Current action:** no Codex execution is authorized. Do not manually dispatch or retry. The workflow file still declares a six-hour schedule, manual dispatch, and push trigger; repository-level enabled/disabled state is unverified. The owner must confirm that the workflow is disabled in GitHub Actions if scheduled API execution is not wanted, or explicitly reauthorize a separate workflow change. Do not use `status: complete` as a pause mechanism. The active ChatGPT Buddy path is independent and uses the connected GitHub app.
 
 ## Recovery and operations
 
-- **Latest work:** inspect the open pull request with head branch babel/agent-progress.
-- **Latest execution:** inspect Actions → Babel AI continuation and the latest run summary/Codex final-message output.
-- **Resume:** the next scheduled run checks out the latest dedicated branch. A manual dispatch can also restart it.
-- **Interrupted run:** no progress is assumed unless it was committed to the branch. The next run reads the branch and the repository checkpoints again.
+- **Latest work:** the historical Codex branch is `babel/agent-progress`; it is separate from the current ChatGPT Buddy branch `babel/chatgpt-buddy-v2` and draft PR #201.
+- **Latest execution:** the last verified Codex attempts are #42181953313 and #42183337573. No later Codex execution was independently verified in this audit.
+- **Resume:** only after explicit user reauthorization and owner confirmation of the repository-level workflow state. Do not manually dispatch while authorization is absent. The YAML's scheduled trigger remains present in source.
+- **Interrupted run:** no progress is assumed unless it was committed to the legacy branch. Reconcile current main and the legacy branch before any reauthorized continuation.
 - **No changes:** the workflow reports a no-op; it does not create empty commits.
-- **Out-of-scope patch or failed tests:** publisher fails without pushing. Inspect the run log and Codex final-message output, then fix the prompt or documentation manually before retrying.
-- **Completion:** only the explicit status: complete sentinel stops future scheduled runs. A no-op is not completion.
+- **Out-of-scope patch or failed tests:** the publisher fails without pushing. Do not retry without reauthorization.
+- **Completion:** only the exact `status: complete` sentinel stops future scheduled runs. A no-op is not completion, and the sentinel must not be used as a pause switch.
 
 This historical workflow used a separate proposal branch and did not reopen the active ChatGPT browser conversation. It is an independent Codex agent operating from repository state, not the current Buddy task.
 
@@ -76,4 +80,4 @@ This historical workflow used a separate proposal branch and did not reopen the 
 
 ## Verification status
 
-Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed full unittest discovery (**478 tests**) on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) also passed on that commit. These verify repository tests/security scan, not Buddy. The first Buddy run failed on Ubuntu 26.04; the second reached Codex on Ubuntu 24.04 but was blocked by API quota. Do not mark activation complete until a post-quota run proves Codex execution, independent validation, full tests, and the resulting isolated branch/PR.
+Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed full unittest discovery (**478 tests**) on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`; public security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) also passed on that commit. These are historical repository checks, not proof of a successful Codex run. The first Codex attempt failed on Ubuntu 26.04; the second reached Codex on Ubuntu 24.04 but was blocked by API quota. No successful Codex task, independent validation, or isolated Codex PR publication is verified. Repository-level workflow enablement is unconfirmed; do not assume this historical workflow is disabled.
