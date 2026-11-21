@@ -1,17 +1,24 @@
-# Babel AI continuation state
+# Babel AI continuation state — repository-hosted Codex/API experiment
 
+# This file is consumed by .github/workflows/babel-ai-continuation.yml.
+# status: active means Babel acceptance remains open; only status: complete stops that workflow.
 status: active
-worker: OpenAI Codex through openai/codex-action
-branch: babel/agent-progress
-trigger: GitHub Actions schedule every six hours, manual dispatch, plus push to babel/dispatch-* when .github/babel/dispatch.json changes
-publication: dedicated branch and one reviewable pull request; never auto-merge
+worker: historical OpenAI Codex experiment through openai/codex-action; not the current SHIT Buddy
+current_buddy: scheduled ChatGPT task using the connected GitHub app; see docs/BABEL_CHATGPT_BUDDY.md
+branch: babel/agent-progress (legacy Codex branch; separate from babel/chatgpt-buddy-v2)
+trigger: workflow YAML declares a six-hour schedule, manual dispatch, and push to babel/dispatch-* when .github/babel/dispatch.json changes; repository-level enabled/disabled state not confirmed
+publication: legacy dedicated branch and one reviewable pull request; never auto-merge
 scope: documentation, continuity records, and narrowly scoped documentation-contract tests only
-last_result: run #42181953313 exposed Ubuntu 26.04 drop-sudo failure; after pinning agent to ubuntu-24.04, retry #42183337573 passed preflight and drop-sudo but Codex returned API quota exceeded; validation/publisher skipped; awaiting user billing/quota fix
+last_result: last verified Codex attempt #42183337573 passed preflight and ubuntu-24.04 drop-sudo, then returned API quota exceeded; validation/publisher skipped; no later Codex execution independently verified in the 2026-11-21 audit
 completion_rule: all Maintainability & Documentation roadmap acceptance criteria plus a successful cold-start simulation, with exact test and workflow evidence
 
 ## Operating contract
 
 - This is an automation aid for **SHIT Documentation & Continuity (internal codename: Babel)**, not a replacement for source review or human approval.
+- This state file belongs only to the repository-hosted Codex/API experiment. It does not describe or control the current scheduled ChatGPT Buddy.
+- The workflow YAML still declares scheduled, manual, and push triggers. The repository-level enabled/disabled state was not confirmed in this audit; do not describe the workflow as disabled or guaranteed dormant.
+- `status: active` is not a pause switch. The workflow stops only when the value is exactly `status: complete`; never misuse that sentinel to suppress Codex execution because it would falsely mark Babel complete.
+- If no Codex API execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow settings/logic or dispatch it.
 - Repository documentation is the durable memory. Every run must read the current handoff and relevant goal records before acting.
 - Every run must read `project/ACTIVE_SESSION_BRIEF.md` first, then reconcile its claims against the checked-out repository and current evidence. The brief is a curated, privacy-safe context bridge, not a raw chat transcript or live message channel.
 - The worker may make bounded documentation/test changes only. It must not perform SHIT feature work, provider requests, playlist operations, credential rotation, or generated-data writes.
@@ -37,8 +44,8 @@ completion_rule: all Maintainability & Documentation roadmap acceptance criteria
 
 ## Recovery
 
-If a run is interrupted or fails, inspect the latest GitHub Actions run and the open `babel/agent-progress` pull request. The next scheduled/manual run starts from the latest dedicated branch when it exists. Record any blocker in this file and the Maintainability & Documentation action history.
+This workflow is a separate historical experiment, not the current ChatGPT Buddy. Do not manually dispatch, retry, or assume it is disabled. If the user explicitly reauthorizes the Codex experiment, first confirm the repository-level workflow state, inspect the latest workflow run, and inspect any existing `babel/agent-progress` branch or PR before proceeding. The workflow YAML still declares a six-hour schedule, manual dispatch, and a push trigger; whether GitHub currently permits those triggers is not confirmed by this state file. Record any verified blocker or recovery result here and in the Maintainability & Documentation action history.
 
-## Activation requirement
+## Historical activation prerequisites — no current action
 
-The GitHub Actions repository secret `OPENAI_API_KEY` must be configured by the repository owner. The key must be created in the OpenAI API platform; ChatGPT subscription access is not itself an API key and does not supply API credits. The API project/organization must also have available quota/credits and a usable billing limit. Never put the key in the repository or chat.
+The historical workflow references the repository Actions secret `OPENAI_API_KEY`. Never read, print, copy, or expose its value. ChatGPT subscription access does not provide OpenAI API credits. Do not ask the user to create a key, add credits, or re-enable the experiment. Any future activation requires explicit user reauthorization and owner-controlled GitHub Actions configuration.
