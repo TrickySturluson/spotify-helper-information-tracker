@@ -65,7 +65,7 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Preserve the distinction between the current scheduled ChatGPT Buddy and the separate repository-hosted Codex/API experiment.
 - [x] Document that the repository-level workflow enabled/disabled state is not confirmed by the available read-only GitHub access. Do not call the workflow disabled or guaranteed dormant.
 - [ ] Repository owner confirms the legacy Codex workflow is disabled in GitHub Actions if no scheduled API execution is wanted, or explicitly reauthorizes a separate workflow change. Buddy must not change workflow logic/settings or dispatch it.
-- [ ] Keep `project/BABEL_AGENT_STATE.md` at `status: active` while Babel acceptance remains open. The workflow's `status: complete` sentinel is not a pause switch and must not be used to suppress API execution.
+- **Safety invariant:** keep `project/BABEL_AGENT_STATE.md` at `status: active` while Babel acceptance remains open. The workflow's `status: complete` sentinel is not a pause switch and must not be used to suppress API execution; preflight also skips the agent when `OPENAI_API_KEY` is absent, but this audit did not inspect or verify that secret.
 
 ## Deferred successor: SHIT-wide Integrity, Diagnostics & Recovery
 
