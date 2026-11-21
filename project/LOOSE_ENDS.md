@@ -1,3 +1,14 @@
+## 2026-11-21 — Legacy Codex workflow execution state is unverified
+
+- The current documentation worker is the scheduled ChatGPT Buddy using the connected GitHub app. The repository-hosted Codex/API workflow is a separate historical experiment; its last verified attempt (#42183337573) was blocked by API quota before validation or publication.
+- Source file `.github/workflows/babel-ai-continuation.yml` still declares a six-hour schedule, manual dispatch, and push trigger. The available read-only GitHub access did not confirm whether the repository has disabled the workflow at the Actions level.
+- `project/BABEL_AGENT_STATE.md` is consumed by that workflow. Its `status: active` value means Babel acceptance remains open; only `status: complete` stops the workflow. Do not misuse the completion sentinel as a pause switch.
+- **Owner action:** if no scheduled Codex/API execution is wanted, confirm the workflow is disabled in GitHub Actions or explicitly authorize a separate workflow change. Buddy must not change workflow logic/settings, disable the workflow, or dispatch/retry the Codex experiment.
+- Buddy's scheduled automation was enabled at the 2026-11-21 audit; run `3642fab3-e500-832c-aeee-494a8dcf5904` was in progress. Draft PR #201 was open and its then-current exact-head checks passed. Recheck the latest result/head before relying on this checkpoint.
+- **Separate handoff discrepancy for a later batch:** the older current-priority paragraphs below still say the entire trio is disabled and authentication is the sole focused engineering priority. Current automation records show Buddy and Jockey enabled, Boots disabled, and Jockey assigned Tricky Daily. Reconcile the central `NEXT_WORK.md` and cross-project status overlay after a fresh source/evidence review.
+
+---
+
 ## 2026-11-20 08:29 UTC — Authentication code correction merged; production cutover pending
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker tests #44702575255, Daily tests #44702575185, security scan #44702575262, and Cloudflare preview build/deployment passed.
