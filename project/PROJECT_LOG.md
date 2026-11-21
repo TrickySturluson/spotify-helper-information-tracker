@@ -1,3 +1,15 @@
+## 2026-11-21 UTC — Tricky Daily scheduled rotation verified; Jockey branch reconciled
+
+- Mainline scheduled cycle #44901651168 completed a real 60-track publication; the stage and recovery backup were committed before the Spotify write, and completed state/audit were persisted. Scheduled delivery #44904728622 was a same-date duplicate no-op. GET-only snapshot #44915825720 confirmed 60 accessible unique tracks and a post-cycle snapshot ID matching completed state.
+- This proves one scheduled publication and duplicate guard under the existing mainline combined-cron/local-hour gate. It does not prove strict cron-to-DST offset selection or sustained multi-day reliability.
+- Jockey reconciled its existing `engineering/priority` branch with current main via merge commit `b2de95585fa9656ba86c238ca879d767030e4cfa`. The branch is now 41 ahead/0 behind and PR #200 remains draft/mergeable. Main's generated Library, playlist-manager state, and audit paths were preserved; Jockey did not modify those data paths.
+- Exact-head CI on the reconciled commit passed Daily/full tests, broker tests, full-history secret scan, and Cloudflare preview build; lockfile check was skipped. The preview is not a production deployment.
+- Next Daily P0 is audited, fail-closed resume/rollback/discard for a surviving production stage. Strict cron matching and description-only snapshot bracketing remain branch-only until owner-controlled merge. Daily-specific recommendation event/outcome memory remains P1.
+- Jockey reviewed Buddy PR #201 read-only: 12 changed files (11 Markdown + one test), with a mismatch between the run report and actual diff regarding file count and ACTIVE_SESSION_BRIEF modification. Exact-head tests/security scan passed; review outcome NEEDS CHANGES for report/handoff accuracy and overlap with Boots PR #202. No worker branch or PR was modified by Jockey.
+- No Spotify/Last.fm request, live playlist write, workflow dispatch, playlist-manager state/audit edit, generated Library edit, secret/OAuth change, or production deployment was performed by Jockey.
+
+---
+
 ## 2026-11-20 UTC — Jockey priority assigned back to Tricky Daily reliability
 
 - User's current Jockey assignment makes Tricky Daily reliability the highest-priority SHIT implementation workstream. Jockey owns Daily only on persistent branch `engineering/priority`; Boots owns other SHIT engineering outside Daily; Buddy remains documentation-only. This supersedes the earlier auth-only trio-pause wording for Jockey's scope.
