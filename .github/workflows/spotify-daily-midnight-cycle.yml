@@ -13,12 +13,29 @@ on:
         default: "false"
         type: choice
         options: ["false", "true"]
+      recovery_action:
+        description: "Owner-only recovery for one surviving production stage"
+        required: false
+        default: "none"
+        type: choice
+        options: ["none", "resume", "rollback", "discard"]
+      recovery_stage_path:
+        description: "Exact committed path under assistant_data/spotify/staging/tricky_daily/"
+        required: false
+        type: string
+      recovery_confirmation:
+        description: "Type RECOVER TRICKY DAILY to authorize this one recovery action"
+        required: false
+        type: string
   schedule:
-    # Primary EST/EDT midnight entries, plus a 15-minute recovery delivery.
-    # Script gate skips 23:xx EST pre-midnight entries; date guard makes
-    # duplicate deliveries cheap no-ops after the first accepted rotation.
-    - cron: "0 4,5 * * *"
-    - cron: "15 4,5 * * *"
+    # Keep each EST/EDT entry separate so github.event.schedule can be checked
+    # against the active America/New_York UTC offset before broker authentication.
+    # A provider-free schedule gate runs before access-token acquisition. Matching-
+    # offset recovery entries may catch up later; the date guard keeps duplicates safe.
+    - cron: "0 4 * * *"
+    - cron: "15 4 * * *"
+    - cron: "0 5 * * *"
+    - cron: "15 5 * * *"
 
 permissions:
   contents: write
@@ -44,21 +61,51 @@ jobs:
           python -m py_compile compat/spotify_daily_cycle.py compat/spotify_playlist_manager.py compat/spotify_discovery.py compat/spotify_daily_feedback.py compat/spotify_listening_trends.py
           python -m unittest discover -s tests -t . -v
       - name: Validate non-Spotify credentials
+        if: github.event_name != 'workflow_dispatch' || inputs.recovery_action == 'none'
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: test -n "$LASTFM_API_KEY" || { echo "Missing LASTFM_API_KEY" >&2; exit 1; }
+      - name: Validate explicit Daily recovery request
+        if: github.event_name == 'workflow_dispatch' && inputs.recovery_action != 'none'
+        env:
+          RECOVERY_STAGE_PATH: ${{ inputs.recovery_stage_path }}
+          RECOVERY_CONFIRMATION: ${{ inputs.recovery_confirmation }}
+        run: |
+          test "$GITHUB_ACTOR" = "TrickySturluson" || { echo "::error::Daily recovery is owner-only."; exit 1; }
+          test -n "$RECOVERY_STAGE_PATH" || { echo "::error::A committed Daily stage path is required."; exit 1; }
+          test "$RECOVERY_CONFIRMATION" = "RECOVER TRICKY DAILY" || { echo "::error::Exact Daily recovery confirmation is required."; exit 1; }
+      - name: Check schedule window before authentication
+        if: github.event_name != 'workflow_dispatch' || inputs.recovery_action == 'none'
+        id: schedule-gate
+        env:
+          FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
+        run: |
+          if [ "$FORCE_CYCLE" = "true" ]; then
+            python compat/spotify_daily_cycle.py --force --schedule-check-only
+          else
+            python compat/spotify_daily_cycle.py --schedule-check-only
+          fi
       - name: Obtain central Spotify access token
+        if: (github.event_name == 'workflow_dispatch' && inputs.recovery_action != 'none') || steps.schedule-gate.outputs.schedule_allowed == 'true'
         env:
           SHIT_AUTH_BROKER_URL: ${{ vars.BROKER_BASE_URL }}
         run: python scripts/spotify/broker_access_token.py
       - name: Cycle Tricky Daily
+        if: (github.event_name == 'workflow_dispatch' && inputs.recovery_action != 'none') || steps.schedule-gate.outputs.schedule_allowed == 'true'
         id: daily-cycle
         env:
           SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           FORCE_CYCLE: ${{ github.event_name == 'push' && 'true' || inputs.force }}
+          SCHEDULE_CRON: ${{ github.event.schedule }}
+          RECOVERY_ACTION: ${{ inputs.recovery_action }}
+          RECOVERY_STAGE_PATH: ${{ inputs.recovery_stage_path }}
+          RECOVERY_CONFIRMATION: ${{ inputs.recovery_confirmation }}
         run: |
-          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ "$RECOVERY_ACTION" != "none" ]; then
+            python compat/spotify_daily_cycle.py --recover-stage "$RECOVERY_STAGE_PATH" --recovery-action "$RECOVERY_ACTION" --recovery-confirmation "$RECOVERY_CONFIRMATION"
+          elif [ "$GITHUB_EVENT_NAME" = "push" ]; then
             # A committed trigger file can request a real forced track cycle.
             # The default action remains description-only for backward safety.
             ACTION=$(python -c 'import json; print(json.load(open(".github/test-triggers/tricky-daily-live-cycle.json")).get("action", "description-only"))')
@@ -91,7 +138,7 @@ jobs:
       - name: Persist cycle state and feedback
         # Persist accepted track replacements or description updates even if
         # their subsequent read-back fails, so a retry cannot blindly repeat writes.
-        if: always() && (steps.daily-cycle.outputs.cycled == 'true' || steps.daily-cycle.outputs.description_updated == 'true')
+        if: always() && (steps.daily-cycle.outputs.cycled == 'true' || steps.daily-cycle.outputs.description_updated == 'true' || steps.daily-cycle.outputs.recovery_started == 'true')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -128,12 +175,13 @@ jobs:
 # -----------------------------------------------------------------------------
 # FILE OVERVIEW
 # Purpose: Automatically rotate Tricky Daily at midnight America/New_York.
-# Schedule: Dual EST/EDT cron entries with a 15-minute recovery delivery;
-#           the script gate and per-date guard make delayed/duplicate runs safe.
+# Schedule: Separate EST/EDT primary and 15-minute recovery cron entries;
+#           a provider-free script gate validates github.event.schedule before auth.
 # Safety: Requires credentials, exact playlist ownership, managed-playlist permission,
 #         explicit unlock, exactly 60 valid unique track URIs, and a pre-change backup.
 # Force bypasses only the clock-window gate; the same-Eastern-date completion
 # guard remains active for scheduled, manual, and forced invocations.
-# Recovery: Accepted replacements publish cycled=true and persist the daily idempotency
-#           state even if post-change verification later fails.
+# Recovery: Owner-only manual resume/rollback/discard requires the exact stage path
+#           and RECOVER TRICKY DAILY confirmation; only exact known states are accepted.
+#           Every recovery write commits before/after snapshots and leaves conflicts blocked.
 # -----------------------------------------------------------------------------

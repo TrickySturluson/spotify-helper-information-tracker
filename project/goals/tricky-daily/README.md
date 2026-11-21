@@ -12,6 +12,7 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 - Artist diversity may be relaxed progressively only after retrying alternatives. Never relax uniqueness or exclusions.
 - Forced runs bypass the schedule gate only, not safety or verification.
 - Update and read back the rotating description on successful forced and scheduled cycles.
+- Every playlist mutation, including description-only updates, requires durable before/after snapshots and an accepted/pending state if Spotify accepts a write before read-back completes.
 - Last.fm scrobbles, measured Spotify playback, likes/saves, playlist exposure and removals are distinct evidence.
 - Missing playback coverage and an unplayed exposed track are not automatically negative preference.
 - Only the explicitly authorized Tricky Daily playlist may be written under its documented controls.
@@ -20,7 +21,9 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 | Concern | Maintained implementation / evidence |
 |---|---|
 | Candidate generation and 60-track assembly | scripts/spotify/spotify_daily_playlist.py |
-| Cycle orchestration and recovery state | scripts/spotify/spotify_daily_cycle.py |
+| Cycle orchestration, CLI gates, and recovery state | scripts/spotify/spotify_daily_cycle.py |
+| Owner-confirmed production-stage resume/rollback/discard | scripts/spotify/daily_stage_recovery.py; manual inputs in .github/workflows/spotify-daily-midnight-cycle.yml |
+| Before/after snapshot persistence for cycle and recovery writes | persist_daily_snapshot() and recovery helpers in scripts/spotify/spotify_daily_cycle.py and scripts/spotify/daily_stage_recovery.py |
 | Feedback learning | scripts/spotify/spotify_daily_feedback.py and assistant_data/spotify/daily_feedback.json |
 | Read-only live preflight | scripts/spotify/spotify_daily_preflight.py |
 | Trend context | scripts/spotify/spotify_listening_trends.py |
@@ -32,6 +35,11 @@ This workspace owns Tricky Daily candidate generation, playlist publication, cyc
 ## How to resume safely
 1. Read the Daily roadmap, action history, and current project handoff.
 2. Read the Daily TODO and cycle guide; inspect the current implementation and tests rather than assuming the docs reflect current main.
+
+**Current Jockey draft PR #200:** strict EDT/EST cron matching, description-only before/after snapshot persistence, and owner-only manual production-stage recovery are implemented on engineering/priority. Recovery verifies the immutable stage and backup, classifies exact live states, rechecks exclusions, and commits before/after snapshots for each write; partial/conflicting states are refused. Exact-head CI for recovery is pending on the current branch head; PR #200 remains draft and owner-controlled. Cloudflare preview success is not production deployment.
+
+**Latest operational evidence:** mainline scheduled cycle #44901651168 completed a 60-track publication with stage, recovery backup, and completed state/audit; same-date scheduled delivery #44904728622 was a duplicate no-op; GET-only snapshot #44915825720 confirmed 60 accessible unique items and matching snapshot ID. This proves one scheduled publication under the old mainline gate, not strict cron-to-DST matching. PR #200's strict offset gate and recovery implementation remain unmerged and unlive-tested. The current Nov 21 stage is completed and must be rejected by recovery. Daily recommendation memory remains P1 and follows recovery proof.
+
 3. Inspect the latest relevant workflow runs and live preflight. Distinguish successful candidate generation, Spotify write acceptance, read-back verification, description verification and completed cycle state.
 4. Inspect current live playlist contents and playlist-manager authorization/lock state before proposing a write.
 5. Preview and validate the exact 60-track set, blacklist/whitelist reconciliation, deduplication, artist fallback, and description behavior.

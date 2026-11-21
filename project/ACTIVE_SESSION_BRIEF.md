@@ -1,4 +1,32 @@
-# Verified continuation overlay — 2026-11-20 08:29 UTC
+# Current Jockey priority overlay — 2026-11-21
+
+## Assigned workstream
+
+Tricky Daily reliability remains the explicit Jockey priority. Jockey owns Daily implementation until schedule, recovery, and Daily-specific recommendation-memory acceptance criteria are met. Boots owns all other SHIT implementation and must avoid Daily code/tests/workflows/PRs. Buddy remains documentation-only. Jockey does not modify Boots or Buddy branches/PRs.
+
+## Daily state and active PR
+
+- Persistent branch `engineering/priority`; one draft PR [#200 — Harden Tricky Daily schedule and description snapshots](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/200). The branch was reconciled with current main `7547946eb3d44746e48a65de1c8d8285cab68990` at merge commit `b2de95585fa9656ba86c238ca879d767030e4cfa`; subsequent handoff updates remain on the same branch. It is zero commits behind main at this checkpoint and mergeable clean. Generated Library, playlist-manager state, and audit paths were preserved.
+- PR #200 implements strict EDT/EST cron-to-offset matching and durable before/after snapshots for description-only mutations. It now also adds `scripts/spotify/daily_stage_recovery.py`: owner-only manual resume/rollback/discard, exact committed stage/hash/backup checks, exact live-state classification, current exclusion checks, explicit unlock for writes, and committed before/after snapshots. The CLI requires the canonical repo, `workflow_dispatch`, actor `TrickySturluson`, central broker auth mode, exact stage path, and `RECOVER TRICKY DAILY`. The recovery code is branch-only; exact-head tests/security were still running on code head `3dad4c981cd4d8004a7a49af2632d2382d1851cc` when recorded. Cloudflare preview success is not production deployment. PR remains draft; Jockey must not merge, approve, mark ready, or dispatch live workflows.
+- Mainline scheduled cycle #44901651168 completed a real 60-track publication and persisted stage, backup, state, and audit. Same-date scheduled delivery #44904728622 was a duplicate no-op. GET-only snapshot #44915825720 confirmed 60 accessible unique tracks and a matching post-cycle snapshot ID. This proves one scheduled cycle on the legacy gate, not strict cron-to-offset selection or multi-day reliability.
+- The live test trigger remains read-only `verify-only`. Daily's recommendation candidate history and track-feedback ledger are partial memory; the approved Daily-specific recommendation event/outcome memory is still unimplemented. Playback-tracker coverage remains unknown; Last.fm and liked observations remain distinct.
+
+## Buddy daily checkpoint — 2026-11-21
+
+- PR #201 head `396597cbf78ee91120a6172a969a93e79227d1f7` has 12 changed files (11 Markdown and one documentation-contract test), despite the run report claiming nine Markdown files. The diff includes `project/ACTIVE_SESSION_BRIEF.md` despite the report saying it was left untouched. Exact-head tests and security scan passed. No runtime code, workflow, secret, or provider-state changes were found.
+- Independent review outcome: **NEEDS CHANGES** for report/handoff accuracy and overlap with Boots PR #202 on shared handoff files. Jockey did not modify Buddy's branch, PR, automation, or Babel documentation.
+
+## Scope boundaries and next gates
+
+- Jockey may change Daily product code, tests, safe workflow code, and Daily/project handoff documentation on `engineering/priority` only. Keep one priority-owned draft PR.
+- Do not modify playlist-manager state/audit, generated Library data, live playlists, Spotify/Last.fm data, OAuth credentials, secrets, Cloudflare settings, or production deployments. Do not dispatch live workflows.
+- Next: finish exact-head CI and independent diff review for the recovery implementation; keep PR #200 draft-only. After owner-controlled merge, the owner may manually exercise recovery against an actually unresolved stage; the current Nov 21 stage is already completed and must be rejected. Then verify strict cron-to-offset behavior over scheduled deliveries and implement Daily recommendation memory. Do not leave Daily until schedule, recovery, and memory acceptance criteria are met; then consult the project-wide roadmap and hand Jockey to the next highest-priority unfinished workstream.
+- Centralized authentication remains a separate owner-controlled production gate. Jockey does not touch that workstream or treat it as completed.
+
+---
+
+
+## Superseded continuation overlay — 2026-11-20 08:29 UTC (authentication-only status at that time)
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.
 - Production is **not** verified: latest read-only deployment remains `8939dbfc-f607-4891-bcfc-d77abd8b7a72`, version `1783d2bb-4fe8-477a-8b4c-df486d92dcb5`, 100% traffic. Do not equate merged code or preview deployment with production activation or successful Spotify auth.
@@ -9,7 +37,7 @@
 
 ---
 
-# Current session overlay — 2026-11-20
+## Superseded session overlay — 2026-11-20 (authentication-only priority before Jockey reassignment)
 
 ## Focus: centralized Spotify authentication
 
@@ -128,15 +156,15 @@ Updating this file does not wake Buddy, alter an already-running job, or deliver
 - Buddy is a documentation partner only. It may audit and improve documentation, continuity records, roadmaps, action logs, and narrowly scoped documentation-contract tests. It must not perform SHIT runtime/product development or Spotify/Last.fm operations.
 - ChatGPT may independently publish verified documentation-only maintenance directly to `main` under `AGENTS.md` and `project/DOCUMENTATION_RULES.md`. Buddy is separate and proposal-only: it may update its dedicated branch and draft PR, but may not write to `main`, approve, mark ready, close, merge, or self-merge.
 
-## Current priority
+## Current work policy
 
-**Babel remains active, and explicitly authorized SHIT workstreams may proceed in parallel.** ChatGPT may resume bounded SHIT feature work while Buddy remains focused on Babel. Operational/runtime changes, provider operations, generated data, and playlist writes still require specific user authorization and must follow the relevant workstream safeguards.
+**The current Jockey assignment is Tricky Daily reliability**, as recorded in the top overlay and `project/NEXT_WORK.md`. Jockey owns Daily implementation only; Boots owns all other SHIT implementation work outside Daily; Buddy remains documentation-only. Babel remains Buddy's documentation scope and must not be used to absorb feature implementation. Operational/runtime changes, provider operations, generated data, and playlist writes still require their specific user authorization and safeguards.
 
 Success means a new assistant with no prior chat history can identify the repository's goals, current verified state, constraints, evidence, unresolved risks, and next executable action from repository files alone.
 
 ## Deferred post-Babel objective — SHIT-wide integrity, diagnostics and recovery
 
-After Babel is judged as complete and realistically as good as it can be, revisit a dedicated SHIT-wide **Integrity, Diagnostics & Recovery** workstream. This is explicitly deferred; it does not expand the current documentation-only priority or authorize runtime implementation now.
+After Babel is judged as complete and realistically as good as it can be, revisit a dedicated SHIT-wide **Integrity, Diagnostics & Recovery** workstream. This remains deferred; it does not expand the current Jockey Daily scope or authorize unassigned runtime implementation.
 
 The intended design is a coordinated health system: (1) health monitoring across project data, documentation, tests and workflows; (2) diagnostics that trace symptoms to likely root causes; (3) bounded recovery/repair for deterministic, reversible cases; (4) Buddy as the permanent Documentation & Continuity Guardian, checking documentation drift, roadmaps, handoffs and evidence; and (5) an improvement backlog for recurring failures and systemic weaknesses. Buddy contributes evidence and documentation maintenance but is not the sole health authority and must not approve its own risky repairs.
 
