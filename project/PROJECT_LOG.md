@@ -1,3 +1,13 @@
+## 2026-11-21 UTC — Jockey adds owner-confirmed Daily stage recovery (draft PR #200)
+
+- Added a separate Daily recovery module, CLI gate, manual workflow inputs, and mocked regression tests on the persistent Jockey branch. Resume/rollback/discard require a committed production stage and exact backup, exact live state, current blacklist checks, owner confirmation, and explicit unlock for writes.
+- Every recovery playlist write commits a before snapshot before the provider mutation and a read-back after snapshot after it. Discard is read-only and only accepts the exact pre-write state. Partial, stale, wrong-owner, locked, blacklisted, or conflicting states fail closed.
+- Recovery resolution is recorded separately in the Daily recovery ledger and audit; unrelated playlist-manager pending state is preserved. The completed Nov 21 stage is explicitly rejected based on linked manager state/audit, despite its immutable stage status still reading staged-before-write.
+- Exact-head CI on code head 3dad4c981cd4d8004a7a49af2632d2382d1851cc: Cloudflare preview build passed; Daily/full tests and full-history security scan were still in progress at that checkpoint. Documentation updates followed, so fresh CI for the final branch head is required.
+- The Jockey branch remains draft-only. No workflow dispatch, Spotify/Last.fm request, playlist write, playlist-manager state/audit edit, generated Library edit, secret/OAuth change, or production deployment was performed.
+- Next: finish exact-head CI and independent review; retain the owner-only manual gate; await owner-controlled merge and live verification before treating recovery as operationally accepted.
+
+---
 ## 2026-11-21 UTC — Tricky Daily scheduled rotation verified; Jockey branch reconciled
 
 - Mainline scheduled cycle #44901651168 completed a real 60-track publication; the stage and recovery backup were committed before the Spotify write, and completed state/audit were persisted. Scheduled delivery #44904728622 was a same-date duplicate no-op. GET-only snapshot #44915825720 confirmed 60 accessible unique tracks and a post-cycle snapshot ID matching completed state.
