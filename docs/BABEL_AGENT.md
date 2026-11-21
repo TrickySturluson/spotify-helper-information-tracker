@@ -56,7 +56,7 @@ The first ChatGPT-triggered push run is [#42181953313](https://github.com/Tricky
 
 The second run, [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573), passed preflight and successfully completed the `drop-sudo` socket-restriction step on Ubuntu 24.04. Codex then returned **`Quota exceeded. Check your plan and billing details.`** Validation and publishing were skipped; no patch, continuation branch, or PR was produced. This proves the runner workaround, but not the agent task or publishing pipeline.
 
-**Current action:** no Codex execution is authorized. Do not manually dispatch or retry. The workflow file still declares a six-hour schedule, manual dispatch, and push trigger; repository-level enabled/disabled state is unverified. The owner must confirm that the workflow is disabled in GitHub Actions if scheduled API execution is not wanted, or explicitly reauthorize a separate workflow change. Do not use `status: complete` as a pause mechanism. The active ChatGPT Buddy path is independent and uses the connected GitHub app.
+**Current action:** no manual dispatch, retry, or API funding is authorized. The existing workflow schedule may still trigger until the repository owner disables it in GitHub Actions; the current enabled/disabled setting is not exposed by the available read-only API. If no scheduled Codex execution is wanted, the owner must disable the workflow or separately authorize a workflow change. Buddy must not change workflow settings or logic. Do not use `status: complete` as a pause mechanism. The active ChatGPT Buddy path is independent and uses the connected GitHub app.
 
 ## Recovery and operations
 
