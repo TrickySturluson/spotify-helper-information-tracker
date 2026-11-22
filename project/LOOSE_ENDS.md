@@ -1,10 +1,14 @@
-## 2026-11-20 — Trio readiness and handoff reliability
+## 2026-11-22 — Trio readiness, Buddy CI repair, and branch recovery
 
-- User authorized a self-maintaining Buddy → Jockey → Boots → Buddy readiness cycle to reduce silent failures during extended absences.
-- Draft protocol: [PR #202](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/202), branch `coordination/trio-readiness-handoffs`. Phase 1 checks are read-only for another worker's task configuration and branch/PR; cross-repair is a later, separately authorized phase.
-- This current audit supersedes older notes below that the trio remains disabled; all three live automation records currently report enabled. Buddy's latest run reported a blocker on obsolete PR #163, while its current PR #201 branch is 14 ahead/0 behind and all exact-head checks passed. Jockey's latest scheduled run failed generically, although PR #200 is mergeable/clean and its exact-head checks passed; its branch is 40 ahead/2 behind. Boots' last run was 2026-11-08; its branch is 14 ahead/71 behind and has no open PR.
-- These are point-in-time observations. Recheck current task records and branches before acting. Do not reset/rebase Boots, change another worker's task configuration, or modify another worker's PR during Phase 1.
-- Next: finish PR #202 exact-head CI and diff review; then add read-only successor checks to all three saved task prompts and observe a complete handoff cycle. Keep cross-repair disabled until that evidence is reviewed.
+- All three saved automation prompts contain the Phase 1 successor-readiness protocol and correct handoff mappings. Runtime behavior is not yet verified: Buddy's latest completed report omitted its successor check.
+- Live tasks: Buddy enabled; Jockey disabled after reporting accidental direct commits to main; Boots disabled after safely stopping on a stale branch. Do not infer readiness from prompt configuration or a future schedule.
+- Buddy PR #201 is open/draft on `babel/chatgpt-buddy-v2`, 65 ahead / 12 behind. The missing Tricky Daily recommendation-memory guide link was added and read back. Exact-head Daily curator tests, Mobile Auth Broker Tests and security scan all passed. The previous two failing workflows shared one documentation-index assertion; broker-specific integration tests passed 5/5.
+- Coordination PR #202 is open/draft on `coordination/trio-readiness-handoffs`, 34 ahead / 12 behind. Daily curator and broker checks passed; security scan was still running at the last query. Its documentation index and Buddy guide were reconciled to include the recommendation-memory link, current Buddy branch policy, and trio handoff responsibility.
+- PR #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Reconcile the full content and merge order before merging either PR.
+- Jockey PR #200 remains open/draft, branch 67 ahead / 6 behind. Two direct-to-main commits added the Daily memory guide and a standalone 1,232-line module. The module is not integrated into the Daily cycle/workflow, has no dedicated test file, and no active memory ledger was found. Keep it unvalidated; no rollback or integration yet.
+- Boots branch `engineering/general` is 14 ahead / 83 behind with no open PR. Preserve it; do not reset or force-push.
+- No tasks were re-enabled, no workflows manually dispatched, and no provider, playlist, credential, production, or canonical Library writes were made.
+- Next: finish PR #202 exact-head security verification, reconcile the four shared files and merge order, then plan recoverable Jockey and Boots branch repairs. Cross-repair remains disabled pending explicit authorization.
 
 ---
 
