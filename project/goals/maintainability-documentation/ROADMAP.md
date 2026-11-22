@@ -10,7 +10,7 @@ See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_R
 
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-06  
+**Last reviewed:** 2026-11-22  
 **Status:** In progress. The documentation control structure is established; the full file-level coverage and freshness audit remains open.
 
 ## Purpose
@@ -57,7 +57,8 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate quota-blocked experiment, while keeping its repository-level enabled/disabled state explicitly unverified.
 - [x] Re-enable the daily Buddy automation and request an immediate run on 2026-11-20.
 - [x] Independently reviewed Buddy PR #201 at audit-start head `67df681f8227b04b4cfe6137a7fcfce544fb25cb`; its exact-head test, security, and Workers Builds checks passed. The review found stale Codex/activation wording and workflow counts corrected in this batch.
-- [ ] Re-review the updated PR #201 head and confirm fresh exact-head checks after this batch.
+- [ ] Finish independent review of PR #201 at head `396597cbf78ee91120a6172a969a93e79227d1f7`: exact-head Daily curator tests [#44919616098](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44919616098), Mobile Auth Broker Tests [#44919616118](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44919616118), and public repository security scan [#44919616125](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44919616125) completed successfully. The available GitHub read interface did not expose an exact-head Workers Builds result, so that check remains unverified. At the 2026-11-22 audit, PR #201 was open/draft, 58 commits ahead / 11 behind current `main`, and GitHub reported `mergeable=true`.
+- [ ] Reconcile PR #201's overlapping index/handoff files with separate draft PR #202 before any merge; do not modify the coordination branch or assume either draft's overlapping version can be merged independently.
 - [ ] Perform the fresh-session simulation using merged repository documentation.
 
 ## Legacy Codex/API workflow — execution-state safety
