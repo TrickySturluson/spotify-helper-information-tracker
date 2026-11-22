@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T14:48:42.006081+00:00",
+  "generated_at": "2026-11-22T14:44:40.720654+00:00",
   "playlists": {
     "total": 60,
     "accessible": 44,
@@ -20,12 +20,12 @@
       "reason": "segment_file_missing",
       "segment_count": 0,
       "latest_segment_at": null,
-      "observed_at": "2026-11-21T12:01:06.754063+00:00",
+      "observed_at": "2026-11-21T16:09:02.546513+00:00",
       "file_present": false
     },
     "lastfm_status": "available",
     "liked_songs_status": "observed",
-    "updated_at": "2026-11-21T14:48:41.970149+00:00",
+    "updated_at": "2026-11-21T16:09:03.107947+00:00",
     "segments_file_in_sync_environment": false
   },
   "overall_status": "warning"
