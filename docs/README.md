@@ -65,6 +65,7 @@ Every maintained guide in `docs/` is listed below. Use the workstream roadmap an
 - [Booze or Boos! sorting](BOOZE_OR_BOOS_SORT.md) — Halloween playlist goals, fit requirements, evidence gates and safe sequencing.
 - [Tricky Daily cycle](TRICKY_DAILY_CYCLE.md) — cycle behavior, Eastern-time schedule, recovery, description rotation and live preflight.
 - [Tricky Daily backlog](TRICKY_DAILY_TODO.md) — prioritized future improvements; unchecked items are not implemented.
+- [Tricky Daily recommendation memory](TRICKY_DAILY_RECOMMENDATION_MEMORY.md) — event history, exposure intervals, source-separated outcomes, migration and retention rules.
 
 ### Spotify reference data
 
