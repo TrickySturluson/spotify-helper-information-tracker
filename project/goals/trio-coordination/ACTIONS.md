@@ -1,3 +1,12 @@
+## 2026-11-22 — Coordination exact-head CI passed; main documentation index repaired
+
+- **Main documentation repair:** the Daily memory guide existed on main but was not linked from `docs/README.md`, and the workflow catalogue count was stale at 21 while `docs/WORKFLOWS.md` contains 22 workflow rows. Updated the main index with the memory-guide link and corrected the count to 22. Read-back verified both changes. Commits: `98c216efb62822ad9653860c5af6e307836d7c9e` and `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- **Coordination exact-head CI:** all three checks passed on PR #202 head `511c130bde9780903cd072792305c350513b24b7`: Daily curator tests `45084274023`, Mobile Auth Broker Tests `45084274022`, and public repository security scan `45084273988`.
+- **Updated branch comparisons against main head `deb5a192`:** Buddy 65 ahead / 14 behind; Jockey 67 ahead / 8 behind; Boots 14 ahead / 83 behind; coordination 41 ahead / 14 behind. The branches remain open/diverged; no resets or rebases.
+- **PR #202 description:** corrected to show current head, branch counts, exact CI status, worker prompt changes, live task states, overlap, and remaining acceptance gates. PR remains draft.
+- **Readiness:** Buddy remains enabled but its last completed run predates the prompt update and did not perform a successor check. Jockey and Boots remain disabled. No full runtime handoff cycle has yet been observed.
+- **Next:** review shared-file content and branch merge order, then seek the next Buddy run to verify that it actually emits Jockey readiness evidence. Do not enable Jockey or Boots until their branch recovery plans and safety gates are resolved.
+
 ## 2026-11-22 — Buddy CI repaired; coordination docs reconciled; runtime still blocked
 
 - **Buddy PR #201:** independently inspected the failed workflow logs. The broker-specific integration test file passed all 5 tests. The workflow then ran full Python unittest discovery and failed only one test: `test_documentation_index_lists_every_technical_guide`, because `docs/README.md` omitted `TRICKY_DAILY_RECOMMENDATION_MEMORY.md`. The Daily curator workflow failed on the same assertion; the other 540 tests passed.
