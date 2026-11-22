@@ -1,3 +1,18 @@
+# Current trio and documentation checkpoint — 2026-11-22
+
+- **User direction:** continue the trio-readiness implementation and repair the identified blockers; the intended handoff is Buddy → Jockey → Boots → Buddy, with read-only successor checks first and bounded cross-repair separately gated.
+- **Live automation records:** Buddy `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled; latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed, but its report did not include a successor-readiness handoff. Jockey `6af1645551a48191900c77833073fdfd` is disabled; latest run `ae49786b-46e0-8321-949d-9f139020df47` disclosed two direct-to-main commits. Boots `Automation_2e1357c87e688191829bd2380047f46d` is disabled; latest run `a030ee14-e434-832d-a8cc-b462d8e88ed7` stopped safely on its stale branch.
+- **Prompt configuration:** all three saved prompts have been read back and contain the correct successor and fallback mappings plus Phase 1 read-only limits. This proves prompt text, not runtime handoff execution. Phase 1 is not complete.
+- **Buddy PR #201:** branch `babel/chatgpt-buddy-v2`, current head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 12 behind main, open/draft. The missing Tricky Daily recommendation-memory guide link was added to the branch and read back. Exact-head Daily curator tests, Mobile Auth Broker Tests and public repository security scan all passed. The previous two failures had the same single cause: the Python suite's documentation-index assertion; the broker-specific integration tests passed 5/5.
+- **Coordination PR #202:** branch `coordination/trio-readiness-handoffs`, current head `5eaf7d57621506ac33862932c74780dace65a9b7`, 34 ahead / 12 behind main, open/draft. Daily curator tests and Mobile Auth Broker Tests passed; security scan was still running at the last query. Its README now also indexes the recommendation-memory guide. The shared files with PR #201 remain overlapping and need a deliberate merge-order/reconciliation.
+- **PR overlap:** #201 and #202 share `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Do not merge either until those shared files are reconciled. The coordination branch's Buddy guide and index have been reconciled to include the current Buddy branch/policy and the trio handoff link.
+- **Jockey:** branch `engineering/priority` is 67 ahead / 6 behind, PR #200 open/draft at head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`. Two accidental main commits are `a372f8d49817783a2ba9e9bed0f6b24f071a7cc1` (Daily recommendation-memory guide) and `649690ce545094cc0f5d19a4a57b17eac20319dd` (standalone 1,232-line memory module). The module exists on main but is not imported by `spotify_daily_cycle.py` or the midnight workflow; no dedicated memory test file or active JSONL store/manifest was found. Treat it as unvalidated groundwork; do not integrate it or roll it back without a reviewed plan.
+- **Boots:** branch `engineering/general` is 14 ahead / 83 behind main and has no matching open PR. Preserve its head; no reset/rebase/force-push.
+- **Safety:** no task was re-enabled, no workflow was manually dispatched, and no Spotify/provider, playlist, credential, production, or canonical Library operation was performed.
+- **Next:** finish exact-head PR #202 security verification; reconcile the four shared files and merge order; then prepare Jockey's branch/mainline recovery and Boots' archival refresh plan without discarding either worker's work.
+
+---
+
 # Coordination session overlay — 2026-11-20
 
 - User authorized a self-maintaining handoff cycle for the scheduled trio: Buddy → Jockey → Boots → Buddy. The objective is to prevent silent worker failure during extended absences, including roughly two weeks away.
