@@ -1,3 +1,20 @@
+# Current trio and documentation checkpoint — 2026-11-22 20:15 Eastern
+
+## Verified live checkpoint — 2026-11-22 20:15 Eastern
+
+- **Buddy:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` enabled; latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed before the latest prompt update (`2026-11-22T23:41:06Z`). It did not report the required successor check. Next scheduled run: Nov 23, 9:00 AM Eastern. Environment selection is inherited; environment details are unavailable, so status is unknown.
+- **Jockey:** automation `6af1645551a48191900c77833073fdfd` disabled; latest run `ae49786b-46e0-8321-949d-9f139020df47` completed with a report disclosing two accidental direct-to-main commits. Next scheduled time while disabled: Nov 23, 11:00 AM Eastern. Keep disabled pending a reviewed branch/mainline recovery plan.
+- **Boots:** automation `Automation_2e1357c87e688191829bd2380047f46d` disabled; latest run `a030ee14-e434-832d-a8cc-b462d8e88ed7` completed after safely stopping on its stale branch. Next scheduled time while disabled: Nov 23, 4:30 PM Eastern. Environment details are unavailable. Preserve its branch.
+- **PR #201:** `babel/chatgpt-buddy-v2`, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind current main `deb5a192eda4b8965a4af1110c432db78e7ec11b`, open/draft. Exact-head Daily curator tests #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 passed.
+- **PR #202:** `coordination/trio-readiness-handoffs`, head `9b3fbeed1a0e1569644133984df1ce766e077517`, 43 ahead / 14 behind the same main, open/draft. Exact-head Daily curator tests #45084445454, Mobile Auth Broker Tests #45084445441, and security scan #45084445450 passed.
+- **PR #200:** `engineering/priority`, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind, open/draft. Its three exact-head checks passed (#44928121259 broker, #44928121273 Daily, #44928121262 security). This does not resolve its branch recovery or authorize enabling Jockey.
+- **Boots branch:** `engineering/general`, 14 ahead / 83 behind, no matching open PR. Do not reset, rebase, force-push, or enable Boots.
+- **Shared-file gate:** #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. The coordination branch includes the Trio Protocol link and Buddy handoff section; Buddy's current branch does not yet include those two additions. Do not merge either PR until a deliberate merge order and complete shared-file review are recorded.
+- **Phase 1:** prompt text is configured, but runtime handoff behavior is not proven. The latest Buddy run predates the prompt update. Phase 2 cross-repair remains disabled and requires separate authorization.
+- No worker was re-enabled, no workflow was manually dispatched, and no Spotify/provider, playlist, credential, production, or canonical Library write was performed in this checkpoint.
+
+---
+
 # Current trio and documentation checkpoint — 2026-11-22
 
 - **User direction:** continue the trio-readiness implementation and repair the identified blockers; the intended handoff is Buddy → Jockey → Boots → Buddy, with read-only successor checks first and bounded cross-repair separately gated.
