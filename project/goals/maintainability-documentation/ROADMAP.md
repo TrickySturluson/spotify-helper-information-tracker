@@ -11,6 +11,16 @@
 - [ ] Obtain an owner-approved merge order for PR #201/#202 that also accounts for PR #200's overlap. The #202-first sequence in its description is a proposal, not authorization; keep all PRs draft.
 - [ ] Observe a complete Phase 1 Buddy → Jockey → Boots → Buddy runtime cycle. Jockey and Boots are disabled/BLOCKED. Phase 2 cross-repair remains disabled and unauthorized.
 
+## Current operating-policy overlay — 2026-11-06
+
+Babel remains an active workstream, but it is no longer a gate that blocks all other SHIT work. The user explicitly authorized ChatGPT to continue other SHIT workstreams in parallel while Buddy continues documentation maintenance. Each workstream must keep its roadmap and ACTIONS current and preserve its own safety boundaries.
+
+ChatGPT may independently publish routine, verified documentation-only changes directly to `main` when the connected GitHub capability permits. Independent review is mandatory: inspect the complete diff, verify claims against current source/tests/workflows/evidence, check links and cross-document consistency, run relevant safe checks, and read every changed file back. Routine documentation changes do not require per-change user review.
+
+Buddy remains proposal-only on `babel/chatgpt-buddy-v2` and its draft PR. It must not write to `main`, approve, mark ready, close, merge, or self-merge. Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside ChatGPT's documentation authority and require separate user authorization.
+
+See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../../../docs/BABEL_CHATGPT_BUDDY.md). This overlay supersedes older statements below that call documentation the sole active SHIT workstream or require user review/merge for every documentation change.
+
 # Maintainability & Documentation — Roadmap
 
 **Last reviewed:** 2026-11-23 10:55 Eastern
