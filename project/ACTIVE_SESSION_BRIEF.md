@@ -1,4 +1,44 @@
-# Babel continuation audit — 2026-11-21 14:41 UTC
+# Current successor-readiness and shared-PR overlay — 2026-11-23 10:17 Eastern
+
+**Evidence basis:** live automation records, saved prompts, current default branch, open PR metadata, branch comparisons, changed-file lists, and exact-head GitHub Actions runs. Current `main` at audit start: `f3387a29ad2a97017a80968ec1a047a97118c618`. All successor checks below were read-only.
+
+## Worker automation and readiness
+
+- **Buddy** — automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled; recurring target 09:00 Eastern. Current run `1fc98dce-5084-8324-8cb7-7b32344cc84d` is `in_progress`, scheduled for 09:00 and started at 10:17 Eastern. The latest completed result still belongs to prior run `e560322d-6ac8-8332-84aa-98b2b5816aeb` (created Nov 22 09:49 Eastern), so today's report is not yet available and the daily completion gate remains pending. Environment selection is inherited and no environment details were returned; actual environment status is **unknown**.
+- **Jockey** — automation `6af1645551a48191900c77833073fdfd` is **disabled**; recurring target/next scheduled time is 11:00 Eastern, but the task is not runnable while disabled. Last run `ae49786b-46e0-8321-949d-9f139020df47` is recorded `completed`; its matching result was created after run start and reports that the worker accidentally wrote two files directly to `main`, then stopped. Do not mislabel the run record itself as `failed`; readiness is **BLOCKED** because the task is disabled and its branch is diverged/stale. Environment selection is inherited with no environment details; status **unknown**.
+- **Boots** — automation `Automation_2e1357c87e688191829bd2380047f46d` is **disabled**; recurring target/next scheduled time is 16:30 Eastern, but the task is not runnable while disabled. Last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` is recorded `completed`; its matching result was created after run start and reports a safe stop because the persistent branch was too far behind and no matching PR existed. Readiness is **BLOCKED**. Environment selection is inherited with no environment details; status **unknown**.
+- All three saved prompts were read. Their role/scope and successor mappings are present: Buddy → Jockey, Jockey → Boots, Boots → Buddy. Prompt configuration does not prove a runtime handoff cycle. GitHub read access succeeded for each relevant repository branch/PR.
+
+## Current branch and PR evidence
+
+- **Buddy PR #201** — open/draft on `babel/chatgpt-buddy-v2`; audit-start head `b91254ff1dec0a0e62f1083d82be8877996085eb`; 65 ahead / 16 behind current `main`; 12 changed files. Exact-head Actions passed: Daily curator tests [#45083951234](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45083951234), Mobile Auth Broker Tests [#45083951231](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45083951231), and public repository security scan [#45083951241](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45083951241). These results apply only to the audit-start head; the reconciliation commit requires fresh exact-head checks.
+- **Trio PR #202** — open/draft on `coordination/trio-readiness-handoffs`; head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`; 68 ahead / 16 behind; 12 changed files. Exact-head Actions passed: additional test [#45097778021](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45097778021), full tests [#45097778095](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45097778095), and full-history security scan [#45097778028](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45097778028). Its PR description reports a successful Workers preview build (job `137441608988`); that external check was not independently re-fetched in this read-only pass.
+- **Jockey PR #200** — open/draft on `engineering/priority`; head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`; 67 ahead / 10 behind; 14 changed files. Exact-head Actions passed: Mobile Auth Broker Tests [#44928121259](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44928121259), Daily curator tests [#44928121273](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44928121273), and public repository security scan [#44928121262](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44928121262). Passing CI does not resolve the disabled automation or branch recovery.
+- **Boots branch** — `engineering/general`, head `a58e6b7d953428adf9932499a79234fc2ed06150`; 14 ahead / 87 behind; no matching open PR and no exact-head CI acceptance established.
+- GitHub reports `mergeable=true` for PRs #201/#202/#200, while the compare API reports their branches as diverged from current `main`. Do not treat the mergeable flag or old green checks as merge authorization/readiness.
+
+## Shared-file reconciliation and merge gate
+
+PRs #201 and #202 overlap on exactly four paths: `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. PR #200 also changes `project/ACTIVE_SESSION_BRIEF.md` and `project/LOOSE_ENDS.md` (as well as other handoff files), creating an additional cross-workstream conflict on those two records.
+
+The protocol file `project/TRIO_COORDINATION_PROTOCOL.md` is present on PR #202's branch but returns 404 on current `main`. This Buddy branch therefore links to the PR #202 review-branch URL rather than adding a broken relative link or copying the other worker's file. After PR #202 is merged by its owner, convert the link to a repository-relative path.
+
+No merge order has been approved. PR #202's description proposes merging #202 first and then reconciling Buddy PR #201 against the resulting main; that remains a proposal, not authorization. **Do not merge PR #201 or #202 until all shared files and the merge order are explicitly reconciled.** Account for PR #200's additional handoff overlap before any shared-file merge sequence is finalized.
+
+## Phase status and next safe action
+
+Phase 1 prompt mappings are configured, but no complete Buddy → Jockey → Boots → Buddy runtime cycle has been observed. Jockey and Boots are currently disabled and BLOCKED; the fallback check does not transfer ownership. Phase 2 cross-repair remains disabled and unauthorized.
+
+Next: finish and read back the four shared-file reconciliation on Buddy's branch; re-fetch PR #201's final head/changed-file list; verify fresh exact-head CI; keep PR #201 draft; and leave PRs #202/#200 and all other workers' tasks, branches, and PRs untouched. No task configuration, environment, workflow, provider, playlist, credential, production, or canonical Library state was changed in this read-only checkpoint.
+
+
+---
+
+> Historical snapshots below are retained for provenance. Any earlier section labeled “current”, “latest”, or “verified” is superseded for live worker, automation, branch, PR, and CI status by the 2026-11-23 overlay above; retain older non-worker project history as historical context.
+
+---
+
+# Historical Babel continuation audit — 2026-11-21 14:41 UTC (superseded for live worker status)
 
 - **Current Buddy automation:** enabled. Its current execution was marked in progress when this audit began; no completed result was yet available.
 - **Buddy PR at audit start:** [#201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), branch `babel/chatgpt-buddy-v2`, head `6028a605fe75bf40446b20760d409a61f7898e83`, 7 changed files, 14 commits ahead / 3 behind current main `efbb13fa5098501567c3e399d810adb652ff1a56`. GitHub reported mergeable/clean. Exact-head check runs for tests, security, and Workers Builds were successful; commit-lockfile was skipped. No review submissions or inline review threads existed.
@@ -8,7 +48,7 @@
 
 ---
 
-# Current SHIT continuation overlay — 2026-11-20 19:27 UTC
+# Historical SHIT continuation overlay — 2026-11-20 19:27 UTC (superseded)
 
 ## Current worker and project state
 - **Authentication:** the implementation/infrastructure phase is being treated as complete for now; end-to-end production authorization, encrypted credential persistence, and independent broker-health acceptance remain unverified. Do not claim full production auth completion.
