@@ -17,7 +17,7 @@ No merge order is approved. PR #202's suggested sequence (#202 first, then Buddy
 
 ## Next safe action
 
-Complete the Buddy-owned four-file reconciliation on `babel/chatgpt-buddy-v2`, read every changed file back, refresh PR #201's changed-file list/head, and verify exact-head CI. Keep PR #201 draft. Do not edit PR #202/#200, enable or disable another task, change another worker's prompt/schedule/environment/branch/PR, or perform cross-repair. No full runtime Phase 1 cycle has been observed; Phase 2 remains disabled and unauthorized.
+The four Buddy-owned shared documents have now been written and read back on `babel/chatgpt-buddy-v2`. Re-fetch PR #201's final head/changed-file list, independently review the complete diff, and verify fresh exact-head CI. Keep PR #201 draft. Do not edit PR #202/#200, enable or disable another task, change another worker's prompt/schedule/environment/branch/PR, or perform cross-repair. No full runtime Phase 1 cycle has been observed; Phase 2 remains disabled and unauthorized.
 
 ---
 
