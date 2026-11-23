@@ -18,7 +18,7 @@
 
 - Verified all three exact-head checks for PR #202: Daily #45093806549, broker #45093806530, security #45093806533 — all successful.
 - Re-read PR #201 and its three exact-head checks: Daily #45083951234, broker #45083951231, security #45083951241 — all successful.
-- Identified a mismatch between Buddy's latest report text (claims #201 head `452a6d3...`) and the live GitHub PR API (head `b91254ff...`). No branch or PR was changed by this check. Next Buddy run must reconcile this discrepancy from live metadata.
+- Confirmed the Buddy report recorded head `452a6d3...` at 14:49 UTC; commit `b91254ff...` advanced the branch at 23:34 UTC and the prompt update followed at 23:41 UTC. The report is historical rather than contradictory. The next Buddy run must verify current branch metadata and execute the new handoff prompt.
 - Updated PR #202 description to reflect exact-head CI success, current branch ancestry, worker states, and the report mismatch.
 ## 2026-11-22 20:15 Eastern — Exact-head status refreshed
 
