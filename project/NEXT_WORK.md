@@ -1,3 +1,15 @@
+# Current handoff — 2026-11-22 20:33 Eastern
+
+**Current objective:** complete the read-only trio readiness protocol and verify a real handoff. Phase 1 is configured but not yet accepted; Phase 2 cross-repair is not authorized.
+
+**Immediate next work:** keep Buddy enabled and inspect its Nov 23 9:00 AM Eastern run. Require it to check Jockey, check Boots as fallback because Jockey is disabled, report exact run/branch/PR/CI evidence, and reconcile its report's claimed PR head `452a6d3...` with the live PR #201 head `b91254ff...`. Jockey and Boots remain disabled pending safe branch recovery; do not enable them merely because PR checks are green.
+
+**Current proposals:** PR #202 is open/draft at `9af60ff2d6cd4e7169def18feced445351b9db61` (48 ahead / 14 behind); all three exact-head CI checks passed. PR #201 is open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb` (65 ahead / 14 behind); all three exact-head checks passed. They overlap on four files and are not ready to merge until a full shared-file review and merge order are agreed. See the live checkpoint and coordination roadmap.
+
+**Engineering priority:** Tricky Daily remains Jockey's designated priority, but Jockey is paused. No production or playlist change is authorized by this handoff.
+
+---
+
 # Current handoff — 2026-11-22 20:15 Eastern
 
 **Current coordination objective:** continue the user-authorized Buddy → Jockey → Boots → Buddy readiness system. Phase 1 remains read-only; Phase 2 cross-repair is not authorized. Read [the Trio Coordination Protocol](TRIO_COORDINATION_PROTOCOL.md), [the active session brief](ACTIVE_SESSION_BRIEF.md), and [the coordination roadmap](goals/trio-coordination/ROADMAP.md) before acting.
