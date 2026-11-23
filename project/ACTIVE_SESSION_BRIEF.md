@@ -29,7 +29,7 @@ No merge order has been approved. PR #202's description proposes merging #202 fi
 
 Phase 1 prompt mappings are configured, but no complete Buddy → Jockey → Boots → Buddy runtime cycle has been observed. Jockey and Boots are currently disabled and BLOCKED; the fallback check does not transfer ownership. Phase 2 cross-repair remains disabled and unauthorized.
 
-Next: finish and read back the four shared-file reconciliation on Buddy's branch; re-fetch PR #201's final head/changed-file list; verify fresh exact-head CI; keep PR #201 draft; and leave PRs #202/#200 and all other workers' tasks, branches, and PRs untouched. No task configuration, environment, workflow, provider, playlist, credential, production, or canonical Library state was changed in this read-only checkpoint.
+Next: the four Buddy-owned shared documents have now been written and read back on PR #201's branch. Re-fetch the final PR head/changed-file list, independently review the complete diff, and verify fresh exact-head CI; keep PR #201 draft. Leave PRs #202/#200 and all other workers' tasks, branches, and PRs untouched until an owner-approved merge order is recorded. No task configuration, environment, workflow, provider, playlist, credential, production, or canonical Library state was changed in this read-only checkpoint.
 
 
 ---
