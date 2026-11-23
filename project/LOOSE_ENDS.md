@@ -1,4 +1,29 @@
-## 2026-11-21 — Legacy Codex workflow scheduled failures; handoff reconciliation pending
+# Current verified successor-readiness and shared-PR blockers — 2026-11-23 10:17 Eastern
+
+**Current main:** `f3387a29ad2a97017a80968ec1a047a97118c618`. This is a live GitHub/automation snapshot; refresh it before future decisions.
+
+- **Buddy:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` enabled; run `1fc98dce-5084-8324-8cb7-7b32344cc84d` is `in_progress` (scheduled 09:00, started 10:17 Eastern). Latest completed result still references prior run `e560322d-6ac8-8332-84aa-98b2b5816aeb`; today's report is pending. Environment is inherited with no environment details returned (**unknown**). PR #201: `babel/chatgpt-buddy-v2`, audit-start head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 16 behind, open/draft; exact-head Daily tests #45083951234, broker tests #45083951231, and security scan #45083951241 passed before this batch.
+- **Jockey:** automation `6af1645551a48191900c77833073fdfd` disabled; scheduled target 11:00 Eastern. Last run `ae49786b-46e0-8321-949d-9f139020df47` is recorded completed and its matching result reports accidental direct-to-main file writes followed by a safe stop. Environment is inherited with no details (**unknown**). Branch `engineering/priority`, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 10 behind; PR #200 open/draft. Exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passed. **Readiness: BLOCKED** by disabled task and diverged/stale branch; green CI does not clear the recovery blocker.
+- **Boots:** automation `Automation_2e1357c87e688191829bd2380047f46d` disabled; scheduled target 16:30 Eastern. Last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` is recorded completed and its matching result reports a safe stop on the stale branch. Environment is inherited with no details (**unknown**). Branch `engineering/general`, head `a58e6b7d953428adf9932499a79234fc2ed06150`, 14 ahead / 87 behind; no matching open PR and no exact-head CI acceptance. **Readiness: BLOCKED** by disabled task, branch divergence, and missing PR.
+- **Trio PR #202:** branch `coordination/trio-readiness-handoffs`, head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 16 behind, open/draft. Exact-head additional tests #45097778021, full tests #45097778095, and security scan #45097778028 passed. Its description reports Workers preview job #137441608988 success; not independently re-fetched here.
+
+## Shared-file and merge blockers
+
+PR #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. PR #200 also changes the last two handoff files, so their merge order must account for a second workstream overlap. PR #201/#202 are both open/draft (12 changed files each; GitHub reports mergeable, while compare reports both 16 commits behind current main).
+
+The Trio Protocol file is on PR #202's branch only and is absent from current `main`. The Buddy guide and docs index therefore use a temporary direct GitHub link to that branch; switch to a relative link only after PR #202 is merged.
+
+No merge order is approved. PR #202's suggested sequence (#202 first, then Buddy reconciles #201 against the merged main) remains a proposal. **PR #201 and PR #202 must not be merged until their shared files and merge order are reconciled.** Include PR #200's additional overlap on the active-session brief and loose-ends register in any eventual sequence.
+
+## Next safe action
+
+Complete the Buddy-owned four-file reconciliation on `babel/chatgpt-buddy-v2`, read every changed file back, refresh PR #201's changed-file list/head, and verify exact-head CI. Keep PR #201 draft. Do not edit PR #202/#200, enable or disable another task, change another worker's prompt/schedule/environment/branch/PR, or perform cross-repair. No full runtime Phase 1 cycle has been observed; Phase 2 remains disabled and unauthorized.
+
+---
+
+> Older checkpoints below are retained as history and are superseded for live automation, branch, PR, and CI status by this 2026-11-23 section.
+
+## Historical checkpoint — 2026-11-21 — Legacy Codex workflow scheduled failures (superseded for live worker status)
 
 - The current documentation worker is the scheduled ChatGPT Buddy using the connected GitHub app. The repository-hosted Codex/API workflow is a separate historical experiment, not the current Buddy path.
 - GitHub recorded scheduled runs [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) (2026-11-20 20:09 UTC) and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) (2026-11-21 06:59 UTC). Both passed preflight, failed in the Codex agent with API quota exceeded, and skipped validation/publication. These runs supersede the older #42183337573-only checkpoint and prove the schedule triggered at those times.
