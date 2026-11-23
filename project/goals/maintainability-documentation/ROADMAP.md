@@ -1,29 +1,19 @@
-## 2026-11-23 — Buddy/Trio shared handoff reconciliation and successor readiness
+## 2026-11-23 — Refreshed Buddy/Trio shared handoff and successor evidence
 
-- Current `main` at audit start: `f3387a29ad2a97017a80968ec1a047a97118c618`. The Buddy automation is enabled but its Nov 23 run `1fc98dce-5084-8324-8cb7-7b32344cc84d` is still in progress; the latest completed result is yesterday's `e560322d-6ac8-8332-84aa-98b2b5816aeb`. Do not count today's Buddy report as complete yet. Environment status is unknown because the task inherits an environment but returned no environment details.
-- Jockey automation is disabled; last run `ae49786b-46e0-8321-949d-9f139020df47` completed with a report describing accidental direct-to-main writes and a safe stop. PR #200 is open/draft at `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 10 behind; its exact-head Daily, broker, and security Actions passed. The branch remains diverged and the task remains BLOCKED.
-- Boots automation is disabled; last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` completed with a safe stop on its stale branch. `engineering/general` is 14 ahead / 87 behind and has no matching open PR or established exact-head CI. Environment status is unknown. Boots remains BLOCKED.
-- Buddy PR #201 was open/draft at post-checkpoint verification head `7c7da5c7f6199070161672e1c57f43cb3e29517d`, 78 ahead / 16 behind, with 12 changed files. Exact-head Daily curator tests #45207299259, Mobile Auth Broker Tests #45207299393, and public repository security scan #45207299147 all passed. The broker `commit-lockfile` step was skipped; no separate Workers Builds result was surfaced. The following action-log/roadmap checkpoint commits create a new head and require fresh checks.
-- PR #202 is open/draft at `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 16 behind, with exact-head full tests, additional tests, and security checks passed. PR #201/#202 share four files; PR #200 additionally touches ACTIVE_SESSION_BRIEF.md and LOOSE_ENDS.md.
-- [x] Reconcile the four shared PR #201/#202 files on Buddy's own branch: add the Trio handoff responsibility to the Buddy guide, add the protocol to the docs index Start here list, and prepend current live-evidence overlays to the active-session brief and loose-ends register. The protocol file is not on `main`; the links temporarily target PR #202's review branch to avoid broken local links.
-- [x] Independently review the complete 12-file PR #201 diff and verify exact-head Daily curator tests, Mobile Auth Broker Tests, and public repository security scan on `7c7da5c`; all three passed. No separate exact-head Workers Builds result was surfaced.
-- [ ] Recheck exact-head CI on the new head created by this final roadmap checkpoint; the `7c7da5c` results do not transfer to later commits.
-- [ ] Obtain an owner-approved merge order for PR #201/#202, accounting for PR #200's additional overlap. PR #202's proposed #202-first sequence is not approval; keep all PRs draft.
-- [ ] Observe a complete Phase 1 Buddy → Jockey → Boots → Buddy runtime cycle. Prompt mappings exist, but Jockey and Boots are disabled and no full cycle is verified. Phase 2 cross-repair remains disabled and unauthorized.
-
-## Current operating-policy overlay — 2026-11-06
-
-Babel remains an active workstream, but it is no longer a gate that blocks all other SHIT work. The user explicitly authorized ChatGPT to continue other SHIT workstreams in parallel while Buddy continues documentation maintenance. Each workstream must keep its roadmap and ACTIONS current and preserve its own safety boundaries.
-
-ChatGPT may independently publish routine, verified documentation-only changes directly to `main` when the connected GitHub capability permits. Independent review is mandatory: inspect the complete diff, verify claims against current source/tests/workflows/evidence, check links and cross-document consistency, run relevant safe checks, and read every changed file back. Routine documentation changes do not require per-change user review.
-
-Buddy remains proposal-only on `babel/chatgpt-buddy-v2` and its draft PR. It must not write to `main`, approve, mark ready, close, merge, or self-merge. Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside ChatGPT's documentation authority and require separate user authorization.
-
-See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../../../docs/BABEL_CHATGPT_BUDDY.md). This overlay supersedes older statements below that call documentation the sole active SHIT workstream or require user review/merge for every documentation change.
+- Current `main` at audit start: `f3387a29ad2a97017a80968ec1a047a97118c618`. The Buddy automation is enabled, but its Nov 23 run `1fc98dce-5084-8324-8cb7-7b32344cc84d` remains `in_progress`; the latest completed result is prior run `e560322d-6ac8-8332-84aa-98b2b5816aeb`. Environment status is unknown.
+- Jockey is disabled and **BLOCKED**. Its last run `ae49786b-46e0-8321-949d-9f139020df47` is recorded completed and reports accidental direct-to-main writes followed by a stop. PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67 ahead / 10 behind; exact-head Daily, broker, and security Actions passed. Its branch remains diverged and the task remains disabled.
+- Boots is disabled and **BLOCKED**. Its last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` is recorded completed, but its result is truncated. `engineering/general` head `a58e6b7d953428adf9932499a79234fc2ed06150` is 14 ahead / 87 behind, has no matching open PR, and exact-head Daily/security checks failed while broker tests passed. Environment status is unknown.
+- Buddy PR #201 was open/draft at pre-update head `cfa7af161d0bf2d27e59f184403663e232c4e0a3`, 80 ahead / 16 behind, with 12 changed files. Exact-head Daily #45207916219, broker #45207915676, and security #45207915681 passed. This shared-handoff commit creates a new head and requires fresh exact-head checks; no separate Workers Builds result was surfaced.
+- PR #202 is open/draft at `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 16 behind; exact-head full tests, additional tests, and security passed. Its description reports Workers preview job #137441608988 success, not independently re-fetched. PR #201/#202 share four files; PR #200 additionally touches ACTIVE_SESSION_BRIEF.md and LOOSE_ENDS.md.
+- The Buddy guide and docs index on this branch already satisfy their side of the four-file reconciliation: v2 branch/PR rules, historical Codex/API status, Buddy → Jockey → Boots → Buddy responsibility, Trio Protocol in Start here, Daily recommendation-memory guide entry, and 22-workflow count. The protocol file remains only on PR #202's branch, so its link remains a temporary direct branch URL.
+- [x] Refresh the active-session brief and loose-ends register with current worker/run/branch/PR/CI evidence and explicitly preserve the #201/#202 merge gate.
+- [ ] Recheck exact-head CI on the new Buddy PR head created by this checkpoint; the #452079 and earlier checks do not transfer to a later commit.
+- [ ] Obtain an owner-approved merge order for PR #201/#202 that also accounts for PR #200's overlap. The #202-first sequence in its description is a proposal, not authorization; keep all PRs draft.
+- [ ] Observe a complete Phase 1 Buddy → Jockey → Boots → Buddy runtime cycle. Jockey and Boots are disabled/BLOCKED. Phase 2 cross-repair remains disabled and unauthorized.
 
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-23 10:17 Eastern  
+**Last reviewed:** 2026-11-23 10:55 Eastern
 **Status:** In progress. The Buddy-owned shared handoff reconciliation and independent review are published in draft PR #201; the final checkpoint head requires fresh CI, and the full file-level coverage, merge-order review, and freshness audit remain open.
 
 ## Purpose
