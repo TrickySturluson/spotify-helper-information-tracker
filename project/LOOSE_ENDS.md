@@ -5,7 +5,7 @@
 - **Jockey:** disabled after reporting accidental direct-to-main commits; keep disabled pending a reviewed recovery plan.
 - **Boots:** disabled; preserve its stale branch and do not reset/rebase/force-push or re-enable before review.
 - **PR #201:** open/draft, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind; known exact-head Daily, broker, and security checks passed.
-- **PR #202:** open/draft, head `986bc385946f869cacf655a775ceafcce4cd86cf`, 58 ahead / 14 behind; exact-head full tests #45095318314, full-history secret scan #45095318358, and Cloudflare Workers Builds #137434112899 passed. Lockfile check skipped.
+- **PR #202:** open/draft, head `f2291b003f459ad4e330a96837f97d3f1cc6f1a1`, 62 ahead / 14 behind; current-head full tests #45095764686 and full-history secret scan #45095764679 are in progress. Previous head `986bc385946f869cacf655a775ceafcce4cd86cf` passed full tests #45095318314, full-history secret scan #45095318358, and Cloudflare Workers Builds #137434112899; lockfile check skipped.
 - **PR #200:** open/draft, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind; this does not resolve Jockey's recovery issue.
 - **Merge gate:** PR #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Do not merge either until shared files are compared line by line and merge order is recorded.
 - **Next:** verify Buddy's Nov 23 run and actual Jockey/fallback Boots readiness evidence. Keep Phase 2 cross-repair disabled until separately authorized.
