@@ -1,3 +1,18 @@
+# Current verified checkpoint — 2026-11-22 (post-CI review)
+
+- **Main:** `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- **Buddy:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` enabled; next run Nov 23, 9:00 AM Eastern. Latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed before the latest prompt update and omitted the successor-readiness report. Environment selection is inherited; actual environment status is unknown.
+- **Jockey:** automation `6af1645551a48191900c77833073fdfd` disabled; latest run `ae49786b-46e0-8321-949d-9f139020df47` disclosed accidental direct-to-main commits `a372f8d49817783a2ba9e9bed0f6b24f071a7cc1` and `649690ce545094cc0f5d19a4a57b17eac20319dd`. Keep disabled pending reviewed recovery.
+- **Boots:** automation `Automation_2e1357c87e688191829bd2380047f46b` disabled. Preserve `engineering/general`; do not reset, rebase, force-push, or re-enable before recovery review.
+- **PR #201:** open/draft, `babel/chatgpt-buddy-v2`, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind. Known exact-head Daily curator tests #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 passed.
+- **PR #202:** open/draft, `coordination/trio-readiness-handoffs`, head `986bc385946f869cacf655a775ceafcce4cd86cf`, 58 ahead / 14 behind. Exact-head full tests #45095318314, full-history secret scan #45095318358, and Cloudflare Workers Builds #137434112899 passed; lockfile check skipped.
+- **PR #200:** open/draft, `engineering/priority`, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind. Passing historical CI does not resolve the direct-to-main incident or authorize Jockey to resume.
+- **Shared-file gate:** #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Neither PR may merge until these files and merge order are reconciled against current heads.
+- **Phase status:** all three saved prompts contain successor mappings and Phase 1 read-only limits, but no complete runtime handoff cycle has been observed. Buddy's next run is the next verification milestone. Phase 2 cross-repair remains disabled and requires separate user authorization.
+- **Safety:** no worker was re-enabled; no workflow was manually dispatched; no Spotify/provider, playlist, credential, production, or canonical Library write was performed.
+
+---
+
 # Current trio checkpoint — 2026-11-22 20:33 Eastern
 
 ## Verified live checkpoint — 2026-11-22 20:33 Eastern
