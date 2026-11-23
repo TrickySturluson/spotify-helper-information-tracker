@@ -31,6 +31,14 @@ Whenever ChatGPT works on, discusses, reviews, plans, or reports on SHIT, Babel,
 
 This gate is conversation-triggered. It does not mean ChatGPT is continuously monitoring the automation between conversations.
 
+## Trio handoff responsibility
+
+The scheduled handoff cycle is **Buddy → Jockey → Boots → Buddy**. The [Trio Coordination Protocol (`project/TRIO_COORDINATION_PROTOCOL.md`; proposed in draft PR #202)](https://github.com/TrickySturluson/spotify-helper-information-tracker/blob/coordination/trio-readiness-handoffs/project/TRIO_COORDINATION_PROTOCOL.md) defines the canonical Phase 1 readiness checklist, report format, and authority boundaries. The protocol file is not yet on `main`, so this link intentionally targets PR #202's review branch; after that PR is merged, replace it with the repository-relative link `../project/TRIO_COORDINATION_PROTOCOL.md`.
+
+Each worker checks its immediate successor: Buddy checks Jockey, Jockey checks Boots, and Boots checks Buddy. Before ending each run, Buddy must inspect Jockey's live automation/run, saved prompt, environment, GitHub access, branch/PR, exact-head CI, dependencies, and ownership conflicts. If Jockey's task is disabled, its latest run failed or is incomplete, its expected run window was missed, or its branch/PR is blocked, Buddy must also perform a lightweight fallback readiness check for Boots. This fallback is detection only; it does not transfer Jockey's priority or authorize Boots to take over Jockey's work.
+
+Report exact evidence and one status for each checked worker: **READY**, **READY WITH WARNINGS**, or **BLOCKED**. Phase 1 is read-only toward another worker's task settings, prompts, schedules, environments, branches, and PRs. Do not enable or disable tasks, edit another worker's prompt/schedule/environment, change another worker's branch/PR, trigger workflows, or perform cross-repair. Phase 2 cross-repair remains disabled and requires separate user authorization. Prompt text alone does not prove that a complete runtime handoff cycle has occurred.
+
 ## Buddy's strict scope
 
 Allowed:
