@@ -1,3 +1,18 @@
+# Current verified checkpoint — 2026-11-23 (Eastern)
+
+- **Main:** `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- **Buddy:** enabled; next run Nov 23, 9:00 AM Eastern. Latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` predates the latest prompt update and did not include the required successor report. Environment selection is inherited; actual environment status is unknown.
+- **Jockey:** disabled; next scheduled run Nov 23, 11:00 AM Eastern. Last run `ae49786b-46e0-8321-949d-9f139020df47` disclosed accidental direct-to-main writes. Both commits are already ancestors of main. PR #200 remains open/draft; branch is 67 ahead / 8 behind. Preserve it pending a reviewed recovery plan.
+- **Boots:** disabled; next scheduled run Nov 23, 4:30 PM Eastern. Present in automation listing with correct Phase 1 prompt, though task-specific peek/get returned not found. Branch is 14 ahead / 85 behind, no matching PR, and contains outdated auth deployment workflow/configuration compared with main. Preserve it; do not merge/re-enable.
+- **PR #201:** open/draft, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind. Exact-head tests, broker tests, security scan, and Cloudflare Workers Builds passed. Buddy's branch still lacks Trio protocol additions.
+- **PR #202:** open/draft, head `823bab81df3def193ee43f3e0b80555cf8565498`, 65 ahead / 14 behind. Exact-head tests #45097360261 passed; additional test #45097360314, secret scan #45097360350, and Cloudflare Workers Builds #137440279456 were in progress at last poll.
+- **PR #200:** open/draft, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind. Its two accidental direct-to-main commits are already present in main; do not cherry-pick or revert them again.
+- **Prompt mappings:** Buddy checks Jockey then Boots; Jockey checks Boots then Buddy; Boots checks Buddy then Jockey. All saved prompts specify Phase 1 read-only behavior. No full runtime handoff cycle has yet been observed.
+- **Shared-file merge gate:** PR #201/#202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Recommended sequence is #202 first, then Buddy reconciles #201 on its own branch against merged main. This is not a merge authorization; both remain draft.
+- **Phase 2:** cross-repair remains disabled and unauthorized. No worker was re-enabled, no branch was rewritten, and no workflow was manually dispatched.
+
+---
+
 # Current verified checkpoint — 2026-11-22 (post-CI review)
 
 - **Main:** `deb5a192eda4b8965a4af1110c432db78e7ec11b`.

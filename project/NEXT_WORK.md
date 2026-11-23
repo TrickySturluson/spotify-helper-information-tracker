@@ -1,12 +1,14 @@
-# Current handoff — 2026-11-22 20:33 Eastern
+# Current handoff — 2026-11-23 (Eastern)
 
-**Current objective:** complete the read-only trio readiness protocol and verify a real handoff. Phase 1 is configured but not yet accepted; Phase 2 cross-repair is not authorized.
+**Objective:** finish Phase 1 verification of Buddy → Jockey → Boots → Buddy without enabling either paused worker or allowing cross-repair.
 
-**Immediate next work:** keep Buddy enabled and inspect its Nov 23 9:00 AM Eastern run. Require it to check Jockey, check Boots as fallback because Jockey is disabled, report exact run/branch/PR/CI evidence, and reconcile its report's claimed PR head `452a6d3...` with the live PR #201 head `b91254ff...`. Jockey and Boots remain disabled pending safe branch recovery; do not enable them merely because PR checks are green.
+**Immediate next action:** wait for PR #202's exact-head CI on `823bab81df3def193ee43f3e0b80555cf8565498` to complete, then verify Buddy's Nov 23 9:00 AM Eastern run. Buddy must check disabled Jockey and perform the Boots fallback check, reporting exact automation/run/schedule/branch/PR/CI evidence and environment status. Do not infer readiness from an enabled toggle or green PR checks.
 
-**Current proposals:** PR #202 is open/draft at `9af60ff2d6cd4e7169def18feced445351b9db61` (48 ahead / 14 behind); all three exact-head CI checks passed. PR #201 is open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb` (65 ahead / 14 behind); all three exact-head checks passed. They overlap on four files and are not ready to merge until a full shared-file review and merge order are agreed. See the live checkpoint and coordination roadmap.
+**PR coordination:** PR #202 is open/draft, 65 ahead / 14 behind main; exact-head tests #45097360261 passed, while additional test #45097360314, secret scan #45097360350, and Cloudflare Workers Builds #137440279456 were in progress at last poll. PR #201 is open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind, with its known exact-head tests, broker tests, security scan and Cloudflare build passed. They overlap on four files. Recommended sequence is #202 first, then Buddy reconciles #201 on its own branch against merged main; neither merge is authorized now.
 
-**Engineering priority:** Tricky Daily remains Jockey's designated priority, but Jockey is paused. No production or playlist change is authorized by this handoff.
+**Worker recovery:** Jockey remains disabled. Its accidental commits are already ancestors of main; do not cherry-pick or revert them. PR #200 remains open/draft with a 67-ahead/8-behind branch and needs file-level review before salvaging onto a fresh branch. Boots remains disabled; its branch is 14 ahead/85 behind with no PR and contains outdated auth deployment configuration compared with main. Preserve both old branches; no rebase, force-push, or re-enable.
+
+**Engineering priority:** Tricky Daily remains Jockey's designated implementation priority, but Jockey is paused. No production or playlist operation is authorized by this handoff.
 
 ---
 
