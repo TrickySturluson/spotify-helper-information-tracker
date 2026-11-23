@@ -1,3 +1,15 @@
+# Current handoff — 2026-11-22 20:15 Eastern
+
+**Current coordination objective:** continue the user-authorized Buddy → Jockey → Boots → Buddy readiness system. Phase 1 remains read-only; Phase 2 cross-repair is not authorized. Read [the Trio Coordination Protocol](TRIO_COORDINATION_PROTOCOL.md), [the active session brief](ACTIVE_SESSION_BRIEF.md), and [the coordination roadmap](goals/trio-coordination/ROADMAP.md) before acting.
+
+**Current implementation priority:** the live Jockey prompt designates Tricky Daily reliability as the priority engineering workstream. Jockey remains disabled while its branch/mainline recovery is reviewed; do not infer that a green PR check authorizes execution. Boots remains disabled on a stale branch. Buddy remains enabled and is scheduled for Nov 23 at 9:00 AM Eastern; its latest run predates the most recent prompt update, so the next scheduled run must be checked for an actual Jockey readiness report and fallback-to-Boots evidence if Jockey is blocked.
+
+**Live branch/PR checkpoint:** Buddy PR #201 is open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb` (65 ahead / 14 behind); coordination PR #202 is open/draft at `9b3fbeed1a0e1569644133984df1ce766e077517` (43 ahead / 14 behind). All three exact-head checks pass on both PR heads. Jockey PR #200 is open/draft at `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` (67 ahead / 8 behind), with its three exact-head checks passing. These branches remain divergent. #201 and #202 overlap on four documentation/handoff files; neither may be merged until shared-file reconciliation and merge order are complete. See [the live checkpoint](ACTIVE_SESSION_BRIEF.md) and [loose ends](LOOSE_ENDS.md) for exact run IDs and blockers.
+
+**Authentication note:** the older November 20 authentication handoff below is a historical checkpoint, not a current assertion that authentication is the sole focused priority. Consult the Authentication Management & Recovery roadmap and fresh production evidence before making any auth status claim. No production deployment or credential operation is authorized by this handoff.
+
+---
+
 # Current handoff — 2026-11-20 08:29 UTC
 
 ## New coordination workstream — 2026-11-20
