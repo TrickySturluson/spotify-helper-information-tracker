@@ -1,3 +1,15 @@
+## 2026-11-22 20:15 Eastern — Exact-head status refreshed
+
+- Rechecked live automations, PR metadata, branch comparisons and current-head workflow runs. Buddy is enabled; its latest run predates the most recent prompt update and omitted the successor-readiness report. Jockey and Boots are disabled; leave them disabled pending recovery review.
+- PR #201 head `b91254ff1dec0a0e62f1083d82be8877996085eb` is 65 ahead / 14 behind; Daily curator #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 passed.
+- PR #202 head `9b3fbeed1a0e1569644133984df1ce766e077517` is 43 ahead / 14 behind; Daily curator #45084445454, Mobile Auth Broker Tests #45084445441, and security scan #45084445450 passed.
+- PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67 ahead / 8 behind; broker #44928121259, Daily #44928121273, and security #44928121262 passed. Jockey remains disabled because successful PR CI does not repair its task/branch ownership issue.
+- Boots branch `engineering/general` remains 14 ahead / 83 behind with no open PR. Preserve it.
+- The four shared files between #201 and #202 remain a merge-order gate. Coordination branch contains the Trio Protocol navigation and Buddy handoff section; Buddy's branch does not yet contain those additions. Neither PR was merged. Phase 1 runtime acceptance and Phase 2 authorization remain outstanding.
+- No automation was run manually, no worker was re-enabled, and no provider/playlist/credential/production/canonical Library operation occurred.
+
+---
+
 ## 2026-11-22 — Coordination exact-head CI passed; main documentation index repaired
 
 - **Main documentation repair:** the Daily memory guide existed on main but was not linked from `docs/README.md`, and the workflow catalogue count was stale at 21 while `docs/WORKFLOWS.md` contains 22 workflow rows. Updated the main index with the memory-guide link and corrected the count to 22. Read-back verified both changes. Commits: `98c216efb62822ad9653860c5af6e307836d7c9e` and `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
