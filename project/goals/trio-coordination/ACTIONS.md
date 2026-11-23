@@ -1,3 +1,15 @@
+## 2026-11-22 — Post-review exact-head verification and diff audit
+
+- Current `main`: `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- PR #202 is open/draft on `coordination/trio-readiness-handoffs`, exact head `986bc385946f869cacf655a775ceafcce4cd86cf`, 58 ahead / 14 behind. Exact-head checks passed: full tests #45095318314, full-history secret scan #45095318358, and Cloudflare Workers Builds check #137434112899. The lockfile check was skipped.
+- PR #201 remains open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind; known exact-head Daily curator tests #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 passed. PR #200 remains open/draft at `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind.
+- Reviewed PR #202's complete 12-file patch set. Changes are limited to repository instructions and Markdown documentation/project records; no runtime/product code, workflow logic, secrets, permissions, provider data, playlists, or canonical Library paths are included. The protocol clearly separates read-only Phase 1 from future user-authorized Phase 2 repairs.
+- The four shared files with PR #201 remain a merge-order gate: `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Their direction is reconciled on this branch, but neither PR should merge until a line-by-line comparison against Buddy's current head and deliberate merge order are recorded.
+- Buddy remains enabled for Nov 23, 9:00 AM Eastern; latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` predates the latest prompt update and omitted the successor-readiness report. Jockey `6af1645551a48191900c77833073fdfd` and Boots `Automation_2e1357c87e688191829bd2380047f46b` remain disabled. No worker was enabled and no workflow was manually dispatched.
+- **Review outcome:** documentation scope/protocol structure acceptable; merge readiness NEEDS FOLLOW-UP because shared-file reconciliation and a fresh Buddy handoff run remain outstanding. Phase 1 is not complete; Phase 2 remains unauthorized.
+
+---
+
 ## 2026-11-22 20:33 Eastern — Current branch and CI evidence
 
 ## Verified live checkpoint — 2026-11-22 20:33 Eastern
