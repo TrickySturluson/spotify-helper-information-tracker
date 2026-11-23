@@ -1,3 +1,15 @@
+## 2026-11-23 — Buddy/Trio shared handoff reconciliation and successor readiness
+
+- Current `main` at audit start: `f3387a29ad2a97017a80968ec1a047a97118c618`. The Buddy automation is enabled but its Nov 23 run `1fc98dce-5084-8324-8cb7-7b32344cc84d` is still in progress; the latest completed result is yesterday's `e560322d-6ac8-8332-84aa-98b2b5816aeb`. Do not count today's Buddy report as complete yet. Environment status is unknown because the task inherits an environment but returned no environment details.
+- Jockey automation is disabled; last run `ae49786b-46e0-8321-949d-9f139020df47` completed with a report describing accidental direct-to-main writes and a safe stop. PR #200 is open/draft at `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 10 behind; its exact-head Daily, broker, and security Actions passed. The branch remains diverged and the task remains BLOCKED.
+- Boots automation is disabled; last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` completed with a safe stop on its stale branch. `engineering/general` is 14 ahead / 87 behind and has no matching open PR or established exact-head CI. Environment status is unknown. Boots remains BLOCKED.
+- Buddy PR #201 was open/draft at audit-start head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 16 behind. Its exact-head Daily, broker, and security Actions passed; the reconciliation commits create a new head and require fresh checks.
+- PR #202 is open/draft at `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 16 behind, with exact-head full tests, additional tests, and security checks passed. PR #201/#202 share four files; PR #200 additionally touches ACTIVE_SESSION_BRIEF.md and LOOSE_ENDS.md.
+- [x] Reconcile the four shared PR #201/#202 files on Buddy's own branch: add the Trio handoff responsibility to the Buddy guide, add the protocol to the docs index Start here list, and prepend current live-evidence overlays to the active-session brief and loose-ends register. The protocol file is not on `main`; the links temporarily target PR #202's review branch to avoid broken local links.
+- [ ] Recheck exact-head CI and the complete changed-file diff after the reconciliation commits; prior-head checks do not transfer.
+- [ ] Obtain an owner-approved merge order for PR #201/#202, accounting for PR #200's additional overlap. PR #202's proposed #202-first sequence is not approval; keep all PRs draft.
+- [ ] Observe a complete Phase 1 Buddy → Jockey → Boots → Buddy runtime cycle. Prompt mappings exist, but Jockey and Boots are disabled and no full cycle is verified. Phase 2 cross-repair remains disabled and unauthorized.
+
 ## Current operating-policy overlay — 2026-11-06
 
 Babel remains an active workstream, but it is no longer a gate that blocks all other SHIT work. The user explicitly authorized ChatGPT to continue other SHIT workstreams in parallel while Buddy continues documentation maintenance. Each workstream must keep its roadmap and ACTIONS current and preserve its own safety boundaries.
@@ -10,8 +22,8 @@ See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_R
 
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-22  
-**Status:** In progress. The documentation control structure is established; the full file-level coverage and freshness audit remains open.
+**Last reviewed:** 2026-11-23 10:17 Eastern  
+**Status:** In progress. The documentation control structure is established and the Buddy-owned shared handoff reconciliation is being published as a draft proposal; the full file-level coverage, merge-order review, and freshness audit remain open.
 
 ## Purpose
 Make SHIT understandable, maintainable, and recoverable by a contributor or assistant with no access to prior chat history. Repository documentation—not chat memory—is the durable source of truth.
@@ -57,8 +69,9 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate quota-blocked experiment, while keeping its repository-level enabled/disabled state explicitly unverified.
 - [x] Re-enable the daily Buddy automation and request an immediate run on 2026-11-20.
 - [x] Independently reviewed Buddy PR #201 at audit-start head `67df681f8227b04b4cfe6137a7fcfce544fb25cb`; its exact-head test, security, and Workers Builds checks passed. The review found stale Codex/activation wording and workflow counts corrected in this batch.
-- [ ] Finish independent review of the final PR #201 head after this roadmap/action-log checkpoint: the prior head `02739f30985bc699e695b4a0d3d0626ef329cdec` had Daily curator tests [#45034570073](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45034570073), Mobile Auth Broker Tests [#45034570048](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45034570048), and public repository security scan [#45034570070](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45034570070) in progress at the last query. The preceding head `396597cbf78ee91120a6172a969a93e79227d1f7` passed all three Actions checks. This checkpoint adds documentation-only commits, so the resulting PR head requires fresh exact-head CI; the available GitHub read interface did not expose an exact-head Workers Builds result. At the pre-checkpoint metadata read, PR #201 was open/draft, 62 commits ahead / 12 behind current `main`, and GitHub reported `mergeable=true`.
-- [ ] Reconcile PR #201's overlapping index/handoff files with separate draft PR #202 before any merge; do not modify the coordination branch or assume either draft's overlapping version can be merged independently.
+- [ ] Recheck exact-head Daily curator tests, Mobile Auth Broker Tests, and public repository security scan on the post-reconciliation PR #201 head. The audit-start head `b91254ff1dec0a0e62f1083d82be8877996085eb` passed runs #45083951234, #45083951231, and #45083951241; these results do not transfer to a new head. The exact-head Workers Builds result is not exposed by the available read-only Actions query.
+- [x] Reconcile the four shared PR #201/#202 files on Buddy's own branch; the protocol link temporarily targets PR #202's branch because the file is not on main.
+- [ ] Finalize an owner-approved merge order for #201/#202, also accounting for PR #200's overlap on ACTIVE_SESSION_BRIEF.md and LOOSE_ENDS.md. The #202-first sequence in its description is a proposal, not authorization.
 - [ ] Perform the fresh-session simulation using merged repository documentation.
 
 ## Legacy Codex/API workflow — execution-state safety
@@ -162,9 +175,11 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - The current continuation worker is the scheduled ChatGPT Buddy using the connected GitHub app and the `babel/chatgpt-buddy-v2` branch; see [docs/BABEL_CHATGPT_BUDDY.md](../../../docs/BABEL_CHATGPT_BUDDY.md).
 
 ## Next action
-Continue the source-to-guide semantic audit and refresh the maintained-file inventory from the current Git tree. The current Buddy repair proposal is PR #201; its audit-start head `67df681f8227b04b4cfe6137a7fcfce544fb25cb` passed exact-head test, security, and Workers Builds checks, and the review identified stale count/activation wording corrected in this batch. Re-review the updated head and its fresh checks before treating the draft as review-clean.
 
-PR #202 is a separate trio-coordination draft that edits several shared index/handoff files also touched by PR #201. Do not modify its branch or PR; reconcile the two drafts' overlap and merge order before making further shared handoff edits. PR #161 and #162 remain separate human-review items. The fresh-session simulation and full semantic audit remain open. Babel continues alongside other explicitly authorized SHIT workstreams; Buddy remains documentation-only and must not describe Babel as the sole SHIT priority.
+1. Check exact-head CI on the post-reconciliation PR #201 head and independently review the complete changed-file list/diff.
+2. Keep PR #201 draft. Do not modify PR #202 or PR #200; reconcile all shared handoff files and obtain an owner-approved merge order before any merge.
+3. After PR #202 is merged by its owner, replace the temporary GitHub branch URL for `project/TRIO_COORDINATION_PROTOCOL.md` in the Buddy guide and docs index with a repository-relative link, then rerun documentation checks.
+4. Continue the maintained-file and technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
