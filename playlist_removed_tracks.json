@@ -1109,6 +1109,96 @@
           "source": "manual removal detected by Tricky Daily live reconciliation",
           "detected_at": "2026-11-21T12:00:00.079251+00:00",
           "last_present_cycle": "2026-11-20T09:10:56.375782+00:00"
+        },
+        {
+          "uri": "spotify:track:2QKLrgXNQtK2c8QbLRO3XC",
+          "name": "Burn The House Down",
+          "artists": [
+            "AJR"
+          ],
+          "album": "The Click (Deluxe Edition)"
+        },
+        {
+          "uri": "spotify:track:20jbSiX29FDX4oQxBXyUEi",
+          "name": "hate that i made you love me",
+          "artists": [
+            "Ariana Grande"
+          ],
+          "album": "hate that i made you love me"
+        },
+        {
+          "uri": "spotify:track:2PnZshFzhKj08VNZcbqpGf",
+          "name": "Alone",
+          "artists": [
+            "Biting Elbows"
+          ],
+          "album": "Shorten the Longing"
+        },
+        {
+          "uri": "spotify:track:555poPmhRmQWPsMDGwkifG",
+          "name": "Cutie",
+          "artists": [
+            "COIN"
+          ],
+          "album": "Uncanny Valley"
+        },
+        {
+          "uri": "spotify:track:3QdvgBVYTRr8iQrsQGoPTn",
+          "name": "It’s All Nothing Until It’s Everything",
+          "artists": [
+            "KNOWER"
+          ],
+          "album": "KNOWER FOREVER"
+        },
+        {
+          "uri": "spotify:track:4znq2zjtVCctHhDmzkY25g",
+          "name": "Bahia Funk - Remastered",
+          "artists": [
+            "Lee Ritenour"
+          ],
+          "album": "Color Rit (Remastered)"
+        },
+        {
+          "uri": "spotify:track:3gNEUjzw7G2CauxXLeh9h3",
+          "name": "Endless Season",
+          "artists": [
+            "Minuano"
+          ],
+          "album": "Butterfly Dream"
+        },
+        {
+          "uri": "spotify:track:25rn08Z5ZR2GSXqLs6lGnj",
+          "name": "Don't Label Me Bitch",
+          "artists": [
+            "Scotty Vanity"
+          ],
+          "album": "Don't Label Me Bitch - Single"
+        },
+        {
+          "uri": "spotify:track:6l70xzvmZdAJnM41s0iPDD",
+          "name": "deathwish (feat. nothing,nowhere.)",
+          "artists": [
+            "Stand Atlantic",
+            "nothing,nowhere."
+          ],
+          "album": "f.e.a.r."
+        },
+        {
+          "uri": "spotify:track:6oyJip5XQHRqcsy6hOTqw3",
+          "name": "Little Lion Man",
+          "artists": [
+            "Tonight Alive",
+            "Dave Petrovic"
+          ],
+          "album": "Punk Goes Pop, Vol. 4"
+        },
+        {
+          "uri": "spotify:track:23OXdR7YuUBVWh5hSnYJau",
+          "name": "Chlorine",
+          "artists": [
+            "Twenty One Pilots"
+          ],
+          "album": "Trench"
         }
       ],
       "whitelisted": []
