@@ -8,7 +8,7 @@
 - **Shared-file correction:** both #201 and #202 versions of `docs/BABEL_CHATGPT_BUDDY.md` include the current v2 branch/PR rules, historical Codex/API quota status, and trio handoff. The previous report that #202 lacked v2/Codex details was incorrect. The README versions both include the Trio Protocol, Daily recommendation-memory guide, and 22-workflow count; #201 uses a direct branch URL while #202 uses a relative link.
 - **Merge gate:** #201/#202 overlap on the Buddy guide, docs index, active-session brief, and loose-ends register. The protocol file exists only on #202's branch and is absent from main. PR #200 also changes the active-session brief and loose-ends register. No merge order is approved; #202's proposed first position is not authorization. Do not merge #201/#202 until all shared files and the order are reconciled, including #200's overlap.
 - **Completed in this batch:** refresh the Buddy-owned active-session brief and loose-ends overlay; verify the Buddy guide and docs index already meet their requested content; independently review the complete 12-file PR #201 diff and source/test claims. Keep all other worker branches, PRs, task settings, prompts, schedules, and environments read-only.
-- [ ] Verify exact-head CI on the new final PR #201 head after this batch.
+- [x] Verify exact-head CI on post-batch head `c741846e84b40c962552f347bf42e7c4d8825d6c`: Daily #45413368231, broker #45413368095, and security #45413368309 passed. The broker job performed non-deploying Worker bundle/Wrangler validation; no separate Workers Builds result was surfaced.
 - [ ] Obtain an owner-approved merge order across #201/#202/#200; keep all PRs draft until their shared-file state is reconciled.
 - [ ] Complete the maintained-file/technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation using repository docs alone.
 
@@ -39,7 +39,7 @@ See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_R
 # Maintainability & Documentation — Roadmap
 
 **Last reviewed:** 2026-11-24 09:08 Eastern
-**Status:** In progress. The Buddy-owned shared-file content and current successor evidence are refreshed on draft PR #201. The post-batch exact-head CI, owner-approved merge order across PRs #201/#202/#200, full file-level coverage, semantic freshness audit, and fresh-session simulation remain open.
+**Status:** In progress. The Buddy-owned shared-file content and current successor evidence are refreshed on draft PR #201. Exact-head GitHub Actions passed on post-batch head `c741846e84b40c962552f347bf42e7c4d8825d6c`; any subsequent commit requires a fresh check. Owner-approved merge order across PRs #201/#202/#200, full file-level coverage, semantic freshness audit, and fresh-session simulation remain open.
 
 ## Purpose
 Make SHIT understandable, maintainable, and recoverable by a contributor or assistant with no access to prior chat history. Repository documentation—not chat memory—is the durable source of truth.
@@ -192,7 +192,7 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 
 ## Next action
 
-1. Verify exact-head CI on the final PR #201 head after the current documentation batch; pre-update checks do not transfer to a later commit.
+1. Re-fetch PR #201's live head and exact-head CI after any subsequent documentation commit; the checks recorded above apply to `c741846e84b40c962552f347bf42e7c4d8825d6c` and do not transfer to a later commit.
 2. Keep PR #201 draft. Obtain an owner-approved merge order across #201/#202/#200; reconcile the four #201/#202 shared files and #200's additional handoff overlap before any merge.
 3. After the Trio Protocol reaches `main`, replace the temporary branch URL in the Buddy guide and docs index with a repository-relative link, then rerun documentation checks.
 4. Continue the maintained-file and technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation using repository documentation alone.
