@@ -1,41 +1,46 @@
-# Current verified checkpoint — 2026-11-24 09:08 Eastern
+# Current verified checkpoint — 2026-11-24 09:35 Eastern
 
-**Current `main`:** `f83b68ce6b631c9ffbd55ad373e9d3b564314ce2` (latest compare base). This snapshot is based on live task records/prompts, open PR metadata, branch comparisons, changed-file lists, and exact-head GitHub Actions. Environment status is unknown for Buddy, Jockey, and Boots because each task inherits an environment and returned no environment details. Successor checks were read-only.
+**Current `main`:** `862e9662a6f2e6b583ef21b5d303134d68205874`. This snapshot uses live automation records/prompts, open PR metadata, branch comparisons, changed-file counts, and exact-head GitHub Actions. All successor checks were read-only. Environment details were not returned for Buddy, Jockey, or Boots; all three statuses are **unknown**.
 
 ## Worker blockers
 
-- **Buddy — IN PROGRESS.** Automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled (daily 09:00 Eastern). Current run `bbd06c35-1e78-832a-9d0f-ab71ba014848` is `in_progress`, scheduled 09:00 and started 09:08:30 Eastern. Latest result `1fc98dce-5084-8324-8cb7-7b32344cc84d` belongs to the previous run, created Nov 23 11:09 Eastern; today's report is pending. Environment **unknown**.
-- **Jockey — BLOCKED.** Automation `6af1645551a48191900c77833073fdfd` is disabled (daily 11:00 Eastern; recorded next run Nov 24 11:00 while disabled). Last run `ae49786b-46e0-8321-949d-9f139020df47` and latest result have matching IDs; the completed, non-truncated report discloses accidental direct-to-main writes and a safe stop. Environment **unknown**. PR #200 exact-head checks pass, but the task is disabled and its branch is diverged.
-- **Boots fallback — BLOCKED.** Automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled (daily 16:30 Eastern; recorded next run Nov 24 16:30 while disabled). Last run/result `a030ee14-e434-832d-a8cc-b462d8e88ed7` match; the completed result is truncated and its available excerpt reports a safe stop on a stale branch/no-PR state. Environment **unknown**.
-- All three saved prompts retain Buddy → Jockey → Boots → Buddy. No complete runtime Phase 1 cycle is observed; Phase 2 cross-repair remains disabled and unauthorized.
+- **Buddy — IN PROGRESS.** Automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled (daily 09:00 Eastern). Run `bbd06c35-1e78-832a-9d0f-ab71ba014848` is `in_progress`, scheduled 09:00 and started 09:35:37 Eastern. Latest result `1fc98dce-5084-8324-8cb7-7b32344cc84d` is from Nov 23 and does not match; no completed report exists for this run. Environment **unknown**.
+- **Jockey — BLOCKED.** Automation `6af1645551a48191900c77833073fdfd` is disabled; daily 11:00 Eastern, next recorded timestamp Nov 24 11:00 while disabled. Last run/result `ae49786b-46e0-8321-949d-9f139020df47` match; the completed, non-truncated report discloses two accidental direct-to-main writes followed by a safe stop. Its prompt still assigns Daily reliability exclusively to Jockey. Environment **unknown**.
+- **Boots fallback — BLOCKED.** Automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled; daily 16:30 Eastern, next recorded timestamp Nov 24 16:30 while disabled. Last run/result `a030ee14-e434-832d-a8cc-b462d8e88ed7` match; the completed result is truncated and its available excerpt reports a safe stop on the stale branch/no-PR state. Its prompt still excludes Jockey's Daily scope and Babel. Environment **unknown**.
+- No complete runtime Buddy → Jockey → Boots → Buddy cycle has been observed. Phase 2 cross-repair remains disabled and unauthorized.
 
 ## Branch and exact-head evidence
 
 | Worker / PR | Head | Ahead / behind `main` | Exact-head Actions |
 |---|---|---:|---|
-| Buddy PR #201 (open/draft; pre-update) | `46694a053b2c5b763e7164915f33c83568a299ec` | 83 / 20 | Daily #45212535395 pass; broker #45212535329 pass; security #45212535384 pass |
-| Trio PR #202 (open/draft) | `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0` | 68 / 20 | broker #45097778021 pass; Daily #45097778095 pass; security #45097778028 pass |
-| Jockey PR #200 (open/draft) | `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` | 67 / 14 | broker #44928121259 pass; Daily #44928121273 pass; security #44928121262 pass |
-| Boots branch (no PR) | `a58e6b7d953428adf9932499a79234fc2ed06150` | 14 / 91 | Daily #42578252673 failed; security #42578252818 failed; broker #42578252704 passed |
+| Buddy PR #201 (pre-change; open/draft) | `045187191d79dbedae48d6735e918512f350a2cd` | 89 / 22 | Daily #45415263443 pass; broker #45415263474 pass; security #45415263509 pass |
+| Trio PR #202 (open/draft) | `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0` | 68 / 22 | broker #45097778021 pass; Daily #45097778095 pass; security #45097778028 pass |
+| Jockey PR #200 (open/draft) | `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` | 67 / 16 | broker #44928121259 pass; Daily #44928121273 pass; security #44928121262 pass |
+| Boots branch (no PR) | `a58e6b7d953428adf9932499a79234fc2ed06150` | 14 / 93 | Daily #42578252673 failed; security #42578252818 failed; broker #42578252704 passed |
+| PR #161 (open/draft) | `8eee8ea4124ccbc085772fd616062548b3bdea88` | 571 / 505 | Daily #42165157006 pass; security #42165156989 pass |
+| PR #162 (open/draft) | `378c5319422e85d84ce64c7f67a5642a96a06be5` | 2 / 371 | Daily #42186485002 failed; security #42186485000 passed |
 
-- PR #201, #202, and #200 are diverged from current `main`; passing exact-head CI does not resolve their ancestry or ownership gates. PR #201's checks above apply to the pre-update head; re-fetch after this checkpoint.
-- PR #161 remains open/draft at head `8eee8ea4124ccbc085772fd616062548b3bdea88` (571 / 503; tests/security passed). PR #162 remains open/draft at head `378c5319422e85d84ce64c7f67a5642a96a06be5` (2 / 369; Daily failed, security passed). Both are read-only review items and were not modified.
+- Buddy/Jockey/Trio/Boots branches are diverged from current `main`; passing checks or GitHub's mergeable flag do not resolve ancestry or ownership gates. PR #201's listed checks are for its pre-change head; the new Buddy commit requires fresh exact-head CI.
 
 ## Shared-file and merge blockers
 
-PR #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Both Buddy-guide versions preserve the v2 branch/PR rules, historical Codex/API quota status, and trio responsibility; the earlier claim that #202 omitted v2/Codex details was incorrect. The README versions both preserve the Trio Start here entry, Daily recommendation-memory guide, and 22-workflow count. Their only material index-link difference is direct PR #202 branch URL on #201 versus a relative protocol link on #202. The protocol file is present on #202's branch but absent from `main`.
+PR #201 and #202 overlap on exactly `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`.
 
-The #202 versions of the active-session brief and loose-ends register still contain stale 2026-11-23 branch/run counts. PR #200 also changes both handoff files. **PR #201 and PR #202 must not be merged until their four shared files and merge order are reconciled.** Any approved sequence must also reconcile PR #200's overlap on the active-session brief and loose-ends register. PR #202's proposed #202-first order is not authorization.
+- Both Buddy-guide versions preserve the v2 branch/PR rules, historical Codex/API quota status, and Trio handoff responsibility. #201 contains a more detailed fallback/read-only explanation; #202 is shorter. Both README versions include the Trio Protocol in Start here, the Daily recommendation-memory guide, and the 22-workflow count.
+- #201 uses a direct PR #202 branch URL while #202 uses a relative protocol link. `project/TRIO_COORDINATION_PROTOCOL.md` exists on #202's branch but returns 404 on `main`, so #201's direct link remains appropriate until the protocol reaches `main`.
+- The #202 handoff overlays still contain stale 2026-11-23 main/branch/run snapshots. PR #200 also changes the active-session brief and loose-ends register; preserve its Jockey-specific history but reconcile both files before any merge.
+
+**PR #201 and PR #202 must not be merged until their four shared files and merge order are reconciled.** Any approved sequence must also account for PR #200's overlap on the two handoff files. PR #202's proposed #202-first order is not authorization; no merge order is approved.
 
 ## Next safe action
 
-Keep PR #201 draft and verify its new final head and exact-head CI. Obtain an owner-approved merge order across #201/#202/#200 before any merge. Do not modify another worker's branch/PR, task, prompt, schedule, environment, or production/provider/playlist/Library data. Continue Babel's maintained-file and technical-guide semantic audit and fresh-session simulation after the shared-handoff merge gate is resolved.
+Keep PR #201 draft and verify the new final head, complete changed-file list, and exact-head CI. Update the PR description with the verified final head/checks. Obtain an owner-approved merge order across #201/#202/#200 before any merge. Keep Jockey and Boots disabled pending owner review; do not change their tasks, prompts, schedules, environments, branches, or PRs. Continue the Babel semantic audit and fresh-session simulation after the shared-handoff merge gate is resolved.
 
 No task configuration, environment, workflow, production setting, secret, provider, playlist, credential, or canonical Library state was changed.
 
 ---
 
-## Historical successor-readiness and shared-PR blockers — 2026-11-23 10:55 Eastern (superseded by the 2026-11-24 checkpoint)
+## Historical successor-readiness and shared-PR blockers — 2026-11-23 10:55 Eastern (superseded by the 2026-11-24 09:35 Eastern checkpoint)
 
 **Current main:** `f3387a29ad2a97017a80968ec1a047a97118c618`. This snapshot is based on live automation records, saved prompts, PR metadata, branch comparisons, changed-file lists, and exact-head GitHub Actions results. The Buddy head shown is the pre-update head; this checkpoint advances it and requires fresh exact-head checks.
 
