@@ -1,4 +1,19 @@
-## 2026-11-23 — Refreshed Buddy/Trio shared handoff and successor evidence
+## 2026-11-24 — Refreshed shared handoff and successor-readiness evidence
+
+- **Current `main`:** `f83b68ce6b631c9ffbd55ad373e9d3b564314ce2`.
+- **Buddy run:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled; current run `bbd06c35-1e78-832a-9d0f-ab71ba014848` is `in_progress` and has no matching completed result. Latest result `1fc98dce-5084-8324-8cb7-7b32344cc84d` is from Nov 23. Environment status is unknown.
+- **Successor readiness:** Jockey automation `6af1645551a48191900c77833073fdfd` is disabled; its completed run `ae49786b-46e0-8321-949d-9f139020df47` reports accidental direct-to-main writes and safe stop. Jockey PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67 ahead / 14 behind, with exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passing. Boots automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled; completed run `a030ee14-e434-832d-a8cc-b462d8e88ed7` has a truncated result reporting a safe stop on its stale branch. `engineering/general` head `a58e6b7d953428adf9932499a79234fc2ed06150` is 14 ahead / 91 behind, has no PR, and exact-head Daily #42578252673/security #42578252818 failed while broker #42578252704 passed. All three environment statuses are unknown.
+- **Buddy PR #201:** pre-update head `46694a053b2c5b763e7164915f33c83568a299ec`, 83 ahead / 20 behind; open/draft, 12 changed files. Exact-head Daily #45212535395, broker #45212535329, and security #45212535384 passed on this pre-update head. A fresh check is required after this batch advances the branch.
+- **Trio PR #202:** head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 20 behind; open/draft, 12 changed files. Exact-head broker #45097778021, Daily #45097778095, and security #45097778028 passed. Its description reports preview job #137441608988 succeeded; not independently re-fetched.
+- **Shared-file correction:** both #201 and #202 versions of `docs/BABEL_CHATGPT_BUDDY.md` include the current v2 branch/PR rules, historical Codex/API quota status, and trio handoff. The previous report that #202 lacked v2/Codex details was incorrect. The README versions both include the Trio Protocol, Daily recommendation-memory guide, and 22-workflow count; #201 uses a direct branch URL while #202 uses a relative link.
+- **Merge gate:** #201/#202 overlap on the Buddy guide, docs index, active-session brief, and loose-ends register. The protocol file exists only on #202's branch and is absent from main. PR #200 also changes the active-session brief and loose-ends register. No merge order is approved; #202's proposed first position is not authorization. Do not merge #201/#202 until all shared files and the order are reconciled, including #200's overlap.
+- **Completed in this batch:** refresh the Buddy-owned active-session brief and loose-ends overlay; verify the Buddy guide and docs index already meet their requested content; independently review the complete 12-file PR #201 diff and source/test claims. Keep all other worker branches, PRs, task settings, prompts, schedules, and environments read-only.
+- [ ] Verify exact-head CI on the new final PR #201 head after this batch.
+- [ ] Obtain an owner-approved merge order across #201/#202/#200; keep all PRs draft until their shared-file state is reconciled.
+- [ ] Complete the maintained-file/technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation using repository docs alone.
+
+---
+## Historical checkpoint — 2026-11-23 Buddy/Trio shared handoff and successor evidence (superseded by 2026-11-24)
 
 - Current `main` at audit start: `f3387a29ad2a97017a80968ec1a047a97118c618`. The Buddy automation is enabled, but its Nov 23 run `1fc98dce-5084-8324-8cb7-7b32344cc84d` remains `in_progress`; the latest completed result is prior run `e560322d-6ac8-8332-84aa-98b2b5816aeb`. Environment status is unknown.
 - Jockey is disabled and **BLOCKED**. Its last run `ae49786b-46e0-8321-949d-9f139020df47` is recorded completed and reports accidental direct-to-main writes followed by a stop. PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67 ahead / 10 behind; exact-head Daily, broker, and security Actions passed. Its branch remains diverged and the task remains disabled.
@@ -23,8 +38,8 @@ See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_R
 
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-23 10:55 Eastern
-**Status:** In progress. The Buddy-owned shared handoff reconciliation and independent review are published in draft PR #201; the final checkpoint head requires fresh CI, and the full file-level coverage, merge-order review, and freshness audit remain open.
+**Last reviewed:** 2026-11-24 09:08 Eastern
+**Status:** In progress. The Buddy-owned shared-file content and current successor evidence are refreshed on draft PR #201. The post-batch exact-head CI, owner-approved merge order across PRs #201/#202/#200, full file-level coverage, semantic freshness audit, and fresh-session simulation remain open.
 
 ## Purpose
 Make SHIT understandable, maintainable, and recoverable by a contributor or assistant with no access to prior chat history. Repository documentation—not chat memory—is the durable source of truth.
@@ -177,10 +192,10 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 
 ## Next action
 
-1. Check exact-head CI on the final PR #201 head after this final roadmap checkpoint commit.
-2. Keep PR #201 draft. Do not modify PR #202 or PR #200; obtain an owner-approved merge order that accounts for the four #201/#202 shared files and #200's overlap on the active-session brief and loose-ends register.
-3. After PR #202 is merged by its owner, replace the temporary GitHub branch URL for `project/TRIO_COORDINATION_PROTOCOL.md` in the Buddy guide and docs index with a repository-relative link, then rerun documentation checks.
-4. Continue the maintained-file and technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation.
+1. Verify exact-head CI on the final PR #201 head after the current documentation batch; pre-update checks do not transfer to a later commit.
+2. Keep PR #201 draft. Obtain an owner-approved merge order across #201/#202/#200; reconcile the four #201/#202 shared files and #200's additional handoff overlap before any merge.
+3. After the Trio Protocol reaches `main`, replace the temporary branch URL in the Buddy guide and docs index with a repository-relative link, then rerun documentation checks.
+4. Continue the maintained-file and technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation using repository documentation alone.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
