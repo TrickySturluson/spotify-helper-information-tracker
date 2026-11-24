@@ -1,4 +1,47 @@
-# Current successor-readiness and shared-PR overlay — 2026-11-23 10:55 Eastern
+# Current successor-readiness and shared-PR overlay — 2026-11-24 09:08 Eastern
+
+**Evidence basis:** current `main` is `f83b68ce6b631c9ffbd55ad373e9d3b564314ce2` (latest compare base; commit message: “Enrich music durations and artist profiles”). This snapshot uses live automation records and saved prompts, open PR metadata, branch comparisons, changed-file lists, and exact-head PR-triggered GitHub Actions. Successor checks were read-only. Environment details were not returned for any of the three workers, so all environment statuses are **unknown**. Buddy's current run is still in progress and has no matching completed result. The Buddy head below is the pre-update head; this batch advances it, so re-fetch the final PR head and exact-head checks after publication.
+
+## Worker automation and readiness
+
+- **Buddy — IN PROGRESS.** Automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled on a daily 09:00 Eastern schedule. Current run `bbd06c35-1e78-832a-9d0f-ab71ba014848` is recorded `in_progress`, scheduled for 09:00 and started at 09:08:30 Eastern; it has no completion time. Latest result `1fc98dce-5084-8324-8cb7-7b32344cc84d` was created 2026-11-23 11:09 Eastern and does not match the current run, so today's report is pending. The recorded `next_run_time` still points to the current 09:00 occurrence; no later future occurrence was exposed while it is running. Environment selection is inherited and environment details are absent (**unknown**). The saved prompt remains Babel-only, GitHub-app-only, and draft-PR-only, with the Jockey → Boots fallback.
+- **Jockey — BLOCKED.** Automation `6af1645551a48191900c77833073fdfd` is disabled; its daily target and recorded next run are 2026-11-24 11:00 Eastern, but it cannot run while disabled. Last run `ae49786b-46e0-8321-949d-9f139020df47` is recorded `completed`; the matching result has the same run ID, was created after run start, and is not truncated. Its report discloses two accidental direct-to-main file writes followed by a safe stop. The saved prompt still assigns Tricky Daily priority and preserves the read-only Boots → Buddy fallback. Environment selection is inherited; details are absent (**unknown**).
+- **Boots fallback — BLOCKED.** Automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled; its daily target and recorded next run are 2026-11-24 16:30 Eastern, but it cannot run while disabled. Last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` is recorded `completed`; the matching result has the same run ID and was created after run start, but its content is truncated. The available excerpt reports a safe stop on a stale branch with no PR. The saved prompt still assigns general engineering outside Jockey/Babel and retains the read-only Buddy successor check. Environment selection is inherited; details are absent (**unknown**).
+- All three saved prompts retain the intended mapping Buddy → Jockey, Jockey → Boots, Boots → Buddy. No complete runtime Phase 1 cycle has been observed. Phase 2 cross-repair remains disabled and unauthorized.
+
+## Current branch and PR evidence
+
+- **Main:** `f83b68ce6b631c9ffbd55ad373e9d3b564314ce2`.
+- **Buddy PR #201:** open/draft on `babel/chatgpt-buddy-v2`; pre-update head `46694a053b2c5b763e7164915f33c83568a299ec`; 83 ahead / 20 behind current `main`; 12 changed files. Exact-head Actions passed: Daily curator tests [#45212535395](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45212535395), Mobile Auth Broker Tests [#45212535329](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45212535329), and public repository security scan [#45212535384](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45212535384). No separate Workers Builds result was surfaced. These checks apply to the pre-update head, not this checkpoint.
+- **Trio PR #202:** open/draft on `coordination/trio-readiness-handoffs`; head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`; 68 ahead / 20 behind; 12 changed files. Exact-head Actions passed: Mobile Auth Broker Tests [#45097778021](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45097778021), Daily curator tests [#45097778095](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45097778095), and public repository security scan [#45097778028](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/45097778028). Its PR description reports Workers preview job `137441608988` succeeded; that external result was not independently re-fetched.
+- **Jockey PR #200:** open/draft on `engineering/priority`; head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`; 67 ahead / 14 behind; 14 changed files. Exact-head Actions passed: Mobile Auth Broker Tests [#44928121259](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44928121259), Daily curator tests [#44928121273](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44928121273), and public repository security scan [#44928121262](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44928121262). Passing CI does not clear the disabled-task or branch-recovery blocker.
+- **Boots branch:** `engineering/general`, head `a58e6b7d953428adf9932499a79234fc2ed06150`; 14 ahead / 91 behind; no matching open PR. Exact-head Daily curator tests [#42578252673](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42578252673) and public repository security scan [#42578252818](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42578252818) failed; Mobile Auth Broker Tests [#42578252704](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42578252704) passed.
+- **PR #161:** open/draft, head `8eee8ea4124ccbc085772fd616062548b3bdea88`, 571 ahead / 503 behind; inspected read-only. Exact-head Daily curator tests [#42165157006](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42165157006) and security scan [#42165156989](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42165156989) passed.
+- **PR #162:** open/draft, head `378c5319422e85d84ce64c7f67a5642a96a06be5`, 2 ahead / 369 behind; inspected read-only. Exact-head Daily curator tests [#42186485002](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42186485002) failed; security scan [#42186485000](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42186485000) passed.
+- The Buddy, Trio, and Jockey branches compare as diverged from current `main`; do not treat GitHub's mergeable flag or passing historical checks as merge authorization or proof of worker readiness.
+
+## Shared-file reconciliation and merge gate
+
+PRs #201 and #202 overlap on exactly four paths: `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`.
+
+- **Buddy guide:** both live branch versions contain the current `babel/chatgpt-buddy-v2` branch/PR rules, historical Codex/API quota status, and Buddy → Jockey → Boots → Buddy responsibility. Correction to the previous handoff: PR #202's version does **not** omit the v2 branch rules or Codex history. PR #201 has a more detailed fallback/read-only explanation and links directly to PR #202's branch; PR #202 uses a shorter handoff paragraph and a repository-relative protocol link.
+- **Documentation index:** both versions include the Trio Protocol in Start here, the Daily recommendation-memory guide entry, and the 22-workflow catalogue count. PR #201 uses a direct link to PR #202's branch; PR #202 uses `../project/TRIO_COORDINATION_PROTOCOL.md`.
+- The protocol file exists on PR #202's branch but returns 404 on current `main`. The direct branch link on #201 is therefore appropriate before the protocol is merged; the relative link on #202 is valid on its own branch. Do not replace the #201 link until the protocol is present on `main`.
+- The #202 active-session brief and loose-ends register still contain a 2026-11-23 snapshot with stale main/branch/run counts. PR #200 also changes both handoff files. The current #201 overlay is refreshed in this batch, but final cross-PR content and merge order remain unresolved.
+
+**Do not merge PR #201 or PR #202 until all four shared files and the merge order are reconciled.** Any approved sequence must also account for PR #200's overlap on `project/ACTIVE_SESSION_BRIEF.md` and `project/LOOSE_ENDS.md`. PR #202's suggested #202-first order is a proposal, not authorization.
+
+## Phase status and next safe action
+
+Jockey and Boots are BLOCKED; their readiness checks do not transfer ownership. Buddy's current scheduled run remains in progress with no matching completed result. Phase 1 runtime-cycle acceptance is not met, and Phase 2 cross-repair remains disabled and unauthorized.
+
+Keep PR #201 draft. Re-fetch its final head, complete changed-file list, and exact-head CI after this batch. Obtain an owner-approved merge order across #201/#202/#200 before any merge. Do not edit another worker's task, prompt, schedule, environment, branch, or PR. Continue the maintained-file/source-guide semantic audit and fresh-session simulation after the shared-handoff checkpoint is reconciled.
+
+No task configuration, environment, workflow, production setting, secret, provider, playlist, credential, or canonical Library state was changed.
+
+---
+
+## Historical successor-readiness and shared-PR overlay — 2026-11-23 10:55 Eastern (superseded by the 2026-11-24 overlay)
 
 **Evidence basis:** live automation records and saved prompts, current `main` (`f3387a29ad2a97017a80968ec1a047a97118c618`), open PR metadata, branch comparisons, changed-file lists, and exact-head GitHub Actions runs. Successor checks were read-only. The Buddy PR head below is the pre-update head observed immediately before this checkpoint; this commit advances it, so re-fetch the final PR head and CI after publication.
 
@@ -36,7 +79,7 @@ No task configuration, environment, workflow, production setting, secret, provid
 
 ---
 
-> Historical snapshots below are retained for provenance. Any earlier section labeled “current”, “latest”, or “verified” is superseded for live worker, automation, branch, PR, and CI status by the 2026-11-23 overlay above; retain older non-worker project history as historical context.
+> Historical snapshots below are retained for provenance. Any earlier section labeled “current”, “latest”, or “verified” is superseded for live worker, automation, branch, PR, and CI status by the 2026-11-24 overlay above; retain older non-worker project history as historical context.
 
 ---
 
