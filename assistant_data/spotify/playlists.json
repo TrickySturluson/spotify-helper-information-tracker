@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "captured_at": "2026-11-24T17:47:14.390889+00:00",
+  "captured_at": "2026-11-24T17:58:11.952366+00:00",
   "playlist_count": 60,
   "playlists": [
     {
@@ -917,9 +917,9 @@
       "item_count": 49,
       "items_accessible": true,
       "last_items_accessible_at": "2026-11-24T17:47:06.777628+00:00",
-      "captured_at": "2026-11-24T17:47:06.777624+00:00",
+      "captured_at": "2026-11-24T17:58:11.952366+00:00",
       "record_path": "assistant_data/spotify/playlists/4yUVHSMQySfWeEowfIMcx7.json",
-      "changed": true
+      "changed": false
     },
     {
       "id": "1C6heonV5mxcBwNpmOGMjC",

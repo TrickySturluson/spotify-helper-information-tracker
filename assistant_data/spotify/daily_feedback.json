@@ -7737,12 +7737,19 @@
         {
           "at": "2026-11-23T13:58:25.255335+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030435+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030435+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:05Cg8oVWCc1gvj78YVRgeU": {
       "uri": "spotify:track:05Cg8oVWCc1gvj78YVRgeU",
@@ -11204,12 +11211,19 @@
         {
           "at": "2026-11-21T12:01:06.023450+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030601+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030601+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:7zksuGSqGbCioevwkEhfGi": {
       "uri": "spotify:track:7zksuGSqGbCioevwkEhfGi",
@@ -11352,12 +11366,19 @@
         {
           "at": "2026-11-23T13:58:24.971308+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030608+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030608+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:18VFNz29K08xzDsV2yq2wC": {
       "uri": "spotify:track:18VFNz29K08xzDsV2yq2wC",
@@ -11492,12 +11513,19 @@
         {
           "at": "2026-11-23T13:58:24.748440+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030614+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030614+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:5QT0t5IaAHnpoCxepbba9x": {
       "uri": "spotify:track:5QT0t5IaAHnpoCxepbba9x",
@@ -11592,12 +11620,19 @@
         {
           "at": "2026-11-23T13:58:25.216911+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030620+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030620+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:6l70xzvmZdAJnM41s0iPDD": {
       "uri": "spotify:track:6l70xzvmZdAJnM41s0iPDD",
@@ -11627,12 +11662,19 @@
         {
           "at": "2026-11-23T13:58:25.126228+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030621+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030621+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:25rn08Z5ZR2GSXqLs6lGnj": {
       "uri": "spotify:track:25rn08Z5ZR2GSXqLs6lGnj",
@@ -11662,12 +11704,19 @@
         {
           "at": "2026-11-23T13:58:24.933491+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030623+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030623+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:4znq2zjtVCctHhDmzkY25g": {
       "uri": "spotify:track:4znq2zjtVCctHhDmzkY25g",
@@ -11697,12 +11746,19 @@
         {
           "at": "2026-11-23T13:58:24.736170+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030625+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030625+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:1uTU21oMzMr9YQG6xLKYym": {
       "uri": "spotify:track:1uTU21oMzMr9YQG6xLKYym",
@@ -12617,12 +12673,19 @@
         {
           "at": "2026-11-23T13:58:25.191347+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030689+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030689+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:7MJBBBCfhjj716IaUq4HVG": {
       "uri": "spotify:track:7MJBBBCfhjj716IaUq4HVG",
@@ -12817,12 +12880,19 @@
         {
           "at": "2026-11-23T13:58:25.034307+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030699+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030699+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:70L6nHORQsblY813yNqUR3": {
       "uri": "spotify:track:70L6nHORQsblY813yNqUR3",
@@ -13022,12 +13092,19 @@
         {
           "at": "2026-11-23T13:58:25.332260+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "unknown",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": null
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-24T14:30:54.207717+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-24T14:30:56.030710+00:00"
+      "lastfm_observed_at": "2026-11-24T14:30:56.030710+00:00",
+      "last_removed_at": "unknown"
     },
     "spotify:track:0AOQ6jhkN9vpigU1KA2XD3": {
       "uri": "spotify:track:0AOQ6jhkN9vpigU1KA2XD3",
@@ -13783,5 +13860,5 @@
       "file_present": false
     }
   },
-  "updated_at": "2026-11-24T14:30:56.030764+00:00"
+  "updated_at": "2026-11-24T17:58:11.969413+00:00"
 }
