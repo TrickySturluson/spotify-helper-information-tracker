@@ -1,3 +1,23 @@
+## 2026-11-25 — Refreshed Buddy handoff and successor-readiness evidence (09:23 Eastern)
+
+- **Current main:** `98d5a4b1c1e9906073ba23b1e16979e1c4a23316`. The live branch comparison is 90 ahead / 28 behind for Buddy PR #201.
+- **Buddy daily gate:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled. Current run `24a0e222-8970-8330-83d8-3a407f7821cb` is `in_progress`; latest result `bbd06c35-1e78-832a-9d0f-ab71ba014848` is from Nov 24 and does not match. Buddy is pending today; environment unknown.
+- **Jockey — BLOCKED:** automation `6af1645551a48191900c77833073fdfd` is disabled. Last run/result `ae49786b-46e0-8321-949d-9f139020df47` match and the non-truncated report discloses two accidental direct-to-main writes. PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67/22; exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passed. Environment unknown.
+- **Boots fallback — BLOCKED:** automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled. Last run/result `a030ee14-e434-832d-a8cc-b462d8e88ed7` match but the result is truncated. `engineering/general` head `a58e6b7d953428adf9932499a79234fc2ed06150` is 14/99 with no PR; Daily/security failed, broker passed. Environment unknown.
+- **Other PRs:** Buddy #201 head `b89b83e247de8755fe9741515fa49237c4d1787f`, 90/28, 12 files; exact-head Daily #45418023021, broker #45418022424, security #45418023057 passed. Trio #202 head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68/28, 12 files; exact-head broker #45097778021, Daily #45097778095, security #45097778028 passed. Both remain open/draft and diverged. #201's complete changed-file list remains 12 paths (11 Markdown and one documentation-contract test).
+- **Shared-file finding:** both live #201/#202 versions of the Buddy guide and docs index already contain the required v2 branch rules, historical Codex/API status, Trio handoff, Daily recommendation-memory entry, and 22-workflow count. #201's fallback detail is more complete. The #202 active-session/loose-ends snapshots are stale; #200 also overlaps both. The Trio Protocol remains only on #202's branch. #202's PR description incorrectly says #201 lacks the Trio additions; current #201 source contradicts that claim.
+- **Cross-project continuity gap:** mainline NEXT_WORK still calls authentication the sole focused engineering priority, while the live Jockey prompt/PR #200 assign Daily; the goals index has contradictory top/later priority statements. PR #202 proposes handoff/log updates but remains unmerged.
+- **Merge gate:** no owner-approved merge order exists. Do not merge #201/#202 until the four shared files are reconciled; include PR #200's two-file overlap. #202-first is a proposal, not authorization.
+- **Completed in this batch:** refreshed the Buddy-owned active-session brief and loose-ends register, updated this roadmap/action log, and re-read the guide/index without changing them because they already satisfy the requested requirements on Buddy's branch. No other worker's branch/PR or task was modified.
+- **Pre-change exact-head CI:** #201 Daily #45418023021, broker #45418022424, and security #45418023057 passed. The documentation batch creates a new head; verify exact-head CI after publication and record the final head/check links in PR #201's description.
+- **Next:** keep #201 draft; verify the new head and exact-head checks; obtain an owner-approved merge sequence across #201/#202/#200; continue maintained-file/guide semantic coverage and the fresh-session simulation.
+
+---
+
+> The 2026-11-24 checkpoint below is retained as history and is superseded for live status by the 2026-11-25 checkpoint above.
+
+---
+
 ## 2026-11-24 — Reconciled Buddy-owned shared handoff and refreshed successor evidence (09:35 Eastern)
 
 - **Current `main`:** `862e9662a6f2e6b583ef21b5d303134d68205874`.
@@ -43,7 +63,7 @@ See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_R
 
 # Maintainability & Documentation — Roadmap
 
-**Last reviewed:** 2026-11-24 09:35 Eastern
+**Last reviewed:** 2026-11-25 09:23 Eastern
 **Status:** In progress. The four shared files are reconciled on Buddy's branch: the Buddy guide and docs index already satisfied the requirements and were retained; the active-session brief and loose-ends register now carry a 2026-11-24 09:35 Eastern overlay. Exact-head GitHub Actions passed on pre-change Buddy head `045187191d79dbedae48d6735e918512f350a2cd`; this batch advances the branch and requires fresh checks. Owner-approved merge order across PRs #201/#202/#200, maintained-file/guide semantic coverage, all-goal review, operational safety-contract audit, and fresh-session simulation remain open.
 
 ## Purpose
