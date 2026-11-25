@@ -281,6 +281,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -397,6 +405,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-21"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -455,6 +471,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -722,6 +746,31 @@
     }
   },
   {
+    "spotify_id": "63y6xWR4gXz7bnUGOk8iI6",
+    "spotify_uri": "spotify:track:63y6xWR4gXz7bnUGOk8iI6",
+    "artist": "Ariana Grande",
+    "track": "Into You",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "64WtHwNC5X0VzGfzA0IES3",
     "spotify_uri": "spotify:track:64WtHwNC5X0VzGfzA0IES3",
     "artist": "As It Is",
@@ -745,6 +794,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -936,6 +993,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -1447,6 +1512,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -1606,6 +1679,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -1772,6 +1853,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-21"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -2082,6 +2171,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -2147,6 +2244,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -2388,6 +2493,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -2657,6 +2770,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -2722,6 +2843,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -2931,6 +3060,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -3074,6 +3211,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -3215,6 +3360,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -3374,6 +3527,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -3472,6 +3633,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -3683,6 +3852,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -3748,6 +3925,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -3889,6 +4074,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -4232,6 +4425,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -4440,6 +4641,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -4597,6 +4806,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -5065,6 +5282,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -5484,6 +5709,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -6254,6 +6487,31 @@
     }
   },
   {
+    "spotify_id": "6GpyiQU0RDvZ2ZZv7xmvww",
+    "spotify_uri": "spotify:track:6GpyiQU0RDvZ2ZZv7xmvww",
+    "artist": "Joe Sample",
+    "track": "Born to Be Bad",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
     "spotify_id": "13vn6uH1ZjjpwWglgAvf2U",
     "spotify_uri": "spotify:track:13vn6uH1ZjjpwWglgAvf2U",
     "artist": "Joey Myron",
@@ -7008,6 +7266,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -7124,6 +7390,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -7277,6 +7551,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -7334,6 +7616,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -7450,6 +7740,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -7919,6 +8217,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -8084,6 +8390,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -8451,6 +8765,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -8566,6 +8888,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -9379,6 +9709,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -9620,6 +9958,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -9929,6 +10275,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -10505,6 +10859,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -11127,6 +11489,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -11293,6 +11663,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -11688,6 +12066,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -12040,6 +12426,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-21"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -12271,6 +12665,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -12565,6 +12967,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -12804,6 +13214,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -13680,6 +14098,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -13755,6 +14181,31 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-10"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "4fn4imVYZcfM5s4cSCDRTm",
+    "spotify_uri": "spotify:track:4fn4imVYZcfM5s4cSCDRTm",
+    "artist": "The Kinks",
+    "track": "A Well Respected Man",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -13854,6 +14305,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -14293,6 +14752,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -14377,6 +14844,31 @@
           "playlist_id": "4diIlnF8BlgoJrwUfejf49",
           "playlist_name": "Booze or Boos!",
           "preview_date": "2026-11-02"
+        }
+      }
+    ],
+    "listening_evidence": {
+      "plays": null,
+      "scrobbles": null,
+      "saved": null
+    }
+  },
+  {
+    "spotify_id": "47EaKrwkpqSS7IzXFz7TIG",
+    "spotify_uri": "spotify:track:47EaKrwkpqSS7IzXFz7TIG",
+    "artist": "The Technicolors",
+    "track": "Aphantasia",
+    "album": null,
+    "duration_ms": null,
+    "isrc": null,
+    "track_mbid": null,
+    "discovery_evidence": [
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -14953,6 +15445,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -15136,6 +15636,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -15252,6 +15760,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -15334,6 +15850,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
@@ -15805,6 +16329,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -15896,6 +16428,14 @@
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
         }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
+        }
       }
     ],
     "listening_evidence": {
@@ -15961,6 +16501,14 @@
         "context": {
           "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
           "cycle_date_eastern": "2026-11-23"
+        }
+      },
+      {
+        "source": "tricky_daily_recommendations",
+        "observed_at": "2026-11-25T13:49:45.098534+00:00",
+        "context": {
+          "playlist_id": "4yUVHSMQySfWeEowfIMcx7",
+          "cycle_date_eastern": "2026-11-25"
         }
       }
     ],
