@@ -1,3 +1,15 @@
+## 2026-11-25 — Daily recommendation engine upgrade approved
+
+- **User request:** add the recommendation-engine improvements to the SHIT roadmap. The user reported recurring artists/tracks and highly similar ordering across Daily cycles, specifically mentioning Sound of Ceres and VIAL.
+- **Source review:** current main already contains recent-listening trend generation and confidence-gated artist momentum (`spotify_listening_trends.py`), candidate scoring and liked/post-add feedback (`spotify_discovery.py`), and liked/listening observation (`spotify_daily_feedback.py`). These should be extended rather than rebuilt.
+- **Integration gap:** `scripts/spotify/daily_recommendation_memory.py` is present as an append-only event-ledger foundation, but the reviewed Daily cycle does not yet wire its recommendation-selection/publication/verification calls into the cycle or scheduled observation workflow. Integration and dedicated regression coverage remain unfinished; do not describe the memory system as operational.
+- **Approved roadmap scope:** end-to-end recommendation memory; recent-taste momentum; post-add liked signals; per-track cooldowns; rolling artist saturation/consecutive-cycle penalties; genre/sound diversity recovery; explainable confidence-aware scoring; offline replay and rollback.
+- **Evidence rules:** Last.fm scrobbles, Spotify playback-tracker observations, likes/saves, playlist exposure, explicit removals, retention and unknown coverage remain separate. Missing coverage is unknown, not zero. Neutral curator rotation is not rejection. Track-level rejection does not automatically imply artist-level dislike.
+- **Safety/order:** preserve the existing 60-track target, exact blacklist/whitelist, URI uniqueness, transactional stage/snapshot/recovery, and no-write-by-default requirements. Finish remaining P0 operational/recovery gates; implement and evaluate recommendation changes offline before production scoring-weight changes. No Spotify/Last.fm calls or playlist mutations were made for this roadmap update.
+- **Repository evidence reviewed:** main at `3df1a47a7d9ce8063664fe1de9e924f5078c2e33`; current Daily roadmap and feedback/scoring/trend/memory source. This is a planning update only, not an implementation or validation claim.
+
+---
+
 ## 2026-11-07 UTC / 2026-11-06 Eastern — Liked-song observation limit fixed
 
 - **Audit finding:** successful live cycle #42316296314 exposed HTTP 400 from `GET /me/library/contains` because the code sent 50 URIs in a request. Spotify's current endpoint limit is 40. The cycle still completed and the playlist replacement/read-back succeeded, but `liked_at_add` and immediate post-add liked observation were unavailable for that cycle.
