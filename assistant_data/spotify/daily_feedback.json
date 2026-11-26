@@ -9804,12 +9804,19 @@
         {
           "at": "2026-11-24T14:30:54.468522+00:00",
           "reason": "curator_rotation"
+        },
+        {
+          "at": "2026-11-26T13:28:40.684180+00:00",
+          "reason": "user_removed",
+          "source": "daily_snapshot_reconciliation",
+          "last_present_cycle": "2026-11-25T13:49:50.888245+00:00"
         }
       ],
       "liked_at_add": false,
       "last_added_at": "2026-11-25T13:49:50.915092+00:00",
       "lastfm_post_add_scrobbles": 0,
-      "lastfm_observed_at": "2026-11-26T13:29:38.940107+00:00"
+      "lastfm_observed_at": "2026-11-26T13:29:38.940107+00:00",
+      "last_removed_at": "2026-11-26T13:28:40.684180+00:00"
     },
     "spotify:track:3GWIXGRxySo6XWH4lkrjWR": {
       "uri": "spotify:track:3GWIXGRxySo6XWH4lkrjWR",
@@ -15246,5 +15253,5 @@
       "file_present": false
     }
   },
-  "updated_at": "2026-11-26T13:29:38.940354+00:00"
+  "updated_at": "2026-11-26T17:07:28.877997+00:00"
 }
