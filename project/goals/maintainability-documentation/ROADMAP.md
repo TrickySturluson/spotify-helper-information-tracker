@@ -1,3 +1,5 @@
+# Maintainability & Documentation — Roadmap
+
 ## 2026-11-26 — Refreshed shared handoff and successor evidence (09:54 Eastern)
 
 - **Current main:** 015e75e07df7667750760ce5e8b557e3eee16bc3. At audit start, Buddy PR #201 was open/draft on babel/chatgpt-buddy-v2 at 2ad67a7b027cfcc7fbe8d571ce9b5df8ea911a3d, 95 ahead / 34 behind, 12 changed files, GitHub mergeable=false. The handoff refresh below advances that branch; its final head and exact-head checks must be re-fetched.
@@ -76,8 +78,6 @@ ChatGPT may independently publish routine, verified documentation-only changes d
 Buddy remains proposal-only on `babel/chatgpt-buddy-v2` and its draft PR. It must not write to `main`, approve, mark ready, close, merge, or self-merge. Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside ChatGPT's documentation authority and require separate user authorization.
 
 See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../../../docs/BABEL_CHATGPT_BUDDY.md). This overlay supersedes older statements below that call documentation the sole active SHIT workstream or require user review/merge for every documentation change.
-
-# Maintainability & Documentation — Roadmap
 
 **Last reviewed:** 2026-11-25 09:23 Eastern
 **Status:** In progress. The four shared files are reconciled on Buddy's branch: the Buddy guide and docs index already satisfied the requirements and were retained; the active-session brief and loose-ends register now carry a 2026-11-24 09:35 Eastern overlay. Exact-head GitHub Actions passed on pre-change Buddy head `045187191d79dbedae48d6735e918512f350a2cd`; this batch advances the branch and requires fresh checks. Owner-approved merge order across PRs #201/#202/#200, maintained-file/guide semantic coverage, all-goal review, operational safety-contract audit, and fresh-session simulation remain open.
