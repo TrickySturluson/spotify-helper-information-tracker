@@ -1199,6 +1199,17 @@
             "Twenty One Pilots"
           ],
           "album": "Trench"
+        },
+        {
+          "uri": "spotify:track:11ftaqijxIgRVBHaOYLUpu",
+          "name": "往事只能回味",
+          "artists": [
+            "林淑容"
+          ],
+          "album": "林淑容 - 难忘怀念曲 2",
+          "source": "manual removal detected by Tricky Daily live reconciliation",
+          "detected_at": "2026-11-26T13:28:40.684180+00:00",
+          "last_present_cycle": "2026-11-25T13:49:50.888245+00:00"
         }
       ],
       "whitelisted": []
