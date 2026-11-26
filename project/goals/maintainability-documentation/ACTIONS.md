@@ -1,3 +1,5 @@
+# Maintainability & Documentation — Actions & Evidence
+
 ## 2026-11-26 — Reconciled Buddy-owned shared handoff and Phase 1 successor checks (09:54 Eastern)
 
 - **Selected task:** refresh the Buddy-owned current handoff after checking Jockey and, because Jockey is blocked, the Boots fallback. This was one documentation/continuity batch; no implementation work was taken over.
@@ -156,8 +158,6 @@ No provider, playlist, credential, production, workflow, canonical Library, gene
 - **Changes in this batch:** corrected the workflow count in `docs/README.md`; labeled Codex API activation details in `docs/WORKFLOWS.md` as historical and unauthorized without explicit reauthorization; replaced the roadmap's stale Buddy/Codex activation narrative, refreshed current structural counts, and made the next action reflect the PR #201/#202 overlap.
 - **Verification boundary:** the checks above apply to the audit-start head `67df681f`. This documentation batch creates a new PR head and requires fresh exact-head checks plus a final diff/read-back review. No tests were run manually and no workflow was manually dispatched.
 - **Next:** inspect the final PR #201 head and complete changed-file list, verify fresh CI, then reconcile overlapping handoff/index changes with PR #202 without modifying its branch. Keep the fresh-session simulation and full semantic audit open; Babel remains in progress.
-
-# Maintainability & Documentation — Actions & Evidence
 
 ## 2026-11-21 — Corrected legacy Codex workflow execution-state documentation
 
