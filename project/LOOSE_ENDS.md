@@ -1,3 +1,43 @@
+# Current verified blockers — 2026-11-26 09:54 Eastern
+
+**Current main:** 015e75e07df7667750760ce5e8b557e3eee16bc3. This checkpoint uses live automation records/prompts, current PR metadata, branch comparisons, exact-head PR-triggered workflow runs, and direct reads of the shared #201/#202 files. All successor checks were read-only. Buddy, Jockey, and Boots use inherited environments with no environment details returned; all three environment statuses are **unknown**.
+
+## Worker readiness blockers
+
+- **Buddy — pending today at audit time.** Automation 6aed3a70baf88191ab1dbfaa8f7dba91 is enabled (daily 09:00 Eastern). Current run ddd00db7-bf40-8322-ad5a-947d8a3a4816 is in_progress, scheduled 09:00 and started 09:54:31 Eastern. Latest result 24a0e222-8970-8330-83d8-3a407f7821cb is from November 25 and does not match. No completed report-bearing result for November 26 was visible. Environment **unknown**.
+- **Jockey — BLOCKED.** Automation 6af1645551a48191900c77833073fdfd is currently enabled, daily 11:00 Eastern, next run November 26 at 11:00. Last run/result ae49786b-46e0-8321-949d-9f139020df47 match; the completed non-truncated report discloses two accidental direct-to-main writes followed by a safe stop. No newer run is recorded, so the November 22–25 expected windows were missed. PR #200 is open/draft at head 4f0291b8990987ca5bb84bdea06d6d6bad1113fe, 67/28, 14 files, mergeable=false; exact-head Daily, broker, and security checks pass. Environment **unknown**. Owner review and an approved branch-reconciliation/re-enablement decision are required.
+- **Boots fallback — BLOCKED.** Automation Automation_2e1357c87e688191829bd2380047f46d is disabled, daily 16:30 Eastern, next scheduled time November 26 at 16:30 while disabled. Last run/result 183a1311-bac4-832d-b8a7-21afa10020d3 match; the completed result was created after run start but is truncated. The available excerpt reports a safe stop on a divergent branch and that the task disabled itself. engineering/general head a58e6b7d953428adf9932499a79234fc2ed06150 is 14/105 with no PR; exact-head Daily/security fail and broker passes. Environment **unknown**. Owner-approved branch recovery and a fresh PR/check baseline are required before re-enablement.
+- The saved prompts still match their intended roles and Phase 1 successor mappings. No complete runtime handoff cycle has been observed. Phase 2 cross-repair remains disabled and unauthorized.
+
+## Branch and exact-head evidence
+
+| PR / branch | Head | Ahead / behind main | Exact-head Actions |
+|---|---|---:|---|
+| #201 Buddy (open/draft; 12 files) | 2ad67a7b027cfcc7fbe8d571ce9b5df8ea911a3d | 95 / 34 | Daily #45636185404 pass; broker #45636185408 pass; security #45636185405 pass |
+| #202 Trio (open/draft; 12 files) | 8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0 | 68 / 34 | broker #45097778021 pass; Daily #45097778095 pass; security #45097778028 pass |
+| #200 Jockey (open/draft; 14 files) | 4f0291b8990987ca5bb84bdea06d6d6bad1113fe | 67 / 28 | broker #44928121259 pass; Daily #44928121273 pass; security #44928121262 pass |
+| Boots (no PR) | a58e6b7d953428adf9932499a79234fc2ed06150 | 14 / 105 | Daily #42578252673 fail; security #42578252818 fail; broker #42578252704 pass |
+
+## Shared PR and merge blockers
+
+PR #201 and #202 overlap on exactly four files: docs/BABEL_CHATGPT_BUDDY.md, docs/README.md, project/ACTIVE_SESSION_BRIEF.md, and project/LOOSE_ENDS.md. Both current guide/index branches preserve the v2 Buddy branch/PR rules, historical Codex/API status, Trio handoff, Daily recommendation-memory guide, and 22-workflow count. #201 has more detailed fallback/read-only wording and points to the #202 review branch; #202 uses a relative link. The protocol file exists on #202's branch but not on main.
+
+The #202 active-session and loose-ends overlays are still dated November 23. The #202 PR description's claim that #201 lacks the Trio additions is stale; the current #201 guide and index include them. PR #200 additionally changes both handoff files.
+
+**PR #201 and PR #202 must not be merged until their four shared files and merge order are reconciled.** Any approved sequence must also account for PR #200's overlap on the two handoff files. The suggested #202-first order is not authorization. Keep all three PRs draft.
+
+Mainline NEXT_WORK still says authentication is the sole focused engineering priority, while the live Jockey prompt/PR #200 assign Tricky Daily reliability; the goals index has conflicting top and later priority statements. PR #202 proposes handoff/log updates, but they remain unmerged.
+
+## Next safe actions
+
+1. Keep PR #201 draft and verify its post-batch head, complete changed-file list, and exact-head CI.
+2. Obtain an owner-approved merge order across #201/#202/#200 before any merge.
+3. Keep Jockey blocked and Boots disabled pending owner-directed recovery; do not edit their tasks, prompts, schedules, environments, branches, or PRs.
+4. Continue Babel's maintained-file/guide semantic audit and fresh-session simulation after the shared-handoff merge gate is resolved.
+
+No task configuration, prompt, schedule, environment, workflow, production setting, secret, provider, playlist, credential, or canonical Library state was changed.
+---
+
 # Current verified blockers — 2026-11-25 09:23 Eastern
 
 **Current main:** `98d5a4b1c1e9906073ba23b1e16979e1c4a23316`. This checkpoint uses live automation records/prompts, current PR metadata, current branch comparisons, complete PR changed-file lists, and exact-head Actions. Successor checks were read-only. Buddy, Jockey, and Boots inherit environments but returned no environment details; all three environment statuses are **unknown**.
@@ -41,7 +81,7 @@ No task configuration, prompt, schedule, environment, workflow, production setti
 
 ---
 
-> Historical checkpoints below are retained for provenance and are superseded for live automation, branch, PR, and CI status by the 2026-11-25 checkpoint above.
+> The 2026-11-25 checkpoint and all older snapshots below are retained as history and are superseded for live automation, branch, PR, and CI status by the 2026-11-26 checkpoint above.
 
 ---
 
