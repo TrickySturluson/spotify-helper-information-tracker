@@ -13,7 +13,7 @@ Buddy remains focused on Babel and documentation-only work. ChatGPT may work on 
 ## Execution and capability boundary
 
 - The recurring task uses the connected GitHub app from a scheduled ChatGPT task. It does not require a local PC to remain powered on or an OpenAI API key.
-- The separate repository-hosted Codex workflow is an API-based experiment and is currently blocked by API quota. Do not dispatch it, retry it, or ask the user to fund it unless the user explicitly reauthorizes that separate experiment.
+- The separate repository-hosted Codex workflow is a historical API-based experiment, not the current Buddy path. Scheduled runs [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) passed preflight but failed in the Codex agent with API quota exceeded; validation and publication were skipped. These runs prove the schedule triggered on 2026-11-20 and 2026-11-21, but the current workflow enabled/disabled setting was not exposed by the available read-only API. Do not manually dispatch, retry, re-enable, or request API funding. If no scheduled Codex execution is wanted, the repository owner must disable the workflow in GitHub Actions or separately authorize a workflow change. Buddy must not change workflow logic/settings or dispatch it.
 - The GitHub-app connectivity proof is recorded in [PR #162](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/162). It proves that a scheduled task successfully performed a GitHub-app write and opened a draft PR once; it does not guarantee every future run will succeed.
 - Buddy's daily task is scheduled for approximately 9:00 AM Eastern in `America/New_York`. Treat the automation status and latest run result as authoritative; do not infer success from the schedule or last-run timestamp alone.
 
@@ -30,6 +30,14 @@ Whenever ChatGPT works on, discusses, reviews, plans, or reports on SHIT, Babel,
 7. A failed or incomplete run does not count as a successful daily completion.
 
 This gate is conversation-triggered. It does not mean ChatGPT is continuously monitoring the automation between conversations.
+
+## Trio handoff responsibility
+
+The scheduled handoff cycle is **Buddy → Jockey → Boots → Buddy**. The [Trio Coordination Protocol (`project/TRIO_COORDINATION_PROTOCOL.md`; proposed in draft PR #202)](https://github.com/TrickySturluson/spotify-helper-information-tracker/blob/coordination/trio-readiness-handoffs/project/TRIO_COORDINATION_PROTOCOL.md) defines the canonical Phase 1 readiness checklist, report format, and authority boundaries. The protocol file is not yet on `main`, so this link intentionally targets PR #202's review branch; after that PR is merged, replace it with the repository-relative link `../project/TRIO_COORDINATION_PROTOCOL.md`.
+
+Each worker checks its immediate successor: Buddy checks Jockey, Jockey checks Boots, and Boots checks Buddy. Before ending each run, Buddy must inspect Jockey's live automation/run, saved prompt, environment, GitHub access, branch/PR, exact-head CI, dependencies, and ownership conflicts. If Jockey's task is disabled, its latest run failed or is incomplete, its expected run window was missed, or its branch/PR is blocked, Buddy must also perform a lightweight fallback readiness check for Boots. This fallback is detection only; it does not transfer Jockey's priority or authorize Boots to take over Jockey's work.
+
+Report exact evidence and one status for each checked worker: **READY**, **READY WITH WARNINGS**, or **BLOCKED**. Phase 1 is read-only toward another worker's task settings, prompts, schedules, environments, branches, and PRs. Do not enable or disable tasks, edit another worker's prompt/schedule/environment, change another worker's branch/PR, trigger workflows, or perform cross-repair. Phase 2 cross-repair remains disabled and requires separate user authorization. Prompt text alone does not prove that a complete runtime handoff cycle has occurred.
 
 ## Buddy's strict scope
 
@@ -49,8 +57,10 @@ Forbidden:
 ## Buddy's branch and PR rules
 
 - Use the connected GitHub app only.
-- Maintain one persistent Buddy branch, `babel/chatgpt-buddy`, and at most one Buddy-owned draft PR against `main`.
-- Reuse the existing Buddy PR; do not create duplicates.
+- Maintain one persistent Buddy branch, `babel/chatgpt-buddy-v2`, and at most one Buddy-owned draft PR against `main`.
+- Current repair proposal: [draft PR #201](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/201), subject to CI and independent review.
+- The former draft PR #163 on `babel/chatgpt-buddy` was closed as obsolete on 2026-11-20 after the branch diverged substantially from current `main`; its branch is retained untouched for historical reference. Do not reopen or modify it.
+- Reuse the existing Buddy PR on the active branch; do not create duplicates.
 - Do not modify or take over other PRs, including PR #161 and the temporary connectivity proof PR #162.
 - Verify branch, path, and current file SHA before each write. Read every changed file back after writing. Verify the final PR head/base/state and changed-file list.
 - Buddy may update its branch and draft PR only. It must never write directly to `main`, approve, mark ready, close, merge, or self-merge.

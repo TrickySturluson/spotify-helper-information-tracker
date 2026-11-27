@@ -1,17 +1,103 @@
+# Maintainability & Documentation — Roadmap
+
+## 2026-11-27 — Successor readiness and shared-PR checkpoint (10:07 Eastern)
+
+- **Current main:** 43038585488960107d348a5167062d0cad34e11f. Buddy PR #201 remains open/draft on babel/chatgpt-buddy-v2 at pre-update head 0467ab8972acad3facf1901daf5b0edec25ce250, 101 ahead / 40 behind, 12 changed files. GitHub reports mergeable=true, but the compare is diverged.
+- **Buddy daily gate:** automation 6aed3a70baf88191ab1dbfaa8f7dba91 is enabled; run 0d06f2cf-c66c-8328-bb52-ba6067422c9d was in_progress at 10:07:55 Eastern. Latest completed result ddd00db7-bf40-8322-ad5a-947d8a3a4816 is from November 26 and does not match. No completed November 27 report was visible at audit time. Environment unknown.
+- **Jockey — BLOCKED:** automation 6af1645551a48191900c77833073fdfd is enabled, daily 11:00 Eastern, next run November 27 at 11:00. Last run/result 7d3aa94e-0b30-832b-82f4-e42858841f23 match and completed on November 26; its non-truncated report says no changes were made because the persistent branch was divergent. PR #200 head 4f0291b8990987ca5bb84bdea06d6d6bad1113fe is 67/34, open/draft, 14 files. Existing exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passed on November 21; the branch remains diverged and 34 behind. Environment unknown. Owner review and approved branch-reconciliation/re-enablement decision required.
+- **Boots fallback — BLOCKED:** automation Automation_2e1357c87e688191829bd2380047f46d is disabled; next recorded time November 27 at 16:30 while disabled. Last run/result 183a1311-bac4-832d-b8a7-21afa10020d3 match; the completed report is truncated and its available excerpt reports a safe stop on the divergent branch. engineering/general head a58e6b7d953428adf9932499a79234fc2ed06150 is 14/111, has no PR, and its Daily/security checks fail while broker passes. Environment unknown.
+- **Shared PRs:** #201/#202 overlap on the Buddy guide, docs index, active-session brief, and loose-ends register. #200 additionally overlaps the two handoff files. #202's handoff snapshots are dated November 23 and its PR description's claim that #201 lacks the Trio additions is contradicted by the current #201 guide/index. The protocol remains absent from main; #201's direct branch URL is therefore still necessary.
+- **Exact-head evidence:** #201 Daily #45844831517, broker #45844831502, security #45844831967 all passed on pre-update head 0467ab8. #202 broker #45097778021, Daily #45097778095, security #45097778028 passed on head 8d4a25e. #200 broker #44928121259, Daily #44928121273, security #44928121262 passed on head 4f0291b. Boots Daily #42578252673/security #42578252818 failed and broker #42578252704 passed. These checks are attached to the stated heads; the branch comparisons remain diverged.
+- **Cross-project handoff:** mainline NEXT_WORK and the top of goals README still say authentication is the sole focused priority, while the live Jockey prompt/PR #200 assign Tricky Daily. PR #202's proposed handoff changes remain unmerged.
+- **Merge gate:** do not merge #201 or #202 until all four shared files and the merge order are reconciled. Any sequence must also account for #200's two-file overlap. The suggested #202-first sequence is not authorization. Keep #201/#202/#200 draft.
+- **Next:** verify the final post-batch #201 head, changed-file list, and exact-head CI; obtain an owner-approved merge order; then continue the maintained-file/guide semantic audit, all-goal review, operational safety-contract audit, and fresh-session simulation. No complete runtime Trio cycle is verified; Phase 2 cross-repair remains unauthorized.
+
+---
+
+> The 2026-11-26 checkpoint and earlier live-status snapshots below are retained as history and superseded for current worker, branch, PR, and CI status by this 2026-11-27 checkpoint.
+
+
+## 2026-11-26 — Refreshed shared handoff and successor evidence (09:54 Eastern)
+
+- **Current main:** 015e75e07df7667750760ce5e8b557e3eee16bc3. At audit start, Buddy PR #201 was open/draft on babel/chatgpt-buddy-v2 at 2ad67a7b027cfcc7fbe8d571ce9b5df8ea911a3d, 95 ahead / 34 behind, 12 changed files, GitHub mergeable=false. The handoff refresh below advances that branch; its final head and exact-head checks must be re-fetched.
+- **Buddy:** automation 6aed3a70baf88191ab1dbfaa8f7dba91 is enabled. Current run ddd00db7-bf40-8322-ad5a-947d8a3a4816 was in_progress at 09:54 Eastern; latest result 24a0e222-8970-8330-83d8-3a407f7821cb is from November 25 and does not match. No completed report for November 26 was visible. Environment unknown.
+- **Jockey — BLOCKED:** automation 6af1645551a48191900c77833073fdfd is currently enabled (daily 11:00 Eastern; next run Nov 26 at 11:00), but its last completed run/result ae49786b-46e0-8321-949d-9f139020df47 is from Nov 21; the Nov 22–25 windows were missed. Its full report discloses two accidental direct-to-main writes followed by a safe stop. PR #200 is open/draft, head 4f0291b8990987ca5bb84bdea06d6d6bad1113fe, 67/28, 14 files, mergeable=false; exact-head broker #44928121259, Daily #44928121273, and security #44928121262 passed. Environment unknown. Owner review and an approved branch-reconciliation/re-enablement decision are required.
+- **Boots fallback — BLOCKED:** automation Automation_2e1357c87e688191829bd2380047f46d is disabled (daily 16:30 Eastern; next recorded Nov 26 at 16:30). Last run/result 183a1311-bac4-832d-b8a7-21afa10020d3 match; the completed report is truncated and its available excerpt says the worker stopped on a divergent branch and disabled itself. Branch engineering/general head a58e6b7d953428adf9932499a79234fc2ed06150 is 14/105 with no PR; Daily #42578252673 and security #42578252818 failed, broker #42578252704 passed. Environment unknown. Owner-approved recovery and a fresh PR/check baseline are required before re-enablement.
+- **Shared-file audit:** #201 and #202 overlap on the Buddy guide, docs index, active-session brief, and loose-ends register. Both guide/index versions already preserve the Buddy v2 rules, historical Codex/API status, Trio handoff, Daily recommendation-memory entry, and 22-workflow count; the current .github/workflows directory contains 22 YAML files. #201's guide has the more complete fallback/read-only wording and its temporary protocol URL correctly targets #202's branch because the protocol file is not on main. The two Buddy-owned handoff files were refreshed and read back; the guide/index were read and left unchanged because their requirements already pass. #202's handoff snapshots remain dated Nov 23; its PR description's claim that #201 lacks the Trio additions is stale. PR #200 also overlaps both handoff files.
+- **Exact-head checks at audit start:** #201 Daily #45636185404, broker #45636185408, and security #45636185405 passed on the pre-update head. #202 broker #45097778021, Daily #45097778095, and security #45097778028 passed on its current head. #200 broker #44928121259, Daily #44928121273, and security #44928121262 passed on its current head. Boots' exact-head Daily/security checks failed and broker passed. The new Buddy commits require fresh exact-head CI; do not transfer the pre-update passes.
+- **Cross-project handoff:** mainline NEXT_WORK still says authentication is the sole focused priority, while the live Jockey prompt/PR #200 assign Tricky Daily. The goals index has conflicting top and later priority statements. PR #202 proposes handoff/log updates, but they remain unmerged; Buddy did not edit its branch.
+- **Merge gate:** do not merge #201 or #202 until all four shared files and the merge order are reconciled. Any sequence must also account for #200's overlap on both handoff files. The suggested #202-first order is not authorization. Keep #201/#202/#200 draft.
+- **Next:** verify the post-batch #201 head, complete changed-file list, and exact-head CI; obtain an owner-approved merge order across #201/#202/#200; then continue maintained-file/guide semantic coverage, all-goal review, operational safety-contract audit, and the fresh-session simulation. No complete runtime Trio cycle is verified; Phase 2 cross-repair remains unauthorized.
+
+---
+
+> The 2026-11-25 checkpoint and older live-status snapshots below are retained as history and are superseded by this 2026-11-26 overlay.
+
+## 2026-11-25 — Refreshed Buddy handoff and successor-readiness evidence (09:23 Eastern)
+
+- **Current main:** `98d5a4b1c1e9906073ba23b1e16979e1c4a23316`. The live branch comparison is 90 ahead / 28 behind for Buddy PR #201.
+- **Buddy daily gate:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled. Current run `24a0e222-8970-8330-83d8-3a407f7821cb` is `in_progress`; latest result `bbd06c35-1e78-832a-9d0f-ab71ba014848` is from Nov 24 and does not match. Buddy is pending today; environment unknown.
+- **Jockey — BLOCKED:** automation `6af1645551a48191900c77833073fdfd` is disabled. Last run/result `ae49786b-46e0-8321-949d-9f139020df47` match and the non-truncated report discloses two accidental direct-to-main writes. PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67/22; exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passed. Environment unknown.
+- **Boots fallback — BLOCKED:** automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled. Last run/result `a030ee14-e434-832d-a8cc-b462d8e88ed7` match but the result is truncated. `engineering/general` head `a58e6b7d953428adf9932499a79234fc2ed06150` is 14/99 with no PR; Daily/security failed, broker passed. Environment unknown.
+- **Other PRs:** Buddy #201 head `b89b83e247de8755fe9741515fa49237c4d1787f`, 90/28, 12 files; exact-head Daily #45418023021, broker #45418022424, security #45418023057 passed. Trio #202 head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68/28, 12 files; exact-head broker #45097778021, Daily #45097778095, security #45097778028 passed. Both remain open/draft and diverged. #201's complete changed-file list remains 12 paths (11 Markdown and one documentation-contract test).
+- **Shared-file finding:** both live #201/#202 versions of the Buddy guide and docs index already contain the required v2 branch rules, historical Codex/API status, Trio handoff, Daily recommendation-memory entry, and 22-workflow count. #201's fallback detail is more complete. The #202 active-session/loose-ends snapshots are stale; #200 also overlaps both. The Trio Protocol remains only on #202's branch. #202's PR description incorrectly says #201 lacks the Trio additions; current #201 source contradicts that claim.
+- **Cross-project continuity gap:** mainline NEXT_WORK still calls authentication the sole focused engineering priority, while the live Jockey prompt/PR #200 assign Daily; the goals index has contradictory top/later priority statements. PR #202 proposes handoff/log updates but remains unmerged.
+- **Merge gate:** no owner-approved merge order exists. Do not merge #201/#202 until the four shared files are reconciled; include PR #200's two-file overlap. #202-first is a proposal, not authorization.
+- **Completed in this batch:** refreshed the Buddy-owned active-session brief and loose-ends register, updated this roadmap/action log, and re-read the guide/index without changing them because they already satisfy the requested requirements on Buddy's branch. No other worker's branch/PR or task was modified.
+- **Pre-change exact-head CI:** #201 Daily #45418023021, broker #45418022424, and security #45418023057 passed. The documentation batch creates a new head; verify exact-head CI after publication and record the final head/check links in PR #201's description.
+- **Next:** keep #201 draft; verify the new head and exact-head checks; obtain an owner-approved merge sequence across #201/#202/#200; continue maintained-file/guide semantic coverage and the fresh-session simulation.
+
+---
+
+> The 2026-11-24 checkpoint below is retained as history and is superseded for live status by the 2026-11-25 checkpoint above.
+
+---
+
+## 2026-11-24 — Reconciled Buddy-owned shared handoff and refreshed successor evidence (09:35 Eastern)
+
+- **Current `main`:** `862e9662a6f2e6b583ef21b5d303134d68205874`.
+- **Buddy automation:** `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled. Current run `bbd06c35-1e78-832a-9d0f-ab71ba014848` is `in_progress`, scheduled 09:00 and started 09:35:37 Eastern; latest result `1fc98dce-5084-8324-8cb7-7b32344cc84d` is from Nov 23 and does not match. Environment is unknown.
+- **Jockey readiness: BLOCKED.** Automation `6af1645551a48191900c77833073fdfd` is disabled; completed run/result `ae49786b-46e0-8321-949d-9f139020df47` match and the non-truncated report discloses accidental direct-to-main writes followed by a safe stop. PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67 ahead / 16 behind; exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passed. Environment is unknown.
+- **Boots fallback readiness: BLOCKED.** Automation `Automation_2e1357c87e688191829bd2380047f46d` is disabled; completed run/result `a030ee14-e434-832d-a8cc-b462d8e88ed7` match but the report is truncated. `engineering/general` head `a58e6b7d953428adf9932499a79234fc2ed06150` is 14 ahead / 93 behind, has no PR, and exact-head Daily #42578252673/security #42578252818 failed while broker #42578252704 passed. Environment is unknown.
+- **Buddy PR #201:** pre-change head `045187191d79dbedae48d6735e918512f350a2cd`, 89 ahead / 22 behind; open/draft, 12 changed files. Exact-head Daily #45415263443, broker #45415263474, and security #45415263509 passed on this pre-change head. This documentation batch creates a new head; fresh exact-head CI is required.
+- **Trio PR #202:** head `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 22 behind; open/draft, 12 changed files. Exact-head broker #45097778021, Daily #45097778095, and security #45097778028 passed.
+- **Jockey PR #200:** head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 16 behind; open/draft, 14 changed files. Exact-head broker #44928121259, Daily #44928121273, and security #44928121262 passed; task/branch recovery remains blocked.
+- **Boots:** `engineering/general` is 14 ahead / 93 behind with no matching open PR. Exact-head Daily/security failed and broker passed. Do not reset, rebase, force-push, or enable it.
+- **Shared-file reconciliation:** the four #201/#202 paths are the Buddy guide, docs index, active-session brief, and loose-ends register. Both guide versions include v2 branch/PR rules, Codex/API history, and Trio responsibility; #201's fallback/read-only text is more detailed. Both index versions include Trio Start here, Daily recommendation-memory guide, and 22 workflows. The protocol file is on #202's branch but absent from `main`, so #201's direct branch URL is retained. The #202 handoff snapshots are stale; PR #200 also overlaps both handoff files.
+- **Merge gate:** no merge order is approved. Do not merge #201 or #202 until all four shared files and the order are reconciled, including #200's two-file overlap. #202-first is a proposal, not authorization.
+- **Completed in this batch:** verified the live #201/#202 versions of all four shared paths; retained the already-correct Buddy guide and docs index; refreshed the Buddy-owned active-session brief and loose-ends overlay; independently compared the complete #201 diff and checked source/test claims. All other worker branches, PRs, task settings, prompts, schedules, and environments remained read-only.
+- [x] Verify pre-change exact-head CI on Buddy head `045187191d79dbedae48d6735e918512f350a2cd`: Daily #45415263443, broker #45415263474, and security #45415263509 passed.
+- [ ] Verify exact-head CI on the new Buddy commit created by this batch; record its final head and checks in PR #201's description without a status-only branch commit.
+- [ ] Obtain an owner-approved merge order across #201/#202/#200; keep all PRs draft until the shared-file state and merge order are reconciled.
+- [ ] Complete maintained-file/technical-guide semantic coverage, all-goal semantic review, operational safety-contract audit, and fresh-session simulation using repository docs alone.
+
+---
+
+## Historical checkpoint — 2026-11-23 Buddy/Trio shared handoff and successor evidence (superseded by 2026-11-24)
+
+- Current `main` at audit start: `f3387a29ad2a97017a80968ec1a047a97118c618`. The Buddy automation is enabled, but its Nov 23 run `1fc98dce-5084-8324-8cb7-7b32344cc84d` remains `in_progress`; the latest completed result is prior run `e560322d-6ac8-8332-84aa-98b2b5816aeb`. Environment status is unknown.
+- Jockey is disabled and **BLOCKED**. Its last run `ae49786b-46e0-8321-949d-9f139020df47` is recorded completed and reports accidental direct-to-main writes followed by a stop. PR #200 head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` is 67 ahead / 10 behind; exact-head Daily, broker, and security Actions passed. Its branch remains diverged and the task remains disabled.
+- Boots is disabled and **BLOCKED**. Its last run `a030ee14-e434-832d-a8cc-b462d8e88ed7` is recorded completed, but its result is truncated. `engineering/general` head `a58e6b7d953428adf9932499a79234fc2ed06150` is 14 ahead / 87 behind, has no matching open PR, and exact-head Daily/security checks failed while broker tests passed. Environment status is unknown.
+- Buddy PR #201 was open/draft at pre-update head `cfa7af161d0bf2d27e59f184403663e232c4e0a3`, 80 ahead / 16 behind, with 12 changed files. Exact-head Daily #45207916219, broker #45207915676, and security #45207915681 passed. This shared-handoff commit creates a new head and requires fresh exact-head checks; no separate Workers Builds result was surfaced.
+- PR #202 is open/draft at `8d4a25e2516d404610fdf6cd9e1e9c55f062b6e0`, 68 ahead / 16 behind; exact-head full tests, additional tests, and security passed. Its description reports Workers preview job #137441608988 success, not independently re-fetched. PR #201/#202 share four files; PR #200 additionally touches ACTIVE_SESSION_BRIEF.md and LOOSE_ENDS.md.
+- The Buddy guide and docs index on this branch already satisfy their side of the four-file reconciliation: v2 branch/PR rules, historical Codex/API status, Buddy → Jockey → Boots → Buddy responsibility, Trio Protocol in Start here, Daily recommendation-memory guide entry, and 22-workflow count. The protocol file remains only on PR #202's branch, so its link remains a temporary direct branch URL.
+- [x] Refresh the active-session brief and loose-ends register with current worker/run/branch/PR/CI evidence and explicitly preserve the #201/#202 merge gate.
+- [ ] Recheck exact-head CI on the new Buddy PR head created by this checkpoint; the #452079 and earlier checks do not transfer to a later commit.
+- [ ] Obtain an owner-approved merge order for PR #201/#202 that also accounts for PR #200's overlap. The #202-first sequence in its description is a proposal, not authorization; keep all PRs draft.
+- [ ] Observe a complete Phase 1 Buddy → Jockey → Boots → Buddy runtime cycle. Jockey and Boots are disabled/BLOCKED. Phase 2 cross-repair remains disabled and unauthorized.
+
 ## Current operating-policy overlay — 2026-11-06
 
 Babel remains an active workstream, but it is no longer a gate that blocks all other SHIT work. The user explicitly authorized ChatGPT to continue other SHIT workstreams in parallel while Buddy continues documentation maintenance. Each workstream must keep its roadmap and ACTIONS current and preserve its own safety boundaries.
 
 ChatGPT may independently publish routine, verified documentation-only changes directly to `main` when the connected GitHub capability permits. Independent review is mandatory: inspect the complete diff, verify claims against current source/tests/workflows/evidence, check links and cross-document consistency, run relevant safe checks, and read every changed file back. Routine documentation changes do not require per-change user review.
 
-Buddy remains proposal-only on `babel/chatgpt-buddy` and its draft PR. It must not write to `main`, approve, mark ready, close, merge, or self-merge. Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside ChatGPT's documentation authority and require separate user authorization.
+Buddy remains proposal-only on `babel/chatgpt-buddy-v2` and its draft PR. It must not write to `main`, approve, mark ready, close, merge, or self-merge. Runtime/product changes, provider operations, playlists, canonical/generated data, workflow logic, permissions, secrets, security controls, dependency manifests, and ambiguous side effects remain outside ChatGPT's documentation authority and require separate user authorization.
 
 See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../../../docs/BABEL_CHATGPT_BUDDY.md). This overlay supersedes older statements below that call documentation the sole active SHIT workstream or require user review/merge for every documentation change.
 
-# Maintainability & Documentation — Roadmap
-
-**Last reviewed:** 2026-11-06  
-**Status:** In progress. The documentation control structure is established; the full file-level coverage and freshness audit remains open.
+**Last reviewed:** 2026-11-27 10:07 Eastern
+**Status:** In progress. The Buddy guide and docs index already satisfy the shared-file requirements and were retained; the active-session brief and loose-ends register now carry a 2026-11-27 10:07 Eastern overlay. Exact-head Daily, broker, and security checks passed on pre-update Buddy head `0467ab8972acad3facf1901daf5b0edec25ce250` (runs #45844831517, #45844831502, and #45844831967); this batch advances the branch and requires fresh checks. Owner-approved merge order across PRs #201/#202/#200, maintained-file/guide semantic coverage, all-goal review, operational safety-contract audit, and fresh-session simulation remain open.
 
 ## Purpose
 Make SHIT understandable, maintainable, and recoverable by a contributor or assistant with no access to prior chat history. Repository documentation—not chat memory—is the durable source of truth.
@@ -23,7 +109,7 @@ Make SHIT understandable, maintainable, and recoverable by a contributor or assi
 - [Documentation index](../../../docs/README.md): navigation to technical references and workstreams.
 - [Project roadmap](../../ROADMAP.md): cross-workstream priorities and dependencies.
 - [NEXT_WORK.md](../../NEXT_WORK.md), [LOOSE_ENDS.md](../../LOOSE_ENDS.md), and [PROJECT_LOG.md](../../PROJECT_LOG.md): current handoff, unresolved work, and chronology.
-- [Goal index](../README.md): 13 goal workspaces, each expected to contain ROADMAP, README and ACTIONS.
+- [Goal index](../README.md): 14 goal workspaces, each expected to contain ROADMAP, README and ACTIONS.
 - [Repository file index](../../../docs/REPOSITORY_FILE_INDEX.md): tracked file and directory inventory.
 
 ## Required per-file documentation
@@ -50,11 +136,25 @@ The documentation system is publicly named **SHIT Documentation & Continuity** a
 - [ ] Perform a cold-start simulation proving the brief and repository docs are sufficient without prior chat history.
 - [ ] Confirm privacy boundaries: curated SHIT context only; no raw chat dumps, unrelated personal context, or secret values.
 
-## Controlled ChatGPT dispatch
+## Scheduled ChatGPT Buddy — current continuation path
 
-- [x] Add a narrowly scoped `push` trigger for fresh `babel/dispatch-*` branches, filtered to `.github/babel/dispatch.json`; retain manual dispatch and the six-hour schedule.
-- [x] Ensure the dispatch branch is only an event trigger: preflight and all work jobs continue to select `main` or `babel/agent-progress`, never treating the marker branch as a work base.
-- [ ] Execute the first ChatGPT-triggered run and verify Codex, independent validation, and isolated PR publication.
+- [x] Establish the daily scheduled ChatGPT/GitHub-app task with documentation-only scope and a draft-PR publication boundary.
+- [x] Repair the stale Buddy branch safely: retain the former `babel/chatgpt-buddy` branch for reference, close obsolete draft PR #163 without merging, and create `babel/chatgpt-buddy-v2` from current `main`.
+- [x] Reconcile the active-worker guides and goal handoff with the scheduled ChatGPT Buddy path; document the Codex/API workflow as a separate quota-blocked experiment, while keeping its repository-level enabled/disabled state explicitly unverified.
+- [x] Re-enable the daily Buddy automation and request an immediate run on 2026-11-20.
+- [x] Independently reviewed Buddy PR #201 at audit-start head `67df681f8227b04b4cfe6137a7fcfce544fb25cb`; its exact-head test, security, and Workers Builds checks passed. The review found stale Codex/activation wording and workflow counts corrected in this batch.
+- [x] Exact-head Daily curator tests, Mobile Auth Broker Tests, and public repository security scan passed on post-checkpoint head `7c7da5c7f6199070161672e1c57f43cb3e29517d` (runs #45207299259, #45207299393, and #45207299147). The final action-log/roadmap checkpoint commits create a new head and require fresh exact-head checks; no separate Workers Builds result was exposed.
+- [x] Reconcile the four shared PR #201/#202 files on Buddy's own branch; the protocol link temporarily targets PR #202's branch because the file is not on main.
+- [ ] Finalize an owner-approved merge order for #201/#202, also accounting for PR #200's overlap on ACTIVE_SESSION_BRIEF.md and LOOSE_ENDS.md. The #202-first sequence in its description is a proposal, not authorization.
+- [ ] Perform the fresh-session simulation using merged repository documentation.
+
+## Legacy Codex/API workflow — execution-state safety
+
+- [x] Reconcile the Codex experiment's documentation with the current workflow source: the YAML still declares a six-hour schedule, manual dispatch, and push trigger.
+- [x] Preserve the distinction between the current scheduled ChatGPT Buddy and the separate repository-hosted Codex/API experiment.
+- [x] Document that the repository-level workflow enabled/disabled state is not confirmed by the available read-only GitHub access. Do not call the workflow disabled or guaranteed dormant.
+- [ ] Repository owner confirms the legacy Codex workflow is disabled in GitHub Actions if no scheduled API execution is wanted, or explicitly reauthorizes a separate workflow change. Buddy must not change workflow logic/settings or dispatch it.
+- **Safety invariant:** keep `project/BABEL_AGENT_STATE.md` at `status: active` while Babel acceptance remains open. The workflow's `status: complete` sentinel is not a pause switch and must not be used to suppress API execution; preflight also skips the agent when `OPENAI_API_KEY` is absent, but this audit did not inspect or verify that secret.
 
 ## Deferred successor: SHIT-wide Integrity, Diagnostics & Recovery
 
@@ -64,17 +164,17 @@ The intended system should monitor integrity and operational health across canon
 
 Preserve strict safety boundaries: canonical data/provenance remain authoritative; Last.fm scrobbles are not conflated with optional Spotify playback observations; no fabricated or silently discarded records; deterministic repairs only, with explicit scope, backups, reversibility, audit trails and post-repair verification; user approval for consequential or ambiguous mutations. At the revisit, establish a dedicated goal workspace, ownership, severity model, autonomy levels, repair policy, reporting cadence and acceptance tests before implementation.
 
-## Buddy activation test — first attempt diagnosed
+## Historical Codex/API experiment — first attempt diagnosed
 
 - First ChatGPT-triggered run [#42181953313](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42181953313) was received; preflight passed, but Codex failed before prompt execution on Ubuntu 26.04 during `drop-sudo` D-Bus socket restriction. Validation and publication were skipped.
 - The failure matches [upstream openai/codex-action issue #188](https://github.com/openai/codex-action/issues/188). The Codex agent job is pinned to `ubuntu-24.04` as a compatibility workaround, without changing the security strategy or permission separation.
-- Activation remains open until a new run proves Codex execution, allowlist/deletion checks, full unittest discovery, and isolated PR publication.
+- This historical Codex/API experiment is not the active Buddy path and is not authorized for retry. Its runner compatibility workaround is verified; successful Codex execution, independent validation, and isolated PR publication remain unverified.
 
-## Buddy activation retest — runner fixed; API quota remains blocked
+## Historical Codex/API experiment — retry reached Codex; API quota blocked
 
 - Retry [#42183337573](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183337573) ran the Codex job on Ubuntu 24.04. Preflight and `drop-sudo` isolation succeeded, confirming the Ubuntu 26.04 compatibility workaround.
 - Codex then returned `Quota exceeded. Check your plan and billing details.` Validation and publication were skipped; no candidate patch or PR was produced. The worker is not yet operationally verified.
-- The repository owner must ensure the OpenAI API project/organization has available quota/credits and a usable billing limit. Do not retry until quota is confirmed. Keep `drop-sudo`, workspace restrictions, read-only validation and isolated publisher unchanged.
+- No retry is currently authorized. Do not ask the user to fund API quota or re-enable the experiment. Any future activation requires explicit user reauthorization and owner-controlled GitHub Actions configuration. Preserve the historical runner/sandbox evidence; never weaken `drop-sudo` or workspace restrictions.
 - Daily curator run [#42183307146](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307146) passed all 478 tests and security scan [#42183307047](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/42183307047) passed on commit `ffc75f5796d422d6f3bcd889465a00f0c613a57e`.
 
 ## Acceptance criteria
@@ -86,7 +186,7 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - Meaningful work updates relevant documentation in the same session; status claims cite exact evidence.
 
 ## Automated guardrails — core checks implemented and CI-verified
-- `tests/test_documentation_contract.py` enforces required control documents, all 13 goal workspaces' ROADMAP/README/ACTIONS files, AGENTS continuity requirements, major documentation-domain coverage, Babel identity and local links from primary entry points.
+- `tests/test_documentation_contract.py` dynamically enforces ROADMAP/README/ACTIONS coverage for every goal workspace, AGENTS continuity requirements, major documentation-domain coverage, Babel identity and local links from primary entry points.
 - `tests/test_script_layout.py` checks compatibility delegation, package layout, and bottom `FILE OVERVIEW` presence across maintained Python implementations, compatibility launchers, test modules and workflow YAMLs. Its known-placeholder guard scans those same maintained file families.
 - Daily curator run #42168520574 passed all 460 tests on commit `8153028e4123d2be9307983b0eccff47fcaf07f9`; public repository security scan #42168520598 also passed on that commit. The later metadata-enrichment publication is separately validated by run #42166959478 and the post-enrichment integrity audit.
 
@@ -103,11 +203,11 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - Maintained files: 55 Python implementation modules (60 files including five package initializers), 40 compatibility launchers (41 Python files including initializer), 44 test modules (45 Python files including initializer), 17 workflow YAMLs, 21 technical guides and 13 goal workspaces.
 - **Outcome:** committed-tree inventory acceptance item is satisfied for this snapshot. Refresh after structural/generated-data changes. See `docs/REPOSITORY_FILE_INDEX.md`.
 
-**Current count note:** the committed-tree snapshot above recorded 17 workflow YAMLs. The live repository now contains 18 after the Babel AI continuation workflow was added; the inventory snapshot remains historical until refreshed.
+**Current count note — 2026-11-21:** the current source tree contains 22 workflow YAMLs, and `docs/WORKFLOWS.md` catalogs all 22. The current goal index lists 14 workspaces, and a recursive tree check confirmed every one has `ROADMAP.md`, `README.md`, and `ACTIONS.md`. The `docs/` tree contains 26 Markdown files including `README.md` (25 other Markdown documents). These are structural counts, not proof of semantic completeness. The 2026-11-06 inventory snapshot remains historical; a fresh maintained-file inventory is still required.
 
 ## Workflow catalogue and local-link checks — CI-verified
 
-- `docs/WORKFLOWS.md` summarizes all 18 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
+- `docs/WORKFLOWS.md` summarizes all 22 current workflow files, triggers, permissions, credential names, major steps and side effects. The documentation contract fails if a workflow filename is missing from the catalogue.
 - The current mainline test validates local links from the primary entry points. A repository-wide all-Markdown local-link check remains a candidate guardrail from draft PR #161 and must be ported/adapted before being treated as implemented.
 
 ## 2026-11-06 — Module overview semantic correction
@@ -134,25 +234,26 @@ Preserve strict safety boundaries: canonical data/provenance remain authoritativ
 - Great Migration `preview` and `prepare-preview` were traced through the workflow, preparation script, CLI dispatcher, and full migrator. The dry-run path returns before resolver construction, backup creation, or canonical Library writes; no provider requests or Spotify playlist writes occur. A regression test now guards this call chain. The new test is pending CI execution.
 
 ## Current gaps / uncertainty
-- Structural inventory is complete for the stated commit; semantic accuracy of all 55 implementation overviews, 40 compatibility launchers, 44 test modules and 17 workflow overviews remains under review.
-- The 21 technical guides and 13 goal workspaces still require a source-to-document freshness pass, including exact inputs/outputs, provider budgets, credentials, permissions, publication behavior and recovery paths.
+- The 2026-11-06 inventory counts (55 implementation modules, 40 compatibility launchers, 44 test modules, 17 workflows, 21 guides, and 13 goal workspaces) are historical. The 2026-11-21 structural check confirms 22 workflow YAMLs, 14 goal workspaces with all required files, and 26 Markdown files under `docs/` including the index; the broader maintained-file inventory still needs a fresh tree-based refresh.
+- Semantic accuracy remains under review across maintained implementations, compatibility launchers, tests, all 22 workflow overviews, and 25 non-index Markdown documents. Do not treat the historical module/launcher/test counts as current until the inventory is refreshed.
 - All-Markdown local-link validation and comprehensive workflow/goal cross-contract tests are not yet on main; the draft PR #161 contains candidate implementations that must be reconciled rather than blindly merged.
-- The current open PR/issue set and domain-specific loose ends must be rechecked against live GitHub state; old historical checkpoints are not current evidence.
+- The current open PR/issue set and domain-specific loose ends must be rechecked against live GitHub state. Buddy PR #201 and the separate trio-coordination PR #202 are both open drafts and overlap on shared index/handoff files; keep ownership separate and reconcile their merge order before changing additional overlapping files.
 
-## AI continuation infrastructure — implemented; activation pending
+## Historical repository-hosted Codex/API workflow — source committed; execution quota-blocked
 
-- Added the repository-hosted Codex worker in .github/workflows/babel-ai-continuation.yml, with its task contract in .github/babel/CONTINUATION_PROMPT.md and durable stop/recovery state in project/BABEL_AGENT_STATE.md.
-- The worker runs every six hours or by manual dispatch, resumes from the dedicated babel/agent-progress branch, and is designed to create/update one review PR rather than commit to main.
-- The agent job is read-only at the GitHub API level and workspace-scoped for local edits. A separate read-only validation job enforces the strict documentation/test allowlist, rejects deletions/out-of-scope paths, and runs full unittest discovery without the API key or write-capable GitHub token. The final publisher alone receives contents:write / pull-requests:write and does not execute candidate code.
-- The workflow has no music-provider or Spotify credentials and is forbidden from feature implementation, generated-data changes, playlist operations, or provider calls.
-- **Status distinction:** workflow/prompt/state/docs are committed; successful execution is not yet verified. Activation requires the repository secret OPENAI_API_KEY. API usage is billed separately from a ChatGPT subscription. Configure the repository setting that allows GitHub Actions to create pull requests if it is currently disabled.
-- Guide: docs/BABEL_AGENT.md. Do not mark the worker operational until the first Actions run passes and its branch/PR is inspected.
-
-
-**2026-11-06 dispatch milestone:** ChatGPT successfully created `babel/dispatch-20261106-01` and committed `.github/babel/dispatch.json` (`7c1abce763d293992872699146eb7f13d10f9b87`), proving the connected GitHub integration can emit the configured push trigger. First workflow execution and all job outcomes remain unverified; inspect the Actions run before marking activation complete.
+- The source remains committed at `.github/workflows/babel-ai-continuation.yml` with a six-hour schedule, manual dispatch, and a push trigger for `babel/dispatch-*`. This is a separate historical Codex/API experiment, not the current scheduled ChatGPT Buddy.
+- The latest observed scheduled runs [#44808721608](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44808721608) (2026-11-20 20:09 UTC) and [#44878119328](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44878119328) (2026-11-21 06:59 UTC) both passed preflight, then failed in the Codex agent with an explicit API quota-exceeded response. Validation and publishing were skipped; no candidate patch or Codex PR was produced. The initial #42181953313/#42183337573 attempts remain historical runner/quota diagnostics. These recent runs prove the schedule triggered at those times; the available read-only API did not expose the workflow's current enabled/disabled setting.
+- Workflow preflight stops when `project/BABEL_AGENT_STATE.md` contains the exact `status: complete` sentinel and also skips the agent when `OPENAI_API_KEY` is absent. The state remains `status: active` because Babel acceptance is open. The secret's presence/value was not inspected.
+- Repository-level workflow enablement is unverified. Do not describe the workflow as disabled or dormant. Do not dispatch, retry, request API funding, or change workflow settings without explicit user reauthorization. If no scheduled Codex execution is wanted, the repository owner must disable it in GitHub Actions; Buddy must not change workflow logic/settings.
+- The historical workflow was designed with a read-only Codex job, isolated validation, and a separate publisher. This is source-configuration evidence, not proof of a successful recent Codex run.
+- The current continuation worker is the scheduled ChatGPT Buddy using the connected GitHub app and the `babel/chatgpt-buddy-v2` branch; see [docs/BABEL_CHATGPT_BUDDY.md](../../../docs/BABEL_CHATGPT_BUDDY.md).
 
 ## Next action
-Continue the semantic audit of all 55 maintained implementation modules, 40 compatibility launchers, 44 test modules and 17 workflow overviews. Prioritize write-capable Spotify tools, scheduled workflows, authentication/secret rotation, shared generated-state writers, migration/recovery paths and data provenance. Reconcile all 21 technical guides, all 13 goal workspaces, open PRs/issues and the cross-project loose-ends register. Add targeted regression checks for real operational contracts, then complete a fresh-session resume simulation. Keep documentation as the only active project priority until that acceptance test passes.
+
+1. Re-fetch PR #201's live head and exact-head CI after any subsequent documentation commit; the checks recorded above apply to `c741846e84b40c962552f347bf42e7c4d8825d6c` and do not transfer to a later commit.
+2. Keep PR #201 draft. Obtain an owner-approved merge order across #201/#202/#200; reconcile the four #201/#202 shared files and #200's additional handoff overlap before any merge.
+3. After the Trio Protocol reaches `main`, replace the temporary branch URL in the Buddy guide and docs index with a repository-relative link, then rerun documentation checks.
+4. Continue the maintained-file and technical-guide semantic audit, all-goal semantic review, operational safety-contract audit, and fresh-session simulation using repository documentation alone.
 
 ## Related records
 [README](README.md) · [ACTIONS](ACTIONS.md) · [Documentation rules](../../DOCUMENTATION_RULES.md) · [Documentation index](../../../docs/README.md)
