@@ -1,3 +1,14 @@
+## 2026-11-20 — Self-maintaining trio coordination
+
+- User authorized a recurring handoff model for SHIT's three scheduled workers: Buddy checks Jockey, Jockey checks Boots, and Boots checks Buddy.
+- Created the Trio Coordination goal and proposed the canonical readiness/handoff protocol in [draft PR #202](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/202). The protocol checks live automation state, latest run/result, saved prompt, environment/access, repository branch/PR state, exact-head CI, dependencies and scope conflicts.
+- Added READY / READY WITH WARNINGS / BLOCKED outcomes and a broken-chain fallback: when the immediate successor failed or missed its expected run, the outgoing worker also checks the following worker.
+- Staged rollout: Phase 1 is read-only with respect to another worker's automation configuration and owned branch/PR. Phase 2 may consider restoring previously approved task state/prompt snapshots or preserving and refreshing a stale no-PR branch, but only after Phase 1 evidence and explicit user authorization.
+- Initial audit found Buddy's latest run report blocked by obsolete PR #163, Jockey's latest scheduled task failed with a generic scheduler error, and Boots' latest run record dated 2026-11-08. All three automations currently report enabled. Branch audit found Buddy PR #201 healthy, Jockey PR #200 mergeable/clean but slightly behind main, and Boots' persistent branch substantially stale with no open PR.
+- No task schedules/prompts, runtime code, workflows, credentials, permissions, provider data, playlists, or canonical Library records were changed in this documentation batch.
+
+---
+
 ## 2026-11-09 UTC — Consolidate auth integration and close superseded drafts
 
 - Merged current `main` ancestry into the integrated PR #188 branch and retargeted PR #188 directly to `main`. GitHub now reports zero commits behind and the PR is mergeable; it remains draft pending keyring provisioning and deployment review.

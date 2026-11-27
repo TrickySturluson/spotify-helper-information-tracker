@@ -1,3 +1,95 @@
+# Current verified checkpoint — 2026-11-23 (Eastern)
+
+- **Main:** `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- **Buddy:** enabled; next run Nov 23, 9:00 AM Eastern. Latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` predates the latest prompt update and did not include the required successor report. Environment selection is inherited; actual environment status is unknown.
+- **Jockey:** disabled; next scheduled run Nov 23, 11:00 AM Eastern. Last run `ae49786b-46e0-8321-949d-9f139020df47` disclosed accidental direct-to-main writes. Both commits are already ancestors of main. PR #200 remains open/draft; branch is 67 ahead / 8 behind. Preserve it pending a reviewed recovery plan.
+- **Boots:** disabled; next scheduled run Nov 23, 4:30 PM Eastern. Present in automation listing with correct Phase 1 prompt, though task-specific peek/get returned not found. Branch is 14 ahead / 85 behind, no matching PR, and contains outdated auth deployment workflow/configuration compared with main. Preserve it; do not merge/re-enable.
+- **PR #201:** open/draft, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind. Exact-head tests, broker tests, security scan, and Cloudflare Workers Builds passed. Buddy's branch still lacks Trio protocol additions.
+- **PR #202:** open/draft, head `823bab81df3def193ee43f3e0b80555cf8565498`, 65 ahead / 14 behind. Exact-head tests #45097360261 passed; additional test #45097360314, secret scan #45097360350, and Cloudflare Workers Builds #137440279456 were in progress at last poll.
+- **PR #200:** open/draft, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind. Its two accidental direct-to-main commits are already present in main; do not cherry-pick or revert them again.
+- **Prompt mappings:** Buddy checks Jockey then Boots; Jockey checks Boots then Buddy; Boots checks Buddy then Jockey. All saved prompts specify Phase 1 read-only behavior. No full runtime handoff cycle has yet been observed.
+- **Shared-file merge gate:** PR #201/#202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Recommended sequence is #202 first, then Buddy reconciles #201 on its own branch against merged main. This is not a merge authorization; both remain draft.
+- **Phase 2:** cross-repair remains disabled and unauthorized. No worker was re-enabled, no branch was rewritten, and no workflow was manually dispatched.
+
+---
+
+# Current verified checkpoint — 2026-11-22 (post-CI review)
+
+- **Main:** `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- **Buddy:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` enabled; next run Nov 23, 9:00 AM Eastern. Latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed before the latest prompt update and omitted the successor-readiness report. Environment selection is inherited; actual environment status is unknown.
+- **Jockey:** automation `6af1645551a48191900c77833073fdfd` disabled; latest run `ae49786b-46e0-8321-949d-9f139020df47` disclosed accidental direct-to-main commits `a372f8d49817783a2ba9e9bed0f6b24f071a7cc1` and `649690ce545094cc0f5d19a4a57b17eac20319dd`. Keep disabled pending reviewed recovery.
+- **Boots:** automation `Automation_2e1357c87e688191829bd2380047f46b` disabled. Preserve `engineering/general`; do not reset, rebase, force-push, or re-enable before recovery review.
+- **PR #201:** open/draft, `babel/chatgpt-buddy-v2`, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind. Known exact-head Daily curator tests #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 passed.
+- **PR #202:** open/draft, `coordination/trio-readiness-handoffs`, head `aa7ddda4c5446f2ecdfffcaee01ef625b6ad52b4`, 65 ahead / 14 behind. Exact-head full tests #45095849551, full-history secret scan #45095849615, and Cloudflare Workers Builds #137435770483 passed; the lockfile check was skipped.
+- **PR #200:** open/draft, `engineering/priority`, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind. Passing historical CI does not resolve the direct-to-main incident or authorize Jockey to resume.
+- **Shared-file gate:** #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Neither PR may merge until these files and merge order are reconciled against current heads.
+- **Phase status:** all three saved prompts contain successor mappings and Phase 1 read-only limits, but no complete runtime handoff cycle has been observed. Buddy's next run is the next verification milestone. Phase 2 cross-repair remains disabled and requires separate user authorization.
+- **Safety:** no worker was re-enabled; no workflow was manually dispatched; no Spotify/provider, playlist, credential, production, or canonical Library write was performed.
+
+---
+
+# Current trio checkpoint — 2026-11-22 20:33 Eastern
+
+## Verified live checkpoint — 2026-11-22 20:33 Eastern
+
+- **Buddy:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled; next run Nov 23, 9:00 AM Eastern. Latest recorded run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed before the latest prompt update and did not contain a successor-readiness handoff. Its report claims Buddy PR head `452a6d3...`, but the live PR API reports #201 head `b91254ff1dec0a0e62f1083d82be8877996085eb`; trust the live GitHub branch/PR metadata and require Buddy to reconcile this discrepancy in its next run. Environment selection is inherited; actual environment details are unavailable, so environment status is unknown.
+- **Jockey:** automation `6af1645551a48191900c77833073fdfd` remains disabled. Latest report `ae49786b-46e0-8321-949d-9f139020df47` disclosed accidental direct-to-main commits `a372f8d49817783a2ba9e9bed0f6b24f071a7cc1` and `649690ce545094cc0f5d19a4a57b17eac20319dd`. Keep disabled pending reviewed recovery.
+- **Boots:** automation `Automation_2e1357c87e688191829bd2380047f46d` remains disabled. Branch `engineering/general` is 14 ahead / 85 behind current main, with no matching open PR. Preserve it; do not reset/rebase/force-push or re-enable.
+- **Main:** `deb5a192eda4b8965a4af1110c432db78e7ec11b`.
+- **PR #201:** open/draft, branch `babel/chatgpt-buddy-v2`, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind. Exact-head Daily curator tests #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 all passed.
+- **PR #202:** open/draft, branch `coordination/trio-readiness-handoffs`, head `9af60ff2d6cd4e7169def18feced445351b9db61`, 48 ahead / 14 behind. Exact-head Daily curator tests #45093806549, Mobile Auth Broker Tests #45093806530, and security scan #45093806533 all passed.
+- **PR #200:** open/draft, branch `engineering/priority`, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind. Passing historical exact-head checks do not authorize Jockey to resume or settle the mainline/branch recovery.
+- **Shared-file gate:** #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. #202 adds the Trio Protocol navigation and Buddy handoff responsibility that #201 lacks. Neither PR is merged; preserve the deliberate merge-order and full review gate.
+- **Phase 1:** saved prompt mappings are configured, but no complete runtime handoff cycle has been observed. Phase 2 cross-repair remains disabled and requires separate authorization.
+- **Safety:** no worker was re-enabled, no workflow was manually dispatched, and no Spotify/provider, playlist, credential, production, or canonical Library write was performed.
+
+---
+
+# Current trio and documentation checkpoint — 2026-11-22 20:15 Eastern
+
+## Verified live checkpoint — 2026-11-22 20:15 Eastern
+
+- **Buddy:** automation `6aed3a70baf88191ab1dbfaa8f7dba91` enabled; latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed before the latest prompt update (`2026-11-22T23:41:06Z`). It did not report the required successor check. Next scheduled run: Nov 23, 9:00 AM Eastern. Environment selection is inherited; environment details are unavailable, so status is unknown.
+- **Jockey:** automation `6af1645551a48191900c77833073fdfd` disabled; latest run `ae49786b-46e0-8321-949d-9f139020df47` completed with a report disclosing two accidental direct-to-main commits. Next scheduled time while disabled: Nov 23, 11:00 AM Eastern. Keep disabled pending a reviewed branch/mainline recovery plan.
+- **Boots:** automation `Automation_2e1357c87e688191829bd2380047f46d` disabled; latest run `a030ee14-e434-832d-a8cc-b462d8e88ed7` completed after safely stopping on its stale branch. Next scheduled time while disabled: Nov 23, 4:30 PM Eastern. Environment details are unavailable. Preserve its branch.
+- **PR #201:** `babel/chatgpt-buddy-v2`, head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind current main `deb5a192eda4b8965a4af1110c432db78e7ec11b`, open/draft. Exact-head Daily curator tests #45083951234, Mobile Auth Broker Tests #45083951231, and security scan #45083951241 passed.
+- **PR #202:** `coordination/trio-readiness-handoffs`, head `9b3fbeed1a0e1569644133984df1ce766e077517`, 43 ahead / 14 behind the same main, open/draft. Exact-head Daily curator tests #45084445454, Mobile Auth Broker Tests #45084445441, and security scan #45084445450 passed.
+- **PR #200:** `engineering/priority`, head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`, 67 ahead / 8 behind, open/draft. Its three exact-head checks passed (#44928121259 broker, #44928121273 Daily, #44928121262 security). This does not resolve its branch recovery or authorize enabling Jockey.
+- **Boots branch:** `engineering/general`, 14 ahead / 83 behind, no matching open PR. Do not reset, rebase, force-push, or enable Boots.
+- **Shared-file gate:** #201 and #202 overlap on `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. The coordination branch includes the Trio Protocol link and Buddy handoff section; Buddy's current branch does not yet include those two additions. Do not merge either PR until a deliberate merge order and complete shared-file review are recorded.
+- **Phase 1:** prompt text is configured, but runtime handoff behavior is not proven. The latest Buddy run predates the prompt update. Phase 2 cross-repair remains disabled and requires separate authorization.
+- No worker was re-enabled, no workflow was manually dispatched, and no Spotify/provider, playlist, credential, production, or canonical Library write was performed in this checkpoint.
+
+---
+
+# Current trio and documentation checkpoint — 2026-11-22
+
+- **User direction:** continue the trio-readiness implementation and repair the identified blockers; the intended handoff is Buddy → Jockey → Boots → Buddy, with read-only successor checks first and bounded cross-repair separately gated.
+- **Live automation records:** Buddy `6aed3a70baf88191ab1dbfaa8f7dba91` is enabled; latest run `e560322d-6ac8-8332-84aa-98b2b5816aeb` completed, but its report did not include a successor-readiness handoff. Jockey `6af1645551a48191900c77833073fdfd` is disabled; latest run `ae49786b-46e0-8321-949d-9f139020df47` disclosed two direct-to-main commits. Boots `Automation_2e1357c87e688191829bd2380047f46d` is disabled; latest run `a030ee14-e434-832d-a8cc-b462d8e88ed7` stopped safely on its stale branch.
+- **Prompt configuration:** all three saved prompts have been read back and contain the correct successor and fallback mappings plus Phase 1 read-only limits. This proves prompt text, not runtime handoff execution. Phase 1 is not complete.
+- **Buddy PR #201:** branch `babel/chatgpt-buddy-v2`, current head `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 12 behind main, open/draft. The missing Tricky Daily recommendation-memory guide link was added to the branch and read back. Exact-head Daily curator tests, Mobile Auth Broker Tests and public repository security scan all passed. The previous two failures had the same single cause: the Python suite's documentation-index assertion; the broker-specific integration tests passed 5/5.
+- **Coordination PR #202:** branch `coordination/trio-readiness-handoffs`, current head `5eaf7d57621506ac33862932c74780dace65a9b7`, 34 ahead / 12 behind main, open/draft. Daily curator tests and Mobile Auth Broker Tests passed; security scan was still running at the last query. Its README now also indexes the recommendation-memory guide. The shared files with PR #201 remain overlapping and need a deliberate merge-order/reconciliation.
+- **PR overlap:** #201 and #202 share `docs/BABEL_CHATGPT_BUDDY.md`, `docs/README.md`, `project/ACTIVE_SESSION_BRIEF.md`, and `project/LOOSE_ENDS.md`. Do not merge either until those shared files are reconciled. The coordination branch's Buddy guide and index have been reconciled to include the current Buddy branch/policy and the trio handoff link.
+- **Jockey:** branch `engineering/priority` is 67 ahead / 6 behind, PR #200 open/draft at head `4f0291b8990987ca5bb84bdea06d6d6bad1113fe`. Two accidental main commits are `a372f8d49817783a2ba9e9bed0f6b24f071a7cc1` (Daily recommendation-memory guide) and `649690ce545094cc0f5d19a4a57b17eac20319dd` (standalone 1,232-line memory module). The module exists on main but is not imported by `spotify_daily_cycle.py` or the midnight workflow; no dedicated memory test file or active JSONL store/manifest was found. Treat it as unvalidated groundwork; do not integrate it or roll it back without a reviewed plan.
+- **Boots:** branch `engineering/general` is 14 ahead / 83 behind main and has no matching open PR. Preserve its head; no reset/rebase/force-push.
+- **Safety:** no task was re-enabled, no workflow was manually dispatched, and no Spotify/provider, playlist, credential, production, or canonical Library operation was performed.
+- **Next:** finish exact-head PR #202 security verification; reconcile the four shared files and merge order; then prepare Jockey's branch/mainline recovery and Boots' archival refresh plan without discarding either worker's work.
+
+---
+
+# Coordination session overlay — 2026-11-20
+
+- User authorized a self-maintaining handoff cycle for the scheduled trio: Buddy → Jockey → Boots → Buddy. The objective is to prevent silent worker failure during extended absences, including roughly two weeks away.
+- A new Trio Coordination goal and canonical protocol are proposed in [draft PR #202](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/202), branch `coordination/trio-readiness-handoffs`. Phase 1 is read-only successor-readiness checking; cross-repair is a later, separately gated phase. Do not change another worker's task prompt, schedule, enablement, environment, branch or PR during Phase 1.
+- Phase 2 candidates are now documented: restore only a previously approved task enabled/schedule state, restore an approved prompt snapshot, or archive a stale branch with no open PR before refreshing it from current main. These remain disabled until Phase 1 evidence is reviewed and the user authorizes a specific allowlist.
+- Added a broken-chain fallback: if the immediate successor has failed or missed its expected run, the outgoing worker also checks the following worker so one failure does not blind the rest of the chain.
+- This current overlay supersedes older notes below that the trio remains disabled. Live automation audit: Buddy is enabled; latest run `54ea442a-ca08-8326-b910-2ba2f6a15428` completed with a blocker report referencing obsolete PR #163. Jockey is enabled; latest run `aac1531b-53d0-832f-918c-9e21a3a46772` failed with a generic scheduled-task error. Boots is enabled; latest recorded run `1e3d1069-f10c-8331-9a81-2fb71b707e11` completed on 2026-11-08, with its next scheduled run 2026-11-20 4:30 PM Eastern. These are point-in-time observations; recheck live records before action.
+- Branch audit: Buddy `babel/chatgpt-buddy-v2` is 14 ahead/0 behind with open draft PR #201 and all exact-head checks passing. Jockey `engineering/priority` is 40 ahead/2 behind with open draft PR #200, GitHub mergeable/clean and exact-head tests/security/broker checks passing, but its latest scheduled automation failed generically. Boots `engineering/general` is 14 ahead/71 behind and has no matching open PR; its prompt requires stopping on divergent branch state. Do not reset/rebase Boots or edit another worker's branch during Phase 1.
+- No automation prompt/schedule/enablement, runtime code, workflow, credential, provider, playlist or canonical Library changes have been made in this coordination batch.
+- Next: finish repository navigation and review the protocol diff; open a draft PR; then, after the documentation is merged, add read-only successor checks to all three saved task prompts and observe one full cycle before considering bounded cross-repair.
+
+---
+
 # Verified continuation overlay — 2026-11-20 08:29 UTC
 
 - PR #198 merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`; exact-head broker tests #44702575255, Daily curator tests #44702575185, and full-history security scan #44702575262 passed. Cloudflare preview build/deployment succeeded (build `fc47ae95-819f-4b34-b672-c686f582e2c0`, deployment `8cd44007-5fb5-4356-b999-1f9afe5914a7`). The correction preserves ordinary whitespace in opaque Spotify account IDs exactly and retains empty/control/length rejection.

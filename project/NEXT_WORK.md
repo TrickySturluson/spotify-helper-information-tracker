@@ -1,4 +1,35 @@
+# Current handoff — 2026-11-23 (Eastern)
+
+**Objective:** finish Phase 1 verification of Buddy → Jockey → Boots → Buddy without enabling either paused worker or allowing cross-repair.
+
+**Immediate next action:** wait for PR #202's exact-head CI on `823bab81df3def193ee43f3e0b80555cf8565498` to complete, then verify Buddy's Nov 23 9:00 AM Eastern run. Buddy must check disabled Jockey and perform the Boots fallback check, reporting exact automation/run/schedule/branch/PR/CI evidence and environment status. Do not infer readiness from an enabled toggle or green PR checks.
+
+**PR coordination:** PR #202 is open/draft, 65 ahead / 14 behind main; exact-head tests #45097360261 passed, while additional test #45097360314, secret scan #45097360350, and Cloudflare Workers Builds #137440279456 were in progress at last poll. PR #201 is open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb`, 65 ahead / 14 behind, with its known exact-head tests, broker tests, security scan and Cloudflare build passed. They overlap on four files. Recommended sequence is #202 first, then Buddy reconciles #201 on its own branch against merged main; neither merge is authorized now.
+
+**Worker recovery:** Jockey remains disabled. Its accidental commits are already ancestors of main; do not cherry-pick or revert them. PR #200 remains open/draft with a 67-ahead/8-behind branch and needs file-level review before salvaging onto a fresh branch. Boots remains disabled; its branch is 14 ahead/85 behind with no PR and contains outdated auth deployment configuration compared with main. Preserve both old branches; no rebase, force-push, or re-enable.
+
+**Engineering priority:** Tricky Daily remains Jockey's designated implementation priority, but Jockey is paused. No production or playlist operation is authorized by this handoff.
+
+---
+
+# Current handoff — 2026-11-22 20:15 Eastern
+
+**Current coordination objective:** continue the user-authorized Buddy → Jockey → Boots → Buddy readiness system. Phase 1 remains read-only; Phase 2 cross-repair is not authorized. Read [the Trio Coordination Protocol](TRIO_COORDINATION_PROTOCOL.md), [the active session brief](ACTIVE_SESSION_BRIEF.md), and [the coordination roadmap](goals/trio-coordination/ROADMAP.md) before acting.
+
+**Current implementation priority:** the live Jockey prompt designates Tricky Daily reliability as the priority engineering workstream. Jockey remains disabled while its branch/mainline recovery is reviewed; do not infer that a green PR check authorizes execution. Boots remains disabled on a stale branch. Buddy remains enabled and is scheduled for Nov 23 at 9:00 AM Eastern; its latest run predates the most recent prompt update, so the next scheduled run must be checked for an actual Jockey readiness report and fallback-to-Boots evidence if Jockey is blocked.
+
+**Live branch/PR checkpoint:** Buddy PR #201 is open/draft at `b91254ff1dec0a0e62f1083d82be8877996085eb` (65 ahead / 14 behind); coordination PR #202 is open/draft at `9b3fbeed1a0e1569644133984df1ce766e077517` (43 ahead / 14 behind). All three exact-head checks pass on both PR heads. Jockey PR #200 is open/draft at `4f0291b8990987ca5bb84bdea06d6d6bad1113fe` (67 ahead / 8 behind), with its three exact-head checks passing. These branches remain divergent. #201 and #202 overlap on four documentation/handoff files; neither may be merged until shared-file reconciliation and merge order are complete. See [the live checkpoint](ACTIVE_SESSION_BRIEF.md) and [loose ends](LOOSE_ENDS.md) for exact run IDs and blockers.
+
+**Authentication note:** the older November 20 authentication handoff below is a historical checkpoint, not a current assertion that authentication is the sole focused priority. Consult the Authentication Management & Recovery roadmap and fresh production evidence before making any auth status claim. No production deployment or credential operation is authorized by this handoff.
+
+---
+
 # Current handoff — 2026-11-20 08:29 UTC
+
+## New coordination workstream — 2026-11-20
+
+The user has authorized a self-maintaining Buddy → Jockey → Boots → Buddy handoff cycle so the trio can remain usable during extended absences. The initial [Trio Coordination Protocol](TRIO_COORDINATION_PROTOCOL.md) and goal workspace are proposed in [draft PR #202](https://github.com/TrickySturluson/spotify-helper-information-tracker/pull/202). Phase 1 is read-only successor-readiness checking; do not enable cross-repair or change another worker's automation configuration, prompt, environment, branch, or PR. Current audit evidence: Buddy's latest result reported a blocker on obsolete PR #163, but its current branch/PR #201 is 14 ahead/0 behind and exact-head checks pass. Jockey's latest run failed generically even though PR #200 is mergeable/clean and its exact-head checks pass; its branch is 40 ahead/2 behind. Boots' last recorded run is 2026-11-08 and its branch is 14 ahead/71 behind with no open PR. All three automation records currently report enabled; this current observation supersedes older handoff lines below that say to keep them disabled. Recheck live state before acting; do not rewrite another worker's branch during Phase 1. See [Trio Coordination roadmap](goals/trio-coordination/ROADMAP.md).
+
 
 **Authentication remains the sole focused engineering priority.** PR #198 has merged as `fbd1b7a7e245479a73742f007ad6d401152f09b9`. Exact-head broker, Daily, security, and Cloudflare preview build/deployment checks passed. The identity-validation correction is now in main; it is not a production deployment or proof of Spotify credential persistence.
 

@@ -11,7 +11,14 @@ This file applies to every assistant, contributor, and automation agent working 
 4. Find the relevant workstream in [project/goals/README.md](project/goals/README.md). Read its `ROADMAP.md`, `README.md`, and `ACTIONS.md`.
 5. Read the relevant source, tests, data contracts, runbooks, workflow definitions, and current GitHub status. Documentation is not a substitute for checking the live implementation.
    Before editing or committing any path, inspect matching workflow `push.paths` filters. Comment-only changes to a listed source or workflow file still trigger its full workflow, including provider calls and repository writes.
-6. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
+6. For scheduled-trio work, read [the Trio Coordination Protocol](project/TRIO_COORDINATION_PROTOCOL.md) and its [goal workspace](project/goals/trio-coordination/README.md). Each worker must perform its documented successor-readiness check before handing off.
+7. Confirm the current branch and working tree before editing. Do not overwrite unrelated work.
+
+## Scheduled trio readiness and handoffs
+
+The scheduled workers use the handoff order Buddy → Jockey → Boots → Buddy. Before ending a scheduled run, each worker must inspect its successor's live automation record, latest run result, saved instructions, environment/access status, relevant repository branch/PR state, exact-head checks, dependencies, and scope conflicts. Use the canonical [Trio Coordination Protocol](project/TRIO_COORDINATION_PROTOCOL.md).
+
+During Phase 1, successor checks are read-only with respect to the successor's automation configuration and owned branch/PR. Report READY, READY WITH WARNINGS, or BLOCKED with exact evidence. An enabled task or future timestamp alone is not proof of readiness. Cross-repair is not enabled unless a later, explicitly authorized protocol revision says so. Never change another worker's schedule, enablement, prompt, environment, branch, PR, secrets, permissions, production configuration, provider data, playlists, or canonical Library data.
 
 ## Active-session brief — mandatory continuity bridge
 

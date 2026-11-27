@@ -8,14 +8,15 @@ This index is the navigation map for **Spotify Helper & Information Tracker (SHI
 
 1. [Documentation-system identity and purpose](BABEL.md) — public name, internal codename, scope, and continuity contract.
 2. [ChatGPT scheduled Buddy and publication policy](BABEL_CHATGPT_BUDDY.md) — daily verification, worker scope, and ChatGPT's separate documentation-only publication authority.
-3. [Repository-hosted Codex continuation worker](BABEL_AGENT.md) — separate API-based experiment, branch/PR publishing, security boundaries, activation and recovery.
-4. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
-5. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
-6. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
-7. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
-8. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
-9. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
-10. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
+3. [Trio Coordination Protocol](../project/TRIO_COORDINATION_PROTOCOL.md) — Buddy/Jockey/Boots handoff order, successor readiness checks, safety boundaries, and phased recovery.
+4. [Historical repository-hosted Codex/API experiment](BABEL_AGENT.md) — separate API-based workflow definition, trigger/stop conditions, quota blocker, and recovery boundaries.
+5. [Repository instructions](../AGENTS.md) — mandatory rules for assistants and contributors.
+6. [Documentation rules](../project/DOCUMENTATION_RULES.md) — required reading, maintenance standard, evidence vocabulary, and handoff checklist.
+7. [Current handoff](../project/NEXT_WORK.md) — active task, blockers, priorities, and next concrete action.
+8. [Loose-ends register](../project/LOOSE_ENDS.md) — cross-project unfinished work and verification gaps.
+9. [Project roadmap](../project/ROADMAP.md) — cross-workstream plan and dependencies.
+10. [Project log](../project/PROJECT_LOG.md) — chronological milestone and decision history.
+11. [Goal index](../project/goals/README.md) — each workstream's ROADMAP, README, and ACTIONS.
 
 ## Documentation families
 
