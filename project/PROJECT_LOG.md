@@ -1,3 +1,35 @@
+## 2026-11-21 UTC — Jockey adds owner-confirmed Daily stage recovery (draft PR #200)
+
+- Added a separate Daily recovery module, CLI gate, manual workflow inputs, and mocked regression tests on the persistent Jockey branch. Resume/rollback/discard require a committed production stage and exact backup, exact live state, current blacklist checks, owner confirmation, and explicit unlock for writes.
+- Every recovery playlist write commits a before snapshot before the provider mutation and a read-back after snapshot after it. Discard is read-only and only accepts the exact pre-write state. Partial, stale, wrong-owner, locked, blacklisted, or conflicting states fail closed.
+- Recovery resolution is recorded separately in the Daily recovery ledger and audit; unrelated playlist-manager pending state is preserved. The completed Nov 21 stage is explicitly rejected based on linked manager state/audit, despite its immutable stage status still reading staged-before-write.
+- Exact-head CI on code head 3dad4c981cd4d8004a7a49af2632d2382d1851cc: Cloudflare preview build passed; Daily/full tests and full-history security scan were still in progress at that checkpoint. Documentation updates followed, so fresh CI for the final branch head is required.
+- The Jockey branch remains draft-only. No workflow dispatch, Spotify/Last.fm request, playlist write, playlist-manager state/audit edit, generated Library edit, secret/OAuth change, or production deployment was performed.
+- Next: finish exact-head CI and independent review; retain the owner-only manual gate; await owner-controlled merge and live verification before treating recovery as operationally accepted.
+
+---
+## 2026-11-21 UTC — Tricky Daily scheduled rotation verified; Jockey branch reconciled
+
+- Mainline scheduled cycle #44901651168 completed a real 60-track publication; the stage and recovery backup were committed before the Spotify write, and completed state/audit were persisted. Scheduled delivery #44904728622 was a same-date duplicate no-op. GET-only snapshot #44915825720 confirmed 60 accessible unique tracks and a post-cycle snapshot ID matching completed state.
+- This proves one scheduled publication and duplicate guard under the existing mainline combined-cron/local-hour gate. It does not prove strict cron-to-DST offset selection or sustained multi-day reliability.
+- Jockey reconciled its existing `engineering/priority` branch with current main via merge commit `b2de95585fa9656ba86c238ca879d767030e4cfa`. The branch is now 41 ahead/0 behind and PR #200 remains draft/mergeable. Main's generated Library, playlist-manager state, and audit paths were preserved; Jockey did not modify those data paths.
+- Exact-head CI on the reconciled commit passed Daily/full tests, broker tests, full-history secret scan, and Cloudflare preview build; lockfile check was skipped. The preview is not a production deployment.
+- Next Daily P0 is audited, fail-closed resume/rollback/discard for a surviving production stage. Strict cron matching and description-only snapshot bracketing remain branch-only until owner-controlled merge. Daily-specific recommendation event/outcome memory remains P1.
+- Jockey reviewed Buddy PR #201 read-only: 12 changed files (11 Markdown + one test), with a mismatch between the run report and actual diff regarding file count and ACTIVE_SESSION_BRIEF modification. Exact-head tests/security scan passed; review outcome NEEDS CHANGES for report/handoff accuracy and overlap with Boots PR #202. No worker branch or PR was modified by Jockey.
+- No Spotify/Last.fm request, live playlist write, workflow dispatch, playlist-manager state/audit edit, generated Library edit, secret/OAuth change, or production deployment was performed by Jockey.
+
+---
+
+## 2026-11-20 UTC — Jockey priority assigned back to Tricky Daily reliability
+
+- User's current Jockey assignment makes Tricky Daily reliability the highest-priority SHIT implementation workstream. Jockey owns Daily only on persistent branch `engineering/priority`; Boots owns other SHIT engineering outside Daily; Buddy remains documentation-only. This supersedes the earlier auth-only trio-pause wording for Jockey's scope.
+- Mainline cycle [#44708292405](https://github.com/TrickySturluson/spotify-helper-information-tracker/actions/runs/44708292405) was a user-authorized push-triggered publication, not a schedule run. It completed with 60 ordered tracks, a committed pre-write stage/recovery backup, completed state/audit, and a later GET-only snapshot containing 60 accessible unique tracks.
+- Draft PR #200 adds strict EDT/EST cron-to-offset matching and durable before/after snapshots for description-only updates. Exact-head CI and live scheduled proof remain pending. No merge or live provider operation was performed by Jockey.
+- Daily recommendation memory remains an approved P1 requirement. Current candidate history records source/context and the feedback ledger stores track-level observations, but the complete event/outcome ledger is not yet implemented.
+- The centralized authentication production cutover remains an independent owner-controlled gate. Jockey does not modify credentials, secrets, OAuth, Cloudflare production, or the auth branch/PR.
+
+---
+
 ## 2026-11-09 UTC — Consolidate auth integration and close superseded drafts
 
 - Merged current `main` ancestry into the integrated PR #188 branch and retargeted PR #188 directly to `main`. GitHub now reports zero commits behind and the PR is mergeable; it remains draft pending keyring provisioning and deployment review.
