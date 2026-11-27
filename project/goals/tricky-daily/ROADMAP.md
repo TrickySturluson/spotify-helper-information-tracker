@@ -1,7 +1,7 @@
 # Tricky Daily — Roadmap
 
-**Last reviewed:** 2026-11-07 UTC / 2026-11-06 Eastern  
-**Status:** First fully verified live 60-track cycle completed on 2026-11-06 Eastern. The committed stage and recovery backup were verified before publication; Spotify read-back confirmed 60 unique tracks, zero blacklist hits, exact order, and the rotated description. The GET-only Daily snapshot/catalog/index and removal baseline now also report 60 tracks. The next scheduled automatic rotation after the cooldown-persistence fix remains unverified. Guided recovery and Daily recommendation memory remain open workstreams.
+**Last reviewed:** 2026-11-25 UTC  
+**Status:** A real scheduled 60-track publication and same-date duplicate no-op were verified on 2026-11-21 (see the current priority branch's source-grounded handoff and PR #200). Strict cron-to-DST matching and guided recovery remain unmerged in draft PR #200. The append-only Daily recommendation-memory module is present on main but is not yet integrated into the Daily cycle/observation workflow or candidate scoring. Recent listening-trend and liked-song signals already exist in the discovery path; repeat-exposure control and outcome-driven scoring remain incomplete. The user has reported repeated artist/track recommendations and near-identical ordering (including recurring Sound of Ceres and VIAL appearances); treat this as a quality issue to measure, not as proof of a specific scoring defect.
 
 ## Purpose
 Maintain a reliable daily 60-track discovery playlist that balances familiar taste with fresh discoveries, learns from meaningful feedback, and never overrides explicit user exclusions or playlist safety controls.
@@ -56,18 +56,53 @@ Memory must be append-safe/idempotent, versioned, recoverable, auditable, and sc
 
 Exact removed-track exclusions remain hard blocks. However, `load_playlist_feedback()` currently adds an artist-level negative event for any removed track with at least one measured post-add play or Last.fm scrobble, regardless of how many plays occurred or how many distinct tracks by that artist were removed. A highly played track removed for rotation/freshness can therefore penalize its artist. This is a P1 scoring-quality issue: decide a conservative aggregation rule (multiple distinct removed tracks vs low/high engagement) and add tests before changing weights. Never weaken exact track exclusions.
 
+## Recommendation engine upgrade — approved scope, 2026-11-25
+
+The user approved a focused improvement to Tricky Daily's recommendation engine after reporting repeated artists/tracks and very similar ordering across cycles (notably recurring Sound of Ceres and VIAL appearances). The objective is **better taste prediction with memory and controlled variety**, not randomization.
+
+### Existing foundation (do not rebuild blindly)
+
+- `scripts/spotify/spotify_listening_trends.py` already produces recent listening windows and confidence-gated artist momentum; Daily already generates and supplies this trend context during discovery.
+- `scripts/spotify/spotify_discovery.py` already uses candidate scoring, liked status, post-add listening evidence, and playlist-local feedback. Liked tracks are soft-ranked rather than hard-excluded.
+- `scripts/spotify/spotify_daily_feedback.py` observes liked status and listening feedback.
+- `scripts/spotify/daily_recommendation_memory.py` provides an append-only, versioned event-ledger foundation with selected-recommendation, publication, verification, and outcome-reconciliation functions. On the reviewed mainline it is **not yet wired into** `spotify_daily_cycle.py` or the scheduled observation workflow, and its integration/tests remain unfinished.
+- Last.fm scrobbles and Spotify playback-tracker observations must remain distinct evidence sources. Missing playback coverage is unknown, not zero.
+
+### Implementation sequence
+
+1. **Wire recommendation memory end-to-end.** Persist each selected recommendation with track identity, rank/score, confidence, rationale, strategy/config version, cycle/run ID, and evidence provenance. Record publication accepted and independently verified as separate events. Close exposure intervals on later cycles/removals. Invoke the observer from a reliable read-only workflow. Ensure retries and duplicate workflow deliveries are idempotent; do not backfill unsupported historical outcomes.
+2. **Improve recent-taste learning.** Use the existing recent windows and confidence-gated momentum to identify rising artists/styles, returning interests, and cooling affinities. Keep short-term momentum distinct from all-time taste. Treat newly liked after-add tracks as positive evidence; pre-liked tracks as familiarity, not proof the recommendation succeeded. Keep measured Spotify plays and Last.fm scrobbles separate and diminishing-return capped.
+3. **Stop repetitive recommendations.** Add a per-track recency/cycle cooldown and rolling artist exposure/saturation penalty. Penalize repeated appearances and repeated placements near the same part of the sequence; do not let one artist flood Daily merely because its similarity score is high. Relax soft artist limits progressively only when needed to fill 60. Never relax track uniqueness, blacklist/removal exclusions, or playlist safety invariants.
+4. **Broaden discovery without losing fit.** Maintain a deliberate balance of familiar-artist/new-track discoveries and less predictable but taste-compatible wildcards. Recover diversity debt across artists, genres, moods and sound profiles. Do not hard-filter genres or inject unrelated tracks solely to increase novelty.
+5. **Make outcomes and scoring explainable.** Store score components, confidence, evidence source/coverage, cooldown/penalty reasons, and concise selection explanations. Distinguish engaged, newly liked, retained, explicitly removed, high-play-then-removed, unplayed-then-removed, not-yet-observed, and unknown-coverage outcomes. A single track-level rejection must not automatically penalize its artist.
+6. **Evaluate before production weight changes.** Build deterministic offline replay/simulation using historical candidate events and observed outcomes. Compare repeat rate, artist concentration, order similarity, discovery/familiarity mix, engagement, and coverage. Version strategies/configuration and preserve rollback. Do not tune weights from anecdotes alone.
+
+### Acceptance criteria for the recommendation upgrade
+
+- Repeated recommendations remain individually recorded and link to one track history; duplicate ingestion creates no duplicate events.
+- A track's cooldown is based on actual recommendation exposure, not inferred dislike. Neutral curator rotation is not a negative outcome.
+- Rolling artist exposure limits measurably reduce consecutive-cycle artist saturation; fallback relaxation is explicit and audited.
+- Recent listening signals are confidence-gated, time-windowed, and source-attributed; sparse or missing data cannot dominate scoring.
+- Newly liked after-add tracks are rewarded; tracks already liked before addition are not misclassified as newly accepted.
+- Spotify playback, Last.fm scrobbles, likes/saves, removals, retention, and unknown coverage remain separate outcomes.
+- Hard blacklist/whitelist, URI uniqueness, exactly-60 publication, snapshot/stage/recovery, and no-write-by-default safeguards remain unchanged.
+- Offline evaluation demonstrates improved repeat/diversity metrics without materially degrading engagement or taste fit before production scoring weights are changed.
+- Every selected track can be explained by recorded evidence and score components.
+
 ## Roadmap
 
-**Execution priority:** prove and stabilize the existing daily operational cycle first. Do not expand recommendation intelligence until the no-write staging path is proven end-to-end and scheduled/forced behavior is reconciled. Recommendation memory is a committed P1 workstream to build after that operational gate.
+**Execution priority:** finish the remaining P0 operational/recovery gates and integrate the already-started recommendation memory safely. Recommendation-quality changes must be staged behind tests and offline evaluation; they must not weaken publication safeguards or cause live playlist writes without the existing authorization.
 
 1. **P0 — Exclusion and reconciliation integrity [IMPLEMENTED].** Centralize blacklist/removed-track enforcement and verify it before scoring and immediately before publication. Reconcile whitelist/blacklist and live playlist state on every invocation, including forced runs.
 2. **P0 — Transactional publication [IMPLEMENTED WITH RECOVERY GAPS].** Persist exact 60-track staging, make retries idempotent, guard concurrent invocations, preserve known-good state, and verify live ordered contents/count/uniqueness/exclusions before marking complete.
 3. **P0 — Forced-run parity [IMPLEMENTED].** Force bypasses only the clock gate; verify the same policy checks, reconciliation, staging, validation, description update/read-back, audit and post-publication checks as scheduled runs.
 4. **P0 — API and recovery resilience [AMBIGUOUS-WRITE GUARD IMPLEMENTED; RESUME GAP OPEN].** Respect Retry-After, bounded transient retries, token refresh, ambiguous write timeout read-back, pending-verification state and safe recovery.
-5. **P1 — Daily recommendation memory and feedback correctness.** Persist each recommendation event and its later observed outcomes; distinguish exposure, positive engagement, explicit rejection, ignored, not-yet-exposed and unknown due to coverage gaps; preserve track-level vs artist-level preference.
-6. **P1 — Candidate quality and diversity.** Improve familiarity/discovery balance, artist saturation, confidence, diminishing returns, diversity recovery and concise selection explanations.
-7. **P1 — Operational visibility.** Publish quality, feedback, safety, run and recovery summaries; alert on stale data or failed cycles.
-8. **P2 — Evaluation.** Evaluate recommendation changes against engagement, discovery and diversity outcomes with isolated experiments and rollback.
+5. **P1 — Daily recommendation memory integration.** Connect the append-only event ledger to candidate selection, staged publication, accepted/verified publication, and the read-only outcome observer. Preserve idempotency, recovery, source provenance, exposure intervals, and unknown coverage.
+6. **P1 — Recent-taste and feedback learning.** Use confidence-gated recent listening momentum, newly liked tracks, post-add engagement, and explicit removals as separate signals. Distinguish liked-before-add from liked-after-recommendation; do not treat missing playback coverage or silence as dislike.
+7. **P1 — Repeat suppression and diversity.** Add track-level cooldowns, rolling artist exposure/saturation limits, consecutive-cycle penalties, and genre/sound diversity recovery. Keep exact removals as hard exclusions; do not infer artist dislike from one removed track or neutral rotation.
+8. **P1 — Explainable, confidence-aware scoring.** Record per-candidate score components, confidence, selection reasons, strategy version, and evidence provenance. Balance familiar discoveries with unfamiliar tracks and bounded wildcards without resorting to arbitrary randomness.
+9. **P1 — Operational visibility.** Publish quality, feedback, diversity, safety, run and recovery summaries; alert on stale data or failed cycles.
+10. **P2 — Offline evaluation and controlled tuning.** Replay historical candidate/outcome data, compare engagement and diversity, version scoring strategies, and retain rollback before changing production weights.
 
 ## Acceptance criteria
 - Every successful publication has exactly 60 valid unique track URIs and no blacklisted/removed entries.
