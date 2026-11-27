@@ -1,5 +1,22 @@
 # Maintainability & Documentation — Roadmap
 
+## 2026-11-27 — Successor readiness and shared-PR checkpoint (10:07 Eastern)
+
+- **Current main:** 43038585488960107d348a5167062d0cad34e11f. Buddy PR #201 remains open/draft on babel/chatgpt-buddy-v2 at pre-update head 0467ab8972acad3facf1901daf5b0edec25ce250, 101 ahead / 40 behind, 12 changed files. GitHub reports mergeable=true, but the compare is diverged.
+- **Buddy daily gate:** automation 6aed3a70baf88191ab1dbfaa8f7dba91 is enabled; run 0d06f2cf-c66c-8328-bb52-ba6067422c9d was in_progress at 10:07:55 Eastern. Latest completed result ddd00db7-bf40-8322-ad5a-947d8a3a4816 is from November 26 and does not match. No completed November 27 report was visible at audit time. Environment unknown.
+- **Jockey — BLOCKED:** automation 6af1645551a48191900c77833073fdfd is enabled, daily 11:00 Eastern, next run November 27 at 11:00. Last run/result 7d3aa94e-0b30-832b-82f4-e42858841f23 match and completed on November 26; its non-truncated report says no changes were made because the persistent branch was divergent. PR #200 head 4f0291b8990987ca5bb84bdea06d6d6bad1113fe is 67/34, open/draft, 14 files. Existing exact-head Daily #44928121273, broker #44928121259, and security #44928121262 passed on November 21; the branch remains diverged and 34 behind. Environment unknown. Owner review and approved branch-reconciliation/re-enablement decision required.
+- **Boots fallback — BLOCKED:** automation Automation_2e1357c87e688191829bd2380047f46d is disabled; next recorded time November 27 at 16:30 while disabled. Last run/result 183a1311-bac4-832d-b8a7-21afa10020d3 match; the completed report is truncated and its available excerpt reports a safe stop on the divergent branch. engineering/general head a58e6b7d953428adf9932499a79234fc2ed06150 is 14/111, has no PR, and its Daily/security checks fail while broker passes. Environment unknown.
+- **Shared PRs:** #201/#202 overlap on the Buddy guide, docs index, active-session brief, and loose-ends register. #200 additionally overlaps the two handoff files. #202's handoff snapshots are dated November 23 and its PR description's claim that #201 lacks the Trio additions is contradicted by the current #201 guide/index. The protocol remains absent from main; #201's direct branch URL is therefore still necessary.
+- **Exact-head evidence:** #201 Daily #45844831517, broker #45844831502, security #45844831967 all passed on pre-update head 0467ab8. #202 broker #45097778021, Daily #45097778095, security #45097778028 passed on head 8d4a25e. #200 broker #44928121259, Daily #44928121273, security #44928121262 passed on head 4f0291b. Boots Daily #42578252673/security #42578252818 failed and broker #42578252704 passed. These checks are attached to the stated heads; the branch comparisons remain diverged.
+- **Cross-project handoff:** mainline NEXT_WORK and the top of goals README still say authentication is the sole focused priority, while the live Jockey prompt/PR #200 assign Tricky Daily. PR #202's proposed handoff changes remain unmerged.
+- **Merge gate:** do not merge #201 or #202 until all four shared files and the merge order are reconciled. Any sequence must also account for #200's two-file overlap. The suggested #202-first sequence is not authorization. Keep #201/#202/#200 draft.
+- **Next:** verify the final post-batch #201 head, changed-file list, and exact-head CI; obtain an owner-approved merge order; then continue the maintained-file/guide semantic audit, all-goal review, operational safety-contract audit, and fresh-session simulation. No complete runtime Trio cycle is verified; Phase 2 cross-repair remains unauthorized.
+
+---
+
+> The 2026-11-26 checkpoint and earlier live-status snapshots below are retained as history and superseded for current worker, branch, PR, and CI status by this 2026-11-27 checkpoint.
+
+
 ## 2026-11-26 — Refreshed shared handoff and successor evidence (09:54 Eastern)
 
 - **Current main:** 015e75e07df7667750760ce5e8b557e3eee16bc3. At audit start, Buddy PR #201 was open/draft on babel/chatgpt-buddy-v2 at 2ad67a7b027cfcc7fbe8d571ce9b5df8ea911a3d, 95 ahead / 34 behind, 12 changed files, GitHub mergeable=false. The handoff refresh below advances that branch; its final head and exact-head checks must be re-fetched.
@@ -79,7 +96,7 @@ Buddy remains proposal-only on `babel/chatgpt-buddy-v2` and its draft PR. It mus
 
 See [AGENTS.md](../../../AGENTS.md), [documentation rules](../../DOCUMENTATION_RULES.md), and [the ChatGPT Buddy policy](../../../docs/BABEL_CHATGPT_BUDDY.md). This overlay supersedes older statements below that call documentation the sole active SHIT workstream or require user review/merge for every documentation change.
 
-**Last reviewed:** 2026-11-25 09:23 Eastern
+**Last reviewed:** 2026-11-27 10:07 Eastern
 **Status:** In progress. The four shared files are reconciled on Buddy's branch: the Buddy guide and docs index already satisfied the requirements and were retained; the active-session brief and loose-ends register now carry a 2026-11-24 09:35 Eastern overlay. Exact-head GitHub Actions passed on pre-change Buddy head `045187191d79dbedae48d6735e918512f350a2cd`; this batch advances the branch and requires fresh checks. Owner-approved merge order across PRs #201/#202/#200, maintained-file/guide semantic coverage, all-goal review, operational safety-contract audit, and fresh-session simulation remain open.
 
 ## Purpose
